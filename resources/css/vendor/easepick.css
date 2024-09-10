@@ -1,0 +1,20 @@
+:host {
+    --color-bg-locked: #E31E2444;
+    /*--color-bg-default: green;*/
+    --color-fg-primary: #00a0e3;
+    --color-fg-default: #00a0e3;
+    --color-fg-accent: #e31e24;
+    --color-bg-inrange: #E31E2444;
+    --day-width: 60px;
+    --day-height: 60px;
+}
+/* increase start and end */
+.container.range-plugin .calendar>.days-grid>.day.start,
+.container.range-plugin .calendar>.days-grid>.day.end {
+    font-weight: bold;
+    transform: scale(1.2);
+    z-index: 1;
+}
+.calendar>.days-grid>.day:hover{
+    cursor: pointer;
+}
