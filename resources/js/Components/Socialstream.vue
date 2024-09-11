@@ -3,10 +3,6 @@ import InputError from '@/Components/InputError.vue';
 import ProviderIcon from '@/Components/SocialstreamIcons/ProviderIcon.vue';
 
 defineProps({
-    prompt: {
-        type: String,
-        default: 'Or Login Via',
-    },
     error: {
         type: String,
         default: null,
@@ -25,7 +21,7 @@ defineProps({
         <div class="relative flex items-center">
             <div class="flex-grow border-t border-gray-400 dark:border-gray-500"></div>
             <span class="flex-shrink text-gray-400 dark:text-gray-500 px-6">
-                {{ prompt }}
+                {{ __('auth.orLogin') }}
              </span>
             <div class="flex-grow border-t border-gray-400 dark:border-gray-500"></div>
         </div>

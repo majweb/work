@@ -81,6 +81,11 @@ const logout = () => {
                                     {{__('auth.projects')}}
                                 </NavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
+                                <NavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">
+                                    {{__('auth.projects')}}
+                                </NavLink>
+                            </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('statistics.index')" :active="route().current('statistics.index')">
                                     {{__('auth.statistics')}}

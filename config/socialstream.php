@@ -6,13 +6,12 @@ use JoelButcher\Socialstream\Providers;
 return [
     'guard' => 'web', // used if Fortify is not installed
     'middleware' => ['web'],
-    'prompt' => 'Or Login Via',
+    'prompt' =>  "Or Login",
     'providers' => [
-        Providers::github(label: 'Continue with GitHub'),
-        Providers::google(label: 'Continue with Google'),
-        Providers::facebook(label: 'Continue with Facebook'),
-        Providers::linkedinOpenId(label: 'Continue with Linkedin'),
-
+        Providers::github(label: 'Github'),
+        Providers::google(label: 'Google'),
+        Providers::facebook(label: 'Facebook'),
+        Providers::linkedinOpenId(label: 'Linkedin'),
     ],
     'features' => [
         // Features::generateMissingEmails(),

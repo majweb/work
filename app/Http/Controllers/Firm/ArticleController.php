@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateArticleRequest;
 use App\Http\Resources\FrontArticleResource;
 use App\Http\Resources\PermissionsResource;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\ChangeProduct;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;

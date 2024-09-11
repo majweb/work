@@ -78,6 +78,7 @@ return [
     'recruit' => 'Recruit',
     'recruitInfo' => 'Add information about the recruiter',
     'addedRecruit' => 'Recruiter added',
+    'addedProject' => 'added project',
     'deleteRecruit' => 'Delete recruit',
     'updateRecruit' => 'Updated recruit',
     'add' => 'Add',
@@ -205,9 +206,10 @@ return [
     'invoiceAmount' => 'Invoice amount',
     'orderNumber' => 'Order number',
     'search' => 'Search',
-    'opened' => 'Otwarta',
+    'opened' => 'Opened',
     'notFoundInvoices' => 'Not found invoices',
     'notFoundProducts' => 'Not found products',
+    'notFoundProjects' => 'Not found projects',
     'addToCart' => 'Add to cart',
     'addedToCart' => 'Added to cart',
     'clearFilters' => 'Reset filters and sorting',
@@ -258,5 +260,8 @@ return [
     'description' => 'Description',
     'language' => 'Language',
     'baner' => 'Banner',
+    'orLogin' => 'Or login',
+    'createProject' => 'Create project',
+    'projectInfo' => 'Project info',
 
 ];

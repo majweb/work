@@ -78,6 +78,7 @@ return [
     'recruit' => 'Rekruter',
     'recruitInfo' => 'Dodaj informację o rekruterze',
     'addedRecruit' => 'Dodano rekrutera',
+    'addedProject' => 'Dodano projekt',
     'deleteRecruit' => 'Usunięto rekrutera',
     'updateRecruit' => 'Zaaktualizowano rekrutera',
     'add' => 'Dodaj',
@@ -208,6 +209,7 @@ return [
     'opened' => 'Otwarta',
     'notFoundInvoices' => 'Brak faktur',
     'notFoundProducts' => 'Brak produków',
+    'notFoundProjects' => 'Brak projektów',
     'addToCart' => 'Dodaj do koszyka',
     'addedToCart' => 'Dodano do koszyka',
     'clearFilters' => 'Zeruj filtry i sortowanie',
@@ -258,5 +260,8 @@ return [
     'description' => 'Opis',
     'language' => 'Język',
     'baner' => 'Baner',
+    'orLogin' => 'Albo loguj',
+    'createProject' => 'Utwórz projekt',
+    'projectInfo' => 'Opis do tworzenia projektu',
 
 ];

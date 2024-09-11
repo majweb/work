@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Firm;
+namespace App\Http\Controllers\Recruit;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\CategoryRootResource;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class ProjectController extends Controller
 {
@@ -17,15 +19,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $c = CategoryRootResource::collection(Category::whereNull('parent_id')->with('children')->get());
-        Gate::authorize('view', [User::class, Project::class]);
 
         request()->validate([
             'direction' => ['in:asc,desc'],
             'field' => ['in:id']
         ]);
 
-        $query = Project::query()->with('recruit')->where('user_id', auth()->user()->id);
+        $query = Project::query()->where('recruiter_id', auth()->user()->id);
 
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
@@ -36,14 +36,39 @@ class ProjectController extends Controller
             }
         });
 
-        $recruiters = auth()->user()->recruits()->get();
-
-        return inertia()->render('Project/Index', [
-            'recruiters' => $recruiters,
-            'ttttttttttt' => $c,
+        return inertia()->render('RecruiterPages/Project/Index', [
             'projects' => $query->paginate(5)->withQueryString(),
             'filters' => request()->only(['field', 'direction', 'recruiter'])
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+
+        $category = CategoryRootResource::collection(Category::isRoot()->get());
+
+        return inertia()->render('RecruiterPages/Project/Create',
+            ['categories' =>$category]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreProject $request)
+    {
+        Project::create([
+            'title' => $request->projectData()['title'],
+            'user_id' => auth()->user()->recruiter_from_firm_id,
+            'recruiter_id' => auth()->user()->id
+        ]);
+
+        session()->flash('flash.banner', __('auth.addedProject'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return to_route('project-recruits.index');
     }
 
     /**
@@ -51,12 +76,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        Gate::authorize('update',auth()->user());
-        $project->load('recruit:id,name');
 
-
-        $locale = app()->getLocale();
-        return inertia()->render('Project/Show',['project'=>$project,'locale'=>$locale]);
     }
 
     /**
@@ -64,7 +84,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-
+        //
     }
 
     /**
@@ -80,10 +100,15 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        Gate::authorize('delete',$project);
+        Gate::authorize('project-recruiter',$project);
         $project->delete();
         session()->flash('flash.banner', __('auth.deleteProject'));
         session()->flash('flash.bannerStyle', 'success');
-        return to_route('projects.index');
+        return to_route('project-recruits.index');
+    }
+
+    public function getChildsCategory($parent)
+    {
+        return CategoryRootResource(Category::where('parent_id',$parent)->get());
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -38,5 +41,10 @@ class AppServiceProvider extends ServiceProvider
                 ->line(__('auth.emailVerifyLine'))
                 ->action(__('auth.emailVerifySubject'), $url);
         });
+
+        Gate::define('project-recruiter', function (User $user, Project $project) {
+            return $user->id === $project->recruiter_id;
+        });
+
     }
 }

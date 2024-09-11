@@ -12,6 +12,7 @@ use App\Http\Controllers\Firm\InvoiceController;
 use App\Http\Controllers\Firm\OrderController;
 use App\Http\Controllers\Firm\PoinstController;
 use App\Http\Controllers\Firm\ProjectController;
+use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
 use App\Http\Controllers\Firm\StatisticController;
 use App\Http\Controllers\Firm\RecruitController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,10 @@ Route::middleware([
     Route::get('/paymentView',[BuyController::class,'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView',[BuyController::class,'successView'])->name('buy.successView')->middleware('role:firm');
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
+
+//    RECRUIT
+    Route::resource('project-recruits',ProjectControllerRecruit::class)->middleware('role:recruit')->parameters(['project-recruits' => 'project']);
+    Route::post('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
 });
 
 
