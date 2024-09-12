@@ -13,6 +13,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import {ref, watch} from "vue";
 import Multiselect from 'vue-multiselect'
 
+
 const props = defineProps({
     categories: Array,
 });
