@@ -9,6 +9,7 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
         <div class="flex items-center justify-center">
             <ApplicationLogo class="block h-auto w-auto" />
         </div>
+        <h2>Moja mama</h2>
         {{__('test.mama',{test:'aaaaa',oko:'asdasds'})}}
     </main>
     </FrontLayout>
