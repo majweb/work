@@ -12,7 +12,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import style from "@easepick/bundle/dist/index.css?url";
-import customStyle from "../../../../resources/css/vendor/easepick.css?url";
+import customStyle from "../../../easepick.css?url";
 import moment from 'moment';
 
 const props = defineProps({

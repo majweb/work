@@ -7,7 +7,6 @@ export default defineConfig({
         alias: {
             'media-library-pro-vue3-attachment': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-attachment',
             'media-library-pro-vue3-collection': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-collection',
-            'vue': 'vue/dist/vue.esm-bundler.js',
         }
     },
     plugins: [
