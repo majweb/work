@@ -15,7 +15,9 @@ createServer(page =>
             const app =  createSSRApp({
                 render: () => h(App, props),
             })
-                app.use(plugin)
+                app.use(plugin);
+
+            return app;
         },
     })
 )
