@@ -12,12 +12,9 @@ createServer(page =>
             return pages[`./Pages/${name}.vue`]
         },
         setup({ App, props, plugin }) {
-            const app =  createSSRApp({
+            return createSSRApp({
                 render: () => h(App, props),
-            })
-                app.use(plugin);
-
-            return app;
-        },
+            }).use(plugin);
+            },
     })
 )
