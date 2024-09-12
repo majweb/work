@@ -9,6 +9,7 @@ export default defineConfig({
             'media-library-pro-vue3-collection': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-collection',
             // 'vue': 'vue/dist/vue.esm-bundler.js',
         }
+
     },
     plugins: [
         laravel({
