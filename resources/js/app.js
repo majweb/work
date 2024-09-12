@@ -19,7 +19,6 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(VueApexCharts)
-
         app.config.globalProperties.__  = __
         app.mount(el);
     },
