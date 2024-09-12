@@ -1,9 +1,8 @@
 import './bootstrap';
 import '../css/app.css';
 
+import { createSSRApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
-import { createSSRApp, h } from 'vue'
-
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import __ from './lang';

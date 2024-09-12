@@ -9,6 +9,10 @@ export default defineConfig({
             'media-library-pro-vue3-collection': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-collection',
         }
     },
+    ssr: {
+        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','vue-multiselect','axios'],
+    },
+
     plugins: [
         laravel({
             input: 'resources/js/app.js',
@@ -18,7 +22,7 @@ export default defineConfig({
         vue({
             template: {
                 compilerOptions: {
-                    isCustomElement: (tag) => tag.startsWith('x-')
+                    isCustomElement: (tag) => tag.startsWith('sm:')
                 },
                 transformAssetUrls: {
                     base: null,
