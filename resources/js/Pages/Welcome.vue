@@ -13,6 +13,7 @@ import { Head } from '@inertiajs/vue3'
     <meta property="og:description" content="tu bedzie opis"  />
     <meta property="og:image" content="https://abctest.pl/images/logo.png"  />
     <meta property="og:url" content="https://abctest.pl"  />
+    <meta property="og:type" content="website" />
     <title>ss i tata</title>
     <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
     <meta name=description content="Opsi - Work" />
