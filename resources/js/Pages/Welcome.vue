@@ -17,6 +17,7 @@ import { Head } from '@inertiajs/vue3'
     <meta name=description content="Opsi - Work" />
     </Head>
 
+
     <main class="mt-6 min-h-screen flex items-center justify-center">
         <div class="flex items-center justify-center">
             <ApplicationLogo class="block h-auto w-auto" />
