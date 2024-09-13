@@ -1,10 +1,16 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+import { Head } from '@inertiajs/vue3'
+
 </script>
 
 <template>
     <FrontLayout title="Welcome">
+    <Head>
+        <title>mama i tata</title>
+        <meta head-key="description" name="description" content="This is the default description" />
+    </Head>
     <main class="mt-6 min-h-screen flex items-center justify-center">
         <div class="flex items-center justify-center">
             <ApplicationLogo class="block h-auto w-auto" />
