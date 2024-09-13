@@ -8,8 +8,11 @@ import { Head } from '@inertiajs/vue3'
 <template>
     <FrontLayout title="Welcome">
     <Head>
+    <meta property="og:title" content="Strona główna - work4global" />
+    <meta property="og:description" content="tu bedzie opis"  />
     <meta property="og:image" content="https://abctest.pl/images/logo.png"  />
-    <title>mama i tata</title>
+    <meta property="og:url" content="https://abctest.pl"  />
+    <title>sexi i tata</title>
     <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
     <meta name=description content="Opsi - Work" />
     </Head>
