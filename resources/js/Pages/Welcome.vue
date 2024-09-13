@@ -14,7 +14,7 @@ import { Head } from '@inertiajs/vue3'
 <meta property="og:url" content="https://codecourse.com" />
 <meta property="og:title" content="Strona główna" />
 <meta property="og:description" content="facebook" />
-<meta property="og:image" content="https://dobrasztela.pl/storage/pages/strona-glowna-1719495185.png" />
+<meta property="og:image" content="/images/logo.png" />
     </Head>
 
     <main class="mt-6 min-h-screen flex items-center justify-center">
