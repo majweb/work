@@ -23,9 +23,6 @@ defineProps({
             <meta name=mobile-web-app-capable content="yes" />
             <meta name=msapplication-navbutton-color content="#00A0E3B2" />
             <meta name=apple-mobile-web-app-status-bar-style content="#00A0E3B2" />
-            <meta property="og:locale" content="pl_PL" />
-            <meta property="og:image:width" content="1240" />
-            <meta property="og:image:height" content="650" />
         </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
