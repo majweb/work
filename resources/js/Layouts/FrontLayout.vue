@@ -13,7 +13,6 @@ defineProps({
 <template>
     <div>
         <Head :title="title">
-            <title>sss</title>
             <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
             <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -27,6 +26,11 @@ defineProps({
             <meta property="og:locale" content="pl_PL" />
             <meta property="og:image:width" content="1240" />
             <meta property="og:image:height" content="650" />
+            <meta property="og:title" content="Strona główna - work4global" />
+            <meta property="og:description" content="tu bedzie opis"  />
+            <meta property="og:image" content="https://abctest.pl/images/logo.png"  />
+            <meta property="og:url" content="https://abctest.pl"  />
+            <meta property="og:type" content="website" />
         </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
