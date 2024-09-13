@@ -8,7 +8,7 @@ import { Head } from '@inertiajs/vue3'
 <template>
     <FrontLayout title="Welcome">
     <Head>
-    <meta property="og:url" content="http://64.225.98.176" />
+    <meta property="og:url" content="https://abctest.pl/" />
     <meta property="og:title" content="Strona główna" />
     <meta property="og:description" content="facebook" />
     <meta property="og:image" content="/images/logo.png" />
