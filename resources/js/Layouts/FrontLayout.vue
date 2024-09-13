@@ -19,7 +19,7 @@ defineProps({
             <link rel="manifest" href="/images/site.webmanifest">
             <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#00A0E3B2">
             <meta name="msapplication-TileColor" content="#da532c">
-            <meta name="theme-color" content="#ffffff">
+            <meta name="theme-color" content="#da532c">
         </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
