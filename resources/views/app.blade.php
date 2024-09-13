@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Fonts -->
-        <meta property="og:image" content="https://abctest.pl/images/test.png"  />
+        <meta property="og:image" content="https://abctest.pl/images/test.jpg"  />
         <meta property="og:url" content="https://abctest.pl"  />
         <meta property="og:type" content="website" />
 
