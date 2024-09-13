@@ -13,20 +13,20 @@ defineProps({
 <template>
     <div>
         <Head>
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="manifest" href="/images/site.webmanifest">
-<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#00A0E3B2">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#da532c">
-<meta name=mobile-web-app-capable content="yes" />
-<meta name=msapplication-navbutton-color content="#da532c" />
-<meta name=apple-mobile-web-app-status-bar-style content="#da532c" />
-<meta property="og:type" content="strona" />
-<meta property="og:locale" content="pl_PL" />
-<meta property="og:image:width" content="1240" />
-<meta property="og:image:height" content="650" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+        <link rel="manifest" href="/images/site.webmanifest">
+        <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#00A0E3B2">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#da532c">
+        <meta name=mobile-web-app-capable content="yes" />
+        <meta name=msapplication-navbutton-color content="#da532c" />
+        <meta name=apple-mobile-web-app-status-bar-style content="#da532c" />
+        <meta property="og:type" content="strona" />
+        <meta property="og:locale" content="pl_PL" />
+        <meta property="og:image:width" content="1240" />
+        <meta property="og:image:height" content="650" />
         </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
