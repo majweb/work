@@ -9,15 +9,7 @@ import {Head} from '@inertiajs/vue3'
 <template>
     <FrontLayout title="Welcome">
         <Head>
-            <meta property="fb:app_id" content="1234567890" />
-            <meta property="og:type" content="article" />
-            <meta property="og:url" content="https://abctest.pl" />
-            <meta head-key="og:title" property="og:title" content="Strona główna - work4global" />
-            <meta head-key="og:image" property="og:image" content="https://abctest.pl/images/test.jpg" />
-            <meta head-key="og:description" property="og:description" content="pis" />
-            <title>ss i tata</title>
-            <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego"/>
-            <meta name=description content="Opsi - Work" />
+
         </Head>
 
 
