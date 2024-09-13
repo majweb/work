@@ -6,6 +6,13 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <meta inertia property="og:title" content="Strona główna - work4global" />
+        <meta inertia property="og:description" content="tu bedzie opis" />
+        <meta inertia property="og:image" content="https://abctest.pl/images/logo.png" />
+        <meta inertia property="og:url" content="https://abctest.pl" />
+
+
         <!-- Scripts -->
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
