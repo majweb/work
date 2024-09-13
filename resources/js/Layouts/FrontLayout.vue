@@ -27,8 +27,8 @@ defineProps({
             <meta property="og:image:width" content="1240" />
             <meta property="og:image:height" content="650" />
             <meta property="og:title" content="Strona główna - work4global" />
-            <meta property="og:image" content="https://abctest.pl/images/test.jpg"  />
-            <meta property="og:url" content="https://abctest.pl"  />
+            <meta property="og:image" content="http://abctest.pl/images/test.jpg"  />
+            <meta property="og:url" content="http://abctest.pl"  />
             <meta property="og:type" content="website" />
         </Head>
         <Banner />
