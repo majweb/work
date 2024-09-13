@@ -11,8 +11,6 @@ import { Head } from '@inertiajs/vue3'
     <Head>
     <meta property="og:description" content="tttttt"  />
     <meta property="og:image" content="https://abctest.pl/images/logo.png"  />
-    <meta property="og:image:secure" content="https://abctest.pl/images/logo.png">
-    <meta property="og:image:secure_url" content="https://abctest.pl/images/logo.png" />
     <meta property="og:url" content="https://abctest.pl"  />
     <meta property="og:type" content="website" />
     <title>ss i tata</title>
