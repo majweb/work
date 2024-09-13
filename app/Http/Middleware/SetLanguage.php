@@ -20,7 +20,7 @@ class SetLanguage
         } else{
             $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
         }
-        app()->setLocale(Lang::tryFrom($locale)->value);
+        app()->setLocale(Lang::tryFrom($locale)?->value);
 
         return $next($request);
     }
