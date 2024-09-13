@@ -11,6 +11,7 @@ import { Head } from '@inertiajs/vue3'
         <title>mama i tata</title>
         <meta head-key="description" name="description" content="This is the default description" />
     </Head>
+
     <main class="mt-6 min-h-screen flex items-center justify-center">
         <div class="flex items-center justify-center">
             <ApplicationLogo class="block h-auto w-auto" />
