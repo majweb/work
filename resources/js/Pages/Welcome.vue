@@ -11,7 +11,7 @@ import { Head } from '@inertiajs/vue3'
     <meta property="og:url" content="https://abctest.pl/" />
     <meta property="og:title" content="Strona główna" />
     <meta property="og:description" content="facebook" />
-    <meta property="og:image" content="/images/logo.png" />
+    <meta property="og:image" content="https://abctest.pl/images/logo.png" />
     <title>mama i tata</title>
     <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
     <meta name=description content="Opsi - Work" />
