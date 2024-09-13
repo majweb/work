@@ -8,11 +8,6 @@ import {Head} from '@inertiajs/vue3'
 
 <template>
     <FrontLayout title="Welcome">
-        <Head>
-
-        </Head>
-
-
         <main class="mt-6 min-h-screen flex items-center justify-center">
             <div class="flex items-center justify-center">
                 <ApplicationLogo class="block h-auto w-auto"/>
