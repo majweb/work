@@ -5,6 +5,7 @@ import { Head } from '@inertiajs/vue3'
 
 </script>
 
+
 <template>
     <FrontLayout title="Welcome">
     <Head>
