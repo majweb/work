@@ -26,11 +26,6 @@ defineProps({
             <meta property="og:locale" content="pl_PL" />
             <meta property="og:image:width" content="1240" />
             <meta property="og:image:height" content="650" />
-            <meta property="og:title" content="Strona główna - work4global" />
-            <meta property="og:description" content="tu bedzie opis"  />
-            <meta property="og:image" content="https://abctest.pl/images/logo.png"  />
-            <meta property="og:url" content="https://abctest.pl"  />
-            <meta property="og:type" content="website" />
         </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
