@@ -11,7 +11,7 @@ import { Head } from '@inertiajs/vue3'
 <title>mama i tata</title>
 <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
 <meta name=description content="Opsi - Work" />
-<meta property="og:url" content="http://64.225.98.176.pl" />
+<meta property="og:url" content="https://codecourse.com" />
 <meta property="og:title" content="Strona główna" />
 <meta property="og:description" content="facebook" />
 <meta property="og:image" content="https://dobrasztela.pl/storage/pages/strona-glowna-1719495185.png" />
