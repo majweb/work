@@ -9,7 +9,6 @@ import { Head } from '@inertiajs/vue3'
 <template>
     <FrontLayout title="Welcome">
     <Head>
-    <meta property="og:title" content="Strona główna - work4global" />
     <meta property="og:description" content="tttttt"  />
     <meta property="og:image" content="https://abctest.pl/images/logo.png"  />
     <meta property="og:image:secure" content="https://abctest.pl/images/logo.png">
