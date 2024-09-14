@@ -17,8 +17,8 @@
         <meta name=msapplication-navbutton-color content="#00A0E3B2" />
         <meta name=apple-mobile-web-app-status-bar-style content="#00A0E3B2" />
         <!-- Scripts -->
-        @routes
         @inertiaHead
+        @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     </head>
     <body class="font-sans antialiased">
