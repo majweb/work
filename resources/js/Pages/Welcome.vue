@@ -9,14 +9,14 @@ import {Head} from '@inertiajs/vue3'
 <template>
     <Head>
         <meta property="og:title" content="Strona główna - work4global" />
-        <meta property="og:site_name" content="abctest.pl">
+        <meta property="og:site_name" content="abctest.pl" />
         <meta property="og:url" content="https://abctest.pl" />
-<!--        <meta property="og:description" content="cxvxcvxcvcxvcx" />-->
+        <meta property="og:description" content="cxvxcvxcvcxvcx" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://abctest.pl/images/test.jpg" />
-<!--        <title>ss i tata</title>-->
-<!--        <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego"/>-->
-<!--        <meta name=description content="Opsi - Work" />-->
+        <title>ss i tata</title>
+        <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
+        <meta name=description content="Opsi - Work" />
     </Head>
     <FrontLayout title="Welcome">
         <main class="mt-6 min-h-screen flex items-center justify-center">
