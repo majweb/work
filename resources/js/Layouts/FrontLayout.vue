@@ -12,7 +12,17 @@ defineProps({
 
 <template>
     <div>
-        <Head :title="title" />
+        <Head>
+            <meta property="og:title" content="Strona główna - work4global" />
+            <meta property="og:site_name" content="abctest.pl" />
+            <meta property="og:url" content="https://abctest.pl" />
+            <meta property="og:description" content="cxvxcvxcvcxvcx" />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://abctest.pl/images/inne.jpg" />
+            <title>{{title}}</title>
+            <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
+            <meta name=description content="Opsi - Work" />
+        </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" />
