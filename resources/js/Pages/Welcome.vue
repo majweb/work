@@ -1,6 +1,7 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+import {usePage} from "@inertiajs/vue3";
 </script>
 
 
@@ -20,9 +21,7 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, quidem!
             </p>
             {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}
-
-            {{console.log(window.location.hostname)}}
-            {{console.log(window.location)}}
+            {{usePage().props.pageUrl}}
         </main>
     </FrontLayout>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, router } from '@inertiajs/vue3';
+import {Head, Link, router, usePage} from '@inertiajs/vue3';
 import Banner from '@/Components/Banner.vue';
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
@@ -17,8 +17,8 @@ const props = defineProps({
     <div>
         <Head>
             <meta property="og:title" :content="props.title" />
-            <meta property="og:site_name" :content="window.location.hostname" />
-            <meta property="og:url" :content="window.location.hostname" />
+            <meta property="og:site_name" :content="usePage().props.pageUrl" />
+            <meta property="og:url" :content="usePage().props.pageUrl" />
             <meta property="og:description" :content="props.description" />
             <meta property="og:type" content="website" />
             <meta property="og:image" :content="props.image" />
