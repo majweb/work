@@ -24,7 +24,6 @@ class SetLanguage
             app()->setLocale(Lang::tryFrom($locale)?->value);
         }
 
-
         return $next($request);
     }
 }
