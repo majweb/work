@@ -22,7 +22,7 @@ const props = defineProps({
             <meta property="og:description" :content="props.description" />
             <meta property="og:type" content="website" />
             <meta property="og:image" :content="props.image" />
-            <title>{{props.title}} - {{usePage().props.pageName}}</title>
+            <title>{{props.title}}</title>
             <meta name=keywords :content="props.keywords" />
             <meta name=description :content="props.description" />
         </Head>
