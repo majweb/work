@@ -194,7 +194,7 @@
             <td style="border-left:none;">
                 @foreach ($order->orderProducts as $product)
                     <span style="padding-left:5px;">
-                                              {{ $product->product->trans_name[app()->getLocale()] }}<br>
+                                              {{ $product->product->name }}<br>
                                           </span>
                 @endforeach
                 <br>

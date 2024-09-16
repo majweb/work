@@ -111,7 +111,7 @@ class BuyController extends Controller
     public function store(Product $product)
     {
         if($product->exists){
-        Cart::add($product->id, $product->trans_name[app()->getLocale()], 1, $product->price,'0', ['points' => $product->points]);
+        Cart::add($product->id, $product->name, 1, $product->price,'0', ['points' => $product->points]);
             session()->flash('flash.banner', __('auth.addedToCart'));
             session()->flash('flash.bannerStyle', 'success');
         return back();

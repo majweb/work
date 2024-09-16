@@ -263,5 +263,6 @@ return [
     'orLogin' => 'Or login',
     'createProject' => 'Create project',
     'projectInfo' => 'Project info',
-
+    'quantity' => 'Quantity',
+    'create' => 'Create',
 ];

@@ -5,25 +5,29 @@ namespace App\Models;
 use App\Enum\ProductType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
     use HasFactory;
+    use HasTranslations;
+
+    public array $translatable = ['type','name'];
 
     protected $fillable = [
         'name',
         'points',
         'price',
         'active',
-        'trans',
+        'type',
         'product_type',
-        'trans_name'
+        'name'
     ];
 
     protected $casts = [
         'active' => 'boolean',
-        'trans' => 'array',
-        'trans_name' => 'array',
+        'type' => 'array',
+        'name' => 'array',
         'product_type' => ProductType::class,
     ];
 

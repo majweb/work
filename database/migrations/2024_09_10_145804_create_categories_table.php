@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->json('trans_title')->nullable();
-            $table->json('trans_slug')->nullable();
+            $table->json('title')->nullable();
+            $table->json('slug')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         });

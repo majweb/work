@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->boolean('active')->default(1);
             $table->string('product_type');
-            $table->json('trans')->nullable();
+            $table->json('type')->nullable();
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['active','product_type','trans']);
+            $table->dropColumn(['active','product_type','type']);
         });
     }
 };

@@ -19,8 +19,8 @@ class BuyResource extends JsonResource
             'price'=>$this->price,
             'points'=>$this->points,
             'product_type'=>$this->product_type,
-            'trans'=>$this->trans[app()->getLocale()],
-            'trans_name'=>$this->trans_name[app()->getLocale()]
+            'type'=>$this->trans,
+            'name'=>$this->name
         ];
     }
 }

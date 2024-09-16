@@ -15,7 +15,7 @@ class CategoryRootResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'name' => json_decode($this->trans_title)->{app()->getLocale()},
+            'name' => $this->title,
             'value' => $this->id
         ];
     }

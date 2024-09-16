@@ -32,7 +32,7 @@ const props = defineProps({
                             <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 lg:gap-8">
                                 <div v-for="(product) in props.products.data" :key="product.id" class="mb-2 border border-2 border-gray-200 rounded-md p-5 flex flex-col items-center ">
                                     <h5 class="mb-2 text-xl font-bold text-gray-900 dark:text-white text-center">
-                                        <span>{{ product.product.trans_name }}</span>
+                                        <span>{{ product.product.name }}</span>
                                     </h5>
                                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ product.product.price }} {{__('auth.points')}}</p>
                                     <div class="flex items-center flex-col">
@@ -51,9 +51,9 @@ const props = defineProps({
                                     </div>
                                     <div v-if="product.qty">
                                         <div class="mb-3 text-sm text-gray-700 dark:text-gray-400 flex flex-col items-center mt-2">
-                                            <span>ilość:{{ product.qty }}</span>
+                                            <span>{{__('auth.points')}}:{{ product.qty }}</span>
                                             <Link :href="route('articles.create')" class="mt-2 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                                                Utwórz
+                                                {{__('auth.create')}}
                                             </Link>
                                         </div>
                                     </div>

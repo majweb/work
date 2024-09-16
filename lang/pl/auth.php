@@ -263,5 +263,6 @@ return [
     'orLogin' => 'Albo loguj',
     'createProject' => 'Utwórz projekt',
     'projectInfo' => 'Opis do tworzenia projektu',
-
+    'quantity' => 'Ilość',
+    'create' => 'Utwórz',
 ];

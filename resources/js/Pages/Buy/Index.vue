@@ -27,7 +27,7 @@ let currency  = computed(()=>{
     return usePage().props.auth.user?.firm?.currency;
 });
 
-watch(params.value, debounce(function (value) {
+watch(params.value, debounce(function () {
     let rest = pickBy(params.value);
     router.get(route('buy.index'), rest, {preserveState: true, replace: true});
 }, 300));
@@ -75,10 +75,10 @@ watch(params.value, debounce(function (value) {
                                 <div v-for="(product) in props.products.data" :key="product.id" class="mb-2 border border-2 border-gray-200 rounded-md p-5 flex flex-col items-center ">
 
                                     <h5 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                                        <span>{{ product.trans_name }}</span>
+                                        <span>{{ product.name }}</span>
                                     </h5>
                                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                        {{product.trans}}
+                                        {{product.type}}
                                     </p>
                                     <p v-if="product.product_type == 'Points'" class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ product.price }} {{currency}}</p>
                                     <p v-else class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ parseInt(product.price) }} {{__('auth.points')}}</p>

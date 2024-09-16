@@ -15,7 +15,6 @@ class PageSeeder extends Seeder
      */
     public function run(): void
     {
-
         Schema::disableForeignKeyConstraints();
 
         DB::table('pages')->truncate();
