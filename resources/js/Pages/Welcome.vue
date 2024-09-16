@@ -1,15 +1,21 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+
+defineProps({
+    page: Object
+});
 </script>
+
+
 
 
 <template>
     <FrontLayout
-        title="Welcome"
-        image="https://abctest.pl/images/test.jpg"
-        keywords="słowa kluczowe"
-        description="tu będzie o opis strony"
+        :title="page.title"
+        :image="page.image"
+        :keywords="page.keywords"
+        :description="page.description"
     >
         <main class="mt-6 min-h-screen flex items-center justify-center">
             <div class="flex items-center justify-center">

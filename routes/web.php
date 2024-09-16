@@ -15,6 +15,8 @@ use App\Http\Controllers\Firm\ProjectController;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
 use App\Http\Controllers\Firm\StatisticController;
 use App\Http\Controllers\Firm\RecruitController;
+use App\Http\Resources\PageResource;
+use App\Models\Page;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,7 +24,9 @@ Route::mediaLibrary();
 
 
 Route::get('/', function () {
+    $page = Page::whereId(1)->first();
     return Inertia::render('Welcome', [
+        'page' => new PageResource($page),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register')
     ]);

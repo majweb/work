@@ -14,4 +14,9 @@ class Category extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'trans_title' => 'array',
+        'trans_slug' => 'array',
+    ];
+
 }
