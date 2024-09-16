@@ -17,6 +17,7 @@
         <meta name=mobile-web-app-capable content="yes" />
         <meta name=msapplication-navbutton-color content="#00A0E3B2" />
         <meta name=apple-mobile-web-app-status-bar-style content="#00A0E3B2" />
+        <meta property="fb:app_id" content="1234567890" />
         <!-- Scripts -->
         @routes
         @inertiaHead

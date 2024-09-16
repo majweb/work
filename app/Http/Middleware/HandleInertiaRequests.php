@@ -61,6 +61,7 @@ class HandleInertiaRequests extends Middleware
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'pageUrl' => env('APP_URL'),
+            'pageName' => env('APP_NAME'),
         ]);
     }
 }

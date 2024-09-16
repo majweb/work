@@ -1,14 +1,13 @@
 <script setup>
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import {usePage} from "@inertiajs/vue3";
 </script>
 
 
 <template>
     <FrontLayout
         title="Welcome"
-        image="https://abctest.pl/images/inne.jpg"
+        image="https://abctest.pl/images/test.jpg"
         keywords="słowa kluczowe"
         description="tu będzie o opis strony"
     >
@@ -21,7 +20,6 @@ import {usePage} from "@inertiajs/vue3";
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, quidem!
             </p>
             {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}
-            {{usePage().props.pageUrl}}
         </main>
     </FrontLayout>
 </template>

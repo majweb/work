@@ -16,15 +16,13 @@ const props = defineProps({
 <template>
     <div>
         <Head>
-            <meta property="og:title" :content="props.title" />
+            <meta property="og:title" :content="props.title + ' - ' + usePage().props.pageName" />
             <meta property="og:site_name" :content="usePage().props.pageUrl" />
             <meta property="og:url" :content="usePage().props.pageUrl" />
             <meta property="og:description" :content="props.description" />
             <meta property="og:type" content="website" />
             <meta property="og:image" :content="props.image" />
-            <meta property="og:image:url" :content="props.image" />
-            <meta property="og:image:secure" :content="props.image" />
-            <title>{{props.title}}</title>
+            <title>{{props.title}} - {{usePage().props.pageName}}</title>
             <meta name=keywords :content="props.keywords" />
             <meta name=description :content="props.description" />
         </Head>
