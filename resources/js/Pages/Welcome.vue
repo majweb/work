@@ -5,7 +5,12 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 
 
 <template>
-    <FrontLayout title="Welcome">
+    <FrontLayout
+        title="Welcome"
+        image="https://abctest.pl/images/inne.jpg"
+        keywords="słowa kluczowe"
+        description="tu będzie o opis strony"
+    >
         <main class="mt-6 min-h-screen flex items-center justify-center">
             <div class="flex items-center justify-center">
                 <ApplicationLogo class="block h-auto w-auto"/>
@@ -15,6 +20,8 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, quidem!
             </p>
             {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}
+
+            {{window.location.hostname}}
         </main>
     </FrontLayout>
 </template>

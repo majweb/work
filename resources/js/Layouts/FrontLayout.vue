@@ -6,6 +6,9 @@ import NavLink from "@/Components/NavLink.vue";
 
 const props = defineProps({
     title: String,
+    image: String,
+    keywords: String,
+    description: String,
 });
 
 </script>
@@ -13,17 +16,17 @@ const props = defineProps({
 <template>
     <div>
         <Head>
-            <meta property="og:title" content="Strona główna - work4global" />
-            <meta property="og:site_name" content="abctest.pl" />
-            <meta property="og:url" content="https://abctest.pl" />
-            <meta property="og:description" content="cxvxcvxcvcxvcx" />
+            <meta property="og:title" :content="props.title" />
+            <meta property="og:site_name" :content="window.location.hostname" />
+            <meta property="og:url" :content="window.location.hostname" />
+            <meta property="og:description" :content="props.description" />
             <meta property="og:type" content="website" />
-            <meta property="og:image" content="https://abctest.pl/images/inne.jpg" />
-            <meta property="og:image:url" content="https://abctest.pl/images/inne.jpg" />
-            <meta property="og:image:secure" content="https://abctest.pl/images/inne.jpg" />
+            <meta property="og:image" :content="props.image" />
+            <meta property="og:image:url" :content="props.image" />
+            <meta property="og:image:secure" :content="props.image" />
             <title>{{props.title}}</title>
-            <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
-            <meta name=description content="Opsi - Work" />
+            <meta name=keywords :content="props.keywords" />
+            <meta name=description :content="props.description" />
         </Head>
         <Banner />
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
