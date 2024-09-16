@@ -21,7 +21,8 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
             </p>
             {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}
 
-            {{window.location.hostname}}
+            {{console.log(window.location.hostname)}}
+            {{console.log(window.location)}}
         </main>
     </FrontLayout>
 </template>
