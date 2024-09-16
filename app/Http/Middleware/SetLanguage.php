@@ -23,6 +23,7 @@ class SetLanguage
         if($locale){
         app()->setLocale('en');
         }
+        app()->setLocale('en');
 
 
         return $next($request);
