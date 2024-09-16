@@ -4,7 +4,7 @@ import Banner from '@/Components/Banner.vue';
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
 
-defineProps({
+const props = defineProps({
     title: String,
 });
 
@@ -21,7 +21,7 @@ defineProps({
             <meta property="og:image" content="https://abctest.pl/images/inne.jpg" />
             <meta property="og:image:url" content="https://abctest.pl/images/inne.jpg" />
             <meta property="og:image:secure" content="https://abctest.pl/images/inne.jpg" />
-            <title>{{title}}</title>
+            <title>{{props.title}}</title>
             <meta name=keywords content="portal pracy, szukam pracy, praca za granicą, porady zdrowotne, przepisy kulinarne, darmowe lekcje niemieckiego" />
             <meta name=description content="Opsi - Work" />
         </Head>
