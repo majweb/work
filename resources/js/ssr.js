@@ -9,6 +9,8 @@ createServer(page =>
     createInertiaApp({
         page,
         render: renderToString,
+        title: (title) => `${title} - ${appName}`,
+
         resolve: name => {
             const pages = import.meta.glob('./Pages/**/*.vue', {eager: true})
             return pages[`./Pages/${name}.vue`]
