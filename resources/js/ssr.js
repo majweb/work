@@ -5,6 +5,8 @@ import {createSSRApp, h} from 'vue'
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 import __ from "@/lang.js";
 
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
 createServer(page =>
     createInertiaApp({
         page,
