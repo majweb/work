@@ -16,20 +16,48 @@ import Multiselect from 'vue-multiselect'
 const props = defineProps({
     categories: Array,
 });
+
 const form = useForm({
     category: '',
+    categorySub: '',
+    profession: '',
+    professionSub: '',
     title: '',
 });
 
 
 const optionsCategory = ref(props.categories)
 const optionsSubCategory = ref([]);
+const optionsProfession = ref([]);
+const optionsProfessionSub = ref([]);
 
-watch(() => form.category, (category) => {
+watch(() => form.category, async (category) => {
     if (form.category) {
-
-        // optionsSubCategory.value =
+        const data = await axios.get(route('getChildsCategory',category.value));
+        optionsSubCategory.value =data.data;
     }
+        optionsProfession.value = [];
+        optionsProfessionSub.value = [];
+        form.categorySub = '';
+        form.profession = '';
+        form.professionSub = '';
+});
+watch(() => form.categorySub, async (categorySub) => {
+    if (form.categorySub) {
+        const datas = await axios.get(route('getChildsCategory',categorySub.value));
+        optionsProfession.value =datas.data;
+    }
+        optionsProfessionSub.value = [];
+        form.profession = '';
+        form.professionSub = '';
+});
+
+watch(() => form.profession, async (profession) => {
+    if (form.profession) {
+        const datas = await axios.get(route('getChildsCategory',profession.value));
+        optionsProfessionSub.value =datas.data;
+    }
+        form.professionSub = '';
 });
 
 const createProject = () => {
@@ -83,8 +111,30 @@ const createProject = () => {
                                 track-by="value"
                                 label="name"
                                 v-model="form.category" :options="optionsCategory"></multiselect>
-
-                                {{optionsSubCategory}}
+                            <multiselect
+                                selectLabel="Press enter to select"
+                                selectGroupLabel="Press enter to select group"
+                                selectedLabel="Selected"
+                                deselectLabel="Press enter to remove"
+                                track-by="value"
+                                label="name"
+                                v-model="form.categorySub" :options="optionsSubCategory"></multiselect>
+                            <multiselect
+                                selectLabel="Press enter to select"
+                                selectGroupLabel="Press enter to select group"
+                                selectedLabel="Selected"
+                                deselectLabel="Press enter to remove"
+                                track-by="value"
+                                label="name"
+                                v-model="form.profession" :options="optionsProfession"></multiselect>
+                            <multiselect
+                                selectLabel="Press enter to select"
+                                selectGroupLabel="Press enter to select group"
+                                selectedLabel="Selected"
+                                deselectLabel="Press enter to remove"
+                                track-by="value"
+                                label="name"
+                                v-model="form.professionSub" :options="optionsProfessionSub"></multiselect>
                                 <div class="mt-4">
                                     <InputLabel for="title" :value="__('auth.title')"/>
                                     <TextInput
@@ -114,3 +164,41 @@ const createProject = () => {
     </AppLayout>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+
+
+.multiselect__option--highlight {
+    background: #00a0e3 !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #00a0e3 !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
+}
+</style>

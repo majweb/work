@@ -109,6 +109,6 @@ class ProjectController extends Controller
 
     public function getChildsCategory($parent)
     {
-        return CategoryRootResource(Category::where('parent_id',$parent)->get());
+        return CategoryRootResource::collection(Category::where('parent_id',$parent)->get());
     }
 }
