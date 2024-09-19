@@ -265,4 +265,17 @@ return [
     'projectInfo' => 'Opis do tworzenia projektu',
     'quantity' => 'Ilość',
     'create' => 'Utwórz',
+    'selectLabel' => 'Naciśnij Enter, aby wybrać',
+    'selectGroupLabel' => 'Naciśnij Enter, aby wybrać grupę',
+    'selectedLabel' => 'Wybrany',
+    'deselectLabel' => 'Naciśnij Enter, aby usunąć',
+    'placeholder' => 'Wybierz opcję',
+    'noOptions' => 'Lista jest pusta',
+    'noResult' => 'Nie znaleziono żadnych elementów',
+    'category' => 'Kategoria',
+    'subcategory' => 'Podkategoria',
+    'profession' => 'Zawód',
+    'position' => 'Stanowisko',
+    'workingMode' => 'Tryby pracy',
+
 ];

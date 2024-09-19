@@ -2,7 +2,6 @@
 
 use App\Charts\MonthlyUsersChart;
 use App\Http\Controllers\Firm\AboutController;
-use App\Http\Controllers\Firm\AnnouncementController;
 use App\Http\Controllers\Firm\AplicationController;
 use App\Http\Controllers\Firm\ArticleController;
 use App\Http\Controllers\Firm\BuyController;
@@ -72,6 +71,7 @@ Route::middleware([
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->middleware('role:recruit')->parameters(['project-recruits' => 'project']);
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
+    Route::get('getTitlesCategory/{parent}',[ProjectControllerRecruit::class,'getTitlesCategory'])->middleware('role:recruit')->name('getTitlesCategory');
 });
 
 

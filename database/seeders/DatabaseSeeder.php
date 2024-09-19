@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ProductSeeder::class,
             CategorySeeder::class,
-            PageSeeder::class
+            PageSeeder::class,
+            TitleSeeder::class,
+            WorkingModeSeeder::class,
+            CountrySeeder::class
         ]);
     }
 }

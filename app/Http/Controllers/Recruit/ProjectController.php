@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Recruit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\CategoryRootResource;
+use App\Http\Resources\TitleResource;
+use App\Http\Resources\WorkingModesResource;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\Title;
 use App\Models\User;
+use App\Models\WorkingMode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -49,9 +53,12 @@ class ProjectController extends Controller
     {
 
         $category = CategoryRootResource::collection(Category::isRoot()->get());
-
+        $workingModes = WorkingModesResource::collection(WorkingMode::all());
         return inertia()->render('RecruiterPages/Project/Create',
-            ['categories' =>$category]);
+            [
+                'categories' =>$category,
+                'workingModes' =>$workingModes
+            ]);
     }
 
     /**
@@ -110,5 +117,10 @@ class ProjectController extends Controller
     public function getChildsCategory($parent)
     {
         return CategoryRootResource::collection(Category::where('parent_id',$parent)->get());
+    }
+
+    public function getTitlesCategory($parent)
+    {
+        return TitleResource::collection(Title::where('category_id',$parent)->get());
     }
 }

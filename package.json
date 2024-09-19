@@ -23,9 +23,6 @@
     },
     "dependencies": {
         "@easepick/bundle": "^1.2.1",
-        "@spatie/media-library-pro-styles": "^1.4.0",
-        "@spatie/media-library-pro-vue3-attachment": "^1.4.0",
-        "@spatie/media-library-pro-vue3-collection": "^1.4.0",
         "autosize": "^6.0.1",
         "lodash": "^4.17.21",
         "moment": "^2.30.1",

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -21,4 +22,8 @@ class Category extends Model
         'slug' => 'array',
     ];
 
+    public function titles(): HasMany
+    {
+        return $this->hasMany(Title::class);
+    }
 }

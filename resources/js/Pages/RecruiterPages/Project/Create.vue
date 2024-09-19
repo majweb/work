@@ -6,7 +6,6 @@ import ActionMessage from '@/Components/ActionMessage.vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -15,49 +14,57 @@ import Multiselect from 'vue-multiselect'
 
 const props = defineProps({
     categories: Array,
+    workingModes: Array,
 });
 
 const form = useForm({
     category: '',
     categorySub: '',
     profession: '',
-    professionSub: '',
+    position: '',
     title: '',
+    workingMode: [],
 });
 
 
 const optionsCategory = ref(props.categories)
 const optionsSubCategory = ref([]);
 const optionsProfession = ref([]);
-const optionsProfessionSub = ref([]);
+const optionsPosition = ref([]);
+const titles = ref([]);
 
 watch(() => form.category, async (category) => {
     if (form.category) {
-        const data = await axios.get(route('getChildsCategory',category.value));
-        optionsSubCategory.value =data.data;
+        optionsSubCategory.value =(await axios.get(route('getChildsCategory',category.value))).data
     }
         optionsProfession.value = [];
-        optionsProfessionSub.value = [];
+        optionsPosition.value = [];
         form.categorySub = '';
         form.profession = '';
-        form.professionSub = '';
+        form.position = '';
 });
 watch(() => form.categorySub, async (categorySub) => {
     if (form.categorySub) {
-        const datas = await axios.get(route('getChildsCategory',categorySub.value));
-        optionsProfession.value =datas.data;
+        optionsProfession.value =(await axios.get(route('getChildsCategory',categorySub.value))).data
     }
-        optionsProfessionSub.value = [];
+        optionsPosition.value = [];
         form.profession = '';
-        form.professionSub = '';
+        form.position = '';
 });
 
 watch(() => form.profession, async (profession) => {
     if (form.profession) {
-        const datas = await axios.get(route('getChildsCategory',profession.value));
-        optionsProfessionSub.value =datas.data;
+        optionsPosition.value =(await axios.get(route('getChildsCategory',profession.value))).data
     }
-        form.professionSub = '';
+        form.position = '';
+});
+watch(() => form.position, async (position) => {
+    if (form.position) {
+        titles.value = (await axios.get(route('getTitlesCategory',position.value))).data
+    } else {
+        titles.value = [];
+        form.title = '';
+    }
 });
 
 const createProject = () => {
@@ -102,50 +109,118 @@ const createProject = () => {
                         </template>
 
                         <template #form>
-                            <div class="col-span-6">
-                            <multiselect
-                                selectLabel="Press enter to select"
-                                selectGroupLabel="Press enter to select group"
-                                selectedLabel="Selected"
-                                deselectLabel="Press enter to remove"
-                                track-by="value"
-                                label="name"
-                                v-model="form.category" :options="optionsCategory"></multiselect>
-                            <multiselect
-                                selectLabel="Press enter to select"
-                                selectGroupLabel="Press enter to select group"
-                                selectedLabel="Selected"
-                                deselectLabel="Press enter to remove"
-                                track-by="value"
-                                label="name"
-                                v-model="form.categorySub" :options="optionsSubCategory"></multiselect>
-                            <multiselect
-                                selectLabel="Press enter to select"
-                                selectGroupLabel="Press enter to select group"
-                                selectedLabel="Selected"
-                                deselectLabel="Press enter to remove"
-                                track-by="value"
-                                label="name"
-                                v-model="form.profession" :options="optionsProfession"></multiselect>
-                            <multiselect
-                                selectLabel="Press enter to select"
-                                selectGroupLabel="Press enter to select group"
-                                selectedLabel="Selected"
-                                deselectLabel="Press enter to remove"
-                                track-by="value"
-                                label="name"
-                                v-model="form.professionSub" :options="optionsProfessionSub"></multiselect>
-                                <div class="mt-4">
-                                    <InputLabel for="title" :value="__('auth.title')"/>
-                                    <TextInput
-                                        id="title"
-                                        v-model="form.title"
-                                        autofocus
-                                        class="mt-1 block w-full"
-                                        type="text"
-                                    />
+                            <div class="col-span-6 grid grid grid-cols-2 gap-6">
+                                <div>
+                                    <InputLabel :value="__('auth.category')"/>
+                                    <multiselect
+                                        :selectLabel="__('auth.selectLabel')"
+                                        :selectGroupLabel="__('auth.selectGroupLabel')"
+                                        :selectedLabel="__('auth.selectedLabel')"
+                                        :deselectLabel="__('auth.deselectLabel')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('auth.placeholder')"
+                                        v-model="form.category" :options="optionsCategory">
+                                        <template #noResult>
+                                            <span>{{__('auth.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('auth.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <div>
+                                    <InputLabel :value="__('auth.subcategory')"/>
+                                    <multiselect
+                                        :disabled="!form.category"
+                                        :selectLabel="__('auth.selectLabel')"
+                                        :selectGroupLabel="__('auth.selectGroupLabel')"
+                                        :selectedLabel="__('auth.selectedLabel')"
+                                        :deselectLabel="__('auth.deselectLabel')"
+                                        :noOptions="__('auth.noOptions')"
+                                        :noResult="__('auth.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('auth.placeholder')"
+                                        v-model="form.categorySub" :options="optionsSubCategory">
+                                        <template #noResult>
+                                            <span>{{__('auth.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('auth.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <div>
+                                    <InputLabel :value="__('auth.profession')"/>
+                                    <multiselect
+                                        :disabled="!form.categorySub"
+                                        :selectLabel="__('auth.selectLabel')"
+                                        :selectGroupLabel="__('auth.selectGroupLabel')"
+                                        :selectedLabel="__('auth.selectedLabel')"
+                                        :deselectLabel="__('auth.deselectLabel')"
+                                        :noOptions="__('auth.noOptions')"
+                                        :noResult="__('auth.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('auth.placeholder')"
+                                        v-model="form.profession" :options="optionsProfession">
+                                        <template #noResult>
+                                            <span>{{__('auth.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('auth.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <div>
+                                    <InputLabel :value="__('auth.position')"/>
+                                    <multiselect
+                                        :disabled="!form.profession"
+                                        :selectLabel="__('auth.selectLabel')"
+                                        :selectGroupLabel="__('auth.selectGroupLabel')"
+                                        :selectedLabel="__('auth.selectedLabel')"
+                                        :deselectLabel="__('auth.deselectLabel')"
+                                        :noOptions="__('auth.noOptions')"
+                                        :noResult="__('auth.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('auth.placeholder')"
+                                        v-model="form.position" :options="optionsPosition">
+                                        <template #noResult>
+                                            <span>{{__('auth.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('auth.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-2">
+                                <div v-if="titles.length">
+                                    <InputLabel :value="__('auth.title')"/>
+                                    <div v-for="title in titles" class="flex items-center mt-1">
+                                            <input
+                                                class=" border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="radio" :id="'title-'+title.id" :value="title.id" v-model="form.title" />
+                                        <label :for="'title-'+title.id">{{title.title}}</label>
+                                    </div>
                                     <InputError :message="form.errors.title" class="mt-2"/>
                                 </div>
+
+                                <div class="mt-4" v-if="workingModes">
+                                    <InputLabel for="workingMode" :value="__('auth.workingMode')" />
+                                    <div v-for="workingMode in workingModes" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'workingMode-'+workingMode.id" v-model="form.workingMode"
+                                            :value="workingMode.id" />
+                                        <label :for="'workingMode-'+workingMode.id">{{workingMode.title}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.workingMode" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="col-span-6">
                             </div>
                         </template>
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Firm;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BuyResource;
 use App\Models\Product;
-use App\Order;
 use App\Services\BuyHelper;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -38,7 +37,6 @@ class BuyController extends Controller
         $cartItems = Cart::content();
         $subtotal = Cart::subtotal();
         $countCart = Cart::content()->count();
-
         return inertia()->render('Buy/Payment',[
             'cartItems' => $cartItems,
             'withTax' => $subtotal,
