@@ -36,12 +36,11 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $user = null;
             $provider = $request->route('provider');
-            dd($provider);
+
             // 1a. Attempt the resolve the user via socialstream
             if ($provider) {
                 $socialUser = app(ResolvesSocialiteUsers::class)
                     ->resolve($provider);
-
 
 
                 $connectedAccount = Socialstream::$connectedAccountModel::where('email', $socialUser->getEmail())->first();
@@ -81,21 +80,6 @@ class FortifyServiceProvider extends ServiceProvider
 
             // 5. Verify the password if the user has logged in via a form
             return Hash::check($request->password, $user->password) ? $user : null;
-//            $user = User::where('email', $request->email)->first();
-//            if($user && !is_null($user->user_blocked)) {
-//                throw ValidationException::withMessages(['email' => __('auth.user_blocked')]);
-//            }
-//            if ($user &&
-//                Hash::check($request->password, $user->password)) {
-//                return $user;
-//            }
-
-
-
-
-
-
-
         });
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
