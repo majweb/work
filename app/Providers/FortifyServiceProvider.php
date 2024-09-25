@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use JoelButcher\Socialstream\Contracts\ResolvesSocialiteUsers;
+use JoelButcher\Socialstream\Socialstream;
 use Laravel\Fortify\Fortify;
 use Illuminate\Validation\ValidationException;
 
