@@ -25,7 +25,6 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
-        @mediaLibraryStyles
-        @mediaLibraryScripts
+
     </body>
 </html>
