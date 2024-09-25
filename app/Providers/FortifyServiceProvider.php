@@ -36,13 +36,13 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $user = null;
             $provider = $request->route('provider');
-
+            dd($provider);
             // 1a. Attempt the resolve the user via socialstream
             if ($provider) {
                 $socialUser = app(ResolvesSocialiteUsers::class)
                     ->resolve($provider);
 
-                dd($provider,$socialUser);
+
 
                 $connectedAccount = Socialstream::$connectedAccountModel::where('email', $socialUser->getEmail())->first();
 
