@@ -42,6 +42,8 @@ class FortifyServiceProvider extends ServiceProvider
                 $socialUser = app(ResolvesSocialiteUsers::class)
                     ->resolve($provider);
 
+                dd($provider,$socialUser);
+
                 $connectedAccount = Socialstream::$connectedAccountModel::where('email', $socialUser->getEmail())->first();
 
                 if (! $connectedAccount) {
