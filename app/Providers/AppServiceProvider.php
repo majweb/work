@@ -27,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+
+
         Inertia::share([
             'auth.user.firm' => function () {
                 return Auth::user() && Auth::user()->hasRole('firm')  ? Auth::user()->firm : null;
