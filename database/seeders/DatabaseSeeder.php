@@ -15,11 +15,22 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             ProductSeeder::class,
-            CategorySeeder::class,
             PageSeeder::class,
             TitleSeeder::class,
             WorkingModeSeeder::class,
-            CountrySeeder::class
+            CountrySeeder::class,
+            WorkingPlaceSeeder::class,
+            TypeOfContractSeeder::class,
+            WorkLoadSeeder::class,
+            PayoutModeSeeder::class,
+            PaySystemSeeder::class,
+            DaySeeder::class,
+            ShiftWorkSeeder::class,
+            OfferSeeder::class,
+            WaitSeeder::class,
+            ExperienceSeeder::class,
+            WelcomeSeeder::class,
+            EducationSeeder::class,
         ]);
     }
 }

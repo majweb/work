@@ -14,6 +14,7 @@ import TextareaLimit from "@/Components/TextareaLimit.vue";
 import draggable from 'vuedraggable'
 import InputHelper from "@/Components/InputHelper.vue";
 import DangerButton from "@/Components/DangerButton.vue";
+import { MediaLibraryAttachment } from '@spatie/media-library-pro-vue3-attachment';
 import {ref} from 'vue';
 
 const form = useForm({
@@ -101,7 +102,32 @@ const createArticle = () => {
                             <div class="col-span-6">
                                 <InputLabel for="title" :value="__('auth.baner')"/>
 
-
+                                <media-library-attachment
+                                name="baner"
+                                :initial-value="form.baner"
+                                :validation-errors="form.errors.baner"
+                                :validation-rules="{ accept: ['image/png', 'image/jpeg'], maxSizeInKB: 1024 }"
+                                @is-ready-to-submit-change="isReadyToSubmit = $event"
+                                @change="onChange"
+                                :translations="{
+                                    fileTypeNotAllowed: 'Wybierz odpowiedni typ pliku',
+                                    tooLarge: 'Plik za duży, max',
+                                    tooSmall: 'Plik za mały, min',
+                                    tryAgain: 'Proszę spróbować jeszcze raz',
+                                    somethingWentWrong: 'CO poszło nie tak',
+                                    selectOrDrag: 'Wybierz lub przeciągnij plik',
+                                    selectOrDragMax: 'Wybierz lub upuść maksymalnie {maxItems} {file}',
+                                    file: { singular: 'plik', plural: 'plików' },
+                                    anyImage: 'Tylko obrazy',
+                                    anyVideo: 'Tylko wideo',
+                                    goBack: 'Wróć',
+                                    dropFile: 'Upuść plik, aby go przesłać',
+                                    dragHere: 'Upuść plik tutaj',
+                                    remove: 'Usuń',
+                                    name: 'Nazwa',
+                                    download: 'Pobierz',
+                                }"
+                            />
                             <InputError  :message="form.errors.baner" class="mt-1"/>
                             </div>
                             <div class="col-span-6">

@@ -62,7 +62,7 @@ class FortifyServiceProvider extends ServiceProvider
             // 2. Check if the resolved user is blocked and handle
             if($user && !is_null($user->user_blocked)) {
                 throw ValidationException::withMessages([
-                    Fortify::username() => [__('auth.blocked')],
+                    Fortify::username() => [__('auth.user_blocked')],
                 ]);
             }
 
@@ -80,6 +80,7 @@ class FortifyServiceProvider extends ServiceProvider
 
             // 5. Verify the password if the user has logged in via a form
             return Hash::check($request->password, $user->password) ? $user : null;
+
         });
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);

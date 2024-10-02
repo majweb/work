@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\TimeCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,12 +12,64 @@ class Project extends Model
     protected $fillable = [
         'user_id',
         'recruiter_id',
-        'title'
+        'title',
+        'category',
+        'categorySub',
+        'profession',
+        'position',
+        'workingMode',
+        'typeOfContract',
+        'days',
+        'workLoad',
+        'shiftWork',
+        'country',
+        'workingPlace',
+        'basicSalaryFrom',
+        'basicSalaryTo',
+        'bonusSalaryFrom',
+        'bonusSalaryTo',
+        'hoursFrom',
+        'hoursTo',
+        'payoutMode',
+        'paySystem',
+        'workNight',
+        'offer',
+        'wait',
+        'experience',
+        'welcome',
+        'education',
+    ];
+
+    protected $casts = [
+        'category'=>'array',
+        'categorySub'=>'array',
+        'profession'=>'array',
+        'position'=>'array',
+        'workingMode'=>'array',
+        'typeOfContract'=>'array',
+        'days'=>'array',
+        'paySystem'=>'array',
+        'country'=>'array',
+        'workingPlace'=>'array',
+        'offer'=>'array',
+        'wait'=>'array',
+        'experience'=>'array',
+        'welcome'=>'array',
+        'basicSalaryFrom' => 'float',
+        'basicSalaryTo' => 'float',
+        'bonusSalaryFrom' => 'float',
+        'bonusSalaryTo' => 'float',
+        'hoursFrom'=>TimeCast::class,
+        'hoursTo'=>TimeCast::class,
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function title(): BelongsTo
+    {
+        return $this->belongsTo(Title::class);
     }
 
     public function recruit(): BelongsTo

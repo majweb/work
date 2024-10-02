@@ -11,10 +11,24 @@ import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import {ref, watch} from "vue";
 import Multiselect from 'vue-multiselect'
+import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({
     categories: Array,
     workingModes: Array,
+    typesOfContract: Array,
+    countries: Array,
+    workingPlaces: Array,
+    workLoads: Array,
+    shiftWorks: Array,
+    payoutModes: Array,
+    days: Array,
+    paySystems: Array,
+    offers: Array,
+    waits: Array,
+    experiences: Array,
+    welcomes: Array,
+    educations: Array,
 });
 
 const form = useForm({
@@ -23,11 +37,33 @@ const form = useForm({
     profession: '',
     position: '',
     title: '',
+    basicSalaryFrom: '',
+    basicSalaryTo: '',
+    bonusSalaryFrom: '',
+    bonusSalaryTo: '',
+    hoursFrom: '',
+    hoursTo: '',
+    workLoad: '',
+    education: '',
+    shiftWork: '',
+    payoutMode: '',
+    workNight: '',
     workingMode: [],
+    typeOfContract: [],
+    paySystem: [],
+    workingPlace: [],
+    country: [],
+    days: [],
+    offer: [],
+    wait: [],
+    experience: [],
+    welcome: [],
 });
 
 
-const optionsCategory = ref(props.categories)
+const optionsCategory = ref(props.categories);
+const optionsCountry = ref(props.countries);
+const optionsWorkingPlace = ref(props.workingPlaces);
 const optionsSubCategory = ref([]);
 const optionsProfession = ref([]);
 const optionsPosition = ref([]);
@@ -54,6 +90,7 @@ watch(() => form.categorySub, async (categorySub) => {
 
 watch(() => form.profession, async (profession) => {
     if (form.profession) {
+        titles.value = (await axios.get(route('getTitlesCategory',profession.value))).data
         optionsPosition.value =(await axios.get(route('getChildsCategory',profession.value))).data
     }
         form.position = '';
@@ -109,7 +146,7 @@ const createProject = () => {
                         </template>
 
                         <template #form>
-                            <div class="col-span-6 grid grid grid-cols-2 gap-6">
+                            <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <InputLabel :value="__('auth.category')"/>
                                     <multiselect
@@ -128,6 +165,8 @@ const createProject = () => {
                                             <span>{{__('auth.noResult')}}</span>
                                         </template>
                                     </multiselect>
+                                    <InputError :message="form.errors.category" class="mt-2"/>
+
                                 </div>
                                 <div>
                                     <InputLabel :value="__('auth.subcategory')"/>
@@ -150,6 +189,8 @@ const createProject = () => {
                                             <span>{{__('auth.noResult')}}</span>
                                         </template>
                                     </multiselect>
+                                    <InputError :message="form.errors.categorySub" class="mt-2"/>
+
                                 </div>
                                 <div>
                                     <InputLabel :value="__('auth.profession')"/>
@@ -172,6 +213,8 @@ const createProject = () => {
                                             <span>{{__('auth.noResult')}}</span>
                                         </template>
                                     </multiselect>
+                                    <InputError :message="form.errors.profession" class="mt-2"/>
+
                                 </div>
                                 <div>
                                     <InputLabel :value="__('auth.position')"/>
@@ -194,6 +237,8 @@ const createProject = () => {
                                             <span>{{__('auth.noResult')}}</span>
                                         </template>
                                     </multiselect>
+                                    <InputError :message="form.errors.position" class="mt-2"/>
+
                                 </div>
                             </div>
                             <div class="col-span-6 grid grid-cols-2">
@@ -221,6 +266,281 @@ const createProject = () => {
                                 </div>
                             </div>
                             <div class="col-span-6">
+                                <div>
+                                    <InputLabel :value="__('auth.Country')"/>
+                                    <multiselect
+                                        group-values="elements" group-label="group"
+                                        :group-select="false"
+                                        :selectLabel="__('auth.selectLabel')"
+                                        :selectGroupLabel="__('auth.selectGroupLabel')"
+                                        :selectedLabel="__('auth.selectedLabel')"
+                                        :deselectLabel="__('auth.deselectLabel')"
+                                        track-by="name"
+                                        label="name"
+                                        :placeholder="__('auth.placeholder')"
+                                        v-model="form.country" :options="optionsCountry">
+                                        <template #noResult>
+                                            <span>{{__('auth.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('auth.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                    <InputError :message="form.errors.country" class="mt-2"/>
+
+                                </div>
+                            </div>
+                            <div class="col-span-6">
+                                <div>
+                                    <InputLabel :value="__('auth.workingPlace')"/>
+                                    <multiselect
+                                        :selectLabel="__('auth.selectLabel')"
+                                        :selectGroupLabel="__('auth.selectGroupLabel')"
+                                        :selectedLabel="__('auth.selectedLabel')"
+                                        :deselectLabel="__('auth.deselectLabel')"
+                                        :noOptions="__('auth.noOptions')"
+                                        :noResult="__('auth.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('auth.placeholder')"
+                                        v-model="form.workingPlace" :options="optionsWorkingPlace">
+                                        <template #noResult>
+                                            <span>{{__('auth.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('auth.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                    <InputError :message="form.errors.workingPlace" class="mt-2"/>
+
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mt-4" v-if="typesOfContract">
+                                    <InputLabel for="workingMode" :value="__('auth.typesOfContract')" />
+                                    <div v-for="typeOfContract in typesOfContract" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'typeOfContract-'+typeOfContract.id" v-model="form.typeOfContract"
+                                            :value="typeOfContract.id" />
+                                        <label :for="'typeOfContract-'+typeOfContract.id">{{typeOfContract.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.typeOfContract" class="mt-2"/>
+                                </div>
+                                <div class="mt-4" v-if="workLoads">
+                                    <InputLabel :value="__('auth.workLoads')" />
+                                    <div v-for="workLoad in workLoads" class="flex items-center mt-1">
+                                        <input
+                                            class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="radio" :id="'workLoad-'+workLoad.id" v-model="form.workLoad"
+                                            :value="workLoad.id" />
+                                        <label :for="'workLoad-'+workLoad.id">{{workLoad.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.workLoad" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.basicSalaryFrom')" />
+                                    <TextInput
+                                        id="basicSalaryFrom"
+                                        v-model="form.basicSalaryFrom"
+                                        class="mt-1 block w-full"
+                                        type="number"
+                                        step="0.1"
+                                    />
+                                    <InputError :message="form.errors.basicSalaryFrom" class="mt-2"/>
+
+                                </div>
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.basicSalaryTo')" />
+                                    <TextInput
+                                        id="basicSalaryTo"
+                                        v-model="form.basicSalaryTo"
+                                        class="mt-1 block w-full"
+                                        type="number"
+                                        step="0.1"
+                                    />
+                                    <InputError :message="form.errors.basicSalaryTo" class="mt-2"/>
+
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mt-4" v-if="payoutModes">
+                                    <InputLabel :value="__('auth.payoutModes')" />
+                                    <div v-for="payoutMode in payoutModes" class="flex items-center mt-1">
+                                        <input
+                                            class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="radio" :id="'payoutMode-'+payoutMode.id" v-model="form.payoutMode"
+                                            :value="payoutMode.id" />
+                                        <label :for="'payoutMode-'+payoutMode.id">{{payoutMode.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.payoutMode" class="mt-2"/>
+                                </div>
+                                <div class="mt-4" v-if="paySystems">
+                                    <InputLabel for="paySystem" :value="__('auth.paySystem')" />
+                                    <div v-for="paySystem in paySystems" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'paySystem-'+paySystem.id" v-model="form.paySystem"
+                                            :value="paySystem.id" />
+                                        <label :for="'paySystem-'+paySystem.id">{{paySystem.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.paySystem" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.bonusSalaryFrom')" />
+                                    <TextInput
+                                        id="bonusSalaryFrom"
+                                        v-model="form.bonusSalaryFrom"
+                                        class="mt-1 block w-full"
+                                        type="number"
+                                        step="0.1"
+                                    />
+                                    <InputError :message="form.errors.bonusSalaryFrom" class="mt-2"/>
+
+                                </div>
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.bonusSalaryTo')" />
+                                    <TextInput
+                                        id="bonusSalaryTo"
+                                        v-model="form.bonusSalaryTo"
+                                        class="mt-1 block w-full"
+                                        type="number"
+                                        step="0.1"
+                                    />
+                                    <InputError :message="form.errors.bonusSalaryTo" class="mt-2"/>
+
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mt-4" v-if="days">
+                                    <InputLabel for="day" :value="__('auth.dayWork')" />
+                                    <div v-for="day in days" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'day-'+day.id" v-model="form.days"
+                                            :value="day.id" />
+                                        <label :for="'day-'+day.id">{{day.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.days" class="mt-2"/>
+                                </div>
+                                <div class="mt-4" v-if="shiftWorks">
+                                    <InputLabel :value="__('auth.shiftWorks')" />
+                                    <div v-for="shiftWork in shiftWorks" class="flex items-center mt-1">
+                                        <input
+                                            class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="radio" :id="'shiftWork-'+shiftWork.id" v-model="form.shiftWork"
+                                            :value="shiftWork.id" />
+                                        <label :for="'shiftWork-'+shiftWork.id">{{shiftWork.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.shiftWork" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.hoursFrom')" />
+                                    <TextInput
+                                        type="time"
+                                        id="hoursFrom"
+                                        v-model="form.hoursFrom"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError :message="form.errors.hoursFrom" class="mt-2"/>
+                                </div>
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.hoursTo')" />
+                                    <TextInput
+                                        type="time"
+                                        id="hoursTo"
+                                        v-model="form.hoursTo"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError :message="form.errors.hoursTo" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="col-span-6">
+                                <div class="mt-4">
+                                    <InputLabel :value="__('auth.workNight')" />
+                                    <div class="flex mt-1 flex-col">
+                                        <div class="flex items-center">
+                                            <input
+                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="radio" id="workNight-1" v-model="form.workNight"
+                                                value="1" />
+                                                <label for="workNight-1">{{__('auth.yes')}}</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input
+                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="radio" id="workNight-2" v-model="form.workNight"
+                                                value="2" />
+                                            <label for="workNight-2">{{__('auth.no')}}</label>
+                                        </div>
+                                            <InputError :message="form.errors.workNight" class="mt-2"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <div class="mt-4" v-if="offers">
+                                    <InputLabel for="day" :value="__('auth.offer')" />
+                                    <div v-for="offer in offers" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'offer'+offer.id" v-model="form.offer"
+                                            :value="offer.id" />
+                                        <label :for="'offer'+offer.id">{{offer.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.offer" class="mt-2"/>
+                                </div>
+                                <div class="mt-4" v-if="waits">
+                                    <InputLabel for="day" :value="__('auth.wait')" />
+                                    <div v-for="wait in waits" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'wait'+wait.id" v-model="form.wait"
+                                            :value="wait.id" />
+                                        <label :for="'wait'+wait.id">{{wait.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.wait" class="mt-2"/>
+                                </div>
+                                <div class="mt-4" v-if="experiences">
+                                    <InputLabel for="day" :value="__('auth.experience')" />
+                                    <div v-for="experience in experiences" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'experience'+experience.id" v-model="form.experience"
+                                            :value="experience.id" />
+                                        <label :for="'experience'+experience.id">{{experience.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.experience" class="mt-2"/>
+                                </div>
+                                <div class="mt-4" v-if="welcomes">
+                                    <InputLabel for="day" :value="__('auth.welcome')" />
+                                    <div v-for="welcome in welcomes" class="flex items-center mt-1">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox" :id="'welcome'+welcome.id" v-model="form.welcome"
+                                            :value="welcome.id" />
+                                        <label :for="'welcome'+welcome.id">{{welcome.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.welcome" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div class="col-span-6">
+                                <div class="mt-4" v-if="educations">
+                                    <InputLabel :value="__('auth.education')" />
+                                    <div v-for="education in educations" class="flex items-center mt-1">
+                                        <input
+                                            class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="radio" :id="'education-'+education.id" v-model="form.education"
+                                            :value="education.id" />
+                                        <label :for="'education-'+education.id">{{education.name}}</label>
+                                    </div>
+                                    <InputError :message="form.errors.education" class="mt-2"/>
+                                </div>
                             </div>
                         </template>
 

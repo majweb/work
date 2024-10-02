@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryRootResource;
+use App\Http\Resources\MultiselectResource;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
@@ -17,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $c = CategoryRootResource::collection(Category::whereNull('parent_id')->with('children')->get());
+        $c = MultiselectResource::collection(Category::whereNull('parent_id')->with('children')->get());
         Gate::authorize('view', [User::class, Project::class]);
 
         request()->validate([

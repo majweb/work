@@ -15,10 +15,10 @@ class Country extends Model
         'continent',
         'name'
     ];
-    public array $translatable = ['title','continent'];
+    public array $translatable = ['name','continent'];
 
     protected $casts = [
-        'title' => 'array',
+        'name' => 'array',
         'continent' => 'array',
     ];
 }
