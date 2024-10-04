@@ -274,8 +274,8 @@ return [
     'placeholder' => 'Wybierz opcję',
     'noOptions' => 'Lista jest pusta',
     'noResult' => 'Nie znaleziono żadnych elementów',
-    'category' => 'Kategoria',
-    'subcategory' => 'Podkategoria',
+    'category' => 'Branża',
+    'subcategory' => 'Podbranża',
     'profession' => 'Zawód',
     'position' => 'Stanowisko',
     'workingMode' => 'Tryby pracy',
@@ -300,5 +300,8 @@ return [
     'experience' => 'Doświadczenie',
     'welcome' => 'Mile widziane',
     'education' => 'Wykształcenie',
+    'prompt1string' => 'Wygeneruj 5 różnych tytułów ogłoszenia o pracę z użyciem następujących słów:',
+    'prompt2string' => '.Następnie przetłumacz tytuł na języki ',
+    'prompt3string' => ' i zapisz w formacie json. Zastosuj skróty oznaczeń językowych.',
 
 ];

@@ -22,7 +22,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Algieria',
-                    'en' => 'Algieria'
+                    'en' => 'Algeria'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -94,7 +94,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Czad',
-                    'en' => 'Czad'
+                    'en' => 'Chad'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -118,7 +118,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Dżibuti',
-                    'en' => 'Dżibuti'
+                    'en' => 'Djibouti'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -130,7 +130,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Egipt',
-                    'en' => 'Egipt'
+                    'en' => 'Egypt'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -142,7 +142,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Erytrea',
-                    'en' => 'Erytrea'
+                    'en' => 'Eritrea'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -154,7 +154,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Etiopia',
-                    'en' => 'Etiopia'
+                    'en' => 'Ethiopia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -202,7 +202,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Gwinea',
-                    'en' => 'Gwinea'
+                    'en' => 'Guinea'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -214,7 +214,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Gwinea Bissau',
-                    'en' => 'Gwinea Bissau'
+                    'en' => 'Guinea Bissau'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -226,7 +226,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Gwinea Równikowa',
-                    'en' => 'Gwinea Równikowa'
+                    'en' => 'Equatorial Guinea'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -238,7 +238,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kamerun',
-                    'en' => 'Kamerun'
+                    'en' => 'Cameroon'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -250,7 +250,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kenia',
-                    'en' => 'Kenia'
+                    'en' => 'Kenya'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -262,7 +262,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Komory',
-                    'en' => 'Komory'
+                    'en' => 'Comoros'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -274,7 +274,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kongo',
-                    'en' => 'Kongo'
+                    'en' => 'Congo'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -310,7 +310,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Libia',
-                    'en' => 'Libia'
+                    'en' => 'Libyan Arab Jamahiriya'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -322,7 +322,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Madagaskar',
-                    'en' => 'Madagaskar'
+                    'en' => 'Madagascar'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -358,7 +358,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Maroko',
-                    'en' => 'Maroko'
+                    'en' => 'Morocco'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -370,7 +370,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Mauretania',
-                    'en' => 'Mauretania'
+                    'en' => 'Mauritania'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -394,7 +394,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Mozambik',
-                    'en' => 'Mozambik'
+                    'en' => 'Mozambique'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -442,7 +442,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Republika Południowej Afryki',
-                    'en' => 'Republika Południowej Afryki'
+                    'en' => 'South Africa Republic'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -454,7 +454,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Republika Środkowoafrykańska',
-                    'en' => 'Republika Środkowoafrykańska'
+                    'en' => 'Central African Republic'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -466,7 +466,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Republika Zielonego Przylądka',
-                    'en' => 'Republika Zielonego Przylądka'
+                    'en' => 'Cape Verde'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -502,7 +502,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Seszele',
-                    'en' => 'Seszele'
+                    'en' => 'Seychelles'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -538,7 +538,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Suazi',
-                    'en' => 'Suazi'
+                    'en' => 'Swaziland'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -562,7 +562,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Sudan Południowy',
-                    'en' => 'Sudan Południowy'
+                    'en' => 'South Sudan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -573,8 +573,8 @@ class CountrySeeder extends Seeder
             ],
             [
                 'name' => json_encode([
-                    'pl' => 'Tanzaniay',
-                    'en' => 'Tanzaniay'
+                    'pl' => 'Tanzania',
+                    'en' => 'Tanzania'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -598,7 +598,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Tunezja',
-                    'en' => 'Tunezja'
+                    'en' => 'Tunisia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -622,7 +622,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wybrzeże Kości Słoniowej',
-                    'en' => 'Wybrzeże Kości Słoniowej'
+                    'en' => 'Cote D’Ivoire'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -634,7 +634,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wyspy świętego Tomasza i Książęca',
-                    'en' => 'Wyspy świętego Tomasza i Książęca'
+                    'en' => 'Sao Tome and Principe'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Afryka',
@@ -670,7 +670,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Argentyna',
-                    'en' => 'Argentyna'
+                    'en' => 'Argentina'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -682,7 +682,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Boliwia',
-                    'en' => 'Boliwia'
+                    'en' => 'Bolivia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -694,7 +694,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Brazylia',
-                    'en' => 'Brazylia'
+                    'en' => 'Brazil'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -718,7 +718,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Ekwador',
-                    'en' => 'Ekwador'
+                    'en' => 'Ecuador'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -730,7 +730,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Gujana',
-                    'en' => 'Gujana'
+                    'en' => 'Guyana'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -742,7 +742,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kolumbia',
-                    'en' => 'Kolumbia'
+                    'en' => 'Colombia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -754,7 +754,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Paragwaj',
-                    'en' => 'Paragwaj'
+                    'en' => 'Paraguay'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -778,7 +778,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Surinam',
-                    'en' => 'Surinam'
+                    'en' => 'Suriname'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -790,7 +790,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Trynidad i Tobago',
-                    'en' => 'Trynidad i Tobago'
+                    'en' => 'Trinidad and Tobago'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -802,7 +802,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Urugwaj',
-                    'en' => 'Urugwaj'
+                    'en' => 'Uruguay'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -814,7 +814,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wenezuela',
-                    'en' => 'Wenezuela'
+                    'en' => 'Venezuela'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Południowa',
@@ -826,7 +826,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Afganistan',
-                    'en' => 'Afganistan'
+                    'en' => 'Afghanistan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -838,7 +838,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Arabia Saudyjska',
-                    'en' => 'Arabia Saudyjska'
+                    'en' => 'Saudi Arabia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -862,7 +862,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Azerbejdżan',
-                    'en' => 'Azerbejdżan'
+                    'en' => 'Azerbaijan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -874,7 +874,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Bahrajn',
-                    'en' => 'Bahrajn'
+                    'en' => 'Bahrain'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -886,7 +886,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Bangladesz',
-                    'en' => 'Bangladesz'
+                    'en' => 'Bangladesh'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -922,7 +922,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Chiny',
-                    'en' => 'Chiny'
+                    'en' => 'China'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -934,7 +934,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Filipiny',
-                    'en' => 'Filipiny'
+                    'en' => 'Philippines'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -946,7 +946,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Gruzja',
-                    'en' => 'Gruzja'
+                    'en' => 'Georgia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -958,7 +958,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Indie',
-                    'en' => 'Indie'
+                    'en' => 'India'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -970,7 +970,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Indonezja',
-                    'en' => 'Indonezja'
+                    'en' => 'Indonesia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -982,7 +982,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Irak',
-                    'en' => 'Irak'
+                    'en' => 'Iraq'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1006,7 +1006,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Izrael',
-                    'en' => 'Izrael'
+                    'en' => 'Israel'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1018,7 +1018,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Japonia',
-                    'en' => 'Japonia'
+                    'en' => 'Japan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1030,7 +1030,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Jemen',
-                    'en' => 'Jemen'
+                    'en' => 'Yemen'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1042,7 +1042,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Jordania',
-                    'en' => 'Jordania'
+                    'en' => 'Jordan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1054,7 +1054,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kambodża',
-                    'en' => 'Kambodża'
+                    'en' => 'Cambodia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1066,7 +1066,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Katar',
-                    'en' => 'Katar'
+                    'en' => 'Qatar'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1078,7 +1078,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kirgistan',
-                    'en' => 'Kirgistan'
+                    'en' => 'Kyrgyztan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1090,7 +1090,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Korea Południowa',
-                    'en' => 'Korea Południowa'
+                    'en' => 'South Korea'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1102,7 +1102,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Korea Północna',
-                    'en' => 'Korea Północna'
+                    'en' => 'North Korea'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1114,7 +1114,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kuwejt',
-                    'en' => 'Kuwejt'
+                    'en' => 'Kuwait'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1138,7 +1138,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Liban',
-                    'en' => 'Liban'
+                    'en' => 'Lebanon'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1150,7 +1150,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Malediwy',
-                    'en' => 'Malediwy'
+                    'en' => 'Maldives'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1162,7 +1162,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Malezja',
-                    'en' => 'Malezja'
+                    'en' => 'Malaysia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1234,7 +1234,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Singapur',
-                    'en' => 'Singapur'
+                    'en' => 'Singapore'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1258,7 +1258,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Syria',
-                    'en' => 'Syria'
+                    'en' => 'Syrian Arab Republic'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1270,7 +1270,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Tadżykistan',
-                    'en' => 'Tadżykistan'
+                    'en' => 'Tajikistan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1282,7 +1282,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Tajlandia',
-                    'en' => 'Tajlandia'
+                    'en' => 'Thailand'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1294,7 +1294,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Timor Wschodni',
-                    'en' => 'Timor Wschodni'
+                    'en' => 'Timor Leste'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1330,7 +1330,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wietnam',
-                    'en' => 'Wietnam'
+                    'en' => 'Viet - Nam'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1342,7 +1342,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Zjednoczone Emiraty Arabskie',
-                    'en' => 'Zjednoczone Emiraty Arabskie'
+                    'en' => 'United Arab Emirates'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Azja',
@@ -1354,7 +1354,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Antigua i Barbuda',
-                    'en' => 'Antigua i Barbuda'
+                    'en' => 'Antigua and Barbuda'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1366,7 +1366,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Bahamy',
-                    'en' => 'Bahamy'
+                    'en' => 'Bahamas'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1402,7 +1402,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Dominika',
-                    'en' => 'Dominika'
+                    'en' => 'Dominica'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1414,7 +1414,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Dominikana',
-                    'en' => 'Dominikana'
+                    'en' => 'Dominican Republic'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1438,7 +1438,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Gwatemala',
-                    'en' => 'Gwatemala'
+                    'en' => 'Guatemala'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1474,7 +1474,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Jamajka',
-                    'en' => 'Jamajka'
+                    'en' => 'Jamaica'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1486,7 +1486,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kanada',
-                    'en' => 'Kanada'
+                    'en' => 'Canada'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1498,7 +1498,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kostaryka',
-                    'en' => 'Kostaryka'
+                    'en' => 'Costa Rica'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1510,7 +1510,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kuba',
-                    'en' => 'Kuba'
+                    'en' => 'Cuba'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1522,7 +1522,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Meksyk',
-                    'en' => 'Meksyk'
+                    'en' => 'Mexico'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1534,7 +1534,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Nikaragua',
-                    'en' => 'Nikaragua'
+                    'en' => 'Nicaragua'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1594,7 +1594,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Salwador',
-                    'en' => 'Salwador'
+                    'en' => 'EI Salvador'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1606,7 +1606,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Stany Zjednoczone',
-                    'en' => 'Stany Zjednoczone'
+                    'en' => 'United States of America'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Ameryka Północna',
@@ -1630,7 +1630,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Andora',
-                    'en' => 'Andora'
+                    'en' => 'Andorra'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1654,7 +1654,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Belgia',
-                    'en' => 'Belgia'
+                    'en' => 'Belgium'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1666,7 +1666,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Białoruś',
-                    'en' => 'Białoruś'
+                    'en' => 'Belarus'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1678,7 +1678,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Bośnia i Hercegowina',
-                    'en' => 'Bośnia i Hercegowina'
+                    'en' => 'Bosnia and Herzegovina'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1690,7 +1690,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Bułgaria',
-                    'en' => 'Bułgaria'
+                    'en' => 'Bulgaria'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1702,7 +1702,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Chorwacja',
-                    'en' => 'Chorwacja'
+                    'en' => 'Croatia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1714,7 +1714,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Cypr',
-                    'en' => 'Cypr'
+                    'en' => 'Cyprus'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1726,7 +1726,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Czarnogóra',
-                    'en' => 'Czarnogóra'
+                    'en' => 'Montenegro'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1738,7 +1738,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Czechy',
-                    'en' => 'Czechy'
+                    'en' => 'Czechia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1750,7 +1750,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Dania',
-                    'en' => 'Dania'
+                    'en' => 'Denmark'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1774,7 +1774,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Finlandia',
-                    'en' => 'Finlandia'
+                    'en' => 'Finland'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1786,7 +1786,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Francja',
-                    'en' => 'Francja'
+                    'en' => 'France'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1798,7 +1798,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Grecja',
-                    'en' => 'Grecja'
+                    'en' => 'Greece'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1810,7 +1810,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Hiszpania',
-                    'en' => 'Hiszpania'
+                    'en' => 'Spain'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1822,7 +1822,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Holandia',
-                    'en' => 'Holandia'
+                    'en' => 'Netherlands'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1834,7 +1834,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Irlandia',
-                    'en' => 'Irlandia'
+                    'en' => 'Ireland'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1846,7 +1846,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Islandia',
-                    'en' => 'Islandia'
+                    'en' => 'Island'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1858,7 +1858,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Kazachstan',
-                    'en' => 'Kazachstan'
+                    'en' => 'Kazakhstan'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1882,7 +1882,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Litwa',
-                    'en' => 'Litwa'
+                    'en' => 'Lithuania'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1894,7 +1894,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Luksemburg',
-                    'en' => 'Luksemburg'
+                    'en' => 'Luxembourg'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1906,7 +1906,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Łotwa',
-                    'en' => 'Łotwa'
+                    'en' => 'Latvia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1942,7 +1942,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Mołdawia',
-                    'en' => 'Mołdawia'
+                    'en' => 'Moldova'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1966,7 +1966,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Niemcy',
-                    'en' => 'Niemcy'
+                    'en' => 'Germany'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1978,7 +1978,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Norwegia',
-                    'en' => 'Norwegia'
+                    'en' => 'Norway'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -1990,7 +1990,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Polska',
-                    'en' => 'Polska'
+                    'en' => 'Poland'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2002,7 +2002,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Portugalia',
-                    'en' => 'Portugalia'
+                    'en' => 'Portugal'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2014,7 +2014,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Rosja',
-                    'en' => 'Rosja'
+                    'en' => 'Russian Federation'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2026,7 +2026,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Rumunia',
-                    'en' => 'Rumunia'
+                    'en' => 'Romania'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2062,7 +2062,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Słowacja',
-                    'en' => 'Słowacja'
+                    'en' => 'Slovakia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2074,7 +2074,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Słowenia',
-                    'en' => 'Słowenia'
+                    'en' => 'Slovenia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2086,7 +2086,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Szwajcaria',
-                    'en' => 'Szwajcaria'
+                    'en' => 'Switzerland'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2098,7 +2098,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Szwecja',
-                    'en' => 'Szwecja'
+                    'en' => 'Sweden'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2110,7 +2110,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Turcja',
-                    'en' => 'Turcja'
+                    'en' => 'Turkey'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2122,7 +2122,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Ukraina',
-                    'en' => 'Ukraina'
+                    'en' => 'Ukraine'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2134,7 +2134,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Watykan',
-                    'en' => 'Watykan'
+                    'en' => 'Vatican City State'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2146,7 +2146,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Węgry',
-                    'en' => 'Węgry'
+                    'en' => 'Hungary'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2158,7 +2158,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wielka Brytania',
-                    'en' => 'Wielka Brytania'
+                    'en' => 'United Kingdom'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2170,7 +2170,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Włochy',
-                    'en' => 'Włochy'
+                    'en' => 'Italy'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Europa',
@@ -2194,7 +2194,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Fidżi',
-                    'en' => 'Fidżi'
+                    'en' => 'Fiji'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Australia i Oceania',
@@ -2218,7 +2218,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Mikronezja',
-                    'en' => 'Mikronezja'
+                    'en' => 'Micronesia'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Australia i Oceania',
@@ -2242,7 +2242,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Nowa Zelandia',
-                    'en' => 'Nowa Zelandia'
+                    'en' => 'New Zealand'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Australia i Oceania',
@@ -2266,7 +2266,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Papua Nowa-Gwinea',
-                    'en' => 'Papua Nowa-Gwinea'
+                    'en' => 'Papua New Guinea'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Australia i Oceania',
@@ -2326,7 +2326,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wyspy Marshalla',
-                    'en' => 'Wyspy Marshalla'
+                    'en' => 'Marshall Islands'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Australia i Oceania',
@@ -2338,7 +2338,7 @@ class CountrySeeder extends Seeder
             [
                 'name' => json_encode([
                     'pl' => 'Wyspy Salomona',
-                    'en' => 'Wyspy Salomona'
+                    'en' => 'Solomon Islands'
                 ]),
                 'continent' => json_encode([
                     'pl' => 'Australia i Oceania',

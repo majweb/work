@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Recruit;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
+use App\Http\Resources\LanguageResource;
 use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\TitleResource;
 use App\Http\Resources\TypeOfContractResource;
 use App\Http\Resources\WorkingModesResource;
 use App\Http\Resources\WorkLoadResource;
+use App\Lang\Lang;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Day;
@@ -32,6 +34,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class ProjectController extends Controller
 {
@@ -177,6 +180,11 @@ class ProjectController extends Controller
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('project-recruits.index');
+    }
+
+    public function storeFirsStep(StoreProject $request)
+    {
+        return to_route('project-recruits.create');
     }
 
     /**
@@ -327,5 +335,51 @@ class ProjectController extends Controller
     public function getTitlesCategory($parent)
     {
         return TitleResource::collection(Title::where('category_id',$parent)->get());
+    }
+
+    public function generateTitle()
+    {
+    $dataString = strtolower(implode(',',request()->all()));
+        $langs = strtolower(LanguageResource::collection(Lang::cases())->map(function($el){
+            return $el->label();
+        })->implode(','));
+
+        $prompt = __('auth.prompt1string').$dataString.__('auth.prompt2string').$langs.__('auth.prompt3string');
+
+
+//        $result = OpenAI::chat()->create([
+//            'model' => 'gpt-4o-mini',
+//            'messages' => [
+//                ['role' => 'user', 'content' => $prompt],
+//            ],
+//        ]);
+
+        $result = [
+              [
+                  "pl"=> "Poszukiwany przedstawiciel handlowy w Angoli - wynagrodzenie do 1000 PLN",
+                "en"=> "Sales Representative Wanted in Angola - Salary Up to 1000 PLN"
+              ],
+              [
+                  "pl"=> "Przedstawiciel handlowy w branży handlowej w Angoli - zarobki do 1000 PLN",
+                "en"=> "Sales Representative in the Trade Industry in Angola - Earnings Up to 1000 PLN"
+              ],
+              [
+                  "pl"=> "Angola: Praca dla przedstawiciela handlowego - wynagrodzenie do 1000 PLN",
+                "en"=> "Angola: Job for Sales Representative - Salary Up to 1000 PLN"
+              ],
+              [
+                  "pl"=> "Przedstawiciel handlowy w Angoli - atrakcyjne wynagrodzenie do 1000 PLN",
+                "en"=> "Sales Representative in Angola - Attractive Salary Up to 1000 PLN"
+              ],
+              [
+                  "pl"=> "Angola: Zostań przedstawicielem handlowym - wynagrodzenie podstawowe do 1000 PLN",
+                "en"=> "Angola: Become a Sales Representative - Base Salary Up to 1000 PLN"
+              ]
+            ];
+
+        return $result;
+
+
+//        echo $result->choices[0]->message->content; // Hello! How can I assist you today?
     }
 }

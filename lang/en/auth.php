@@ -274,8 +274,8 @@ return [
     'placeholder' => 'Select option',
     'noOptions' => 'List is empty',
     'noResult' => 'No elements found',
-    'category' => 'Category',
-    'subcategory' => 'Subcategory',
+    'category' => 'Industry',
+    'subcategory' => 'sub-industry',
     'profession' => 'Profession',
     'position' => 'Position',
     'workingMode' => 'Working mode',
@@ -300,5 +300,8 @@ return [
     'experience' => 'Experience',
     'welcome' => 'Welcome',
     'education' => 'Education',
+    'prompt1string' => 'Generate 5 different job ad titles using the following words:',
+    'prompt2string' => '.Then translate the title into languages ',
+    'prompt3string' => ' and save in json format. Apply language abbreviations.',
 
 ];

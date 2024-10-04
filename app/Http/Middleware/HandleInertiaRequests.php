@@ -62,6 +62,7 @@ class HandleInertiaRequests extends Middleware
             'canRegister' => Route::has('register'),
             'pageUrl' => env('APP_URL'),
             'pageName' => env('APP_NAME'),
+            'currencyFromClient' => fn()=> request()->user() && request()->user()->hasRole('recruit')  ? request()->user()->user->firm->currency : null
         ]);
     }
 }
