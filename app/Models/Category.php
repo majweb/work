@@ -26,4 +26,9 @@ class Category extends Model
     {
         return $this->hasMany(Title::class);
     }
+
+    public function detailprojects()
+    {
+        return $this->belongsToMany(DetailProject::class,'category_detailproject');
+    }
 }

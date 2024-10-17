@@ -16,7 +16,8 @@ class MultiselectResource extends JsonResource
     {
         return [
             'name' => $this->title ?? $this->name,
-            'value' => $this->id
+            'value' => $this->id,
+            'detailprojects'=>$this->whenLoaded('detailprojects')
         ];
     }
 }

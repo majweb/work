@@ -22,24 +22,24 @@ class OfferSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => json_encode([
-                    'pl' => 'Oferujemy1',
-                    'en' => 'Oferujemy1En'
+                    'pl' => 'Umowa o pracę',
+                    'en' => 'Employment contract'
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],[
                 'id' => 2,
                 'name' => json_encode([
-                    'pl' => 'Oferujemy2',
-                    'en' => 'Oferujemy2En'
+                    'pl' => 'Długoterminowa współpraca',
+                    'en' => 'Long-term cooperation'
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],[
                 'id' => 3,
                 'name' => json_encode([
-                    'pl' => 'Oferujemy3',
-                    'en' => 'Oferujemy3En'
+                    'pl' => 'Brak okresu próbnego',
+                    'en' => 'No trial period'
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -47,8 +47,8 @@ class OfferSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => json_encode([
-                    'pl' => 'Oferujemy4',
-                    'en' => 'Oferujemy4En'
+                    'pl' => 'System premiowy',
+                    'en' => 'Bonus system'
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -56,16 +56,169 @@ class OfferSeeder extends Seeder
             [
                 'id' => 5,
                 'name' => json_encode([
-                    'pl' => 'Oferujemy5',
-                    'en' => 'Oferujemy5En'
+                    'pl' => 'Szkolenia',
+                    'en' => 'Training opportunities'
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],[
                 'id' => 6,
                 'name' => json_encode([
-                    'pl' => 'Oferujemy6',
-                    'en' => 'Oferujemy6En'
+                    'pl' => 'Możliwość awansu zawodowego',
+                    'en' => 'Carrer development opportunities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7,
+                'name' => json_encode([
+                    'pl' => 'Elastyczny czas pracy',
+                    'en' => 'Flexible working hours'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 8,
+                'name' => json_encode([
+                    'pl' => 'Możliwość pracy zdalnej',
+                    'en' => 'Home office possibilities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 9,
+                'name' => json_encode([
+                    'pl' => 'Możliwość pracy zdalnej',
+                    'en' => 'Home office possibilities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 10,
+                'name' => json_encode([
+                    'pl' => 'Prywatna opieka medyczna',
+                    'en' => 'Private medical healthcare'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 11,
+                'name' => json_encode([
+                    'pl' => 'Karta sportowa',
+                    'en' => 'Sports card'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 12,
+                'name' => json_encode([
+                    'pl' => 'Dofinansowanie do posiłków',
+                    'en' => 'Meal cards/bonus'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 13,
+                'name' => json_encode([
+                    'pl' => 'Biuro w centrum miasta',
+                    'en' => 'Office in the city center'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 14,
+                'name' => json_encode([
+                    'pl' => 'Parking dla pracowników',
+                    'en' => 'Employee parking'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 15,
+                'name' => json_encode([
+                    'pl' => 'Samochód służbowy',
+                    'en' => 'Company car'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 16,
+                'name' => json_encode([
+                    'pl' => 'Dodatkowe ubezpieczenie',
+                    'en' => 'Additional insurance'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 17,
+                'name' => json_encode([
+                    'pl' => 'Zniżka na zakupy',
+                    'en' => 'Employee discounts'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 18,
+                'name' => json_encode([
+                    'pl' => 'Wydarzenia integracyjne',
+                    'en' => 'Company events'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 19,
+                'name' => json_encode([
+                    'pl' => 'Kawa/herbata',
+                    'en' => 'Coffee/tea'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 20,
+                'name' => json_encode([
+                    'pl' => 'Owoce',
+                    'en' => 'Fruits'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 21,
+                'name' => json_encode([
+                    'pl' => "Brak dress code'u",
+                    'en' => 'No dress code'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 22,
+                'name' => json_encode([
+                    'pl' => "Nagrody pracownicze",
+                    'en' => 'Employee awards'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 23,
+                'name' => json_encode([
+                    'pl' => "Dofinansowanie do transportu",
+                    'en' => 'Transportation subsidies'
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

@@ -23,9 +23,9 @@ class FirmUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nip' => ['required', 'string',Rule::unique('firms', 'nip')->ignore(request()->user()->id)],
+            'nip' => ['required', 'string',Rule::unique('firms', 'nip')->ignore(request()->user()->id,'user_id')],
             'description' => ['required', 'string','max:1000'],
-            'regon' => ['required', 'numeric',Rule::unique('firms', 'regon')->ignore(request()->user()->id)],
+            'regon' => ['required', 'numeric',Rule::unique('firms', 'regon')->ignore(request()->user()->id,'user_id')],
             'street' => ['required', 'string', 'max:60'],
             'number' => ['required', 'string', 'max:60'],
             'city' => ['required', 'string', 'max:60'],

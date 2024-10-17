@@ -27,6 +27,7 @@ class StoreProject extends FormRequest
             'categorySub' => ['required', 'array', 'max:100'],
             'profession' => ['required', 'array', 'max:100'],
             'position' => ['nullable', 'array', 'max:100'],
+            'detailProjects' => ['required', 'array', 'min:1'],
             'workingMode' => ['required', 'array', 'min:1','exists:App\Models\WorkingMode,id'],
             'workLoad' => ['required','exists:App\Models\WorkLoad,id'],
             'shiftWork' => ['required','exists:App\Models\ShiftWork,id'],
@@ -50,7 +51,10 @@ class StoreProject extends FormRequest
             'hoursFrom' => ['required', 'date_format:H:i','before:hoursTo'],
             'hoursTo' => ['required', 'date_format:H:i','after:hoursFrom'],
             'bonusSalaryTo' => ['required', 'numeric','between:1,99999.99','gt:bonusSalaryFrom'],
-            'title' => ['required', 'integer', 'exists:App\Models\Title,id'],
+            'title' => ['nullable', 'integer', 'exists:App\Models\Title,id'],
+            'address' => ['required', 'string', 'max:100'],
+            'postal' => ['required', 'string', 'max:100'],
+            'city' => ['required', 'string', 'max:100'],
         ];
     }
 
@@ -87,6 +91,10 @@ class StoreProject extends FormRequest
             'country' => strtolower(__('auth.Country')),
             'workingMode' => strtolower(__('auth.workingMode')),
             'education' => strtolower(__('auth.education')),
+            'address' => strtolower(__('auth.address')),
+            'postal' => strtolower(__('auth.Postal')),
+            'city' => strtolower(__('auth.City')),
+            'detailProjects' => strtolower(__('auth.detailProjects')),
         ];
     }
 }

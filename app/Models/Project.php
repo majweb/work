@@ -38,6 +38,10 @@ class Project extends Model
         'experience',
         'welcome',
         'education',
+        'address',
+        'postal',
+        'city',
+        'detailProjects',
     ];
 
     protected $casts = [
@@ -54,6 +58,7 @@ class Project extends Model
         'offer'=>'array',
         'wait'=>'array',
         'experience'=>'array',
+        'detailProjects'=>'array',
         'welcome'=>'array',
         'basicSalaryFrom' => 'float',
         'basicSalaryTo' => 'float',
@@ -75,6 +80,10 @@ class Project extends Model
     public function recruit(): BelongsTo
     {
         return $this->belongsTo(User::class, 'recruiter_id');
+    }
+    public function detailprojects()
+    {
+        return $this->belongsToMany(DetailProject::class,'detailproject_project');
     }
 
 }

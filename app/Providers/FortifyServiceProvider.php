@@ -72,14 +72,14 @@ class FortifyServiceProvider extends ServiceProvider
             }
 
             // 4. User hasn't set a password, so must login using an OAuth provider
-            if (is_null($user->password)) {
+            if ($user && is_null($user->password)) {
                 throw ValidationException::withMessages([
-                    Fortify::username() => [__('auth.failed')],
+                    Fortify::username() => [__('auth.onlySocial')],
                 ]);
             }
 
             // 5. Verify the password if the user has logged in via a form
-            return Hash::check($request->password, $user->password) ? $user : null;
+            return Hash::check($request->password, $user?->password) ? $user : null;
 
         });
         Fortify::createUsersUsing(CreateNewUser::class);

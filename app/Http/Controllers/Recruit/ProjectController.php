@@ -145,8 +145,10 @@ class ProjectController extends Controller
      */
     public function store(StoreProject $request)
     {
-        Project::create([
-            'title' => $request->projectData()['title'],
+//        dd($request->projectData());
+
+        $project = Project::create([
+            'title' => $request->projectData()['title'] ?? 1,
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
@@ -172,10 +174,16 @@ class ProjectController extends Controller
             'welcome' => $request->projectData()['welcome'],
             'education' => $request->projectData()['education'],
             'experience' => $request->projectData()['experience'],
+            'address' => $request->projectData()['address'],
+            'postal' => $request->projectData()['postal'],
+            'city' => $request->projectData()['city'],
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id
         ]);
 
+        if($project && count($request->projectData()['detailProjects'])){
+            $project->detailprojects()->sync($request->projectData()['detailProjects']);
+        }
         session()->flash('flash.banner', __('auth.addedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
@@ -185,6 +193,10 @@ class ProjectController extends Controller
     public function storeFirsStep(StoreProject $request)
     {
         return to_route('project-recruits.create');
+    }
+    public function updateFirsStep(StoreProject $request,Project $project)
+    {
+        return to_route('project-recruits.edit',$project);
     }
 
     /**
@@ -200,6 +212,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $project->load('detailprojects');
+
         Gate::authorize('project-recruiter',$project);
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
@@ -307,6 +321,9 @@ class ProjectController extends Controller
             'recruiter_id' => auth()->user()->id
         ]);
 
+        if($project && count($request->projectData()['detailProjects'])){
+            $project->detailprojects()->sync($request->projectData()['detailProjects']);
+        }
         session()->flash('flash.banner', __('auth.updatedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
@@ -329,7 +346,7 @@ class ProjectController extends Controller
 
     public function getChildsCategory($parent)
     {
-        return MultiselectResource::collection(Category::where('parent_id',$parent)->get());
+        return MultiselectResource::collection(Category::where('parent_id',$parent)->with('detailprojects')->get());
     }
 
     public function getTitlesCategory($parent)
@@ -347,6 +364,8 @@ class ProjectController extends Controller
         $prompt = __('auth.prompt1string').$dataString.__('auth.prompt2string').$langs.__('auth.prompt3string');
 
 
+
+//        dd($prompt);
 //        $result = OpenAI::chat()->create([
 //            'model' => 'gpt-4o-mini',
 //            'messages' => [

@@ -14,6 +14,7 @@ return [
     */
 
     'failed' => 'Błędny login lub hasło.',
+    'onlySocial' => 'Użytkownik nie ustawił hasła, dlatego musi zalogować się przy użyciu dostawcy OAuth.',
     'password' => 'Hasło jest nieprawidłowe.',
     'throttle' => 'Za dużo nieudanych prób logowania. Proszę spróbować za :seconds sekund.',
     'type' => 'Typ użytkownika',
@@ -303,5 +304,7 @@ return [
     'prompt1string' => 'Wygeneruj 5 różnych tytułów ogłoszenia o pracę z użyciem następujących słów:',
     'prompt2string' => '.Następnie przetłumacz tytuł na języki ',
     'prompt3string' => ' i zapisz w formacie json. Zastosuj skróty oznaczeń językowych.',
+    'address' => 'Ulica i nr domu/mieszkania',
+    'detailProjects' => 'Obowiązki',
 
 ];

@@ -24,9 +24,7 @@ class ResolveSocialiteUser implements ResolvesSocialiteUsers
                 Providers::linkedinOpenId() => $socialiteDriver->stateless()->user(),
                 default => $socialiteDriver->stateless()->user(),
             };
-            Log::debug("SSO found user", ['uid' => $user->id, 'name' => $user->name, 'email' => $user->email]);
         } catch (Exception $e) {
-            Log::error('SSO Fail', $e);
             session()->flash('flash.banner', __('Unable to log you in. Please try again.'));
             return redirect('/login');
         }

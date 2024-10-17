@@ -14,6 +14,7 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
+    'onlySocial' => "User hasn't set a password, so must login using an OAuth provider",
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'type' => 'Type user',
@@ -303,5 +304,7 @@ return [
     'prompt1string' => 'Generate 5 different job ad titles using the following words:',
     'prompt2string' => '.Then translate the title into languages ',
     'prompt3string' => ' and save in json format. Apply language abbreviations.',
+    'address' => 'Street and house/apartment number',
+    'detailProjects' => 'Duties',
 
 ];

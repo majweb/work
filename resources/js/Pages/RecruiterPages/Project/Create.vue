@@ -14,6 +14,7 @@ import Multiselect from 'vue-multiselect'
 import TextInput from "@/Components/TextInput.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import FormSectionProject from "@/Components/FormSectionProject.vue";
 
 const props = defineProps({
     categories: Array,
@@ -60,6 +61,10 @@ const form = useForm({
     wait: [],
     experience: [],
     welcome: [],
+    detailProjects: [],
+    address: '',
+    postal: '',
+    city: '',
 });
 
 
@@ -94,6 +99,7 @@ watch(() => form.category, async (category) => {
         form.categorySub = '';
         form.profession = '';
         form.position = '';
+        form.detailProjects = [];
 });
 watch(() => form.categorySub, async (categorySub) => {
     if (form.categorySub) {
@@ -102,6 +108,8 @@ watch(() => form.categorySub, async (categorySub) => {
         optionsPosition.value = [];
         form.profession = '';
         form.position = '';
+    form.detailProjects = [];
+
 });
 
 watch(() => form.profession, async (profession) => {
@@ -110,6 +118,8 @@ watch(() => form.profession, async (profession) => {
         optionsPosition.value =(await axios.get(route('getChildsCategory',profession.value))).data
     }
         form.position = '';
+    form.detailProjects = [];
+
 });
 watch(() => form.position, async (position) => {
     if (form.position) {
@@ -117,7 +127,9 @@ watch(() => form.position, async (position) => {
     } else {
         titles.value = [];
         form.title = '';
+
     }
+    form.detailProjects = [];
 });
 
 const nextStep = () =>{
@@ -221,15 +233,7 @@ const generateTitle = async () => {
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div>
-                    <FormSection @submitted="createProject">
-                        <template #title>
-                            {{__('auth.project')}}
-                        </template>
-
-                        <template #description>
-                            {{__('auth.projectInfo')}}
-                        </template>
-
+                    <FormSectionProject @submitted="createProject">
                         <template #form>
                             <div v-if="formStep == 1" class="col-span-12">
                                 <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -302,6 +306,8 @@ const generateTitle = async () => {
                                         <InputError :message="form.errors.profession" class="mt-2"/>
 
                                     </div>
+                                    profession{{form.profession.value}}
+                                    position{{form.position.value}}
                                     <div>
                                         <InputLabel :value="__('auth.position')"/>
                                         <multiselect
@@ -327,7 +333,53 @@ const generateTitle = async () => {
 
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-2">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div class="mt-4">
+                                        <InputLabel for="city" :value="__('auth.City')" />
+                                        <TextInput
+                                            id="city"
+                                            v-model="form.city"
+                                            class="mt-1 block w-full"
+                                            type="text"
+                                        />
+                                        <InputError :message="form.errors.city" class="mt-2"/>
+                                    </div>
+                                    <div class="mt-4">
+                                        <InputLabel for="postal" :value="__('auth.Postal')" />
+                                        <TextInput
+                                            id="postal"
+                                            v-model="form.postal"
+                                            class="mt-1 block w-full"
+                                            type="text"
+                                        />
+                                        <InputError :message="form.errors.postal" class="mt-2"/>
+                                    </div>
+                                    <div class="mt-4">
+                                        <InputLabel for="address" :value="__('auth.address')" />
+                                        <TextInput
+                                            id="address"
+                                            v-model="form.address"
+                                            class="mt-1 block w-full"
+                                            type="text"
+                                        />
+                                        <InputError :message="form.errors.address" class="mt-2"/>
+                                    </div>
+                                </div>
+                                <!-- detailprojects-->
+                                <div class="col-span-6 mt-4" v-if="((form.position.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession.detailprojects && Object.keys(form.profession.detailprojects).length))">
+                                    <div class="grid grid grid-cols-1 lg:grid-cols-2">
+                                        <InputLabel for="detail" :value="__('auth.detailProjects')" />
+                                        <div v-for="detail in (form.position.detailprojects || form.profession.detailprojects)" class="flex items-center">
+                                                <input
+                                                    class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                    type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
+                                                    :value="detail.id" />
+                                                <label class="text-sm" :for="'detailProjects-'+detail.id">{{detail.name[usePage().props.language]}}</label>
+                                            <InputError :message="form.errors.detailprojects" class="mt-2"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div v-if="titles.length">
                                         <InputLabel :value="__('auth.title')"/>
                                         <div v-for="title in titles" class="flex items-center mt-1">
@@ -338,7 +390,6 @@ const generateTitle = async () => {
                                         </div>
                                         <InputError :message="form.errors.title" class="mt-2"/>
                                     </div>
-
                                     <div class="mt-4" v-if="workingModes">
                                         <InputLabel for="workingMode" :value="__('auth.workingMode')" />
                                         <div v-for="workingMode in workingModes" class="flex items-center mt-1">
@@ -352,7 +403,7 @@ const generateTitle = async () => {
                                         <InputError :message="form.errors.workingMode" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6">
+                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div>
                                         <InputLabel :value="__('auth.Country')"/>
                                         <multiselect
@@ -376,8 +427,6 @@ const generateTitle = async () => {
                                         <InputError :message="form.errors.country" class="mt-2"/>
 
                                     </div>
-                                </div>
-                                <div class="col-span-6">
                                     <div>
                                         <InputLabel :value="__('auth.workingPlace')"/>
                                         <multiselect
@@ -443,10 +492,10 @@ const generateTitle = async () => {
                                     </div>
                                     <div class="mt-4">
                                         <InputLabel :value="__('auth.basicSalaryTo')" />
-                                        <TextInput
+                                        <input
                                             id="basicSalaryTo"
                                             v-model="form.basicSalaryTo"
-                                            class="mt-1 block w-full"
+                                            class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
                                             type="number"
                                             step="0.1"
                                         />
@@ -575,7 +624,7 @@ const generateTitle = async () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="offers">
                                         <InputLabel for="day" :value="__('auth.offer')" />
                                         <div v-for="offer in offers" class="flex items-center mt-1">
@@ -764,7 +813,6 @@ const generateTitle = async () => {
                                     {{form}}
                                 </div>
                             </div>
-
                         </template>
 
                         <template #actions>
@@ -774,7 +822,7 @@ const generateTitle = async () => {
                                 <spinner-action :process="form.processing">{{__('auth.add')}}</spinner-action>
                             </PrimaryButton>
                         </template>
-                    </FormSection>
+                    </FormSectionProject>
                 </div>
             </div>
         </div>

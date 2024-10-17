@@ -71,6 +71,7 @@ Route::middleware([
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->middleware('role:recruit')->parameters(['project-recruits' => 'project']);
     Route::post('project-recruits/storeFirsStep',[ProjectControllerRecruit::class,'storeFirsStep'])->middleware('role:recruit')->name('project-recruits.storeFirsStep');
+    Route::put('project-recruits/updateFirsStep/{project}',[ProjectControllerRecruit::class,'updateFirsStep'])->middleware('role:recruit')->name('project-recruits.updateFirsStep');
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
     Route::get('getTitlesCategory/{parent}',[ProjectControllerRecruit::class,'getTitlesCategory'])->middleware('role:recruit')->name('getTitlesCategory');
     Route::post('generateTitle',[ProjectControllerRecruit::class,'generateTitle'])->middleware('role:recruit')->name('generateTitle');
