@@ -14956,6 +14956,10766 @@ class DetailProjectSeeder extends Seeder
 
         ];
 
+        $FUNDRAISER=[
+            [
+                'id' => 1641,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie długoterminowych planów pozyskiwania środków finansowych dla organizacji',
+                    'en' => 'Developing long-term financial resource acquisition plans for the organization'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1642,
+                'name' => json_encode([
+                    'pl' => 'Określanie potencjalnych źródeł finansowania',
+                    'en' => 'Identifying potential funding sources'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1643,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie relacji z obecnymi oraz potencjalnymi darczyńcami, sponsorami i partnerami',
+                    'en' => 'Establishing and maintaining relationships with current and potential donors, sponsors, and partners'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1644,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań z darczyńcami w celu omówienia możliwości współpracy',
+                    'en' => 'Organizing meetings with donors to discuss collaboration opportunities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1645,
+                'name' => json_encode([
+                    'pl' => 'Pisanie profesjonalnych wniosków aplikacyjnych do instytucji rządowych, organizacji non-profit oraz fundacji grantodawczych',
+                    'en' => 'Writing professional grant applications to government agencies, non-profit organizations, and grant-giving foundations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1646,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminów składania wniosków oraz spełnianie wymogów formalnych',
+                    'en' => 'Monitoring application deadlines and meeting formal requirements'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1647,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i zarządzanie kampaniami mającymi na celu zbieranie funduszy',
+                    'en' => 'Creating and managing fundraising campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1648,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizowanie bazy danych darczyńców, sponsorów i partnerów',
+                    'en' => 'Creating and updating a database of donors, sponsors, and partners'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1649,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie historii darowizn oraz planowanie dalszej współpracy z darczyńcami',
+                    'en' => 'Monitoring donation history and planning further collaboration with donors'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1650,
+                'name' => json_encode([
+                    'pl' => 'Analiza aktualnych trendów na rynku fundraisingu',
+                    'en' => 'Analyzing current trends in the fundraising market'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1651,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i prezentacja raportów na temat postępów w zbieraniu funduszy dla zarządu i rady nadzorczej',
+                    'en' => 'Preparing and presenting reports on fundraising progress to the management and supervisory board'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1652,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i realizowanie wydarzeń charytatywnych',
+                    'en' => 'Planning and executing charity events'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1653,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z mediami, wolontariuszami oraz partnerami zewnętrznymi',
+                    'en' => 'Cooperating with media, volunteers, and external partners'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1654,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie budżetem kampanii fundraisingowych',
+                    'en' => 'Managing the budget of fundraising campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1655,
+                'name' => json_encode([
+                    'pl' => 'Udział w konferencjach i spotkaniach networkingowych związanych z fundraisingiem',
+                    'en' => 'Participating in conferences and networking events related to fundraising'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1656,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności działań fundraisingowych z obowiązującymi przepisami prawnymi',
+                    'en' => 'Ensuring compliance of fundraising activities with applicable legal regulations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1657,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian w przepisach dotyczących zbierania funduszy oraz darowizn',
+                    'en' => 'Monitoring changes in regulations regarding fundraising and donations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $SPECJALISTADOSPRAWORGANIZACJIIROZWOJUSPRZEDAŻY=[
+            [
+                'id' => 1658,
+                'name' => json_encode([
+                    'pl' => 'Identyfikowanie nowych możliwości sprzedażowych i rynków docelowych',
+                    'en' => 'Identifying new sales opportunities and target markets'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1659,
+                'name' => json_encode([
+                    'pl' => 'Analiza trendów rynkowych i konkurencji w celu dostosowania strategii sprzedażowej',
+                    'en' => 'Analyzing market trends and competition to adjust the sales strategy'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1660,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i koordynowanie działań zespołów sprzedażowych',
+                    'en' => 'Planning and coordinating the activities of sales teams'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1661,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie harmonogramów działań sprzedażowych i wyznaczanie priorytetów',
+                    'en' => 'Creating sales action schedules and setting priorities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1662,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja pracy między różnymi działami, takimi jak marketing, logistyka, obsługa klienta, aby zintegrować działania sprzedażowe',
+                    'en' => 'Coordinating work between various departments, such as marketing, logistics, and customer service to integrate sales activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1663,
+                'name' => json_encode([
+                    'pl' => 'Poszukiwanie nowych kanałów sprzedaży',
+                    'en' => 'Seeking new sales channels'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1664,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie współpracy z nowymi dystrybutorami, partnerami handlowymi i klientami biznesowymi',
+                    'en' => 'Establishing cooperation with new distributors, business partners, and clients'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1665,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy promowaniu produktów lub usług',
+                    'en' => 'Collaborating with the marketing department to promote products or services'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1666,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników sprzedażowych i analiza kluczowych wskaźników efektywności',
+                    'en' => 'Monitoring sales performance and analyzing key performance indicators'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1667,
+                'name' => json_encode([
+                    'pl' => 'Ocenianie wyników poszczególnych kanałów sprzedaży, zespołów lub regionów',
+                    'en' => 'Evaluating the performance of individual sales channels, teams, or regions'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1668,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie zmian mających na celu usprawnienie efektywności zespołu sprzedaży',
+                    'en' => 'Implementing changes to improve the efficiency of the sales team'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1669,
+                'name' => json_encode([
+                    'pl' => 'Automatyzacja procesów sprzedaży poprzez wdrażanie narzędzi IT',
+                    'en' => 'Automating sales processes by implementing IT tools'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1670,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie relacji z kluczowymi klientami w celu ich długoterminowej współpracy',
+                    'en' => 'Overseeing relationships with key clients for long-term cooperation'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1671,
+                'name' => json_encode([
+                    'pl' => 'Regularne spotkania z klientami w celu omawiania ich potrzeb, feedbacku oraz ofert specjalnych',
+                    'en' => 'Regular meetings with clients to discuss their needs, feedback, and special offers'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1672,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji handlowych z największymi partnerami',
+                    'en' => 'Conducting business negotiations with major partners'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1673,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dla zespołów sprzedażowych z zakresu technik sprzedaży, produktów oraz narzędzi wspomagających sprzedaż',
+                    'en' => 'Organizing training for sales teams on sales techniques, products, and sales support tools'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1674,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy tworzeniu kampanii promujących produkty lub usługi',
+                    'en' => 'Cooperating with the marketing department in creating campaigns promoting products or services'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1675,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie promocji, zniżek i ofert specjalnych w celu maksymalizacji sprzedaży',
+                    'en' => 'Coordinating promotions, discounts, and special offers to maximize sales'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1676,
+                'name' => json_encode([
+                    'pl' => 'Analiza skuteczności kampanii sprzedażowych i marketingowych',
+                    'en' => 'Analyzing the effectiveness of sales and marketing campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1677,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i kontrolowanie budżetu sprzedażowego',
+                    'en' => 'Planning and controlling the sales budget'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1678,
+                'name' => json_encode([
+                    'pl' => 'Wybór i wdrażanie technologii wspierających sprzedaż, takich jak systemy CRM, automatyzacja sprzedaży, narzędzia do analizy rynku',
+                    'en' => 'Selecting and implementing technologies that support sales, such as CRM systems, sales automation, and market analysis tools'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1679,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i optymalizacja polityki cenowej w oparciu o analizę rynku i konkurencji',
+                    'en' => 'Developing and optimizing pricing policy based on market analysis and competition'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1680,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie badań satysfakcji klientów oraz analizowanie feedbacku w celu ulepszania oferty',
+                    'en' => 'Conducting customer satisfaction surveys and analyzing feedback to improve the offering'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1681,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie ofert handlowych i umów',
+                    'en' => 'Preparing business offers and contracts'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1682,
+                'name' => json_encode([
+                    'pl' => 'Finalizowanie transakcji oraz nadzorowanie procesu dostawy produktów lub realizacji usług',
+                    'en' => 'Finalizing transactions and overseeing the delivery process of products or services'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+        $COOLHUNTER=[
+            [
+                'id' => 1683,
+                'name' => json_encode([
+                    'pl' => 'Systematyczne śledzenie i analizowanie nowych trendów rynkowych',
+                    'en' => 'Systematically tracking and analyzing new market trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1684,
+                'name' => json_encode([
+                    'pl' => 'Obserwowanie, jak zmieniają się preferencje konsumentów oraz jakie nowe potrzeby pojawiają się na rynku',
+                    'en' => 'Observing how consumer preferences change and what new needs emerge in the market'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1685,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie zachowań konsumenckich, w tym stylów życia, nawyków zakupowych i preferencji estetycznych',
+                    'en' => 'Analyzing consumer behaviors, including lifestyles, purchasing habits, and aesthetic preferences'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1686,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie wywiadów, ankiet, obserwacji i badań terenowych w celu zrozumienia motywacji i oczekiwań klientów',
+                    'en' => 'Conducting interviews, surveys, observations, and field research to understand customer motivations and expectations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1687,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie danych demograficznych, społecznych i psychograficznych do identyfikowania nowych grup docelowych',
+                    'en' => 'Utilizing demographic, social, and psychographic data to identify new target groups'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1688,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie nowości i innowacji w zakresie produktów, usług, materiałów oraz technologii',
+                    'en' => 'Tracking new products, services, materials, and technology innovations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1689,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie działań konkurencji oraz analizowanie, jakie innowacje wprowadzają na rynek',
+                    'en' => 'Monitoring competitor activities and analyzing what innovations they bring to the market'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1690,
+                'name' => json_encode([
+                    'pl' => 'Badanie rozwoju nowych kategorii produktów i usług, które mogą zyskać popularność',
+                    'en' => 'Researching the development of new product and service categories that may gain popularity'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1691,
+                'name' => json_encode([
+                    'pl' => 'Zbieranie i analizowanie danych rynkowych, takich jak raporty branżowe, badania rynku, dane sprzedażowe oraz wyniki badań konsumenckich',
+                    'en' => 'Collecting and analyzing market data, such as industry reports, market research, sales data, and consumer research findings'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1692,
+                'name' => json_encode([
+                    'pl' => 'Praca z dużymi zbiorami danych w celu identyfikowania wzorców i przewidywania przyszłych trendów',
+                    'en' => 'Working with large datasets to identify patterns and predict future trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1693,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie narzędzi do analizy danych (np. programów do analizy statystycznej)',
+                    'en' => 'Using data analysis tools (e.g., statistical analysis software)'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1694,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami marketingowymi w celu opracowania strategii, które odpowiedzą na nadchodzące trendy',
+                    'en' => 'Collaborating with marketing teams to develop strategies that respond to emerging trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1695,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie rekomendacji dotyczących nowych produktów, usług i kampanii reklamowych, opartych na analizie trendów',
+                    'en' => 'Providing recommendations for new products, services, and advertising campaigns based on trend analysis'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1696,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami rozwoju produktów przy wprowadzaniu innowacji inspirowanych aktualnymi trendami',
+                    'en' => 'Collaborating with product development departments to introduce innovations inspired by current trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1697,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie regularnych raportów na temat aktualnych i przyszłych trendów, które mogą mieć wpływ na strategię firmy',
+                    'en' => 'Preparing regular reports on current and future trends that may impact the company’s strategy'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1698,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie wyników analiz i rekomendacji dla zarządu oraz kluczowych decydentów',
+                    'en' => 'Presenting analysis results and recommendations to management and key decision-makers'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1699,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w targach, konferencjach, wystawach i innych wydarzeniach branżowych',
+                    'en' => 'Regularly participating in fairs, conferences, exhibitions, and other industry events'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1700,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie kontaktów z innymi profesjonalistami w celu wymiany informacji i obserwacji dotyczących nowych trendów',
+                    'en' => 'Networking with other professionals to exchange information and insights on new trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1701,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie mediów społecznościowych, blogów, vlogów i innych cyfrowych platform w celu obserwacji trendów kulturowych',
+                    'en' => 'Monitoring social media, blogs, vlogs, and other digital platforms to observe cultural trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1702,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie działalności influencerów, celebrytów i innych liderów opinii, którzy mają wpływ na kształtowanie gustów i preferencji konsumentów',
+                    'en' => 'Monitoring the activities of influencers, celebrities, and other opinion leaders who influence consumer tastes and preferences'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1703,
+                'name' => json_encode([
+                    'pl' => 'Dostarczanie zespołom kreatywnym inspiracji do tworzenia nowych produktów, usług lub kampanii reklamowych',
+                    'en' => 'Providing creative teams with inspiration for developing new products, services, or advertising campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1704,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie pomysłów na nowe projekty bazujących na najnowszych odkryciach dotyczących trendów konsumenckich',
+                    'en' => 'Developing ideas for new projects based on the latest findings regarding consumer trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $AUTORTEKSTÓW=[
+            [
+                'id' => 1705,
+                'name' => json_encode([
+                    'pl' => 'Pisanie angażujących i przekonujących tekstów reklamowych na potrzeby kampanii marketingowych',
+                    'en' => 'Writing engaging and persuasive advertising copy for marketing campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1706,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie języka i stylu do specyficznych grup docelowych oraz kanałów komunikacji',
+                    'en' => 'Adapting language and style to specific target groups and communication channels'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1707,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zwięzłych, zapadających w pamięć sloganów, które wyrażają kluczowe przesłanie marki lub kampanii',
+                    'en' => 'Creating concise, memorable slogans that express the key message of the brand or campaign'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1708,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystanie gry słów, metafor i innych środków stylistycznych, aby hasła były oryginalne, chwytliwe i trafiały do odbiorców',
+                    'en' => 'Using wordplay, metaphors, and other stylistic devices to make slogans original, catchy, and resonate with the audience'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1709,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie tekstów na strony internetowe',
+                    'en' => 'Developing content for websites'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1710,
+                'name' => json_encode([
+                    'pl' => 'Optymalizowanie treści pod kątem SEO',
+                    'en' => 'Optimizing content for SEO'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1711,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie tonacji i stylu do brandingu firmy oraz oczekiwań użytkowników',
+                    'en' => 'Adjusting tone and style to the company branding and user expectations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1712,
+                'name' => json_encode([
+                    'pl' => 'Pisanie postów, tweetów, opisów i innych krótkich form treści przeznaczonych na platformy takie jak Facebook, Instagram, Twitter, LinkedIn, TikTok',
+                    'en' => 'Writing posts, tweets, descriptions, and other short forms of content for platforms like Facebook, Instagram, Twitter, LinkedIn, TikTok'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1713,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie angażujących treści, które zachęcają do interakcji',
+                    'en' => 'Creating engaging content that encourages interaction'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1714,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie treści do specyfiki każdej platformy oraz potrzeb odbiorców',
+                    'en' => 'Adapting content to the specifics of each platform and the needs of the audience'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1715,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie scenariuszy do reklam telewizyjnych, radiowych oraz internetowych',
+                    'en' => 'Developing scripts for television, radio, and internet advertisements'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1716,
+                'name' => json_encode([
+                    'pl' => 'Praca nad strukturą narracyjną, dialogami i koncepcjami kreatywnymi, które wzmocnią przekaz marki',
+                    'en' => 'Working on narrative structure, dialogues, and creative concepts that enhance the brand message'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1717,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z reżyserami, producentami i zespołami kreatywnymi przy realizacji kampanii',
+                    'en' => 'Collaborating with directors, producers, and creative teams during campaign execution'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1718,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie treści do newsletterów oraz kampanii e-mail marketingowych',
+                    'en' => 'Creating content for newsletters and email marketing campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1719,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie tematów e-maili oraz treści, które przyciągną uwagę odbiorców i zachęcą do kliknięcia',
+                    'en' => 'Developing email subjects and content that capture recipients’ attention and encourage clicks'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1720,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie tekstów do ulotek, broszur, katalogów, plakatów oraz innych materiałów promocyjnych',
+                    'en' => 'Creating texts for leaflets, brochures, catalogs, posters, and other promotional materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1721,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami projektowymi, aby teksty były odpowiednio zintegrowane z wizualnym stylem materiałów',
+                    'en' => 'Collaborating with design teams to ensure that texts are properly integrated with the visual style of materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1722,
+                'name' => json_encode([
+                    'pl' => 'Pisanie krótkich, zwięzłych tekstów reklamowych do kampanii typu PPC (np. Google Ads, Facebook Ads)',
+                    'en' => 'Writing short, concise ad texts for PPC campaigns (e.g., Google Ads, Facebook Ads)'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1723,
+                'name' => json_encode([
+                    'pl' => 'Optymalizowanie tekstów pod kątem wyników, takich jak wskaźnik kliknięć (CTR) i współczynnik konwersji',
+                    'en' => 'Optimizing texts for results such as click-through rate (CTR) and conversion rate'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1724,
+                'name' => json_encode([
+                    'pl' => 'Bliska współpraca z zespołami marketingowymi, projektantami graficznymi, specjalistami od SEO i działem sprzedaży',
+                    'en' => 'Close cooperation with marketing teams, graphic designers, SEO specialists, and the sales department'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1725,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie treści do strategii marketingowej firmy oraz celów kampanii',
+                    'en' => 'Adjusting content to the company’s marketing strategy and campaign objectives'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1726,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie i poprawianie tekstów w celu zwiększenia ich klarowności, perswazyjności i zgodności z tonem marki',
+                    'en' => 'Editing and improving texts to enhance their clarity, persuasiveness, and alignment with the brand tone'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1727,
+                'name' => json_encode([
+                    'pl' => 'Usuwanie zbędnych informacji, poprawianie stylu oraz kontrolowanie gramatyki i ortografii',
+                    'en' => 'Removing unnecessary information, improving style, and checking grammar and spelling'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1728,
+                'name' => json_encode([
+                    'pl' => 'Testowanie różnych wersji tekstów (A/B testing) w kampaniach marketingowych',
+                    'en' => 'Testing different versions of texts (A/B testing) in marketing campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1729,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie artykułów sponsorowanych oraz treści do publikacji medialnych i PR-owych',
+                    'en' => 'Creating sponsored articles and content for media publications and PR materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1730,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie komunikatów prasowych oraz treści, które prezentują markę w pozytywnym świetle',
+                    'en' => 'Developing press releases and content that showcase the brand positively'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1731,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z agencjami PR w celu promocji firmy poprzez odpowiednio przygotowane treści',
+                    'en' => 'Collaborating with PR agencies to promote the company through properly prepared content'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1732,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie skryptów i treści do filmów promocyjnych, podcastów, webinarów i innych materiałów multimedialnych',
+                    'en' => 'Creating scripts and content for promotional videos, podcasts, webinars, and other multimedia materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1733,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie najnowszych trendów w branży marketingowej, reklamowej i digital marketingu',
+                    'en' => 'Monitoring the latest trends in marketing, advertising, and digital marketing'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $PRODUCTMANAGER=[
+            [
+                'id' => 1734,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie długoterminowej strategii dla produktu, uwzględniając cele biznesowe, potrzeby rynku i oczekiwania użytkowników',
+                    'en' => 'Developing a long-term product strategy, considering business goals, market needs, and user expectations'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1735,
+                'name' => json_encode([
+                    'pl' => 'Definiowanie wizji i kierunku rozwoju produktu oraz wyznaczanie jego kluczowych celów',
+                    'en' => 'Defining the vision and direction for product development and setting its key objectives'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1736,
+                'name' => json_encode([
+                    'pl' => 'Określanie priorytetów rozwoju produktu w oparciu o analizę rynku i feedback od użytkowników',
+                    'en' => 'Determining product development priorities based on market analysis and user feedback'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1737,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie badań rynkowych w celu identyfikacji potrzeb i preferencji klientów',
+                    'en' => 'Conducting market research to identify customer needs and preferences'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1738,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie konkurencji oraz rozpoznawanie mocnych i słabych stron konkurencyjnych produktów',
+                    'en' => 'Analyzing competitors and identifying the strengths and weaknesses of competing products'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1739,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie trendów rynkowych oraz zmian w branży, które mogą wpłynąć na rozwój produktu',
+                    'en' => 'Monitoring market trends and changes in the industry that may affect product development'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1740,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań w całym cyklu życia produktu, od fazy koncepcji, przez rozwój, aż po wprowadzenie na rynek i utrzymanie',
+                    'en' => 'Coordinating activities throughout the product lifecycle, from concept phase through development to market introduction and maintenance'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1741,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie procesem wprowadzania nowych funkcji, aktualizacji i poprawy produktu',
+                    'en' => 'Managing the process of introducing new features, updates, and improvements to the product'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1742,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności produktu po jego wprowadzeniu na rynek i wprowadzanie niezbędnych zmian',
+                    'en' => 'Monitoring product performance after market introduction and making necessary changes'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1743,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie szczegółowych dokumentacji wymagań produktowych, określających, jakie funkcje i cechy ma posiadać produkt',
+                    'en' => 'Creating detailed product requirement documentation defining what features and characteristics the product should have'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1744,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami technologicznymi, projektantami UX/UI i innymi działami w celu zapewnienia, że wymagania produktowe są jasne i możliwe do zrealizowania',
+                    'en' => 'Collaborating with technology teams, UX/UI designers, and other departments to ensure product requirements are clear and achievable'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1745,
+                'name' => json_encode([
+                    'pl' => 'Definiowanie MVP',
+                    'en' => 'Defining the MVP'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1746,
+                'name' => json_encode([
+                    'pl' => 'Bliska współpraca z inżynierami, programistami oraz zespołem IT w celu koordynacji procesu tworzenia produktu',
+                    'en' => 'Close collaboration with engineers, developers, and the IT team to coordinate the product creation process'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1747,
+                'name' => json_encode([
+                    'pl' => 'Udział w spotkaniach i przeglądach sprintów, aby upewnić się, że produkt jest rozwijany zgodnie z założeniami',
+                    'en' => 'Participating in meetings and sprint reviews to ensure the product is being developed according to the assumptions'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1748,
+                'name' => json_encode([
+                    'pl' => 'Rozwiązywanie problemów technicznych i zapewnienie, że zespół techniczny ma wszystkie zasoby i informacje potrzebne do skutecznej realizacji projektu',
+                    'en' => 'Resolving technical issues and ensuring the technical team has all resources and information needed for effective project execution'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1749,
+                'name' => json_encode([
+                    'pl' => 'Priorytetyzowanie zadań i funkcji w backlogu produktowym',
+                    'en' => 'Prioritizing tasks and features in the product backlog'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1750,
+                'name' => json_encode([
+                    'pl' => 'Regularne przeglądy i aktualizacje backlogu w zależności od zmieniających się wymagań rynkowych lub biznesowych',
+                    'en' => 'Regular reviews and updates of the backlog depending on changing market or business requirements'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1751,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie kompromisami między funkcjonalnością, kosztem, czasem realizacji i zasobami',
+                    'en' => 'Managing trade-offs between functionality, cost, time to market, and resources'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1752,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie, komunikowanie i aktualizowanie roadmapy produktu',
+                    'en' => 'Developing, communicating, and updating the product roadmap'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1753,
+                'name' => json_encode([
+                    'pl' => 'Poszukiwanie możliwości optymalizacji kosztów i maksymalizacji zwrotu z inwestycji (ROI)',
+                    'en' => 'Looking for opportunities to optimize costs and maximize return on investment (ROI)'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1754,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i nadzorowanie testów produktów, takich jak testy użyteczności, testy beta lub testy A/B',
+                    'en' => 'Organizing and supervising product tests, such as usability tests, beta tests, or A/B tests'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1755,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami marketingowymi przy opracowywaniu strategii wprowadzenia produktu na rynek',
+                    'en' => 'Collaborating with marketing teams to develop go-to-market strategies for the product'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1756,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie materiałów wspierających sprzedaż, takich jak prezentacje, broszury, case studies oraz szkolenie zespołów sprzedażowych',
+                    'en' => 'Creating sales support materials such as presentations, brochures, case studies, and training sales teams'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1757,
+                'name' => json_encode([
+                    'pl' => 'Komunikacja z kluczowymi interesariuszami, w tym zarządem, partnerami biznesowymi, klientami i zespołami wewnętrznymi, w celu zapewnienia, że ich oczekiwania są zrozumiane i spełnione',
+                    'en' => 'Communicating with key stakeholders, including management, business partners, customers, and internal teams, to ensure their expectations are understood and met'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1758,
+                'name' => json_encode([
+                    'pl' => 'Szybkie reagowanie na problemy i wąskie gardła, które mogą opóźniać realizację projektu',
+                    'en' => 'Quickly responding to problems and bottlenecks that may delay project execution'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $BRANDMANAGER=[
+            [
+                'id' => 1759,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie długoterminowej strategii budowania marki, z uwzględnieniem jej misji, wizji i wartości',
+                    'en' => 'Developing and implementing a long-term brand-building strategy, considering its mission, vision, and values'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1760,
+                'name' => json_encode([
+                    'pl' => 'Definiowanie unikalnej tożsamości marki i kluczowego przesłania, które marka ma przekazywać swoim odbiorcom',
+                    'en' => 'Defining the unique brand identity and key message that the brand wants to communicate to its audience'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1761,
+                'name' => json_encode([
+                    'pl' => 'Określanie celów marketingowych i sprzedażowych, które mają wspierać rozwój marki',
+                    'en' => 'Setting marketing and sales goals that support the growth of the brand'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1762,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie spójnej komunikacji marki we wszystkich kanałach, takich jak reklama, media społecznościowe, strona internetowa i materiały promocyjne',
+                    'en' => 'Maintaining consistent brand communication across all channels such as advertising, social media, website, and promotional materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1763,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie spójności wizualnej i tonalnej marki we wszystkich jej materiałach',
+                    'en' => 'Ensuring visual and tonal consistency of the brand across all its materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1764,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie badań rynkowych w celu identyfikacji trendów, potrzeb konsumentów oraz działań konkurencji',
+                    'en' => 'Conducting market research to identify trends, consumer needs, and competitor actions'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1765,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i monitorowanie pozytywnego wizerunku marki w oczach konsumentów oraz mediów',
+                    'en' => 'Creating and monitoring a positive brand image in the eyes of consumers and the media'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1766,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie działań PR-owych, które wzmacniają pozycję marki na rynku',
+                    'en' => 'Developing PR activities that strengthen the brand’s position in the market'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1767,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z influencerami, partnerami oraz mediami w celu budowania świadomości marki',
+                    'en' => 'Collaborating with influencers, partners, and media to build brand awareness'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1768,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i koordynowanie kampanii reklamowych i promocyjnych, które wspierają cele marki',
+                    'en' => 'Planning and coordinating advertising and promotional campaigns that support brand objectives'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1769,
+                'name' => json_encode([
+                    'pl' => 'Bliska współpraca z działami marketingu, sprzedaży, produktowymi oraz PR w celu realizacji strategii marki',
+                    'en' => 'Close collaboration with marketing, sales, product, and PR teams to implement brand strategies'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1770,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z agencjami reklamowymi, PR-owymi, badawczymi i kreatywnymi przy realizacji kampanii i działań promocyjnych',
+                    'en' => 'Collaborating with advertising, PR, research, and creative agencies in executing campaigns and promotional activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1771,
+                'name' => json_encode([
+                    'pl' => 'Planowanie budżetu na działania marketingowe i promocyjne związane z marką',
+                    'en' => 'Planning the budget for marketing and promotional activities related to the brand'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1772,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wydatków i optymalizacja kosztów kampanii oraz innych działań marketingowych',
+                    'en' => 'Monitoring expenses and optimizing costs of campaigns and other marketing activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1773,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań mających na celu zwiększenie rozpoznawalności marki wśród konsumentów',
+                    'en' => 'Conducting activities aimed at increasing brand recognition among consumers'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1774,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie strategii, które podkreślają unikalne cechy marki i wyróżniają ją na tle konkurencji',
+                    'en' => 'Creating strategies that highlight the unique features of the brand and distinguish it from competitors'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1775,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie wskaźników świadomości marki oraz ich wzrostu w czasie',
+                    'en' => 'Tracking brand awareness metrics and their growth over time'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1776,
+                'name' => json_encode([
+                    'pl' => 'Rozwijanie działań budujących lojalność klientów wobec marki, takich jak programy lojalnościowe czy personalizacja komunikacji',
+                    'en' => 'Developing initiatives that build customer loyalty to the brand, such as loyalty programs or personalized communication'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1777,
+                'name' => json_encode([
+                    'pl' => 'Reagowanie na negatywne opinie i zarządzanie kryzysami wizerunkowymi',
+                    'en' => 'Responding to negative reviews and managing image crises'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1778,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i koordynowanie działań CSR, które wzmacniają pozytywny wizerunek marki jako odpowiedzialnej społecznie',
+                    'en' => 'Planning and coordinating CSR activities that enhance the brand’s positive image as socially responsible'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1779,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie inicjatyw, które podkreślają zaangażowanie marki w zrównoważony rozwój, ochronę środowiska czy wsparcie społeczności lokalnych',
+                    'en' => 'Creating initiatives that emphasize the brand’s commitment to sustainable development, environmental protection, or support for local communities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1780,
+                'name' => json_encode([
+                    'pl' => 'Komunikowanie działań CSR w mediach oraz w kampaniach reklamowych, aby budować odpowiedni wizerunek marki',
+                    'en' => 'Communicating CSR activities in the media and advertising campaigns to build the right brand image'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $SPECJALISTADOSPRAWMARKETINGUIHANDLU=[
+            [
+                'id' => 1781,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i realizacja kompleksowych strategii marketingowych mających na celu promocję produktów lub usług',
+                    'en' => 'Creating and implementing comprehensive marketing strategies aimed at promoting products or services'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1782,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie potrzeb i preferencji rynku, aby dostosować strategię do oczekiwań klientów i trendów rynkowych',
+                    'en' => 'Analyzing market needs and preferences to adapt the strategy to customer expectations and market trends'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1783,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z kierownictwem w celu ustalania celów biznesowych i marketingowych',
+                    'en' => 'Collaborating with management to set business and marketing goals'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1784,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i koordynowanie kampanii reklamowych, promocyjnych oraz sprzedażowych, zarówno online, jak i offline',
+                    'en' => 'Developing and coordinating advertising, promotional, and sales campaigns, both online and offline'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1785,
+                'name' => json_encode([
+                    'pl' => 'Wybór odpowiednich kanałów komunikacji (media społecznościowe, prasa, telewizja, radio, e-mail marketing) do promowania produktów i usług',
+                    'en' => 'Selecting appropriate communication channels (social media, print, television, radio, email marketing) to promote products and services'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1786,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i optymalizacja kampanii w trakcie ich trwania',
+                    'en' => 'Monitoring and optimizing campaigns during their duration'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1787,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie badań rynkowych w celu zrozumienia potrzeb klientów, zmian w ich zachowaniach oraz identyfikacji nowych możliwości handlowych',
+                    'en' => 'Conducting market research to understand customer needs, changes in their behaviors, and identify new business opportunities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1788,
+                'name' => json_encode([
+                    'pl' => 'Analiza działań konkurencji, ich produktów, cen, kanałów dystrybucji oraz strategii promocyjnych',
+                    'en' => 'Analyzing competitor actions, their products, pricing, distribution channels, and promotional strategies'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1789,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie wyników badań rynkowych do optymalizacji strategii marketingowych i sprzedażowych',
+                    'en' => 'Using market research results to optimize marketing and sales strategies'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1790,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie pozytywnych relacji z klientami, zarówno obecnymi, jak i potencjalnymi',
+                    'en' => 'Maintaining positive relationships with customers, both current and potential'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1791,
+                'name' => json_encode([
+                    'pl' => 'Zbieranie opinii i sugestii klientów oraz ich analiza',
+                    'en' => 'Collecting and analyzing customer feedback and suggestions'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1792,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań związanych z obsługą klienta, takich jak rozpatrywanie reklamacji czy udzielanie informacji na temat oferty firmy',
+                    'en' => 'Conducting customer service activities, such as handling complaints or providing information about the company’s offerings'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1793,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie strategii handlowych',
+                    'en' => 'Developing and implementing trade strategies'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1794,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i nadzorowanie budżetu na działania marketingowe i promocyjne',
+                    'en' => 'Creating and overseeing the budget for marketing and promotional activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1795,
+                'name' => json_encode([
+                    'pl' => 'Kontrola wydatków oraz optymalizacja kosztów w ramach zaplanowanych kampanii',
+                    'en' => 'Controlling expenses and optimizing costs within planned campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1796,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie treści marketingowych, takich jak ulotki, broszury, banery reklamowe, wpisy na blogu czy treści do mediów społecznościowych',
+                    'en' => 'Developing marketing content such as flyers, brochures, advertising banners, blog posts, and social media content'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1797,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z grafikami, copywriterami i agencjami reklamowymi w celu tworzenia spójnych materiałów promocyjnych',
+                    'en' => 'Collaborating with graphic designers, copywriters, and advertising agencies to create cohesive promotional materials'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1798,
+                'name' => json_encode([
+                    'pl' => 'Analiza efektywności kampanii marketingowych, promocyjnych oraz działań sprzedażowych na podstawie danych',
+                    'en' => 'Analyzing the effectiveness of marketing, promotional, and sales campaigns based on data'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1799,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zespołowi sprzedaży niezbędnych materiałów promocyjnych i informacji dotyczących oferty',
+                    'en' => 'Providing the sales team with necessary promotional materials and information about the offering'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1800,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników sprzedaży i dostosowywanie działań marketingowych do bieżących potrzeb rynku',
+                    'en' => 'Monitoring sales results and adjusting marketing activities to the current market needs'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1801,
+                'name' => json_encode([
+                    'pl' => 'Ustalanie polityki cenowej na podstawie analiz rynkowych, kosztów produkcji, działań konkurencji i preferencji klientów',
+                    'en' => 'Establishing pricing policies based on market analysis, production costs, competitor actions, and customer preferences'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1802,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie rabatów, promocji, programów lojalnościowych oraz innych inicjatyw, które mają na celu zwiększenie sprzedaży',
+                    'en' => 'Implementing discounts, promotions, loyalty programs, and other initiatives aimed at increasing sales'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1803,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wpływu polityki cenowej na rentowność i sprzedaż produktów',
+                    'en' => 'Monitoring the impact of pricing policies on the profitability and sales of products'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1804,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i koordynowanie eventów marketingowych, takich jak targi, konferencje, pokazy produktów czy wydarzenia sponsorowane',
+                    'en' => 'Planning and coordinating marketing events, such as fairs, conferences, product demonstrations, or sponsored events'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1805,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie konkursów, loterii i innych aktywności promocyjnych, które zwiększają zaangażowanie klientów',
+                    'en' => 'Organizing contests, lotteries, and other promotional activities that increase customer engagement'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1806,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie strategii marketingowych skierowanych na rozwój sprzedaży online',
+                    'en' => 'Implementing marketing strategies aimed at the development of online sales'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1807,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie treściami w sklepach internetowych, optymalizacja ofert produktowych i kampanii reklamowych w kanałach e-commerce',
+                    'en' => 'Managing content in online stores, optimizing product offerings and advertising campaigns in e-commerce channels'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1808,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie trendów w sprzedaży internetowej i wdrażanie innowacyjnych rozwiązań w handlu cyfrowym',
+                    'en' => 'Tracking trends in online sales and implementing innovative solutions in digital commerce'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1809,
+                'name' => json_encode([
+                    'pl' => 'Korzystanie z narzędzi analitycznych i marketingowych',
+                    'en' => 'Using analytical and marketing tools'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1810,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych technologii, takich jak sztuczna inteligencja, personalizacja czy chatboty',
+                    'en' => 'Implementing new technologies such as artificial intelligence, personalization, or chatbots'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $SPECJALISTADOSPRAWREKLAMY=[
+            [
+                'id' => 1811,
+                'name' => json_encode([
+                    'pl' => 'Definiowanie celów reklamowych',
+                    'en' => 'Defining advertising goals'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1812,
+                'name' => json_encode([
+                    'pl' => 'Dostosowanie strategii reklamowej do grupy docelowej i rynków, na których działa firma',
+                    'en' => 'Adapting the advertising strategy to the target group and the markets in which the company operates'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1813,
+                'name' => json_encode([
+                    'pl' => 'Projektowanie i realizacja kampanii reklamowych, obejmujących różne kanały komunikacyjne',
+                    'en' => 'Designing and implementing advertising campaigns that cover various communication channels'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1814,
+                'name' => json_encode([
+                    'pl' => 'Wybór mediów i narzędzi reklamowych, które najlepiej dotrą do docelowych odbiorców',
+                    'en' => 'Selecting media and advertising tools that will best reach the target audience'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1815,
+                'name' => json_encode([
+                    'pl' => 'Określanie harmonogramu kampanii oraz budżetów na poszczególne działania reklamowe',
+                    'en' => 'Defining the campaign schedule and budgets for individual advertising activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1816,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie realizacji kampanii reklamowych, w tym koordynowanie pracy z agencjami reklamowymi, grafikami, copywriterami i innymi specjalistami',
+                    'en' => 'Supervising the implementation of advertising campaigns, including coordinating work with advertising agencies, graphic designers, copywriters, and other specialists'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1817,
+                'name' => json_encode([
+                    'pl' => 'Zlecanie przygotowania materiałów reklamowych, takich jak spoty wideo, grafiki, banery, ulotki, reklamy prasowe',
+                    'en' => 'Commissioning the preparation of advertising materials such as video spots, graphics, banners, leaflets, and press advertisements'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1818,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie lub nadzorowanie powstawania treści reklamowych, w tym sloganów, nagłówków, tekstów do mediów społecznościowych i innych form reklamy',
+                    'en' => 'Creating or overseeing the production of advertising content, including slogans, headlines, texts for social media, and other forms of advertising'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1819,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby przekaz reklamowy był jasny, atrakcyjny i spójny z wizerunkiem marki',
+                    'en' => 'Ensuring that the advertising message is clear, attractive, and consistent with the brand image'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1820,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem kreatywnym, copywriterami i grafikami przy tworzeniu treści reklamowych',
+                    'en' => 'Collaborating with the creative team, copywriters, and graphic designers in creating advertising content'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1821,
+                'name' => json_encode([
+                    'pl' => 'Analiza efektywności prowadzonych kampanii reklamowych',
+                    'en' => 'Analyzing the effectiveness of conducted advertising campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1822,
+                'name' => json_encode([
+                    'pl' => 'Optymalizacja kampanii reklamowych w oparciu o dane analityczne i informacje zwrotne od klientów',
+                    'en' => 'Optimizing advertising campaigns based on analytical data and customer feedback'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1823,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie trendów konsumenckich, konkurencji oraz zmian w zachowaniach odbiorców reklam',
+                    'en' => 'Analyzing consumer trends, competition, and changes in advertising audience behavior'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1824,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zewnętrznymi agencjami reklamowymi przy tworzeniu i realizacji kampanii',
+                    'en' => 'Collaborating with external advertising agencies in creating and implementing campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1825,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i zarządzanie kampaniami reklamowymi w internecie, w tym w mediach społecznościowych (Facebook, Instagram, LinkedIn), wyszukiwarkach (Google Ads) oraz na innych platformach cyfrowych',
+                    'en' => 'Creating and managing online advertising campaigns, including on social media (Facebook, Instagram, LinkedIn), search engines (Google Ads), and other digital platforms'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1826,
+                'name' => json_encode([
+                    'pl' => 'Optymalizacja kampanii internetowych pod kątem wyników wyszukiwania (SEO), treści sponsorowanych oraz kampanii programatycznych',
+                    'en' => 'Optimizing online campaigns for search results (SEO), sponsored content, and programmatic campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1827,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie i analiza wyników kampanii online na podstawie wskaźników takich jak zasięg, konwersja, wskaźnik zaangażowania',
+                    'en' => 'Tracking and analyzing online campaign results based on metrics such as reach, conversion, and engagement rate'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1828,
+                'name' => json_encode([
+                    'pl' => 'Realizacja kampanii ATL',
+                    'en' => 'Executing ATL campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1829,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie kampanii BTL',
+                    'en' => 'Conducting BTL campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1830,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i koordynowanie wydarzeń promocyjnych, takich jak targi, konferencje, prezentacje produktów, konkursy czy degustacje',
+                    'en' => 'Planning and coordinating promotional events such as trade fairs, conferences, product presentations, contests, or tastings'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1831,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami odpowiedzialnymi za eventy oraz agencjami zajmującymi się organizacją imprez',
+                    'en' => 'Cooperating with teams responsible for events and agencies involved in organizing events'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1832,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektów działań promocyjnych oraz ich wpływu na sprzedaż i rozpoznawalność marki',
+                    'en' => 'Monitoring the effects of promotional activities and their impact on sales and brand recognition'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1833,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o spójność wizerunku marki w kampaniach reklamowych i innych działaniach promocyjnych',
+                    'en' => 'Ensuring consistency of the brand image in advertising campaigns and other promotional activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1834,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie kampanii reklamowych, które wzmacniają pozytywny wizerunek firmy, jej produktów lub usług',
+                    'en' => 'Creating advertising campaigns that strengthen the positive image of the company, its products, or services'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1835,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postrzegania marki w mediach oraz reagowanie na ewentualne zagrożenia dla jej reputacji',
+                    'en' => 'Monitoring the brand’s perception in the media and responding to any threats to its reputation'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1836,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych technologii i rozwiązań, takich jak reklamy programatyczne, personalizacja, automatyzacja marketingu, w celu optymalizacji kampanii reklamowych',
+                    'en' => 'Implementing new technologies and solutions such as programmatic advertising, personalization, and marketing automation to optimize advertising campaigns'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1837,
+                'name' => json_encode([
+                    'pl' => 'Analiza innowacji w reklamie cyfrowej, w tym wykorzystania sztucznej inteligencji, big data czy chatbotów w działaniach promocyjnych',
+                    'en' => 'Analyzing innovations in digital advertising, including the use of artificial intelligence, big data, or chatbots in promotional activities'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1838,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów z wyników prowadzonych kampanii, zawierających informacje na temat ich skuteczności, zwrotu z inwestycji, zasięgu i zaangażowania odbiorców',
+                    'en' => 'Preparing reports on the results of conducted campaigns, including information on their effectiveness, return on investment, reach, and audience engagement'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+
+        $SPECJALISTADOSPRAWMEDIÓWINTERAKTYWNYCH= [
+                [
+                    'id' => 1839,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie kompleksowych strategii wykorzystania mediów interaktywnych, takich jak media społecznościowe, aplikacje mobilne, strony internetowe, w celu osiągnięcia celów marketingowych i komunikacyjnych.',
+                        'en' => 'Creating comprehensive strategies for using interactive media, such as social media, mobile apps, and websites, to achieve marketing and communication goals.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1840,
+                    'name' => json_encode([
+                        'pl' => 'Definiowanie celów, takich jak zwiększenie zaangażowania użytkowników, rozpoznawalność marki, generowanie leadów czy wzrost sprzedaży.',
+                        'en' => 'Defining goals such as increasing user engagement, brand recognition, lead generation, or sales growth.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1841,
+                    'name' => json_encode([
+                        'pl' => 'Integracja działań interaktywnych z ogólną strategią marketingową firmy.',
+                        'en' => 'Integrating interactive activities with the overall marketing strategy of the company.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1842,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie, tworzenie i wdrażanie kampanii reklamowych w mediach cyfrowych, takich jak reklamy w mediach społecznościowych, e-mail marketing, reklamy w aplikacjach, gry interaktywne, konkursy online.',
+                        'en' => 'Planning, creating, and implementing advertising campaigns in digital media, such as social media ads, email marketing, in-app ads, interactive games, and online contests.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1843,
+                    'name' => json_encode([
+                        'pl' => 'Śledzenie wyników kampanii w czasie rzeczywistym, ich optymalizacja oraz dostosowywanie do zmieniających się potrzeb rynku lub preferencji użytkowników.',
+                        'en' => 'Tracking campaign results in real-time, optimizing them, and adapting to changing market needs or user preferences.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1844,
+                    'name' => json_encode([
+                        'pl' => 'Wykorzystywanie interaktywnych narzędzi, takich jak quizy, ankiety, gry, aby zwiększyć zaangażowanie użytkowników.',
+                        'en' => 'Using interactive tools such as quizzes, surveys, and games to increase user engagement.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1845,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie i publikowanie treści interaktywnych na platformach cyfrowych (strony internetowe, aplikacje mobilne, media społecznościowe).',
+                        'en' => 'Developing and publishing interactive content on digital platforms (websites, mobile apps, social media).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1846,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie angażujących treści, takich jak infografiki, animacje, wideo, posty na blogach, które zachęcają do interakcji z marką.',
+                        'en' => 'Creating engaging content such as infographics, animations, videos, and blog posts that encourage interaction with the brand.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1847,
+                    'name' => json_encode([
+                        'pl' => 'Dbanie o spójność i aktualność treści w różnych mediach interaktywnych, dostosowanych do preferencji i zachowań użytkowników.',
+                        'en' => 'Ensuring consistency and relevance of content across various interactive media, tailored to user preferences and behaviors.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1848,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z zespołami UX/UI przy projektowaniu interfejsów użytkownika, które są intuicyjne, atrakcyjne wizualnie i przyjazne dla odbiorców.',
+                        'en' => 'Collaborating with UX/UI teams in designing user interfaces that are intuitive, visually appealing, and user-friendly.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1849,
+                    'name' => json_encode([
+                        'pl' => 'Testowanie i optymalizowanie doświadczeń użytkownika w aplikacjach, stronach internetowych i innych interaktywnych platformach, aby maksymalizować ich zaangażowanie i satysfakcję.',
+                        'en' => 'Testing and optimizing user experiences in apps, websites, and other interactive platforms to maximize engagement and satisfaction.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1850,
+                    'name' => json_encode([
+                        'pl' => 'Analizowanie wyników testów A/B i innych badań dotyczących zachowań użytkowników, aby poprawiać ich interakcje z platformami.',
+                        'en' => 'Analyzing results of A/B tests and other studies on user behaviors to improve their interactions with the platforms.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1851,
+                    'name' => json_encode([
+                        'pl' => 'Śledzenie statystyk interakcji z treściami cyfrowymi za pomocą narzędzi analitycznych, takich jak Google Analytics, Facebook Insights, czy narzędzia do analizy aplikacji mobilnych.',
+                        'en' => 'Tracking statistics of interactions with digital content using analytical tools such as Google Analytics, Facebook Insights, or mobile app analytics tools.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1852,
+                    'name' => json_encode([
+                        'pl' => 'Analiza wskaźników takich jak CTR, czas spędzony na stronie, liczba odsłon, zaangażowanie użytkowników, konwersje.',
+                        'en' => 'Analyzing metrics such as CTR, time spent on page, page views, user engagement, and conversions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1853,
+                    'name' => json_encode([
+                        'pl' => 'Optymalizacja działań na podstawie wyników analizy danych, aby poprawić efektywność kampanii i dostosować treści do potrzeb użytkowników.',
+                        'en' => 'Optimizing activities based on data analysis results to improve campaign effectiveness and tailor content to user needs.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1854,
+                    'name' => json_encode([
+                        'pl' => 'Korzystanie z narzędzi do automatyzacji marketingu, takich jak HubSpot, MailChimp czy Marketo.',
+                        'en' => 'Using marketing automation tools such as HubSpot, MailChimp, or Marketo.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1855,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie zautomatyzowanych ścieżek komunikacyjnych, które reagują na zachowania użytkowników w czasie rzeczywistym.',
+                        'en' => 'Creating automated communication paths that respond to user behaviors in real-time.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1856,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie skuteczności działań automatyzacyjnych i ich optymalizacja w celu zwiększenia zaangażowania i konwersji.',
+                        'en' => 'Monitoring the effectiveness of automation efforts and optimizing them to increase engagement and conversions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1857,
+                    'name' => json_encode([
+                        'pl' => 'Wybór odpowiednich influencerów, blogerów i liderów opinii, którzy mogą promować markę w mediach interaktywnych.',
+                        'en' => 'Selecting appropriate influencers, bloggers, and opinion leaders who can promote the brand in interactive media.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1858,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie i monitorowanie budżetu na kampanie i działania w mediach interaktywnych.',
+                        'en' => 'Planning and monitoring the budget for campaigns and activities in interactive media.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1859,
+                    'name' => json_encode([
+                        'pl' => 'Optymalizacja wydatków na reklamę online, uwzględniając efektywność poszczególnych kanałów komunikacji.',
+                        'en' => 'Optimizing online advertising expenditures, taking into account the effectiveness of individual communication channels.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1860,
+                    'name' => json_encode([
+                        'pl' => 'Analiza zwrotu z inwestycji (ROI) w działania interaktywne oraz dostosowywanie budżetu do osiągniętych wyników.',
+                        'en' => 'Analyzing return on investment (ROI) in interactive activities and adjusting the budget according to achieved results.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1861,
+                    'name' => json_encode([
+                        'pl' => 'Śledzenie najnowszych trendów w zakresie mediów interaktywnych.',
+                        'en' => 'Keeping up with the latest trends in interactive media.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1862,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie innowacyjnych rozwiązań interaktywnych, które mogą zwiększyć zaangażowanie użytkowników oraz przyciągnąć nowych klientów.',
+                        'en' => 'Implementing innovative interactive solutions that can increase user engagement and attract new customers.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1863,
+                    'name' => json_encode([
+                        'pl' => 'Dostosowywanie strategii do zmian w preferencjach konsumentów i nowych możliwości technologicznych.',
+                        'en' => 'Adapting strategies to changes in consumer preferences and new technological opportunities.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1864,
+                    'name' => json_encode([
+                        'pl' => 'Budowanie, moderowanie i zarządzanie społecznościami online wokół marki, na przykład na platformach takich jak Facebook, Instagram, Twitter, LinkedIn.',
+                        'en' => 'Building, moderating, and managing online communities around the brand, for example on platforms such as Facebook, Instagram, Twitter, and LinkedIn.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1865,
+                    'name' => json_encode([
+                        'pl' => 'Reagowanie na komentarze, pytania i sugestie użytkowników, aby budować pozytywne relacje i zaangażowanie.',
+                        'en' => 'Responding to user comments, questions, and suggestions to build positive relationships and engagement.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1866,
+                    'name' => json_encode([
+                        'pl' => 'Analiza interakcji społeczności i monitorowanie reputacji marki w mediach interaktywnych.',
+                        'en' => 'Analyzing community interactions and monitoring brand reputation in interactive media.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1867,
+                    'name' => json_encode([
+                        'pl' => 'Projektowanie reklam w formatach cyfrowych, takich jak bannery, reklamy wideo, reklamy natywne, rich media, które przyciągają uwagę i angażują użytkowników.',
+                        'en' => 'Designing ads in digital formats such as banners, video ads, native ads, and rich media that attract attention and engage users.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1868,
+                    'name' => json_encode([
+                        'pl' => 'Optymalizacja treści reklamowych pod kątem różnych platform (np. Facebook Ads, Google Ads, TikTok Ads) w celu osiągnięcia lepszych wyników kampanii.',
+                        'en' => 'Optimizing advertising content for various platforms (e.g., Facebook Ads, Google Ads, TikTok Ads) to achieve better campaign results.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1869,
+                    'name' => json_encode([
+                        'pl' => 'Testowanie różnych formatów i przekazów reklamowych, aby znaleźć najbardziej efektywne podejścia do promowania produktów i usług.',
+                        'en' => 'Testing different advertising formats and messages to find the most effective approaches to promoting products and services.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1870,
+                    'name' => json_encode([
+                        'pl' => 'Projektowanie kampanii reklamowych łączących tradycyjne media (np. telewizja, prasa) z mediami interaktywnymi (internet, aplikacje, media społecznościowe).',
+                        'en' => 'Designing advertising campaigns that combine traditional media (e.g., television, print) with interactive media (internet, apps, social media).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1871,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie wyników działań w poszczególnych kanałach i optymalizacja strategii, aby zwiększyć zasięg i efektywność kampanii.',
+                        'en' => 'Monitoring the results of activities in individual channels and optimizing strategies to increase reach and campaign effectiveness.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1872,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie i wdrażanie strategii promocji aplikacji mobilnych w sklepach Google Play i App Store.',
+                        'en' => 'Developing and implementing strategies for promoting mobile applications in the Google Play and App Store.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1873,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie użytkowania aplikacji, analiza zachowań użytkowników i wdrażanie usprawnień w oparciu o dane analityczne.',
+                        'en' => 'Monitoring app usage, analyzing user behaviors, and implementing improvements based on analytics data.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1874,
+                    'name' => json_encode([
+                        'pl' => 'Zarządzanie kampaniami promującymi aplikacje mobilne, zarówno poprzez reklamy, jak i działania organiczne.',
+                        'en' => 'Managing campaigns promoting mobile applications, both through advertising and organic activities.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1875,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie wzmianek o marce w mediach interaktywnych oraz reagowanie na potencjalne sytuacje kryzysowe.',
+                        'en' => 'Monitoring brand mentions in interactive media and responding to potential crisis situations.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1876,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie strategii komunikacyjnych w sytuacjach kryzysowych, aby minimalizować negatywny wpływ na wizerunek firmy.',
+                        'en' => 'Developing communication strategies in crisis situations to minimize negative impacts on the company\'s image.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1877,
+                    'name' => json_encode([
+                        'pl' => 'Budowanie strategii przeciwdziałania kryzysom poprzez aktywne zarządzanie treściami i moderowanie dyskusji.',
+                        'en' => 'Building crisis prevention strategies through active content management and discussion moderation.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1878,
+                    'name' => json_encode([
+                        'pl' => 'Prowadzenie szkoleń wewnętrznych dla zespołów marketingowych i sprzedażowych w zakresie wykorzystania mediów interaktywnych.',
+                        'en' => 'Conducting internal training for marketing and sales teams on the use of interactive media.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+
+        $SPECJALISTASPRZEDAŻYINTERNETOWEJ= [
+                [
+                    'id' => 1879,
+                    'name' => json_encode([
+                        'pl' => 'Zarządzanie platformą e-commerce.',
+                        'en' => 'Managing the e-commerce platform.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1880,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie stanów magazynowych i aktualizacja oferty.',
+                        'en' => 'Monitoring inventory levels and updating the product offer.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1881,
+                    'name' => json_encode([
+                        'pl' => 'Kontrola jakości prezentacji produktów i spójności danych.',
+                        'en' => 'Ensuring quality control of product presentation and data consistency.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1882,
+                    'name' => json_encode([
+                        'pl' => 'Obsługa zamówień klientów, weryfikacja poprawności danych oraz nadzór nad procesem wysyłki.',
+                        'en' => 'Handling customer orders, verifying data accuracy, and overseeing the shipping process.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1883,
+                    'name' => json_encode([
+                        'pl' => 'Koordynacja działań logistycznych związanych z wysyłką towarów.',
+                        'en' => 'Coordinating logistical activities related to product shipments.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1884,
+                    'name' => json_encode([
+                        'pl' => 'Zarządzanie zwrotami i reklamacjami, zapewnienie odpowiedniej obsługi klienta.',
+                        'en' => 'Managing returns and complaints, ensuring proper customer service.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1885,
+                    'name' => json_encode([
+                        'pl' => 'Kontakt z klientami przez e-mail, czat online, media społecznościowe i telefon.',
+                        'en' => 'Contacting customers via email, online chat, social media, and phone.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1886,
+                    'name' => json_encode([
+                        'pl' => 'Rozwiązywanie problemów klientów oraz udzielanie informacji o produktach i usługach.',
+                        'en' => 'Resolving customer issues and providing information about products and services.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1887,
+                    'name' => json_encode([
+                        'pl' => 'Prowadzenie działań posprzedażowych, takich jak follow-up, obsługa reklamacji i feedback od klientów.',
+                        'en' => 'Conducting post-sales activities, such as follow-ups, complaint handling, and gathering customer feedback.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1888,
+                    'name' => json_encode([
+                        'pl' => 'Analiza funkcjonowania sklepu pod kątem UX (user experience) i UI (user interface).',
+                        'en' => 'Analyzing the store’s functionality in terms of UX (user experience) and UI (user interface).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1889,
+                    'name' => json_encode([
+                        'pl' => 'Proponowanie zmian i wdrażanie usprawnień.',
+                        'en' => 'Proposing changes and implementing improvements.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1890,
+                    'name' => json_encode([
+                        'pl' => 'Testowanie różnych elementów strony (np. testy A/B).',
+                        'en' => 'Testing various elements of the website (e.g., A/B testing).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1891,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie i realizacja kampanii marketingowych (SEO, PPC, e-mail marketing, kampanie w mediach społecznościowych).',
+                        'en' => 'Planning and executing marketing campaigns (SEO, PPC, email marketing, social media campaigns).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1892,
+                    'name' => json_encode([
+                        'pl' => 'Zarządzanie kampaniami promocyjnymi oraz rabatami w sklepie internetowym.',
+                        'en' => 'Managing promotional campaigns and discounts in the online store.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1893,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z działem marketingu w celu zwiększenia zasięgu i rozpoznawalności marki online.',
+                        'en' => 'Collaborating with the marketing department to increase the online reach and brand awareness.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1894,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie i analiza danych sprzedażowych oraz wskaźników KPI.',
+                        'en' => 'Monitoring and analyzing sales data and KPI metrics.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1895,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie raportów sprzedażowych i przedstawianie ich przełożonym.',
+                        'en' => 'Creating sales reports and presenting them to superiors.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1896,
+                    'name' => json_encode([
+                        'pl' => 'Analiza zachowań klientów na stronie oraz rekomendowanie strategii poprawy wyników sprzedaży.',
+                        'en' => 'Analyzing customer behavior on the site and recommending strategies to improve sales performance.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1897,
+                    'name' => json_encode([
+                        'pl' => 'Analiza trendów rynkowych i potrzeb klientów w celu dostosowania oferty produktowej.',
+                        'en' => 'Analyzing market trends and customer needs to adjust the product offer.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1898,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z dostawcami w celu negocjacji warunków i cen.',
+                        'en' => 'Collaborating with suppliers to negotiate terms and prices.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1899,
+                    'name' => json_encode([
+                        'pl' => 'Ustalanie polityki cenowej na podstawie analiz rynkowych, kosztów produkcji, działań konkurencji i preferencji klientów.',
+                        'en' => 'Establishing pricing policies based on market analyses, production costs, competitor actions, and customer preferences.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1900,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie rabatów, promocji, programów lojalnościowych oraz innych inicjatyw, które mają na celu zwiększenie sprzedaży.',
+                        'en' => 'Implementing discounts, promotions, loyalty programs, and other initiatives aimed at increasing sales.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1901,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie wpływu polityki cenowej na rentowność i sprzedaż produktów.',
+                        'en' => 'Monitoring the impact of pricing policies on profitability and product sales.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1902,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie i koordynowanie eventów marketingowych, takich jak targi, konferencje, prezentacje produktów, konkursy czy degustacje.',
+                        'en' => 'Planning and coordinating marketing events, such as trade fairs, conferences, product presentations, contests, or tastings.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1903,
+                    'name' => json_encode([
+                        'pl' => 'Organizowanie konkursów, loterii i innych aktywności promocyjnych, które zwiększają zaangażowanie klientów.',
+                        'en' => 'Organizing contests, lotteries, and other promotional activities that increase customer engagement.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1904,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie strategii marketingowych skierowanych na rozwój sprzedaży online.',
+                        'en' => 'Implementing marketing strategies aimed at developing online sales.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1905,
+                    'name' => json_encode([
+                        'pl' => 'Zarządzanie treściami w sklepach internetowych, optymalizacja ofert produktowych i kampanii reklamowych w kanałach e-commerce.',
+                        'en' => 'Managing content in online stores, optimizing product listings and advertising campaigns in e-commerce channels.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1906,
+                    'name' => json_encode([
+                        'pl' => 'Śledzenie trendów w sprzedaży internetowej i wdrażanie innowacyjnych rozwiązań w handlu cyfrowym.',
+                        'en' => 'Tracking trends in online sales and implementing innovative solutions in digital commerce.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1907,
+                    'name' => json_encode([
+                        'pl' => 'Korzystanie z narzędzi analitycznych i marketingowych.',
+                        'en' => 'Using analytical and marketing tools.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1908,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie nowych technologii, takich jak sztuczna inteligencja, personalizacja czy chatboty.',
+                        'en' => 'Implementing new technologies such as artificial intelligence, personalization, or chatbots.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+
+
+        $POZOSTALISPECJALIŚCIDOSPRAWREKLAMYIMARKETINGU= [
+                [
+                    'id' => 1909,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie strategii kampanii reklamowych w różnych kanałach (offline i online) w celu zwiększenia świadomości marki i zasięgu.',
+                        'en' => 'Developing advertising campaign strategies across various channels (offline and online) to increase brand awareness and reach.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1910,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie harmonogramów kampanii, określanie grup docelowych i wybór odpowiednich narzędzi marketingowych.',
+                        'en' => 'Creating campaign schedules, defining target groups, and selecting appropriate marketing tools.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1911,
+                    'name' => json_encode([
+                        'pl' => 'Przeprowadzanie badań rynkowych w celu zidentyfikowania trendów, preferencji konsumentów i potrzeb rynkowych.',
+                        'en' => 'Conducting market research to identify trends, consumer preferences, and market needs.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1912,
+                    'name' => json_encode([
+                        'pl' => 'Analizowanie działań konkurencji, ich kampanii oraz strategii w celu dostosowania własnych działań.',
+                        'en' => 'Analyzing competitors\' actions, their campaigns, and strategies to adjust own actions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1913,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie spójnej strategii komunikacyjnej marki we wszystkich kanałach (reklama, PR, social media).',
+                        'en' => 'Developing a cohesive brand communication strategy across all channels (advertising, PR, social media).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1914,
+                    'name' => json_encode([
+                        'pl' => 'Dobór odpowiednich narzędzi i mediów do komunikacji z grupą docelową.',
+                        'en' => 'Selecting appropriate tools and media for communication with the target audience.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1915,
+                    'name' => json_encode([
+                        'pl' => 'Koordynacja działań z zewnętrznymi agencjami reklamowymi w zakresie tworzenia kampanii promocyjnych, reklam, materiałów wizualnych itp.',
+                        'en' => 'Coordinating actions with external advertising agencies in creating promotional campaigns, advertisements, visual materials, etc.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1916,
+                    'name' => json_encode([
+                        'pl' => 'Nadzorowanie i ocena jakości dostarczanych materiałów i efektów działań partnerów.',
+                        'en' => 'Supervising and evaluating the quality of delivered materials and results of partners\' actions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1917,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie budżetu na kampanie marketingowe i kontrola wydatków w trakcie ich realizacji.',
+                        'en' => 'Creating the budget for marketing campaigns and controlling expenses during their implementation.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1918,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie efektywności kampanii pod kątem zwrotu z inwestycji (ROI) oraz dostosowywanie strategii w celu optymalizacji kosztów.',
+                        'en' => 'Monitoring the effectiveness of campaigns in terms of return on investment (ROI) and adjusting strategies to optimize costs.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1919,
+                    'name' => json_encode([
+                        'pl' => 'Nadzorowanie procesu tworzenia materiałów reklamowych, takich jak ulotki, broszury, plakaty, katalogi i inne formy drukowane.',
+                        'en' => 'Overseeing the process of creating advertising materials, such as flyers, brochures, posters, catalogs, and other printed forms.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1920,
+                    'name' => json_encode([
+                        'pl' => 'Przygotowywanie briefów dla grafików i innych specjalistów zajmujących się produkcją materiałów marketingowych.',
+                        'en' => 'Preparing briefs for graphic designers and other specialists involved in the production of marketing materials.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1921,
+                    'name' => json_encode([
+                        'pl' => 'Kreowanie i utrzymywanie pozytywnego wizerunku marki w mediach oraz w relacjach z klientami.',
+                        'en' => 'Creating and maintaining a positive brand image in the media and in customer relations.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1922,
+                    'name' => json_encode([
+                        'pl' => 'Organizowanie konferencji prasowych, eventów promocyjnych oraz współpraca z mediami w celu publikowania artykułów promujących firmę.',
+                        'en' => 'Organizing press conferences, promotional events, and cooperating with the media to publish articles promoting the company.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1923,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie i organizacja wydarzeń promujących firmę lub produkt, takich jak targi branżowe, konferencje, warsztaty czy eventy sponsorowane.',
+                        'en' => 'Planning and organizing events promoting the company or product, such as trade fairs, conferences, workshops, or sponsored events.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1924,
+                    'name' => json_encode([
+                        'pl' => 'Koordynacja działań związanych z logistyką, obsługą gości i promocją eventu.',
+                        'en' => 'Coordinating activities related to logistics, guest services, and event promotion.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1925,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie wyników kampanii (np. za pomocą Google Analytics, narzędzi social media, analityki sprzedażowej) oraz analiza wyników.',
+                        'en' => 'Monitoring campaign results (e.g., using Google Analytics, social media tools, sales analytics) and analyzing the results.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1926,
+                    'name' => json_encode([
+                        'pl' => 'Wprowadzanie zmian i usprawnień w kampaniach w celu zwiększenia efektywności i lepszego dopasowania do grupy docelowej.',
+                        'en' => 'Implementing changes and improvements in campaigns to increase effectiveness and better fit the target audience.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1927,
+                    'name' => json_encode([
+                        'pl' => 'Nawiązywanie i utrzymywanie długoterminowych relacji z klientami, kluczowymi partnerami oraz influencerami.',
+                        'en' => 'Establishing and maintaining long-term relationships with customers, key partners, and influencers.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1928,
+                    'name' => json_encode([
+                        'pl' => 'Organizowanie programów lojalnościowych oraz specjalnych akcji promocyjnych dla stałych klientów.',
+                        'en' => 'Organizing loyalty programs and special promotional actions for regular customers.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1929,
+                    'name' => json_encode([
+                        'pl' => 'Analiza wskaźników KPI w zakresie kampanii marketingowych oraz reklamy.',
+                        'en' => 'Analyzing KPI indicators for marketing campaigns and advertising.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1930,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie raportów na temat skuteczności kampanii i rekomendowanie działań korygujących lub ulepszających.',
+                        'en' => 'Creating reports on campaign effectiveness and recommending corrective or improving actions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1931,
+                    'name' => json_encode([
+                        'pl' => 'Koordynacja działań z zespołami technicznymi w celu wdrażania narzędzi marketingowych i optymalizacji działań online (np. landing pages, kampanie e-mail).',
+                        'en' => 'Coordinating actions with technical teams to implement marketing tools and optimize online actions (e.g., landing pages, email campaigns).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1932,
+                    'name' => json_encode([
+                        'pl' => 'Ścisła współpraca z działem kreatywnym przy tworzeniu materiałów wizualnych i koncepcyjnych do kampanii.',
+                        'en' => 'Close cooperation with the creative department in creating visual and conceptual materials for campaigns.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1933,
+                    'name' => json_encode([
+                        'pl' => 'Przeprowadzanie szkoleń wewnętrznych oraz mentoring dla młodszych członków zespołu w zakresie najlepszych praktyk marketingowych.',
+                        'en' => 'Conducting internal training and mentoring for junior team members on best marketing practices.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1934,
+                    'name' => json_encode([
+                        'pl' => 'Udział w konferencjach i kursach w celu podnoszenia kwalifikacji i znajomości najnowszych trendów marketingowych.',
+                        'en' => 'Participating in conferences and courses to enhance skills and knowledge of the latest marketing trends.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1935,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie i testowanie nowych narzędzi analitycznych, platform reklamowych i technologii wspierających działania marketingowe.',
+                        'en' => 'Implementing and testing new analytical tools, advertising platforms, and technologies supporting marketing activities.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1936,
+                    'name' => json_encode([
+                        'pl' => 'Analiza wyników nowych rozwiązań i integracja ich w strategii marketingowej firmy.',
+                        'en' => 'Analyzing the results of new solutions and integrating them into the company\'s marketing strategy.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+
+
+        $SPECJALISTAETYKIBIZNESU= [
+                [
+                    'id' => 1937,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie kodeksów etycznych i standardów postępowania, które są zgodne z misją, wizją oraz wartościami organizacji.',
+                        'en' => 'Developing ethical codes and standards of conduct that align with the organization\'s mission, vision, and values.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1938,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie polityk etycznych we wszystkich działach firmy oraz monitorowanie ich przestrzegania.',
+                        'en' => 'Implementing ethical policies across all company departments and monitoring compliance.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1939,
+                    'name' => json_encode([
+                        'pl' => 'Zapewnienie, że organizacja działa zgodnie z obowiązującymi przepisami prawa oraz regulacjami branżowymi dotyczącymi etyki biznesu.',
+                        'en' => 'Ensuring the organization operates in accordance with applicable laws and industry regulations regarding business ethics.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1940,
+                    'name' => json_encode([
+                        'pl' => 'Analiza nowych regulacji prawnych i ich wpływu na działalność firmy, a także dostosowanie polityk i procedur wewnętrznych.',
+                        'en' => 'Analyzing new legal regulations and their impact on the company\'s operations, as well as adjusting internal policies and procedures.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1941,
+                    'name' => json_encode([
+                        'pl' => 'Pełnienie funkcji doradczej dla pracowników i kierownictwa w sprawach związanych z etyką biznesu.',
+                        'en' => 'Acting as an advisor for employees and management on matters related to business ethics.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1942,
+                    'name' => json_encode([
+                        'pl' => 'Udzielanie konsultacji i wsparcia w rozwiązywaniu problemów etycznych lub konfliktów interesów.',
+                        'en' => 'Providing consultations and support in resolving ethical issues or conflicts of interest.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1943,
+                    'name' => json_encode([
+                        'pl' => 'Prowadzenie szkoleń i warsztatów z zakresu etyki biznesu dla pracowników na różnych szczeblach organizacji.',
+                        'en' => 'Conducting training and workshops on business ethics for employees at various levels of the organization.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1944,
+                    'name' => json_encode([
+                        'pl' => 'Organizowanie programów zwiększających świadomość na temat zasad etycznych, konfliktów interesów oraz zgodności z regulacjami.',
+                        'en' => 'Organizing programs to raise awareness about ethical principles, conflicts of interest, and compliance with regulations.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1945,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie mechanizmów zgłaszania naruszeń etycznych, takich jak systemy whistleblowingowe.',
+                        'en' => 'Creating mechanisms for reporting ethical violations, such as whistleblowing systems.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1946,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie i analiza zgłoszeń o naruszeniach oraz podejmowanie odpowiednich działań w celu ich rozwiązania.',
+                        'en' => 'Monitoring and analyzing reports of violations and taking appropriate actions to resolve them.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1947,
+                    'name' => json_encode([
+                        'pl' => 'Regularne przeprowadzanie audytów w celu oceny, czy działania firmy są zgodne z polityką etyczną i obowiązującymi standardami.',
+                        'en' => 'Conducting regular audits to assess whether the company\'s actions comply with ethical policies and applicable standards.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1948,
+                    'name' => json_encode([
+                        'pl' => 'Identyfikacja obszarów ryzyka oraz opracowywanie rekomendacji dla zarządu w celu wprowadzenia usprawnień.',
+                        'en' => 'Identifying risk areas and developing recommendations for management to implement improvements.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1949,
+                    'name' => json_encode([
+                        'pl' => 'Identyfikowanie potencjalnych zagrożeń i ryzyk związanych z działaniami organizacji, które mogą mieć konsekwencje etyczne lub prawne.',
+                        'en' => 'Identifying potential threats and risks associated with the organization\'s activities that may have ethical or legal consequences.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1950,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie planów zapobiegania oraz reagowania na sytuacje kryzysowe związane z naruszeniem zasad etyki.',
+                        'en' => 'Developing prevention and response plans for crisis situations related to violations of ethical principles.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1951,
+                    'name' => json_encode([
+                        'pl' => 'Promowanie wartości etycznych i odpowiedzialności społecznej w organizacji poprzez różnorodne kanały komunikacji wewnętrznej.',
+                        'en' => 'Promoting ethical values and social responsibility within the organization through various internal communication channels.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1952,
+                    'name' => json_encode([
+                        'pl' => 'Wspieranie budowania kultury organizacyjnej, która opiera się na uczciwości, transparentności i odpowiedzialności.',
+                        'en' => 'Supporting the development of an organizational culture based on honesty, transparency, and accountability.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1953,
+                    'name' => json_encode([
+                        'pl' => 'Koordynacja działań z działem HR w celu zapewnienia, że procesy rekrutacyjne, wynagrodzeń oraz awansów są zgodne z zasadami etycznymi.',
+                        'en' => 'Coordinating actions with the HR department to ensure that recruitment, compensation, and promotion processes comply with ethical principles.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1954,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z działem compliance w zakresie wdrażania regulacji prawnych i zapewnienia zgodności działań firmy z obowiązującymi normami.',
+                        'en' => 'Collaborating with the compliance department on implementing legal regulations and ensuring the company\'s actions comply with applicable standards.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1955,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie raportów na temat stanu etyki w organizacji, które mogą być przedstawiane zarządowi, radzie nadzorczej lub innym interesariuszom.',
+                        'en' => 'Creating reports on the state of ethics in the organization to be presented to management, the supervisory board, or other stakeholders.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1956,
+                    'name' => json_encode([
+                        'pl' => 'Analiza trendów i problemów związanych z etyką w organizacji oraz proponowanie odpowiednich działań naprawczych.',
+                        'en' => 'Analyzing trends and issues related to ethics in the organization and proposing appropriate corrective actions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1957,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie strategii i procedur reagowania na kryzysy etyczne, takie jak oskarżenia o korupcję, mobbing czy inne naruszenia zasad postępowania.',
+                        'en' => 'Developing strategies and procedures for responding to ethical crises, such as accusations of corruption, bullying, or other violations of conduct.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1958,
+                    'name' => json_encode([
+                        'pl' => 'Zarządzanie komunikacją kryzysową w przypadku naruszeń, aby minimalizować negatywny wpływ na reputację firmy.',
+                        'en' => 'Managing crisis communication in the event of violations to minimize negative impact on the company\'s reputation.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1959,
+                    'name' => json_encode([
+                        'pl' => 'Wspieranie działań z zakresu społecznej odpowiedzialności biznesu, aby były one zgodne z etycznymi standardami firmy.',
+                        'en' => 'Supporting corporate social responsibility initiatives to ensure they align with the company\'s ethical standards.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1960,
+                    'name' => json_encode([
+                        'pl' => 'Analiza i raportowanie wpływu działań CSR na reputację oraz postrzeganie firmy przez interesariuszy.',
+                        'en' => 'Analyzing and reporting the impact of CSR activities on the reputation and perception of the company by stakeholders.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1961,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie polityk dotyczących konfliktu interesów oraz monitorowanie, czy są one przestrzegane przez pracowników.',
+                        'en' => 'Developing policies regarding conflicts of interest and monitoring their adherence by employees.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1962,
+                    'name' => json_encode([
+                        'pl' => 'Doradztwo w rozwiązywaniu sytuacji, w których może dojść do konfliktu interesów.',
+                        'en' => 'Advising on resolving situations where conflicts of interest may arise.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1963,
+                    'name' => json_encode([
+                        'pl' => 'Promowanie praktyk transparentności w działaniach biznesowych, w tym w obszarze finansów, relacji z klientami i partnerami biznesowymi.',
+                        'en' => 'Promoting transparency practices in business operations, including finance, customer relations, and business partner interactions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1964,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie polityk i procedur mających na celu zapewnienie uczciwego i otwartego zarządzania organizacją.',
+                        'en' => 'Implementing policies and procedures to ensure fair and transparent management of the organization.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]
+            ];
+
+        $LOBBYSTA=[
+                [
+                    'id' => 1965,
+                    'name' => json_encode([
+                        'pl' => 'Przedstawianie interesów klientów lub organizacji przed decydentami politycznymi, urzędnikami oraz innymi instytucjami publicznymi.',
+                        'en' => 'Representing the interests of clients or organizations before political decision-makers, officials, and other public institutions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1966,
+                    'name' => json_encode([
+                        'pl' => 'Dbanie o to, aby głos i potrzeby klienta były uwzględnione w procesie legislacyjnym lub regulacyjnym.',
+                        'en' => 'Ensuring that the voice and needs of the client are considered in the legislative or regulatory process.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1967,
+                    'name' => json_encode([
+                        'pl' => 'Nawiązywanie i rozwijanie relacji z politykami, urzędnikami, liderami opinii oraz przedstawicielami mediów.',
+                        'en' => 'Establishing and developing relationships with politicians, officials, opinion leaders, and media representatives.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1968,
+                    'name' => json_encode([
+                        'pl' => 'Utrzymywanie regularnego kontaktu z kluczowymi osobami w rządzie i administracji publicznej w celu budowania długoterminowych relacji.',
+                        'en' => 'Maintaining regular contact with key individuals in government and public administration to build long-term relationships.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1969,
+                    'name' => json_encode([
+                        'pl' => 'Śledzenie bieżących procesów legislacyjnych, zmian w przepisach i politykach, które mogą wpływać na interesy reprezentowanego klienta.',
+                        'en' => 'Tracking current legislative processes, changes in regulations, and policies that may affect the interests of the represented client.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1970,
+                    'name' => json_encode([
+                        'pl' => 'Analiza projektów ustaw, rozporządzeń i regulacji, a także przewidywanie ich potencjalnych skutków.',
+                        'en' => 'Analyzing drafts of laws, regulations, and policies, as well as predicting their potential effects.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1971,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie planów działania w celu wpływania na decyzje legislacyjne lub regulacyjne w sposób, który jest korzystny dla klienta.',
+                        'en' => 'Developing action plans to influence legislative or regulatory decisions in a way that benefits the client.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1972,
+                    'name' => json_encode([
+                        'pl' => 'Przygotowywanie strategii i taktyk mających na celu przekonanie decydentów do przyjęcia lub odrzucenia określonych propozycji.',
+                        'en' => 'Preparing strategies and tactics aimed at persuading decision-makers to adopt or reject specific proposals.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1973,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie dokumentów, raportów, briefów i prezentacji, które mają na celu przekonanie decydentów do przyjęcia określonego stanowiska.',
+                        'en' => 'Creating documents, reports, briefs, and presentations aimed at persuading decision-makers to adopt a specific position.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1974,
+                    'name' => json_encode([
+                        'pl' => 'Pisanie listów, stanowisk oraz innych materiałów komunikacyjnych skierowanych do urzędników, polityków i innych interesariuszy.',
+                        'en' => 'Writing letters, positions, and other communication materials directed to officials, politicians, and other stakeholders.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1975,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie i organizacja spotkań z decydentami, urzędnikami, politykami lub innymi osobami wpływowymi, aby omówić kluczowe kwestie.',
+                        'en' => 'Planning and organizing meetings with decision-makers, officials, politicians, or other influential individuals to discuss key issues.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1976,
+                    'name' => json_encode([
+                        'pl' => 'Udział w konferencjach, debatach, seminariach i innych wydarzeniach publicznych w celu promowania interesów klienta.',
+                        'en' => 'Participating in conferences, debates, seminars, and other public events to promote the client\'s interests.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1977,
+                    'name' => json_encode([
+                        'pl' => 'Rozwijanie szerokiej sieci kontaktów wśród polityków, urzędników, przedstawicieli mediów, organizacji pozarządowych oraz liderów branżowych.',
+                        'en' => 'Developing a wide network of contacts among politicians, officials, media representatives, non-governmental organizations, and industry leaders.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1978,
+                    'name' => json_encode([
+                        'pl' => 'Wykorzystanie tych kontaktów do zdobywania informacji i wpływania na procesy decyzyjne.',
+                        'en' => 'Utilizing these contacts to gather information and influence decision-making processes.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1979,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z mediami w celu budowania pozytywnego wizerunku klienta i promowania jego interesów.',
+                        'en' => 'Collaborating with the media to build a positive image of the client and promote their interests.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1980,
+                    'name' => json_encode([
+                        'pl' => 'Przygotowywanie komunikatów prasowych, artykułów oraz udzielanie wywiadów, aby zwiększyć świadomość i wsparcie dla określonych inicjatyw.',
+                        'en' => 'Preparing press releases, articles, and giving interviews to raise awareness and support for specific initiatives.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1981,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z innymi organizacjami, firmami lub grupami interesu, które mają podobne cele, w celu zwiększenia siły oddziaływania.',
+                        'en' => 'Collaborating with other organizations, companies, or interest groups that share similar goals to amplify influence.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1982,
+                    'name' => json_encode([
+                        'pl' => 'Koordynowanie działań w ramach koalicji lub sojuszy, aby skupić wysiłki na kluczowych kwestiach.',
+                        'en' => 'Coordinating efforts within coalitions or alliances to focus on key issues.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1983,
+                    'name' => json_encode([
+                        'pl' => 'Identyfikacja potencjalnych zagrożeń legislacyjnych i regulacyjnych dla klientów oraz opracowywanie strategii mających na celu ich minimalizację.',
+                        'en' => 'Identifying potential legislative and regulatory threats to clients and developing strategies to mitigate them.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1984,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie zmian politycznych i regulacyjnych w celu dostosowania strategii działania.',
+                        'en' => 'Monitoring political and regulatory changes to adapt action strategies.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1985,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie formalnych stanowisk, petycji lub innych dokumentów lobbingowych, które są przedstawiane instytucjom publicznym lub mediom.',
+                        'en' => 'Developing formal positions, petitions, or other lobbying documents presented to public institutions or the media.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1986,
+                    'name' => json_encode([
+                        'pl' => 'Publiczne wystąpienia w imieniu klienta, prezentowanie stanowisk i argumentów w debatach, komisjach parlamentarnych czy innych forach publicznych.',
+                        'en' => 'Public speaking on behalf of the client, presenting positions and arguments in debates, parliamentary committees, or other public forums.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1987,
+                    'name' => json_encode([
+                        'pl' => 'Doradztwo klientom w zakresie strategii politycznych, regulacyjnych oraz możliwości wpłynięcia na procesy decyzyjne.',
+                        'en' => 'Advising clients on political and regulatory strategies and opportunities to influence decision-making processes.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1988,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie planów działań w odpowiedzi na zmieniające się okoliczności polityczne i regulacyjne.',
+                        'en' => 'Developing action plans in response to changing political and regulatory circumstances.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1989,
+                    'name' => json_encode([
+                        'pl' => 'Koordynowanie działań lobbingowych, takich jak kampanie informacyjne, spotkania z decydentami, działania PR oraz inne inicjatywy mające na celu wpłynięcie na decyzje polityczne.',
+                        'en' => 'Coordinating lobbying activities such as information campaigns, meetings with decision-makers, PR activities, and other initiatives aimed at influencing political decisions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1990,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie postępów kampanii i dostosowywanie działań w celu osiągnięcia zamierzonych celów.',
+                        'en' => 'Monitoring the progress of campaigns and adjusting actions to achieve intended goals.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1991,
+                    'name' => json_encode([
+                        'pl' => 'Dokumentowanie i raportowanie działań lobbingowych, zgodnie z wymogami prawnymi oraz wytycznymi klienta.',
+                        'en' => 'Documenting and reporting lobbying activities in accordance with legal requirements and client guidelines.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 1992,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie raportów podsumowujących skuteczność prowadzonych działań oraz rekomendowanie dalszych kroków.',
+                        'en' => 'Creating summary reports on the effectiveness of conducted actions and recommending further steps.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                    [
+                        'id' => 1993,
+                        'name' => json_encode([
+                            'pl' => 'Przestrzeganie zasad etyki zawodowej oraz przepisów regulujących działalność lobbingową.',
+                            'en' => 'Adhering to professional ethical standards and regulations governing lobbying activities.'
+                        ]),
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ],
+                    [
+                        'id' => 1994,
+                        'name' => json_encode([
+                            'pl' => 'Rejestrowanie działań lobbingowych i przestrzeganie przepisów dotyczących przejrzystości oraz zgłaszania kontaktów z decydentami.',
+                            'en' => 'Documenting lobbying activities and adhering to transparency regulations and reporting contacts with decision-makers.'
+                        ]),
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]
+            ];
+
+        $SPECJALISTADOSPRAWPUBLICRELATIONS=[
+            [
+                'id' => 1995,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii komunikacyjnych mających na celu budowanie i wzmacnianie pozytywnego wizerunku marki.',
+                    'en' => 'Developing communication strategies aimed at building and strengthening a positive brand image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1996,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie opinii publicznej i reagowanie na zmiany w postrzeganiu organizacji przez klientów i interesariuszy.',
+                    'en' => 'Monitoring public opinion and responding to changes in the perception of the organization by clients and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1997,
+                'name' => json_encode([
+                    'pl' => 'Pisanie komunikatów prasowych, artykułów, oświadczeń i innych materiałów informacyjnych dotyczących działań i wydarzeń firmy.',
+                    'en' => 'Writing press releases, articles, statements, and other informational materials regarding the company\'s activities and events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1998,
+                'name' => json_encode([
+                    'pl' => 'Dystrybucja tych materiałów do mediów w celu generowania pozytywnej obecności w prasie, radiu, telewizji oraz mediach online.',
+                    'en' => 'Distributing these materials to the media to generate a positive presence in the press, radio, television, and online media.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 1999,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie relacji z dziennikarzami, redakcjami oraz influencerami w celu efektywnej komunikacji i współpracy.',
+                    'en' => 'Establishing and maintaining relationships with journalists, editorial offices, and influencers for effective communication and cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2000,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań z mediami, konferencji prasowych oraz wywiadów z przedstawicielami firmy.',
+                    'en' => 'Organizing meetings with the media, press conferences, and interviews with company representatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2001,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie publikacji medialnych oraz analizowanie, jak organizacja i jej działania są prezentowane w mediach.',
+                    'en' => 'Monitoring media publications and analyzing how the organization and its activities are presented in the media.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2002,
+                'name' => json_encode([
+                    'pl' => 'Raportowanie zarządowi na temat obecności medialnej i reagowanie na negatywne publikacje lub kryzysy wizerunkowe.',
+                    'en' => 'Reporting to management on media presence and responding to negative publications or image crises.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2003,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów komunikacji kryzysowej i reagowanie w przypadku sytuacji, które mogą zaszkodzić reputacji firmy.',
+                    'en' => 'Developing crisis communication plans and responding to situations that may harm the company\'s reputation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2004,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie oświadczeń kryzysowych oraz współpraca z mediami i innymi interesariuszami w celu minimalizowania szkód wizerunkowych.',
+                    'en' => 'Preparing crisis statements and cooperating with the media and other stakeholders to minimize reputational damage.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2005,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizacja eventów, takich jak konferencje prasowe, otwarcia, gale, seminaria czy akcje promocyjne.',
+                    'en' => 'Planning and organizing events such as press conferences, openings, galas, seminars, or promotional actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2006,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z logistyką, obsługą gości i promocją eventu.',
+                    'en' => 'Coordinating logistics, guest service, and event promotion activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2007,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie długoterminowych planów komunikacji zgodnych z celami strategicznymi firmy.',
+                    'en' => 'Developing long-term communication plans aligned with the company\'s strategic goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2008,
+                'name' => json_encode([
+                    'pl' => 'Określanie grup docelowych oraz dobór odpowiednich kanałów komunikacyjnych, takich jak media społecznościowe, prasa, telewizja czy wydarzenia branżowe.',
+                    'en' => 'Defining target groups and selecting appropriate communication channels such as social media, press, television, or industry events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2009,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań komunikacyjnych wewnątrz firmy, takich jak newslettery, spotkania informacyjne czy kampanie wewnętrzne.',
+                    'en' => 'Coordinating internal communication activities within the company, such as newsletters, informational meetings, or internal campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2010,
+                'name' => json_encode([
+                    'pl' => 'Budowanie spójnego przekazu wewnętrznego, który motywuje pracowników i wspiera kulturę organizacyjną.',
+                    'en' => 'Building a coherent internal message that motivates employees and supports organizational culture.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2011,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie organizacji przed różnymi grupami interesariuszy, takimi jak organizacje branżowe, instytucje publiczne czy lokalne społeczności.',
+                    'en' => 'Representing the organization before various stakeholder groups, such as industry organizations, public institutions, or local communities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2012,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie relacji z kluczowymi partnerami oraz współpraca w zakresie inicjatyw wspólnych.',
+                    'en' => 'Establishing and maintaining relationships with key partners and collaborating on joint initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2013,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie strategii obecności firmy w mediach społecznościowych, planowanie treści i kampanii oraz monitorowanie zaangażowania użytkowników.',
+                    'en' => 'Creating the company\'s social media presence strategy, planning content and campaigns, and monitoring user engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2014,
+                'name' => json_encode([
+                    'pl' => 'Reagowanie na komentarze i pytania klientów oraz moderowanie dyskusji online w celu budowania pozytywnego wizerunku.',
+                    'en' => 'Responding to customer comments and questions and moderating online discussions to build a positive image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2015,
+                'name' => json_encode([
+                    'pl' => 'Analiza efektywności działań PR, takich jak kampanie medialne, wydarzenia i aktywność w mediach społecznościowych.',
+                    'en' => 'Analyzing the effectiveness of PR activities, such as media campaigns, events, and social media activity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2016,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z działań PR i rekomendowanie dalszych kroków na podstawie zebranych danych i wyników.',
+                    'en' => 'Creating reports on PR activities and recommending further steps based on collected data and results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2017,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z agencjami PR, reklamowymi i marketingowymi w celu realizacji kompleksowych kampanii komunikacyjnych.',
+                    'en' => 'Coordinating activities with PR, advertising, and marketing agencies to implement comprehensive communication campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2018,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie jakości dostarczanych usług i materiałów oraz kontrola zgodności z przyjętą strategią PR.',
+                    'en' => 'Supervising the quality of provided services and materials and ensuring compliance with the adopted PR strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2019,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem marketingowym w tworzeniu spójnych materiałów promocyjnych, takich jak broszury, ulotki, prezentacje czy filmy wideo.',
+                    'en' => 'Cooperating with the marketing team to create cohesive promotional materials such as brochures, flyers, presentations, or videos.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2020,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby przekaz promocyjny był zgodny z wartościami i celami firmy.',
+                    'en' => 'Ensuring that the promotional message aligns with the company\'s values and objectives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2021,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń dla pracowników, szczególnie kadry kierowniczej, w zakresie zasad komunikacji z mediami i zarządzania wizerunkiem.',
+                    'en' => 'Conducting training for employees, especially management, on media communication principles and reputation management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2022,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie kadry kierowniczej do wystąpień publicznych i kontaktów z mediami (media training).',
+                    'en' => 'Preparing executives for public speaking and media interactions (media training).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2023,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i realizacja strategii odpowiedzialności społecznej, które wspierają pozytywny wizerunek firmy i budują relacje z lokalnymi społecznościami.',
+                    'en' => 'Developing and implementing social responsibility strategies that support the positive image of the company and build relationships with local communities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2024,
+                'name' => json_encode([
+                    'pl' => 'Komunikowanie działań CSR do mediów oraz interesariuszy, aby wzmocnić postrzeganie organizacji jako zaangażowanej społecznie.',
+                    'en' => 'Communicating CSR activities to the media and stakeholders to strengthen the organization\'s perception as socially engaged.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2025,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie angażujących treści, które wzmacniają wizerunek firmy i komunikują jej wartości oraz osiągnięcia.',
+                    'en' => 'Creating engaging content that strengthens the company\'s image and communicates its values and achievements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2026,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie storytellingu do budowania emocjonalnej więzi z odbiorcami i klientami.',
+                    'en' => 'Using storytelling to build an emotional connection with audiences and customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2027,
+                'name' => json_encode([
+                    'pl' => 'Promowanie wizerunku zarządu i kluczowych liderów firmy poprzez wywiady, wystąpienia publiczne i aktywność w mediach.',
+                    'en' => 'Promoting the image of management and key leaders of the company through interviews, public appearances, and media activity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2028,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie liderów do kontaktów z mediami oraz wspieranie ich w budowaniu marki osobistej.',
+                    'en' => 'Preparing leaders for media contacts and supporting them in building their personal brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2029,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby wszystkie materiały komunikacyjne i działania PR były zgodne z misją, wizją oraz wartościami firmy.',
+                    'en' => 'Ensuring that all communication materials and PR activities align with the company\'s mission, vision, and values.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2030,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań komunikacyjnych wewnętrznych i zewnętrznych, aby zapewnić spójność i jednolity przekaz.',
+                    'en' => 'Coordinating internal and external communication activities to ensure consistency and a unified message.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+
+        $POZOSTALISPECJALIŚCIDOSPRAWPUBLICRELATIONS =[
+            [
+                'id' => 2031,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie komunikacją wewnętrzną i zewnętrzną korporacji, dbanie o jej pozytywny wizerunek wśród akcjonariuszy, partnerów biznesowych oraz społeczności lokalnej.',
+                    'en' => 'Managing internal and external communication of the corporation, ensuring its positive image among shareholders, business partners, and the local community.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2032,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z raportami rocznymi, wynikami finansowymi oraz komunikacją dotyczącą zarządzania strategicznego.',
+                    'en' => 'Coordinating activities related to annual reports, financial results, and communication regarding strategic management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2033,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem zarządzającym w celu komunikacji istotnych decyzji strategicznych oraz zmian strukturalnych.',
+                    'en' => 'Collaborating with the management team to communicate significant strategic decisions and structural changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2034,
+                'name' => json_encode([
+                    'pl' => 'Kreowanie kampanii PR promujących konkretne produkty lub usługi firmy.',
+                    'en' => 'Creating PR campaigns promoting specific products or services of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2035,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie premier produktów, eventów związanych z promocją oraz tworzenie materiałów prasowych dotyczących nowości produktowych.',
+                    'en' => 'Organizing product launches, promotional events, and creating press materials regarding new product releases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2036,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami marketingowymi i sprzedażowymi w celu koordynacji działań promocyjnych i budowania pozytywnego wizerunku produktów.',
+                    'en' => 'Collaborating with marketing and sales teams to coordinate promotional activities and build a positive image of products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2037,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów i strategii reagowania na kryzysy wizerunkowe, takie jak awarie produktowe, skandale korporacyjne czy negatywne publikacje.',
+                    'en' => 'Developing plans and strategies to respond to reputation crises, such as product failures, corporate scandals, or negative publications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2038,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie komunikacją w sytuacjach kryzysowych oraz przygotowywanie oświadczeń prasowych i materiałów informacyjnych.',
+                    'en' => 'Managing communication in crisis situations and preparing press statements and informational materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2039,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z mediami w celu minimalizowania skutków kryzysów oraz budowania zaufania do organizacji po ich wystąpieniu.',
+                    'en' => 'Collaborating with the media to minimize the impact of crises and build trust in the organization after they occur.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2040,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań PR na rynkach zagranicznych, uwzględniając specyfikę kulturową i oczekiwania lokalnych grup interesariuszy.',
+                    'en' => 'Coordinating PR activities in foreign markets, taking into account cultural specifics and the expectations of local stakeholder groups.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2041,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z międzynarodowymi mediami, organizacjami i partnerami w celu budowania globalnego wizerunku marki.',
+                    'en' => 'Cooperating with international media, organizations, and partners to build a global brand image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2042,
+                'name' => json_encode([
+                    'pl' => 'Tłumaczenie i dostosowywanie materiałów komunikacyjnych do różnych rynków oraz koordynacja kampanii międzynarodowych.',
+                    'en' => 'Translating and adapting communication materials for different markets and coordinating international campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2043,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie strategii komunikacji wewnętrznej, aby wspierać kulturę organizacyjną i zaangażowanie pracowników.',
+                    'en' => 'Developing and implementing internal communication strategies to support organizational culture and employee engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2044,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie wewnętrznych biuletynów, newsletterów oraz organizowanie spotkań i wydarzeń dla pracowników.',
+                    'en' => 'Creating internal newsletters, bulletins, and organizing meetings and events for employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2045,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności komunikacji wewnętrznej oraz zbieranie feedbacku od pracowników w celu poprawy procesów komunikacyjnych.',
+                    'en' => 'Monitoring the effectiveness of internal communication and collecting feedback from employees to improve communication processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2046,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie obecnością firmy w mediach społecznościowych, tworzenie strategii komunikacyjnych oraz planowanie i tworzenie treści.',
+                    'en' => 'Managing the company\'s presence on social media, creating communication strategies, and planning and creating content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2047,
+                'name' => json_encode([
+                    'pl' => 'Reagowanie na komentarze, pytania i opinie użytkowników oraz budowanie relacji z online\'ową społecznością marki.',
+                    'en' => 'Responding to comments, questions, and user feedback while building relationships with the brand\'s online community.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2048,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności kampanii w mediach społecznościowych oraz raportowanie wyników i rekomendowanie ulepszeń.',
+                    'en' => 'Monitoring the effectiveness of social media campaigns, reporting results, and recommending improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2049,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i koordynowanie wydarzeń takich jak konferencje prasowe, premiery produktowe, targi branżowe oraz eventy promocyjne.',
+                    'en' => 'Organizing and coordinating events such as press conferences, product launches, trade fairs, and promotional events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2050,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie materiałów informacyjnych i promocyjnych związanych z wydarzeniami oraz współpraca z mediami w celu nagłośnienia eventów.',
+                    'en' => 'Creating informational and promotional materials related to events and collaborating with the media to publicize events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2051,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności wydarzeń pod kątem budowania wizerunku oraz generowania zainteresowania marką lub produktem.',
+                    'en' => 'Monitoring the effectiveness of events in terms of building the brand image and generating interest in the brand or product.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2052,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie relacji z dziennikarzami, redakcjami oraz innymi przedstawicielami mediów.',
+                    'en' => 'Building and maintaining relationships with journalists, editorial staff, and other media representatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2053,
+                'name' => json_encode([
+                    'pl' => 'Regularne dostarczanie mediom informacji na temat działalności firmy, jej produktów i wydarzeń poprzez komunikaty prasowe, wywiady i briefingi.',
+                    'en' => 'Regularly providing the media with information about the company\'s activities, its products, and events through press releases, interviews, and briefings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2054,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i analizowanie publikacji medialnych oraz przygotowywanie rekomendacji na temat współpracy z mediami.',
+                    'en' => 'Monitoring and analyzing media publications and preparing recommendations regarding cooperation with the media.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2055,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie cyfrową obecnością marki, w tym SEO, kampanie influencer marketingu oraz współpraca z blogerami i vlogerami.',
+                    'en' => 'Managing the digital presence of the brand, including SEO, influencer marketing campaigns, and cooperation with bloggers and vloggers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2056,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie treści digitalnych (artykułów, e-booków, webinarów) w celu zwiększania zasięgu i zaangażowania online.',
+                    'en' => 'Creating digital content (articles, e-books, webinars) to increase reach and online engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2057,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników kampanii online i dostosowywanie strategii PR digitalnego w oparciu o dane i trendy rynkowe.',
+                    'en' => 'Analyzing the results of online campaigns and adjusting the digital PR strategy based on data and market trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2058,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja komunikacji korporacyjnej dotyczącej strategii, misji, wizji oraz wartości firmy.',
+                    'en' => 'Coordinating corporate communication regarding the strategy, mission, vision, and values of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2059,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie komunikatów i materiałów dotyczących wyników finansowych, sukcesów i inicjatyw strategicznych organizacji.',
+                    'en' => 'Preparing statements and materials regarding financial results, successes, and strategic initiatives of the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2060,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie relacji z kluczowymi interesariuszami, takimi jak inwestorzy, regulatorzy i partnerzy biznesowi.',
+                    'en' => 'Maintaining relationships with key stakeholders, such as investors, regulators, and business partners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2061,
+                'name' => json_encode([
+                    'pl' => 'Promowanie innowacji, produktów technologicznych oraz ekspertów z branży w mediach i kanałach branżowych.',
+                    'en' => 'Promoting innovations, technological products, and industry experts in the media and industry channels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2062,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie materiałów prasowych i technicznych artykułów, które tłumaczą skomplikowane rozwiązania technologiczne w przystępny sposób.',
+                    'en' => 'Creating press materials and technical articles that explain complex technological solutions in an accessible way.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2063,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie konferencji branżowych oraz eventów dedykowanych nowym technologiom i innowacjom.',
+                    'en' => 'Organizing industry conferences and events dedicated to new technologies and innovations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2064,
+                'name' => json_encode([
+                    'pl' => 'Komunikowanie działań i wyników finansowych firmy inwestorom, analitykom oraz akcjonariuszom.',
+                    'en' => 'Communicating the company\'s activities and financial results to investors, analysts, and shareholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2065,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie sprawozdań, raportów kwartalnych oraz komunikatów prasowych związanych z wynikami finansowymi.',
+                    'en' => 'Preparing statements, quarterly reports, and press releases related to financial results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2066,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań i konferencji z inwestorami oraz odpowiadanie na pytania i wątpliwości związane z działalnością firmy.',
+                    'en' => 'Organizing meetings and conferences with investors and answering questions and concerns related to the company\'s operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2067,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organizacjami pozarządowymi w zakresie realizacji projektów CSR.',
+                    'en' => 'Collaborating with non-governmental organizations on CSR projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2068,
+                'name' => json_encode([
+                    'pl' => 'Budowanie relacji partnerskich z NGO i koordynowanie wspólnych kampanii promujących odpowiedzialność społeczną firmy.',
+                    'en' => 'Building partnerships with NGOs and coordinating joint campaigns promoting the company\'s social responsibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2069,
+                'name' => json_encode([
+                    'pl' => 'Komunikowanie działań CSR firmy do mediów oraz interesariuszy zewnętrznych.',
+                    'en' => 'Communicating the company\'s CSR activities to the media and external stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $INŻYNIERSPRZEDAŻYTECHNOLOGIIIUSŁUGTELEINFORMATYCZNYCH=[
+            [
+                'id' => 2070,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie potrzeb klientów oraz doradztwo w zakresie doboru odpowiednich rozwiązań technologicznych i usług teleinformatycznych.',
+                    'en' => 'Analyzing customer needs and advising on the selection of appropriate technological solutions and IT services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2071,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie i wyjaśnianie zalet oraz funkcjonalności oferowanych technologii w kontekście specyficznych wymagań klienta.',
+                    'en' => 'Presenting and explaining the benefits and functionalities of offered technologies in the context of specific customer requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2072,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie ofert technicznych i handlowych, które uwzględniają specyfikacje technologiczne oraz koszty związane z wdrożeniem i utrzymaniem usług teleinformatycznych.',
+                    'en' => 'Creating technical and commercial offers that include technological specifications and costs related to the implementation and maintenance of IT services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2073,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie dokumentacji technicznej dla klientów, opisującej korzyści, funkcjonalności i parametry techniczne proponowanych rozwiązań.',
+                    'en' => 'Developing technical documentation for clients that describes the benefits, functionalities, and technical parameters of proposed solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2074,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem sprzedaży w celu tworzenia kompleksowych ofert oraz prezentacji rozwiązań technologicznych.',
+                    'en' => 'Collaborating with the sales team to create comprehensive offers and presentations of technological solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2075,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie działu handlowego w negocjacjach z klientami, dostarczanie argumentów technicznych i szczegółowych informacji na temat produktów i usług.',
+                    'en' => 'Supporting the sales department in negotiations with clients, providing technical arguments and detailed information about products and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2076,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i prowadzenie prezentacji oraz demonstracji technologii dla potencjalnych i obecnych klientów.',
+                    'en' => 'Organizing and conducting presentations and demonstrations of technologies for potential and current clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2077,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie symulacji, próbnych wdrożeń lub wersji demo usług i technologii, aby lepiej zilustrować ich działanie oraz korzyści dla klienta.',
+                    'en' => 'Preparing simulations, trial implementations, or demo versions of services and technologies to better illustrate their operation and benefits for the client.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2078,
+                'name' => json_encode([
+                    'pl' => 'Badanie rynku w celu identyfikacji nowych możliwości sprzedażowych oraz monitorowanie trendów i innowacji w branży teleinformatycznej.',
+                    'en' => 'Researching the market to identify new sales opportunities and monitoring trends and innovations in the IT industry.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2079,
+                'name' => json_encode([
+                    'pl' => 'Analiza konkurencji oraz jej ofert, aby lepiej dostosować strategię sprzedaży i rozwój produktów lub usług firmy.',
+                    'en' => 'Analyzing competitors and their offerings to better tailor the sales strategy and product or service development of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2080,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie specyfikacji technicznych i projektowanie rozwiązań teleinformatycznych dostosowanych do specyficznych wymagań klienta.',
+                    'en' => 'Creating technical specifications and designing IT solutions tailored to specific customer requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2081,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem technicznym oraz zespołem wdrożeniowym w celu opracowania niestandardowych rozwiązań i usług.',
+                    'en' => 'Collaborating with the technical department and the implementation team to develop customized solutions and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2082,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie procesów wdrożeniowych oraz zapewnianie wsparcia technicznego dla klientów na każdym etapie implementacji usług.',
+                    'en' => 'Coordinating implementation processes and providing technical support to clients at every stage of service implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2083,
+                'name' => json_encode([
+                    'pl' => 'Rozwiązywanie problemów technicznych oraz pomoc w optymalizacji konfiguracji technologii u klienta.',
+                    'en' => 'Resolving technical issues and assisting in optimizing technology configuration at the client\'s site.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2084,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów technicznych dla klientów, aby zapoznać ich z funkcjonalnościami i sposobem korzystania z wdrożonych rozwiązań.',
+                    'en' => 'Organizing technical training and workshops for clients to familiarize them with the functionalities and usage of implemented solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2085,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów szkoleniowych i dokumentacji wspierających klientów w samodzielnym użytkowaniu produktów.',
+                    'en' => 'Developing training materials and documentation to support clients in independently using products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2086,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie długoterminowych relacji z klientami poprzez regularne spotkania, konsultacje techniczne oraz wsparcie posprzedażowe.',
+                    'en' => 'Establishing and maintaining long-term relationships with clients through regular meetings, technical consultations, and after-sales support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2087,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie satysfakcji klientów i zbieranie feedbacku, aby lepiej dostosować usługi i produkty firmy do ich potrzeb.',
+                    'en' => 'Monitoring customer satisfaction and collecting feedback to better tailor the company\'s services and products to their needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2088,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji zwrotnych od klientów do działu rozwoju produktów w celu usprawniania istniejących rozwiązań oraz tworzenia nowych funkcjonalności.',
+                    'en' => 'Providing customer feedback to the product development department to improve existing solutions and create new functionalities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2089,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem technicznym w celu rozwiązania skomplikowanych problemów technicznych i dostarczenia najlepszych rozwiązań klientom.',
+                    'en' => 'Collaborating with the technical team to resolve complex technical issues and provide clients with the best solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2090,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie szczegółowej dokumentacji technicznej, która wspiera proces sprzedaży i wdrożeń technologii oraz usług teleinformatycznych.',
+                    'en' => 'Developing detailed technical documentation that supports the sales and implementation processes of technologies and IT services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2091,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie specyfikacji produktów, które są łatwo zrozumiałe dla klientów i działu handlowego, a jednocześnie precyzyjnie opisują parametry techniczne.',
+                    'en' => 'Creating product specifications that are easily understandable for clients and the sales department while precisely describing technical parameters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2092,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie postępów w realizacji projektów sprzedażowych oraz koordynowanie działań między działem technicznym a zespołem sprzedaży.',
+                    'en' => 'Tracking the progress of sales projects and coordinating actions between the technical department and the sales team.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2093,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie harmonogramów wdrożeń oraz dbanie o terminową realizację usług zgodnie z ustaleniami z klientem.',
+                    'en' => 'Monitoring implementation schedules and ensuring timely delivery of services according to agreements with the client.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2094,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników sprzedażowych oraz tworzenie raportów dotyczących efektywności działań i realizacji celów sprzedażowych.',
+                    'en' => 'Monitoring sales results and creating reports on the effectiveness of actions and the achievement of sales goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2095,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych sprzedażowych oraz dostarczanie rekomendacji na temat dalszego rozwoju strategii sprzedażowej i technologicznej firmy.',
+                    'en' => 'Analyzing sales data and providing recommendations for further developing the company\'s sales and technological strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2096,
+                'name' => json_encode([
+                    'pl' => 'Ciągłe podnoszenie kwalifikacji poprzez uczestnictwo w szkoleniach, konferencjach branżowych oraz certyfikacjach technicznych.',
+                    'en' => 'Continuously improving qualifications through participation in training, industry conferences, and technical certifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2097,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie najnowszych trendów i technologii w obszarze teleinformatyki, aby móc dostarczać klientom najnowsze i najbardziej efektywne rozwiązania.',
+                    'en' => 'Keeping track of the latest trends and technologies in the IT field to provide clients with the latest and most effective solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2098,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo techniczne dla zespołów marketingu i sprzedaży w zakresie tworzenia kampanii promujących produkty i usługi.',
+                    'en' => 'Technical advisory for marketing and sales teams in creating campaigns promoting products and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2099,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wsparcia w tworzeniu materiałów marketingowych, takich jak broszury techniczne, opisy produktów oraz prezentacje.',
+                    'en' => 'Providing support in creating marketing materials such as technical brochures, product descriptions, and presentations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTASPRZEDAŻYTECHNOLOGIIIUSŁUGINFORMATYCZNYCH=[
+            [
+                'id' => 2100,
+                'name' => json_encode([
+                    'pl' => 'Aktywne poszukiwanie i pozyskiwanie nowych klientów poprzez działania networkingowe, spotkania oraz działania marketingowe.',
+                    'en' => 'Actively seeking and acquiring new clients through networking activities, meetings, and marketing efforts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2101,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie długoterminowych relacji z klientami, regularne konsultacje i monitorowanie ich potrzeb.',
+                    'en' => 'Building and maintaining long-term relationships with clients, regular consultations, and monitoring their needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2102,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie prezentacji produktów i usług informatycznych, które firma oferuje, dla potencjalnych i obecnych klientów.',
+                    'en' => 'Organizing presentations of IT products and services offered by the company for potential and current clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2103,
+                'name' => json_encode([
+                    'pl' => 'Pokazywanie zalet i funkcjonalności rozwiązań IT, dostosowując przekaz do specyficznych potrzeb i wymagań klientów.',
+                    'en' => 'Showcasing the benefits and functionalities of IT solutions, tailoring the message to specific customer needs and requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2104,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analiz potrzeb klientów w celu dopasowania odpowiednich technologii i usług IT.',
+                    'en' => 'Conducting analyses of client needs to match appropriate technologies and IT services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2105,
+                'name' => json_encode([
+                    'pl' => 'Proponowanie rozwiązań, które najlepiej spełniają wymagania klientów, oraz opracowywanie ofert i propozycji handlowych.',
+                    'en' => 'Proposing solutions that best meet customer requirements and developing offers and commercial proposals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2106,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie kompleksowych ofert sprzedażowych, uwzględniających specyfikacje techniczne, korzyści biznesowe oraz warunki handlowe.',
+                    'en' => 'Developing comprehensive sales offers, including technical specifications, business benefits, and trading conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2107,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie szczegółowych kosztorysów i planów wdrożeniowych dostosowanych do budżetu i harmonogramu klienta.',
+                    'en' => 'Creating detailed cost estimates and implementation plans tailored to the client\'s budget and timeline.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2108,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem technicznym w celu zdobywania wiedzy na temat produktów i technologii oraz przekazywanie tych informacji zespołowi sprzedaży.',
+                    'en' => 'Collaborating with the technical department to acquire knowledge about products and technologies and sharing this information with the sales team.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2109,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie konsultacji technicznych podczas spotkań z klientami, aby dokładnie omówić specyfikacje i możliwości rozwiązań IT.',
+                    'en' => 'Providing technical consultations during meetings with clients to discuss specifications and capabilities of IT solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2110,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z klientami dotyczących cen, warunków dostawy, wdrożeń oraz wsparcia technicznego.',
+                    'en' => 'Conducting negotiations with clients regarding prices, delivery terms, implementations, and technical support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2111,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i negocjowanie umów, dbając o zgodność z polityką firmy oraz spełnienie oczekiwań klienta.',
+                    'en' => 'Preparing and negotiating contracts, ensuring compliance with company policy and meeting client expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2112,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie demonstracji technologii, oprogramowania lub sprzętu, aby lepiej zilustrować ich działanie i korzyści dla klientów.',
+                    'en' => 'Conducting demonstrations of technology, software, or hardware to better illustrate their functionality and benefits for clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2113,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i koordynowanie testów produktów lub wersji demo dla klientów, aby umożliwić im przetestowanie technologii przed podjęciem decyzji zakupowej.',
+                    'en' => 'Preparing and coordinating product tests or demo versions for clients to allow them to test the technology before making a purchase decision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2114,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie procesu wdrożeniowego oraz utrzymywanie kontaktu z klientem w celu zapewnienia odpowiedniego wsparcia technicznego i operacyjnego.',
+                    'en' => 'Coordinating the implementation process and maintaining contact with the client to ensure appropriate technical and operational support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2115,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępów wdrożenia, rozwiązywanie ewentualnych problemów oraz doradztwo techniczne w celu optymalizacji konfiguracji.',
+                    'en' => 'Monitoring implementation progress, resolving potential issues, and providing technical advice to optimize configuration.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2116,
+                'name' => json_encode([
+                    'pl' => 'Analiza trendów w branży IT, nowości technologicznych oraz działań konkurencji w celu lepszego zrozumienia rynku i dostosowania strategii sprzedaży.',
+                    'en' => 'Analyzing trends in the IT industry, technological innovations, and competitors’ actions to better understand the market and adapt sales strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2117,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie informacji o produktach i usługach konkurencji oraz ich cenach, aby móc efektywnie konkurować na rynku.',
+                    'en' => 'Gathering information about competitors’ products and services and their prices to effectively compete in the market.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2118,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów sprzedażowych na podstawie celów firmy, trendów rynkowych i potrzeb klientów.',
+                    'en' => 'Developing sales plans based on company objectives, market trends, and customer needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2119,
+                'name' => json_encode([
+                    'pl' => 'Planowanie działań sprzedażowych, takich jak kampanie promocyjne, spotkania z klientami i prezentacje produktów, aby zwiększyć zasięg i skuteczność sprzedaży.',
+                    'en' => 'Planning sales activities such as promotional campaigns, client meetings, and product presentations to increase reach and sales effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2120,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie postępów w realizacji celów sprzedażowych, analiza wyników i raportowanie ich do przełożonych.',
+                    'en' => 'Tracking progress in achieving sales goals, analyzing results, and reporting them to superiors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2121,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analizy wyników sprzedażowych i rekomendowanie strategii oraz działań usprawniających efektywność sprzedaży.',
+                    'en' => 'Conducting analysis of sales results and recommending strategies and actions to improve sales efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2122,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem technicznym i zespołem rozwoju produktów w celu zapewnienia zgodności oferty z wymaganiami rynkowymi i technologicznymi.',
+                    'en' => 'Collaborating with the technical team and product development team to ensure compliance of the offer with market and technological requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2123,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie feedbacku od klientów do działu rozwoju produktów w celu usprawnienia istniejących rozwiązań i opracowywania nowych funkcjonalności.',
+                    'en' => 'Providing client feedback to the product development department to improve existing solutions and develop new functionalities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2124,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie firmy na targach branżowych, konferencjach oraz innych wydarzeniach, aby promować usługi i produkty IT oraz budować sieć kontaktów.',
+                    'en' => 'Representing the company at industry fairs, conferences, and other events to promote IT services and products and build a network of contacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2125,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie stoisk firmowych, prezentacji i warsztatów podczas wydarzeń branżowych w celu zwiększenia rozpoznawalności firmy.',
+                    'en' => 'Organizing company booths, presentations, and workshops during industry events to increase the company\'s visibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2126,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń dla klientów, aby zapoznać ich z funkcjonalnościami zakupionych produktów i usług oraz sposobem ich użytkowania.',
+                    'en' => 'Conducting training sessions for clients to familiarize them with the functionalities of purchased products and services and how to use them.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2127,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie wsparcia technicznego po sprzedaży, aby rozwiązywać problemy i utrzymywać wysoką satysfakcję klientów.',
+                    'en' => 'Providing post-sales technical support to resolve issues and maintain high customer satisfaction.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2128,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy tworzeniu broszur, prezentacji, opisów produktów oraz innych materiałów wspierających sprzedaż.',
+                    'en' => 'Collaborating with the marketing department in creating brochures, presentations, product descriptions, and other sales support materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2129,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie treści technicznych do kampanii marketingowych, aby lepiej komunikować korzyści produktów IT i usług.',
+                    'en' => 'Developing technical content for marketing campaigns to better communicate the benefits of IT products and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2130,
+                'name' => json_encode([
+                    'pl' => 'Ciągłe podnoszenie kwalifikacji poprzez udział w szkoleniach, konferencjach branżowych oraz certyfikacjach technicznych.',
+                    'en' => 'Continuously improving qualifications through participation in training, industry conferences, and technical certifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2131,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie najnowszych trendów w branży IT oraz nowinek technologicznych, aby lepiej doradzać klientom i efektywniej sprzedawać produkty.',
+                    'en' => 'Keeping up with the latest trends in the IT industry and technological innovations to better advise clients and sell products more effectively.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2132,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem R&D przy rozwoju nowych produktów i usług, dostarczanie informacji o potrzebach klientów i rynku.',
+                    'en' => 'Collaborating with the R&D department on the development of new products and services, providing information on customer and market needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2133,
+                'name' => json_encode([
+                    'pl' => 'Testowanie nowych produktów przed ich wprowadzeniem na rynek oraz rekomendowanie zmian i ulepszeń.',
+                    'en' => 'Testing new products before they are launched on the market and recommending changes and improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2134,
+                'name' => json_encode([
+                    'pl' => 'Opieka nad kluczowymi klientami firmy, zapewnianie im dedykowanego wsparcia oraz regularne spotkania w celu omawiania ich potrzeb i oferowania rozwiązań.',
+                    'en' => 'Caring for the company\'s key clients, providing them with dedicated support, and regular meetings to discuss their needs and offer solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2135,
+                'name' => json_encode([
+                    'pl' => 'Rozwijanie relacji z kluczowymi klientami i poszukiwanie dodatkowych możliwości sprzedaży poprzez upselling i cross-selling.',
+                    'en' => 'Developing relationships with key clients and seeking additional sales opportunities through upselling and cross-selling.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $POZOSTALITECHNOLOGIITELEINFORMATYCZNYCH=[
+            [
+                'id' => 2136,
+                'name' => json_encode([
+                    'pl' => 'Pozyskiwanie i rozwijanie relacji z klientami biznesowymi, takimi jak korporacje, małe i średnie przedsiębiorstwa oraz instytucje publiczne.',
+                    'en' => 'Acquiring and developing relationships with business clients, such as corporations, small and medium enterprises, and public institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2137,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie ofert handlowych dostosowanych do specyficznych potrzeb biznesowych klientów.',
+                    'en' => 'Preparing sales offers tailored to the specific business needs of clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2138,
+                'name' => json_encode([
+                    'pl' => 'Negocjowanie umów oraz ustalanie warunków współpracy długoterminowej.',
+                    'en' => 'Negotiating contracts and establishing terms for long-term cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2139,
+                'name' => json_encode([
+                    'pl' => 'Sprzedaż usług i rozwiązań opartych na chmurze, takich jak IaaS, PaaS oraz SaaS.',
+                    'en' => 'Selling cloud-based services and solutions, such as IaaS, PaaS, and SaaS.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2140,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo techniczne i analiza potrzeb klientów w zakresie migracji do chmury oraz optymalizacji infrastruktury IT.',
+                    'en' => 'Technical consulting and analysis of client needs regarding cloud migration and IT infrastructure optimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2141,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami technicznymi przy projektowaniu architektury chmurowej i przygotowywaniu spersonalizowanych ofert.',
+                    'en' => 'Collaboration with technical teams in designing cloud architecture and preparing personalized offers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2142,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie i promowanie produktów i usług związanych z infrastrukturą sieciową, takich jak routery, przełączniki, systemy bezpieczeństwa oraz VPN.',
+                    'en' => 'Presenting and promoting products and services related to network infrastructure, such as routers, switches, security systems, and VPNs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2143,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie ofert techniczno-handlowych dotyczących rozwiązań sieciowych oraz doradztwo w zakresie modernizacji istniejącej infrastruktury klientów.',
+                    'en' => 'Preparing technical and commercial offers for network solutions and advising on the modernization of existing client infrastructure.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2144,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja wdrożeń i wsparcie techniczne klientów na etapie implementacji rozwiązań sieciowych.',
+                    'en' => 'Coordinating implementations and providing technical support to clients during the implementation of network solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2145,
+                'name' => json_encode([
+                    'pl' => 'Oferowanie rozwiązań z zakresu bezpieczeństwa IT, takich jak firewalle, systemy detekcji i zapobiegania włamaniom (IDS/IPS), antywirusy oraz rozwiązania SIEM.',
+                    'en' => 'Offering IT security solutions such as firewalls, intrusion detection and prevention systems (IDS/IPS), antivirus solutions, and SIEM solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2146,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo w zakresie najlepszych praktyk i technologii zabezpieczających sieci oraz dane klientów.',
+                    'en' => 'Advising on best practices and technologies for securing networks and client data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2147,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie audytów bezpieczeństwa u klientów oraz tworzenie spersonalizowanych planów wdrożeń.',
+                    'en' => 'Conducting security audits for clients and creating personalized implementation plans.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2148,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie i rozwijanie relacji z kluczowymi klientami w sektorze telekomunikacyjnym.',
+                    'en' => 'Maintaining and developing relationships with key clients in the telecommunications sector.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2149,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z rozwojem ofert usług telekomunikacyjnych, takich jak rozwiązania VoIP, 5G oraz usługi szerokopasmowe.',
+                    'en' => 'Coordinating activities related to the development of telecommunications service offers, such as VoIP solutions, 5G, and broadband services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2150,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie rynku telekomunikacyjnego i dostosowywanie oferty firmy do potrzeb i wymagań klientów.',
+                    'en' => 'Monitoring the telecommunications market and adjusting the company\'s offer to meet the needs and requirements of clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2151,
+                'name' => json_encode([
+                    'pl' => 'Oferowanie kompleksowych rozwiązań IT, takich jak systemy ERP, CRM, integracja danych oraz zarządzanie infrastrukturą IT.',
+                    'en' => 'Offering comprehensive IT solutions, such as ERP systems, CRM, data integration, and IT infrastructure management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2152,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb klientów oraz tworzenie ofert uwzględniających integrację różnych systemów IT i teleinformatycznych.',
+                    'en' => 'Analyzing client needs and creating offers that include the integration of various IT and telecommunications systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2153,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie współpracy między zespołami technicznymi i wdrożeniowymi w celu zapewnienia spójności projektów.',
+                    'en' => 'Coordinating collaboration between technical and implementation teams to ensure project consistency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2154,
+                'name' => json_encode([
+                    'pl' => 'Sprzedaż usług konsultingowych związanych z analizą, planowaniem i optymalizacją infrastruktury IT oraz wdrożeń nowych technologii.',
+                    'en' => 'Selling consulting services related to analysis, planning, and optimization of IT infrastructure and implementation of new technologies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2155,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań konsultacyjnych z klientami w celu omówienia ich potrzeb i przedstawienia rekomendacji technologicznych.',
+                    'en' => 'Organizing consulting meetings with clients to discuss their needs and present technological recommendations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2156,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem technicznym i konsultantami IT w celu przygotowania odpowiednich ofert i strategii dla klientów.',
+                    'en' => 'Cooperating with the technical department and IT consultants to prepare appropriate offers and strategies for clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2157,
+                'name' => json_encode([
+                    'pl' => 'Promowanie i sprzedaż usług outsourcingu IT, takich jak zarządzanie infrastrukturą IT, wsparcie techniczne oraz zarządzanie serwerami i aplikacjami.',
+                    'en' => 'Promoting and selling IT outsourcing services, such as infrastructure management, technical support, and server and application management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2158,
+                'name' => json_encode([
+                    'pl' => 'Budowanie długoterminowych relacji z klientami w celu utrzymania stałej współpracy w zakresie zarządzania ich zasobami IT.',
+                    'en' => 'Building long-term relationships with clients to maintain ongoing collaboration in managing their IT resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2159,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie szczegółowych ofert oraz negocjowanie umów outsourcingowych.',
+                    'en' => 'Preparing detailed offers and negotiating outsourcing contracts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2160,
+                'name' => json_encode([
+                    'pl' => 'Sprzedaż oprogramowania do zarządzania przedsiębiorstwem, aplikacji biznesowych oraz rozwiązań programowych dostosowanych do specyfiki branż.',
+                    'en' => 'Selling enterprise management software, business applications, and software solutions tailored to specific industries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2161,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami programistycznymi w celu dostosowania rozwiązań do indywidualnych potrzeb klientów oraz oferowanie usług związanych z personalizacją oprogramowania.',
+                    'en' => 'Collaborating with programming teams to tailor solutions to individual client needs and offering services related to software personalization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2162,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie prezentacji i wersji demo oprogramowania, aby lepiej przedstawić jego funkcjonalności i korzyści.',
+                    'en' => 'Preparing presentations and demo versions of software to better showcase its functionalities and benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2163,
+                'name' => json_encode([
+                    'pl' => 'Sprzedaż usług kolokacji, serwerowni oraz rozwiązań infrastruktury IT związanych z data center, takich jak serwery, storage czy usługi backupowe.',
+                    'en' => 'Selling colocation services, server rooms, and IT infrastructure solutions related to data centers, such as servers, storage, and backup services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2164,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo techniczne w zakresie wdrażania i utrzymania infrastruktury data center, w tym optymalizacji zużycia energii oraz zapewnienia bezpieczeństwa danych.',
+                    'en' => 'Technical consulting on implementing and maintaining data center infrastructure, including optimizing energy consumption and ensuring data security.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2165,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja projektów związanych z przenoszeniem zasobów IT klientów do data center oraz wsparcie techniczne na każdym etapie wdrożenia.',
+                    'en' => 'Coordinating projects related to migrating clients\' IT resources to data centers and providing technical support at every stage of implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2166,
+                'name' => json_encode([
+                    'pl' => 'Sprzedaż rozwiązań związanych z IoT, takich jak inteligentne urządzenia, systemy monitorowania oraz technologie automatyzacji.',
+                    'en' => 'Selling IoT solutions, such as smart devices, monitoring systems, and automation technologies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2167,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie strategii sprzedaży IoT uwzględniających specyficzne potrzeby klientów oraz rozwój nowych możliwości biznesowych.',
+                    'en' => 'Developing IoT sales strategies that consider specific client needs and exploring new business opportunities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2168,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami R&D w celu wdrażania innowacyjnych rozwiązań IoT i ich integracji z infrastrukturą klientów.',
+                    'en' => 'Collaborating with R&D teams to implement innovative IoT solutions and integrate them with clients\' infrastructure.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2169,
+                'name' => json_encode([
+                    'pl' => 'Oferowanie rozwiązań z zakresu automatyzacji procesów IT, takich jak systemy zarządzania konfiguracją, automatyzacja wdrożeń aplikacji i infrastruktury oraz systemy orkiestracji.',
+                    'en' => 'Offering solutions for automating IT processes, such as configuration management systems, application and infrastructure deployment automation, and orchestration systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2170,
+                'name' => json_encode([
+                    'pl' => 'Analiza obecnych procesów IT u klientów i doradztwo w zakresie ich optymalizacji za pomocą automatyzacji.',
+                    'en' => 'Analyzing current IT processes at client organizations and advising on their optimization through automation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2171,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie ofert techniczno-handlowych oraz prezentowanie korzyści wynikających z automatyzacji procesów IT.',
+                    'en' => 'Preparing technical and commercial offers and showcasing the benefits of IT process automation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2172,
+                'name' => json_encode([
+                    'pl' => 'Sprzedaż aplikacji mobilnych oraz rozwiązań teleinformatycznych związanych z mobilnością, takich jak urządzenia przenośne, systemy MDM (Mobile Device Management) oraz technologie 5G.',
+                    'en' => 'Selling mobile applications and telecommunications solutions related to mobility, such as portable devices, MDM (Mobile Device Management) systems, and 5G technologies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2173,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo techniczne w zakresie rozwiązań mobilnych i ich integracji z systemami IT klientów.',
+                    'en' => 'Technical consulting on mobile solutions and their integration with clients\' IT systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2174,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań i prezentacji mobilnych rozwiązań dla klientów, uwzględniając specyficzne potrzeby mobilności w ich organizacji.',
+                    'en' => 'Organizing meetings and presentations of mobile solutions for clients, considering specific mobility needs within their organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $EKSPOZYTORTOWARÓWMERCHANDISER=[
+            [
+                'id' => 2175,
+                'name' => json_encode([
+                    'pl' => 'Ustawianie towarów na półkach zgodnie z wytycznymi firmy oraz zasadami ekspozycji.',
+                    'en' => 'Setting up products on shelves according to company guidelines and display principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2176,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie atrakcyjnych wizualnie wystaw, które przyciągają uwagę klientów i zachęcają do zakupu.',
+                    'en' => 'Creating visually appealing displays that attract customers\' attention and encourage purchases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2177,
+                'name' => json_encode([
+                    'pl' => 'Upewnianie się, że produkty są zawsze widoczne, dostępne i łatwe do znalezienia.',
+                    'en' => 'Ensuring that products are always visible, accessible, and easy to find.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2178,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie stanów magazynowych i zapasów w sklepie oraz uzupełnianie półek w miarę potrzeby.',
+                    'en' => 'Monitoring stock levels and inventory in the store and replenishing shelves as needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2179,
+                'name' => json_encode([
+                    'pl' => 'Upewnianie się, że kluczowe produkty i bestsellery są zawsze dostępne dla klientów.',
+                    'en' => 'Ensuring that key products and bestsellers are always available for customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2180,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z personelem sklepu i dostawcami w celu zapewnienia ciągłości dostaw i odpowiedniej rotacji produktów.',
+                    'en' => 'Collaborating with store staff and suppliers to ensure continuity of supply and proper product rotation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2181,
+                'name' => json_encode([
+                    'pl' => 'Regularne sprzątanie i porządkowanie półek oraz ekspozycji, aby produkty były prezentowane w estetyczny i atrakcyjny sposób.',
+                    'en' => 'Regularly cleaning and organizing shelves and displays to present products in an aesthetic and attractive manner.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2182,
+                'name' => json_encode([
+                    'pl' => 'Usuwanie uszkodzonych lub nieaktualnych towarów z ekspozycji i zgłaszanie ich do odpowiednich działów sklepu.',
+                    'en' => 'Removing damaged or outdated products from display and reporting them to the appropriate store departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2183,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie poprawności cen i etykiet na półkach oraz ich regularna aktualizacja w zgodzie z polityką firmy i promocjami.',
+                    'en' => 'Checking the accuracy of prices and labels on shelves and regularly updating them in accordance with company policy and promotions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2184,
+                'name' => json_encode([
+                    'pl' => 'Instalowanie nowych etykiet cenowych oraz oznaczeń promocyjnych zgodnie z wytycznymi kampanii marketingowych.',
+                    'en' => 'Installing new price tags and promotional signage according to the marketing campaign guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2185,
+                'name' => json_encode([
+                    'pl' => 'Realizacja planów marketingowych, takich jak umieszczanie plakatów, standów reklamowych czy oznaczeń promocyjnych w odpowiednich miejscach.',
+                    'en' => 'Executing marketing plans, such as placing posters, advertising stands, or promotional signs in appropriate locations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2186,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie ekspozycji tematycznych i sezonowych, które wspierają promocje oraz kampanie marketingowe.',
+                    'en' => 'Creating thematic and seasonal displays that support promotions and marketing campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2187,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie ścisłej współpracy z personelem sklepu oraz menedżerami w celu koordynacji działań związanych z ekspozycją i promocjami.',
+                    'en' => 'Maintaining close collaboration with store staff and managers to coordinate activities related to display and promotions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2188,
+                'name' => json_encode([
+                    'pl' => 'Konsultowanie się z menedżerami w sprawie planów ekspozycyjnych oraz wdrażanie ich uwag i sugestii.',
+                    'en' => 'Consulting with managers on display plans and implementing their feedback and suggestions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2189,
+                'name' => json_encode([
+                    'pl' => 'Regularne sprawdzanie stanu produktów na półkach pod kątem uszkodzeń, dat ważności oraz estetyki opakowań.',
+                    'en' => 'Regularly checking the condition of products on shelves for damages, expiration dates, and packaging aesthetics.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2190,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby produkty były zawsze odpowiednio wyeksponowane i prezentowały się atrakcyjnie.',
+                    'en' => 'Ensuring that products are always appropriately displayed and presented attractively.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2191,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie danych sprzedażowych i raportowanie wyników w kontekście efektywności ekspozycji oraz wdrażanych strategii promocyjnych.',
+                    'en' => 'Analyzing sales data and reporting results in the context of the effectiveness of displays and implemented promotional strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2192,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem sprzedaży i marketingu w celu oceny efektywności ustawień produktów oraz sugerowanie ulepszeń.',
+                    'en' => 'Collaborating with the sales and marketing team to assess the effectiveness of product settings and suggest improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2193,
+                'name' => json_encode([
+                    'pl' => 'Obserwacja i analiza ekspozycji oraz działań promocyjnych konkurencji w celu dostosowania strategii ekspozycyjnych i promocyjnych.',
+                    'en' => 'Observing and analyzing the displays and promotional activities of competitors to adjust display and promotional strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2194,
+                'name' => json_encode([
+                    'pl' => 'Zbieranie informacji o trendach i nowościach w branży, które mogą wpływać na strategię ekspozycji produktów.',
+                    'en' => 'Gathering information on trends and innovations in the industry that may influence product display strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2195,
+                'name' => json_encode([
+                    'pl' => 'Praca zgodnie z planogramami, czyli planami rozmieszczenia produktów na półkach, które są opracowywane przez centralę firmy.',
+                    'en' => 'Working according to planograms, which are plans for the placement of products on shelves developed by the company headquarters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2196,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie ekspozycji do wytycznych oraz sprawdzanie, czy ustawienia są zgodne z wymaganiami marki oraz strategią marketingową.',
+                    'en' => 'Adjusting displays to guidelines and checking if settings comply with brand requirements and marketing strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2197,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z personelem sklepu i edukowanie ich w zakresie prawidłowego układania produktów oraz utrzymywania ekspozycji zgodnej z wytycznymi firmy.',
+                    'en' => 'Collaborating with store staff and educating them on proper product arrangement and maintaining displays in line with company guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2198,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń dotyczących nowych produktów, kampanii promocyjnych oraz zasad merchandisingu.',
+                    'en' => 'Conducting training on new products, promotional campaigns, and merchandising principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2199,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie stanów magazynowych i współpraca z działem logistyki lub dostawcami w celu zapewnienia odpowiednich dostaw produktów do sklepu.',
+                    'en' => 'Checking stock levels and cooperating with the logistics department or suppliers to ensure appropriate product deliveries to the store.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2200,
+                'name' => json_encode([
+                    'pl' => 'Uzupełnianie zapasów oraz zarządzanie rotacją towarów, aby produkty były zawsze dostępne dla klientów.',
+                    'en' => 'Replenishing stock and managing product rotation to ensure products are always available for customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2201,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie działań i zmian w ekspozycji, takich jak przeprowadzone kampanie promocyjne, zmiany planogramów czy uzupełnienia zapasów.',
+                    'en' => 'Documenting actions and changes in displays, such as promotional campaigns, planogram changes, or stock replenishments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2202,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z wizyt oraz przedstawianie ich kierownictwu lub centralnemu zespołowi odpowiedzialnemu za merchandising.',
+                    'en' => 'Creating visit reports and presenting them to management or the central merchandising team.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2203,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie ustawień produktów i ekspozycji do specyficznych potrzeb oraz preferencji klientów w danym sklepie lub regionie.',
+                    'en' => 'Adjusting product settings and displays to the specific needs and preferences of customers in a given store or region.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2204,
+                'name' => json_encode([
+                    'pl' => 'Analiza lokalnych trendów i preferencji zakupowych w celu optymalizacji układania produktów.',
+                    'en' => 'Analyzing local trends and shopping preferences to optimize product placement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2205,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w spotkaniach zespołu merchandisingu oraz szkoleniach, aby być na bieżąco z nowymi strategiami i wytycznymi firmy.',
+                    'en' => 'Regularly participating in merchandising team meetings and training to stay updated on new strategies and company guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $MENEDŻERARTYSTYCZNY=[
+            [
+                'id' => 2206,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i koordynowanie działań artysty w celu rozwijania jego kariery i zwiększania jego rozpoznawalności.',
+                    'en' => 'Planning and coordinating the artist\'s activities to develop their career and increase their visibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2207,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie długoterminowych i krótkoterminowych strategii kariery, które obejmują rozwój artystyczny, występy, promocje oraz wydawnictwa.',
+                    'en' => 'Creating long-term and short-term career strategies that include artistic development, performances, promotions, and releases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2208,
+                'name' => json_encode([
+                    'pl' => 'Kreowanie i utrzymywanie spójnego i atrakcyjnego wizerunku artysty zgodnie z jego stylem, charakterem i oczekiwaniami publiczności.',
+                    'en' => 'Creating and maintaining a cohesive and appealing image of the artist in line with their style, character, and audience expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2209,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z agencjami PR, stylistami, grafikami i innymi specjalistami w celu opracowania odpowiednich materiałów promocyjnych i wizualnych.',
+                    'en' => 'Collaborating with PR agencies, stylists, graphic designers, and other specialists to develop appropriate promotional and visual materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2210,
+                'name' => json_encode([
+                    'pl' => 'Planowanie, koordynowanie i organizowanie koncertów, występów, tras koncertowych, wystaw lub innych wydarzeń artystycznych.',
+                    'en' => 'Planning, coordinating, and organizing concerts, performances, tours, exhibitions, or other artistic events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2211,
+                'name' => json_encode([
+                    'pl' => 'Negocjowanie warunków kontraktowych z organizatorami, festiwalami oraz miejscami występów, aby zapewnić artystom odpowiednie warunki pracy.',
+                    'en' => 'Negotiating contract terms with organizers, festivals, and venues to ensure favorable working conditions for artists.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2212,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie negocjacji z wydawcami, wytwórniami muzycznymi, agencjami reklamowymi oraz innymi partnerami biznesowymi w imieniu artysty.',
+                    'en' => 'Conducting negotiations with publishers, record labels, advertising agencies, and other business partners on behalf of the artist.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2213,
+                'name' => json_encode([
+                    'pl' => 'Analiza i ocena umów oraz kontraktów w celu zapewnienia, że są one korzystne dla artysty i zgodne z jego długoterminowymi planami.',
+                    'en' => 'Analyzing and evaluating contracts to ensure they are beneficial for the artist and align with their long-term plans.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2214,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań PR i kontaktów z mediami w celu promocji artysty oraz zwiększania jego obecności w mediach.',
+                    'en' => 'Coordinating PR activities and media relations to promote the artist and increase their media presence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2215,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań z mediami, wywiadów, sesji zdjęciowych oraz innych wydarzeń medialnych mających na celu zwiększenie popularności artysty.',
+                    'en' => 'Organizing meetings with the media, interviews, photo sessions, and other media events to increase the artist\'s popularity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2216,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie relacjami z fanami, w tym prowadzenie działań w mediach społecznościowych i organizowanie spotkań z fanami.',
+                    'en' => 'Managing fan relationships, including engaging in social media activities and organizing fan meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2217,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii marketingowych i kampanii promocyjnych wspierających karierę artysty, takich jak wydanie albumu, premiera filmu czy wystawa.',
+                    'en' => 'Developing marketing strategies and promotional campaigns supporting the artist\'s career, such as album releases, film premieres, or exhibitions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2218,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z agencjami marketingowymi i PR w celu stworzenia spójnych kampanii reklamowych.',
+                    'en' => 'Collaborating with marketing and PR agencies to create cohesive advertising campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2219,
+                'name' => json_encode([
+                    'pl' => 'Kontrolowanie finansów artysty, w tym zarządzanie budżetami na produkcje, kampanie promocyjne, koncerty oraz codzienne wydatki.',
+                    'en' => 'Controlling the artist\'s finances, including managing budgets for productions, promotional campaigns, concerts, and daily expenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2220,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie dochodów i wydatków oraz przygotowywanie raportów finansowych dla artysty i jego zespołu.',
+                    'en' => 'Monitoring income and expenses and preparing financial reports for the artist and their team.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2221,
+                'name' => json_encode([
+                    'pl' => 'Proponowanie i wdrażanie nowych projektów artystycznych, takich jak albumy, filmy, sesje zdjęciowe, współprace z innymi artystami czy kampanie reklamowe.',
+                    'en' => 'Proposing and implementing new artistic projects, such as albums, films, photo sessions, collaborations with other artists, or advertising campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2222,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z producentami, reżyserami, scenarzystami i innymi twórcami w celu realizacji projektów artystycznych.',
+                    'en' => 'Collaborating with producers, directors, screenwriters, and other creators to execute artistic projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2223,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie harmonogramu artysty, w tym prób, występów, sesji nagraniowych, spotkań z mediami oraz wydarzeń promocyjnych.',
+                    'en' => 'Planning and organizing the artist\'s schedule, including rehearsals, performances, recording sessions, media meetings, and promotional events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2224,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie logistyką tras koncertowych, takich jak rezerwacje hoteli, transport, koordynacja z zespołami technicznymi i ekipą produkcyjną.',
+                    'en' => 'Managing concert tour logistics, such as hotel reservations, transportation, coordination with technical teams, and production crew.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2225,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie relacji z wytwórniami muzycznymi, galeriami sztuki, teatrami oraz innymi instytucjami artystycznymi, aby zapewnić artystom jak najwięcej możliwości współpracy i występów.',
+                    'en' => 'Establishing and maintaining relationships with record labels, art galleries, theaters, and other artistic institutions to provide artists with as many collaboration and performance opportunities as possible.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2226,
+                'name' => json_encode([
+                    'pl' => 'Negocjowanie warunków współpracy z tymi instytucjami oraz reprezentowanie interesów artysty.',
+                    'en' => 'Negotiating collaboration terms with these institutions and representing the artist\'s interests.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2227,
+                'name' => json_encode([
+                    'pl' => 'Analiza trendów w branży artystycznej, aby dostosować działania artysty do zmieniających się oczekiwań publiczności.',
+                    'en' => 'Analyzing trends in the artistic industry to adjust the artist\'s actions to changing audience expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2228,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie działalności innych artystów i konkurencji, aby opracowywać innowacyjne strategie promocji i rozwoju kariery.',
+                    'en' => 'Monitoring the activities of other artists and competitors to develop innovative promotion and career development strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2229,
+                'name' => json_encode([
+                    'pl' => 'Budowanie zespołu profesjonalistów wspierających karierę artysty, takich jak agenci, stylistki, doradcy finansowi, prawnicy i inni specjaliści.',
+                    'en' => 'Building a team of professionals supporting the artist\'s career, such as agents, stylists, financial advisors, lawyers, and other specialists.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2230,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie zespołem i koordynacja ich działań, aby wszyscy pracowali zgodnie z ustaloną strategią i celami artysty.',
+                    'en' => 'Managing the team and coordinating their activities so that everyone works in line with the established strategy and goals of the artist.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2231,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo artystyczne i rozwój talentu artysty, wspieranie go w doskonaleniu umiejętności oraz eksploracji nowych kierunków artystycznych.',
+                    'en' => 'Artistic advice and talent development, supporting the artist in refining their skills and exploring new artistic directions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2232,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w planowaniu szkoleń, warsztatów oraz innych działań, które mogą przyczynić się do rozwoju kariery i umiejętności artysty.',
+                    'en' => 'Assisting in planning training, workshops, and other activities that can contribute to the artist\'s career development and skills enhancement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2233,
+                'name' => json_encode([
+                    'pl' => 'Reagowanie na kryzysy, takie jak negatywne opinie publiczne, problemy prawne czy trudności związane z projektami artystycznymi.',
+                    'en' => 'Responding to crises, such as negative public opinions, legal issues, or difficulties related to artistic projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2234,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie oświadczeń, zarządzanie komunikacją kryzysową oraz współpraca z prawnikiem lub specjalistą ds. PR w celu minimalizowania negatywnych skutków.',
+                    'en' => 'Preparing statements, managing crisis communication, and collaborating with a lawyer or PR specialist to minimize negative impacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2235,
+                'name' => json_encode([
+                    'pl' => 'Poszukiwanie i negocjowanie umów sponsorskich oraz partnerstw z markami, które mogą wspierać działalność artysty i jego projekty.',
+                    'en' => 'Seeking and negotiating sponsorship deals and partnerships with brands that can support the artist\'s activities and projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2236,
+                'name' => json_encode([
+                    'pl' => 'Budowanie długoterminowych relacji z partnerami biznesowymi, które przynoszą korzyści obu stronom i wspierają rozwój kariery artysty.',
+                    'en' => 'Building long-term relationships with business partners that benefit both parties and support the artist\'s career development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2237,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie produkcji artystycznych, takich jak nagrania, sesje zdjęciowe, teledyski, wystawy czy spektakle, aby były zgodne z wizją artysty oraz budżetem.',
+                    'en' => 'Overseeing artistic productions such as recordings, photo sessions, music videos, exhibitions, or performances to ensure they align with the artist\'s vision and budget.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2238,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z reżyserami, producentami, scenografami i innymi twórcami w celu realizacji projektów zgodnie z harmonogramem i założeniami artysty.',
+                    'en' => 'Collaborating with directors, producers, set designers, and other creators to execute projects according to the artist\'s schedule and goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2239,
+                'name' => json_encode([
+                    'pl' => 'Ochrona praw autorskich artysty oraz zarządzanie licencjami i umowami dotyczącymi korzystania z jego twórczości.',
+                    'en' => 'Protecting the artist\'s copyright and managing licenses and agreements regarding the use of their work.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2240,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z prawnikami specjalizującymi się w prawie autorskim, aby zapewnić zgodność działań artysty z przepisami prawnymi.',
+                    'en' => 'Collaborating with lawyers specializing in copyright law to ensure the artist\'s actions comply with legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2241,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów z działań promocyjnych, tras koncertowych oraz innych projektów artystycznych, aby artysta i jego zespół byli na bieżąco z wynikami działań.',
+                    'en' => 'Preparing reports on promotional activities, concert tours, and other artistic projects to keep the artist and their team updated on the results of their efforts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2242,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników finansowych oraz rekomendowanie dalszych kroków i inwestycji w karierę artysty.',
+                    'en' => 'Analyzing financial results and recommending further steps and investments in the artist\'s career.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $PROMOTORMARKITRENDSETTER=[
+            [
+                'id' => 2243,
+                'name' => json_encode([
+                    'pl' => 'Aktywne promowanie produktów i usług marki w mediach społecznościowych, na eventach oraz w codziennej komunikacji z otoczeniem.',
+                    'en' => 'Actively promoting the brand\'s products and services on social media, at events, and in daily communication with the environment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2244,
+                'name' => json_encode([
+                    'pl' => 'Stosowanie strategii marketingowych, które przyciągają uwagę i budują zaangażowanie wokół marki.',
+                    'en' => 'Implementing marketing strategies that capture attention and build engagement around the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2245,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i publikowanie treści w mediach społecznościowych, takich jak zdjęcia, filmy, stories czy posty, które promują produkty lub usługi marki.',
+                    'en' => 'Creating and publishing content on social media, such as photos, videos, stories, or posts that promote the brand\'s products or services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2246,
+                'name' => json_encode([
+                    'pl' => 'Angażowanie się w interakcje z obserwatorami, odpowiadanie na komentarze i pytania oraz budowanie społeczności online wokół marki.',
+                    'en' => 'Engaging with followers, responding to comments and questions, and building an online community around the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2247,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie wytycznych marki dotyczących komunikacji i wizualnego przedstawiania produktów, aby budować spójny wizerunek w oczach odbiorców.',
+                    'en' => 'Adhering to the brand guidelines regarding communication and visual representation of products to build a consistent image in the eyes of the audience.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2248,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem marketingu w celu opracowywania treści i strategii, które odzwierciedlają tożsamość marki.',
+                    'en' => 'Collaborating with the marketing team to develop content and strategies that reflect the brand\'s identity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2249,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie trendów na rynku oraz wśród konsumentów, aby dostosować działania promocyjne marki do zmieniających się preferencji odbiorców.',
+                    'en' => 'Monitoring market trends and consumer behavior to adjust the brand\'s promotional activities to changing audience preferences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2250,
+                'name' => json_encode([
+                    'pl' => 'Analiza zachowań konsumentów i adaptacja treści oraz strategii marketingowych w odpowiedzi na aktualne trendy.',
+                    'en' => 'Analyzing consumer behaviors and adapting content and marketing strategies in response to current trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2251,
+                'name' => json_encode([
+                    'pl' => 'Udział w eventach branżowych, targach, konferencjach, festiwalach i innych wydarzeniach, aby promować markę oraz budować jej wizerunek.',
+                    'en' => 'Participating in industry events, fairs, conferences, festivals, and other events to promote the brand and build its image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2252,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań z fanami marki, pokazów produktowych lub innych akcji, które zwiększają zaangażowanie i świadomość marki.',
+                    'en' => 'Organizing meetings with the brand\'s fans, product showcases, or other actions that increase engagement and brand awareness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2253,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z influencerami oraz liderami opinii, którzy mogą pomóc w zwiększeniu zasięgu i zaangażowania wokół marki.',
+                    'en' => 'Collaborating with influencers and opinion leaders who can help increase reach and engagement around the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2254,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie partnerstw i wspólnych kampanii z innymi twórcami, które wzmacniają przekaz i zwiększają widoczność marki.',
+                    'en' => 'Creating partnerships and joint campaigns with other creators that strengthen the message and increase the brand\'s visibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2255,
+                'name' => json_encode([
+                    'pl' => 'Testowanie nowych produktów i usług oraz rekomendowanie ich odbiorcom na podstawie własnych doświadczeń.',
+                    'en' => 'Testing new products and services and recommending them to audiences based on personal experiences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2256,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie autentycznych recenzji i opinii na temat produktów, które mają na celu wzbudzenie zainteresowania i zaufania klientów.',
+                    'en' => 'Creating authentic reviews and opinions about products aimed at generating interest and trust among customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2257,
+                'name' => json_encode([
+                    'pl' => 'Aktywne uczestnictwo w kampaniach reklamowych i działaniach marketingowych organizowanych przez firmę.',
+                    'en' => 'Actively participating in advertising campaigns and marketing activities organized by the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2258,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści reklamowych oraz współpraca z zespołem marketingu w celu efektywnego wdrażania kampanii.',
+                    'en' => 'Preparing advertising content and collaborating with the marketing team to effectively implement campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2259,
+                'name' => json_encode([
+                    'pl' => 'Inicjowanie nowych trendów, które są związane z marką lub jej produktami, i aktywne angażowanie społeczności do udziału w tych trendach.',
+                    'en' => 'Initiating new trends related to the brand or its products and actively engaging the community to participate in these trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2260,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie kreatywnych pomysłów na promocję marki, które wyróżniają się na tle konkurencji i budują lojalność klientów.',
+                    'en' => 'Creating creative ideas for promoting the brand that stand out from the competition and build customer loyalty.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2261,
+                'name' => json_encode([
+                    'pl' => 'Angażowanie się w interakcje z fanami marki oraz budowanie relacji z klientami, aby zwiększać ich lojalność i zaangażowanie.',
+                    'en' => 'Engaging with the brand\'s fans and building relationships with customers to increase their loyalty and engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2262,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie programów lojalnościowych, konkursów, wyzwań oraz innych akcji, które zachęcają klientów do długotrwałego związku z marką.',
+                    'en' => 'Organizing loyalty programs, contests, challenges, and other actions that encourage customers to maintain a long-term relationship with the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2263,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z działami marketingu i PR w celu opracowania strategii promocyjnych, które są zgodne z celami marki.',
+                    'en' => 'Working closely with the marketing and PR departments to develop promotional strategies that align with the brand\'s goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2264,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie feedbacku od społeczności i klientów, aby dostosować kampanie i działania marketingowe do ich potrzeb i oczekiwań.',
+                    'en' => 'Providing feedback from the community and customers to adjust campaigns and marketing activities to their needs and expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2265,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności publikowanych treści, kampanii i działań promocyjnych poprzez analizę wskaźników takich jak zasięg, zaangażowanie czy liczba konwersji.',
+                    'en' => 'Monitoring the effectiveness of published content, campaigns, and promotional activities by analyzing metrics such as reach, engagement, or conversion rates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2266,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów z działań promocyjnych oraz rekomendowanie ulepszeń na podstawie zebranych danych.',
+                    'en' => 'Preparing reports on promotional activities and recommending improvements based on collected data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2267,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie treści i kampanii dostosowanych do specyficznych wymagań i oczekiwań różnych rynków lokalnych oraz globalnych.',
+                    'en' => 'Creating content and campaigns tailored to the specific needs and expectations of various local and global markets.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2268,
+                'name' => json_encode([
+                    'pl' => 'Analiza kulturowych i rynkowych różnic w celu opracowywania treści, które rezonują z lokalnymi społecznościami.',
+                    'en' => 'Analyzing cultural and market differences to develop content that resonates with local communities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2269,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem promotorów lub influencerów oraz przekazywanie im wytycznych i strategii, które wspierają wizerunek marki.',
+                    'en' => 'Collaborating with a team of promoters or influencers and providing them with guidelines and strategies that support the brand\'s image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2270,
+                'name' => json_encode([
+                    'pl' => 'Motywowanie innych trendsetterów oraz edukowanie ich na temat efektywnych metod promowania produktów i angażowania społeczności.',
+                    'en' => 'Motivating other trendsetters and educating them on effective methods of promoting products and engaging communities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPRZEDAWCAREKLAMINTERNETOWYCH=[
+            [
+                'id' => 2271,
+                'name' => json_encode([
+                    'pl' => 'Aktywne poszukiwanie i pozyskiwanie nowych klientów, zainteresowanych zakupem przestrzeni reklamowej lub kampanii marketingowych online.',
+                    'en' => 'Actively seeking and acquiring new clients interested in purchasing advertising space or online marketing campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2272,
+                'name' => json_encode([
+                    'pl' => 'Budowanie relacji biznesowych poprzez cold calling, e-maile, spotkania bezpośrednie oraz networking na wydarzeniach branżowych.',
+                    'en' => 'Building business relationships through cold calling, emails, face-to-face meetings, and networking at industry events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2273,
+                'name' => json_encode([
+                    'pl' => 'Przedstawianie oferty reklamowej firmy, w tym dostępnych formatów reklamowych, miejsc publikacji (np. strony internetowe, media społecznościowe) oraz możliwości targetowania reklam.',
+                    'en' => 'Presenting the company\'s advertising offer, including available ad formats, publication locations (e.g., websites, social media), and targeting options.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2274,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie korzyści płynących z poszczególnych rozwiązań reklamowych, dostosowując ofertę do potrzeb i celów marketingowych klientów.',
+                    'en' => 'Presenting the benefits of individual advertising solutions, tailoring the offer to clients\' marketing needs and objectives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2275,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie spersonalizowanych ofert reklamowych dostosowanych do budżetu, celów i oczekiwań klientów.',
+                    'en' => 'Developing personalized advertising offers tailored to clients\' budgets, goals, and expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2276,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie kosztorysów oraz propozycji handlowych, które uwzględniają specyfikę kampanii oraz przewidywane wyniki.',
+                    'en' => 'Creating cost estimates and commercial proposals that account for the specifics of the campaign and expected results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2277,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z klientami w celu ustalenia warunków współpracy, takich jak cena, zakres kampanii, czas trwania oraz zasady płatności.',
+                    'en' => 'Conducting negotiations with clients to establish the terms of cooperation, such as price, campaign scope, duration, and payment terms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2278,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i finalizowanie umów oraz kontraktów, dbając o to, aby były korzystne zarówno dla firmy, jak i klienta.',
+                    'en' => 'Preparing and finalizing contracts and agreements, ensuring they are beneficial for both the company and the client.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2279,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem kreatywnym i technicznym w celu realizacji kampanii reklamowych zgodnie z ustalonym harmonogramem i specyfikacją.',
+                    'en' => 'Collaborating with the creative and technical teams to execute advertising campaigns according to the established schedule and specifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2280,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępów kampanii, wprowadzanie zmian i dostosowań w razie potrzeby oraz zapewnienie, że kampania przebiega zgodnie z planem.',
+                    'en' => 'Monitoring campaign progress, making changes and adjustments as needed, and ensuring the campaign runs according to plan.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2281,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności kampanii reklamowych poprzez analizę danych, takich jak liczba wyświetleń, kliknięć, konwersji oraz ROI (zwrot z inwestycji).',
+                    'en' => 'Monitoring the effectiveness of advertising campaigns by analyzing data such as impressions, clicks, conversions, and ROI (return on investment).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2282,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów podsumowujących wyniki kampanii i przekazywanie ich klientom wraz z rekomendacjami dotyczącymi optymalizacji przyszłych działań.',
+                    'en' => 'Preparing summary reports on campaign results and providing them to clients along with recommendations for optimizing future actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2283,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie długoterminowych relacji z klientami poprzez regularny kontakt, konsultacje oraz wsparcie posprzedażowe.',
+                    'en' => 'Building and maintaining long-term relationships with clients through regular contact, consultations, and post-sale support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2284,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie oferty reklamowej i propozycji kolejnych kampanii w oparciu o feedback i wyniki wcześniejszych działań.',
+                    'en' => 'Adjusting the advertising offer and proposals for future campaigns based on feedback and results from previous actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2285,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian i nowości w branży reklam internetowych, takich jak nowe formaty reklamowe, platformy i narzędzia do targetowania.',
+                    'en' => 'Monitoring changes and innovations in the online advertising industry, such as new ad formats, platforms, and targeting tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2286,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie oferty reklamowej do najnowszych trendów i technologii, aby zapewnić klientom nowoczesne i skuteczne rozwiązania.',
+                    'en' => 'Adjusting the advertising offer to the latest trends and technologies to provide clients with modern and effective solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2287,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z działem marketingu i zespołem kreatywnym w celu tworzenia atrakcyjnych i skutecznych kampanii reklamowych.',
+                    'en' => 'Close collaboration with the marketing department and creative team to create attractive and effective advertising campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2288,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie zespołowi kreatywnemu briefów reklamowych oraz informacji zwrotnych od klientów, aby kampanie były jak najlepiej dopasowane do ich potrzeb.',
+                    'en' => 'Providing the creative team with advertising briefs and feedback from clients to ensure campaigns are well-tailored to their needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2289,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i przeprowadzanie prezentacji dla potencjalnych klientów, podczas których omawiane są możliwości i korzyści związane z reklamą internetową.',
+                    'en' => 'Creating and delivering presentations for potential clients that discuss the possibilities and benefits of online advertising.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2290,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie danych i case studies w prezentacjach, aby przedstawić skuteczność rozwiązań reklamowych oferowanych przez firmę.',
+                    'en' => 'Using data and case studies in presentations to demonstrate the effectiveness of the advertising solutions offered by the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2291,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii sprzedaży, które pomagają osiągać cele sprzedażowe, takie jak zwiększanie liczby klientów, wartości kontraktów oraz utrzymanie lojalności klientów.',
+                    'en' => 'Developing sales strategies that help achieve sales goals, such as increasing the number of clients, contract value, and maintaining customer loyalty.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2292,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności działań sprzedażowych i wdrażanie ulepszeń w strategii na podstawie wyników.',
+                    'en' => 'Monitoring the effectiveness of sales activities and implementing improvements in strategy based on results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2293,
+                'name' => json_encode([
+                    'pl' => 'Opieka nad aktualnymi klientami, analizowanie ich bieżących potrzeb i proponowanie nowych rozwiązań reklamowych.',
+                    'en' => 'Taking care of current clients, analyzing their ongoing needs, and proposing new advertising solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2294,
+                'name' => json_encode([
+                    'pl' => 'Upselling i cross-selling, czyli oferowanie dodatkowych usług reklamowych lub bardziej rozbudowanych kampanii, które mogą zwiększyć skuteczność działań marketingowych klientów.',
+                    'en' => 'Upselling and cross-selling, which means offering additional advertising services or more comprehensive campaigns that can enhance the effectiveness of clients\' marketing efforts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2295,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie kontaktów z potencjalnymi klientami, agencjami marketingowymi, mediami oraz innymi partnerami, którzy mogą wspierać działania reklamowe firmy.',
+                    'en' => 'Establishing contacts with potential clients, marketing agencies, media, and other partners who can support the company\'s advertising efforts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2296,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie aktywnej obecności na wydarzeniach branżowych, konferencjach i spotkaniach networkingowych, aby budować i rozwijać sieć kontaktów.',
+                    'en' => 'Maintaining an active presence at industry events, conferences, and networking meetings to build and expand the network of contacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2297,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy opracowywaniu materiałów promocyjnych i ofertowych, takich jak broszury, prezentacje czy e-maile sprzedażowe.',
+                    'en' => 'Collaborating with the marketing department to develop promotional and sales materials, such as brochures, presentations, or sales emails.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2298,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie materiałów wspierających proces sprzedaży, które przekonują klientów do wyboru oferty firmy.',
+                    'en' => 'Preparing materials that support the sales process and convince clients to choose the company\'s offer.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2299,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach branżowych, webinarach oraz konferencjach w celu zdobywania i aktualizowania wiedzy na temat reklam internetowych i marketingu cyfrowego.',
+                    'en' => 'Regularly participating in industry training, webinars, and conferences to gain and update knowledge about online advertising and digital marketing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2300,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie rozwoju narzędzi i technologii reklamowych, takich jak platformy DSP, Google Ads czy social media ads, aby móc oferować klientom najnowsze rozwiązania.',
+                    'en' => 'Keeping track of the development of advertising tools and technologies, such as DSP platforms, Google Ads, or social media ads, to offer clients the latest solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2301,
+                'name' => json_encode([
+                    'pl' => 'Korzystanie z platform reklamowych, takich jak Google Ads, Facebook Ads, czy narzędzi do automatyzacji kampanii, w celu tworzenia, monitorowania i optymalizacji kampanii.',
+                    'en' => 'Utilizing advertising platforms such as Google Ads, Facebook Ads, or campaign automation tools to create, monitor, and optimize campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2302,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie wskaźników wydajności oraz wprowadzanie zmian w kampaniach, aby osiągać jak najlepsze wyniki.',
+                    'en' => 'Tracking performance metrics and making changes to campaigns to achieve the best possible results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2303,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prognoz sprzedażowych oraz budżetów dla kampanii reklamowych, aby osiągnąć założone cele i dostosować działania do potrzeb rynku.',
+                    'en' => 'Developing sales forecasts and budgets for advertising campaigns to achieve set goals and adjust actions to market needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2304,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji planów sprzedażowych i dostosowywanie strategii w razie potrzeby.',
+                    'en' => 'Monitoring the implementation of sales plans and adjusting strategies as needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2305,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie szkoleń i warsztatów dla klientów, aby lepiej zrozumieli możliwości i korzyści związane z reklamą internetową.',
+                    'en' => 'Conducting training and workshops for clients to help them better understand the possibilities and benefits of online advertising.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2306,
+                'name' => json_encode([
+                    'pl' => 'Pomaganie klientom w interpretacji wyników kampanii i oferowanie wsparcia w optymalizacji ich strategii marketingowej.',
+                    'en' => 'Assisting clients in interpreting campaign results and providing support in optimizing their marketing strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $TECHNIKORGANIZACJIREKLAMY=[
+            [
+                'id' => 2307,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów kampanii reklamowych na podstawie celów marketingowych oraz wytycznych klienta lub firmy.',
+                    'en' => 'Developing advertising campaign plans based on marketing goals and client or company guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2308,
+                'name' => json_encode([
+                    'pl' => 'Dobór odpowiednich kanałów i narzędzi reklamowych (telewizja, radio, prasa, media społecznościowe, outdoor, itp.) w celu maksymalizacji efektywności kampanii.',
+                    'en' => 'Selecting appropriate advertising channels and tools (TV, radio, print, social media, outdoor, etc.) to maximize campaign effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2309,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem kreatywnym, grafikami oraz copywriterami przy tworzeniu materiałów reklamowych, takich jak plakaty, ulotki, broszury, reklamy internetowe oraz spoty telewizyjne.',
+                    'en' => 'Collaborating with the creative team, graphic designers, and copywriters to create advertising materials such as posters, leaflets, brochures, online ads, and TV spots.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2310,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie procesu produkcji materiałów reklamowych, w tym nadzór nad jakością i zgodnością z wytycznymi kampanii.',
+                    'en' => 'Coordinating the production process of advertising materials, including supervision of quality and compliance with campaign guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2311,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z klientami w celu zbierania informacji na temat ich potrzeb oraz dostosowywanie kampanii reklamowych do oczekiwań.',
+                    'en' => 'Maintaining contact with clients to gather information about their needs and adjusting advertising campaigns to meet their expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2312,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań między różnymi zespołami projektowymi, takimi jak marketing, grafika, produkcja oraz PR, aby zapewnić spójność i skuteczność kampanii.',
+                    'en' => 'Coordinating activities among various project teams such as marketing, graphics, production, and PR to ensure the consistency and effectiveness of campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2313,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie eventów promujących markę, takich jak konferencje prasowe, prezentacje produktów, targi, wystawy oraz imprezy plenerowe.',
+                    'en' => 'Planning and organizing events promoting the brand, such as press conferences, product presentations, fairs, exhibitions, and outdoor events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2314,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie logistyką wydarzeń, w tym rezerwacja lokalizacji, koordynacja zespołów technicznych oraz zapewnienie odpowiednich materiałów promocyjnych.',
+                    'en' => 'Managing the logistics of events, including venue booking, coordinating technical teams, and ensuring the availability of promotional materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2315,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z mediami (np. stacje telewizyjne, radio, wydawnictwa) w celu zakupu przestrzeni reklamowej oraz uzyskania jak najlepszych warunków finansowych.',
+                    'en' => 'Conducting negotiations with media (e.g., TV stations, radio, publishers) to purchase advertising space and obtain the best financial terms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2316,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z dostawcami usług, takimi jak drukarnie, agencje reklamowe, firmy produkcyjne, w celu realizacji kampanii zgodnie z budżetem i harmonogramem.',
+                    'en' => 'Collaborating with service providers such as printing houses, advertising agencies, and production companies to implement campaigns within budget and schedule.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2317,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie budżetów kampanii reklamowych oraz monitorowanie wydatków na każdym etapie ich realizacji.',
+                    'en' => 'Developing advertising campaign budgets and monitoring expenditures at every stage of implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2318,
+                'name' => json_encode([
+                    'pl' => 'Kontrola kosztów i analiza efektywności kampanii w kontekście budżetu oraz celów marketingowych, a także wprowadzanie korekt w razie potrzeby.',
+                    'en' => 'Controlling costs and analyzing campaign effectiveness in the context of the budget and marketing goals, as well as making adjustments as necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2319,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie wyników kampanii reklamowych, takich jak liczba wyświetleń, kliknięć, konwersji oraz ROI (zwrot z inwestycji).',
+                    'en' => 'Tracking the results of advertising campaigns, such as impressions, clicks, conversions, and ROI (return on investment).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2320,
+                'name' => json_encode([
+                    'pl' => 'Analiza efektywności kampanii na podstawie zebranych danych i raportowanie wyników do klientów lub przełożonych, a także sugerowanie usprawnień na przyszłość.',
+                    'en' => 'Analyzing the effectiveness of campaigns based on collected data and reporting results to clients or superiors, as well as suggesting improvements for the future.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2321,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie szczegółowych harmonogramów kampanii, które uwzględniają wszystkie etapy procesu reklamowego, od tworzenia materiałów po dystrybucję i analizę wyników.',
+                    'en' => 'Preparing detailed campaign schedules that include all stages of the advertising process, from material creation to distribution and results analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2322,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji harmonogramu oraz koordynacja działań zespołów, aby kampania przebiegała zgodnie z planem.',
+                    'en' => 'Monitoring the implementation of the schedule and coordinating team activities to ensure the campaign proceeds as planned.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2323,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prezentacji dla klientów lub zespołu marketingowego, przedstawiających szczegóły kampanii reklamowych, takie jak cele, budżet, harmonogram oraz prognozy wyników.',
+                    'en' => 'Developing presentations for clients or the marketing team that outline the details of advertising campaigns, such as objectives, budget, schedule, and expected results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2324,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów podsumowujących kampanie, zawierających dane o efektywności oraz propozycje optymalizacji działań na przyszłość.',
+                    'en' => 'Preparing reports summarizing campaigns, including data on effectiveness and suggestions for optimizing future actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2325,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań zespołów kreatywnych i produkcyjnych w celu tworzenia spójnych i skutecznych kampanii reklamowych.',
+                    'en' => 'Coordinating the efforts of creative and production teams to create cohesive and effective advertising campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2326,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji zwrotnych oraz wytycznych od klientów do zespołów produkcyjnych w celu dostosowania materiałów reklamowych do ich oczekiwań.',
+                    'en' => 'Providing feedback and guidelines from clients to production teams to tailor advertising materials to their expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2327,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie trendów rynkowych, działań konkurencji oraz preferencji konsumentów w celu lepszego dopasowania kampanii reklamowych do oczekiwań rynku.',
+                    'en' => 'Monitoring market trends, competitor activities, and consumer preferences to better tailor advertising campaigns to market expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2328,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie zebranych informacji do opracowywania skuteczniejszych strategii reklamowych.',
+                    'en' => 'Utilizing gathered information to develop more effective advertising strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2329,
+                'name' => json_encode([
+                    'pl' => 'Archiwizowanie materiałów reklamowych oraz zarządzanie ich dystrybucją do odpowiednich mediów i platform reklamowych.',
+                    'en' => 'Archiving advertising materials and managing their distribution to appropriate media and advertising platforms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2330,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o aktualizację i dostępność materiałów promocyjnych, w tym zarządzanie treściami na stronach internetowych, w mediach społecznościowych oraz innych kanałach online.',
+                    'en' => 'Ensuring the update and availability of promotional materials, including managing content on websites, social media, and other online channels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2331,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie planogramów, które przedstawiają rozmieszczenie materiałów reklamowych w przestrzeniach komercyjnych (np. sklepy, punkty sprzedaży).',
+                    'en' => 'Developing and implementing planograms that illustrate the placement of advertising materials in commercial spaces (e.g., stores, points of sale).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2332,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad realizacją planogramów oraz koordynacja prac związanych z instalacją materiałów reklamowych.',
+                    'en' => 'Supervising the implementation of planograms and coordinating the work related to the installation of advertising materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2333,
+                'name' => json_encode([
+                    'pl' => 'Adaptacja materiałów reklamowych i treści kampanii do specyfiki różnych mediów, takich jak media drukowane, telewizja, radio, media społecznościowe czy reklama outdoorowa.',
+                    'en' => 'Adapting advertising materials and campaign content to the specifics of different media, such as print media, television, radio, social media, or outdoor advertising.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2334,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie narzędzi analitycznych do oceny efektywności kampanii w różnych kanałach i optymalizacja działań w czasie rzeczywistym.',
+                    'en' => 'Using analytical tools to assess the effectiveness of campaigns across various channels and optimizing actions in real time.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2335,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i wdrażanie kampanii reklamowych na platformach społecznościowych, takich jak Facebook, Instagram, Twitter czy LinkedIn.',
+                    'en' => 'Planning and implementing advertising campaigns on social media platforms such as Facebook, Instagram, Twitter, or LinkedIn.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2336,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników kampanii w social media i wprowadzanie zmian w celu maksymalizacji efektywności działań online.',
+                    'en' => 'Monitoring the results of campaigns in social media and making adjustments to maximize the effectiveness of online activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2337,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja sesji zdjęciowych, nagrań wideo oraz innych działań produkcyjnych związanych z tworzeniem treści reklamowych.',
+                    'en' => 'Coordinating photo shoots, video recordings, and other production activities related to creating advertising content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2338,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z fotografami, reżyserami, aktorami i modelami w celu zapewnienia wysokiej jakości materiałów promocyjnych.',
+                    'en' => 'Collaborating with photographers, directors, actors, and models to ensure high-quality promotional materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2339,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem sprzedaży w celu dostarczenia im materiałów reklamowych oraz przeszkolenia ich w zakresie komunikacji i prezentacji produktów.',
+                    'en' => 'Collaborating with the sales department to provide them with advertising materials and training them in communication and product presentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2340,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dotyczących nowych kampanii i strategii reklamowych, aby zapewnić spójność przekazu firmy.',
+                    'en' => 'Organizing training sessions on new campaigns and advertising strategies to ensure the consistency of the company\'s message.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2341,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i aktualizowanie baz danych klientów, mediów, dostawców oraz partnerów biznesowych.',
+                    'en' => 'Building and updating databases of clients, media, suppliers, and business partners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2342,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z kluczowymi klientami i partnerami w celu rozwijania długoterminowych relacji biznesowych.',
+                    'en' => 'Maintaining contact with key clients and partners to develop long-term business relationships.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2343,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i archiwizowanie dokumentacji związanej z kampaniami reklamowymi, takiej jak umowy, faktury, protokoły oraz raporty.',
+                    'en' => 'Developing and archiving documentation related to advertising campaigns, such as contracts, invoices, protocols, and reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2344,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności działań reklamowych z przepisami prawa oraz regulacjami branżowymi.',
+                    'en' => 'Ensuring compliance of advertising activities with legal regulations and industry standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $PRACOWNIKOBSŁUGIKAMPANIIEMAILOWYCH=[
+            [
+                'id' => 2345,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii kampanii e-mailowych na podstawie celów marketingowych i sprzedażowych firmy.',
+                    'en' => 'Developing email campaign strategies based on the marketing and sales goals of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2346,
+                'name' => json_encode([
+                    'pl' => 'Określanie grup docelowych i segmentacja listy odbiorców w celu lepszego dopasowania treści e-maili do potrzeb i preferencji klientów.',
+                    'en' => 'Defining target groups and segmenting the recipient list to better tailor email content to customer needs and preferences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2347,
+                'name' => json_encode([
+                    'pl' => 'Pisanie treści e-maili, które są angażujące, atrakcyjne i zgodne z tonem oraz stylem komunikacji marki.',
+                    'en' => 'Writing email content that is engaging, attractive, and consistent with the brand\'s tone and communication style.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2348,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie szablonów e-mailowych przy użyciu narzędzi takich jak HTML/CSS, aby zapewnić profesjonalny wygląd wiadomości oraz zgodność z wytycznymi marki.',
+                    'en' => 'Creating email templates using tools like HTML/CSS to ensure a professional look of the messages and compliance with brand guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2349,
+                'name' => json_encode([
+                    'pl' => 'Analiza bazy danych klientów i tworzenie segmentów, takich jak nowi subskrybenci, aktywni klienci, osoby porzucające koszyk czy osoby nieaktywne.',
+                    'en' => 'Analyzing the customer database and creating segments such as new subscribers, active customers, cart abandoners, or inactive users.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2350,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie treści e-maili do poszczególnych segmentów, aby zwiększyć skuteczność kampanii i zaangażowanie odbiorców.',
+                    'en' => 'Customizing email content for individual segments to increase campaign effectiveness and audience engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2351,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie automatycznych kampanii e-mailowych, takich jak powitalne wiadomości, follow-up po zakupie, kampanie reaktywacyjne czy powiadomienia o porzuconym koszyku.',
+                    'en' => 'Implementing automated email campaigns, such as welcome messages, post-purchase follow-ups, reactivation campaigns, or abandoned cart notifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2352,
+                'name' => json_encode([
+                    'pl' => 'Używanie platform do automatyzacji marketingu (Mailchimp, HubSpot, ActiveCampaign) w celu zarządzania i monitorowania automatycznych kampanii.',
+                    'en' => 'Using marketing automation platforms (Mailchimp, HubSpot, ActiveCampaign) to manage and monitor automated campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2353,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie testów A/B w celu porównania różnych wersji e-maili (nagłówków, treści, obrazów, przycisków CTA) i optymalizacji kampanii.',
+                    'en' => 'Conducting A/B tests to compare different versions of emails (subject lines, content, images, CTA buttons) and optimize campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2354,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników testów oraz wprowadzanie usprawnień na podstawie zebranych danych.',
+                    'en' => 'Analyzing test results and making improvements based on collected data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2355,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o zgodność kampanii e-mailowych z regulacjami prawnymi, takimi jak RODO (GDPR), CAN-SPAM Act oraz innymi przepisami dotyczącymi ochrony danych osobowych i marketingu elektronicznego.',
+                    'en' => 'Ensuring email campaigns comply with legal regulations, such as GDPR, CAN-SPAM Act, and other regulations regarding data protection and electronic marketing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2356,
+                'name' => json_encode([
+                    'pl' => 'Regularne aktualizowanie bazy danych subskrybentów, aby usunąć nieaktywnych użytkowników lub osoby, które wycofały zgodę na otrzymywanie wiadomości.',
+                    'en' => 'Regularly updating the subscriber database to remove inactive users or those who have withdrawn consent to receive messages.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2357,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie wskaźników efektywności kampanii, takich jak open rate, CTR, conversion rate oraz unsubscribe rate.',
+                    'en' => 'Tracking key performance indicators of campaigns, such as open rate, CTR, conversion rate, and unsubscribe rate.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2358,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z wynikami kampanii oraz rekomendowanie dalszych działań w celu poprawy efektywności.',
+                    'en' => 'Creating reports on campaign results and recommending further actions to improve effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2359,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych z kampanii i optymalizacja elementów e-maili (tematu, treści, grafiki, CTA), aby zwiększyć skuteczność kampanii.',
+                    'en' => 'Analyzing campaign data and optimizing email elements (subject line, content, graphics, CTA) to enhance campaign effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2360,
+                'name' => json_encode([
+                    'pl' => 'Regularne testowanie różnych formatów i strategii e-mail marketingu w celu znalezienia najlepszych praktyk i zwiększenia zaangażowania odbiorców.',
+                    'en' => 'Regularly testing different email marketing formats and strategies to find best practices and increase audience engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2361,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie, zarządzanie i utrzymywanie bazy danych subskrybentów w systemie CRM lub narzędziu do e-mail marketingu.',
+                    'en' => 'Updating, managing, and maintaining the subscriber database in a CRM system or email marketing tool.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2362,
+                'name' => json_encode([
+                    'pl' => 'Importowanie, eksportowanie oraz segmentowanie bazy danych na podstawie aktywności użytkowników oraz ich preferencji.',
+                    'en' => 'Importing, exporting, and segmenting the database based on user activity and preferences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2363,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z zespołem marketingu w celu opracowania kampanii, które są zgodne z ogólną strategią marketingową firmy.',
+                    'en' => 'Close collaboration with the marketing team to develop campaigns that align with the overall marketing strategy of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2364,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z grafikami i copywriterami w celu przygotowania spójnych i atrakcyjnych wizualnie treści e-mailowych.',
+                    'en' => 'Coordinating with graphic designers and copywriters to prepare consistent and visually appealing email content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2365,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie technik personalizacji, takich jak umieszczanie imienia odbiorcy w nagłówku lub dostosowywanie treści na podstawie historii zakupów i zachowań klientów.',
+                    'en' => 'Implementing personalization techniques, such as placing the recipient\'s name in the header or customizing content based on purchase history and customer behaviors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2366,
+                'name' => json_encode([
+                    'pl' => 'Testowanie skuteczności personalizowanych wiadomości i dostosowywanie kampanii na podstawie wyników.',
+                    'en' => 'Testing the effectiveness of personalized messages and adjusting campaigns based on results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2367,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i ustalanie harmonogramu wysyłki e-maili, uwzględniając najlepsze godziny i dni wysyłki, aby osiągnąć najwyższą efektywność.',
+                    'en' => 'Planning and scheduling the sending of emails, considering the best hours and days for sending to achieve maximum effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2368,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie harmonogramu kampanii do segmentów odbiorców oraz specyficznych wydarzeń lub promocji.',
+                    'en' => 'Adjusting the campaign schedule to audience segments and specific events or promotions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2369,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem web developerów i grafików w celu tworzenia stron docelowych (landing pages), które są powiązane z kampaniami e-mailowymi.',
+                    'en' => 'Collaborating with web developers and designers to create landing pages linked to email campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2370,
+                'name' => json_encode([
+                    'pl' => 'Optymalizacja stron docelowych pod kątem konwersji i integracja ich z kampaniami e-mailowymi.',
+                    'en' => 'Optimizing landing pages for conversion and integrating them with email campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2371,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie kampanii mających na celu reaktywację nieaktywnych subskrybentów, takich jak kampanie zachęcające do powrotu lub specjalne oferty promocyjne.',
+                    'en' => 'Creating campaigns aimed at reactivating inactive subscribers, such as campaigns encouraging return or special promotional offers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2372,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników kampanii reaktywacyjnych i wprowadzanie zmian w strategii, aby skuteczniej angażować nieaktywnych odbiorców.',
+                    'en' => 'Analyzing the results of reactivation campaigns and making changes to the strategy to more effectively engage inactive recipients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2373,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie kampanii e-mailowych z innymi działaniami marketingowymi, takimi jak media społecznościowe, kampanie PPC, SEO czy marketing treści, w celu zapewnienia spójności komunikacji.',
+                    'en' => 'Coordinating email campaigns with other marketing activities such as social media, PPC campaigns, SEO, or content marketing to ensure communication consistency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2374,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem marketingu w celu stworzenia zintegrowanej strategii promocyjnej, która łączy różne kanały komunikacji.',
+                    'en' => 'Collaborating with the marketing team to create an integrated promotional strategy that combines different communication channels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2375,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie szablonów e-maili, aby zapewnić ich poprawne wyświetlanie na wszystkich urządzeniach i platformach.',
+                    'en' => 'Adjusting email templates to ensure they display correctly on all devices and platforms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2376,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie strategii mających na celu zwiększenie liczby subskrybentów, takich jak kampanie lead generation, formularze zapisu na stronach internetowych czy pop-upy na stronie.',
+                    'en' => 'Implementing strategies aimed at increasing subscriber numbers, such as lead generation campaigns, signup forms on websites, or pop-ups.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2377,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem marketingu w celu pozyskiwania nowych subskrybentów poprzez kampanie promocyjne i programy lojalnościowe.',
+                    'en' => 'Collaborating with the marketing team to acquire new subscribers through promotional campaigns and loyalty programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2378,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wiedzy zespołowi marketingowemu na temat najlepszych praktyk w zakresie e-mail marketingu oraz najnowszych trendów i narzędzi.',
+                    'en' => 'Sharing knowledge with the marketing team about best practices in email marketing and the latest trends and tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2379,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dotyczących tworzenia skutecznych kampanii e-mailowych oraz optymalizacji treści pod kątem efektywności.',
+                    'en' => 'Organizing training on creating effective email campaigns and optimizing content for efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2380,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wskaźników deliverability, czyli wskaźników dostarczalności e-maili, aby upewnić się, że wiadomości trafiają do skrzynek odbiorczych, a nie do spamu.',
+                    'en' => 'Monitoring deliverability rates to ensure that emails reach inboxes and do not end up in spam.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2381,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie najlepszych praktyk, takich jak zarządzanie czystością listy subskrybentów i stosowanie odpowiednich nagłówków i treści, aby poprawić deliverability.',
+                    'en' => 'Implementing best practices such as managing the cleanliness of the subscriber list and using appropriate headers and content to improve deliverability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2382,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie regularnych raportów z wyników kampanii e-mailowych, w tym analizowania open rate, CTR, bounce rate oraz wskaźnika konwersji.',
+                    'en' => 'Creating regular reports on the results of email campaigns, including analyzing open rate, CTR, bounce rate, and conversion rate.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2383,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wniosków zespołowi marketingowemu oraz sugerowanie ulepszeń na podstawie analizy danych i wyników.',
+                    'en' => 'Providing insights to the marketing team and suggesting improvements based on data analysis and results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $TECHNIKREKLAMY=[
+            [
+                'id' => 2384,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i realizacja materiałów reklamowych, takich jak ulotki, plakaty, banery, broszury, wizytówki oraz inne elementy graficzne.',
+                    'en' => 'Preparing and implementing advertising materials such as leaflets, posters, banners, brochures, business cards, and other graphic elements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2385,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z grafikami, copywriterami i innymi członkami zespołu kreatywnego w celu opracowania atrakcyjnych i zgodnych z wytycznymi projektów.',
+                    'en' => 'Collaborating with graphic designers, copywriters, and other members of the creative team to develop appealing and guideline-compliant projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2386,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i wdrażanie kampanii reklamowych zgodnie z wytycznymi zespołu marketingowego oraz celami firmy.',
+                    'en' => 'Planning and implementing advertising campaigns according to the marketing team’s guidelines and the company’s objectives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2387,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępów kampanii, zarządzanie harmonogramem oraz dbanie o zgodność działań z zaplanowanymi terminami.',
+                    'en' => 'Monitoring campaign progress, managing the schedule, and ensuring compliance with planned deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2388,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z klientami oraz koordynacja działań związanych z realizacją zamówień na materiały reklamowe.',
+                    'en' => 'Maintaining contact with clients and coordinating activities related to the fulfillment of advertising material orders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2389,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu w celu dostosowania kampanii reklamowych do aktualnych strategii i potrzeb rynkowych.',
+                    'en' => 'Collaborating with the marketing department to adjust advertising campaigns to current strategies and market needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2390,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie oprogramowania graficznego (Adobe Photoshop, Illustrator) do tworzenia i edytowania projektów graficznych na potrzeby kampanii reklamowych.',
+                    'en' => 'Using graphic design software (Adobe Photoshop, Illustrator) to create and edit graphic projects for advertising campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2391,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie istniejących materiałów reklamowych do różnych formatów i nośników, takich jak media drukowane, online czy outdoor.',
+                    'en' => 'Adapting existing advertising materials to various formats and media, such as print, online, or outdoor.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2392,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie procesu druku materiałów reklamowych, takich jak plakaty, ulotki, banery, i inne, w współpracy z drukarniami i dostawcami.',
+                    'en' => 'Coordinating the printing process of advertising materials such as posters, leaflets, banners, and others in collaboration with printing companies and suppliers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2393,
+                'name' => json_encode([
+                    'pl' => 'Kontrola jakości wydrukowanych materiałów, aby były zgodne z projektem i spełniały wymagania firmy oraz klientów.',
+                    'en' => 'Quality control of printed materials to ensure they comply with the design and meet the company’s and clients’ requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2394,
+                'name' => json_encode([
+                    'pl' => 'Planowanie rozmieszczenia materiałów reklamowych w punktach sprzedaży, na targach, w przestrzeniach publicznych czy innych lokalizacjach zgodnie z planogramami.',
+                    'en' => 'Planning the placement of advertising materials in retail outlets, at fairs, in public spaces, or other locations according to planograms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2395,
+                'name' => json_encode([
+                    'pl' => 'Montaż i demontaż reklam oraz nadzór nad instalacją ekspozycji reklamowych w różnych miejscach.',
+                    'en' => 'Installation and dismantling of advertisements and supervising the installation of advertising displays in various locations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2396,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie wyników kampanii reklamowych i raportowanie ich skuteczności w oparciu o wskaźniki takie jak liczba kliknięć, wyświetleń, czy wskaźnik konwersji.',
+                    'en' => 'Tracking advertising campaign results and reporting their effectiveness based on metrics such as clicks, views, or conversion rates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2397,
+                'name' => json_encode([
+                    'pl' => 'Analiza zebranych danych i sugerowanie zmian w kampaniach w celu optymalizacji efektów.',
+                    'en' => 'Analyzing collected data and suggesting changes in campaigns to optimize results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2398,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby wszystkie materiały reklamowe oraz kampanie były zgodne z przepisami prawa dotyczącymi reklamy, praw autorskich oraz ochrony danych osobowych.',
+                    'en' => 'Ensuring that all advertising materials and campaigns comply with advertising laws, copyright laws, and data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2399,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wytycznych prawnych i dostosowywanie działań reklamowych w celu minimalizacji ryzyka prawnego.',
+                    'en' => 'Monitoring legal guidelines and adjusting advertising activities to minimize legal risks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2400,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie harmonogramów produkcji materiałów reklamowych i kampanii, aby zapewnić terminową realizację zadań.',
+                    'en' => 'Developing production schedules for advertising materials and campaigns to ensure timely task completion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2401,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępu prac i zarządzanie zespołami produkcyjnymi w celu realizacji kampanii zgodnie z planem.',
+                    'en' => 'Monitoring work progress and managing production teams to implement campaigns as planned.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2402,
+                'name' => json_encode([
+                    'pl' => 'Negocjowanie warunków współpracy z dostawcami usług, takich jak drukarnie, firmy produkcyjne czy agencje reklamowe.',
+                    'en' => 'Negotiating terms of cooperation with service providers such as printing companies, production companies, or advertising agencies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2403,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z podwykonawcami i zapewnienie, że materiały reklamowe są wykonane zgodnie z wytycznymi i standardami jakości.',
+                    'en' => 'Coordinating activities with subcontractors and ensuring that advertising materials are produced according to guidelines and quality standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2404,
+                'name' => json_encode([
+                    'pl' => 'Używanie oprogramowania i narzędzi, takich jak programy graficzne czy platformy zarządzania kampaniami online, w celu tworzenia i monitorowania materiałów reklamowych.',
+                    'en' => 'Using software and tools, such as graphic design programs or online campaign management platforms, to create and monitor advertising materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2405,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowoczesnych technologii w produkcji reklam, takich jak digital signage czy techniki AR.',
+                    'en' => 'Implementing modern technologies in advertising production, such as digital signage or AR techniques.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2406,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie prezentacji dla klientów oraz zespołu marketingowego, które przedstawiają projekty kampanii, harmonogramy oraz materiały reklamowe.',
+                    'en' => 'Creating presentations for clients and the marketing team that outline campaign designs, schedules, and advertising materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2407,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów promocyjnych, takich jak broszury produktowe, katalogi czy elementy identyfikacji wizualnej firmy.',
+                    'en' => 'Developing promotional materials such as product brochures, catalogs, or company branding elements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2408,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i kontrola budżetów kampanii reklamowych oraz dbanie o to, aby wszystkie działania były zgodne z założonymi kosztami.',
+                    'en' => 'Monitoring and controlling advertising campaign budgets and ensuring all activities comply with set costs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2409,
+                'name' => json_encode([
+                    'pl' => 'Raportowanie wydatków oraz analiza efektywności kosztowej kampanii.',
+                    'en' => 'Reporting expenditures and analyzing the cost-effectiveness of campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2410,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, jak materiały reklamowe wyglądają i działają na różnych nośnikach, takich jak druk, strony internetowe, media społecznościowe czy ekrany cyfrowe.',
+                    'en' => 'Checking how advertising materials appear and perform on various media, such as print, websites, social media, or digital screens.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2411,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie treści i grafiki, aby zapewnić spójny i atrakcyjny wygląd reklam na wszystkich platformach.',
+                    'en' => 'Adjusting content and graphics to ensure a consistent and attractive appearance of advertisements across all platforms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2412,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i tworzenie treści reklamowych na potrzeby kampanii w mediach społecznościowych, takich jak Facebook, Instagram, LinkedIn czy Twitter.',
+                    'en' => 'Planning and creating advertising content for campaigns on social media platforms such as Facebook, Instagram, LinkedIn, or Twitter.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2413,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników kampanii social media i optymalizacja działań w oparciu o zebrane dane.',
+                    'en' => 'Monitoring social media campaign results and optimizing actions based on collected data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2414,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja sesji zdjęciowych, nagrań wideo oraz innych działań produkcyjnych związanych z tworzeniem treści reklamowych.',
+                    'en' => 'Coordinating photo shoots, video recordings, and other production activities related to creating advertising content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2415,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z fotografami, reżyserami, aktorami i modelami w celu zapewnienia wysokiej jakości materiałów promocyjnych.',
+                    'en' => 'Collaborating with photographers, directors, actors, and models to ensure high-quality promotional materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2416,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem sprzedaży w celu dostarczenia im materiałów reklamowych oraz przeszkolenia ich w zakresie komunikacji i prezentacji produktów.',
+                    'en' => 'Collaborating with the sales department to provide them with advertising materials and training them on product communication and presentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2417,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dotyczących nowych kampanii i strategii reklamowych, aby zapewnić spójność przekazu firmy.',
+                    'en' => 'Organizing training on new campaigns and advertising strategies to ensure consistency in the company’s message.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2418,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i aktualizowanie baz danych klientów, mediów, dostawców oraz partnerów biznesowych.',
+                    'en' => 'Building and updating databases of clients, media, suppliers, and business partners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2419,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z kluczowymi klientami i partnerami w celu rozwijania długoterminowych relacji biznesowych.',
+                    'en' => 'Maintaining contact with key clients and partners to develop long-term business relationships.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2420,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i archiwizowanie dokumentacji związanej z kampaniami reklamowymi, takiej jak umowy, faktury, protokoły oraz raporty.',
+                    'en' => 'Developing and archiving documentation related to advertising campaigns, such as contracts, invoices, protocols, and reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2421,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności działań reklamowych z przepisami prawa oraz regulacjami branżowymi.',
+                    'en' => 'Ensuring that advertising activities comply with laws and industry regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $INŻYNIERSPRZEDAŻY=[
+            [
+                'id' => 2422,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie spotkań z klientami w celu zrozumienia ich potrzeb, problemów i wymagań technicznych.',
+                    'en' => 'Conducting meetings with clients to understand their needs, problems, and technical requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2423,
+                'name' => json_encode([
+                    'pl' => 'Doradzanie klientom w zakresie najlepszych rozwiązań technicznych, które najlepiej odpowiadają ich specyficznym potrzebom biznesowym.',
+                    'en' => 'Advising clients on the best technical solutions that best meet their specific business needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2424,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie prezentacji i demonstracji produktów lub usług technologicznych dla potencjalnych klientów oraz partnerów biznesowych.',
+                    'en' => 'Conducting presentations and demonstrations of technological products or services for potential clients and business partners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2425,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie szczegółowych wyjaśnień dotyczących funkcji i korzyści oferowanych rozwiązań oraz odpowiadanie na techniczne pytania klientów.',
+                    'en' => 'Preparing detailed explanations of the features and benefits of the offered solutions and answering technical questions from clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2426,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie kompleksowych ofert technicznych i handlowych, które uwzględniają specyfikacje produktów, warunki handlowe oraz budżet klientów.',
+                    'en' => 'Creating comprehensive technical and commercial offers that include product specifications, trading conditions, and client budgets.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2427,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem sprzedaży oraz działem technicznym w celu dostosowania ofert do indywidualnych wymagań klientów.',
+                    'en' => 'Cooperating with the sales and technical departments to tailor offers to individual client requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2428,
+                'name' => json_encode([
+                    'pl' => 'Udział w negocjacjach z klientami, zapewniając wsparcie techniczne i merytoryczne w celu uzyskania najlepszych warunków umowy.',
+                    'en' => 'Participating in negotiations with clients, providing technical and substantive support to obtain the best terms of the contract.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2429,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w rozwiązywaniu problemów technicznych i odpowiadanie na pytania związane z ofertą, aby ułatwić zamknięcie transakcji.',
+                    'en' => 'Assisting in solving technical problems and answering questions related to the offer to facilitate closing the deal.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2430,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie dokumentacji technicznej, takiej jak specyfikacje produktów, schematy instalacji, instrukcje obsługi i przewodniki dla klientów.',
+                    'en' => 'Developing technical documentation, such as product specifications, installation diagrams, user manuals, and guides for clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2431,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie technicznych briefów i materiałów wspierających dział sprzedaży w działaniach marketingowych i ofertowych.',
+                    'en' => 'Preparing technical briefs and materials supporting the sales department in marketing and offer activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2432,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami wdrożeniowymi i technicznymi w celu zapewnienia płynnego wdrożenia sprzedanych rozwiązań u klientów.',
+                    'en' => 'Cooperating with implementation and technical teams to ensure smooth implementation of sold solutions at clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2433,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad etapami instalacji, konfiguracji i uruchomienia systemów, a także doradztwo techniczne podczas całego procesu wdrożeniowego.',
+                    'en' => 'Supervising the stages of installation, configuration, and system launch, as well as providing technical advice throughout the implementation process.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2434,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i prowadzenie demonstracji produktów lub rozwiązań technicznych, aby zilustrować ich funkcjonalność i korzyści.',
+                    'en' => 'Organizing and conducting demonstrations of products or technical solutions to illustrate their functionality and benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2435,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie prototypów lub wersji demonstracyjnych rozwiązań oraz prowadzenie testów w środowisku klienta.',
+                    'en' => 'Creating prototypes or demo versions of solutions and conducting tests in the client’s environment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2436,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie trendów technologicznych oraz działań konkurencji w celu dostosowania oferty firmy do zmieniających się warunków rynkowych.',
+                    'en' => 'Tracking technological trends and competitive actions to adapt the company’s offerings to changing market conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2437,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o nowych technologiach i produktach, które mogą mieć wpływ na ofertę firmy oraz strategie sprzedażowe.',
+                    'en' => 'Providing information on new technologies and products that may impact the company’s offerings and sales strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2438,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie długoterminowych relacji z klientami poprzez regularny kontakt, doradztwo techniczne i wsparcie posprzedażowe.',
+                    'en' => 'Maintaining long-term relationships with clients through regular contact, technical advice, and post-sales support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2439,
+                'name' => json_encode([
+                    'pl' => 'Zapewnianie wysokiego poziomu obsługi klienta w celu budowania lojalności oraz zwiększania szans na dalszą współpracę i upselling.',
+                    'en' => 'Ensuring a high level of customer service to build loyalty and increase chances for further cooperation and upselling.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2440,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów dotyczących wyników sprzedaży, efektywności ofert i działań marketingowych.',
+                    'en' => 'Developing reports on sales performance, offer effectiveness, and marketing activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2441,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych sprzedażowych oraz dostarczanie rekomendacji na temat strategii sprzedaży i optymalizacji ofert w celu poprawy wyników.',
+                    'en' => 'Analyzing sales data and providing recommendations on sales strategies and offer optimization to improve performance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2442,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem rozwoju produktów w celu dostosowania istniejących rozwiązań do potrzeb klientów oraz opracowywania nowych funkcji i produktów.',
+                    'en' => 'Cooperating with the product development department to adapt existing solutions to customer needs and develop new features and products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2443,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji zwrotnych od klientów oraz sugestii dotyczących usprawnień i rozwoju produktów.',
+                    'en' => 'Providing feedback from clients and suggestions for improvements and product development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2444,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dla klientów z zakresu obsługi i eksploatacji sprzedanych produktów oraz technologii.',
+                    'en' => 'Organizing training for clients on the use and operation of sold products and technologies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2445,
+                'name' => json_encode([
+                    'pl' => 'Szkolenie zespołów sprzedażowych w zakresie wiedzy technicznej i funkcjonalności oferowanych rozwiązań, aby mogli lepiej prezentować i sprzedawać produkty.',
+                    'en' => 'Training sales teams on technical knowledge and functionalities of offered solutions to better present and sell products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2446,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie broszur, specyfikacji technicznych oraz innych materiałów wspierających działania marketingowe i sprzedażowe.',
+                    'en' => 'Preparing brochures, technical specifications, and other materials supporting marketing and sales activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2447,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie treści technicznych do kampanii promocyjnych, które wyjaśniają zalety i funkcjonalności produktów.',
+                    'en' => 'Creating technical content for promotional campaigns that explain the advantages and functionalities of products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2448,
+                'name' => json_encode([
+                    'pl' => 'Analiza specyficznych potrzeb klientów i opracowywanie spersonalizowanych rozwiązań technicznych, które są najlepiej dopasowane do ich wymagań.',
+                    'en' => 'Analyzing specific client needs and developing personalized technical solutions that are best suited to their requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2449,
+                'name' => json_encode([
+                    'pl' => 'Optymalizacja istniejących rozwiązań w celu zwiększenia ich efektywności oraz spełnienia wymagań klientów.',
+                    'en' => 'Optimizing existing solutions to increase their effectiveness and meet client requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2450,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie techniczne dla zespołów sprzedaży na każdym etapie procesu sprzedażowego, od pierwszego kontaktu z klientem po zamknięcie transakcji.',
+                    'en' => 'Providing technical support for sales teams at every stage of the sales process, from initial contact with the client to closing the deal.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2451,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo techniczne w zakresie rozwiązań i usług firmy oraz dostarczanie zespołom sprzedaży odpowiednich informacji i narzędzi wspierających.',
+                    'en' => 'Providing technical advice on the company’s solutions and services and supplying sales teams with relevant information and supporting tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2452,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie firmy na targach, konferencjach i innych wydarzeniach branżowych w celu promocji produktów oraz nawiązywania kontaktów biznesowych.',
+                    'en' => 'Representing the company at trade shows, conferences, and other industry events to promote products and establish business contacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2453,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie rozwiązań technologicznych i prowadzenie demonstracji podczas wydarzeń, aby zwiększyć zainteresowanie produktami firmy.',
+                    'en' => 'Presenting technological solutions and conducting demonstrations at events to increase interest in the company’s products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2454,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z partnerami technologicznymi w celu rozwijania nowych rozwiązań oraz integracji produktów i usług.',
+                    'en' => 'Cooperating with technology partners to develop new solutions and integrate products and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2455,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z partnerami, aby zapewnić kompatybilność i zgodność produktów z ofertą firmy.',
+                    'en' => 'Coordinating actions with partners to ensure compatibility and compliance of products with the company’s offerings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2456,
+                'name' => json_encode([
+                    'pl' => 'Ciągłe podnoszenie kwalifikacji poprzez uczestnictwo w szkoleniach technicznych, kursach sprzedażowych oraz konferencjach branżowych.',
+                    'en' => 'Continuously improving qualifications by attending technical training, sales courses, and industry conferences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2457,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie najnowszych trendów i nowości technologicznych w branży, aby być na bieżąco z rozwojem produktów i potrzebami klientów.',
+                    'en' => 'Keeping track of the latest trends and technological innovations in the industry to stay updated on product developments and customer needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2458,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań projektowych związanych ze sprzedażą i wdrażaniem rozwiązań technologicznych u klientów.',
+                    'en' => 'Coordinating project activities related to the sale and implementation of technological solutions for clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2459,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie harmonogramów projektów, monitorowanie postępu oraz zarządzanie zespołami technicznymi i wdrożeniowymi.',
+                    'en' => 'Creating project schedules, monitoring progress, and managing technical and implementation teams.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2460,
+                'name' => json_encode([
+                    'pl' => 'Identyfikowanie możliwości sprzedaży dodatkowych produktów lub usług obecnym klientom, aby zwiększyć wartość współpracy (upselling).',
+                    'en' => 'Identifying opportunities to sell additional products or services to current clients to increase the value of cooperation (upselling).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2461,
+                'name' => json_encode([
+                    'pl' => 'Proponowanie komplementarnych rozwiązań i produktów, które mogą zwiększyć satysfakcję klienta i jednocześnie generować dodatkowe przychody (cross-selling).',
+                    'en' => 'Proposing complementary solutions and products that can enhance customer satisfaction while generating additional revenue (cross-selling).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $OPIEKUNKLIENTA= [
+                [
+                    'id' => 2462,
+                    'name' => json_encode([
+                        'pl' => 'Nawiązywanie i utrzymywanie długotrwałych relacji z klientami poprzez regularny kontakt i wsparcie.',
+                        'en' => 'Establishing and maintaining long-term relationships with clients through regular contact and support.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2463,
+                    'name' => json_encode([
+                        'pl' => 'Poznawanie potrzeb klientów oraz zrozumienie ich oczekiwań w celu dostosowania oferty i usług.',
+                        'en' => 'Understanding clients\' needs and expectations to tailor offerings and services accordingly.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2464,
+                    'name' => json_encode([
+                        'pl' => 'Odpowiadanie na zapytania klientów telefonicznie, mailowo lub osobiście, zapewniając szybkie i skuteczne rozwiązanie problemów.',
+                        'en' => 'Responding to client inquiries via phone, email, or in person, ensuring prompt and effective problem resolution.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2465,
+                    'name' => json_encode([
+                        'pl' => 'Rozwiązywanie reklamacji i skarg klientów, dbając o ich zadowolenie i satysfakcję z obsługi.',
+                        'en' => 'Resolving client complaints and grievances, ensuring their satisfaction with the service.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2466,
+                    'name' => json_encode([
+                        'pl' => 'Udzielanie klientom informacji na temat produktów i usług firmy oraz doradzanie w zakresie najlepszego wyboru.',
+                        'en' => 'Providing clients with information about the company\'s products and services and advising on the best choices.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2467,
+                    'name' => json_encode([
+                        'pl' => 'Wspieranie klientów w zakresie obsługi produktów i rozwiązywanie problemów technicznych, współpracując z odpowiednimi działami, np. technicznym lub wsparcia.',
+                        'en' => 'Assisting clients with product support and solving technical issues by collaborating with relevant departments, e.g., technical support.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2468,
+                    'name' => json_encode([
+                        'pl' => 'Przedstawianie i promowanie oferty firmy, w tym nowych produktów, promocji i usług, dostosowując przekaz do indywidualnych potrzeb klientów.',
+                        'en' => 'Presenting and promoting the company\'s offerings, including new products, promotions, and services, tailoring the message to individual client needs.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2469,
+                    'name' => json_encode([
+                        'pl' => 'Organizowanie prezentacji i spotkań z klientami w celu omówienia korzyści płynących z oferty firmy.',
+                        'en' => 'Organizing presentations and meetings with clients to discuss the benefits of the company\'s offerings.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2470,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z działem sprzedaży w zakresie obsługi klienta, przygotowywanie ofert oraz koordynacja zamówień.',
+                        'en' => 'Collaborating with the sales department on customer service, preparing offers, and coordinating orders.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2471,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie realizacji zamówień i informowanie klientów o statusie dostaw lub realizacji usług.',
+                        'en' => 'Monitoring order fulfillment and informing clients about the status of deliveries or service execution.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2472,
+                    'name' => json_encode([
+                        'pl' => 'Prowadzenie dokumentacji dotyczącej klientów, w tym zapisów o kontaktach, preferencjach i historiach zakupów.',
+                        'en' => 'Maintaining documentation related to clients, including records of contacts, preferences, and purchase histories.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2473,
+                    'name' => json_encode([
+                        'pl' => 'Regularna aktualizacja bazy danych klientów, aby zapewnić aktualność i dokładność informacji.',
+                        'en' => 'Regularly updating the client database to ensure information is current and accurate.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2474,
+                    'name' => json_encode([
+                        'pl' => 'Regularne przeprowadzanie ankiet satysfakcji klienta oraz zbieranie opinii w celu oceny jakości obsługi i usług.',
+                        'en' => 'Conducting regular customer satisfaction surveys and gathering feedback to assess the quality of service and offerings.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2475,
+                    'name' => json_encode([
+                        'pl' => 'Analiza feedbacku od klientów i wprowadzanie działań usprawniających w odpowiedzi na zgłoszone problemy i sugestie.',
+                        'en' => 'Analyzing feedback from clients and implementing improvements in response to reported issues and suggestions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2476,
+                    'name' => json_encode([
+                        'pl' => 'Proponowanie klientom programów lojalnościowych, rabatów oraz innych korzyści mających na celu zwiększenie ich zaangażowania i lojalności.',
+                        'en' => 'Offering clients loyalty programs, discounts, and other benefits to enhance their engagement and loyalty.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2477,
+                    'name' => json_encode([
+                        'pl' => 'Utrzymywanie regularnego kontaktu z klientami poprzez e-maile, telefon lub spotkania, aby budować zaufanie i utrzymać długoterminowe relacje.',
+                        'en' => 'Maintaining regular contact with clients through emails, phone calls, or meetings to build trust and sustain long-term relationships.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2478,
+                    'name' => json_encode([
+                        'pl' => 'Przygotowywanie raportów dotyczących aktywności klientów, poziomu satysfakcji oraz wyników sprzedażowych związanych z obsługą klientów.',
+                        'en' => 'Preparing reports on customer activity, satisfaction levels, and sales performance related to customer service.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2479,
+                    'name' => json_encode([
+                        'pl' => 'Monitorowanie kluczowych wskaźników efektywności związanych z obsługą klienta, takich jak czas reakcji na zapytania, wskaźnik rozwiązanych problemów czy poziom retencji klientów.',
+                        'en' => 'Monitoring key performance indicators related to customer service, such as response time to inquiries, resolution rates, and customer retention levels.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2480,
+                    'name' => json_encode([
+                        'pl' => 'Analiza zachowań klientów oraz ich historii zakupów w celu identyfikacji nowych możliwości sprzedażowych (upselling, cross-selling).',
+                        'en' => 'Analyzing customer behaviors and purchase histories to identify new sales opportunities (upselling, cross-selling).'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2481,
+                    'name' => json_encode([
+                        'pl' => 'Proponowanie klientom dodatkowych produktów lub usług, które mogą odpowiadać ich potrzebom i zwiększać wartość współpracy.',
+                        'en' => 'Offering clients additional products or services that may meet their needs and enhance the value of cooperation.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2482,
+                    'name' => json_encode([
+                        'pl' => 'Planowanie i organizowanie regularnych spotkań z kluczowymi klientami, aby omówić ich potrzeby, oczekiwania oraz możliwości współpracy.',
+                        'en' => 'Planning and organizing regular meetings with key clients to discuss their needs, expectations, and collaboration opportunities.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2483,
+                    'name' => json_encode([
+                        'pl' => 'Przygotowywanie agendy spotkań oraz opracowywanie raportów podsumowujących omawiane tematy i ustalenia.',
+                        'en' => 'Preparing meeting agendas and compiling reports summarizing discussed topics and agreements.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2484,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z innymi działami firmy, takimi jak marketing, logistyka, finanse czy dział techniczny, aby zapewnić kompleksową obsługę klienta.',
+                        'en' => 'Collaborating with other departments in the company, such as marketing, logistics, finance, or technical support, to ensure comprehensive customer service.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2485,
+                    'name' => json_encode([
+                        'pl' => 'Przekazywanie informacji między zespołami w celu rozwiązywania problemów klientów oraz koordynacji działań mających na celu ich zadowolenie.',
+                        'en' => 'Transmitting information between teams to resolve customer issues and coordinate efforts to ensure their satisfaction.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2486,
+                    'name' => json_encode([
+                        'pl' => 'Organizowanie szkoleń i warsztatów dla klientów w zakresie użytkowania produktów lub usług firmy.',
+                        'en' => 'Organizing training sessions and workshops for clients on the use of the company\'s products or services.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2487,
+                    'name' => json_encode([
+                        'pl' => 'Przygotowywanie materiałów edukacyjnych, takich jak instrukcje, poradniki czy webinary, aby klienci mieli dostęp do informacji o produkcie.',
+                        'en' => 'Preparing educational materials such as instructions, guides, or webinars to provide clients with product information.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2488,
+                    'name' => json_encode([
+                        'pl' => 'Obsługa reklamacji oraz procesów zwrotów produktów zgodnie z polityką firmy, dbając o szybkie i skuteczne rozwiązanie problemów klientów.',
+                        'en' => 'Handling complaints and product return processes according to company policy, ensuring quick and effective resolution of client issues.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2489,
+                    'name' => json_encode([
+                        'pl' => 'Dokumentowanie reklamacji oraz analiza ich przyczyn w celu wprowadzenia działań zapobiegawczych.',
+                        'en' => 'Documenting complaints and analyzing their causes to implement preventive measures.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2490,
+                    'name' => json_encode([
+                        'pl' => 'Tworzenie ofert handlowych dla klientów, uwzględniając ich specyficzne potrzeby i budżet.',
+                        'en' => 'Creating commercial offers for clients, considering their specific needs and budget.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2491,
+                    'name' => json_encode([
+                        'pl' => 'Koordynacja procesu podpisywania umów oraz dbanie o zgodność ofert i umów z polityką firmy.',
+                        'en' => 'Coordinating the contract signing process and ensuring that offers and contracts comply with company policy.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2492,
+                    'name' => json_encode([
+                        'pl' => 'Uczestnictwo w regularnych spotkaniach zespołu w celu omówienia strategii obsługi klienta oraz wdrażania nowych procedur i technologii.',
+                        'en' => 'Participating in regular team meetings to discuss customer service strategies and implement new procedures and technologies.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2493,
+                    'name' => json_encode([
+                        'pl' => 'Udział w szkoleniach z zakresu obsługi klienta, sprzedaży i produktów firmy, aby na bieżąco podnosić swoje kwalifikacje.',
+                        'en' => 'Participating in training sessions on customer service, sales, and company products to continuously improve skills.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2494,
+                    'name' => json_encode([
+                        'pl' => 'Śledzenie działań konkurencji oraz analizy rynku w celu lepszego dostosowania strategii obsługi i oferty firmy do zmieniających się warunków rynkowych.',
+                        'en' => 'Monitoring competitor activities and market analysis to better tailor customer service strategies and company offerings to changing market conditions.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2495,
+                    'name' => json_encode([
+                        'pl' => 'Informowanie zespołu i klientów o nowościach oraz możliwościach, jakie firma może zaoferować w odpowiedzi na trendy rynkowe.',
+                        'en' => 'Keeping the team and clients informed about new offerings and opportunities the company can provide in response to market trends.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2496,
+                    'name' => json_encode([
+                        'pl' => 'Współpraca z działem marketingu w przygotowywaniu materiałów promocyjnych oraz kampanii skierowanych do obecnych klientów.',
+                        'en' => 'Collaborating with the marketing department to prepare promotional materials and campaigns targeted at existing clients.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2497,
+                    'name' => json_encode([
+                        'pl' => 'Udział w organizacji eventów, konferencji i innych wydarzeń marketingowych, które mogą przyciągnąć nowych klientów oraz wzmocnić relacje z obecnymi.',
+                        'en' => 'Participating in the organization of events, conferences, and other marketing activities that can attract new clients and strengthen relationships with current ones.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2498,
+                    'name' => json_encode([
+                        'pl' => 'Personalizowanie komunikacji i ofert w oparciu o historię współpracy i preferencje klientów, aby budować zaufanie i zwiększać satysfakcję.',
+                        'en' => 'Personalizing communication and offers based on collaboration history and customer preferences to build trust and enhance satisfaction.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2499,
+                    'name' => json_encode([
+                        'pl' => 'Wdrażanie indywidualnych rozwiązań dla kluczowych klientów w celu utrzymania długoterminowej współpracy.',
+                        'en' => 'Implementing individual solutions for key clients to maintain long-term cooperation.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2500,
+                    'name' => json_encode([
+                        'pl' => 'Opracowywanie prognoz sprzedaży i planów działań w oparciu o bieżące relacje z klientami oraz ich plany zakupowe.',
+                        'en' => 'Developing sales forecasts and action plans based on current client relationships and their purchasing plans.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2501,
+                    'name' => json_encode([
+                        'pl' => 'Przekazywanie informacji zespołom sprzedażowym i marketingowym w celu dostosowania strategii firmy do oczekiwań klientów.',
+                        'en' => 'Conveying information to sales and marketing teams to align the company\'s strategies with customer expectations.'
+                    ]),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ],
+            ];
+        $KEYACCOUNTMANAGER=[
+            [
+                'id' => 2502,
+                'name' => json_encode([
+                    'pl' => 'Regularny kontakt z kluczowymi klientami, aby budować i utrzymywać silne, długoterminowe relacje oparte na zaufaniu i wzajemnym zrozumieniu.',
+                    'en' => 'Regular contact with key clients to build and maintain strong, long-term relationships based on trust and mutual understanding.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2503,
+                'name' => json_encode([
+                    'pl' => 'Poznawanie specyfiki działalności, potrzeb i oczekiwań kluczowych klientów, aby lepiej dostosować ofertę i działania firmy do ich wymagań.',
+                    'en' => 'Understanding the specifics of key clients\' businesses, needs, and expectations to better tailor the company’s offerings and actions to their requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2504,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie spersonalizowanych strategii obsługi i rozwoju współpracy z kluczowymi klientami, które uwzględniają ich specyficzne potrzeby biznesowe.',
+                    'en' => 'Developing personalized service strategies and cooperation development plans for key clients that take into account their specific business needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2505,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie planów rozwoju relacji biznesowych oraz koordynowanie działań mających na celu zwiększenie satysfakcji i lojalności klientów.',
+                    'en' => 'Implementing business relationship development plans and coordinating actions aimed at increasing client satisfaction and loyalty.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2506,
+                'name' => json_encode([
+                    'pl' => 'Regularne badanie potrzeb i oczekiwań kluczowych klientów oraz dostosowywanie oferty i strategii firmy do ich wymagań.',
+                    'en' => 'Regularly researching the needs and expectations of key clients and adapting the company’s offerings and strategies to meet those requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2507,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analiz rynkowych i branżowych, aby lepiej zrozumieć kontekst biznesowy klienta oraz identyfikować możliwości rozwoju współpracy.',
+                    'en' => 'Conducting market and industry analyses to better understand the client’s business context and identify collaboration development opportunities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2508,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie spersonalizowanych ofert handlowych dostosowanych do specyficznych potrzeb kluczowych klientów.',
+                    'en' => 'Preparing personalized commercial offers tailored to the specific needs of key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2509,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji handlowych, aby uzyskać najkorzystniejsze warunki współpracy dla obu stron oraz finalizowanie umów i kontraktów.',
+                    'en' => 'Conducting business negotiations to achieve the best cooperation conditions for both parties and finalizing contracts and agreements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2510,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja projektów i inicjatyw związanych z kluczowymi klientami, zapewniając, że są one realizowane zgodnie z harmonogramem, budżetem i założeniami.',
+                    'en' => 'Coordinating projects and initiatives related to key clients, ensuring they are executed according to schedule, budget, and objectives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2511,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z wewnętrznymi zespołami firmy (marketing, sprzedaż, logistyka, dział techniczny) w celu realizacji projektów oraz spełnienia wymagań klienta.',
+                    'en' => 'Collaborating with the company’s internal teams (marketing, sales, logistics, technical department) to implement projects and meet client requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2512,
+                'name' => json_encode([
+                    'pl' => 'Regularne monitorowanie wyników współpracy z kluczowymi klientami, w tym analiza wyników sprzedażowych, poziomu satysfakcji oraz efektywności działań.',
+                    'en' => 'Regularly monitoring the results of cooperation with key clients, including sales performance analysis, satisfaction levels, and effectiveness of actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2513,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów i prezentacji dotyczących postępów, wyników i planów rozwoju współpracy oraz przekazywanie ich przełożonym i klientom.',
+                    'en' => 'Preparing reports and presentations on progress, results, and development plans for cooperation and delivering them to supervisors and clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2514,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb klientów i identyfikowanie dodatkowych produktów lub usług, które mogą zwiększyć wartość współpracy (upselling) oraz proponowanie komplementarnych rozwiązań (cross-selling).',
+                    'en' => 'Analyzing client needs and identifying additional products or services that may enhance collaboration value (upselling) and proposing complementary solutions (cross-selling).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2515,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii mających na celu maksymalizację przychodów i rozwój biznesu w oparciu o bieżącą współpracę z kluczowymi klientami.',
+                    'en' => 'Developing strategies aimed at maximizing revenue and business development based on current collaboration with key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2516,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi działami, takimi jak marketing, finanse, logistyka, produkcja czy dział techniczny, aby zapewnić kompleksową i profesjonalną obsługę kluczowych klientów.',
+                    'en' => 'Collaborating with other departments such as marketing, finance, logistics, production, or technical support to ensure comprehensive and professional service for key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2517,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji wewnątrz organizacji, aby zapewnić, że wszystkie działy są dobrze poinformowane o potrzebach i oczekiwaniach kluczowych klientów.',
+                    'en' => 'Transmitting information within the organization to ensure all departments are well-informed about the needs and expectations of key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2518,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i zarządzanie umowami z kluczowymi klientami, dbając o ich zgodność z polityką firmy oraz przestrzeganie warunków umownych.',
+                    'en' => 'Preparing and managing contracts with key clients, ensuring compliance with company policy and adherence to contractual terms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2519,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminów realizacji umów oraz zarządzanie ich odnawianiem lub renegocjowaniem w razie potrzeby.',
+                    'en' => 'Monitoring contract fulfillment timelines and managing renewals or renegotiations as necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2520,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie spotkań z kluczowymi klientami w celu omówienia bieżącej współpracy, ustalania nowych celów oraz identyfikowania obszarów do usprawnień.',
+                    'en' => 'Planning and organizing meetings with key clients to discuss current collaboration, set new goals, and identify areas for improvement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2521,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie agendy spotkań oraz opracowywanie raportów podsumowujących wnioski i ustalenia.',
+                    'en' => 'Preparing meeting agendas and developing summary reports of findings and agreements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2522,
+                'name' => json_encode([
+                    'pl' => 'Obsługa reklamacji oraz rozwiązywanie problemów klientów, dbając o szybkie i profesjonalne załatwienie sprawy.',
+                    'en' => 'Handling complaints and resolving client issues, ensuring prompt and professional resolution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2523,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami technicznymi, produkcyjnymi lub logistycznymi w celu znalezienia najlepszego rozwiązania dla klienta.',
+                    'en' => 'Collaborating with technical, production, or logistics teams to find the best solution for the client.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2524,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie trendów rynkowych oraz działań konkurencji w celu lepszego zrozumienia sytuacji rynkowej oraz dostosowania oferty firmy do zmieniających się warunków.',
+                    'en' => 'Monitoring market trends and competitor activities to better understand market conditions and adapt the company’s offerings to changing environments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2525,
+                'name' => json_encode([
+                    'pl' => 'Informowanie klientów o nowościach, trendach i możliwościach, jakie firma może zaoferować w odpowiedzi na zmiany na rynku.',
+                    'en' => 'Keeping clients informed about new offerings, trends, and opportunities the company can provide in response to market changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2526,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami rozwoju produktów, aby dostosować produkty i usługi firmy do specyficznych wymagań kluczowych klientów.',
+                    'en' => 'Collaborating with product development departments to tailor products and services to the specific needs of key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2527,
+                'name' => json_encode([
+                    'pl' => 'Testowanie i wdrażanie nowych rozwiązań w oparciu o feedback klientów oraz analizy rynkowe.',
+                    'en' => 'Testing and implementing new solutions based on client feedback and market analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2528,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prognoz sprzedażowych oraz planów rozwoju współpracy z kluczowymi klientami, aby osiągnąć założone cele biznesowe.',
+                    'en' => 'Developing sales forecasts and plans for collaboration development with key clients to achieve established business goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2529,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji prognoz oraz dostosowywanie strategii w oparciu o wyniki sprzedażowe i informacje zwrotne od klientów.',
+                    'en' => 'Monitoring the realization of forecasts and adjusting strategies based on sales performance and client feedback.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2530,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów dla kluczowych klientów, aby lepiej zrozumieli produkty i usługi firmy oraz ich korzyści.',
+                    'en' => 'Organizing training sessions and workshops for key clients to better understand the company’s products and services and their benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2531,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie materiałów edukacyjnych, takich jak instrukcje, prezentacje czy webinary, wspierających klientów w efektywnym korzystaniu z oferowanych rozwiązań.',
+                    'en' => 'Preparing educational materials such as instructions, presentations, or webinars to support clients in effectively using the offered solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2532,
+                'name' => json_encode([
+                    'pl' => 'Udział w targach, konferencjach oraz wydarzeniach branżowych w celu promocji firmy oraz nawiązywania i rozwijania relacji z kluczowymi klientami.',
+                    'en' => 'Participating in fairs, conferences, and industry events to promote the company and establish and develop relationships with key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2533,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie oferty firmy oraz prowadzenie rozmów biznesowych z kluczowymi partnerami i klientami.',
+                    'en' => 'Presenting the company’s offerings and conducting business discussions with key partners and clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2534,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o spójność i profesjonalizm komunikacji z kluczowymi klientami we wszystkich kanałach, aby budować pozytywny wizerunek firmy.',
+                    'en' => 'Ensuring consistency and professionalism in communication with key clients across all channels to build a positive company image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2535,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności komunikacji i działań z polityką firmy oraz wprowadzanie ewentualnych usprawnień.',
+                    'en' => 'Monitoring the compliance of communication and actions with company policy and implementing necessary improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2536,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie regularnych raportów dotyczących wyników współpracy, w tym analiz sprzedażowych, wyników kampanii marketingowych oraz poziomu satysfakcji klientów.',
+                    'en' => 'Preparing regular reports on collaboration results, including sales analyses, marketing campaign outcomes, and customer satisfaction levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2537,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów kierownictwu oraz rekomendowanie działań.',
+                    'en' => 'Delivering reports to management and recommending actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2538,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie budżetu związanych z projektami i współpracą z kluczowymi klientami, dbając o zgodność z planem finansowym.',
+                    'en' => 'Monitoring budgets related to projects and collaborations with key clients, ensuring compliance with financial plans.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2539,
+                'name' => json_encode([
+                    'pl' => 'Przegląd wydatków oraz analiza efektywności kosztowej projektów w celu optymalizacji budżetu.',
+                    'en' => 'Reviewing expenditures and analyzing cost-effectiveness of projects to optimize the budget.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2540,
+                'name' => json_encode([
+                    'pl' => 'Korzystanie z nowoczesnych narzędzi CRM i systemów zarządzania relacjami z klientami, aby optymalizować procesy obsługi i sprzedaży.',
+                    'en' => 'Utilizing modern CRM tools and customer relationship management systems to optimize service and sales processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2541,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie nowych technologii i narzędzi, które mogą zwiększyć efektywność i jakość współpracy z kluczowymi klientami.',
+                    'en' => 'Keeping track of new technologies and tools that can enhance efficiency and quality of collaboration with key clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTADOSPRAWSPRZEDAŻY=[
+            [
+                'id' => 2542,
+                'name' => json_encode([
+                    'pl' => 'Aktywne poszukiwanie i pozyskiwanie nowych klientów poprzez cold calling, e-maile sprzedażowe, networking oraz działania marketingowe.',
+                    'en' => 'Actively seeking and acquiring new clients through cold calling, sales emails, networking, and marketing activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2543,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie kontaktów z potencjalnymi klientami i organizowanie spotkań mających na celu prezentację oferty firmy.',
+                    'en' => 'Establishing contact with potential clients and organizing meetings to present the company\'s offerings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2544,
+                'name' => json_encode([
+                    'pl' => 'Przedstawianie produktów i usług firmy w sposób atrakcyjny i dostosowany do potrzeb klientów, zarówno podczas spotkań bezpośrednich, jak i poprzez prezentacje online.',
+                    'en' => 'Presenting the company\'s products and services in an attractive way tailored to client needs, both during face-to-face meetings and online presentations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2545,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i prezentowanie ofert handlowych, które pokazują korzyści i wartość dla klienta, a także spełniają jego specyficzne potrzeby.',
+                    'en' => 'Creating and presenting commercial offers that highlight benefits and value to the client while meeting their specific needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2546,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie długoterminowych relacji z klientami, zapewniając im wsparcie i doradztwo na każdym etapie współpracy.',
+                    'en' => 'Establishing and maintaining long-term relationships with clients, providing support and advice at every stage of cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2547,
+                'name' => json_encode([
+                    'pl' => 'Regularny kontakt z klientami w celu monitorowania ich satysfakcji, informowania o nowych produktach oraz rozwijania współpracy.',
+                    'en' => 'Maintaining regular contact with clients to monitor their satisfaction, inform them about new products, and develop collaboration.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2548,
+                'name' => json_encode([
+                    'pl' => 'Osiąganie założonych celów sprzedażowych i prognoz poprzez aktywne zarządzanie swoimi klientami i odpowiednią strategię sprzedażową.',
+                    'en' => 'Achieving established sales goals and forecasts by actively managing clients and implementing an appropriate sales strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2549,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępów sprzedaży i dostosowywanie działań w celu osiągnięcia wyników zgodnych z założeniami firmy.',
+                    'en' => 'Monitoring sales progress and adjusting actions to achieve results in line with the company\'s goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2550,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z klientami w celu uzyskania korzystnych warunków współpracy, ustalania cen oraz warunków płatności.',
+                    'en' => 'Conducting negotiations with clients to obtain favorable terms of cooperation, setting prices, and payment conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2551,
+                'name' => json_encode([
+                    'pl' => 'Finalizowanie umów sprzedażowych, dbając o zgodność dokumentacji z polityką firmy oraz potrzebami klienta.',
+                    'en' => 'Finalizing sales contracts, ensuring documentation compliance with company policy and client needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2552,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie ofert handlowych oraz kosztorysów dostosowanych do indywidualnych potrzeb klientów, uwzględniając ich budżet oraz wymagania.',
+                    'en' => 'Developing commercial offers and estimates tailored to individual client needs, considering their budget and requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2553,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie ofert i materiałów promocyjnych klientom oraz udzielanie wyjaśnień dotyczących specyfikacji i korzyści produktów.',
+                    'en' => 'Delivering offers and promotional materials to clients and providing explanations about product specifications and benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2554,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie zmian i trendów na rynku, aby dostosować ofertę firmy do bieżących warunków i oczekiwań klientów.',
+                    'en' => 'Tracking market changes and trends to adjust the company\'s offerings to current conditions and client expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2555,
+                'name' => json_encode([
+                    'pl' => 'Analiza działań konkurencji oraz ich oferty w celu lepszego pozycjonowania produktów i usług firmy.',
+                    'en' => 'Analyzing competitor activities and their offerings to better position the company\'s products and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2556,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie bazą danych klientów w systemie CRM, aktualizacja informacji o kontaktach, preferencjach i historii zakupów.',
+                    'en' => 'Managing the client database in the CRM system, updating information on contacts, preferences, and purchase history.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2557,
+                'name' => json_encode([
+                    'pl' => 'Segmentacja klientów i analiza ich potrzeb w celu lepszego dopasowania działań sprzedażowych.',
+                    'en' => 'Segmenting clients and analyzing their needs to better tailor sales activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2558,
+                'name' => json_encode([
+                    'pl' => 'Realizacja działań sprzedażowych zarówno w formie spotkań bezpośrednich z klientami, jak i online, np. poprzez e-maile, webinary, rozmowy telefoniczne.',
+                    'en' => 'Carrying out sales activities in the form of direct meetings with clients as well as online, e.g., through emails, webinars, phone calls.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2559,
+                'name' => json_encode([
+                    'pl' => 'Korzystanie z narzędzi online, takich jak platformy e-commerce czy social media, do pozyskiwania klientów i promowania produktów.',
+                    'en' => 'Utilizing online tools such as e-commerce platforms or social media to acquire clients and promote products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2560,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami marketingu, logistyki, finansów oraz działem technicznym w celu zapewnienia kompleksowej obsługi klientów.',
+                    'en' => 'Collaborating with marketing, logistics, finance, and technical departments to ensure comprehensive customer service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2561,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji zwrotnych od klientów do innych działów w celu wprowadzania ulepszeń i dostosowywania oferty.',
+                    'en' => 'Transmitting client feedback to other departments to implement improvements and adjust offerings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2562,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie spotkań z klientami, zarówno w siedzibie firmy, jak i w ich lokalizacjach, w celu prezentacji produktów oraz omówienia warunków współpracy.',
+                    'en' => 'Planning and organizing meetings with clients, both at the company\'s headquarters and at their locations, to present products and discuss collaboration terms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2563,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie prezentacji, które podkreślają kluczowe korzyści oferty firmy oraz rozwiązują problemy klientów.',
+                    'en' => 'Conducting presentations that highlight the key benefits of the company\'s offerings and address client issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2564,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie reklamacji oraz rozwiązywanie problemów związanych z produktami lub usługami, aby utrzymać wysoką satysfakcję klienta.',
+                    'en' => 'Handling complaints and resolving issues related to products or services to maintain high customer satisfaction.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2565,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem technicznym lub działem obsługi klienta w celu szybkiego i efektywnego załatwienia sprawy.',
+                    'en' => 'Collaborating with the technical department or customer service department to promptly and effectively resolve issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2566,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie ankiet oraz zbieranie informacji zwrotnych od klientów w celu oceny poziomu satysfakcji oraz identyfikacji obszarów do usprawnień.',
+                    'en' => 'Conducting surveys and gathering feedback from clients to assess satisfaction levels and identify areas for improvement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2567,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie działań mających na celu zwiększenie zadowolenia klientów oraz budowanie ich lojalności.',
+                    'en' => 'Implementing actions aimed at increasing customer satisfaction and building their loyalty.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2568,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb klientów i oferowanie im dodatkowych produktów lub usług, które mogą zwiększyć wartość współpracy (upselling).',
+                    'en' => 'Analyzing client needs and offering additional products or services that may enhance the value of cooperation (upselling).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2569,
+                'name' => json_encode([
+                    'pl' => 'Proponowanie produktów komplementarnych lub powiązanych, które mogą wzbogacić ofertę klienta (cross-selling).',
+                    'en' => 'Recommending complementary or related products that may enrich the client\'s offerings (cross-selling).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2570,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie regularnych raportów dotyczących wyników sprzedaży, prognoz oraz aktywności handlowych.',
+                    'en' => 'Preparing regular reports on sales results, forecasts, and sales activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2571,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników sprzedażowych oraz rekomendowanie działań usprawniających w celu poprawy efektywności sprzedaży.',
+                    'en' => 'Analyzing sales results and recommending improvements to enhance sales effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2572,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie firmy na targach, konferencjach oraz innych wydarzeniach branżowych w celu promocji produktów i nawiązywania kontaktów z potencjalnymi klientami.',
+                    'en' => 'Representing the company at trade fairs, conferences, and other industry events to promote products and establish contacts with potential clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2573,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rozmów handlowych podczas wydarzeń oraz zbieranie informacji o potencjalnych klientach i ich potrzebach.',
+                    'en' => 'Conducting business discussions during events and gathering information about potential clients and their needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2574,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w szkoleniach produktowych, sprzedażowych oraz związanych z obsługą klienta w celu podnoszenia kwalifikacji i wiedzy branżowej.',
+                    'en' => 'Participating in product training, sales training, and customer service training to enhance qualifications and industry knowledge.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2575,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie zdobytej wiedzy innym członkom zespołu sprzedażowego oraz wspieranie ich w działaniach handlowych.',
+                    'en' => 'Sharing acquired knowledge with other sales team members and supporting them in sales activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2576,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby wszystkie działania sprzedażowe oraz dokumentacja były zgodne z polityką firmy, regulacjami prawnymi oraz wewnętrznymi procedurami.',
+                    'en' => 'Ensuring that all sales activities and documentation comply with company policy, legal regulations, and internal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2577,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian w przepisach i wytycznych branżowych oraz dostosowywanie działań do bieżących wymagań.',
+                    'en' => 'Monitoring changes in regulations and industry guidelines and adjusting activities to current requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2578,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu w przygotowywaniu i wdrażaniu kampanii promujących produkty oraz wspierających działania sprzedażowe.',
+                    'en' => 'Collaborating with the marketing department to prepare and implement campaigns promoting products and supporting sales activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2579,
+                'name' => json_encode([
+                    'pl' => 'Udział w tworzeniu treści reklamowych i materiałów promocyjnych, takich jak broszury, ulotki, prezentacje, które są używane podczas spotkań z klientami.',
+                    'en' => 'Participating in the creation of advertising content and promotional materials, such as brochures, leaflets, and presentations used during meetings with clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2580,
+                'name' => json_encode([
+                    'pl' => 'Regularne monitorowanie trendów rynkowych, nowości produktowych oraz zmian technologicznych, aby dostarczać klientom najnowsze i najefektywniejsze rozwiązania.',
+                    'en' => 'Regularly monitoring market trends, product innovations, and technological changes to provide clients with the latest and most effective solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2581,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja wiedzy na temat oferty firmy oraz śledzenie nowości w katalogu produktów, aby skutecznie doradzać klientom.',
+                    'en' => 'Updating knowledge about the company\'s offerings and tracking innovations in the product catalog to effectively advise clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTAZAOPATRZENIAMEDYCZNEGO=[
+            [
+                'id' => 2582,
+                'name' => json_encode([
+                    'pl' => 'Analiza i planowanie zapotrzebowania na materiały medyczne, leki, sprzęt oraz inne produkty niezbędne do funkcjonowania placówki medycznej.',
+                    'en' => 'Analyzing and planning the demand for medical materials, drugs, equipment, and other products necessary for the functioning of a medical facility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2583,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie harmonogramów zamówień, aby zapewnić ciągłość dostaw i dostępność niezbędnych zasobów.',
+                    'en' => 'Developing order schedules to ensure continuity of supply and availability of necessary resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2584,
+                'name' => json_encode([
+                    'pl' => 'Składanie zamówień na materiały i sprzęt medyczny u dostawców zgodnie z wymaganiami placówki oraz standardami jakości.',
+                    'en' => 'Placing orders for medical materials and equipment with suppliers in accordance with the facility’s requirements and quality standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2585,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji zamówień oraz ścisła współpraca z dostawcami w celu zapewnienia terminowości dostaw.',
+                    'en' => 'Monitoring order fulfillment and closely collaborating with suppliers to ensure timely deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2586,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z dostawcami w celu uzyskania najlepszych cen oraz warunków handlowych, takich jak terminy płatności i warunki dostawy.',
+                    'en' => 'Conducting negotiations with suppliers to obtain the best prices and trade terms, such as payment deadlines and delivery conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2587,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie długoterminowych relacji z dostawcami, aby zapewnić stabilność i jakość dostaw.',
+                    'en' => 'Building and maintaining long-term relationships with suppliers to ensure stability and quality of deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2588,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie zgodności dostaw pod względem ilości, jakości i specyfikacji technicznych, aby upewnić się, że spełniają one wymagania placówki medycznej.',
+                    'en' => 'Checking delivery compliance in terms of quantity, quality, and technical specifications to ensure they meet the requirements of the medical facility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2589,
+                'name' => json_encode([
+                    'pl' => 'Kontrola dokumentacji dostaw oraz rozpatrywanie ewentualnych niezgodności lub reklamacji w przypadku problemów z dostarczonymi produktami.',
+                    'en' => 'Controlling delivery documentation and addressing any discrepancies or complaints in case of issues with delivered products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2590,
+                'name' => json_encode([
+                    'pl' => 'Regularne monitorowanie stanów magazynowych oraz aktualizacja bazy danych o stanach magazynowych w systemach informatycznych.',
+                    'en' => 'Regularly monitoring inventory levels and updating inventory databases in information systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2591,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie odpowiednich poziomów zapasów, aby zapobiec zarówno niedoborom, jak i nadmiernemu gromadzeniu produktów.',
+                    'en' => 'Maintaining appropriate inventory levels to prevent both shortages and excessive accumulation of products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2592,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności zakupionych produktów z przepisami prawa, normami branżowymi oraz regulacjami dotyczącymi wyrobów medycznych.',
+                    'en' => 'Ensuring that purchased products comply with legal regulations, industry standards, and regulations concerning medical devices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2593,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem prawnym oraz działem jakości w celu weryfikacji dokumentacji dostawców i certyfikacji produktów.',
+                    'en' => 'Collaborating with the legal department and quality department to verify supplier documentation and product certification.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2594,
+                'name' => json_encode([
+                    'pl' => 'Kontrola jakości dostarczanych materiałów i sprzętu medycznego, aby upewnić się, że spełniają one standardy i wymagania placówki oraz przepisów prawa.',
+                    'en' => 'Quality control of delivered medical materials and equipment to ensure they meet the facility’s standards and legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2595,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z dostawcami oraz działem technicznym w celu rozwiązywania problemów związanych z jakością produktów.',
+                    'en' => 'Collaborating with suppliers and the technical department to resolve issues related to product quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2596,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie dokumentacji dotyczącej zamówień, dostaw, faktur oraz gwarancji produktów medycznych.',
+                    'en' => 'Maintaining documentation regarding orders, deliveries, invoices, and warranties for medical products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2597,
+                'name' => json_encode([
+                    'pl' => 'Archiwizowanie dokumentów oraz dbanie o ich zgodność z przepisami dotyczącymi ochrony danych i przechowywania dokumentacji medycznej.',
+                    'en' => 'Archiving documents and ensuring their compliance with data protection regulations and medical documentation storage requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2598,
+                'name' => json_encode([
+                    'pl' => 'Analiza procesów zakupowych w celu identyfikacji obszarów do optymalizacji, np. redukcji kosztów, skrócenia czasu realizacji zamówień lub poprawy jakości dostaw.',
+                    'en' => 'Analyzing procurement processes to identify areas for optimization, such as cost reduction, shortening order fulfillment times, or improving delivery quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2599,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie usprawnień oraz nowych technologii, które mogą przyczynić się do zwiększenia efektywności zaopatrzenia.',
+                    'en' => 'Implementing improvements and new technologies that can contribute to increasing procurement efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2600,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i monitorowanie budżetu na zaopatrzenie w produkty medyczne, leki oraz sprzęt, aby zapewnić jego zgodność z planami finansowymi placówki.',
+                    'en' => 'Developing and monitoring the budget for procurement of medical products, drugs, and equipment to ensure its compliance with the facility’s financial plans.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2601,
+                'name' => json_encode([
+                    'pl' => 'Regularne analizowanie wydatków oraz proponowanie oszczędności i alternatywnych rozwiązań w zakresie zakupów.',
+                    'en' => 'Regularly analyzing expenditures and proposing savings and alternative procurement solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2602,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z działami medycznymi, technicznymi, finansowymi oraz magazynem w celu zapewnienia płynności procesów zaopatrzeniowych.',
+                    'en' => 'Coordinating activities with medical, technical, financial, and warehouse departments to ensure smooth procurement processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2603,
+                'name' => json_encode([
+                    'pl' => 'Zbieranie informacji o zapotrzebowaniu na produkty oraz współpraca przy wprowadzaniu nowych rozwiązań medycznych.',
+                    'en' => 'Gathering information on product demand and collaborating on the introduction of new medical solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2604,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie ewidencją środków trwałych, takich jak sprzęt medyczny, w systemie informatycznym placówki.',
+                    'en' => 'Managing the records of fixed assets, such as medical equipment, in the facility’s information system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2605,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie stanu technicznego sprzętu oraz koordynowanie napraw i serwisów w celu zapewnienia ciągłości pracy placówki.',
+                    'en' => 'Monitoring the technical condition of equipment and coordinating repairs and services to ensure the continuity of the facility’s operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2606,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i organizowanie przetargów na dostawy materiałów i sprzętu medycznego, zgodnie z obowiązującymi przepisami oraz polityką placówki.',
+                    'en' => 'Preparing and organizing tenders for the supply of medical materials and equipment in accordance with applicable regulations and the facility’s policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2607,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem prawnym w celu przygotowania odpowiedniej dokumentacji przetargowej oraz wyboru najkorzystniejszych ofert.',
+                    'en' => 'Collaborating with the legal department to prepare the necessary tender documentation and select the most advantageous offers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2608,
+                'name' => json_encode([
+                    'pl' => 'Analiza rynku dostawców sprzętu i materiałów medycznych w celu identyfikacji nowych, konkurencyjnych ofert oraz innowacyjnych rozwiązań.',
+                    'en' => 'Analyzing the market of suppliers of equipment and medical materials to identify new, competitive offers and innovative solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2609,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie trendów w branży medycznej oraz dostosowywanie strategii zaopatrzeniowej do zmieniających się potrzeb i warunków rynkowych.',
+                    'en' => 'Monitoring trends in the medical industry and adjusting procurement strategies to changing needs and market conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2610,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dla personelu medycznego oraz administracyjnego w zakresie prawidłowego zarządzania materiałami i sprzętem medycznym.',
+                    'en' => 'Organizing training for medical and administrative staff on the proper management of medical materials and equipment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2611,
+                'name' => json_encode([
+                    'pl' => 'Informowanie pracowników o nowych procedurach oraz najlepszych praktykach związanych z zamówieniami i zarządzaniem zapasami.',
+                    'en' => 'Informing employees about new procedures and best practices related to ordering and inventory management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2612,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z audytorami podczas kontroli dotyczących zaopatrzenia, zgodności z przepisami oraz zgodności dokumentacji.',
+                    'en' => 'Collaborating with auditors during inspections related to procurement, regulatory compliance, and documentation accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2613,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów oraz wdrażanie zaleceń wynikających z audytów w celu poprawy procesów zaopatrzeniowych.',
+                    'en' => 'Preparing reports and implementing recommendations from audits to improve procurement processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2614,
+                'name' => json_encode([
+                    'pl' => 'Szybkie reagowanie na nagłe sytuacje, takie jak brak kluczowych materiałów lub problemy z dostawą, aby zapewnić ciągłość działania placówki.',
+                    'en' => 'Quickly responding to emergencies, such as a lack of key materials or delivery issues, to ensure the continuity of the facility’s operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2615,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z dostawcami w sytuacjach awaryjnych w celu szybkiego dostarczenia niezbędnych produktów.',
+                    'en' => 'Collaborating with suppliers in emergencies to quickly deliver necessary products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2616,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie regularnych raportów dotyczących realizacji zamówień, wydatków oraz efektywności procesów zaopatrzeniowych.',
+                    'en' => 'Preparing regular reports on order fulfillment, expenditures, and the effectiveness of procurement processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2617,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników oraz proponowanie działań optymalizacyjnych w celu poprawy efektywności i jakości zaopatrzenia.',
+                    'en' => 'Analyzing results and proposing optimization measures to improve the effectiveness and quality of procurement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2618,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z działem jakości oraz dostawcami w celu upewnienia się, że wszystkie zamówione produkty są zgodne z obowiązującymi przepisami dotyczącymi wyrobów medycznych.',
+                    'en' => 'Close collaboration with the quality department and suppliers to ensure that all ordered products comply with current regulations regarding medical devices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2619,
+                'name' => json_encode([
+                    'pl' => 'Kontrola zgodności produktów z normami jakościowymi oraz zapewnienie, że wszystkie wyroby posiadają wymagane certyfikaty i dokumentację.',
+                    'en' => 'Controlling the compliance of products with quality standards and ensuring that all products have the required certifications and documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2620,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie systemów informatycznych do zarządzania zamówieniami, zapasami i logistyką w celu poprawy efektywności i przejrzystości procesów zaopatrzeniowych.',
+                    'en' => 'Utilizing information systems to manage orders, inventories, and logistics to improve efficiency and transparency in procurement processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2621,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych technologii oraz narzędzi, które mogą automatyzować i usprawniać procesy zakupowe oraz zarządzanie magazynem.',
+                    'en' => 'Implementing new technologies and tools that can automate and streamline procurement processes and inventory management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTADOSPRAWOBSŁUGIPOSPRZEDAŻOWEJ=[
+            [
+                'id' => 2622,
+                'name' => json_encode([
+                    'pl' => 'Odpowiadanie na zapytania klientów dotyczące zakupionych produktów lub usług, zarówno telefonicznie, mailowo, jak i osobiście.',
+                    'en' => 'Responding to customer inquiries regarding purchased products or services, both by phone, email, and in person.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2623,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wsparcia technicznego oraz pomocy w rozwiązywaniu problemów związanych z użytkowaniem produktów.',
+                    'en' => 'Providing technical support and assistance in resolving issues related to product use.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2624,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie reklamacji oraz koordynowanie procesu ich rozpatrywania zgodnie z polityką firmy.',
+                    'en' => 'Receiving complaints and coordinating the process of resolving them in accordance with company policy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2625,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem technicznym, magazynem oraz serwisem w celu szybkiego i efektywnego rozpatrywania reklamacji oraz realizacji zwrotów.',
+                    'en' => 'Collaborating with the technical department, warehouse, and service to quickly and effectively address complaints and process returns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2626,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie serwisu i napraw produktów w przypadku usterek, dbając o terminowość i jakość świadczonych usług.',
+                    'en' => 'Organizing service and repairs of products in case of defects, ensuring timeliness and quality of services provided.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2627,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z partnerami serwisowymi i producentami w celu zapewnienia wsparcia technicznego na najwyższym poziomie.',
+                    'en' => 'Collaborating with service partners and manufacturers to ensure top-level technical support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2628,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie relacji z klientami po dokonaniu zakupu, aby budować ich lojalność i zadowolenie.',
+                    'en' => 'Establishing and maintaining relationships with clients after purchase to build their loyalty and satisfaction.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2629,
+                'name' => json_encode([
+                    'pl' => 'Regularny kontakt z klientami, aby monitorować ich satysfakcję i upewniać się, że są zadowoleni z produktów i usług firmy.',
+                    'en' => 'Regular contact with clients to monitor their satisfaction and ensure they are pleased with the company’s products and services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2630,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie ankiet satysfakcji klienta oraz zbieranie opinii na temat zakupionych produktów i jakości obsługi posprzedażowej.',
+                    'en' => 'Conducting customer satisfaction surveys and collecting feedback on purchased products and the quality of after-sales service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2631,
+                'name' => json_encode([
+                    'pl' => 'Analiza zebranych danych w celu identyfikacji obszarów do poprawy i wdrażania działań usprawniających.',
+                    'en' => 'Analyzing collected data to identify areas for improvement and implementing enhancement measures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2632,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i aktualizacja instrukcji obsługi, przewodników technicznych oraz innych materiałów wspierających klientów po zakupie.',
+                    'en' => 'Developing and updating user manuals, technical guides, and other materials to support clients post-purchase.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2633,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie bazy wiedzy i FAQ, które pomagają klientom rozwiązywać problemy bez konieczności kontaktu z działem wsparcia.',
+                    'en' => 'Creating a knowledge base and FAQ to help clients solve problems without needing to contact the support department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2634,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów dla klientów, aby pomóc im lepiej zrozumieć i efektywnie korzystać z zakupionych produktów.',
+                    'en' => 'Organizing training sessions and workshops for clients to help them better understand and effectively use purchased products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2635,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie webinarów oraz tworzenie treści edukacyjnych, takich jak poradniki wideo czy artykuły, które odpowiadają na najczęściej zadawane pytania.',
+                    'en' => 'Conducting webinars and creating educational content, such as video tutorials or articles, that address frequently asked questions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2636,
+                'name' => json_encode([
+                    'pl' => 'Identyfikowanie potrzeb klientów i proponowanie im dodatkowych produktów lub usług, które mogą poprawić ich doświadczenie z marką lub zwiększyć wartość użytkową zakupionego produktu.',
+                    'en' => 'Identifying client needs and proposing additional products or services that can enhance their experience with the brand or increase the utility of the purchased product.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2637,
+                'name' => json_encode([
+                    'pl' => 'Oferowanie przedłużonych gwarancji, usług serwisowych lub produktów komplementarnych.',
+                    'en' => 'Offering extended warranties, service options, or complementary products.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2638,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie kluczowych wskaźników efektywności (KPI) takich jak wskaźnik rozwiązanych reklamacji, czas reakcji na zapytania, poziom zadowolenia klientów.',
+                    'en' => 'Tracking key performance indicators (KPIs) such as the complaint resolution rate, response time to inquiries, and customer satisfaction levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2639,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów na temat wyników obsługi posprzedażowej oraz rekomendowanie działań usprawniających.',
+                    'en' => 'Preparing reports on after-sales service results and recommending improvement actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2640,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z partnerami serwisowymi i dostawcami w celu zapewnienia wysokiej jakości obsługi oraz wsparcia technicznego.',
+                    'en' => 'Coordinating actions with service partners and suppliers to ensure high-quality service and technical support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2641,
+                'name' => json_encode([
+                    'pl' => 'Negocjowanie warunków współpracy z serwisami zewnętrznymi i producentami, aby zapewnić klientom najlepsze warunki napraw i serwisów.',
+                    'en' => 'Negotiating collaboration terms with external services and manufacturers to ensure clients receive the best repair and service conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2642,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie standardów obsługi klienta oraz polityki reklamacyjnej firmy, aby zapewnić spójność i profesjonalizm działań.',
+                    'en' => 'Adhering to customer service standards and company complaint policies to ensure consistency and professionalism in actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2643,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań z regulacjami prawnymi dotyczącymi ochrony konsumenta i gwarancji.',
+                    'en' => 'Monitoring compliance of actions with legal regulations regarding consumer protection and warranties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2644,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami sprzedaży, marketingu, logistyki oraz technicznym w celu zapewnienia kompleksowej obsługi klienta po sprzedaży.',
+                    'en' => 'Collaborating with sales, marketing, logistics, and technical departments to ensure comprehensive after-sales customer service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2645,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o problemach i sugestiach klientów do odpowiednich działów, aby poprawić jakość produktów oraz usług.',
+                    'en' => 'Conveying customer issues and suggestions to appropriate departments to improve product and service quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2646,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie programów lojalnościowych oraz ofert promocyjnych, które zachęcają klientów do dalszych zakupów i budują ich lojalność wobec marki.',
+                    'en' => 'Implementing loyalty programs and promotional offers that encourage customers to make further purchases and build their loyalty to the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2647,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie działań mających na celu utrzymanie klientów oraz zwiększenie ich zaangażowania, takich jak specjalne rabaty czy ekskluzywne oferty dla stałych klientów.',
+                    'en' => 'Organizing initiatives aimed at retaining customers and increasing their engagement, such as special discounts or exclusive offers for regular customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2648,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy opracowywaniu kampanii skierowanych do istniejących klientów, mających na celu zwiększenie ich lojalności i zaangażowania.',
+                    'en' => 'Collaborating with the marketing department to develop campaigns aimed at existing clients to increase their loyalty and engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2649,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści do newsletterów, e-maili i innych kanałów komunikacji w celu informowania klientów o nowych ofertach i usługach posprzedażowych.',
+                    'en' => 'Preparing content for newsletters, emails, and other communication channels to inform clients about new offers and after-sales services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2650,
+                'name' => json_encode([
+                    'pl' => 'Reagowanie na sytuacje kryzysowe związane z problemami technicznymi produktów lub niezadowoleniem klientów w sposób profesjonalny i efektywny.',
+                    'en' => 'Responding to crisis situations related to technical product issues or customer dissatisfaction in a professional and effective manner.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2651,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie działań naprawczych w celu minimalizacji skutków problemów oraz zapobieganie ich eskalacji.',
+                    'en' => 'Implementing corrective actions to minimize the impact of problems and prevent their escalation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2652,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w szkoleniach branżowych oraz wewnętrznych kursach, aby na bieżąco aktualizować wiedzę techniczną i umiejętności związane z obsługą posprzedażową.',
+                    'en' => 'Participating in industry training and internal courses to continuously update technical knowledge and skills related to after-sales service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2653,
+                'name' => json_encode([
+                    'pl' => 'Rozwój kompetencji miękkich, takich jak komunikacja, negocjacje oraz umiejętność rozwiązywania konfliktów, aby lepiej obsługiwać klientów.',
+                    'en' => 'Developing soft skills such as communication, negotiation, and conflict resolution to better serve customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2654,
+                'name' => json_encode([
+                    'pl' => 'Udział w projektach związanych z rozwijaniem systemów CRM i narzędzi wsparcia klienta, aby usprawniać procesy obsługi posprzedażowej.',
+                    'en' => 'Participating in projects related to developing CRM systems and customer support tools to streamline after-sales processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2655,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie feedbacku z działu obsługi posprzedażowej do zespołów IT w celu optymalizacji systemów i automatyzacji procesów.',
+                    'en' => 'Providing feedback from the after-sales service department to IT teams for system optimization and process automation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2656,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie materiałów marketingowych, takich jak broszury, plakaty czy ulotki, które informują klientów o dostępnych usługach posprzedażowych.',
+                    'en' => 'Preparing marketing materials, such as brochures, posters, or flyers, that inform clients about available after-sales services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2657,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem marketingu w celu promowania usług serwisowych i gwarancyjnych, które mogą zainteresować klientów.',
+                    'en' => 'Collaborating with the marketing team to promote service and warranty services that may interest customers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2658,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wszystkich przypadków reklamacji, napraw, oraz zgłoszeń serwisowych w systemie CRM lub innym narzędziu do zarządzania relacjami z klientami.',
+                    'en' => 'Documenting all cases of complaints, repairs, and service requests in the CRM system or other customer relationship management tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2659,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie historii kontaktów z klientami, aby zapewnić spójność obsługi i śledzić wzorce w zgłaszanych problemach.',
+                    'en' => 'Monitoring the history of customer interactions to ensure service consistency and track patterns in reported issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2660,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów z wynikami obsługi posprzedażowej, w tym analizowanie czasu reakcji na reklamacje, skuteczności napraw oraz poziomu satysfakcji klientów.',
+                    'en' => 'Preparing reports on after-sales service results, including analyzing response times for complaints, repair effectiveness, and customer satisfaction levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2661,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów kierownictwu oraz proponowanie usprawnień w procesie obsługi posprzedażowej na podstawie zebranych danych.',
+                    'en' => 'Providing reports to management and suggesting improvements in the after-sales service process based on collected data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $POZOSTALISPECJALIŚCIDOSPRAWSPRZEDAŻ=[
+            [
+                'id' => 2662,
+                'name' => json_encode([
+                    'pl' => 'Aktywne wyszukiwanie i pozyskiwanie nowych klientów poprzez cold calling, networking, spotkania bezpośrednie oraz udział w wydarzeniach branżowych.',
+                    'en' => 'Actively searching for and acquiring new clients through cold calling, networking, direct meetings, and participation in industry events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2663,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie baz danych oraz platform online do identyfikacji potencjalnych klientów i nawiązywania kontaktu.',
+                    'en' => 'Utilizing databases and online platforms to identify potential clients and establish contact.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2664,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i rozwijanie długoterminowych relacji z klientami, aby budować zaufanie i lojalność wobec firmy.',
+                    'en' => 'Establishing and developing long-term relationships with clients to build trust and loyalty to the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2665,
+                'name' => json_encode([
+                    'pl' => 'Regularne utrzymywanie kontaktu z klientami, monitorowanie ich potrzeb oraz dostosowywanie oferty firmy do ich oczekiwań.',
+                    'en' => 'Regularly maintaining contact with clients, monitoring their needs, and adjusting the company’s offerings to their expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2666,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie prezentacji produktów lub usług firmy, podkreślając ich zalety oraz korzyści dla klientów.',
+                    'en' => 'Conducting presentations of the company’s products or services, highlighting their advantages and benefits for clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2667,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie ofert handlowych oraz dostosowywanie ich do specyficznych wymagań i budżetu klientów.',
+                    'en' => 'Creating commercial offers and adapting them to specific requirements and budgets of clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2668,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z klientami w celu uzyskania najkorzystniejszych warunków umowy zarówno dla klienta, jak i dla firmy.',
+                    'en' => 'Conducting negotiations with clients to achieve the most favorable terms of the contract for both the client and the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2669,
+                'name' => json_encode([
+                    'pl' => 'Finalizowanie transakcji oraz przygotowywanie umów i dokumentacji sprzedażowej.',
+                    'en' => 'Finalizing transactions and preparing contracts and sales documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2670,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie rynku oraz działań konkurencji w celu identyfikacji nowych trendów i dostosowywania oferty firmy do bieżących potrzeb rynku.',
+                    'en' => 'Monitoring the market and competitor activities to identify new trends and adapt the company’s offerings to current market needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2671,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych rynkowych i sprzedażowych w celu oceny efektywności strategii sprzedaży i wprowadzania usprawnień.',
+                    'en' => 'Analyzing market and sales data to evaluate the effectiveness of sales strategies and implement improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2672,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie i aktualizowanie bazy danych klientów w systemach CRM, dbanie o aktualność i dokładność informacji.',
+                    'en' => 'Maintaining and updating the client database in CRM systems, ensuring the currency and accuracy of information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2673,
+                'name' => json_encode([
+                    'pl' => 'Segmentacja klientów w celu lepszego dopasowania oferty i personalizacji komunikacji.',
+                    'en' => 'Segmenting clients to better tailor offerings and personalize communication.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2674,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb klientów i proponowanie im dodatkowych produktów lub usług, które mogą zwiększyć wartość transakcji.',
+                    'en' => 'Analyzing client needs and proposing additional products or services that may increase transaction value.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2675,
+                'name' => json_encode([
+                    'pl' => 'Proponowanie komplementarnych produktów lub usług (cross-selling), które mogą zainteresować klientów i zwiększyć ich satysfakcję.',
+                    'en' => 'Offering complementary products or services (cross-selling) that may interest clients and enhance their satisfaction.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2676,
+                'name' => json_encode([
+                    'pl' => 'Praca w oparciu o ustalone cele sprzedażowe i realizacja strategii, aby osiągnąć lub przekroczyć założone wyniki.',
+                    'en' => 'Working towards established sales goals and executing strategies to achieve or exceed set results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2677,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępów w realizacji planów sprzedażowych i dostosowywanie działań w celu optymalizacji wyników.',
+                    'en' => 'Monitoring progress in achieving sales plans and adjusting actions to optimize results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2678,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie ofert handlowych dostosowanych do specyficznych potrzeb klientów oraz budżetu, z uwzględnieniem warunków handlowych i promocji.',
+                    'en' => 'Developing commercial offers tailored to the specific needs and budgets of clients, considering commercial terms and promotions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2679,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie ofert na bieżąco, uwzględniając zmieniające się warunki rynkowe oraz nowe produkty i usługi firmy.',
+                    'en' => 'Continuously updating offers to reflect changing market conditions and new products and services of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2680,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi działami, takimi jak marketing, logistyka, finanse czy dział techniczny, aby zapewnić płynność obsługi klientów.',
+                    'en' => 'Coordinating activities with other departments, such as marketing, logistics, finance, or technical support, to ensure smooth customer service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2681,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji i feedbacku od klientów do odpowiednich zespołów, aby poprawić jakość produktów i usług.',
+                    'en' => 'Transmitting information and feedback from clients to relevant teams to improve product and service quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2682,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie spotkań z klientami, zarówno w siedzibie firmy, jak i na wyjazdach, w celu omówienia oferty oraz warunków współpracy.',
+                    'en' => 'Planning and organizing meetings with clients, both at the company’s headquarters and off-site, to discuss the offer and terms of cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2683,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie prezentacji i materiałów promocyjnych, które wspierają proces sprzedaży i budują profesjonalny wizerunek firmy.',
+                    'en' => 'Preparing presentations and promotional materials that support the sales process and build a professional image of the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2684,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie wsparcia klientom po dokonaniu zakupu, rozwiązywanie problemów oraz dbanie o satysfakcję klienta.',
+                    'en' => 'Providing support to clients after purchase, resolving issues, and ensuring customer satisfaction.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2685,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem serwisu i wsparcia technicznego w celu koordynacji napraw, serwisów i reklamacji.',
+                    'en' => 'Cooperating with the service and technical support departments to coordinate repairs, services, and complaints.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2686,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie wyników sprzedaży oraz analiza efektywności działań handlowych w celu oceny realizacji celów sprzedażowych.',
+                    'en' => 'Tracking sales results and analyzing the effectiveness of commercial activities to assess the achievement of sales goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2687,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów sprzedażowych oraz rekomendowanie działań usprawniających i strategii rozwoju.',
+                    'en' => 'Preparing sales reports and recommending improvements and development strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2688,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie firmy na targach, konferencjach i innych wydarzeniach branżowych w celu promocji produktów i nawiązywania kontaktów z potencjalnymi klientami.',
+                    'en' => 'Representing the company at trade fairs, conferences, and other industry events to promote products and establish contacts with potential clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2689,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rozmów handlowych podczas wydarzeń oraz zbieranie informacji o rynku i preferencjach klientów.',
+                    'en' => 'Conducting business discussions during events and gathering information about the market and customer preferences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2690,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy tworzeniu materiałów promocyjnych, takich jak broszury, ulotki, prezentacje, które wspierają działania sprzedażowe.',
+                    'en' => 'Collaborating with the marketing department to create promotional materials, such as brochures, flyers, and presentations that support sales activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2691,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści do kampanii e-mailowych i innych działań marketingowych skierowanych do klientów.',
+                    'en' => 'Preparing content for email campaigns and other marketing activities aimed at clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2692,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach produktowych oraz kursach związanych z technikami sprzedaży i obsługi klienta.',
+                    'en' => 'Regularly participating in product training and courses related to sales techniques and customer service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2693,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie nowości rynkowych i produktowych, aby być na bieżąco z ofertą firmy oraz trendami branżowymi.',
+                    'en' => 'Keeping up with market and product news to stay informed about the company’s offerings and industry trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2694,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie komunikacji do indywidualnych potrzeb i oczekiwań klientów, aby budować silniejsze relacje i zwiększać lojalność.',
+                    'en' => 'Tailoring communication to the individual needs and expectations of clients to build stronger relationships and increase loyalty.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2695,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie technik personalizacji w e-mailach, ofertach i materiałach marketingowych, aby efektywnie angażować klientów.',
+                    'en' => 'Implementing personalization techniques in emails, offers, and marketing materials to effectively engage clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2696,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prognoz sprzedażowych oraz strategii na kolejne okresy, w oparciu o analizę rynku, konkurencji oraz wyników sprzedażowych.',
+                    'en' => 'Developing sales forecasts and strategies for upcoming periods based on market analysis, competition, and sales results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2697,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji prognoz i wdrażanie działań mających na celu osiągnięcie zamierzonych celów.',
+                    'en' => 'Monitoring the achievement of forecasts and implementing actions to achieve set goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2698,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołami produktowymi i technicznymi przy wprowadzaniu nowych produktów i usług, aby jak najlepiej przygotować ich ofertę sprzedażową.',
+                    'en' => 'Collaborating with product and technical teams in the introduction of new products and services to optimally prepare their sales offerings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2699,
+                'name' => json_encode([
+                    'pl' => 'Testowanie nowych produktów przed ich wprowadzeniem na rynek oraz zbieranie opinii klientów w celu dopracowania oferty.',
+                    'en' => 'Testing new products before their market launch and gathering customer feedback to refine the offering.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2700,
+                'name' => json_encode([
+                    'pl' => 'Projektowanie programów lojalnościowych, które zachęcają klientów do dalszej współpracy i zwiększają ich zaangażowanie.',
+                    'en' => 'Designing loyalty programs that encourage customers to continue collaborating and increase their engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2701,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności programów lojalnościowych oraz wprowadzanie zmian i udoskonaleń w oparciu o feedback klientów.',
+                    'en' => 'Monitoring the effectiveness of loyalty programs and making changes and improvements based on customer feedback.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2702,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie polityki sprzedażowej firmy, standardów jakości oraz procedur, aby zapewnić spójność działań sprzedażowych z wytycznymi firmy.',
+                    'en' => 'Adhering to the company’s sales policy, quality standards, and procedures to ensure consistency of sales activities with the company’s guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2703,
+                'name' => json_encode([
+                    'pl' => 'Regularne raportowanie działań oraz wyników sprzedażowych zgodnie z wymaganiami firmy.',
+                    'en' => 'Regularly reporting on activities and sales results in accordance with the company’s requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTADOSPRAWMEDIÓWSPOŁECZNOŚCIOWYCH=[
+            [
+                'id' => 2704,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii obecności marki w mediach społecznościowych w celu budowania świadomości marki, zwiększania zaangażowania i osiągania celów marketingowych.',
+                    'en' => 'Developing a brand presence strategy on social media to build brand awareness, increase engagement, and achieve marketing goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2705,
+                'name' => json_encode([
+                    'pl' => 'Planowanie kampanii społecznościowych, które wspierają działania marketingowe i sprzedażowe firmy.',
+                    'en' => 'Planning social campaigns that support the company’s marketing and sales efforts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2706,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie i zarządzanie profilami firmy na różnych platformach, takich jak Facebook, Instagram, Twitter, LinkedIn, TikTok, Pinterest i inne.',
+                    'en' => 'Managing and overseeing the company profiles on various platforms such as Facebook, Instagram, Twitter, LinkedIn, TikTok, Pinterest, and others.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2707,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i aktualizowanie treści na bieżąco, dbając o spójność wizerunku marki oraz zgodność z polityką firmy.',
+                    'en' => 'Monitoring and updating content regularly, ensuring brand image consistency and compliance with company policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2708,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie treści, takich jak posty, zdjęcia, filmy, stories i grafiki, które przyciągają uwagę odbiorców i budują zaangażowanie.',
+                    'en' => 'Creating content such as posts, images, videos, stories, and graphics that attract audience attention and build engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2709,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z grafikami, copywriterami i innymi członkami zespołu kreatywnego w celu tworzenia atrakcyjnych materiałów wizualnych i tekstowych.',
+                    'en' => 'Collaborating with graphic designers, copywriters, and other creative team members to create attractive visual and textual materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2710,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie kluczowych wskaźników efektywności, takich jak zaangażowanie (lajki, komentarze, udostępnienia), zasięg, CTR oraz konwersje.',
+                    'en' => 'Tracking key performance indicators such as engagement (likes, comments, shares), reach, CTR, and conversions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2711,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów z wynikami kampanii oraz analiza danych w celu optymalizacji przyszłych działań.',
+                    'en' => 'Preparing reports on campaign results and analyzing data to optimize future activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2712,
+                'name' => json_encode([
+                    'pl' => 'Interakcja z użytkownikami poprzez odpowiadanie na komentarze, wiadomości prywatne oraz moderowanie dyskusji.',
+                    'en' => 'Interacting with users by responding to comments, private messages, and moderating discussions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2713,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie pozytywnej atmosfery w społeczności oraz dbanie o budowanie zaangażowania i lojalności wobec marki.',
+                    'en' => 'Fostering a positive atmosphere in the community and working to build engagement and loyalty to the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2714,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie trendów i nowości w mediach społecznościowych oraz analiza działań konkurencji w celu dostosowania strategii i działań firmy.',
+                    'en' => 'Keeping track of trends and innovations in social media and analyzing competitor activities to adjust the company’s strategies and actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2715,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych pomysłów i formatów treści, które są popularne w mediach społecznościowych i mogą przynieść korzyści marce.',
+                    'en' => 'Implementing new ideas and content formats that are popular on social media and can benefit the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2716,
+                'name' => json_encode([
+                    'pl' => 'Planowanie, tworzenie i zarządzanie kampaniami reklamowymi na platformach społecznościowych (np. Facebook Ads, Instagram Ads, LinkedIn Ads) w celu zwiększenia zasięgu i sprzedaży.',
+                    'en' => 'Planning, creating, and managing advertising campaigns on social media platforms (e.g., Facebook Ads, Instagram Ads, LinkedIn Ads) to increase reach and sales.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2717,
+                'name' => json_encode([
+                    'pl' => 'Optymalizacja kampanii reklamowych na podstawie analiz danych oraz testów A/B w celu maksymalizacji ROI.',
+                    'en' => 'Optimizing advertising campaigns based on data analysis and A/B testing to maximize ROI.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2718,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie współpracy z influencerami oraz liderami opinii w celu promowania marki, produktów lub usług.',
+                    'en' => 'Establishing collaborations with influencers and opinion leaders to promote the brand, products, or services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2719,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja kampanii z influencerami, w tym negocjacje warunków, tworzenie briefów oraz monitorowanie wyników współpracy.',
+                    'en' => 'Coordinating campaigns with influencers, including negotiating terms, creating briefs, and monitoring collaboration results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2720,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i opracowywanie harmonogramów publikacji treści w mediach społecznościowych, aby zapewnić spójność i regularność postów.',
+                    'en' => 'Planning and developing content publication schedules on social media to ensure consistency and regularity of posts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2721,
+                'name' => json_encode([
+                    'pl' => 'Ustalanie najlepszych dni i godzin publikacji, aby maksymalizować zasięg i zaangażowanie.',
+                    'en' => 'Determining the best days and times for publication to maximize reach and engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2722,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie treści do różnych grup docelowych oraz segmentowanie odbiorców, aby skuteczniej docierać do poszczególnych segmentów.',
+                    'en' => 'Customizing content for different target groups and segmenting audiences to more effectively reach specific segments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2723,
+                'name' => json_encode([
+                    'pl' => 'Korzystanie z narzędzi targetowania (np. wiek, lokalizacja, zainteresowania), aby kampanie reklamowe były jak najbardziej efektywne.',
+                    'en' => 'Utilizing targeting tools (e.g., age, location, interests) to make advertising campaigns as effective as possible.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2724,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie treści zoptymalizowanych pod kątem SEO algorytmów platform społecznościowych w celu zwiększenia organicznego zasięgu.',
+                    'en' => 'Creating content optimized for the SEO algorithms of social media platforms to increase organic reach.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2725,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian algorytmów i dostosowywanie strategii oraz formatów treści, aby maksymalizować widoczność postów.',
+                    'en' => 'Monitoring algorithm changes and adjusting strategies and content formats to maximize post visibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2726,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i zarządzanie budżetem kampanii reklamowych na platformach społecznościowych, dbając o efektywne wykorzystanie środków.',
+                    'en' => 'Planning and managing the advertising campaign budget on social media platforms, ensuring effective use of resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2727,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wydatków i wyników kampanii oraz dostosowywanie strategii budżetowej w celu osiągnięcia maksymalnych wyników.',
+                    'en' => 'Monitoring campaign spending and results and adjusting budget strategies to achieve maximum outcomes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2728,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie konkursów, wyzwań i innych aktywacji, które angażują społeczność i zwiększają interakcję z marką.',
+                    'en' => 'Organizing contests, challenges, and other activations that engage the community and increase interaction with the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2729,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników konkursów oraz analiza zaangażowania użytkowników w celu optymalizacji przyszłych działań.',
+                    'en' => 'Monitoring contest results and analyzing user engagement to optimize future actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2730,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie regularnych raportów z wynikami działań w mediach społecznościowych, w tym analiza zaangażowania, zasięgu oraz skuteczności kampanii reklamowych.',
+                    'en' => 'Preparing regular reports on social media activities, including engagement, reach, and effectiveness of advertising campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2731,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie rekomendacji i sugestii zespołowi marketingowemu na podstawie zebranych danych i wyników analiz.',
+                    'en' => 'Providing recommendations and suggestions to the marketing team based on collected data and analysis results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2732,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie spójnych treści i komunikacji, które odzwierciedlają tożsamość i wartości marki.',
+                    'en' => 'Creating consistent content and communication that reflects the identity and values of the brand.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2733,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, aby wszystkie działania i kampanie w mediach społecznościowych były zgodne z polityką oraz strategią marki.',
+                    'en' => 'Ensuring that all activities and campaigns on social media are in line with the brand’s policy and strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2734,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i publikowanie materiałów wideo, takich jak stories, filmy promocyjne czy tutoriale, które angażują odbiorców.',
+                    'en' => 'Developing and publishing video content such as stories, promotional films, or tutorials that engage audiences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2735,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem produkcji multimedialnej oraz grafikami w celu tworzenia wysokiej jakości treści wizualnych.',
+                    'en' => 'Collaborating with the multimedia production team and graphic designers to create high-quality visual content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2736,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wzmianek o marce i szybkie reagowanie na negatywne opinie lub sytuacje kryzysowe.',
+                    'en' => 'Monitoring brand mentions and quickly responding to negative reviews or crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2737,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie strategii komunikacji kryzysowej, aby minimalizować negatywne skutki oraz chronić reputację marki.',
+                    'en' => 'Developing and implementing crisis communication strategies to minimize negative impacts and protect the brand’s reputation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2738,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z zespołem marketingu, działem PR oraz innymi zespołami w celu zapewnienia spójności komunikacji i działań w różnych kanałach.',
+                    'en' => 'Coordinating actions with the marketing team, PR department, and other teams to ensure consistency in communication and actions across various channels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2739,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w realizacji kampanii marketingowych poprzez dostosowywanie treści i strategii do potrzeb mediów społecznościowych.',
+                    'en' => 'Supporting the implementation of marketing campaigns by adapting content and strategies to social media needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2740,
+                'name' => json_encode([
+                    'pl' => 'Testowanie nowych formatów treści, takich jak relacje, live streaming, czy ankiety, aby przyciągać uwagę użytkowników i zwiększać zaangażowanie.',
+                    'en' => 'Testing new content formats, such as stories, live streaming, or polls, to attract user attention and increase engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2741,
+                'name' => json_encode([
+                    'pl' => 'Eksperymentowanie z nowymi platformami i technologiami, które mogą pomóc marce dotrzeć do nowych odbiorców.',
+                    'en' => 'Experimenting with new platforms and technologies that can help the brand reach new audiences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2742,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wiedzy zespołowi marketingowemu na temat najlepszych praktyk w zakresie mediów społecznościowych oraz najnowszych trendów i narzędzi.',
+                    'en' => 'Sharing knowledge with the marketing team about best practices in social media and the latest trends and tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2743,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie warsztatów i szkoleń dotyczących skutecznego zarządzania mediami społecznościowymi oraz kreowania treści.',
+                    'en' => 'Conducting workshops and training on effective social media management and content creation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2744,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o zgodność działań marketingowych z regulacjami dotyczącymi ochrony danych osobowych oraz polityką prywatności platform społecznościowych.',
+                    'en' => 'Ensuring that marketing activities comply with regulations regarding data protection and the privacy policies of social media platforms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2745,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian w regulacjach dotyczących reklam i treści sponsorowanych w mediach społecznościowych oraz dostosowywanie strategii do tych wymagań.',
+                    'en' => 'Monitoring changes in regulations regarding advertising and sponsored content on social media and adapting strategies to these requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTADOSPRAWHANDLUZAGRANICZNEGO=[
+            [
+                'id' => 2746,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie relacji z zagranicznymi klientami, dystrybutorami, agentami i partnerami handlowymi.',
+                    'en' => 'Building and maintaining relationships with foreign clients, distributors, agents, and business partners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2747,
+                'name' => json_encode([
+                    'pl' => 'Regularny kontakt z partnerami zagranicznymi w celu zapewnienia wysokiego poziomu obsługi i długoterminowej współpracy.',
+                    'en' => 'Regular contact with foreign partners to ensure a high level of service and long-term cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2748,
+                'name' => json_encode([
+                    'pl' => 'Analiza potencjalnych rynków zagranicznych w celu identyfikacji nowych możliwości sprzedażowych i ekspansji.',
+                    'en' => 'Analyzing potential foreign markets to identify new sales opportunities and expansion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2749,
+                'name' => json_encode([
+                    'pl' => 'Aktywne poszukiwanie nowych klientów i partnerów biznesowych w różnych regionach świata.',
+                    'en' => 'Actively seeking new clients and business partners in various regions of the world.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2750,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z zagranicznymi kontrahentami w celu uzyskania najkorzystniejszych warunków handlowych, takich jak ceny, terminy dostaw i warunki płatności.',
+                    'en' => 'Conducting negotiations with foreign contractors to obtain the most favorable trade terms, such as prices, delivery dates, and payment conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2751,
+                'name' => json_encode([
+                    'pl' => 'Finalizowanie umów handlowych oraz dbanie o zgodność dokumentacji z polityką firmy i obowiązującymi przepisami międzynarodowymi.',
+                    'en' => 'Finalizing trade agreements and ensuring that documentation complies with company policy and applicable international regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2752,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań związanych z eksportem i importem towarów, w tym współpraca z dostawcami, przewoźnikami oraz agencjami celnymi.',
+                    'en' => 'Coordinating activities related to the export and import of goods, including collaboration with suppliers, carriers, and customs agencies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2753,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie procedury logistyczne są zgodne z obowiązującymi przepisami oraz regulacjami dotyczącymi eksportu i importu.',
+                    'en' => 'Ensuring that all logistical procedures comply with applicable regulations regarding export and import.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2754,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i weryfikacja dokumentacji eksportowej i importowej, takiej jak faktury, listy przewozowe, świadectwa pochodzenia, certyfikaty jakości i inne.',
+                    'en' => 'Developing and verifying export and import documentation, such as invoices, shipping lists, certificates of origin, quality certificates, and others.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2755,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o zgodność dokumentów z wymaganiami prawnymi oraz przepisami celnymi kraju pochodzenia i kraju docelowego.',
+                    'en' => 'Ensuring that documents comply with legal requirements and customs regulations of the country of origin and the destination country.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2756,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie i monitorowanie realizacji dostaw zagranicznych, aby zapewnić terminowość i zgodność z umowami handlowymi.',
+                    'en' => 'Tracking and monitoring foreign deliveries to ensure timeliness and compliance with trade agreements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2757,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami logistyki i magazynem w celu koordynacji dostaw oraz rozwiązywania ewentualnych problemów.',
+                    'en' => 'Cooperating with logistics and warehouse departments to coordinate deliveries and resolve any issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2758,
+                'name' => json_encode([
+                    'pl' => 'Analiza ryzyk związanych z transakcjami międzynarodowymi, takich jak zmiany kursów walut, zmiany regulacji celnych czy ryzyka polityczne.',
+                    'en' => 'Analyzing risks associated with international transactions, such as currency fluctuations, changes in customs regulations, or political risks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2759,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie strategii minimalizujących ryzyko, w tym korzystanie z ubezpieczeń kredytów eksportowych oraz monitorowanie kursów walut.',
+                    'en' => 'Implementing risk mitigation strategies, including using export credit insurance and monitoring currency rates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2760,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności operacji handlowych z międzynarodowymi przepisami i regulacjami, takimi jak procedury celne, przepisy dotyczące sankcji oraz normy jakościowe.',
+                    'en' => 'Ensuring compliance of trade operations with international laws and regulations, such as customs procedures, sanctions laws, and quality standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2761,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z agencjami celnymi i instytucjami regulacyjnymi w celu prawidłowego odprawienia towarów.',
+                    'en' => 'Working closely with customs agencies and regulatory bodies to ensure proper clearance of goods.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2762,
+                'name' => json_encode([
+                    'pl' => 'Analiza sytuacji na rynkach zagranicznych, trendów branżowych oraz konkurencji, aby lepiej dostosować ofertę firmy do specyficznych wymagań klientów międzynarodowych.',
+                    'en' => 'Analyzing the situation in foreign markets, industry trends, and competition to better tailor the company’s offerings to the specific needs of international clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2763,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów dotyczących wyników sprzedaży na rynkach zagranicznych oraz rekomendowanie strategii rozwoju i ekspansji.',
+                    'en' => 'Creating reports on sales performance in foreign markets and recommending development and expansion strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2764,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie ofert handlowych dostosowanych do potrzeb klientów zagranicznych oraz specyfiki rynków docelowych.',
+                    'en' => 'Preparing commercial offers tailored to the needs of foreign clients and the specifics of target markets.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2765,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie kosztorysów oraz kalkulacji, które uwzględniają wszystkie aspekty transakcji międzynarodowych, takie jak transport, cła i podatki.',
+                    'en' => 'Developing cost estimates and calculations that consider all aspects of international transactions, such as transport, customs duties, and taxes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2766,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja rozliczeń międzynarodowych, w tym ustalanie warunków płatności.',
+                    'en' => 'Coordinating international settlements, including establishing payment terms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2767,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie płatności zagranicznych oraz współpraca z działem finansowym w celu zarządzania ryzykiem kursowym.',
+                    'en' => 'Monitoring foreign payments and collaborating with the finance department to manage currency risk.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2768,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy tworzeniu kampanii promujących produkty na rynkach międzynarodowych.',
+                    'en' => 'Collaborating with the marketing department to create campaigns promoting products in international markets.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2769,
+                'name' => json_encode([
+                    'pl' => 'Adaptacja materiałów marketingowych i strategii promocyjnych do specyfiki poszczególnych krajów i kultur.',
+                    'en' => 'Adapting marketing materials and promotional strategies to the specifics of individual countries and cultures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2770,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie spotkań z zagranicznymi klientami oraz udział w targach, konferencjach i misjach handlowych w celu promocji firmy i nawiązywania nowych kontaktów biznesowych.',
+                    'en' => 'Planning and organizing meetings with foreign clients and participating in trade fairs, conferences, and trade missions to promote the company and establish new business contacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2771,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie produktów firmy podczas wydarzeń branżowych oraz prowadzenie rozmów handlowych mających na celu nawiązanie współpracy.',
+                    'en' => 'Presenting the company’s products during industry events and conducting business discussions aimed at establishing cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2772,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z certyfikacją produktów wymaganych na rynkach zagranicznych, aby spełniały one normy i przepisy obowiązujące w kraju docelowym.',
+                    'en' => 'Coordinating certification activities for products required in foreign markets to ensure compliance with standards and regulations applicable in the destination country.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2773,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z laboratoriami i instytucjami certyfikującymi w celu uzyskania wymaganych certyfikatów.',
+                    'en' => 'Collaborating with laboratories and certification bodies to obtain the necessary certifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2774,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie wewnętrznych procedur i polityki firmy dotyczących handlu zagranicznego, w tym zasad zarządzania dokumentacją, ryzykiem oraz procedur celnych.',
+                    'en' => 'Developing internal procedures and company policies regarding foreign trade, including rules for managing documentation, risk, and customs procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2775,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian w przepisach międzynarodowych i dostosowywanie polityki firmy do nowych regulacji.',
+                    'en' => 'Monitoring changes in international regulations and adjusting the company’s policies to new regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2776,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań logistycznych związanych z transportem międzynarodowym, zarówno w eksporcie, jak i imporcie.',
+                    'en' => 'Coordinating logistical activities related to international transport, both in exports and imports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2777,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z firmami transportowymi, spedytorami oraz agencjami celnymi w celu zapewnienia efektywności i terminowości dostaw.',
+                    'en' => 'Collaborating with transport companies, freight forwarders, and customs agencies to ensure efficiency and timeliness of deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2778,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie dokumentacją handlową, w tym umowami, fakturami, dokumentami celnymi i innymi niezbędnymi dokumentami transakcyjnymi.',
+                    'en' => 'Managing trade documentation, including contracts, invoices, customs documents, and other necessary transactional documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2779,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie dokumenty są odpowiednio archiwizowane i zgodne z polityką firmy oraz regulacjami międzynarodowymi.',
+                    'en' => 'Ensuring that all documents are properly archived and comply with company policy and international regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2780,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prognoz sprzedażowych oraz planów działania na rynkach międzynarodowych, uwzględniając sytuację gospodarczą oraz trendy w branży.',
+                    'en' => 'Developing sales forecasts and action plans for international markets, considering the economic situation and industry trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2781,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji prognoz i dostosowywanie działań w oparciu o aktualne wyniki sprzedaży.',
+                    'en' => 'Monitoring the implementation of forecasts and adjusting actions based on current sales results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2782,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności produktów z międzynarodowymi normami ochrony środowiska, zdrowia i bezpieczeństwa.',
+                    'en' => 'Ensuring that products comply with international environmental, health, and safety standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2783,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie procedur mających na celu przestrzeganie regulacji związanych z transportem materiałów niebezpiecznych lub innych wymagających specjalnego traktowania.',
+                    'en' => 'Implementing procedures to comply with regulations related to the transport of hazardous materials or others requiring special treatment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2784,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń dla zespołów sprzedażowych i logistycznych w zakresie procedur i przepisów handlu zagranicznego.',
+                    'en' => 'Conducting training for sales and logistics teams regarding foreign trade procedures and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2785,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja wiedzy pracowników na temat najnowszych regulacji międzynarodowych oraz procedur eksportowych i importowych.',
+                    'en' => 'Updating employee knowledge about the latest international regulations and export and import procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+        $SPECJALISTADOSPRAWSPOŁECZNEJODPOWIEDZIALNOŚCIPRZEDSIĘBIORSTW=[
+            [
+                'id' => 2786,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii społecznej odpowiedzialności przedsiębiorstwa, która jest zgodna z misją i wartościami firmy.',
+                    'en' => 'Developing a corporate social responsibility strategy that aligns with the company\'s mission and values.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2787,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie programów CSR, które wspierają zrównoważony rozwój, dobrostan społeczności oraz ochronę środowiska.',
+                    'en' => 'Implementing CSR programs that support sustainable development, community welfare, and environmental protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2788,
+                'name' => json_encode([
+                    'pl' => 'Planowanie, koordynowanie i realizacja projektów CSR, takich jak działania charytatywne, projekty ekologiczne czy programy wolontariatu pracowniczego.',
+                    'en' => 'Planning, coordinating, and implementing CSR projects, such as charitable activities, ecological projects, or employee volunteering programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2789,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępów realizacji projektów oraz analiza ich efektów w kontekście celów społecznych i biznesowych firmy.',
+                    'en' => 'Monitoring the progress of project implementation and analyzing their effects in the context of the company\'s social and business goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2790,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie działań promujących zrównoważony rozwój, takich jak redukcja emisji CO2, optymalizacja zużycia energii, zmniejszenie zużycia surowców oraz zarządzanie odpadami.',
+                    'en' => 'Implementing actions that promote sustainable development, such as reducing CO2 emissions, optimizing energy consumption, reducing raw material usage, and waste management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2791,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami produkcji i logistyki w celu integracji zasad zrównoważonego rozwoju w codziennych operacjach firmy.',
+                    'en' => 'Cooperating with production and logistics departments to integrate sustainable development principles into the company\'s daily operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2792,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie relacji z kluczowymi interesariuszami, takimi jak lokalne społeczności, organizacje pozarządowe, partnerzy biznesowi oraz instytucje rządowe.',
+                    'en' => 'Building and maintaining relationships with key stakeholders, such as local communities, NGOs, business partners, and government institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2793,
+                'name' => json_encode([
+                    'pl' => 'Konsultowanie planów i działań CSR z interesariuszami w celu zapewnienia ich zgodności z oczekiwaniami społecznymi i środowiskowymi.',
+                    'en' => 'Consulting CSR plans and actions with stakeholders to ensure their compliance with social and environmental expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2794,
+                'name' => json_encode([
+                    'pl' => 'Analiza wpływu działalności firmy na środowisko oraz społeczności lokalne, w tym ocena emisji gazów cieplarnianych, zużycia zasobów oraz innych kluczowych aspektów środowiskowych.',
+                    'en' => 'Analyzing the impact of the company\'s activities on the environment and local communities, including assessing greenhouse gas emissions, resource consumption, and other key environmental aspects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2795,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów i ocen wpływu społecznego w celu informowania zarządu i interesariuszy o wynikach działań CSR.',
+                    'en' => 'Creating reports and assessments of social impact to inform management and stakeholders about the results of CSR activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2796,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów rocznych i okresowych dotyczących działań CSR firmy, zgodnie z międzynarodowymi standardami raportowania.',
+                    'en' => 'Preparing annual and periodic reports on the company\'s CSR activities in accordance with international reporting standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2797,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie wyników działań CSR w raportach i materiałach promocyjnych, aby budować pozytywny wizerunek firmy wśród interesariuszy i społeczności.',
+                    'en' => 'Presenting the results of CSR activities in reports and promotional materials to build a positive image of the company among stakeholders and communities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2798,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie polityk dotyczących odpowiedzialności społecznej, etyki biznesowej oraz zgodności z przepisami prawa pracy i ochrony środowiska.',
+                    'en' => 'Developing and implementing policies regarding social responsibility, business ethics, and compliance with labor law and environmental regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2799,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań firmy z regulacjami prawnymi oraz międzynarodowymi standardami CSR.',
+                    'en' => 'Monitoring the company\'s compliance with legal regulations and international CSR standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2800,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie programów wolontariatu pracowniczego, takich jak działania charytatywne, prace społeczne czy wsparcie lokalnych inicjatyw społecznych.',
+                    'en' => 'Coordinating employee volunteer programs, such as charitable activities, community service, or support for local social initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2801,
+                'name' => json_encode([
+                    'pl' => 'Promowanie zaangażowania pracowników w inicjatywy wolontariackie oraz organizacja eventów, które angażują społeczność lokalną.',
+                    'en' => 'Promoting employee engagement in volunteer initiatives and organizing events that engage the local community.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2802,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów dla pracowników na temat CSR, zrównoważonego rozwoju oraz etyki biznesowej.',
+                    'en' => 'Organizing training sessions and workshops for employees on CSR, sustainable development, and business ethics.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2803,
+                'name' => json_encode([
+                    'pl' => 'Podnoszenie świadomości wśród pracowników na temat wpływu ich działań na środowisko oraz społeczność, aby wspierać proaktywne podejście do CSR.',
+                    'en' => 'Raising employee awareness of the impact of their actions on the environment and community to support a proactive approach to CSR.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2804,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z działami marketingu i PR w celu promowania inicjatyw CSR oraz budowania pozytywnego wizerunku firmy w mediach i na rynku.',
+                    'en' => 'Coordinating actions with marketing and PR departments to promote CSR initiatives and build a positive company image in the media and market.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2805,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści do komunikacji zewnętrznej, takich jak artykuły, posty na mediach społecznościowych, kampanie promujące projekty CSR.',
+                    'en' => 'Preparing content for external communication, such as articles, social media posts, and campaigns promoting CSR projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2806,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie najnowszych trendów i najlepszych praktyk w dziedzinie CSR, zrównoważonego rozwoju oraz ochrony środowiska.',
+                    'en' => 'Monitoring the latest trends and best practices in CSR, sustainable development, and environmental protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2807,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych inicjatyw oraz dostosowywanie strategii CSR firmy do aktualnych oczekiwań rynkowych i regulacyjnych.',
+                    'en' => 'Implementing new initiatives and adjusting the company\'s CSR strategy to current market and regulatory expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2808,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie współpracy z organizacjami pozarządowymi oraz innymi instytucjami, które realizują projekty zgodne z wartościami firmy.',
+                    'en' => 'Establishing cooperation with NGOs and other institutions that implement projects consistent with the company\'s values.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2809,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie organizacji NGO oraz lokalnych inicjatyw poprzez działania partnerskie, wsparcie finansowe lub logistyczne.',
+                    'en' => 'Supporting NGOs and local initiatives through partnerships, financial or logistical support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2810,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i przeprowadzanie audytów wewnętrznych oraz zewnętrznych w celu oceny zgodności działań firmy z polityką CSR oraz regulacjami środowiskowymi i społecznych.',
+                    'en' => 'Organizing and conducting internal and external audits to assess the company\'s compliance with CSR policies and environmental and social regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2811,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie zaleceń audytowych w celu poprawy działań CSR oraz minimalizowania ryzyka i negatywnego wpływu na środowisko.',
+                    'en' => 'Implementing audit recommendations to improve CSR activities and minimize risks and negative environmental impacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2812,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie inicjatyw mających na celu zmniejszenie śladu węglowego firmy, takich jak programy oszczędzania energii, recyklingu, zmniejszenia zużycia plastiku i innych materiałów.',
+                    'en' => 'Implementing initiatives to reduce the company\'s carbon footprint, such as energy-saving programs, recycling, and reducing plastic and other material usage.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2813,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem produkcji oraz logistyki w celu wprowadzenia rozwiązań ekologicznych na poziomie operacyjnym.',
+                    'en' => 'Collaborating with production and logistics departments to implement ecological solutions at the operational level.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2814,
+                'name' => json_encode([
+                    'pl' => 'Promowanie polityk związanych z równymi szansami, różnorodnością i inkluzją w miejscu pracy.',
+                    'en' => 'Promoting policies related to equal opportunities, diversity, and inclusion in the workplace.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2815,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i realizacja programów, które wspierają różnorodność i integrację pracowników, np. poprzez zatrudnianie osób z niepełnosprawnościami czy wspieranie inicjatyw genderowych.',
+                    'en' => 'Creating and implementing programs that support employee diversity and inclusion, such as hiring people with disabilities or supporting gender initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2816,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie komunikacji dotyczącej działań CSR firmy z mediami oraz społecznościami lokalnymi.',
+                    'en' => 'Coordinating communication regarding the company\'s CSR activities with the media and local communities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2817,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie konferencji prasowych, spotkań i innych wydarzeń promujących inicjatywy CSR firmy.',
+                    'en' => 'Organizing press conferences, meetings, and other events promoting the company\'s CSR initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2818,
+                'name' => json_encode([
+                    'pl' => 'Regularne monitorowanie i ocenianie skuteczności działań CSR w kontekście celów firmy oraz potrzeb interesariuszy.',
+                    'en' => 'Regularly monitoring and assessing the effectiveness of CSR activities in relation to the company\'s goals and stakeholder needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2819,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analiz ROI w kontekście działań CSR oraz dostosowywanie strategii do wyników ocen.',
+                    'en' => 'Conducting ROI analyses in the context of CSR activities and adjusting strategies based on evaluation results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2820,
+                'name' => json_encode([
+                    'pl' => 'Adaptacja inicjatyw CSR do specyficznych potrzeb i oczekiwań lokalnych rynków, społeczności oraz kultur.',
+                    'en' => 'Adapting CSR initiatives to the specific needs and expectations of local markets, communities, and cultures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2821,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi oddziałami firmy oraz interesariuszami, aby dostosować programy CSR do kontekstu regionalnego.',
+                    'en' => 'Collaborating with local branches of the company and stakeholders to tailor CSR programs to the regional context.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2822,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i zarządzanie budżetem przeznaczonym na działania CSR, aby zapewnić optymalne wykorzystanie środków finansowych.',
+                    'en' => 'Planning and managing the budget allocated for CSR activities to ensure optimal use of financial resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2823,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wydatków i raportowanie wyników finansowych w kontekście realizacji programów CSR.',
+                    'en' => 'Monitoring expenses and reporting financial results in the context of CSR program implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2824,
+                'name' => json_encode([
+                    'pl' => 'Regularne raportowanie zarządowi oraz kluczowym interesariuszom o postępach i wynikach działań CSR.',
+                    'en' => 'Regularly reporting to management and key stakeholders on the progress and results of CSR activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2825,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie prezentacji oraz raportów podsumowujących realizację celów zrównoważonego rozwoju i społecznej odpowiedzialności.',
+                    'en' => 'Preparing presentations and reports summarizing the achievement of sustainable development and social responsibility goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+        ];
+
+
         $AttachKIEROWNIKSALISPRZEDAŻY = collect($KIEROWNIKSALISPRZEDAŻY)->pluck('id')->toArray();
         $AttachKIEROWNIKSTOISKAWMARKECIE = collect($KIEROWNIKSTOISKAWMARKECIE)->pluck('id')->toArray();
         $AttachKIEROWNIKKAS = collect($KIEROWNIKKAS)->pluck('id')->toArray();
@@ -15021,6 +25781,41 @@ class DetailProjectSeeder extends Seeder
         $AttachASYSTENTUSŁUGTELEKOMUNIKACYJNYCH = collect($ASYSTENTUSŁUGTELEKOMUNIKACYJNYCH)->pluck('id')->toArray();
         $AttachDYSPOZYTORRADIOTAXI = collect($DYSPOZYTORRADIOTAXI)->pluck('id')->toArray();
         $AttachOPERATORNUMERÓWALARMOWYCH = collect($OPERATORNUMERÓWALARMOWYCH)->pluck('id')->toArray();
+        $AttachFUNDRAISER = collect($FUNDRAISER)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWORGANIZACJIIROZWOJUSPRZEDAŻY = collect($SPECJALISTADOSPRAWORGANIZACJIIROZWOJUSPRZEDAŻY)->pluck('id')->toArray();
+        $AttachCOOLHUNTER = collect($COOLHUNTER)->pluck('id')->toArray();
+        $AttachAUTORTEKSTÓW = collect($AUTORTEKSTÓW)->pluck('id')->toArray();
+        $AttachPRODUCTMANAGER = collect($PRODUCTMANAGER)->pluck('id')->toArray();
+        $AttachBRANDMANAGER = collect($BRANDMANAGER)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWMARKETINGUIHANDLU = collect($SPECJALISTADOSPRAWMARKETINGUIHANDLU)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWREKLAMY = collect($SPECJALISTADOSPRAWREKLAMY)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWMEDIÓWINTERAKTYWNYCH = collect($SPECJALISTADOSPRAWMEDIÓWINTERAKTYWNYCH)->pluck('id')->toArray();
+        $AttachSPECJALISTASPRZEDAŻYINTERNETOWEJ = collect($SPECJALISTASPRZEDAŻYINTERNETOWEJ)->pluck('id')->toArray();
+        $AttachPOZOSTALISPECJALIŚCIDOSPRAWREKLAMYIMARKETINGU = collect($POZOSTALISPECJALIŚCIDOSPRAWREKLAMYIMARKETINGU)->pluck('id')->toArray();
+        $AttachSPECJALISTAETYKIBIZNESU = collect($SPECJALISTAETYKIBIZNESU)->pluck('id')->toArray();
+        $AttachLOBBYSTA = collect($LOBBYSTA)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWPUBLICRELATIONS = collect($SPECJALISTADOSPRAWPUBLICRELATIONS)->pluck('id')->toArray();
+        $AttachPOZOSTALISPECJALIŚCIDOSPRAWPUBLICRELATIONS = collect($POZOSTALISPECJALIŚCIDOSPRAWPUBLICRELATIONS)->pluck('id')->toArray();
+        $AttachINŻYNIERSPRZEDAŻYTECHNOLOGIIIUSŁUGTELEINFORMATYCZNYCH = collect($INŻYNIERSPRZEDAŻYTECHNOLOGIIIUSŁUGTELEINFORMATYCZNYCH)->pluck('id')->toArray();
+        $AttachSPECJALISTASPRZEDAŻYTECHNOLOGIIIUSŁUGINFORMATYCZNYCH = collect($SPECJALISTASPRZEDAŻYTECHNOLOGIIIUSŁUGINFORMATYCZNYCH)->pluck('id')->toArray();
+        $AttachPOZOSTALITECHNOLOGIITELEINFORMATYCZNYCH = collect($POZOSTALITECHNOLOGIITELEINFORMATYCZNYCH)->pluck('id')->toArray();
+        $AttachEKSPOZYTORTOWARÓWMERCHANDISER = collect($EKSPOZYTORTOWARÓWMERCHANDISER)->pluck('id')->toArray();
+        $AttachMENEDŻERARTYSTYCZNY = collect($MENEDŻERARTYSTYCZNY)->pluck('id')->toArray();
+        $AttachPROMOTORMARKITRENDSETTER = collect($PROMOTORMARKITRENDSETTER)->pluck('id')->toArray();
+        $AttachSPRZEDAWCAREKLAMINTERNETOWYCH = collect($SPRZEDAWCAREKLAMINTERNETOWYCH)->pluck('id')->toArray();
+        $AttachTECHNIKORGANIZACJIREKLAMY = collect($TECHNIKORGANIZACJIREKLAMY)->pluck('id')->toArray();
+        $AttachPRACOWNIKOBSŁUGIKAMPANIIEMAILOWYCH = collect($PRACOWNIKOBSŁUGIKAMPANIIEMAILOWYCH)->pluck('id')->toArray();
+        $AttachTECHNIKREKLAMY = collect($TECHNIKREKLAMY)->pluck('id')->toArray();
+        $AttachINŻYNIERSPRZEDAŻY = collect($INŻYNIERSPRZEDAŻY)->pluck('id')->toArray();
+        $AttachOPIEKUNKLIENTA = collect($OPIEKUNKLIENTA)->pluck('id')->toArray();
+        $AttachKEYACCOUNTMANAGER = collect($KEYACCOUNTMANAGER)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWSPRZEDAŻY = collect($SPECJALISTADOSPRAWSPRZEDAŻY)->pluck('id')->toArray();
+        $AttachSPECJALISTAZAOPATRZENIAMEDYCZNEGO = collect($SPECJALISTAZAOPATRZENIAMEDYCZNEGO)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWOBSŁUGIPOSPRZEDAŻOWEJ = collect($SPECJALISTADOSPRAWOBSŁUGIPOSPRZEDAŻOWEJ)->pluck('id')->toArray();
+        $AttachPOZOSTALISPECJALIŚCIDOSPRAWSPRZEDAŻ = collect($POZOSTALISPECJALIŚCIDOSPRAWSPRZEDAŻ)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWMEDIÓWSPOŁECZNOŚCIOWYCH = collect($SPECJALISTADOSPRAWMEDIÓWSPOŁECZNOŚCIOWYCH)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWHANDLUZAGRANICZNEGO = collect($SPECJALISTADOSPRAWHANDLUZAGRANICZNEGO)->pluck('id')->toArray();
+        $AttachSPECJALISTADOSPRAWSPOŁECZNEJODPOWIEDZIALNOŚCIPRZEDSIĘBIORSTW = collect($SPECJALISTADOSPRAWSPOŁECZNEJODPOWIEDZIALNOŚCIPRZEDSIĘBIORSTW)->pluck('id')->toArray();
 
         DB::table('detail_projects')->insert(array_merge(
             $KIEROWNIKSALISPRZEDAŻY,
@@ -15088,6 +25883,41 @@ class DetailProjectSeeder extends Seeder
             $ASYSTENTUSŁUGTELEKOMUNIKACYJNYCH,
             $DYSPOZYTORRADIOTAXI,
             $OPERATORNUMERÓWALARMOWYCH,
+            $FUNDRAISER,
+            $SPECJALISTADOSPRAWORGANIZACJIIROZWOJUSPRZEDAŻY,
+            $COOLHUNTER,
+            $AUTORTEKSTÓW,
+            $PRODUCTMANAGER,
+            $BRANDMANAGER,
+            $SPECJALISTADOSPRAWMARKETINGUIHANDLU,
+            $SPECJALISTADOSPRAWREKLAMY,
+            $SPECJALISTADOSPRAWMEDIÓWINTERAKTYWNYCH,
+            $SPECJALISTASPRZEDAŻYINTERNETOWEJ,
+            $POZOSTALISPECJALIŚCIDOSPRAWREKLAMYIMARKETINGU,
+            $SPECJALISTAETYKIBIZNESU,
+            $LOBBYSTA,
+            $SPECJALISTADOSPRAWPUBLICRELATIONS,
+            $POZOSTALISPECJALIŚCIDOSPRAWPUBLICRELATIONS,
+            $INŻYNIERSPRZEDAŻYTECHNOLOGIIIUSŁUGTELEINFORMATYCZNYCH,
+            $SPECJALISTASPRZEDAŻYTECHNOLOGIIIUSŁUGINFORMATYCZNYCH,
+            $POZOSTALITECHNOLOGIITELEINFORMATYCZNYCH,
+            $EKSPOZYTORTOWARÓWMERCHANDISER,
+            $MENEDŻERARTYSTYCZNY,
+            $PROMOTORMARKITRENDSETTER,
+            $SPRZEDAWCAREKLAMINTERNETOWYCH,
+            $TECHNIKORGANIZACJIREKLAMY,
+            $PRACOWNIKOBSŁUGIKAMPANIIEMAILOWYCH,
+            $TECHNIKREKLAMY,
+            $INŻYNIERSPRZEDAŻY,
+            $OPIEKUNKLIENTA,
+            $KEYACCOUNTMANAGER,
+            $SPECJALISTADOSPRAWSPRZEDAŻY,
+            $SPECJALISTAZAOPATRZENIAMEDYCZNEGO,
+            $SPECJALISTADOSPRAWOBSŁUGIPOSPRZEDAŻOWEJ,
+            $POZOSTALISPECJALIŚCIDOSPRAWSPRZEDAŻ,
+            $SPECJALISTADOSPRAWMEDIÓWSPOŁECZNOŚCIOWYCH,
+            $SPECJALISTADOSPRAWHANDLUZAGRANICZNEGO,
+            $SPECJALISTADOSPRAWSPOŁECZNEJODPOWIEDZIALNOŚCIPRZEDSIĘBIORSTW
 
         ));
 
@@ -15156,5 +25986,42 @@ class DetailProjectSeeder extends Seeder
         Category::whereId('77')->first()->detailprojects()->attach($AttachASYSTENTUSŁUGTELEKOMUNIKACYJNYCH);
         Category::whereId('78')->first()->detailprojects()->attach($AttachDYSPOZYTORRADIOTAXI);
         Category::whereId('79')->first()->detailprojects()->attach($AttachOPERATORNUMERÓWALARMOWYCH);
+        Category::whereId('81')->first()->detailprojects()->attach($AttachFUNDRAISER);
+        Category::whereId('82')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWORGANIZACJIIROZWOJUSPRZEDAŻY);
+        Category::whereId('83')->first()->detailprojects()->attach($AttachCOOLHUNTER);
+        Category::whereId('84')->first()->detailprojects()->attach($AttachAUTORTEKSTÓW);
+        Category::whereId('85')->first()->detailprojects()->attach($AttachPRODUCTMANAGER);
+        Category::whereId('86')->first()->detailprojects()->attach($AttachBRANDMANAGER);
+        Category::whereId('87')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWMARKETINGUIHANDLU);
+        Category::whereId('88')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWREKLAMY);
+        Category::whereId('89')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWMEDIÓWINTERAKTYWNYCH);
+        Category::whereId('90')->first()->detailprojects()->attach($AttachSPECJALISTASPRZEDAŻYINTERNETOWEJ);
+        Category::whereId('91')->first()->detailprojects()->attach($AttachPOZOSTALISPECJALIŚCIDOSPRAWREKLAMYIMARKETINGU);
+        Category::whereId('93')->first()->detailprojects()->attach($AttachSPECJALISTAETYKIBIZNESU);
+        Category::whereId('94')->first()->detailprojects()->attach($AttachLOBBYSTA);
+        Category::whereId('95')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWPUBLICRELATIONS);
+        Category::whereId('96')->first()->detailprojects()->attach($AttachPOZOSTALISPECJALIŚCIDOSPRAWPUBLICRELATIONS);
+        Category::whereId('98')->first()->detailprojects()->attach($AttachINŻYNIERSPRZEDAŻYTECHNOLOGIIIUSŁUGTELEINFORMATYCZNYCH);
+        Category::whereId('99')->first()->detailprojects()->attach($AttachSPECJALISTASPRZEDAŻYTECHNOLOGIIIUSŁUGINFORMATYCZNYCH);
+        Category::whereId('100')->first()->detailprojects()->attach($AttachPOZOSTALITECHNOLOGIITELEINFORMATYCZNYCH);
+        Category::whereId('101')->first()->detailprojects()->attach($AttachEKSPOZYTORTOWARÓWMERCHANDISER);
+        Category::whereId('102')->first()->detailprojects()->attach($AttachMENEDŻERARTYSTYCZNY);
+        Category::whereId('103')->first()->detailprojects()->attach($AttachPROMOTORMARKITRENDSETTER);
+        Category::whereId('104')->first()->detailprojects()->attach($AttachSPRZEDAWCAREKLAMINTERNETOWYCH);
+        Category::whereId('105')->first()->detailprojects()->attach($AttachTECHNIKORGANIZACJIREKLAMY);
+        Category::whereId('106')->first()->detailprojects()->attach($AttachPRACOWNIKOBSŁUGIKAMPANIIEMAILOWYCH);
+        Category::whereId('107')->first()->detailprojects()->attach($AttachTECHNIKREKLAMY);
+        Category::whereId('108')->first()->detailprojects()->attach($AttachINŻYNIERSPRZEDAŻY);
+        Category::whereId('109')->first()->detailprojects()->attach($AttachOPIEKUNKLIENTA);
+        Category::whereId('110')->first()->detailprojects()->attach($AttachKEYACCOUNTMANAGER);
+        Category::whereId('111')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWSPRZEDAŻY);
+        Category::whereId('112')->first()->detailprojects()->attach($AttachSPECJALISTAZAOPATRZENIAMEDYCZNEGO);
+        Category::whereId('113')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWOBSŁUGIPOSPRZEDAŻOWEJ);
+        Category::whereId('114')->first()->detailprojects()->attach($AttachPOZOSTALISPECJALIŚCIDOSPRAWSPRZEDAŻ);
+        Category::whereId('115')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWMEDIÓWSPOŁECZNOŚCIOWYCH);
+        Category::whereId('116')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWHANDLUZAGRANICZNEGO);
+        Category::whereId('117')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWSPOŁECZNEJODPOWIEDZIALNOŚCIPRZEDSIĘBIORSTW);
+
+
     }
 }
