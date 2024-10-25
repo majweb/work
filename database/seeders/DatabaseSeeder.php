@@ -31,7 +31,9 @@ class DatabaseSeeder extends Seeder
             ExperienceSeeder::class,
             WelcomeSeeder::class,
             EducationSeeder::class,
-            DetailProjectSeeder::class,
+            DetailProjectHandelSeeder::class,
+            DetailProjectAdministacjaSeeder::class,
         ]);
+
     }
 }

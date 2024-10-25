@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class DetailProjectSeeder extends Seeder
+class DetailProjectHandelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26021,7 +26021,5 @@ class DetailProjectSeeder extends Seeder
         Category::whereId('115')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWMEDIÓWSPOŁECZNOŚCIOWYCH);
         Category::whereId('116')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWHANDLUZAGRANICZNEGO);
         Category::whereId('117')->first()->detailprojects()->attach($AttachSPECJALISTADOSPRAWSPOŁECZNEJODPOWIEDZIALNOŚCIPRZEDSIĘBIORSTW);
-
-
     }
 }
