@@ -28170,6 +28170,10185 @@ class DetailProjectAdministacjaSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ]
         ];
+        $specjalista_administracji_publicznej = [
+            [
+                'id' => 5953,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie i ewidencjonowanie dokumentacji urzędowej, w tym archiwizacja, rejestracja oraz nadzór nad obiegiem dokumentów w urzędzie.',
+                    'en' => 'Keeping and recording official documentation, including archiving, registration, and supervising document circulation within the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5954,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i wypełnianie dokumentów administracyjnych, takich jak pisma urzędowe, decyzje administracyjne, protokoły czy notatki służbowe.',
+                    'en' => 'Preparing and filling out administrative documents, such as official letters, administrative decisions, protocols, and official notes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5955,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie dokumenty są odpowiednio archiwizowane i zgodne z przepisami prawa.',
+                    'en' => 'Ensuring all documents are properly archived and compliant with legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5956,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji i wyjaśnień obywatelom, klientom oraz interesantom w sprawach związanych z działalnością urzędu.',
+                    'en' => 'Providing information and clarifications to citizens, clients, and stakeholders regarding office activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5957,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie wniosków, skarg, zażaleń i innych dokumentów składanych przez interesantów oraz przekazywanie ich do odpowiednich działów.',
+                    'en' => 'Receiving applications, complaints, grievances, and other documents submitted by stakeholders and forwarding them to the appropriate departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5958,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnej i profesjonalnej obsługi interesantów oraz pomoc w wypełnianiu niezbędnych dokumentów.',
+                    'en' => 'Ensuring efficient and professional customer service and assisting in filling out necessary documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5959,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie projektów uchwał, decyzji, postanowień i innych dokumentów administracyjnych wymaganych przez przepisy prawa.',
+                    'en' => 'Drafting resolutions, decisions, rulings, and other administrative documents required by law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5960,
+                'name' => json_encode([
+                    'pl' => 'Analiza dokumentów i spraw administracyjnych, a także rekomendowanie działań związanych z rozstrzygnięciami administracyjnymi.',
+                    'en' => 'Analyzing documents and administrative matters and recommending actions related to administrative decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5961,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z przełożonymi i innymi działami w celu zapewnienia poprawności i kompletności dokumentacji.',
+                    'en' => 'Collaborating with supervisors and other departments to ensure the accuracy and completeness of documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5962,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań administracyjnych zgodnie z przepisami Kodeksu postępowania administracyjnego oraz innymi regulacjami prawa.',
+                    'en' => 'Conducting administrative proceedings in accordance with the Administrative Procedure Code and other legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5963,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentów związanych z postępowaniami administracyjnymi, takich jak wezwania, decyzje, postanowienia oraz protokoły z rozpraw.',
+                    'en' => 'Preparing documents related to administrative proceedings, such as summons, decisions, rulings, and hearing records.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5964,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad terminowym prowadzeniem spraw administracyjnych oraz dbanie o ich zgodność z procedurami prawnymi.',
+                    'en' => 'Supervising the timely handling of administrative matters and ensuring compliance with legal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5965,
+                'name' => json_encode([
+                    'pl' => 'Obsługa systemów komputerowych wykorzystywanych w urzędzie, takich jak elektroniczny obieg dokumentów, systemy ePUAP oraz bazy danych.',
+                    'en' => 'Operating computer systems used in the office, such as electronic document circulation, ePUAP systems, and databases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5966,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych do systemów informatycznych oraz dbanie o ich aktualność i dokładność.',
+                    'en' => 'Entering data into IT systems and ensuring their accuracy and currency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5967,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie narzędzi informatycznych do sporządzania raportów, analiz i zestawień na potrzeby urzędu.',
+                    'en' => 'Using IT tools to prepare reports, analyses, and compilations for office needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5968,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i analiz dotyczących działalności urzędu, efektywności działań oraz realizacji wyznaczonych celów.',
+                    'en' => 'Preparing reports and analyses regarding office activities, operational efficiency, and achievement of set goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5969,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych statystycznych i sporządzanie zestawień na potrzeby przełożonych oraz wyższych instytucji nadzorczych.',
+                    'en' => 'Analyzing statistical data and preparing summaries for supervisors and higher oversight institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5970,
+                'name' => json_encode([
+                    'pl' => 'Przedstawianie wyników analiz oraz rekomendowanie działań optymalizacyjnych i usprawniających działalność urzędu.',
+                    'en' => 'Presenting analysis results and recommending optimization and improvement actions for office operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5971,
+                'name' => json_encode([
+                    'pl' => 'Współpraca przy opracowywaniu regulacji wewnętrznych, procedur oraz dokumentów strategicznych, takich jak plany, programy czy regulaminy.',
+                    'en' => 'Collaborating in the development of internal regulations, procedures, and strategic documents such as plans, programs, and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5972,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie projektów uchwał, zarządzeń i innych aktów normatywnych na potrzeby jednostki administracji publicznej.',
+                    'en' => 'Drafting resolutions, ordinances, and other normative acts for the needs of the public administration unit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5973,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności opracowywanych dokumentów z przepisami prawa oraz ich poprawność merytoryczną i formalną.',
+                    'en' => 'Ensuring compliance of prepared documents with legal regulations and their substantive and formal accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5974,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z innymi jednostkami administracji publicznej, organizacjami pozarządowymi oraz instytucjami kontrolnymi.',
+                    'en' => 'Maintaining contacts with other public administration units, non-governmental organizations, and supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5975,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędami w zakresie realizacji wspólnych projektów i inicjatyw oraz wymiana informacji na temat prowadzonych spraw.',
+                    'en' => 'Collaborating with other offices on joint projects and initiatives and exchanging information on ongoing matters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5976,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i wysyłanie korespondencji do instytucji zewnętrznych, w tym odpowiadanie na zapytania oraz przekazywanie dokumentów.',
+                    'en' => 'Preparing and sending correspondence to external institutions, including responding to inquiries and forwarding documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5977,
+                'name' => json_encode([
+                    'pl' => 'Organizacja spotkań, konferencji, narad oraz innych wydarzeń wewnętrznych i zewnętrznych na potrzeby urzędu.',
+                    'en' => 'Organizing meetings, conferences, sessions, and other internal and external events for office needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5978,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie agendy spotkań, materiałów informacyjnych oraz organizacja logistyki związanej z przeprowadzeniem wydarzeń.',
+                    'en' => 'Preparing meeting agendas, informational materials, and organizing logistics for event execution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5979,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie przebiegu spotkań oraz przygotowywanie protokołów, raportów i sprawozdań z ich realizacji.',
+                    'en' => 'Documenting meetings and preparing protocols, reports, and summaries of their execution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5980,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie przepisów prawa i ich zmian, które mają wpływ na działalność urzędu, oraz dostosowanie działań administracyjnych do obowiązujących regulacji.',
+                    'en' => 'Monitoring legal regulations and their changes impacting office operations and adjusting administrative actions accordingly.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5981,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych przepisów i regulacji wewnętrznych oraz zapewnienie ich przestrzegania przez personel urzędu.',
+                    'en' => 'Implementing new regulations and internal policies and ensuring their adherence by office staff.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5982,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji i wsparcia pracownikom urzędu w zakresie interpretacji przepisów prawa oraz ich stosowania w codziennej pracy.',
+                    'en' => 'Providing information and support to office staff on legal interpretation and application in daily tasks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5983,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli wewnętrznych dotyczących realizacji zadań administracyjnych i zgodności z procedurami wewnętrznymi.',
+                    'en' => 'Conducting internal controls on administrative tasks and compliance with internal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5984,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów z kontroli oraz przekazywanie ich przełożonym wraz z rekomendacjami dotyczącymi ewentualnych usprawnień.',
+                    'en' => 'Preparing control reports and submitting them to supervisors with recommendations for possible improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5985,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie zaleceń wynikających z kontroli oraz monitorowanie ich realizacji przez poszczególne działy urzędu.',
+                    'en' => 'Implementing control recommendations and monitoring their execution by office departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5986,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i wysyłanie korespondencji, w tym obsługa poczty tradycyjnej oraz elektronicznej.',
+                    'en' => 'Receiving and sending correspondence, including handling traditional and electronic mail.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5987,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie korespondencji w systemach zarządzania dokumentami oraz nadzór nad jej obiegiem wewnętrznym.',
+                    'en' => 'Recording correspondence in document management systems and supervising its internal circulation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5988,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie korespondencji do odpowiednich działów oraz zapewnienie jej terminowej realizacji.',
+                    'en' => 'Forwarding correspondence to relevant departments and ensuring timely handling.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5989,
+                'name' => json_encode([
+                    'pl' => 'Udział w tworzeniu budżetu jednostki oraz kontrola jego realizacji zgodnie z obowiązującymi przepisami.',
+                    'en' => 'Participating in budget creation and controlling its implementation in accordance with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5990,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów finansowych, analiza wydatków i współpraca z działem księgowości w zakresie rozliczania funduszy publicznych.',
+                    'en' => 'Preparing financial reports, analyzing expenditures, and working with the accounting department on public funds settlement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5991,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności wydatków z założeniami budżetowymi oraz przestrzeganie procedur dotyczących zamówień publicznych.',
+                    'en' => 'Monitoring expense compliance with budget assumptions and adhering to public procurement procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5992,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszelkie działania związane z przetwarzaniem danych osobowych są zgodne z przepisami RODO oraz wewnętrznymi politykami ochrony danych.',
+                    'en' => 'Ensuring that all actions related to personal data processing comply with GDPR and internal data protection policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5993,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie przestrzegania zasad ochrony danych osobowych w urzędzie oraz współpraca z inspektorem ochrony danych.',
+                    'en' => 'Monitoring personal data protection compliance in the office and collaborating with the Data Protection Officer.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5994,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie dokumentacji dotyczącej ochrony danych osobowych oraz reagowanie na incydenty związane z ich bezpieczeństwem.',
+                    'en' => 'Maintaining documentation on personal data protection and responding to security incidents related to it.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5995,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie urzędu w kontaktach z obywatelami oraz dbanie o pozytywny wizerunek jednostki administracji publicznej.',
+                    'en' => 'Representing the office in contacts with citizens and maintaining a positive image of the public administration unit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5996,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie wysokiej jakości obsługi interesantów oraz budowanie zaufania społecznego do instytucji publicznej.',
+                    'en' => 'Ensuring high-quality customer service and building public trust in the institution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5997,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań promocyjnych i informacyjnych w zakresie działalności urzędu, takich jak aktualizowanie strony internetowej i publikacja komunikatów.',
+                    'en' => 'Conducting promotional and informational activities for the office, such as updating the website and publishing announcements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $specjalista_do_spraw_integracji_europejskiej = [
+            [
+                'id' => 5998,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie zmian w prawodawstwie oraz politykach unijnych, które mają wpływ na funkcjonowanie jednostki lub kraju.',
+                    'en' => 'Monitoring changes in EU legislation and policies that impact the functioning of the organization or country.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5999,
+                'name' => json_encode([
+                    'pl' => 'Analiza wpływu nowych regulacji i dyrektyw UE na działalność organizacji i przygotowywanie rekomendacji dotyczących ich wdrożenia.',
+                    'en' => 'Analyzing the impact of new EU regulations and directives on organizational activities and preparing recommendations for their implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6000,
+                'name' => json_encode([
+                    'pl' => 'Informowanie jednostki lub instytucji o bieżących i nadchodzących zmianach prawnych oraz inicjatywach politycznych UE.',
+                    'en' => 'Informing the organization or institution about current and upcoming legal changes and EU policy initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6001,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z implementacją przepisów i dyrektyw UE w jednostce lub organizacji.',
+                    'en' => 'Coordinating activities related to the implementation of EU regulations and directives within the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6002,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi działami i specjalistami w celu wdrożenia standardów europejskich w różnych obszarach działalności organizacji.',
+                    'en' => 'Collaborating with other departments and specialists to implement European standards in various organizational areas.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6003,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań jednostki z przepisami unijnymi oraz prowadzenie audytów zgodności.',
+                    'en' => 'Monitoring organizational compliance with EU regulations and conducting compliance audits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6004,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie porad i informacji dotyczących integracji europejskiej, programów unijnych oraz możliwości współpracy z UE.',
+                    'en' => 'Providing advice and information on European integration, EU programs, and collaboration opportunities with the EU.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6005,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie organizacji w dostosowywaniu działań do unijnych norm i standardów w celu zwiększenia zgodności z politykami UE.',
+                    'en' => 'Supporting the organization in aligning activities with EU norms and standards to enhance compliance with EU policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6006,
+                'name' => json_encode([
+                    'pl' => 'Doradztwo w zakresie interpretacji przepisów unijnych oraz ich wpływu na organizację lub jednostkę.',
+                    'en' => 'Advising on the interpretation of EU regulations and their impact on the organization or unit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6007,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie wniosków o dofinansowanie z funduszy europejskich, takich jak Europejski Fundusz Rozwoju Regionalnego, Europejski Fundusz Społeczny czy Program Erasmus+.',
+                    'en' => 'Preparing applications for funding from European funds such as the European Regional Development Fund, European Social Fund, or Erasmus+ Program.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6008,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie realizacją projektów unijnych, w tym monitorowanie budżetu, harmonogramu oraz zgodności z wytycznymi UE.',
+                    'en' => 'Managing the implementation of EU projects, including budget monitoring, schedule adherence, and compliance with EU guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6009,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów i sprawozdań z realizacji projektów oraz rozliczanie środków finansowych zgodnie z wymaganiami unijnymi.',
+                    'en' => 'Creating reports and statements on project implementation and settling financial resources in line with EU requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6010,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie kontaktów z przedstawicielami instytucji unijnych, ambasadami oraz organizacjami międzynarodowymi.',
+                    'en' => 'Establishing and maintaining contacts with EU institution representatives, embassies, and international organizations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6011,
+                'name' => json_encode([
+                    'pl' => 'Udział w spotkaniach, konferencjach i wydarzeniach organizowanych przez instytucje unijne w celu wymiany informacji i doświadczeń.',
+                    'en' => 'Participating in meetings, conferences, and events organized by EU institutions to exchange information and experiences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6012,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja współpracy z innymi jednostkami krajowymi i międzynarodowymi w zakresie realizacji wspólnych projektów unijnych i inicjatyw.',
+                    'en' => 'Coordinating collaboration with other national and international units on EU joint projects and initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6013,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów informacyjnych i promocyjnych na temat dostępnych programów, funduszy i inicjatyw europejskich.',
+                    'en' => 'Developing informational and promotional materials on available EU programs, funds, and initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6014,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń, warsztatów i spotkań informacyjnych dla pracowników i interesariuszy, aby zwiększyć świadomość możliwości finansowania z UE.',
+                    'en' => 'Organizing training, workshops, and informational meetings for employees and stakeholders to increase awareness of EU funding opportunities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6015,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem komunikacji w celu rozpowszechniania informacji o projektach i programach europejskich.',
+                    'en' => 'Collaborating with the communication department to disseminate information on European projects and programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6016,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i analiz na temat postępów integracji europejskiej oraz wpływu polityk UE na działalność jednostki.',
+                    'en' => 'Preparing reports and analyses on the progress of European integration and the impact of EU policies on the unit’s activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6017,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników projektów unijnych i ocena ich zgodności z celami określonymi przez Unię Europejską.',
+                    'en' => 'Analyzing EU project outcomes and assessing their alignment with objectives set by the European Union.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6018,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zestawień statystycznych i wskaźników efektywności realizacji działań związanych z integracją europejską.',
+                    'en' => 'Creating statistical summaries and performance indicators for European integration activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6019,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z władzami lokalnymi, regionalnymi oraz instytucjami krajowymi w celu wspierania projektów i inicjatyw europejskich.',
+                    'en' => 'Coordinating actions with local, regional, and national authorities to support European projects and initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6020,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań i konsultacji z przedstawicielami lokalnych i regionalnych jednostek samorządowych w celu omówienia programów unijnych.',
+                    'en' => 'Organizing meetings and consultations with representatives of local and regional authorities to discuss EU programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6021,
+                'name' => json_encode([
+                    'pl' => 'Promowanie polityk unijnych na poziomie lokalnym i regionalnym oraz doradztwo w zakresie wdrażania standardów UE.',
+                    'en' => 'Promoting EU policies at the local and regional level and advising on the implementation of EU standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6022,
+                'name' => json_encode([
+                    'pl' => 'Analiza polityki zagranicznej UE oraz jej wpływu na kraj i jednostkę organizacyjną.',
+                    'en' => 'Analyzing EU foreign policy and its impact on the country and the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6023,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie inicjatyw UE dotyczących współpracy z krajami trzecimi, które mogą wpłynąć na działalność organizacji.',
+                    'en' => 'Monitoring EU initiatives for cooperation with third countries that may impact the organization’s activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6024,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z bieżącej sytuacji politycznej w UE oraz jej wpływu na współpracę międzynarodową.',
+                    'en' => 'Preparing reports on the current political situation in the EU and its impact on international cooperation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6025,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie dokumentów strategicznych dotyczących współpracy z UE oraz wdrażania polityk europejskich w jednostce organizacyjnej.',
+                    'en' => 'Developing strategic documents related to EU cooperation and the implementation of European policies in the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6026,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie planów działania i strategii rozwoju zgodnych z celami UE oraz politykami regionalnymi.',
+                    'en' => 'Creating action plans and development strategies aligned with EU objectives and regional policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6027,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji planów i strategii oraz ich dostosowywanie do zmieniających się warunków i wymogów unijnych.',
+                    'en' => 'Monitoring the implementation of plans and strategies and adjusting them to changing EU conditions and requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6028,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i prowadzenie szkoleń dotyczących integracji europejskiej, polityk unijnych oraz standardów UE dla pracowników i interesariuszy.',
+                    'en' => 'Organizing and conducting training on European integration, EU policies, and standards for employees and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6029,
+                'name' => json_encode([
+                    'pl' => 'Udział w konferencjach, seminariach i warsztatach, które mają na celu zwiększenie wiedzy na temat integracji europejskiej i współpracy z UE.',
+                    'en' => 'Participating in conferences, seminars, and workshops to increase knowledge on European integration and cooperation with the EU.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6030,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie działań edukacyjnych i informacyjnych skierowanych do społeczeństwa w zakresie roli i znaczenia UE.',
+                    'en' => 'Supporting educational and informational activities directed at the public on the role and significance of the EU.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6031,
+                'name' => json_encode([
+                    'pl' => 'Organizacja wizyt studyjnych oraz wymian z innymi krajami europejskimi, mających na celu wymianę doświadczeń i najlepszych praktyk.',
+                    'en' => 'Organizing study visits and exchanges with other European countries to exchange experiences and best practices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6032,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z instytucjami partnerskimi w organizacji wymian międzykulturowych i edukacyjnych dla pracowników i interesariuszy.',
+                    'en' => 'Collaborating with partner institutions in organizing intercultural and educational exchanges for employees and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6033,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie rezultatów wizyt i wymian oraz ocena ich wartości dla organizacji.',
+                    'en' => 'Monitoring the results of visits and exchanges and evaluating their value to the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6034,
+                'name' => json_encode([
+                    'pl' => 'Analiza zmian w prawodawstwie krajowym wynikających z wprowadzenia regulacji UE.',
+                    'en' => 'Analyzing changes in national legislation resulting from the introduction of EU regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6035,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem prawnym w celu zapewnienia, że działania organizacji są zgodne z krajowymi regulacjami oraz przepisami UE.',
+                    'en' => 'Collaborating with the legal department to ensure that the organization’s activities comply with national and EU regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6036,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów i zaleceń dotyczących adaptacji krajowych przepisów do wymogów unijnych.',
+                    'en' => 'Preparing reports and recommendations on adapting national regulations to EU requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6037,
+                'name' => json_encode([
+                    'pl' => 'Identyfikowanie potencjalnych ryzyk związanych z realizacją projektów europejskich oraz wdrażaniem przepisów unijnych.',
+                    'en' => 'Identifying potential risks related to the implementation of European projects and EU regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6038,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie planów zarządzania ryzykiem, które mogą pojawić się na etapie wdrażania projektów i polityk unijnych.',
+                    'en' => 'Creating risk management plans for potential issues during the implementation of EU projects and policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6039,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie procedur minimalizujących ryzyko związane z brakiem zgodności lub niewłaściwym zarządzaniem funduszami unijnymi.',
+                    'en' => 'Implementing procedures to minimize risks related to non-compliance or improper management of EU funds.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6040,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii komunikacji, mającej na celu zwiększenie świadomości na temat projektów unijnych i polityk europejskich.',
+                    'en' => 'Developing a communication strategy to raise awareness of EU projects and European policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6041,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie kampanii informacyjnych promujących wartości i cele Unii Europejskiej oraz korzyści wynikające z integracji.',
+                    'en' => 'Conducting information campaigns promoting EU values and goals and the benefits of integration.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6042,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z mediami oraz organizowanie konferencji prasowych w celu komunikowania wyników i postępów działań europejskich.',
+                    'en' => 'Collaborating with the media and organizing press conferences to communicate results and progress of EU activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $pozostali_specjalisci_do_spraw_administracji_i_rozwoju = [
+            [
+                'id' => 6043,
+                'name' => json_encode([
+                    'pl' => 'Rekrutacja, selekcja i zatrudnianie pracowników, a także onboarding nowo zatrudnionych.',
+                    'en' => 'Recruiting, selecting, and hiring employees, as well as onboarding new hires.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6044,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie programów szkoleniowych oraz planów rozwoju zawodowego dla pracowników.',
+                    'en' => 'Developing training programs and career development plans for employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6045,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z kadrą zarządzającą w zakresie zarządzania talentami i planowania sukcesji.',
+                    'en' => 'Collaborating with management on talent management and succession planning.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6046,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie przestrzegania polityk HR oraz przepisów prawa pracy w organizacji.',
+                    'en' => 'Monitoring compliance with HR policies and labor law regulations within the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6047,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb organizacji oraz tworzenie strategii rozwoju na podstawie badań rynku i trendów branżowych.',
+                    'en' => 'Analyzing organizational needs and developing growth strategies based on market research and industry trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6048,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie planów strategicznych, które wspierają długoterminowe cele organizacji, takie jak rozwój nowych produktów czy ekspansja na nowe rynki.',
+                    'en' => 'Implementing strategic plans that support long-term organizational goals, such as new product development or market expansion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6049,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja projektów mających na celu usprawnienie procesów i optymalizację struktury organizacyjnej.',
+                    'en' => 'Coordinating projects aimed at process improvement and organizational structure optimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6050,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów na temat postępów i efektów realizacji strategii oraz rekomendowanie działań korygujących.',
+                    'en' => 'Preparing reports on the progress and effects of strategy implementation and recommending corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6051,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie postępowań o udzielenie zamówień publicznych zgodnie z przepisami Prawa zamówień publicznych.',
+                    'en' => 'Conducting public procurement proceedings in compliance with Public Procurement Law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6052,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie specyfikacji istotnych warunków zamówienia (SIWZ), ogłoszeń oraz innych dokumentów przetargowych.',
+                    'en' => 'Preparing tender documentation, including Terms of Reference (SIWZ), announcements, and other procurement documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6053,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad realizacją umów i kontraktów oraz monitorowanie zgodności zamówień z przyjętymi standardami.',
+                    'en' => 'Supervising contract execution and monitoring compliance of orders with established standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6054,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z oferentami oraz instytucjami kontrolującymi w celu zapewnienia transparentności procesu zamówień.',
+                    'en' => 'Collaborating with bidders and oversight institutions to ensure transparency in the procurement process.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6055,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja możliwości finansowania z funduszy unijnych oraz innych źródeł zewnętrznych, takich jak granty czy dotacje.',
+                    'en' => 'Identifying funding opportunities from EU funds and other external sources, such as grants and subsidies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6056,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie wniosków o dofinansowanie, projektów budżetów oraz harmonogramów realizacji projektów.',
+                    'en' => 'Preparing funding applications, budget plans, and project implementation schedules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6057,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie realizacją projektów dofinansowanych z funduszy zewnętrznych, w tym monitorowanie budżetu i terminowości działań.',
+                    'en' => 'Managing the implementation of externally funded projects, including budget and timeline monitoring.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6058,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów i sprawozdań z realizacji projektów oraz rozliczanie środków finansowych zgodnie z wymaganiami fundatorów.',
+                    'en' => 'Creating project implementation reports and statements and reconciling financial resources according to funder requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6059,
+                'name' => json_encode([
+                    'pl' => 'Budowanie i utrzymywanie relacji z kluczowymi interesariuszami, partnerami oraz instytucjami branżowymi.',
+                    'en' => 'Building and maintaining relationships with key stakeholders, partners, and industry institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6060,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów promocyjnych, w tym broszur, prezentacji, artykułów czy materiałów na stronę internetową.',
+                    'en' => 'Creating promotional materials, including brochures, presentations, articles, and website content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6061,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i udział w wydarzeniach branżowych, targach, konferencjach oraz spotkaniach networkingowych.',
+                    'en' => 'Organizing and participating in industry events, trade fairs, conferences, and networking meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6062,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wizerunku organizacji w mediach oraz aktywne działania w celu wzmacniania marki i pozytywnego odbioru publicznego.',
+                    'en' => 'Monitoring the organization’s media presence and actively strengthening its brand and public perception.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6063,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb klientów oraz trendów rynkowych w celu opracowywania nowych produktów i usług lub usprawniania istniejących.',
+                    'en' => 'Analyzing customer needs and market trends to develop new products and services or improve existing ones.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6064,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zespołem badawczo-rozwojowym, marketingowym i sprzedażowym przy tworzeniu i wprowadzaniu produktów na rynek.',
+                    'en' => 'Collaborating with R&D, marketing, and sales teams on product creation and market introduction.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6065,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wyników sprzedaży produktów oraz analiza feedbacku klientów w celu dalszego doskonalenia oferty.',
+                    'en' => 'Monitoring product sales performance and analyzing customer feedback to further refine the offering.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6066,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii rynkowych oraz działań marketingowych wspierających wprowadzenie i rozwój produktów.',
+                    'en' => 'Developing market strategies and marketing activities to support product launch and growth.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6067,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie audytów wewnętrznych w zakresie efektywności operacyjnej, zgodności z przepisami prawa oraz przestrzegania wewnętrznych procedur.',
+                    'en' => 'Conducting internal audits on operational efficiency, legal compliance, and adherence to internal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6068,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja ryzyk operacyjnych oraz rekomendowanie działań minimalizujących te ryzyka.',
+                    'en' => 'Identifying operational risks and recommending risk mitigation actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6069,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów z przeprowadzonych kontroli oraz prezentowanie ich zarządowi i interesariuszom.',
+                    'en' => 'Preparing reports on conducted audits and presenting them to management and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6070,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wdrażania zaleceń wynikających z audytów oraz ocena ich skuteczności.',
+                    'en' => 'Monitoring the implementation of audit recommendations and evaluating their effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6071,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii komunikacji wewnętrznej i zewnętrznej organizacji, w tym planowanie działań PR.',
+                    'en' => 'Developing internal and external communication strategies, including planning PR activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6072,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie treści informacyjnych i promocyjnych dla mediów, strony internetowej oraz mediów społecznościowych.',
+                    'en' => 'Creating informational and promotional content for media, the website, and social media platforms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6073,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie opinii publicznej oraz budowanie pozytywnego wizerunku organizacji poprzez regularny kontakt z mediami.',
+                    'en' => 'Monitoring public opinion and building a positive image of the organization through regular media engagement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6074,
+                'name' => json_encode([
+                    'pl' => 'Organizacja wydarzeń promocyjnych oraz zarządzanie sytuacjami kryzysowymi związanymi z wizerunkiem firmy.',
+                    'en' => 'Organizing promotional events and managing crisis situations related to the company’s image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6075,
+                'name' => json_encode([
+                    'pl' => 'Analiza potrzeb szkoleniowych organizacji oraz opracowywanie planów rozwoju pracowników.',
+                    'en' => 'Analyzing the organization’s training needs and developing employee development plans.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6076,
+                'name' => json_encode([
+                    'pl' => 'Organizacja szkoleń, warsztatów, kursów oraz programów rozwoju kompetencji zawodowych.',
+                    'en' => 'Organizing training sessions, workshops, courses, and professional development programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6077,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z firmami szkoleniowymi oraz instytucjami edukacyjnymi w celu zapewnienia wysokiej jakości szkoleń.',
+                    'en' => 'Collaborating with training companies and educational institutions to ensure high-quality training.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6078,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektów szkoleń oraz ocena ich wpływu na efektywność pracy i rozwój zawodowy pracowników.',
+                    'en' => 'Monitoring training outcomes and assessing their impact on work efficiency and employee development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6079,
+                'name' => json_encode([
+                    'pl' => 'Planowanie, organizacja i nadzór nad realizacją projektów zgodnie z harmonogramem i budżetem.',
+                    'en' => 'Planning, organizing, and supervising project implementation according to schedule and budget.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6080,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja zespołu projektowego oraz monitorowanie postępów realizacji poszczególnych etapów projektu.',
+                    'en' => 'Coordinating the project team and monitoring the progress of each project stage.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6081,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z realizacji projektu oraz analiza wyników w kontekście osiągnięcia założonych celów.',
+                    'en' => 'Creating project implementation reports and analyzing outcomes in the context of achieving set goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6082,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja ryzyk projektowych oraz wdrażanie działań korygujących w przypadku odchyleń od planu.',
+                    'en' => 'Identifying project risks and implementing corrective actions for deviations from the plan.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6083,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie badań rynkowych, ankiet i analiz, które pozwalają lepiej zrozumieć potrzeby klientów i trendy rynkowe.',
+                    'en' => 'Conducting market research, surveys, and analyses to better understand customer needs and market trends.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6084,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów analitycznych, które wspierają procesy decyzyjne w organizacji.',
+                    'en' => 'Preparing analytical reports that support decision-making processes within the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6085,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu, sprzedaży i rozwoju produktu w celu dostosowania działań organizacji do potrzeb rynku.',
+                    'en' => 'Collaborating with marketing, sales, and product development to align organizational actions with market needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6086,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie konkurencji oraz analiza jej działań w kontekście strategii organizacji.',
+                    'en' => 'Monitoring competitors and analyzing their actions in the context of organizational strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6087,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie trendów w technologii i innowacjach oraz analiza ich potencjalnego wpływu na rozwój organizacji.',
+                    'en' => 'Monitoring technology and innovation trends and analyzing their potential impact on organizational development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6088,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowych technologii i narzędzi wspierających efektywność pracy, produkcji lub usług.',
+                    'en' => 'Implementing new technologies and tools to support work, production, or service efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6089,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem IT oraz zespołami projektowymi w celu integracji nowych rozwiązań technologicznych.',
+                    'en' => 'Collaborating with the IT department and project teams to integrate new technological solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6090,
+                'name' => json_encode([
+                    'pl' => 'Organizacja szkoleń i warsztatów dla pracowników, aby ułatwić adaptację do nowych technologii.',
+                    'en' => 'Organizing training and workshops for employees to facilitate adaptation to new technologies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6091,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie i monitorowanie standardów jakości w procesach operacyjnych organizacji.',
+                    'en' => 'Implementing and monitoring quality standards in the organization’s operational processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6092,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie audytów jakościowych oraz identyfikacja obszarów wymagających poprawy.',
+                    'en' => 'Conducting quality audits and identifying areas for improvement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6093,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie procedur i instrukcji związanych z zarządzaniem jakością oraz monitorowanie ich przestrzegania.',
+                    'en' => 'Developing quality management procedures and instructions and monitoring their compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6094,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem produkcji oraz klientami w celu zapewnienia zgodności produktów z wymaganiami jakościowymi.',
+                    'en' => 'Collaborating with production and customers to ensure product compliance with quality requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6095,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności działań organizacji z przepisami dotyczącymi ochrony danych osobowych, w tym RODO.',
+                    'en' => 'Ensuring organizational compliance with personal data protection regulations, including GDPR.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6096,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i wdrażanie polityk ochrony danych osobowych oraz monitorowanie ich przestrzegania.',
+                    'en' => 'Creating and implementing personal data protection policies and monitoring compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6097,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń dla pracowników dotyczących zasad ochrony danych oraz ich odpowiedzialności w tym zakresie.',
+                    'en' => 'Conducting employee training on data protection principles and responsibilities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6098,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z Inspektorem Ochrony Danych oraz audytorami zewnętrznymi w celu zapewnienia pełnej zgodności.',
+                    'en' => 'Collaborating with the Data Protection Officer and external auditors to ensure full compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6099,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii zrównoważonego rozwoju, w tym działań CSR, które wspierają odpowiedzialność społeczną organizacji.',
+                    'en' => 'Developing sustainability strategies, including CSR activities that support organizational social responsibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6100,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i raportowanie wyników działań CSR oraz ich wpływu na środowisko i lokalną społeczność.',
+                    'en' => 'Monitoring and reporting CSR activities and their impact on the environment and local community.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6101,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie programów ekologicznych, takich jak redukcja emisji CO₂, zarządzanie odpadami czy promowanie działań proekologicznych wśród pracowników.',
+                    'en' => 'Implementing environmental programs such as CO₂ reduction, waste management, and promoting eco-friendly activities among employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6102,
+                'name' => json_encode([
+                    'pl' => 'Komunikowanie działań CSR do interesariuszy oraz organizacja wydarzeń edukacyjnych i promocyjnych.',
+                    'en' => 'Communicating CSR activities to stakeholders and organizing educational and promotional events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $inspektor_kontroli_skarbowej = [
+            [
+                'id' => 6103,
+                'name' => json_encode([
+                    'pl' => 'Realizacja kontroli w firmach, instytucjach oraz u osób fizycznych w celu weryfikacji prawidłowości rozliczeń podatkowych.',
+                    'en' => 'Conducting audits in companies, institutions, and individuals to verify the accuracy of tax settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6104,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie poprawności i rzetelności dokumentacji finansowej oraz ewidencji podatkowej.',
+                    'en' => 'Checking the accuracy and reliability of financial documentation and tax records.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6105,
+                'name' => json_encode([
+                    'pl' => 'Kontrola terminowości i zgodności z przepisami dotyczącymi składania deklaracji podatkowych oraz płatności podatków.',
+                    'en' => 'Ensuring timely and compliant submission of tax returns and payments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6106,
+                'name' => json_encode([
+                    'pl' => 'Przeglądanie i analiza dokumentów księgowych, faktur, umów oraz innych dokumentów finansowych w celu identyfikacji potencjalnych nieprawidłowości.',
+                    'en' => 'Reviewing and analyzing accounting documents, invoices, contracts, and other financial records to identify potential irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6107,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zapisów księgowych oraz analiza sprawozdań finansowych w celu ustalenia zgodności z obowiązującymi przepisami.',
+                    'en' => 'Verifying accounting entries and analyzing financial statements to determine compliance with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6108,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie zgodności transakcji z obowiązującym prawem podatkowym oraz regulacjami dotyczącymi rachunkowości.',
+                    'en' => 'Ensuring transactions comply with current tax law and accounting regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6109,
+                'name' => json_encode([
+                    'pl' => 'Identyfikowanie obszarów o podwyższonym ryzyku podatkowym oraz przeprowadzanie analizy ryzyka w zakresie działalności kontrolowanych podmiotów.',
+                    'en' => 'Identifying high-risk tax areas and conducting risk analysis for the activities of audited entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6110,
+                'name' => json_encode([
+                    'pl' => 'Wykrywanie przypadków unikania opodatkowania, oszustw podatkowych, prania pieniędzy oraz innych przestępstw skarbowych.',
+                    'en' => 'Detecting cases of tax evasion, tax fraud, money laundering, and other financial crimes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6111,
+                'name' => json_encode([
+                    'pl' => 'Analiza przepływów finansowych oraz struktur organizacyjnych w celu ustalenia niezgodności z przepisami.',
+                    'en' => 'Analyzing financial flows and organizational structures to identify regulatory non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6112,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie dochodzeń w przypadkach podejrzenia popełnienia przestępstw skarbowych, takich jak fałszowanie dokumentów czy oszustwa podatkowe.',
+                    'en' => 'Conducting investigations in suspected cases of financial crimes, such as document falsification or tax fraud.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6113,
+                'name' => json_encode([
+                    'pl' => 'Zbieranie i zabezpieczanie dowodów, przesłuchiwanie świadków oraz współpraca z innymi służbami i organami ścigania.',
+                    'en' => 'Collecting and securing evidence, interviewing witnesses, and cooperating with other agencies and law enforcement bodies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6114,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów i dokumentacji dochodzeniowej na potrzeby dalszych postępowań prawnych.',
+                    'en' => 'Preparing investigative reports and documentation for further legal proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6115,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie szczegółowych raportów z przeprowadzonych kontroli, w tym opis wyników oraz stwierdzonych nieprawidłowości.',
+                    'en' => 'Creating detailed reports from completed audits, including findings and identified irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6116,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie protokołów kontroli i przekazywanie ich do odpowiednich działów lub organów w celu podjęcia dalszych działań.',
+                    'en' => 'Preparing control protocols and forwarding them to relevant departments or authorities for further action.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6117,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie zaleceń pokontrolnych mających na celu naprawienie stwierdzonych nieprawidłowości i zapobieganie ich ponownemu wystąpieniu.',
+                    'en' => 'Creating post-audit recommendations to correct identified irregularities and prevent their recurrence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6118,
+                'name' => json_encode([
+                    'pl' => 'Wykonywanie audytów podatkowych w firmach oraz instytucjach publicznych w celu oceny ich zgodności z przepisami podatkowymi.',
+                    'en' => 'Conducting tax audits in companies and public institutions to assess compliance with tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6119,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja potencjalnych obszarów niezgodności oraz zalecanie działań naprawczych w celu minimalizacji ryzyka podatkowego.',
+                    'en' => 'Identifying potential non-compliance areas and recommending corrective actions to minimize tax risk.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6120,
+                'name' => json_encode([
+                    'pl' => 'Analiza struktury podatkowej i ocena efektywności stosowanych procedur podatkowych.',
+                    'en' => 'Analyzing tax structures and evaluating the effectiveness of applied tax procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6121,
+                'name' => json_encode([
+                    'pl' => 'Informowanie podatników o ich obowiązkach podatkowych oraz przepisach prawa podatkowego.',
+                    'en' => 'Informing taxpayers about their tax obligations and tax law provisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6122,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań edukacyjnych i doradczych w zakresie przepisów podatkowych, mających na celu zwiększenie świadomości podatników.',
+                    'en' => 'Conducting educational and advisory activities on tax regulations to increase taxpayer awareness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6123,
+                'name' => json_encode([
+                    'pl' => 'Pomoc podatnikom w interpretacji przepisów oraz wyjaśnianie niejasnych kwestii związanych z opodatkowaniem.',
+                    'en' => 'Assisting taxpayers in interpreting tax regulations and clarifying ambiguous taxation issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6124,
+                'name' => json_encode([
+                    'pl' => 'Kontrola przestrzegania przez podatników przepisów dotyczących rachunkowości, VAT, CIT, PIT oraz innych podatków.',
+                    'en' => 'Ensuring taxpayer compliance with accounting, VAT, CIT, PIT, and other tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6125,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że podatnicy przestrzegają wszystkich regulacji związanych z rozliczeniami podatkowymi oraz obowiązkami sprawozdawczymi.',
+                    'en' => 'Ensuring that taxpayers comply with all regulations related to tax settlements and reporting obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6126,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian w prawie podatkowym i dostosowywanie procedur kontrolnych do aktualnych wymagań.',
+                    'en' => 'Monitoring tax law changes and adjusting control procedures to current requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6127,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi służbami, takimi jak policja, prokuratura czy urzędy celne, w przypadkach wymagających interdyscyplinarnego podejścia.',
+                    'en' => 'Collaborating with other services, such as police, prosecution, and customs offices, in cases requiring interdisciplinary approaches.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6128,
+                'name' => json_encode([
+                    'pl' => 'Udział w zespołach zadaniowych oraz wymiana informacji i dokumentów niezbędnych do prowadzenia skutecznych działań kontrolnych.',
+                    'en' => 'Participating in task forces and exchanging information and documents necessary for effective control actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6129,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań z innymi urzędami skarbowymi oraz instytucjami międzynarodowymi w sprawach o charakterze transgranicznym.',
+                    'en' => 'Coordinating activities with other tax offices and international institutions on cross-border matters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6130,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli bezpośrednio w siedzibach firm lub miejscach prowadzenia działalności gospodarczej przez podatników.',
+                    'en' => 'Conducting on-site inspections at companies or business premises of taxpayers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6131,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie zgodności operacji gospodarczych z dokumentacją oraz kontrola fizyczna mienia przedsiębiorstwa (inwentaryzacja, kontrola zapasów).',
+                    'en' => 'Verifying business transactions against documentation and conducting physical inventory checks (stock control, inventory checks).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6132,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wszystkich czynności kontrolnych oraz zabezpieczanie dowodów na miejscu.',
+                    'en' => 'Documenting all control activities and securing evidence on-site.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6133,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie nowych technik i mechanizmów stosowanych przez podatników do unikania opodatkowania, takich jak optymalizacja podatkowa czy transfer pricing.',
+                    'en' => 'Monitoring new techniques and mechanisms used by taxpayers to avoid taxation, such as tax optimization or transfer pricing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6134,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi organami w zakresie identyfikacji i zwalczania nadużyć podatkowych, zwłaszcza w obszarze międzynarodowych przepływów finansowych.',
+                    'en' => 'Collaborating with other authorities to identify and combat tax abuses, especially in international financial flows.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6135,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów i analiz dotyczących nowych metod unikania opodatkowania oraz opracowywanie strategii przeciwdziałania.',
+                    'en' => 'Preparing reports and analyses on new tax avoidance methods and developing counter-strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6136,
+                'name' => json_encode([
+                    'pl' => 'Analiza informacji i zgłoszeń dotyczących potencjalnych nieprawidłowości podatkowych oraz podejrzeń o przestępstwa skarbowe.',
+                    'en' => 'Analyzing information and reports on potential tax irregularities and suspected tax crimes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6137,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie działań w celu sprawdzenia zasadności zgłoszeń oraz prowadzenie odpowiednich procedur dochodzeniowych.',
+                    'en' => 'Taking actions to verify the validity of reports and conducting appropriate investigative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6138,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z osobami zgłaszającymi przypadki nadużyć oraz zachowanie poufności informacji zgodnie z przepisami o ochronie informatorów.',
+                    'en' => 'Collaborating with informants reporting abuse and maintaining information confidentiality as per whistleblower protection laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6139,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie regulacji wewnętrznych dotyczących procedur kontrolnych, aby zapewnić zgodność z obowiązującymi przepisami.',
+                    'en' => 'Developing internal regulations on control procedures to ensure compliance with applicable laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6140,
+                'name' => json_encode([
+                    'pl' => 'Współpraca przy tworzeniu interpretacji przepisów podatkowych oraz wytycznych, które wspierają działania kontrolne i zapewniają jednolitość procedur.',
+                    'en' => 'Collaborating on the creation of tax law interpretations and guidelines to support control actions and ensure procedural uniformity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6141,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja procedur kontrolnych oraz ich dostosowanie do zmieniających się przepisów i wymogów prawnych.',
+                    'en' => 'Updating control procedures and adjusting them to changing regulations and legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6142,
+                'name' => json_encode([
+                    'pl' => 'Ochrona danych osobowych oraz informacji finansowych uzyskanych w trakcie kontroli, zgodnie z przepisami o ochronie danych osobowych.',
+                    'en' => 'Protecting personal and financial data obtained during audits, in compliance with data protection laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6143,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie dane i dokumenty pozyskane podczas działań kontrolnych są przechowywane w bezpieczny sposób i nie są udostępniane osobom nieuprawnionym.',
+                    'en' => 'Ensuring all data and documents obtained during control actions are securely stored and not disclosed to unauthorized individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6144,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie procedur mających na celu ochronę informacji wrażliwych, zwłaszcza w zakresie danych dotyczących działalności finansowej podatników.',
+                    'en' => 'Implementing procedures to protect sensitive information, especially data related to taxpayers’ financial activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6145,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestniczenie w szkoleniach i kursach podnoszących kwalifikacje, aby być na bieżąco z przepisami i technikami kontrolnymi.',
+                    'en' => 'Regularly attending training and courses to stay updated on regulations and control techniques.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6146,
+                'name' => json_encode([
+                    'pl' => 'Doskonalenie umiejętności analitycznych i komunikacyjnych, które wspierają efektywne wykonywanie obowiązków inspektora kontroli skarbowej.',
+                    'en' => 'Improving analytical and communication skills to effectively fulfill tax inspector duties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6147,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi inspektorami oraz udział w konferencjach i seminariach poświęconych najnowszym zmianom w prawie podatkowym i technikom audytowym.',
+                    'en' => 'Exchanging experiences with other inspectors and participating in conferences and seminars on the latest tax law changes and audit techniques.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $inspektor_nadzoru_bankowego = [
+            [
+                'id' => 6148,
+                'name' => json_encode([
+                    'pl' => 'Analiza sprawozdań finansowych banków, w tym bilansów, rachunków zysków i strat oraz przepływów pieniężnych.',
+                    'en' => 'Analyzing bank financial statements, including balance sheets, income statements, and cash flow statements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6149,
+                'name' => json_encode([
+                    'pl' => 'Ocena rentowności, płynności, wypłacalności oraz efektywności operacyjnej banków.',
+                    'en' => 'Evaluating banks’ profitability, liquidity, solvency, and operational efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6150,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wskaźników kapitałowych, takich jak współczynnik wypłacalności, aby zapewnić stabilność finansową banku.',
+                    'en' => 'Monitoring capital indicators, such as solvency ratio, to ensure the bank’s financial stability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6151,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i ocena ryzyka związanego z działalnością bankową, w tym ryzyka kredytowego, rynkowego, operacyjnego, płynnościowego oraz ryzyka związanego z praniem pieniędzy.',
+                    'en' => 'Identifying and assessing risks associated with banking activities, including credit, market, operational, liquidity, and money laundering risks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6152,
+                'name' => json_encode([
+                    'pl' => 'Ocena efektywności procedur zarządzania ryzykiem stosowanych przez banki oraz ich zgodności z przepisami.',
+                    'en' => 'Evaluating the effectiveness of banks’ risk management procedures and their regulatory compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6153,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie regularnych audytów i kontroli ryzyka, które pomagają identyfikować obszary wymagające poprawy.',
+                    'en' => 'Conducting regular audits and risk reviews to identify areas for improvement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6154,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań banków z obowiązującymi przepisami prawnymi oraz regulacjami instytucji nadzorczych (np. Komisji Nadzoru Finansowego).',
+                    'en' => 'Monitoring banks’ compliance with legal regulations and oversight institution rules (e.g., Financial Supervisory Authority).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6155,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli w bankach w celu weryfikacji zgodności z regulacjami dotyczącymi kapitału, kredytów, ryzyka, ochrony danych osobowych i innych wymogów.',
+                    'en' => 'Conducting audits in banks to verify compliance with capital, credit, risk, data protection, and other regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6156,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z kontroli oraz rekomendowanie działań naprawczych w przypadku wykrycia niezgodności.',
+                    'en' => 'Creating audit reports and recommending corrective actions when non-compliance is identified.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6157,
+                'name' => json_encode([
+                    'pl' => 'Ocena struktury organizacyjnej i polityki zarządzania w bankach oraz efektywności zarządu i rady nadzorczej.',
+                    'en' => 'Evaluating banks’ organizational structure, management policies, and the effectiveness of the board and supervisory board.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6158,
+                'name' => json_encode([
+                    'pl' => 'Analiza strategii banku, polityki kredytowej oraz podejścia do zarządzania ryzykiem.',
+                    'en' => 'Analyzing bank strategy, credit policy, and risk management approach.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6159,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie jakości pracy zarządu banku oraz jego zdolności do realizacji wyznaczonych celów i zarządzania ryzykiem.',
+                    'en' => 'Monitoring the quality of bank management and its ability to achieve set goals and manage risk.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6160,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zaleceń i wytycznych dla banków, które mają na celu poprawę ich działalności oraz dostosowanie do standardów bezpieczeństwa finansowego.',
+                    'en' => 'Creating recommendations and guidelines for banks to improve their operations and align with financial safety standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6161,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z kierownictwem banku w celu wdrożenia zaleceń nadzorczych i monitorowanie postępów ich realizacji.',
+                    'en' => 'Working with bank management to implement supervisory recommendations and monitoring progress.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6162,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie polityk i wytycznych zgodnych z regulacjami krajowymi oraz międzynarodowymi standardami nadzoru bankowego, np. standardami Basel.',
+                    'en' => 'Implementing policies and guidelines in line with national regulations and international bank supervision standards, such as Basel standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6163,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie ryzyka systemowego w sektorze bankowym oraz identyfikacja banków o znaczeniu systemowym, które mogą wpływać na stabilność finansową kraju.',
+                    'en' => 'Monitoring systemic risk in the banking sector and identifying systemically important banks that may impact national financial stability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6164,
+                'name' => json_encode([
+                    'pl' => 'Ocena wpływu działalności banków na sektor finansowy oraz potencjalnego zagrożenia dla gospodarki.',
+                    'en' => 'Assessing the impact of bank activities on the financial sector and potential threats to the economy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6165,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii przeciwdziałania ryzyku systemowemu oraz współpraca z innymi organami finansowymi w celu minimalizacji ryzyka.',
+                    'en' => 'Developing systemic risk mitigation strategies and collaborating with other financial authorities to minimize risk.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6166,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie jakości portfela kredytowego banków, w tym analiza wskaźników takich jak stopa niewypłacalności, wskaźnik kredytów zagrożonych oraz struktura kredytowa.',
+                    'en' => 'Monitoring the quality of banks’ credit portfolios, including analyzing indicators like insolvency rate, non-performing loans, and credit structure.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6167,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja przestrzegania zasad udzielania kredytów oraz ocena polityki kredytowej banku.',
+                    'en' => 'Verifying adherence to lending principles and evaluating the bank’s credit policy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6168,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów i zaleceń dotyczących zarządzania portfelem kredytowym oraz minimalizowania ryzyka kredytowego.',
+                    'en' => 'Preparing reports and recommendations on credit portfolio management and credit risk minimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6169,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z innymi organami nadzorczymi, takimi jak Komisja Nadzoru Finansowego, banki centralne, instytucje międzynarodowe.',
+                    'en' => 'Maintaining contacts with other supervisory bodies, such as the Financial Supervisory Authority, central banks, and international institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6170,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji oraz współpraca w zakresie wdrażania polityk i regulacji dotyczących stabilności sektora bankowego.',
+                    'en' => 'Exchanging information and collaborating on the implementation of policies and regulations regarding banking sector stability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6171,
+                'name' => json_encode([
+                    'pl' => 'Udział w grupach roboczych i projektach związanych z nadzorem bankowym i finansowym na poziomie krajowym i międzynarodowym.',
+                    'en' => 'Participating in working groups and projects related to banking and financial supervision at national and international levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6172,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań banków z przepisami dotyczącymi ochrony konsumentów, w tym zasadami dotyczącymi kredytów konsumenckich oraz rachunków oszczędnościowych.',
+                    'en' => 'Ensuring banks comply with consumer protection regulations, including consumer credit and savings account rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6173,
+                'name' => json_encode([
+                    'pl' => 'Analiza skarg klientów oraz prowadzenie dochodzeń dotyczących potencjalnych naruszeń praw konsumentów przez banki.',
+                    'en' => 'Analyzing customer complaints and investigating potential consumer rights violations by banks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6174,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zaleceń dla banków mających na celu zwiększenie przejrzystości produktów finansowych oraz poprawę jakości obsługi klientów.',
+                    'en' => 'Creating recommendations for banks aimed at increasing financial product transparency and improving customer service quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6175,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat sytuacji finansowej banków, ryzyka systemowego, jakości zarządzania oraz przestrzegania regulacji.',
+                    'en' => 'Preparing reports on banks’ financial condition, systemic risk, management quality, and regulatory compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6176,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie regularnych raportów na potrzeby instytucji nadzorczych, takich jak KNF, Ministerstwo Finansów, banki centralne.',
+                    'en' => 'Creating regular reports for supervisory institutions such as the Financial Supervisory Authority, Ministry of Finance, and central banks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6177,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników raportów i rekomendowanie zmian polityki nadzorczej w oparciu o zebrane dane i wyniki kontroli.',
+                    'en' => 'Analyzing report findings and recommending supervisory policy changes based on collected data and audit results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6178,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie szczegółowych inspekcji w siedzibach banków oraz oddziałach, w celu weryfikacji ich zgodności z regulacjami i zasadami nadzoru.',
+                    'en' => 'Conducting detailed inspections at bank headquarters and branches to verify compliance with regulations and supervisory principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6179,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja procedur i operacji przeprowadzanych przez banki oraz ocena ich zgodności z polityką zarządzania ryzykiem.',
+                    'en' => 'Verifying bank procedures and operations and assessing their compliance with risk management policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6180,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników kontroli oraz opracowywanie raportów dla zarządu banku oraz instytucji nadzorczych.',
+                    'en' => 'Documenting audit results and preparing reports for bank management and supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6181,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie polityk i procedur banków w zakresie przeciwdziałania praniu pieniędzy (AML) oraz finansowaniu terroryzmu.',
+                    'en' => 'Monitoring banks’ anti-money laundering (AML) and counter-terrorist financing policies and procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6182,
+                'name' => json_encode([
+                    'pl' => 'Kontrola zgodności działań banków z regulacjami dotyczącymi AML oraz ocena efektywności stosowanych procedur.',
+                    'en' => 'Ensuring bank compliance with AML regulations and evaluating the effectiveness of applied procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6183,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi organami w zakresie identyfikacji podejrzanych transakcji oraz zgłaszanie podejrzanych przypadków odpowiednim służbom.',
+                    'en' => 'Collaborating with other authorities in identifying suspicious transactions and reporting cases to relevant services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6184,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie testów warunków skrajnych w bankach, aby ocenić ich odporność na sytuacje kryzysowe i wahania rynkowe.',
+                    'en' => 'Conducting stress tests in banks to assess resilience to crisis situations and market fluctuations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6185,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników testów w celu identyfikacji potencjalnych zagrożeń dla stabilności finansowej banku oraz całego sektora.',
+                    'en' => 'Analyzing test results to identify potential threats to the financial stability of the bank and the entire sector.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6186,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie rekomendacji i planów działania mających na celu zwiększenie odporności banku na sytuacje ekstremalne.',
+                    'en' => 'Creating recommendations and action plans to enhance the bank’s resilience to extreme situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6187,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wskaźników płynności banków oraz ich zdolności do wywiązywania się z zobowiązań w krótkim okresie.',
+                    'en' => 'Monitoring banks’ liquidity indicators and their ability to meet short-term obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6188,
+                'name' => json_encode([
+                    'pl' => 'Ocena strategii zarządzania płynnością oraz środków zapewniających utrzymanie stabilności finansowej banków.',
+                    'en' => 'Evaluating liquidity management strategies and measures to maintain financial stability of banks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6189,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie zaleceń dotyczących poprawy płynności banków oraz monitorowanie ich postępów w zarządzaniu płynnością.',
+                    'en' => 'Implementing recommendations to improve banks’ liquidity and monitoring their progress in liquidity management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6190,
+                'name' => json_encode([
+                    'pl' => 'Uczestniczenie w szkoleniach, kursach i konferencjach związanych z nadzorem bankowym, aby być na bieżąco z najnowszymi regulacjami i standardami.',
+                    'en' => 'Attending training, courses, and conferences related to banking supervision to stay updated with the latest regulations and standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6191,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi inspektorami nadzoru oraz ekspertami w celu doskonalenia umiejętności analitycznych i audytowych.',
+                    'en' => 'Exchanging experiences with other supervisory inspectors and experts to improve analytical and audit skills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6192,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w międzynarodowych programach wymiany wiedzy i doświadczeń w zakresie nadzoru finansowego.',
+                    'en' => 'Participating in international knowledge exchange programs related to financial supervision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6193,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie działalności banków pod kątem praktyk antykonkurencyjnych, które mogą wpływać na stabilność rynku.',
+                    'en' => 'Monitoring banks’ activities for anti-competitive practices that may affect market stability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6194,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja praktyk monopolistycznych i podejmowanie działań w celu zapewnienia zdrowej konkurencji w sektorze bankowym.',
+                    'en' => 'Identifying monopolistic practices and taking actions to ensure healthy competition in the banking sector.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6195,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi instytucjami antymonopolowymi w zakresie przeciwdziałania praktykom naruszającym zasady wolnego rynku.',
+                    'en' => 'Collaborating with other anti-monopoly institutions to counteract practices violating free-market principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $inspektor_ochrony_danych_osobowych = [
+            [
+                'id' => 6196,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie przestrzegania przepisów RODO oraz krajowych przepisów o ochronie danych w organizacji.',
+                    'en' => 'Overseeing compliance with GDPR and national data protection regulations within the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6197,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie działania związane z przetwarzaniem danych osobowych są zgodne z regulacjami.',
+                    'en' => 'Ensuring that all activities related to personal data processing comply with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6198,
+                'name' => json_encode([
+                    'pl' => 'Regularne przeglądy polityk i procedur wewnętrznych w celu dostosowania ich do obowiązujących przepisów.',
+                    'en' => 'Conducting regular reviews of internal policies and procedures to align them with current regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6199,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie porad i konsultacji dotyczących zasad przetwarzania danych osobowych, obowiązków administratora danych oraz praw osób, których dane dotyczą.',
+                    'en' => 'Providing advice and consultations on data processing principles, data controller responsibilities, and data subject rights.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6200,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie kierownictwa i zespołów projektowych w zakresie zgodności nowych projektów z przepisami o ochronie danych.',
+                    'en' => 'Supporting management and project teams in ensuring compliance of new projects with data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6201,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dla pracowników i kierownictwa, mających na celu podniesienie świadomości na temat ochrony danych osobowych.',
+                    'en' => 'Organizing training sessions for employees and management to raise awareness of personal data protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6202,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie materiałów szkoleniowych, takich jak poradniki, infografiki, broszury dotyczące podstawowych zasad przetwarzania danych.',
+                    'en' => 'Creating training materials such as guides, infographics, and brochures on basic data processing principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6203,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie efektywności szkoleń i dostosowywanie programów edukacyjnych do potrzeb organizacji.',
+                    'en' => 'Monitoring training effectiveness and adapting educational programs to organizational needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6204,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie oceny ryzyka związanego z przetwarzaniem danych osobowych oraz identyfikacja potencjalnych zagrożeń dla ich bezpieczeństwa.',
+                    'en' => 'Conducting risk assessments related to personal data processing and identifying potential security threats.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6205,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie działań mających na celu zminimalizowanie ryzyka i zabezpieczenie danych osobowych przed nieuprawnionym dostępem, utratą lub naruszeniem.',
+                    'en' => 'Implementing actions to minimize risk and protect personal data against unauthorized access, loss, or breach.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6206,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem IT w zakresie wdrażania technicznych i organizacyjnych środków bezpieczeństwa.',
+                    'en' => 'Collaborating with the IT department to implement technical and organizational security measures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6207,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie oceny skutków dla ochrony danych (DPIA) w przypadkach, gdy przetwarzanie danych może stwarzać wysokie ryzyko dla praw i wolności osób fizycznych.',
+                    'en' => 'Conducting Data Protection Impact Assessments (DPIA) where data processing poses high risks to individual rights and freedoms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6208,
+                'name' => json_encode([
+                    'pl' => 'Doradzanie w zakresie DPIA, w tym wskazywanie obszarów wymagających szczególnej uwagi oraz zalecanych środków ochrony danych.',
+                    'en' => 'Advising on DPIA, including identifying areas needing special attention and recommending data protection measures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6209,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji zaleceń wynikających z DPIA i zapewnienie, że są wdrażane odpowiednie zabezpieczenia.',
+                    'en' => 'Monitoring DPIA recommendations and ensuring appropriate safeguards are implemented.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6210,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie oraz regularna aktualizacja polityk i procedur ochrony danych osobowych zgodnych z RODO oraz krajowymi regulacjami.',
+                    'en' => 'Creating and regularly updating personal data protection policies and procedures in line with GDPR and national regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6211,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie zasad przetwarzania danych, polityki prywatności, polityki bezpieczeństwa i innych regulacji wewnętrznych dotyczących danych.',
+                    'en' => 'Documenting data processing principles, privacy policy, security policy, and other internal data regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6212,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności tych dokumentów dla pracowników oraz osób, których dane dotyczą.',
+                    'en' => 'Ensuring the availability of these documents to employees and data subjects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6213,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizacja rejestru czynności przetwarzania danych osobowych zgodnie z wymogami RODO.',
+                    'en' => 'Creating and updating the personal data processing activities register as required by GDPR.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6214,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wszystkich operacji przetwarzania danych, w tym informacji na temat celów, kategorii danych, odbiorców oraz czasu przetwarzania.',
+                    'en' => 'Documenting all data processing operations, including purposes, data categories, recipients, and processing time.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6215,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja i aktualizacja rejestru w miarę wprowadzania zmian w procesach przetwarzania danych w organizacji.',
+                    'en' => 'Verifying and updating the register as changes are made to data processing activities in the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6216,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie zasady minimalizacji danych, która zakłada zbieranie i przetwarzanie tylko tych danych, które są niezbędne do osiągnięcia celów.',
+                    'en' => 'Implementing data minimization principles, collecting and processing only the data necessary to achieve objectives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6217,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie procesów zbierania danych w organizacji i doradzanie w zakresie optymalizacji przetwarzania.',
+                    'en' => 'Monitoring data collection processes within the organization and advising on processing optimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6218,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami zbierającymi dane w celu dostosowania procedur do wymogów minimalizacji.',
+                    'en' => 'Collaborating with data-collecting departments to adapt procedures to minimization requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6219,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i rejestrowanie incydentów dotyczących naruszeń ochrony danych osobowych.',
+                    'en' => 'Monitoring and recording personal data protection breaches and incidents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6220,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie wewnętrznych postępowań w celu ustalenia przyczyn incydentów oraz zapobieganie ich powtórzeniu.',
+                    'en' => 'Conducting internal investigations to determine incident causes and prevent recurrence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6221,
+                'name' => json_encode([
+                    'pl' => 'Zgłaszanie poważnych naruszeń ochrony danych do organu nadzorczego (np. Urzędu Ochrony Danych Osobowych) oraz informowanie osób, których dane dotyczą.',
+                    'en' => 'Reporting significant data protection breaches to the supervisory authority (e.g., Data Protection Office) and informing affected individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6222,
+                'name' => json_encode([
+                    'pl' => 'Pełnienie funkcji punktu kontaktowego dla organu nadzorczego, odpowiedzialnego za nadzór nad przestrzeganiem przepisów o ochronie danych.',
+                    'en' => 'Acting as a contact point for the supervisory authority, responsible for overseeing compliance with data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6223,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organem nadzorczym podczas kontroli oraz odpowiadanie na jego zapytania i żądania.',
+                    'en' => 'Cooperating with the supervisory authority during inspections and responding to inquiries and requests.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6224,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentacji na potrzeby audytów zewnętrznych przeprowadzanych przez organ nadzorczy.',
+                    'en' => 'Preparing documentation for external audits conducted by the supervisory authority.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6225,
+                'name' => json_encode([
+                    'pl' => 'Odpowiadanie na żądania osób, których dane dotyczą, w zakresie realizacji ich praw, takich jak prawo do informacji, prawo do usunięcia danych, prawo do przenoszenia danych.',
+                    'en' => 'Responding to data subjects’ requests to exercise their rights, such as the right to information, deletion, and data portability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6226,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami odpowiedzialnymi za dane w celu terminowej realizacji żądań i udzielania odpowiedzi na pytania osób fizycznych.',
+                    'en' => 'Collaborating with departments responsible for data to ensure timely response to requests and inquiries from individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6227,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie odpowiedzi i podejmowanych działań, aby zapewnić zgodność z przepisami.',
+                    'en' => 'Documenting responses and actions taken to ensure compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6228,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że tylko upoważnione osoby mają dostęp do danych osobowych, oraz kontrola przestrzegania zasady poufności.',
+                    'en' => 'Ensuring only authorized personnel have access to personal data and controlling confidentiality compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6229,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie procedur dostępu do danych w organizacji, w tym kontrola użycia haseł, autoryzacji oraz systemów logowania.',
+                    'en' => 'Monitoring data access procedures within the organization, including password use, authorization, and login systems control.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6230,
+                'name' => json_encode([
+                    'pl' => 'Regularne przeglądy i aktualizacje uprawnień dostępu dla pracowników mających styczność z danymi osobowymi.',
+                    'en' => 'Regularly reviewing and updating access permissions for employees handling personal data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6231,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem prawnym w celu przygotowywania i weryfikacji umów z podmiotami, którym organizacja powierza przetwarzanie danych.',
+                    'en' => 'Collaborating with the legal department to prepare and verify agreements with entities processing data on behalf of the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6232,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie umowy powierzenia przetwarzania spełniają wymagania prawne i określają obowiązki podmiotu przetwarzającego.',
+                    'en' => 'Ensuring that all data processing agreements meet legal requirements and outline processor obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6233,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań podmiotów przetwarzających dane z postanowieniami umów i przepisami o ochronie danych.',
+                    'en' => 'Monitoring data processors’ compliance with contract terms and data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6234,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie regularnych raportów na temat zgodności organizacji z przepisami o ochronie danych osobowych.',
+                    'en' => 'Preparing regular reports on the organization’s compliance with personal data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6235,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie analiz ryzyka, wyników audytów wewnętrznych oraz informacji o incydentach naruszenia ochrony danych.',
+                    'en' => 'Developing risk analyses, internal audit results, and information on data protection breaches.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6236,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów kierownictwu w celu podjęcia działań mających na celu minimalizację ryzyka.',
+                    'en' => 'Submitting reports to management to take actions aimed at risk minimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6237,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że prywatność jest uwzględniona już na etapie projektowania nowych systemów i procedur (Privacy by Design).',
+                    'en' => 'Ensuring privacy is embedded from the design phase of new systems and procedures (Privacy by Design).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6238,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie rozwiązań technicznych i organizacyjnych, które domyślnie zapewniają najwyższy poziom ochrony danych (Privacy by Default).',
+                    'en' => 'Implementing technical and organizational solutions that ensure the highest level of data protection by default (Privacy by Default).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6239,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie nowych projektów i systemów, aby zapewnić ich zgodność z zasadami prywatności.',
+                    'en' => 'Monitoring new projects and systems to ensure compliance with privacy principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6240,
+                'name' => json_encode([
+                    'pl' => 'Regularne przeprowadzanie audytów wewnętrznych mających na celu ocenę zgodności przetwarzania danych osobowych z przepisami i polityką organizacji.',
+                    'en' => 'Conducting regular internal audits to assess compliance of personal data processing with regulations and organizational policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6241,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja obszarów wymagających poprawy oraz tworzenie zaleceń mających na celu zwiększenie poziomu ochrony danych.',
+                    'en' => 'Identifying areas needing improvement and creating recommendations to enhance data protection levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6242,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wdrażania zaleceń z audytów i dostosowywanie polityk ochrony danych do wymogów organizacji.',
+                    'en' => 'Monitoring the implementation of audit recommendations and adapting data protection policies to organizational requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $inspektor_rybolowstwa_morskiego = [
+            [
+                'id' => 6243,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie inspekcji jednostek rybackich zarówno w portach, jak i na morzu, w celu zapewnienia zgodności ich działalności z przepisami rybackimi.',
+                    'en' => 'Conducting inspections of fishing vessels in ports and at sea to ensure compliance with fishing regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6244,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja wyposażenia jednostek w niezbędne narzędzia połowowe oraz dokumenty, takie jak licencje i zezwolenia na połowy.',
+                    'en' => 'Verifying vessels’ fishing equipment and documents, such as licenses and fishing permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6245,
+                'name' => json_encode([
+                    'pl' => 'Kontrola warunków sanitarno-higienicznych na jednostkach, w tym przestrzegania standardów dotyczących przechowywania ryb.',
+                    'en' => 'Inspecting sanitary and hygiene conditions on vessels, including adherence to fish storage standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6246,
+                'name' => json_encode([
+                    'pl' => 'Kontrola przestrzegania kwot połowowych i limitów ilościowych ustanowionych przez krajowe i międzynarodowe organy rybackie.',
+                    'en' => 'Monitoring adherence to fishing quotas and quantity limits set by national and international fisheries authorities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6247,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wielkości i gatunków ryb odławianych przez jednostki rybackie oraz weryfikacja zgodności połowów z przyznanymi kwotami.',
+                    'en' => 'Monitoring the size and species of fish caught by fishing vessels and verifying compliance with allocated quotas.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6248,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów dotyczących zgodności połowów z przyznanymi limitami oraz informowanie odpowiednich instytucji o ewentualnych naruszeniach.',
+                    'en' => 'Preparing reports on fishing compliance with assigned limits and notifying relevant institutions of any violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6249,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i ściganie przypadków nielegalnych, nieraportowanych i nieuregulowanych połowów, które stanowią zagrożenie dla zasobów morskich.',
+                    'en' => 'Identifying and pursuing cases of illegal, unreported, and unregulated (IUU) fishing that threaten marine resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6250,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań zapobiegających procederom NNN, w tym monitorowanie działań jednostek rybackich oraz współpraca z innymi służbami kontrolnymi.',
+                    'en' => 'Implementing actions to prevent IUU fishing, monitoring fishing vessels, and cooperating with other control services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6251,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie zaleceń międzynarodowych organizacji ds. ochrony zasobów morskich i przeciwdziałanie praktykom szkodliwym dla ekosystemów morskich.',
+                    'en' => 'Implementing recommendations from international marine resource protection organizations and countering harmful practices to marine ecosystems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6252,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie stosowanych narzędzi połowowych pod kątem ich zgodności z przepisami, w tym kontrola rozmiarów oczek sieci, stosowania haczyków i urządzeń do ograniczania przyłowów.',
+                    'en' => 'Inspecting fishing gear for regulatory compliance, including mesh size, hook use, and bycatch reduction devices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6253,
+                'name' => json_encode([
+                    'pl' => 'Kontrola, czy metody połowowe stosowane przez jednostki rybackie nie zagrażają gatunkom chronionym oraz różnorodności biologicznej.',
+                    'en' => 'Ensuring fishing methods used by vessels do not endanger protected species or biodiversity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6254,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie stosowania sprzętu minimalizującego wpływ na gatunki przyłowowe oraz dno morskie.',
+                    'en' => 'Monitoring the use of equipment that minimizes impact on bycatch species and the seabed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6255,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi służbami, takimi jak straż przybrzeżna, inspekcja morska, organizacje międzynarodowe, w celu zwalczania przestępstw związanych z rybołówstwem.',
+                    'en' => 'Collaborating with other services, such as the coast guard, marine inspection, and international organizations, to combat fishing-related crimes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6256,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z organami zarządzającymi rybołówstwem oraz organizacjami ochrony środowiska w zakresie realizacji polityk rybołówstwa i ochrony zasobów morskich.',
+                    'en' => 'Maintaining contacts with fisheries management authorities and environmental organizations regarding fisheries policies and marine resource conservation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6257,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji oraz koordynacja działań kontrolnych z odpowiednimi służbami na poziomie krajowym i międzynarodowym.',
+                    'en' => 'Exchanging information and coordinating control actions with relevant services at national and international levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6258,
+                'name' => json_encode([
+                    'pl' => 'Kontrola punktów przeładunku, przetwórstwa oraz miejsc sprzedaży ryb, aby zapewnić legalność pochodzenia odławianych zasobów.',
+                    'en' => 'Inspecting transfer points, processing facilities, and fish sale locations to ensure the legality of fish origin.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6259,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja dokumentacji dotyczącej połowów i sprzedaży ryb, w tym faktur, licencji oraz certyfikatów pochodzenia.',
+                    'en' => 'Verifying documentation related to fishing and fish sales, including invoices, licenses, and origin certificates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6260,
+                'name' => json_encode([
+                    'pl' => 'Przeciwdziałanie handlowi nielegalnymi produktami rybołówstwa oraz zapewnienie przejrzystości i legalności rynku rybnego.',
+                    'en' => 'Preventing trade in illegal fishery products and ensuring transparency and legality in the fish market.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6261,
+                'name' => json_encode([
+                    'pl' => 'Kontrola połowów pod kątem unikania przyłowu gatunków chronionych, takich jak ssaki morskie, ptaki czy zagrożone gatunki ryb.',
+                    'en' => 'Inspecting fishing practices to avoid bycatch of protected species such as marine mammals, birds, and endangered fish species.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6262,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja stosowania przez jednostki rybackie narzędzi i procedur mających na celu minimalizację przypadkowych połowów gatunków narażonych na wyginięcie.',
+                    'en' => 'Verifying the use of tools and procedures by fishing vessels to minimize accidental capture of endangered species.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6263,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie danych dotyczących przyłowów i raportowanie ich do odpowiednich organów w celu oceny wpływu połowów na ekosystemy morskie.',
+                    'en' => 'Monitoring bycatch data and reporting it to relevant authorities to assess fishing impact on marine ecosystems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6264,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie szczegółowych raportów z przeprowadzonych kontroli, które dokumentują wyniki inspekcji oraz ewentualne stwierdzone nieprawidłowości.',
+                    'en' => 'Creating detailed reports on conducted inspections documenting results and any identified irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6265,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie dokumentacji potwierdzającej legalność połowów oraz zgodność działań rybackich z przepisami i regulacjami.',
+                    'en' => 'Preparing documentation confirming the legality of catches and compliance with fishing regulations and policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6266,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów kontrolnych do organów nadzorczych oraz współpraca w celu podejmowania odpowiednich działań.',
+                    'en' => 'Submitting inspection reports to supervisory authorities and cooperating to take appropriate actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6267,
+                'name' => json_encode([
+                    'pl' => 'Kontrola działań jednostek rybackich pod kątem przestrzegania przepisów dotyczących ochrony środowiska morskiego, w tym zakazów wyrzucania odpadów.',
+                    'en' => 'Monitoring fishing vessels to ensure compliance with marine environmental regulations, including waste disposal prohibitions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6268,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie stosowania zabezpieczeń chroniących przed zanieczyszczeniem morza substancjami chemicznymi, ściekami oraz niebezpiecznymi odpadami.',
+                    'en' => 'Ensuring the use of safeguards against sea contamination from chemicals, wastewater, and hazardous waste.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6269,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi służbami w zakresie identyfikacji i eliminacji źródeł zanieczyszczeń środowiska morskiego.',
+                    'en' => 'Collaborating with other services to identify and eliminate sources of marine environmental pollution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6270,
+                'name' => json_encode([
+                    'pl' => 'Edukacja rybaków oraz przedstawicieli branży rybnej w zakresie przepisów dotyczących zrównoważonego rybołówstwa oraz ochrony zasobów morskich.',
+                    'en' => 'Educating fishers and fishing industry representatives on sustainable fishing regulations and marine resource protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6271,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów informacyjnych na temat stosowania bezpiecznych narzędzi połowowych i metod ograniczających wpływ na ekosystemy.',
+                    'en' => 'Organizing training sessions and workshops on the use of safe fishing tools and methods that reduce ecosystem impact.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6272,
+                'name' => json_encode([
+                    'pl' => 'Promowanie świadomości ekologicznej w branży rybackiej oraz edukacja na temat skutków nielegalnych i nadmiernych połowów.',
+                    'en' => 'Promoting ecological awareness in the fishing industry and educating on the consequences of illegal and excessive fishing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6273,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z międzynarodowymi organizacjami, takimi jak FAO (Organizacja Narodów Zjednoczonych do spraw Wyżywienia i Rolnictwa), ICCAT (Międzynarodowa Komisja ds. Ochrony Tuńczyka Atlantyckiego), w celu ochrony globalnych zasobów morskich.',
+                    'en' => 'Collaborating with international organizations like FAO and ICCAT to protect global marine resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6274,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w spotkaniach, warsztatach oraz grupach roboczych na poziomie międzynarodowym, które mają na celu wymianę najlepszych praktyk w ochronie zasobów rybnych.',
+                    'en' => 'Participating in international meetings, workshops, and working groups focused on sharing best practices in fishery resource conservation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6275,
+                'name' => json_encode([
+                    'pl' => 'Raportowanie danych i informacji dotyczących połowów do organizacji międzynarodowych, zgodnie z obowiązującymi zobowiązaniami.',
+                    'en' => 'Reporting fishing data and information to international organizations in compliance with current obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6276,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i kontrola intensywności połowów w celu przeciwdziałania nadmiernemu odławianiu zasobów rybnych.',
+                    'en' => 'Monitoring and controlling fishing intensity to counter excessive harvesting of fish resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6277,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych połowowych oraz ocena stanu zasobów rybnych na podstawie wyników kontroli i raportów.',
+                    'en' => 'Analyzing fishing data and assessing the status of fish stocks based on inspection results and reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6278,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi organami i organizacjami rybackimi w celu ustanowienia limitów połowowych oraz regulacji chroniących przed przełowieniem.',
+                    'en' => 'Collaborating with other fisheries authorities and organizations to establish catch limits and regulations preventing overfishing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6279,
+                'name' => json_encode([
+                    'pl' => 'Kontrola, czy jednostki rybackie regularnie i dokładnie rejestrują dane dotyczące połowów, w tym gatunki, wielkość połowów oraz obszar połowowy.',
+                    'en' => 'Ensuring that fishing vessels regularly and accurately record catch data, including species, catch volume, and fishing area.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6280,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie raportowania przez jednostki rybackie w celu zapewnienia pełnej zgodności z krajowymi i międzynarodowymi wymogami.',
+                    'en' => 'Monitoring fishing vessels’ reporting to ensure full compliance with national and international requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6281,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że dane są dokładne i rzetelnie przekazywane do odpowiednich instytucji oraz organizacji monitorujących rybołówstwo.',
+                    'en' => 'Ensuring that data is accurate and reliably submitted to relevant institutions and fisheries monitoring organizations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6282,
+                'name' => json_encode([
+                    'pl' => 'Analiza zgłoszeń i sygnałów o możliwych naruszeniach przepisów przez jednostki rybackie, takich jak przypadki nielegalnych połowów czy naruszeń środowiskowych.',
+                    'en' => 'Analyzing reports and alerts of potential regulation violations by fishing vessels, such as illegal fishing or environmental breaches.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6283,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie interwencji w odpowiedzi na zgłoszenia oraz prowadzenie postępowań wyjaśniających.',
+                    'en' => 'Conducting interventions in response to reports and carrying out investigative proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6284,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie i przekazywanie informacji o przypadkach naruszeń do organów ścigania oraz instytucji nadzorczych.',
+                    'en' => 'Documenting and forwarding information on violations to law enforcement and supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6285,
+                'name' => json_encode([
+                    'pl' => 'Regularne przeprowadzanie audytów działalności rybackiej, w tym audytów dotyczących przestrzegania przepisów i zgodności z wymogami środowiskowymi.',
+                    'en' => 'Conducting regular audits of fishing activities, including compliance audits with environmental requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6286,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych uzyskanych podczas audytów oraz rekomendowanie działań naprawczych w przypadku stwierdzonych nieprawidłowości.',
+                    'en' => 'Analyzing data obtained during audits and recommending corrective actions for identified irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6287,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wyników audytów do odpowiednich organów oraz monitorowanie wdrożenia działań mających na celu poprawę zgodności z przepisami.',
+                    'en' => 'Submitting audit results to relevant authorities and monitoring the implementation of actions to improve compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $inspektor_pracy = [
+            [
+                'id' => 6288,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działalności pracodawców z przepisami prawa pracy, w tym przepisami dotyczącymi czasu pracy, wynagrodzeń, umów oraz warunków zatrudnienia.',
+                    'en' => 'Monitoring employer compliance with labor laws, including working hours, wages, contracts, and employment conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6289,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli w zakładach pracy, mających na celu wykrycie nieprawidłowości i naruszeń prawa pracy.',
+                    'en' => 'Conducting workplace inspections to detect irregularities and labor law violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6290,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów z kontroli oraz przekazywanie zaleceń dotyczących wprowadzenia zmian w przypadku stwierdzonych naruszeń.',
+                    'en' => 'Preparing inspection reports and providing recommendations for changes when violations are found.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6291,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy pracodawcy zapewniają bezpieczne warunki pracy zgodne z przepisami BHP, w tym warunki sanitarne, dostęp do środków ochrony osobistej, odpowiednie oświetlenie, wentylację i ergonomię stanowisk pracy.',
+                    'en' => 'Ensuring employers provide safe working conditions according to health and safety regulations, including sanitation, personal protective equipment, proper lighting, ventilation, and ergonomic workstations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6292,
+                'name' => json_encode([
+                    'pl' => 'Kontrola przestrzegania przez pracodawców obowiązków związanych z prowadzeniem szkoleń BHP dla pracowników.',
+                    'en' => 'Monitoring employer compliance with obligations to conduct health and safety training for employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6293,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie przestrzegania przepisów dotyczących organizacji stanowisk pracy oraz stosowania środków ochrony zbiorowej i indywidualnej.',
+                    'en' => 'Ensuring compliance with regulations on worksite organization and the use of collective and personal protective measures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6294,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie zgłoszeń i skarg od pracowników dotyczących nieprawidłowości w zakresie prawa pracy i BHP.',
+                    'en' => 'Receiving employee complaints and reports regarding labor law and health and safety irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6295,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli i dochodzeń na podstawie skarg i sygnałów dotyczących naruszeń, takich jak nielegalne zwolnienia, brak wypłat wynagrodzeń, mobbing czy nadużycia w zakresie czasu pracy.',
+                    'en' => 'Conducting inspections and investigations based on complaints and reports of violations, such as illegal dismissals, unpaid wages, bullying, or time abuse.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6296,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników kontroli oraz podejmowanie działań mających na celu rozwiązanie problemów zgłoszonych przez pracowników.',
+                    'en' => 'Documenting inspection results and taking actions to address issues reported by employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6297,
+                'name' => json_encode([
+                    'pl' => 'Kontrola przestrzegania przepisów dotyczących czasu pracy, nadgodzin, pracy nocnej oraz przerw w pracy.',
+                    'en' => 'Ensuring compliance with regulations on working hours, overtime, night work, and work breaks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6298,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności wynagrodzeń z przepisami, w tym minimalnej płacy, dodatków za nadgodziny oraz świadczeń dodatkowych.',
+                    'en' => 'Verifying wage compliance with regulations, including minimum wage, overtime bonuses, and additional benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6299,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie zaleceń dotyczących dostosowania warunków pracy i płacy do obowiązujących regulacji.',
+                    'en' => 'Providing recommendations for adapting work and pay conditions to current regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6300,
+                'name' => json_encode([
+                    'pl' => 'Analiza przyczyn i okoliczności wypadków przy pracy oraz przygotowywanie raportów powypadkowych.',
+                    'en' => 'Analyzing causes and circumstances of workplace accidents and preparing accident reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6301,
+                'name' => json_encode([
+                    'pl' => 'Kontrola, czy pracodawca wdrożył środki mające na celu zapobieganie podobnym wypadkom w przyszłości.',
+                    'en' => 'Verifying if employers have implemented measures to prevent similar accidents in the future.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6302,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi organami, takimi jak policja i prokuratura, w przypadku poważnych wypadków oraz nadzór nad procedurami dochodzeniowymi.',
+                    'en' => 'Collaborating with other authorities, such as the police and prosecutor’s office, in cases of serious accidents and overseeing investigative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6303,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie zaleceń i nakazów mających na celu dostosowanie warunków pracy do obowiązujących przepisów.',
+                    'en' => 'Issuing recommendations and orders to align work conditions with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6304,
+                'name' => json_encode([
+                    'pl' => 'Nakazywanie pracodawcom natychmiastowego usunięcia zagrożeń lub naruszeń, które mogą stwarzać ryzyko dla zdrowia i życia pracowników.',
+                    'en' => 'Ordering employers to immediately eliminate hazards or violations that may pose health and life risks to employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6305,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji zaleceń oraz ponowne kontrole w celu weryfikacji, czy pracodawca wdrożył wymagane środki naprawcze.',
+                    'en' => 'Monitoring the implementation of recommendations and conducting follow-up inspections to verify employer compliance with required corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6306,
+                'name' => json_encode([
+                    'pl' => 'Nakładanie grzywien oraz kierowanie wniosków o ukaranie do sądów w przypadku stwierdzenia poważnych naruszeń przepisów prawa pracy i BHP.',
+                    'en' => 'Imposing fines and filing requests for penalties with courts in cases of serious labor law and health and safety violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6307,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie decyzji administracyjnych, które zobowiązują pracodawcę do przestrzegania przepisów i wytycznych w zakresie prawa pracy.',
+                    'en' => 'Issuing administrative decisions requiring employers to comply with labor law regulations and guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6308,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z sądami pracy i innymi instytucjami w celu zapewnienia zgodności działań pracodawców z obowiązującymi przepisami.',
+                    'en' => 'Cooperating with labor courts and other institutions to ensure employer compliance with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6309,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie porad dotyczących prawa pracy, obowiązków pracodawcy i pracownika oraz interpretacji przepisów prawa.',
+                    'en' => 'Providing advice on labor law, employer and employee obligations, and interpretation of legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6310,
+                'name' => json_encode([
+                    'pl' => 'Informowanie pracowników o ich prawach i obowiązkach wynikających z przepisów oraz doradzanie w kwestiach spornych.',
+                    'en' => 'Informing employees about their rights and obligations under the law and advising on dispute matters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6311,
+                'name' => json_encode([
+                    'pl' => 'Pomoc pracodawcom w zakresie interpretacji przepisów oraz wdrażania rozwiązań zgodnych z regulacjami prawnymi.',
+                    'en' => 'Assisting employers in interpreting regulations and implementing solutions compliant with legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6312,
+                'name' => json_encode([
+                    'pl' => 'Kontrola, czy umowy o pracę są zgodne z przepisami i zapewniają pracownikom odpowiednie warunki zatrudnienia.',
+                    'en' => 'Verifying that employment contracts comply with regulations and provide appropriate working conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6313,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie, czy pracodawcy nie zastępują umów o pracę innymi formami zatrudnienia, które naruszają prawa pracowników.',
+                    'en' => 'Ensuring that employers do not replace employment contracts with other forms of employment that infringe on employee rights.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6314,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności umów cywilnoprawnych z wymogami prawa pracy i eliminowanie nieprawidłowości.',
+                    'en' => 'Ensuring civil contracts comply with labor law requirements and correcting any irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6315,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organami ścigania, takimi jak policja, prokuratura oraz Państwowa Inspekcja Sanitarna, w przypadkach naruszeń prawa pracy.',
+                    'en' => 'Collaborating with law enforcement agencies, such as the police, prosecutor’s office, and sanitary inspection, in cases of labor law violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6316,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z organizacjami związkowymi oraz innymi instytucjami zajmującymi się ochroną praw pracowniczych.',
+                    'en' => 'Maintaining contact with trade unions and other institutions focused on protecting employee rights.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6317,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji i koordynacja działań kontrolnych na poziomie lokalnym, regionalnym oraz krajowym.',
+                    'en' => 'Exchanging information and coordinating control actions at local, regional, and national levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6318,
+                'name' => json_encode([
+                    'pl' => 'Regularne audyty BHP w zakładach pracy w celu oceny stanu bezpieczeństwa i higieny pracy.',
+                    'en' => 'Conducting regular health and safety audits in workplaces to assess safety and hygiene conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6319,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników audytów oraz wydawanie zaleceń mających na celu poprawę bezpieczeństwa na stanowiskach pracy.',
+                    'en' => 'Documenting audit results and issuing recommendations to improve workplace safety.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6320,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności działań pracodawców z obowiązującymi standardami i przepisami BHP.',
+                    'en' => 'Ensuring employer compliance with current health and safety standards and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6321,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń, seminariów oraz warsztatów dla pracodawców i pracowników dotyczących prawa pracy i zasad BHP.',
+                    'en' => 'Organizing training, seminars, and workshops for employers and employees on labor law and health and safety principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6322,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie materiałów informacyjnych, takich jak broszury, poradniki oraz plakaty edukacyjne dotyczące bezpieczeństwa pracy.',
+                    'en' => 'Preparing informational materials, such as brochures, guides, and educational posters on workplace safety.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6323,
+                'name' => json_encode([
+                    'pl' => 'Promowanie świadomości na temat bezpieczeństwa i higieny pracy oraz zachęcanie pracowników do zgłaszania nieprawidłowości.',
+                    'en' => 'Promoting awareness of health and safety at work and encouraging employees to report irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6324,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja, czy pracodawcy przestrzegają przepisów dotyczących zatrudniania osób niepełnoletnich oraz zakazu pracy dzieci.',
+                    'en' => 'Ensuring employers comply with regulations on hiring minors and child labor prohibitions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6325,
+                'name' => json_encode([
+                    'pl' => 'Kontrola warunków pracy młodocianych oraz zgodności ich zatrudnienia z wymogami prawa pracy.',
+                    'en' => 'Inspecting the working conditions of minors and ensuring their employment complies with labor law requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6326,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie działań w przypadku stwierdzenia naruszeń, takich jak kierowanie spraw do sądów i organów ścigania.',
+                    'en' => 'Taking action in case of violations, including referring cases to courts and law enforcement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6327,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów, protokołów oraz dokumentacji z przeprowadzonych kontroli i audytów.',
+                    'en' => 'Preparing reports, protocols, and documentation from conducted inspections and audits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6328,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie statystyk i analiz na temat naruszeń prawa pracy, wypadków przy pracy oraz nieprawidłowości.',
+                    'en' => 'Compiling statistics and analyses on labor law violations, workplace accidents, and irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6329,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów oraz wniosków do odpowiednich organów nadzorczych oraz przedstawianie rekomendacji dotyczących zmian w polityce pracy.',
+                    'en' => 'Submitting reports and recommendations to supervisory authorities and presenting suggestions for labor policy changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6330,
+                'name' => json_encode([
+                    'pl' => 'Kontrola i ocena, czy pracodawcy wdrażają polityki przeciwdziałające mobbingowi i dyskryminacji.',
+                    'en' => 'Ensuring employers implement anti-bullying and anti-discrimination policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6331,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań wyjaśniających w przypadku zgłoszeń dotyczących mobbingu, dyskryminacji oraz innych przejawów naruszenia praw pracowników.',
+                    'en' => 'Conducting investigations in response to reports of bullying, discrimination, and other violations of employee rights.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6332,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie zaleceń oraz nakazów eliminujących nieprawidłowości w obszarze mobbingu i dyskryminacji.',
+                    'en' => 'Issuing recommendations and orders to eliminate irregularities related to bullying and discrimination.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6333,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie poprawności ewidencji czasu pracy oraz zgodności zapisów z rzeczywistym czasem pracy pracowników.',
+                    'en' => 'Ensuring accuracy of working time records and verifying compliance with employees’ actual working hours.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6334,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja, czy pracodawca przestrzega przepisów dotyczących prowadzenia ewidencji, w tym czasu pracy, urlopów i nadgodzin.',
+                    'en' => 'Verifying that employers comply with record-keeping regulations, including working hours, leave, and overtime.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6335,
+                'name' => json_encode([
+                    'pl' => 'Nakładanie kar oraz wydawanie zaleceń w przypadku naruszeń przepisów dotyczących ewidencji.',
+                    'en' => 'Imposing penalties and issuing recommendations in case of record-keeping violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $kontroler_panstwowy = [
+            [
+                'id' => 6336,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie audytów finansowych jednostek sektora publicznego w celu oceny zgodności ich działań z przepisami dotyczącymi rachunkowości i finansów publicznych.',
+                    'en' => 'Conducting financial audits of public sector entities to assess compliance with accounting and public finance regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6337,
+                'name' => json_encode([
+                    'pl' => 'Kontrola poprawności prowadzenia ksiąg rachunkowych, sprawozdań finansowych oraz zgodności wydatków z budżetem.',
+                    'en' => 'Checking the accuracy of bookkeeping, financial statements, and budget compliance of expenditures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6338,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji planów finansowych oraz zgodności z przepisami dotyczącymi gospodarowania środkami publicznymi.',
+                    'en' => 'Monitoring the implementation of financial plans and compliance with regulations on public fund management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6339,
+                'name' => json_encode([
+                    'pl' => 'Ocena, czy jednostki sektora publicznego działają zgodnie z zasadami gospodarności, efektywności i celowości wydatkowania środków publicznych.',
+                    'en' => 'Assessing whether public sector entities operate in line with principles of economy, efficiency, and purposeful use of public funds.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6340,
+                'name' => json_encode([
+                    'pl' => 'Analiza, czy wydatki i inwestycje są realizowane w sposób optymalny oraz czy przynoszą zamierzone efekty.',
+                    'en' => 'Analyzing whether expenditures and investments are made optimally and achieve intended outcomes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6341,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie zaleceń mających na celu poprawę efektywności gospodarowania zasobami.',
+                    'en' => 'Issuing recommendations aimed at improving resource management efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6342,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja przestrzegania przez kontrolowane jednostki obowiązujących przepisów prawa, w tym przepisów o finansach publicznych, prawa zamówień publicznych, prawa pracy i innych regulacji.',
+                    'en' => 'Ensuring controlled units comply with applicable laws, including public finance, public procurement, labor law, and other regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6343,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań administracyjnych i operacyjnych z procedurami wewnętrznymi oraz regulacjami zewnętrznymi.',
+                    'en' => 'Monitoring administrative and operational activities for compliance with internal procedures and external regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6344,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie protokołów z kontroli oraz dokumentowanie stwierdzonych naruszeń.',
+                    'en' => 'Preparing control protocols and documenting identified violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6345,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli operacyjnych, których celem jest ocena organizacji procesów i efektywności działania jednostek publicznych.',
+                    'en' => 'Conducting operational controls to evaluate process organization and the effectiveness of public entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6346,
+                'name' => json_encode([
+                    'pl' => 'Analiza procedur wewnętrznych, obiegu dokumentów oraz systemów zarządzania ryzykiem.',
+                    'en' => 'Analyzing internal procedures, document flow, and risk management systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6347,
+                'name' => json_encode([
+                    'pl' => 'Wskazywanie obszarów wymagających usprawnień oraz rekomendowanie zmian w celu zwiększenia efektywności działania.',
+                    'en' => 'Identifying areas needing improvement and recommending changes to increase operational efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6348,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie zaleceń pokontrolnych mających na celu usunięcie stwierdzonych nieprawidłowości i wdrożenie działań naprawczych.',
+                    'en' => 'Issuing post-inspection recommendations to eliminate identified irregularities and implement corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6349,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji zaleceń przez kontrolowane jednostki oraz weryfikacja, czy zostały wdrożone odpowiednie środki naprawcze.',
+                    'en' => 'Monitoring the implementation of recommendations by controlled units and verifying appropriate corrective actions were taken.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6350,
+                'name' => json_encode([
+                    'pl' => 'Ponowne kontrole mające na celu sprawdzenie, czy rekomendacje zostały zrealizowane zgodnie z wytycznymi.',
+                    'en' => 'Conducting follow-up inspections to check if recommendations were implemented as per guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6351,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów z przeprowadzonych kontroli, które opisują wyniki kontroli oraz zawierają rekomendacje i zalecenia.',
+                    'en' => 'Preparing reports on conducted inspections that describe results and include recommendations and advice.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6352,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów organom nadzorczym oraz instytucjom odpowiedzialnym za nadzór nad realizacją zaleceń.',
+                    'en' => 'Submitting reports to supervisory authorities and institutions responsible for overseeing recommendation implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6353,
+                'name' => json_encode([
+                    'pl' => 'Prezentowanie wyników kontroli kierownictwu kontrolowanych jednostek oraz innym zainteresowanym podmiotom.',
+                    'en' => 'Presenting inspection results to the management of controlled units and other interested entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6354,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja obszarów o podwyższonym ryzyku wystąpienia nieprawidłowości oraz analiza ryzyka związanego z działalnością kontrolowanych jednostek.',
+                    'en' => 'Identifying high-risk areas for irregularities and analyzing risks related to the activities of controlled entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6355,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie planów kontroli, które koncentrują się na kluczowych obszarach ryzyka i wymagają szczególnej uwagi.',
+                    'en' => 'Creating inspection plans focusing on key risk areas that require special attention.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6356,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie narzędzi i metod oceny ryzyka, które wspierają proces identyfikacji nieprawidłowości.',
+                    'en' => 'Implementing tools and methods for risk assessment that support the process of identifying irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6357,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności postępowań o udzielenie zamówień publicznych z przepisami prawa zamówień publicznych.',
+                    'en' => 'Verifying compliance of public procurement procedures with public procurement law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6358,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy zamówienia są udzielane w sposób przejrzysty, konkurencyjny i zgodny z zasadami uczciwej konkurencji.',
+                    'en' => 'Ensuring procurement is conducted transparently, competitively, and in accordance with fair competition principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6359,
+                'name' => json_encode([
+                    'pl' => 'Analiza procesów zakupowych i rekomendowanie zmian, które mogą poprawić efektywność i zgodność zamówień z przepisami.',
+                    'en' => 'Analyzing procurement processes and recommending changes to improve efficiency and compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6360,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie sposobu wykorzystania funduszy publicznych, dotacji oraz środków pochodzących z funduszy unijnych.',
+                    'en' => 'Monitoring the use of public funds, grants, and funds from European Union sources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6361,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja, czy fundusze są wykorzystywane zgodnie z celami, na które zostały przyznane, oraz zgodnie z warunkami umów.',
+                    'en' => 'Verifying that funds are used according to their designated purposes and contractual conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6362,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie zaleceń mających na celu poprawę przejrzystości i legalności wydatkowania funduszy.',
+                    'en' => 'Issuing recommendations to enhance transparency and legality in fund spending.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6363,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i przeciwdziałanie przypadkom korupcji, oszustw oraz innych nieprawidłowości finansowych w jednostkach sektora publicznego.',
+                    'en' => 'Identifying and countering corruption, fraud, and other financial irregularities within public sector entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6364,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie dochodzeń w przypadku podejrzenia nieprawidłowości i zgłaszanie ich odpowiednim organom ścigania.',
+                    'en' => 'Conducting investigations in case of suspected irregularities and reporting them to the relevant law enforcement authorities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6365,
+                'name' => json_encode([
+                    'pl' => 'Analiza procedur kontroli wewnętrznej w jednostkach w celu minimalizacji ryzyka wystąpienia nadużyć.',
+                    'en' => 'Analyzing internal control procedures within entities to minimize the risk of abuse.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6366,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organami nadzorczymi, takimi jak Najwyższa Izba Kontroli (NIK), regionalne izby obrachunkowe, prokuratura, policja.',
+                    'en' => 'Collaborating with supervisory bodies such as the Supreme Audit Office, regional audit chambers, the prosecutor’s office, and the police.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6367,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji oraz dokumentacji dotyczącej stwierdzonych nieprawidłowości i naruszeń do odpowiednich instytucji.',
+                    'en' => 'Submitting information and documentation related to identified irregularities and violations to relevant institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6368,
+                'name' => json_encode([
+                    'pl' => 'Udział w spotkaniach, konferencjach i grupach roboczych poświęconych zwiększeniu efektywności kontroli i nadzoru publicznego.',
+                    'en' => 'Participating in meetings, conferences, and working groups focused on increasing the effectiveness of public control and oversight.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6369,
+                'name' => json_encode([
+                    'pl' => 'Ocena jakości zarządzania i nadzoru kierownictwa jednostek sektora publicznego oraz ich odpowiedzialności za zarządzanie środkami publicznymi.',
+                    'en' => 'Evaluating the quality of management and oversight by public sector leadership and their accountability for public funds management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6370,
+                'name' => json_encode([
+                    'pl' => 'Analiza decyzji podejmowanych przez kierownictwo pod kątem zgodności z zasadami gospodarności i celowości.',
+                    'en' => 'Analyzing management decisions for compliance with principles of economy and purposefulness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6371,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat efektywności działań zarządczych i ich wpływu na realizację celów publicznych.',
+                    'en' => 'Preparing reports on management actions’ effectiveness and their impact on achieving public goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6372,
+                'name' => json_encode([
+                    'pl' => 'Ocena jakości systemów kontroli wewnętrznej w jednostkach publicznych, w tym procedur związanych z zarządzaniem ryzykiem i obiegiem dokumentów.',
+                    'en' => 'Evaluating the quality of internal control systems in public entities, including risk management and document flow procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6373,
+                'name' => json_encode([
+                    'pl' => 'Rekomendowanie zmian w systemach kontroli wewnętrznej mających na celu minimalizację ryzyka i zwiększenie przejrzystości.',
+                    'en' => 'Recommending changes in internal control systems to minimize risk and increase transparency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6374,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie jednostek publicznych w opracowywaniu skutecznych procedur kontroli wewnętrznej.',
+                    'en' => 'Supporting public entities in developing effective internal control procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6375,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie audytów operacyjnych mających na celu ocenę efektywności procesów i procedur operacyjnych w jednostkach sektora publicznego.',
+                    'en' => 'Conducting operational audits to assess the efficiency of processes and operational procedures in public sector entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6376,
+                'name' => json_encode([
+                    'pl' => 'Analiza organizacji pracy, zarządzania zasobami oraz procesów decyzyjnych.',
+                    'en' => 'Analyzing work organization, resource management, and decision-making processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6377,
+                'name' => json_encode([
+                    'pl' => 'Wskazywanie obszarów, w których można poprawić efektywność operacyjną i wydajność.',
+                    'en' => 'Identifying areas where operational efficiency and productivity can be improved.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6378,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń i warsztatów dla pracowników jednostek sektora publicznego dotyczących zasad rachunkowości, przepisów finansowych oraz procedur kontroli wewnętrznej.',
+                    'en' => 'Conducting training and workshops for public sector employees on accounting principles, financial regulations, and internal control procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6379,
+                'name' => json_encode([
+                    'pl' => 'Doradzanie jednostkom w zakresie zgodności działań z przepisami oraz dobrych praktyk zarządzania środkami publicznymi.',
+                    'en' => 'Advising entities on regulatory compliance and best practices in public fund management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6380,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie jednostek publicznych w interpretacji przepisów oraz wdrażaniu działań naprawczych.',
+                    'en' => 'Supporting public entities in interpreting regulations and implementing corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6381,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wyników kontroli i audytów do organów nadzorczych, takich jak Najwyższa Izba Kontroli, ministerstwa, lub inne jednostki odpowiedzialne za nadzór.',
+                    'en' => 'Submitting audit and control findings to supervisory bodies, such as the Supreme Audit Office, ministries, or other oversight units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6382,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie analiz i raportów zbiorczych, które przedstawiają skalę stwierdzonych nieprawidłowości oraz zalecenia dotyczące polityk i przepisów.',
+                    'en' => 'Preparing analyses and summary reports on the extent of identified irregularities and recommendations for policies and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6383,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organami nadzoru w celu poprawy procedur kontrolnych i zgodności działań sektora publicznego z regulacjami.',
+                    'en' => 'Collaborating with oversight bodies to improve control procedures and compliance in public sector operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $specjalista_zamowien_publicznych = [
+            [
+                'id' => 6384,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie pełnej dokumentacji przetargowej, w tym specyfikacji istotnych warunków zamówienia (SIWZ), ogłoszeń o przetargach, wzorów umów i załączników.',
+                    'en' => 'Preparing complete tender documentation, including the Terms of Reference (SIWZ), tender announcements, contract templates, and attachments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6385,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie opisu przedmiotu zamówienia oraz ustalanie wymagań dla wykonawców zgodnie z potrzebami zamawiającego oraz przepisami prawa zamówień publicznych.',
+                    'en' => 'Creating the description of the subject matter of the contract and defining requirements for contractors in line with the contracting authority’s needs and public procurement law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6386,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja dokumentacji pod kątem jej kompletności i zgodności z obowiązującymi regulacjami.',
+                    'en' => 'Verifying documentation for completeness and compliance with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6387,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i prowadzenie postępowań przetargowych, w tym przetargów nieograniczonych, ograniczonych oraz zapytań ofertowych.',
+                    'en' => 'Organizing and conducting tender procedures, including open, restricted tenders, and requests for proposals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6388,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie procedur zgodnie z ustawą Prawo zamówień publicznych oraz wewnętrznymi regulacjami zamawiającego.',
+                    'en' => 'Executing procedures in accordance with the Public Procurement Law and internal regulations of the contracting authority.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6389,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie przebiegu przetargu oraz zapewnienie jego transparentności i rzetelności.',
+                    'en' => 'Documenting the tender process and ensuring its transparency and integrity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6390,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja ofert pod kątem ich zgodności z wymaganiami zamówienia, kryteriami oceny oraz warunkami formalnymi.',
+                    'en' => 'Reviewing bids for compliance with the contract requirements, evaluation criteria, and formal conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6391,
+                'name' => json_encode([
+                    'pl' => 'Ocena ofert na podstawie ustalonych kryteriów (np. cena, jakość, termin realizacji) oraz sporządzanie protokołów oceny.',
+                    'en' => 'Evaluating bids based on established criteria (e.g., price, quality, completion time) and preparing assessment reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6392,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzenie procedury wyboru najkorzystniejszej oferty i dokumentowanie decyzji.',
+                    'en' => 'Conducting the selection process for the best offer and documenting the decision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6393,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie ogłoszeń o zamówieniach publicznych oraz ich publikacja w Biuletynie Zamówień Publicznych, Dzienniku Urzędowym Unii Europejskiej (TED) oraz na stronach internetowych zamawiającego.',
+                    'en' => 'Preparing public procurement announcements and publishing them in the Public Procurement Bulletin, Official Journal of the European Union (TED), and on the contracting authority’s websites.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6394,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminów i zgodności publikacji ogłoszeń z wymaganiami ustawy.',
+                    'en' => 'Monitoring publication deadlines and compliance of announcements with statutory requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6395,
+                'name' => json_encode([
+                    'pl' => 'Upewnienie się, że wszystkie ogłoszenia są dostępne i zrozumiałe dla potencjalnych wykonawców.',
+                    'en' => 'Ensuring all announcements are accessible and understandable for potential contractors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6396,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie przestrzegania przepisów ustawy Prawo zamówień publicznych oraz innych regulacji dotyczących zamówień w instytucji.',
+                    'en' => 'Monitoring compliance with the Public Procurement Law and other procurement regulations within the institution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6397,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja ryzyk prawnych i podejmowanie działań mających na celu minimalizację niezgodności z przepisami.',
+                    'en' => 'Identifying legal risks and taking actions to minimize regulatory non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6398,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem prawnym w zakresie interpretacji przepisów oraz rozwiązywania kwestii prawnych.',
+                    'en' => 'Collaborating with the legal department to interpret regulations and resolve legal issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6399,
+                'name' => json_encode([
+                    'pl' => 'Odpowiadanie na pytania wykonawców dotyczące przetargów, w tym wyjaśnienia dotyczące SIWZ i innych dokumentów przetargowych.',
+                    'en' => 'Responding to contractor inquiries about tenders, including clarifications on SIWZ and other tender documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6400,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i rozpatrywanie protestów i odwołań wykonawców oraz podejmowanie działań zgodnych z procedurą odwoławczą.',
+                    'en' => 'Receiving and reviewing contractor protests and appeals and taking actions in line with the appeals process.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6401,
+                'name' => json_encode([
+                    'pl' => 'Informowanie wykonawców o wynikach przetargu oraz wyjaśnianie przyczyn wyboru oferty.',
+                    'en' => 'Informing contractors of tender results and explaining the reasons for the selected offer.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6402,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie negocjacji z wybranymi wykonawcami w procedurach, które na to pozwalają (np. negocjacje bez ogłoszenia, zamówienia z wolnej ręki).',
+                    'en' => 'Negotiating with selected contractors in procedures that allow it (e.g., negotiated procedures without announcement, single-source procurements).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6403,
+                'name' => json_encode([
+                    'pl' => 'Ustalanie warunków zamówienia, które zapewnią optymalną realizację z punktu widzenia zamawiającego.',
+                    'en' => 'Setting contract conditions that ensure optimal performance from the contracting authority’s perspective.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6404,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o przejrzystość procesu negocjacyjnego i dokumentowanie jego przebiegu.',
+                    'en' => 'Ensuring transparency in the negotiation process and documenting its course.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6405,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działami, które korzystają z przedmiotów zamówień, w celu dokładnego określenia ich potrzeb i wymagań.',
+                    'en' => 'Collaborating with departments that use procured items to accurately define their needs and requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6406,
+                'name' => json_encode([
+                    'pl' => 'Ustalenie specyfikacji technicznych oraz warunków zamówienia w konsultacji z działem technicznym, prawnym lub finansowym.',
+                    'en' => 'Determining technical specifications and contract conditions in consultation with the technical, legal, or financial departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6407,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z zamówieniami publicznymi w organizacji i wsparcie innych działów w przygotowaniu dokumentacji.',
+                    'en' => 'Coordinating public procurement activities within the organization and supporting other departments in document preparation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6408,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i weryfikacja umów z wykonawcami, w tym uzgodnienia dotyczące warunków dostaw, terminów, płatności i kar umownych.',
+                    'en' => 'Preparing and reviewing contracts with contractors, including terms of delivery, deadlines, payments, and penalties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6409,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji zamówienia przez wykonawcę oraz nadzorowanie terminów dostaw i jakości usług.',
+                    'en' => 'Monitoring contractor performance on orders and supervising delivery schedules and service quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6410,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie działań w przypadku opóźnień lub niezgodności realizacji z warunkami umowy.',
+                    'en' => 'Taking action in cases of delays or non-compliance with contract terms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6411,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat przeprowadzonych postępowań przetargowych, wyników przetargów oraz efektywności wydatków.',
+                    'en' => 'Preparing reports on tender proceedings, outcomes, and expenditure efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6412,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie analiz dotyczących wydatków na zamówienia publiczne oraz oceny optymalizacji kosztów.',
+                    'en' => 'Conducting expenditure analyses on public procurement and evaluating cost optimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6413,
+                'name' => json_encode([
+                    'pl' => 'Prezentacja wyników i analiz zarządowi oraz innym zainteresowanym działom.',
+                    'en' => 'Presenting results and analyses to management and other interested departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6414,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że proces zamówień publicznych jest przejrzysty, uczciwy i otwarty dla wszystkich potencjalnych wykonawców.',
+                    'en' => 'Ensuring that the public procurement process is transparent, fair, and open to all potential contractors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6415,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności działań zamawiającego z zasadami uczciwej konkurencji i przeciwdziałanie dyskryminacji wykonawców.',
+                    'en' => 'Monitoring the contracting authority’s actions for fair competition compliance and preventing contractor discrimination.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6416,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja procedur pod kątem zapewnienia równego dostępu do zamówień publicznych.',
+                    'en' => 'Verifying procedures to ensure equal access to public procurement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6417,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów dla pracowników instytucji dotyczących przepisów prawa zamówień publicznych oraz procedur przetargowych.',
+                    'en' => 'Organizing training and workshops for institutional staff on public procurement law and tender procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6418,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wsparcia i doradztwa pracownikom jednostki w zakresie interpretacji przepisów oraz realizacji zamówień.',
+                    'en' => 'Providing support and advice to staff on regulatory interpretation and procurement execution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6419,
+                'name' => json_encode([
+                    'pl' => 'Informowanie zespołu o aktualizacjach i zmianach w przepisach dotyczących zamówień publicznych.',
+                    'en' => 'Informing the team about updates and changes in public procurement regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6420,
+                'name' => json_encode([
+                    'pl' => 'Analiza budżetu jednostki pod kątem zaplanowania zamówień oraz przygotowanie planu zamówień publicznych.',
+                    'en' => 'Analyzing the unit’s budget for procurement planning and preparing a public procurement plan.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6421,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wydatków na zamówienia oraz weryfikacja ich zgodności z planem finansowym instytucji.',
+                    'en' => 'Monitoring procurement expenditures and verifying their compliance with the institution’s financial plan.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6422,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prognoz wydatków oraz raportowanie ich zgodności z budżetem.',
+                    'en' => 'Preparing expenditure forecasts and reporting their alignment with the budget.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6423,
+                'name' => json_encode([
+                    'pl' => 'Kontrola realizacji umowy w zakresie jakości, terminowości i zgodności z zamówieniem.',
+                    'en' => 'Contract compliance monitoring in terms of quality, timeliness, and adherence to the contract.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6424,
+                'name' => json_encode([
+                    'pl' => 'Rozliczanie końcowe wykonawców oraz weryfikacja poprawności dokumentacji związanej z odbiorem prac lub dostaw.',
+                    'en' => 'Finalizing contractor settlements and verifying documentation related to work acceptance or deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6425,
+                'name' => json_encode([
+                    'pl' => 'Zamykanie postępowań przetargowych i archiwizacja dokumentacji.',
+                    'en' => 'Closing tender proceedings and archiving documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6426,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie rynku w zakresie dostępnych wykonawców, dostawców oraz usługodawców, w celu zapewnienia konkurencyjności zamówień.',
+                    'en' => 'Monitoring the market for available contractors, suppliers, and service providers to ensure competitive procurement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6427,
+                'name' => json_encode([
+                    'pl' => 'Analiza ofert rynkowych oraz identyfikacja potencjalnych dostawców, którzy mogą spełnić wymagania zamawiającego.',
+                    'en' => 'Analyzing market offers and identifying potential suppliers who meet the contracting authority’s requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6428,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z dostawcami i wykonawcami w celu optymalizacji warunków zakupu oraz zapewnienia wysokiej jakości realizacji zamówień.',
+                    'en' => 'Collaborating with suppliers and contractors to optimize purchase terms and ensure high-quality contract performance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6429,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie wewnętrznych audytów dotyczących zgodności procedur zamówień publicznych z przepisami i wewnętrznymi politykami organizacji.',
+                    'en' => 'Conducting internal audits on public procurement procedures for compliance with regulations and internal policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6430,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników audytów oraz wprowadzanie niezbędnych usprawnień w procedurach.',
+                    'en' => 'Analyzing audit results and implementing necessary improvements in procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6431,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z audytorami zewnętrznymi oraz organami kontrolnymi w celu zapewnienia transparentności i zgodności z przepisami.',
+                    'en' => 'Collaborating with external auditors and oversight bodies to ensure transparency and regulatory compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $specjalista_organizacji_zarzadzania_ochrony_zdrowia = [
+            [
+                'id' => 6432,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie harmonogramów pracy personelu medycznego oraz administracyjnego, aby zapewnić płynne działanie placówki.',
+                    'en' => 'Creating work schedules for medical and administrative staff to ensure smooth facility operation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6433,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i wdrażanie procedur wewnętrznych, które usprawniają pracę placówki i pozwalają na lepsze wykorzystanie zasobów.',
+                    'en' => 'Developing and implementing internal procedures that streamline operations and optimize resource utilization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6434,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie procesów związanych z obsługą pacjentów, w tym rejestracją, przyjęciami i obsługą medyczną.',
+                    'en' => 'Organizing patient-related processes, including registration, admissions, and medical care.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6435,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lekarzami, pielęgniarkami oraz innym personelem medycznym w celu zapewnienia efektywności pracy oraz wysokiej jakości opieki nad pacjentami.',
+                    'en' => 'Collaborating with doctors, nurses, and other medical staff to ensure efficient operations and high-quality patient care.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6436,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja pracy między różnymi oddziałami i działami w placówce zdrowotnej, aby zapewnić sprawną komunikację i przepływ informacji.',
+                    'en' => 'Coordinating work among various departments within the healthcare facility to ensure effective communication and information flow.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6437,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad realizacją zaleceń lekarskich i dbałość o to, aby wszystkie działy działały zgodnie z polityką i celami placówki.',
+                    'en' => 'Supervising the implementation of medical recommendations and ensuring all departments align with facility policies and goals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6438,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie jakości świadczonych usług medycznych oraz dbanie o spełnianie standardów jakościowych i medycznych przez personel.',
+                    'en' => 'Monitoring the quality of medical services provided and ensuring staff compliance with medical and quality standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6439,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie procedur mających na celu podniesienie jakości opieki nad pacjentami, takich jak standardy ISO, akredytacje czy inne systemy zarządzania jakością.',
+                    'en' => 'Implementing procedures to enhance patient care quality, such as ISO standards, accreditations, or other quality management systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6440,
+                'name' => json_encode([
+                    'pl' => 'Ocena wyników leczenia i satysfakcji pacjentów oraz analiza ich wpływu na reputację placówki.',
+                    'en' => 'Evaluating treatment outcomes and patient satisfaction, analyzing their impact on the facility’s reputation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6441,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rekrutacji i wdrażania nowych pracowników w placówce medycznej.',
+                    'en' => 'Managing recruitment and onboarding of new staff in the medical facility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6442,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie planów szkoleń i rozwoju zawodowego dla personelu, aby podnosić ich kwalifikacje i kompetencje.',
+                    'en' => 'Creating training and professional development plans to enhance staff skills and competencies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6443,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie poziomu zaangażowania i wydajności pracowników oraz wdrażanie programów motywacyjnych.',
+                    'en' => 'Monitoring staff engagement and performance, implementing motivation programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6444,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja obszarów wymagających poprawy i usprawnienia, aby zwiększyć efektywność pracy placówki.',
+                    'en' => 'Identifying areas for improvement to increase facility efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6445,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie rozwiązań mających na celu minimalizację czasu oczekiwania pacjentów, optymalizację zużycia zasobów i redukcję kosztów.',
+                    'en' => 'Implementing solutions to minimize patient wait times, optimize resource use, and reduce costs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6446,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystanie narzędzi analitycznych i raportów do monitorowania efektywności procesów operacyjnych.',
+                    'en' => 'Using analytical tools and reports to monitor the efficiency of operational processes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6447,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie budżetu placówki medycznej oraz kontrola zgodności wydatków z planowanymi funduszami.',
+                    'en' => 'Developing the medical facility’s budget and controlling expenditure compliance with allocated funds.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6448,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie kosztów operacyjnych i identyfikacja obszarów, w których można wprowadzić oszczędności bez uszczerbku dla jakości usług.',
+                    'en' => 'Monitoring operational costs and identifying areas for cost savings without compromising service quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6449,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem finansowym w zakresie rozliczeń oraz raportowania finansowego.',
+                    'en' => 'Collaborating with the finance department on settlements and financial reporting.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6450,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zmian w przepisach dotyczących ochrony zdrowia i wdrażanie odpowiednich regulacji w placówce.',
+                    'en' => 'Monitoring health regulations changes and implementing appropriate regulations within the facility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6451,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad zgodnością działań placówki z przepisami prawa pracy, ochrony danych osobowych (RODO) oraz standardami medycznymi.',
+                    'en' => 'Overseeing facility compliance with labor law, GDPR, and medical standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6452,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie kontroli wewnętrznych w zakresie zgodności z przepisami i eliminacja potencjalnych nieprawidłowości.',
+                    'en' => 'Conducting internal audits for regulatory compliance and addressing potential irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6453,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad zamówieniami i kontrola zasobów materiałowych, takich jak leki, środki ochrony osobistej, sprzęt medyczny.',
+                    'en' => 'Supervising procurement and managing material resources like medicines, PPE, and medical equipment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6454,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie urządzenia i materiały są dostępne, sprawne i gotowe do użytku, aby zagwarantować ciągłość pracy placówki.',
+                    'en' => 'Ensuring all equipment and materials are available, operational, and ready for use to maintain facility continuity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6455,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z dostawcami w zakresie zakupu sprzętu medycznego oraz monitorowanie jego jakości.',
+                    'en' => 'Cooperating with suppliers for medical equipment procurement and monitoring its quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6456,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie regularnych raportów dotyczących wyników pracy placówki, efektywności, jakości usług oraz finansów.',
+                    'en' => 'Preparing regular reports on facility performance, efficiency, service quality, and finances.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6457,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników działalności placówki oraz identyfikacja trendów, które mogą wpłynąć na strategię zarządzania.',
+                    'en' => 'Analyzing facility performance and identifying trends that may impact management strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6458,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji do zarządu oraz innych zainteresowanych podmiotów w celu podejmowania decyzji strategicznych.',
+                    'en' => 'Providing information to management and stakeholders for strategic decision-making.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6459,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja potrzeb w zakresie nowych technologii, takich jak systemy informatyczne, elektroniczna dokumentacja medyczna oraz systemy telemedyczne.',
+                    'en' => 'Identifying needs for new technologies like IT systems, electronic medical records, and telemedicine systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6460,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie nowoczesnych narzędzi, które wspierają zarządzanie i organizację pracy placówki medycznej.',
+                    'en' => 'Implementing modern tools to support management and organizational operations of the healthcare facility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6461,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem IT oraz zewnętrznymi dostawcami technologii w zakresie wdrażania i utrzymania systemów informatycznych.',
+                    'en' => 'Collaborating with the IT department and external technology providers for the implementation and maintenance of IT systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6462,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja potencjalnych ryzyk związanych z opieką medyczną i wprowadzenie procedur minimalizujących te ryzyka.',
+                    'en' => 'Identifying potential medical care risks and introducing procedures to minimize them.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6463,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie przypadków błędów medycznych, analizowanie ich przyczyn i wprowadzanie działań zapobiegawczych.',
+                    'en' => 'Monitoring medical errors, analyzing causes, and implementing preventive measures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6464,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie procedur związanych z bezpieczeństwem pacjentów, np. w zakresie przeciwdziałania zakażeniom szpitalnym.',
+                    'en' => 'Developing and implementing patient safety procedures, such as hospital infection prevention protocols.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6465,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie programów edukacyjnych dla pacjentów oraz organizowanie kampanii promujących zdrowie i profilaktykę.',
+                    'en' => 'Developing educational programs for patients and organizing health promotion and prevention campaigns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6466,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi instytucjami w celu realizacji programów promocji zdrowia w społeczności.',
+                    'en' => 'Collaborating with local institutions to implement community health promotion programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6467,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i warsztatów dotyczących zdrowego stylu życia oraz profilaktyki chorób.',
+                    'en' => 'Organizing workshops on healthy lifestyles and disease prevention.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6468,
+                'name' => json_encode([
+                    'pl' => 'Rozwiązywanie problemów organizacyjnych i operacyjnych, które mogą wpływać na pracę placówki i jakość świadczonych usług.',
+                    'en' => 'Resolving organizational and operational issues impacting facility operations and service quality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6469,
+                'name' => json_encode([
+                    'pl' => 'Mediacja i rozwiązywanie konfliktów między personelem a pacjentami lub wewnątrz zespołu pracowniczego.',
+                    'en' => 'Mediating and resolving conflicts between staff and patients or within the team.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6470,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnego przepływu informacji i współpracy między różnymi działami i pracownikami.',
+                    'en' => 'Ensuring efficient communication and collaboration between departments and employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6471,
+                'name' => json_encode([
+                    'pl' => 'Nawiązywanie i utrzymywanie relacji z innymi placówkami medycznymi, organizacjami rządowymi oraz instytucjami publicznymi.',
+                    'en' => 'Establishing and maintaining relationships with other medical facilities, government bodies, and public institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6472,
+                'name' => json_encode([
+                    'pl' => 'Współpraca w zakresie transferu pacjentów, wymiany informacji oraz realizacji wspólnych programów zdrowotnych.',
+                    'en' => 'Cooperating on patient transfers, information exchange, and joint health programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6473,
+                'name' => json_encode([
+                    'pl' => 'Udział w projektach badawczych i inicjatywach wspierających rozwój ochrony zdrowia.',
+                    'en' => 'Participating in research projects and initiatives supporting healthcare development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6474,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie poziomu zadowolenia pacjentów z obsługi oraz wdrażanie działań poprawiających jakość kontaktu z pacjentem.',
+                    'en' => 'Monitoring patient satisfaction and implementing measures to improve patient interactions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6475,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń dla personelu z zakresu komunikacji z pacjentem oraz podnoszenia jakości obsługi.',
+                    'en' => 'Organizing staff training in patient communication and service quality improvement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6476,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie badań satysfakcji pacjentów i analiza wyników w celu poprawy doświadczeń pacjentów w placówce.',
+                    'en' => 'Conducting patient satisfaction surveys and analyzing results to enhance patient experiences in the facility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6477,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie planów rozwoju placówki medycznej zgodnie z potrzebami pacjentów i zmianami w przepisach oraz technologii.',
+                    'en' => 'Creating development plans for the medical facility in line with patient needs and regulatory or technological changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6478,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie strategii mających na celu rozwój infrastruktury, poprawę jakości usług oraz zwiększenie zasięgu działalności placówki.',
+                    'en' => 'Developing strategies aimed at infrastructure growth, service quality enhancement, and expanding facility reach.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6479,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji planów strategicznych i dostosowywanie działań do zmieniających się warunków rynkowych.',
+                    'en' => 'Monitoring the implementation of strategic plans and adapting actions to changing market conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+        $inspektor_obrony_cywilnej = [
+            [
+                'id' => 6480,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów obrony cywilnej, uwzględniających potrzeby ochrony ludności, infrastruktury krytycznej oraz zasobów materialnych.',
+                    'en' => 'Developing civil defense plans, considering the needs of protecting the population, critical infrastructure, and material resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6481,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizacja planów zarządzania kryzysowego, obejmujących procedury działania w przypadku sytuacji nadzwyczajnych.',
+                    'en' => 'Creating and updating crisis management plans, including response procedures for emergency situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6482,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie struktur obrony cywilnej na poziomie gminnym, powiatowym lub wojewódzkim oraz wyznaczanie osób odpowiedzialnych za realizację zadań obrony cywilnej.',
+                    'en' => 'Organizing civil defense structures at the municipal, county, or provincial level and appointing responsible persons for civil defense tasks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6483,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie potencjalnych zagrożeń dla bezpieczeństwa publicznego, takich jak klęski żywiołowe, katastrofy techniczne czy zagrożenia terrorystyczne.',
+                    'en' => 'Monitoring potential threats to public safety, such as natural disasters, technical catastrophes, or terrorist threats.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6484,
+                'name' => json_encode([
+                    'pl' => 'Analiza ryzyka wystąpienia zagrożeń oraz opracowywanie planów działania mających na celu minimalizację skutków tych zagrożeń.',
+                    'en' => 'Risk analysis of threats and developing action plans to minimize their effects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6485,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie prognoz i analiz dotyczących możliwych sytuacji kryzysowych oraz ich wpływu na lokalną społeczność.',
+                    'en' => 'Preparing forecasts and analyses on possible crisis situations and their impact on the local community.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6486,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i koordynowanie działań związanych z ewakuacją ludności z obszarów zagrożonych.',
+                    'en' => 'Organizing and coordinating evacuation actions for people from endangered areas.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6487,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie odpowiednich środków transportu, miejsc ewakuacji oraz wsparcia logistycznego dla ewakuowanych.',
+                    'en' => 'Providing appropriate transportation means, evacuation sites, and logistical support for evacuees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6488,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z jednostkami ratowniczymi, takimi jak straż pożarna, policja i pogotowie ratunkowe, w celu zapewnienia skuteczności działań ratunkowych.',
+                    'en' => 'Collaborating with rescue units, such as fire brigades, police, and emergency services, to ensure effective rescue actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6489,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń i ćwiczeń dla personelu administracyjnego, pracowników służb ratunkowych oraz ludności cywilnej, aby zwiększyć gotowość do reagowania na sytuacje kryzysowe.',
+                    'en' => 'Organizing training and exercises for administrative staff, rescue workers, and civilians to enhance crisis response readiness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6490,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie symulacji zdarzeń kryzysowych, takich jak ewakuacje, akcje ratunkowe czy udzielanie pierwszej pomocy.',
+                    'en' => 'Conducting simulations of crisis events, such as evacuations, rescue actions, or first aid provision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6491,
+                'name' => json_encode([
+                    'pl' => 'Ocena wyników ćwiczeń oraz wprowadzanie działań korygujących w celu poprawy przygotowania do realnych zagrożeń.',
+                    'en' => 'Assessing exercise outcomes and implementing corrective actions to improve readiness for real threats.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6492,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie kampanii informacyjnych mających na celu zwiększenie świadomości społecznej na temat zagrożeń i sposobów reagowania w sytuacjach kryzysowych.',
+                    'en' => 'Organizing information campaigns to raise public awareness about threats and ways to respond in crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6493,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów edukacyjnych, takich jak broszury, ulotki i poradniki, które informują o podstawowych zasadach postępowania w sytuacjach zagrożenia.',
+                    'en' => 'Preparing educational materials, such as brochures, leaflets, and guides, to inform about basic response principles in threat situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6494,
+                'name' => json_encode([
+                    'pl' => 'Promowanie postaw proaktywnych oraz edukacja społeczności lokalnej w zakresie samoobrony i bezpieczeństwa.',
+                    'en' => 'Promoting proactive attitudes and educating the local community on self-defense and safety.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6495,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie zaopatrzenia w środki ochrony indywidualnej (np. maski, odzież ochronna) oraz zapewnienie ich dostępności dla ludności w sytuacjach kryzysowych.',
+                    'en' => 'Overseeing the supply of personal protective equipment (e.g., masks, protective clothing) and ensuring availability for the public in crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6496,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie odpowiednich środków ochrony zbiorowej, takich jak schrony, miejsca schronienia czy punkty pierwszej pomocy.',
+                    'en' => 'Ensuring appropriate collective protective measures, such as shelters, safe areas, and first aid stations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6497,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie stanu technicznego obiektów i urządzeń ochrony zbiorowej oraz nadzór nad ich konserwacją i modernizacją.',
+                    'en' => 'Monitoring the technical condition of collective protection facilities and equipment and supervising their maintenance and modernization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6498,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z jednostkami straży pożarnej, policji, wojska, służbami medycznymi oraz innymi instytucjami zajmującymi się bezpieczeństwem i ochroną ludności.',
+                    'en' => 'Collaborating with fire brigades, police, military, medical services, and other institutions responsible for safety and public protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6499,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z lokalnymi władzami oraz organizacjami pozarządowymi w celu koordynacji działań związanych z obroną cywilną.',
+                    'en' => 'Maintaining contacts with local authorities and NGOs to coordinate civil defense activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6500,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji i doświadczeń z innymi jednostkami obrony cywilnej na poziomie regionalnym i krajowym.',
+                    'en' => 'Exchanging information and experiences with other civil defense units at regional and national levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6501,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów i procedur ostrzegania ludności przed zagrożeniami, takich jak alarmy i komunikaty ostrzegawcze.',
+                    'en' => 'Developing plans and procedures for warning the public about threats, such as alarms and warning messages.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6502,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawności i skuteczności systemów alarmowych, takich jak syreny ostrzegawcze oraz systemy powiadamiania SMS.',
+                    'en' => 'Ensuring the functionality and effectiveness of alarm systems, such as warning sirens and SMS notification systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6503,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z powiadamianiem ludności w sytuacjach kryzysowych, aby zminimalizować ryzyko i ograniczyć liczbę ofiar.',
+                    'en' => 'Coordinating public notifications in crisis situations to minimize risk and reduce casualties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6504,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie działaniami ratowniczymi w przypadku wystąpienia katastrofy, klęski żywiołowej lub innego poważnego zagrożenia.',
+                    'en' => 'Managing rescue operations in the event of a disaster, natural calamity, or other major threat.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6505,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z jednostkami ratowniczymi, takimi jak straż pożarna, policja i pogotowie, w celu zapewnienia skuteczności i koordynacji działań ratunkowych.',
+                    'en' => 'Collaborating with rescue units, such as fire brigades, police, and ambulance services, to ensure effective and coordinated rescue operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6506,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad udzielaniem pierwszej pomocy oraz organizacją wsparcia medycznego i psychologicznego dla ofiar katastrof.',
+                    'en' => 'Overseeing first aid provision and organizing medical and psychological support for disaster victims.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6507,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i regularna aktualizacja dokumentacji dotyczącej planów, procedur i strategii obrony cywilnej.',
+                    'en' => 'Preparing and regularly updating documentation on civil defense plans, procedures, and strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6508,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie ewidencji i dokumentacji sprzętu ochrony cywilnej, punktów ewakuacyjnych oraz personelu zaangażowanego w działania ratunkowe.',
+                    'en' => 'Maintaining records and documentation of civil defense equipment, evacuation points, and personnel involved in rescue operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6509,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie dokumentacji w gotowości do wykorzystania w sytuacjach kryzysowych oraz przekazywanie jej odpowiednim instytucjom.',
+                    'en' => 'Keeping documentation ready for use in crisis situations and submitting it to relevant institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6510,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli gotowości jednostek ratowniczych oraz instytucji odpowiedzialnych za bezpieczeństwo do reagowania na sytuacje kryzysowe.',
+                    'en' => 'Conducting readiness checks for rescue units and institutions responsible for safety in responding to crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6511,
+                'name' => json_encode([
+                    'pl' => 'Ocena wyposażenia, wyszkolenia i gotowości personelu do prowadzenia działań w sytuacjach zagrożenia.',
+                    'en' => 'Evaluating equipment, training, and personnel readiness for conducting actions in threat situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6512,
+                'name' => json_encode([
+                    'pl' => 'Wskazywanie obszarów wymagających poprawy oraz rekomendowanie działań korygujących w celu podniesienia poziomu gotowości.',
+                    'en' => 'Identifying areas needing improvement and recommending corrective actions to enhance readiness levels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6513,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie procedur awaryjnych, które regulują sposób postępowania w przypadku wystąpienia sytuacji kryzysowych.',
+                    'en' => 'Developing and implementing emergency procedures that govern actions during crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6514,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że procedury są znane i rozumiane przez pracowników oraz personel jednostek współpracujących.',
+                    'en' => 'Ensuring that procedures are known and understood by employees and cooperating units personnel.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6515,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie regularnych przeglądów i aktualizacji procedur w odpowiedzi na zmieniające się zagrożenia i wyzwania.',
+                    'en' => 'Conducting regular reviews and updates of procedures in response to changing threats and challenges.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6516,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i zabezpieczanie zasobów potrzebnych w przypadku sytuacji kryzysowej, takich jak żywność, woda, leki, paliwo i inne materiały niezbędne do przetrwania.',
+                    'en' => 'Identifying and securing resources needed in a crisis, such as food, water, medicine, fuel, and other essential survival materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6517,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i uzupełnianie zasobów w punktach ewakuacyjnych, magazynach obrony cywilnej oraz miejscach schronienia.',
+                    'en' => 'Monitoring and replenishing resources at evacuation points, civil defense storage, and shelter locations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6518,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja dostaw i logistyki, aby zapewnić ciągłość dostępu do środków w sytuacjach kryzysowych.',
+                    'en' => 'Coordinating supply and logistics to ensure continuity of access to resources in crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6519,
+                'name' => json_encode([
+                    'pl' => 'Udział w międzynarodowych projektach, szkoleniach i konferencjach związanych z obroną cywilną i zarządzaniem kryzysowym.',
+                    'en' => 'Participating in international projects, training, and conferences related to civil defense and crisis management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6520,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń i informacji z innymi krajami, aby podnosić standardy działania oraz wdrażać najlepsze praktyki w zakresie obrony cywilnej.',
+                    'en' => 'Exchanging experiences and information with other countries to raise action standards and implement best practices in civil defense.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6521,
+                'name' => json_encode([
+                    'pl' => 'Realizacja zobowiązań wynikających z umów międzynarodowych dotyczących ochrony ludności.',
+                    'en' => 'Fulfilling obligations arising from international agreements on civilian protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6522,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i analiz dotyczących przeprowadzonych ćwiczeń, działań ratowniczych oraz wdrożonych środków ochronnych.',
+                    'en' => 'Preparing reports and analyses on conducted exercises, rescue actions, and implemented protective measures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6523,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów do lokalnych i centralnych organów zarządzających, takich jak wojewódzkie i krajowe centra zarządzania kryzysowego.',
+                    'en' => 'Submitting reports to local and central management bodies, such as regional and national crisis management centers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6524,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie rekomendacji dotyczących poprawy efektywności działań obrony cywilnej.',
+                    'en' => 'Developing recommendations to improve civil defense activities efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6525,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie pomocy psychologicznej dla osób poszkodowanych podczas sytuacji kryzysowych i ich rodzin.',
+                    'en' => 'Organizing psychological assistance for those affected by crises and their families.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6526,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępu do opieki medycznej oraz środków pomocy doraźnej w punktach ewakuacyjnych.',
+                    'en' => 'Ensuring access to medical care and emergency aid at evacuation points.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6527,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organizacjami medycznymi i psychologicznymi w celu zapewnienia kompleksowej opieki dla osób dotkniętych katastrofami.',
+                    'en' => 'Cooperating with medical and psychological organizations to provide comprehensive care for disaster-affected individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+        $kontroler_rozliczen_podatkowych = [
+            [
+                'id' => 6528,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie zmian w przepisach podatkowych oraz zapewnienie, że przedsiębiorstwo przestrzega aktualnych regulacji prawnych.',
+                    'en' => 'Monitoring changes in tax regulations and ensuring the company complies with current legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6529,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie pracownikom działu finansowego informacji o zmianach podatkowych i ich wpływie na działalność firmy.',
+                    'en' => 'Informing finance department employees about tax changes and their impact on business operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6530,
+                'name' => json_encode([
+                    'pl' => 'Analiza i dostosowywanie polityki podatkowej do wymagań ustawowych oraz rekomendowanie działań zgodnych z przepisami.',
+                    'en' => 'Analyzing and adjusting tax policy to meet statutory requirements and recommending compliant actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6531,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie i weryfikacja deklaracji podatkowych, takich jak VAT, CIT, PIT, oraz innych wymaganych przez przepisy prawa podatkowego.',
+                    'en' => 'Preparing and verifying tax returns, such as VAT, CIT, PIT, and other tax declarations required by law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6532,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminowości składania deklaracji podatkowych oraz ich poprawności pod względem formalnym i merytorycznym.',
+                    'en' => 'Monitoring the timeliness and accuracy of tax return submissions from a formal and substantive standpoint.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6533,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem księgowości w celu uzyskania niezbędnych danych do przygotowania deklaracji podatkowych.',
+                    'en' => 'Collaborating with the accounting department to obtain necessary data for preparing tax declarations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6534,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja dokumentacji finansowej i podatkowej pod kątem poprawności, kompletności oraz zgodności z przepisami podatkowymi.',
+                    'en' => 'Verifying financial and tax documentation for accuracy, completeness, and compliance with tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6535,
+                'name' => json_encode([
+                    'pl' => 'Analiza i kontrola faktur zakupowych i sprzedażowych w kontekście ich wpływu na rozliczenia podatkowe.',
+                    'en' => 'Analyzing and controlling purchase and sales invoices regarding their impact on tax settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6536,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie szczegółowej analizy transakcji pod kątem ich kwalifikacji podatkowej.',
+                    'en' => 'Conducting a detailed analysis of transactions regarding their tax classification.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6537,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i analiza potencjalnych ryzyk podatkowych związanych z działalnością przedsiębiorstwa.',
+                    'en' => 'Identifying and analyzing potential tax risks associated with the company’s activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6538,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie procedur i działań mających na celu minimalizację ryzyka podatkowego oraz zabezpieczenie przed niezgodnościami.',
+                    'en' => 'Implementing procedures and actions to minimize tax risk and prevent non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6539,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wdrażanych działań oraz ocena ich skuteczności w zmniejszaniu ryzyka.',
+                    'en' => 'Monitoring implemented actions and assessing their effectiveness in reducing risk.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6540,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie regularnych raportów dotyczących obciążeń podatkowych oraz ocena skuteczności działań podatkowych.',
+                    'en' => 'Preparing regular reports on tax liabilities and evaluating the effectiveness of tax activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6541,
+                'name' => json_encode([
+                    'pl' => 'Analiza wyników podatkowych oraz przygotowywanie zestawień finansowych dla zarządu lub działu finansowego.',
+                    'en' => 'Analyzing tax results and preparing financial statements for management or the finance department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6542,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prognoz dotyczących zobowiązań podatkowych w celu wsparcia planowania budżetu.',
+                    'en' => 'Preparing forecasts of tax liabilities to support budget planning.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6543,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie audytów wewnętrznych dotyczących zgodności rozliczeń podatkowych z obowiązującymi przepisami oraz polityką firmy.',
+                    'en' => 'Conducting internal audits to ensure tax settlements comply with current regulations and company policy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6544,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników audytów i wskazywanie obszarów wymagających poprawy lub dostosowania.',
+                    'en' => 'Documenting audit findings and identifying areas needing improvement or adjustment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6545,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie zaleceń i monitorowanie wdrażania działań korygujących, aby zapewnić zgodność z przepisami.',
+                    'en' => 'Providing recommendations and monitoring the implementation of corrective actions to ensure compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6546,
+                'name' => json_encode([
+                    'pl' => 'Kontrola poprawności ewidencji księgowej, w szczególności w zakresie rejestrowania operacji podatkowych.',
+                    'en' => 'Ensuring the accuracy of accounting records, particularly in the registration of tax operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6547,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie poprawności zaksięgowanych transakcji oraz ich zgodności z przepisami dotyczącymi podatków.',
+                    'en' => 'Checking the accuracy of recorded transactions and their compliance with tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6548,
+                'name' => json_encode([
+                    'pl' => 'Regularna kontrola rozrachunków z tytułu podatków i składek, w tym ewidencji VAT, CIT, PIT oraz innych zobowiązań podatkowych.',
+                    'en' => 'Regularly checking tax and contribution settlements, including VAT, CIT, PIT, and other tax liabilities records.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6549,
+                'name' => json_encode([
+                    'pl' => 'Kompletowanie i przygotowywanie dokumentacji niezbędnej podczas kontroli podatkowych prowadzonych przez organy skarbowe.',
+                    'en' => 'Completing and preparing documentation needed for tax audits conducted by tax authorities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6550,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z przedstawicielami urzędów skarbowych oraz odpowiadanie na zapytania i żądania dotyczące rozliczeń podatkowych.',
+                    'en' => 'Cooperating with tax office representatives and responding to inquiries and requests related to tax settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6551,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wyjaśnień oraz dostarczanie dodatkowych informacji, które są wymagane przez organy kontrolne.',
+                    'en' => 'Providing explanations and additional information required by controlling authorities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6552,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie porad w zakresie podatków i interpretacji przepisów podatkowych dla pracowników innych działów, takich jak dział księgowości, sprzedaży czy zarządzania.',
+                    'en' => 'Providing tax advice and interpreting tax regulations for employees in other departments, such as accounting, sales, and management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6553,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w rozwiązywaniu problemów związanych z podatkami oraz interpretacja przepisów dotyczących specyficznych transakcji.',
+                    'en' => 'Assisting in solving tax-related issues and interpreting regulations for specific transactions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6554,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z zewnętrznymi doradcami podatkowymi i audytorami w celu zapewnienia zgodności z przepisami.',
+                    'en' => 'Collaborating with external tax advisors and auditors to ensure compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6555,
+                'name' => json_encode([
+                    'pl' => 'Analiza możliwości optymalizacji podatkowej zgodnie z obowiązującymi przepisami, aby zminimalizować obciążenia podatkowe przedsiębiorstwa.',
+                    'en' => 'Analyzing opportunities for tax optimization in line with regulations to minimize the company’s tax burden.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6556,
+                'name' => json_encode([
+                    'pl' => 'Proponowanie strategii podatkowych mających na celu efektywne zarządzanie zobowiązaniami podatkowymi, bez naruszania prawa.',
+                    'en' => 'Proposing tax strategies to manage tax liabilities effectively without breaching the law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6557,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie skutków wdrożonych działań optymalizacyjnych i ocena ich wpływu na sytuację podatkową firmy.',
+                    'en' => 'Monitoring the impact of implemented optimization actions and assessing their effect on the company’s tax position.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6558,
+                'name' => json_encode([
+                    'pl' => 'Analiza transakcji z kontrahentami zagranicznymi pod kątem podatku od towarów i usług (VAT) oraz podatku dochodowego.',
+                    'en' => 'Analyzing transactions with foreign contractors for VAT and income tax implications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6559,
+                'name' => json_encode([
+                    'pl' => 'Kontrola zgodności transakcji międzynarodowych z przepisami dotyczącymi cen transferowych i procedurą dokumentacji podatkowej.',
+                    'en' => 'Ensuring international transactions comply with transfer pricing regulations and tax documentation requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6560,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i aktualizacja dokumentacji związanej z transakcjami zagranicznymi i ich wpływem na rozliczenia podatkowe.',
+                    'en' => 'Preparing and updating documentation related to foreign transactions and their tax implications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6561,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie wewnętrznych procedur podatkowych, które zapewniają zgodność działań z regulacjami prawnymi.',
+                    'en' => 'Developing and implementing internal tax procedures to ensure compliance with legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6562,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad realizacją polityk podatkowych oraz ocena ich skuteczności w minimalizowaniu ryzyka podatkowego.',
+                    'en' => 'Overseeing tax policy implementation and evaluating its effectiveness in minimizing tax risks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6563,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie polityk podatkowych do zmieniających się przepisów oraz specyfiki działalności firmy.',
+                    'en' => 'Adjusting tax policies to align with changing regulations and the company’s specific operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6564,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie szkoleń i warsztatów dla pracowników działu finansowego oraz innych działów na temat przepisów podatkowych.',
+                    'en' => 'Conducting training sessions and workshops on tax regulations for finance department employees and others.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6565,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że pracownicy mają aktualną wiedzę na temat obowiązujących przepisów i zasad rozliczeń podatkowych.',
+                    'en' => 'Ensuring employees are up-to-date with current tax laws and reporting standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6566,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie materiałów szkoleniowych i informacyjnych dotyczących przepisów i procedur podatkowych.',
+                    'en' => 'Creating training and informational materials on tax regulations and procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6567,
+                'name' => json_encode([
+                    'pl' => 'Analiza zapytań podatkowych otrzymanych od organów skarbowych lub innych instytucji oraz przygotowywanie odpowiedzi.',
+                    'en' => 'Analyzing tax inquiries from tax authorities or other institutions and preparing responses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6568,
+                'name' => json_encode([
+                    'pl' => 'Konsultacje z zewnętrznymi doradcami podatkowymi w przypadku skomplikowanych lub nietypowych zapytań.',
+                    'en' => 'Consulting with external tax advisors for complex or unusual inquiries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6569,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie dokumentacji dotyczącej odpowiedzi na zapytania oraz dostarczonych wyjaśnień.',
+                    'en' => 'Maintaining documentation related to responses and explanations provided for inquiries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6570,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja transakcji wewnątrzgrupowych pod kątem zgodności z przepisami dotyczącymi cen transferowych.',
+                    'en' => 'Verifying intercompany transactions for compliance with transfer pricing regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6571,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie i archiwizacja transakcji oraz sporządzanie dokumentacji cen transferowych zgodnie z wymogami prawa.',
+                    'en' => 'Documenting and archiving transactions and preparing transfer pricing documentation as required by law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6572,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności transakcji z polityką cen transferowych oraz zapewnienie, że są one zgodne z przepisami.',
+                    'en' => 'Monitoring transactions for compliance with transfer pricing policy and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6573,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie sprawozdań i zestawień finansowych dotyczących zobowiązań podatkowych oraz ocena ich wpływu na sytuację finansową firmy.',
+                    'en' => 'Preparing financial reports and statements related to tax liabilities and assessing their impact on the company’s financial position.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6574,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji na temat rozliczeń podatkowych do zarządu oraz innych działów w celu wsparcia procesu decyzyjnego.',
+                    'en' => 'Providing tax settlement information to management and other departments to support decision-making.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6575,
+                'name' => json_encode([
+                    'pl' => 'Regularne raportowanie wyników kontroli podatkowej oraz przedstawianie wniosków dotyczących przyszłych działań podatkowych.',
+                    'en' => 'Regularly reporting tax audit results and presenting conclusions for future tax actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+        $rewident_kontroli_skarbowej = [
+            [
+                'id' => 6576,
+                'name' => json_encode([
+                    'pl' => 'Realizacja szczegółowych kontroli podatkowych u podatników w celu wykrycia ewentualnych nieprawidłowości w zakresie rozliczeń podatkowych.',
+                    'en' => 'Conducting detailed tax audits on taxpayers to detect any irregularities in tax settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6577,
+                'name' => json_encode([
+                    'pl' => 'Analiza dokumentacji podatkowej i finansowej, w tym faktur, ksiąg rachunkowych oraz raportów finansowych, w celu weryfikacji zgodności z przepisami.',
+                    'en' => 'Analyzing tax and financial documentation, including invoices, accounting records, and financial reports, to verify compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6578,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie protokołów z przeprowadzonych kontroli oraz dokumentowanie stwierdzonych nieprawidłowości.',
+                    'en' => 'Preparing reports on conducted audits and documenting identified irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6579,
+                'name' => json_encode([
+                    'pl' => 'Wykrywanie przypadków oszustw podatkowych, takich jak fałszowanie dokumentów, unikanie opodatkowania czy nieprawidłowości w rozliczeniach VAT.',
+                    'en' => 'Detecting instances of tax fraud, such as document forgery, tax evasion, or irregularities in VAT settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6580,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających w przypadku podejrzenia przestępstwa skarbowego oraz zbieranie dowodów na potrzeby ewentualnych działań prawnych.',
+                    'en' => 'Conducting investigations in cases of suspected tax crimes and collecting evidence for potential legal action.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6581,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organami ścigania, takimi jak policja i prokuratura, w celu postawienia sprawców oszustw podatkowych przed sądem.',
+                    'en' => 'Collaborating with law enforcement agencies, such as the police and prosecution, to bring tax fraud offenders to justice.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6582,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy podatnicy przestrzegają przepisów prawa podatkowego, w tym zasad dotyczących VAT, CIT, PIT oraz innych obciążeń.',
+                    'en' => 'Checking if taxpayers comply with tax laws, including VAT, CIT, PIT, and other obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6583,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli prawidłowości obliczeń podatkowych oraz weryfikacja dokumentacji księgowej.',
+                    'en' => 'Conducting audits to ensure the accuracy of tax calculations and verifying accounting documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6584,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie zaleceń dotyczących dostosowania praktyk podatkowych podatników do obowiązujących przepisów.',
+                    'en' => 'Providing recommendations to taxpayers on aligning their tax practices with current regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6585,
+                'name' => json_encode([
+                    'pl' => 'Wykonywanie audytów podatkowych i skarbowych w przedsiębiorstwach w celu oceny ich zgodności z przepisami podatkowymi.',
+                    'en' => 'Conducting tax and fiscal audits in companies to assess compliance with tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6586,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników audytu oraz rekomendowanie działań korygujących w przypadku stwierdzenia niezgodności.',
+                    'en' => 'Documenting audit results and recommending corrective actions in case of non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6587,
+                'name' => json_encode([
+                    'pl' => 'Kontrola realizacji zaleceń audytowych i monitorowanie działań naprawczych podejmowanych przez podatników.',
+                    'en' => 'Monitoring the implementation of audit recommendations and corrective actions taken by taxpayers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6588,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i ocena obszarów o podwyższonym ryzyku podatkowym, które mogą wymagać szczególnej uwagi kontrolnej.',
+                    'en' => 'Identifying and assessing areas with elevated tax risk that may require special audit focus.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6589,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie procedur mających na celu minimalizację ryzyka podatkowego oraz monitorowanie zgodności podatników z przepisami.',
+                    'en' => 'Implementing procedures to minimize tax risk and monitoring taxpayer compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6590,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie strategii kontroli uwzględniającej potencjalne ryzyka podatkowe i ich wpływ na działalność przedsiębiorstw.',
+                    'en' => 'Developing audit strategies that account for potential tax risks and their impact on business operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6591,
+                'name' => json_encode([
+                    'pl' => 'Kompletowanie dokumentacji, która może być dowodem w postępowaniach skarbowych oraz karno-skarbowych.',
+                    'en' => 'Compiling documentation that may serve as evidence in fiscal and criminal tax proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6592,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie raportów i analiz na potrzeby organów ścigania oraz prokuratury w przypadku przestępstw podatkowych.',
+                    'en' => 'Preparing reports and analyses for law enforcement and prosecution in cases of tax crimes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6593,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z organami prawnymi w celu dostarczenia niezbędnych informacji i dowodów w sprawach sądowych.',
+                    'en' => 'Collaborating with legal authorities to provide necessary information and evidence in court cases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6594,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wyjaśnień oraz interpretacji przepisów podatkowych zarówno dla podatników, jak i innych organów skarbowych.',
+                    'en' => 'Providing explanations and interpretations of tax regulations for both taxpayers and other tax authorities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6595,
+                'name' => json_encode([
+                    'pl' => 'Informowanie o aktualnych przepisach i ich wpływie na działalność gospodarczą podatników oraz udzielanie wskazówek dotyczących zgodności z przepisami.',
+                    'en' => 'Informing about current regulations and their impact on taxpayer business operations, and providing compliance guidance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6596,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z doradcami podatkowymi oraz innymi specjalistami w celu zapewnienia zgodności działań z regulacjami.',
+                    'en' => 'Working with tax advisors and other specialists to ensure regulatory compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6597,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zapisów w ewidencji podatkowej podatników pod kątem ich zgodności z wymogami prawa oraz ewidencji VAT.',
+                    'en' => 'Verifying taxpayer records in the tax registry for compliance with legal requirements and VAT records.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6598,
+                'name' => json_encode([
+                    'pl' => 'Kontrola poprawności rejestrowania transakcji, aby zapewnić zgodność z wymogami rozliczeń podatkowych.',
+                    'en' => 'Auditing transaction records to ensure compliance with tax reporting requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6599,
+                'name' => json_encode([
+                    'pl' => 'Analiza ewidencji finansowej w celu wykrycia nieprawidłowości lub przypadków unikania opodatkowania.',
+                    'en' => 'Analyzing financial records to detect irregularities or cases of tax evasion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6600,
+                'name' => json_encode([
+                    'pl' => 'Kontrola transakcji międzynarodowych w kontekście zgodności z przepisami dotyczącymi cen transferowych oraz rozliczeń VAT.',
+                    'en' => 'Auditing international transactions for compliance with transfer pricing regulations and VAT requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6601,
+                'name' => json_encode([
+                    'pl' => 'Ocena stosowanych cen transferowych i dokumentacji transakcji w celu zapobiegania oszustwom związanym z optymalizacją podatkową.',
+                    'en' => 'Assessing transfer pricing and transaction documentation to prevent tax optimization fraud.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6602,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności działań podatników z międzynarodowymi regulacjami podatkowymi oraz prawem krajowym.',
+                    'en' => 'Ensuring taxpayer actions comply with international tax regulations and national law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6603,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi organami, takimi jak urzędy skarbowe, Najwyższa Izba Kontroli, policja czy prokuratura, w celu skutecznego egzekwowania prawa podatkowego.',
+                    'en' => 'Coordinating efforts with other agencies, such as tax offices, the Supreme Audit Office, police, or prosecution, for effective tax law enforcement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6604,
+                'name' => json_encode([
+                    'pl' => 'Współpraca w ramach grup zadaniowych i zespołów międzyinstytucjonalnych zajmujących się skomplikowanymi przypadkami oszustw podatkowych.',
+                    'en' => 'Collaborating in task forces and interagency teams focused on complex tax fraud cases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6605,
+                'name' => json_encode([
+                    'pl' => 'Udział w międzynarodowych programach współpracy dotyczących wykrywania i ścigania przestępstw podatkowych.',
+                    'en' => 'Participating in international cooperation programs on detecting and prosecuting tax crimes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6606,
+                'name' => json_encode([
+                    'pl' => 'Ocena procedur podatkowych stosowanych przez przedsiębiorstwa oraz ich zgodności z przepisami prawa podatkowego.',
+                    'en' => 'Evaluating corporate tax procedures and their compliance with tax laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6607,
+                'name' => json_encode([
+                    'pl' => 'Wskazywanie obszarów wymagających usprawnienia w zakresie procedur podatkowych i księgowych.',
+                    'en' => 'Identifying areas for improvement in tax and accounting procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6608,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z przedsiębiorstwami w celu wprowadzenia procedur minimalizujących ryzyko podatkowe.',
+                    'en' => 'Collaborating with companies to implement procedures that minimize tax risk.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6609,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja i analiza transakcji mogących wskazywać na przypadki prania pieniędzy lub finansowania terroryzmu.',
+                    'en' => 'Identifying and analyzing transactions that may indicate money laundering or terrorism financing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6610,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja transakcji pod kątem zgodności z przepisami dotyczącymi przeciwdziałania praniu pieniędzy (AML).',
+                    'en' => 'Auditing transactions for compliance with Anti-Money Laundering (AML) regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6611,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o podejrzanych transakcjach odpowiednim organom oraz współpraca z organami ścigania.',
+                    'en' => 'Reporting suspicious transactions to relevant authorities and collaborating with law enforcement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6612,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie szczegółowych raportów z przeprowadzonych kontroli, zawierających wyniki analizy oraz rekomendacje dotyczące działań korygujących.',
+                    'en' => 'Creating detailed reports from audits, including analysis results and recommendations for corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6613,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie zestawień i analiz na temat sytuacji podatkowej kontrolowanych jednostek.',
+                    'en' => 'Preparing summaries and analyses on the tax status of audited entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6614,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów do przełożonych oraz instytucji nadzorczych.',
+                    'en' => 'Submitting reports to superiors and oversight institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6615,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach oraz kursach dotyczących przepisów podatkowych, nowych regulacji i metod kontroli.',
+                    'en' => 'Regularly attending training and courses on tax regulations, new policies, and audit methods.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6616,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat najnowszych zmian w prawie podatkowym oraz trendów w dziedzinie kontroli skarbowej.',
+                    'en' => 'Updating knowledge on the latest tax law changes and trends in fiscal auditing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6617,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi rewidentami i specjalistami w celu doskonalenia metod pracy.',
+                    'en' => 'Exchanging experiences with other auditors and specialists to improve work methods.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6618,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie zaleceń pokontrolnych mających na celu usunięcie nieprawidłowości oraz dostosowanie działań podatników do przepisów prawa.',
+                    'en' => 'Providing post-audit recommendations to eliminate irregularities and ensure taxpayer compliance with the law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6619,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wdrażania zaleceń pokontrolnych oraz ponowna kontrola, jeśli nieprawidłowości nie zostały usunięte.',
+                    'en' => 'Monitoring the implementation of post-audit recommendations and conducting follow-up audits if issues remain unresolved.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6620,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie postępów w realizacji zaleceń i ocena ich skuteczności.',
+                    'en' => 'Documenting progress in recommendation implementation and assessing effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6621,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli w siedzibie podatnika lub w miejscu jego działalności w celu weryfikacji zgodności z przepisami.',
+                    'en' => 'Conducting on-site audits at taxpayer premises to verify compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6622,
+                'name' => json_encode([
+                    'pl' => 'Kontrola fizyczna dokumentacji, sprzętu i towarów w celu potwierdzenia poprawności rozliczeń podatkowych.',
+                    'en' => 'Physically inspecting documents, equipment, and goods to confirm the accuracy of tax records.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+            'id' => 6623,
+            'name' => json_encode([
+                'pl' => 'Dokumentowanie wyników kontroli terenowych oraz podejmowanie działań w przypadku stwierdzenia nieprawidłowości.',
+                'en' => 'Documenting results of field inspections and taking action when irregularities are identified.'
+            ]),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $urzędnik_podatkowy = [
+            [
+                'id' => 6624,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji podatnikom na temat przepisów prawa podatkowego oraz zasad rozliczeń podatkowych.',
+                    'en' => 'Providing taxpayers with information on tax law regulations and tax settlement rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6625,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w wypełnianiu deklaracji podatkowych oraz wyjaśnianie wątpliwości związanych z obowiązkami podatkowymi.',
+                    'en' => 'Assisting in filling out tax declarations and clarifying doubts related to tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6626,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wyjaśnień dotyczących procedur i formalności wymaganych przy składaniu deklaracji podatkowych.',
+                    'en' => 'Explaining procedures and formalities required when submitting tax declarations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6627,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie deklaracji podatkowych składanych przez podatników oraz kontrola ich poprawności pod względem formalnym i rachunkowym.',
+                    'en' => 'Receiving tax declarations submitted by taxpayers and checking their formal and accounting accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6628,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności deklaracji z danymi posiadanymi przez urząd skarbowy.',
+                    'en' => 'Verifying declarations against data held by the tax office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6629,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z podatnikami w celu uzupełnienia braków lub skorygowania błędów w deklaracjach podatkowych.',
+                    'en' => 'Contacting taxpayers to fill in missing information or correct errors in tax declarations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6630,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy podatnicy prawidłowo rozliczają się z podatków, w tym z podatku VAT, CIT, PIT i innych należności podatkowych.',
+                    'en' => 'Checking if taxpayers properly settle their taxes, including VAT, CIT, PIT, and other tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6631,
+                'name' => json_encode([
+                    'pl' => 'Kontrola prawidłowości rozliczeń z tytułu zaliczek na podatek oraz składek ZUS.',
+                    'en' => 'Verifying the accuracy of tax advance and ZUS contribution settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6632,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminowości płatności podatków oraz podejmowanie działań w przypadku zaległości podatkowych.',
+                    'en' => 'Monitoring tax payment timeliness and taking action in case of tax arrears.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6633,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających i kontrolnych w przypadku podejrzenia naruszenia przepisów podatkowych.',
+                    'en' => 'Conducting explanatory and control proceedings in cases of suspected tax regulation violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6634,
+                'name' => json_encode([
+                    'pl' => 'Zbieranie dowodów i analizowanie dokumentacji podatkowej oraz księgowej w celu ustalenia prawidłowości rozliczeń.',
+                    'en' => 'Collecting evidence and analyzing tax and accounting documentation to determine settlement accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6635,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie protokołów z postępowań oraz wydawanie decyzji podatkowych na podstawie zebranych dowodów.',
+                    'en' => 'Preparing proceedings reports and issuing tax decisions based on collected evidence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6636,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zaległości podatkowych oraz podejmowanie działań egzekucyjnych w celu ściągnięcia zaległych podatków.',
+                    'en' => 'Monitoring tax arrears and taking enforcement actions to collect overdue taxes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6637,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie upomnień i wezwań do zapłaty w przypadku nieterminowych płatności podatników.',
+                    'en' => 'Sending reminders and payment notices in cases of taxpayer late payments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6638,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z komornikami i organami egzekucyjnymi w celu skutecznego odzyskania należności podatkowych.',
+                    'en' => 'Collaborating with bailiffs and enforcement bodies to effectively recover tax dues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6639,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wyjaśnień podatnikom w zakresie interpretacji przepisów prawa podatkowego oraz ich wpływu na sytuację podatkową.',
+                    'en' => 'Providing taxpayers with explanations on tax law interpretation and its impact on their tax situation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6640,
+                'name' => json_encode([
+                    'pl' => 'Informowanie podatników o obowiązujących przepisach oraz doradzanie w kwestiach związanych z optymalizacją podatkową w granicach prawa.',
+                    'en' => 'Informing taxpayers about applicable regulations and advising on legal tax optimization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6641,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami w celu zapewnienia jednolitej interpretacji przepisów podatkowych.',
+                    'en' => 'Collaborating with other officials to ensure consistent interpretation of tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6642,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentacji związanej z postępowaniami podatkowymi, w tym protokołów, decyzji oraz wezwań do uzupełnienia informacji.',
+                    'en' => 'Preparing documentation related to tax proceedings, including reports, decisions, and information requests.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6643,
+                'name' => json_encode([
+                    'pl' => 'Archiwizowanie i zabezpieczanie dokumentacji podatkowej zgodnie z wymogami prawnymi i zasadami ochrony danych.',
+                    'en' => 'Archiving and securing tax documentation in compliance with legal requirements and data protection standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6644,
+                'name' => json_encode([
+                    'pl' => 'Kontrola kompletności i poprawności dokumentacji podatkowej składanej przez podatników.',
+                    'en' => 'Verifying completeness and accuracy of tax documentation submitted by taxpayers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6645,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja ewidencji podatkowej podatników, w tym ksiąg rachunkowych i rejestrów VAT, pod kątem zgodności z przepisami prawa.',
+                    'en' => 'Reviewing taxpayers\' tax records, including accounting books and VAT registers, for compliance with legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6646,
+                'name' => json_encode([
+                    'pl' => 'Kontrola poprawności zaksięgowanych transakcji oraz ich wpływu na rozliczenia podatkowe.',
+                    'en' => 'Verifying the accuracy of recorded transactions and their impact on tax settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6647,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja ewidencji podatkowej w celu identyfikacji potencjalnych nieprawidłowości.',
+                    'en' => 'Examining tax records to identify potential irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6648,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rejestrów i baz danych podatników, w tym ewidencjonowanie wpływów z tytułu podatków i zaległości podatkowych.',
+                    'en' => 'Maintaining taxpayer records and databases, including tax revenue and arrears tracking.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6649,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i zestawień dotyczących wpływów podatkowych oraz działalności urzędu skarbowego.',
+                    'en' => 'Preparing reports and summaries on tax revenues and tax office activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6650,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów i informacji do centralnych organów nadzorczych oraz zarządzanie danymi podatkowymi.',
+                    'en' => 'Forwarding reports and information to central supervisory authorities and managing tax data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6651,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędami skarbowymi, urzędami celnymi, ZUS oraz instytucjami finansowymi w zakresie wymiany informacji podatkowych.',
+                    'en' => 'Collaborating with other tax offices, customs offices, ZUS, and financial institutions for tax information exchange.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6652,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z organami ścigania, takimi jak policja i prokuratura, w sprawach dotyczących przestępstw podatkowych.',
+                    'en' => 'Maintaining contacts with law enforcement agencies, such as police and prosecutors, in tax crime cases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6653,
+                'name' => json_encode([
+                    'pl' => 'Wymiana danych i koordynacja działań w celu zwalczania oszustw podatkowych.',
+                    'en' => 'Exchanging data and coordinating actions to combat tax fraud.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6654,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie decyzji podatkowych dotyczących zobowiązań podatkowych na podstawie przeprowadzonych postępowań kontrolnych.',
+                    'en' => 'Issuing tax decisions regarding tax liabilities based on conducted control proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6655,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie opinii prawnych i interpretacji przepisów, które mają na celu wyjaśnienie podatnikom zasad rozliczeń.',
+                    'en' => 'Issuing legal opinions and interpretations to clarify tax settlement rules for taxpayers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6656,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie opinii dotyczących skomplikowanych przypadków podatkowych i przedstawianie ich organom nadzoru.',
+                    'en' => 'Developing opinions on complex tax cases and presenting them to supervisory bodies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6657,
+                'name' => json_encode([
+                    'pl' => 'Nadzorowanie przestrzegania przez podatników przepisów prawa podatkowego oraz podejmowanie działań w przypadku ich naruszenia.',
+                    'en' => 'Supervising taxpayer compliance with tax law and taking action in cases of violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6658,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie interwencji w przypadkach wykrycia uchybień oraz prowadzenie działań wyjaśniających.',
+                    'en' => 'Intervening in cases of detected non-compliance and conducting explanatory actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6659,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie sankcji i grzywien w stosunku do podatników, którzy naruszają przepisy podatkowe.',
+                    'en' => 'Issuing sanctions and fines against taxpayers who violate tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6660,
+                'name' => json_encode([
+                    'pl' => 'Rozpatrywanie odwołań podatników od decyzji podatkowych oraz przygotowywanie odpowiedzi na skargi.',
+                    'en' => 'Handling taxpayer appeals against tax decisions and preparing responses to complaints.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6661,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie postępowań w sprawach odwoławczych i przygotowywanie dokumentacji do wyższych instancji.',
+                    'en' => 'Conducting proceedings in appeal cases and preparing documentation for higher authorities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6662,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji i dokumentacji do organów odwoławczych oraz uczestnictwo w postępowaniach sądowych.',
+                    'en' => 'Transmitting information and documentation to appellate bodies and participating in court proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6663,
+                'name' => json_encode([
+                    'pl' => 'Analiza zgłoszeń oraz sygnałów o możliwych nieprawidłowościach podatkowych, takich jak unikanie opodatkowania czy fałszowanie dokumentacji.',
+                    'en' => 'Analyzing reports and signals of possible tax irregularities, such as tax evasion or document forgery.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6664,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie działań mających na celu przeciwdziałanie oszustwom podatkowym i wykrywanie przypadków uchylania się od płacenia podatków.',
+                    'en' => 'Conducting activities aimed at countering tax fraud and detecting cases of tax evasion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6665,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z odpowiednimi instytucjami w celu zwalczania przestępstw podatkowych i zapobiegania nadużyciom.',
+                    'en' => 'Collaborating with relevant institutions to combat tax crimes and prevent abuses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6666,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli w siedzibach podatników oraz miejscach prowadzenia działalności gospodarczej w celu weryfikacji rozliczeń.',
+                    'en' => 'Conducting inspections at taxpayer premises and business locations to verify settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6667,
+                'name' => json_encode([
+                    'pl' => 'Kontrola fizyczna dokumentacji, towarów i urządzeń w celu potwierdzenia zgodności z przepisami podatkowymi.',
+                    'en' => 'Physically inspecting documentation, goods, and equipment to confirm compliance with tax regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6668,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników kontroli oraz podejmowanie działań w przypadku stwierdzenia nieprawidłowości.',
+                    'en' => 'Documenting inspection results and taking action in cases of identified non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6669,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w szkoleniach i kursach dotyczących prawa podatkowego, nowych przepisów i procedur kontrolnych.',
+                    'en' => 'Participating in training and courses on tax law, new regulations, and control procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6670,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja wiedzy na temat zmian w przepisach oraz doskonalenie umiejętności w zakresie analizy i interpretacji prawa.',
+                    'en' => 'Updating knowledge on regulatory changes and enhancing skills in legal analysis and interpretation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6671,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi urzędnikami podatkowymi oraz uczestnictwo w konferencjach branżowych.',
+                    'en' => 'Exchanging experiences with other tax officials and attending industry conferences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $pozostali_urzednicy_do_spraw_podatkow = [
+            [
+                'id' => 6672,
+                'name' => json_encode([
+                    'pl' => 'Obsługa biurowa, w tym rejestrowanie i archiwizacja dokumentów podatkowych.',
+                    'en' => 'Office services, including recording and archiving tax documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6673,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji w zakresie podstawowych spraw podatkowych oraz kierowanie zapytań do odpowiednich działów.',
+                    'en' => 'Providing information on basic tax matters and directing inquiries to relevant departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6674,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnego obiegu dokumentów wewnątrz urzędu.',
+                    'en' => 'Ensuring efficient document circulation within the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6675,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie i rejestrowanie deklaracji, formularzy i innych dokumentów składanych przez podatników.',
+                    'en' => 'Receiving and recording declarations, forms, and other documents submitted by taxpayers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6676,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja dokumentów pod kątem ich kompletności i poprawności formalnej.',
+                    'en' => 'Verifying documents for completeness and formal correctness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6677,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzenie danych do systemów informatycznych i ewidencyjnych urzędu skarbowego.',
+                    'en' => 'Entering data into the IT and registry systems of the tax office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6678,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie bazy danych podatników oraz wprowadzanie do niej wszelkich zmian, takich jak zmiany adresu, numeru NIP itp.',
+                    'en' => 'Updating taxpayer databases and recording any changes such as address changes, NIP numbers, etc.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6679,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i prowadzenie rejestrów zobowiązań podatkowych oraz zaległości.',
+                    'en' => 'Creating and maintaining records of tax obligations and arrears.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6680,
+                'name' => json_encode([
+                    'pl' => 'Generowanie raportów i zestawień na podstawie zgromadzonych danych podatkowych.',
+                    'en' => 'Generating reports and summaries based on collected tax data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6681,
+                'name' => json_encode([
+                    'pl' => 'Przegląd i kontrola dokumentacji księgowej podatników, w tym rachunków i faktur, w celu wstępnej oceny zgodności z przepisami.',
+                    'en' => 'Reviewing and checking taxpayer accounting records, including invoices and receipts, for initial compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6682,
+                'name' => json_encode([
+                    'pl' => 'Analiza zapisów w ewidencji podatkowej pod kątem ich poprawności i zgodności z wymaganiami formalnymi.',
+                    'en' => 'Analyzing entries in tax records for correctness and formal compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6683,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wsparcia przy przygotowywaniu dokumentacji do dalszej analizy przez wyższych rangą urzędników podatkowych.',
+                    'en' => 'Providing support in preparing documentation for further analysis by senior tax officials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6684,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie wstępnych postępowań wyjaśniających w przypadku błędów w deklaracjach lub innych niezgodności.',
+                    'en' => 'Conducting preliminary investigations in cases of errors in declarations or other discrepancies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6685,
+                'name' => json_encode([
+                    'pl' => 'Kontaktowanie się z podatnikami w celu uzupełnienia braków lub skorygowania błędów.',
+                    'en' => 'Contacting taxpayers to complete missing information or correct errors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6686,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie skomplikowanych spraw do bardziej doświadczonych urzędników podatkowych.',
+                    'en' => 'Referring complex cases to more experienced tax officials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6687,
+                'name' => json_encode([
+                    'pl' => 'Informowanie podatników o terminach składania deklaracji, sposobach rozliczania podatków oraz podstawowych zasadach podatkowych.',
+                    'en' => 'Informing taxpayers about declaration deadlines, tax settlement methods, and basic tax rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6688,
+                'name' => json_encode([
+                    'pl' => 'Pomoc podatnikom w wypełnianiu formularzy oraz odpowiadanie na ich podstawowe pytania dotyczące rozliczeń podatkowych.',
+                    'en' => 'Assisting taxpayers with form completion and answering basic tax-related inquiries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6689,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji o wymaganej dokumentacji oraz obowiązkach podatkowych.',
+                    'en' => 'Providing information about required documentation and tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6690,
+                'name' => json_encode([
+                    'pl' => 'Współpraca przy analizie ryzyka podatkowego i typowanie przypadków, które wymagają dalszej kontroli.',
+                    'en' => 'Collaborating in tax risk analysis and identifying cases that require further review.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6691,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja dokumentów pod kątem podejrzanych transakcji lub rozbieżności mogących sugerować unikanie opodatkowania.',
+                    'en' => 'Verifying documents for suspicious transactions or discrepancies that may indicate tax evasion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6692,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów z wstępnych analiz i przekazywanie ich do działu kontroli podatkowej.',
+                    'en' => 'Preparing preliminary analysis reports and forwarding them to the tax control department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6693,
+                'name' => json_encode([
+                    'pl' => 'Kompletowanie dokumentacji podatkowej, w tym faktur, ewidencji i korespondencji, na potrzeby kontroli podatkowych.',
+                    'en' => 'Compiling tax documentation, including invoices, records, and correspondence, for tax audits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6694,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z kontrolerami skarbowymi w zakresie dostarczania potrzebnych danych.',
+                    'en' => 'Collaborating with tax inspectors to provide necessary data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6695,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja dokumentów i raportów po zakończeniu postępowań kontrolnych.',
+                    'en' => 'Archiving documents and reports after audit proceedings are completed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6696,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności wpłat z wymaganymi terminami i wysokością zobowiązań podatkowych.',
+                    'en' => 'Monitoring compliance of payments with required deadlines and tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6697,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie powiadomień do podatników o zbliżających się terminach płatności oraz przypominanie o obowiązku uregulowania zaległości.',
+                    'en' => 'Sending notifications to taxpayers about upcoming payment deadlines and reminding them of their obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6698,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o zaległościach podatkowych do działu egzekucji.',
+                    'en' => 'Forwarding information about tax arrears to the enforcement department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6699,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie wezwań do zapłaty oraz przekazywanie ich podatnikom, którzy nie wywiązali się z zobowiązań podatkowych.',
+                    'en' => 'Preparing payment demands and delivering them to taxpayers who have not met their tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6700,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem egzekucji podatkowej w zakresie ustalania harmonogramów spłaty i negocjacji z podatnikami.',
+                    'en' => 'Collaborating with the tax enforcement department to establish payment schedules and negotiate with taxpayers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6701,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie działań związanych z postępowaniem windykacyjnym oraz archiwizacja korespondencji.',
+                    'en' => 'Documenting actions related to debt collection proceedings and archiving correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6702,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentacji oraz analiz na potrzeby interpretacji podatkowych w ramach procedur podatkowych.',
+                    'en' => 'Preparing documentation and analyses for tax interpretation within tax procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6703,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja i porównanie przypadków podobnych w celu sporządzenia propozycji interpretacji.',
+                    'en' => 'Verifying and comparing similar cases to draft interpretation proposals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6704,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z urzędnikami odpowiedzialnymi za interpretacje w celu wyjaśnienia i rozwiązania skomplikowanych kwestii podatkowych.',
+                    'en' => 'Cooperating with officials responsible for interpretations to clarify and resolve complex tax issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6705,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie zestawień podatników zalegających z płatnościami oraz innych raportów dotyczących zobowiązań podatkowych.',
+                    'en' => 'Preparing summaries of taxpayers in arrears and other reports on tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6706,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie danych do raportów okresowych wymaganych przez wyższe szczeble administracji podatkowej.',
+                    'en' => 'Preparing data for periodic reports required by higher levels of tax administration.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6707,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów do organów nadzorczych oraz monitorowanie zgodności działań z obowiązującymi przepisami.',
+                    'en' => 'Submitting reports to supervisory bodies and monitoring compliance with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6708,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi organami podatkowymi, urzędami celnymi oraz instytucjami finansowymi w zakresie wymiany informacji podatkowej.',
+                    'en' => 'Coordinating actions with other tax authorities, customs offices, and financial institutions in tax information exchange.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6709,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o podatnikach w ramach współpracy między urzędami oraz wymiana danych dotyczących zobowiązań podatkowych.',
+                    'en' => 'Sharing taxpayer information within inter-agency cooperation and exchanging data on tax obligations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6710,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z instytucjami odpowiedzialnymi za przeciwdziałanie przestępstwom podatkowym i finansowym.',
+                    'en' => 'Cooperating with institutions responsible for preventing tax and financial crimes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6711,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i wysyłanie korespondencji związanej z rozliczeniami podatkowymi, w tym decyzji, wezwań i przypomnień.',
+                    'en' => 'Preparing and sending correspondence related to tax settlements, including decisions, summons, and reminders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6712,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie ewidencji dokumentów przychodzących i wychodzących w celu zachowania pełnej dokumentacji.',
+                    'en' => 'Maintaining records of incoming and outgoing documents to ensure complete documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6713,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja dokumentacji podatkowej zgodnie z przepisami o ochronie danych osobowych i polityką urzędu.',
+                    'en' => 'Archiving tax documentation in compliance with data protection regulations and office policy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6714,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja transakcji międzynarodowych podatników pod kątem ich zgodności z przepisami podatkowymi i celnymi.',
+                    'en' => 'Verifying taxpayers’ international transactions for compliance with tax and customs regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6715,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o podejrzanych transakcjach zagranicznych do wyższych rangą urzędników lub działu kontroli.',
+                    'en' => 'Forwarding information on suspicious foreign transactions to senior officials or the control department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6716,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w gromadzeniu dokumentacji związanej z transakcjami międzynarodowymi, w tym dokumentacji dotyczącej cen transferowych.',
+                    'en' => 'Assisting in gathering documentation related to international transactions, including transfer pricing documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6717,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach oraz kursach dotyczących przepisów podatkowych, procedur administracyjnych i obsługi klienta.',
+                    'en' => 'Regularly attending training and courses on tax regulations, administrative procedures, and customer service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6718,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych regulacji oraz procedur podatkowych.',
+                    'en' => 'Updating knowledge on new regulations and tax procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6719,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami w zakresie wymiany doświadczeń i doskonalenia umiejętności zawodowych.',
+                    'en' => 'Collaborating with other officials in experience sharing and skill development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $urzednik_ubezpieczen_spolecznych = [
+            [
+                'id' => 6720,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji dotyczących zasad ubezpieczenia społecznego oraz odpowiadanie na pytania ubezpieczonych i płatników.',
+                    'en' => 'Providing information on social insurance rules and answering questions from insured persons and contributors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6721,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w rejestracji i wyrejestrowaniu ubezpieczonych, jak również przy zakładaniu kont płatników składek.',
+                    'en' => 'Assisting in the registration and deregistration of insured persons and in setting up contribution payer accounts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6722,
+                'name' => json_encode([
+                    'pl' => 'Wyjaśnianie wątpliwości związanych z obowiązkami ubezpieczeniowymi oraz zasadami opłacania składek.',
+                    'en' => 'Clarifying questions related to insurance obligations and premium payment rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6723,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i weryfikacja formularzy oraz dokumentacji składanej przez ubezpieczonych i płatników.',
+                    'en' => 'Receiving and verifying forms and documentation submitted by insured persons and contributors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6724,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych do systemów informatycznych, takich jak informacje o okresach ubezpieczenia, wysokości składek oraz należnych świadczeniach.',
+                    'en' => 'Entering data into IT systems, such as information on insurance periods, contribution amounts, and benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6725,
+                'name' => json_encode([
+                    'pl' => 'Kontrola kompletności i poprawności formalnej składanych dokumentów oraz kontakt z ubezpieczonymi lub płatnikami w celu uzupełnienia braków.',
+                    'en' => 'Checking the completeness and formal accuracy of submitted documents and contacting insured persons or contributors to fill in missing details.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6726,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie składek ubezpieczeniowych oraz przypisanie ich do odpowiednich kont ubezpieczonych.',
+                    'en' => 'Recording insurance contributions and assigning them to appropriate insured persons’ accounts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6727,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie stanu wpłat i rozliczeń składek oraz prowadzenie rejestrów płatności.',
+                    'en' => 'Monitoring payment status and contribution settlements and maintaining payment registers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6728,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja i aktualizacja informacji o ubezpieczonych, takich jak zmiany w danych osobowych, okresach zatrudnienia czy wysokości składek.',
+                    'en' => 'Verifying and updating information on insured persons, such as personal data changes, employment periods, or contribution amounts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6729,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja poprawności rozliczeń składkowych dokonywanych przez płatników, w tym kontrola zgodności składek z obowiązującymi przepisami.',
+                    'en' => 'Verifying the accuracy of contribution settlements by contributors, including compliance with applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6730,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie kompletności i poprawności deklaracji rozliczeniowych oraz wezwań do uzupełnienia brakujących informacji.',
+                    'en' => 'Checking the completeness and accuracy of settlement declarations and issuing requests for additional information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6731,
+                'name' => json_encode([
+                    'pl' => 'Rozliczanie nadpłat oraz podejmowanie działań w przypadku zaległości składkowych.',
+                    'en' => 'Reconciling overpayments and taking actions in case of contribution arrears.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6732,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie decyzji dotyczących przyznania świadczeń, takich jak emerytury, renty, zasiłki chorobowe, macierzyńskie czy zasiłki opiekuńcze.',
+                    'en' => 'Preparing decisions on granting benefits such as pensions, disability allowances, sick leave, maternity, or caregiving allowances.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6733,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja uprawnień do świadczeń, w tym sprawdzanie okresów ubezpieczenia i zgłoszonych składek.',
+                    'en' => 'Verifying eligibility for benefits, including insurance periods and reported contributions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6734,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja wypłat świadczeń i monitorowanie terminowości ich realizacji.',
+                    'en' => 'Coordinating benefit payments and monitoring their timely execution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6735,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wpłat składek ubezpieczeniowych i porównywanie ich z deklaracjami płatników.',
+                    'en' => 'Monitoring social security contribution payments and comparing them with contributors’ declarations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6736,
+                'name' => json_encode([
+                    'pl' => 'Analiza zgodności wpłat z obowiązującymi stawkami składkowymi i podejmowanie działań w przypadku wykrycia nieprawidłowości.',
+                    'en' => 'Analyzing payment compliance with applicable contribution rates and taking action in case of discrepancies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6737,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie upomnień lub prowadzenie postępowań wyjaśniających w przypadku stwierdzenia zaległości składkowych.',
+                    'en' => 'Issuing reminders or conducting investigations in cases of contribution arrears.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6738,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających w przypadku stwierdzenia niezgodności między deklaracjami płatników a danymi w systemie ubezpieczeń społecznych.',
+                    'en' => 'Conducting investigations when discrepancies are found between payer declarations and social security system data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6739,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z płatnikami i ubezpieczonymi w celu ustalenia przyczyn niezgodności i wyjaśnienia rozbieżności.',
+                    'en' => 'Contacting payers and insured persons to determine the causes of discrepancies and clarify inconsistencies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6740,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników postępowań oraz wprowadzanie odpowiednich korekt w systemie.',
+                    'en' => 'Documenting investigation results and implementing appropriate corrections in the system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6741,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie działań zmierzających do odzyskania zaległych składek ubezpieczeniowych, takich jak wysyłanie wezwań do zapłaty.',
+                    'en' => 'Taking actions to recover overdue social security contributions, such as issuing payment demands.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6742,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem egzekucji administracyjnej oraz organami komorniczymi w zakresie windykacji należności.',
+                    'en' => 'Collaborating with administrative enforcement departments and bailiff authorities for debt collection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6743,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie dokumentacji dotyczącej postępowań windykacyjnych i archiwizacja korespondencji.',
+                    'en' => 'Maintaining documentation on collection proceedings and archiving correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6744,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie decyzji administracyjnych dotyczących zgłoszenia lub wyrejestrowania ubezpieczonych, przyznania świadczeń lub uznania zaległości składkowych.',
+                    'en' => 'Drafting administrative decisions regarding the registration or deregistration of insured persons, benefit entitlements, or recognizing contribution arrears.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6745,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie decyzji w sprawach związanych z ubezpieczeniem społecznym i monitorowanie ich realizacji.',
+                    'en' => 'Issuing decisions on social insurance matters and monitoring their implementation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6746,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie decyzji zainteresowanym stronom i udzielanie wyjaśnień dotyczących ich treści.',
+                    'en' => 'Delivering decisions to interested parties and providing explanations regarding their content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6747,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach i kursach dotyczących przepisów ubezpieczeń społecznych oraz procedur administracyjnych.',
+                    'en' => 'Participating regularly in training and courses on social insurance regulations and administrative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6748,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat zmian w przepisach prawa ubezpieczeń społecznych.',
+                    'en' => 'Keeping updated on changes in social insurance law regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6749,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami w zakresie wymiany doświadczeń i doskonalenia umiejętności.',
+                    'en' => 'Collaborating with other officials for experience sharing and skills improvement.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6750,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i rozpatrywanie skarg i wniosków od ubezpieczonych w sprawach związanych z ubezpieczeniem społecznym.',
+                    'en' => 'Receiving and processing complaints and requests from insured persons regarding social insurance issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6751,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z ubezpieczonymi w celu wyjaśnienia ich sytuacji oraz udzielanie odpowiedzi na zgłaszane pytania.',
+                    'en' => 'Contacting insured persons to clarify their situations and responding to their inquiries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6752,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie odpowiedzi na zapytania i raportowanie wyników do przełożonych.',
+                    'en' => 'Preparing responses to inquiries and reporting outcomes to supervisors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6753,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów dotyczących liczby zgłoszonych i wyrejestrowanych ubezpieczonych, liczby przyznanych świadczeń oraz wartości wpłat składkowych.',
+                    'en' => 'Creating reports on the number of registered and deregistered insured persons, the number of benefits granted, and the amount of contribution payments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6754,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie zestawień na potrzeby analiz wewnętrznych oraz raportowania do jednostek nadzorczych.',
+                    'en' => 'Preparing summaries for internal analysis and reporting to supervisory units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6755,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych dotyczących systemu ubezpieczeń społecznych i ich wpływu na budżet.',
+                    'en' => 'Analyzing social insurance system data and their impact on the budget.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6756,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań informacyjnych oraz szkoleń dla płatników w zakresie zmian przepisów ubezpieczeń społecznych.',
+                    'en' => 'Organizing informational meetings and training for payers on changes in social insurance regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6757,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie broszur, materiałów informacyjnych oraz instrukcji dotyczących zasad rozliczania składek.',
+                    'en' => 'Preparing brochures, informational materials, and instructions on contribution settlement rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6758,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wyjaśnień dotyczących obowiązków płatników składek i zasad ubezpieczeń.',
+                    'en' => 'Providing explanations on contribution payers’ obligations and insurance rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6759,
+                'name' => json_encode([
+                    'pl' => 'Kontrola okresów ubezpieczenia w celu potwierdzenia uprawnień ubezpieczonych do określonych świadczeń.',
+                    'en' => 'Verifying insurance periods to confirm insured persons’ entitlements to specific benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6760,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja i dokumentowanie okresów zatrudnienia, zwolnień lekarskich, urlopów oraz innych okresów mających wpływ na prawa ubezpieczeniowe.',
+                    'en' => 'Verifying and documenting periods of employment, sick leave, vacations, and other periods affecting insurance rights.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6761,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja informacji w systemie zgodnie z otrzymanymi dokumentami i wnioskami.',
+                    'en' => 'Updating information in the system in accordance with received documents and requests.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6762,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie dokumentacji związanej z ubezpieczeniami społecznymi zgodnie z przepisami prawa o ochronie danych osobowych.',
+                    'en' => 'Storing documentation related to social insurance in compliance with data protection laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6763,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja dokumentacji składkowej, deklaracji oraz decyzji administracyjnych.',
+                    'en' => 'Archiving contribution documentation, declarations, and administrative decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6764,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie dostępu do dokumentacji na potrzeby postępowań kontrolnych oraz egzekucyjnych.',
+                    'en' => 'Providing access to documentation for control and enforcement proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6765,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji i danych z instytucjami takimi jak Zakład Ubezpieczeń Społecznych, urzędy skarbowe, instytucje medyczne i opieki społecznej.',
+                    'en' => 'Exchanging information and data with institutions such as the Social Insurance Institution, tax offices, medical, and social care institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6766,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi urzędami i instytucjami w celu zapewnienia zgodności z przepisami oraz poprawy obsługi ubezpieczonych.',
+                    'en' => 'Coordinating activities with other offices and institutions to ensure compliance with regulations and improve insured persons’ services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6767,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie danych dotyczących ubezpieczeń społecznych do jednostek nadzorczych.',
+                    'en' => 'Transferring social insurance data to supervisory units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $pozostali_urzednicy_ds_swiadczen_spolecznych = [
+            [
+                'id' => 6768,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji dotyczących dostępnych świadczeń socjalnych oraz odpowiadanie na pytania beneficjentów.',
+                    'en' => 'Providing information on available social benefits and answering beneficiary inquiries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6769,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w składaniu wniosków o świadczenia oraz wyjaśnianie zasad ich przyznawania.',
+                    'en' => 'Assisting in the application for benefits and explaining the conditions for eligibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6770,
+                'name' => json_encode([
+                    'pl' => 'Informowanie o wymaganych dokumentach i procedurach związanych z ubieganiem się o świadczenia.',
+                    'en' => 'Informing about required documents and procedures for applying for benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6771,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie i rejestrowanie wniosków o świadczenia, takie jak zasiłki rodzinne, dodatki mieszkaniowe, zasiłki opiekuńcze i inne.',
+                    'en' => 'Receiving and registering benefit applications, such as family allowances, housing supplements, care allowances, and others.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6772,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja poprawności formalnej składanych dokumentów oraz kompletności wymaganej dokumentacji.',
+                    'en' => 'Verifying the formal correctness of submitted documents and the completeness of required documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6773,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych dotyczących wniosków i świadczeń do systemów informatycznych.',
+                    'en' => 'Entering data related to applications and benefits into information systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6774,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie spełniania kryteriów dochodowych, socjalnych i innych wymogów kwalifikacyjnych do przyznania świadczeń.',
+                    'en' => 'Checking income, social, and other eligibility criteria for benefit approval.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6775,
+                'name' => json_encode([
+                    'pl' => 'Kontrola dokumentacji dotyczącej dochodów, sytuacji rodzinnej, zdrowotnej i innych warunków wpływających na przyznanie świadczenia.',
+                    'en' => 'Reviewing documents related to income, family, health, and other conditions impacting benefit eligibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6776,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie decyzji w sprawie przyznania, odmowy lub modyfikacji wysokości świadczenia na podstawie zebranych danych.',
+                    'en' => 'Issuing decisions on the approval, denial, or modification of benefit amounts based on collected data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6777,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie przyznanych świadczeń, takich jak zasiłki rodzinne, dodatki opiekuńcze, zapomogi itp.',
+                    'en' => 'Recording awarded benefits, such as family allowances, care supplements, and grants.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6778,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie historii świadczeń beneficjentów, w tym okresów ich przyznania, przedłużeń lub zawieszenia.',
+                    'en' => 'Tracking benefit history of beneficiaries, including periods of granting, extensions, or suspensions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6779,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie zestawień i raportów dotyczących przyznanych świadczeń na potrzeby analiz i raportowania.',
+                    'en' => 'Preparing summaries and reports on awarded benefits for analysis and reporting purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6780,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie list wypłat i zapewnienie terminowej realizacji wypłat świadczeń na konta beneficjentów.',
+                    'en' => 'Creating payout lists and ensuring timely benefit disbursements to beneficiaries’ accounts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6781,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności kwot wypłat z przyznanymi świadczeniami oraz monitorowanie ich terminowości.',
+                    'en' => 'Verifying payout amounts match awarded benefits and monitoring their timeliness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6782,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem finansowym w zakresie rozliczania wypłaconych świadczeń.',
+                    'en' => 'Cooperating with the finance department in reconciling disbursed benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6783,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie, czy świadczenia socjalne są wykorzystywane zgodnie z ich przeznaczeniem i warunkami przyznania.',
+                    'en' => 'Monitoring if social benefits are used in line with their purpose and eligibility conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6784,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie kontroli w przypadku podejrzenia nieprawidłowego wykorzystania świadczeń lub fałszywego oświadczenia.',
+                    'en' => 'Conducting checks in cases of suspected misuse of benefits or false declarations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6785,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie działań mających na celu odzyskanie nienależnie wypłaconych świadczeń.',
+                    'en' => 'Initiating actions to recover unduly paid benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6786,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających w przypadku wątpliwości co do spełnienia warunków uprawniających do świadczeń.',
+                    'en' => 'Conducting inquiries in cases of doubt regarding eligibility conditions for benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6787,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z beneficjentami w celu uzupełnienia brakujących informacji lub wyjaśnienia niejasności.',
+                    'en' => 'Contacting beneficiaries to gather missing information or clarify issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6788,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników postępowań i wprowadzanie odpowiednich zmian w systemie świadczeń.',
+                    'en' => 'Documenting inquiry results and updating the benefits system accordingly.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6789,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie wezwań do zwrotu świadczeń w przypadku ich nienależnego pobrania przez beneficjenta.',
+                    'en' => 'Issuing demands for benefit repayments in cases of undue payments to beneficiaries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6790,
+                'name' => json_encode([
+                    'pl' => 'Ustalanie harmonogramów spłat oraz współpraca z działem windykacji i komornikami.',
+                    'en' => 'Setting up repayment schedules and working with debt collection departments and bailiffs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6791,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie postępowań windykacyjnych i archiwizacja korespondencji.',
+                    'en' => 'Documenting collection procedures and archiving correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6792,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie decyzji administracyjnych dotyczących przyznania, odmowy, zmiany lub zawieszenia świadczeń socjalnych.',
+                    'en' => 'Drafting administrative decisions on granting, denying, modifying, or suspending social benefits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6793,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie decyzji o zakończeniu przyznawania świadczeń na podstawie zmieniających się warunków u beneficjenta.',
+                    'en' => 'Issuing termination decisions for benefits based on changing beneficiary conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6794,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie decyzji stronom i udzielanie wyjaśnień dotyczących ich treści.',
+                    'en' => 'Delivering decisions to parties and providing explanations regarding their content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6795,
+                'name' => json_encode([
+                    'pl' => 'Rozpatrywanie skarg i odwołań od decyzji dotyczących świadczeń socjalnych.',
+                    'en' => 'Handling complaints and appeals regarding social benefit decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6796,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań odwoławczych oraz przygotowywanie dokumentacji do dalszych instancji.',
+                    'en' => 'Conducting appeal proceedings and preparing documentation for higher instances.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6797,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z beneficjentami w celu wyjaśnienia powodów decyzji i przedstawienia środków odwoławczych.',
+                    'en' => 'Contacting beneficiaries to explain decision reasons and provide appeal options.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6798,
+                'name' => json_encode([
+                    'pl' => 'Analiza danych dotyczących liczby i struktury przyznanych świadczeń oraz ich wpływu na budżet.',
+                    'en' => 'Analyzing data on the number and structure of awarded benefits and their impact on the budget.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6799,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów okresowych na potrzeby kierownictwa oraz instytucji nadzorczych.',
+                    'en' => 'Preparing periodic reports for management and supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6800,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie zestawień dotyczących wydatków na świadczenia socjalne oraz liczby beneficjentów.',
+                    'en' => 'Compiling summaries on social benefit expenses and the number of beneficiaries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6801,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań informacyjnych oraz szkoleń dla beneficjentów w zakresie świadczeń socjalnych i zmian w przepisach.',
+                    'en' => 'Organizing informational meetings and training for beneficiaries on social benefits and regulatory changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6802,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie broszur, ulotek i materiałów informacyjnych dotyczących zasad ubiegania się o świadczenia.',
+                    'en' => 'Developing brochures, leaflets, and informational materials on benefit application rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6803,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wyjaśnień dotyczących obowiązków i praw beneficjentów świadczeń.',
+                    'en' => 'Providing explanations on the rights and obligations of benefit recipients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6804,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji z innymi instytucjami publicznymi, takimi jak MOPS, urzędy pracy, ZUS, w zakresie uprawnień do świadczeń.',
+                    'en' => 'Exchanging information with public institutions like MOPS, employment offices, and ZUS regarding benefit eligibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6805,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z instytucjami pomocowymi i organizacjami pozarządowymi w celu skutecznej realizacji programów socjalnych.',
+                    'en' => 'Cooperating with aid institutions and NGOs to effectively implement social programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6806,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań w zakresie wymiany informacji dotyczących świadczeń socjalnych i sytuacji życiowej beneficjentów.',
+                    'en' => 'Coordinating information exchange on social benefits and beneficiaries’ living situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6807,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie i archiwizacja dokumentacji związanej z przyznawaniem świadczeń socjalnych zgodnie z przepisami.',
+                    'en' => 'Storing and archiving documentation related to the awarding of social benefits in accordance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6808,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie dostępu do dokumentacji na potrzeby postępowań kontrolnych oraz egzekucyjnych.',
+                    'en' => 'Providing access to documentation for audit and enforcement proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6809,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad ochrony danych osobowych w związku z archiwizacją i przetwarzaniem dokumentacji beneficjentów.',
+                    'en' => 'Ensuring compliance with data protection rules in archiving and processing beneficiary documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6810,
+                'name' => json_encode([
+                    'pl' => 'Kontrola dokumentów potwierdzających dochody beneficjentów oraz ich sytuację socjalną, zdrowotną i rodzinną.',
+                    'en' => 'Verifying documents confirming beneficiaries’ income and social, health, and family circumstances.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6811,
+                'name' => json_encode([
+                    'pl' => 'Analiza zgodności danych o dochodach i sytuacji życiowej beneficjentów z dokumentacją.',
+                    'en' => 'Analyzing compliance of income data and beneficiaries’ life circumstances with documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6812,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja informacji w systemie świadczeń na podstawie otrzymanych dokumentów i wniosków.',
+                    'en' => 'Updating information in the benefits system based on received documents and applications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6813,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach oraz kursach dotyczących przepisów prawa socjalnego, procedur administracyjnych i obsługi klienta.',
+                    'en' => 'Regularly attending training and courses on social law regulations, administrative procedures, and customer service.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6814,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat zmian w przepisach oraz doskonalenie umiejętności zawodowych.',
+                    'en' => 'Updating knowledge on regulatory changes and improving professional skills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6815,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami w zakresie wymiany doświadczeń i doskonalenia pracy.',
+                    'en' => 'Collaborating with other officials to share experiences and improve work practices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $urzędnik_do_spraw_licencji = [
+            [
+                'id' => 6816,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie i rejestrowanie wniosków o wydanie licencji od osób fizycznych, przedsiębiorców lub instytucji.',
+                    'en' => 'Receiving and registering license applications from individuals, businesses, or institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6817,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy wnioski zawierają wszystkie wymagane dokumenty i są poprawnie wypełnione.',
+                    'en' => 'Verifying that applications contain all required documents and are correctly filled out.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6818,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych wnioskodawców oraz szczegółów licencji do systemów ewidencyjnych.',
+                    'en' => 'Entering applicant data and license details into record systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6819,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja dokumentów dołączonych do wniosku, takich jak zaświadczenia, certyfikaty, referencje, które potwierdzają spełnienie wymagań formalnych.',
+                    'en' => 'Verifying attached documents, such as certificates and references, that confirm compliance with formal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6820,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z wnioskodawcami w celu uzupełnienia brakujących dokumentów lub skorygowania nieprawidłowości.',
+                    'en' => 'Contacting applicants to complete missing documents or correct errors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6821,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o wymaganych dodatkowych dokumentach lub krokach koniecznych do uzyskania licencji.',
+                    'en' => 'Providing information on additional required documents or steps necessary for obtaining a license.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6822,
+                'name' => json_encode([
+                    'pl' => 'Analiza, czy wnioskodawca spełnia określone prawem wymagania do uzyskania licencji w danym obszarze (np. wykształcenie, doświadczenie, kwalifikacje).',
+                    'en' => 'Analyzing if the applicant meets legally established requirements for obtaining a license in a specific area (e.g., education, experience, qualifications).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6823,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja, czy działalność podlegająca licencjonowaniu jest zgodna z obowiązującymi przepisami i regulacjami.',
+                    'en' => 'Verifying that licensed activities comply with current laws and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6824,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i opinii na temat zgodności z wymogami.',
+                    'en' => 'Preparing reports and opinions on compliance with requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6825,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie decyzji administracyjnych o przyznaniu, odmowie lub cofnięciu licencji na podstawie przeprowadzonej analizy.',
+                    'en' => 'Preparing administrative decisions on granting, denying, or revoking licenses based on conducted analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6826,
+                'name' => json_encode([
+                    'pl' => 'Informowanie wnioskodawców o decyzji i wyjaśnianie przyczyn odmowy, jeśli licencja nie została przyznana.',
+                    'en' => 'Informing applicants about the decision and explaining reasons for denial if the license was not granted.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6827,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie decyzji do innych działów lub organów w przypadku potrzeby dalszego działania.',
+                    'en' => 'Forwarding decisions to other departments or authorities if further action is required.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6828,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie procesu odnawiania licencji dla uprawnionych podmiotów i osób zgodnie z przepisami.',
+                    'en' => 'Conducting the license renewal process for eligible entities and individuals in accordance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6829,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminów ważności licencji i informowanie posiadaczy o konieczności jej odnowienia.',
+                    'en' => 'Monitoring license validity periods and notifying holders about renewal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6830,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja danych licencyjnych w systemach ewidencyjnych na podstawie zgłoszonych zmian.',
+                    'en' => 'Updating licensing data in record systems based on reported changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6831,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i utrzymywanie bazy danych wszystkich wydanych licencji oraz danych dotyczących ich posiadaczy.',
+                    'en' => 'Creating and maintaining a database of all issued licenses and data on their holders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6832,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie wszystkich zmian, takich jak cofnięcia licencji, zmiany adresu lub działalności.',
+                    'en' => 'Recording all changes, such as license revocations, address updates, or activity modifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6833,
+                'name' => json_encode([
+                    'pl' => 'Regularna aktualizacja bazy danych i zapewnienie jej kompletności oraz zgodności z wymaganiami prawa.',
+                    'en' => 'Regularly updating the database and ensuring its completeness and compliance with legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6834,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie, czy posiadacze licencji spełniają warunki jej przyznania oraz działają zgodnie z przepisami.',
+                    'en' => 'Monitoring that license holders meet the conditions of their license and operate in compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6835,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie okresowych kontroli, inspekcji lub audytów, aby sprawdzić zgodność z wymogami licencyjnymi.',
+                    'en' => 'Conducting periodic checks, inspections, or audits to ensure compliance with licensing requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6836,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników kontroli i podejmowanie działań w przypadku naruszeń, takich jak zawieszenie lub cofnięcie licencji.',
+                    'en' => 'Documenting inspection results and taking action in case of violations, such as suspension or revocation of the license.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6837,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi instytucjami, takimi jak policja, straż graniczna, inspekcja pracy, w celu wymiany informacji i zapewnienia zgodności działań posiadaczy licencji z przepisami.',
+                    'en' => 'Coordinating with other institutions, such as police, border guards, and labor inspection, for information exchange and ensuring compliance of license holders with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6838,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z instytucjami odpowiedzialnymi za nadzór nad działalnością licencjonowaną, np. w zakresie przewozów drogowych, ochrony zdrowia czy działalności gospodarczej.',
+                    'en' => 'Collaborating with institutions responsible for overseeing licensed activities, e.g., in road transport, healthcare, or business operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6839,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji o statusie licencji posiadaczy innym urzędom i instytucjom zgodnie z przepisami o ochronie danych.',
+                    'en' => 'Providing information on license status to other offices and institutions in accordance with data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6840,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat liczby wydanych, odnowionych oraz cofniętych licencji na potrzeby wewnętrzne i zewnętrzne.',
+                    'en' => 'Preparing reports on the number of issued, renewed, and revoked licenses for internal and external purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6841,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie analiz dotyczących zgodności licencjonowanych działalności z wymogami prawnymi.',
+                    'en' => 'Preparing analyses of the compliance of licensed activities with legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6842,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów do przełożonych oraz organów nadzorczych.',
+                    'en' => 'Submitting reports to superiors and supervisory bodies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6843,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie powiadomień o nieprzestrzeganiu warunków licencyjnych i podejmowanie działań naprawczych.',
+                    'en' => 'Sending notifications of non-compliance with license conditions and taking corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6844,
+                'name' => json_encode([
+                    'pl' => 'Nakładanie sankcji administracyjnych, takich jak zawieszenie lub cofnięcie licencji, w przypadku rażącego naruszenia przepisów.',
+                    'en' => 'Imposing administrative sanctions, such as suspension or revocation of the license, in cases of gross violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6845,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie podjętych działań i przekazywanie informacji do działu prawnego lub egzekucyjnego, jeśli zachodzi taka potrzeba.',
+                    'en' => 'Documenting actions taken and forwarding information to the legal or enforcement department if needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6846,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie skarg i wniosków dotyczących działalności licencjonowanych podmiotów.',
+                    'en' => 'Receiving complaints and applications regarding the activities of licensed entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6847,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających oraz rozpatrywanie skarg i wniosków zgodnie z procedurami administracyjnymi.',
+                    'en' => 'Conducting investigative proceedings and reviewing complaints and applications in accordance with administrative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6848,
+                'name' => json_encode([
+                    'pl' => 'Informowanie składających skargi o wynikach postępowań i podejmowanych działaniach.',
+                    'en' => 'Informing complainants about the results of proceedings and actions taken.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6849,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji wnioskodawcom i posiadaczom licencji na temat warunków, procedur i przepisów dotyczących uzyskiwania oraz odnawiania licencji.',
+                    'en' => 'Providing information to applicants and license holders on conditions, procedures, and regulations related to obtaining and renewing licenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6850,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań informacyjnych oraz przygotowywanie materiałów edukacyjnych, takich jak broszury, ulotki i instrukcje.',
+                    'en' => 'Organizing informational meetings and preparing educational materials, such as brochures, leaflets, and instructions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6851,
+                'name' => json_encode([
+                    'pl' => 'Wyjaśnianie przepisów i wymagań licencyjnych oraz udzielanie porad dotyczących przestrzegania warunków licencji.',
+                    'en' => 'Explaining licensing regulations and requirements and providing advice on compliance with license conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6852,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analizy i przygotowywanie decyzji administracyjnych o zawieszeniu lub cofnięciu licencji w przypadku nieprzestrzegania warunków licencyjnych.',
+                    'en' => 'Conducting analysis and preparing administrative decisions to suspend or revoke licenses in cases of non-compliance with license conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6853,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o cofnięciu licencji do odpowiednich instytucji nadzorczych.',
+                    'en' => 'Communicating information on license revocations to relevant supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6854,
+                'name' => json_encode([
+                    'pl' => 'Informowanie posiadacza licencji o przyczynach decyzji oraz procedurach odwoławczych.',
+                    'en' => 'Informing the license holder about the reasons for the decision and appeal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6855,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie dokumentacji związanej z przyznawaniem, odnawianiem, cofnięciem licencji zgodnie z przepisami o ochronie danych osobowych.',
+                    'en' => 'Storing documentation related to granting, renewing, and revoking licenses in compliance with data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6856,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja decyzji administracyjnych, wniosków, korespondencji oraz wyników kontroli.',
+                    'en' => 'Archiving administrative decisions, applications, correspondence, and inspection results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6857,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności dokumentacji na potrzeby postępowań odwoławczych lub kontrolnych.',
+                    'en' => 'Ensuring the availability of documentation for appeal or inspection proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6858,
+                'name' => json_encode([
+                    'pl' => 'Rozpatrywanie odwołań składanych przez wnioskodawców lub posiadaczy licencji od decyzji dotyczących licencji.',
+                    'en' => 'Processing appeals filed by applicants or license holders against licensing decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6859,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie przebiegu postępowań odwoławczych oraz przekazywanie ich do wyższych instancji, jeśli to konieczne.',
+                    'en' => 'Documenting the course of appeal proceedings and forwarding them to higher authorities if necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6860,
+                'name' => json_encode([
+                    'pl' => 'Informowanie stron o wynikach postępowania odwoławczego oraz kolejnych krokach prawnych.',
+                    'en' => 'Informing parties of the results of appeal proceedings and subsequent legal steps.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6861,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach i kursach dotyczących przepisów prawa licencyjnego, procedur administracyjnych oraz standardów jakości obsługi.',
+                    'en' => 'Regularly participating in training and courses on licensing law regulations, administrative procedures, and customer service standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6862,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych regulacji i zmian w przepisach dotyczących działalności licencjonowanej.',
+                    'en' => 'Updating knowledge on new regulations and changes in laws regarding licensed activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6863,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami ds. licencji w celu wymiany doświadczeń i podnoszenia standardów pracy.',
+                    'en' => 'Collaborating with other licensing officers to share experiences and raise work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $urzędnik_do_spraw_paszportów = [
+            [
+                'id' => 6864,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie wniosków o wydanie lub odnowienie paszportu od obywateli oraz ich rejestrowanie.',
+                    'en' => 'Receiving and registering applications for passport issuance or renewal from citizens.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6865,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja kompletności i poprawności formalnej złożonych dokumentów.',
+                    'en' => 'Verifying completeness and formal accuracy of submitted documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6866,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych wnioskodawców do systemów ewidencyjnych i informatycznych.',
+                    'en' => 'Entering applicant data into registry and information systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6867,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie dokumentów tożsamości, takich jak dowód osobisty czy akt urodzenia, aby potwierdzić tożsamość wnioskodawcy.',
+                    'en' => 'Checking identity documents, such as ID or birth certificate, to confirm applicant identity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6868,
+                'name' => json_encode([
+                    'pl' => 'Kontrola zgodności z wymaganiami, w tym wiek wnioskodawcy, obywatelstwo, status prawny i inne warunki.',
+                    'en' => 'Ensuring compliance with requirements, including age, citizenship, legal status, and other conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6869,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z wnioskodawcami w celu uzupełnienia brakujących informacji lub dokumentów.',
+                    'en' => 'Contacting applicants to provide missing information or documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6870,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja, czy dostarczone zdjęcie spełnia określone wymogi techniczne i jest zgodne z przepisami paszportowymi.',
+                    'en' => 'Checking if submitted photos meet specified technical requirements and comply with passport regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6871,
+                'name' => json_encode([
+                    'pl' => 'Pobieranie danych biometrycznych, takich jak odciski palców, jeżeli jest to wymagane przez procedury.',
+                    'en' => 'Collecting biometric data, such as fingerprints, if required by procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6872,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że dane biometryczne są zgodnie z przepisami przechowywane i wykorzystywane jedynie do celów paszportowych.',
+                    'en' => 'Ensuring that biometric data is stored and used exclusively for passport purposes, in compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6873,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie decyzji administracyjnych w sprawie wydania lub odmowy wydania paszportu na podstawie przeprowadzonej analizy.',
+                    'en' => 'Preparing administrative decisions on issuing or denying a passport based on the conducted analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6874,
+                'name' => json_encode([
+                    'pl' => 'Informowanie wnioskodawców o podjętej decyzji i jej uzasadnieniu, szczególnie w przypadku odmowy.',
+                    'en' => 'Informing applicants of the decision made and its justification, especially in case of denial.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6875,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat liczby wydanych oraz odmówionych paszportów na potrzeby wewnętrzne i nadzorcze.',
+                    'en' => 'Preparing reports on the number of issued and denied passports for internal and oversight purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6876,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie paszportów wnioskodawcom po pozytywnym rozpatrzeniu wniosku i wykonaniu dokumentu.',
+                    'en' => 'Issuing passports to applicants after positive processing and document creation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6877,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie poprawności wydanego dokumentu, w tym zgodności danych osobowych i elementów zabezpieczających.',
+                    'en' => 'Verifying the correctness of the issued document, including personal data and security features compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6878,
+                'name' => json_encode([
+                    'pl' => 'Informowanie o obowiązkach posiadacza paszportu oraz wyjaśnianie procedur związanych z użytkowaniem dokumentu.',
+                    'en' => 'Informing passport holders of their obligations and explaining procedures related to document use.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6879,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie procedur unieważniania paszportów w przypadku ich utraty, kradzieży, zniszczenia lub stwierdzenia nieprawidłowości.',
+                    'en' => 'Executing passport cancellation procedures in case of loss, theft, destruction, or verification of irregularities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6880,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi organami, np. policją, w sprawach zgłaszania kradzieży lub zagubienia paszportu.',
+                    'en' => 'Cooperating with other authorities, such as police, in reporting stolen or lost passports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6881,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja danych w systemie, aby paszport został oznaczony jako unieważniony i niedostępny do użycia.',
+                    'en' => 'Updating system data to mark the passport as void and unusable.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6882,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z konsulatami i ambasadami w sprawach dotyczących paszportów dla obywateli przebywających za granicą.',
+                    'en' => 'Collaborating with consulates and embassies on passport issues for citizens abroad.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6883,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji na temat zasad korzystania z paszportu oraz obowiązków posiadaczy, takich jak terminowe odnawianie dokumentu.',
+                    'en' => 'Providing information on passport usage rules and holder obligations, such as timely renewal.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6884,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach dotyczących przepisów prawa paszportowego oraz ochrony danych osobowych.',
+                    'en' => 'Regularly attending training on passport law and data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6885,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami ds. paszportów w celu wymiany doświadczeń i podnoszenia standardów pracy.',
+                    'en' => 'Collaborating with other passport officials to share experiences and improve work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $urzednik_ds_udzialania_pozwolen_na_budowe = [
+            [
+                'id' => 6886,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie wniosków o wydanie pozwolenia na budowę od inwestorów oraz rejestrowanie ich w systemie.',
+                    'en' => 'Receiving building permit applications from investors and registering them in the system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6887,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja poprawności formalnej wniosków, takich jak kompletność załączników i podpisów.',
+                    'en' => 'Verifying the formal correctness of applications, such as completeness of attachments and signatures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6888,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych wnioskodawców oraz szczegółów inwestycji do systemu ewidencyjnego.',
+                    'en' => 'Entering applicant data and investment details into the registration system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6889,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy złożona dokumentacja, w tym projekty architektoniczno-budowlane, zgłoszenia i opinie, jest kompletna i zgodna z wymaganiami.',
+                    'en' => 'Checking if the submitted documentation, including architectural and construction projects, notifications, and opinions, is complete and compliant with requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6890,
+                'name' => json_encode([
+                    'pl' => 'Kontrola dokumentów potwierdzających prawo do dysponowania nieruchomością na cele budowlane.',
+                    'en' => 'Verifying documents confirming the right to use the property for construction purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6891,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja, czy projekt budowlany jest zgodny z miejscowym planem zagospodarowania przestrzennego lub warunkami zabudowy.',
+                    'en' => 'Verifying that the construction project complies with the local zoning plan or development conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6892,
+                'name' => json_encode([
+                    'pl' => 'Analiza, czy projekt spełnia wymagania przepisów dotyczących ochrony środowiska, ochrony przeciwpożarowej, warunków technicznych oraz innych regulacji.',
+                    'en' => 'Analyzing whether the project meets the requirements of environmental protection, fire safety, technical conditions, and other regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6893,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności projektu z przepisami dotyczącymi konstrukcji, bezpieczeństwa użytkowania, dostępności dla osób niepełnosprawnych i innymi wymogami.',
+                    'en' => 'Verifying project compliance with regulations concerning construction, user safety, accessibility for people with disabilities, and other requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6894,
+                'name' => json_encode([
+                    'pl' => 'Konsultacja z innymi specjalistami w urzędzie w celu weryfikacji szczegółowych wymagań technicznych.',
+                    'en' => 'Consulting with other specialists in the office to verify specific technical requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6895,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie decyzji administracyjnych o wydaniu lub odmowie wydania pozwolenia na budowę.',
+                    'en' => 'Preparing administrative decisions on issuing or denying building permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6896,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wnioskodawcom informacji o decyzji oraz wyjaśnianie jej powodów, szczególnie w przypadku odmowy.',
+                    'en' => 'Informing applicants of the decision and explaining its reasons, especially in cases of denial.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6897,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i dokumentacji związanej z wydanymi pozwoleniami na budowę na potrzeby wewnętrzne i nadzorcze.',
+                    'en' => 'Preparing reports and documentation related to issued building permits for internal and supervisory needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6898,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie procesu odnawiania lub przedłużania pozwoleń na budowę, jeśli wnioskodawca złoży stosowny wniosek.',
+                    'en' => 'Conducting the process of renewing or extending building permits if the applicant submits an appropriate application.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6899,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminów ważności pozwoleń na budowę i informowanie inwestorów o konieczności ich przedłużenia.',
+                    'en' => 'Monitoring the validity periods of building permits and informing investors about the need for extensions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6900,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja danych w systemach ewidencyjnych na podstawie zgłoszonych zmian.',
+                    'en' => 'Updating records in registration systems based on reported changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6901,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i utrzymywanie bazy danych wszystkich wydanych pozwoleń na budowę oraz informacji o inwestorach.',
+                    'en' => 'Creating and maintaining a database of all issued building permits and information about investors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6902,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie wszelkich zmian, takich jak cofnięcia, zmiany lub przedłużenia pozwoleń.',
+                    'en' => 'Registering any changes, such as revocations, modifications, or extensions of permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6903,
+                'name' => json_encode([
+                    'pl' => 'Regularna aktualizacja bazy danych i zapewnienie jej kompletności zgodnie z przepisami prawa budowlanego.',
+                    'en' => 'Regularly updating the database and ensuring its completeness in accordance with construction law regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6904,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zgodności realizacji inwestycji z warunkami wydanego pozwolenia na budowę.',
+                    'en' => 'Monitoring compliance of the investment implementation with the conditions of the issued building permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6905,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie okresowych inspekcji na placach budowy w celu sprawdzenia, czy prace są prowadzone zgodnie z projektem i przepisami.',
+                    'en' => 'Conducting periodic inspections at construction sites to check whether works are carried out in accordance with the project and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6906,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników kontroli i podejmowanie działań w przypadku stwierdzenia niezgodności.',
+                    'en' => 'Documenting inspection results and taking action in case of non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6907,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi instytucjami, takimi jak inspektoraty nadzoru budowlanego, urzędy ochrony środowiska, konserwatorzy zabytków.',
+                    'en' => 'Coordinating activities with other institutions, such as building inspection offices, environmental protection offices, and heritage conservators.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6908,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z jednostkami samorządowymi oraz służbami odpowiedzialnymi za kontrolę inwestycji budowlanych.',
+                    'en' => 'Maintaining contacts with local government units and services responsible for controlling construction investments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6909,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji o statusie pozwoleń na budowę innym urzędom i instytucjom zgodnie z przepisami.',
+                    'en' => 'Providing information on the status of building permits to other offices and institutions in accordance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6910,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat liczby wydanych, odnowionych oraz cofniętych pozwoleń na budowę na potrzeby wewnętrzne i zewnętrzne.',
+                    'en' => 'Preparing reports on the number of issued, renewed, and revoked building permits for internal and external purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6911,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie analiz dotyczących zgodności inwestycji z miejscowym planem zagospodarowania przestrzennego oraz przepisami prawa.',
+                    'en' => 'Preparing analyses on the compliance of investments with the local spatial development plan and legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],[
+                'id' => 6912,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów do przełożonych oraz organów nadzorczych.',
+                    'en' => 'Transmitting reports to superiors and supervisory bodies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6913,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie powiadomień o nieprzestrzeganiu warunków określonych w pozwoleniu na budowę.',
+                    'en' => 'Sending notifications of non-compliance with the conditions specified in the building permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6914,
+                'name' => json_encode([
+                    'pl' => 'Nakładanie sankcji administracyjnych lub wydawanie decyzji o cofnięciu pozwolenia na budowę w przypadku rażącego naruszenia przepisów.',
+                    'en' => 'Imposing administrative sanctions or issuing a decision to revoke the building permit in case of serious violations of regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6915,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie podjętych działań i przekazywanie informacji do działu nadzoru budowlanego, jeśli zachodzi taka potrzeba.',
+                    'en' => 'Documenting actions taken and providing information to the building inspection department if needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6916,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie skarg i wniosków dotyczących inwestycji realizowanych na podstawie pozwolenia na budowę.',
+                    'en' => 'Receiving complaints and applications concerning investments conducted based on a building permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6917,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających oraz rozpatrywanie skarg i wniosków zgodnie z procedurami administracyjnymi.',
+                    'en' => 'Conducting explanatory proceedings and handling complaints and applications in accordance with administrative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6918,
+                'name' => json_encode([
+                    'pl' => 'Informowanie składających skargi o wynikach postępowania i podejmowanych działaniach.',
+                    'en' => 'Informing complainants about the results of the proceedings and actions taken.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6919,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji inwestorom na temat warunków, procedur i przepisów dotyczących uzyskiwania pozwolenia na budowę.',
+                    'en' => 'Providing information to investors about the conditions, procedures, and regulations for obtaining a building permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6920,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań informacyjnych oraz przygotowywanie materiałów edukacyjnych, takich jak broszury, ulotki i instrukcje.',
+                    'en' => 'Organizing informational meetings and preparing educational materials, such as brochures, leaflets, and instructions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6921,
+                'name' => json_encode([
+                    'pl' => 'Wyjaśnianie przepisów i wymagań związanych z realizacją inwestycji budowlanych.',
+                    'en' => 'Explaining the regulations and requirements related to the implementation of construction investments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6922,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analizy i przygotowywanie decyzji administracyjnych o zawieszeniu lub cofnięciu pozwolenia na budowę w przypadku naruszenia przepisów.',
+                    'en' => 'Conducting analysis and preparing administrative decisions to suspend or revoke a building permit in case of regulatory violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6923,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o cofnięciu pozwolenia do odpowiednich instytucji nadzorczych.',
+                    'en' => 'Transmitting information about the revocation of a permit to the appropriate supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6924,
+                'name' => json_encode([
+                    'pl' => 'Informowanie inwestora o przyczynach decyzji oraz procedurach odwoławczych.',
+                    'en' => 'Informing the investor about the reasons for the decision and the appeal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6925,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie dokumentacji związanej z wydawaniem, odnawianiem, cofnięciem pozwolenia na budowę zgodnie z przepisami.',
+                    'en' => 'Storing documentation related to the issuance, renewal, and revocation of building permits in compliance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6926,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja decyzji administracyjnych, projektów budowlanych, zgłoszeń oraz wyników kontroli.',
+                    'en' => 'Archiving administrative decisions, construction projects, notifications, and inspection results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6927,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności dokumentacji na potrzeby postępowań odwoławczych lub kontrolnych.',
+                    'en' => 'Ensuring the availability of documentation for appeal or control proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6928,
+                'name' => json_encode([
+                    'pl' => 'Rozpatrywanie odwołań składanych przez inwestorów od decyzji dotyczących pozwoleń na budowę.',
+                    'en' => 'Considering appeals submitted by investors regarding building permit decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6929,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie przebiegu postępowań odwoławczych oraz przekazywanie ich do wyższych instancji, jeśli to konieczne.',
+                    'en' => 'Documenting the course of appeal proceedings and forwarding them to higher instances if necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6930,
+                'name' => json_encode([
+                    'pl' => 'Informowanie stron o wynikach postępowania odwoławczego oraz kolejnych krokach prawnych.',
+                    'en' => 'Informing parties about the results of the appeal proceedings and subsequent legal steps.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6931,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach i kursach dotyczących przepisów prawa budowlanego, procedur administracyjnych oraz standardów jakości obsługi.',
+                    'en' => 'Regularly participating in training and courses on building law regulations, administrative procedures, and service quality standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6932,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych regulacji i zmian w przepisach dotyczących działalności budowlanej.',
+                    'en' => 'Updating knowledge on new regulations and changes in construction activity laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6933,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami ds. budowlanych w celu wymiany doświadczeń i podnoszenia standardów pracy.',
+                    'en' => 'Cooperating with other construction officials to exchange experiences and improve work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $urzednik_ds_udzialania_pozwolen_na_dzialalnosc_gospodarcza = [
+            [
+                'id' => 6934,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie wniosków o wydanie pozwolenia lub licencji na prowadzenie określonego rodzaju działalności gospodarczej.',
+                    'en' => 'Receiving applications for permits or licenses to conduct a specific type of business activity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6935,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja kompletności wniosków, sprawdzanie, czy są poprawnie wypełnione i zawierają wymagane dokumenty.',
+                    'en' => 'Verifying the completeness of applications, ensuring they are correctly filled out and contain required documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6936,
+                'name' => json_encode([
+                    'pl' => 'Rejestrowanie danych wnioskodawców oraz rodzaju działalności w systemie ewidencyjnym.',
+                    'en' => 'Registering applicant data and type of activity in the record system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6937,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy do wniosku dołączono wszystkie wymagane dokumenty, takie jak certyfikaty, referencje, zaświadczenia o niekaralności, itp.',
+                    'en' => 'Checking if all required documents, such as certificates, references, or criminal record certificates, are attached to the application.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6938,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z wnioskodawcami w celu uzupełnienia brakujących informacji lub dokumentów.',
+                    'en' => 'Contacting applicants to provide missing information or documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6939,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o dodatkowych wymaganiach oraz szczegółowych krokach koniecznych do uzyskania zezwolenia.',
+                    'en' => 'Providing information on additional requirements and specific steps necessary for obtaining a permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6940,
+                'name' => json_encode([
+                    'pl' => 'Analiza, czy wnioskodawca spełnia określone przepisami wymagania do uzyskania pozwolenia na dany rodzaj działalności gospodarczej.',
+                    'en' => 'Analyzing if the applicant meets the legal requirements for a particular business activity permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6941,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności działalności gospodarczej z przepisami prawa i wytycznymi dotyczącymi m.in. ochrony środowiska, bezpieczeństwa, warunków sanitarnych.',
+                    'en' => 'Verifying the compliance of business activities with legal regulations and guidelines on environment, safety, and sanitary standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6942,
+                'name' => json_encode([
+                    'pl' => 'Konsultacja z innymi działami lub instytucjami w celu oceny specjalnych wymagań branżowych.',
+                    'en' => 'Consulting with other departments or institutions to assess special industry requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6943,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie decyzji administracyjnych dotyczących przyznania lub odmowy wydania pozwolenia na prowadzenie działalności gospodarczej.',
+                    'en' => 'Preparing administrative decisions to grant or deny business permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6944,
+                'name' => json_encode([
+                    'pl' => 'Informowanie wnioskodawców o podjętej decyzji oraz wyjaśnianie powodów odmowy, jeśli zezwolenie nie zostało przyznane.',
+                    'en' => 'Informing applicants of decisions and explaining reasons for refusal if the permit is not granted.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6945,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie procesu decyzyjnego oraz sporządzanie raportów na temat wydanych pozwoleń.',
+                    'en' => 'Documenting the decision-making process and preparing reports on issued permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6946,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i przetwarzanie wniosków o przedłużenie ważności pozwoleń i licencji na działalność gospodarczą.',
+                    'en' => 'Receiving and processing applications for extension of permits and business licenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6947,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminów ważności licencji i informowanie przedsiębiorców o konieczności ich przedłużenia.',
+                    'en' => 'Monitoring license expiration dates and informing business owners of renewal needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6948,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja danych w systemie ewidencyjnym na podstawie zgłoszonych zmian.',
+                    'en' => 'Updating registry data based on reported changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6949,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i utrzymywanie bazy danych wydanych pozwoleń, licencji oraz koncesji na prowadzenie działalności gospodarczej.',
+                    'en' => 'Creating and maintaining a database of issued business permits, licenses, and concessions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6950,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie wszelkich zmian, takich jak cofnięcia pozwoleń, zmiany danych przedsiębiorców lub zakresu działalności.',
+                    'en' => 'Recording all changes, such as permit revocations, changes in business data or activity scope.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6951,
+                'name' => json_encode([
+                    'pl' => 'Regularna aktualizacja ewidencji i zapewnienie jej zgodności z przepisami prawa.',
+                    'en' => 'Regularly updating records and ensuring their compliance with the law.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6952,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie, czy przedsiębiorcy spełniają warunki przyznanego pozwolenia oraz działają zgodnie z przepisami.',
+                    'en' => 'Monitoring if businesses comply with the conditions of the permit and follow regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6953,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi służbami, takimi jak inspekcja sanitarna, ochrona środowiska, straż pożarna, aby przeprowadzać kontrole na miejscu.',
+                    'en' => 'Collaborating with other agencies like sanitary inspections, environmental protection, and fire service to conduct on-site checks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6954,
+                'name' => json_encode([
+                    'pl' => 'Podejmowanie działań w przypadku wykrycia niezgodności, takich jak zawieszenie lub cofnięcie pozwolenia.',
+                    'en' => 'Taking action in case of non-compliance, such as suspending or revoking the permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6955,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi organami, takimi jak urzędy pracy, policja, straż graniczna, urzędy skarbowe, w celu wymiany informacji.',
+                    'en' => 'Coordinating activities with other agencies, such as labor offices, police, border guard, and tax offices for information sharing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6956,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z instytucjami odpowiedzialnymi za nadzór nad działalnością gospodarczą i kontrolę przestrzegania przepisów.',
+                    'en' => 'Maintaining contact with institutions responsible for supervising business activities and regulatory compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6957,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji o statusie pozwoleń na działalność gospodarczą innym urzędom zgodnie z przepisami.',
+                    'en' => 'Providing information on the status of business permits to other offices in accordance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6958,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów na temat liczby wydanych, odnowionych oraz cofniętych pozwoleń na działalność gospodarczą na potrzeby wewnętrzne i zewnętrzne.',
+                    'en' => 'Preparing reports on the number of issued, renewed, and revoked business permits for internal and external needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6959,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie statystyk dotyczących branżowych trendów, liczby nowych przedsiębiorstw i przestrzegania przepisów.',
+                    'en' => 'Analyzing industry trend statistics, the number of new businesses, and regulatory compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6960,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów i analiz do przełożonych oraz jednostek nadzorczych.',
+                    'en' => 'Submitting reports and analyses to supervisors and oversight units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6961,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie powiadomień do przedsiębiorców o nieprzestrzeganiu warunków określonych w pozwoleniu na działalność gospodarczą.',
+                    'en' => 'Sending notifications to business owners about non-compliance with permit conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6962,
+                'name' => json_encode([
+                    'pl' => 'Nakładanie sankcji administracyjnych, takich jak zawieszenie lub cofnięcie pozwolenia w przypadku rażącego naruszenia przepisów.',
+                    'en' => 'Imposing administrative sanctions, such as suspension or revocation of the permit in cases of severe regulation breaches.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6963,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie podjętych działań i przekazywanie informacji do działu prawnego lub egzekucyjnego, jeśli zachodzi taka potrzeba.',
+                    'en' => 'Documenting actions taken and referring information to the legal or enforcement department as needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6964,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie skarg i wniosków związanych z działalnością przedsiębiorstw, które uzyskały pozwolenie na działalność gospodarczą.',
+                    'en' => 'Receiving complaints and applications related to the activities of businesses holding a business permit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6965,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie postępowań wyjaśniających oraz rozpatrywanie skarg i wniosków zgodnie z procedurami administracyjnymi.',
+                    'en' => 'Conducting explanatory proceedings and reviewing complaints and applications in accordance with administrative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6966,
+                'name' => json_encode([
+                    'pl' => 'Informowanie stron o wynikach postępowania i podjętych działaniach.',
+                    'en' => 'Informing parties about the results of the proceedings and actions taken.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6967,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji wnioskodawcom i przedsiębiorcom na temat przepisów, procedur i wymagań dotyczących pozwoleń na działalność gospodarczą.',
+                    'en' => 'Providing applicants and business owners with information on regulations, procedures, and requirements for business permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6968,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań informacyjnych, szkoleń oraz przygotowywanie broszur, ulotek i materiałów informacyjnych.',
+                    'en' => 'Organizing information sessions, trainings, and preparing brochures, leaflets, and informational materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6969,
+                'name' => json_encode([
+                    'pl' => 'Wyjaśnianie wymogów oraz udzielanie wskazówek dotyczących zgodnego z przepisami prowadzenia działalności gospodarczej.',
+                    'en' => 'Explaining requirements and providing guidance on compliance in business operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6970,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analizy i przygotowywanie decyzji administracyjnych o zawieszeniu lub cofnięciu pozwolenia w przypadku naruszenia przepisów.',
+                    'en' => 'Conducting analysis and preparing administrative decisions to suspend or revoke permits in case of non-compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6971,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o cofnięciu pozwolenia do odpowiednich instytucji nadzorczych i organów kontrolnych.',
+                    'en' => 'Forwarding information on permit revocations to appropriate supervisory and regulatory bodies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6972,
+                'name' => json_encode([
+                    'pl' => 'Informowanie przedsiębiorcy o przyczynach decyzji oraz procedurach odwoławczych.',
+                    'en' => 'Informing business owners of the reasons for decisions and the appeals process.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6973,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie dokumentacji związanej z wydawaniem, odnawianiem oraz cofnięciem pozwoleń na działalność gospodarczą.',
+                    'en' => 'Storing documentation related to issuing, renewing, and revoking business permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6974,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja decyzji administracyjnych, wniosków, korespondencji oraz wyników kontroli zgodnie z przepisami o ochronie danych osobowych.',
+                    'en' => 'Archiving administrative decisions, applications, correspondence, and inspection results in compliance with data protection laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6975,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępu do dokumentacji na potrzeby postępowań odwoławczych lub kontrolnych.',
+                    'en' => 'Providing access to documentation for appeals or audit purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6976,
+                'name' => json_encode([
+                    'pl' => 'Rozpatrywanie odwołań składanych przez przedsiębiorców od decyzji dotyczących pozwoleń na działalność gospodarczą.',
+                    'en' => 'Handling appeals filed by businesses against decisions regarding business permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6977,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie przebiegu postępowań odwoławczych oraz przekazywanie ich do wyższych instancji, jeśli to konieczne.',
+                    'en' => 'Documenting appeal proceedings and escalating them to higher authorities if necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6978,
+                'name' => json_encode([
+                    'pl' => 'Informowanie stron o wynikach postępowania odwoławczego oraz kolejnych krokach prawnych.',
+                    'en' => 'Informing parties about the outcomes of appeal proceedings and subsequent legal steps.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6979,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach i kursach dotyczących przepisów prawa gospodarczego, procedur administracyjnych oraz standardów jakości obsługi.',
+                    'en' => 'Regular participation in training and courses on business law, administrative procedures, and service quality standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6980,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych regulacji i zmian w przepisach dotyczących działalności gospodarczej.',
+                    'en' => 'Updating knowledge on new regulations and changes in business operation laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6981,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami ds. działalności gospodarczej w celu wymiany doświadczeń i podnoszenia standardów pracy.',
+                    'en' => 'Cooperating with other business activity officers to share experiences and improve work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $pozostali_urzednicy_organow_udzielajacych_licencji = [
+            [
+                'id' => 6982,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i rejestrowanie wniosków licencyjnych składanych przez osoby fizyczne lub podmioty gospodarcze.',
+                    'en' => 'Receiving and registering licensing applications submitted by individuals or business entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6983,
+                'name' => json_encode([
+                    'pl' => 'Obsługa dokumentacji związanej z procedurą licencyjną oraz jej archiwizacja zgodnie z przepisami.',
+                    'en' => 'Handling documentation related to the licensing process and archiving it in accordance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6984,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych wnioskodawców oraz szczegółów licencji do systemów informatycznych.',
+                    'en' => 'Entering applicant data and license details into information systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6985,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy wnioskodawcy dostarczyli wszystkie wymagane dokumenty, takie jak certyfikaty, opinie, zaświadczenia i referencje.',
+                    'en' => 'Checking if applicants have provided all required documents, such as certificates, opinions, attestations, and references.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6986,
+                'name' => json_encode([
+                    'pl' => 'Kontakt z wnioskodawcami w celu uzupełnienia brakujących informacji lub dokumentów.',
+                    'en' => 'Contacting applicants to complete missing information or documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6987,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja poprawności formalnej dokumentacji oraz zgłaszanie wszelkich braków do przełożonych.',
+                    'en' => 'Verifying the formal accuracy of documentation and reporting any deficiencies to superiors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6988,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie wstępnych opinii i rekomendacji dotyczących zgodności wniosków z wymaganiami prawnymi.',
+                    'en' => 'Preparing preliminary opinions and recommendations on the compliance of applications with legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6989,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie rekomendacji do wyższych rangą urzędników lub komisji odpowiedzialnych za wydawanie ostatecznych decyzji.',
+                    'en' => 'Forwarding recommendations to senior officials or commissions responsible for making final decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6990,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi działami w celu uzyskania specjalistycznych opinii na temat wymagań licencyjnych.',
+                    'en' => 'Collaborating with other departments to obtain specialized opinions on licensing requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6991,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rejestru wszystkich wydanych, odnowionych, zawieszonych oraz cofniętych licencji.',
+                    'en' => 'Maintaining a register of all issued, renewed, suspended, and revoked licenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6992,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja bazy danych licencjonowanych podmiotów i osób zgodnie z obowiązującymi przepisami.',
+                    'en' => 'Updating the database of licensed entities and individuals in accordance with current regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6993,
+                'name' => json_encode([
+                    'pl' => 'Ewidencjonowanie wszelkich zmian dotyczących licencji, takich jak rozszerzenie zakresu działalności czy zmiana adresu.',
+                    'en' => 'Recording any changes to licenses, such as activity scope expansion or address changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6994,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie, czy posiadacze licencji spełniają warunki określone w przepisach prawa i wydanych pozwoleniach.',
+                    'en' => 'Monitoring license holders’ compliance with the conditions set forth in legal regulations and issued permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6995,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z odpowiednimi instytucjami i służbami, np. policją, inspekcją sanitarną, w celu przeprowadzenia kontroli.',
+                    'en' => 'Collaborating with relevant institutions and services, such as the police and sanitary inspection, to conduct inspections.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6996,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wyników kontroli i przekazywanie informacji o ewentualnych naruszeniach.',
+                    'en' => 'Documenting inspection results and relaying information on any violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6997,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i analizowanie wniosków o przedłużenie lub odnowienie licencji.',
+                    'en' => 'Receiving and analyzing applications for license renewal or extension.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6998,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentacji i decyzji o zawieszeniu lub przedłużeniu licencji zgodnie z przepisami.',
+                    'en' => 'Preparing documentation and decisions on suspending or renewing licenses in accordance with regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6999,
+                'name' => json_encode([
+                    'pl' => 'Informowanie posiadaczy licencji o konieczności przedłużenia licencji przed upływem terminu ważności.',
+                    'en' => 'Informing license holders of the need to renew licenses before expiration.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7000,
+                'name' => json_encode([
+                    'pl' => 'Wymiana informacji z innymi instytucjami, takimi jak urzędy skarbowe, organy ochrony środowiska, inspekcje pracy, które mają związek z działalnością licencjonowaną.',
+                    'en' => 'Exchanging information with other institutions, such as tax offices, environmental protection authorities, and labor inspections related to licensed activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7001,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z jednostkami odpowiedzialnymi za nadzór nad działalnością podlegającą licencjonowaniu.',
+                    'en' => 'Coordinating actions with units responsible for supervising licensed activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7002,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o statusie licencji innym urzędom na ich żądanie.',
+                    'en' => 'Providing information on the status of licenses to other offices upon request.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7003,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i rejestrowanie skarg oraz wniosków dotyczących działań licencjonowanych podmiotów.',
+                    'en' => 'Receiving and registering complaints and requests concerning the activities of licensed entities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7004,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie postępowań wyjaśniających w przypadku zgłoszeń naruszeń warunków licencji.',
+                    'en' => 'Conducting investigative procedures in cases of reported violations of license conditions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7005,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie wyników postępowań odpowiednim służbom lub jednostkom nadzorczym.',
+                    'en' => 'Forwarding the results of proceedings to relevant services or supervisory units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7006,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analizy i przygotowywanie dokumentacji do decyzji o cofnięciu licencji w przypadku rażących naruszeń przepisów.',
+                    'en' => 'Conducting analysis and preparing documentation for the decision to revoke a license in cases of serious violations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7007,
+                'name' => json_encode([
+                    'pl' => 'Informowanie posiadacza licencji o cofnięciu pozwolenia oraz przedstawienie przyczyn tej decyzji.',
+                    'en' => 'Informing the license holder of the revocation of permission and providing reasons for this decision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7008,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie decyzji o cofnięciu licencji do odpowiednich instytucji nadzorczych.',
+                    'en' => 'Forwarding license revocation decisions to appropriate supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7009,
+                'name' => json_encode([
+                    'pl' => 'Wysyłanie powiadomień do licencjonowanych podmiotów o nieprzestrzeganiu warunków licencji i konieczności podjęcia działań naprawczych.',
+                    'en' => 'Sending notifications to licensed entities regarding non-compliance with license conditions and the need for corrective actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7010,
+                'name' => json_encode([
+                    'pl' => 'Nakładanie kar administracyjnych za naruszenia warunków licencji zgodnie z przepisami prawa.',
+                    'en' => 'Imposing administrative penalties for license condition violations in accordance with legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7011,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie działań egzekucyjnych i przekazywanie informacji do działu prawnego lub egzekucyjnego.',
+                    'en' => 'Documenting enforcement actions and relaying information to the legal or enforcement department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7012,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji licencjobiorcom na temat ich praw i obowiązków związanych z posiadaniem licencji.',
+                    'en' => 'Providing information to license holders about their rights and obligations associated with holding a license.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7013,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań informacyjnych, szkoleń oraz tworzenie materiałów edukacyjnych, takich jak ulotki, broszury i przewodniki.',
+                    'en' => 'Organizing informational meetings, training sessions, and creating educational materials such as leaflets, brochures, and guides.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7014,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie odpowiedzi na pytania dotyczące warunków licencyjnych oraz wymagań związanych z prowadzoną działalnością.',
+                    'en' => 'Answering questions about licensing conditions and requirements related to the licensed activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7015,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie okresowych raportów na temat liczby wydanych, zawieszonych oraz cofniętych licencji.',
+                    'en' => 'Preparing periodic reports on the number of issued, suspended, and revoked licenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7016,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie raportów i zestawień do kierownictwa oraz odpowiednich jednostek nadzorczych.',
+                    'en' => 'Sending reports and summaries to management and relevant supervisory units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7017,
+                'name' => json_encode([
+                    'pl' => 'Analizowanie danych dotyczących zgodności działalności licencjonowanej z przepisami i proponowanie usprawnień.',
+                    'en' => 'Analyzing data on the compliance of licensed activities with regulations and suggesting improvements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7018,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie dokumentacji związanej z wydawaniem, odnawianiem, zawieszaniem i cofnięciem licencji.',
+                    'en' => 'Storing documentation related to the issuance, renewal, suspension, and revocation of licenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7019,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja decyzji, wniosków, korespondencji oraz wyników kontroli zgodnie z przepisami o ochronie danych osobowych.',
+                    'en' => 'Archiving decisions, applications, correspondence, and inspection results in accordance with data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7020,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępu do dokumentacji na potrzeby postępowań kontrolnych i odwoławczych.',
+                    'en' => 'Providing access to documentation for inspection and appeal procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7021,
+                'name' => json_encode([
+                    'pl' => 'Rejestrowanie i rozpatrywanie odwołań składanych przez wnioskodawców lub licencjobiorców od decyzji o odmowie wydania lub cofnięcia licencji.',
+                    'en' => 'Registering and reviewing appeals submitted by applicants or license holders against decisions to refuse or revoke licenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7022,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie odwołań do wyższych instancji administracyjnych w razie potrzeby.',
+                    'en' => 'Referring appeals to higher administrative authorities when necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7023,
+                'name' => json_encode([
+                    'pl' => 'Informowanie stron o wynikach postępowań odwoławczych oraz ich prawach do dalszych działań.',
+                    'en' => 'Informing parties of the outcomes of appeal proceedings and their rights to further action.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7024,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie decyzji administracyjnych w przypadku zmiany zakresu działalności lub innych istotnych zmian wymagających aktualizacji licencji.',
+                    'en' => 'Drafting administrative decisions in the event of a change in business scope or other significant changes requiring license updates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7025,
+                'name' => json_encode([
+                    'pl' => 'Informowanie licencjobiorców o wymaganych procedurach związanych ze zmianami w licencji.',
+                    'en' => 'Notifying license holders of required procedures related to license changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7026,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o zmianach w licencjach do innych jednostek nadzorczych.',
+                    'en' => 'Providing information on license changes to other supervisory units.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7027,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach dotyczących przepisów prawa licencyjnego oraz procedur administracyjnych.',
+                    'en' => 'Regularly attending training on licensing law regulations and administrative procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7028,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat zmian w przepisach dotyczących działalności licencjonowanej.',
+                    'en' => 'Keeping updated on changes in regulations related to licensed activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7029,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi urzędnikami organów udzielających licencji w celu wymiany doświadczeń i podnoszenia standardów obsługi.',
+                    'en' => 'Collaborating with other licensing officials to exchange experiences and improve service standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $pracownik_zarzadzania_kryzysowego = [
+            [
+                'id' => 7030,
+                'name' => json_encode([
+                    'pl' => 'Identyfikacja potencjalnych zagrożeń, takich jak klęski żywiołowe, awarie techniczne, zagrożenia biologiczne, chemiczne i radiacyjne.',
+                    'en' => 'Identification of potential threats, such as natural disasters, technical failures, biological, chemical, and radiation hazards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7031,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analizy ryzyka oraz oceny jego potencjalnego wpływu na społeczność i infrastrukturę.',
+                    'en' => 'Conducting risk analysis and assessing its potential impact on the community and infrastructure.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7032,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów i prognoz na temat zagrożeń oraz ich możliwego wpływu na organizację lub społeczność lokalną.',
+                    'en' => 'Creating reports and forecasts on threats and their possible impact on the organization or local community.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7033,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizacja planów reagowania kryzysowego, obejmujących zasady i procedury postępowania w sytuacjach nadzwyczajnych.',
+                    'en' => 'Developing and updating crisis response plans, including principles and procedures for emergency situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7034,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie szczegółowych planów ewakuacji, zabezpieczeń infrastruktury oraz organizacji pomocy poszkodowanym.',
+                    'en' => 'Preparing detailed evacuation plans, infrastructure protection, and organizing assistance for victims.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7035,
+                'name' => json_encode([
+                    'pl' => 'Określanie zasobów, środków i procedur potrzebnych do skutecznego zarządzania kryzysowego.',
+                    'en' => 'Determining resources, means, and procedures necessary for effective crisis management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7036,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i nadzorowanie działań ratowniczych, takich jak ewakuacja, akcje ratunkowe, pomoc medyczna i wsparcie psychologiczne.',
+                    'en' => 'Organizing and supervising rescue operations such as evacuation, rescue actions, medical assistance, and psychological support.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7037,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi służbami, takimi jak straż pożarna, policja, pogotowie ratunkowe i wojsko w celu koordynacji działań.',
+                    'en' => 'Cooperating with other services, such as fire brigade, police, emergency services, and military, to coordinate actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7038,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnej komunikacji między wszystkimi jednostkami zaangażowanymi w akcję ratunkową.',
+                    'en' => 'Ensuring efficient communication between all units involved in the rescue operation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7039,
+                'name' => json_encode([
+                    'pl' => 'Bieżące monitorowanie zagrożeń, takich jak warunki pogodowe, sytuacja epidemiologiczna czy stan infrastruktury.',
+                    'en' => 'Ongoing monitoring of threats such as weather conditions, epidemiological situations, and infrastructure status.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7040,
+                'name' => json_encode([
+                    'pl' => 'Uruchamianie systemów ostrzegania i alarmowania społeczeństwa o nadchodzących zagrożeniach.',
+                    'en' => 'Activating warning systems to alert the public about upcoming threats.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7041,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie jasnych instrukcji i informacji o działaniach, jakie powinni podjąć mieszkańcy, aby zwiększyć swoje bezpieczeństwo.',
+                    'en' => 'Providing clear instructions and information on actions residents should take to increase their safety.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7042,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń oraz ćwiczeń dla pracowników, służb ratowniczych i społeczności lokalnej w celu podniesienia gotowości na sytuacje kryzysowe.',
+                    'en' => 'Organizing training and drills for employees, rescue services, and the local community to increase readiness for crisis situations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7043,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie symulacji sytuacji kryzysowych, takich jak ewakuacje, akcje ratunkowe i udzielanie pierwszej pomocy.',
+                    'en' => 'Conducting simulations of crisis situations such as evacuations, rescue operations, and first aid provision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7044,
+                'name' => json_encode([
+                    'pl' => 'Ocenianie wyników ćwiczeń oraz wprowadzanie usprawnień do planów zarządzania kryzysowego na podstawie wyciągniętych wniosków.',
+                    'en' => 'Evaluating exercise outcomes and implementing improvements in crisis management plans based on lessons learned.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7045,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie kampanii edukacyjnych na temat zagrożeń, zasad postępowania oraz procedur ewakuacyjnych.',
+                    'en' => 'Conducting educational campaigns on threats, safety procedures, and evacuation protocols.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7046,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów informacyjnych, takich jak broszury, poradniki i ulotki dla mieszkańców.',
+                    'en' => 'Creating informational materials such as brochures, guides, and leaflets for residents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7047,
+                'name' => json_encode([
+                    'pl' => 'Edukacja społeczności lokalnej w zakresie przygotowania na kryzysy oraz promowanie postaw proaktywnych w zakresie bezpieczeństwa.',
+                    'en' => 'Educating the local community on crisis preparedness and promoting proactive attitudes towards safety.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],[
+                'id' => 7048,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rejestru dostępnych zasobów i środków, takich jak schroniska, zasoby wodne, żywnościowe, medyczne i transportowe.',
+                    'en' => 'Maintaining a register of available resources and supplies, such as shelters, water, food, medical supplies, and transport resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7049,
+                'name' => json_encode([
+                    'pl' => 'Regularna aktualizacja baz danych zasobów oraz kontaktów do kluczowych osób i jednostek zaangażowanych w zarządzanie kryzysowe.',
+                    'en' => 'Regularly updating databases of resources and contacts for key individuals and units involved in crisis management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7050,
+                'name' => json_encode([
+                    'pl' => 'Identyfikowanie braków w zasobach i zgłaszanie ich do wyższych instancji w celu zapewnienia odpowiednich środków na wypadek kryzysu.',
+                    'en' => 'Identifying resource gaps and reporting them to higher authorities to ensure appropriate provisions for crises.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7051,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z samorządami, organizacjami pozarządowymi, instytucjami rządowymi oraz innymi służbami odpowiedzialnymi za zarządzanie kryzysowe.',
+                    'en' => 'Collaborating with local governments, NGOs, government agencies, and other services responsible for crisis management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7052,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w programach międzyinstytucjonalnych oraz wymiana informacji o zagrożeniach i środkach zaradczych.',
+                    'en' => 'Participating in interagency programs and exchanging information on threats and countermeasures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7053,
+                'name' => json_encode([
+                    'pl' => 'Współpraca międzynarodowa w zakresie wymiany doświadczeń i wdrażania najlepszych praktyk.',
+                    'en' => 'Engaging in international cooperation for experience sharing and implementing best practices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7054,
+                'name' => json_encode([
+                    'pl' => 'Opracowanie strategii komunikacyjnej na wypadek kryzysu, w tym przygotowanie informacji do mediów i kanałów społecznościowych.',
+                    'en' => 'Developing a communication strategy for crisis situations, including preparing information for media and social channels.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7055,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja z rzecznikiem prasowym oraz przedstawicielami mediów w celu zapewnienia spójnego i rzetelnego przekazu.',
+                    'en' => 'Coordinating with spokespersons and media representatives to ensure consistent and reliable messaging.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7056,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji w sposób szybki i zrozumiały, aby zminimalizować panikę oraz pomóc w szybkim podejmowaniu decyzji przez mieszkańców.',
+                    'en' => 'Providing information quickly and clearly to minimize panic and help residents make timely decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7057,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie szczegółowych procedur awaryjnych na wypadek różnych sytuacji kryzysowych, takich jak pożary, powodzie, awarie infrastruktury.',
+                    'en' => 'Developing detailed emergency procedures for various crisis scenarios, such as fires, floods, and infrastructure failures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7058,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie procedur do specyficznych potrzeb lokalnych i rodzajów zagrożeń.',
+                    'en' => 'Tailoring procedures to specific local needs and types of threats.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7059,
+                'name' => json_encode([
+                    'pl' => 'Przegląd i aktualizacja procedur awaryjnych w oparciu o zmieniające się warunki i nowe technologie.',
+                    'en' => 'Reviewing and updating emergency procedures based on changing conditions and new technologies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7060,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad stanem technicznym obiektów ochrony zbiorowej, takich jak schrony, miejsca ewakuacji oraz punkty pierwszej pomocy.',
+                    'en' => 'Overseeing the technical condition of collective protection facilities, such as shelters, evacuation sites, and first aid stations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7061,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności i odpowiedniego wyposażenia infrastruktury, np. dostępu do czystej wody, żywności, leków oraz podstawowych materiałów.',
+                    'en' => 'Ensuring the availability and proper equipment of infrastructure, such as access to clean water, food, medicine, and essential materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7062,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja rozmieszczenia infrastruktury kryzysowej oraz kontrola stanu magazynów zapasowych.',
+                    'en' => 'Coordinating the placement of crisis infrastructure and monitoring the status of supply warehouses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7063,
+                'name' => json_encode([
+                    'pl' => 'Organizacja pomocy humanitarnej, w tym dostarczanie żywności, wody, odzieży, leków i innych potrzebnych materiałów.',
+                    'en' => 'Organizing humanitarian aid, including the delivery of food, water, clothing, medicine, and other essential materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7064,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja z organizacjami humanitarnymi w celu dostarczenia pomocy osobom poszkodowanym.',
+                    'en' => 'Coordinating with humanitarian organizations to provide aid to affected individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7065,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad logistyką, aby zapewnić ciągłość dostaw i dystrybucji zasobów w sytuacji kryzysowej.',
+                    'en' => 'Overseeing logistics to ensure continuous supply and distribution of resources during a crisis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7066,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analiz i ocen działań podjętych w trakcie kryzysu oraz ich efektywności.',
+                    'en' => 'Conducting analyses and assessments of actions taken during the crisis and evaluating their effectiveness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7067,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie przebiegu akcji ratowniczych oraz działań pomocowych w celu wyciągnięcia wniosków na przyszłość.',
+                    'en' => 'Documenting the course of rescue operations and assistance activities to draw lessons for the future.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7068,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów i wniosków z działań kryzysowych na potrzeby kierownictwa oraz instytucji nadzorczych.',
+                    'en' => 'Preparing reports and recommendations from crisis activities for management and supervisory institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7069,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie planów odbudowy uszkodzonej infrastruktury i przywracania normalnych warunków po zakończeniu sytuacji kryzysowej.',
+                    'en' => 'Developing plans to rebuild damaged infrastructure and restore normal conditions after a crisis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7070,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi władzami oraz inwestorami w zakresie odbudowy i zabezpieczania miejsc dotkniętych kryzysem.',
+                    'en' => 'Cooperating with local authorities and investors to rebuild and secure areas affected by the crisis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7071,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie procesu odbudowy, aby zapewnić, że jest on zgodny z planami i uwzględnia potrzebę zapobiegania przyszłym kryzysom.',
+                    'en' => 'Monitoring the rebuilding process to ensure alignment with plans and incorporating measures to prevent future crises.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7072,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie danych na temat strat materialnych, liczby osób poszkodowanych oraz skali zniszczeń po zakończeniu sytuacji kryzysowej.',
+                    'en' => 'Collecting data on material losses, the number of affected individuals, and the scale of damage after the crisis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7073,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie analiz mających na celu poprawę planów zarządzania kryzysowego oraz minimalizację ryzyka w przyszłości.',
+                    'en' => 'Conducting analyses to improve crisis management plans and minimize future risks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7074,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie zebranych informacji do budowania bazy wiedzy i lepszego przygotowania na przyszłe kryzysy.',
+                    'en' => 'Using gathered information to build a knowledge base and improve preparedness for future crises.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7075,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach oraz kursach dotyczących zarządzania kryzysowego, ochrony ludności, ratownictwa i procedur awaryjnych.',
+                    'en' => 'Regularly participating in training and courses on crisis management, civil protection, rescue, and emergency procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7076,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych technologii i najlepszych praktyk w zakresie zarządzania kryzysowego.',
+                    'en' => 'Updating knowledge on new technologies and best practices in crisis management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7077,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi specjalistami ds. zarządzania kryzysowego w celu wymiany doświadczeń i podnoszenia standardów pracy.',
+                    'en' => 'Collaborating with other crisis management specialists to share experiences and raise work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+
+
+
+
+
 
         DB::table('detail_projects')->insert(array_merge(
                 $DYREKTORDOSPRAWADMINISTRACYJNYCH,
@@ -28245,7 +38424,31 @@ class DetailProjectAdministacjaSeeder extends Seeder
                 $PRACOWNIK_DO_SPRAW_SOCJALNYCH,
                 $POZOSTALI_PRACOWNICY_DZIAŁÓW_KADR,
                 $SPECJALISTA_DO_SPRAW_DOSKONALENIA_ORGANIZACJI,
-                $POZOSTALI_SPECJALIŚCI_DO_SPRAW_ZARZĄDZANIA_I_ORGANIZACJI
+                $POZOSTALI_SPECJALIŚCI_DO_SPRAW_ZARZĄDZANIA_I_ORGANIZACJI,
+                $specjalista_administracji_publicznej,
+                $specjalista_do_spraw_integracji_europejskiej,
+                $pozostali_specjalisci_do_spraw_administracji_i_rozwoju,
+                $inspektor_kontroli_skarbowej,
+                $inspektor_nadzoru_bankowego,
+                $inspektor_ochrony_danych_osobowych,
+                $inspektor_rybolowstwa_morskiego,
+                $inspektor_pracy,
+                $kontroler_panstwowy,
+                $specjalista_zamowien_publicznych,
+                $specjalista_organizacji_zarzadzania_ochrony_zdrowia,
+                $inspektor_obrony_cywilnej,
+                $kontroler_rozliczen_podatkowych,
+                $rewident_kontroli_skarbowej,
+                $urzędnik_podatkowy,
+                $pozostali_urzednicy_do_spraw_podatkow,
+                $urzednik_ubezpieczen_spolecznych,
+                $pozostali_urzednicy_ds_swiadczen_spolecznych,
+                $urzędnik_do_spraw_licencji,
+                $urzędnik_do_spraw_paszportów,
+                $urzednik_ds_udzialania_pozwolen_na_budowe,
+                $urzednik_ds_udzialania_pozwolen_na_dzialalnosc_gospodarcza,
+                $pozostali_urzednicy_organow_udzielajacych_licencji,
+                $pracownik_zarzadzania_kryzysowego
             ));
 
         Category::whereId('120')->first()->detailprojects()->attach(collect($DYREKTORDOSPRAWADMINISTRACYJNYCH)->pluck('id')->toArray());
@@ -28321,5 +38524,29 @@ class DetailProjectAdministacjaSeeder extends Seeder
         Category::whereId('202')->first()->detailprojects()->attach(collect($POZOSTALI_PRACOWNICY_DZIAŁÓW_KADR)->pluck('id')->toArray());
         Category::whereId('203')->first()->detailprojects()->attach(collect($SPECJALISTA_DO_SPRAW_DOSKONALENIA_ORGANIZACJI)->pluck('id')->toArray());
         Category::whereId('204')->first()->detailprojects()->attach(collect($POZOSTALI_SPECJALIŚCI_DO_SPRAW_ZARZĄDZANIA_I_ORGANIZACJI)->pluck('id')->toArray());
+        Category::whereId('206')->first()->detailprojects()->attach(collect($specjalista_administracji_publicznej)->pluck('id')->toArray());
+        Category::whereId('207')->first()->detailprojects()->attach(collect($specjalista_do_spraw_integracji_europejskiej)->pluck('id')->toArray());
+        Category::whereId('208')->first()->detailprojects()->attach(collect($pozostali_specjalisci_do_spraw_administracji_i_rozwoju)->pluck('id')->toArray());
+        Category::whereId('209')->first()->detailprojects()->attach(collect($inspektor_kontroli_skarbowej)->pluck('id')->toArray());
+        Category::whereId('210')->first()->detailprojects()->attach(collect($inspektor_nadzoru_bankowego)->pluck('id')->toArray());
+        Category::whereId('211')->first()->detailprojects()->attach(collect($inspektor_ochrony_danych_osobowych)->pluck('id')->toArray());
+        Category::whereId('212')->first()->detailprojects()->attach(collect($inspektor_rybolowstwa_morskiego)->pluck('id')->toArray());
+        Category::whereId('213')->first()->detailprojects()->attach(collect($inspektor_pracy)->pluck('id')->toArray());
+        Category::whereId('214')->first()->detailprojects()->attach(collect($kontroler_panstwowy)->pluck('id')->toArray());
+        Category::whereId('215')->first()->detailprojects()->attach(collect($specjalista_zamowien_publicznych)->pluck('id')->toArray());
+        Category::whereId('216')->first()->detailprojects()->attach(collect($specjalista_organizacji_zarzadzania_ochrony_zdrowia)->pluck('id')->toArray());
+        Category::whereId('217')->first()->detailprojects()->attach(collect($inspektor_obrony_cywilnej)->pluck('id')->toArray());
+        Category::whereId('219')->first()->detailprojects()->attach(collect($kontroler_rozliczen_podatkowych)->pluck('id')->toArray());
+        Category::whereId('220')->first()->detailprojects()->attach(collect($rewident_kontroli_skarbowej)->pluck('id')->toArray());
+        Category::whereId('221')->first()->detailprojects()->attach(collect($urzędnik_podatkowy)->pluck('id')->toArray());
+        Category::whereId('222')->first()->detailprojects()->attach(collect($pozostali_urzednicy_do_spraw_podatkow)->pluck('id')->toArray());
+        Category::whereId('224')->first()->detailprojects()->attach(collect($urzednik_ubezpieczen_spolecznych)->pluck('id')->toArray());
+        Category::whereId('225')->first()->detailprojects()->attach(collect($pozostali_urzednicy_ds_swiadczen_spolecznych)->pluck('id')->toArray());
+        Category::whereId('227')->first()->detailprojects()->attach(collect($urzędnik_do_spraw_licencji)->pluck('id')->toArray());
+        Category::whereId('228')->first()->detailprojects()->attach(collect($urzędnik_do_spraw_paszportów)->pluck('id')->toArray());
+        Category::whereId('229')->first()->detailprojects()->attach(collect($urzednik_ds_udzialania_pozwolen_na_budowe)->pluck('id')->toArray());
+        Category::whereId('230')->first()->detailprojects()->attach(collect($urzednik_ds_udzialania_pozwolen_na_dzialalnosc_gospodarcza)->pluck('id')->toArray());
+        Category::whereId('231')->first()->detailprojects()->attach(collect($pozostali_urzednicy_organow_udzielajacych_licencji)->pluck('id')->toArray());
+        Category::whereId('232')->first()->detailprojects()->attach(collect($pracownik_zarzadzania_kryzysowego)->pluck('id')->toArray());
     }
 }

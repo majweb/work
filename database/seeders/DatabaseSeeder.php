@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             EducationSeeder::class,
             DetailProjectHandelSeeder::class,
             DetailProjectAdministacjaSeeder::class,
+            DetailProjectAdministacja2Seeder::class,
         ]);
 
     }
