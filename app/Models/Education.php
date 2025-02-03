@@ -15,6 +15,9 @@ class Education extends Model
     protected $fillable = [
         'name'
     ];
+    protected $casts = [
+        'name' => 'array',
+    ];
     protected $table = 'education';
 
     public array $translatable = ['name'];

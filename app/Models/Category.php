@@ -21,12 +21,6 @@ class Category extends Model
         'title' => 'array',
         'slug' => 'array',
     ];
-
-    public function titles(): HasMany
-    {
-        return $this->hasMany(Title::class);
-    }
-
     public function detailprojects()
     {
         return $this->belongsToMany(DetailProject::class,'category_detailproject');

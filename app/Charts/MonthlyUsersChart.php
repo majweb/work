@@ -17,7 +17,7 @@ class MonthlyUsersChart
             ->setHeight(200)
             ->setWidth(500)
             ->setColors(['#00a0e3', '#e31e24'])
-            ->setLabels([__('auth.activeRecruits'), __('auth.notActiveRecruits')])
+            ->setLabels([__('translate.activeRecruits'), __('translate.notActiveRecruits')])
             ->toVue();
     }
 }

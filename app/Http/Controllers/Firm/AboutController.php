@@ -43,7 +43,7 @@ class AboutController extends Controller
             'annual_turnover'=>$request->aboutData()['annual_turnover'],
             'video'=>$request->video && isset($path) ? $path : Auth::user()->firm->video
         ]);
-        session()->flash('flash.banner', __('auth.dataUpdated'));
+        session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->back();
     }

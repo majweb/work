@@ -52,21 +52,21 @@ class UpdateArticleRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'sections.required' => __('auth.addSection'),
-            'sections.*.title.required' => __('auth.addSectionTitle'),
-            'sections.*.title.distinct' => __('auth.addSectionTitleDistinct'),
-            'sections.*.title.max' => __('auth.addSectionTitleMax'),
-            'sections.*.description.required' => __('auth.addSectionDescription'),
-            'sections.*.description.max' => __('auth.addSectionDescriptionMax')
+            'sections.required' => __('translate.addSection'),
+            'sections.*.title.required' => __('translate.addSectionTitle'),
+            'sections.*.title.distinct' => __('translate.addSectionTitleDistinct'),
+            'sections.*.title.max' => __('translate.addSectionTitleMax'),
+            'sections.*.description.required' => __('translate.addSectionDescription'),
+            'sections.*.description.max' => __('translate.addSectionDescriptionMax')
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'title' => strtolower(__('auth.title')),
-            'content' => strtolower(__('auth.content')),
-            'lang' => strtolower(__('auth.language')),
+            'title' => strtolower(__('translate.title')),
+            'content' => strtolower(__('translate.content')),
+            'lang' => strtolower(__('translate.language')),
 
         ];
     }

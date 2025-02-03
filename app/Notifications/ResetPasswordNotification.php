@@ -76,11 +76,11 @@ class ResetPasswordNotification extends Notification
     protected function buildMailMessage($url)
     {
         return (new MailMessage)
-            ->subject(__('auth.resetTitle'))
-            ->line(__('auth.resetContent'))
-            ->action(__('auth.resetTitle'), $url)
-            ->line(__('auth.resetEmailExpire', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
-            ->line(__('auth.resetEmailRequest'));
+            ->subject(__('translate.resetTitle'))
+            ->line(__('translate.resetContent'))
+            ->action(__('translate.resetTitle'), $url)
+            ->line(__('translate.resetEmailExpire', ['count' => config('translate.passwords.'.config('translate.defaults.passwords').'.expire')]))
+            ->line(__('translate.resetEmailRequest'));
     }
 
     /**

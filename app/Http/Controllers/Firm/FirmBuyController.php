@@ -17,7 +17,7 @@ class FirmBuyController extends Controller
         Auth::user()->firm()->update([
             'currency'=>$request->currencyData()['currency'],
         ]);
-        session()->flash('flash.banner', __('auth.dataUpdated'));
+        session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->back();
     }

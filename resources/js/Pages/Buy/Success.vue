@@ -10,10 +10,10 @@ let points  = computed(()=>{
 
 </script>
 <template>
-    <AppLayout :title="__('auth.buy')">
+    <AppLayout :title="__('translate.buy')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{__('auth.congratulations')}}
+                {{__('translate.congratulations')}}
             </h2>
         </template>
         <div class="py-12">
@@ -25,10 +25,10 @@ let points  = computed(()=>{
                             <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
                                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                                     <div class="flex flex-col justify-center items-center">
-                                        <h2 class="text-xl font-semibold my-2">{{__('auth.orderPay')}}</h2>
-                                        <p class="text-md mb-3">{{__('auth.give')}} <span class="font-bold">{{points}}</span> {{__('auth.points')}}</p>
-                                        <Link :href="route('invoices.index')" class="mb-2 inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">{{__('auth.Invoices')}}</Link>
-                                        <Link :href="route('orders.index')" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">{{__('auth.Orders')}}</Link>
+                                        <h2 class="text-xl font-semibold my-2">{{__('translate.orderPay')}}</h2>
+                                        <p class="text-md mb-3">{{__('translate.give')}} <span class="font-bold">{{points}}</span> {{__('translate.points')}}</p>
+                                        <Link :href="route('invoices.index')" class="mb-2 inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">{{__('translate.Invoices')}}</Link>
+                                        <Link :href="route('orders.index')" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">{{__('translate.Orders')}}</Link>
                                     </div>
                                 </div>
                             </div>

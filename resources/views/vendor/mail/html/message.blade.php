@@ -21,7 +21,7 @@
 {{-- Footer --}}
 <x-slot:footer>
 <x-mail::footer>
-© {{ date('Y') }} {{ config('app.name') }}. {{ __('auth.rights') }}
+© {{ date('Y') }} {{ config('app.name') }}. {{ __('translate.rights') }}
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

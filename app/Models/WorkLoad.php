@@ -17,6 +17,11 @@ class WorkLoad extends Model
         'name'
     ];
 
+    protected $casts = [
+        'name' => 'array'
+    ];
+
+
     public array $translatable = ['name'];
 
     public function project(): BelongsTo

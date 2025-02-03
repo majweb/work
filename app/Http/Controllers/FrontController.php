@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FrontArticleResource;
 use App\Models\Article;
+use App\Models\Project;
 
 class FrontController extends Controller
 {
@@ -13,6 +14,27 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Articles', [
             'articles' => $articles,
+        ]);
+    }
+
+    public function projects()
+    {
+        $projects = Project::paginate(10)->withQueryString();
+
+        $data = [
+                'title'=>[
+                    'pl'=>'tytuł',
+                    'en'=>'title',
+                ],
+                'mother'=>[
+                    'pl'=>'mama',
+                    'en'=>'mother',
+                ]
+        ];
+
+        return inertia()->render('Front/Projects', [
+            'projects' => $projects,
+            'data' => $data,
         ]);
     }
 

@@ -29,7 +29,7 @@ const submit = () => {
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{__('auth.forgottext')}}
+            {{__('translate.forgottext')}}
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -38,7 +38,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" :value="__('auth.email')" />
+                <InputLabel for="email" :value="__('translate.email')" />
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -53,13 +53,13 @@ const submit = () => {
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
 
-                    {{__('auth.emailresetlink')}}
+                    {{__('translate.emailresetlink')}}
                 </PrimaryButton>
                 <Link
                     :href="route('front')"
                     class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2"
                 >
-                    {{__('auth.back')}}
+                    {{__('translate.back')}}
                 </Link>
             </div>
         </form>

@@ -61,57 +61,57 @@ const logout = () => {
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    {{__('auth.dashboard')}}
+                                    {{__('translate.dashboard')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('recruits.index')" :active="route().current('recruits.index')">
-                                    {{__('auth.recruits')}}
+                                    {{__('translate.recruits')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('aplications.index')" :active="route().current('aplications.index')">
-                                    {{__('auth.aplications')}}
+                                    {{__('translate.aplications')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('projects.index')" :active="route().current('projects.index')">
-                                    {{__('auth.projects')}}
+                                    {{__('translate.projects')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
                                 <NavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">
-                                    {{__('auth.projects')}}
+                                    {{__('translate.projects')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('statistics.index')" :active="route().current('statistics.index')">
-                                    {{__('auth.statistics')}}
+                                    {{__('translate.statistics')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('invoices.index')" :active="route().current('invoices.index')">
-                                    {{__('auth.invoices')}}
+                                    {{__('translate.invoices')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('orders.index')" :active="route().current('orders.index')">
-                                    {{__('auth.orders')}}
+                                    {{__('translate.orders')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('buy.index')" :active="route().current('buy.index')">
-                                    {{__('auth.buy')}}
+                                    {{__('translate.buy')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('points.index')" :active="route().current('points.index')">
-                                    {{__('auth.points')}}
+                                    {{__('translate.points')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('articles.index')" :active="route().current('articles.index')">
-                                    {{__('auth.articles')}}
+                                    {{__('translate.articles')}}
                                 </NavLink>
                             </div>
                         </div>
@@ -209,9 +209,9 @@ const logout = () => {
                                                 </div>
                                             </div>
                                             <div class="flex items-center justify-end mt-2 bg-blue-work-100 font-bold pr-1">
-                                            {{__('auth.sum')}}: {{countTotal}} {{currency}}
+                                            {{__('translate.sum')}}: {{countTotal}} {{currency}}
                                             </div>
-                                            <Link :href="route('buy.detail')" class="flex items-center  justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">{{__('auth.cart')}}</Link>
+                                            <Link :href="route('buy.detail')" class="flex items-center  justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">{{__('translate.cart')}}</Link>
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -239,11 +239,11 @@ const logout = () => {
                                     <template #content>
                                         <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{__('auth.ManageAccount')}}
+                                            {{__('translate.ManageAccount')}}
                                         </div>
 
                                         <DropdownLink :href="route('profile.show')">
-                                            {{__('auth.Profile')}}
+                                            {{__('translate.Profile')}}
                                         </DropdownLink>
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
                                             API Tokens
@@ -251,13 +251,13 @@ const logout = () => {
 
                                         <div class="border-t border-gray-200" />
                                         <DropdownLink :href="route('front')">
-                                            {{__('auth.frontPage')}}
+                                            {{__('translate.frontPage')}}
                                         </DropdownLink>
                                         <div class="border-t border-gray-200" />
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
                                             <DropdownLink as="button">
-                                                {{__('auth.logout')}}
+                                                {{__('translate.logout')}}
                                             </DropdownLink>
                                         </form>
                                     </template>
@@ -298,31 +298,31 @@ const logout = () => {
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            {{__('auth.dashboard')}}
+                            {{__('translate.dashboard')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('recruits.index')" :active="route().current('recruits.index')" v-if="hasRole('firm')">
-                            {{__('auth.recruits')}}
+                            {{__('translate.recruits')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('aplications.index')" :active="route().current('aplications.index')" v-if="hasRole('firm')">
-                            {{__('auth.aplications')}}
+                            {{__('translate.aplications')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')" v-if="hasRole('firm')">
-                            {{__('auth.projects')}}
+                            {{__('translate.projects')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('statistics.index')" :active="route().current('statistics.index')" v-if="hasRole('firm')">
-                            {{__('auth.statistics')}}
+                            {{__('translate.statistics')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('invoices.index')" :active="route().current('invoices.index')" v-if="hasRole('firm')">
-                            {{__('auth.invoices')}}
+                            {{__('translate.invoices')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('orders.index')" :active="route().current('orders.index')" v-if="hasRole('firm')">
-                            {{__('auth.orders')}}
+                            {{__('translate.orders')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('buy.index')" :active="route().current('buy.index')" v-if="hasRole('firm')">
-                            {{__('auth.buy')}}
+                            {{__('translate.buy')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')" v-if="hasRole('firm')">
-                            {{__('auth.articles')}}
+                            {{__('translate.articles')}}
                         </ResponsiveNavLink>
                     </div>
                     <!-- Responsive Settings Options -->

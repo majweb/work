@@ -60,17 +60,17 @@ const removeElement = (index, array) => {
 <template>
     <FormSection @submitted="updateProfileFirm">
         <template #title>
-            {{ __('auth.Firm') }}
+            {{ __('translate.Firm') }}
         </template>
 
         <template #description>
-            {{ __('auth.FirmDescription') }}
+            {{ __('translate.FirmDescription') }}
         </template>
 
         <template #form>
             <!-- NIP -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="nip" :value="__('auth.nip')"/>
+                <InputLabel for="nip" :value="__('translate.nip')"/>
                 <TextInput
                     id="nip"
                     v-model="form.nip"
@@ -82,7 +82,7 @@ const removeElement = (index, array) => {
 
             <!-- REGON -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="regon" :value="__('auth.regon')"/>
+                <InputLabel for="regon" :value="__('translate.regon')"/>
                 <TextInput
                     id="regon"
                     v-model="form.regon"
@@ -94,7 +94,7 @@ const removeElement = (index, array) => {
 
             <!-- STREET -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="street" :value="__('auth.Street')"/>
+                <InputLabel for="street" :value="__('translate.Street')"/>
                 <TextInput
                     id="street"
                     v-model="form.street"
@@ -106,7 +106,7 @@ const removeElement = (index, array) => {
 
             <!-- NUMBER -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="number" :value="__('auth.Number')"/>
+                <InputLabel for="number" :value="__('translate.Number')"/>
                 <TextInput
                     id="number"
                     v-model="form.number"
@@ -118,7 +118,7 @@ const removeElement = (index, array) => {
 
             <!-- CITY -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="city" :value="__('auth.City')"/>
+                <InputLabel for="city" :value="__('translate.City')"/>
                 <TextInput
                     id="city"
                     v-model="form.city"
@@ -130,7 +130,7 @@ const removeElement = (index, array) => {
 
             <!-- POSTAL -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="postal" :value="__('auth.Postal')"/>
+                <InputLabel for="postal" :value="__('translate.Postal')"/>
                 <TextInput
                     id="postal"
                     v-model="form.postal"
@@ -142,7 +142,7 @@ const removeElement = (index, array) => {
 
             <!-- COUNTRY -->
             <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="country" :value="__('auth.Country')"/>
+                <InputLabel for="country" :value="__('translate.Country')"/>
                 <TextInput
                     id="country"
                     v-model="form.country"
@@ -154,12 +154,12 @@ const removeElement = (index, array) => {
 
             <div class="col-span-6 sm:col-span-2 flex items-center">
                 <Checkbox v-model:checked="form.invoice_same" id="invoice_same" name="invoice_same" class="mr-2"/>
-                <InputLabel for="invoice_same" :value="__('auth.invoiceData')"/>
+                <InputLabel for="invoice_same" :value="__('translate.invoiceData')"/>
             </div>
             <div class="col-span-6">
 
                 <div class="my-4">
-                    <InputLabel for="description" :value="__('auth.description')"/>
+                    <InputLabel for="description" :value="__('translate.description')"/>
                     <TextareaLimit id="description" v-model="form.description" :limit="1000"/>
                     <InputError :message="form.errors.description" class="mt-2"/>
                 </div>
@@ -179,7 +179,7 @@ const removeElement = (index, array) => {
                              stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                         </svg>
-                        {{ __('auth.phone') }}
+                        {{ __('translate.phone') }}
                     </div>
                 </PrimaryButton>
                 <InputError :message="form.errors.contact_phone" class="mt-2"/>
@@ -187,14 +187,14 @@ const removeElement = (index, array) => {
 
             <div class="col-span-6">
                 <div v-if="form.contact_phone.length" class="text-center text-sm my-1">
-                    {{ __('auth.phoneLimit') }} <span
+                    {{ __('translate.phoneLimit') }} <span
                     class="text-indigo-600 font-semibold">{{ form.contact_phone.length }}</span>
                 </div>
                 <div v-for="(phone,index) in form.contact_phone" :key="index">
                     <div class="col-span-6 gap-4 grid grid-cols-1 md:grid-cols-2">
                         <!-- NUMBER -->
                         <div>
-                            <InputLabel :for="`contact_phone-${index}-phone`" :value="__('auth.phone')"/>
+                            <InputLabel :for="`contact_phone-${index}-phone`" :value="__('translate.phone')"/>
                             <TextInput
                                 :id="`contact_phone-${index}-phone`"
                                 v-model.number="phone.phone"
@@ -206,7 +206,7 @@ const removeElement = (index, array) => {
                         <!-- NUMBER -->
                         <!-- DESC -->
                         <div>
-                            <InputLabel :for="`contact_phone-${index}-desc`" :value="__('auth.phoneDesc')"/>
+                            <InputLabel :for="`contact_phone-${index}-desc`" :value="__('translate.phoneDesc')"/>
                             <TextInput
                                 :id="`contact_phone-${index}-desc`"
                                 v-model.trim="phone.desc"
@@ -214,7 +214,7 @@ const removeElement = (index, array) => {
                                 class="mt-1 block w-full"
                             />
                             <InputHelper id="helper-cost-explanation" class="text-sm">
-                                {{ __('auth.phoneDescHelper') }}
+                                {{ __('translate.phoneDescHelper') }}
                             </InputHelper>
                             <InputError :message="form.errors[`contact_phone.${index}.desc`]" class="mt-2"/>
 
@@ -228,16 +228,16 @@ const removeElement = (index, array) => {
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                         </svg>
-                        {{ __('auth.phoneDelete') }}
+                        {{ __('translate.phoneDelete') }}
                     </DangerButton>
                 </div>
             </div>
             <div class="col-span-6" v-if="!form.invoice_same">
-                <h3 class="text-lg mb-3 font-bold">{{ __('auth.Invoice') }}</h3>
+                <h3 class="text-lg mb-3 font-bold">{{ __('translate.Invoice') }}</h3>
                 <div class="grid grid-cols-6 gap-6">
                     <!-- NAME-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="name_invoice" :value="__('auth.name')"/>
+                        <InputLabel for="name_invoice" :value="__('translate.name')"/>
                         <TextInput
                             id="name_invoice"
                             v-model="form.name_invoice"
@@ -249,7 +249,7 @@ const removeElement = (index, array) => {
                     </div>
                     <!-- NIP-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="nip_invoice" :value="__('auth.nip')"/>
+                        <InputLabel for="nip_invoice" :value="__('translate.nip')"/>
                         <TextInput
                             id="nip_invoice"
                             v-model="form.nip_invoice"
@@ -261,7 +261,7 @@ const removeElement = (index, array) => {
 
                     <!-- REGON-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="regon_invoice" :value="__('auth.regon')"/>
+                        <InputLabel for="regon_invoice" :value="__('translate.regon')"/>
                         <TextInput
                             id="regon_invoice"
                             v-model="form.regon_invoice"
@@ -273,7 +273,7 @@ const removeElement = (index, array) => {
 
                     <!-- STREET-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="street_invoice" :value="__('auth.Street')"/>
+                        <InputLabel for="street_invoice" :value="__('translate.Street')"/>
                         <TextInput
                             id="street_invoice"
                             v-model="form.street_invoice"
@@ -285,7 +285,7 @@ const removeElement = (index, array) => {
 
                     <!-- NUMBER-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="number_invoice" :value="__('auth.Number')"/>
+                        <InputLabel for="number_invoice" :value="__('translate.Number')"/>
                         <TextInput
                             id="number_invoice"
                             v-model="form.number_invoice"
@@ -297,7 +297,7 @@ const removeElement = (index, array) => {
 
                     <!-- CITY-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="city_invoice" :value="__('auth.City')"/>
+                        <InputLabel for="city_invoice" :value="__('translate.City')"/>
                         <TextInput
                             id="city_invoice"
                             v-model="form.city_invoice"
@@ -309,7 +309,7 @@ const removeElement = (index, array) => {
 
                     <!-- POSTAL-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="postal_invoice" :value="__('auth.Postal')"/>
+                        <InputLabel for="postal_invoice" :value="__('translate.Postal')"/>
                         <TextInput
                             id="postal_invoice"
                             v-model="form.postal_invoice"
@@ -321,7 +321,7 @@ const removeElement = (index, array) => {
 
                     <!-- COUNTRY-INVOICE -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="country_invoice" :value="__('auth.Country')"/>
+                        <InputLabel for="country_invoice" :value="__('translate.Country')"/>
                         <TextInput
                             id="country_invoice"
                             v-model="form.country_invoice"
@@ -337,11 +337,11 @@ const removeElement = (index, array) => {
 
         <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{ __('auth.Saved') }}
+                {{ __('translate.Saved') }}
             </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{ __('auth.Save') }}
+                {{ __('translate.Save') }}
             </PrimaryButton>
         </template>
     </FormSection>

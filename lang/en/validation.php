@@ -173,11 +173,17 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+'custom' => [
+    'sections.*.fields.title' => [
+        'required' => 'The section title is required.',
+        'max' => 'The section title must not exceed 100 characters.',
+        'distinct' => 'The section title already exists.',
     ],
+    'sections.*.fields.description' => [
+        'required' => 'The section description is required.',
+        'max' => 'The section description must not exceed 2000 characters.',
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------

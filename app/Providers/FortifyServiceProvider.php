@@ -47,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
 
                 if (! $connectedAccount) {
                     throw ValidationException::withMessages([
-                        Fortify::username() => [__('auth.failed')],
+                        Fortify::username() => [__('translate.failed')],
                     ]);
                 }
 
@@ -62,7 +62,7 @@ class FortifyServiceProvider extends ServiceProvider
             // 2. Check if the resolved user is blocked and handle
             if($user && !is_null($user->user_blocked)) {
                 throw ValidationException::withMessages([
-                    Fortify::username() => [__('auth.user_blocked')],
+                    Fortify::username() => [__('translate.user_blocked')],
                 ]);
             }
 
@@ -74,7 +74,7 @@ class FortifyServiceProvider extends ServiceProvider
             // 4. User hasn't set a password, so must login using an OAuth provider
             if ($user && is_null($user->password)) {
                 throw ValidationException::withMessages([
-                    Fortify::username() => [__('auth.onlySocial')],
+                    Fortify::username() => [__('translate.onlySocial')],
                 ]);
             }
 

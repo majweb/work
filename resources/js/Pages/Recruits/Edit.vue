@@ -43,12 +43,12 @@ const updateUser = () => {
 </script>
 
 <template>
-    <AppLayout :title="__('auth.editRecruit')">
+    <AppLayout :title="__('translate.editRecruit')">
         <template #header>
             <div class="flex justify-between">
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('auth.editRecruit')}}
+                    {{__('translate.editRecruit')}}
                 </h2>
                 <Link :href="route('recruits.index')" class="text-gray-500 mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -68,14 +68,14 @@ const updateUser = () => {
                         </template>
 
                         <template #description>
-                            {{__('auth.recruitInfo')}}
+                            {{__('translate.recruitInfo')}}
                         </template>
 
                         <template #form>
 
                             <div class="col-span-6">
                                 <div class="mt-4">
-                                    <InputLabel for="name" :value="__('auth.name')"/>
+                                    <InputLabel for="name" :value="__('translate.name')"/>
                                     <TextInput
                                         id="name"
                                         v-model="form.name"
@@ -87,7 +87,7 @@ const updateUser = () => {
                                     <InputError :message="form.errors.name" class="mt-2"/>
                                 </div>
                                 <div class="mt-4">
-                                    <InputLabel for="recruiter_phone" :value="__('auth.phone')"/>
+                                    <InputLabel for="recruiter_phone" :value="__('translate.phone')"/>
                                     <TextInput
                                         id="recruiter_phone"
                                         v-model="form.recruiter_phone"
@@ -98,7 +98,7 @@ const updateUser = () => {
                                 </div>
 
                                 <div class="mt-4">
-                                    <InputLabel for="email" :value="__('auth.email')"/>
+                                    <InputLabel for="email" :value="__('translate.email')"/>
                                     <TextInput
                                         id="email"
                                         v-model="form.email"
@@ -109,7 +109,7 @@ const updateUser = () => {
                                 </div>
 
                                 <div class="mt-4">
-                                    <InputLabel for="password" :value="__('auth.password')"/>
+                                    <InputLabel for="password" :value="__('translate.password')"/>
                                     <TextInput
                                         id="password"
                                         v-model="form.password"
@@ -120,7 +120,7 @@ const updateUser = () => {
                                 </div>
 
                                 <div class="mt-4">
-                                    <InputLabel for="password_confirmation" :value="__('auth.passwordconfirm')"/>
+                                    <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')"/>
                                     <TextInput
                                         id="password_confirmation"
                                         v-model="form.password_confirmation"
@@ -145,7 +145,7 @@ const updateUser = () => {
                                         class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 mr-2"
                                         type="checkbox" id="blocked" v-model="form.user_blocked"
                                         name="user_blocked">
-                                    <label for="blocked">{{__('auth.user_blocked')}}</label>
+                                    <label for="blocked">{{__('translate.user_blocked')}}</label>
                                     <InputError :message="form.errors.user_blocked" class="mt-2"/>
                                 </div>
                             </div>
@@ -153,10 +153,10 @@ const updateUser = () => {
 
                         <template #actions>
                             <ActionMessage :on="form.recentlySuccessful" class="mr-3">
-                                {{__('auth.updateRecruit')}}
+                                {{__('translate.updateRecruit')}}
                             </ActionMessage>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('auth.update')}}</spinner-action>
+                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>
                         </template>
                     </FormSection>

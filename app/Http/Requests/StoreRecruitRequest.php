@@ -63,11 +63,11 @@ class StoreRecruitRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => strtolower(__('auth.name')),
-            'recruiter_phone' => strtolower(__('auth.phone')),
-            'email' => strtolower(__('auth.email')),
-            'password' => strtolower(__('auth.password')),
-            'permissions' => strtolower(__('auth.permissions')),
+            'name' => strtolower(__('translate.name')),
+            'recruiter_phone' => strtolower(__('translate.phone')),
+            'email' => strtolower(__('translate.email')),
+            'password' => strtolower(__('translate.password')),
+            'permissions' => strtolower(__('translate.permissions')),
         ];
     }
 

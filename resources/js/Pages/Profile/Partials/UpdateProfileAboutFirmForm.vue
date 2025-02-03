@@ -48,17 +48,17 @@ const updateProfileFirm = () => {
 <template>
     <FormSection @submitted="updateProfileFirm">
         <template #title>
-            {{ __('auth.rest') }}
+            {{ __('translate.rest') }}
         </template>
 
         <template #description>
-            {{ __('auth.restDescription') }}
+            {{ __('translate.restDescription') }}
         </template>
 
         <template #form>
             <!-- WWW -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="www" :value="__('auth.www')"/>
+                <InputLabel for="www" :value="__('translate.www')"/>
                 <TextInput
                     id="www"
                     v-model="form.www"
@@ -69,11 +69,11 @@ const updateProfileFirm = () => {
                 <InputError :message="form.errors.www" class="mt-2"/>
             </div>
             <div class="col-span-6">
-                <h3 class="text-lg mb-3 font-bold">{{ __('auth.opinions') }}</h3>
+                <h3 class="text-lg mb-3 font-bold">{{ __('translate.opinions') }}</h3>
                 <div class="grid grid-cols-6 gap-6">
                     <!-- opinion_google -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="opinion_google" :value="__('auth.opinion_google')"/>
+                        <InputLabel for="opinion_google" :value="__('translate.opinion_google')"/>
                         <TextInput
                             id="opinion_google"
                             v-model="form.opinion_google"
@@ -86,7 +86,7 @@ const updateProfileFirm = () => {
 
                     <!-- opinion_trust -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="opinion_trust" :value="__('auth.opinion_trust')"/>
+                        <InputLabel for="opinion_trust" :value="__('translate.opinion_trust')"/>
                         <TextInput
                             id="opinion_trust"
                             v-model="form.opinion_trust"
@@ -99,7 +99,7 @@ const updateProfileFirm = () => {
 
                     <!-- opinion_facebook -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="opinion_facebook" :value="__('auth.opinion_facebook')"/>
+                        <InputLabel for="opinion_facebook" :value="__('translate.opinion_facebook')"/>
                         <TextInput
                             id="opinion_facebook"
                             v-model="form.opinion_facebook"
@@ -113,11 +113,11 @@ const updateProfileFirm = () => {
 
             </div>
             <div class="col-span-6">
-                <h3 class="text-lg mb-3 font-bold">{{ __('auth.socials') }}</h3>
+                <h3 class="text-lg mb-3 font-bold">{{ __('translate.socials') }}</h3>
                 <div class="grid grid-cols-6 gap-6">
                     <!-- social_facebook -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="social_facebook" :value="__('auth.social_facebook')"/>
+                        <InputLabel for="social_facebook" :value="__('translate.social_facebook')"/>
                         <TextInput
                             id="social_facebook"
                             v-model="form.social_facebook"
@@ -130,7 +130,7 @@ const updateProfileFirm = () => {
 
                     <!-- social_google -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="social_google" :value="__('auth.social_google')"/>
+                        <InputLabel for="social_google" :value="__('translate.social_google')"/>
                         <TextInput
                             id="social_google"
                             v-model="form.social_google"
@@ -143,7 +143,7 @@ const updateProfileFirm = () => {
 
                     <!-- social_x -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="social_x" :value="__('auth.social_x')"/>
+                        <InputLabel for="social_x" :value="__('translate.social_x')"/>
                         <TextInput
                             id="social_x"
                             v-model="form.social_x"
@@ -156,7 +156,7 @@ const updateProfileFirm = () => {
 
                     <!-- social_instagram -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="social_instagram" :value="__('auth.social_instagram')"/>
+                        <InputLabel for="social_instagram" :value="__('translate.social_instagram')"/>
                         <TextInput
                             id="social_instagram"
                             v-model="form.social_instagram"
@@ -169,7 +169,7 @@ const updateProfileFirm = () => {
 
                     <!-- social_linkedin -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="social_linkedin" :value="__('auth.social_linkedin')"/>
+                        <InputLabel for="social_linkedin" :value="__('translate.social_linkedin')"/>
                         <TextInput
                             id="social_linkedin"
                             v-model="form.social_linkedin"
@@ -182,7 +182,7 @@ const updateProfileFirm = () => {
 
                     <!-- social_tiktok -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="social_tiktok" :value="__('auth.social_tiktok')"/>
+                        <InputLabel for="social_tiktok" :value="__('translate.social_tiktok')"/>
                         <TextInput
                             id="social_tiktok"
                             v-model="form.social_tiktok"
@@ -197,11 +197,11 @@ const updateProfileFirm = () => {
             </div>
 
             <div class="col-span-6">
-                <h3 class="text-lg mb-3 font-bold">{{ __('auth.rest') }}</h3>
+                <h3 class="text-lg mb-3 font-bold">{{ __('translate.rest') }}</h3>
                 <div class="grid grid-cols-6 gap-6">
                     <!-- count_workers -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="count_workers" :value="__('auth.count_workers')"/>
+                        <InputLabel for="count_workers" :value="__('translate.count_workers')"/>
                         <TextInput
                             id="count_workers"
                             v-model="form.count_workers"
@@ -213,7 +213,7 @@ const updateProfileFirm = () => {
 
                     <!-- annual_turnover -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="annual_turnover" :value="__('auth.annual_turnover')"/>
+                        <InputLabel for="annual_turnover" :value="__('translate.annual_turnover')"/>
                         <TextInput
                             id="annual_turnover"
                             v-model="form.annual_turnover"
@@ -225,7 +225,7 @@ const updateProfileFirm = () => {
 
                     <!-- video -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="video" :value="__('auth.video')"/>
+                        <InputLabel for="video" :value="__('translate.video')"/>
                         <input
                             @input="form.video = $event.target.files[0]"
                             id="video"
@@ -233,7 +233,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <div v-if="form.progress && form.progress.percentage != 100" class="text-sm mt-2">
-                        {{__('auth.loadingMovie')}} {{form.progress.percentage}}%
+                        {{__('translate.loadingMovie')}} {{form.progress.percentage}}%
                         <progress v-if="form.progress" :value="form.progress.percentage" max="100" class="mt-2">
                             {{ form.progress.percentage }}%
                         </progress>
@@ -253,11 +253,11 @@ const updateProfileFirm = () => {
 
         <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{ __('auth.Saved') }}
+                {{ __('translate.Saved') }}
             </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{ __('auth.Save') }}
+                {{ __('translate.Save') }}
             </PrimaryButton>
         </template>
     </FormSection>

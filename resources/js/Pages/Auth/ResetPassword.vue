@@ -36,7 +36,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" :value="__('auth.email')" />
+                <InputLabel for="email" :value="__('translate.email')" />
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -49,7 +49,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" :value="__('auth.password')" />
+                <InputLabel for="password" :value="__('translate.password')" />
                 <TextInput
                     id="password"
                     v-model="form.password"
@@ -61,7 +61,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" :value="__('auth.passwordconfirm')" />
+                <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')" />
                 <TextInput
                     id="password_confirmation"
                     v-model="form.password_confirmation"
@@ -74,7 +74,7 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    {{__('auth.resetBtn')}}
+                    {{__('translate.resetBtn')}}
                 </PrimaryButton>
             </div>
         </form>

@@ -41,10 +41,10 @@ const search = () => {
 </script>
 
 <template>
-    <AppLayout :title="__('auth.invoices')">
+    <AppLayout :title="__('translate.invoices')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('auth.invoices') }}
+                {{ __('translate.invoices') }}
             </h2>
         </template>
 
@@ -53,11 +53,11 @@ const search = () => {
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div
                         class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-sm font-semibold text-indigo-300">{{__('auth.filters')}}</h2>
-                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="params.amount || params.order_id">{{ __('auth.clearFilters') }}</button>
+                        <h2 class="text-sm font-semibold text-indigo-300">{{__('translate.filters')}}</h2>
+                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="params.amount || params.order_id">{{ __('translate.clearFilters') }}</button>
                         <div class="col-span-6 flex mb-3 items-center">
                             <div class="mr-2">
-                                <InputLabel :value="__('auth.invoiceAmount')"/>
+                                <InputLabel :value="__('translate.invoiceAmount')"/>
                                 <TextInput
                                     id="amount"
                                     v-model="params.amount"
@@ -67,7 +67,7 @@ const search = () => {
                                 />
                             </div>
                             <div class="mr-2">
-                                <InputLabel for="ends_at" :value="__('auth.orderNumber')"/>
+                                <InputLabel for="ends_at" :value="__('translate.orderNumber')"/>
                                 <TextInput
                                     id="order_id"
                                     v-model="params.order_id"
@@ -77,7 +77,7 @@ const search = () => {
                                 />
                             </div>
                             <div class="mr-2">
-                                <PrimaryButton class="mt-6" @click="search">{{__('auth.search')}}</PrimaryButton>
+                                <PrimaryButton class="mt-6" @click="search">{{__('translate.search')}}</PrimaryButton>
                             </div>
                         </div>
 
@@ -125,7 +125,7 @@ const search = () => {
                                                         class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
                                                         <div class="flex items-center">
                                                             <span class="inline-flex w-full py-3 px-6 justify-between"
-                                                                  @click="sort('day')">{{__('auth.day')}}
+                                                                  @click="sort('day')">{{__('translate.day')}}
                                                                 <svg
                                                                     v-if="params.field === 'day' && params.direction === 'asc'"
                                                                     xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
@@ -155,23 +155,23 @@ const search = () => {
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.Number')}}
+                                                        {{__('translate.Number')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.invoiceAmount')}}
+                                                        {{__('translate.invoiceAmount')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.opened')}}
+                                                        {{__('translate.opened')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.orderNumber')}}
+                                                        {{__('translate.orderNumber')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.actions')}}
+                                                        {{__('translate.actions')}}
                                                     </th>
                                                 </tr>
                                                 </thead>
@@ -179,7 +179,7 @@ const search = () => {
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                 <tr v-if="props.invoices.data.length == 0">
                                                     <td colspan="7" class="text-center py-4 px-6 whitespace-nowrap font-semibold"><p>
-                                                        {{__('auth.notFoundInvoices')}}</p></td>
+                                                        {{__('translate.notFoundInvoices')}}</p></td>
                                                 </tr>
                                                 <tr v-else v-for="(invoice) in props.invoices.data" :key="invoice.id">
                                                     <td class="py-4 px-6 whitespace-nowrap">
@@ -247,7 +247,7 @@ const search = () => {
                                                         <div class="ml-4">
                                                             <a :href="route('invoicesDownload',invoice)"
                                                                   class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                {{__('auth.getPdf')}}
+                                                                {{__('translate.getPdf')}}
                                                             </a>
                                                         </div>
                                                     </td>

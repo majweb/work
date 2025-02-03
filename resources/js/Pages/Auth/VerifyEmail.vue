@@ -27,17 +27,17 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{__('auth.verify')}}
+            {{__('translate.verify')}}
         </div>
 
         <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">
-            {{__('auth.verifylink')}}
+            {{__('translate.verifylink')}}
         </div>
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    {{__('auth.resend')}}
+                    {{__('translate.resend')}}
                 </PrimaryButton>
 
                 <div class="flex ml-3">
@@ -45,7 +45,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         :href="route('profile.show')"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        {{__('auth.editProfile')}}
+                        {{__('translate.editProfile')}}
                         </Link>
 
                     <Link
@@ -54,7 +54,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         as="button"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ms-2"
                     >
-                        {{__('auth.logout')}}
+                        {{__('translate.logout')}}
                     </Link>
                 </div>
             </div>

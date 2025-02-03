@@ -60,16 +60,16 @@ const closeModal = () => {
 <template>
     <ActionSection>
         <template #title>
-            {{__('auth.connectedAccounts')}}
+            {{__('translate.connectedAccounts')}}
         </template>
 
         <template #description>
-            {{__('auth.connectedAccountsText')}}
+            {{__('translate.connectedAccountsText')}}
         </template>
 
         <template #content>
            <div class="p-4 bg-red-500/10 dark:bg-red-500/5 text-red-500 border-l-4 border-red-600 dark:border-red-700 rounded font-medium text-sm">
-               {{__('auth.connectedAccountsTextLong')}}
+               {{__('translate.connectedAccountsTextLong')}}
            </div>
 
             <div class="space-y-6 mt-6">
@@ -83,19 +83,19 @@ const closeModal = () => {
                                         v-if="$page.props.jetstream.managesProfilePhotos && getAccountForProvider(provider).avatar_path"
                                         @click="setProfilePhoto(getAccountForProvider(provider).id)"
                                         class="cursor-pointer ms-6 text-sm text-gray-500 hover:text-gray-700 focus:outline-none">
-                                        {{__('auth.connectedAccountsAvatar')}}
+                                        {{__('translate.connectedAccountsAvatar')}}
                                     </button>
 
                                     <DangerButton @click="confirmRemoveAccount(getAccountForProvider(provider).id)"
                                                   v-if="$page.props.socialstream.connectedAccounts.length > 1 || $page.props.socialstream.hasPassword">
-                                        {{__('auth.remove')}}
+                                        {{__('translate.remove')}}
                                     </DangerButton>
                                 </div>
                             </template>
 
                             <template v-else>
                                 <ActionLink :href="route('oauth.redirect', { provider })">
-                                    {{__('auth.connect')}}
+                                    {{__('translate.connect')}}
                                 </ActionLink>
                             </template>
                         </template>
@@ -106,18 +106,18 @@ const closeModal = () => {
             <!-- Confirmation Modal -->
             <DialogModal :show="confirmingRemoveAccount" @close="closeModal">
                 <template #title>
-                    {{__('auth.connectedAccountsRemove')}}
+                    {{__('translate.connectedAccountsRemove')}}
                 </template>
 
                 <template #content>
-                    {{__('auth.connectedAccountsRemoveConfirm')}}
+                    {{__('translate.connectedAccountsRemoveConfirm')}}
                     <div class="mt-4">
                         <TextInput
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
                             class="mt-1 block w-3/4"
-                            :placeholder="__('auth.password')"
+                            :placeholder="__('translate.password')"
                             autocomplete="current-password"
                             @keyup.enter="removeAccount"
                         />
@@ -128,12 +128,12 @@ const closeModal = () => {
 
                 <template #footer>
                     <SecondaryButton @click="closeModal">
-                        {{__('auth.cancel')}}
+                        {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <PrimaryButton class="ml-2" @click="removeAccount"
                                    :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        {{__('auth.removeAccount')}}
+                        {{__('translate.removeAccount')}}
                     </PrimaryButton>
                 </template>
             </DialogModal>

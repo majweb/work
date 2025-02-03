@@ -45,16 +45,16 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="type" :value="__('auth.type')"/>
+                <InputLabel for="type" :value="__('translate.type')"/>
                 <select v-model="form.type" name="type" class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full mb-2">
-                    <option value="firm">{{__('auth.firmrecruit')}}</option>
-                    <option value="worker">{{__('auth.worker')}}</option>
+                    <option value="firm">{{__('translate.firmrecruit')}}</option>
+                    <option value="worker">{{__('translate.worker')}}</option>
                 </select>
                 <InputError :message="form.errors.type" class="mt-2"/>
             </div>
 
             <div>
-                <InputLabel for="email" :value="__('auth.email')"/>
+                <InputLabel for="email" :value="__('translate.email')"/>
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -67,7 +67,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" :value="__('auth.password')"/>
+                <InputLabel for="password" :value="__('translate.password')"/>
                 <TextInput
                     id="password"
                     v-model="form.password"
@@ -82,20 +82,20 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember"/>
-                    <span class="ml-2 text-sm text-gray-600">{{__('auth.remember')}}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{__('translate.remember')}}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <Link v-if="canResetPassword" :href="route('password.request')"
                       class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{__('auth.forgot')}}
+                    {{__('translate.forgot')}}
                 </Link>
                 <Link :href="route('register')" class="ml-2 underline text-sm text-gray-600 hover:text-gray-900">
-                  {{__('auth.register')}}
+                  {{__('translate.register')}}
                 </Link>
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="ml-4">
-                    {{__('auth.login')}}
+                    {{__('translate.login')}}
                 </PrimaryButton>
             </div>
         </form>

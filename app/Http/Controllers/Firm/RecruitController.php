@@ -64,7 +64,7 @@ class RecruitController extends Controller
         $user->assignRole('recruit');
         $user->givePermissionTo(collect($request->userData()['permissions'])->pluck('id'));
 
-        session()->flash('flash.banner', __('auth.addedRecruit'));
+        session()->flash('flash.banner', __('translate.addedRecruit'));
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('recruits.index');
@@ -107,7 +107,7 @@ class RecruitController extends Controller
         ]);
         $per = collect($request->userData()['permissions'])->pluck('name');
         $recruit->syncPermissions($per);
-        session()->flash('flash.banner', __('auth.updateRecruit'));
+        session()->flash('flash.banner', __('translate.updateRecruit'));
         session()->flash('flash.bannerStyle', 'success');
 
     }
@@ -119,7 +119,7 @@ class RecruitController extends Controller
     {
         Gate::authorize('delete',$recruit);
         $recruit->delete();
-        session()->flash('flash.banner', __('auth.deleteRecruit'));
+        session()->flash('flash.banner', __('translate.deleteRecruit'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('recruits.index');
     }

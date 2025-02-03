@@ -45,18 +45,18 @@ class FirmAboutRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'nip' => strtolower(__('auth.nip')),
-            'opinion_google' => strtolower(__('auth.opinion_google')),
-            'opinion_trust' => strtolower(__('auth.opinion_trust')),
-            'opinion_facebook' => strtolower(__('auth.opinion_facebook')),
-            'social_facebook' => strtolower(__('auth.social_facebook')),
-            'social_google' => strtolower(__('auth.social_google')),
-            'social_x' => strtolower(__('auth.social_x')),
-            'social_instagram' => strtolower(__('auth.social_instagram')),
-            'social_linkedin' => strtolower(__('auth.social_linkedin')),
-            'social_tiktok' => strtolower(__('auth.social_tiktok')),
-            'count_workers' => strtolower(__('auth.count_workers')),
-            'annual_turnover' => strtolower(__('auth.annual_turnover'))
+            'nip' => strtolower(__('translate.nip')),
+            'opinion_google' => strtolower(__('translate.opinion_google')),
+            'opinion_trust' => strtolower(__('translate.opinion_trust')),
+            'opinion_facebook' => strtolower(__('translate.opinion_facebook')),
+            'social_facebook' => strtolower(__('translate.social_facebook')),
+            'social_google' => strtolower(__('translate.social_google')),
+            'social_x' => strtolower(__('translate.social_x')),
+            'social_instagram' => strtolower(__('translate.social_instagram')),
+            'social_linkedin' => strtolower(__('translate.social_linkedin')),
+            'social_tiktok' => strtolower(__('translate.social_tiktok')),
+            'count_workers' => strtolower(__('translate.count_workers')),
+            'annual_turnover' => strtolower(__('translate.annual_turnover'))
         ];
     }
 }

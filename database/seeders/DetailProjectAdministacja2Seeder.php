@@ -2624,7 +2624,4792 @@ class DetailProjectAdministacja2Seeder extends Seeder
             ]
 
         ];
+        $SEKRETARKA_W_KANCELARII_PRAWNEJ = [
+            [
+                'id' => 7366,
+                'name' => json_encode([
+                    'pl' => 'Witanie klientów i gości kancelarii, udzielanie podstawowych informacji i kierowanie ich do odpowiednich osób.',
+                    'en' => 'Greeting clients and guests of the law firm, providing basic information, and directing them to the appropriate staff.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7367,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie i przekazywanie telefonów oraz wiadomości, zapewniając sprawny przepływ informacji.',
+                    'en' => 'Answering and transferring calls and messages, ensuring a smooth flow of information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7368,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie profesjonalnego wizerunku kancelarii w kontakcie z klientami i interesariuszami.',
+                    'en' => 'Maintaining a professional image of the firm in interactions with clients and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7369,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i zarządzanie kalendarzem spotkań prawników, w tym planowanie i potwierdzanie terminów spotkań z klientami oraz stronami postępowania.',
+                    'en' => 'Organizing and managing the lawyers’ meeting calendar, including planning and confirming appointments with clients and parties involved.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7370,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja spotkań wewnętrznych oraz zapewnienie dostępności sal konferencyjnych.',
+                    'en' => 'Coordinating internal meetings and ensuring the availability of conference rooms.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7371,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie prawnikom o nadchodzących spotkaniach, terminach sądowych i innych ważnych wydarzeniach.',
+                    'en' => 'Reminding lawyers of upcoming meetings, court dates, and other important events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7372,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie, segregowanie i dystrybucja poczty przychodzącej i wychodzącej, zarówno tradycyjnej, jak i elektronicznej.',
+                    'en' => 'Receiving, sorting, and distributing incoming and outgoing mail, both traditional and electronic.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7373,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie, formatowanie i wysyłanie korespondencji zgodnie ze standardami kancelarii.',
+                    'en' => 'Drafting, formatting, and sending correspondence in line with firm standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7374,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie wysyłek kurierskich oraz przesyłek specjalnych zgodnie z potrzebami kancelarii.',
+                    'en' => 'Organizing courier shipments and special deliveries according to the firm’s needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7375,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentów takich jak pozwy, umowy, wnioski, pełnomocnictwa i inne pisma prawne zgodnie z wytycznymi prawników.',
+                    'en' => 'Preparing documents such as lawsuits, contracts, applications, powers of attorney, and other legal documents as instructed by lawyers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7376,
+                'name' => json_encode([
+                    'pl' => 'Formatowanie dokumentów zgodnie ze standardami kancelarii, dbając o ich czytelność i profesjonalny wygląd.',
+                    'en' => 'Formatting documents according to firm standards, ensuring readability and a professional appearance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7377,
+                'name' => json_encode([
+                    'pl' => 'Edytowanie i korygowanie dokumentów, w tym sprawdzanie ich pod kątem poprawności językowej.',
+                    'en' => 'Editing and proofreading documents, including checking for linguistic accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7378,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie, przechowywanie i archiwizacja dokumentacji prawnej, akt spraw oraz korespondencji.',
+                    'en' => 'Managing, storing, and archiving legal documentation, case files, and correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7379,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizacja systemów organizacji dokumentacji, takich jak bazy danych i rejestry spraw.',
+                    'en' => 'Creating and updating document organization systems, such as databases and case registers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7380,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o porządek w dokumentacji, zabezpieczenie dokumentów i przestrzeganie zasad poufności.',
+                    'en' => 'Maintaining order in documentation, securing documents, and following confidentiality guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7381,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie kompletów dokumentów na potrzeby spraw sądowych, w tym organizacja akt i porządkowanie dokumentacji.',
+                    'en' => 'Preparing document sets for court cases, including organizing files and arranging documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7382,
+                'name' => json_encode([
+                    'pl' => 'Pomoc prawnikom w przygotowaniu dokumentów dowodowych, zestawień, raportów i innych materiałów.',
+                    'en' => 'Assisting lawyers in preparing evidence documents, summaries, reports, and other materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7383,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie bieżącego kontaktu z instytucjami sądowymi i innymi podmiotami w celu ustalenia szczegółów postępowań.',
+                    'en' => 'Maintaining ongoing communication with court institutions and other entities to clarify case details.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7384,
+                'name' => json_encode([
+                    'pl' => 'Umawianie spotkań z klientami oraz przygotowywanie sali konferencyjnej do spotkań, w tym dbanie o niezbędne materiały.',
+                    'en' => 'Scheduling meetings with clients and preparing the conference room, including arranging necessary materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7385,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji o stanie sprawy klientom, jeśli zostało to powierzone przez prawników.',
+                    'en' => 'Conveying case status information to clients when delegated by lawyers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7386,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z klientami w celu dostarczenia potrzebnych dokumentów i materiałów.',
+                    'en' => 'Keeping in touch with clients to provide necessary documents and materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7387,
+                'name' => json_encode([
+                    'pl' => 'Korzystanie z oprogramowania prawniczego i baz danych do rejestrowania spraw, wyszukiwania informacji i aktualizacji danych.',
+                    'en' => 'Using legal software and databases to register cases, search for information, and update data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7388,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych dotyczących klientów i prowadzonych spraw do systemów kancelarii.',
+                    'en' => 'Entering client and case-related data into the firm’s systems.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7389,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad ochrony danych osobowych i zabezpieczenie danych klientów przed nieautoryzowanym dostępem.',
+                    'en' => 'Adhering to data protection regulations and securing client data from unauthorized access.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7390,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zapasów materiałów biurowych, takich jak papier, tusz do drukarek, teczki, koperty, i dbanie o ich regularne uzupełnianie.',
+                    'en' => 'Monitoring office supplies, such as paper, printer ink, folders, and envelopes, ensuring regular replenishment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7391,
+                'name' => json_encode([
+                    'pl' => 'Składanie zamówień na materiały biurowe oraz kontrola ich dostaw.',
+                    'en' => 'Placing orders for office supplies and tracking their deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7392,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o porządek w przestrzeni biurowej i utrzymanie przyjaznego środowiska pracy.',
+                    'en' => 'Maintaining order in the office space and fostering a friendly work environment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7393,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie podróży służbowych prawników, w tym rezerwowanie biletów, hoteli oraz transportu.',
+                    'en' => 'Arranging business trips for lawyers, including booking tickets, hotels, and transportation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7394,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramów podróży oraz kompletowanie niezbędnych dokumentów i informacji.',
+                    'en' => 'Preparing travel itineraries and compiling necessary documents and information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7395,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja kosztów podróży oraz przygotowywanie raportów wydatków.',
+                    'en' => 'Verifying travel costs and preparing expense reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7396,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu lub agencjami zewnętrznymi przy tworzeniu materiałów promocyjnych kancelarii.',
+                    'en' => 'Collaborating with the marketing department or external agencies in creating the firm’s promotional materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7397,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści na potrzeby strony internetowej, broszur, ulotek oraz materiałów prasowych.',
+                    'en' => 'Preparing content for the website, brochures, leaflets, and press materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7398,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie treści strony internetowej kancelarii w porozumieniu z odpowiedzialnymi osobami.',
+                    'en' => 'Updating the firm’s website content in consultation with responsible individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7399,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w organizacji wydarzeń kancelarii, takich jak seminaria, konferencje czy spotkania z klientami.',
+                    'en' => 'Assisting in organizing firm events, such as seminars, conferences, or client meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7400,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań logistycznych, w tym rezerwacje sal, zamawianie cateringu, przygotowanie materiałów.',
+                    'en' => 'Coordinating logistical activities, including room reservations, catering orders, and material preparation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7401,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie działań promocyjnych wydarzeń oraz pomoc w przygotowywaniu materiałów reklamowych.',
+                    'en' => 'Supporting promotional activities for events and assisting in the preparation of marketing materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7402,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie zestawień dokumentacji oraz statystyk dotyczących prowadzonych spraw na potrzeby prawników i zarządu.',
+                    'en' => 'Preparing documentation summaries and statistics on ongoing cases for lawyers and management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7403,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie okresowych raportów o stanie spraw i wydajności biura.',
+                    'en' => 'Preparing periodic reports on case status and office efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7404,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zestawień finansowych na potrzeby kancelarii, takich jak raporty o kosztach operacyjnych i budżetach projektów.',
+                    'en' => 'Creating financial summaries for the firm, including reports on operational costs and project budgets.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7405,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań wewnętrznych oraz przygotowywanie notatek i sprawozdań z narad.',
+                    'en' => 'Organizing internal meetings and preparing notes and minutes from discussions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7406,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie zespołu prawników w bieżących zadaniach administracyjnych i zapewnianie sprawnego funkcjonowania biura.',
+                    'en' => 'Supporting the legal team with ongoing administrative tasks and ensuring smooth office operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7407,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad poufności i bezpieczeństwa informacji, zwłaszcza w zakresie ochrony danych klientów.',
+                    'en' => 'Maintaining confidentiality and information security, particularly regarding client data protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7408,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o ciągłość działań biura, w tym organizowanie zastępstw, jeśli wymaga tego sytuacja.',
+                    'en' => 'Ensuring office continuity, including arranging substitutes as needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7409,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie terminarzy i przypominanie o ważnych terminach, w tym terminach przedawnienia i postępowań sądowych.',
+                    'en' => 'Monitoring schedules and reminding about important dates, including deadlines and court proceedings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7410,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie pracy zespołu prawników, zapewniając im niezbędne zasoby i informacje do skutecznego prowadzenia spraw.',
+                    'en' => 'Supporting the work of the legal team by providing necessary resources and information for effective case management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7411,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach dotyczących obsługi biura prawniczego, edytorów tekstu, zasad pisania dokumentów prawnych.',
+                    'en' => 'Regularly attending training on law office operations, text editors, and legal document standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7412,
+                'name' => json_encode([
+                    'pl' => 'Doskonalenie umiejętności interpersonalnych, obsługi klienta oraz zarządzania czasem.',
+                    'en' => 'Improving interpersonal, client service, and time management skills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7413,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych narzędzi biurowych oraz procedur w pracy kancelarii.',
+                    'en' => 'Updating knowledge on new office tools and procedures within the firm.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
 
+
+        ];
+        $POZOSTALI_SEKRETARZE_PRAWNI = [
+            [
+                'id' => 7414,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w organizowaniu pracy zespołów prawników, w tym zarządzanie kalendarzami, organizacja spotkań oraz koordynacja terminów procesowych.',
+                    'en' => 'Assisting in organizing the work of legal teams, including managing calendars, organizing meetings, and coordinating court deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7415,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w ustalaniu priorytetów i przypominanie o kluczowych zadaniach i terminach w sprawach prowadzonych przez poszczególnych prawników.',
+                    'en' => 'Helping set priorities and reminding of key tasks and deadlines in cases handled by individual lawyers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7416,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z asystentami prawników w celu zapewnienia sprawnej realizacji zadań biura.',
+                    'en' => 'Collaborating with legal assistants to ensure smooth execution of office tasks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7417,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie, edytowanie i formatowanie pism procesowych, pozwów, wniosków oraz umów.',
+                    'en' => 'Drafting, editing, and formatting legal documents, lawsuits, applications, and contracts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7418,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie projektów dokumentów na podstawie wskazówek prawnika i dbanie o ich zgodność z wytycznymi kancelarii.',
+                    'en' => 'Preparing document drafts based on lawyer instructions and ensuring compliance with firm guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7419,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie poprawności językowej, stylistycznej i zgodności dokumentów z przepisami formalnymi.',
+                    'en' => 'Ensuring linguistic, stylistic accuracy and formal compliance in documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7420,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie korespondencji między kancelarią a sądami, instytucjami publicznymi oraz klientami.',
+                    'en' => 'Handling correspondence between the firm, courts, public institutions, and clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7421,
+                'name' => json_encode([
+                    'pl' => 'Ustalanie szczegółów formalnych dotyczących składania dokumentów i ich odbioru, w tym wysyłek kurierskich oraz terminów przesyłek.',
+                    'en' => 'Arranging formal details for document submission and collection, including courier shipments and deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7422,
+                'name' => json_encode([
+                    'pl' => 'Odpowiadanie na e-maile, odbieranie telefonów oraz przekazywanie informacji pomiędzy prawnikami a stronami trzecimi.',
+                    'en' => 'Responding to emails, answering calls, and relaying information between lawyers and third parties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7423,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie kompletnych zestawów dokumentów na potrzeby spraw sądowych i administracyjnych, w tym zarządzanie dowodami i dokumentacją.',
+                    'en' => 'Preparing complete sets of documents for court and administrative cases, including managing evidence and documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7424,
+                'name' => json_encode([
+                    'pl' => 'Upewnienie się, że wszystkie dokumenty są kompletne, prawidłowo ułożone i gotowe do przedstawienia w sądzie.',
+                    'en' => 'Ensuring all documents are complete, properly arranged, and ready for court presentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7425,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z prawnikami w celu zebrania wszystkich niezbędnych materiałów dowodowych i formalnych.',
+                    'en' => 'Collaborating closely with lawyers to gather all necessary evidence and formal materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7426,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie archiwum kancelarii, dbanie o porządek i zgodność przechowywanych dokumentów z wymogami prawnymi i kancelaryjnymi.',
+                    'en' => 'Maintaining the firm’s archive, ensuring order and compliance with legal and office standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7427,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie baz danych oraz systemów ewidencyjnych dokumentacji, rejestrów akt i korespondencji.',
+                    'en' => 'Updating databases and registry systems for documentation, case records, and correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7428,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie bezpiecznego przechowywania dokumentów, przestrzegając zasad poufności i ochrony danych osobowych.',
+                    'en' => 'Ensuring safe document storage, adhering to confidentiality and personal data protection standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7429,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie prawników w tworzeniu analiz oraz raportów, w tym przeszukiwanie dokumentacji i przygotowywanie zestawień.',
+                    'en' => 'Supporting lawyers in creating analyses and reports, including document searches and preparing summaries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7430,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w przygotowywaniu materiałów na spotkania, rozprawy oraz zebrania z klientami.',
+                    'en' => 'Assisting in preparing materials for meetings, court hearings, and client gatherings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7431,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z postępów w sprawach na potrzeby klientów oraz kierownictwa kancelarii.',
+                    'en' => 'Creating progress reports for clients and firm management on cases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7432,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych dotyczących spraw, klientów i dokumentacji do systemów kancelarii i bieżące aktualizowanie tych informacji.',
+                    'en' => 'Entering case, client, and documentation data into the firm’s systems and regularly updating this information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7433,
+                'name' => json_encode([
+                    'pl' => 'Wykorzystywanie oprogramowania specjalistycznego (np. systemów do zarządzania dokumentacją prawną) oraz zapewnienie ich aktualności i prawidłowego działania.',
+                    'en' => 'Using specialized software (e.g., legal document management systems) and ensuring they are up-to-date and functioning properly.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7434,
+                'name' => json_encode([
+                    'pl' => 'Ścisła współpraca z działem IT w celu zapewnienia bezpieczeństwa danych i ich ochrony przed nieuprawnionym dostępem.',
+                    'en' => 'Close collaboration with the IT department to ensure data security and protection against unauthorized access.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7435,
+                'name' => json_encode([
+                    'pl' => 'Obsługa bieżących potrzeb prawników, w tym drukowanie dokumentów, przygotowywanie materiałów do spotkań i wykonywanie drobnych zadań organizacyjnych.',
+                    'en' => 'Handling the daily needs of lawyers, including printing documents, preparing materials for meetings, and performing minor organizational tasks.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7436,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w realizacji codziennych zadań biurowych, takich jak kopiowanie, skanowanie i dystrybucja dokumentów.',
+                    'en' => 'Assisting in daily office tasks such as copying, scanning, and distributing documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7437,
+                'name' => json_encode([
+                    'pl' => 'Zgłaszanie zapotrzebowania na zasoby biurowe i dbanie o ich regularne uzupełnianie.',
+                    'en' => 'Reporting needs for office supplies and ensuring their regular replenishment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7438,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie i wysyłanie faktur do klientów zgodnie z ustaleniami z działem księgowości.',
+                    'en' => 'Preparing and sending invoices to clients according to arrangements with the accounting department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7439,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie płatności od klientów i przypominanie o zaległych opłatach, jeśli to konieczne.',
+                    'en' => 'Monitoring client payments and issuing reminders about overdue fees if necessary.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7440,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w sporządzaniu raportów kosztowych oraz rozliczeń na potrzeby prawników i kierownictwa.',
+                    'en' => 'Supporting the preparation of cost reports and settlements for lawyers and management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7441,
+                'name' => json_encode([
+                    'pl' => 'Umawianie spotkań z klientami oraz stronami postępowań, a także przygotowanie odpowiednich sal i materiałów na spotkania.',
+                    'en' => 'Scheduling meetings with clients and parties to proceedings and preparing the appropriate rooms and materials for meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7442,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja terminów spotkań z uwzględnieniem dostępności prawników oraz przygotowanie niezbędnej dokumentacji.',
+                    'en' => 'Coordinating meeting schedules considering lawyer availability and preparing necessary documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7443,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie gości kancelarii oraz zapewnienie im wsparcia podczas wizyt w biurze.',
+                    'en' => 'Welcoming firm visitors and providing them with support during their visit.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7444,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie podróży służbowych prawników, w tym rezerwacja hoteli, biletów oraz planowanie transportu.',
+                    'en' => 'Organizing business trips for lawyers, including hotel reservations, tickets, and planning transportation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7445,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramów podróży oraz dostarczanie prawnikom informacji i dokumentów niezbędnych na wyjazdy.',
+                    'en' => 'Preparing travel schedules and providing lawyers with essential information and documents for trips.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7446,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie wydatkami podróży oraz przygotowanie raportów z podróży służbowych.',
+                    'en' => 'Managing travel expenses and preparing business trip reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7447,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach z zakresu administracji biurowej, obsługi klienta oraz oprogramowania prawniczego.',
+                    'en' => 'Regularly attending training in office administration, customer service, and legal software.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7448,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych przepisów oraz procedur biurowych, które mogą wpływać na pracę kancelarii.',
+                    'en' => 'Keeping updated on new regulations and office procedures that may affect the firm’s operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7449,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń i najlepszych praktyk z innymi sekretarzami prawnymi oraz doskonalenie umiejętności organizacyjnych.',
+                    'en' => 'Exchanging experiences and best practices with other legal secretaries and enhancing organizational skills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7450,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie harmonogramów spraw sądowych oraz terminów składania dokumentów w sądach i urzędach.',
+                    'en' => 'Monitoring court case schedules and document submission deadlines at courts and offices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7451,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że niezbędne dokumenty są dostarczane na czas oraz odbierane zgodnie z harmonogramem procesowym.',
+                    'en' => 'Ensuring that necessary documents are delivered on time and collected according to the procedural schedule.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7452,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z sądami i urzędami, aby koordynować przesyłki dokumentów i uzyskiwać potwierdzenia dostarczenia.',
+                    'en' => 'Maintaining contact with courts and offices to coordinate document shipments and obtain delivery confirmations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7453,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie współpracy z firmami kurierskimi, usługodawcami IT oraz dostawcami materiałów biurowych.',
+                    'en' => 'Coordinating with courier companies, IT service providers, and office supplies suppliers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7454,
+                'name' => json_encode([
+                    'pl' => 'Składanie zamówień na potrzebne zasoby i usługi, kontrola jakości dostarczanych produktów oraz terminowości realizacji.',
+                    'en' => 'Placing orders for necessary resources and services, and checking the quality and timeliness of deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7455,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rejestru wydatków związanych z obsługą biura i organizacją dostaw.',
+                    'en' => 'Maintaining a record of office operating expenses and supply organization costs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7456,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w opracowywaniu i dystrybucji materiałów promocyjnych kancelarii, takich jak ulotki, broszury oraz artykuły informacyjne.',
+                    'en' => 'Assisting in the development and distribution of the firm’s promotional materials, such as leaflets, brochures, and informational articles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7457,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w organizacji wydarzeń promocyjnych, takich jak konferencje, szkolenia, dni otwarte oraz inne wydarzenia branżowe.',
+                    'en' => 'Supporting the organization of promotional events, such as conferences, training sessions, open days, and other industry events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7458,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja treści strony internetowej kancelarii w zakresie zmian kontaktowych i aktualnych wydarzeń.',
+                    'en' => 'Updating the law firm’s website content to reflect contact changes and current events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7459,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie standardów kancelarii w zakresie ochrony danych klientów i przestrzegania zasad poufności.',
+                    'en' => 'Adhering to the firm’s standards for client data protection and confidentiality rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7460,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie przepisów RODO oraz polityki ochrony danych w kancelarii, dbanie o bezpieczeństwo dokumentacji.',
+                    'en' => 'Complying with GDPR regulations and the firm’s data protection policy, ensuring document security.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7461,
+                'name' => json_encode([
+                    'pl' => 'Szkolenie innych pracowników w zakresie zasad ochrony danych, jeśli jest to wymagane.',
+                    'en' => 'Training other employees in data protection principles when required.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+
+        ];
+        $AKREDYTOWANY_ASYSTENT_PARLAMENTARNY = [
+            [
+                'id' => 7462,
+                'name' => json_encode([
+                    'pl' => 'Analiza projektów ustaw, poprawek i innych dokumentów legislacyjnych oraz przygotowywanie streszczeń dla parlamentarzysty.',
+                    'en' => 'Analyzing bills, amendments, and other legislative documents and preparing summaries for the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7463,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie opinii i analiz dotyczących zmian w prawie oraz skutków proponowanych regulacji.',
+                    'en' => 'Preparing opinions and analyses on changes in law and the effects of proposed regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7464,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w opracowywaniu poprawek i stanowisk w sprawach legislacyjnych oraz współpraca z innymi asystentami przy opracowywaniu projektów.',
+                    'en' => 'Assisting in drafting amendments and positions on legislative issues and collaborating with other assistants on project development.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7465,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie notatek i streszczeń na potrzeby spotkań, komisji oraz sesji parlamentarnych.',
+                    'en' => 'Preparing notes and summaries for meetings, committees, and parliamentary sessions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7466,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie raportów z posiedzeń, debat i konferencji, w których uczestniczy poseł, oraz przekazywanie kluczowych informacji parlamentarzyście.',
+                    'en' => 'Preparing reports from meetings, debates, and conferences attended by the parliamentarian and relaying key information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7467,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie materiałów prasowych i informacyjnych, które mogą być przydatne podczas wystąpień publicznych lub debat.',
+                    'en' => 'Preparing press and informational materials useful for public appearances or debates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7468,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie, sortowanie i odpowiadanie na korespondencję przychodzącą, w tym listy od wyborców, organizacji oraz instytucji.',
+                    'en' => 'Receiving, sorting, and responding to incoming correspondence, including letters from voters, organizations, and institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7469,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie oficjalnych odpowiedzi i przekazywanie informacji do posła w przypadku pilnych zapytań.',
+                    'en' => 'Drafting official responses and relaying information to the parliamentarian in urgent cases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7470,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie bieżącego kontaktu z osobami, które kontaktują się z biurem poselskim, oraz zarządzanie korespondencją e-mailową.',
+                    'en' => 'Maintaining contact with individuals who reach out to the parliamentary office and managing email correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7471,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i zarządzanie kalendarzem spotkań posła, planowanie wizyt i koordynacja terminów.',
+                    'en' => 'Organizing and managing the parliamentarian’s meeting calendar, planning visits, and coordinating appointments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7472,
+                'name' => json_encode([
+                    'pl' => 'Umawianie spotkań z wyborcami, przedstawicielami organizacji pozarządowych, lobbystami, ekspertami i przedstawicielami mediów.',
+                    'en' => 'Scheduling meetings with voters, NGO representatives, lobbyists, experts, and media representatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7473,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności sal konferencyjnych, materiałów i przygotowanie harmonogramów na potrzeby posła.',
+                    'en' => 'Ensuring the availability of conference rooms, materials, and preparing schedules for the parliamentarian’s needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7474,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie tekstów przemówień, wystąpień i oświadczeń posła na sesjach parlamentarnych, konferencjach oraz innych wydarzeniach publicznych.',
+                    'en' => 'Drafting speeches, statements, and declarations for the parliamentarian at parliamentary sessions, conferences, and other public events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7475,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie punktów głównych i argumentów merytorycznych w oparciu o stanowisko posła oraz analizę problemu.',
+                    'en' => 'Developing key points and substantive arguments based on the parliamentarian’s position and issue analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7476,
+                'name' => json_encode([
+                    'pl' => 'Konsultacja treści wystąpień z posłem oraz uwzględnienie bieżących wydarzeń i oczekiwań wyborców.',
+                    'en' => 'Consulting speech content with the parliamentarian and considering current events and voter expectations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7477,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie pracą biura poselskiego, w tym organizacja pracy pozostałych pracowników i stażystów.',
+                    'en' => 'Managing the parliamentary office’s work, including organizing tasks for other staff members and interns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7478,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie ewidencji dokumentów, archiwizacja materiałów oraz dbanie o porządek w biurze.',
+                    'en' => 'Maintaining document records, archiving materials, and ensuring order in the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7479,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań logistycznych, takich jak zamawianie materiałów biurowych, sprzętu i dbanie o sprawność funkcjonowania biura.',
+                    'en' => 'Coordinating logistical activities, such as ordering office supplies, equipment, and ensuring smooth office operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7480,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie bieżących wydarzeń politycznych, społecznych i gospodarczych oraz dostarczanie informacji posłowi.',
+                    'en' => 'Monitoring current political, social, and economic events and providing information to the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7481,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie mediów oraz przygotowywanie codziennych raportów informacyjnych, które mogą mieć wpływ na działania posła.',
+                    'en' => 'Monitoring media and preparing daily informational reports that may impact the parliamentarian’s actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7482,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie posłowi dostępu do kluczowych informacji i analiz dotyczących jego obszarów zainteresowania.',
+                    'en' => 'Providing the parliamentarian with access to key information and analyses relevant to their areas of interest.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7483,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań z innymi asystentami posłów oraz przedstawicielami instytucji rządowych, organizacji pozarządowych i unijnych.',
+                    'en' => 'Coordinating activities with other parliamentary assistants and representatives of government, NGOs, and EU institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7484,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z innymi biurami w celu uzgadniania wspólnych inicjatyw, opinii i działań legislacyjnych.',
+                    'en' => 'Collaborating with other offices to align on joint initiatives, opinions, and legislative actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7485,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z urzędnikami i instytucjami UE oraz organizowanie spotkań roboczych z przedstawicielami sektora publicznego.',
+                    'en' => 'Maintaining contact with EU officials and institutions and organizing working meetings with public sector representatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7486,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie profilami posła w mediach społecznościowych, publikowanie postów oraz odpowiadanie na komentarze.',
+                    'en' => 'Managing the parliamentarian’s social media profiles, posting updates, and responding to comments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7487,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści na stronę internetową posła, w tym aktualności, artykułów i komunikatów prasowych.',
+                    'en' => 'Preparing content for the parliamentarian’s website, including news, articles, and press releases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7488,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z mediami, organizowanie wywiadów oraz dbanie o pozytywny wizerunek posła w mediach.',
+                    'en' => 'Collaborating with media, organizing interviews, and maintaining the parliamentarian’s positive image in media.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7489,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie podróży służbowych, rezerwacja biletów, hoteli oraz organizacja transportu.',
+                    'en' => 'Organizing business trips, booking tickets, hotels, and arranging transportation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7490,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramów wizyt oraz zapewnienie, że poseł ma wszystkie potrzebne dokumenty i informacje.',
+                    'en' => 'Preparing visit schedules and ensuring the parliamentarian has all necessary documents and information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7491,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnej organizacji spotkań w ramach podróży służbowych, zarówno w kraju, jak i za granicą.',
+                    'en' => 'Ensuring efficient organization of meetings during business trips, both domestically and internationally.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7492,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i koordynowanie spotkań z wyborcami, zarówno w biurze, jak i podczas wyjazdów poselskich.',
+                    'en' => 'Organizing and coordinating meetings with voters, both at the office and during parliamentary trips.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7493,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie odpowiedzi na pytania i zapytania od wyborców oraz zbieranie informacji o ich potrzebach i problemach.',
+                    'en' => 'Responding to questions and inquiries from voters and gathering information on their needs and issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7494,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie sprawozdań z dyżurów poselskich oraz rekomendacji dla posła na temat działań mogących wesprzeć wyborców.',
+                    'en' => 'Preparing reports from parliamentary duty sessions and making recommendations for actions to support voters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7495,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie posła w analizie projektów politycznych i programów w zakresie zgodnym z jego działalnością.',
+                    'en' => 'Supporting the parliamentarian in analyzing political projects and programs relevant to their work.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7496,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie propozycji inicjatyw ustawodawczych oraz strategii politycznych.',
+                    'en' => 'Preparing proposals for legislative initiatives and political strategies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7497,
+                'name' => json_encode([
+                    'pl' => 'Doradzanie w zakresie politycznych konsekwencji decyzji oraz współpraca przy tworzeniu strategii komunikacyjnej posła.',
+                    'en' => 'Advising on the political implications of decisions and collaborating on the parliamentarian’s communication strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7498,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad pracą innych asystentów i stażystów, przydzielanie im zadań oraz monitorowanie ich realizacji.',
+                    'en' => 'Supervising the work of other assistants and interns, assigning tasks, and monitoring their progress.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7499,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie wewnętrznych spotkań zespołu, omawianie bieżących działań i koordynacja pracy nad projektami.',
+                    'en' => 'Organizing internal team meetings, discussing ongoing activities, and coordinating work on projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7500,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie wsparcia i szkoleń dla nowych pracowników oraz stażystów w biurze poselskim.',
+                    'en' => 'Providing support and training for new employees and interns in the parliamentary office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7501,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i kontrola wydatków biura, dbanie o zgodność z budżetem oraz przepisy dotyczącymi finansowania biura.',
+                    'en' => 'Planning and controlling office expenses, ensuring budget compliance, and adhering to office funding regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7502,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów finansowych oraz analiza kosztów i wydatków na potrzeby biura poselskiego.',
+                    'en' => 'Preparing financial reports and analyzing costs and expenses for the parliamentary office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7503,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie i optymalizacja budżetu w celu efektywnego zarządzania środkami przeznaczonymi na funkcjonowanie biura.',
+                    'en' => 'Monitoring and optimizing the budget for effective management of funds allocated to office operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7504,
+                'name' => json_encode([
+                    'pl' => 'Pomoc posłowi w przygotowaniu się do posiedzeń komisji parlamentarnych, analiza dokumentów oraz przygotowanie materiałów.',
+                    'en' => 'Assisting the parliamentarian in preparing for parliamentary committee meetings, analyzing documents, and preparing materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7505,
+                'name' => json_encode([
+                    'pl' => 'Przegląd i opracowanie notatek na temat omawianych tematów oraz dostarczanie posłowi niezbędnych danych.',
+                    'en' => 'Reviewing and preparing notes on discussed topics and providing the parliamentarian with essential data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7506,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie posła na posiedzeniach komisji, jeśli jest to konieczne, oraz sporządzanie raportów z takich spotkań.',
+                    'en' => 'Representing the parliamentarian at committee meetings when necessary and preparing reports on such meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7507,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach związanych z pracą parlamentarną, komunikacją, legislacją oraz analizą prawną.',
+                    'en' => 'Regularly participating in training related to parliamentary work, communication, legislation, and legal analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7508,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat procedur parlamentarnych, polityk unijnych oraz przepisów prawa.',
+                    'en' => 'Updating knowledge of parliamentary procedures, EU policies, and legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7509,
+                'name' => json_encode([
+                    'pl' => 'Doskonalenie umiejętności interpersonalnych, negocjacyjnych i analitycznych, aby lepiej wspierać posła w realizacji jego zadań.',
+                    'en' => 'Improving interpersonal, negotiation, and analytical skills to better support the parliamentarian in their duties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+
+        ];
+        $ASYSTENT_DYREKTORA = [
+            [
+                'id' => 7510,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i zarządzanie kalendarzem dyrektora, planowanie spotkań, wydarzeń i terminów.',
+                    'en' => 'Organizing and managing the director’s calendar, scheduling meetings, events, and deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7511,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie dyrektorowi o nadchodzących spotkaniach i ważnych terminach.',
+                    'en' => 'Reminding the director of upcoming meetings and important deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7512,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie kalendarza z harmonogramem działań innych członków zespołu oraz interesariuszy.',
+                    'en' => 'Coordinating the calendar with the schedules of other team members and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7513,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie agendy spotkań oraz dbanie o jej terminowe dostarczenie uczestnikom.',
+                    'en' => 'Preparing meeting agendas and ensuring timely delivery to participants.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7514,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i przygotowanie sali konferencyjnej, zapewnienie niezbędnych materiałów, takich jak notatki, prezentacje, sprzęt.',
+                    'en' => 'Organizing and preparing the conference room, ensuring necessary materials such as notes, presentations, and equipment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7515,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie notatek ze spotkań oraz dystrybucja protokołów i ustaleń do odpowiednich osób.',
+                    'en' => 'Taking meeting notes and distributing minutes and agreements to relevant parties.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7516,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie i segregowanie korespondencji przychodzącej i wychodzącej, w tym poczty elektronicznej i tradycyjnej.',
+                    'en' => 'Receiving and sorting incoming and outgoing correspondence, including email and traditional mail.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7517,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie odpowiedzi na zapytania oraz przygotowywanie korespondencji służbowej w imieniu dyrektora.',
+                    'en' => 'Drafting responses to inquiries and preparing business correspondence on behalf of the director.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7518,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie ważnych informacji do odpowiednich działów i osób.',
+                    'en' => 'Relaying important information to relevant departments and individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7519,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie prezentacji na potrzeby spotkań, konferencji i raportów.',
+                    'en' => 'Preparing presentations for meetings, conferences, and reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7520,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie i analizowanie danych potrzebnych do przygotowania materiałów informacyjnych.',
+                    'en' => 'Gathering and analyzing data needed to prepare informational materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7521,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie profesjonalnych, czytelnych i spójnych materiałów, takich jak raporty, wykresy i infografiki.',
+                    'en' => 'Creating professional, readable, and consistent materials such as reports, charts, and infographics.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7522,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z interesariuszami wewnętrznymi i zewnętrznymi, w tym klientami, partnerami, dostawcami.',
+                    'en' => 'Maintaining contact with internal and external stakeholders, including clients, partners, and suppliers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7523,
+                'name' => json_encode([
+                    'pl' => 'Odpowiadanie na pytania i zapytania skierowane do dyrektora lub kierowanie ich do odpowiednich osób.',
+                    'en' => 'Responding to questions and inquiries directed to the director or routing them to the appropriate individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7524,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o pozytywny wizerunek firmy i zapewnienie wysokiej jakości komunikacji.',
+                    'en' => 'Maintaining a positive company image and ensuring high-quality communication.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7525,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie i archiwizacja dokumentacji biurowej, umów, raportów i innych dokumentów.',
+                    'en' => 'Managing and archiving office documentation, contracts, reports, and other documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7526,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie systemów organizacji dokumentacji oraz zapewnienie ich dostępności dla upoważnionych osób.',
+                    'en' => 'Creating document organization systems and ensuring accessibility for authorized individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7527,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o zgodność dokumentacji z przepisami dotyczącymi ochrony danych oraz bezpieczeństwa informacji.',
+                    'en' => 'Ensuring compliance of documentation with data protection and information security regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7528,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z projektami dyrektora, monitorowanie ich postępów oraz raportowanie statusu.',
+                    'en' => 'Coordinating director-related project activities, monitoring progress, and reporting status.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7529,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w identyfikacji priorytetów i organizacja działań w celu efektywnej realizacji zadań projektowych.',
+                    'en' => 'Assisting in prioritization and organizing activities for effective project task completion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7530,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie i analizowanie danych projektowych oraz przygotowywanie raportów postępów.',
+                    'en' => 'Collecting and analyzing project data and preparing progress reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7531,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizowanie podróży służbowych, w tym rezerwacja biletów, hoteli, transportu.',
+                    'en' => 'Planning and organizing business trips, including booking tickets, hotels, and transportation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7532,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramu wyjazdu oraz zapewnienie niezbędnych informacji i dokumentów.',
+                    'en' => 'Preparing travel schedules and ensuring necessary information and documents are provided.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7533,
+                'name' => json_encode([
+                    'pl' => 'Obsługa rozliczeń kosztów podróży i monitorowanie wydatków.',
+                    'en' => 'Managing travel expense settlements and monitoring expenditures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7534,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie regularnych raportów na temat wyników, kosztów i innych kluczowych wskaźników.',
+                    'en' => 'Preparing regular reports on performance, costs, and other key indicators.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7535,
+                'name' => json_encode([
+                    'pl' => 'Analiza i przetwarzanie danych finansowych, operacyjnych i statystycznych.',
+                    'en' => 'Analyzing and processing financial, operational, and statistical data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7536,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zestawień, które pomagają dyrektorowi w podejmowaniu strategicznych decyzji.',
+                    'en' => 'Creating summaries that assist the director in making strategic decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7537,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zaopatrzenia biurowego oraz dbanie o regularne uzupełnianie zapasów.',
+                    'en' => 'Monitoring office supplies and ensuring regular replenishment of stock.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7538,
+                'name' => json_encode([
+                    'pl' => 'Zamawianie materiałów biurowych, drukarek, papieru, materiałów promocyjnych i innych potrzebnych zasobów.',
+                    'en' => 'Ordering office supplies, printers, paper, promotional materials, and other necessary resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7539,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnego funkcjonowania biura i współpraca z działem IT oraz logistyką.',
+                    'en' => 'Ensuring smooth office operations and coordinating with the IT and logistics departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7540,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w przygotowywaniu budżetów operacyjnych oraz monitorowanie wydatków biura.',
+                    'en' => 'Assisting in preparing operational budgets and monitoring office expenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7541,
+                'name' => json_encode([
+                    'pl' => 'Rozliczanie faktur, kontrola wydatków służbowych, w tym wydatków podróży.',
+                    'en' => 'Processing invoices, managing business expenses, including travel costs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7542,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie miesięcznych i kwartalnych raportów z wydatków na potrzeby dyrektora i działu finansowego.',
+                    'en' => 'Preparing monthly and quarterly expense reports for the director and finance department.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7543,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie działań zespołu, przydzielanie zadań oraz monitorowanie ich realizacji.',
+                    'en' => 'Coordinating team activities, assigning tasks, and monitoring their completion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7544,
+                'name' => json_encode([
+                    'pl' => 'Ułatwianie komunikacji wewnętrznej oraz wspieranie dyrektora w rozwiązywaniu bieżących problemów zespołowych.',
+                    'en' => 'Facilitating internal communication and supporting the director in addressing ongoing team issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7545,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie szkoleń, spotkań integracyjnych i dbanie o pozytywną atmosferę w zespole.',
+                    'en' => 'Organizing training, team-building events, and fostering a positive atmosphere within the team.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7546,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja i organizacja wydarzeń takich jak konferencje, seminaria, spotkania z klientami.',
+                    'en' => 'Coordinating and organizing events such as conferences, seminars, and client meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7547,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie logistyki, w tym rezerwacja sal, zamówienia cateringu, przygotowanie materiałów.',
+                    'en' => 'Ensuring logistics, including room reservations, catering orders, and preparation of materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7548,
+                'name' => json_encode([
+                    'pl' => 'Pomoc przy organizacji firmowych wydarzeń integracyjnych i spotkań jubileuszowych.',
+                    'en' => 'Assisting in organizing company team-building events and anniversary meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7549,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie procedur administracyjnych i operacyjnych w biurze.',
+                    'en' => 'Developing and implementing administrative and operational procedures in the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7550,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie polityk firmy oraz dostosowanie procedur do wymogów bezpieczeństwa i zgodności.',
+                    'en' => 'Adhering to company policies and adjusting procedures to meet security and compliance requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7551,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie dyrektora w realizacji polityki biurowej i procedur korporacyjnych.',
+                    'en' => 'Supporting the director in implementing office policy and corporate procedures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7552,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że dokumenty i procedury biura są zgodne z obowiązującymi przepisami o ochronie danych osobowych (np. RODO).',
+                    'en' => 'Ensuring that office documents and procedures comply with current data protection regulations (e.g., GDPR).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7553,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie polityk ochrony danych i nadzorowanie przestrzegania wytycznych.',
+                    'en' => 'Implementing data protection policies and overseeing adherence to guidelines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7554,
+                'name' => json_encode([
+                    'pl' => 'Informowanie dyrektora o wszelkich zmianach prawnych mających wpływ na działalność biura.',
+                    'en' => 'Informing the director of any legal changes affecting office operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7555,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach i kursach, które pomagają w rozwijaniu kompetencji związanych z zarządzaniem biurem i wspieraniem dyrektora.',
+                    'en' => 'Regularly attending training and courses to enhance skills related to office management and supporting the director.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7556,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych narzędzi biurowych, oprogramowania i technik zarządzania czasem.',
+                    'en' => 'Updating knowledge of new office tools, software, and time management techniques.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7557,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi asystentami w celu podnoszenia standardów pracy.',
+                    'en' => 'Exchanging experiences with other assistants to improve work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+
+        ];
+        $ASYSTENT_PARLAMENTARNY = [
+            [
+                'id' => 7558,
+                'name' => json_encode([
+                    'pl' => 'Analiza projektów ustaw, poprawek i dokumentów legislacyjnych oraz przygotowywanie ich streszczeń.',
+                    'en' => 'Analyzing bills, amendments, and legislative documents and preparing summaries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7559,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w opracowywaniu poprawek i stanowisk parlamentarzysty dotyczących ustaw oraz innych działań legislacyjnych.',
+                    'en' => 'Assisting in drafting amendments and positions on legislation and other parliamentary actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7560,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów i opinii dotyczących bieżących spraw legislacyjnych oraz ich potencjalnych skutków.',
+                    'en' => 'Preparing reports and opinions on current legislative issues and their potential impacts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7561,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie materiałów przygotowujących parlamentarzystę do posiedzeń, komisji oraz spotkań z interesariuszami.',
+                    'en' => 'Preparing materials for the parliamentarian’s meetings, committees, and stakeholder engagements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7562,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów z posiedzeń, debat i wydarzeń oraz przekazywanie kluczowych informacji parlamentarzyście.',
+                    'en' => 'Creating reports from meetings, debates, and events and relaying key information to the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7563,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie materiałów prasowych i informacyjnych na potrzeby biura poselskiego.',
+                    'en' => 'Preparing press and informational materials for the parliamentary office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7564,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie, sortowanie i odpowiadanie na korespondencję, w tym listy od wyborców, organizacji i instytucji.',
+                    'en' => 'Receiving, sorting, and responding to correspondence, including letters from voters, organizations, and institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7565,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie odpowiedzi i raportowanie najważniejszych zapytań parlamentarzyście.',
+                    'en' => 'Drafting responses and reporting key inquiries to the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7566,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z osobami i instytucjami kontaktującymi się z biurem poselskim.',
+                    'en' => 'Maintaining contact with individuals and institutions reaching out to the parliamentary office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7567,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i zarządzanie kalendarzem posła lub europosła, w tym planowanie spotkań, wizyt oraz harmonogramów posiedzeń.',
+                    'en' => 'Organizing and managing the schedule of the MP or MEP, including planning meetings, visits, and session schedules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7568,
+                'name' => json_encode([
+                    'pl' => 'Umawianie spotkań z wyborcami, przedstawicielami organizacji, lobbystami, ekspertami i mediami.',
+                    'en' => 'Scheduling meetings with voters, organization representatives, lobbyists, experts, and media.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7569,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności materiałów i sal konferencyjnych na spotkania parlamentarzysty.',
+                    'en' => 'Ensuring the availability of materials and conference rooms for the parliamentarian’s meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7570,
+                'name' => json_encode([
+                    'pl' => 'Pisanie przemówień i oświadczeń na potrzeby sesji parlamentarnych, konferencji i innych wydarzeń.',
+                    'en' => 'Drafting speeches and statements for parliamentary sessions, conferences, and other events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7571,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie głównych punktów i argumentów w oparciu o stanowisko parlamentarzysty oraz analizę tematu.',
+                    'en' => 'Preparing main points and arguments based on the parliamentarian’s stance and topic analysis.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7572,
+                'name' => json_encode([
+                    'pl' => 'Konsultacja treści wystąpień z posłem oraz dostosowanie ich do bieżących potrzeb i sytuacji.',
+                    'en' => 'Consulting speech content with the MP and tailoring it to current needs and circumstances.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7573,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie dokumentacją biura, prowadzenie rejestru korespondencji, umów i innych dokumentów.',
+                    'en' => 'Managing office documentation, maintaining records of correspondence, contracts, and other documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7574,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i archiwizacja dokumentacji poszczególnych spraw oraz zapewnienie jej dostępności.',
+                    'en' => 'Organizing and archiving case documentation and ensuring its accessibility.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7575,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad ochrony danych osobowych i bezpieczeństwa informacji w zarządzaniu dokumentacją.',
+                    'en' => 'Adhering to personal data protection and information security principles in documentation management.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7576,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie bieżących wydarzeń politycznych, społecznych i gospodarczych istotnych dla parlamentarzysty.',
+                    'en' => 'Monitoring current political, social, and economic events relevant to the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7577,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie mediów i przygotowywanie raportów z informacjami mogącymi mieć wpływ na działania parlamentarzysty.',
+                    'en' => 'Monitoring media and preparing reports with information that may impact the parliamentarian’s actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7578,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie parlamentarzyście dostępu do aktualnych analiz dotyczących jego obszarów zainteresowania.',
+                    'en' => 'Providing the parliamentarian with access to up-to-date analyses in their areas of interest.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7579,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań z innymi asystentami i biurami poselskimi, a także z instytucjami rządowymi, organizacjami pozarządowymi i europejskimi.',
+                    'en' => 'Coordinating actions with other assistants, parliamentary offices, and government, NGO, and EU institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7580,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z przedstawicielami instytucji UE w celu uzgadniania wspólnych stanowisk i działań.',
+                    'en' => 'Collaborating with EU institution representatives to agree on joint positions and actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7581,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań roboczych z przedstawicielami sektora publicznego i organizacji pozarządowych.',
+                    'en' => 'Organizing working meetings with representatives from the public sector and NGOs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7582,
+                'name' => json_encode([
+                    'pl' => 'Obsługa profili parlamentarzysty w mediach społecznościowych, publikowanie postów oraz odpowiadanie na komentarze.',
+                    'en' => 'Managing the parliamentarian’s social media profiles, posting updates, and responding to comments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7583,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie treści na stronę internetową parlamentarzysty oraz komunikatów prasowych.',
+                    'en' => 'Preparing content for the parliamentarian’s website and press releases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7584,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie wywiadów i współpraca z mediami, dbanie o spójny wizerunek parlamentarzysty.',
+                    'en' => 'Organizing interviews and collaborating with media, ensuring a consistent image of the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7585,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizacja podróży służbowych, w tym rezerwacja biletów, hoteli oraz logistyka transportu.',
+                    'en' => 'Planning and organizing business trips, including ticket booking, hotel reservations, and transport logistics.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7586,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramów podróży oraz zapewnienie niezbędnych dokumentów i informacji.',
+                    'en' => 'Preparing travel schedules and ensuring necessary documents and information are available.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7587,
+                'name' => json_encode([
+                    'pl' => 'Organizacja spotkań w ramach podróży służbowych i zapewnienie sprawnego przebiegu wizyt.',
+                    'en' => 'Organizing meetings during business trips and ensuring smooth visits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7588,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań z wyborcami w biurze poselskim oraz podczas wyjazdów poselskich.',
+                    'en' => 'Organizing meetings with voters in the parliamentary office and during constituency visits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7589,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie odpowiedzi na pytania i zapytania wyborców oraz zbieranie informacji o ich potrzebach i problemach.',
+                    'en' => 'Responding to voter questions and inquiries and gathering information on their needs and concerns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7590,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów z dyżurów poselskich oraz rekomendacji dla parlamentarzysty na temat dalszych działań.',
+                    'en' => 'Preparing reports from parliamentary duty sessions and recommending further actions for the parliamentarian.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7591,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie parlamentarzysty w analizie projektów politycznych i programów zgodnie z jego obszarem działania.',
+                    'en' => 'Supporting the parliamentarian in analyzing political projects and programs relevant to their field of action.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7592,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie propozycji inicjatyw ustawodawczych oraz doradztwo w zakresie politycznych konsekwencji decyzji.',
+                    'en' => 'Preparing proposals for legislative initiatives and advising on the political implications of decisions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7593,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i wdrażanie strategii politycznej oraz komunikacyjnej parlamentarzysty.',
+                    'en' => 'Creating and implementing the parliamentarian’s political and communication strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7594,
+                'name' => json_encode([
+                    'pl' => 'Nadzór nad pracą innych asystentów i stażystów, przydzielanie zadań oraz monitorowanie ich realizacji.',
+                    'en' => 'Supervising other assistants and interns, assigning tasks, and monitoring their completion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7595,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań wewnętrznych zespołu oraz omawianie bieżących działań i projektów.',
+                    'en' => 'Organizing internal team meetings and discussing ongoing activities and projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7596,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie wsparcia i szkoleń dla nowych członków zespołu oraz dbałość o atmosferę współpracy.',
+                    'en' => 'Providing support and training for new team members and fostering a collaborative atmosphere.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7597,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i monitorowanie wydatków biura oraz dbanie o zgodność z budżetem.',
+                    'en' => 'Planning and monitoring office expenses and ensuring budget compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7598,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów finansowych oraz kontrola wydatków i kosztów operacyjnych biura.',
+                    'en' => 'Preparing financial reports and monitoring office expenses and operational costs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7599,
+                'name' => json_encode([
+                    'pl' => 'Optymalizacja budżetu i przygotowywanie zestawień wydatków na potrzeby parlamentarzysty i organów nadzorczych.',
+                    'en' => 'Optimizing the budget and preparing expense summaries for the parliamentarian and oversight bodies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7600,
+                'name' => json_encode([
+                    'pl' => 'Pomoc parlamentarzyście w przygotowaniu się do posiedzeń komisji parlamentarnych, analiza dokumentów i przygotowanie materiałów.',
+                    'en' => 'Assisting the parliamentarian in preparing for committee meetings, analyzing documents, and preparing materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7601,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie notatek i dostarczanie kluczowych informacji o omawianych tematach.',
+                    'en' => 'Taking notes and providing key information on discussed topics.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7602,
+                'name' => json_encode([
+                    'pl' => 'Reprezentowanie parlamentarzysty na spotkaniach, jeśli to konieczne, oraz sporządzanie raportów z takich spotkań.',
+                    'en' => 'Representing the parliamentarian at meetings when necessary and preparing reports on such meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7603,
+                'name' => json_encode([
+                    'pl' => 'Udział w szkoleniach związanych z pracą parlamentarną, komunikacją, analizą prawną i legislacyjną.',
+                    'en' => 'Participating in training related to parliamentary work, communication, legal analysis, and legislation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7604,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat procedur parlamentarnych, polityk europejskich oraz nowoczesnych narzędzi biurowych.',
+                    'en' => 'Updating knowledge of parliamentary procedures, EU policies, and modern office tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7605,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi asystentami parlamentarnymi oraz doskonalenie kompetencji.',
+                    'en' => 'Exchanging experiences with other parliamentary assistants and enhancing competencies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $ASYSTENT_ZARZĄDU = [
+            [
+                'id' => 7606,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i zarządzanie kalendarzem spotkań członków zarządu, w tym planowanie wydarzeń, spotkań i terminów.',
+                    'en' => 'Organizing and managing the board members’ meeting schedules, including planning events, meetings, and deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7607,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie o nadchodzących spotkaniach i kluczowych terminach oraz koordynacja harmonogramu działań zarządu.',
+                    'en' => 'Reminding about upcoming meetings and key deadlines and coordinating the board’s activity schedule.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7608,
+                'name' => json_encode([
+                    'pl' => 'Rezerwacja sal konferencyjnych i zapewnienie dostępności niezbędnych zasobów na spotkania.',
+                    'en' => 'Booking conference rooms and ensuring availability of necessary resources for meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7609,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie agendy oraz materiałów informacyjnych na spotkania zarządu i rady nadzorczej.',
+                    'en' => 'Preparing the agenda and informational materials for board and supervisory board meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7610,
+                'name' => json_encode([
+                    'pl' => 'Organizacja spotkań, w tym dbanie o logistykę, zamówienie cateringu, przygotowanie sprzętu i materiałów.',
+                    'en' => 'Organizing meetings, including logistics, catering, and preparing equipment and materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7611,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie notatek i protokołów ze spotkań, przekazywanie ich członkom zarządu oraz monitorowanie realizacji ustaleń.',
+                    'en' => 'Taking notes and minutes from meetings, distributing them to board members, and monitoring follow-ups.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7612,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie, segregowanie i zarządzanie korespondencją przychodzącą i wychodzącą dla zarządu.',
+                    'en' => 'Receiving, sorting, and managing incoming and outgoing correspondence for the board.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7613,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie odpowiedzi i przygotowywanie korespondencji służbowej w imieniu członków zarządu.',
+                    'en' => 'Drafting responses and preparing business correspondence on behalf of board members.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7614,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie dokumenty są odpowiednio przechowywane i archiwizowane.',
+                    'en' => 'Ensuring that all documents are properly stored and archived.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7615,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów dotyczących wyników operacyjnych, finansowych oraz wskaźników KPI na potrzeby zarządu.',
+                    'en' => 'Preparing reports on operational and financial performance and KPIs for the board.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7616,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie zestawień i analiz w oparciu o dane dostarczone przez różne działy firmy.',
+                    'en' => 'Creating summaries and analyses based on data provided by various departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7617,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie prezentacji oraz materiałów informacyjnych dla zarządu i rady nadzorczej.',
+                    'en' => 'Preparing presentations and informational materials for the board and supervisory board.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7618,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z kluczowymi interesariuszami firmy, w tym klientami, partnerami biznesowymi, dostawcami i pracownikami.',
+                    'en' => 'Maintaining contact with key company stakeholders, including clients, business partners, suppliers, and employees.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7619,
+                'name' => json_encode([
+                    'pl' => 'Organizacja spotkań i negocjacji z interesariuszami oraz odpowiadanie na zapytania skierowane do zarządu.',
+                    'en' => 'Organizing meetings and negotiations with stakeholders and responding to inquiries directed at the board.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7620,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie działań PR-owych zarządu oraz dbanie o pozytywny wizerunek firmy.',
+                    'en' => 'Supporting the board’s PR activities and ensuring a positive company image.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7621,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i organizacja podróży służbowych, w tym rezerwacja biletów, hoteli, wynajem samochodów oraz innych środków transportu.',
+                    'en' => 'Planning and organizing business trips, including booking tickets, hotels, car rentals, and other transportation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7622,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramu wyjazdu oraz dostarczanie niezbędnych dokumentów, takich jak bilety, rezerwacje, informacje o spotkaniach.',
+                    'en' => 'Preparing travel schedules and providing necessary documents such as tickets, reservations, and meeting details.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7623,
+                'name' => json_encode([
+                    'pl' => 'Rozliczanie kosztów podróży służbowych oraz monitorowanie wydatków.',
+                    'en' => 'Processing travel expenses and monitoring expenditures.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7624,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie profesjonalnych prezentacji, wykresów, infografik i innych materiałów wizualnych na potrzeby zarządu.',
+                    'en' => 'Developing professional presentations, charts, infographics, and other visual materials for the board.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7625,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie i analiza danych z różnych źródeł w celu przygotowania dokładnych i aktualnych materiałów.',
+                    'en' => 'Gathering and analyzing data from various sources to prepare accurate and up-to-date materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7626,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie spójności graficznej i merytorycznej materiałów.',
+                    'en' => 'Ensuring graphical and content consistency of materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7627,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w realizacji projektów nadzorowanych przez zarząd, monitorowanie ich postępów oraz raportowanie statusu.',
+                    'en' => 'Assisting in board-supervised projects, monitoring their progress, and reporting status.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7628,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie działań zarządu w zakresie priorytetyzacji projektów i zadań w firmie.',
+                    'en' => 'Supporting the board in prioritizing projects and tasks within the company.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7629,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie i analizowanie danych projektowych oraz sporządzanie raportów dotyczących realizacji projektów.',
+                    'en' => 'Collecting and analyzing project data and preparing reports on project progress.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7630,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie dokumentacją, archiwizacja umów, aktów prawnych oraz innych ważnych dokumentów.',
+                    'en' => 'Managing documentation, archiving contracts, legal acts, and other important documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7631,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie ewidencji dokumentów i dbanie o zgodność przechowywanych materiałów z wymaganiami prawnymi i wewnętrznymi.',
+                    'en' => 'Maintaining records and ensuring stored materials comply with legal and internal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7632,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zaopatrzenia biura zarządu oraz składanie zamówień na materiały biurowe i niezbędne zasoby.',
+                    'en' => 'Monitoring office supplies for the board’s office and placing orders for necessary resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7633,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie budżetu operacyjnego biura zarządu i dbanie o zgodność z założeniami budżetowymi.',
+                    'en' => 'Monitoring the operational budget of the board’s office and ensuring budget compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7634,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie zarządu w sporządzaniu raportów kosztowych oraz analizie wydatków.',
+                    'en' => 'Supporting the board in preparing cost reports and analyzing expenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7635,
+                'name' => json_encode([
+                    'pl' => 'Rozliczanie faktur, kontrola wydatków służbowych oraz przygotowanie miesięcznych zestawień finansowych.',
+                    'en' => 'Processing invoices, managing business expenses, and preparing monthly financial statements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7636,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i wdrażanie standardów oraz procedur administracyjnych dla biura zarządu.',
+                    'en' => 'Developing and implementing administrative standards and procedures for the board’s office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7637,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie polityk firmy oraz dbanie o zgodność działań z przepisami wewnętrznymi.',
+                    'en' => 'Adhering to company policies and ensuring compliance with internal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7638,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja procedur w zależności od zmian organizacyjnych i wymogów prawnych.',
+                    'en' => 'Updating procedures in response to organizational and legal changes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7639,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności z przepisami dotyczącymi ochrony danych osobowych i regulacjami prawnymi.',
+                    'en' => 'Ensuring compliance with personal data protection regulations and legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7640,
+                'name' => json_encode([
+                    'pl' => 'Wdrażanie polityk ochrony danych oraz monitorowanie ich przestrzegania.',
+                    'en' => 'Implementing data protection policies and monitoring compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7641,
+                'name' => json_encode([
+                    'pl' => 'Informowanie zarządu o zmianach prawnych mogących mieć wpływ na działalność firmy.',
+                    'en' => 'Informing the board of legal changes that may impact company operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7642,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie komunikacji między działami i zarządem w celu zapewnienia spójności działań.',
+                    'en' => 'Supporting communication between departments and the board to ensure consistent actions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7643,
+                'name' => json_encode([
+                    'pl' => 'Przydzielanie zadań oraz monitorowanie ich realizacji, a także pomoc w rozwiązywaniu problemów zespołowych.',
+                    'en' => 'Assigning tasks, monitoring their completion, and assisting in resolving team issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7644,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja współpracy zarządu z kluczowymi działami, takimi jak finanse, HR, marketing.',
+                    'en' => 'Coordinating the board’s collaboration with key departments such as finance, HR, and marketing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7645,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i koordynacja wydarzeń, takich jak konferencje, seminaria, spotkania z klientami i partnerami.',
+                    'en' => 'Organizing and coordinating events such as conferences, seminars, and meetings with clients and partners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7646,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie logistyki, cateringu, przygotowanie materiałów oraz dbanie o sprawny przebieg wydarzeń.',
+                    'en' => 'Ensuring logistics, catering, and preparation of materials, and overseeing smooth event execution.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7647,
+                'name' => json_encode([
+                    'pl' => 'Współpraca przy organizacji eventów integracyjnych i spotkań firmowych.',
+                    'en' => 'Collaborating in organizing team-building events and company meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7648,
+                'name' => json_encode([
+                    'pl' => 'Ochrona poufnych informacji oraz dokumentacji zarządu, w tym umów, decyzji strategicznych i danych osobowych.',
+                    'en' => 'Protecting confidential information and board documentation, including contracts, strategic decisions, and personal data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7649,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie wewnętrznych procedur bezpieczeństwa informacji oraz monitorowanie ich przestrzegania.',
+                    'en' => 'Adhering to internal information security procedures and monitoring compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7650,
+                'name' => json_encode([
+                    'pl' => 'Zachowanie najwyższych standardów etycznych i ochrony danych w pracy z dokumentami i informacjami.',
+                    'en' => 'Maintaining the highest ethical standards and data protection in handling documents and information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7651,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w szkoleniach, konferencjach i kursach rozwijających umiejętności związane z zarządzaniem biurem i obsługą zarządu.',
+                    'en' => 'Participating in training, conferences, and courses to enhance office management and board support skills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7652,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych narzędzi administracyjnych, oprogramowania i technik zarządzania czasem.',
+                    'en' => 'Updating knowledge of new administrative tools, software, and time management techniques.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7653,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi asystentami zarządu w celu podnoszenia standardów pracy.',
+                    'en' => 'Exchanging experiences with other board assistants to improve work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $SEKRETARZ_KONSULARNY = [
+            [
+                'id' => 7654,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie wniosków wizowych i paszportowych oraz weryfikacja kompletności dokumentacji.',
+                    'en' => 'Receiving visa and passport applications and verifying document completeness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7655,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie wiz i paszportów zgodnie z procedurami oraz przekazywanie ich osobom zainteresowanym.',
+                    'en' => 'Issuing visas and passports according to procedures and handing them to relevant individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7656,
+                'name' => json_encode([
+                    'pl' => 'Informowanie obywateli o wymogach wizowych oraz udzielanie wsparcia w wypełnianiu wniosków.',
+                    'en' => 'Informing citizens about visa requirements and providing support in completing applications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7657,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie pomocy obywatelom kraju w sytuacjach nadzwyczajnych, takich jak kradzież dokumentów, wypadki, hospitalizacje czy aresztowania.',
+                    'en' => 'Assisting citizens in emergencies, such as document theft, accidents, hospitalizations, or arrests.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7658,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w organizacji powrotu do kraju w sytuacjach awaryjnych oraz pomoc w zapewnieniu podstawowych potrzeb.',
+                    'en' => 'Supporting repatriation efforts during emergencies and assisting with essential needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7659,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi władzami i służbami ratunkowymi w przypadku zagrożenia życia lub zdrowia obywateli.',
+                    'en' => 'Cooperating with local authorities and emergency services in cases of threats to citizens’ life or health.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7660,
+                'name' => json_encode([
+                    'pl' => 'Rejestrowanie obywateli przebywających na terenie obcego państwa oraz prowadzenie rejestru ich danych.',
+                    'en' => 'Registering citizens residing in a foreign country and maintaining their data records.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7661,
+                'name' => json_encode([
+                    'pl' => 'Informowanie obywateli o możliwościach rejestracji oraz jej zaletach, takich jak ułatwienie pomocy konsularnej.',
+                    'en' => 'Informing citizens about registration opportunities and benefits, such as ease of consular assistance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7662,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja bazy danych obywateli oraz dbanie o zgodność rejestru z przepisami ochrony danych osobowych.',
+                    'en' => 'Updating the citizens’ database and ensuring data registry compliance with data protection laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7663,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie zaświadczeń konsularnych, np. potwierdzeń zameldowania, stanu cywilnego, poświadczeń notarialnych.',
+                    'en' => 'Preparing consular certificates, e.g., proof of residence, marital status, notarial certifications.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7664,
+                'name' => json_encode([
+                    'pl' => 'Legalizacja dokumentów urzędowych dla obywateli i firm, aby mogły być uznane za ważne w kraju.',
+                    'en' => 'Legalizing official documents for citizens and companies to be recognized as valid in the home country.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7665,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z miejscowymi instytucjami w zakresie potwierdzania autentyczności dokumentów.',
+                    'en' => 'Cooperating with local institutions to verify the authenticity of documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7666,
+                'name' => json_encode([
+                    'pl' => 'Informowanie obywateli o ich prawach i obowiązkach wynikających z przepisów lokalnego prawa oraz przepisów kraju ojczystego.',
+                    'en' => 'Informing citizens about their rights and obligations under local laws and the home country’s regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7667,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi prawnikami i organizacjami pozarządowymi w zakresie pomocy prawnej dla obywateli.',
+                    'en' => 'Collaborating with local lawyers and NGOs to provide legal assistance to citizens.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7668,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w załatwianiu formalności prawnych, np. dotyczących aktów stanu cywilnego, dokumentów tożsamości i ubezpieczeń.',
+                    'en' => 'Assisting in legal formalities, e.g., regarding civil status records, identification documents, and insurance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7669,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie dokumentów tymczasowych w sytuacji zagubienia lub kradzieży paszportu, np. dokumentu umożliwiającego powrót do kraju.',
+                    'en' => 'Issuing temporary documents, such as emergency travel documents, in cases of lost or stolen passports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7670,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi służbami w zakresie zgłoszenia kradzieży oraz organizacja pomocy obywatelom w takich sytuacjach.',
+                    'en' => 'Coordinating with local services on theft reports and organizing assistance for citizens in such cases.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7671,
+                'name' => json_encode([
+                    'pl' => 'Przeprowadzanie weryfikacji tożsamości obywatela w przypadku wydawania dokumentu tymczasowego.',
+                    'en' => 'Conducting identity verification when issuing temporary documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7672,
+                'name' => json_encode([
+                    'pl' => 'Pomoc obywatelom w sprawach rodzinnych, takich jak rejestracja narodzin, małżeństw i rozwodów.',
+                    'en' => 'Assisting citizens in family matters, such as registering births, marriages, and divorces.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7673,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wsparcia w przypadku problemów opiekuńczych, np. gdy rodzic pozostaje bez opieki nad dzieckiem na terenie obcego kraju.',
+                    'en' => 'Providing support in custodial issues, such as when a parent lacks care arrangements for a child abroad.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7674,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi instytucjami w zakresie spraw związanych z ochroną praw dzieci i osób potrzebujących opieki.',
+                    'en' => 'Collaborating with local institutions on issues related to protecting the rights of children and individuals in need of care.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7675,
+                'name' => json_encode([
+                    'pl' => 'Rejestrowanie narodzin, ślubów, rozwodów i zgonów obywateli przebywających za granicą.',
+                    'en' => 'Registering births, marriages, divorces, and deaths of citizens abroad.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7676,
+                'name' => json_encode([
+                    'pl' => 'Wydawanie odpisów aktów stanu cywilnego i innych dokumentów potrzebnych obywatelom.',
+                    'en' => 'Issuing copies of civil status records and other necessary documents for citizens.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7677,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie kopii aktów stanu cywilnego do odpowiednich instytucji w kraju.',
+                    'en' => 'Transmitting copies of civil status records to relevant institutions in the home country.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7678,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie raportów konsularnych dotyczących liczby obywateli przebywających w danym kraju oraz ich sytuacji.',
+                    'en' => 'Preparing consular reports on the number of citizens in a given country and their circumstances.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7679,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie analiz i raportów na potrzeby instytucji krajowych, takich jak MSZ.',
+                    'en' => 'Preparing analyses and reports for national institutions, such as the Ministry of Foreign Affairs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7680,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie działań konsulatu, szczególnie w przypadku sytuacji kryzysowych lub incydentów.',
+                    'en' => 'Documenting consulate activities, particularly during crises or incidents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7681,
+                'name' => json_encode([
+                    'pl' => 'Organizacja punktów wyborczych w placówkach konsularnych oraz zapewnienie możliwości głosowania dla obywateli przebywających za granicą.',
+                    'en' => 'Organizing polling stations in consular offices and facilitating voting for citizens abroad.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7682,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji na temat procedur wyborczych oraz możliwości głosowania w kraju i za granicą.',
+                    'en' => 'Providing information on voting procedures and opportunities to vote in-country and abroad.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7683,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie ewidencji osób zgłaszających chęć udziału w wyborach i zapewnienie zgodności z przepisami wyborczymi.',
+                    'en' => 'Keeping records of individuals registering to vote and ensuring compliance with electoral regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7684,
+                'name' => json_encode([
+                    'pl' => 'Publikowanie aktualnych informacji o przepisach prawnych i procedurach obowiązujących w kraju pobytu.',
+                    'en' => 'Publishing updated information on legal regulations and procedures in the country of residence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7685,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i dystrybucja materiałów informacyjnych, np. poradników dotyczących życia i pracy za granicą.',
+                    'en' => 'Creating and distributing informational materials, such as guides on living and working abroad.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7686,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji o możliwościach korzystania z lokalnych usług oraz o instytucjach pomocowych.',
+                    'en' => 'Providing information on local service options and assistance institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7687,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie wsparcia obywatelom, którzy zostali deportowani lub repatriowani do kraju.',
+                    'en' => 'Providing support to citizens who have been deported or repatriated.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7688,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z powrotem obywateli do kraju, w tym transportu oraz pomocy prawnej.',
+                    'en' => 'Coordinating actions related to citizens’ return to the country, including transport and legal assistance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7689,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi służbami w zakresie ochrony praw obywateli w procesie deportacji.',
+                    'en' => 'Collaborating with local services to protect citizens’ rights during the deportation process.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7690,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie działań kulturalnych promujących kraj w miejscu pobytu, w tym organizacja wydarzeń i wystaw.',
+                    'en' => 'Supporting cultural activities promoting the home country abroad, including organizing events and exhibitions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7691,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji na temat programów współpracy międzynarodowej i kulturalnej.',
+                    'en' => 'Providing information on international cooperation and cultural programs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7692,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z lokalnymi instytucjami kulturalnymi i edukacyjnymi oraz wsparcie inicjatyw polonijnych.',
+                    'en' => 'Collaborating with local cultural and educational institutions and supporting Polish community initiatives.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7693,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie wizyt krajowych delegacji i przedstawicieli rządowych w konsulacie oraz w miejscowych instytucjach.',
+                    'en' => 'Coordinating visits of national delegations and government representatives at the consulate and local institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7694,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie wsparcia logistycznego i organizacyjnego dla delegacji oraz dbanie o ich bezpieczny pobyt.',
+                    'en' => 'Providing logistical and organizational support to delegations and ensuring their safe stay.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7695,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramów spotkań i wizyt oraz zapewnienie niezbędnych zasobów.',
+                    'en' => 'Preparing meeting and visit schedules and ensuring necessary resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7696,
+                'name' => json_encode([
+                    'pl' => 'Ochrona poufnych informacji oraz przestrzeganie zasad ochrony danych osobowych obywateli.',
+                    'en' => 'Protecting confidential information and adhering to citizen data protection regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7697,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie działania konsularne są zgodne z krajowymi przepisami o ochronie danych.',
+                    'en' => 'Ensuring all consular actions comply with national data protection laws.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7698,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie standardów etycznych oraz dbałość o bezpieczeństwo przetwarzanych informacji.',
+                    'en' => 'Upholding ethical standards and ensuring the security of processed information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7699,
+                'name' => json_encode([
+                    'pl' => 'Uczestnictwo w szkoleniach i kursach dotyczących pracy konsularnej, prawa międzynarodowego, ochrony obywateli.',
+                    'en' => 'Attending training and courses on consular work, international law, and citizen protection.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7700,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat przepisów wizowych, konsularnych oraz przepisów obowiązujących w kraju pobytu.',
+                    'en' => 'Updating knowledge of visa, consular, and local regulations in the host country.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7701,
+                'name' => json_encode([
+                    'pl' => 'Dążenie do rozwoju kompetencji zawodowych oraz wymiana doświadczeń z innymi pracownikami konsulatu.',
+                    'en' => 'Pursuing professional development and exchanging experiences with other consulate staff.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+
+        ];
+        $SEKRETARKA_NOTARIALNA = [
+            [
+                'id' => 7702,
+                'name' => json_encode([
+                    'pl' => 'Witanie klientów, udzielanie podstawowych informacji o procedurach notarialnych oraz kierowanie ich do odpowiednich osób.',
+                    'en' => 'Welcoming clients, providing basic information on notarial procedures, and directing them to the appropriate persons.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7703,
+                'name' => json_encode([
+                    'pl' => 'Pomoc klientom w przygotowaniu niezbędnej dokumentacji i informowanie ich o wymaganych formalnościach.',
+                    'en' => 'Assisting clients in preparing necessary documentation and informing them of required formalities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7704,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie odpowiedzi na zapytania telefoniczne i e-mailowe od klientów kancelarii.',
+                    'en' => 'Responding to phone and email inquiries from clients of the notary office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7705,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i redagowanie dokumentów notarialnych, takich jak akty notarialne, pełnomocnictwa, poświadczenia i testamenty.',
+                    'en' => 'Preparing and editing notarial documents, such as deeds, powers of attorney, certifications, and wills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7706,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych do dokumentów notarialnych zgodnie z wytycznymi notariusza i obowiązującymi przepisami.',
+                    'en' => 'Entering data into notarial documents following the notary’s guidelines and legal regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7707,
+                'name' => json_encode([
+                    'pl' => 'Formatowanie i edytowanie dokumentów, dbając o ich poprawność językową oraz formalną.',
+                    'en' => 'Formatting and editing documents, ensuring linguistic and formal accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7708,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i zarządzanie terminami spotkań notariusza, w tym planowanie wizyt i ich potwierdzanie.',
+                    'en' => 'Organizing and managing the notary’s meeting schedule, including planning and confirming visits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7709,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie harmonogramu pracy, tak aby zapewnić maksymalną efektywność działań kancelarii.',
+                    'en' => 'Coordinating the work schedule to ensure maximum office efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7710,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie notariuszowi i klientom o nadchodzących spotkaniach i terminach.',
+                    'en' => 'Reminding the notary and clients about upcoming meetings and deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7711,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie i archiwizacja dokumentacji notarialnej, aktów notarialnych oraz korespondencji związanej z obsługą klientów.',
+                    'en' => 'Maintaining and archiving notarial documentation, deeds, and correspondence related to client services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7712,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i utrzymywanie systemu ewidencji dokumentów, który zapewnia szybki dostęp do potrzebnych akt.',
+                    'en' => 'Creating and maintaining a document registry system to ensure quick access to necessary files.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7713,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o zgodność archiwizacji z przepisami o ochronie danych oraz zasadami poufności.',
+                    'en' => 'Ensuring archiving compliance with data protection regulations and confidentiality principles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7714,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie i wysyłanie korespondencji przychodzącej i wychodzącej, w tym dokumentów sądowych, listów poleconych i przesyłek kurierskich.',
+                    'en' => 'Receiving and sending incoming and outgoing correspondence, including court documents, registered letters, and courier shipments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7715,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie i wysyłanie pism urzędowych, wezwania stron do uzupełnienia dokumentacji oraz informowanie klientów o zakończeniu spraw.',
+                    'en' => 'Drafting and sending official letters, requesting parties to complete documentation, and informing clients about case completion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7716,
+                'name' => json_encode([
+                    'pl' => 'Dokumentowanie wysyłek i dbanie o terminowość przesyłania ważnych dokumentów.',
+                    'en' => 'Documenting shipments and ensuring timely dispatch of important documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7717,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie dokumentów i informacji do sądów, urzędów skarbowych, ksiąg wieczystych oraz innych instytucji w zależności od potrzeb klienta.',
+                    'en' => 'Transmitting documents and information to courts, tax offices, land registers, and other institutions as per client needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7718,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w procesie przesyłania dokumentów wymagających zatwierdzenia lub zarejestrowania w odpowiednich rejestrach.',
+                    'en' => 'Supporting the process of transmitting documents requiring approval or registration in relevant registries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7719,
+                'name' => json_encode([
+                    'pl' => 'Kontrola nad terminami i procedurami wymaganymi przez instytucje zewnętrzne.',
+                    'en' => 'Monitoring deadlines and procedures required by external institutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7720,
+                'name' => json_encode([
+                    'pl' => 'Gromadzenie i organizowanie dokumentacji potrzebnej do sporządzenia aktu notarialnego oraz innych czynności notarialnych.',
+                    'en' => 'Collecting and organizing documentation needed for drafting notarial deeds and other notarial activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7721,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja poprawności i kompletności dokumentów przed spotkaniem z klientem.',
+                    'en' => 'Verifying the correctness and completeness of documents before meeting with the client.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7722,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie umów, pełnomocnictw i innych niezbędnych dokumentów na potrzeby spotkań notarialnych.',
+                    'en' => 'Preparing contracts, powers of attorney, and other necessary documents for notarial meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7723,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie ewidencji aktów notarialnych, rejestrów poświadczeń oraz innych dokumentów, zgodnie z wymogami prawnymi.',
+                    'en' => 'Maintaining records of notarial deeds, certification registers, and other documents in accordance with legal requirements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7724,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizacja rejestrów dokumentów w formie elektronicznej i papierowej.',
+                    'en' => 'Creating and updating document registers in electronic and paper form.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7725,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie miesięcznych i rocznych zestawień oraz przekazywanie ich do odpowiednich instytucji, jeśli wymagają tego przepisy.',
+                    'en' => 'Preparing monthly and annual summaries and submitting them to relevant institutions if required by regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7726,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie przepisów dotyczących ochrony danych osobowych i zasad poufności obowiązujących w kancelarii notarialnej.',
+                    'en' => 'Complying with data protection regulations and confidentiality principles required in the notary office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7727,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie informacje i dokumenty klientów są odpowiednio zabezpieczone i chronione przed nieuprawnionym dostępem.',
+                    'en' => 'Ensuring that all client information and documents are securely protected from unauthorized access.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7728,
+                'name' => json_encode([
+                    'pl' => 'Przechowywanie dokumentacji zgodnie z obowiązującymi przepisami i polityką kancelarii.',
+                    'en' => 'Storing documentation in compliance with applicable regulations and office policy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7729,
+                'name' => json_encode([
+                    'pl' => 'Zamawianie materiałów biurowych, obsługa urządzeń biurowych (drukarki, skanery) oraz dbanie o porządek w biurze.',
+                    'en' => 'Ordering office supplies, handling office equipment (printers, scanners), and maintaining office cleanliness.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7730,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rozliczeń kosztów biurowych oraz przygotowywanie dokumentów finansowych na potrzeby rozliczeń kancelarii.',
+                    'en' => 'Managing office expense settlements and preparing financial documents for office accounting purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7731,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie notariusza w zadaniach administracyjnych, takich jak przygotowanie faktur oraz obsługa rozliczeń z klientami.',
+                    'en' => 'Assisting the notary in administrative tasks, such as preparing invoices and handling client settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7732,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach i kursach związanych z pracą w kancelarii notarialnej, w tym szkoleniach prawnych i administracyjnych.',
+                    'en' => 'Regularly attending training and courses related to notarial work, including legal and administrative training.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7733,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat przepisów prawnych i regulacji dotyczących pracy notarialnej.',
+                    'en' => 'Updating knowledge on legal regulations related to notarial work.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7734,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń i najlepszych praktyk z innymi pracownikami kancelarii.',
+                    'en' => 'Exchanging experiences and best practices with other office staff.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7735,
+                'name' => json_encode([
+                    'pl' => 'Pomoc klientom w sporządzaniu i uzupełnianiu dokumentacji potrzebnej do czynności notarialnych.',
+                    'en' => 'Assisting clients in preparing and completing documentation required for notarial activities.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7736,
+                'name' => json_encode([
+                    'pl' => 'Informowanie klientów o wymaganiach prawnych oraz wyjaśnianie, jak przebiega proces przygotowania aktów notarialnych.',
+                    'en' => 'Informing clients of legal requirements and explaining the process of preparing notarial deeds.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7737,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji o opłatach, terminach realizacji oraz dodatkowych formalnościach związanych z czynnościami notarialnymi.',
+                    'en' => 'Providing information on fees, turnaround times, and additional formalities for notarial services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7738,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie notariusza przy organizacji czynności notarialnych, które wymagają przeprowadzenia ich poza kancelarią (np. w szpitalach, domach opieki).',
+                    'en' => 'Supporting the notary in organizing notarial activities outside the office (e.g., in hospitals, care homes).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7739,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności niezbędnych dokumentów i sprzętu potrzebnego do przeprowadzenia czynności notarialnych w terenie.',
+                    'en' => 'Ensuring availability of necessary documents and equipment for conducting notarial activities on-site.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7740,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja logistyczna związana z realizacją usług notarialnych poza kancelarią.',
+                    'en' => 'Logistical coordination related to providing notarial services outside the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7741,
+                'name' => json_encode([
+                    'pl' => 'Wprowadzanie danych klientów oraz informacji o sprawach do systemu kancelarii.',
+                    'en' => 'Entering client data and case information into the office system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7742,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja bazy danych klientów w przypadku zmiany danych kontaktowych lub statusu sprawy.',
+                    'en' => 'Updating client database in case of changes in contact information or case status.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7743,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad ochrony danych osobowych w zarządzaniu bazą danych klientów.',
+                    'en' => 'Adhering to data protection rules in managing the client database.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7744,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie obiegu dokumentów pomiędzy kancelarią a instytucjami zewnętrznymi, takimi jak sądy i urzędy.',
+                    'en' => 'Monitoring document flow between the office and external institutions, such as courts and government offices.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7745,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie, czy wszystkie dokumenty są odpowiednio zatwierdzone, podpisane i kompletne przed ich wysyłką.',
+                    'en' => 'Ensuring all documents are properly approved, signed, and complete before dispatch.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7746,
+                'name' => json_encode([
+                    'pl' => 'Upewnianie się, że terminy składania dokumentów są dotrzymywane oraz że dokumenty wracają do kancelarii we właściwej formie.',
+                    'en' => 'Ensuring document submission deadlines are met and documents return to the office in proper form.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7747,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie faktur oraz rozliczeń związanych z usługami świadczonymi przez kancelarię.',
+                    'en' => 'Preparing invoices and settlements related to services provided by the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7748,
+                'name' => json_encode([
+                    'pl' => 'Informowanie klientów o kosztach czynności notarialnych oraz przyjmowanie płatności w kancelarii.',
+                    'en' => 'Informing clients about notarial fees and accepting payments at the office.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7749,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie rejestru opłat oraz dbałość o terminowe uiszczanie opłat przez klientów.',
+                    'en' => 'Maintaining a payment register and ensuring timely payment by clients.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+        $SEKRETARKI_OGOLNE = [
+            [
+                'id' => 7750,
+                'name' => json_encode([
+                    'pl' => 'Witanie gości, udzielanie podstawowych informacji i kierowanie ich do odpowiednich osób lub działów.',
+                    'en' => 'Welcoming guests, providing basic information, and directing them to the appropriate persons or departments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7751,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie telefonów i przekazywanie wiadomości oraz obsługa zapytań e-mailowych.',
+                    'en' => 'Answering calls, forwarding messages, and handling email inquiries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7752,
+                'name' => json_encode([
+                    'pl' => 'Dbaniu o profesjonalny wizerunek firmy w kontakcie z klientami, gośćmi i interesariuszami.',
+                    'en' => 'Maintaining a professional image of the company when interacting with clients, guests, and stakeholders.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7753,
+                'name' => json_encode([
+                    'pl' => 'Organizacja i zarządzanie kalendarzem przełożonych, w tym planowanie spotkań, wizyt oraz innych wydarzeń.',
+                    'en' => 'Organizing and managing superiors’ calendars, including scheduling meetings, visits, and other events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7754,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja harmonogramu z innymi pracownikami i przypominanie o kluczowych terminach.',
+                    'en' => 'Coordinating schedules with other employees and reminding about key deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7755,
+                'name' => json_encode([
+                    'pl' => 'Rezerwacja sal konferencyjnych oraz przygotowanie harmonogramu działań, aby zapewnić sprawny przebieg spotkań.',
+                    'en' => 'Booking conference rooms and preparing schedules to ensure smooth meeting flow.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7756,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie agendy spotkań oraz zapewnienie dostępności materiałów, takich jak prezentacje, notatki i raporty.',
+                    'en' => 'Preparing meeting agendas and ensuring the availability of materials such as presentations, notes, and reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7757,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie protokołów ze spotkań oraz przekazywanie ustaleń do odpowiednich osób.',
+                    'en' => 'Taking meeting minutes and conveying decisions to the appropriate individuals.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7758,
+                'name' => json_encode([
+                    'pl' => 'Organizacja spotkań zewnętrznych i wewnętrznych, dbanie o zaplecze techniczne i logistyczne (np. zamówienie cateringu, sprzętu).',
+                    'en' => 'Organizing external and internal meetings, ensuring technical and logistical support (e.g., catering, equipment).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7759,
+                'name' => json_encode([
+                    'pl' => 'Przyjmowanie, sortowanie i wysyłanie korespondencji przychodzącej i wychodzącej.',
+                    'en' => 'Receiving, sorting, and sending incoming and outgoing correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7760,
+                'name' => json_encode([
+                    'pl' => 'Redagowanie pism, odpowiedzi oraz przygotowywanie dokumentów do wysyłki, w tym przesyłek kurierskich.',
+                    'en' => 'Drafting letters, replies, and preparing documents for dispatch, including courier shipments.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7761,
+                'name' => json_encode([
+                    'pl' => 'Archiwizacja korespondencji oraz dbanie o jej odpowiednie zabezpieczenie i poufność.',
+                    'en' => 'Archiving correspondence and ensuring its proper security and confidentiality.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7762,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie dokumentów, takich jak raporty, zestawienia, notatki służbowe oraz prezentacje.',
+                    'en' => 'Creating documents such as reports, summaries, memos, and presentations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7763,
+                'name' => json_encode([
+                    'pl' => 'Formatowanie dokumentów zgodnie ze standardami firmy oraz dbałość o poprawność językową i stylistyczną.',
+                    'en' => 'Formatting documents according to company standards and ensuring linguistic and stylistic accuracy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7764,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie innych działów w przygotowywaniu i weryfikacji dokumentacji.',
+                    'en' => 'Supporting other departments in preparing and verifying documentation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7765,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie i archiwizacja dokumentów biurowych oraz tworzenie systemu ewidencji dokumentacji.',
+                    'en' => 'Organizing and archiving office documents and creating a documentation tracking system.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7766,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie zgodności archiwizacji z przepisami dotyczącymi ochrony danych oraz polityką firmy.',
+                    'en' => 'Ensuring archiving compliance with data protection regulations and company policy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7767,
+                'name' => json_encode([
+                    'pl' => 'Ułatwienie dostępu do dokumentów dla upoważnionych osób i dbanie o porządek w archiwum.',
+                    'en' => 'Facilitating document access for authorized personnel and maintaining order in the archive.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7768,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w realizacji bieżących zadań administracyjnych, takich jak kopiowanie, skanowanie, przygotowanie materiałów.',
+                    'en' => 'Assisting in current administrative tasks, such as copying, scanning, and preparing materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7769,
+                'name' => json_encode([
+                    'pl' => 'Udzielanie informacji pracownikom i gościom, dbanie o zaopatrzenie w materiały biurowe i utrzymanie porządku w biurze.',
+                    'en' => 'Providing information to employees and guests, maintaining office supplies, and keeping the office organized.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7770,
+                'name' => json_encode([
+                    'pl' => 'Obsługa urządzeń biurowych (drukarki, kopiarki, skanery) oraz dbałość o ich sprawne funkcjonowanie.',
+                    'en' => 'Operating office equipment (printers, copiers, scanners) and ensuring they function properly.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7771,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie zapasów materiałów biurowych i składanie zamówień w celu zapewnienia ich ciągłości.',
+                    'en' => 'Monitoring office supplies and placing orders to ensure their continuity.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7772,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z dostawcami oraz kontrola dostaw i faktur za zamówione materiały.',
+                    'en' => 'Collaborating with suppliers and checking deliveries and invoices for ordered materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7773,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o porządek w biurze i ułatwienie dostępu do niezbędnych materiałów.',
+                    'en' => 'Maintaining order in the office and ensuring easy access to necessary materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7774,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie i ewidencja dokumentów finansowych, takich jak faktury, rachunki, rozliczenia delegacji.',
+                    'en' => 'Preparing and recording financial documents, such as invoices, receipts, and delegation settlements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7775,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wydatków biurowych oraz dbanie o ich zgodność z budżetem.',
+                    'en' => 'Monitoring office expenses and ensuring budget compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7776,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem księgowości oraz sporządzanie zestawień kosztowych.',
+                    'en' => 'Collaborating with the accounting department and preparing cost summaries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7777,
+                'name' => json_encode([
+                    'pl' => 'Rezerwacja biletów, hoteli oraz organizacja transportu na potrzeby podróży służbowych.',
+                    'en' => 'Booking tickets, hotels, and organizing transportation for business trips.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7778,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramu wyjazdów oraz gromadzenie niezbędnych dokumentów i informacji.',
+                    'en' => 'Preparing travel schedules and gathering necessary documents and information.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7779,
+                'name' => json_encode([
+                    'pl' => 'Rozliczanie wydatków służbowych oraz monitorowanie ich zgodności z zasadami firmy.',
+                    'en' => 'Reconciling business expenses and ensuring their compliance with company policies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7780,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem marketingu przy tworzeniu materiałów promocyjnych, broszur, ulotek oraz treści na stronę internetową.',
+                    'en' => 'Collaborating with the marketing department to create promotional materials, brochures, leaflets, and website content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7781,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w organizacji wydarzeń firmowych, konferencji oraz spotkań promocyjnych.',
+                    'en' => 'Assisting in organizing company events, conferences, and promotional meetings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7782,
+                'name' => json_encode([
+                    'pl' => 'Aktualizacja strony internetowej oraz profili firmy w mediach społecznościowych.',
+                    'en' => 'Updating the website and company profiles on social media.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7783,
+                'name' => json_encode([
+                    'pl' => 'Opracowywanie i aktualizacja procedur biurowych oraz standardów pracy administracyjnej.',
+                    'en' => 'Developing and updating office procedures and administrative work standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7784,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o zgodność działań biura z politykami firmy i obowiązującymi przepisami.',
+                    'en' => 'Ensuring office activities comply with company policies and applicable regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7785,
+                'name' => json_encode([
+                    'pl' => 'Udział w wdrażaniu nowych systemów i narzędzi, które mogą usprawnić działania biura.',
+                    'en' => 'Participating in implementing new systems and tools to streamline office operations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7786,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie obiegu dokumentów między działami, kontrola nad ich terminowością i zgodnością z procedurami.',
+                    'en' => 'Monitoring document flow between departments, ensuring timeliness and procedural compliance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7787,
+                'name' => json_encode([
+                    'pl' => 'Sprawdzanie poprawności i kompletności dokumentów przed ich wysyłką lub archiwizacją.',
+                    'en' => 'Checking the accuracy and completeness of documents before sending or archiving.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7788,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie płynnego przepływu informacji i dokumentacji wewnątrz organizacji.',
+                    'en' => 'Supporting smooth information and documentation flow within the organization.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7789,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad ochrony danych osobowych oraz zapewnienie poufności przechowywanych dokumentów.',
+                    'en' => 'Adhering to data protection regulations and ensuring confidentiality of stored documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7790,
+                'name' => json_encode([
+                    'pl' => 'Stosowanie się do zasad polityki prywatności oraz zapewnienie bezpieczeństwa danych biurowych.',
+                    'en' => 'Complying with privacy policy guidelines and ensuring office data security.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7791,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie polityki poufności, szczególnie przy obsłudze dokumentów wrażliwych.',
+                    'en' => 'Following confidentiality policy, especially when handling sensitive documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7792,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w organizacji i obsłudze procesów rekrutacyjnych, takich jak umawianie spotkań rekrutacyjnych, organizowanie szkoleń wstępnych.',
+                    'en' => 'Assisting in organizing and managing recruitment processes, including scheduling interviews and organizing onboarding training.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7793,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem kadr w zakresie ewidencji czasu pracy, monitorowania obecności i nieobecności pracowników.',
+                    'en' => 'Collaborating with the HR department to manage attendance records and monitor employee presence and absences.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7794,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie dokumentacji kadrowej oraz aktualizacja danych pracowników.',
+                    'en' => 'Preparing HR documentation and updating employee data.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7795,
+                'name' => json_encode([
+                    'pl' => 'Regularne uczestnictwo w szkoleniach z zakresu obsługi biura, oprogramowania oraz efektywności pracy.',
+                    'en' => 'Regularly participating in training on office management, software, and work efficiency.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7796,
+                'name' => json_encode([
+                    'pl' => 'Aktualizowanie wiedzy na temat nowych przepisów, technik administracyjnych i narzędzi biurowych.',
+                    'en' => 'Updating knowledge on new regulations, administrative techniques, and office tools.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7797,
+                'name' => json_encode([
+                    'pl' => 'Wymiana doświadczeń z innymi pracownikami biura oraz stałe doskonalenie kompetencji zawodowych.',
+                    'en' => 'Exchanging experiences with other office staff and continuously improving professional skills.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
+        $ASYSTENT_OSOBISTY_CONCIERGE = [
+            [
+                'id' => 7798,
+                'name' => json_encode([
+                    'pl' => 'Planowanie codziennych zadań i terminów, koordynacja kalendarza klienta.',
+                    'en' => 'Planning daily tasks and appointments, coordinating the client’s calendar.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7799,
+                'name' => json_encode([
+                    'pl' => 'Rezerwacja spotkań i przypominanie o kluczowych terminach.',
+                    'en' => 'Booking appointments and reminding of key dates.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7800,
+                'name' => json_encode([
+                    'pl' => 'Dostosowywanie harmonogramu do zmieniających się potrzeb i nagłych sytuacji.',
+                    'en' => 'Adjusting schedule to meet changing needs and emergencies.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7801,
+                'name' => json_encode([
+                    'pl' => 'Planowanie i rezerwacja podróży, w tym lotów, transportu i zakwaterowania.',
+                    'en' => 'Planning and booking travel, including flights, transportation, and accommodations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7802,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie harmonogramów podróży, dostarczanie biletów, potwierdzeń rezerwacji i niezbędnych dokumentów.',
+                    'en' => 'Preparing travel itineraries, providing tickets, booking confirmations, and necessary documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7803,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie dodatkowych usług, takich jak transfery z lotniska, wynajem samochodów, usługi VIP i inne specjalne potrzeby podczas podróży.',
+                    'en' => 'Arranging additional services, such as airport transfers, car rentals, VIP services, and other special travel needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7804,
+                'name' => json_encode([
+                    'pl' => 'Rezerwacja stolików w restauracjach, biletów na wydarzenia kulturalne i sportowe, spa, itp.',
+                    'en' => 'Booking restaurant tables, tickets to cultural and sporting events, spa appointments, etc.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7805,
+                'name' => json_encode([
+                    'pl' => 'Organizacja specjalnych okazji, takich jak rocznice, urodziny, kolacje lub spotkania rodzinne.',
+                    'en' => 'Organizing special occasions, such as anniversaries, birthdays, dinners, or family gatherings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7806,
+                'name' => json_encode([
+                    'pl' => 'Znajdowanie i rezerwowanie wyjątkowych miejsc na życzenie klienta, zapewniając dostęp do ekskluzywnych wydarzeń i miejsc.',
+                    'en' => 'Finding and booking exclusive locations upon client’s request, providing access to exclusive events and places.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7807,
+                'name' => json_encode([
+                    'pl' => 'Realizacja zakupów codziennych i specjalnych, np. produktów luksusowych, prezentów lub przedmiotów kolekcjonerskich.',
+                    'en' => 'Handling everyday and special purchases, e.g., luxury goods, gifts, or collectibles.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7808,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w zarządzaniu listą zakupów, porównywanie ofert oraz negocjowanie cen, gdy jest to możliwe.',
+                    'en' => 'Assisting in managing shopping lists, comparing offers, and negotiating prices when possible.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7809,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie dostaw, montażu lub instalacji, dbając o terminowość dostaw.',
+                    'en' => 'Arranging deliveries, installations, or setups, ensuring timely deliveries.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7810,
+                'name' => json_encode([
+                    'pl' => 'Organizacja spotkań biznesowych, kolacji, bankietów i przyjęć okolicznościowych na potrzeby klienta.',
+                    'en' => 'Organizing business meetings, dinners, banquets, and private events for the client.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7811,
+                'name' => json_encode([
+                    'pl' => 'Rezerwacja miejsca, cateringu, dekoracji i personelu pomocniczego na wydarzenia.',
+                    'en' => 'Booking venues, catering, decorations, and support staff for events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7812,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie rozrywki, np. muzyki na żywo, pokazów i atrakcji specjalnych na życzenie klienta.',
+                    'en' => 'Providing entertainment, such as live music, shows, and special attractions, upon client’s request.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7813,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja usług związanych z utrzymaniem nieruchomości, takich jak sprzątanie, konserwacja, naprawy.',
+                    'en' => 'Coordinating property maintenance services, such as cleaning, maintenance, and repairs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7814,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie usług ogrodniczych, basenowych, ochrony i nadzoru technicznego.',
+                    'en' => 'Arranging gardening, pool services, security, and technical oversight.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7815,
+                'name' => json_encode([
+                    'pl' => 'Prowadzenie harmonogramu przeglądów i dbanie o bieżące potrzeby domowe klienta.',
+                    'en' => 'Maintaining a schedule of inspections and managing the client’s ongoing domestic needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7816,
+                'name' => json_encode([
+                    'pl' => 'Odbieranie, nadawanie i organizacja przesyłek oraz ważnej korespondencji.',
+                    'en' => 'Receiving, sending, and organizing shipments and important correspondence.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7817,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie przesyłek kurierskich, zapewnienie dostępu do usług ekspresowych i śledzenie statusu przesyłek.',
+                    'en' => 'Arranging courier services, providing access to express services, and tracking shipment status.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7818,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie bezpieczeństwa poufnych dokumentów i danych oraz ich dostarczenie w odpowiednie miejsce.',
+                    'en' => 'Ensuring the security of confidential documents and data and delivering them to the appropriate location.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7819,
+                'name' => json_encode([
+                    'pl' => 'Doradzanie w zakresie zakupów modowych, organizowanie zakupów odzieży, akcesoriów, wyposażenia domu.',
+                    'en' => 'Advising on fashion purchases, organizing shopping for clothing, accessories, and home furnishings.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7820,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie zakupów luksusowych, takich jak biżuteria, zegarki, samochody czy dzieła sztuki.',
+                    'en' => 'Arranging luxury purchases, such as jewelry, watches, cars, and artwork.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7821,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie indywidualnych konsultacji z ekspertami (np. stylistami, doradcami zakupowymi) na życzenie klienta.',
+                    'en' => 'Providing individual consultations with experts (e.g., stylists, shopping advisors) upon the client’s request.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7822,
+                'name' => json_encode([
+                    'pl' => 'Wsparcie w organizacji budżetu na potrzeby codziennego funkcjonowania, takie jak zakupy, podróże, opłaty.',
+                    'en' => 'Assisting in organizing a budget for daily needs, such as shopping, travel, and expenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7823,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w kontrolowaniu kosztów związanych z prowadzeniem domu i osobistymi wydatkami klienta.',
+                    'en' => 'Helping control expenses related to household management and the client’s personal expenses.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7824,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i monitorowanie budżetów na specjalne wydarzenia lub projekty.',
+                    'en' => 'Creating and monitoring budgets for special events or projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7825,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie wizyt u lekarzy, specjalistów, dentystów i innych usług medycznych.',
+                    'en' => 'Scheduling visits with doctors, specialists, dentists, and other medical services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7826,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności usług medycznych na życzenie, takich jak opieka w domu, w tym fizjoterapia czy pielęgniarska.',
+                    'en' => 'Providing access to medical services on request, such as home care, including physical therapy or nursing.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7827,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie o terminach wizyt oraz koordynacja w zakresie badań, odbioru leków lub recept.',
+                    'en' => 'Reminding of appointment dates and coordinating tests, medication pickups, or prescriptions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7828,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie rezerwacji w SPA, masaży, sesji fitness oraz usług beauty (np. fryzjer, kosmetyczka).',
+                    'en' => 'Organizing bookings for spa, massages, fitness sessions, and beauty services (e.g., hairdresser, beautician).'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7829,
+                'name' => json_encode([
+                    'pl' => 'Organizacja programów zdrowotnych, takich jak sesje jogi, medytacji czy treningi personalne.',
+                    'en' => 'Organizing health programs, such as yoga, meditation, or personal training sessions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7830,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępu do wyjątkowych usług wellness, np. ekskluzywnych sesji relaksacyjnych, dietetyków lub trenerów personalnych.',
+                    'en' => 'Providing access to exclusive wellness services, such as luxurious relaxation sessions, nutritionists, or personal trainers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7831,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w organizacji dokumentacji i wypełnianiu formularzy do celów urzędowych.',
+                    'en' => 'Assisting with documentation and form completion for official purposes.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7832,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie o terminach płatności rachunków, podatków i składek oraz zapewnienie, że wszystkie formalności są terminowo załatwiane.',
+                    'en' => 'Reminding of bill, tax, and fee payment deadlines and ensuring all formalities are handled on time.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7833,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja z urzędami lub prawnikami w sprawach wymagających konsultacji prawnej.',
+                    'en' => 'Coordinating with authorities or lawyers on matters requiring legal consultation.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7834,
+                'name' => json_encode([
+                    'pl' => 'Planowanie codziennych zadań, przypominanie o priorytetach i ważnych terminach.',
+                    'en' => 'Planning daily tasks, reminding of priorities and important deadlines.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7835,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie dodatkowego wsparcia, np. wynajęcie pomocy domowej, korepetytora dla dzieci lub trenera.',
+                    'en' => 'Arranging additional support, such as hiring household help, a tutor for children, or a trainer.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7836,
+                'name' => json_encode([
+                    'pl' => 'Przypominanie o kluczowych datach, np. urodzinach bliskich, rocznicach i innych wydarzeniach prywatnych.',
+                    'en' => 'Reminding of key dates, such as family birthdays, anniversaries, and other private events.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7837,
+                'name' => json_encode([
+                    'pl' => 'Znajdowanie rekomendowanych fachowców, takich jak hydraulicy, elektrycy, projektanci wnętrz, adwokaci.',
+                    'en' => 'Finding recommended professionals, such as plumbers, electricians, interior designers, and lawyers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7838,
+                'name' => json_encode([
+                    'pl' => 'Organizacja konsultacji i spotkań ze specjalistami, których klient potrzebuje w krótkim czasie.',
+                    'en' => 'Organizing consultations and meetings with specialists that the client needs on short notice.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7839,
+                'name' => json_encode([
+                    'pl' => 'Weryfikowanie reputacji usługodawców oraz zapewnienie najwyższej jakości usług.',
+                    'en' => 'Verifying provider reputations and ensuring the highest quality of services.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7840,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie najwyższej poufności informacji dotyczących klienta oraz stosowanie się do standardów ochrony danych.',
+                    'en' => 'Ensuring the highest confidentiality of client information and adhering to data protection standards.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7841,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o to, by prywatne dane i dokumenty klienta były odpowiednio zabezpieczone.',
+                    'en' => 'Ensuring private client data and documents are properly secured.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7842,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad etyki zawodowej i budowanie relacji opartej na zaufaniu i dyskrecji.',
+                    'en' => 'Adhering to professional ethics and building a relationship based on trust and discretion.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7843,
+                'name' => json_encode([
+                    'pl' => 'Regularne proponowanie klientowi nowych usług, miejsc, rozwiązań organizacyjnych i technologicznych, które mogą usprawnić jego codzienne życie.',
+                    'en' => 'Regularly suggesting new services, places, organizational, and technological solutions that can improve the client’s daily life.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7844,
+                'name' => json_encode([
+                    'pl' => 'Śledzenie trendów w zakresie usług concierge i doradzanie w kwestiach dotyczących stylu życia.',
+                    'en' => 'Following trends in concierge services and advising on lifestyle matters.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7845,
+                'name' => json_encode([
+                    'pl' => 'Znajdowanie sposobów na optymalizację czasu klienta i redukcję jego stresu.',
+                    'en' => 'Finding ways to optimize the client’s time and reduce stress.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+
+        ];
+        $ASYSTENT_KIEROWNIKA_PRODUKCJI = [
+            [
+                'id' => 7846,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w opracowywaniu szczegółowego harmonogramu zdjęć, planu działań oraz terminarza produkcji.',
+                    'en' => 'Assisting in the development of a detailed shooting schedule, action plan, and production timeline.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7847,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie zmian w harmonogramie i informowanie ekipy o nowych ustaleniach.',
+                    'en' => 'Coordinating schedule changes and informing the crew of new arrangements.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7848,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie realizacji planu i zgłaszanie ewentualnych opóźnień lub problemów.',
+                    'en' => 'Monitoring the execution of the plan and reporting any delays or issues.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7849,
+                'name' => json_encode([
+                    'pl' => 'Zarządzanie transportem dla ekipy, sprzętu, aktorów i rekwizytów na plan filmowy.',
+                    'en' => 'Managing transportation for the crew, equipment, actors, and props to the set.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7850,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie dostępności niezbędnych zasobów, takich jak wyposażenie, rekwizyty, kostiumy oraz catering.',
+                    'en' => 'Ensuring the availability of essential resources, such as equipment, props, costumes, and catering.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7851,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie zakwaterowania dla ekipy i aktorów w przypadku realizacji wyjazdowej.',
+                    'en' => 'Arranging accommodations for the crew and actors for out-of-town shoots.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7852,
+                'name' => json_encode([
+                    'pl' => 'Przekazywanie informacji pomiędzy kierownikiem produkcji, reżyserem, operatorami, aktorami i pozostałą ekipą.',
+                    'en' => 'Facilitating communication between the production manager, director, operators, actors, and other crew members.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7853,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań produkcyjnych i zapewnianie ich sprawnego przebiegu.',
+                    'en' => 'Organizing production meetings and ensuring their smooth conduct.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7854,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie sprawnej komunikacji i dostępu do informacji wszystkim członkom ekipy.',
+                    'en' => 'Ensuring efficient communication and access to information for all crew members.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7855,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie i aktualizacja dokumentacji produkcyjnej, takiej jak listy kontrolne, harmonogramy, listy kontaktowe.',
+                    'en' => 'Creating and updating production documentation, such as checklists, schedules, and contact lists.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7856,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie umów, zezwoleń na kręcenie w lokacjach oraz innych dokumentów formalnych.',
+                    'en' => 'Preparing contracts, location permits, and other formal documents.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7857,
+                'name' => json_encode([
+                    'pl' => 'Dbanie o porządek w dokumentacji, archiwizacja dokumentów oraz ich udostępnianie na żądanie.',
+                    'en' => 'Maintaining order in documentation, archiving documents, and providing access upon request.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7858,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wydatków produkcyjnych i sporządzanie zestawień kosztów na potrzeby kierownika produkcji.',
+                    'en' => 'Monitoring production expenses and preparing cost summaries for the production manager.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7859,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie płatności dla podwykonawców, statystów, dostawców i innych osób zaangażowanych w produkcję.',
+                    'en' => 'Arranging payments for subcontractors, extras, suppliers, and other involved personnel.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7860,
+                'name' => json_encode([
+                    'pl' => 'Kontrola nad budżetem i informowanie kierownika produkcji o ewentualnych przekroczeniach kosztów.',
+                    'en' => 'Budget control and informing the production manager of any cost overruns.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7861,
+                'name' => json_encode([
+                    'pl' => 'Pomoc w poszukiwaniu i zatrudnianiu statystów, asystentów planu, techników i innych członków ekipy pomocniczej.',
+                    'en' => 'Assisting in recruiting and hiring extras, assistants, technicians, and other auxiliary crew members.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7862,
+                'name' => json_encode([
+                    'pl' => 'Organizacja harmonogramu pracy statystów i personelu, dbanie o ich obecność na planie.',
+                    'en' => 'Organizing the schedule for extras and staff, ensuring their presence on set.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7863,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszyscy statyści i członkowie personelu pomocniczego otrzymują potrzebne informacje i wyposażenie.',
+                    'en' => 'Ensuring that all extras and support staff receive necessary information and equipment.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7864,
+                'name' => json_encode([
+                    'pl' => 'Tworzenie planów dnia dla każdego dnia zdjęciowego, uwzględniając godziny rozpoczęcia, lokalizacje, wymagane zasoby.',
+                    'en' => 'Creating daily plans for each shooting day, including start times, locations, and required resources.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7865,
+                'name' => json_encode([
+                    'pl' => 'Rozesłanie planów dnia do członków ekipy i aktorów oraz aktualizacja planów w przypadku zmian.',
+                    'en' => 'Distributing daily plans to crew and actors and updating plans as needed.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7866,
+                'name' => json_encode([
+                    'pl' => 'Upewnienie się, że wszyscy członkowie ekipy są poinformowani o kluczowych szczegółach każdego dnia zdjęciowego.',
+                    'en' => 'Ensuring all crew members are informed of key details for each shooting day.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7867,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie niezbędnych pozwoleń na kręcenie w lokacjach zewnętrznych lub publicznych.',
+                    'en' => 'Arranging necessary permits for filming in external or public locations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7868,
+                'name' => json_encode([
+                    'pl' => 'Weryfikacja zgodności działań produkcji z lokalnymi przepisami i regulacjami.',
+                    'en' => 'Verifying production activities comply with local laws and regulations.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7869,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z instytucjami i urzędami, które odpowiadają za wydawanie pozwoleń.',
+                    'en' => 'Maintaining contact with institutions and offices responsible for issuing permits.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7870,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań związanych z zapewnieniem bezpieczeństwa na planie, w tym organizacja ochrony i ubezpieczeń.',
+                    'en' => 'Coordinating actions to ensure safety on set, including arranging security and insurance.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7871,
+                'name' => json_encode([
+                    'pl' => 'Przestrzeganie zasad BHP oraz zapewnienie dostępności sprzętu ratunkowego, apteczek i gaśnic.',
+                    'en' => 'Adhering to health and safety regulations and ensuring availability of emergency equipment, first aid kits, and fire extinguishers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7872,
+                'name' => json_encode([
+                    'pl' => 'Upewnienie się, że wszyscy członkowie ekipy są poinformowani o zasadach bezpieczeństwa i ich przestrzegają.',
+                    'en' => 'Ensuring all crew members are informed of and adhere to safety rules.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7873,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie dostaw i odbioru sprzętu niezbędnego do realizacji zdjęć, takiego jak kamery, oświetlenie, dźwięk.',
+                    'en' => 'Organizing delivery and pickup of equipment needed for shooting, such as cameras, lighting, and sound.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7874,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie wypożyczeń sprzętu oraz dbanie o jego sprawność i terminowy zwrot do dostawców.',
+                    'en' => 'Monitoring equipment rentals and ensuring its functionality and timely return to suppliers.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7875,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z technikami i operatorami, aby zapewnić dostępność sprzętu na każdym etapie produkcji.',
+                    'en' => 'Collaborating with technicians and operators to ensure equipment availability at every production stage.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7876,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie posiłków i przekąsek dla ekipy na planie, dbanie o różnorodność posiłków i ich dostępność.',
+                    'en' => 'Arranging meals and snacks for the crew on set, ensuring meal variety and availability.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7877,
+                'name' => json_encode([
+                    'pl' => 'Koordynowanie harmonogramu posiłków zgodnie z planem dnia zdjęciowego.',
+                    'en' => 'Coordinating meal schedule according to the daily shooting plan.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7878,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktu z dostawcami cateringu oraz dostosowywanie zamówień do potrzeb ekipy.',
+                    'en' => 'Maintaining contact with catering suppliers and adjusting orders to meet crew needs.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7879,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań scenograficznych, monitorowanie przygotowania dekoracji, ustawienia rekwizytów.',
+                    'en' => 'Coordinating set design activities, monitoring decoration setup, and arranging props.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7880,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie, że wszystkie potrzebne rekwizyty są dostępne i gotowe na czas.',
+                    'en' => 'Ensuring all necessary props are available and ready on time.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7881,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z działem scenografii i działem artystycznym w celu realizacji wizji reżysera.',
+                    'en' => 'Collaborating with the set design and art departments to fulfill the director’s vision.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7882,
+                'name' => json_encode([
+                    'pl' => 'Monitorowanie postępu prac na planie, kontrola nad czasem realizacji poszczególnych zadań.',
+                    'en' => 'Monitoring work progress on set and controlling task completion times.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7883,
+                'name' => json_encode([
+                    'pl' => 'Informowanie kierownika produkcji o ewentualnych opóźnieniach i proponowanie rozwiązań.',
+                    'en' => 'Informing the production manager of any delays and suggesting solutions.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7884,
+                'name' => json_encode([
+                    'pl' => 'Współpraca z reżyserem, aby zapewnić efektywną realizację scen zgodnie z planem produkcji.',
+                    'en' => 'Collaborating with the director to ensure efficient scene execution in line with the production plan.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7885,
+                'name' => json_encode([
+                    'pl' => 'Utrzymywanie kontaktów z firmami wypożyczającymi sprzęt, dostawcami usług oraz podwykonawcami.',
+                    'en' => 'Maintaining contact with equipment rental companies, service providers, and subcontractors.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7886,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie spotkań i konsultacji z lokalnymi urzędami oraz właścicielami lokacji.',
+                    'en' => 'Organizing meetings and consultations with local authorities and location owners.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7887,
+                'name' => json_encode([
+                    'pl' => 'Zapewnienie płynnej współpracy z podmiotami zewnętrznymi oraz rozwiązywanie ewentualnych konfliktów.',
+                    'en' => 'Ensuring smooth collaboration with external entities and resolving potential conflicts.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7888,
+                'name' => json_encode([
+                    'pl' => 'Wspieranie działań promocyjnych związanych z produkcją, takich jak tworzenie materiałów na media społecznościowe.',
+                    'en' => 'Supporting promotional activities related to the production, such as creating social media content.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7889,
+                'name' => json_encode([
+                    'pl' => 'Organizowanie sesji zdjęciowych na planie, przygotowywanie materiałów prasowych.',
+                    'en' => 'Organizing on-set photoshoots and preparing press materials.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7890,
+                'name' => json_encode([
+                    'pl' => 'Koordynacja działań PR-owych, jeśli jest to częścią strategii promocji produkcji.',
+                    'en' => 'Coordinating PR activities if it is part of the production’s promotional strategy.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7891,
+                'name' => json_encode([
+                    'pl' => 'Sporządzanie codziennych raportów z postępów produkcji, takich jak raporty z planu zdjęciowego.',
+                    'en' => 'Preparing daily production progress reports, such as shooting day reports.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7892,
+                'name' => json_encode([
+                    'pl' => 'Przygotowywanie raportów końcowych dotyczących budżetu, realizacji planu oraz osiągniętych wyników.',
+                    'en' => 'Preparing final reports on budget, plan execution, and achieved results.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 7893,
+                'name' => json_encode([
+                    'pl' => 'Dostarczanie informacji zwrotnych kierownikowi produkcji i pomoc w wyciąganiu wniosków na przyszłość.',
+                    'en' => 'Providing feedback to the production manager and assisting in drawing conclusions for future projects.'
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ];
 
         DB::table('detail_projects')->insert(array_merge(
             $inspektor_ochrony_danych,
@@ -2632,7 +7417,18 @@ class DetailProjectAdministacja2Seeder extends Seeder
             $SPECJALISTA_DO_SPRAW_BEZPIECZEŃSTWA_WEWNĘTRZNEGO,
             $SPECJALISTA_DO_SPRAW_CUDZOZIEMCÓW,
             $SPECJALISTA_DO_SPRAW_OBSLUGI_PROJEKTOW_I_PROGRAMOW,
-            $SPECJALISTA_DO_SPRAW_ZARZĄDZANIA
+            $SPECJALISTA_DO_SPRAW_ZARZĄDZANIA,
+            $SEKRETARKA_W_KANCELARII_PRAWNEJ,
+            $POZOSTALI_SEKRETARZE_PRAWNI,
+            $AKREDYTOWANY_ASYSTENT_PARLAMENTARNY,
+            $ASYSTENT_DYREKTORA,
+            $ASYSTENT_PARLAMENTARNY,
+            $ASYSTENT_ZARZĄDU,
+            $SEKRETARZ_KONSULARNY,
+            $SEKRETARKA_NOTARIALNA,
+            $SEKRETARKI_OGOLNE,
+            $ASYSTENT_OSOBISTY_CONCIERGE,
+            $ASYSTENT_KIEROWNIKA_PRODUKCJI
             ));
 
         Category::whereId('233')->first()->detailprojects()->attach(collect($inspektor_ochrony_danych)->pluck('id')->toArray());
@@ -2641,6 +7437,16 @@ class DetailProjectAdministacja2Seeder extends Seeder
         Category::whereId('236')->first()->detailprojects()->attach(collect($SPECJALISTA_DO_SPRAW_CUDZOZIEMCÓW)->pluck('id')->toArray());
         Category::whereId('237')->first()->detailprojects()->attach(collect($SPECJALISTA_DO_SPRAW_OBSLUGI_PROJEKTOW_I_PROGRAMOW)->pluck('id')->toArray());
         Category::whereId('238')->first()->detailprojects()->attach(collect($SPECJALISTA_DO_SPRAW_ZARZĄDZANIA)->pluck('id')->toArray());
-
+        Category::whereId('241')->first()->detailprojects()->attach(collect($SEKRETARKA_W_KANCELARII_PRAWNEJ)->pluck('id')->toArray());
+        Category::whereId('242')->first()->detailprojects()->attach(collect($POZOSTALI_SEKRETARZE_PRAWNI)->pluck('id')->toArray());
+        Category::whereId('243')->first()->detailprojects()->attach(collect($AKREDYTOWANY_ASYSTENT_PARLAMENTARNY)->pluck('id')->toArray());
+        Category::whereId('244')->first()->detailprojects()->attach(collect($ASYSTENT_DYREKTORA)->pluck('id')->toArray());
+        Category::whereId('245')->first()->detailprojects()->attach(collect($ASYSTENT_PARLAMENTARNY)->pluck('id')->toArray());
+        Category::whereId('246')->first()->detailprojects()->attach(collect($ASYSTENT_ZARZĄDU)->pluck('id')->toArray());
+        Category::whereId('247')->first()->detailprojects()->attach(collect($SEKRETARZ_KONSULARNY)->pluck('id')->toArray());
+        Category::whereId('248')->first()->detailprojects()->attach(collect($SEKRETARKA_NOTARIALNA)->pluck('id')->toArray());
+        Category::whereId('249')->first()->detailprojects()->attach(collect($SEKRETARKI_OGOLNE)->pluck('id')->toArray());
+        Category::whereId('250')->first()->detailprojects()->attach(collect($ASYSTENT_OSOBISTY_CONCIERGE)->pluck('id')->toArray());
+        Category::whereId('251')->first()->detailprojects()->attach(collect($ASYSTENT_KIEROWNIKA_PRODUKCJI)->pluck('id')->toArray());
     }
 }

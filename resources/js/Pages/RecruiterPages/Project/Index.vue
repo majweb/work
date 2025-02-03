@@ -61,10 +61,10 @@ watch(params.value, debounce(function (value) {
 
 </script>
 <template>
-    <AppLayout :title="__('auth.projects')">
+    <AppLayout :title="__('translate.projects')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{__('auth.projects')}}
+                {{__('translate.projects')}}
             </h2>
         </template>
         <div class="py-12">
@@ -74,7 +74,7 @@ watch(params.value, debounce(function (value) {
 
                         <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6 sm:rounded-bl-md sm:rounded-br-md">
                             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" :href="route('project-recruits.create')">
-                                {{__('auth.createProject')}}
+                                {{__('translate.createProject')}}
                             </Link>
                         </div>
 
@@ -106,18 +106,18 @@ watch(params.value, debounce(function (value) {
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.title')}}
+                                                        {{__('translate.title')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.actions')}}
+                                                        {{__('translate.actions')}}
                                                     </th>
                                                 </tr>
                                                 </thead>
 
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                 <tr v-if="props.projects.data.length == 0">
-                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('auth.notFoundProjects')}}</p></td>
+                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundProjects')}}</p></td>
                                                 </tr>
                                                 <tr v-else v-for="(project) in props.projects.data" :key="project.id">
                                                     <td class="py-4 px-6 whitespace-nowrap">
@@ -140,15 +140,15 @@ watch(params.value, debounce(function (value) {
                                                         <div class="flex items-center">
                                                             <div class="ml-4">
                                                                 <DangerButton @click="openModal(project)" class="!flex mx-auto text-center justify-center">
-                                                                    {{__('auth.delete')}}
+                                                                    {{__('translate.delete')}}
                                                                 </DangerButton>
                                                             </div>
                                                             <div class="ml-4">
                                                                 <Link :href="route('project-recruits.show',project)" class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('auth.show')}}
+                                                                    {{__('translate.show')}}
                                                                 </Link>
                                                                 <Link :href="route('project-recruits.edit',project)" class="ml-2 flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('auth.edit')}}
+                                                                    {{__('translate.edit')}}
                                                                 </Link>
                                                             </div>
                                                         </div>
@@ -167,20 +167,20 @@ watch(params.value, debounce(function (value) {
             </div>
             <DialogModal :show="confirmCancelProject" @close="confirmCancelProject = false">
                 <template #title>
-                    {{__('auth.questionDelete')}} - {{__('auth.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
+                    {{__('translate.questionDelete')}} - {{__('translate.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
                 </template>
 
                 <template #content>
-                    {{__('auth.questionDeleteConfirm')}} - {{__('auth.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
+                    {{__('translate.questionDeleteConfirm')}} - {{__('translate.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
                 </template>
 
                 <template #footer>
                     <SecondaryButton @click.native="confirmCancelProject = false">
-                        {{__('auth.cancel')}}
+                        {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <DangerButton class="ml-2" @click.native="DeleteProject">
-                        {{__('auth.delete')}}
+                        {{__('translate.delete')}}
                     </DangerButton>
                 </template>
             </DialogModal>

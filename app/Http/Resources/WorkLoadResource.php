@@ -16,7 +16,8 @@ class WorkLoadResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name
+            'name'=>$this->name,
+            'allTranslations'=>$this->getTranslations()
         ];
     }
 }

@@ -42,17 +42,17 @@ class FirmInvoiceUpdate extends FormRequest
     public function attributes(): array
     {
         return [
-            'nip_invoice' => strtolower(__('auth.nip')),
-            'name_invoice' => strtolower(__('auth.name')),
-            'street_invoice' => strtolower(__('auth.Street')),
-            'postal_invoice' => strtolower(__('auth.Postal')),
-            'city_invoice' => strtolower(__('auth.City')),
-            'country_invoice' => strtolower(__('auth.Country')),
-            'dateInvoice' => strtolower(__('auth.dateInvoice')),
-            'number' => strtolower(__('auth.Number')),
-            'day' => strtolower(__('auth.day')),
-            'month' => strtolower(__('auth.month')),
-            'year' => strtolower(__('auth.year')),
+            'nip_invoice' => strtolower(__('translate.nip')),
+            'name_invoice' => strtolower(__('translate.name')),
+            'street_invoice' => strtolower(__('translate.Street')),
+            'postal_invoice' => strtolower(__('translate.Postal')),
+            'city_invoice' => strtolower(__('translate.City')),
+            'country_invoice' => strtolower(__('translate.Country')),
+            'dateInvoice' => strtolower(__('translate.dateInvoice')),
+            'number' => strtolower(__('translate.Number')),
+            'day' => strtolower(__('translate.day')),
+            'month' => strtolower(__('translate.month')),
+            'year' => strtolower(__('translate.year')),
         ];
     }
 }

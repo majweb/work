@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\LanguageResource;
 use App\Http\Resources\MultiselectResource;
-use App\Http\Resources\TitleResource;
 use App\Http\Resources\TypeOfContractResource;
 use App\Http\Resources\WorkingModesResource;
 use App\Http\Resources\WorkLoadResource;
@@ -71,14 +70,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
-
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
         });
         $workingModes = Cache::rememberForever('workingModes', function() {
             return WorkingModesResource::collection(WorkingMode::all());
         });
-        $countries = Cache::rememberForever('countries', function() {
+        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function() {
             return (new Helper())->makeCountriesToSelect();
         });
         $workingPlaces = Cache::rememberForever('workingPlaces', function() {
@@ -90,15 +88,12 @@ class ProjectController extends Controller
         $workLoads = Cache::rememberForever('workLoads', function() {
             return WorkLoadResource::collection(WorkLoad::all());
         });
-
         $payoutModes = Cache::rememberForever('payoutModes', function() {
             return WorkLoadResource::collection(PayoutMode::all());
         });
-
         $paySystems = Cache::rememberForever('paySystems', function() {
             return WorkLoadResource::collection(PaySystem::all());
         });
-
         $days = Cache::rememberForever('days', function() {
             return WorkLoadResource::collection(Day::all());
         });
@@ -120,6 +115,10 @@ class ProjectController extends Controller
         $educations = Cache::rememberForever('educations', function() {
             return WorkLoadResource::collection(Education::all());
         });
+        $currencies = Cache::rememberForever('currencies', function() {
+            return config('currencyShorts');
+        });
+
         return inertia()->render('RecruiterPages/Project/Create',
             [
                 'categories' =>$category,
@@ -128,6 +127,7 @@ class ProjectController extends Controller
                 'workingPlaces' =>$workingPlaces,
                 'typesOfContract' =>$typesOfContract,
                 'workLoads' =>$workLoads,
+                'currencies' =>$currencies,
                 'payoutModes' =>$payoutModes,
                 'paySystems' =>$paySystems,
                 'days' =>$days,
@@ -145,14 +145,30 @@ class ProjectController extends Controller
      */
     public function store(StoreProject $request)
     {
-//        dd($request->projectData());
+        dd($request->all());
+//        dd(Lang::cases());
+
+//        dd($request->projectData()['country']);
+
+
+//        dd($request->projectData()['position']['allTranslations'][''],$request->projectData()['country'],config('langsShorts'));
+        $title=[];
+
+        foreach (config('langsShorts') as $lang){
+            $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['country'][0]['allTranslations'][$lang]) ? $request->projectData()['country'][0]['allTranslations'][$lang]: null).', '.$request->projectData()['city'].', '.$request->projectData()['basicSalaryFrom'];
+        }
+        dd($title);
+
+
+//        $title = $request->projectData()['position'].', '.$request->projectData()['country'].', '.$request->projectData()['city'].', '.$request->projectData()['basicSalaryFrom'];
 
         $project = Project::create([
-            'title' => $request->projectData()['title'] ?? 1,
+            'title' =>  'brak tytułu',
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
             'position' => $request->projectData()['position'],
+            'currency' => $request->projectData()['currency'],
             'workingMode' => $request->projectData()['workingMode'],
             'typeOfContract' => $request->projectData()['typeOfContract'],
             'payoutMode' => $request->projectData()['payoutMode'],
@@ -184,15 +200,10 @@ class ProjectController extends Controller
         if($project && count($request->projectData()['detailProjects'])){
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
-        session()->flash('flash.banner', __('auth.addedProject'));
+        session()->flash('flash.banner', __('translate.addedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('project-recruits.index');
-    }
-
-    public function storeFirsStep(StoreProject $request)
-    {
-        return to_route('project-recruits.create');
     }
     public function updateFirsStep(StoreProject $request,Project $project)
     {
@@ -324,7 +335,7 @@ class ProjectController extends Controller
         if($project && count($request->projectData()['detailProjects'])){
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
-        session()->flash('flash.banner', __('auth.updatedProject'));
+        session()->flash('flash.banner', __('translate.updatedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('project-recruits.index');
@@ -339,7 +350,7 @@ class ProjectController extends Controller
     {
         Gate::authorize('project-recruiter',$project);
         $project->delete();
-        session()->flash('flash.banner', __('auth.deleteProject'));
+        session()->flash('flash.banner', __('translate.deleteProject'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('project-recruits.index');
     }
@@ -349,11 +360,6 @@ class ProjectController extends Controller
         return MultiselectResource::collection(Category::where('parent_id',$parent)->with('detailprojects')->get());
     }
 
-    public function getTitlesCategory($parent)
-    {
-        return TitleResource::collection(Title::where('category_id',$parent)->get());
-    }
-
     public function generateTitle()
     {
     $dataString = strtolower(implode(',',request()->all()));
@@ -361,7 +367,7 @@ class ProjectController extends Controller
             return $el->label();
         })->implode(','));
 
-        $prompt = __('auth.prompt1string').$dataString.__('auth.prompt2string').$langs.__('auth.prompt3string');
+        $prompt = __('translate.prompt1string').$dataString.__('translate.prompt2string').$langs.__('translate.prompt3string');
 
 
 

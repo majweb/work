@@ -40,16 +40,16 @@ const updatePassword = () => {
 <template>
     <FormSection @submitted="updatePassword">
         <template #title>
-            {{__('auth.UpdatePassword')}}
+            {{__('translate.UpdatePassword')}}
         </template>
 
         <template #description>
-            {{__('auth.UpdatePasswordDescription')}}
+            {{__('translate.UpdatePasswordDescription')}}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="current_password" :value="__('auth.UpdatePasswordCurrent')" />
+                <InputLabel for="current_password" :value="__('translate.UpdatePasswordCurrent')" />
                 <TextInput
                     id="current_password"
                     ref="currentPasswordInput"
@@ -62,7 +62,7 @@ const updatePassword = () => {
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password" :value="__('auth.newPassword')" />
+                <InputLabel for="password" :value="__('translate.newPassword')" />
                 <TextInput
                     id="password"
                     ref="passwordInput"
@@ -75,7 +75,7 @@ const updatePassword = () => {
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password_confirmation" :value="__('auth.passwordconfirm')" />
+                <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')" />
                 <TextInput
                     id="password_confirmation"
                     v-model="form.password_confirmation"
@@ -89,11 +89,11 @@ const updatePassword = () => {
 
         <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{__('auth.Saved')}}
+                {{__('translate.Saved')}}
             </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{__('auth.Save')}}
+                {{__('translate.Save')}}
             </PrimaryButton>
         </template>
     </FormSection>

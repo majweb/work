@@ -21,7 +21,7 @@ defineProps({
         <div class="relative flex items-center">
             <div class="flex-grow border-t border-gray-400 dark:border-gray-500"></div>
             <span class="flex-shrink text-gray-400 dark:text-gray-500 px-6">
-                {{ __('auth.orLogin') }}
+                {{ __('translate.orLogin') }}
              </span>
             <div class="flex-grow border-t border-gray-400 dark:border-gray-500"></div>
         </div>

@@ -38,11 +38,11 @@ const DeleteProject = () => {
 </script>
 
 <template>
-    <AppLayout :title="__('auth.project')+' id.' + props.project.id">
+    <AppLayout :title="__('translate.project')+' id.' + props.project.id">
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('auth.project')}} id. {{props.project.id}}
+                    {{__('translate.project')}} id. {{props.project.id}}
                 </h2>
                 <div class="flex items-center">
                     <Link :href="route('projects.index')" class="text-gray-500 mr-4">
@@ -52,7 +52,7 @@ const DeleteProject = () => {
                         </svg>
                     </Link>
                     <DangerButton @click="openModal(props.project)" class="!flex mx-auto text-center justify-center">
-                        {{__('auth.delete')}}
+                        {{__('translate.delete')}}
                     </DangerButton>
                 </div>
             </div>
@@ -82,20 +82,20 @@ const DeleteProject = () => {
                     </div>
                     <DialogModal :show="confirmCancelProject" @close="confirmCancelProject = false">
                         <template #title>
-                            {{__('auth.questionDelete')}} - {{__('auth.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
+                            {{__('translate.questionDelete')}} - {{__('translate.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
                         </template>
 
                         <template #content>
-                            {{__('auth.questionDeleteConfirm')}} - {{__('auth.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
+                            {{__('translate.questionDeleteConfirm')}} - {{__('translate.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
                         </template>
 
                         <template #footer>
                             <SecondaryButton @click.native="confirmCancelProject = false">
-                                {{__('auth.cancel')}}
+                                {{__('translate.cancel')}}
                             </SecondaryButton>
 
                             <DangerButton class="ml-2" @click.native="DeleteProject">
-                                {{__('auth.delete')}}
+                                {{__('translate.delete')}}
                             </DangerButton>
                         </template>
                     </DialogModal>

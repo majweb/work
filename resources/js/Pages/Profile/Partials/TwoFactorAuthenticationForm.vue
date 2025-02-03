@@ -107,29 +107,29 @@ const disableTwoFactorAuthentication = () => {
 <template>
     <ActionSection>
         <template #title>
-            {{__('auth.2factorAuth')}}
+            {{__('translate.2factorAuth')}}
         </template>
 
         <template #description>
-            {{__('auth.2factorAuthDescription')}}
+            {{__('translate.2factorAuthDescription')}}
         </template>
 
         <template #content>
             <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900">
-                {{__('auth.2factorAuthDescriptionEnabled')}}
+                {{__('translate.2factorAuthDescriptionEnabled')}}
             </h3>
 
             <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900">
-                {{__('auth.2factorAuthDescriptionFinish')}}
+                {{__('translate.2factorAuthDescriptionFinish')}}
             </h3>
 
             <h3 v-else class="text-lg font-medium text-gray-900">
-                {{__('auth.2factorAuthDescriptionHave')}}
+                {{__('translate.2factorAuthDescriptionHave')}}
             </h3>
 
             <div class="mt-3 max-w-xl text-sm text-gray-600">
                 <p>
-                    {{__('auth.2factorAuthDescriptionWhen')}}
+                    {{__('translate.2factorAuthDescriptionWhen')}}
                 </p>
             </div>
 
@@ -137,10 +137,10 @@ const disableTwoFactorAuthentication = () => {
                 <div v-if="qrCode">
                     <div class="mt-4 max-w-xl text-sm text-gray-600">
                         <p v-if="confirming" class="font-semibold">
-                            {{__('auth.2factorAuthDescriptionToFinish')}}
+                            {{__('translate.2factorAuthDescriptionToFinish')}}
                         </p>
                         <p v-else>
-                            {{__('auth.2factorAuthDescriptionToFinishElse')}}
+                            {{__('translate.2factorAuthDescriptionToFinishElse')}}
                         </p>
                     </div>
 
@@ -148,12 +148,12 @@ const disableTwoFactorAuthentication = () => {
 
                     <div v-if="setupKey" class="mt-4 max-w-xl text-sm text-gray-600">
                         <p class="font-semibold">
-                            {{__('auth.2factorAuthDescriptionSetup')}}: <span v-html="setupKey"></span>
+                            {{__('translate.2factorAuthDescriptionSetup')}}: <span v-html="setupKey"></span>
                         </p>
                     </div>
 
                     <div v-if="confirming" class="mt-4">
-                        <InputLabel for="code" :value="__('auth.code')" />
+                        <InputLabel for="code" :value="__('translate.code')" />
 
                         <TextInput
                             id="code"
@@ -173,7 +173,7 @@ const disableTwoFactorAuthentication = () => {
                 <div v-if="recoveryCodes.length > 0 && ! confirming">
                     <div class="mt-4 max-w-xl text-sm text-gray-600">
                         <p class="font-semibold">
-                            {{__('auth.2factorAuthDescriptionStore')}}
+                            {{__('translate.2factorAuthDescriptionStore')}}
                         </p>
                     </div>
 
@@ -189,7 +189,7 @@ const disableTwoFactorAuthentication = () => {
                 <div v-if="! twoFactorEnabled">
                     <ConfirmsPassword @confirmed="enableTwoFactorAuthentication">
                         <PrimaryButton type="button" :class="{ 'opacity-25': enabling }" :disabled="enabling">
-                            {{__('auth.Enable')}}
+                            {{__('translate.Enable')}}
                         </PrimaryButton>
                     </ConfirmsPassword>
                 </div>
@@ -203,7 +203,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': enabling }"
                             :disabled="enabling"
                         >
-                            {{__('auth.confirmbtn')}}
+                            {{__('translate.confirmbtn')}}
                         </PrimaryButton>
                     </ConfirmsPassword>
 
@@ -212,7 +212,7 @@ const disableTwoFactorAuthentication = () => {
                             v-if="recoveryCodes.length > 0 && ! confirming"
                             class="me-3"
                         >
-                            {{__('auth.2factorAuthDescriptionRegenerate')}}
+                            {{__('translate.2factorAuthDescriptionRegenerate')}}
                         </SecondaryButton>
                     </ConfirmsPassword>
 
@@ -221,7 +221,7 @@ const disableTwoFactorAuthentication = () => {
                             v-if="recoveryCodes.length === 0 && ! confirming"
                             class="me-3"
                         >
-                            {{__('auth.2factorAuthDescriptionShowRecovery')}}
+                            {{__('translate.2factorAuthDescriptionShowRecovery')}}
                         </SecondaryButton>
                     </ConfirmsPassword>
 
@@ -231,7 +231,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
-                            {{__('auth.cancel')}}
+                            {{__('translate.cancel')}}
                         </SecondaryButton>
                     </ConfirmsPassword>
 
@@ -241,7 +241,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
-                            {{__('auth.Disable')}}
+                            {{__('translate.Disable')}}
                         </DangerButton>
                     </ConfirmsPassword>
                 </div>

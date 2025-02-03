@@ -90,7 +90,7 @@ class ArticleController extends Controller
                         ->addFromMediaLibraryRequest($request->baner)
                         ->toMediaCollection('baner');
 
-                    session()->flash('flash.banner', __('auth.addedArticle'));
+                    session()->flash('flash.banner', __('translate.addedArticle'));
                     session()->flash('flash.bannerStyle', 'success');
                     return to_route('articles.index');
                 } else {
@@ -127,7 +127,7 @@ class ArticleController extends Controller
             ->syncFromMediaLibraryRequest($request->baner)
             ->toMediaCollection('baner');
 
-        session()->flash('flash.banner', __('auth.updateArticle'));
+        session()->flash('flash.banner', __('translate.updateArticle'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('articles.index');
 
@@ -140,7 +140,7 @@ class ArticleController extends Controller
     {
         Gate::authorize('delete',$article);
         $article->delete();
-        session()->flash('flash.banner', __('auth.deleteArticle'));
+        session()->flash('flash.banner', __('translate.deleteArticle'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('articles.index');
     }

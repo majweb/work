@@ -16,6 +16,9 @@ class PayoutMode extends Model
     protected $fillable = [
         'name'
     ];
+    protected $casts = [
+        'name' => 'array'
+    ];
 
     public array $translatable = ['name'];
 

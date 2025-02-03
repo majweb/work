@@ -11,10 +11,10 @@ const props = defineProps({
 
 </script>
 <template>
-    <AppLayout :title="__('auth.points')">
+    <AppLayout :title="__('translate.points')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('auth.points') }}
+                {{ __('translate.points') }}
             </h2>
         </template>
         <div class="py-12">
@@ -24,7 +24,7 @@ const props = defineProps({
                         <div v-if="props.products.data.length == 0">
                             <div class="text-center py-4 px-6 whitespace-nowrap font-semibold">
                                 <p>
-                                    {{ __('auth.notFoundProducts') }}
+                                    {{ __('translate.notFoundProducts') }}
                                 </p>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ const props = defineProps({
                                     <h5 class="mb-2 text-xl font-bold text-gray-900 dark:text-white text-center">
                                         <span>{{ product.product.name }}</span>
                                     </h5>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ product.product.price }} {{__('auth.points')}}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ product.product.price }} {{__('translate.points')}}</p>
                                     <div class="flex items-center flex-col">
                                         <p v-if="product.start" class="text-gray-700 dark:text-gray-400 text-sm flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="green" stroke-width="2">
@@ -51,9 +51,9 @@ const props = defineProps({
                                     </div>
                                     <div v-if="product.qty">
                                         <div class="mb-3 text-sm text-gray-700 dark:text-gray-400 flex flex-col items-center mt-2">
-                                            <span>{{__('auth.points')}}:{{ product.qty }}</span>
+                                            <span>{{__('translate.points')}}:{{ product.qty }}</span>
                                             <Link :href="route('articles.create')" class="mt-2 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                                                {{__('auth.create')}}
+                                                {{__('translate.create')}}
                                             </Link>
                                         </div>
                                     </div>

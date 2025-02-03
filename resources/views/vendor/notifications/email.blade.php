@@ -6,7 +6,7 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-# {{__('auth.hello')}}
+# {{__('translate.hello')}}
 @endif
 @endif
 
@@ -39,14 +39,14 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-{{__('auth.regards')}},<br>
+{{__('translate.regards')}},<br>
 {{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 <x-slot:subcopy>
-{{__('auth.emailVerifyExtra',[
+{{__('translate.emailVerifyExtra',[
         'actionText' => $actionText,
     ])}}
 <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>

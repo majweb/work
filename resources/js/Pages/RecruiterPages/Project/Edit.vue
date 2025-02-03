@@ -210,12 +210,12 @@ const titlesFromLang = computed(()=>{
 </script>
 
 <template>
-    <AppLayout :title="__('auth.createRecruit')">
+    <AppLayout :title="__('translate.createRecruit')">
         <template #header>
             <div class="flex justify-between">
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('auth.updateProject')}}
+                    {{__('translate.updateProject')}}
                 </h2>
                 <Link :href="route('project-recruits.index')" class="text-gray-500 mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -234,94 +234,94 @@ const titlesFromLang = computed(()=>{
                             <div v-if="formStep == 1" class="col-span-12">
                                 <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <InputLabel :value="__('auth.category')"/>
+                                        <InputLabel :value="__('translate.category')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('auth.selectLabel')"
-                                            :selectGroupLabel="__('auth.selectGroupLabel')"
-                                            :selectedLabel="__('auth.selectedLabel')"
-                                            :deselectLabel="__('auth.deselectLabel')"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
                                             track-by="value"
                                             label="name"
-                                            :placeholder="__('auth.placeholder')"
+                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.category" :options="optionsCategory">
                                             <template #noResult>
-                                                <span>{{__('auth.noOptions')}}</span>
+                                                <span>{{__('translate.noOptions')}}</span>
                                             </template>
                                             <template #noOptions>
-                                                <span>{{__('auth.noResult')}}</span>
+                                                <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.category" class="mt-2"/>
 
                                     </div>
                                     <div>
-                                        <InputLabel :value="__('auth.subcategory')"/>
+                                        <InputLabel :value="__('translate.subcategory')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('auth.selectLabel')"
-                                            :selectGroupLabel="__('auth.selectGroupLabel')"
-                                            :selectedLabel="__('auth.selectedLabel')"
-                                            :deselectLabel="__('auth.deselectLabel')"
-                                            :noOptions="__('auth.noOptions')"
-                                            :noResult="__('auth.noResult')"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :noOptions="__('translate.noOptions')"
+                                            :noResult="__('translate.noResult')"
                                             track-by="value"
                                             label="name"
-                                            :placeholder="__('auth.placeholder')"
+                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.categorySub" :options="optionsSubCategory">
                                             <template #noResult>
-                                                <span>{{__('auth.noOptions')}}</span>
+                                                <span>{{__('translate.noOptions')}}</span>
                                             </template>
                                             <template #noOptions>
-                                                <span>{{__('auth.noResult')}}</span>
+                                                <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.categorySub" class="mt-2"/>
 
                                     </div>
                                     <div>
-                                        <InputLabel :value="__('auth.profession')"/>
+                                        <InputLabel :value="__('translate.profession')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('auth.selectLabel')"
-                                            :selectGroupLabel="__('auth.selectGroupLabel')"
-                                            :selectedLabel="__('auth.selectedLabel')"
-                                            :deselectLabel="__('auth.deselectLabel')"
-                                            :noOptions="__('auth.noOptions')"
-                                            :noResult="__('auth.noResult')"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :noOptions="__('translate.noOptions')"
+                                            :noResult="__('translate.noResult')"
                                             track-by="value"
                                             label="name"
-                                            :placeholder="__('auth.placeholder')"
+                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.profession" :options="optionsProfession">
                                             <template #noResult>
-                                                <span>{{__('auth.noOptions')}}</span>
+                                                <span>{{__('translate.noOptions')}}</span>
                                             </template>
                                             <template #noOptions>
-                                                <span>{{__('auth.noResult')}}</span>
+                                                <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.profession" class="mt-2"/>
 
                                     </div>
                                     <div>
-                                        <InputLabel :value="__('auth.position')"/>
+                                        <InputLabel :value="__('translate.position')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('auth.selectLabel')"
-                                            :selectGroupLabel="__('auth.selectGroupLabel')"
-                                            :selectedLabel="__('auth.selectedLabel')"
-                                            :deselectLabel="__('auth.deselectLabel')"
-                                            :noOptions="__('auth.noOptions')"
-                                            :noResult="__('auth.noResult')"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :noOptions="__('translate.noOptions')"
+                                            :noResult="__('translate.noResult')"
                                             track-by="value"
                                             label="name"
-                                            :placeholder="__('auth.placeholder')"
+                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.position" :options="optionsPosition">
                                             <template #noResult>
-                                                <span>{{__('auth.noOptions')}}</span>
+                                                <span>{{__('translate.noOptions')}}</span>
                                             </template>
                                             <template #noOptions>
-                                                <span>{{__('auth.noResult')}}</span>
+                                                <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.position" class="mt-2"/>
@@ -330,7 +330,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div v-if="titles.length">
-                                        <InputLabel :value="__('auth.title')"/>
+                                        <InputLabel :value="__('translate.title')"/>
                                         <div v-for="title in titles" class="flex items-center mt-1">
                                                 <input
                                                     class=" border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -341,7 +341,7 @@ const titlesFromLang = computed(()=>{
                                     </div>
 
                                     <div class="mt-4" v-if="workingModes">
-                                        <InputLabel for="workingMode" :value="__('auth.workingMode')" />
+                                        <InputLabel for="workingMode" :value="__('translate.workingMode')" />
                                         <div v-for="workingMode in workingModes" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -355,7 +355,7 @@ const titlesFromLang = computed(()=>{
                                 <!-- detailprojects-->
                                 <div class="col-span-6 mt-4" v-if="((form.position.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession.detailprojects && Object.keys(form.profession.detailprojects).length))">
                                     <div class="grid grid grid-cols-1 lg:grid-cols-2">
-                                        <InputLabel for="detail" :value="__('auth.detailProjects')" />
+                                        <InputLabel for="detail" :value="__('translate.detailProjects')" />
                                         <div v-for="detail in (form.position.detailprojects || form.profession.detailprojects)" class="flex items-center">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -369,7 +369,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div v-if="titles.length">
-                                        <InputLabel :value="__('auth.title')"/>
+                                        <InputLabel :value="__('translate.title')"/>
                                         <div v-for="title in titles" class="flex items-center mt-1">
                                             <input
                                                 class=" border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -379,7 +379,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.title" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="workingModes">
-                                        <InputLabel for="workingMode" :value="__('auth.workingMode')" />
+                                        <InputLabel for="workingMode" :value="__('translate.workingMode')" />
                                         <div v-for="workingMode in workingModes" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -393,46 +393,46 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div>
-                                        <InputLabel :value="__('auth.Country')"/>
+                                        <InputLabel :value="__('translate.Country')"/>
                                         <multiselect
                                             group-values="elements" group-label="group"
                                             :group-select="false"
-                                            :selectLabel="__('auth.selectLabel')"
-                                            :selectGroupLabel="__('auth.selectGroupLabel')"
-                                            :selectedLabel="__('auth.selectedLabel')"
-                                            :deselectLabel="__('auth.deselectLabel')"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
                                             track-by="name"
                                             label="name"
-                                            :placeholder="__('auth.placeholder')"
+                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.country" :options="optionsCountry">
                                             <template #noResult>
-                                                <span>{{__('auth.noOptions')}}</span>
+                                                <span>{{__('translate.noOptions')}}</span>
                                             </template>
                                             <template #noOptions>
-                                                <span>{{__('auth.noResult')}}</span>
+                                                <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.country" class="mt-2"/>
 
                                     </div>
                                     <div>
-                                        <InputLabel :value="__('auth.workingPlace')"/>
+                                        <InputLabel :value="__('translate.workingPlace')"/>
                                         <multiselect
-                                            :selectLabel="__('auth.selectLabel')"
-                                            :selectGroupLabel="__('auth.selectGroupLabel')"
-                                            :selectedLabel="__('auth.selectedLabel')"
-                                            :deselectLabel="__('auth.deselectLabel')"
-                                            :noOptions="__('auth.noOptions')"
-                                            :noResult="__('auth.noResult')"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :noOptions="__('translate.noOptions')"
+                                            :noResult="__('translate.noResult')"
                                             track-by="value"
                                             label="name"
-                                            :placeholder="__('auth.placeholder')"
+                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.workingPlace" :options="optionsWorkingPlace">
                                             <template #noResult>
-                                                <span>{{__('auth.noOptions')}}</span>
+                                                <span>{{__('translate.noOptions')}}</span>
                                             </template>
                                             <template #noOptions>
-                                                <span>{{__('auth.noResult')}}</span>
+                                                <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.workingPlace" class="mt-2"/>
@@ -441,7 +441,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="typesOfContract">
-                                        <InputLabel for="workingMode" :value="__('auth.typesOfContract')" />
+                                        <InputLabel for="workingMode" :value="__('translate.typesOfContract')" />
                                         <div v-for="typeOfContract in typesOfContract" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -452,7 +452,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.typeOfContract" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="workLoads">
-                                        <InputLabel :value="__('auth.workLoads')" />
+                                        <InputLabel :value="__('translate.workLoads')" />
                                         <div v-for="workLoad in workLoads" class="flex items-center mt-1">
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -465,7 +465,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.basicSalaryFrom')" />
+                                        <InputLabel :value="__('translate.basicSalaryFrom')" />
                                         <input type="number"
                                             id="basicSalaryFrom"
                                             v-model="form.basicSalaryFrom"
@@ -476,7 +476,7 @@ const titlesFromLang = computed(()=>{
 
                                     </div>
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.basicSalaryTo')" />
+                                        <InputLabel :value="__('translate.basicSalaryTo')" />
                                         <input type="number"
                                             id="basicSalaryTo"
                                             v-model="form.basicSalaryTo"
@@ -489,7 +489,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="payoutModes">
-                                        <InputLabel :value="__('auth.payoutModes')" />
+                                        <InputLabel :value="__('translate.payoutModes')" />
                                         <div v-for="payoutMode in payoutModes" class="flex items-center mt-1">
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -500,7 +500,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.payoutMode" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="paySystems">
-                                        <InputLabel for="paySystem" :value="__('auth.paySystem')" />
+                                        <InputLabel for="paySystem" :value="__('translate.paySystem')" />
                                         <div v-for="paySystem in paySystems" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -513,7 +513,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.bonusSalaryFrom')" />
+                                        <InputLabel :value="__('translate.bonusSalaryFrom')" />
                                         <input type="number"
                                             id="bonusSalaryFrom"
                                             v-model="form.bonusSalaryFrom"
@@ -524,7 +524,7 @@ const titlesFromLang = computed(()=>{
 
                                     </div>
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.bonusSalaryTo')" />
+                                        <InputLabel :value="__('translate.bonusSalaryTo')" />
                                         <input type="number"
                                             id="bonusSalaryTo"
                                             v-model="form.bonusSalaryTo"
@@ -537,7 +537,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="days">
-                                        <InputLabel for="day" :value="__('auth.dayWork')" />
+                                        <InputLabel for="day" :value="__('translate.dayWork')" />
                                         <div v-for="day in days" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -548,7 +548,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.days" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="shiftWorks">
-                                        <InputLabel :value="__('auth.shiftWorks')" />
+                                        <InputLabel :value="__('translate.shiftWorks')" />
                                         <div v-for="shiftWork in shiftWorks" class="flex items-center mt-1">
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -561,7 +561,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.hoursFrom')" />
+                                        <InputLabel :value="__('translate.hoursFrom')" />
                                         <TextInput
                                             type="time"
                                             id="hoursFrom"
@@ -571,7 +571,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.hoursFrom" class="mt-2"/>
                                     </div>
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.hoursTo')" />
+                                        <InputLabel :value="__('translate.hoursTo')" />
                                         <TextInput
                                             type="time"
                                             id="hoursTo"
@@ -583,21 +583,21 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6">
                                     <div class="mt-4">
-                                        <InputLabel :value="__('auth.workNight')" />
+                                        <InputLabel :value="__('translate.workNight')" />
                                         <div class="flex mt-1 flex-col">
                                             <div class="flex items-center">
                                                 <input
                                                     class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                     type="radio" id="workNight-1" v-model="form.workNight"
                                                     value="1" />
-                                                    <label for="workNight-1">{{__('auth.yes')}}</label>
+                                                    <label for="workNight-1">{{__('translate.yes')}}</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input
                                                     class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                     type="radio" id="workNight-2" v-model="form.workNight"
                                                     value="2" />
-                                                <label for="workNight-2">{{__('auth.no')}}</label>
+                                                <label for="workNight-2">{{__('translate.no')}}</label>
                                             </div>
                                                 <InputError :message="form.errors.workNight" class="mt-2"/>
                                         </div>
@@ -605,7 +605,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                     <div class="mt-4" v-if="offers">
-                                        <InputLabel for="day" :value="__('auth.offer')" />
+                                        <InputLabel for="day" :value="__('translate.offer')" />
                                         <div v-for="offer in offers" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -616,7 +616,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.offer" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="waits">
-                                        <InputLabel for="day" :value="__('auth.wait')" />
+                                        <InputLabel for="day" :value="__('translate.wait')" />
                                         <div v-for="wait in waits" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -627,7 +627,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.wait" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="experiences">
-                                        <InputLabel for="day" :value="__('auth.experience')" />
+                                        <InputLabel for="day" :value="__('translate.experience')" />
                                         <div v-for="experience in experiences" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -638,7 +638,7 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.experience" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="welcomes">
-                                        <InputLabel for="day" :value="__('auth.welcome')" />
+                                        <InputLabel for="day" :value="__('translate.welcome')" />
                                         <div v-for="welcome in welcomes" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -651,7 +651,7 @@ const titlesFromLang = computed(()=>{
                                 </div>
                                 <div class="col-span-6">
                                     <div class="mt-4" v-if="educations">
-                                        <InputLabel :value="__('auth.education')" />
+                                        <InputLabel :value="__('translate.education')" />
                                         <div v-for="education in educations" class="flex items-center mt-1">
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -676,102 +676,102 @@ const titlesFromLang = computed(()=>{
                                     <div class="mt-6 border-t border-gray-100">
                                         <dl class="divide-y divide-gray-100 grid grid-cols-1 grid-cols-2">
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.category')+':'+form.category.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.category')+':'+form.category.name))}">{{__('auth.category')}}:{{form.category.name}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.category')+':'+form.category.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.category')+':'+form.category.name))}">{{__('translate.category')}}:{{form.category.name}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.subcategory')+':'+form.categorySub.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.subcategory')+':'+form.categorySub.name))}">{{__('auth.subcategory')}}:{{form.categorySub.name}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.subcategory')+':'+form.categorySub.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.subcategory')+':'+form.categorySub.name))}">{{__('translate.subcategory')}}:{{form.categorySub.name}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.profession')+':'+form.profession.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.profession')+':'+form.profession.name))}">{{__('auth.profession')}}:{{form.profession.name}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.profession')+':'+form.profession.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.profession')+':'+form.profession.name))}">{{__('translate.profession')}}:{{form.profession.name}}</span>
                                             </div>
                                             <div class="flex items-center mb-1" v-if="form.position">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.position')+':'+form.position.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.position')+':'+form.position.name))}">{{__('auth.position')}}:{{form.position.name}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.position')+':'+form.position.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.position')+':'+form.position.name))}">{{__('translate.position')}}:{{form.position.name}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.workingMode')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.workingMode'),el)" v-for="el in workingModeSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.workingMode')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.workingMode')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.workingMode')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.workingMode'),el)" v-for="el in workingModeSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workingMode')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workingMode')+':'+el))}">
                                                     {{el}}
                                                 </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.Country')+':'+form.country.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.Country')+':'+form.country.name))}">{{__('auth.Country')}}:{{form.country.name}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.Country')+':'+form.country.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.Country')+':'+form.country.name))}">{{__('translate.Country')}}:{{form.country.name}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.workingPlace')+':'+form.workingPlace.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.workingPlace')+':'+form.workingPlace.name))}">{{__('auth.workingPlace')}}:{{form.workingPlace.name}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workingPlace')+':'+form.workingPlace.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workingPlace')+':'+form.workingPlace.name))}">{{__('translate.workingPlace')}}:{{form.workingPlace.name}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.typesOfContract')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.typesOfContract'),el)" v-for="el in typesOfContractSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.typesOfContract')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.typesOfContract')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.typesOfContract')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.typesOfContract'),el)" v-for="el in typesOfContractSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.typesOfContract')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.typesOfContract')+':'+el))}">
                                                     {{el}}
                                                 </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.workLoads')+':'+workLoadSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.workLoads')+':'+workLoadSelect))}">{{__('auth.workLoads')}}:{{workLoadSelect}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workLoads')+':'+workLoadSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workLoads')+':'+workLoadSelect))}">{{__('translate.workLoads')}}:{{workLoadSelect}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
                                                 <div class="text-sm leading-6 text-gray-900">
-                                                    <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.payoutModes')+':'+payoutModeSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.payoutModes')+':'+payoutModeSelect))}">{{__('auth.payoutModes')}}:{{payoutModeSelect}}</span>
+                                                    <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.payoutModes')+':'+payoutModeSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.payoutModes')+':'+payoutModeSelect))}">{{__('translate.payoutModes')}}:{{payoutModeSelect}}</span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.paySystem')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.paySystem'),el)" v-for="el in paySystemSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.paySystem')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.paySystem')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.paySystem')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.paySystem'),el)" v-for="el in paySystemSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.paySystem')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.paySystem')+':'+el))}">
                                                     {{el}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.bonusSalaryTo')+':'+form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.bonusSalaryTo')+':'+form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient))}">{{__('auth.bonusSalaryTo')}}:{{form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.bonusSalaryTo')+':'+form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.bonusSalaryTo')+':'+form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient))}">{{__('translate.bonusSalaryTo')}}:{{form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.basicSalaryTo')+':'+form.basicSalaryTo + ' ' + usePage().props.currencyFromClient),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.basicSalaryTo')+':'+form.basicSalaryTo + ' ' + usePage().props.currencyFromClient))}">{{__('auth.basicSalaryTo')}}:{{form.basicSalaryTo + ' ' + usePage().props.currencyFromClient}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.basicSalaryTo')+':'+form.basicSalaryTo + ' ' + usePage().props.currencyFromClient),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.basicSalaryTo')+':'+form.basicSalaryTo + ' ' + usePage().props.currencyFromClient))}">{{__('translate.basicSalaryTo')}}:{{form.basicSalaryTo + ' ' + usePage().props.currencyFromClient}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.dayWork')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.dayWork'),el)" v-for="el in daySelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.dayWork')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.dayWork')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.dayWork')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.dayWork'),el)" v-for="el in daySelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.dayWork')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.dayWork')+':'+el))}">
                                                     {{el}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1" v-if="form.shiftWork == 1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.shiftWorks')),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.shiftWorks')))}">{{__('auth.shiftWorks')}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.shiftWorks')),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.shiftWorks')))}">{{__('translate.shiftWorks')}}</span>
                                             </div>
                                             <div class="flex items-center mb-1" v-if="form.workNight == 1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.workNight')),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.workNight')))}">{{__('auth.workNight')}}</span>
+                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workNight')),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workNight')))}">{{__('translate.workNight')}}</span>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.offer')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.offer'),el)" v-for="el in offerSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.offer')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.offer')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.offer')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.offer'),el)" v-for="el in offerSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.offer')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.offer')+':'+el))}">
                                                     {{el}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.wait')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.wait'),el)" v-for="el in waitSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.wait')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.wait')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.wait')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.wait'),el)" v-for="el in waitSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.wait')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.wait')+':'+el))}">
                                                     {{el}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.experience')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.experience'),el)" v-for="el in experienceSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.experience')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.experience')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.experience')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.experience'),el)" v-for="el in experienceSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.experience')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.experience')+':'+el))}">
                                                     {{el}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('auth.welcome')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('auth.welcome'),el)" v-for="el in welcomeSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.welcome')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.welcome')+':'+el))}">
+                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.welcome')}}:
+                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.welcome'),el)" v-for="el in welcomeSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.welcome')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.welcome')+':'+el))}">
                                                     {{el}}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center mb-1" v-if="educationSelect">
                                                 <div class="text-sm leading-6 text-gray-900">
-                                                    <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('auth.education')+':'+educationSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('auth.education')+':'+educationSelect))}">{{__('auth.education')}}:{{educationSelect}}</span>
+                                                    <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.education')+':'+educationSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.education')+':'+educationSelect))}">{{__('translate.education')}}:{{educationSelect}}</span>
                                                 </div>
                                             </div>
                                         </dl>
@@ -793,7 +793,7 @@ const titlesFromLang = computed(()=>{
                             <secondary-button type="button" v-if="formStep  == 1" @click="nextStep">Następny</secondary-button>
                             <secondary-button type="button" v-if="formStep  == 2" @click="prevStep" class="mr-2">Poprzedni</secondary-button>
                             <PrimaryButton v-if="formStep  == 2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('auth.update')}}</spinner-action>
+                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>
                         </template>
                     </FormSectionProject>

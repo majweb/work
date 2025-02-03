@@ -20,6 +20,7 @@ class Project extends Model
         'workingMode',
         'typeOfContract',
         'days',
+        'currency',
         'workLoad',
         'shiftWork',
         'country',
@@ -45,7 +46,9 @@ class Project extends Model
     ];
 
     protected $casts = [
+        'title'=>'array',
         'category'=>'array',
+        'currency'=>'array',
         'categorySub'=>'array',
         'profession'=>'array',
         'position'=>'array',
@@ -71,10 +74,6 @@ class Project extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-    public function title(): BelongsTo
-    {
-        return $this->belongsTo(Title::class);
     }
 
     public function recruit(): BelongsTo

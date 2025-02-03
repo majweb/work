@@ -37,12 +37,12 @@ const createUser = () => {
 </script>
 
 <template>
-    <AppLayout :title="__('auth.createRecruit')">
+    <AppLayout :title="__('translate.createRecruit')">
         <template #header>
             <div class="flex justify-between">
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('auth.createRecruit')}}
+                    {{__('translate.createRecruit')}}
                 </h2>
                 <Link :href="route('recruits.index')" class="text-gray-500 mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -58,18 +58,18 @@ const createUser = () => {
                 <div>
                     <FormSection @submitted="createUser">
                         <template #title>
-                            {{__('auth.recruit')}}
+                            {{__('translate.recruit')}}
                         </template>
 
                         <template #description>
-                            {{__('auth.recruitInfo')}}
+                            {{__('translate.recruitInfo')}}
                         </template>
 
                         <template #form>
 
                             <div class="col-span-6">
                                 <div class="mt-4">
-                                    <InputLabel for="name" :value="__('auth.name')"/>
+                                    <InputLabel for="name" :value="__('translate.name')"/>
                                     <TextInput
                                         id="name"
                                         v-model="form.name"
@@ -80,7 +80,7 @@ const createUser = () => {
                                     <InputError :message="form.errors.name" class="mt-2"/>
                                 </div>
                                 <div class="mt-4">
-                                    <InputLabel for="recruiter_phone" :value="__('auth.phone')"/>
+                                    <InputLabel for="recruiter_phone" :value="__('translate.phone')"/>
                                     <TextInput
                                         id="recruiter_phone"
                                         v-model="form.recruiter_phone"
@@ -91,7 +91,7 @@ const createUser = () => {
                                 </div>
 
                                 <div class="mt-4">
-                                    <InputLabel for="email" :value="__('auth.email')"/>
+                                    <InputLabel for="email" :value="__('translate.email')"/>
                                     <TextInput
                                         id="email"
                                         v-model="form.email"
@@ -102,7 +102,7 @@ const createUser = () => {
                                 </div>
 
                                 <div class="mt-4">
-                                    <InputLabel for="password" :value="__('auth.password')"/>
+                                    <InputLabel for="password" :value="__('translate.password')"/>
                                     <TextInput
                                         id="password"
                                         v-model="form.password"
@@ -113,7 +113,7 @@ const createUser = () => {
                                 </div>
 
                                 <div class="mt-4">
-                                    <InputLabel for="password_confirmation" :value="__('auth.passwordconfirm')"/>
+                                    <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')"/>
                                     <TextInput
                                         id="password_confirmation"
                                         v-model="form.password_confirmation"
@@ -123,7 +123,7 @@ const createUser = () => {
                                     <InputError :message="form.errors.password_confirmation" class="mt-2"/>
                                 </div>
                                 <div class="mt-4">
-                                    <InputLabel for="permissions" :value="__('auth.right')" />
+                                    <InputLabel for="permissions" :value="__('translate.right')" />
                                     <div v-for="permission in permissions">
                                         <input
                                             class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
@@ -138,10 +138,10 @@ const createUser = () => {
 
                         <template #actions>
                             <ActionMessage :on="form.recentlySuccessful" class="mr-3">
-                                {{__('auth.addedRecruit')}}
+                                {{__('translate.addedRecruit')}}
                             </ActionMessage>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('auth.add')}}</spinner-action>
+                                <spinner-action :process="form.processing">{{__('translate.add')}}</spinner-action>
                             </PrimaryButton>
                         </template>
                     </FormSection>

@@ -43,9 +43,9 @@ class AppServiceProvider extends ServiceProvider
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
-                ->subject(__('auth.emailVerifySubject'))
-                ->line(__('auth.emailVerifyLine'))
-                ->action(__('auth.emailVerifySubject'), $url);
+                ->subject(__('translate.emailVerifySubject'))
+                ->line(__('translate.emailVerifyLine'))
+                ->action(__('translate.emailVerifySubject'), $url);
         });
 
         Gate::define('project-recruiter', function (User $user, Project $project) {

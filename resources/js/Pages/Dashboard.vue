@@ -9,10 +9,10 @@ const props = defineProps({
 </script>
 
 <template>
-    <AppLayout :title="__('auth.dashboard')">
+    <AppLayout :title="__('translate.dashboard')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{__('auth.dashboard')}}
+                {{__('translate.dashboard')}}
             </h2>
         </template>
 

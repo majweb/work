@@ -82,7 +82,7 @@ class ProjectController extends Controller
     {
         Gate::authorize('delete',$project);
         $project->delete();
-        session()->flash('flash.banner', __('auth.deleteProject'));
+        session()->flash('flash.banner', __('translate.deleteProject'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('projects.index');
     }

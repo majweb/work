@@ -34,12 +34,12 @@ const submit = () => {
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{__('auth.confirm')}}
+            {{__('translate.confirm')}}
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="password" :value="__('auth.password')" />
+                <InputLabel for="password" :value="__('translate.password')" />
                 <TextInput
                     id="password"
                     ref="passwordInput"
@@ -55,7 +55,7 @@ const submit = () => {
             <div class="flex justify-end mt-4">
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Confirm
-                    {{__('auth.confirmbtn')}}
+                    {{__('translate.confirmbtn')}}
                 </PrimaryButton>
             </div>
         </form>

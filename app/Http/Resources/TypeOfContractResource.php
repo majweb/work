@@ -17,6 +17,7 @@ class TypeOfContractResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
+            'allTranslations'=>$this->getTranslations()
         ];
     }
 }

@@ -35,7 +35,7 @@ class FirmBuyRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'currency' => strtolower(__('auth.currency')),
+            'currency' => strtolower(__('translate.currency')),
         ];
     }
 }

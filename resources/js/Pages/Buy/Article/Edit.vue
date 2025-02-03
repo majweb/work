@@ -53,12 +53,12 @@ const updateArticle = () => {
 </script>
 
 <template>
-    <AppLayout :title="__('auth.editArticle')">
+    <AppLayout :title="__('translate.editArticle')">
         <template #header>
             <div class="flex justify-between">
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('auth.editArticle')}}
+                    {{__('translate.editArticle')}}
                 </h2>
                 <Link :href="route('articles.index')" class="text-gray-500 mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -78,13 +78,13 @@ const updateArticle = () => {
                         </template>
 
                         <template #description>
-                            {{__('auth.articleInfo')}}
+                            {{__('translate.articleInfo')}}
                         </template>
 
                         <template #form>
                             <div class="col-span-6">
                                 <div class="mt-4">
-                                    <InputLabel for="title" :value="__('auth.language')"/>
+                                    <InputLabel for="title" :value="__('translate.language')"/>
                                     <select v-model=" form.lang" name="lang" id="lang" class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full">
                                         <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value" :selected="language.value === usePage().props.language">
                                             {{ language.value }}
@@ -124,7 +124,7 @@ const updateArticle = () => {
                             </div>
                             <div class="col-span-6">
                                 <div class="mt-4">
-                                    <InputLabel for="title" :value="__('auth.title')"/>
+                                    <InputLabel for="title" :value="__('translate.title')"/>
                                     <TextInput
                                         id="title"
                                         v-model="form.title"
@@ -135,7 +135,7 @@ const updateArticle = () => {
                                     <InputError :message="form.errors.title" class="mt-2"/>
                                 </div>
                                 <div class="mt-4">
-                                    <InputLabel for="content" :value="__('auth.content')"/>
+                                    <InputLabel for="content" :value="__('translate.content')"/>
                                     <TextareaLimit id="content" v-model="form.content" :limit="2000"/>
                                     <InputError :message="form.errors.content" class="mt-2"/>
                                 </div>
@@ -222,10 +222,10 @@ const updateArticle = () => {
 
                         <template #actions>
                             <ActionMessage :on="form.recentlySuccessful" class="mr-3">
-                                {{__('auth.updateRecruit')}}
+                                {{__('translate.updateRecruit')}}
                             </ActionMessage>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('auth.update')}}</spinner-action>
+                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>
                         </template>
                     </FormSection>

@@ -40,39 +40,39 @@ const closeModal = () => {
 <template>
     <ActionSection>
         <template #title>
-            {{__('auth.removeAccount')}}
+            {{__('translate.removeAccount')}}
         </template>
 
         <template #description>
-            {{__('auth.removeAccountPermanently')}}
+            {{__('translate.removeAccountPermanently')}}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                {{__('auth.removeAccountPermanentlyText')}}
+                {{__('translate.removeAccountPermanentlyText')}}
             </div>
 
             <div class="mt-5">
                 <DangerButton @click="confirmUserDeletion">
-                    {{__('auth.delete')}}
+                    {{__('translate.delete')}}
                 </DangerButton>
             </div>
 
             <!-- Delete Account Confirmation Modal -->
             <DialogModal :show="confirmingUserDeletion" @close="closeModal">
                 <template #title>
-                    {{__('auth.delete')}}
+                    {{__('translate.delete')}}
                 </template>
 
                 <template #content>
-                    {{__('auth.deleteAccountConfirm')}}
+                    {{__('translate.deleteAccountConfirm')}}
                     <div class="mt-4">
                         <TextInput
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
                             class="mt-1 block w-3/4"
-                            :placeholder="__('auth.password')"
+                            :placeholder="__('translate.password')"
                             @keyup.enter="deleteUser"
                         />
                         <InputError :message="form.errors.password" class="mt-2" />
@@ -81,7 +81,7 @@ const closeModal = () => {
 
                 <template #footer>
                     <SecondaryButton @click="closeModal">
-                        {{__('auth.cancel')}}
+                        {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <DangerButton
@@ -90,7 +90,7 @@ const closeModal = () => {
                         :disabled="form.processing"
                         @click="deleteUser"
                     >
-                        {{__('auth.removeAccount')}}
+                        {{__('translate.removeAccount')}}
                     </DangerButton>
                 </template>
             </DialogModal>

@@ -41,10 +41,10 @@ const search = () => {
 </script>
 
 <template>
-    <AppLayout :title="__('auth.invoices')">
+    <AppLayout :title="__('translate.invoices')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('auth.invoices') }}
+                {{ __('translate.invoices') }}
             </h2>
         </template>
 
@@ -53,8 +53,8 @@ const search = () => {
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div
                         class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-sm font-semibold text-indigo-300">{{ __('auth.filters') }}</h2>
-                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="params.amount || params.order_id">{{ __('auth.clearFilters') }}</button>
+                        <h2 class="text-sm font-semibold text-indigo-300">{{ __('translate.filters') }}</h2>
+                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="params.amount || params.order_id">{{ __('translate.clearFilters') }}</button>
                         <div class="col-span-6 flex mb-3 items-center">
                             <div class="mr-2">
                                 <InputLabel value="Kwota faktury"/>

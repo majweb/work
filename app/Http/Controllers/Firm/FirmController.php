@@ -34,7 +34,7 @@ class FirmController extends Controller
             'postal_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['postal'] : $request->firmData()['postal_invoice'],
             'country_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['country'] : $request->firmData()['country_invoice'],
         ]);
-        session()->flash('flash.banner', __('auth.dataUpdated'));
+        session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->back();

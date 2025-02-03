@@ -14,7 +14,7 @@ const props = defineProps({
 
 </script>
 <template>
-    <AppLayout :title="__('auth.buy')">
+    <AppLayout :title="__('translate.buy')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Płatnosc

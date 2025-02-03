@@ -26,17 +26,17 @@ const updateBuyInformation = () => {
 <template>
     <FormSection @submitted="updateBuyInformation">
         <template #title>
-            {{__('auth.BuyInformation')}}
+            {{__('translate.BuyInformation')}}
         </template>
 
         <template #description>
-            {{__('auth.BuyInformationDescription')}}
+            {{__('translate.BuyInformationDescription')}}
         </template>
 
         <template #form>
             <!-- Currency -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="currency" :value="__('auth.currency')" />
+                <InputLabel for="currency" :value="__('translate.currency')" />
                 <select id="currency" v-model="form.currency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1 block w-full">
                     <option selected value="EUR">EUR</option>
                     <option value="USD">USD</option>
@@ -48,11 +48,11 @@ const updateBuyInformation = () => {
 
         <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{__('auth.Saved')}}
+                {{__('translate.Saved')}}
             </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{__('auth.Save')}}
+                {{__('translate.Save')}}
             </PrimaryButton>
         </template>
     </FormSection>

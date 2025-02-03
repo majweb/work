@@ -56,10 +56,10 @@ watch(params.value, debounce(function (value) {
 
 </script>
 <template>
-    <AppLayout :title="__('auth.recruits')">
+    <AppLayout :title="__('translate.recruits')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{__('auth.recruits')}}
+                {{__('translate.recruits')}}
             </h2>
         </template>
         <div class="py-12">
@@ -69,7 +69,7 @@ watch(params.value, debounce(function (value) {
 
                         <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6 sm:rounded-bl-md sm:rounded-br-md">
                             <Link class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" :href="route('recruits.create')">
-                                {{__('auth.createRecruit')}}
+                                {{__('translate.createRecruit')}}
                             </Link>
                         </div>
 
@@ -101,7 +101,7 @@ watch(params.value, debounce(function (value) {
                                                     </th>
                                                     <th scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
                                                         <div class="flex items-center">
-                                                            <span class="inline-flex w-full py-3 px-6 justify-between" @click="sort('name')">{{__('auth.name')}}
+                                                            <span class="inline-flex w-full py-3 px-6 justify-between" @click="sort('name')">{{__('translate.name')}}
                                                                 <svg v-if="params.field === 'name' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                                                 </svg>
@@ -119,22 +119,22 @@ watch(params.value, debounce(function (value) {
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.email')}}
+                                                        {{__('translate.email')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.phone')}}
+                                                        {{__('translate.phone')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.actions')}}
+                                                        {{__('translate.actions')}}
                                                     </th>
                                                 </tr>
                                                 </thead>
 
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                 <tr v-if="props.users.length == 0">
-                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('auth.notFoundRecruit')}}</p></td>
+                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundRecruit')}}</p></td>
                                                 </tr>
                                                 <tr v-else v-for="(user) in props.users.data" :key="user.id">
                                                     <td class="py-4 px-6 whitespace-nowrap">
@@ -171,12 +171,12 @@ watch(params.value, debounce(function (value) {
                                                         <div class="flex items-center">
                                                             <div class="ml-4">
                                                                 <DangerButton @click="openModal(user)" class="!flex mx-auto text-center justify-center">
-                                                                    {{__('auth.delete')}}
+                                                                    {{__('translate.delete')}}
                                                                 </DangerButton>
                                                             </div>
                                                             <div class="ml-4">
                                                                 <Link :href="route('recruits.edit',user)" class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('auth.edit')}}
+                                                                    {{__('translate.edit')}}
                                                                 </Link>
                                                             </div>
                                                         </div>
@@ -195,20 +195,20 @@ watch(params.value, debounce(function (value) {
             </div>
             <DialogModal :show="confirmCancelUser" @close="confirmCancelUser = false">
                 <template #title>
-                    {{__('auth.questionDelete')}} - {{__('auth.recruit').toLowerCase()}} id. {{selectedUser && selectedUser.id}}
+                    {{__('translate.questionDelete')}} - {{__('translate.recruit').toLowerCase()}} id. {{selectedUser && selectedUser.id}}
                 </template>
 
                 <template #content>
-                    {{__('auth.questionDeleteConfirm')}} - {{__('auth.recruit').toLowerCase()}} id.{{selectedUser && selectedUser.id}}
+                    {{__('translate.questionDeleteConfirm')}} - {{__('translate.recruit').toLowerCase()}} id.{{selectedUser && selectedUser.id}}
                 </template>
 
                 <template #footer>
                     <SecondaryButton @click.native="confirmCancelUser = false">
-                        {{__('auth.cancel')}}
+                        {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <DangerButton class="ml-2" @click.native="DeleteUser">
-                        {{__('auth.delete')}}
+                        {{__('translate.delete')}}
                     </DangerButton>
                 </template>
             </DialogModal>

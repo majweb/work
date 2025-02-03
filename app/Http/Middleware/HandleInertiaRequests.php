@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
             'roles' => fn () => request()->user() ? request()->user()->getRoleNames(): NULL,
             'permissions' => fn () => request()->user() && request()->user()->hasRole('firm') ? Permission::all()->pluck('name'): NULL,
             'language' => app()->getLocale(),
+            'currentCountry'=>substr(request()->server('HTTP_ACCEPT_LANGUAGE'), 0, 2),
             'languages' => LanguageResource::collection(Lang::cases()),
             'translations' => function () {
                 return cache()->rememberForever('translations.' . app()->getLocale(), function () {

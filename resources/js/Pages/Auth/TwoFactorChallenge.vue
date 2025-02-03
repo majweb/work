@@ -47,17 +47,17 @@ const submit = () => {
 
         <div class="mb-4 text-sm text-gray-600">
             <template v-if="! recovery">
-                {{__('auth.access')}}
+                {{__('translate.access')}}
             </template>
 
             <template v-else>
-                {{__('auth.accesselse')}}
+                {{__('translate.accesselse')}}
             </template>
         </div>
 
         <form @submit.prevent="submit">
             <div v-if="! recovery">
-                <InputLabel for="code" :value="__('auth.code')" />
+                <InputLabel for="code" :value="__('translate.code')" />
                 <TextInput
                     id="code"
                     ref="codeInput"
@@ -72,7 +72,7 @@ const submit = () => {
             </div>
 
             <div v-else>
-                <InputLabel for="recovery_code" :value="__('auth.recovery')" />
+                <InputLabel for="recovery_code" :value="__('translate.recovery')" />
                 <TextInput
                     id="recovery_code"
                     ref="recoveryCodeInput"
@@ -87,16 +87,16 @@ const submit = () => {
             <div class="flex items-center justify-end mt-4">
                 <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" @click.prevent="toggleRecovery">
                     <template v-if="! recovery">
-                        {{__('auth.usecode')}}
+                        {{__('translate.usecode')}}
                     </template>
 
                     <template v-else>
-                        {{__('auth.authenticationCode')}}
+                        {{__('translate.authenticationCode')}}
                     </template>
                 </button>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    {{__('auth.login')}}
+                    {{__('translate.login')}}
                 </PrimaryButton>
             </div>
         </form>

@@ -45,16 +45,16 @@ const closeModal = () => {
 <template>
     <ActionSection>
         <template #title>
-            {{__('auth.browserSessions')}}
+            {{__('translate.browserSessions')}}
         </template>
 
         <template #description>
-            {{__('auth.browserSessionsDescription')}}
+            {{__('translate.browserSessionsDescription')}}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                {{__('auth.browserSessionsContent')}}
+                {{__('translate.browserSessionsContent')}}
             </div>
 
             <!-- Other Browser Sessions -->
@@ -89,29 +89,29 @@ const closeModal = () => {
 
             <div class="flex items-center mt-5">
                 <PrimaryButton @click="confirmLogout">
-                    {{__('auth.browserSessionsLogout')}}
+                    {{__('translate.browserSessionsLogout')}}
                 </PrimaryButton>
 
                 <ActionMessage :on="form.recentlySuccessful" class="ms-3">
-                    {{__('auth.browserSessionsDone')}}
+                    {{__('translate.browserSessionsDone')}}
                 </ActionMessage>
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
             <DialogModal :show="confirmingLogout" @close="closeModal">
                 <template #title>
-                    {{__('auth.browserSessionsLogout')}}
+                    {{__('translate.browserSessionsLogout')}}
                 </template>
 
                 <template #content>
-                    {{__('auth.browserSessionsLogoutPassword')}}
+                    {{__('translate.browserSessionsLogoutPassword')}}
                     <div class="mt-4">
                         <TextInput
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
                             class="mt-1 block w-3/4"
-                            :placeholder="__('auth.password')"
+                            :placeholder="__('translate.password')"
                             @keyup.enter="logoutOtherBrowserSessions"
                         />
                         <InputError :message="form.errors.password" class="mt-2" />
@@ -120,7 +120,7 @@ const closeModal = () => {
 
                 <template #footer>
                     <SecondaryButton @click="closeModal">
-                        {{__('auth.cancel')}}
+                        {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <PrimaryButton
@@ -129,7 +129,7 @@ const closeModal = () => {
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"
                     >
-                        {{__('auth.browserSessionsLogout')}}
+                        {{__('translate.browserSessionsLogout')}}
                     </PrimaryButton>
                 </template>
             </DialogModal>

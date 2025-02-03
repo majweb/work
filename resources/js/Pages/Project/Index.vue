@@ -61,10 +61,10 @@ watch(params.value, debounce(function (value) {
 
 </script>
 <template>
-    <AppLayout :title="__('auth.projects')">
+    <AppLayout :title="__('translate.projects')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{__('auth.projects')}}
+                {{__('translate.projects')}}
             </h2>
         </template>
         <div class="py-12">
@@ -72,14 +72,14 @@ watch(params.value, debounce(function (value) {
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
-                        <h2 class="text-sm font-semibold text-indigo-300">{{__('auth.filters')}}</h2>
-                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="(params.recruiter && params.recruiter != 'all')">{{ __('auth.clearFilters') }}</button>
+                        <h2 class="text-sm font-semibold text-indigo-300">{{__('translate.filters')}}</h2>
+                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="(params.recruiter && params.recruiter != 'all')">{{ __('translate.clearFilters') }}</button>
                         <div class="col-span-6 flex mb-3 items-center">
                             <div class="flex mt-1 flex flex-col mr-2">
-                                <InputLabel :value="__('auth.recruiter')" class="text-sm"/>
+                                <InputLabel :value="__('translate.recruiter')" class="text-sm"/>
                                 <select v-model="params.recruiter" id="small" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
                                 >
-                                    <option value="all" id="all">{{__('auth.all')}}</option>
+                                    <option value="all" id="all">{{__('translate.all')}}</option>
                                     <option :key="recruit.id" v-for="recruit in recruiters" :value="recruit.id" :id="recruit.id">{{recruit.name}}</option>
                                 </select>
                             </div>
@@ -113,22 +113,22 @@ watch(params.value, debounce(function (value) {
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.recruit')}}
+                                                        {{__('translate.recruit')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.title')}}
+                                                        {{__('translate.title')}}
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('auth.actions')}}
+                                                        {{__('translate.actions')}}
                                                     </th>
                                                 </tr>
                                                 </thead>
 
                                                 <tbody class="bg-white divide-y divide-gray-200">
                                                 <tr v-if="props.projects.data.length == 0">
-                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('auth.notFoundProjects')}}</p></td>
+                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundProjects')}}</p></td>
                                                 </tr>
                                                 <tr v-else v-for="(project) in props.projects.data" :key="project.id">
                                                     <td class="py-4 px-6 whitespace-nowrap">
@@ -158,12 +158,12 @@ watch(params.value, debounce(function (value) {
                                                         <div class="flex items-center">
                                                             <div class="ml-4">
                                                                 <DangerButton @click="openModal(project)" class="!flex mx-auto text-center justify-center">
-                                                                    {{__('auth.delete')}}
+                                                                    {{__('translate.delete')}}
                                                                 </DangerButton>
                                                             </div>
                                                             <div class="ml-4">
                                                                 <Link :href="route('projects.show',project)" class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('auth.show')}}
+                                                                    {{__('translate.show')}}
                                                                 </Link>
                                                             </div>
                                                         </div>
@@ -182,20 +182,20 @@ watch(params.value, debounce(function (value) {
             </div>
             <DialogModal :show="confirmCancelProject" @close="confirmCancelProject = false">
                 <template #title>
-                    {{__('auth.questionDelete')}} - {{__('auth.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
+                    {{__('translate.questionDelete')}} - {{__('translate.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
                 </template>
 
                 <template #content>
-                    {{__('auth.questionDeleteConfirm')}} - {{__('auth.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
+                    {{__('translate.questionDeleteConfirm')}} - {{__('translate.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
                 </template>
 
                 <template #footer>
                     <SecondaryButton @click.native="confirmCancelProject = false">
-                        {{__('auth.cancel')}}
+                        {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <DangerButton class="ml-2" @click.native="DeleteProject">
-                        {{__('auth.delete')}}
+                        {{__('translate.delete')}}
                     </DangerButton>
                 </template>
             </DialogModal>

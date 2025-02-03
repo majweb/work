@@ -27,10 +27,10 @@ let currency  = computed(()=>{
 
 </script>
 <template>
-    <AppLayout :title="__('auth.buy')">
+    <AppLayout :title="__('translate.buy')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('auth.cart') }}
+                {{ __('translate.cart') }}
             </h2>
         </template>
         <div class="py-12">
@@ -39,13 +39,13 @@ let currency  = computed(()=>{
 
                     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
                         <div class="mx-auto max-w-screen-xl px-4">
-                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl" v-if="countCart > 0">{{__('auth.incart')}} {{countCart}} {{__('auth.service')}}</h2>
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl" v-if="countCart > 0">{{__('translate.incart')}} {{countCart}} {{__('translate.service')}}</h2>
                             <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
                                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                                         <div v-if="countCart == 0">
                                             <div class="text-center py-4 px-6 whitespace-nowrap font-semibold">
                                                 <p>
-                                                    {{__('auth.emptyCart')}}
+                                                    {{__('translate.emptyCart')}}
                                                 </p>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@ let currency  = computed(()=>{
                                                             <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                                             </svg>
-                                                            {{__('auth.delete')}}
+                                                            {{__('translate.delete')}}
                                                         </button>
                                                     </div>
                                                 </div>
@@ -91,21 +91,21 @@ let currency  = computed(()=>{
 
                                 <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
                                     <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-                                        <p class="text-xl font-semibold text-gray-900 dark:text-white">{{__('auth.summary')}}</p>
+                                        <p class="text-xl font-semibold text-gray-900 dark:text-white">{{__('translate.summary')}}</p>
                                         <div class="space-y-4">
                                             <div class="space-y-2">
                                                 <dl class="flex items-center justify-between gap-4">
-                                                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">{{__('auth.sum')}}</dt>
+                                                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">{{__('translate.sum')}}</dt>
                                                     <dd class="text-base font-medium text-gray-900 dark:text-white">{{countCart > 0 ? props.total+' '+currency : '-'}}</dd>
                                                 </dl>
                                             </div>
                                         </div>
-                                        <Link v-if="countCart > 0" :href="route('buy.paymentView')" class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{__('auth.pay')}}</Link>
+                                        <Link v-if="countCart > 0" :href="route('buy.paymentView')" class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{__('translate.pay')}}</Link>
 
                                         <div class="flex items-center justify-center gap-2">
-                                            <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{__('auth.or')}} </span>
+                                            <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{__('translate.or')}} </span>
                                             <Link :href="route('buy.index')" title="" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
-                                                {{__('auth.continueBuy')}}
+                                                {{__('translate.continueBuy')}}
                                                 <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
                                                 </svg>
