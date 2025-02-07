@@ -3,15 +3,6 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    resolve: {
-        alias: {
-            'media-library-pro-vue3-attachment': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-attachment',
-            'media-library-pro-vue3-collection': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-collection',
-        }
-    },
-    ssr: {
-        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','vue-multiselect','axios','vue3-apexcharts'],
-    },
     build: {
         rollupOptions: {
             output:{
@@ -23,6 +14,15 @@ export default defineConfig({
             },
         },
         chunkSizeWarningLimit: 2700,
+    },
+    resolve: {
+        alias: {
+            'media-library-pro-vue3-attachment': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-attachment',
+            'media-library-pro-vue3-collection': '/vendor/spatie/laravel-medialibrary-pro/resources/js/media-library-pro-vue3-collection',
+        }
+    },
+    ssr: {
+        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','vue-multiselect','axios','vue3-apexcharts'],
     },
     plugins: [
         laravel({
