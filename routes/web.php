@@ -37,7 +37,7 @@ Route::middleware([
     'verified',
 ])->prefix('logged')->group(function () {
     Route::get('/dashboard', function (MonthlyUsersChart $chart) {
-        return inertia()->render('Dashboard',['chart' => $chart->build()]);
+        return inertia()->render('Dashboard');
     })->name('dashboard');
     Route::resource('recruits',RecruitController::class)->middleware('role:firm');
     Route::resource('orders',OrderController::class)->middleware('role:firm')->only([
