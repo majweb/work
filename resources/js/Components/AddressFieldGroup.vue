@@ -89,8 +89,6 @@ export default {
                     locality: "update:city",
                     postal_code: "update:postcode",
                 }
-                console.log(mapping)
-
                 for(const type in mapping) {
                     context.emit(mapping[type], "");
                 }
