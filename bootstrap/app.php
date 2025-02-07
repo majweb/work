@@ -26,9 +26,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         //
     })
-//    ->withSchedule(function (Schedule $schedule) {
-//        $schedule->command('media-library:delete-old-temporary-uploads')->daily();
-//    })
+    ->withSchedule(function (Schedule $schedule) {
+        $schedule->command('media-library:delete-old-temporary-uploads')->daily();
+    })
     ->withExceptions(function (Exceptions $exceptions) {
         Integration::handles($exceptions);
     })->create();
