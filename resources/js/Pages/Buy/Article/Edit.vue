@@ -14,6 +14,8 @@ import InputLabel from "@/Components/InputLabel.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
 import draggable from 'vuedraggable';
 import { MediaLibraryAttachment } from '@spatie/media-library-pro-vue3-attachment';
+import InputHelper from "@/Components/InputHelper.vue";
+import Checkbox from "@/Components/Checkbox.vue";
 
 const props = defineProps({
     article: Object
@@ -26,6 +28,8 @@ const form = useForm({
     lang: props.article.lang,
     baner: props.article.baner ?? {},
     sections: props.article.sections ?? [],
+    active: props.article.active ? true : false
+
 
 });
 const addSection = () => {
@@ -218,6 +222,25 @@ const updateArticle = () => {
                                 <SectionBorder/>
                             </div>
                             <!--SECTIONS-->
+                            <!-- PUBLISH -->
+                            <div class="col-span-6">
+                                <div class="flex mt-4">
+                                    <label
+                                           class="flex items-center"
+                                           for="active">
+                                        <Checkbox id="active" v-model:checked="form.active"
+                                                  name="active"/>
+                                        <div class="flex flex-col">
+                                                <span class="ml-2 mr-1 text-gray-600 dark:text-gray-400">
+                                                 Publikacja
+                                                </span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <InputHelper id="helper-publish-explanation">Czy artykuł ma być opublikowany.
+                                </InputHelper>
+                            </div>
+                            <!-- PUBLISH -->
                         </template>
 
                         <template #actions>

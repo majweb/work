@@ -35,6 +35,7 @@ class UpdateArticleRequest extends FormRequest
                     $fail('Za dużo elementów');
                 }
             }],
+            'active' => ['boolean'],
             'sections.*.title'=>['required','string','max:100', 'distinct'],
             'sections.*.description'=>['required','string','max:2000'],
             'baner' => ['required',$this

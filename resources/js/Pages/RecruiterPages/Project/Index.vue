@@ -1,11 +1,10 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { router,Link } from '@inertiajs/vue3';
+import { router,Link,usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 
 import { pickBy, debounce } from 'lodash';
-import InputLabel from "@/Components/InputLabel.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
@@ -132,7 +131,7 @@ watch(params.value, debounce(function (value) {
                                                     <td class="py-4 px-6 whitespace-nowrap">
                                                         <div class="ml-4">
                                                             <div class="text-sm text-gray-900">
-                                                                {{project.title}}
+                                                                {{project.title[usePage().props.language] }}
                                                             </div>
                                                         </div>
                                                     </td>

@@ -20,6 +20,7 @@ class Helper{
                     return [
                         'name' =>$el['name'][app()->getLocale()],
                         'value'=>$el['id'],
+                        'countryCode'=>$el['countryCode'],
                         'allTranslations'=>$el['name']
                     ];
                 },$value)

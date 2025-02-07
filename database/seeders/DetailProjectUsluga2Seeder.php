@@ -15922,7 +15922,6 @@ class DetailProjectUsluga2Seeder extends Seeder
     "created_at" => date('Y-m-d H:i:s'),
     "updated_at" => date('Y-m-d H:i:s')
 ],
-            [
     [
         "id" => 29605,
         "name" => json_encode([
@@ -16063,9 +16062,11 @@ class DetailProjectUsluga2Seeder extends Seeder
         "created_at" => date('Y-m-d H:i:s'),
         "updated_at" => date('Y-m-d H:i:s')
     ]
-]
 
         ];
+
+
+
         $POŚREDNIK_W_OBROCIE_NIERUCHOMOŚCIAMI = [
             [
         "id" => 29607,

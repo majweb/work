@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('address');
-            $table->string('postal');
-            $table->string('city');
+            $table->json('countryWork');
+            $table->string('streetWork');
+            $table->string('streetWorkNumber');
+            $table->string('postalWork');
+            $table->string('cityWork');
         });
     }
 

@@ -18,7 +18,7 @@ class SetLanguage
         if(session()->has('language')){
             $locale = session()->get('language', config('app.locale'));
         } else{
-            $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+            $locale = substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'en'), 0, 2);
         }
         if($locale){
             app()->setLocale(Lang::tryFrom($locale)?->value);

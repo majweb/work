@@ -83,9 +83,11 @@ class StoreProject extends FormRequest
             'hoursTo' => ['required', 'date_format:H:i','after:hoursFrom'],
             'bonusSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:bonusSalaryFrom'],
             'title' => ['nullable'],
-            'address' => ['required', 'string', 'max:100'],
-            'postal' => ['required', 'string', 'max:100'],
-            'city' => ['required', 'string', 'max:100'],
+            'countryWork' => ['required', 'array'],
+            'streetWork' => ['required', 'string', 'max:100'],
+            'streetWorkNumber' => ['required', 'string', 'max:100'],
+            'postalWork' => ['required', 'string', 'max:100'],
+            'cityWork' => ['required', 'string', 'max:100'],
         ];
     }
 
@@ -122,9 +124,11 @@ class StoreProject extends FormRequest
             'country' => strtolower(__('translate.Country')),
             'workingMode' => strtolower(__('translate.workingMode')),
             'education' => strtolower(__('translate.education')),
-            'address' => strtolower(__('translate.address')),
-            'postal' => strtolower(__('translate.Postal')),
-            'city' => strtolower(__('translate.City')),
+            'countryWork' => strtolower(__('translate.Country')),
+            'streetWork' => strtolower(__('translate.Street')),
+            'postalWork' => strtolower(__('translate.Postal')),
+            'cityWork' => strtolower(__('translate.City')),
+            'streetWorkNumber' => strtolower(__('translate.City')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
         ];
     }

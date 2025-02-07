@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->foreignId('payoutMode')->constrained('payout_modes');
+            $table->json('payoutMode');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dropForeign(['payoutMode']);
+            $table->dropColumn(['payoutMode']);
         });
     }
 };

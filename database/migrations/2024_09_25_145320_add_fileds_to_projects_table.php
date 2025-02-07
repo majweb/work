@@ -17,7 +17,7 @@ return new class extends Migration
             $table->json('profession')->nullable();
             $table->json('position')->nullable();
             $table->json('workingMode');
-            $table->json('country');
+            $table->json('country')->index();
         });
     }
 

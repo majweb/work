@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ExperienceSeeder::class,
             WelcomeSeeder::class,
             EducationSeeder::class,
+            CategorySeeder::class,
 
             // Detale
             DetailProjectHandelSeeder::class,

@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             'roles' => fn () => request()->user() ? request()->user()->getRoleNames(): NULL,
             'permissions' => fn () => request()->user() && request()->user()->hasRole('firm') ? Permission::all()->pluck('name'): NULL,
             'language' => app()->getLocale(),
-            'currentCountry'=>substr(request()->server('HTTP_ACCEPT_LANGUAGE'), 0, 2),
+            'currentCountry'=>substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'en'), 0, 2),
             'languages' => LanguageResource::collection(Lang::cases()),
             'translations' => function () {
                 return cache()->rememberForever('translations.' . app()->getLocale(), function () {
@@ -63,6 +63,7 @@ class HandleInertiaRequests extends Middleware
             'canRegister' => Route::has('register'),
             'pageUrl' => env('APP_URL'),
             'pageName' => env('APP_NAME'),
+            'mapsApi' => env('GOOGLE_MAPS_API'),
             'currencyFromClient' => fn()=> request()->user() && request()->user()->hasRole('recruit')  ? request()->user()->user->firm->currency : null
         ]);
     }

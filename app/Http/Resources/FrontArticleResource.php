@@ -20,6 +20,7 @@ class FrontArticleResource extends JsonResource
             'sections' => $this->sections,
             'content' => $this->content,
             'lang' => $this->lang,
+            'active' => $this->active,
             'user' => [
                     'name'=>$this->user['name'],
                     'logo'=>$this->user['profile_photo_url'],

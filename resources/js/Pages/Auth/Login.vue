@@ -60,7 +60,6 @@ const submit = () => {
                     v-model="form.email"
                     autofocus
                     class="mt-1 block w-full"
-                    required
                     type="email"
                 />
                 <InputError :message="form.errors.email" class="mt-2"/>
@@ -73,7 +72,6 @@ const submit = () => {
                     v-model="form.password"
                     autocomplete="current-password"
                     class="mt-1 block w-full"
-                    required
                     type="password"
                 />
                 <InputError :message="form.errors.password" class="mt-2"/>

@@ -12,9 +12,9 @@ import InputLabel from "@/Components/InputLabel.vue";
 import {computed, ref, watch} from "vue";
 import Multiselect from 'vue-multiselect'
 import TextInput from "@/Components/TextInput.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import FormSectionProject from "@/Components/FormSectionProject.vue";
+import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 
 const props = defineProps({
     categories: Array,
@@ -33,6 +33,7 @@ const props = defineProps({
     welcomes: Array,
     educations: Array,
     project: Object,
+    currencies: Array,
 });
 
 const form = useForm({
@@ -43,6 +44,7 @@ const form = useForm({
     title: props.project.title,
     basicSalaryFrom: props.project.basicSalaryFrom,
     basicSalaryTo: props.project.basicSalaryTo,
+    currency: props.project.currency,
     bonusSalaryFrom: props.project.bonusSalaryFrom,
     bonusSalaryTo: props.project.bonusSalaryTo,
     hoursFrom: props.project.hoursFrom,
@@ -63,20 +65,22 @@ const form = useForm({
     experience: props.project.experience ?? [],
     welcome: props.project.welcome ?? [],
     detailProjects:  props.project.detailprojects.map(el=>el.id) ?? [],
-    address: props.project.address,
-    postal: props.project.postal,
-    city: props.project.city,
+    countryWork: props.project.countryWork,
+    streetWork: props.project.streetWork,
+    streetWorkNumber: props.project.streetWorkNumber,
+    postalWork: props.project.postalWork,
+    cityWork: props.project.cityWork,
 });
 
 
 const optionsCategory = ref(props.categories);
 const optionsCountry = ref(props.countries);
 const optionsWorkingPlace = ref(props.workingPlaces);
+const optionsCurrency = ref(props.currencies);
 const optionsSubCategory = ref([]);
 const optionsProfession = ref([]);
 const optionsPosition = ref([]);
 const titles = ref([]);
-let formStep = ref(1);
 let workingModeSelect = ref([]);
 let workLoadSelect = ref(null);
 let typesOfContractSelect = ref([]);
@@ -135,32 +139,35 @@ watch(() => form.position, async (position) => {
 
 });
 
-const nextStep = () =>{
-    form.put(route('project-recruits.updateFirsStep',props.project), {
-        errorBag: 'updateProject',
-        preserveScroll: true,
-        onSuccess: () => {
-            formStep.value++;
-        },
-
-    });
-}
-const prevStep = () =>{
-    formStep.value--;
-    toTitleArray.value = [];
-}
 
 const updateProject = () => {
     form.put(route('project-recruits.update',props.project), {
         errorBag: 'updateProject',
         preserveScroll: true,
         onSuccess: () => {
-            form.reset();
-            formStep.value = 1;
+            // form.reset();
         },
 
     });
 };
+
+const generateUrl = computed(() => {
+    if (form.cityWork && form.streetWork && form.streetWorkNumber) {
+        let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
+        myUrlWithParams.searchParams.append("q", form.countryWork+' '+form.cityWork+' '+form.streetWork+' '+form.streetWorkNumber +' '+form.postalWork);
+        return myUrlWithParams;
+    }
+});
+
+const addAll = () => {
+    if(form.position.detailprojects || form.profession.detailprojects){
+        form.detailProjects = (form.position.detailprojects || form.profession.detailprojects).map(el=>el.id)
+    }
+}
+const zeroAll = () => {
+    form.detailProjects = []
+}
+
 
 const addToArray = (array,name) =>{
     if(array.includes(name)){
@@ -207,6 +214,15 @@ const titleEqual4 = computed(()=>{
 const titlesFromLang = computed(()=>{
     return listOfTitle.value.map((el)=>el[usePage().props.language]);
 });
+
+const clearCountry = () => {
+    form.countryWork = '';
+    form.streetWork = '';
+    form.streetWorkNumber =  '';
+    form.postalWork = '';
+    form.cityWork =  '';
+}
+
 </script>
 
 <template>
@@ -231,7 +247,34 @@ const titlesFromLang = computed(()=>{
                 <div>
                     <FormSectionProject @submitted="updateProject">
                         <template #form>
-                            <div v-if="formStep == 1" class="col-span-12">
+                            <div class="col-span-12">
+                                <div class="col-span- grid grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <div>
+                                        <InputLabel :value="__('translate.CountryPublish')"/>
+                                        <multiselect
+                                            group-values="elements" group-label="group"
+                                            :group-select="false"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            track-by="name"
+                                            :multiple="true"
+                                            label="name"
+                                            :placeholder="__('translate.placeholder')"
+                                            v-model="form.country" :options="optionsCountry">
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                            <template #noOptions>
+                                                <span>{{__('translate.noResult')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <!--                                        <pre class="language-json"><code>{{ form.country }}</code></pre>-->
+
+                                        <InputError :message="form.errors.country" class="mt-2"/>
+                                    </div>
+                                </div>
                                 <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <InputLabel :value="__('translate.category')"/>
@@ -328,71 +371,9 @@ const titlesFromLang = computed(()=>{
 
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div v-if="titles.length">
-                                        <InputLabel :value="__('translate.title')"/>
-                                        <div v-for="title in titles" class="flex items-center mt-1">
-                                                <input
-                                                    class=" border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                    type="radio" :id="'title-'+title.id" :value="title.id" v-model="form.title" />
-                                            <label :for="'title-'+title.id">{{title.title}}</label>
-                                        </div>
-                                        <InputError :message="form.errors.title" class="mt-2"/>
-                                    </div>
 
-                                    <div class="mt-4" v-if="workingModes">
-                                        <InputLabel for="workingMode" :value="__('translate.workingMode')" />
-                                        <div v-for="workingMode in workingModes" class="flex items-center mt-1">
-                                            <input
-                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'workingMode-'+workingMode.id" v-model="form.workingMode"
-                                                :value="workingMode.id" />
-                                            <label :for="'workingMode-'+workingMode.id">{{workingMode.title}}</label>
-                                        </div>
-                                        <InputError :message="form.errors.workingMode" class="mt-2"/>
-                                    </div>
-                                </div>
-                                <!-- detailprojects-->
-                                <div class="col-span-6 mt-4" v-if="((form.position.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession.detailprojects && Object.keys(form.profession.detailprojects).length))">
-                                    <div class="grid grid grid-cols-1 lg:grid-cols-2">
-                                        <InputLabel for="detail" :value="__('translate.detailProjects')" />
-                                        <div v-for="detail in (form.position.detailprojects || form.profession.detailprojects)" class="flex items-center">
-                                            <input
-                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
-                                                :value="detail.id"
-                                            />
-                                            <label class="text-sm" :for="'detailProjects-'+detail.id">{{detail.name[usePage().props.language]}}</label>
-                                            <InputError :message="form.errors.detailprojects" class="mt-2"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                    <div v-if="titles.length">
-                                        <InputLabel :value="__('translate.title')"/>
-                                        <div v-for="title in titles" class="flex items-center mt-1">
-                                            <input
-                                                class=" border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="radio" :id="'title-'+title.id" :value="title.id" v-model="form.title" />
-                                            <label :for="'title-'+title.id">{{title.title}}</label>
-                                        </div>
-                                        <InputError :message="form.errors.title" class="mt-2"/>
-                                    </div>
-                                    <div class="mt-4" v-if="workingModes">
-                                        <InputLabel for="workingMode" :value="__('translate.workingMode')" />
-                                        <div v-for="workingMode in workingModes" class="flex items-center mt-1">
-                                            <input
-                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'workingMode-'+workingMode.id" v-model="form.workingMode"
-                                                @change="addToArray(workingModeSelect,workingMode.title)"
-                                                :value="workingMode.id" />
-                                            <label :for="'workingMode-'+workingMode.id">{{workingMode.title}}</label>
-                                        </div>
-                                        <InputError :message="form.errors.workingMode" class="mt-2"/>
-                                    </div>
-                                </div>
-                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                    <div>
+                                <div class="col-span-6 mt-4">
+                                    <div class="mt-1">
                                         <InputLabel :value="__('translate.Country')"/>
                                         <multiselect
                                             group-values="elements" group-label="group"
@@ -402,9 +383,12 @@ const titlesFromLang = computed(()=>{
                                             :selectedLabel="__('translate.selectedLabel')"
                                             :deselectLabel="__('translate.deselectLabel')"
                                             track-by="name"
+                                            :multiple="false"
                                             label="name"
+                                            @remove="clearCountry"
+                                            @update:modelValue	="clearCountry"
                                             :placeholder="__('translate.placeholder')"
-                                            v-model="form.country" :options="optionsCountry">
+                                            v-model="form.countryWork" :options="optionsCountry">
                                             <template #noResult>
                                                 <span>{{__('translate.noOptions')}}</span>
                                             </template>
@@ -412,10 +396,119 @@ const titlesFromLang = computed(()=>{
                                                 <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
-                                        <InputError :message="form.errors.country" class="mt-2"/>
-
+                                        <InputError :message="form.errors.countryWork" class="mt-2"/>
                                     </div>
-                                    <div>
+                                    <AddressFieldGroup class="mt-4" v-if="form.countryWork" :code="form.countryWork?.countryCode"
+                                                       v-model:street="form.streetWork"
+                                                       v-model:streetNumber="form.streetWorkNumber"
+                                                       v-model:postcode="form.postalWork"
+                                                       v-model:city="form.cityWork"
+                                    />
+                                    <InputError :message="form.errors.streetWork" class="mt-2"/>
+                                    <InputError :message="form.errors.streetWorkNumber" class="mt-2"/>
+                                    <InputError :message="form.errors.postalWork" class="mt-2"/>
+                                    <InputError :message="form.errors.cityWork" class="mt-2"/>
+
+                                    <!--                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">-->
+<!--                                    <div class="mt-4">-->
+<!--                                        <InputLabel for="city" :value="__('translate.City')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="city"-->
+<!--                                            v-model="form.city"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.city" class="mt-2"/>-->
+<!--                                    </div>-->
+<!--                                    <div class="mt-4">-->
+<!--                                        <InputLabel for="postal" :value="__('translate.Postal')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="postal"-->
+<!--                                            v-model="form.postal"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.postal" class="mt-2"/>-->
+<!--                                    </div>-->
+<!--                                    <div class="mt-4">-->
+<!--                                        <InputLabel for="address" :value="__('translate.address')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="address"-->
+<!--                                            v-model="form.address"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.address" class="mt-2"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                </div>
+                                <div class="col-span-6 mt-3" v-if="form.cityWork && form.streetWork && form.streetWorkNumber">
+                                    <iframe
+                                        width="100%"
+                                        height="250"
+                                        frameborder="0" style="border:0"
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        :src="generateUrl"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <!-- detailprojects-->
+                                <div class="col-span-6 mt-4" v-if="((form.position.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession.detailprojects && Object.keys(form.profession.detailprojects).length))">
+                                    <div class="my-4">
+                                        <PrimaryButton class="mr-2" type="button" @click="addAll()">Zaznacz wszystkie</PrimaryButton>
+                                        <PrimaryButton v-if="form.detailProjects.length" type="button" @click="zeroAll()">Zeruj wszystkie</PrimaryButton>
+                                    </div>
+                                    <div class="grid grid grid-cols-1 lg:grid-cols-2">
+                                        <InputLabel for="detail" :value="__('translate.detailProjects')" />
+                                        <div v-for="detail in (form.position.detailprojects || form.profession.detailprojects)" class="flex items-center">
+                                            <input
+                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
+                                                :value="detail.id" :checked="form.detailProjects.some(el=>el.id == detail.id)"
+                                            />
+                                            <label class="text-sm" :for="'detailProjects-'+detail.id">{{detail.name[usePage().props.language]}}</label>
+                                        </div>
+                                            <InputError :message="form.errors.detailProjects" class="mt-2"/>
+                                    </div>
+                                </div>
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+                                    <div class="mt-4" v-if="workingModes">
+                                        <InputLabel for="workingMode" :value="__('translate.workingMode')" />
+                                        <div v-for="workingMode in workingModes" class="flex items-center mt-1">
+                                            <input
+                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="checkbox" :id="'workingMode-'+workingMode.id" v-model="form.workingMode"
+                                                @change="addToArray(workingModeSelect,workingMode)"
+                                                :value="workingMode" />
+                                            <label :for="'workingMode-'+workingMode.id">{{workingMode.title}}</label>
+                                        </div>
+                                        <InputError :message="form.errors.workingMode" class="mt-2"/>
+                                    </div>
+                                    <div class="mt-4" v-if="typesOfContract">
+                                        <InputLabel for="workingMode" :value="__('translate.typesOfContract')" />
+                                        <div v-for="typeOfContract in typesOfContract" class="flex items-center mt-1">
+                                            <input
+                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                @change="addToArray(typesOfContractSelect,typeOfContract.name)"
+                                                type="checkbox" :id="'typeOfContract-'+typeOfContract.id" v-model="form.typeOfContract"
+                                                :value="typeOfContract" />
+                                            <label :for="'typeOfContract-'+typeOfContract.id">{{typeOfContract.name}}</label>
+                                        </div>
+                                        <InputError :message="form.errors.typeOfContract" class="mt-2"/>
+                                    </div>
+                                    <div class="mt-4" v-if="workLoads">
+                                        <InputLabel :value="__('translate.workLoads')" />
+                                        <div v-for="workLoad in workLoads" class="flex items-center mt-1">
+                                            <input
+                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                @change="workLoadSelect = workLoad.name"
+                                                type="radio" :id="'workLoad-'+workLoad.id" v-model="form.workLoad"
+                                                :value="workLoad" />
+                                            <label :for="'workLoad-'+workLoad.id">{{workLoad.name}}</label>
+                                        </div>
+                                        <InputError :message="form.errors.workLoad" class="mt-2"/>
+                                    </div>
+                                    <div class="mt-4">
                                         <InputLabel :value="__('translate.workingPlace')"/>
                                         <multiselect
                                             :selectLabel="__('translate.selectLabel')"
@@ -436,34 +529,9 @@ const titlesFromLang = computed(()=>{
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.workingPlace" class="mt-2"/>
-
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="mt-4" v-if="typesOfContract">
-                                        <InputLabel for="workingMode" :value="__('translate.typesOfContract')" />
-                                        <div v-for="typeOfContract in typesOfContract" class="flex items-center mt-1">
-                                            <input
-                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'typeOfContract-'+typeOfContract.id" v-model="form.typeOfContract"
-                                                :value="typeOfContract.id" />
-                                            <label :for="'typeOfContract-'+typeOfContract.id">{{typeOfContract.name}}</label>
-                                        </div>
-                                        <InputError :message="form.errors.typeOfContract" class="mt-2"/>
-                                    </div>
-                                    <div class="mt-4" v-if="workLoads">
-                                        <InputLabel :value="__('translate.workLoads')" />
-                                        <div v-for="workLoad in workLoads" class="flex items-center mt-1">
-                                            <input
-                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="radio" :id="'workLoad-'+workLoad.id" v-model="form.workLoad"
-                                                :value="workLoad.id" />
-                                            <label :for="'workLoad-'+workLoad.id">{{workLoad.name}}</label>
-                                        </div>
-                                        <InputError :message="form.errors.workLoad" class="mt-2"/>
-                                    </div>
-                                </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.basicSalaryFrom')" />
                                         <input type="number"
@@ -486,6 +554,30 @@ const titlesFromLang = computed(()=>{
                                         <InputError :message="form.errors.basicSalaryTo" class="mt-2"/>
 
                                     </div>
+                                    <div class="mt-4">
+                                        <div>
+                                            <InputLabel :value="__('translate.currency')"/>
+                                            <multiselect
+                                                :selectLabel="__('translate.selectLabel')"
+                                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                                :selectedLabel="__('translate.selectedLabel')"
+                                                :deselectLabel="__('translate.deselectLabel')"
+                                                :noOptions="__('translate.noOptions')"
+                                                :noResult="__('translate.noResult')"
+                                                track-by="value"
+                                                label="name"
+                                                :placeholder="__('translate.placeholder')"
+                                                v-model="form.currency" :options="optionsCurrency">
+                                                <template #noResult>
+                                                    <span>{{__('translate.noOptions')}}</span>
+                                                </template>
+                                                <template #noOptions>
+                                                    <span>{{__('translate.noResult')}}</span>
+                                                </template>
+                                            </multiselect>
+                                            <InputError :message="form.errors.currency" class="mt-2"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="payoutModes">
@@ -493,8 +585,9 @@ const titlesFromLang = computed(()=>{
                                         <div v-for="payoutMode in payoutModes" class="flex items-center mt-1">
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                @change="payoutModeSelect = payoutMode.name"
                                                 type="radio" :id="'payoutMode-'+payoutMode.id" v-model="form.payoutMode"
-                                                :value="payoutMode.id" />
+                                                :value="payoutMode" />
                                             <label :for="'payoutMode-'+payoutMode.id">{{payoutMode.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.payoutMode" class="mt-2"/>
@@ -504,8 +597,9 @@ const titlesFromLang = computed(()=>{
                                         <div v-for="paySystem in paySystems" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                @change="addToArray(paySystemSelect,paySystem.name)"
                                                 type="checkbox" :id="'paySystem-'+paySystem.id" v-model="form.paySystem"
-                                                :value="paySystem.id" />
+                                                :value="paySystem" />
                                             <label :for="'paySystem-'+paySystem.id">{{paySystem.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.paySystem" class="mt-2"/>
@@ -540,9 +634,10 @@ const titlesFromLang = computed(()=>{
                                         <InputLabel for="day" :value="__('translate.dayWork')" />
                                         <div v-for="day in days" class="flex items-center mt-1">
                                             <input
+                                                @change="addToArray(daySelect,day.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 type="checkbox" :id="'day-'+day.id" v-model="form.days"
-                                                :value="day.id" />
+                                                :value="day" />
                                             <label :for="'day-'+day.id">{{day.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.days" class="mt-2"/>
@@ -603,14 +698,15 @@ const titlesFromLang = computed(()=>{
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="offers">
                                         <InputLabel for="day" :value="__('translate.offer')" />
                                         <div v-for="offer in offers" class="flex items-center mt-1">
                                             <input
+                                                @change="addToArray(offerSelect,offer.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 type="checkbox" :id="'offer'+offer.id" v-model="form.offer"
-                                                :value="offer.id" />
+                                                :value="offer" />
                                             <label :for="'offer'+offer.id">{{offer.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.offer" class="mt-2"/>
@@ -619,9 +715,10 @@ const titlesFromLang = computed(()=>{
                                         <InputLabel for="day" :value="__('translate.wait')" />
                                         <div v-for="wait in waits" class="flex items-center mt-1">
                                             <input
+                                                @change="addToArray(waitSelect,wait.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 type="checkbox" :id="'wait'+wait.id" v-model="form.wait"
-                                                :value="wait.id" />
+                                                :value="wait" />
                                             <label :for="'wait'+wait.id">{{wait.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.wait" class="mt-2"/>
@@ -630,9 +727,10 @@ const titlesFromLang = computed(()=>{
                                         <InputLabel for="day" :value="__('translate.experience')" />
                                         <div v-for="experience in experiences" class="flex items-center mt-1">
                                             <input
+                                                @change="addToArray(experienceSelect,experience.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 type="checkbox" :id="'experience'+experience.id" v-model="form.experience"
-                                                :value="experience.id" />
+                                                :value="experience" />
                                             <label :for="'experience'+experience.id">{{experience.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.experience" class="mt-2"/>
@@ -641,9 +739,10 @@ const titlesFromLang = computed(()=>{
                                         <InputLabel for="day" :value="__('translate.welcome')" />
                                         <div v-for="welcome in welcomes" class="flex items-center mt-1">
                                             <input
+                                                @change="addToArray(welcomeSelect,welcome.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 type="checkbox" :id="'welcome'+welcome.id" v-model="form.welcome"
-                                                :value="welcome.id" />
+                                                :value="welcome" />
                                             <label :for="'welcome'+welcome.id">{{welcome.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.welcome" class="mt-2"/>
@@ -663,136 +762,10 @@ const titlesFromLang = computed(()=>{
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="formStep == 2" class="col-span-12">
-                                <div v-if="toTitleArray.length" class="flex flex-col">
-                                    <span>Wybrano : {{toTitleArray.length}}</span>
-                                    <danger-button class="w-1/4 mt-2 text-sm" type="button" @click="toTitleArray = []">Zeruj wszytskie</danger-button>
-                                </div>
-                                <div v-if="titleEqual4" class="bg-blue-work-100 text-white rounded-md p-2 w-2/5 text-center mt-2">
-                                    Limit osiągniety
-                                </div>
-
-                                <div>
-                                    <div class="mt-6 border-t border-gray-100">
-                                        <dl class="divide-y divide-gray-100 grid grid-cols-1 grid-cols-2">
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.category')+':'+form.category.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.category')+':'+form.category.name))}">{{__('translate.category')}}:{{form.category.name}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.subcategory')+':'+form.categorySub.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.subcategory')+':'+form.categorySub.name))}">{{__('translate.subcategory')}}:{{form.categorySub.name}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.profession')+':'+form.profession.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.profession')+':'+form.profession.name))}">{{__('translate.profession')}}:{{form.profession.name}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1" v-if="form.position">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.position')+':'+form.position.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.position')+':'+form.position.name))}">{{__('translate.position')}}:{{form.position.name}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.workingMode')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.workingMode'),el)" v-for="el in workingModeSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workingMode')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workingMode')+':'+el))}">
-                                                    {{el}}
-                                                </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.Country')+':'+form.country.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.Country')+':'+form.country.name))}">{{__('translate.Country')}}:{{form.country.name}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workingPlace')+':'+form.workingPlace.name),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workingPlace')+':'+form.workingPlace.name))}">{{__('translate.workingPlace')}}:{{form.workingPlace.name}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.typesOfContract')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.typesOfContract'),el)" v-for="el in typesOfContractSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.typesOfContract')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.typesOfContract')+':'+el))}">
-                                                    {{el}}
-                                                </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workLoads')+':'+workLoadSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workLoads')+':'+workLoadSelect))}">{{__('translate.workLoads')}}:{{workLoadSelect}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">
-                                                    <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.payoutModes')+':'+payoutModeSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.payoutModes')+':'+payoutModeSelect))}">{{__('translate.payoutModes')}}:{{payoutModeSelect}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.paySystem')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.paySystem'),el)" v-for="el in paySystemSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.paySystem')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.paySystem')+':'+el))}">
-                                                    {{el}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.bonusSalaryTo')+':'+form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.bonusSalaryTo')+':'+form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient))}">{{__('translate.bonusSalaryTo')}}:{{form.bonusSalaryTo + ' ' + usePage().props.currencyFromClient}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.basicSalaryTo')+':'+form.basicSalaryTo + ' ' + usePage().props.currencyFromClient),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.basicSalaryTo')+':'+form.basicSalaryTo + ' ' + usePage().props.currencyFromClient))}">{{__('translate.basicSalaryTo')}}:{{form.basicSalaryTo + ' ' + usePage().props.currencyFromClient}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.dayWork')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.dayWork'),el)" v-for="el in daySelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.dayWork')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.dayWork')+':'+el))}">
-                                                    {{el}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1" v-if="form.shiftWork == 1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.shiftWorks')),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.shiftWorks')))}">{{__('translate.shiftWorks')}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1" v-if="form.workNight == 1">
-                                                <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.workNight')),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.workNight')))}">{{__('translate.workNight')}}</span>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.offer')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.offer'),el)" v-for="el in offerSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.offer')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.offer')+':'+el))}">
-                                                    {{el}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.wait')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.wait'),el)" v-for="el in waitSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.wait')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.wait')+':'+el))}">
-                                                    {{el}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.experience')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.experience'),el)" v-for="el in experienceSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.experience')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.experience')+':'+el))}">
-                                                    {{el}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1">
-                                                <div class="text-sm leading-6 text-gray-900">{{__('translate.welcome')}}:
-                                                    <span class="mr-2 underline font-semibold" @click="addToTitleArrayKey(__('translate.welcome'),el)" v-for="el in welcomeSelect" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.welcome')+':'+el),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.welcome')+':'+el))}">
-                                                    {{el}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center mb-1" v-if="educationSelect">
-                                                <div class="text-sm leading-6 text-gray-900">
-                                                    <span @click="addToTitleArray" class="text-sm leading-6 text-gray-900" :class="{'bg-blue-work-100 p-1 rounded-md' : toTitleArray.includes(__('translate.education')+':'+educationSelect),'cursor-pointer' : (lessThan4 || toTitleArray.includes(__('translate.education')+':'+educationSelect))}">{{__('translate.education')}}:{{educationSelect}}</span>
-                                                </div>
-                                            </div>
-                                        </dl>
-                                    </div>
-                                    <div v-if="titleEqual4" class="flex justify-center mt-2">
-                                        <primary-button class="w-1/5 text-center mx-auto flex justify-center items-center" type="button" @click="generateTitle">Generuj</primary-button>
-                                    </div>
-                                    <div class="mt-4">
-                                        <div v-for="(title,index) in titlesFromLang">
-                                            <span @click="(form.title && form.title[usePage().props.language] == title ? form.title = null : form.title = listOfTitle[index])" class="cursor-pointer" :class="{'bg-blue-work-100 p-1 rounded-md' : form.title && form.title[usePage().props.language] == title}">{{title}}</span>
-                                        </div>
-                                    </div>
-                                    {{form}}
-                                </div>
-                            </div>
                         </template>
 
                         <template #actions>
-                            <secondary-button type="button" v-if="formStep  == 1" @click="nextStep">Następny</secondary-button>
-                            <secondary-button type="button" v-if="formStep  == 2" @click="prevStep" class="mr-2">Poprzedni</secondary-button>
-                            <PrimaryButton v-if="formStep  == 2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                 <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>
                         </template>
@@ -805,7 +778,9 @@ const titlesFromLang = computed(()=>{
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
 
-
+.multiselect__tag{
+    background: #00a0e3 !important;
+}
 .multiselect__option--highlight {
     background: #00a0e3 !important;
     outline: none;
@@ -841,3 +816,4 @@ const titlesFromLang = computed(()=>{
     background: transparent !important;
 }
 </style>
+

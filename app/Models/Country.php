@@ -14,6 +14,7 @@ class Country extends Model
     protected $fillable = [
         'continent',
         'name',
+        'countryCode',
         'lang'
     ];
     public array $translatable = ['name','continent'];

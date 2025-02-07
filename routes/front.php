@@ -10,6 +10,7 @@ Route::name('front.')->group(function () {
     Route::post('language', LanguageStoreController::class)->name('language.store');
     Route::get('articles',[FrontController::class,'articles'])->name('articles');
     Route::get('projects',[FrontController::class,'projects'])->name('projects');
+    Route::get('projects/{project}',[FrontController::class,'SingleProject'])->name('projects.single');
     Route::get('articles/{article}',[FrontController::class,'SingleArticle'])->name('articles.single');
     Route::get('adminCategories',CategoryController::class)->name('adminCategories');
 });

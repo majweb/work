@@ -14,12 +14,11 @@ class Category extends Model
     use HasRecursiveRelationships;
     use HasTranslations;
 
-    public array $translatable = ['title','slug'];
+    public array $translatable = ['title'];
     protected $guarded = [];
 
     protected $casts = [
         'title' => 'array',
-        'slug' => 'array',
     ];
     public function detailprojects()
     {

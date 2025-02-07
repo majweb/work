@@ -24,6 +24,7 @@ class Article extends Model implements HasMedia
     protected $fillable = [
         'user_id',
         'title',
+        'active',
         'content',
         'sections',
         'lang',

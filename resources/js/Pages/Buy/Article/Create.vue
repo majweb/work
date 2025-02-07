@@ -16,10 +16,12 @@ import InputHelper from "@/Components/InputHelper.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import { MediaLibraryAttachment } from '@spatie/media-library-pro-vue3-attachment';
 import {ref} from 'vue';
+import Checkbox from "@/Components/Checkbox.vue";
 
 const form = useForm({
     title: '',
     content: '',
+    active: true,
     lang: usePage().props.language,
     baner:null,
     sections:[]
@@ -231,6 +233,26 @@ const createArticle = () => {
                                     <SectionBorder/>
                                 </div>
                                 <!--SECTIONS-->
+
+                                <!-- PUBLISH -->
+                                <div class="col-span-6">
+                                    <div class="flex mt-4">
+                                        <label
+                                               class="flex items-center"
+                                               for="active">
+                                            <Checkbox id="active" v-model:checked="form.active"
+                                                      name="active"/>
+                                            <div class="flex flex-col">
+                                                <span class="ml-2 mr-1 text-gray-600 dark:text-gray-400">
+                                                 Publikacja
+                                                </span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <InputHelper id="helper-publish-explanation">Czy artykuł ma być opublikowany.
+                                    </InputHelper>
+                                </div>
+                                <!-- PUBLISH -->
 
                             </div>
                         </template>

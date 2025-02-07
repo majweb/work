@@ -15,6 +15,7 @@ import TextInput from "@/Components/TextInput.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import FormSectionProject from "@/Components/FormSectionProject.vue";
+import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 
 const props = defineProps({
     categories: Array,
@@ -64,9 +65,11 @@ const form = useForm({
     experience: [],
     welcome: [],
     detailProjects: [],
-    address: '',
-    postal: '',
-    city: '',
+    countryWork: '',
+    streetWork: '',
+    streetWorkNumber: '',
+    postalWork: '',
+    cityWork: '',
 });
 
 
@@ -131,9 +134,26 @@ const createProject = () => {
         onSuccess: () => {
             form.reset();
         },
-
     });
 };
+
+const generateUrl = computed(() => {
+    if (form.cityWork && form.streetWork && form.streetWorkNumber) {
+        let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
+        myUrlWithParams.searchParams.append("q", form.countryWork+' '+form.cityWork+' '+form.streetWork+' '+form.streetWorkNumber +' '+form.postalWork);
+        return myUrlWithParams;
+    }
+});
+
+
+const addAll = () => {
+    if(form.position.detailprojects || form.profession.detailprojects){
+        form.detailProjects = (form.position.detailprojects || form.profession.detailprojects).map(el=>el.id)
+    }
+}
+const zeroAll = () => {
+        form.detailProjects = []
+}
 
 const addToArray = (array,name) =>{
     if(array.includes(name)){
@@ -144,6 +164,13 @@ const addToArray = (array,name) =>{
     }
 }
 
+const clearCountry = () => {
+    form.countryWork = '';
+    form.streetWork = '';
+    form.streetWorkNumber =  '';
+    form.postalWork = '';
+    form.cityWork =  '';
+}
 
 </script>
 
@@ -172,7 +199,7 @@ const addToArray = (array,name) =>{
                             <div class="col-span-12">
                                 <div class="col-span- grid grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div>
-                                        <InputLabel :value="__('translate.Country')"/>
+                                        <InputLabel :value="__('translate.CountryPublish')"/>
                                         <multiselect
                                             group-values="elements" group-label="group"
                                             :group-select="false"
@@ -192,8 +219,6 @@ const addToArray = (array,name) =>{
                                                 <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
-<!--                                        <pre class="language-json"><code>{{ form.country }}</code></pre>-->
-
                                         <InputError :message="form.errors.country" class="mt-2"/>
                                     </div>
                                 </div>
@@ -264,8 +289,6 @@ const addToArray = (array,name) =>{
                                         </multiselect>
                                         <InputError :message="form.errors.profession" class="mt-2"/>
                                     </div>
-                                    profession{{form.profession.value}}
-                                    position{{form.position.value}}
                                     <div>
                                         <InputLabel :value="__('translate.position')"/>
                                         <multiselect
@@ -290,53 +313,114 @@ const addToArray = (array,name) =>{
                                         <InputError :message="form.errors.position" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div class="mt-4">
-                                        <InputLabel for="city" :value="__('translate.City')" />
-                                        <TextInput
-                                            id="city"
-                                            v-model="form.city"
-                                            class="mt-1 block w-full"
-                                            type="text"
-                                        />
-                                        <InputError :message="form.errors.city" class="mt-2"/>
+                                <div class="col-span-6 mt-4">
+                                    <div class="mt-1">
+                                        <InputLabel :value="__('translate.Country')"/>
+                                        <multiselect
+                                            group-values="elements" group-label="group"
+                                            :group-select="false"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            track-by="name"
+                                            :multiple="false"
+                                            label="name"
+                                            @remove="clearCountry"
+                                            @update:modelValue	="clearCountry"
+                                            :placeholder="__('translate.placeholder')"
+                                            v-model="form.countryWork" :options="optionsCountry">
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                            <template #noOptions>
+                                                <span>{{__('translate.noResult')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.countryWork" class="mt-2"/>
                                     </div>
-                                    <div class="mt-4">
-                                        <InputLabel for="postal" :value="__('translate.Postal')" />
-                                        <TextInput
-                                            id="postal"
-                                            v-model="form.postal"
-                                            class="mt-1 block w-full"
-                                            type="text"
-                                        />
-                                        <InputError :message="form.errors.postal" class="mt-2"/>
-                                    </div>
-                                    <div class="mt-4">
-                                        <InputLabel for="address" :value="__('translate.address')" />
-                                        <TextInput
-                                            id="address"
-                                            v-model="form.address"
-                                            class="mt-1 block w-full"
-                                            type="text"
-                                        />
-                                        <InputError :message="form.errors.address" class="mt-2"/>
-                                    </div>
+                                    <AddressFieldGroup class="mt-4" v-if="form.countryWork" :code="form.countryWork?.countryCode"
+                                    v-model:street="form.streetWork"
+                                    v-model:streetNumber="form.streetWorkNumber"
+                                    v-model:postcode="form.postalWork"
+                                    v-model:city="form.cityWork"
+                                    />
+                                    <InputError :message="form.errors.streetWork" class="mt-2"/>
+                                    <InputError :message="form.errors.streetWorkNumber" class="mt-2"/>
+                                    <InputError :message="form.errors.postalWork" class="mt-2"/>
+                                    <InputError :message="form.errors.cityWork" class="mt-2"/>
+
+                                    <!--                                    <div>-->
+<!--                                        <InputLabel for="street" :value="__('translate.Street')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="street"-->
+<!--                                            v-model="form.street"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.street" class="mt-2"/>-->
+<!--                                    </div>-->
+<!--                                    <div>-->
+<!--                                        <InputLabel for="city" :value="__('translate.City')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="city"-->
+<!--                                            v-model="form.city"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.city" class="mt-2"/>-->
+<!--                                    </div>-->
+<!--                                    <div>-->
+<!--                                        <InputLabel for="postal" :value="__('translate.Postal')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="postal"-->
+<!--                                            v-model="form.postal"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.postal" class="mt-2"/>-->
+<!--                                    </div>-->
+<!--                                    <div>-->
+<!--                                        <InputLabel for="address" :value="__('translate.address')" />-->
+<!--                                        <TextInput-->
+<!--                                            id="address"-->
+<!--                                            v-model="form.address"-->
+<!--                                            class="mt-1 block w-full"-->
+<!--                                            type="text"-->
+<!--                                        />-->
+<!--                                        <InputError :message="form.errors.address" class="mt-2"/>-->
+<!--                                    </div>-->
                                 </div>
+                                <div class="col-span-6 mt-3" v-if="form.cityWork && form.streetWork && form.streetWorkNumber">
+                                    <iframe
+                                        width="100%"
+                                        height="250"
+                                        frameborder="0" style="border:0"
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        :src="generateUrl"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+
                                 <!-- detailprojects-->
                                 <div class="col-span-6 mt-4" v-if="((form.position.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession.detailprojects && Object.keys(form.profession.detailprojects).length))">
+                                    <div class="my-4">
+                                        <PrimaryButton class="mr-2" type="button" @click="addAll()">Zaznacz wszystkie</PrimaryButton>
+                                        <PrimaryButton v-if="form.detailProjects.length" type="button" @click="zeroAll()">Zeruj wszystkie</PrimaryButton>
+                                    </div>
                                     <div class="grid grid grid-cols-1 lg:grid-cols-2">
                                         <InputLabel for="detail" :value="__('translate.detailProjects')" />
                                         <div v-for="detail in (form.position.detailprojects || form.profession.detailprojects)" class="flex items-center">
                                                 <input
                                                     class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                     type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
-                                                    :value="detail" />
+                                                    :value="detail.id" />
                                                 <label class="text-sm" :for="'detailProjects-'+detail.id">{{detail.name[usePage().props.language]}}</label>
-                                            <InputError :message="form.errors.detailprojects" class="mt-2"/>
                                         </div>
+                                        <InputError :message="form.errors.detailProjects" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-4 gap-6">
                                     <div class="mt-4" v-if="workingModes">
                                         <InputLabel for="workingMode" :value="__('translate.workingMode')" />
                                         <div v-for="workingMode in workingModes" class="flex items-center mt-1">
@@ -349,33 +433,6 @@ const addToArray = (array,name) =>{
                                         </div>
                                         <InputError :message="form.errors.workingMode" class="mt-2"/>
                                     </div>
-                                </div>
-                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                    <div>
-                                        <InputLabel :value="__('translate.workingPlace')"/>
-                                        <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
-                                            :noOptions="__('translate.noOptions')"
-                                            :noResult="__('translate.noResult')"
-                                            track-by="value"
-                                            label="name"
-                                            :placeholder="__('translate.placeholder')"
-                                            v-model="form.workingPlace" :options="optionsWorkingPlace">
-                                            <template #noResult>
-                                                <span>{{__('translate.noOptions')}}</span>
-                                            </template>
-                                            <template #noOptions>
-                                                <span>{{__('translate.noResult')}}</span>
-                                            </template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.workingPlace" class="mt-2"/>
-
-                                    </div>
-                                </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="typesOfContract">
                                         <InputLabel for="workingMode" :value="__('translate.typesOfContract')" />
                                         <div v-for="typeOfContract in typesOfContract" class="flex items-center mt-1">
@@ -400,6 +457,30 @@ const addToArray = (array,name) =>{
                                         </div>
                                         <InputError :message="form.errors.workLoad" class="mt-2"/>
                                     </div>
+                                    <div class="mt-4">
+                                        <InputLabel :value="__('translate.workingPlace')"/>
+                                        <multiselect
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :noOptions="__('translate.noOptions')"
+                                            :noResult="__('translate.noResult')"
+                                            track-by="value"
+                                            label="name"
+                                            :placeholder="__('translate.placeholder')"
+                                            v-model="form.workingPlace" :options="optionsWorkingPlace">
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                            <template #noOptions>
+                                                <span>{{__('translate.noResult')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.workingPlace" class="mt-2"/>
+                                    </div>
+                                </div>
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                 </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div class="mt-4">

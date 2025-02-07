@@ -145,25 +145,21 @@ class ProjectController extends Controller
      */
     public function store(StoreProject $request)
     {
-        dd($request->all());
+//        dd($request->all());
 //        dd(Lang::cases());
 
-//        dd($request->projectData()['country']);
 
 
-//        dd($request->projectData()['position']['allTranslations'][''],$request->projectData()['country'],config('langsShorts'));
+//        dd($request->projectData()['position']['allTranslations'],$request->projectData()['country'],config('langsShorts'));
         $title=[];
 
         foreach (config('langsShorts') as $lang){
-            $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['country'][0]['allTranslations'][$lang]) ? $request->projectData()['country'][0]['allTranslations'][$lang]: null).', '.$request->projectData()['city'].', '.$request->projectData()['basicSalaryFrom'];
+            $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['countryWork']['allTranslations'][$lang]) ? $request->projectData()['countryWork']['allTranslations'][$lang]: null).', '.$request->projectData()['cityWork'].', '.$request->projectData()['basicSalaryFrom'].' '.$request->projectData()['currency']['name'];
         }
-        dd($title);
-
-
-//        $title = $request->projectData()['position'].', '.$request->projectData()['country'].', '.$request->projectData()['city'].', '.$request->projectData()['basicSalaryFrom'];
+//        dd($title);
 
         $project = Project::create([
-            'title' =>  'brak tytułu',
+            'title' =>  $title,
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
@@ -190,9 +186,11 @@ class ProjectController extends Controller
             'welcome' => $request->projectData()['welcome'],
             'education' => $request->projectData()['education'],
             'experience' => $request->projectData()['experience'],
-            'address' => $request->projectData()['address'],
-            'postal' => $request->projectData()['postal'],
-            'city' => $request->projectData()['city'],
+            'countryWork' => $request->projectData()['countryWork'],
+            'streetWork' => $request->projectData()['streetWork'],
+            'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
+            'postalWork' => $request->projectData()['postalWork'],
+            'cityWork' => $request->projectData()['cityWork'],
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id
         ]);
@@ -274,9 +272,13 @@ class ProjectController extends Controller
         $educations = Cache::rememberForever('educations', function() {
             return WorkLoadResource::collection(Education::all());
         });
+        $currencies = Cache::rememberForever('currencies', function() {
+            return config('currencyShorts');
+        });
         return inertia()->render('RecruiterPages/Project/Edit',
             [
                 'categories' =>$category,
+                'currencies' =>$currencies,
                 'countries' =>$countries,
                 'workingModes' =>$workingModes,
                 'workingPlaces' =>$workingPlaces,
@@ -301,12 +303,17 @@ class ProjectController extends Controller
     public function update(StoreProject $request, Project $project)
     {
         Gate::authorize('project-recruiter',$project);
+        $title=[];
+        foreach (config('langsShorts') as $lang){
+            $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['countryWork']['allTranslations'][$lang]) ? $request->projectData()['countryWork']['allTranslations'][$lang]: null).', '.$request->projectData()['cityWork'].', '.$request->projectData()['basicSalaryFrom'].' '.$request->projectData()['currency']['name'];
+        }
         $project->update([
-            'title' => $request->projectData()['title'],
+            'title' => $title,
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
             'position' => $request->projectData()['position'],
+            'currency' => $request->projectData()['currency'],
             'workingMode' => $request->projectData()['workingMode'],
             'typeOfContract' => $request->projectData()['typeOfContract'],
             'payoutMode' => $request->projectData()['payoutMode'],
@@ -328,6 +335,11 @@ class ProjectController extends Controller
             'welcome' => $request->projectData()['welcome'],
             'education' => $request->projectData()['education'],
             'experience' => $request->projectData()['experience'],
+            'countryWork' => $request->projectData()['countryWork'],
+            'streetWork' => $request->projectData()['streetWork'],
+            'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
+            'postalWork' => $request->projectData()['postalWork'],
+            'cityWork' => $request->projectData()['cityWork'],
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id
         ]);

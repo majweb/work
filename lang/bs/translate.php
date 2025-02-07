@@ -1,18 +1,6 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
     'failed' => 'Błędny login lub hasło.',
     'onlySocial' => 'Użytkownik nie ustawił hasła, dlatego musi zalogować się przy użyciu dostawcy OAuth.',
     'password' => 'Hasło jest nieprawidłowe.',
@@ -307,4 +295,5 @@ return [
     'prompt3string' => ' i zapisz w formacie json. Zastosuj skróty oznaczeń językowych.',
     'address' => 'Ulica i nr domu/mieszkania',
     'detailProjects' => 'Obowiązki',
+    'CountryPublish' => 'Kraj publikacji',
 ];

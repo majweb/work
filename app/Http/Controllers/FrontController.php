@@ -10,8 +10,8 @@ class FrontController extends Controller
 {
     public function articles()
     {
-        $articles = Article::active()->lang()->paginate(10)->withQueryString();
 
+        $articles = Article::active()->lang()->paginate(10)->withQueryString();
         return inertia()->render('Front/Articles', [
             'articles' => $articles,
         ]);
@@ -19,22 +19,11 @@ class FrontController extends Controller
 
     public function projects()
     {
-        $projects = Project::paginate(10)->withQueryString();
-
-        $data = [
-                'title'=>[
-                    'pl'=>'tytuł',
-                    'en'=>'title',
-                ],
-                'mother'=>[
-                    'pl'=>'mama',
-                    'en'=>'mother',
-                ]
-        ];
+        $countryCode = substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'en'), 0, 2);
+        $projects = Project::orderByRaw("JSON_SEARCH(country, 'one', ?, NULL, '$[*].countryCode') IS NULL ASC", [$countryCode])->paginate(20)->withQueryString();
 
         return inertia()->render('Front/Projects', [
             'projects' => $projects,
-            'data' => $data,
         ]);
     }
 
@@ -43,6 +32,13 @@ class FrontController extends Controller
         $article->load('user.firm');
         return inertia()->render('Front/SingleArticle', [
             'article' => new FrontArticleResource($article),
+        ]);
+    }
+
+    public function SingleProject(Project $project)
+    {
+        return inertia()->render('Front/SingleProject', [
+            'project' => $project,
         ]);
     }
 }

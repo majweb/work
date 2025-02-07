@@ -60,6 +60,7 @@ class ArticleController extends Controller
         Gate::authorize('create', User::class);
 
         $articleProduct = auth()->user()->changeProducts()->where('product_id', 10)->first();
+
         if ($articleProduct) {
             if ($articleProduct->qty <= 0) {
                 return $this->errorArticle();
@@ -81,6 +82,7 @@ class ArticleController extends Controller
                     $articleProduct->decrement('qty',1);
                     $article = auth()->user()->articles()->create([
                         'title' => $request->articleData()['title'],
+                        'active' => $request->articleData()['active'],
                         'content' => $request->articleData()['content'],
                         'sections' => $request->articleData()['sections'],
                         'lang' => $request->articleData()['lang'],
@@ -119,6 +121,7 @@ class ArticleController extends Controller
         $article->update([
             'title' => $request->articleData()['title'],
             'content' => $request->articleData()['content'],
+            'active' => $request->articleData()['active'],
             'sections' => $request->articleData()['sections'],
             'lang' => $request->articleData()['lang'],
 

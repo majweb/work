@@ -307,4 +307,5 @@ return [
     'prompt3string' => ' and save in json format. Apply language abbreviations.',
     'address' => 'Street and house/apartment number',
     'detailProjects' => 'Duties',
+    'CountryPublish' => 'Country of publication',
 ];

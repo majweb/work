@@ -295,4 +295,5 @@ return [
     'prompt3string' => ' i zapisz w formacie json. Zastosuj skróty oznaczeń językowych.',
     'address' => 'Ulica i nr domu/mieszkania',
     'detailProjects' => 'Obowiązki',
+    'CountryPublish' => 'Kraj publikacji',
 ];
