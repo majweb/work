@@ -41,15 +41,12 @@
                     :value="city"
                     :placeholder="__('translate.City')"/>
         </div>
-        {{code}}
-
     </div>
 </template>
 <script>
 import {onMounted, onUnmounted, ref, watch} from "vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-
 export default {
     components: {InputLabel, TextInput},
     props: {

@@ -197,7 +197,7 @@ const clearCountry = () => {
                     <FormSectionProject @submitted="createProject">
                         <template #form>
                             <div class="col-span-12">
-                                <div class="col-span- grid grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div>
                                         <InputLabel :value="__('translate.CountryPublish')"/>
                                         <multiselect
@@ -222,7 +222,7 @@ const clearCountry = () => {
                                         <InputError :message="form.errors.country" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                                     <div>
                                         <InputLabel :value="__('translate.category')"/>
                                         <multiselect
@@ -349,47 +349,6 @@ const clearCountry = () => {
                                     <InputError :message="form.errors.streetWorkNumber" class="mt-2"/>
                                     <InputError :message="form.errors.postalWork" class="mt-2"/>
                                     <InputError :message="form.errors.cityWork" class="mt-2"/>
-
-                                    <!--                                    <div>-->
-<!--                                        <InputLabel for="street" :value="__('translate.Street')" />-->
-<!--                                        <TextInput-->
-<!--                                            id="street"-->
-<!--                                            v-model="form.street"-->
-<!--                                            class="mt-1 block w-full"-->
-<!--                                            type="text"-->
-<!--                                        />-->
-<!--                                        <InputError :message="form.errors.street" class="mt-2"/>-->
-<!--                                    </div>-->
-<!--                                    <div>-->
-<!--                                        <InputLabel for="city" :value="__('translate.City')" />-->
-<!--                                        <TextInput-->
-<!--                                            id="city"-->
-<!--                                            v-model="form.city"-->
-<!--                                            class="mt-1 block w-full"-->
-<!--                                            type="text"-->
-<!--                                        />-->
-<!--                                        <InputError :message="form.errors.city" class="mt-2"/>-->
-<!--                                    </div>-->
-<!--                                    <div>-->
-<!--                                        <InputLabel for="postal" :value="__('translate.Postal')" />-->
-<!--                                        <TextInput-->
-<!--                                            id="postal"-->
-<!--                                            v-model="form.postal"-->
-<!--                                            class="mt-1 block w-full"-->
-<!--                                            type="text"-->
-<!--                                        />-->
-<!--                                        <InputError :message="form.errors.postal" class="mt-2"/>-->
-<!--                                    </div>-->
-<!--                                    <div>-->
-<!--                                        <InputLabel for="address" :value="__('translate.address')" />-->
-<!--                                        <TextInput-->
-<!--                                            id="address"-->
-<!--                                            v-model="form.address"-->
-<!--                                            class="mt-1 block w-full"-->
-<!--                                            type="text"-->
-<!--                                        />-->
-<!--                                        <InputError :message="form.errors.address" class="mt-2"/>-->
-<!--                                    </div>-->
                                 </div>
                                 <div class="col-span-6 mt-3" v-if="form.cityWork && form.streetWork && form.streetWorkNumber">
                                     <iframe
@@ -401,7 +360,6 @@ const clearCountry = () => {
                                         allowfullscreen>
                                     </iframe>
                                 </div>
-
                                 <!-- detailprojects-->
                                 <div class="col-span-6 mt-4" v-if="((form.position.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession.detailprojects && Object.keys(form.profession.detailprojects).length))">
                                     <div class="my-4">
