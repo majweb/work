@@ -41,6 +41,7 @@
                     :value="city"
                     :placeholder="__('translate.City')"/>
         </div>
+        {{code}}
 
     </div>
 </template>
@@ -109,7 +110,14 @@ export default {
         }
 
         watch(() => props.code, async () => {
-            autocompleteFunc();
+            if(autocomplete){
+                let options  = {
+                    types: ["address"],
+                    componentRestrictions: {country: props.code},
+                    fields: ["address_components"]
+                }
+                autocomplete.setOptions(options);
+            }
         });
 
         onMounted(() => {

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->decimal('bonusSalaryFrom',8, 2);
-            $table->decimal('bonusSalaryTo',8, 2);
+            $table->decimal('bonusSalaryTo',8, 2)->nullable();
         });
     }
 
