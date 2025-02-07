@@ -12,6 +12,18 @@ export default defineConfig({
     ssr: {
         noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','vue-multiselect','axios','vue3-apexcharts'],
     },
+    build: {
+        rollupOptions: {
+            output:{
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                    }
+                },
+            },
+        },
+        chunkSizeWarningLimit: 2700,
+    },
     plugins: [
         laravel({
             input: 'resources/js/app.js',
@@ -30,4 +42,11 @@ export default defineConfig({
             },
         }),
     ],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: ["legacy-js-api"],
+            },
+        },
+    },
 });
