@@ -30,8 +30,8 @@ class StoreRecruitRequest extends FormRequest
         if(request()->isMethod('post')){
             $ruleId = ['nullable'];
             $rulePassword = $this->passwordRules();
-            $rulePhone = ['required','numeric',Rule::unique('users', 'recruiter_phone')->ignore(request()->user()->id)];
-            $ruleEmail = ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore(request()->user()->id)];
+            $rulePhone = ['required','numeric',Rule::unique('users', 'recruiter_phone')];
+            $ruleEmail = ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')];
         } elseif (request()->isMethod('put')){
             $ruleId = ['required'];
             $rulePassword = ['nullable', 'string', Password::default(), 'confirmed'];
