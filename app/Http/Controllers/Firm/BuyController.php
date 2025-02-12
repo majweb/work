@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BuyResource;
+use App\Http\Resources\FoundationResource;
+use App\Models\Foundation;
 use App\Models\Product;
 use App\Services\BuyHelper;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class BuyController extends Controller
 {
@@ -49,12 +53,22 @@ class BuyController extends Controller
         $cartItems = Cart::content();
         $total = Cart::subtotal();
         $countCart = Cart::content()->count();
-
+        $countryCode = getLocalBrowserLang();
+        $foundations = Foundation::where('country',$countryCode)->get();
         return inertia()->render('Buy/Detail',[
             'total'=>$total,
             'cartItems'=>$cartItems,
             'countCart'=>$countCart,
+            'foundations'=>$foundations,
         ]);
+    }
+
+    public function addFoundation()
+    {
+        $foundation = request()->foundation;
+        if ($foundation){
+            Session::put('foundation', $foundation['id']);
+        }
     }
 
     public function detailRemoveFromCart($id)
@@ -82,11 +96,13 @@ class BuyController extends Controller
 
     public function makeOrder(BuyHelper $buyHelper)
     {
-
+        if (Session::has('foundation')) {
+            $foundation = Session::get('foundation');
+        }
         $cartItems = Cart::content();
         $subtotal = Cart::subtotal();
-        DB::transaction(function () use ($cartItems,$subtotal,$buyHelper){
-            $order = $buyHelper->createOrder($subtotal);
+        DB::transaction(function () use ($cartItems,$subtotal,$buyHelper,$foundation){
+            $order = $buyHelper->createOrder($subtotal,$foundation);
             $buyHelper->generateOrderPdf($order,$cartItems);
             $buyHelper->addOrderItemsAndClearCartwithUpdatePoints($cartItems,$order);
             $buyHelper->generateInvoiceAndPdf($order);

@@ -1,29 +1,36 @@
 <script setup>
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 import {Link, router, usePage} from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import Multiselect from 'vue-multiselect'
+import InputLabel from "@/Components/InputLabel.vue";
 
 const props = defineProps({
-    total: Number,
+    total: String,
     countCart: Number,
     cartItems: Object,
-
+    foundations: Object,
 });
+const optionsFundations = ref(props.foundations);
+const foundation = ref(null);
 
 const removeFromCart = id => {
-    router.delete(route('buy.detailRemoveFromCart',id))
+    router.delete(route('buy.detailRemoveFromCart',id),{preserveScroll:true})
 }
 
 const increment = (id,qty) => {
-    router.post(route('buy.detailIncrementCart',[id,qty]));
+    router.post(route('buy.detailIncrementCart',[id,qty]),null,{preserveScroll:true});
 }
 const decrement = (id,qty) => {
-    router.post(route('buy.detailDecrementCart',[id,qty]));
+    router.post(route('buy.detailDecrementCart',[id,qty]),null,{preserveScroll:true});
 
 }
 let currency  = computed(()=>{
     return usePage().props.auth.user?.firm?.currency;
 });
+const dispatchAction = () => {
+    router.post(route('buy.addFoundation', { foundation: foundation.value }),null,{ preserveScroll: true });
+}
 
 </script>
 <template>
@@ -100,11 +107,10 @@ let currency  = computed(()=>{
                                                 </dl>
                                             </div>
                                         </div>
-                                        <Link v-if="countCart > 0" :href="route('buy.paymentView')" class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{__('translate.pay')}}</Link>
-
+                                        <Link v-if="countCart > 0" :href="(!foundation ? route('buy.detail') : route('buy.paymentView'))" class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" :class="{'opacity-50 cursor-default' : !foundation}">{{__('translate.pay')}}</Link>
                                         <div class="flex items-center justify-center gap-2">
                                             <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{__('translate.or')}} </span>
-                                            <Link :href="route('buy.index')" title="" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
+                                            <Link :href="route('buy.index')" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
                                                 {{__('translate.continueBuy')}}
                                                 <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
@@ -114,6 +120,30 @@ let currency  = computed(()=>{
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-span-12 grid grid grid-cols-1 lg:grid-cols-2 gap-6" v-if="countCart > 0">
+                                <div>
+                                    <InputLabel :value="__('translate.fundations')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        track-by="name"
+                                        :multiple="false"
+                                        label="name"
+                                        @select="dispatchAction"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="foundation" :options="optionsFundations">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                    <div class="bg-blue-100 text-blue-500 rounded-md p-2 text-sm mt-2">{{__('translate.fundationsInfo')}}</div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -121,3 +151,44 @@ let currency  = computed(()=>{
         </div>
     </AppLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+
+.multiselect__tag{
+    background: #00a0e3 !important;
+}
+.multiselect__option--highlight {
+    background: #00a0e3 !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #00a0e3 !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
+}
+</style>

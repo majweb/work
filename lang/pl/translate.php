@@ -296,4 +296,9 @@ return [
     'address' => 'Ulica i nr domu/mieszkania',
     'detailProjects' => 'Obowiązki',
     'CountryPublish' => 'Kraj publikacji',
+    'fundations' => 'Fundacje',
+    'fundationsInfo'=>'Wybierz fundację na która przekażemy 50% opłaconej kwoty.',
+    'othersRecruits'=>'Pozostali rekruterzy',
+    'othersRecruitsInfo'=>'Możliwość dopisania innych rekruterów do projektów.',
+    'adress'=>'Miejsce wykonywania zawodu',
 ];

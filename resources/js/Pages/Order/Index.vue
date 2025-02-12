@@ -106,6 +106,10 @@ watch(params.value, debounce(function (value) {
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
                                                         {{__('translate.payType')}}
                                                     </th>
+                                                    <th scope="col"
+                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
+                                                        {{__('translate.fundations')}}
+                                                    </th>
                                                     <th scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
                                                         <div class="flex items-center">
                                                             <span class="inline-flex w-full py-3 px-6 justify-between" @click="sort('paid_date')">{{__('translate.paidDate')}}
@@ -153,6 +157,13 @@ watch(params.value, debounce(function (value) {
                                                         <div class="ml-4">
                                                             <div class="text-sm text-gray-900">
                                                                 {{order.payment_type}}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-4 px-6 whitespace-nowrap">
+                                                        <div class="ml-4">
+                                                            <div class="text-sm text-gray-900">
+                                                                {{order.foundation?.name?? '-'}}
                                                             </div>
                                                         </div>
                                                     </td>

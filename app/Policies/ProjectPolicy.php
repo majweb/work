@@ -37,7 +37,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project): bool
     {
-        return false;
+        return $user->hasRole('firm') && $project->user_id == $user->id;
     }
 
     /**

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { router,Link } from '@inertiajs/vue3';
+import { router,Link, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 
@@ -117,6 +117,10 @@ watch(params.value, debounce(function (value) {
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
+                                                        {{__('translate.othersRecruits')}}
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
                                                         {{__('translate.title')}}
                                                     </th>
                                                     <th scope="col"
@@ -130,7 +134,7 @@ watch(params.value, debounce(function (value) {
                                                 <tr v-if="props.projects.data.length == 0">
                                                     <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundProjects')}}</p></td>
                                                 </tr>
-                                                <tr v-else v-for="(project) in props.projects.data" :key="project.id">
+                                                <tr v-else v-for="(project) in props.projects.data" :key="project.id" :class="{'bg-blue-100': project.other_recruits?.length}">
                                                     <td class="py-4 px-6 whitespace-nowrap">
                                                         <div class="flex items-center">
                                                             <div class="ml-4">
@@ -150,7 +154,14 @@ watch(params.value, debounce(function (value) {
                                                     <td class="py-4 px-6 whitespace-nowrap">
                                                         <div class="ml-4">
                                                             <div class="text-sm text-gray-900">
-                                                                {{project.title}}
+                                                                {{project.other_recruits?.length}}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-4 px-6 whitespace-nowrap">
+                                                        <div class="ml-4">
+                                                            <div class="text-sm text-gray-900">
+                                                                {{project.title[usePage().props.language]}}
                                                             </div>
                                                         </div>
                                                     </td>

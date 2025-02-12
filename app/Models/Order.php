@@ -19,6 +19,7 @@ class Order extends Model
         'amount',
         'paid_date',
         'pdf',
+        'foundation_id',
     ];
 
     protected $casts = [
@@ -29,6 +30,11 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function foundation(): BelongsTo
+    {
+        return $this->belongsTo(Foundation::class);
+    }
+
 
     public function orderProducts(): HasMany
     {

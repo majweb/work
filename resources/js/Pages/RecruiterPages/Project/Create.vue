@@ -438,8 +438,6 @@ const clearCountry = () => {
                                         <InputError :message="form.errors.workingPlace" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                </div>
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.basicSalaryFrom')" />
@@ -661,7 +659,7 @@ const clearCountry = () => {
                                     </div>
                                 </div>
                                 <div class="col-span-6">
-                                <div class="mt-4" v-if="educations">
+                                    <div class="mt-4" v-if="educations">
                                     <InputLabel :value="__('translate.education')" />
                                     <div v-for="education in educations" class="flex items-center mt-1">
                                         <input
@@ -673,10 +671,9 @@ const clearCountry = () => {
                                     </div>
                                     <InputError :message="form.errors.education" class="mt-2"/>
                                 </div>
-                            </div>
+                                </div>
                             </div>
                         </template>
-
                         <template #actions>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                 <spinner-action :process="form.processing">{{__('translate.add')}}</spinner-action>

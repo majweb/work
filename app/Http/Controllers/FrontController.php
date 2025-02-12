@@ -19,7 +19,7 @@ class FrontController extends Controller
 
     public function projects()
     {
-        $countryCode = substr(request()->server('HTTP_ACCEPT_LANGUAGE', 'en'), 0, 2);
+        $countryCode = getLocalBrowserLang();
         $projects = Project::orderByRaw("JSON_SEARCH(country, 'one', ?, NULL, '$[*].countryCode') IS NULL ASC", [$countryCode])->paginate(20)->withQueryString();
 
         return inertia()->render('Front/Projects', [

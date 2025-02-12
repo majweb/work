@@ -15,9 +15,7 @@ class OfferSeeder extends Seeder
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-
         DB::table('offers')->truncate();
-
         $offers = [
             [
                 'id' => 1,

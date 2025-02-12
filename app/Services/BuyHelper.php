@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class BuyHelper
@@ -26,13 +27,19 @@ class BuyHelper
      * @param $tax
      * @return mixed
      */
-    public function createOrder($subtotal)
+    public function createOrder($subtotal,$foundation)
     {
-        return Auth::user()->orders()->create([
+       $order = Auth::user()->orders()->create([
             'payment_type' => 'Transfer',
             'amount' => $subtotal,
-            'paid_date' => Carbon::now()
+            'paid_date' => Carbon::now(),
+            'foundation_id'=>$foundation
         ]);
+        if (Session::has('foundation')) {
+            Session::forget('foundation');
+        }
+
+        return $order;
     }
 
     /**

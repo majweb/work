@@ -45,6 +45,7 @@ Route::middleware([
     ]);
     Route::resource('invoices',InvoiceController::class)->middleware('role:firm')->only([
         'index', 'update'
+
     ]);
     Route::get('invoicesDownload/{invoice}',[InvoiceController::class,'downloadPDF'])->middleware('role:firm')->name('invoicesDownload');
     Route::get('ordersDownload/{order}',[OrderController::class,'downloadPDF'])->middleware('role:firm')->name('ordersDownload');
@@ -58,21 +59,21 @@ Route::middleware([
     Route::get('/buy',[BuyController::class,'index'])->name('buy.index')->middleware('role:firm');
     Route::get('/buydetail',[BuyController::class,'detail'])->name('buy.detail')->middleware('role:firm');
     Route::get('/points',[PoinstController::class,'index'])->name('points.index')->middleware('role:firm');
+    Route::post('/addMoreRecruits/{project}',[ProjectController::class,'addMoreRecruits'])->name('firm.addMoreRecruits')->middleware('role:firm');
 //    CART
     Route::get('/buyAddToCart/{product}',[BuyController::class,'store'])->name('buy.store')->middleware('role:firm');
     Route::delete('/buyRemoveFromCart/{product}',[BuyController::class,'detailRemoveFromCart'])->name('buy.detailRemoveFromCart')->middleware('role:firm');
     Route::post('/buyIncrementCart/{product}/{qty}',[BuyController::class,'detailIncrementCart'])->name('buy.detailIncrementCart')->middleware('role:firm');
     Route::post('/buyDecrementCart/{product}/{qty}',[BuyController::class,'detailDecrementCart'])->name('buy.detailDecrementCart')->middleware('role:firm');
     Route::post('/makeOrder',[BuyController::class,'makeOrder'])->name('buy.order')->middleware('role:firm');
+    Route::post('/addFoundation',[BuyController::class,'addFoundation'])->name('buy.addFoundation')->middleware('role:firm');
     Route::get('/paymentView',[BuyController::class,'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView',[BuyController::class,'successView'])->name('buy.successView')->middleware('role:firm');
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
 
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->middleware('role:recruit')->parameters(['project-recruits' => 'project']);
-    Route::put('project-recruits/updateFirsStep/{project}',[ProjectControllerRecruit::class,'updateFirsStep'])->middleware('role:recruit')->name('project-recruits.updateFirsStep');
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
-    Route::post('generateTitle',[ProjectControllerRecruit::class,'generateTitle'])->middleware('role:recruit')->name('generateTitle');
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MultiselectResource;
+use App\Http\Resources\OtherRecruitsResource;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
@@ -17,7 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $c = MultiselectResource::collection(Category::whereNull('parent_id')->with('children')->get());
+//        $c = MultiselectResource::collection(Category::whereNull('parent_id')->with('children')->get());
         Gate::authorize('view', [User::class, Project::class]);
 
         request()->validate([
@@ -40,7 +41,7 @@ class ProjectController extends Controller
 
         return inertia()->render('Project/Index', [
             'recruiters' => $recruiters,
-            'ttttttttttt' => $c,
+//            'ttttttttttt' => $c,
             'projects' => $query->paginate(5)->withQueryString(),
             'filters' => request()->only(['field', 'direction', 'recruiter'])
         ]);
@@ -51,12 +52,11 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        Gate::authorize('update',auth()->user());
-        $project->load('recruit:id,name');
-
-
+        Gate::authorize('view',$project);
+        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name']);
+        $otherRecruits = OtherRecruitsResource::collection($project->user->recruits()->whereNull('user_blocked')->where('id','!=',$project->recruiter_id)->get());
         $locale = app()->getLocale();
-        return inertia()->render('Project/Show',['project'=>$project,'locale'=>$locale]);
+        return inertia()->render('Project/Show',['project'=>$project,'locale'=>$locale,'otherRecruits'=>$otherRecruits]);
     }
 
     /**
@@ -85,5 +85,14 @@ class ProjectController extends Controller
         session()->flash('flash.banner', __('translate.deleteProject'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('projects.index');
+    }
+
+    public function addMoreRecruits(Project $project)
+    {
+
+        Gate::authorize('update',$project);
+        $project->update([
+            'other_recruits'=>request()->others
+        ]);
     }
 }

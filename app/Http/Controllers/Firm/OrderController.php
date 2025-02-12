@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
@@ -16,6 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+
         Gate::authorize('view', [User::class, Order::class]);
 
         request()->validate([
@@ -23,7 +25,7 @@ class OrderController extends Controller
             'field' => ['in:id,paid_date']
         ]);
 
-        $query = Order::query()->withCount('orderProducts')->where('user_id', auth()->user()->id);
+        $query = Order::query()->withCount('orderProducts')->where('user_id', auth()->user()->id)->with('foundation:id,name');
 
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));

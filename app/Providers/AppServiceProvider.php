@@ -49,7 +49,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('project-recruiter', function (User $user, Project $project) {
-            return $user->id === $project->recruiter_id;
+            $data = collect($project->other_recruits)->pluck('value');
+            return $user->id === $project->recruiter_id || $data->contains($user->id);
         });
 
     }

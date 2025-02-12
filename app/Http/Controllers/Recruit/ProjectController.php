@@ -4,14 +4,11 @@ namespace App\Http\Controllers\Recruit;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
-use App\Http\Resources\LanguageResource;
 use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\TypeOfContractResource;
 use App\Http\Resources\WorkingModesResource;
 use App\Http\Resources\WorkLoadResource;
-use App\Lang\Lang;
 use App\Models\Category;
-use App\Models\Country;
 use App\Models\Day;
 use App\Models\Education;
 use App\Models\Experience;
@@ -22,18 +19,14 @@ use App\Models\Project;
 use App\Models\ShiftWork;
 use App\Models\Title;
 use App\Models\TypeOfContract;
-use App\Models\User;
 use App\Models\Wait;
 use App\Models\Welcome;
 use App\Models\WorkingMode;
 use App\Models\WorkingPlace;
 use App\Models\WorkLoad;
 use App\Services\Helper;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
-use OpenAI\Laravel\Facades\OpenAI;
 
 class ProjectController extends Controller
 {
@@ -42,13 +35,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-
         request()->validate([
             'direction' => ['in:asc,desc'],
             'field' => ['in:id']
         ]);
-
-        $query = Project::query()->where('recruiter_id', auth()->user()->id);
+        $query = Project::query()
+            ->where('recruiter_id', auth()->user()->id)
+            ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id]);
 
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
@@ -145,19 +138,11 @@ class ProjectController extends Controller
      */
     public function store(StoreProject $request)
     {
-//        dd($request->all());
-//        dd(Lang::cases());
-
-
-
-//        dd($request->projectData()['position']['allTranslations'],$request->projectData()['country'],config('langsShorts'));
         $title=[];
 
         foreach (config('langsShorts') as $lang){
             $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['countryWork']['allTranslations'][$lang]) ? $request->projectData()['countryWork']['allTranslations'][$lang]: null).', '.$request->projectData()['cityWork'].', '.$request->projectData()['basicSalaryFrom'].' '.$request->projectData()['currency']['name'];
         }
-//        dd($title);
-
         $project = Project::create([
             'title' =>  $title,
             'category' => $request->projectData()['category'],
@@ -203,17 +188,16 @@ class ProjectController extends Controller
 
         return to_route('project-recruits.index');
     }
-    public function updateFirsStep(StoreProject $request,Project $project)
-    {
-        return to_route('project-recruits.edit',$project);
-    }
 
     /**
      * Display the specified resource.
      */
     public function show(Project $project)
     {
-
+        Gate::authorize('project-recruiter',$project);
+        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name']);
+        $locale = app()->getLocale();
+        return inertia()->render('RecruiterPages/Project/Show',['project'=>$project,'locale'=>$locale]);
     }
 
     /**
@@ -221,8 +205,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        Gate::authorize('project-recruiter',$project);
         $project->load('detailprojects');
-
         Gate::authorize('project-recruiter',$project);
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
@@ -370,53 +354,5 @@ class ProjectController extends Controller
     public function getChildsCategory($parent)
     {
         return MultiselectResource::collection(Category::where('parent_id',$parent)->with('detailprojects')->get());
-    }
-
-    public function generateTitle()
-    {
-    $dataString = strtolower(implode(',',request()->all()));
-        $langs = strtolower(LanguageResource::collection(Lang::cases())->map(function($el){
-            return $el->label();
-        })->implode(','));
-
-        $prompt = __('translate.prompt1string').$dataString.__('translate.prompt2string').$langs.__('translate.prompt3string');
-
-
-
-//        dd($prompt);
-//        $result = OpenAI::chat()->create([
-//            'model' => 'gpt-4o-mini',
-//            'messages' => [
-//                ['role' => 'user', 'content' => $prompt],
-//            ],
-//        ]);
-
-        $result = [
-              [
-                  "pl"=> "Poszukiwany przedstawiciel handlowy w Angoli - wynagrodzenie do 1000 PLN",
-                "en"=> "Sales Representative Wanted in Angola - Salary Up to 1000 PLN"
-              ],
-              [
-                  "pl"=> "Przedstawiciel handlowy w branży handlowej w Angoli - zarobki do 1000 PLN",
-                "en"=> "Sales Representative in the Trade Industry in Angola - Earnings Up to 1000 PLN"
-              ],
-              [
-                  "pl"=> "Angola: Praca dla przedstawiciela handlowego - wynagrodzenie do 1000 PLN",
-                "en"=> "Angola: Job for Sales Representative - Salary Up to 1000 PLN"
-              ],
-              [
-                  "pl"=> "Przedstawiciel handlowy w Angoli - atrakcyjne wynagrodzenie do 1000 PLN",
-                "en"=> "Sales Representative in Angola - Attractive Salary Up to 1000 PLN"
-              ],
-              [
-                  "pl"=> "Angola: Zostań przedstawicielem handlowym - wynagrodzenie podstawowe do 1000 PLN",
-                "en"=> "Angola: Become a Sales Representative - Base Salary Up to 1000 PLN"
-              ]
-            ];
-
-        return $result;
-
-
-//        echo $result->choices[0]->message->content; // Hello! How can I assist you today?
     }
 }

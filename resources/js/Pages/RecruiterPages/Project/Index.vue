@@ -53,7 +53,6 @@ const resetSort = (field) => {
 }
 
 watch(params.value, debounce(function (value) {
-    console.log(params.value)
     let rest = pickBy(params.value);
     router.get(route('project-recruits.index'), rest, { preserveState: true, replace: true });
 }, 300));
@@ -109,6 +108,10 @@ watch(params.value, debounce(function (value) {
                                                     </th>
                                                     <th scope="col"
                                                         class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
+                                                        {{__('translate.othersRecruits')}}
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
                                                         {{__('translate.actions')}}
                                                     </th>
                                                 </tr>
@@ -118,7 +121,7 @@ watch(params.value, debounce(function (value) {
                                                 <tr v-if="props.projects.data.length == 0">
                                                     <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundProjects')}}</p></td>
                                                 </tr>
-                                                <tr v-else v-for="(project) in props.projects.data" :key="project.id">
+                                                <tr v-else v-for="(project) in props.projects.data" :key="project.id" :class="{'bg-blue-100': project.other_recruits?.some(el=>el.value == usePage().props.auth.user.id)}">
                                                     <td class="py-4 px-6 whitespace-nowrap">
                                                         <div class="flex items-center">
                                                             <div class="ml-4">
@@ -132,6 +135,20 @@ watch(params.value, debounce(function (value) {
                                                         <div class="ml-4">
                                                             <div class="text-sm text-gray-900">
                                                                 {{project.title[usePage().props.language] }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-4 px-6 whitespace-nowrap">
+                                                        <div class="flex items-center">
+                                                            <div class="ml-4">
+                                                                <div class="text-sm text-gray-900">
+                                                                    <div v-if="project.other_recruits?.some(el=>el.value == usePage().props.auth.user.id)">
+                                                                        {{__('translate.yes')}}
+                                                                    </div>
+                                                                    <div v-else>
+                                                                        {{__('translate.no')}}
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>

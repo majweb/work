@@ -46,6 +46,7 @@ class Project extends Model
         'postalWork',
         'cityWork',
         'detailProjects',
+        'other_recruits',
     ];
 
     protected $casts = [
@@ -69,6 +70,7 @@ class Project extends Model
         'experience'=>'array',
         'detailProjects'=>'array',
         'welcome'=>'array',
+        'other_recruits'=>'array',
         'basicSalaryFrom' => 'float',
         'basicSalaryTo' => 'float',
         'bonusSalaryFrom' => 'float',
@@ -76,6 +78,12 @@ class Project extends Model
         'hoursFrom'=>TimeCast::class,
         'hoursTo'=>TimeCast::class,
     ];
+
+    protected $attributes = [
+        'other_recruits' => '[]',
+    ];
+
+
 
     public function user(): BelongsTo
     {
@@ -85,6 +93,14 @@ class Project extends Model
     public function recruit(): BelongsTo
     {
         return $this->belongsTo(User::class, 'recruiter_id');
+    }
+    public function shiftWork(): BelongsTo
+    {
+        return $this->belongsTo(ShiftWork::class,'shiftWork');
+    }
+    public function education(): BelongsTo
+    {
+        return $this->belongsTo(Education::class,'education');
     }
     public function detailprojects()
     {

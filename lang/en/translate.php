@@ -308,4 +308,6 @@ return [
     'address' => 'Street and house/apartment number',
     'detailProjects' => 'Duties',
     'CountryPublish' => 'Country of publication',
+    'fundations' => 'Foundations',
+    'fundationsInfo' => 'Choose a foundation to which we will donate 50% of the paid amount.'
 ];

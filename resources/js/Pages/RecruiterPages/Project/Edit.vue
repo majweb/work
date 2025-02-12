@@ -729,7 +729,6 @@ const clearCountry = () => {
                                 </div>
                             </div>
                         </template>
-
                         <template #actions>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                 <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
