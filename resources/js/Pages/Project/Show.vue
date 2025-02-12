@@ -71,7 +71,7 @@ watch(
             mapUrl.value = myUrlWithParams.toString();
         }
     },
-    { deep: true, immediate: true } // deep = śledzenie zmian wewnątrz obiektu, immediate = wykonanie od razu
+    { deep: true, immediate: true }
 );
 
 
