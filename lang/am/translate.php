@@ -246,7 +246,7 @@ return [
     'addSectionDescriptionMax' => 'Wpisz maksymalnie 1000 znaków',
     'remove' => 'Usuń',
     'notFoundArticles' => 'Nie znaleziono artykułów',
-    'notFoundProjects' => 'Nie zanaleziono projetów',
+    'notFoundProjects' => 'Nie znaleziono projetów',
     'backToList' => 'Wróć do listy',
     'description' => 'Opis',
     'language' => 'Język',
