@@ -32,7 +32,7 @@ const dispatchAction = value => {
 const dispatchActionSingleRecruit = value => {
     router.post(route('firm.changeRecruit',props.project?.id ),{ recruit: value },{ preserveScroll: true,
         onSuccess: () => {
-            router.reload({ only: ['otherRecruits','project'] });
+            router.reload({ only: ['otherRecruits'] });
             showChangeRecruit.value = false;
         }
     });
