@@ -25,8 +25,6 @@ let mapChange = reactive({
 });
 
 const mapUrl = ref("");
-
-
 const showChangeRecruit = ref(false);
 const selectedProject = ref(null);
 const confirmCancelProject = ref(false);
