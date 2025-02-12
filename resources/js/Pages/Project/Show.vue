@@ -6,7 +6,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from "@/Components/DangerButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import {computed, ref} from "vue";
+import {reactive, ref, watch} from "vue";
 import Multiselect from 'vue-multiselect'
 import Info from "@/Components/Info.vue";
 
@@ -16,6 +16,17 @@ const props = defineProps({
     otherRecruits: Array,
     locale: String,
 });
+let mapChange = reactive({
+    'countryWork':props.project.countryWork,
+    'cityWork':props.project.cityWork,
+    'streetWork':props.project.streetWork,
+    'streetWorkNumber':props.project.streetWorkNumber,
+    'postalWork':props.project.postalWork,
+});
+
+const mapUrl = ref("");
+
+
 const showChangeRecruit = ref(false);
 const selectedProject = ref(null);
 const confirmCancelProject = ref(false);
@@ -48,13 +59,21 @@ const DeleteProject = () => {
         });
     }
 };
-const generateUrl = computed(() => {
-    if (props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber) {
-        let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
-        myUrlWithParams.searchParams.append("q", props.project.countryWork+' '+props.project.cityWork+' '+props.project.streetWork+' '+props.project.streetWorkNumber +' '+props.project.postalWork);
-        return myUrlWithParams;
-    }
-});
+
+watch(
+    () => mapChange,
+    (newMapChange) => {
+        if (newMapChange) {
+            let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
+            myUrlWithParams.searchParams.append("q",
+                `${newMapChange.countryWork} ${newMapChange.cityWork} ${newMapChange.streetWork} ${newMapChange.streetWorkNumber} ${newMapChange.postalWork}`
+            );
+            mapUrl.value = myUrlWithParams.toString();
+        }
+    },
+    { deep: true, immediate: true } // deep = śledzenie zmian wewnątrz obiektu, immediate = wykonanie od razu
+);
+
 
 </script>
 
@@ -82,13 +101,13 @@ const generateUrl = computed(() => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                        <div class="col-span-6 mt-3" v-if="props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber">
+                        <div class="col-span-6 mt-3" v-if="mapChange.cityWork && mapChange.streetWork && mapChange.streetWorkNumber">
                             <iframe
                                 width="100%"
                                 height="250"
                                 frameborder="0" style="border:0"
                                 referrerpolicy="no-referrer-when-downgrade"
-                                :src="generateUrl"
+                                :src="mapUrl"
                                 allowfullscreen>
                             </iframe>
                         </div>
