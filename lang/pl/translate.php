@@ -300,5 +300,7 @@ return [
     'fundationsInfo'=>'Wybierz fundację na która przekażemy 50% opłaconej kwoty.',
     'othersRecruits'=>'Pozostali rekruterzy',
     'othersRecruitsInfo'=>'Możliwość dopisania innych rekruterów do projektów.',
+    'otherRecruitsChange'=>'Zmieniono pozostałych rekruterów.',
+    'otherRecruitsChangeMain'=>'Zmieniono głównego rekrutera.',
     'adress'=>'Miejsce wykonywania zawodu',
 ];

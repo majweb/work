@@ -94,6 +94,9 @@ class ProjectController extends Controller
         $project->update([
             'other_recruits'=>request()->others
         ]);
+        session()->flash('flash.banner', __('translate.otherRecruitsChange'));
+        session()->flash('flash.bannerStyle', 'success');
+        return back();
     }
 
     public function changeRecruit(Project $project)
@@ -113,6 +116,10 @@ class ProjectController extends Controller
                 'recruiter_id'=>request()->recruit['value'],
                 'other_recruits'=>$array1,
             ]);
+
+            session()->flash('flash.banner', __('translate.otherRecruitsChangeMain'));
+            session()->flash('flash.bannerStyle', 'success');
+            return back();
         }
     }
 }
