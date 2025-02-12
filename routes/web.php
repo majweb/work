@@ -60,6 +60,7 @@ Route::middleware([
     Route::get('/buydetail',[BuyController::class,'detail'])->name('buy.detail')->middleware('role:firm');
     Route::get('/points',[PoinstController::class,'index'])->name('points.index')->middleware('role:firm');
     Route::post('/addMoreRecruits/{project}',[ProjectController::class,'addMoreRecruits'])->name('firm.addMoreRecruits')->middleware('role:firm');
+    Route::post('/changeRecruit/{project}',[ProjectController::class,'changeRecruit'])->name('firm.changeRecruit')->middleware('role:firm');
 //    CART
     Route::get('/buyAddToCart/{product}',[BuyController::class,'store'])->name('buy.store')->middleware('role:firm');
     Route::delete('/buyRemoveFromCart/{product}',[BuyController::class,'detailRemoveFromCart'])->name('buy.detailRemoveFromCart')->middleware('role:firm');

@@ -16,10 +16,9 @@ const props = defineProps({
     otherRecruits: Array,
     locale: String,
 });
+const showChangeRecruit = ref(false);
 const selectedProject = ref(null);
-const selectedOtherRecruits = ref(props.project.other_recruits);
 const confirmCancelProject = ref(false);
-const optionsOtherRecruits = ref(props.otherRecruits);
 
 
 const openModal = (project)=>{
@@ -29,6 +28,14 @@ const openModal = (project)=>{
 
 const dispatchAction = value => {
     router.post(route('firm.addMoreRecruits',props.project?.id ),{ others: value },{ preserveScroll: true });
+}
+const dispatchActionSingleRecruit = value => {
+    router.post(route('firm.changeRecruit',props.project?.id ),{ recruit: value },{ preserveScroll: true,
+        onSuccess: () => {
+            router.reload({ only: ['otherRecruits','project'] });
+            showChangeRecruit.value = false;
+        }
+    });
 }
 
 const DeleteProject = () => {
@@ -85,7 +92,7 @@ const generateUrl = computed(() => {
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <div class="flex flex-col py-3" v-if="optionsOtherRecruits.length">
+                        <div class="flex flex-col py-3" v-if="props.otherRecruits.length">
                             <div class="mb-1 text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.othersRecruits')}}</div>
                             <Info class="mb-2">{{__('translate.othersRecruitsInfo')}}</Info>
                             <multiselect
@@ -97,7 +104,7 @@ const generateUrl = computed(() => {
                                 label="name"
                                 @update:modelValue="dispatchAction"
                                 :placeholder="__('translate.placeholder')"
-                                v-model="selectedOtherRecruits" :options="optionsOtherRecruits">
+                                v-model="props.project.other_recruits" :options="props.otherRecruits">
                                 <template #noResult>
                                     <span>{{__('translate.noOptions')}}</span>
                                 </template>
@@ -120,9 +127,31 @@ const generateUrl = computed(() => {
                                     <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.subcategory')}}:</span>
                                     <span class="text-md font-semibold">{{props.project.categorySub?.allTranslations.title[usePage().props.language]}}</span>
                                 </li>
-                                <li class="text-md mb-1">
-                                    <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.recruit')}}:</span>
-                                    <Link class="text-md font-semibold underline" :href="route('recruits.edit',props.project.recruit.id)">{{props.project.recruit?.name}}</Link>
+                                <li class="text-md mb-1 flex justify-between items-center flex-wrap">
+                                    <div>
+                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.recruit')}}:</span>
+                                        <Link class="text-md font-semibold underline" :href="route('recruits.edit',props.project.recruit.id)">{{props.project.recruit?.name}}</Link>
+                                    </div>
+                                    <button class="underline text-sm" @click="showChangeRecruit = !showChangeRecruit">{{showChangeRecruit ? 'Anuluj' : 'Zmień'}}</button>
+                                    <div v-if="showChangeRecruit" class="w-full my-3">
+                                        <multiselect
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            track-by="name"
+                                            :multiple="false"
+                                            label="name"
+                                            @update:modelValue="dispatchActionSingleRecruit"
+                                            :placeholder="__('translate.placeholder')"
+                                            :options="props.otherRecruits">
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                            <template #noOptions>
+                                                <span>{{__('translate.noResult')}}</span>
+                                            </template>
+                                        </multiselect>
+                                    </div>
                                 </li>
                                 <li class="text-md mb-1">
                                     <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.profession')}}:</span>
@@ -314,16 +343,13 @@ const generateUrl = computed(() => {
                         <template #title>
                             {{__('translate.questionDelete')}} - {{__('translate.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
                         </template>
-
                         <template #content>
                             {{__('translate.questionDeleteConfirm')}} - {{__('translate.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
                         </template>
-
                         <template #footer>
                             <SecondaryButton @click.native="confirmCancelProject = false">
                                 {{__('translate.cancel')}}
                             </SecondaryButton>
-
                             <DangerButton class="ml-2" @click.native="DeleteProject">
                                 {{__('translate.delete')}}
                             </DangerButton>

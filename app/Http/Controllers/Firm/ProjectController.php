@@ -95,4 +95,24 @@ class ProjectController extends Controller
             'other_recruits'=>request()->others
         ]);
     }
+
+    public function changeRecruit(Project $project)
+    {
+        Gate::authorize('update',$project);
+        if(isset(request()->recruit['value'])){
+
+            $array1 = $project->other_recruits;
+            $array2 = request()->recruit;
+
+            $array1 = array_values(array_filter($array1, function ($item) use ($array2) {
+                return $item["value"] !== $array2["value"];
+            }));
+
+
+            $project->update([
+                'recruiter_id'=>request()->recruit['value'],
+                'other_recruits'=>$array1,
+            ]);
+        }
+    }
 }
