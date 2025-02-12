@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Tighten\Ziggy\Ziggy;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -37,13 +39,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
         return array_merge(parent::share($request), [
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'permissionsCan' => function () {
+                return request()->user() ? request()->user()->getPermissionsViaRoles()->map(function(Permission $permission){
+                    return [
+                        $permission['name'] => in_array($permission['name'], request()->user()->permissions->pluck('name')->toArray())
+                    ];
+                })->collapse()->all() : null;
+            },
             'roles' => fn () => request()->user() ? request()->user()->getRoleNames(): NULL,
-            'permissions' => fn () => request()->user() && request()->user()->hasRole('firm') ? Permission::all()->pluck('name'): NULL,
+//            'permissionsRecruit' => fn () => request()->user() && request()->user()->hasRole('firm') ? Role::findByName('recruit','web')->permissions()->pluck('name'): NULL,
             'language' => app()->getLocale(),
             'currentCountry'=>getLocalBrowserLang(),
             'languages' => LanguageResource::collection(Lang::cases()),

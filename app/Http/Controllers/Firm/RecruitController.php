@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RecruitController extends Controller
 {
@@ -44,7 +45,7 @@ class RecruitController extends Controller
     public function create()
     {
         Gate::authorize('create',User::class);
-        $permissions = PermissionsResource::collection(Permission::all());
+        $permissions = PermissionsResource::collection(Role::findByName('recruit','web')->permissions);
         return inertia()->render('Recruits/Create',['permissions'=>$permissions]);
     }
 
@@ -86,7 +87,7 @@ class RecruitController extends Controller
     {
         $recruit->load('permissions:id,name,trans');
         Gate::authorize('update',auth()->user());
-        $permissions = PermissionsResource::collection(Permission::all());
+        $permissions = PermissionsResource::collection(Role::findByName('recruit','web')->permissions);
         $locale = app()->getLocale();
         return inertia()->render('Recruits/Edit',['permissions'=>$permissions,'recruit'=>$recruit,'locale'=>$locale]);
     }

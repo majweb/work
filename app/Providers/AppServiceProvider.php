@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
