@@ -11,8 +11,8 @@ class MonthlyUsersChart
         return (new OriginalPieChart)
             ->setTitle('Rekruterzy')
             ->addData([
-                \App\Models\User::whereNotNull('recruiter_from_firm_id')->whereNull('user_blocked')->count(),
-                \App\Models\User::whereNotNull('recruiter_from_firm_id')->whereNotNull('user_blocked')->count()
+                \App\Models\User::whereNotNull('recruiter_from_firm_id')->where('recruiter_from_firm_id',auth()->user()->id)->whereNull('user_blocked')->count(),
+                \App\Models\User::whereNotNull('recruiter_from_firm_id')->where('recruiter_from_firm_id',auth()->user()->id)->whereNotNull('user_blocked')->count()
             ])
             ->setHeight(200)
             ->setWidth(500)

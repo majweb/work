@@ -104,7 +104,7 @@ class RecruitController extends Controller
             'recruiter_from_firm_id' => $request->userData()['recruiter_from_firm_id'],
             'recruiter_phone' => $request->userData()['recruiter_phone'],
             'user_blocked' => $request->userData()['user_blocked'] ? now() :  NULL,
-            'password' => Hash::make($request->userData()['password']),
+            'password' => !is_null($request->userData()['password']) ? Hash::make($request->userData()['password']) : $recruit->password,
         ]);
         $per = collect($request->userData()['permissions'])->pluck('name');
         $recruit->syncPermissions($per);

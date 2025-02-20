@@ -303,4 +303,5 @@ return [
     'otherRecruitsChange'=>'Zmieniono pozostałych rekruterów.',
     'otherRecruitsChangeMain'=>'Zmieniono głównego rekrutera.',
     'adress'=>'Miejsce wykonywania zawodu',
+    'accessDenied'=>'Zablokowany dostęp'
 ];

@@ -27,9 +27,19 @@ use App\Models\WorkLoad;
 use App\Services\Helper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
-
-class ProjectController extends Controller
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+class ProjectController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('role:recruit'),
+            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
+            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
+
+        ];
+    }
     /**
      * Display a listing of the resource.
      */

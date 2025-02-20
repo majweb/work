@@ -45,7 +45,6 @@ Route::middleware([
     ]);
     Route::resource('invoices',InvoiceController::class)->middleware('role:firm')->only([
         'index', 'update'
-
     ]);
     Route::get('invoicesDownload/{invoice}',[InvoiceController::class,'downloadPDF'])->middleware('role:firm')->name('invoicesDownload');
     Route::get('ordersDownload/{order}',[OrderController::class,'downloadPDF'])->middleware('role:firm')->name('ordersDownload');
@@ -73,7 +72,7 @@ Route::middleware([
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
 
 //    RECRUIT
-    Route::resource('project-recruits',ProjectControllerRecruit::class)->middleware('role:recruit')->parameters(['project-recruits' => 'project']);
+    Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
 });
 
