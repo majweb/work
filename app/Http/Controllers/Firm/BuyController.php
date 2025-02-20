@@ -177,7 +177,7 @@ class BuyController extends Controller
             );
             Log::info('po weryfikacji');
             $user = User::where('id',$transaction->user_id)->with('firm')->first();
-            $order = Order::where('id',$transaction->order_id)->first();
+            $order = Order::where('id',$transaction->order_id)->with('user.firm')->first();
 
             if($user && $transaction && $order){
                 Log::info('w orderze');
