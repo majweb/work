@@ -96,6 +96,8 @@ class BuyController extends Controller
     public function changeToPoints(Product $product,$points)
     {
         (new BuyHelper())->createFromPoints($points,$product);
+        session()->flash('flash.banner', __('translate.exchangeSuccess').'.');
+        session()->flash('flash.bannerStyle', 'success');
         return back();
     }
 
