@@ -192,6 +192,7 @@ return [
     'getPdf' => 'Pobierz PDF',
     'filters' => 'Filtry',
     'points' => 'Punkty',
+    'pkt' => 'Pkt',
     'extra' => 'Dodatkowe',
     'invoiceAmount' => 'Kwota faktury',
     'orderNumber' => 'Numer zamówienia',

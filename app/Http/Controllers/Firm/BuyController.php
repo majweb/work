@@ -196,23 +196,6 @@ class BuyController extends Controller
     }
 
 
-//        if (Session::has('foundation')) {
-//            $foundation = Session::get('foundation');
-//        }
-//        $cartItems = Cart::content();
-//        $subtotal = Cart::subtotal();
-//        DB::transaction(function () use ($cartItems,$subtotal,$buyHelper,$foundation){
-//            $order = $buyHelper->createOrder($subtotal,$foundation);
-//            $buyHelper->generateOrderPdf($order,$cartItems);
-//            $buyHelper->addOrderItemsAndClearCartwithUpdatePoints($cartItems,$order);
-//            $buyHelper->generateInvoiceAndPdf($order);
-//
-//            session()->flash('flash.banner', 'dodano punkty');
-//            session()->flash('flash.bannerStyle', 'success');
-//        }, 3);
-//            return to_route('buy.successView');
-//    }
-
     public function successView()
     {
         return inertia()->render('Buy/Success',[
