@@ -113,11 +113,11 @@ class BuyController extends Controller
 
             $sessionId = uniqid() . '-' . time();
             $subtotal = Cart::subtotal();
-Log::info(((float) str_replace(',', '', $subtotal)) .'z zamóienia');
+            Log::info(((float) str_replace(',', '', $subtotal) * 100) .'z zamóienia');
 
             $register = $this->przelewy24->transactions()->register(
                 sessionId: $sessionId,
-                amount: (float) str_replace(',', '', $subtotal),
+                amount: (float) str_replace(',', '', $subtotal) * 100,
                 description: "Kredyty za {$subtotal}",
                 email: request()->user()->email,
                 urlReturn: route('buy.successView'),
