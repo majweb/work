@@ -113,7 +113,6 @@ class BuyController extends Controller
 
             $sessionId = uniqid() . '-' . time();
             $subtotal = Cart::subtotal();
-            Log::info(((float) str_replace(',', '', $subtotal) * 100) .'z zamóienia');
 
             $register = $this->przelewy24->transactions()->register(
                 sessionId: $sessionId,
@@ -156,8 +155,8 @@ class BuyController extends Controller
         $transaction = Transaction::where('session_id', $webhook->sessionId())->first();
         $isSignValid = $webhook->isSignValid(
             sessionId: $transaction->session_id,
-            amount: $transaction->price,
-            originAmount: $transaction->price,
+            amount: $transaction->price * 100,
+            originAmount: $transaction->price * 100,
             orderId: $webhook->orderId(),
             methodId: $webhook->methodId(),
             statement: $webhook->statement(),
@@ -174,7 +173,7 @@ class BuyController extends Controller
             $this->przelewy24->transactions()->verify(
                 $transaction->session_id,
                 $webhook->orderId(),
-                $transaction->price,
+                $transaction->price * 100,
             );
             Log::info('po weryfikacji');
             $user = User::where('id',$transaction->user_id)->with('firm')->first();
