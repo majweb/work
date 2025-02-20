@@ -30,9 +30,6 @@ onMounted(() => {
                                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                                     <div class="flex flex-col justify-center items-center">
                                         <h2 class="text-xl font-semibold my-2">{{__('translate.orderPay')}}</h2>
-                                        {{usePage().props.auth.user}}
-                                        {{usePage().props.auth.user?.firm?.points}}
-                                        ssss
                                         <p class="text-md mb-3">{{__('translate.give')}} <span class="font-bold">{{points}}</span> {{__('translate.points')}}</p>
                                         <Link :href="route('invoices.index')" class="mb-2 inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">{{__('translate.Invoices')}}</Link>
                                         <Link :href="route('orders.index')" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">{{__('translate.Orders')}}</Link>
