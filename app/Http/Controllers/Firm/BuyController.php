@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use App\Services\BuyHelper;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Przelewy24\Exceptions\Przelewy24Exception;
 use Przelewy24\Przelewy24;
@@ -147,6 +148,7 @@ class BuyController extends Controller
 
     public function webhook(Request $request,BuyHelper $buyHelper)
     {
+        Log::info('Weszłem');
 
         $webhook = $this->przelewy24->handleWebhook(
             $request->post()
