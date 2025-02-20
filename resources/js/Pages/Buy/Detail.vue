@@ -31,6 +31,7 @@ let currency  = computed(()=>{
 const dispatchAction = () => {
     router.post(route('buy.addFoundation', { foundation: foundation.value }),null,{ preserveScroll: true });
 }
+const csrf_token = computed(() => usePage().props.csrf_token);
 
 </script>
 <template>
@@ -107,7 +108,11 @@ const dispatchAction = () => {
                                                 </dl>
                                             </div>
                                         </div>
-                                        <Link v-if="countCart > 0" :href="(!foundation ? route('buy.detail') : route('buy.paymentView'))" class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" :class="{'opacity-50 cursor-default' : !foundation}">{{__('translate.pay')}}</Link>
+                                        <form v-if="countCart > 0 && foundation" :action="route('buy.order')" method="post" class="flex justify-center">
+                                            <input type="hidden" name="_token" :value="csrf_token"/>
+                                            <button class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" :class="{'opacity-50 cursor-default' : !foundation}" type="submit">{{__('translate.pay')}}</button>
+                                        </form>
+                                        <Link class="flex w-full items-center justify-center rounded-lg bg-blue-work px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-work-100 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" :class="{'opacity-50 cursor-default' : !foundation}" v-if="!foundation" :href="route('buy.index')">{{__('translate.pay')}}</Link>
                                         <div class="flex items-center justify-center gap-2">
                                             <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{__('translate.or')}} </span>
                                             <Link :href="route('buy.index')" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">

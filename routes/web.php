@@ -69,6 +69,10 @@ Route::middleware([
     Route::post('/addFoundation',[BuyController::class,'addFoundation'])->name('buy.addFoundation')->middleware('role:firm');
     Route::get('/paymentView',[BuyController::class,'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView',[BuyController::class,'successView'])->name('buy.successView')->middleware('role:firm');
+
+
+
+
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
 
 //    RECRUIT

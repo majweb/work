@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b36df34ac6d874202b39c35c2c6867fa",
+    "content-hash": "368224839114f1aa953b27919ea80f10",
     "packages": [
         {
             "name": "anayarojo/shoppingcart",
@@ -3303,6 +3303,115 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
+        },
+        {
+            "name": "mnastalski/przelewy24-laravel",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mnastalski/przelewy24-laravel.git",
+                "reference": "ac059e2511a263b9ce53f5520976f308a62ab5a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mnastalski/przelewy24-laravel/zipball/ac059e2511a263b9ce53f5520976f308a62ab5a4",
+                "reference": "ac059e2511a263b9ce53f5520976f308a62ab5a4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": ">=9.0",
+                "illuminate/support": ">=9.0",
+                "mnastalski/przelewy24-php": "^1.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Przelewy24\\Providers\\Przelewy24ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Przelewy24\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Nastalski",
+                    "homepage": "https://nastalski.pl"
+                }
+            ],
+            "description": "Przelewy24 Laravel library",
+            "homepage": "https://github.com/mnastalski/przelewy24-laravel",
+            "keywords": [
+                "Przelewy24",
+                "laravel",
+                "payments"
+            ],
+            "support": {
+                "issues": "https://github.com/mnastalski/przelewy24-laravel/issues",
+                "source": "https://github.com/mnastalski/przelewy24-laravel/tree/v1.0.0"
+            },
+            "time": "2023-07-06T17:35:31+00:00"
+        },
+        {
+            "name": "mnastalski/przelewy24-php",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mnastalski/przelewy24-php.git",
+                "reference": "757331f010eb7ee3fb99a19bf1dbdb9e12564c94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mnastalski/przelewy24-php/zipball/757331f010eb7ee3fb99a19bf1dbdb9e12564c94",
+                "reference": "757331f010eb7ee3fb99a19bf1dbdb9e12564c94",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.6",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.34",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Przelewy24\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Nastalski",
+                    "homepage": "https://nastalski.pl"
+                }
+            ],
+            "description": "Przelewy24 PHP library",
+            "homepage": "https://github.com/mnastalski/przelewy24-php",
+            "keywords": [
+                "Przelewy24",
+                "payments"
+            ],
+            "support": {
+                "issues": "https://github.com/mnastalski/przelewy24-php/issues",
+                "source": "https://github.com/mnastalski/przelewy24-php/tree/v1.4.0"
+            },
+            "time": "2024-07-13T11:53:33+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

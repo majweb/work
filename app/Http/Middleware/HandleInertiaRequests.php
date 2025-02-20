@@ -68,6 +68,7 @@ class HandleInertiaRequests extends Middleware
                         });
                 });
             },
+            'csrf_token'=>csrf_token(),
             'cart' => Cart::content(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),

@@ -30,15 +30,11 @@ class BuyHelper
     public function createOrder($subtotal,$foundation)
     {
        $order = Auth::user()->orders()->create([
-            'payment_type' => 'Transfer',
+            'payment_type' => 'P24',
             'amount' => $subtotal,
             'paid_date' => Carbon::now(),
             'foundation_id'=>$foundation
         ]);
-        if (Session::has('foundation')) {
-            Session::forget('foundation');
-        }
-
         return $order;
     }
 
@@ -105,7 +101,7 @@ class BuyHelper
      * @param $order
      * @return string|void
      */
-    public function addOrderItemsAndClearCartwithUpdatePoints($cartItems, $order)
+    public function addOrderItemsClearCartResetFundation($cartItems, $order)
     {
         try {
             $elements = [];
@@ -118,17 +114,18 @@ class BuyHelper
                     ];
                 }
             }
-
-            $collectPoints = collect($elements);
             $order->orderProducts()->createMany($elements);
-            Auth::user()->firm()->increment('points', $collectPoints->sum('points'));
             Cart::destroy();
+            if (Session::has('foundation')) {
+                Session::forget('foundation');
+            }
         } catch (Exception $e) {
             Log::info($e->getMessage());
             return $e->getMessage();
         }
 
     }
+
 
     /**
      * @param $points
