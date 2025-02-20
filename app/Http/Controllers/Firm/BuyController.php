@@ -156,7 +156,7 @@ class BuyController extends Controller
         $isSignValid = $webhook->isSignValid(
             sessionId: $transaction->session_id,
             amount: $transaction->price * 100,
-            originAmount: $transaction->price,
+            originAmount: $transaction->price * 100,
             orderId: $webhook->orderId(),
             methodId: $webhook->methodId(),
             statement: $webhook->statement(),
