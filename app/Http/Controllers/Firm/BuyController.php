@@ -161,7 +161,7 @@ class BuyController extends Controller
             methodId: $webhook->methodId(),
             statement: $webhook->statement(),
         );
-        Log::info('po $isSignValid',$transaction->price);
+        Log::info('po $isSignValid');
 
         if (!$isSignValid) {
             Log::info('bład $isSignValid');
