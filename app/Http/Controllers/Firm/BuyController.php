@@ -127,7 +127,7 @@ class BuyController extends Controller
 
             Transaction::create([
                 'status' => 'pending',
-                'price' => str_replace(',', '', $subtotal) * 100,
+                'price' => str_replace(',', '', $subtotal),
                 'session_id' => $sessionId,
                 'credits' => $totalPoints,
                 'user_id' => request()->user()->id,
@@ -155,8 +155,8 @@ class BuyController extends Controller
         $transaction = Transaction::where('session_id', $webhook->sessionId())->first();
         $isSignValid = $webhook->isSignValid(
             sessionId: $transaction->session_id,
-            amount: $transaction->price * 100,
-            originAmount: $transaction->price * 100,
+            amount: $transaction->price,
+            originAmount: $transaction->price,
             orderId: $webhook->orderId(),
             methodId: $webhook->methodId(),
             statement: $webhook->statement(),
@@ -171,7 +171,7 @@ class BuyController extends Controller
             $this->przelewy24->transactions()->verify(
                 $transaction->session_id,
                 $webhook->orderId(),
-                $transaction->price * 100,
+                $transaction->price,
             );
             $user = User::where('id',$transaction->user_id)->with('firm')->first();
             $order = Order::where('id',$transaction->order_id)->first();
