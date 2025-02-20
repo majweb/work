@@ -113,7 +113,7 @@ class BuyController extends Controller
 
             $sessionId = uniqid() . '-' . time();
             $subtotal = Cart::subtotal();
-Log::info((float) str_replace(',', '', $subtotal) * 100,'z zamóienia');
+Log::info(((float) str_replace(',', '', $subtotal) * 100) .'z zamóienia');
 
             $register = $this->przelewy24->transactions()->register(
                 sessionId: $sessionId,
