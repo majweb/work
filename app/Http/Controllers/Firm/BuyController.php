@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Firm;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BuyResource;
 use App\Models\Foundation;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Services\BuyHelper;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -161,8 +163,6 @@ class BuyController extends Controller
             methodId: $webhook->methodId(),
             statement: $webhook->statement(),
         );
-        Log::info('po $isSignValid');
-
         if (!$isSignValid) {
             Log::info('bład $isSignValid');
             session()->flash('flash.banner', "Błąd płatności.Spróbuj jeszcze raz.");
