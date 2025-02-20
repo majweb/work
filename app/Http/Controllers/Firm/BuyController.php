@@ -189,11 +189,11 @@ class BuyController extends Controller
 //                    Mail::to(env('MAIL_ADMIN'))->queue(new NewBuy($transaction->user,$transaction));
                 }
             }
-        } catch (Przelewy24Exception) {
-            Log::info('blad');
+        } catch (Przelewy24Exception $exception) {
+            Log::info('blad'.$exception->getMessage());
             session()->flash('flash.banner', "Błąd płatności.Spróbuj jeszcze raz.");
             session()->flash('flash.bannerStyle', 'danger');
-            return to_route('firm.buyCredits.index');
+            return to_route('buy.paymentView');
         }
         return response()->noContent();
     }
