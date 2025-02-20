@@ -207,8 +207,8 @@
             </td>
             <td></td>
             <td></td>
-            <td style="border-right:none;text-align:center;">{{$order->amount}} {{Auth::user()->firm->currency}}</td>
-            <td style="border-right:none;text-align:center;">{{$order->amount}} {{Auth::user()->firm->currency}}</td>
+            <td style="border-right:none;text-align:center;">{{$order->amount}} {{$order->user->firm->currency}}</td>
+            <td style="border-right:none;text-align:center;">{{$order->amount}} {{$order->user->firm->currency}}</td>
         </tr>
         <tr class="tr-result" style="border-left:none;">
             <td colspan="2" style="text-align:right;padding-right:20px;border:none;color:white;"><span>Total amount<br></span><span>Notes:</span></td>
