@@ -216,6 +216,7 @@ class BuyController extends Controller
     public function successView()
     {
         $points = auth()->user()->firm->points;
+        dd($points);
         return inertia()->render('Buy/Success',compact('points'));
     }
 
