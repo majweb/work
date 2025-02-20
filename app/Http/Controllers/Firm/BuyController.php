@@ -164,6 +164,7 @@ class BuyController extends Controller
         Log::info('po $isSignValid');
 
         if (!$isSignValid) {
+            Log::info('bład $isSignValid');
             session()->flash('flash.banner', "Błąd płatności.Spróbuj jeszcze raz.");
             session()->flash('flash.bannerStyle', 'danger');
             return to_route('buy.paymentView');
