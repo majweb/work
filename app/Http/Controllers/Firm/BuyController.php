@@ -155,7 +155,7 @@ class BuyController extends Controller
         $transaction = Transaction::where('session_id', $webhook->sessionId())->first();
         $isSignValid = $webhook->isSignValid(
             sessionId: $transaction->session_id,
-            amount: $transaction->price,
+            amount: $transaction->price * 100,
             originAmount: $transaction->price,
             orderId: $webhook->orderId(),
             methodId: $webhook->methodId(),
