@@ -3,9 +3,6 @@ import {Link, usePage} from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ConfettiExplosion from "vue-confetti-explosion";
 import {computed} from "vue";
-const props = defineProps({
-    points: String,
-});
 
 let points  = computed(()=>{
     return usePage().props.auth.user?.firm?.points;
@@ -29,6 +26,7 @@ let points  = computed(()=>{
                                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                                     <div class="flex flex-col justify-center items-center">
                                         <h2 class="text-xl font-semibold my-2">{{__('translate.orderPay')}}</h2>
+                                        {{usePage().props.auth.user}}
                                         {{usePage().props.auth.user?.firm?.points}}
                                         ssss
                                         <p class="text-md mb-3">{{__('translate.give')}} <span class="font-bold">{{points}}</span> {{__('translate.points')}}</p>
