@@ -2,10 +2,14 @@
 import {Link, usePage} from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ConfettiExplosion from "vue-confetti-explosion";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
+
 
 let points  = computed(()=>{
     return usePage().props.auth.user?.firm?.points;
+});
+onMounted(() => {
+    router.reload({ only: ['auth'] }); // Odświeży tylko dane w obiekcie `auth`
 });
 
 </script>

@@ -215,7 +215,11 @@ class BuyController extends Controller
 
     public function successView()
     {
-        return inertia()->render('Buy/Success');
+        return inertia()->render('Buy/Success',[
+            'auth' => [
+                'user' => auth()->user()->load('firm')
+            ]
+        ]);
     }
 
     /**
