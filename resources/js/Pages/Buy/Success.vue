@@ -1,8 +1,8 @@
 <script setup>
-import {Link, usePage} from '@inertiajs/vue3';
+import {computed, onMounted} from "vue";
+import {Link, usePage, router} from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ConfettiExplosion from "vue-confetti-explosion";
-import {computed, onMounted} from "vue";
 
 
 let points  = computed(()=>{
