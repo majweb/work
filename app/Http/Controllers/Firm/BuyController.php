@@ -182,8 +182,8 @@ class BuyController extends Controller
                 if($transaction->status === 'pending'){
                     $transaction->status = 'paid';
                     $transaction->save();
-                    $buyHelper->generateInvoiceAndPdf($order);
                     $user->firm()->increment('points', $transaction->credits);
+                    $buyHelper->generateInvoiceAndPdf($order);
 //                    Mail::to(env('MAIL_ADMIN'))->queue(new NewBuy($transaction->user,$transaction));
                 }
             }
@@ -215,9 +215,7 @@ class BuyController extends Controller
 
     public function successView()
     {
-        $points = auth()->user()->firm->points;
-        dd($points);
-        return inertia()->render('Buy/Success',compact('points'));
+        return inertia()->render('Buy/Success');
     }
 
     /**
