@@ -43,6 +43,7 @@ const submitForm = () => {
     if (formRef.value) {
         formRef.value.submit();
     }
+    setTimeout(() => (clicked.value = false), 3000); // Resetowanie `clicked` po 3s
 };
 </script>
 <template>
