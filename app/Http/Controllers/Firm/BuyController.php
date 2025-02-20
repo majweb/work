@@ -148,8 +148,6 @@ class BuyController extends Controller
 
     public function webhook(Request $request,BuyHelper $buyHelper)
     {
-        Log::info('Weszłem');
-
         $webhook = $this->przelewy24->handleWebhook(
             $request->post()
         );
@@ -163,6 +161,7 @@ class BuyController extends Controller
             methodId: $webhook->methodId(),
             statement: $webhook->statement(),
         );
+        Log::info('po $isSignValid');
 
         if (!$isSignValid) {
             session()->flash('flash.banner', "Błąd płatności.Spróbuj jeszcze raz.");
@@ -175,10 +174,12 @@ class BuyController extends Controller
                 $webhook->orderId(),
                 $transaction->price,
             );
+            Log::info('po weryfikacji');
             $user = User::where('id',$transaction->user_id)->with('firm')->first();
             $order = Order::where('id',$transaction->order_id)->first();
 
             if($user && $transaction && $order){
+                Log::info('w orderze');
                 if($transaction->status === 'pending'){
                     $transaction->status = 'paid';
                     $transaction->save();
@@ -188,6 +189,7 @@ class BuyController extends Controller
                 }
             }
         } catch (Przelewy24Exception) {
+            Log::info('blad');
             session()->flash('flash.banner', "Błąd płatności.Spróbuj jeszcze raz.");
             session()->flash('flash.bannerStyle', 'danger');
             return to_route('firm.buyCredits.index');
