@@ -12,7 +12,6 @@ createServer(page =>
         page,
         render: renderToString,
         title: (title) => `${title} - ${appName}`,
-
         resolve: name => {
             const pages = import.meta.glob('./Pages/**/*.vue', {eager: true})
             return pages[`./Pages/${name}.vue`]
@@ -22,7 +21,6 @@ createServer(page =>
                 render: () => h(App, props),
             });
             app.config.globalProperties.__ = __;
-
             app.use(plugin)
             app.use(ZiggyVue, {
                 ...page.props.ziggy,

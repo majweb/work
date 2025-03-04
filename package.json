@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@easepick/bundle": "^1.2.1",
+        "@headlessui/vue": "^1.7.23",
         "@spatie/media-library-pro-styles": "^1.4.0",
         "@spatie/media-library-pro-vue3-attachment": "^1.4.0",
         "@spatie/media-library-pro-vue3-collection": "^1.4.0",

@@ -42,6 +42,7 @@ class CreateUserFromProvider implements CreatesUserFromProvider
                 $role = Role::where('name', 'worker')->first();
                 if($user && $role){
                     $user->assignRole($role);
+                    $user->workerDetail()->create();
                 }
                 if (Socialstream::hasProviderAvatarsFeature() && $providerUser->getAvatar()) {
                     $user->setProfilePhotoFromUrl($providerUser->getAvatar());

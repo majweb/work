@@ -6,6 +6,7 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Response\CustomLoginResponse;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -17,6 +18,8 @@ use JoelButcher\Socialstream\Contracts\ResolvesSocialiteUsers;
 use JoelButcher\Socialstream\Socialstream;
 use Laravel\Fortify\Fortify;
 use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Illuminate\Support\Facades\Session;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -25,7 +28,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(LoginResponse::class, CustomLoginResponse::class);
     }
 
     /**
@@ -33,6 +36,12 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Fortify::loginView(function (Request $request) {
+            if ($request->has('projectToRedirect')) {
+                Session::put('redirect_project_after_login',$request->query('projectToRedirect'));
+            }
+            return inertia('Auth/Login');
+        });
         Fortify::authenticateUsing(function (Request $request) {
             $user = null;
             $provider = $request->route('provider');

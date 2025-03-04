@@ -176,6 +176,7 @@ return [
             'required' => 'Treść sekcji wymagany',
             'max' => 'Tytuł sekcji musi zawierać maksymalnie 2000 znaków',
         ],
+
     ],
 
     /*

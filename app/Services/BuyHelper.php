@@ -138,7 +138,6 @@ class BuyHelper
             if (Auth::user()->firm->points > $points) {
                     $now = now();
                     $lastChange = ChangeProduct::where('user_id',Auth::user()->id)->where('product_id',$product->id)->first();
-
                 if($product->id != 10){
                     if($lastChange){
                         $end = $lastChange->end->addDays(30);

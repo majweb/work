@@ -37,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share([
             'auth.user.firm' => function () {
                 return Auth::user() && Auth::user()->hasRole('firm')  ? Auth::user()->firm : null;
+            },
+            'auth.user.workerDetail' => function () {
+                return Auth::user() && Auth::user()->hasRole('worker')  ? Auth::user()->workerDetail : null;
             }
         ]);
 

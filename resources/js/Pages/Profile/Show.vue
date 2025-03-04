@@ -12,6 +12,7 @@ import UpdateProfileFirmForm from "@/Pages/Profile/Partials/UpdateProfileFirmFor
 import {usePermission} from "@/Composables/usePermission.js";
 import UpdateProfileAboutFirmForm from "@/Pages/Profile/Partials/UpdateProfileAboutFirmForm.vue";
 import UpdateBuyForm from "@/Pages/Profile/Partials/UpdateBuyForm.vue";
+import UpdateProfileWorkerForm from "@/Pages/Profile/Partials/UpdateProfileWorkerForm.vue";
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -36,7 +37,10 @@ const {hasRole} = usePermission();
                 <div v-if="$page.props.jetstream.canUpdateProfileInformation">
                     <UpdateProfileInformationForm :user="$page.props.auth.user"/>
                 </div>
-
+                <div v-if="hasRole('worker')">
+                    <SectionBorder/>
+                    <UpdateProfileWorkerForm :user="$page.props.auth.user" class="mt-10 sm:mt-0"/>
+                </div>
                 <div v-if="hasRole('firm')">
                     <SectionBorder/>
                     <UpdateProfileFirmForm :user="$page.props.auth.user" class="mt-10 sm:mt-0"/>

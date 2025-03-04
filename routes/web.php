@@ -14,6 +14,7 @@ use App\Http\Controllers\Firm\ProjectController;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
 use App\Http\Controllers\Firm\StatisticController;
 use App\Http\Controllers\Firm\RecruitController;
+use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
 use App\Models\Page;
 use Illuminate\Support\Facades\Route;
@@ -69,15 +70,16 @@ Route::middleware([
     Route::post('/addFoundation',[BuyController::class,'addFoundation'])->name('buy.addFoundation')->middleware('role:firm');
     Route::get('/paymentView',[BuyController::class,'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView',[BuyController::class,'successView'])->name('buy.successView')->middleware('role:firm');
-
-
-
-
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
 
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
+//    WORKER
+    Route::put('workerForm',WorkerDetailController::class)->middleware('role:worker')->name('worker.update.form');
+
+
+
 });
 
 

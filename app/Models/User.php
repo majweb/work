@@ -94,6 +94,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Firm::class);
     }
 
+    public function workerDetail(): HasOne
+    {
+        return $this->hasOne(WorkerDetail::class);
+    }
+
     public function changeProducts(): HasMany
     {
         return $this->hasMany(ChangeProduct::class);
