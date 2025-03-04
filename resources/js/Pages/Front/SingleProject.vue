@@ -121,7 +121,7 @@ const closeModal = () => {
             </div>
         </div>
     </FrontLayout>
-    <DialogModal :show="showModal" @close="showModal = false">
+    <DialogModal :show="showModal" @close="showModal = false" max-width="2xl">
         <template #title>
             <div v-if="!user">
                 Aby aplikować na ogłoszenia należy najpierw się zalogować.
@@ -131,7 +131,7 @@ const closeModal = () => {
             </div>
         </template>
         <template #content>
-            <div class="flex items-center space-x-2 justify-center">
+            <div class="flex flex-col items-center space-x-2 justify-center">
                 <SecondaryButton @click="openModalSecond" v-if="!user">
                     Aplikuj bez logowania
                 </SecondaryButton>
