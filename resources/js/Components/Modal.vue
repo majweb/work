@@ -65,10 +65,9 @@ const maxWidthClass = computed(() => {
 </script>
 
 <template>
-    <dialog class="z-50 m-0 min-h-full min-w-full overflow-hiddsen bg-transparent backdrop:bg-transparent" ref="dialog">
-            <div class="absolute inset-0 overflow-y-scroll px-4 py-6 sm:px-0 z-50 flex justify-center items-center" scroll-region>
-
-            <transition
+    <dialog class="z-50 m-0 min-h-full min-w-full overflow-y-scroll bg-transparent backdrop:bg-transparent" ref="dialog">
+                <div class="flex min-h-full inset-0  px-4 py-6 sm:px-0 z-50 flex justify-center items-center" scroll-region>
+                <transition
                 enter-active-class="ease-out duration-300"
                 enter-from-class="opacity-0"
                 enter-to-class="opacity-100"
@@ -76,7 +75,7 @@ const maxWidthClass = computed(() => {
                 leave-from-class="opacity-100"
                 leave-to-class="opacity-0"
             >
-                <div v-show="show" class="fixed inset-0 transform transition-all" @click="close">
+                <div v-show="show" class="fixed inset-0 transform transition-all overflow-y-auto pointer-events-none" @click="close">
                     <div class="absolute inset-0 bg-gray-500 opacity-75" />
                 </div>
             </transition>
