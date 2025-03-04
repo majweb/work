@@ -121,23 +121,23 @@ const closeModal = () => {
             </div>
         </div>
     </FrontLayout>
-    <DialogModal :show="showModal" @close="showModal = false" max-width="2xl">
+    <DialogModal :show="showModal" @close="showModal = false">
         <template #title>
             <div v-if="!user">
-                Aby aplikować na ogłoszenia należy najpierw się zalogować.
+                {{ __('translate.applyWithoutLoginDesc') }}
             </div>
             <div v-else>
-                Jesteś zalogowany jako: <strong>{{ user?.name }}</strong>
+                {{ __('translate.youLoginAs') }} : <strong>{{ user?.name }}</strong>
             </div>
         </template>
         <template #content>
-            <div class="flex flex-col items-center space-x-2 justify-center">
+            <div class="flex flex-col items-center space-x-2 justify-center gap-3">
                 <SecondaryButton @click="openModalSecond" v-if="!user">
-                    Aplikuj bez logowania
+                    {{ __('translate.applyWithoutLogin') }}
                 </SecondaryButton>
                 <Link v-if="!user"
                       class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150"
-                      :href="route('login',{ projectToRedirect: project.id })">Logowanie
+                      :href="route('login',{ projectToRedirect: project.id })">{{ __('translate.login') }}
                 </Link>
                 <SecondaryButton v-if="user && hasRole('worker')"
                       class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150"

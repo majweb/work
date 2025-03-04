@@ -21,10 +21,6 @@ defineProps({
             <div class="flex items-center justify-center">
                 <ApplicationLogo class="block h-auto w-auto"/>
             </div>
-            <h2>Moja mama</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, quidem!
-            </p>
             {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}
         </main>
     </FrontLayout>

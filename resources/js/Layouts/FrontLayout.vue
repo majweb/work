@@ -73,11 +73,6 @@ const sortLangs = computed(() => {
                         <!--                        LANGS-->
                         <nav v-if="$page.props.canLogin" class="mx-3 flex flex-1 justify-end">
                         <div class="-mx-3 flex w-full lg:w-2/4 justify-end pr-10">
-<!--                                <select name="language" id="language" @change="router.post(route('front.language.store', { language: $event.target.value }))" class="border-none focus:ring-0 pr-10 bg-transparent">-->
-<!--                                    <option :value="language.value" v-for="language in sortLangs" :key="language.value" :selected="language.value === $page.props.language">-->
-<!--                                        {{ language.label }}-->
-<!--                                    </option>-->
-<!--                                </select>-->
                                 <multiselect
                                     :selectLabel="__('translate.selectLabel')"
                                     :selectedLabel="__('translate.selectedLabel')"
@@ -98,33 +93,45 @@ const sortLangs = computed(() => {
                                     </template>
                                 </multiselect>
                         </div>
-                            <button v-if="usePage().props.currentCountry != usePage().props.language" @click="resetLang(usePage().props.currentCountry)" class="underline">{{usePage().props.currentCountry}}</button>
-                            <Link
-                                v-if="$page.props.auth.user"
-                                :href="route('dashboard')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                {{__('translate.dashboard')}}
-                            </Link>
+                        <button v-if="usePage().props.currentCountry != usePage().props.language" @click="resetLang(usePage().props.currentCountry)" class="underline">{{usePage().props.currentCountry}}</button>
+                        <Link
+                            v-if="$page.props.auth.user"
+                            :href="route('dashboard')"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        >
+                            {{__('translate.dashboard')}}
+                        </Link>
 
                             <template v-else>
-                                <Link
-                                    :href="route('login')"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    {{__('translate.login')}}
-                                </Link>
+                                <div class="flex flex-col sm:flex-row">
+                                    <Link
+                                        :href="route('login')"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    >
+                                        {{__('translate.login')}}
+                                    </Link>
 
-                                <Link
-                                    v-if="$page.props.canRegister"
-                                    :href="route('register')"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    {{__('translate.register')}}
-                                </Link>
+                                    <Link
+                                        v-if="$page.props.canRegister"
+                                        :href="route('register')"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                    >
+                                        {{__('translate.register')}}
+                                    </Link>
+
+                                </div>
                             </template>
                         </nav>
                     </header>
+                        <!-- Navigation Links -->
+                        <div class="flex sm:hidden">
+                            <NavLink :href="route('front.articles')" :active="route().current('front.articles')">
+                                {{__('translate.articles')}}
+                            </NavLink>
+                            <NavLink :href="route('front.projects')" :active="route().current('front.projects')">
+                                {{__('translate.projects')}}
+                            </NavLink>
+                        </div>
                     <main>
                         <slot />
                     </main>

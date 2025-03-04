@@ -329,9 +329,12 @@ return [
     'captcha'=> 'Pole weryfikacja',
     'aplicationWithoutRegister'=> 'Aplikacja bez rejestracji',
     'apply'=> 'Aplikuj',
+    'applyWithoutLogin'=> 'Aplikuj bez logowania',
+    'applyWithoutLoginDesc'=> 'Aby aplikować na ogłoszenia należy najpierw się zalogować.',
     'refreshCapcha'=> 'Odśwież CAPTCHA',
     'agreements'=> 'Zgody',
     'agreementsRequired'=> 'Zaznacz wszystkie zgody',
     'agreementsSize'=> 'Wszystkie zgody muszą być zaznaczone',
     'makeAplicationNotRegister'=> 'Aplikowano bez rejestracji',
+    'youLoginAs'=> 'Jesteś zalogowany jako',
 ];
