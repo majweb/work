@@ -11,12 +11,14 @@ Route::name('front.')->group(function () {
     Route::post('language', LanguageStoreController::class)->name('language.store');
     Route::get('articles',[FrontController::class,'articles'])->name('articles');
     Route::get('projects',[FrontController::class,'projects'])->name('projects');
+    Route::post('projects/apply/{project}/second-step', [FrontController::class, 'secondStep'])->name('projects.second.step');
+    Route::get('projects/apply/{project}',[FrontController::class,'applyView'])->name('projects.applyView');
+
     Route::get('projects/{project}',[FrontController::class,'SingleProject'])->name('projects.single');
     Route::get('articles/{article}',[FrontController::class,'SingleArticle'])->name('articles.single');
     Route::get('adminCategories',CategoryController::class)->name('adminCategories');
     Route::post('makeAplication/{project}', [FrontController::class,'makeAplication'])->name('aplicationNoLogin.store');
     Route::get('generateCaptcha', [FrontController::class, 'generateCaptcha'])->name('generateCaptcha');
-    Route::get('resetSessionCapcha', [FrontController::class, 'resetSessionCapcha'])->name('resetSessionCapcha');
     Route::post('verify-captcha', [FrontController::class, 'verifyCaptcha']);
 });
 

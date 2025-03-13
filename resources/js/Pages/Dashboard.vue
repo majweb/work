@@ -4,8 +4,7 @@ import Welcome from '@/Components/Welcome.vue';
 
 const props = defineProps({
     chart: Object,
-})
-
+});
 </script>
 
 <template>

@@ -9,6 +9,7 @@ use App\Http\Resources\TypeOfContractResource;
 use App\Http\Resources\WorkingModesResource;
 use App\Http\Resources\WorkLoadResource;
 use App\Models\Category;
+use App\Models\CvType;
 use App\Models\Day;
 use App\Models\Education;
 use App\Models\Experience;
@@ -121,7 +122,9 @@ class ProjectController extends Controller implements HasMiddleware
         $currencies = Cache::rememberForever('currencies', function() {
             return config('currencyShorts');
         });
-
+        $cvs = Cache::rememberForever('cvs', function() {
+            return WorkLoadResource::collection(CvType::all());
+        });
         return inertia()->render('RecruiterPages/Project/Create',
             [
                 'categories' =>$category,
@@ -140,6 +143,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'experiences' =>$experiences,
                 'welcomes' =>$welcomes,
                 'educations' =>$educations,
+                'cvs' =>$cvs,
             ]);
     }
 
@@ -187,7 +191,8 @@ class ProjectController extends Controller implements HasMiddleware
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
             'user_id' => auth()->user()->recruiter_from_firm_id,
-            'recruiter_id' => auth()->user()->id
+            'recruiter_id' => auth()->user()->id,
+            'cv' => $request->projectData()['cv'],
         ]);
 
         if($project && count($request->projectData()['detailProjects'])){
@@ -269,6 +274,10 @@ class ProjectController extends Controller implements HasMiddleware
         $currencies = Cache::rememberForever('currencies', function() {
             return config('currencyShorts');
         });
+        $cvs = Cache::rememberForever('cvs', function() {
+            return WorkLoadResource::collection(CvType::all());
+        });
+
         return inertia()->render('RecruiterPages/Project/Edit',
             [
                 'categories' =>$category,
@@ -288,6 +297,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'welcomes' =>$welcomes,
                 'educations' =>$educations,
                 'project' =>$project,
+                'cvs' =>$cvs,
             ]);
     }
 
@@ -335,7 +345,9 @@ class ProjectController extends Controller implements HasMiddleware
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
             'user_id' => auth()->user()->recruiter_from_firm_id,
-            'recruiter_id' => auth()->user()->id
+            'recruiter_id' => auth()->user()->id,
+            'cv' => $request->projectData()['cv'],
+
         ]);
 
         if($project && count($request->projectData()['detailProjects'])){

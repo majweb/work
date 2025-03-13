@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Aplication;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -55,6 +56,12 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('project-recruiter', function (User $user, Project $project) {
             $data = collect($project->other_recruits)->pluck('value');
             return $user->id === $project->recruiter_id || $data->contains($user->id);
+        });
+
+        Gate::define('aplication-recruiter', function (User $user, Aplication $aplication) {
+            $aplication->load('project');
+            $data = collect($aplication->project->other_recruits)->pluck('value');
+            return $user->id === $aplication->recruiter_id || $data->contains($user->id);
         });
 
     }

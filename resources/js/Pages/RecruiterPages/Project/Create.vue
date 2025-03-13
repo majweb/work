@@ -34,6 +34,7 @@ const props = defineProps({
     experiences: Array,
     welcomes: Array,
     educations: Array,
+    cvs: Array,
 });
 
 const form = useForm({
@@ -70,6 +71,7 @@ const form = useForm({
     streetWorkNumber: '',
     postalWork: '',
     cityWork: '',
+    cv: [],
 });
 
 
@@ -90,6 +92,7 @@ let offerSelect = ref([]);
 let welcomeSelect = ref([]);
 let waitSelect = ref([]);
 let experienceSelect = ref([]);
+let cvSelect = ref([]);
 let educationSelect = ref(null);
 
 watch(() => form.category, async (category) => {
@@ -658,7 +661,7 @@ const clearCountry = () => {
                                         <InputError :message="form.errors.welcome" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                     <div class="mt-4" v-if="educations">
                                     <InputLabel :value="__('translate.education')" />
                                     <div v-for="education in educations" class="flex items-center mt-1">
@@ -670,9 +673,21 @@ const clearCountry = () => {
                                         <label :for="'education-'+education.id">{{education.name}}</label>
                                     </div>
                                     <InputError :message="form.errors.education" class="mt-2"/>
+                                    </div>
+                                    <div class="mt-4" v-if="cvs">
+                                        <InputLabel for="cv" :value="__('translate.cv')" />
+                                        <div v-for="(cv,index) in cvs" class="flex items-center mt-1">
+                                            <input
+                                                @change="addToArray(cvSelect,cv.name)"
+                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="checkbox" :id="'cv'+cv.id" v-model="form.cv"
+                                                :value="cv" />
+                                            <label :for="'cv'+cv.id">{{cv.name}}</label>
+                                        </div>
+                                        <InputError :message="form.errors.cv" class="mt-2"/>
+                                    </div>
                                 </div>
                                 </div>
-                            </div>
                         </template>
                         <template #actions>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

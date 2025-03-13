@@ -1,5 +1,5 @@
 <script setup>
-import {computed, ref} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {Head, Link, router, usePage} from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -16,6 +16,10 @@ defineProps({
 });
 
 const showingNavigationDropdown = ref(false);
+const currentUser = computed(() => usePage().props.auth.user);
+
+const unreadNotifications = ref(usePage().props.unreadNotifications);
+const notifications = computed(() => unreadNotifications.value);
 
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
@@ -39,6 +43,18 @@ let currency  = computed(()=>{
 const logout = () => {
     router.post(route('logout'));
 };
+
+
+onMounted(() => {
+    Echo.private(`App.Models.User.${currentUser.value.id}`)
+        .notification((notification)=>{
+            unreadNotifications.value++;
+        });
+});
+onUnmounted(()=>{
+    Echo.leave(`App.Models.User.${currentUser.value?.id}`);
+});
+
 </script>
 
 <template>
@@ -82,6 +98,11 @@ const logout = () => {
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
                                 <NavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">
                                     {{__('translate.projects')}}
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
+                                <NavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')">
+                                    {{__('translate.aplications')}}
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
@@ -173,6 +194,22 @@ const logout = () => {
                                         </div>
                                     </template>
                                 </Dropdown>
+<!--                                <Link :href="route('firm.notifications')" class="ml-3 flex isolate relative flex items-center pl-6 ml-auto">-->
+<!--                                </Link>-->
+                                    <div class="relative z-50">
+                                        <div class="relative">
+                                            <button type="button" class="border inline-flex items-center justify-center appearance-none cursor-pointer rounded text-sm font-bold focus:outline-none relative disabled:cursor-not-allowed bg-transparent border-transparent text-gray-500 dark:text-gray-400 hover:enabled:text-primary-500 h-9 w-9">
+                                        <span class="flex items-center gap-1"><span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path>
+                                            </svg>
+                                        </span>
+                                            <span v-if="notifications > 0" class="counter-noty font-black tracking-normal absolute border-[3px] border-blue dark:border-gray-800 top-[-5px] right-[15px] inline-flex items-center justify-center bg-blue-500 rounded-full text-white text-xxs p-[0px] px-1 min-w-[26px]">
+                                                {{notifications}}
+                                            </span>
+                                        </span>
+                                            </button>
+                                        </div>
+                                    </div>
                             </div>
 
 <!--                            Cart-->
@@ -211,7 +248,7 @@ const logout = () => {
                                             <div class="flex items-center justify-end mt-2 bg-blue-work-100 font-bold pr-1">
                                             {{__('translate.sum')}}: {{countTotal}} {{currency}}
                                             </div>
-                                            <Link :href="route('buy.detail')" class="flex items-center  justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">{{__('translate.cart')}}</Link>
+                                            <Link :href="route('buy.detail')" class="flex items-center  justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">{{__('translate.cart')}}</Link>
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>

@@ -112,22 +112,24 @@ const createArticle = () => {
                                 @is-ready-to-submit-change="isReadyToSubmit = $event"
                                 @change="onChange"
                                 :translations="{
-                                    fileTypeNotAllowed: 'Wybierz odpowiedni typ pliku',
-                                    tooLarge: 'Plik za duży, max',
-                                    tooSmall: 'Plik za mały, min',
-                                    tryAgain: 'Proszę spróbować jeszcze raz',
-                                    somethingWentWrong: 'CO poszło nie tak',
-                                    selectOrDrag: 'Wybierz lub przeciągnij plik',
-                                    selectOrDragMax: 'Wybierz lub upuść maksymalnie {maxItems} {file}',
-                                    file: { singular: 'plik', plural: 'plików' },
-                                    anyImage: 'Tylko obrazy',
-                                    anyVideo: 'Tylko wideo',
-                                    goBack: 'Wróć',
-                                    dropFile: 'Upuść plik, aby go przesłać',
-                                    dragHere: 'Upuść plik tutaj',
-                                    remove: 'Usuń',
-                                    name: 'Nazwa',
-                                    download: 'Pobierz',
+                                             fileTypeNotAllowed : __('translate.fileTypeNotAllowed'),
+                                                tooLarge : __('translate.tooLarge'),
+                                                tooSmall : __('translate.tooSmall'),
+                                                tryAgain : __('translate.tryAgain'),
+                                                somethingWentWrong : __('translate.somethingWentWrong'),
+                                                selectOrDrag : __('translate.selectOrDrag'),
+                                                selectOrDragMax : __('translate.selectOrDragMax'),
+                                                file : {
+                                                    singular : __('translate.file.singular'),
+                                                    plural : __('translate.file.plural'),
+                                                },
+                                                anyImage : __('translate.anyImage'),
+                                                anyVideo : __('translate.anyVideo'),
+                                                goBack : __('translate.goBack'),
+                                                dropFile : __('translate.dropFile'),
+                                                dragHere : __('translate.dragHere'),
+                                                remove : __('translate.remove'),
+                                                download : __('translate.download')
                                 }"
                             />
                             <InputError  :message="form.errors.baner" class="mt-1"/>

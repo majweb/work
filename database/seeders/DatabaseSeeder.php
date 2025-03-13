@@ -71,7 +71,8 @@ class DatabaseSeeder extends Seeder
             DetailProjectSpozywcza2Seeder::class,
             DetailProjectGastro2Seeder::class,
             DetailProjectUsluga2Seeder::class,
-            DetailProjectRolnictwo2Seeder::class
+            DetailProjectRolnictwo2Seeder::class,
+            CvTypeSeeder::class
 //             Detale
             ]);
 

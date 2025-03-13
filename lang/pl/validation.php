@@ -155,6 +155,28 @@ return [
     "user"=>"Nie znaleziono użytkownika z takim adresem e-mail.",
     "uuid"=>"Pole :attribute musi być poprawnym identyfikatorem UUID.",
 
+    'total_upload_size_too_high' => 'The maximum allowed size in total is :max',
+    'total_upload_size_too_low' => 'The minimum allowed size in total is :min',
+
+    'file_too_big' => 'This file is too big. Max allowed size :max',
+    'file_too_small' => 'This file is too small. It should at least be :min',
+
+    'incorrect_dimensions' => [
+        'width' => 'Image width must be :width pixels',
+        'height' => 'Image height must be :height pixels',
+        'both' => 'Image dimensions must be :width x :height pixels',
+    ],
+
+    'width_not_between' => 'Image width must be aaaaaaaaaaaaaaaaaaasssssssssssssssbetween :min and :max pixels',
+    'height_not_between' => 'Image height must be between :min and :max pixels',
+
+    'max_items' => 'You may only upload :max item|You may only upload :max items',
+    'min_items' => 'You must upload at least :min item|You must upload at least :min items',
+
+    'extension' => 'File must be of type :extensions',
+    'mime' => 'File must have mime type :mimes',
+    'type' => 'You must upload a file of type :values',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -175,6 +197,12 @@ return [
         'sections.*.fields.description' => [
             'required' => 'Treść sekcji wymagany',
             'max' => 'Tytuł sekcji musi zawierać maksymalnie 2000 znaków',
+        ],
+        'photo' => [
+            'width_between' => 'Szerokość zdjęcia musi mieścić się między :min a :max pikseli.',
+            'height_between' => 'Wysokość zdjęcia musi mieścić się między :min a :max pikseli.',
+            'extension' => 'Plik musi mieć rozszerzenie: :values.',
+            'max_size' => 'Plik nie może być większy niż :max KB.',
         ],
 
     ],

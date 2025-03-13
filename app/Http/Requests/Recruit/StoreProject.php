@@ -88,6 +88,11 @@ class StoreProject extends FormRequest
             'streetWorkNumber' => ['required', 'string', 'max:100'],
             'postalWork' => ['required', 'string', 'max:100'],
             'cityWork' => ['required', 'string', 'max:100'],
+            'cv' => ['required', 'array', 'min:1'],
+            'cv.*.id' => ['required','exists:App\Models\CvType,id'],
+            'cv.*.name' => ['required'],
+            'cv.*.allTranslations' => ['required'],
+
         ];
     }
 

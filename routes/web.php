@@ -12,6 +12,7 @@ use App\Http\Controllers\Firm\OrderController;
 use App\Http\Controllers\Firm\PoinstController;
 use App\Http\Controllers\Firm\ProjectController;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
+use App\Http\Controllers\Recruit\AplicationController as AplicationControllerRecruit;
 use App\Http\Controllers\Firm\StatisticController;
 use App\Http\Controllers\Firm\RecruitController;
 use App\Http\Controllers\Worker\WorkerDetailController;
@@ -74,6 +75,8 @@ Route::middleware([
 
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
+    Route::resource('project-aplications-recruits',AplicationControllerRecruit::class)->parameters(['project-aplications-recruits' => 'aplication']);
+    Route::get('project-aplications-recruits/{aplication}/recruitmentView',[AplicationControllerRecruit::class,'recruitmentView'])->name('project-aplications-recruits.recruitmentView');
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
 //    WORKER
     Route::put('workerForm',WorkerDetailController::class)->middleware('role:worker')->name('worker.update.form');

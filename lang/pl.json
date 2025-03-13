@@ -1,0 +1,13 @@
+{
+    "ApllyMail-hello":"Witaj!!",
+    "ApllyMail-applyNr":"Aplikacja nr.",
+    "ApllyMail-applySuccess":", została utworzona",
+    "ApllyMail-applyConfirm":"Aplikacja została pomyślnie złożona.",
+    "ApllyMail-applyLook":"Zobacz aplikację",
+    "ApllyMail-thanks":"Dziękujemy,",
+    "inertiaDateApply" : "Pole data urodzenia jest wymagane.",
+    "inertiaDateFormatApply" : "Format daty musi być w formacie yyyy-mm-dd",
+    "inertiaDateFormatApply120" : "Data urodzenia nie może być wcześniejsza niż 120 lat temu.",
+    "inertiaCityRequired" : "Pole miasto jest wymagane.",
+    "inertiaCityLetters" : "Miasto może zawierać tylko litery i spacje."
+}

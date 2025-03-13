@@ -6,6 +6,7 @@ use App\Casts\TimeCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
@@ -47,6 +48,7 @@ class Project extends Model
         'cityWork',
         'detailProjects',
         'other_recruits',
+        'cv',
     ];
 
     protected $casts = [
@@ -70,6 +72,7 @@ class Project extends Model
         'experience'=>'array',
         'detailProjects'=>'array',
         'welcome'=>'array',
+        'cv'=>'array',
         'other_recruits'=>'array',
         'basicSalaryFrom' => 'float',
         'basicSalaryTo' => 'float',
@@ -81,6 +84,7 @@ class Project extends Model
 
     protected $attributes = [
         'other_recruits' => '[]',
+        'cv' => '[]',
     ];
 
 
@@ -106,5 +110,10 @@ class Project extends Model
     {
         return $this->belongsToMany(DetailProject::class,'detailproject_project');
     }
+    public function aplication(): HasMany
+    {
+        return $this->hasMany(Aplication::class);
+    }
+
 
 }
