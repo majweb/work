@@ -1,13 +1,13 @@
 import './bootstrap';
 import '../css/app.css';
-
 import { createSSRApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import __ from './lang';
 import VueApexCharts from "vue3-apexcharts";
-
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -18,6 +18,7 @@ createInertiaApp({
         const app = createSSRApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .component('VueDatePicker', VueDatePicker)
             .use(VueApexCharts)
         app.config.globalProperties.__  = __
         app.mount(el);

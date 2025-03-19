@@ -198,12 +198,22 @@ return [
             'required' => 'Treść sekcji wymagany',
             'max' => 'Tytuł sekcji musi zawierać maksymalnie 2000 znaków',
         ],
-        'photo' => [
-            'width_between' => 'Szerokość zdjęcia musi mieścić się między :min a :max pikseli.',
-            'height_between' => 'Wysokość zdjęcia musi mieścić się między :min a :max pikseli.',
-            'extension' => 'Plik musi mieć rozszerzenie: :values.',
-            'max_size' => 'Plik nie może być większy niż :max KB.',
+        'experiences.*.employer' => [
+            'max' => 'Nazwa pracodawcy musi zawierać maksymalnie 100 znaków',
         ],
+        'experiences.*.city' => [
+            'max' => 'Nazwa miasta musi zawierać maksymalnie 100 znaków',
+        ],
+        'educations.*.school' => [
+            'max' => 'Nazwa szkoły musi zawierać maksymalnie 100 znaków',
+        ],
+        'educations.*.city' => [
+            'max' => 'Nazwa miasta musi zawierać maksymalnie 100 znaków',
+        ],
+        'educations.*.specialization' => [
+            'max' => 'Nazwa specjalizacji musi zawierać maksymalnie 100 znaków',
+        ],
+
 
     ],
 

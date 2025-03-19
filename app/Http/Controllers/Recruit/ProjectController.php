@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Recruit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
+use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\TypeOfContractResource;
 use App\Http\Resources\WorkingModesResource;
 use App\Http\Resources\WorkLoadResource;

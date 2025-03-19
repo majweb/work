@@ -10,7 +10,7 @@ export default defineConfig({
         }
     },
     ssr: {
-        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','vue-multiselect','axios','vue3-apexcharts'],
+        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','vue-multiselect','axios','vue3-apexcharts','vuedraggable'],
     },
     build: {
         rollupOptions: {

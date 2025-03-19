@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
 use App\Http\Resources\FrontArticleResource;
+use App\Http\Resources\MultiselectResource;
+use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Agreement;
 use App\Models\Aplication;
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\LevelEducation;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 use Mews\Captcha\Facades\Captcha;
 use Illuminate\Support\Facades\Response;
 class FrontController extends Controller
@@ -57,10 +63,14 @@ class FrontController extends Controller
             return to_route('front.projects.single',$project);
         }
 
-        $agreements = Agreement::where('type','Apply without register')->get(['description','id']);  // Pobranie zgód z bazy danych
+        $agreements = Agreement::where('type','Apply without register')->get(['description','id']);
+        $levelEducations=  Cache::rememberForever('levelEducations', function() {
+            return MultiselectWithoutDetailResource::collection(LevelEducation::get());
+        });
         return inertia()->render('Front/Apply', [
             'project' => $project,
             'agreements' => $agreements,
+            'levelEducations' => $levelEducations,
         ]);
     }
 
@@ -98,5 +108,12 @@ class FrontController extends Controller
         $captchaText = Str::random(6);
         session(['captcha_text' => $captchaText]);
         return response()->json(['captchaText' => $captchaText]);
+    }
+
+    public function getChildsCategoryWitoutDetail()
+    {
+        return Cache::rememberForever('categoriesWithoutDetail', function() {
+            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
+        });
     }
 }

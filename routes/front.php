@@ -20,6 +20,8 @@ Route::name('front.')->group(function () {
     Route::post('makeAplication/{project}', [FrontController::class,'makeAplication'])->name('aplicationNoLogin.store');
     Route::get('generateCaptcha', [FrontController::class, 'generateCaptcha'])->name('generateCaptcha');
     Route::post('verify-captcha', [FrontController::class, 'verifyCaptcha']);
+    Route::get('getChildsCategoryWitoutDetail',[FrontController::class,'getChildsCategoryWitoutDetail'])->name('getChildsCategoryWitoutDetail');
+
 });
 
 

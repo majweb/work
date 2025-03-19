@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             FundationSeeder::class,
             AgreementSeeder::class,
+            LevelEducationSeeder::class,
 
             // Detale
             DetailProjectHandelSeeder::class,
