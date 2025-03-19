@@ -9,7 +9,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import {MediaLibraryCollection} from '@spatie/media-library-pro-vue3-collection';
 import {MediaLibraryAttachment} from '@spatie/media-library-pro-vue3-attachment';
 import {usePermission} from "@/Composables/usePermission.js";
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable/src/vuedraggable'
 import DangerButton from "@/Components/DangerButton.vue";
 import Multiselect from 'vue-multiselect'
 import Checkbox from "@/Components/Checkbox.vue";

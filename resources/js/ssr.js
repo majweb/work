@@ -4,7 +4,8 @@ import {renderToString} from '@vue/server-renderer'
 import {createSSRApp, h} from 'vue'
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
 import __ from "@/lang.js";
-
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createServer(page =>
@@ -22,6 +23,7 @@ createServer(page =>
             });
             app.config.globalProperties.__ = __;
             app.use(plugin)
+            app.component('VueDatePicker', VueDatePicker)
             app.use(ZiggyVue, {
                 ...page.props.ziggy,
                 location: new URL(page.props.ziggy.location),

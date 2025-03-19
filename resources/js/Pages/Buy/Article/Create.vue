@@ -11,7 +11,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable/src/vuedraggable'
 import InputHelper from "@/Components/InputHelper.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import { MediaLibraryAttachment } from '@spatie/media-library-pro-vue3-attachment';
