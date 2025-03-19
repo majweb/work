@@ -196,7 +196,7 @@ onUnmounted(()=>{
                                 </Dropdown>
 <!--                                <Link :href="route('firm.notifications')" class="ml-3 flex isolate relative flex items-center pl-6 ml-auto">-->
 <!--                                </Link>-->
-                                    <div class="relative z-50">
+                                    <div class="relative z-0">
                                         <div class="relative">
                                             <button type="button" class="border inline-flex items-center justify-center appearance-none cursor-pointer rounded text-sm font-bold focus:outline-none relative disabled:cursor-not-allowed bg-transparent border-transparent text-gray-500 dark:text-gray-400 hover:enabled:text-primary-500 h-9 w-9">
                                         <span class="flex items-center gap-1"><span>

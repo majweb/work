@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             FundationSeeder::class,
             AgreementSeeder::class,
             LevelEducationSeeder::class,
+            CvTypeSeeder::class,
 
             // Detale
             DetailProjectHandelSeeder::class,
@@ -73,7 +74,6 @@ class DatabaseSeeder extends Seeder
             DetailProjectGastro2Seeder::class,
             DetailProjectUsluga2Seeder::class,
             DetailProjectRolnictwo2Seeder::class,
-            CvTypeSeeder::class
 //             Detale
             ]);
 
