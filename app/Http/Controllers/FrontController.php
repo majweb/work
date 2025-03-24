@@ -11,6 +11,7 @@ use App\Models\Agreement;
 use App\Models\Aplication;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\LangLevel;
 use App\Models\LevelEducation;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -67,10 +68,14 @@ class FrontController extends Controller
         $levelEducations=  Cache::rememberForever('levelEducations', function() {
             return MultiselectWithoutDetailResource::collection(LevelEducation::get());
         });
+        $langLevels=  Cache::rememberForever('langLevels', function() {
+            return MultiselectWithoutDetailResource::collection(LangLevel::get());
+        });
         return inertia()->render('Front/Apply', [
             'project' => $project,
             'agreements' => $agreements,
             'levelEducations' => $levelEducations,
+            'langLevels' => $langLevels,
         ]);
     }
 

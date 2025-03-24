@@ -17,12 +17,14 @@ const props = defineProps({
     project: Object,
     agreements: Array,
     levelEducations: Array,
+    langLevels: Array,
 });
 const optionsPositions = ref([]);
 const formStep = ref(1);
 const isReadyToSubmit = ref(true);
 const captchaText = ref('');
 const coloredCaptcha = ref([]);
+const skillsOptions = ref([]);
 const uploaderKey = ref(0);
 const {hasRole} = usePermission();
 
@@ -34,6 +36,19 @@ const customFormat = (date) => {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
 };
+
+const sortLangs = computed(() => {
+    return usePage().props.languages.sort(function (a, b) {
+        if (a.label < b.label) {
+            return -1;
+        }
+        if (a.label > b.label) {
+            return 1;
+        }
+        return 0;
+    });
+})
+
 
 const monthYearFormat = (date) => {
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -50,6 +65,8 @@ const dateFormatter = (date) => {
     if (!date) return '';
     return date.toISOString().split('T')[0]; // Format: yyyy-mm-dd
 }
+
+
 const form = useForm({
     name: (user.value && hasRole('worker')) ? user.value.name : '',
     surname: (user.value && user.value.worker_detail && hasRole('worker')) ? user.value.worker_detail?.surname : '',
@@ -69,6 +86,8 @@ const form = useForm({
     experiences: [],
     educations: [],
     courses: [],
+    langs: [],
+    skills: [],
     position: '',
 });
 
@@ -98,6 +117,13 @@ const addCourse = () => {
             name: '',
             organizator: '',
             date: '',
+        });
+}
+
+const addLang = () => {
+        form.langs.push({
+            name: '',
+            level: '',
         });
 }
 const removeElement = (index, array) => {
@@ -140,6 +166,15 @@ const getMinDate = (start) => {
     // Tworzymy obiekt Date dla pierwszego dnia wybranego miesiąca
     return new Date(year, month - 1, 1);
 };
+
+const addSkill  = (newTag) => {
+    const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+    }
+    skillsOptions.value.push(tag)
+    form.skills.push(tag)
+}
 const reloadCaptcha = () => {
     loadCaptcha();
 };
@@ -179,8 +214,7 @@ const nextStep = () => {
         form.experiences = [];
         form.educations = [];
         form.courses = [];
-
-
+        form.langs = [];
     }
 
 
@@ -857,7 +891,117 @@ const handleIsCurrentChange = (index) => {
 
 
                                     <!--                                    COURSES-->
+                                    <!--                                    LANGS-->
 
+                                    <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button"
+                                                   @click="addLang">{{__('translate.addLang')}}
+                                    </PrimaryButton>
+                                    <InputError :message="form.errors.langs" class="text-center mt-2"/>
+                                    <draggable :list="form.langs" ghost-class="ghost" handle=".handle"
+                                               item-key="id">
+                                        <template #item="{ element: lang,index }">
+                                            <div>
+                                                <svg class="outline-none h-5 w-5 handle stroke-gray-300 ml-1 mt-1"
+                                                     fill="none"
+                                                     stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round"
+                                                          stroke-linejoin="round"></path>
+                                                </svg>
+                                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                                    <!-- LANG -->
+                                                    <div>
+                                                        <InputLabel :value="__('translate.name')"/>
+                                                        <multiselect
+                                                            :selectLabel="__('translate.selectLabel')"
+                                                            :selectedLabel="__('translate.selectedLabel')"
+                                                            :deselectLabel="__('translate.deselectLabel')"
+                                                            :noOptions="__('translate.noOptions')"
+                                                            :noResult="__('translate.noResult')"
+                                                            track-by="value"
+                                                            v-model="lang.name"
+                                                            label="label"
+                                                            :placeholder="__('translate.placeholder')"
+                                                            :options="sortLangs">
+                                                            <template #noResult>
+                                                                <span>{{__('translate.noOptions')}}</span>
+                                                            </template>
+                                                            <template #noOptions>
+                                                                <span>{{__('translate.noResult')}}</span>
+                                                            </template>
+                                                        </multiselect>
+                                                        <InputError
+                                                            :message="form.errors[`langs.${index}.name`]"
+                                                            class="mt-2"/>
+
+                                                    </div>
+                                                    <!-- NAME -->
+                                                    <!--                                                    LEVEL-->
+                                                    <div v-if="props.langLevels" class="col-span-2">
+                                                        <InputLabel :value="__('translate.levelEducation')"/>
+                                                        <multiselect
+                                                            :selectLabel="__('translate.selectLabel')"
+                                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                                            :selectedLabel="__('translate.selectedLabel')"
+                                                            :deselectLabel="__('translate.deselectLabel')"
+                                                            :noOptions="__('translate.noOptions')"
+                                                            :noResult="__('translate.noResult')"
+                                                            track-by="value"
+                                                            label="name"
+                                                            :placeholder="__('translate.placeholder')"
+                                                            v-model="lang.level" :options="props.langLevels">
+                                                            <template #noResult>
+                                                                <span>{{__('translate.noOptions')}}</span>
+                                                            </template>
+                                                            <template #noOptions>
+                                                                <span>{{__('translate.noResult')}}</span>
+                                                            </template>
+                                                        </multiselect>
+                                                        <InputError
+                                                            :message="form.errors[`langs.${index}.level`]"
+                                                            class="mt-2"/>
+                                                    </div>
+                                                    <!--                                                    LEVEL-->
+                                                </div>
+                                                <DangerButton class="mt-3 !flex justify-center w-100 mx-auto"
+                                                              @click="removeElement(index,form.langs)">
+                                                    <svg class="h-4 w-4 mr-2" fill="none"
+                                                         stroke="currentColor"
+                                                         stroke-width="2" viewBox="0 0 24 24"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"/>
+                                                    </svg>
+                                                    {{__('translate.deleteEducation')}}
+                                                </DangerButton>
+                                            </div>
+                                        </template>
+                                    </draggable>
+                                    <!--                                    LANGS-->
+
+                                    <!-- SKILLS -->
+                                    <div class="col-span-6">
+                                        <div>
+                                            <InputLabel :value="__('translate.skills')"/>
+                                            <multiselect id="tagging" v-model="form.skills" label="name"
+                                                         track-by="code" :options="skillsOptions" :max="10" :multiple="true" :taggable="true" @tag="addSkill"
+                                                         :selectLabel="__('translate.selectLabel')"
+                                                         :selectedLabel="__('translate.selectedLabel')"
+                                                         :deselectLabel="__('translate.deselectLabel')"
+                                                         :noOptions="__('translate.noOptions')"
+                                                         :tag-placeholder="__('translate.tagdeselectLabel')"
+                                                         :placeholder="__('translate.tagplaceholder')"
+                                                         :noResult="__('translate.noResult')"
+                                                         :max-elements="true"
+                                            >
+                                                <template v-slot:maxElements>{{__('translate.tagmaxElements',{max:10})}}</template>
+                                                <template v-slot:noOptions>{{__('translate.noOptions',{max:10})}}</template>
+                                            </multiselect>
+                                            <InputError :message="form.errors.skills" class="text-center mt-2"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="flex items-center justify-center mt-4">
                                     <PrimaryButton v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
@@ -878,7 +1022,7 @@ const handleIsCurrentChange = (index) => {
                             <span v-else-if="form.cv && form.cv == 4 && formStep == 1">{{__('translate.testRecruitment')}}</span>
                         </PrimaryButton>
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
-                            poprzedni krok
+                            {{__('translate.previousStep')}}
                         </PrimaryButton>
                     </div>
                 </form>

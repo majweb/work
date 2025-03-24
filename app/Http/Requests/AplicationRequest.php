@@ -359,6 +359,47 @@ class AplicationRequest extends FormRequest
                     }
                 }, 'array',
             ],
+            'langs' => [
+                function ($attribute, $value, $fail) {
+                    $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                    if ($isCvAndStep2) {
+                        if (empty($value)) {
+                            return $fail(__('translate.langsRequired'));
+                        }
+                        if ($isCvAndStep2) {
+                            if (!is_array($value) || count($value) < 1) {
+                                $fail(__('translate.langsRequired'));
+                            }
+                        }
+                    }
+                },
+            ],
+            'langs.*.name'=>[function ($attribute, $value, $fail) {
+                $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                if ($isCvAndStep2) {
+                    if (empty($value)) {
+                        return $fail(__('translate.langsNameRequired'));
+                    }
+                    $index = explode('.', $attribute)[1];
+                    $names = collect(request()->input('langs'))->pluck('name.value');  // zakładając, że name ma 'value'
+                    $currentName = $names[$index];
+                    if ($names->filter(function ($item) use ($currentName) {
+                            return $item == $currentName;
+                        })->count() > 1) {
+                        return $fail(__('translate.levelUnique')); // komunikat o błędzie
+                    }
+
+                }
+            }],
+            'langs.*.level'=>[function ($attribute, $value, $fail) {
+                $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                if ($isCvAndStep2) {
+                    if (empty($value)) {
+                        return $fail(__('translate.langsLevelRequired'));
+                    }
+                }
+            }],
+            'skills' => ['nullable']
         ];
     }
 

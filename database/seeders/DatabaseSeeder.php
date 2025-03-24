@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             AgreementSeeder::class,
             LevelEducationSeeder::class,
             CvTypeSeeder::class,
+            LangLevelSeeder::class,
 
             // Detale
             DetailProjectHandelSeeder::class,
