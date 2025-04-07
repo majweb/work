@@ -179,7 +179,7 @@
                 <div class="left-column">
                     <div class="left-box">
                         <div class="profile-pic">
-                            <img src="{{public_path('storage/cv/1/profile.png')}}" alt="Profile Photo">
+                            <img src="{{$image}}" alt="Profile Photo">
                         </div>
                         <div class="info-block">
                             <div class="info-item"><img src="{{public_path('storage/cv/icons/1.svg')}}"><span>{{$data['birthday']}}</span></div>

@@ -106,6 +106,7 @@ class FrontController extends Controller
     }
     public function makeAplication(AplicationRequest $request, Project $project)
     {
+//        dd($request->aplicationData());
 //        dd($request->aplicationData(),'kkkk',$request->aplicationData()['cvStandardType']);
 
         $aplication = Aplication::create([
@@ -150,7 +151,6 @@ class FrontController extends Controller
             $cvClassic = CvClassic::firstOrNew(
                 ['worker_id' => auth()->id(), 'project_id' => $project->id]
             );
-
             $cvClassic->fill([
                 'aplication_id'=>$aplication->id,
                 'birthday'=>$request->aplicationData()['birthday'],
@@ -177,7 +177,31 @@ class FrontController extends Controller
                     }
                 }
             }
+            if($request->aplicationData()['templateCv']){
+                $viewName = "cvTemplates.{$request->aplicationData()['templateCv']}";
+                if (!View::exists($viewName)) {
+                    abort(404, "Szablon PDF nie istnieje.");
+                }
+                $media = $cvClassic->getFirstMedia('aplications_cvClassic_photo');
+                $imageUrl = $media
+                    ? $media->getPath()
+                    : public_path('storage/cv/'.$request->aplicationData()['templateCv'].'/custom-avatar.jpg');
+
+
+                $pdf = Pdf::loadView($viewName, ['data' => request()->all(),'image'=>$imageUrl]);
+                $fileName = 'cv_' . time() . '.pdf';
+                $filePath = 'pdf/' . $fileName;
+                Storage::disk('public')->put($filePath, $pdf->output());
+                $cvClassic->update([
+                    'path'=>isset($filePath) ? Storage::url($filePath) : NULL,
+                ]);
+            }
         }
+
+//        saveCV
+
+
+
         session()->forget('captcha_text');
 
         AplicationMakeEvent::dispatch($aplication,auth()->user());
