@@ -6,8 +6,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import {MediaLibraryCollection} from '@spatie/media-library-pro-vue3-collection';
-import {MediaLibraryAttachment} from '@spatie/media-library-pro-vue3-attachment';
 import {usePermission} from "@/Composables/usePermission.js";
 import draggable from 'vuedraggable/src/vuedraggable'
 import DangerButton from "@/Components/DangerButton.vue";
