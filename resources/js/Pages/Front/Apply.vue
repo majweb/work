@@ -1,7 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import {Link, useForm, usePage,router} from '@inertiajs/vue3';
-import {computed, onMounted, ref,watch} from "vue";
+import {Link, useForm, usePage, router} from '@inertiajs/vue3';
+import {computed, onMounted, ref,watch } from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -22,20 +22,27 @@ const props = defineProps({
 const optionsPositions = ref([]);
 const formStep = ref(1);
 const isReadyToSubmit = ref(true);
+const generateCvLoading = ref(false);
 const captchaText = ref('');
 const coloredCaptcha = ref([]);
 const skillsOptions = ref([]);
 const uploaderKey = ref(0);
+const uploadPhoto = ref(null);
+const uploadCv = ref(null);
+const uploadFiles = ref(null);
 const {hasRole} = usePermission();
+
+const templatesCvsList = [
+    {id:1,img:'/images/cv/1.jpg'},
+    {id:2,img:'/images/cv/1.jpg'},
+    {id:3,img:'/images/cv/1.jpg'},
+    {id:4,img:'/images/cv/1.jpg'},
+    {id:5,img:'/images/cv/1.jpg'}
+]
 
 const user = computed(()=>usePage().props.auth.user);
 const lang = computed(()=>usePage().props.language);
-const customFormat = (date) => {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-};
+
 
 const sortLangs = computed(() => {
     return usePage().props.languages.sort(function (a, b) {
@@ -57,6 +64,7 @@ const monthYearFormat = (date) => {
 };
 
 const flow = ref(['month', 'year']);
+const isUploadDisabled = ref(false);
 
 onMounted(() => {
     loadCaptcha();
@@ -72,24 +80,41 @@ const form = useForm({
     surname: (user.value && user.value.worker_detail && hasRole('worker')) ? user.value.worker_detail?.surname : '',
     phone: (user.value && user.value.worker_detail && hasRole('worker')) ? user.value.worker_detail?.contact_phone : '',
     email: (user.value && hasRole('worker')) ? user.value.email : '',
-    file: null,
+    files: [],
     captcha: '',
+    templateCv: 1,
     cv: '',
     agreements: [],
     step: formStep.value,
-    birthday: '',
-    city: '',
-    postal: '',
-    photo: null,
-    cvFile: null,
-    cvStandardType:1,
-    experiences: [],
-    educations: [],
-    courses: [],
-    langs: [],
-    skills: [],
-    position: '',
+    birthday: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.birthday : '') : '',
+    city: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.city : '') : '',
+    postal: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.postal : '') : '',
+    photo: (user.value && hasRole('worker'))
+        ? (props.project.cv_classics?.length && props.project.cv_classics[0]?.media)
+            ? props.project.cv_classics[0].media.map(el => ({
+                source: el.original_url,
+                options: {
+                    type: 'local',
+                    metadata:{
+                        poster:el.preview_url
+                    }
+                }
+            }))
+            : []
+        : [],
+    cvFile: [],
+    cvStandardType:(user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.cvStandardType : 1) : 1,
+    experiences: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.experiences : []) : [],
+    educations: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.educations : []) : [],
+    courses: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.courses : []) : [],
+    langs: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.langs : []) : [],
+    skills: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.skills : []) : [],
+    position: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.position : '') : '',
 });
+
+const pond = ref(null);
+
+let serverMessage=ref(null);
 
 const addExperience = () => {
         form.experiences.push({
@@ -130,6 +155,7 @@ const removeElement = (index, array) => {
     array.splice(index, 1);
 }
 const submit = () => {
+    console.log('jestttttttttttt')
     form.post(route('front.aplicationNoLogin.store',props.project), {
         errorBag: 'AplicationNonLogin',
         preserveScroll: true,
@@ -137,14 +163,6 @@ const submit = () => {
             form.reset();
         },
     });
-}
-
-
-const onChange = (file) => {
-    form.file = file;
-}
-const onChangePhoto = (photo) => {
-    form.photo = photo;
 }
 
 const loadCaptcha = async () => {
@@ -156,15 +174,6 @@ const loadCaptcha = async () => {
         .catch(error => {
             console.error('Błąd przy ładowaniu CAPTCHA', error);
         });
-};
-const getMinDate = (start) => {
-    if (!start) return null;
-
-    // Rozdzielenie stringa MM.yyyy
-    const [month, year] = start.split(".").map(Number);
-
-    // Tworzymy obiekt Date dla pierwszego dnia wybranego miesiąca
-    return new Date(year, month - 1, 1);
 };
 
 const addSkill  = (newTag) => {
@@ -198,23 +207,67 @@ const colorizeCaptcha = (captcha) => {
 
 
 const nextStep = () => {
-    form.post(route('front.projects.second.step',props.project), {
+    form.post(route('front.projects.next.step',props.project), {
         errorBag: 'AplicationNonLogin',
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: async () => {
             formStep.value++;
             form.clearErrors();
+            if(user.value && hasRole('worker') && (props.project.cv_classics?.length && props.project.cv_classics[0]?.cvStandardType == 2) && formStep.value == 2 ){
+                const response = await  axios.get(route('front.getChildsCategoryWitoutDetail'));
+                optionsPositions.value = response.data;
+            }
         },
     });
 }
+// const generatePdf = (templateId) => {
+//     generateCvLoading.value = true;
+//     axios.post(route("front.projects.generate.pdf", templateId),form)
+//         .then(response => {
+//             generateCvLoading.value = false;
+//             console.log(response)
+//         })
+//         .catch(error => {
+//             console.error('Błąd przy ładowaniu CAPTCHA', error);
+//             generateCvLoading.value = false;
+//         });
+// };
+const generatePdf = (templateId) => {
+    generateCvLoading.value = true;
+    axios.post(route("front.projects.generate.pdf", templateId), form)
+        .then(response => {
+            generateCvLoading.value = false;
+            if (response.data.url) {
+                const pdfWindow = window.open(response.data.url, '_blank');
+                if (response.data.deleteUrl) {
+                    setTimeout(() => {
+                        axios.post(route('front.projects.deletePdf'),{file:response.data.deleteUrl})
+                            .then(deleteResponse => {
+                                console.log('Plik został usunięty:', deleteResponse.data);
+                            })
+                            .catch(error => {
+                                console.error('Błąd przy usuwaniu pliku', error);
+                            });
+                    }, 3000); // 5 sekund oczekiwania na załadowanie pliku (możesz dostosować czas)
+                }
+            } else {
+                console.error('Nie otrzymano poprawnego URL PDF');
+            }
+        })
+        .catch(error => {
+            console.error('Błąd przy ładowaniu PDF', error);
+            generateCvLoading.value = false;
+        });
+};
+
     const prevStep = () => {
     formStep.value--;
-        form.photo = null;
+        form.files = [];
         form.clearErrors();
-        form.experiences = [];
-        form.educations = [];
-        form.courses = [];
-        form.langs = [];
+        // form.experiences = [];
+        // form.educations = [];
+        // form.courses = [];
+        // form.langs = [];
     }
 
 
@@ -238,6 +291,11 @@ const handleIsCurrentChange = (index) => {
     if (form.experiences[index].isCurrent) {
         form.experiences[index].end = '';
     }
+}
+
+const removeFile =  async (source,load) => {
+     await axios.post(route('temporary.delete.poster'),{'source':source});
+    load();
 }
 </script>
 <template>
@@ -320,40 +378,73 @@ const handleIsCurrentChange = (index) => {
                             </div>
                             <div class="col-span-2">
                                 <InputLabel for="title" :value="__('translate.files')"/>
-                                <media-library-collection
-                                    name="file"
-                                    :max-items="5"
-                                    :key="uploaderKey"
-                                    :initial-value="form.file"
-                                    :validation-errors="form.errors.file"
-                                    :validation-rules="{ maxSizeInKB: 3000,accept: ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.oasis.opendocument.text', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/plain'] }"
-                                    @is-ready-to-submit-change="isReadyToSubmit = $event"
-                                    @change="onChange"
-                                    :translations="{
-                                        fileTypeNotAllowed : __('translate.fileTypeNotAllowed'),
-                                        tooLarge : __('translate.tooLarge'),
-                                        tooSmall : __('translate.tooSmall'),
-                                        tryAgain : __('translate.tryAgain'),
-                                        somethingWentWrong : __('translate.somethingWentWrong'),
-                                        selectOrDrag : __('translate.selectOrDrag'),
-                                        selectOrDragMax : __('translate.selectOrDragMax'),
-                                        file : {
-                                            singular : __('translate.file.singular'),
-                                            plural : __('translate.file.plural'),
-                                        },
-                                        anyImage : __('translate.anyImage'),
-                                        anyVideo : __('translate.anyVideo'),
-                                        goBack : __('translate.goBack'),
-                                        dropFile : __('translate.dropFile'),
-                                        dragHere : __('translate.dragHere'),
-                                        remove : __('translate.remove'),
-                                        download : __('translate.download')
-                                        }"
-                                />
-                                <InputError :message="form.errors.file" class="mt-1"/>
-                                <div v-for="(error, fileKey) in form.errors" :key="fileKey">
-                                    <span class="text-sm text-red-600" v-if="fileKey.startsWith('file.')">{{ error }}</span>
-                                </div>
+                                <file-pond
+                                    name="files"
+                                    ref="uploadFiles"
+                                    :files="form.files"
+                                    :allow-multiple="true"
+                                    :max-file-size="'3MB'"
+                                    imagePreviewMaxHeight="300"
+                                    :max-files="5"
+                                    :label-idle="__('translate.label-idle')"
+                                    :labelFileProcessing="__('translate.labelFileProcessing')"
+                                    :labelInvalidField="__('translate.labelInvalidField')"
+                                    :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                    :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                    :labelFileLoading="__('translate.labelFileLoading')"
+                                    :labelFileLoadError="__('translate.labelFileLoadError')"
+                                    :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                    :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                    :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                    :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                    :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                    :labelTapToCancel="__('translate.labelTapToCancel')"
+                                    :labelTapToRetry="__('translate.labelTapToRetry')"
+                                    :labelTapToUndo="__('translate.labelTapToUndo')"
+                                    :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                    :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                    :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                    :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                    :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                    :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                    :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                    :labelMaxTotalFileSizeExceeded="__('translate.labelMaxTotalFileSizeExceeded')"
+                                    :labelMaxTotalFileSize="__('translate.labelMaxTotalFileSize')"
+                                    :labelFileTypeNotAllowed="__('translate.labelFileTypeNotAllowed')"
+                                    :fileValidateTypeLabelExpectedTypes="__('translate.fileValidateTypeLabelExpectedTypes')"
+                                    :accepted-file-types="'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                    credits=""
+                                    :server="{
+                                            url:'',
+                                               headers: {
+                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
+                                                },
+                                            process: {
+                                                url: '/temporary/upload',
+                                                    onload: (response) => {
+                                                    form.files.push(response);
+                                                    return response;
+                                                    },
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.files[0];
+                                                    }
+
+                                            },
+                                            revert:{
+                                                url: '/temporary/delete',
+                                                onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = form.files.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) {
+                                                            form.files.splice(fileIndex, 1);
+                                                       }
+                                                }
+                                            }
+                                            }"
+                                ></file-pond>
+                                <InputError :message="form.errors.files" class="mt-1"/>
                             </div>
                             <div class="col-span-6">
                                 <div class="mt-4" v-if="user && project.cv">
@@ -411,8 +502,8 @@ const handleIsCurrentChange = (index) => {
                                 </div>
                             </div>
                             <div class="flex items-center justify-center mt-4">
-                                <PrimaryButton v-if="!form.cv && formStep == 1" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
-                                               :disabled="form.processing || !isReadyToSubmit">
+                                <PrimaryButton v-if="!form.cv && formStep == 1" class="w-1/4 flex justify-center" :class="{ 'opacity-25': (form.processing || isUploadDisabled)  }"
+                                               :disabled="form.processing || !isReadyToSubmit || isUploadDisabled">
                                     {{ __('translate.apply') }}
                                 </PrimaryButton>
                             </div>
@@ -451,41 +542,71 @@ const handleIsCurrentChange = (index) => {
                                 <div v-if="form.cvStandardType == 1">
                                     <div class="col-span-6">
                                         <InputLabel for="cvcvFile" :value="__('translate.fileCv')"/>
-                                        <media-library-attachment
+                                        <file-pond
                                             name="cvFile"
-                                            :initial-value="form.cvFile"
-                                            :validation-errors="[form.errors?.cvFile]"
-                                            :validation-rules="{ maxSizeInKB: 3000,accept: ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.oasis.opendocument.text', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/plain'] }"
-                                            @is-ready-to-submit-change="isReadyToSubmit = $event"
-                                            @change="onChangePhoto"
-                                            :translations="{
-                                                fileTypeNotAllowed : __('translate.fileTypeNotAllowed'),
-                                                tooLarge : __('translate.tooLarge'),
-                                                tooSmall : __('translate.tooSmall'),
-                                                tryAgain : __('translate.tryAgain'),
-                                                somethingWentWrong : __('translate.somethingWentWrong'),
-                                                selectOrDrag : __('translate.selectOrDrag'),
-                                                selectOrDragMax : __('translate.selectOrDragMax'),
-                                                file : {
-                                                    singular : __('translate.file.singular'),
-                                                    plural : __('translate.file.plural'),
+                                            ref="uploadCv"
+                                            :files="form.cvFile"
+                                            :allow-multiple="false"
+                                            :max-file-size="'5MB'"
+                                            imagePreviewMaxHeight="300"
+                                            :label-idle="__('translate.label-idle')"
+                                            :labelFileProcessing="__('translate.labelFileProcessing')"
+                                            :labelInvalidField="__('translate.labelInvalidField')"
+                                            :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                            :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                            :labelFileLoading="__('translate.labelFileLoading')"
+                                            :labelFileLoadError="__('translate.labelFileLoadError')"
+                                            :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                            :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                            :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                            :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                            :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                            :labelTapToCancel="__('translate.labelTapToCancel')"
+                                            :labelTapToRetry="__('translate.labelTapToRetry')"
+                                            :labelTapToUndo="__('translate.labelTapToUndo')"
+                                            :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                            :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                            :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                            :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                            :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                            :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                            :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                            :accepted-file-types="'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                            credits=""
+                                            :server="{
+                                            url:'',
+                                               headers: {
+                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
                                                 },
-                                                anyImage : __('translate.anyImage'),
-                                                anyVideo : __('translate.anyVideo'),
-                                                goBack : __('translate.goBack'),
-                                                dropFile : __('translate.dropFile'),
-                                                dragHere : __('translate.dragHere'),
-                                                remove : __('translate.remove'),
-                                                download : __('translate.download')
-                                }"
-                                        />
+                                            process: {
+                                                url: '/temporary/upload',
+                                                    onload: (response) => {
+                                                    form.cvFile.push(response);
+                                                    return response;
+                                                    },
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.cvFile[0];
+                                                    }
+
+                                            },
+                                            revert:{
+                                                url: '/temporary/delete',
+                                                onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = form.cvFile.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) {
+                                                            form.cvFile.splice(fileIndex, 1);
+                                                       }
+                                                }
+                                            }
+                                            }"
+                                        ></file-pond>
                                         <InputError  :message="form.errors.cvFile" class="mt-1"/>
-                                        <div v-for="(error, fileKey) in form.errors" :key="fileKey">
-                                            <span class="text-sm text-red-600" v-if="fileKey.startsWith('cvFile.')">{{ error }}</span>
+                                        <div v-for="(error, cvFile) in form.errors" :key="cvFile">
+                                            <span class="text-sm text-red-600" v-if="cvFile.startsWith('cvFile.')">{{ error }}</span>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div v-else-if="form.cvStandardType == 2">
                                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <div>
@@ -514,36 +635,68 @@ const handleIsCurrentChange = (index) => {
                                             <InputError :message="form.errors.postal" class="mt-2"/>
                                         </div>
                                         <div class="col-span-6">
-                                            <InputLabel for="image" :value="__('translate.Photo')"/>
-
-                                            <media-library-attachment
+                                            <InputLabel for="photo" :value="__('translate.Photo')"/>
+                                            <file-pond
                                                 name="photo"
-                                                :initial-value="form.photo"
-                                                :validation-errors="form.errors.photo"
-                                                :validation-rules="{ accept: ['image/png', 'image/jpeg','image/jpg'], maxSizeInKB: 2000 }"
-                                                @is-ready-to-submit-change="isReadyToSubmit = $event"
-                                                @change="onChangePhoto"
-                                                :translations="{
-                                                    fileTypeNotAllowed : __('translate.fileTypeNotAllowed'),
-                                                    tooLarge : __('translate.tooLarge'),
-                                                    tooSmall : __('translate.tooSmall'),
-                                                    tryAgain : __('translate.tryAgain'),
-                                                    somethingWentWrong : __('translate.somethingWentWrong'),
-                                                    selectOrDrag : __('translate.selectOrDrag'),
-                                                    selectOrDragMax : __('translate.selectOrDragMax'),
-                                                    file : {
-                                                        singular : __('translate.file.singular'),
-                                                        plural : __('translate.file.plural'),
+                                                ref="uploadPhoto"
+                                                :files="form.photo"
+                                                :allow-multiple="false"
+                                                :max-file-size="'2MB'"
+                                                imagePreviewMaxHeight="300"
+                                                filePosterHeight="300"
+                                                :label-idle="__('translate.label-idle')"
+                                                :labelFileProcessing="__('translate.labelFileProcessing')"
+                                                :labelInvalidField="__('translate.labelInvalidField')"
+                                                :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                                :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                                :labelFileLoading="__('translate.labelFileLoading')"
+                                                :labelFileLoadError="__('translate.labelFileLoadError')"
+                                                :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                                :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                                :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                                :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                                :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                                :labelTapToCancel="__('translate.labelTapToCancel')"
+                                                :labelTapToRetry="__('translate.labelTapToRetry')"
+                                                :labelTapToUndo="__('translate.labelTapToUndo')"
+                                                :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                                :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                                :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                                :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                                :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                                :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                                :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                                :accepted-file-types="'image/png, image/jpeg, image/jpg'"
+                                                credits=""
+                                                :server="{
+                                            url:'',
+                                               headers: {
+                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
+                                                },
+                                            process: {
+                                                url: '/temporary/upload',
+                                                    onload: (response) => {
+                                                    form.photo.push(response);
+                                                    return response;
                                                     },
-                                                    anyImage : __('translate.anyImage'),
-                                                    anyVideo : __('translate.anyVideo'),
-                                                    goBack : __('translate.goBack'),
-                                                    dropFile : __('translate.dropFile'),
-                                                    dragHere : __('translate.dragHere'),
-                                                    remove : __('translate.remove'),
-                                                    download : __('translate.download')
-                                    }"
-                                            />
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.photo[0];
+                                                    }
+
+                                            },
+                                            revert:{
+                                                url: '/temporary/delete',
+                                                onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = form.photo.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) {
+                                                            form.photo.splice(fileIndex, 1);
+                                                       }
+                                                }
+                                            },
+                                            remove:removeFile
+                                            }"
+                                            ></file-pond>
                                             <InputError  :message="form.errors.photo" class="mt-1"/>
                                             <div v-for="(error, fileKey) in form.errors" :key="fileKey">
                                                 <span class="text-sm text-red-600" v-if="fileKey.startsWith('photo.')">{{ error }}</span>
@@ -552,9 +705,11 @@ const handleIsCurrentChange = (index) => {
                                     </div>
 <!--                                    EXPERIENCE-->
                                     <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button"
-                                                   @click="addExperience">
+                                                   @click="addExperience" v-if="form.experiences.length < 5">
                                         {{__('translate.addExperience')}}
                                     </PrimaryButton>
+                                    <span v-if="form.experiences.length == 5" class="inline-flex items-center justify-center px-4 py-2 bg-red-300 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-3 !flex justify-center w-1/4 mx-auto">{{__('translate.limitComplete')}}</span>
+                                    <span class="text-xs flex items-center justify-center mt-2">{{__('translate.quantity')}}: {{form.experiences.length}}/5</span>
                                     <InputError :message="form.errors.experiences" class="text-center mt-2"/>
                                     <draggable :list="form.experiences" ghost-class="ghost" handle=".handle"
                                                item-key="id">
@@ -687,10 +842,14 @@ const handleIsCurrentChange = (index) => {
                                         </template>
                                     </draggable>
                                     <!--                                    EXPERIENCE-->
+
+
 <!--                                    EDUCATION-->
                                     <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button"
-                                                   @click="addEducation">{{__('translate.addEducation')}}
+                                                   @click="addEducation" v-if="form.educations.length < 5">{{__('translate.addEducation')}}
                                     </PrimaryButton>
+                                    <span v-if="form.educations.length == 5" class="inline-flex items-center justify-center px-4 py-2 bg-red-300 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-3 !flex justify-center w-1/4 mx-auto">{{__('translate.limitComplete')}}</span>
+                                    <span class="text-xs flex items-center justify-center mt-2">{{__('translate.quantity')}}: {{form.educations.length}}/5</span>
                                     <InputError :message="form.errors.educations" class="text-center mt-2"/>
                                     <draggable :list="form.educations" ghost-class="ghost" handle=".handle"
                                                item-key="id">
@@ -806,8 +965,10 @@ const handleIsCurrentChange = (index) => {
                                     <!--                                    EDUCATION-->
                                     <!--                                    COURSES-->
                                     <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button"
-                                                   @click="addCourse">{{__('translate.addCourse')}}
+                                                   @click="addCourse" v-if="form.courses.length < 5">{{__('translate.addCourse')}}
                                     </PrimaryButton>
+                                    <span v-if="form.courses.length == 5" class="inline-flex items-center justify-center px-4 py-2 bg-red-300 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-3 !flex justify-center w-1/4 mx-auto">{{__('translate.limitComplete')}}</span>
+                                    <span class="text-xs flex items-center justify-center mt-2">{{__('translate.quantity')}}: {{form.courses.length}}/5</span>
                                     <InputError :message="form.errors.courses" class="text-center mt-2"/>
                                     <draggable :list="form.courses" ghost-class="ghost" handle=".handle"
                                                item-key="id">
@@ -873,7 +1034,7 @@ const handleIsCurrentChange = (index) => {
                                                     <!-- DATE -->
                                                 </div>
                                                 <DangerButton class="mt-3 !flex justify-center w-100 mx-auto"
-                                                              @click="removeElement(index,form.educations)">
+                                                              @click="removeElement(index,form.courses)">
                                                     <svg class="h-4 w-4 mr-2" fill="none"
                                                          stroke="currentColor"
                                                          stroke-width="2" viewBox="0 0 24 24"
@@ -883,7 +1044,7 @@ const handleIsCurrentChange = (index) => {
                                                             stroke-linecap="round"
                                                             stroke-linejoin="round"/>
                                                     </svg>
-                                                    {{__('translate.deleteEducation')}}
+                                                    {{__('translate.deleteCourse')}}
                                                 </DangerButton>
                                             </div>
                                         </template>
@@ -894,8 +1055,10 @@ const handleIsCurrentChange = (index) => {
                                     <!--                                    LANGS-->
 
                                     <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button"
-                                                   @click="addLang">{{__('translate.addLang')}}
+                                                   @click="addLang" v-if="form.langs.length < 5">{{__('translate.addLang')}}
                                     </PrimaryButton>
+                                    <span v-if="form.langs.length == 5" class="inline-flex items-center justify-center px-4 py-2 bg-red-300 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-3 !flex justify-center w-1/4 mx-auto">{{__('translate.limitComplete')}}</span>
+                                    <span class="text-xs flex items-center justify-center mt-2">{{__('translate.quantity')}}: {{form.langs.length}}/5</span>
                                     <InputError :message="form.errors.langs" class="text-center mt-2"/>
                                     <draggable :list="form.langs" ghost-class="ghost" handle=".handle"
                                                item-key="id">
@@ -974,7 +1137,7 @@ const handleIsCurrentChange = (index) => {
                                                             stroke-linecap="round"
                                                             stroke-linejoin="round"/>
                                                     </svg>
-                                                    {{__('translate.deleteEducation')}}
+                                                    {{__('translate.deleteLang')}}
                                                 </DangerButton>
                                             </div>
                                         </template>
@@ -1003,18 +1166,48 @@ const handleIsCurrentChange = (index) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-center mt-4">
-                                    <PrimaryButton v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
-                                                   :disabled="form.processing || !isReadyToSubmit">
-                                        {{ __('translate.apply') }}
-                                    </PrimaryButton>
+                            </div>
+
+                        <div v-if="formStep == 3 && form.cv == 1">
+
+                            <div class="col-span-6">
+                                <div class="mt-4">
+                                    <InputLabel :value="__('translate.cv')" />
+                                    <div class="flex items-center gap-4">
+                                        <div v-for="template in templatesCvsList" class="flex items-center mt-1" :class="{'border-4 border-red-400' : template.id == form.templateCv }">
+                                            <input
+                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2 sr-only"
+                                                type="radio" :id="'template-'+template.id" v-model="form.templateCv"
+                                                :value="template.id" />
+                                            <img @click="form.templateCv = template.id" :src="template.img" alt="cv" class="cursor-pointer h-[250px] transition hover:scale-95">
+                                        </div>
+                                    </div>
+                                    <InputError :message="form.errors.templateCv" class="mt-2"/>
                                 </div>
                             </div>
+
+                            <div class="flex items-center justify-center mt-4">
+                                <PrimaryButton type="button" @click.prevent="generatePdf(form.templateCv)" v-if="form.cv && formStep == 3 && form.templateCv" class="w-1/4 flex justify-center" :class="{ 'opacity-25': generateCvLoading }"
+                                               :disabled="generateCvLoading">
+                                    {{ __('translate.viewCv') }}
+                                </PrimaryButton>
+                            </div>
+
+                            trzeci krok
+                            <div class="flex items-center justify-center mt-4">
+                                <PrimaryButton v-if="form.cv && formStep == 3" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+                                               :disabled="form.processing || !isReadyToSubmit">
+                                    {{ __('translate.apply') }}
+                                </PrimaryButton>
+                            </div>
+                        </div>
+
+
                         <div v-if="formStep == 2 && form.cv == 2">
                             Video
                         </div>
 
-                    <div class="flex items-center justify-center mt-4">
+                    <div class="flex items-center justify-center mt-4 gap-4">
                         <PrimaryButton type="button" @click="nextStep" v-if="form.cv && formStep == 1" class="w-1/4 flex justify-center">
                             <span v-if="form.cv && form.cv == 1 && formStep == 1">{{__('translate.generateCv')}}</span>
                             <span v-else-if="form.cv && form.cv == 2 && formStep == 1">{{__('translate.generateCvVideo')}}</span>
@@ -1022,6 +1215,12 @@ const handleIsCurrentChange = (index) => {
                             <span v-else-if="form.cv && form.cv == 4 && formStep == 1">{{__('translate.testRecruitment')}}</span>
                         </PrimaryButton>
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
+                            {{__('translate.previousStep')}}
+                        </PrimaryButton>
+                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
+                            <span>{{__('translate.chosetemplate')}}</span>
+                        </PrimaryButton>
+                        <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 3" class="w-1/4 flex justify-center">
                             {{__('translate.previousStep')}}
                         </PrimaryButton>
                     </div>

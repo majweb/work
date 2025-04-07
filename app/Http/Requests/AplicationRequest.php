@@ -35,13 +35,8 @@ class AplicationRequest extends FormRequest
             'phone' => 'required|string|max:20|regex:/^\+?\d[\d\s]*$/',
             'captcha' => 'required|max:6',
             'cv' => 'nullable|in:1,2,3,4',
-            'step' => 'required|in:1,2',
+            'step' => 'required|in:1,2,3',
             'agreements' => 'required|array|size:3',
-                 'file' => $this
-                ->validateMultipleMedia()
-                ->maxItems(5)
-                ->extension(['pdf','txt','xls','doc','docx'])
-                ->maxItemSizeInKb(3000),
             'birthday' => [
                 function ($attribute, $value, $fail) {
                     $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
@@ -106,14 +101,8 @@ class AplicationRequest extends FormRequest
                 },
                 'in:1,2'
             ],
-            'photo' => ['nullable',
-                $this
-                    ->validateSingleMedia()
-                    ->extension(['jpg','png','jpeg'])
-                    ->widthBetween(300,1024)
-                    ->heightBetween(300,1024)
-                    ->maxItemSizeInKb(2000)
-            ],
+            'files' => ['nullable'],
+            'photo' => ['nullable'],
             'cvFile' => [
             function ($attribute, $value, $fail) {
                 $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 1;
@@ -122,11 +111,7 @@ class AplicationRequest extends FormRequest
                         return $fail(__('translate.fileCvRequired'));
                     }
                 }
-            },
-                $this
-                    ->validateSingleMedia()
-                    ->extension(['pdf','txt','xls','doc','docx'])
-                    ->maxItemSizeInKb(3000)
+            },'array'
             ],
             'experiences' => [
                 function ($attribute, $value, $fail) {
@@ -142,7 +127,11 @@ class AplicationRequest extends FormRequest
                     }
                     }
                 },
-                ],
+                'array','between:1,5'=>function($attribute, $val, $fail){
+                    if(count($val) > 5){
+                        $fail(__('translate.toMuchElements'));
+                    }
+                }],
             'experiences.*.employer'=>[function ($attribute, $value, $fail) {
                 $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                 if ($isCvAndStep2) {
@@ -245,7 +234,11 @@ class AplicationRequest extends FormRequest
                         }
                     }
                 },
-            ],
+                'array','between:1,5'=>function($attribute, $val, $fail){
+                    if(count($val) > 5){
+                        $fail(__('translate.toMuchElements'));
+                    }
+                }],
             'educations.*.school'=>[function ($attribute, $value, $fail) {
                 $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                 if ($isCvAndStep2) {
@@ -321,7 +314,11 @@ class AplicationRequest extends FormRequest
                         }
                     }
                 },
-            ],
+                'array','between:1,5'=>function($attribute, $val, $fail){
+                    if(count($val) > 5){
+                        $fail(__('translate.toMuchElements'));
+                    }
+                }],
             'courses.*.name'=>[function ($attribute, $value, $fail) {
                 $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                 if ($isCvAndStep2) {
@@ -373,7 +370,11 @@ class AplicationRequest extends FormRequest
                         }
                     }
                 },
-            ],
+                'array','between:1,5'=>function($attribute, $val, $fail){
+                    if(count($val) > 5){
+                        $fail(__('translate.toMuchElements'));
+                    }
+                }],
             'langs.*.name'=>[function ($attribute, $value, $fail) {
                 $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                 if ($isCvAndStep2) {
@@ -399,7 +400,15 @@ class AplicationRequest extends FormRequest
                     }
                 }
             }],
-            'skills' => ['nullable']
+            'skills' => ['nullable'],
+            'templateCv'=>[function ($attribute, $value, $fail) {
+                $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                if ($isCvAndStep2) {
+                    if (empty($value)) {
+                        return $fail(__('translate.inertiatemplateCvRequired'));
+                    }
+                }
+            }],
         ];
     }
 

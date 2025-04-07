@@ -110,9 +110,14 @@ class Project extends Model
     {
         return $this->belongsToMany(DetailProject::class,'detailproject_project');
     }
-    public function aplication(): HasMany
+    public function aplications(): HasMany
     {
         return $this->hasMany(Aplication::class);
+    }
+
+    public function cvClassics(): HasMany
+    {
+        return $this->hasMany(CvClassic::class);
     }
 
 

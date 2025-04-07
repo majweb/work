@@ -11,6 +11,9 @@ use App\Http\Controllers\Firm\InvoiceController;
 use App\Http\Controllers\Firm\OrderController;
 use App\Http\Controllers\Firm\PoinstController;
 use App\Http\Controllers\Firm\ProjectController;
+use App\Http\Controllers\Global\DeletePosterFile;
+use App\Http\Controllers\Global\DeleteTemporaryFileController;
+use App\Http\Controllers\Global\FileUploadController;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
 use App\Http\Controllers\Recruit\AplicationController as AplicationControllerRecruit;
 use App\Http\Controllers\Firm\StatisticController;
@@ -18,11 +21,16 @@ use App\Http\Controllers\Firm\RecruitController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
 use App\Models\Page;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::mediaLibrary();
 
+Route::get('/test', function () {
+    $pdf = Pdf::loadView('cvTemplates/1', ['data' => 'Dane dla PDF']);
+    return $pdf->stream();
+});
 
 Route::get('/', function () {
     $page = Page::whereId(1)->first();
@@ -80,10 +88,10 @@ Route::middleware([
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
 //    WORKER
     Route::put('workerForm',WorkerDetailController::class)->middleware('role:worker')->name('worker.update.form');
-
-
-
 });
+Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');
+Route::delete('temporary/delete',DeleteTemporaryFileController::class)->name('temporary.delete');
+Route::post('temporary/poster',DeletePosterFile::class)->name('temporary.delete.poster');
 
 
 require __DIR__.'/socialstream.php';

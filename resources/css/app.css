@@ -12,3 +12,6 @@
     height: 6rem !important;
     margin: 1rem;
 }
+.filepond--panel-root {
+    background-color: #cfeffc !important;
+}

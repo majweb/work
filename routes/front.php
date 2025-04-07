@@ -11,8 +11,11 @@ Route::name('front.')->group(function () {
     Route::post('language', LanguageStoreController::class)->name('language.store');
     Route::get('articles',[FrontController::class,'articles'])->name('articles');
     Route::get('projects',[FrontController::class,'projects'])->name('projects');
-    Route::post('projects/apply/{project}/second-step', [FrontController::class, 'secondStep'])->name('projects.second.step');
+    Route::post('projects/apply/{project}/next-step', [FrontController::class, 'nextStep'])->name('projects.next.step');
+    Route::post('/projects/apply/generate-pdf/{templateId}', [FrontController::class, 'generatePdf'])->name('projects.generate.pdf');
+    Route::post('/projects/apply/deletePdf', [FrontController::class, 'deletePdf'])->name('projects.deletePdf');
     Route::get('projects/apply/{project}',[FrontController::class,'applyView'])->name('projects.applyView');
+
 
     Route::get('projects/{project}',[FrontController::class,'SingleProject'])->name('projects.single');
     Route::get('articles/{article}',[FrontController::class,'SingleArticle'])->name('articles.single');
