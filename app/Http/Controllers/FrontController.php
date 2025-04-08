@@ -246,9 +246,16 @@ class FrontController extends Controller
         if (!View::exists($viewName)) {
             abort(404, "Szablon PDF nie istnieje.");
         }
-
-        $pdf = Pdf::loadView($viewName, ['data' => request()->all()]);
-
+        $cvClassic = CvClassic::where('worker_id',auth()->user()->id)->first();
+        if($cvClassic){
+            $media = $cvClassic->getFirstMedia('aplications_cvClassic_photo');
+            $imageUrl = $media
+                ? $media->getPath()
+                : public_path('storage/cv/'.$templateId.'/custom-avatar.jpg');
+        } else {
+                $imageUrl = public_path('storage/cv/'.$templateId.'/custom-avatar.jpg');
+        }
+        $pdf = Pdf::loadView($viewName, ['data' => request()->all(),'image'=>$imageUrl]);
         $fileName = 'cv_' . time() . '.pdf';
         $filePath = 'pdfGenerateTemporary/' . $fileName;
         Storage::disk('public')->put($filePath, $pdf->output());
