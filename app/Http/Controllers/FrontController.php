@@ -226,22 +226,6 @@ class FrontController extends Controller
 
     public function generatePdf($templateId)
     {
-//        dd(request()->all());
-//        $viewName = "cvTemplates.{$templateId}";
-//        if (!View::exists($viewName)) {
-//            abort(404, "Szablon PDF nie istnieje.");
-//        }
-//        $pdf = Pdf::loadView($viewName, ['data' => request()->all()]);
-//
-//
-//
-//        $fileName = 'cv_' . time() . '.pdf';
-//        $filePath = 'pdf/' . $fileName;
-//        Storage::disk('public')->put($filePath, $pdf->output());
-//        return response()->json([
-//            'message' => 'Plik PDF został zapisany!',
-//            'url' => Storage::url($filePath) // Generuje publiczny URL do pobrania pliku
-//        ]);
         $viewName = "cvTemplates.{$templateId}";
         if (!View::exists($viewName)) {
             abort(404, "Szablon PDF nie istnieje.");
