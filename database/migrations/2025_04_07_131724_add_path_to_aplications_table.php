@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cv_classics', function (Blueprint $table) {
-            $table->string('path')->nullable();
+        Schema::table('aplications', function (Blueprint $table) {
+            $table->string('pathCv')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('cv_classics', function (Blueprint $table) {
-            $table->dropColumn('path');
+        Schema::table('aplications', function (Blueprint $table) {
+            $table->dropColumn('pathCv');
         });
     }
 };

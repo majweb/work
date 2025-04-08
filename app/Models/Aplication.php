@@ -23,6 +23,7 @@ class Aplication extends Model implements HasMedia
         'email',
         'aplication_user_id',
         'project_id',
+        'pathCv',
     ];
 
     public function user(): BelongsTo

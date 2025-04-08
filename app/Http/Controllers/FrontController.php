@@ -192,18 +192,12 @@ class FrontController extends Controller
                 $fileName = 'cv_' . time() . '.pdf';
                 $filePath = 'pdf/' . $fileName;
                 Storage::disk('public')->put($filePath, $pdf->output());
-                $cvClassic->update([
-                    'path'=>isset($filePath) ? Storage::url($filePath) : NULL,
+                $aplication->update([
+                    'pathCv'=>isset($filePath) ? Storage::url($filePath) : NULL,
                 ]);
             }
         }
-
-//        saveCV
-
-
-
         session()->forget('captcha_text');
-
         AplicationMakeEvent::dispatch($aplication,auth()->user());
         session()->flash('flash.banner', __('translate.makeAplicationNotRegister'));
         session()->flash('flash.bannerStyle', 'success');
