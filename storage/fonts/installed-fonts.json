@@ -2,5 +2,12 @@
     "montserrat": {
         "normal": "\/var\/www\/html\/storage\/fonts\/\/montserrat_normal_0d29873229b5efe37bb8d0a5616935ac",
         "bold": "montserrat_bold_4e93773d23e3e92730b5f052d36a88fd"
+    },
+    "noto sans": {
+        "normal": "noto_sans_normal_a1b6030f77614f0982438efddf7b4fbf",
+        "bold": "\/var\/www\/html\/storage\/fonts\/\/noto_sans_bold_b95d443021095658196c6eba25bbee20"
+    },
+    "noto sans jp": {
+        "normal": "noto_sans_jp_normal_000e0c5db779480bfd5690c4f2033af9"
     }
 }

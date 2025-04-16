@@ -129,6 +129,8 @@
             line-height: 45px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            width: 98%;
+            word-wrap: break-word;
         }
         .section-title {
             font-size: 20px;
@@ -182,14 +184,14 @@
                             <img src="{{$image}}" alt="Profile Photo">
                         </div>
                         <div class="info-block">
-                            <div class="info-item"><img src="{{public_path('storage/cv/icons/1.svg')}}"><span>{{$data['birthday']}}</span></div>
-                            <div class="info-item"><img src="{{public_path('storage/cv/icons/2.svg')}}"><span>{{$data['postal'].' '.$data['city']}}</span></div>
-                            <div class="info-item"><img src="{{public_path('storage/cv/icons/3.svg')}}"><span>{{$data['phone']}}</span></div>
-                            <div class="info-item"><img src="{{public_path('storage/cv/icons/4.svg')}}"><span>{{$data['email']}}</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/1/icons/1.svg')}}"><span>{{$data['birthday']}}</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/1/icons/2.svg')}}"><span>{{$data['postal'].' '.$data['city']}}</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/1/icons/3.svg')}}"><span>{{$data['phone']}}</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/1/icons/4.svg')}}"><span>{{$data['email']}}</span></div>
                         </div>
                         @if(count($data['langs']))
                             <div class="section">
-                                <h3>Języki obce</h3>
+                                <h3>{{__('CvLangs')}}</h3>
                                 <ul>
                                     @foreach($data['langs'] as $lang)
                                         <li><strong>{{$lang['name']['label']}}</strong><br>{{$lang['level']['name']}}</li>
@@ -199,7 +201,7 @@
                         @endif
                         @if(count($data['skills']))
                             <div class="section">
-                                <h3>Umiejętności</h3>
+                                <h3>{{__('CvDo')}}</h3>
                                 <ul>
                                     @foreach($data['skills'] as $skill)
                                         <li>{{$skill['name']}}</li>
@@ -211,9 +213,11 @@
                 </div>
                 <!-- Prawa kolumna -->
                 <div class="right-column">
-                    <h2 class="name">Samira Hadid</h2>
+                    <h2 class="name">
+                        {{$data['name'].' '.$data['surname']}}
+                    </h2>
                     @if(count($data['experiences']))
-                            <h3 class="section-title">Doświadczenie</h3>
+                            <h3 class="section-title">{{__('CvExp')}}</h3>
                                 @foreach($data['experiences'] as $experience)
                                     <div class="experience">
                                         <p><strong>{{$experience['position']['name']}}</strong></p>
@@ -224,25 +228,16 @@
                                 @endforeach
                     @endif
                     @if(count($data['educations']))
-                    <h3 class="section-title">Wykształcenie</h3>
+                    <h3 class="section-title">{{__('CvSchool')}}</h3>
                         @foreach($data['educations'] as $education)
                             <div class="education">
                                 <p><strong>{{$education['school']}} | {{$education['city']}}</strong></p>
-                                <p class="small-text">{{$education['level']['name']}} - {{$education['specialization']}} | ukończono {{$education['finish']}}</p>
+                                <p class="small-text">{{$education['level']['name']}} - {{$education['specialization']}} | {{__('CvFinish')}} {{$education['finish']}}</p>
                             </div>
                         @endforeach
                     @endif
                     @if(count($data['courses']))
-                        <h3 class="section-title">Kursy i szkolenia</h3>
-                        @foreach($data['courses'] as $course)
-                            <div class="courses">
-                                <p><strong>{{$course['name']}}</strong></p>
-                                <p class="small-text">{{$course['organizator']}} | {{$course['date']['month'].'/'.$course['date']['year']}}</p>
-                            </div>
-                        @endforeach
-                    @endif
-                    @if(count($data['courses']))
-                        <h3 class="section-title">Kursy i szkolenia</h3>
+                        <h3 class="section-title">{{__('CvCourses')}}</h3>
                         @foreach($data['courses'] as $course)
                             <div class="courses">
                                 <p><strong>{{$course['name']}}</strong></p>
@@ -254,7 +249,7 @@
             </div>
             <div class="footer">
                 <span>generated by</span>
-                <img src="{{public_path('storage/cv/icons/logo.png')}}" alt="logo">
+                <img src="{{public_path('storage/cv/1/icons/logo.png')}}" alt="logo">
             </div>
         </div>
     </div>

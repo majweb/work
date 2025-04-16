@@ -1,9 +1,20 @@
 {
     "ApllyMail-hello": "Hello!!",
-    "ApllyMail-applyNr": "Application No.",
+    "ApllyMail-applyNr": "Application no.",
     "ApllyMail-applySuccess": ", has been created",
     "ApllyMail-applyConfirm": "The application has been successfully submitted.",
     "ApllyMail-applyLook": "View application",
-    "ApllyMail-thanks": "Thank you,"
+    "ApllyMail-thanks": "Thank you,",
+    "inertiaDateApply": "The date of birth field is required.",
+    "inertiaDateFormatApply": "The date must be in the format yyyy-mm-dd.",
+    "inertiaDateFormatApply120": "The date of birth cannot be earlier than 120 years ago.",
+    "inertiaCityRequired": "The city field is required.",
+    "inertiaCityLetters": "The city can contain only letters and spaces.",
+    "CvLangs": "Foreign languages",
+    "CvDo": "Skills",
+    "CvExp": "Experience",
+    "CvSchool": "Education",
+    "CvFinish": "completed",
+    "CvCourses": "Courses and trainings"
 }
 

@@ -11,6 +11,7 @@ import draggable from 'vuedraggable/src/vuedraggable'
 import DangerButton from "@/Components/DangerButton.vue";
 import Multiselect from 'vue-multiselect'
 import Checkbox from "@/Components/Checkbox.vue";
+
 const props = defineProps({
     project: Object,
     agreements: Array,
@@ -32,28 +33,25 @@ const {hasRole} = usePermission();
 
 const templatesCvsList = [
     {id:1,img:'/images/cv/1.jpg'},
-    {id:2,img:'/images/cv/1.jpg'},
-    {id:3,img:'/images/cv/1.jpg'},
-    {id:4,img:'/images/cv/1.jpg'},
-    {id:5,img:'/images/cv/1.jpg'}
-]
+    {id:2,img:'/images/cv/2.jpg'},
+    {id:3,img:'/images/cv/3.jpg'},
+    {id:8,img:'/images/cv/8.jpg'},
+    {id:13,img:'/images/cv/13.jpg'},
+    {id:15,img:'/images/cv/15.jpg'},
+    {id:18,img:'/images/cv/18.jpg'},
+    {id:19,img:'/images/cv/19.jpg'},
+    {id:22,img:'/images/cv/22.jpg'},
+    {id:23,img:'/images/cv/23.jpg'}
+];
+const sortLangs = computed(() => {
+    const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+    return usePage().props.languages
+        .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
+        .sort((a, b) => a.label.localeCompare(b.label));
+})
 
 const user = computed(()=>usePage().props.auth.user);
 const lang = computed(()=>usePage().props.language);
-
-
-const sortLangs = computed(() => {
-    return usePage().props.languages.sort(function (a, b) {
-        if (a.label < b.label) {
-            return -1;
-        }
-        if (a.label > b.label) {
-            return 1;
-        }
-        return 0;
-    });
-})
-
 
 const monthYearFormat = (date) => {
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -101,6 +99,7 @@ const form = useForm({
             : []
         : [],
     cvFile: [],
+    cvLang: usePage().props.languages && usePage().props.languages.filter(el=>el.value == usePage().props.language),
     cvStandardType:(user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.cvStandardType : 1) : 1,
     experiences: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.experiences : []) : [],
     educations: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.educations : []) : [],
@@ -240,13 +239,10 @@ const generatePdf = (templateId) => {
                 if (response.data.deleteUrl) {
                     setTimeout(() => {
                         axios.post(route('front.projects.deletePdf'),{file:response.data.deleteUrl})
-                            .then(deleteResponse => {
-                                console.log('Plik został usunięty:', deleteResponse.data);
-                            })
                             .catch(error => {
                                 console.error('Błąd przy usuwaniu pliku', error);
                             });
-                    }, 3000); // 5 sekund oczekiwania na załadowanie pliku (możesz dostosować czas)
+                    }, 3000);
                 }
             } else {
                 console.error('Nie otrzymano poprawnego URL PDF');
@@ -499,6 +495,10 @@ const removeFile =  async (source,load) => {
                                     <InputError :message="form.errors.agreements" class="mt-2"/>
                                 </div>
                             </div>
+                            <div class="flex items-center justify-center my-4">
+                                <InputError :message="form.errors.application" class="mt-2"/>
+                            </div>
+
                             <div class="flex items-center justify-center mt-4">
                                 <PrimaryButton v-if="!form.cv && formStep == 1" class="w-1/4 flex justify-center" :class="{ 'opacity-25': (form.processing || isUploadDisabled)  }"
                                                :disabled="form.processing || !isReadyToSubmit || isUploadDisabled">
@@ -1080,7 +1080,7 @@ const removeFile =  async (source,load) => {
                                                             :noOptions="__('translate.noOptions')"
                                                             :noResult="__('translate.noResult')"
                                                             track-by="value"
-                                                            v-model="lang.name"
+                                                            v-model="form.cvLang"
                                                             label="label"
                                                             :placeholder="__('translate.placeholder')"
                                                             :options="sortLangs">
@@ -1092,7 +1092,7 @@ const removeFile =  async (source,load) => {
                                                             </template>
                                                         </multiselect>
                                                         <InputError
-                                                            :message="form.errors[`langs.${index}.name`]"
+                                                            :message="form.errors.cvLang"
                                                             class="mt-2"/>
 
                                                     </div>
@@ -1167,11 +1167,33 @@ const removeFile =  async (source,load) => {
                             </div>
 
                         <div v-if="formStep == 3 && form.cv == 1">
-
                             <div class="col-span-6">
                                 <div class="mt-4">
+                                    {{__('translate.language')}} Cv
+                                    <div>
+                                        <multiselect
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :noOptions="__('translate.noOptions')"
+                                            :noResult="__('translate.noResult')"
+                                            track-by="value"
+                                            v-model="form.cvLang"
+                                            label="label"
+                                            :placeholder="__('translate.placeholder')"
+                                            :options="sortLangs">
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                            <template #noOptions>
+                                                <span>{{__('translate.noResult')}}</span>
+                                            </template>
+                                        </multiselect>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
                                     <InputLabel :value="__('translate.cv')" />
-                                    <div class="flex items-center gap-4">
+                                    <div class="flex justify-between items-center gap-4 flex-wrap">
                                         <div v-for="template in templatesCvsList" class="flex items-center mt-1" :class="{'border-4 border-red-400' : template.id == form.templateCv }">
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2 sr-only"
@@ -1183,17 +1205,20 @@ const removeFile =  async (source,load) => {
                                     <InputError :message="form.errors.templateCv" class="mt-2"/>
                                 </div>
                             </div>
-
                             <div class="flex items-center justify-center mt-4">
-                                <PrimaryButton type="button" @click.prevent="generatePdf(form.templateCv)" v-if="form.cv && formStep == 3 && form.templateCv" class="w-1/4 flex justify-center" :class="{ 'opacity-25': generateCvLoading }"
+                                <PrimaryButton type="button" @click.prevent="generatePdf(form.templateCv)" v-if="form.cv && formStep == 3 && form.templateCv && form.cvLang" class="w-1/4 flex justify-center" :class="{ 'opacity-25': generateCvLoading }"
                                                :disabled="generateCvLoading">
                                     {{ __('translate.viewCv') }}
                                 </PrimaryButton>
                             </div>
 
                             trzeci krok
+
+                            <div class="flex items-center justify-center my-4">
+                                <InputError :message="form.errors.application" class="mt-2"/>
+                            </div>
                             <div class="flex items-center justify-center mt-4">
-                                <PrimaryButton v-if="form.cv && formStep == 3" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+                                <PrimaryButton v-if="form.cv && formStep == 3 && form.cvLang" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
                                                :disabled="form.processing || !isReadyToSubmit">
                                     {{ __('translate.apply') }}
                                 </PrimaryButton>

@@ -9,5 +9,12 @@
     "inertiaDateFormatApply" : "Format daty musi być w formacie yyyy-mm-dd",
     "inertiaDateFormatApply120" : "Data urodzenia nie może być wcześniejsza niż 120 lat temu.",
     "inertiaCityRequired" : "Pole miasto jest wymagane.",
-    "inertiaCityLetters" : "Miasto może zawierać tylko litery i spacje."
+    "inertiaCityLetters" : "Miasto może zawierać tylko litery i spacje.",
+    "CvLangs" : "Języki obce",
+    "CvDo" : "Umiejętności",
+    "CvExp" : "Doświadczenie",
+    "CvSchool" : "Wykształcenie",
+    "CvFinish" : "ukończono",
+    "CvCourses" : "Kursy i szkolenia",
+    "CvRate" : "Możesz wysłać tylko jedną aplikację na 24 godziny"
 }

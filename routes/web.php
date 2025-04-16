@@ -27,8 +27,32 @@ use Inertia\Inertia;
 
 Route::mediaLibrary();
 
+//am
+//ps
+//bn
+//dz
+//zh
+//ka
+//ja
+//km
+//ko
+//dv
+//th
+
+Route::get('/moje', function () {
+    return inertia()->render('Moje');
+});
 Route::get('/test', function () {
-    $pdf = Pdf::loadView('cvTemplates/1', ['data' => 'Dane dla PDF']);
+
+    $unsupportedLanguages = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+
+    if (in_array(app()->getLocale(), $unsupportedLanguages)) {
+        $lang = 'en';
+    }
+
+
+
+    $pdf = Pdf::loadView('template', ['data' => 'Dane dla PDF']);
     return $pdf->stream();
 });
 
