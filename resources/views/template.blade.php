@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
 <head>
     <meta charset="utf-8" />
     <title>{{ config('app.name', 'Work') }}</title>
@@ -9,22 +9,9 @@
             padding: 0;
 
         }
-        @font-face {
-            font-family: 'Montserrat';
-            src: url('{{ storage_path("fonts/Montserrat/Montserrat-Regular.ttf") }}');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Montserrat';
-            src: url('{{ storage_path("fonts/Montserrat/Montserrat-SemiBold.ttf") }}') format('truetype');
-            font-weight: bold;
-            font-style: normal;
-        }
-
         body {
-            font-family: "Montserrat", sans-serif !important;
-            background: #0c2c5a;
+            font-family: "DejaVu Sans", sans-serif !important;
+            background: #e9e8ec;
         }
         .card {
             width: 100%;
@@ -32,19 +19,14 @@
             position: relative;
             min-height: 100%;
         }
-        .bg-red-box {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50px;
-            height: 28%;
-            background: #e31e24;
-            z-index: 0;
-        }
         .grid-container {
             width: 100%;
             position: relative;
             z-index: 1;
+        }
+        .grid-border{
+            border-bottom: 5px solid black;
+           height: 350px;
         }
         .left-column-top{
             float: left;
@@ -53,22 +35,19 @@
         .right-column-top{
             float: right;
             width: 55%;
-            color: white;
-            position: relative;
-            left:10px;
-            top:-20px;
-            z-index: 1;
+            color: black;
+            background: #fefefe;
+            height: 100%;
         }
         .left-column {
             float: left;
-            width: 50%;
-            color: #0c2c5a;
-            margin-top: -30px;
+            width: 45%;
+            color: black;
         }
         .right-column {
             float: right;
-            width: 50%;
-            color: white;
+            width: 55%;
+            color: black;
         }
         .right-column-section{
             text-align: center;
@@ -89,17 +68,18 @@
             padding: 0;
             margin-top: 10px;
         }
-        .right-column-section-inner{
-        //margin-top: -35px;
-        }
         .profile-pic {
             width: 250px;
             height: 250px;
             border-radius: 50%;
             overflow: hidden;
             position: relative;
-            left: 80px;
-            top: 20px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            border:5px solid black;
+            outline: 5px solid black;
+            outline-offset: 5px;
         }
         .profile-pic img {
             width: 100%;
@@ -107,25 +87,27 @@
             object-fit: cover;
         }
         .info-item {
-            font-size: 16px;
+            position: relative;
+            //height: 40px;
         }
         .info-item img {
             height: 40px;
-            margin-right: 5px;
-            vertical-align: bottom;
+            width: 40px;
+            border-radius: 50%;
         }
         .info-item span {
-            display: inline-block;
-            vertical-align: middle;
+            float: left;
+            display: block;
+            position: absolute;
+            top:-1px;
+            vertical-align: top;
+            margin-left: 60px;
         }
         .section {
             font-size: 12px;
             padding-left: 24px;
             padding-bottom: 5px;
-            background: white;
-            color:#0c2c5a;
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
+            color:black;
         }
         .section ul{
             margin:0;
@@ -137,6 +119,13 @@
             text-transform: uppercase;
             font-size: 20px;
             letter-spacing: 1px;
+            background: black;
+            color:white;
+            text-align: center;
+            width: 90%;
+        }
+        .info-block{
+            padding-left: 30px;
         }
         .name {
             font-size: 40px;
@@ -150,25 +139,15 @@
             max-width: 95%;
             word-wrap: break-word;
             min-height: 110px;
+            padding-left: 30px;
         }
 
-        .name::after {
-            content: "";
-            display: block;
-            margin-top: 0px; /* odstęp od tekstu */
-            height: 1px;
-            background: white;
-            width: 95%;
-        }
         .section-title {
             font-size: 20px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 2px;
-        }
-        .title-red{
-            color:#e31e24;
         }
         .experience,
         .education,
@@ -208,84 +187,54 @@
 <body>
 <div class="container">
     <div class="card">
-        <div class="bg-red-box"></div>
         <div class="grid-container">
-            <div class="left-column-top">
-                <div class="profile-pic">
-                    <img src="{{public_path('/images/cv/cvplace.png')}}" alt="Profile Photo">
+                <div class="grid-border">
+                    <div class="left-column-top">
+                        <div class="profile-pic">
+                            <img src="{{public_path('/images/cv/cvplace.png')}}" alt="Profile Photo">
+                        </div>
+                    </div>
+                    <div class="right-column-top">
+                        <h2 class="name">
+                            Samira Hadiv
+                        </h2>
+
+                        <div class="info-block">
+                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/3.svg')}}"/><span>02.20.2023</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/4.svg')}}"/><span>233213213</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/5.svg')}}"/><span>sadasds@wp.pl</span></div>
+                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/6.svg')}}"/><span>44-230 rybnik</span></div>
+                        </div>
+                    </div>
+            <div class="clear"></div>
                 </div>
-            </div>
-            <div class="right-column-top">
-                <h2 class="name">
-                    Samira Hadiv
-                </h2>
-                <div class="info-block">
-                    <div class="info-item"><img src="{{public_path('storage/cv/4/icons/1.svg')}}"><span>02.20.2023</span></div>
-                    <div class="info-item"><img src="{{public_path('storage/cv/4/icons/2.svg')}}"><span>44-230 rybnik</span></div>
-                    <div class="info-item"><img src="{{public_path('storage/cv/4/icons/3.svg')}}"><span>233213213</span></div>
-                    <div class="info-item"><img src="{{public_path('storage/cv/4/icons/4.svg')}}"><span>sadasds@wp.pl</span></div>
-                </div>
-            </div>
             <div class="clear"></div>
             <div>
                 <!-- Lewa kolumna -->
                 <div class="left-column">
-                        <div class="section">
-                            <h3 class="section-title title-red">{{__('CvExp')}}</h3>
-                                <div class="experience">
-                                    <p><strong>pozycja</strong></p>
-                                    <p class="small-text">pracownik | 04/2202
-                                         - obecnie'
-                                        | Rybnik</p>
-                                </div>
-                            <div class="experience">
-                                <p><strong>pozycja</strong></p>
-                                <p class="small-text">pracownik | 04/2202
-                                    - obecnie'
-                                    | Rybnik</p>
-                            </div>
-                            <div class="experience">
-                                <p><strong>pozycja</strong></p>
-                                <p class="small-text">pracownik | 04/2202
-                                    - obecnie'
-                                    | Rybnik</p>
-                            </div>
-                            <div class="experience">
-                                <p><strong>pozycja</strong></p>
-                                <p class="small-text">pracownik | 04/2202
-                                    - obecnie'
-                                    | Rybnik</p>
-                            </div>
-                            <div class="experience">
-                                <p><strong>pozycja</strong></p>
-                                <p class="small-text">pracownik | 04/2202
-                                    - obecnie'
-                                    | Rybnik</p>
-                            </div>
+                    <div class="section">
+                        <h3 class="section-title">{{__('CvSchool')}}</h3>
+                        <div class="education">
+                            <p><strong>lecemu og | rybnik</strong></p>
+                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
                         </div>
-                        <div class="section">
-                            <h3 class="section-title">{{__('CvSchool')}}</h3>
-                                <div class="education">
-                                    <p><strong>lecemu og | rybnik</strong></p>
-                                    <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                                </div>
-                            <div class="education">
-                                <p><strong>lecemu og | rybnik</strong></p>
-                                <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                            </div>
-                            <div class="education">
-                                <p><strong>lecemu og | rybnik</strong></p>
-                                <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                            </div>
-                            <div class="education">
-                                <p><strong>lecemu og | rybnik</strong></p>
-                                <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                            </div>
-                            <div class="education">
-                                <p><strong>lecemu og | rybnik</strong></p>
-                                <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                            </div>
+                        <div class="education">
+                            <p><strong>lecemu og | rybnik</strong></p>
+                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
                         </div>
+                        <div class="education">
+                            <p><strong>lecemu og | rybnik</strong></p>
+                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
+                        </div>
+                        <div class="education">
+                            <p><strong>lecemu og | rybnik</strong></p>
+                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
+                        </div>
+                        <div class="education">
+                            <p><strong>lecemu og | rybnik</strong></p>
+                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
+                        </div>
+                    </div>
                         <div class="section">
                             <h3 class="section-title title-red">{{__('CvCourses')}}</h3>
                                 <div class="courses">
@@ -312,7 +261,42 @@
                 </div>
                 <div class="right-column relative">
                     <!-- Prawa kolumna -->
-                        <div class="right-column-section">
+
+                    <div class="section">
+                        <h3 class="section-title title-red">{{__('CvExp')}}</h3>
+                        <div class="experience">
+                            <p><strong>pozycja</strong></p>
+                            <p class="small-text">pracownik | 04/2202
+                                - obecnie'
+                                | Rybnik</p>
+                        </div>
+                        <div class="experience">
+                            <p><strong>pozycja</strong></p>
+                            <p class="small-text">pracownik | 04/2202
+                                - obecnie'
+                                | Rybnik</p>
+                        </div>
+                        <div class="experience">
+                            <p><strong>pozycja</strong></p>
+                            <p class="small-text">pracownik | 04/2202
+                                - obecnie'
+                                | Rybnik</p>
+                        </div>
+                        <div class="experience">
+                            <p><strong>pozycja</strong></p>
+                            <p class="small-text">pracownik | 04/2202
+                                - obecnie'
+                                | Rybnik</p>
+                        </div>
+                        <div class="experience">
+                            <p><strong>pozycja</strong></p>
+                            <p class="small-text">pracownik | 04/2202
+                                - obecnie'
+                                | Rybnik</p>
+                        </div>
+                    </div>
+
+                    <div class="right-column-section">
                             <img height="120" src="{{public_path('storage/cv/2/icons/6.svg')}}" alt="Profile Photo">
                             <div class="right-column-section-inner">
                                 <h3 class="right-column-section-title">{{__('CvLangs')}}</h3>
