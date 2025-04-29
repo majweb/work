@@ -1,6 +1,7 @@
 <?php
 
 use App\Charts\MonthlyUsersChart;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Firm\AboutController;
 use App\Http\Controllers\Firm\AplicationController;
 use App\Http\Controllers\Firm\ArticleController;
@@ -27,18 +28,6 @@ use Inertia\Inertia;
 
 Route::mediaLibrary();
 
-//am
-//ps
-//bn
-//dz
-//zh
-//ka
-//ja
-//km
-//ko
-//dv
-//th
-
 Route::get('/moje', function () {
     return inertia()->render('Moje');
 });
@@ -49,7 +38,6 @@ Route::get('/test', function () {
     if (in_array(app()->getLocale(), $unsupportedLanguages)) {
         $lang = 'en';
     }
-
 
 
     $pdf = Pdf::loadView('template', ['data' => 'Dane dla PDF']);
