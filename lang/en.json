@@ -15,6 +15,8 @@
     "CvExp": "Experience",
     "CvSchool": "Education",
     "CvFinish": "completed",
-    "CvCourses": "Courses and trainings"
+    "CvCourses": "Courses and trainings",
+    "CvContact" : "Contact"
+
 }
 

@@ -227,77 +227,7 @@ class CvTypeSeeder extends Seeder
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 4,
-                'name' => json_encode([
-                    'am' => 'ፕሮባ', // Amharic
-                    'ar' => 'اختبار التوظيف', // Arabic
-                    'az' => 'İşə qəbul testi', // Azerbaijani
-                    'be' => 'Рэкрутынгавы тэст', // Belarusian
-                    'bg' => 'Тест за подбор на персонал', // Bulgarian
-                    'bn' => 'নিয়োগ পরীক্ষা', // Bengali
-                    'bs' => 'Test za regrutaciju', // Bosnian
-                    'ca' => 'Prova de selecció', // Catalan
-                    'cs' => 'Náborový test', // Czech
-                    'da' => 'Rekrutteringsprøve', // Danish
-                    'de' => 'Rekrutierungstest', // German
-                    'dv' => 'ރިކުރައިންގަ ޓެސްޓް', // Divehi
-                    'dz' => 'འབྲུག་པའི་བསྡུར་བསྐྱོད་', // Dzongkha
-                    'el' => 'Δοκιμή πρόσληψης', // Greek
-                    'en' => 'Recruitment Test', // English
-                    'es' => 'Prueba de reclutamiento', // Spanish
-                    'et' => 'Värbamiseksam', // Estonian
-                    'fa' => 'آزمون استخدام', // Persian
-                    'fi' => 'Rekrytointitesti', // Finnish
-                    'fr' => 'Test de recrutement', // French
-                    'he' => 'מבחן גיוס', // Hebrew
-                    'hi' => 'भर्ती परीक्षा', // Hindi
-                    'hr' => 'Test za regrutaciju', // Croatian
-                    'hu' => 'Toborzó teszt', // Hungarian
-                    'hy' => 'Ռեկրուտավորման թեստ', // Armenian
-                    'id' => 'Tes rekrutmen', // Indonesian
-                    'is' => 'Ráðningartest', // Icelandic
-                    'it' => 'Test di reclutamento', // Italian
-                    'ja' => '採用テスト', // Japanese
-                    'ka' => 'დასაქმების ტესტი', // Georgian
-                    'km' => 'តេស្តការជ្រើសរើស', // Khmer
-                    'ko' => '채용 시험', // Korean
-                    'lb' => 'Rekrutéierungstest', // Luxembourgish
-                    'lo' => 'ການທົດສອບການສະເຫີີງ', // Lao
-                    'lt' => 'Įdarbinimo testas', // Lithuanian
-                    'lv' => 'Nodarbināšanas tests', // Latvian
-                    'me' => 'Test za zapošljavanje', // Montenegrin
-                    'mk' => 'Тест за вработување', // Macedonian
-                    'mn' => 'Ажлын шалгалт', // Mongolian
-                    'ms' => 'Ujian pengambilan', // Malay
-                    'my' => 'အလုပ်ခေါ်စာ စမ်းသပ်ခြင်း', // Burmese
-                    'ne' => 'भर्ती परीक्षा', // Nepali
-                    'nl' => 'Wervings test', // Dutch
-                    'no' => 'Rekrutteringstest', // Norwegian
-                    'pl' => 'Test rekrutacyjny', // Polish
-                    'ps' => 'د ګمارنې ازموینه', // Pashto
-                    'pt' => 'Teste de recrutamento', // Portuguese
-                    'ro' => 'Test de recrutare', // Romanian
-                    'ru' => 'Тест для набора персонала', // Russian
-                    'si' => 'ගිවුම් පරීක්ෂණය', // Sinhala
-                    'sk' => 'Test náboru', // Slovak
-                    'sl' => 'Zaposlitveni test', // Slovenian
-                    'sq' => 'Testi i rekrutimit', // Albanian
-                    'sr' => 'Тест за запошљавање', // Serbian
-                    'sv' => 'Rekryteringstest', // Swedish
-                    'tg' => 'Тести на пази яку', // Tajik
-                    'th' => 'การทดสอบการสรรหา', // Thai
-                    'tk' => 'Işe alım testi', // Turkmen
-                    'tr' => 'İşe alım testi', // Turkish
-                    'uk' => 'Тест для набору персоналу', // Ukrainian
-                    'uz' => 'Ishga qabul testi', // Uzbek
-                    'vi' => 'Bài kiểm tra tuyển dụng', // Vietnamese
-                    'zh' => '招聘测试' // Chinese
-                ]),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
+            ]
         ];
         DB::table('cv_types')->insert($cv_types);
     }

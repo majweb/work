@@ -11,6 +11,7 @@ import draggable from 'vuedraggable/src/vuedraggable'
 import DangerButton from "@/Components/DangerButton.vue";
 import Multiselect from 'vue-multiselect'
 import Checkbox from "@/Components/Checkbox.vue";
+import moment from "moment";
 
 const props = defineProps({
     project: Object,
@@ -52,7 +53,6 @@ const sortLangs = computed(() => {
 
 const user = computed(()=>usePage().props.auth.user);
 const lang = computed(()=>usePage().props.language);
-
 const monthYearFormat = (date) => {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
@@ -69,7 +69,18 @@ const dateFormatter = (date) => {
     if (!date) return '';
     return date.toISOString().split('T')[0]; // Format: yyyy-mm-dd
 }
+const adjustMonth = (date) => {
+    if (!date) return null;
 
+    // Zmniejszamy miesiąc o 1 (miesiące w JavaScript są 0-indexowane)
+    const adjustedDate = new Date(date.year, date.month - 1); // Odczytujemy jako 0-indexowane
+    adjustedDate.setMonth(adjustedDate.getMonth() - 1); // Cofamy o miesiąc
+
+    return {
+        year: adjustedDate.getFullYear(),
+        month: adjustedDate.getMonth() + 1, // Przekształcamy do 1-indexowanego
+    };
+};
 
 const form = useForm({
     name: (user.value && hasRole('worker')) ? user.value.name : '',
@@ -101,9 +112,16 @@ const form = useForm({
     cvFile: [],
     cvLang: usePage().props.languages && usePage().props.languages.filter(el=>el.value == usePage().props.language),
     cvStandardType:(user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.cvStandardType : 1) : 1,
-    experiences: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.experiences : []) : [],
+    experiences: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.experiences.map(exp => ({
+        ...exp,
+        start: adjustMonth(exp.start),
+        end: adjustMonth(exp.end),
+    })) : []) : [],
     educations: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.educations : []) : [],
-    courses: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.courses : []) : [],
+    courses: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.courses.map(course => ({
+        ...course,
+        date: adjustMonth(course.date),
+    })) : []) : [],
     langs: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.langs : []) : [],
     skills: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.skills : []) : [],
     position: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.position : '') : '',
@@ -152,8 +170,19 @@ const removeElement = (index, array) => {
     array.splice(index, 1);
 }
 const submit = () => {
-    console.log('jestttttttttttt')
-    form.post(route('front.aplicationNoLogin.store',props.project), {
+    form.
+    transform((data) => ({
+        ...data,
+        experiences: (data.experiences || []).map(exp => ({
+            ...exp,
+            start: normalizeDate(exp.start),
+            end: normalizeDate(exp.end)
+        })),
+        courses: (data.courses || []).map(course => ({
+            ...course,
+            date: normalizeDate(course.date)
+        })),
+    })).post(route('front.aplicationNoLogin.store',props.project), {
         errorBag: 'AplicationNonLogin',
         preserveScroll: true,
         onSuccess: () => {
@@ -217,21 +246,36 @@ const nextStep = () => {
         },
     });
 }
-// const generatePdf = (templateId) => {
-//     generateCvLoading.value = true;
-//     axios.post(route("front.projects.generate.pdf", templateId),form)
-//         .then(response => {
-//             generateCvLoading.value = false;
-//             console.log(response)
-//         })
-//         .catch(error => {
-//             console.error('Błąd przy ładowaniu CAPTCHA', error);
-//             generateCvLoading.value = false;
-//         });
-// };
+
+const normalizeDate = (dateObj) => {
+    if (!dateObj) return null;
+    const m = moment({ year: dateObj.year, month: dateObj.month });
+    return {
+        year: m.year(),
+        month: m.month() + 1
+    };
+};
+
 const generatePdf = (templateId) => {
     generateCvLoading.value = true;
-    axios.post(route("front.projects.generate.pdf", templateId), form)
+    const transformedForm = {
+        ...form,
+        experiences: (form.experiences || []).map(exp => ({
+            ...exp,
+            start: normalizeDate(exp.start),
+            end: normalizeDate(exp.end)
+        })),
+
+        courses: (form.courses || []).map(course => ({
+            ...course,
+            date: normalizeDate(course.date)
+        }))
+    };
+
+
+
+
+    axios.post(route("front.projects.generate.pdf", templateId), transformedForm)
         .then(response => {
             generateCvLoading.value = false;
             if (response.data.url) {
@@ -295,6 +339,7 @@ const removeFile =  async (source,load) => {
 <template>
     <FrontLayout :title="__('translate.project')">
         <div class="py-12">
+
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg p-4">
                     <Link :href="route('front.projects')" class="font-bold text-md underline p-4 pt-4">
@@ -774,7 +819,6 @@ const removeFile =  async (source,load) => {
                                                             auto-apply
                                                             :id="`experiences-${index}-start`"
                                                              />
-
                                                         <InputError
                                                             :message="form.errors[`experiences.${index}.start`]"
                                                             class="mt-2"/>
@@ -1080,7 +1124,7 @@ const removeFile =  async (source,load) => {
                                                             :noOptions="__('translate.noOptions')"
                                                             :noResult="__('translate.noResult')"
                                                             track-by="value"
-                                                            v-model="form.cvLang"
+                                                            v-model="lang.name"
                                                             label="label"
                                                             :placeholder="__('translate.placeholder')"
                                                             :options="sortLangs">
@@ -1092,7 +1136,7 @@ const removeFile =  async (source,load) => {
                                                             </template>
                                                         </multiselect>
                                                         <InputError
-                                                            :message="form.errors.cvLang"
+                                                            :message="form.errors[`langs.${index}.name`]"
                                                             class="mt-2"/>
 
                                                     </div>

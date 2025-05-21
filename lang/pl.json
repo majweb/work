@@ -16,5 +16,7 @@
     "CvSchool" : "Wykształcenie",
     "CvFinish" : "ukończono",
     "CvCourses" : "Kursy i szkolenia",
-    "CvRate" : "Możesz wysłać tylko jedną aplikację na 24 godziny"
+    "CvRate" : "Możesz wysłać tylko jedną aplikację na 24 godziny",
+    "CvContact" : "Kontakt",
+    "CvNow" : "obecnie"
 }

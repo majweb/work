@@ -222,7 +222,7 @@
                                     <div class="experience">
                                         <p><strong>{{$experience['position']['name']}}</strong></p>
                                         <p class="small-text">{{$experience['employer']}} | {{$experience['start']['month'].'/'.$experience['start']['year']}}
-                                          {{$experience['isCurrent'] && $experience['end'] == NULL ? ' - obecnie' : '- '.$experience['end']['month'].'/'.$experience['end']['year']}}
+                                          {{$experience['isCurrent'] && $experience['end'] == NULL ? ' - '.__('CvNow') : '- '.$experience['end']['month'].'/'.$experience['end']['year']}}
                                           | {{$experience['city'] }}</p>
                                     </div>
                                 @endforeach

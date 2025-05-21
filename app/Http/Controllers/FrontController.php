@@ -109,12 +109,14 @@ class FrontController extends Controller
     }
     public function makeAplication(AplicationRequest $request, Project $project)
     {
+
 //        dd($request->user());
-//        dd($request->aplicationData());
+//        dd($request->aplicationData(),'okokok');
 //        dd($request->aplicationData(),'kkkk',$request->aplicationData()['cvStandardType']);
 //        RateLimiter::clear('make-aplication:2-4');
 //        RateLimiter::clear('make-aplication:172.26.0.1');
 //        return;
+
         $user = $request->user();
         $key = 'make-aplication:' .$project->id.'-'. ($user?->id ?? $request->ip());
 

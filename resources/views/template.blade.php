@@ -1,346 +1,440 @@
 <!DOCTYPE html>
-{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>{{ config('app.name', 'Work') }}</title>
     <style>
-        @page  {
-            margin: 0;
-            padding: 0;
+    @page {
+        margin: 0;
+        padding: 0;
+    }
 
-        }
-        body {
-            font-family: "DejaVu Sans", sans-serif !important;
-            background: #e9e8ec;
-        }
-        .card {
-            width: 100%;
-            margin: 0 auto;
-            position: relative;
-            min-height: 100%;
-        }
-        .grid-container {
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-        .grid-border{
-            border-bottom: 5px solid black;
-           height: 350px;
-        }
-        .left-column-top{
-            float: left;
-            width: 45%;
-        }
-        .right-column-top{
-            float: right;
-            width: 55%;
-            color: black;
-            background: #fefefe;
-            height: 100%;
-        }
-        .left-column {
-            float: left;
-            width: 45%;
-            color: black;
-        }
-        .right-column {
-            float: right;
-            width: 55%;
-            color: black;
-        }
-        .right-column-section{
-            text-align: center;
-            margin:20px 0;
-        }
-        .right-column-section ul{
-            margin:0;
-            padding: 0;
-        }
-        .right-column-section ul li{
-            font-size: 14px;
-        }
-        .right-column-section-title{
-            font-size: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            padding: 0;
-            margin-top: 10px;
-        }
-        .profile-pic {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            overflow: hidden;
-            position: relative;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            border:5px solid black;
-            outline: 5px solid black;
-            outline-offset: 5px;
-        }
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .info-item {
-            position: relative;
-            //height: 40px;
-        }
-        .info-item img {
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-        }
-        .info-item span {
-            float: left;
-            display: block;
-            position: absolute;
-            top:-1px;
-            vertical-align: top;
-            margin-left: 60px;
-        }
-        .section {
-            font-size: 12px;
-            padding-left: 24px;
-            padding-bottom: 5px;
-            color:black;
-        }
-        .section ul{
-            margin:0;
-            padding: 0;
-            list-style: none;
-        }
-        .section h3 {
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 20px;
-            letter-spacing: 1px;
-            background: black;
-            color:white;
-            text-align: center;
-            width: 90%;
-        }
-        .info-block{
-            padding-left: 30px;
-        }
-        .name {
-            font-size: 40px;
-            font-weight: bold;
-            line-height: 40px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            position: relative;
-            max-width: 95%;
-            word-wrap: break-word;
-            min-height: 110px;
-            padding-left: 30px;
-        }
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('{{ storage_path("fonts/Montserrat/Montserrat-Regular.ttf") }}');
+        font-weight: normal;
+        font-style: normal;
+    }
 
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
-        }
-        .experience,
-        .education,
-        .courses {
-            margin-bottom: 5px;
-        }
-        .experience p,
-        .education p,
-        .courses p {
-            margin: 0;
-            font-size: 12px;
-        }
-        .small-text {
-            font-size: 12px;
-        }
-        .footer{
-            position: absolute;
-            bottom: 20px;
-            left:50%;
-            transform: translateX(-50%);
-        }
-        .footer img{
-            height: 50px;
-        }
-        .generate{
-            font-size: 12px;
-        }
-        .clear{
-            clear: both;
-        }
-        .relative{
-            position: relative;
-        }
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('{{ storage_path("fonts/Montserrat/Montserrat-SemiBold.ttf") }}') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    body {
+        font-family: "Montserrat", sans-serif !important;
+        margin: 0;
+        padding: 0;
+        color: #58595b;
+    }
+
+    .content-wrapper {
+        width: 100%;
+        position: relative;
+    }
+
+    .left-column {
+        float: left;
+        background-color: #fbfbfc;
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+    .right-column {
+        float: right;
+        width: 50%;
+        /*padding: 25px;*/
+        box-sizing: border-box;
+        background-color: #ffffff;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .section {
+        position: relative;
+        margin-bottom: 25px;
+        padding-left: 30px;
+    }
+
+
+    .sep {
+        position: relative;
+    }
+
+
+    .head-item {
+        position: relative;
+        /*margin-bottom: 20px;*/
+    }
+
+
+    .left-column .section{
+        position: relative;
+        min-height: 150px;
+        height: auto;
+    }
+
+    .section-title {
+        position: relative;
+        /*margin-bottom: 15px;*/
+    }
+
+    .section h2 {
+        padding: 0;
+        margin: 0 0 5px 0;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: bold;
+        position: relative;
+    }
+
+    .section-title{
+        position: relative;
+    }
+
+    .section ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        /*padding-left: 25px;*/
+    }
+
+    .head-item {
+        padding-left: 10px;
+        position: relative;
+    }
+    .left-column .head-item{
+        position: relative;
+    }
+    .left-column .head-item::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 20px;
+        bottom: 0;
+        width: 2px;
+        z-index: 9999;
+        height: 100%;
+    }
+    .left-column .head-item::before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 7px;
+        width: 10px;
+        height: 10px;
+        background-color: #334049;
+        border-radius: 50%;
+        z-index: 2; /* Aby kropki były nad linią */
+
+    }
+    /* Dodajemy linię pionową */
+    .left-column .head-item:first-child::after {
+        content: '';
+        position: absolute;
+        left: -16px; /* -20px + 5px (połowa szerokości linii) */
+        top: 7px; /* Wyrównujemy z pierwszą kropką */
+        width: 2px;
+        height: calc(100% + 20px); /* Wysokość do następnego elementu */
+        background-color: #334049;
+        z-index: 1;
+    }
+
+
+    .head-item h3 {
+        text-transform: uppercase;
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 14px;
+        padding: 0;
+        letter-spacing: 1px;
+    }
+
+    .head-item img{
+        position: relative;
+        top:5px;
+    }
+
+    .head-item p {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        line-height: 10px;
+        letter-spacing: 1px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        overflow: hidden;
+        width: 200px;
+    }
+
+    .footer span {
+        float: left;
+        position: relative;
+        top: -20px;
+        font-size: 15px;
+        line-height: 40px;
+    }
+
+    .footer img {
+        float: left;
+        height: 40px;
+        margin-left: 5px;
+    }
+
+    .left-column-inner{
+        position: relative;
+        left: 40px;
+    }
+
+    .head-item{
+        margin-bottom: 0;
+    }
+
+    .head-item h3{
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .header-section {
+        width: 100%;
+        overflow: hidden;
+        margin: 30px 0;
+    }
+
+    .header-left-column {
+        float: left;
+        width: 40%;
+        padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .header-right-column {
+        float: right;
+        width: 45%;
+        background-color: #334049;
+        padding: 20px;
+        box-sizing: border-box;
+        color: white;
+    }
+
+    .person-name {
+        font-size: 35px;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 35px;
+        padding: 0;
+        margin: 0;
+        color: #58595b;
+        word-wrap: break-word;
+        width: 100%;
+    }
+
+    .birth-date {
+        font-size: 16px;
+        color: #58595b;
+        z-index: 99999;
+        text-align: right;
+        position: relative;
+        top: -30px;
+        right: 35px;
+    }
+
+    .contact-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .contact-item img {
+        height: 20px;
+        width: 20px;
+        margin-right: 5px;
+        position: relative;
+        top: 7px;
+    }
+
+    .contact-item span {
+        font-size: 14px;
+    }
+
+    .separator {
+        position: relative;
+        width: 100%;
+        height: 2px;
+        background-color: #334049;
+        margin: 20px 0;
+    }
+
+    .separator::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #334049;
+        border-radius: 50%;
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
     </style>
-
 </head>
 <body>
-<div class="container">
-    <div class="card">
-        <div class="grid-container">
-                <div class="grid-border">
-                    <div class="left-column-top">
-                        <div class="profile-pic">
-                            <img src="{{public_path('/images/cv/cvplace.png')}}" alt="Profile Photo">
-                        </div>
-                    </div>
-                    <div class="right-column-top">
-                        <h2 class="name">
-                            Samira Hadiv
-                        </h2>
+<div class="footer">
+    <span>generated by</span>
+    <img src="{{public_path('storage/cv/1/icons/logo.png')}}" alt="logo">
+    <div class="clear"></div>
+</div>
 
-                        <div class="info-block">
-                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/3.svg')}}"/><span>02.20.2023</span></div>
-                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/4.svg')}}"/><span>233213213</span></div>
-                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/5.svg')}}"/><span>sadasds@wp.pl</span></div>
-                            <div class="info-item"><img src="{{public_path('storage/cv/8/icons/6.svg')}}"/><span>44-230 rybnik</span></div>
-                        </div>
-                    </div>
-            <div class="clear"></div>
+<div class="header-section">
+    <div class="header-left-column">
+        <h1 class="person-name">Jan Kowalski</h1>
+        <p class="birth-date">12.05.1985</p>
+    </div>
+    <div class="header-right-column">
+        <div class="contact-item">
+            <img src="{{public_path('storage/cv/23/icons/1.svg')}}" alt="telefon">
+            <span>+48 123 456 789</span>
+        </div>
+        <div class="contact-item">
+            <img src="{{public_path('storage/cv/23/icons/2.svg')}}" alt="email">
+            <span>jan.kowalski@example.com</span>
+        </div>
+        <div class="contact-item">
+            <img src="{{public_path('storage/cv/23/icons/3.svg')}}" alt="adres">
+            <span>ul. Przykładowa 15, 00-000 Warszawa</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="separator"></div>
+
+
+<div class="content-wrapper">
+    <div class="left-column">
+        <div class="left-column-inner" id="left-sections">
+            <div class="section">
+                <div class="section-title">
+                    <h2>{{__('CvExp')}}</h2>
                 </div>
-            <div class="clear"></div>
-            <div>
-                <!-- Lewa kolumna -->
-                <div class="left-column">
-                    <div class="section">
-                        <h3 class="section-title">{{__('CvSchool')}}</h3>
-                        <div class="education">
-                            <p><strong>lecemu og | rybnik</strong></p>
-                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                        </div>
-                        <div class="education">
-                            <p><strong>lecemu og | rybnik</strong></p>
-                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                        </div>
-                        <div class="education">
-                            <p><strong>lecemu og | rybnik</strong></p>
-                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                        </div>
-                        <div class="education">
-                            <p><strong>lecemu og | rybnik</strong></p>
-                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                        </div>
-                        <div class="education">
-                            <p><strong>lecemu og | rybnik</strong></p>
-                            <p class="small-text">podstawoow - specjalizaca | 2044 www</p>
-                        </div>
+                <div class="sep">
+                    <div class="head-item">
+                        <h3>Kierownik sprzedaży</h3>
+                        <p>Timermann Industries</p>
+                        <p>Warszawa 2025</p>
                     </div>
-                        <div class="section">
-                            <h3 class="section-title title-red">{{__('CvCourses')}}</h3>
-                                <div class="courses">
-                                    <p><strong>kurs</strong></p>
-                                    <p class="small-text">firma | 03/2024</p>
-                                </div>
-                            <div class="courses">
-                                <p><strong>kurs</strong></p>
-                                <p class="small-text">firma | 03/2024</p>
-                            </div>
-                            <div class="courses">
-                                <p><strong>kurs</strong></p>
-                                <p class="small-text">firma | 03/2024</p>
-                            </div>
-                            <div class="courses">
-                                <p><strong>kurs</strong></p>
-                                <p class="small-text">firma | 03/2024</p>
-                            </div>
-                            <div class="courses">
-                                <p><strong>kurs</strong></p>
-                                <p class="small-text">firma | 03/2024</p>
-                            </div>
-                        </div>
-                </div>
-                <div class="right-column relative">
-                    <!-- Prawa kolumna -->
-
-                    <div class="section">
-                        <h3 class="section-title title-red">{{__('CvExp')}}</h3>
-                        <div class="experience">
-                            <p><strong>pozycja</strong></p>
-                            <p class="small-text">pracownik | 04/2202
-                                - obecnie'
-                                | Rybnik</p>
-                        </div>
-                        <div class="experience">
-                            <p><strong>pozycja</strong></p>
-                            <p class="small-text">pracownik | 04/2202
-                                - obecnie'
-                                | Rybnik</p>
-                        </div>
-                        <div class="experience">
-                            <p><strong>pozycja</strong></p>
-                            <p class="small-text">pracownik | 04/2202
-                                - obecnie'
-                                | Rybnik</p>
-                        </div>
-                        <div class="experience">
-                            <p><strong>pozycja</strong></p>
-                            <p class="small-text">pracownik | 04/2202
-                                - obecnie'
-                                | Rybnik</p>
-                        </div>
-                        <div class="experience">
-                            <p><strong>pozycja</strong></p>
-                            <p class="small-text">pracownik | 04/2202
-                                - obecnie'
-                                | Rybnik</p>
-                        </div>
+                    <div class="head-item">
+                        <h3>Specjalista ds. marketingu</h3>
+                        <p>Global Media Group</p>
+                        <p>Kraków 2023-2024</p>
                     </div>
-
-                    <div class="right-column-section">
-                            <img height="120" src="{{public_path('storage/cv/2/icons/6.svg')}}" alt="Profile Photo">
-                            <div class="right-column-section-inner">
-                                <h3 class="right-column-section-title">{{__('CvLangs')}}</h3>
-                                <ul>
-
-                                        <li><strong>sadasdsadsa</strong><br>
-                                            <span>sads</span>
-                                        </li>
-                                    <li><strong>sadasdsadsa</strong><br>
-                                        <span>sads</span>
-                                    </li>
-                                    <li><strong>sadasdsadsa</strong><br>
-                                        <span>sads</span>
-                                    </li>
-                                    <li><strong>sadasdsadsa</strong><br>
-                                        <span>sads</span>
-                                    </li>
-                                    <li><strong>sadasdsadsa</strong><br>
-                                        <span>sads</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    <div class="right-column-section">
-                            <img height="120" src="{{public_path('storage/cv/2/icons/7.svg')}}" alt="Profile Photo">
-                            <div class="right-column-section-inner">
-                                <h3 class="right-column-section-title">{{__('CvDo')}}</h3>
-                                <ul>
-                                        <li>zxczxc</li>
-                                        <li>zxczxc</li>
-                                        <li>zxczxc</li>
-                                        <li>zxczxc</li>
-                                        <li>zxczxc</li>
-                                </ul>
-                            </div>
-                        <div class="footer">
-                            <div class="generate">generated by</div>
-                            <img src="{{public_path('storage/cv/2/icons/logo.png')}}" alt="logo">
-                        </div>
+                    <div class="head-item">
+                        <h3>Asystent kierownika</h3>
+                        <p>Blue Ocean Strategy</p>
+                        <p>Poznań 2020-2023</p>
+                    </div>
+                    <div class="head-item">
+                        <h3>Stażysta</h3>
+                        <p>Business Solutions Inc.</p>
+                        <p>Warszawa 2019-2020</p>
+                    </div>
+                    <div class="head-item">
+                        <h3>Stażysta</h3>
+                        <p>Business Solutions Inc.</p>
+                        <p>Warszawa 2019-2020</p>
                     </div>
                 </div>
             </div>
-            <div class="clear"></div>
+            <div class="section">
+                <div class="section-title">
+                    <h2>{{__('CvSchool')}}</h2>
+                </div>
+                <div class="sep">
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">
+                    <h2>{{__('CvCourses')}}</h2>
+                </div>
+                <div class="sep">
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                    <div class="head-item">
+                        <h3><strong>BA SALES Katowice</strong><br></h3>
+                        <p>magisterskie ukończono w 2011</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-column">
+        <div class="section">
+            <div class="section-title">
+                <h2>{{__('CvDo')}}</h2>
+            </div>
+            <ul>
+                <li>sdsadassd</li>
+                <li>sdsadassd</li>
+                <li>sdsadassd</li>
+                <li>sdsadassd</li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="section-title">
+                <h2>{{__('CvLangs')}}</h2>
+            </div>
+            <ul>
+                <li><strong>J. Angielski</strong> - B1 podstawowy</li>
+                <li><strong>J. Niemiecki</strong> - A2 podstawowy</li>
+                <li><strong>J. Francuski</strong> - A1 podstawowy</li>
+                <li><strong>J. Francuski</strong> - A1 podstawowy</li>
+                <li><strong>J. Francuski</strong> - A1 podstawowy</li>
+            </ul>
         </div>
     </div>
 </div>
 </body>
+</html>
