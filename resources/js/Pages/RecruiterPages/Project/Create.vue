@@ -16,6 +16,7 @@ import DangerButton from "@/Components/DangerButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import FormSectionProject from "@/Components/FormSectionProject.vue";
 import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
+import QuestionForm from "@/Components/QuestionForm.vue";
 
 const props = defineProps({
     categories: Array,
@@ -72,6 +73,7 @@ const form = useForm({
     postalWork: '',
     cityWork: '',
     cv: [],
+    questions: [],
 });
 
 
@@ -174,6 +176,18 @@ const clearCountry = () => {
     form.postalWork = '';
     form.cityWork =  '';
 }
+
+// Sprawdzenie czy powinny być wyświetlane pytania (form.cv jest 2 lub 3)
+const shouldShowQuestions = computed(() => {
+    return form.cv.some(item => item.id === 2 || item.id === 3);
+});
+
+// Obserwuje zmiany w form.cv, aby usunąć pytania gdy nie ma CV typu 2 lub 3
+watch(() => form.cv, (newValue) => {
+    if (!newValue.some(item => item.id === 2 || item.id === 3)) {
+        form.questions = [];
+    }
+}, { deep: true });
 
 </script>
 
@@ -686,6 +700,17 @@ const clearCountry = () => {
                                         </div>
                                         <InputError :message="form.errors.cv" class="mt-2"/>
                                     </div>
+                                </div>
+
+                                <!-- Sekcja pytań do projektu -->
+                                <div class="col-span-6 mt-6" v-if="shouldShowQuestions">
+                                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-100 mb-4">
+                                        <h3 class="font-medium text-blue-900">{{ __('translate.questionsInfo') }}</h3>
+                                        <p class="text-sm text-blue-700 mt-1">
+                                            {{ __('translate.questionsDescription') }}
+                                        </p>
+                                    </div>
+                                    <QuestionForm v-model="form.questions" :error="form.errors" />
                                 </div>
                                 </div>
                         </template>

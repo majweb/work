@@ -1,7 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {Link, useForm, usePage, router} from '@inertiajs/vue3';
-import {computed, onMounted, ref,watch } from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -12,6 +12,8 @@ import DangerButton from "@/Components/DangerButton.vue";
 import Multiselect from 'vue-multiselect'
 import Checkbox from "@/Components/Checkbox.vue";
 import moment from "moment";
+import VideoRecorder from "@/Pages/Front/VideoRecorder.vue";
+import AudioRecorder from "@/Pages/Front/AudioRecorder.vue";
 
 const props = defineProps({
     project: Object,
@@ -19,6 +21,7 @@ const props = defineProps({
     levelEducations: Array,
     langLevels: Array,
 });
+
 const optionsPositions = ref([]);
 const formStep = ref(1);
 const isReadyToSubmit = ref(true);
@@ -69,6 +72,13 @@ const dateFormatter = (date) => {
     if (!date) return '';
     return date.toISOString().split('T')[0]; // Format: yyyy-mm-dd
 }
+
+    // Funkcja formatująca pozostały czas w formacie mm:ss
+    const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
 const adjustMonth = (date) => {
     if (!date) return null;
 
@@ -302,6 +312,7 @@ const generatePdf = (templateId) => {
     formStep.value--;
         form.files = [];
         form.clearErrors();
+        // router.reload({ only: ["langLevels"] });
         // form.experiences = [];
         // form.educations = [];
         // form.courses = [];
@@ -335,6 +346,8 @@ const removeFile =  async (source,load) => {
      await axios.post(route('temporary.delete.poster'),{'source':source});
     load();
 }
+
+// Funkcje do obsługi nagrywania wideo
 </script>
 <template>
     <FrontLayout :title="__('translate.project')">
@@ -1268,10 +1281,11 @@ const removeFile =  async (source,load) => {
                                 </PrimaryButton>
                             </div>
                         </div>
-
-
                         <div v-if="formStep == 2 && form.cv == 2">
-                            Video
+                            <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"/>
+                        </div>
+                        <div v-else-if="formStep == 2 && form.cv == 3">
+                            <AudioRecorder :questions="props.project.questions" :projectId="props.project.id"/>
                         </div>
 
                     <div class="flex items-center justify-center mt-4 gap-4">

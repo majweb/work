@@ -199,6 +199,17 @@ class ProjectController extends Controller implements HasMiddleware
         if($project && count($request->projectData()['detailProjects'])){
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
+
+        // Zapisywanie pytań projektu
+        if(isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
+            foreach($request->projectData()['questions'] as $questionData) {
+                $project->questions()->create([
+                    'user_id' => auth()->id(),
+                    'content' => $questionData['content'],
+                    'answer_time' => $questionData['answer_time'],
+                ]);
+            }
+        }
         session()->flash('flash.banner', __('translate.addedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
@@ -222,7 +233,7 @@ class ProjectController extends Controller implements HasMiddleware
     public function edit(Project $project)
     {
         Gate::authorize('project-recruiter',$project);
-        $project->load('detailprojects');
+        $project->load('detailprojects','questions');
         Gate::authorize('project-recruiter',$project);
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
@@ -354,6 +365,19 @@ class ProjectController extends Controller implements HasMiddleware
         if($project && count($request->projectData()['detailProjects'])){
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
+
+        // Update project questions
+        $project->questions()->delete();
+        if (isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
+            foreach ($request->projectData()['questions'] as $questionData) {
+                $project->questions()->create([
+                    'user_id' => auth()->id(),
+                    'content' => $questionData['content'],
+                    'answer_time' => $questionData['answer_time'],
+                ]);
+            }
+        }
+
         session()->flash('flash.banner', __('translate.updatedProject'));
         session()->flash('flash.bannerStyle', 'success');
 

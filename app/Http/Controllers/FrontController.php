@@ -78,6 +78,7 @@ class FrontController extends Controller
         if(auth()->check() && auth()->user()->hasRole('worker')){
             if (CvClassic::where('worker_id', auth()->id())->where('project_id', $project->id)->exists()) {
                 $project->load([
+                    'questions',
                     'cvClassics' => function ($query) use ($project) {
                         $query->where('worker_id', auth()->id())
                             ->where('project_id', $project->id);

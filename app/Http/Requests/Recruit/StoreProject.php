@@ -92,7 +92,26 @@ class StoreProject extends FormRequest
             'cv.*.id' => ['required','exists:App\Models\CvType,id'],
             'cv.*.name' => ['required'],
             'cv.*.allTranslations' => ['required'],
+            'questions' => [
+                'array',
+                'max:10',
+                function ($attribute, $value, $fail) {
+                    $cvTypes = collect($this->input('cv', []))->pluck('id');
+                    if (($cvTypes->contains(2) || $cvTypes->contains(3)) && empty($value)) {
+                        $fail(__('translate.questions_required'));
+                    }
+                }
+            ],
+            'questions.*.content' => 'required_with:questions|string',
+            'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
+        ];
+    }
 
+    public function messages(): array
+    {
+        return [
+            'questions.*.content.required_with' => __('translate.enter_question_content'),
+            'questions.*.answer_time.required_with' => __('translate.select_appropriate_value'),
         ];
     }
 
@@ -135,6 +154,7 @@ class StoreProject extends FormRequest
             'cityWork' => strtolower(__('translate.City')),
             'streetWorkNumber' => strtolower(__('translate.City')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
+            'questions' => strtolower(__('translate.questions')),
         ];
     }
 }

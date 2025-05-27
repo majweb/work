@@ -120,5 +120,8 @@ class Project extends Model
         return $this->hasMany(CvClassic::class);
     }
 
-
+    public function questions(): HasMany
+    {
+        return $this->hasMany(ProjectQuestion::class);
+    }
 }

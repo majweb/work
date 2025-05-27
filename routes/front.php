@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AudioUploadController;
 use App\Http\Controllers\Firm\BuyController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\CategoryController;
 use App\Http\Controllers\Global\LanguageStoreController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('front.')->group(function () {
@@ -24,6 +26,8 @@ Route::name('front.')->group(function () {
     Route::get('generateCaptcha', [FrontController::class, 'generateCaptcha'])->name('generateCaptcha');
     Route::post('verify-captcha', [FrontController::class, 'verifyCaptcha']);
     Route::get('getChildsCategoryWitoutDetail',[FrontController::class,'getChildsCategoryWitoutDetail'])->name('getChildsCategoryWitoutDetail');
+    Route::post('uploadVideo', [VideoController::class, 'upload'])->name('video.upload');
+    Route::post('uploadAudio', [AudioUploadController::class, 'upload'])->name('audio.upload');
 
 });
 
