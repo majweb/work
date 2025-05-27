@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        if (request()->is('logged/*') || request()->is('projects/apply/*') || request()->is('user/profile')) {
+        if (request()->is('logged/*') || request()->is('projects/apply/*') || request()->is('projects/apply') || request()->is('user/profile')) {
             Config::set('inertia.ssr.enabled', false);
         }
 
