@@ -1282,7 +1282,7 @@ const removeFile =  async (source,load) => {
                             </div>
                         </div>
                         <div v-if="formStep == 2 && form.cv == 2">
-                            <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"/>
+                            <VideoRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
                         </div>
                         <div v-else-if="formStep == 2 && form.cv == 3">
                             <AudioRecorder :questions="props.project.questions" :projectId="props.project.id"/>

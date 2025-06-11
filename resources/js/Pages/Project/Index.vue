@@ -54,7 +54,6 @@ const resetSort = (field) => {
 }
 
 watch(params.value, debounce(function (value) {
-    console.log(params.value)
     let rest = pickBy(params.value);
     router.get(route('projects.index'), rest, { preserveState: true, replace: true });
 }, 300));

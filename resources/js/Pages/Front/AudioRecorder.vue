@@ -1,7 +1,10 @@
 <template>
     <div class="max-w-4xl mx-auto text-center">
-        <audio ref="audio" controls autoplay class="w-full rounded-xl shadow-lg"></audio>
-
+        <div v-if="recordedBlobUrl" class="mt-6">
+            <h3 class="text-lg font-semibold mb-2">odtwórz nagrania:</h3>
+            <audio :src="recordedBlobUrl" controls class="w-full rounded-xl"></audio>
+        </div>
+        <audio  v-else ref="audio" controls autoplay class="w-full rounded-xl"></audio>
         <div v-if="currentQuestion && recording" class="mt-6 p-4 bg-white/80 rounded-xl">
             <h2 class="text-xl font-semibold">{{ currentQuestion.content }}</h2>
             <div class="text-gray-600 mt-2">Pozostały czas: {{ timer }}s</div>
@@ -68,6 +71,7 @@ const currentQuestion = computed(() => props.questions[currentIndex.value]);
 const timer = ref(0);
 const recording = ref(false);
 let countdownInterval = null;
+const recordedBlobUrl = ref(null);
 
 const CHUNK_SIZE = 1024 * 1024; // 1MB
 const uploadId = ref(null);
@@ -79,7 +83,7 @@ const uploadSuccess = ref(false);
 
 const startRecording = async () => {
     if (countdownInterval) clearInterval(countdownInterval);
-
+    recordedBlobUrl.value = null;
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     audio.value.srcObject = stream;
 
@@ -135,6 +139,7 @@ const stopRecording = () => {
         uploadProgress.value = 0;
 
         const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+        recordedBlobUrl.value = URL.createObjectURL(blob);
 
         try {
             await uploadInChunks(blob);
@@ -182,9 +187,6 @@ async function uploadInChunks(blob) {
 <style scoped>
 audio {
     width: 100%;
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    background: black;
 }
 progress {
     height: 20px;

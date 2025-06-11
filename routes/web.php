@@ -70,7 +70,11 @@ Route::middleware([
     ]);
     Route::get('invoicesDownload/{invoice}',[InvoiceController::class,'downloadPDF'])->middleware('role:firm')->name('invoicesDownload');
     Route::get('ordersDownload/{order}',[OrderController::class,'downloadPDF'])->middleware('role:firm')->name('ordersDownload');
-    Route::resource('aplications',AplicationController::class)->middleware('role:firm');
+    Route::resource('aplications',AplicationController::class)->middleware('role:firm')->only('index','show');
+    Route::put('aplications/{aplication}/status',[AplicationController::class,'updateStatus'])->middleware('role:firm')->name('firm.applications.update-status');
+    Route::get('acceptedApplications',[AplicationController::class,'acceptedApplications'])->middleware('role:firm')->name('firm.applications.acceptedApplications');
+    Route::get('maybeApplications',[AplicationController::class,'maybeApplications'])->middleware('role:firm')->name('firm.applications.maybeApplications');
+    Route::get('noApplications',[AplicationController::class,'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');
     Route::resource('projects',ProjectController::class)->middleware('role:firm');
     Route::resource('articles',ArticleController::class)->middleware('role:firm')->except('show');
     Route::put('firmForm',FirmController::class)->middleware('role:firm')->name('firm.update.form');

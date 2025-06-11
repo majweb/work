@@ -24,6 +24,14 @@ class Aplication extends Model implements HasMedia
         'aplication_user_id',
         'project_id',
         'pathCv',
+        'status',
+        'whenDeleted',
+        'whenMaybe',
+    ];
+
+    protected $casts = [
+        'whenDeleted' => 'datetime',
+        'whenMaybe' => 'datetime',
     ];
 
     public function user(): BelongsTo
@@ -51,5 +59,54 @@ class Aplication extends Model implements HasMedia
         return $this->hasOne(CvClassic::class,'aplication_id');
     }
 
+    /**
+     * Sprawdza, czy aplikacja jest starsza niż 90 dni
+     *
+     * @return bool
+     */
+    public function isOlderThan90Days(): bool
+    {
+        if ($this->status === 'maybe' && $this->whenMaybe) {
+            return $this->whenMaybe->addDays(90)->isPast();
+        }
+
+        if ($this->status === 'no' && $this->whenDeleted) {
+            return $this->whenDeleted->addDays(90)->isPast();
+        }
+
+        return false;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', '!=', 'yes')
+            ->where(function($q) {
+                $q->whereNotIn('status', ['no', 'maybe'])
+                    ->orWhere(function($subQ) {
+                        $subQ->where('status', 'no')
+                            ->whereNull('whenDeleted');
+                    })
+                    ->orWhere(function($subQ) {
+                        $subQ->where('status', 'no')
+                            ->whereNotNull('whenDeleted')
+                            ->where('whenDeleted', '>=', now()->subDays(90));
+                    })
+                    ->orWhere(function($subQ) {
+                        $subQ->where('status', 'maybe')
+                            ->where(function($q) {
+                                $q->whereNull('whenMaybe')
+                                    ->orWhere('whenMaybe', '>=', now()->subDays(90));
+                            });
+                    });
+            });
+    }
+
+    // Scope dla aplikacji zalogowanego rekrutera
+    public function scopeForCurrentRecruiter($query)
+    {
+        return $query->whereHas('project.recruit', function ($query) {
+            $query->where('recruiter_from_firm_id', auth()->id());
+        });
+    }
 
 }

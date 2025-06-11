@@ -1,7 +1,10 @@
 <template>
     <div class="max-w-4xl mx-auto text-center">
-        <video ref="video" autoplay muted class="w-full rounded-xl shadow-lg" ></video>
-
+        <div v-if="recordedBlobUrl" class="mt-6">
+            <h3 class="text-lg font-semibold mb-2">Podgląd nagrania:</h3>
+            <video :src="recordedBlobUrl" controls class="w-full rounded-xl shadow-lg"></video>
+        </div>
+        <video v-else ref="video" autoplay muted class="w-full rounded-xl shadow-lg" ></video>
         <div v-if="currentQuestion && recording" class="mt-6 p-4 bg-white/80 rounded-xl">
             <h2 class="text-xl font-semibold">{{ currentQuestion.content }}</h2>
             <div class="text-gray-600 mt-2">Pozostały czas: {{ timer }}s</div>
@@ -45,8 +48,14 @@
             Błąd uploadu: {{ uploadError }}
         </div>
 
-        <div v-if="uploadSuccess" class="mt-4 text-green-600 font-semibold">
+        <div v-if="uploadSuccess" class="mt-4 text-green-600 font-semibold flex flex-col gap-4 items-center">
             Nagranie zapisane pomyślnie!
+            <PrimaryButton         @click="$emit('submit')"
+                                   class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+                           :disabled="form.processing">
+                {{ __('translate.apply') }}
+            </PrimaryButton>
+
         </div>
     </div>
 </template>
@@ -54,9 +63,11 @@
 <script setup>
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
     questions: Array,
+    form: Object,
     projectId: Number,
 });
 
@@ -68,6 +79,7 @@ const currentQuestion = computed(() => props.questions[currentIndex.value]);
 const timer = ref(0);
 const recording = ref(false);
 let countdownInterval = null;
+const recordedBlobUrl = ref(null);
 
 const CHUNK_SIZE = 1024 * 1024; // 1MB
 const uploadId = ref(null);
@@ -79,7 +91,7 @@ const uploadSuccess = ref(false);
 
 const startRecording = async () => {
     if (countdownInterval) clearInterval(countdownInterval);
-
+    recordedBlobUrl.value = null;
     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
     video.value.srcObject = stream;
 
@@ -131,6 +143,7 @@ const stopRecording = () => {
         uploadProgress.value = 0;
 
         const blob = new Blob(recordedChunks, { type: 'video/mp4' });
+        recordedBlobUrl.value = URL.createObjectURL(blob);
 
         try {
             await uploadInChunks(blob);

@@ -22,7 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(\App\Services\ApplicationFilterService::class);
+        $this->app->singleton(\App\Services\ApplicationStatusService::class);
     }
 
     /**
