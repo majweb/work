@@ -1,12 +1,88 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import {ref} from 'vue';
-import {Link, router, usePage} from '@inertiajs/vue3';
-import axios from 'axios';
-
+import {Link, router, useForm} from '@inertiajs/vue3';
+import DialogModal from '@/Components/DialogModal.vue';
+import moment from "moment";
 const props = defineProps({
     application: Object
 });
+
+// Stan dla modalu notatek
+const showNoteModal = ref(false);
+const showDeleteModal = ref(false);
+const currentNote = ref(null);
+const isEditing = ref(false);
+const noteToDelete = ref(null);
+
+const form = useForm({
+    content: ''
+});
+
+// Otwiera modal do dodania notatki
+const openAddNoteModal = () => {
+    form.reset();
+    currentNote.value = null;
+    isEditing.value = false;
+    showNoteModal.value = true;
+};
+
+// Otwiera modal do edycji notatki
+const openEditNoteModal = (note) => {
+    form.content = note.content;
+    currentNote.value = note;
+    isEditing.value = true;
+    showNoteModal.value = true;
+};
+
+// Zamyka modal notatek
+const closeNoteModal = () => {
+    form.reset();
+    currentNote.value = null;
+    form.clearErrors();
+    showNoteModal.value = false;
+};
+
+// Zapisuje notatkę
+const saveNote = () => {
+    if (isEditing.value && currentNote.value) {
+        // Aktualizacja istniejącej notatki
+        form.put(route('firm.applications.update-note', currentNote.value.id), {
+            preserveScroll: true,
+            onSuccess: () => closeNoteModal()
+        });
+    } else {
+        // Dodawanie nowej notatki
+        form.post(route('firm.applications.store-note', props.application.id), {
+            preserveScroll: true,
+            onSuccess: () => closeNoteModal()
+        });
+    }
+};
+
+// Otwiera modal potwierdzenia usunięcia notatki
+const openDeleteModal = (note) => {
+    noteToDelete.value = note;
+    showDeleteModal.value = true;
+};
+
+// Zamyka modal potwierdzenia usunięcia
+const closeDeleteModal = () => {
+    showDeleteModal.value = false;
+    setTimeout(() => {
+        noteToDelete.value = null;
+    }, 300);
+};
+
+// Usuwa notatkę
+const deleteNote = () => {
+    if (noteToDelete.value) {
+        router.delete(route('firm.applications.delete-note', noteToDelete.value.id), {
+            preserveScroll: true,
+            onSuccess: () => closeDeleteModal()
+        });
+    }
+};
 
 const updateStatus = async (id, status) => {
     router.put(route('firm.applications.update-status', id), {
@@ -35,6 +111,81 @@ const resetStatus = (id, status) => {
             </h2>
         </template>
 
+        <!-- Modal do dodawania/edycji notatek -->
+        <DialogModal :show="showNoteModal" @close="closeNoteModal">
+            <template #title>
+                {{ isEditing ? __('translate.editNote') : __('translate.addNote') }}
+            </template>
+
+            <template #content>
+                <div class="mt-2">
+                    <label for="note-content" class="block text-sm font-medium text-gray-700">
+                        {{ __('translate.noteContent') }}
+                    </label>
+                    <textarea
+                        id="note-content"
+                        v-model="form.content"
+                        rows="4"
+                        maxlength="500"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        :placeholder="__('translate.enterNoteContent')"
+                    ></textarea>
+                    <div class="flex justify-between mt-1">
+                        <p v-if="form.errors.content" class="text-sm text-red-600">{{ form.errors.content }}</p>
+                        <p class="text-sm text-gray-500 ml-auto">{{ form.content.length }}/500</p>
+                    </div>
+                </div>
+            </template>
+
+            <template #footer>
+                <button
+                    type="button"
+                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    @click="closeNoteModal"
+                >
+                    {{ __('translate.cancel') }}
+                </button>
+                <button
+                    type="button"
+                    class="ml-2 inline-flex justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    @click="saveNote"
+                >
+                    {{ __('translate.save') }}
+                </button>
+            </template>
+        </DialogModal>
+
+        <!-- Modal potwierdzenia usunięcia notatki -->
+        <DialogModal :show="showDeleteModal" @close="closeDeleteModal">
+            <template #title>
+                {{ __('translate.deleteNote') }}
+            </template>
+
+            <template #content>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-600">{{ __('translate.confirmDeleteNote') }}</p>
+                </div>
+            </template>
+
+            <template #footer>
+                <button
+                    type="button"
+                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    @click="closeDeleteModal"
+                >
+                    {{ __('translate.cancel') }}
+                </button>
+                <button
+                    type="button"
+                    class="ml-2 inline-flex justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    @click="deleteNote"
+                >
+                    {{ __('translate.delete') }}
+                </button>
+            </template>
+        </DialogModal>
+
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
@@ -42,6 +193,46 @@ const resetStatus = (id, status) => {
                           class="inline-flex items-center px-4 py-2 bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-gray-800 uppercase tracking-widest hover:bg-gray-300 active:bg-gray-400 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-300 disabled:opacity-25 transition mb-6">
                         &larr;{{ __('translate.backToList') }}
                     </Link>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6" v-if="application.status === 'yes' ">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-medium text-gray-900">{{ __('translate.notes') }}</h3>
+                            <button
+                                @click="openAddNoteModal"
+                                class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                            >
+                                {{ __('translate.addNote') }}
+                            </button>
+                        </div>
+                        <div v-if="application.notes && application.notes.length > 0" class="space-y-4">
+                            <div v-for="note in application.notes" :key="note.id" class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex-grow">
+                                        <p class="text-sm text-gray-600">{{ note.content }}</p>
+                                        <p class="text-xs text-gray-400 mt-1">
+                                            {{ moment(note.created_at).format('DD.MM.YYYY HH:mm') }}</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button
+                                            @click="openEditNoteModal(note)"
+                                            class="text-indigo-600 hover:text-indigo-800"
+                                        >
+                                            {{ __('translate.edit') }}
+                                        </button>
+                                        <button
+                                            @click="openDeleteModal(note)"
+                                            class="text-red-600 hover:text-red-800"
+                                        >
+                                            {{ __('translate.delete') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else class="text-center text-gray-500 py-4">
+                            {{ __('translate.noNotes') }}
+                        </div>
+                    </div>
 
                     <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.mainData') }}</h3>

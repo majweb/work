@@ -11,6 +11,7 @@ const props = defineProps({
     maybeCount: Number,
     noCount: Number,
     optionsPosition: Object,
+    optionsRecruits: Object,
     applications: Object,
     filters: Object
 });
@@ -18,6 +19,7 @@ const props = defineProps({
 const form = ref({
     project: props.filters?.project || '',
     status: props.filters?.status || '',
+    recruiter: props.filters?.recruiter || '',
     category: props.filters?.category?.value || '',
     has_cv: props.filters?.has_cv || 'all'
 });
@@ -38,6 +40,7 @@ const resetFilters = () => {
         project: '',
         status: '',
         category: '',
+        recruiter: '',
         has_cv: 'all'
     };
 
@@ -52,7 +55,8 @@ const resetFilters = () => {
 watch(form, debounce(function (value) {
     let rest = pickBy({
         ...form.value,
-        category: form.value.category?.value || form.value.category
+        category: form.value.category?.value || form.value.category,
+        recruiter: form.value.recruiter?.value || form.value.recruiter
     });
     router.get(route('aplications.index'), rest, {
         preserveState: true,
@@ -72,7 +76,7 @@ watch(form, debounce(function (value) {
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl sm:rounded-lg p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-6">{{ __('translate.applicationsList') }}</h3>
 
@@ -97,7 +101,7 @@ watch(form, debounce(function (value) {
                             </div>
                         </div>
                         <!-- Filtry projektu -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">{{__('translate.projectID')}}</label>
                                 <input
@@ -140,6 +144,27 @@ watch(form, debounce(function (value) {
                                     </template>
                                 </multiselect>
                             </div>
+                            <div>
+                                <InputLabel :value="__('translate.recruiter')"/>
+                                <multiselect
+                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectedLabel="__('translate.selectedLabel')"
+                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :noOptions="__('translate.noOptions')"
+                                    :noResult="__('translate.noResult')"
+                                    track-by="value"
+                                    label="name"
+                                    :placeholder="__('translate.placeholder')"
+                                    v-model="form.recruiter" :options="optionsRecruits">
+                                    <template #noResult>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
+                                    </template>
+                                </multiselect>
+                            </div>
                         </div>
                         <div class="flex justify-end space-x-3">
                             <button
@@ -152,7 +177,7 @@ watch(form, debounce(function (value) {
                         </div>
                         <div class="flex space-x-2">
                             <Link v-if="acceptedCount > 0" :href="route('firm.applications.acceptedApplications')" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                {{ __('translate.statusYes') }}
+                                {{ __('translate.statusPotentialUsers') }}
                             </Link>
                             <Link v-if="maybeCount > 0" :href="route('firm.applications.maybeApplications')" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-600 focus:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 transition ease-in-out duration-150">
                                 {{ __('translate.New') }}
@@ -164,83 +189,83 @@ watch(form, debounce(function (value) {
                     </div>
 
                     <div v-if="applications.data.length === 0" class="text-center py-8 text-gray-500">
-                    {{ __('translate.noApplicationsAvailable') }}
+                        {{ __('translate.noApplicationsAvailable') }}
                     </div>
                     <div v-else class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Id
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.nameUser') }} {{ __('translate.surname') }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.email') }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.phone') }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.project') }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.cv') }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.applicationStatus') }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{ __('translate.actions') }}
-                                    </th>
-                                </tr>
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Id
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.nameUser') }} {{ __('translate.surname') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.email') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.phone') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.project') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.cv') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.applicationStatus') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.actions') }}
+                                </th>
+                            </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-for="application in applications.data" :key="application.id">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ application.id }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ application.name }} {{ application.surname }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">{{ application.email }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">{{ application.phone }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">{{ application.project?.id }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div v-if="application.cv_classic" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            {{ __('translate.hasCv') }}
-                                        </div>
-                                        <div v-else class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                            {{ __('translate.noCv') }}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex gap-2">
-                                            <button @click="updateStatus(application.id, 'yes')"
+                            <tr v-for="application in applications.data" :key="application.id">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ application.id }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ application.name }} {{ application.surname }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ application.email }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ application.phone }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ application.project?.id }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div v-if="application.cv_classic" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        {{ __('translate.hasCv') }}
+                                    </div>
+                                    <div v-else class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        {{ __('translate.noCv') }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex gap-2">
+                                        <button @click="updateStatus(application.id, 'yes')"
                                                 :class="[application.status === 'yes' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700', 'px-3 py-1 rounded text-xs font-medium']">
-                                                {{__('translate.statusYes')}}
-                                            </button>
-                                            <button @click="updateStatus(application.id, 'no')"
+                                            {{__('translate.statusYes')}}
+                                        </button>
+                                        <button @click="updateStatus(application.id, 'no')"
                                                 :class="[application.status === 'no' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700', 'px-3 py-1 rounded text-xs font-medium']">
-                                                {{__('translate.statusNo')}}
-                                            </button>
-                                            <button @click="updateStatus(application.id, 'maybe')"
+                                            {{__('translate.statusNo')}}
+                                        </button>
+                                        <button @click="updateStatus(application.id, 'maybe')"
                                                 :class="[application.status === 'maybe' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700', 'px-3 py-1 rounded text-xs font-medium']">
-                                                {{__('translate.statusMaybe')}}
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <Link :href="route('aplications.show', application.id)" class="text-indigo-600 hover:text-indigo-900 mr-4">{{ __('translate.applicationDetails') }}</Link>
-                                    </td>
-                                </tr>
+                                            {{__('translate.statusMaybe')}}
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <Link :href="route('aplications.show', application.id)" class="text-indigo-600 hover:text-indigo-900 mr-4">{{ __('translate.applicationDetails') }}</Link>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

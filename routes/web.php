@@ -72,6 +72,9 @@ Route::middleware([
     Route::get('ordersDownload/{order}',[OrderController::class,'downloadPDF'])->middleware('role:firm')->name('ordersDownload');
     Route::resource('aplications',AplicationController::class)->middleware('role:firm')->only('index','show');
     Route::put('aplications/{aplication}/status',[AplicationController::class,'updateStatus'])->middleware('role:firm')->name('firm.applications.update-status');
+    Route::post('aplications/{aplication}/notes',[AplicationController::class,'storeNote'])->middleware('role:firm')->name('firm.applications.store-note');
+    Route::put('aplications/notes/{note}',[AplicationController::class,'updateNote'])->middleware('role:firm')->name('firm.applications.update-note');
+    Route::delete('aplications/notes/{note}',[AplicationController::class,'deleteNote'])->middleware('role:firm')->name('firm.applications.delete-note');
     Route::get('acceptedApplications',[AplicationController::class,'acceptedApplications'])->middleware('role:firm')->name('firm.applications.acceptedApplications');
     Route::get('maybeApplications',[AplicationController::class,'maybeApplications'])->middleware('role:firm')->name('firm.applications.maybeApplications');
     Route::get('noApplications',[AplicationController::class,'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');

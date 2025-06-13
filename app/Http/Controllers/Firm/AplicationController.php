@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Models\Aplication;
+use App\Models\ApplicationNote;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
 use Illuminate\Http\Request;
@@ -38,6 +39,7 @@ class AplicationController extends Controller
         return inertia()->render('Firm/Aplication/Index', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
+            'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'maybeCount' => $result['counters']['maybeCount'],
@@ -55,7 +57,7 @@ class AplicationController extends Controller
             abort(403, 'Brak uprawnień do tej aplikacji');
         }
 
-        $aplication->load(['project', 'cvClassic', 'media', 'worker']);
+        $aplication->load(['project', 'cvClassic', 'media', 'worker', 'notes']);
 
         return inertia()->render('Firm/Aplication/Show', [
             'application' => $aplication
@@ -114,9 +116,16 @@ class AplicationController extends Controller
     {
         $result = $this->filterService->getFilteredApplications($request, 'yes');
 
+        // Załaduj relację notatek dla aplikacji
+        $applications = $result['applications'];
+        foreach ($applications as $application) {
+            $application->load('notes');
+        }
+
         return inertia()->render('Firm/Aplication/Accepted', [
-            'applications' => $result['applications'],
+            'applications' => $applications,
             'optionsPosition' => $result['optionsPosition'],
+            'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
             'otherCount' => $result['counters']['otherCount'],
             'maybeCount' => $result['counters']['maybeCount'],
@@ -137,6 +146,7 @@ class AplicationController extends Controller
         return inertia()->render('Firm/Aplication/Maybe', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
+            'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
@@ -157,10 +167,83 @@ class AplicationController extends Controller
         return inertia()->render('Firm/Aplication/No', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
+            'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'maybeCount' => $result['counters']['maybeCount'],
         ]);
+    }
+
+    /**
+     * Dodaje nową notatkę do aplikacji
+     *
+     * @param Request $request
+     * @param Aplication $aplication
+     * @return RedirectResponse
+     */
+    public function storeNote(Request $request, Aplication $aplication)
+    {
+        // Sprawdź, czy firma ma dostęp do tej aplikacji
+        if ($aplication->user_id !== auth()->id()) {
+            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
+        }
+
+        $data = $request->validate([
+            'content' => 'required|string|max:500',
+        ],[],[
+            'content' => strtolower(__('translate.noteContent')),
+        ]);
+
+        $aplication->notes()->create([
+            'content' => $data['content'],
+        ]);
+
+        return $this->flashAndRedirect('translate.noteAdded');
+    }
+
+    /**
+     * Aktualizuje istniejącą notatkę
+     *
+     * @param Request $request
+     * @param ApplicationNote $note
+     * @return RedirectResponse
+     */
+    public function updateNote(Request $request, ApplicationNote $note)
+    {
+        // Sprawdź, czy firma ma dostęp do tej notatki
+        if ($note->application->user_id !== auth()->id()) {
+            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
+        }
+
+        $data = $request->validate([
+            'content' => 'required|string|max:500',
+        ],[],[
+            'content' => strtolower(__('translate.noteContent')),
+        ]);
+
+        $note->update([
+            'content' => $data['content'],
+        ]);
+
+        return $this->flashAndRedirect('translate.noteUpdated');
+    }
+
+    /**
+     * Usuwa notatkę
+     *
+     * @param ApplicationNote $note
+     * @return RedirectResponse
+     */
+    public function deleteNote(ApplicationNote $note)
+    {
+        // Sprawdź, czy firma ma dostęp do tej notatki
+        if ($note->application->user_id !== auth()->id()) {
+            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
+        }
+
+        $note->delete();
+
+        return $this->flashAndRedirect('translate.noteDeleted');
     }
 }

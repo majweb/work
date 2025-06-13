@@ -62,8 +62,12 @@ class ApplicationFilterService
                 );
             });
 
+        // Filtrowanie według rekrutera
+        $query->when($request->filled('recruiter'), fn($q) => $q->where('recruiter_id', $request->recruiter));
+
         // Pobieranie i cachowanie kategorii
         $categories = $this->getCategories();
+        $recruits = $this->getRecruits();
 
         // Przygotowanie danych do widoku
         $applications = $query->orderBy('created_at', 'desc')->paginate(10);
@@ -72,6 +76,7 @@ class ApplicationFilterService
         return [
             'applications' => $applications->withQueryString(),
             'optionsPosition' => $categories,
+            'optionsRecruits' => $recruits,
             'counters' => $counters,
             'filters' => $request->only(['project', 'status', 'category', 'experience', 'education', 'course', 'lang', 'skill', 'has_cv']),
         ];
@@ -86,6 +91,13 @@ class ApplicationFilterService
             return MultiselectWithoutDetailResource::collection(
                 Category::whereNotNull('parent_id')->get()
             );
+        });
+    }
+
+    private function getRecruits()
+    {
+        return auth()->user()->recruits()->get()->map(function ($item) {
+            return ['name' => $item['name'], 'value' => $item['id']];
         });
     }
 

@@ -11,6 +11,7 @@ const props = defineProps({
     acceptedCount: Number,
     maybeCount: Number,
     optionsPosition: Object,
+    optionsRecruits: Object,
     applications: Object,
     filters: Object
 });
@@ -18,6 +19,7 @@ const props = defineProps({
 const form = ref({
     project: props.filters?.project || '',
     category: props.filters?.category?.value || '',
+    recruiter: props.filters?.recruiter || '',
     has_cv: props.filters?.has_cv || 'all'
 });
 
@@ -33,6 +35,7 @@ const resetFilters = () => {
     form.value = {
         project: '',
         category: '',
+        recruiter: '',
         has_cv: 'all'
     };
 
@@ -47,7 +50,9 @@ const resetFilters = () => {
 watch(form, debounce(function (value) {
     let rest = pickBy({
         ...form.value,
-        category: form.value.category?.value || form.value.category
+        category: form.value.category?.value || form.value.category,
+        recruiter: form.value.recruiter?.value || form.value.recruiter
+
     });
     router.get(route('firm.applications.noApplications'), rest, {
         preserveState: true,
@@ -67,7 +72,7 @@ watch(form, debounce(function (value) {
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl sm:rounded-lg p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-6">{{ __('translate.applicationsList') }}</h3>
 
@@ -123,6 +128,27 @@ watch(form, debounce(function (value) {
                                     </template>
                                 </multiselect>
                             </div>
+                            <div>
+                                <InputLabel :value="__('translate.recruiter')"/>
+                                <multiselect
+                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectedLabel="__('translate.selectedLabel')"
+                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :noOptions="__('translate.noOptions')"
+                                    :noResult="__('translate.noResult')"
+                                    track-by="value"
+                                    label="name"
+                                    :placeholder="__('translate.placeholder')"
+                                    v-model="form.recruiter" :options="optionsRecruits">
+                                    <template #noResult>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
+                                    </template>
+                                </multiselect>
+                            </div>
                         </div>
                         <div class="flex justify-end space-x-3">
                             <button
@@ -135,10 +161,10 @@ watch(form, debounce(function (value) {
                         </div>
                         <div class="flex space-x-2 mt-2">
                             <Link v-if="otherCount > 0" :href="route('aplications.index')" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                {{ __('translate.all') }}
+                                {{ __('translate.applications') }}
                             </Link>
                             <Link v-if="acceptedCount > 0" :href="route('firm.applications.acceptedApplications')" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                {{ __('translate.statusYes') }}
+                                {{ __('translate.statusPotentialUsers') }}
                             </Link>
                             <Link v-if="maybeCount > 0" :href="route('firm.applications.maybeApplications')" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-600 focus:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 transition ease-in-out duration-150">
                                 {{ __('translate.New') }}
