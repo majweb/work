@@ -18,14 +18,14 @@ class AplicationMakeEvent
 
     public $aplication;
     public $auth;
-
-
+    public $cvType;
     /**
      * Create a new event instance.
      */
-    public function __construct(Aplication $aplication,User $auth = null)
+    public function __construct(Aplication $aplication,User $auth = null, $cvType = null,$sessionId = null)
     {
         $this->aplication = $aplication;
         $this->auth = $auth;
+        $this->cvType = $cvType;
     }
 }

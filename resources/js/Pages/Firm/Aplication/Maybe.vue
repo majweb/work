@@ -1,7 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { Link } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
+import {Link, usePage} from '@inertiajs/vue3';
+import {computed, ref, watch} from 'vue';
 import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
 import Multiselect from "vue-multiselect";
@@ -14,14 +14,17 @@ const props = defineProps({
     optionsPosition: Object,
     optionsRecruits: Object,
     applications: Object,
-    filters: Object
+    filters: Object,
+    langLevels: Array,
 });
-
 const form = ref({
     project: props.filters?.project || '',
     category: props.filters?.category?.value || '',
     recruiter: props.filters?.recruiter || '',
-    has_cv: props.filters?.has_cv || 'all'
+    has_cv: props.filters?.has_cv || 'all',
+    lang: props.filters?.lang || '',
+    Langlevel: props.filters?.Langlevel || '',
+    skill: props.filters?.skill || '',
 });
 
 const updateStatus = (id, status) => {
@@ -37,7 +40,10 @@ const resetFilters = () => {
         project: '',
         category: '',
         recruiter: '',
-        has_cv: 'all'
+        has_cv: 'all',
+        lang: '',
+        Langlevel: '',
+        driveLicense: '',
     };
 
     router.get(route('firm.applications.maybeApplications'), {}, {
@@ -47,12 +53,14 @@ const resetFilters = () => {
 };
 
 
-
 watch(form, debounce(function (value) {
     let rest = pickBy({
         ...form.value,
         category: form.value.category?.value || form.value.category,
-        recruiter: form.value.recruiter?.value || form.value.recruiter
+        recruiter: form.value.recruiter?.value || form.value.recruiter,
+        Langlevel: form.value.has_cv === 'yes' ? (form.value.Langlevel?.name || form.value.Langlevel) : undefined,
+        experience:form.value.has_cv === 'yes' ? (form.value.experience?.value || form.value.experience) : undefined,
+        driveLicense:form.value.has_cv === 'yes' ? form.value.driveLicense  : '',
 
     });
     router.get(route('firm.applications.maybeApplications'), rest, {
@@ -61,6 +69,13 @@ watch(form, debounce(function (value) {
         replace: true
     });
 }, 300), { deep: true });
+
+const sortLangs = computed(() => {
+    const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+    return usePage().props.languages
+        .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
+        .sort((a, b) => a.label.localeCompare(b.label));
+});
 
 </script>
 
@@ -151,6 +166,100 @@ watch(form, debounce(function (value) {
                                 </multiselect>
                             </div>
                         </div>
+
+                        <!--FILTRY-->
+                        <div v-if="form.has_cv == 'yes'" class="my-3">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <!-- LANG -->
+                                <div>
+                                    <InputLabel :value="__('translate.language')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        track-by="value"
+                                        v-model="form.lang"
+                                        label="label"
+                                        :placeholder="__('translate.placeholder')"
+                                        :options="sortLangs">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <!-- NAME -->
+                                <!--                                                    LEVEL-->
+                                <div v-if="props.langLevels" :class="{'opacity-50': !form.lang}">
+                                    <InputLabel :value="__('translate.levelLang')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :disabled="!form.lang"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="form.Langlevel" :options="props.langLevels">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <!--                                                    LEVEL-->
+                                <!--JEZYKI-->
+
+                                <!--                            EXPERIENCES-->
+                                <div>
+                                    <InputLabel :value="__('translate.position')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="form.experience" :options="optionsPosition">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <!--                            EXPERIENCES-->
+                                <!--                            DRIVE-->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">{{__('translate.driveLicense')}}</label>
+                                    <div class="flex space-x-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" v-model="form.driveLicense" value="yes">
+                                            <span class="ml-2">{{ __('translate.yes') }}</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" v-model="form.driveLicense" value="no">
+                                            <span class="ml-2">{{ __('translate.no') }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!--                            DRIVE-->
+                            </div>
+                        </div>
+                        <!--FILTRY-->
                         <div class="flex justify-end space-x-3">
                             <button
                                 @click="resetFilters"
@@ -186,12 +295,12 @@ watch(form, debounce(function (value) {
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     {{ __('translate.nameUser') }} {{ __('translate.surname') }}
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('translate.email') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('translate.phone') }}
-                                </th>
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">-->
+<!--                                    {{ __('translate.email') }}-->
+<!--                                </th>-->
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">-->
+<!--                                    {{ __('translate.phone') }}-->
+<!--                                </th>-->
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     {{ __('translate.project') }}
                                 </th>
@@ -214,12 +323,12 @@ watch(form, debounce(function (value) {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900">{{ application.name }} {{ application.surname }}</div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ application.email }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ application.phone }}</div>
-                                </td>
+<!--                                <td class="px-6 py-4 whitespace-nowrap">-->
+<!--                                    <div class="text-sm text-gray-500">{{ application.email }}</div>-->
+<!--                                </td>-->
+<!--                                <td class="px-6 py-4 whitespace-nowrap">-->
+<!--                                    <div class="text-sm text-gray-500">{{ application.phone }}</div>-->
+<!--                                </td>-->
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-500">{{ application.project?.id }}</div>
                                 </td>

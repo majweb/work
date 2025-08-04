@@ -19,6 +19,8 @@ class CvVideo extends Model
         'project_id',
         'user_id',
         'file_path',
+        'temp_session_id',
+        'aplication_id',
     ];
 
     /**
@@ -35,5 +37,13 @@ class CvVideo extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relacja do aplikacji
+     */
+    public function aplication(): BelongsTo
+    {
+        return $this->belongsTo(Aplication::class, 'aplication_id');
     }
 }

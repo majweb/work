@@ -4,8 +4,11 @@ import {ref} from 'vue';
 import {Link, router, useForm} from '@inertiajs/vue3';
 import DialogModal from '@/Components/DialogModal.vue';
 import moment from "moment";
+import Multiselect from "vue-multiselect";
 const props = defineProps({
-    application: Object
+    application: Object,
+    otherRecruits: Array,
+    candidateQuestions: Array,
 });
 
 // Stan dla modalu notatek
@@ -14,10 +17,57 @@ const showDeleteModal = ref(false);
 const currentNote = ref(null);
 const isEditing = ref(false);
 const noteToDelete = ref(null);
-
+const showChangeRecruit = ref(false);
 const form = useForm({
     content: ''
 });
+
+// Formularz odpowiedzi na pytania
+const answersForm = useForm({
+    answers: []
+});
+
+// Inicjalizacja formularza odpowiedzi
+const initAnswersForm = () => {
+    const formattedAnswers = props.candidateQuestions.map(question => {
+        // Znajdź odpowiedź na to pytanie jeśli istnieje
+        const existingAnswer = props.application.candidate_answers?.find(
+            answer => answer.candidate_question_id === question.id
+        );
+
+        return {
+            question_id: question.id,
+            text_answer: existingAnswer?.text_answer || '',
+            boolean_answer: existingAnswer?.boolean_answer === null ? null : existingAnswer?.boolean_answer,
+        };
+    });
+
+    answersForm.answers = formattedAnswers;
+};
+
+// Inicjalizacja przy załadowaniu strony
+initAnswersForm();
+
+// Formularz do odblokowywania pytań
+const questionsForm = useForm({});
+
+// Odblokowuje pytania dla tej aplikacji pobierając punkty
+const unlockQuestions = () => {
+    questionsForm.post(route('applications.unlock-questions', props.application.id), {
+        preserveScroll: true,
+    });
+};
+
+// Zapisanie odpowiedzi
+const saveAnswers = () => {
+    answersForm.post(route('applications.save-answers', props.application.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            // Odświeżenie danych
+            initAnswersForm();
+        }
+    });
+};
 
 // Otwiera modal do dodania notatki
 const openAddNoteModal = () => {
@@ -101,6 +151,16 @@ const resetStatus = (id, status) => {
         preserveState: true
     });
 };
+
+
+const dispatchActionSingleRecruit = value => {
+    router.post(route('firm.changeRecruitApp',props.application?.id ),{ recruit: value },{ preserveScroll: true,
+        onSuccess: () => {
+            showChangeRecruit.value = false;
+        }
+    });
+}
+
 </script>
 
 <template>
@@ -256,25 +316,53 @@ const resetStatus = (id, status) => {
                                 <p class="text-sm font-medium text-gray-500">{{ __('translate.project') }}</p>
                                 <p class="text-base">{{ application.project?.name || __('translate.noProject') }}</p>
                             </div>
+                            <div v-if="application.opened_by">
+                                <p class="text-sm font-medium text-gray-500">{{ __('translate.whoOpened') }}</p>
+                                <p class="text-base">{{ application.opened_by.name }} ({{ moment(application.opened_at).format('DD.MM.YYYY HH:mm') }})</p>
+                                <button class="underline text-sm" @click="showChangeRecruit = !showChangeRecruit">{{showChangeRecruit ? 'Anuluj' : 'Zmień'}}</button>
+                                <div v-if="showChangeRecruit" class="w-full my-3">
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        track-by="name"
+                                        :multiple="false"
+                                        label="name"
+                                        @update:modelValue="dispatchActionSingleRecruit"
+                                        :placeholder="__('translate.placeholder')"
+                                        :options="props.otherRecruits">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <p class="text-sm font-medium text-gray-500">{{ __('translate.whoOpened') }}</p>
+                                <p class="text-base">{{ __('translate.notViewed') }}</p>
+                            </div>
+                            <div v-if="application.status_changed_by_user_id">
+                                <p class="text-sm font-medium text-gray-500">{{ __('translate.whoChangedStatus') }}</p>
+                                <p class="text-base">{{ application.status_changed_by?.name }} ({{ moment(application.status_changed_at).format('DD.MM.YYYY HH:mm') }})</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.applicationStatus') }}</h3>
                         <div class="flex gap-2 mb-4">
-                            <button v-if="application.status !== 'yes'" @click="updateStatus(application.id, 'yes')"
+                            <button @click="updateStatus(application.id, 'yes')"
                                     :class="[application.status === 'yes' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700', 'px-4 py-2 rounded text-sm font-medium']">
                                 {{ __('translate.statusYes') }}
                             </button>
-                            <button v-if="application.status === 'yes'" @click="resetStatus(application.id, '')"
-                                    :class="[application.status === 'yes' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700', 'px-4 py-2 rounded text-sm font-medium']">
-                                {{ __('translate.labelButtonUndoItemProcessing') }}
-                            </button>
-                            <button v-if="application.status !== 'yes'" @click="updateStatus(application.id, 'no')"
+                            <button @click="updateStatus(application.id, 'no')"
                                     :class="[application.status === 'no' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700', 'px-4 py-2 rounded text-sm font-medium']">
                                 {{ __('translate.statusNo') }}
                             </button>
-                            <button v-if="application.status !== 'yes'" @click="updateStatus(application.id, 'maybe')"
+                            <button @click="updateStatus(application.id, 'maybe')"
                                     :class="[application.status === 'maybe' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700', 'px-4 py-2 rounded text-sm font-medium']">
                                 {{ __('translate.statusMaybe') }}
                             </button>
@@ -287,6 +375,98 @@ const resetStatus = (id, status) => {
                            class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
                             {{ __('translate.getCv') }}
                         </a>
+                    </div>
+
+                    <div v-if="candidateQuestions && candidateQuestions.length > 0" class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateQuestions') }}</h3>
+                        <div v-if="application.questions_unlocked_at" class="space-y-4">
+                        <p>{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(application.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
+                            <div v-for="(question, index) in candidateQuestions" :key="question.id" class="border p-4 rounded-lg">
+                                <h4 class="font-medium mb-2">{{ question.question }}</h4>
+
+                                <div v-if="question.answer_type === 'text'">
+                                    <textarea
+                                        v-model="answersForm.answers[index].text_answer"
+                                        class="w-full border-gray-300 rounded-md shadow-sm"
+                                        :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
+                                        rows="3"
+                                    ></textarea>
+                                    <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-sm text-red-600 mt-1">
+                                        {{ answersForm.errors[`answers.${index}.text_answer`] }}
+                                    </p>
+                                </div>
+
+                                <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
+                                    <div class="flex space-x-4 mb-1">
+                                        <label class="inline-flex items-center">
+                                            <input
+                                                type="radio"
+                                                :name="`question-${question.id}`"
+                                                :value="true"
+                                                v-model="answersForm.answers[index].boolean_answer"
+                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
+                                                class="border-gray-300 text-indigo-600"
+                                            >
+                                            <span class="ml-2">{{ __('translate.yes') }}</span>
+                                        </label>
+
+                                        <label class="inline-flex items-center">
+                                            <input
+                                                type="radio"
+                                                :name="`question-${question.id}`"
+                                                :value="false"
+                                                v-model="answersForm.answers[index].boolean_answer"
+                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
+                                                class="border-gray-300 text-indigo-600"
+                                            >
+                                            <span class="ml-2">{{ __('translate.no') }}</span>
+                                        </label>
+                                    </div>
+                                    <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-sm text-red-600">
+                                        {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <div v-if="answersForm.errors.answers" class="p-4 mb-4 bg-red-50 border border-red-500 rounded-md">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <h3 class="text-sm font-medium text-red-800">{{ __('translate.validationError') }}</h3>
+                                            <p class="text-sm text-red-700 mt-1">
+                                                {{ answersForm.errors.answers }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button
+                                        @click="saveAnswers"
+                                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                                        :disabled="answersForm.processing"
+                                    >
+                                        {{ __('translate.save') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div v-else class="text-center py-6">
+                            <p class="text-gray-600 mb-4">{{ __('translate.unlockQuestionsInfo') }}</p>
+                            <button
+                                @click="unlockQuestions"
+                                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
+                                :disabled="questionsForm.processing"
+                            >
+                                {{ __('translate.unlockQuestions') }}
+                            </button>
+                            <p class="text-sm text-gray-500 mt-2">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
+                        </div>
                     </div>
 
                     <div v-if="application.media && application.media.length > 0"
@@ -307,3 +487,44 @@ const resetStatus = (id, status) => {
         </div>
     </AppLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+
+.multiselect__tag{
+    background: #00a0e3 !important;
+}
+.multiselect__option--highlight {
+    background: #00a0e3 !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #00a0e3 !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
+}
+</style>

@@ -47,6 +47,7 @@ class StoreRecruitRequest extends FormRequest
             'email' => $ruleEmail,
             'password' => $rulePassword,
             'permissions' => ['required','array','min:1'],
+            'color' => ['required','string'],
         ];
     }
 

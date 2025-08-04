@@ -60,6 +60,7 @@ class RecruitController extends Controller
             'email' => $request->userData()['email'],
             'recruiter_from_firm_id' => $request->userData()['recruiter_from_firm_id'],
             'recruiter_phone' => $request->userData()['recruiter_phone'],
+            'color' => $request->userData()['color'],
             'password' => Hash::make($request->userData()['password']),
         ]);
         $user->assignRole('recruit');
@@ -67,7 +68,6 @@ class RecruitController extends Controller
 
         session()->flash('flash.banner', __('translate.addedRecruit'));
         session()->flash('flash.bannerStyle', 'success');
-
         return to_route('recruits.index');
 
     }
@@ -104,6 +104,7 @@ class RecruitController extends Controller
             'recruiter_from_firm_id' => $request->userData()['recruiter_from_firm_id'],
             'recruiter_phone' => $request->userData()['recruiter_phone'],
             'user_blocked' => $request->userData()['user_blocked'] ? now() :  NULL,
+            'color' => $request->userData()['color'],
             'password' => !is_null($request->userData()['password']) ? Hash::make($request->userData()['password']) : $recruit->password,
         ]);
         $per = collect($request->userData()['permissions'])->pluck('name');

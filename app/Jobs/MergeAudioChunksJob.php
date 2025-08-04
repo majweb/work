@@ -8,13 +8,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class MergeAudioChunksJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     protected $uploadId;
     protected $totalChunks;
     protected $projectId;
@@ -75,7 +75,9 @@ class MergeAudioChunksJob implements ShouldQueue
         unlink($finalFullPath);
         rename($mp3Path, $finalFullPath);
 
+        Cache::put('cv_session_'.$this->userId, $this->uploadId, now()->addMinutes(30));
         CvAudio::create([
+            'temp_session_id' => $this->uploadId,
             'project_id' => $this->projectId,
             'user_id' => $this->userId,
             'file_path' => $finalPath,

@@ -19,6 +19,7 @@ class AudioUploadController extends Controller
             'project_id' => 'required|integer|exists:projects,id',
         ]);
 
+
         $uploadId = $request->upload_id;
         $chunkIndex = $request->chunk_index;
         $totalChunks = $request->total_chunks;

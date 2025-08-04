@@ -1,11 +1,13 @@
 <?php
 
 use App\Charts\MonthlyUsersChart;
+use App\Http\Controllers\Admin\QuestionAcceptController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Firm\AboutController;
 use App\Http\Controllers\Firm\AplicationController;
 use App\Http\Controllers\Firm\ArticleController;
 use App\Http\Controllers\Firm\BuyController;
+use App\Http\Controllers\Firm\CandidateQuestionController;
 use App\Http\Controllers\Firm\FirmBuyController;
 use App\Http\Controllers\Firm\FirmController;
 use App\Http\Controllers\Firm\InvoiceController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\Firm\RecruitController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
 use App\Models\Page;
+use App\Models\ProjectQuestion;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -59,7 +62,12 @@ Route::middleware([
     'verified',
 ])->prefix('logged')->group(function () {
     Route::get('/dashboard', function (MonthlyUsersChart $chart) {
-        return inertia()->render('Dashboard',['chart' => $chart->build()]);
+
+        $countQuestions = ProjectQuestion::whereNull('accepted')->count();
+        return inertia()->render('Dashboard',[
+            'chart' => $chart->build(),
+            'countQuestions'=>$countQuestions
+        ]);
     })->name('dashboard');
     Route::resource('recruits',RecruitController::class)->middleware('role:firm');
     Route::resource('orders',OrderController::class)->middleware('role:firm')->only([
@@ -71,8 +79,11 @@ Route::middleware([
     Route::get('invoicesDownload/{invoice}',[InvoiceController::class,'downloadPDF'])->middleware('role:firm')->name('invoicesDownload');
     Route::get('ordersDownload/{order}',[OrderController::class,'downloadPDF'])->middleware('role:firm')->name('ordersDownload');
     Route::resource('aplications',AplicationController::class)->middleware('role:firm')->only('index','show');
+    Route::post('applications/export', [AplicationController::class, 'export'])->middleware('role:firm')->name('firm.applications.export');
     Route::put('aplications/{aplication}/status',[AplicationController::class,'updateStatus'])->middleware('role:firm')->name('firm.applications.update-status');
     Route::post('aplications/{aplication}/notes',[AplicationController::class,'storeNote'])->middleware('role:firm')->name('firm.applications.store-note');
+    Route::post('applications/{aplication}/save-answers', [AplicationController::class, 'saveAnswers'])->middleware('role:firm')->name('applications.save-answers');
+    Route::post('applications/{aplication}/unlock-questions', [AplicationController::class, 'unlockQuestions'])->middleware('role:firm')->name('applications.unlock-questions');
     Route::put('aplications/notes/{note}',[AplicationController::class,'updateNote'])->middleware('role:firm')->name('firm.applications.update-note');
     Route::delete('aplications/notes/{note}',[AplicationController::class,'deleteNote'])->middleware('role:firm')->name('firm.applications.delete-note');
     Route::get('acceptedApplications',[AplicationController::class,'acceptedApplications'])->middleware('role:firm')->name('firm.applications.acceptedApplications');
@@ -89,6 +100,7 @@ Route::middleware([
     Route::get('/points',[PoinstController::class,'index'])->name('points.index')->middleware('role:firm');
     Route::post('/addMoreRecruits/{project}',[ProjectController::class,'addMoreRecruits'])->name('firm.addMoreRecruits')->middleware('role:firm');
     Route::post('/changeRecruit/{project}',[ProjectController::class,'changeRecruit'])->name('firm.changeRecruit')->middleware('role:firm');
+    Route::post('/changeRecruitApp/{aplication}',[ProjectController::class,'changeRecruitApp'])->name('firm.changeRecruitApp')->middleware('role:firm');
 //    CART
     Route::get('/buyAddToCart/{product}',[BuyController::class,'store'])->name('buy.store')->middleware('role:firm');
     Route::delete('/buyRemoveFromCart/{product}',[BuyController::class,'detailRemoveFromCart'])->name('buy.detailRemoveFromCart')->middleware('role:firm');
@@ -100,13 +112,55 @@ Route::middleware([
     Route::get('/successView',[BuyController::class,'successView'])->name('buy.successView')->middleware('role:firm');
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
 
+    // Trasy dla zarządzania pytaniami kandydatów
+    Route::resource('candidate-questions', CandidateQuestionController::class)->middleware('role:firm');
+    Route::put('candidate-questions/{candidateQuestion}/toggle-active', [CandidateQuestionController::class, 'toggleActive'])->name('candidate-questions.toggle-active')->middleware('role:firm');
+
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
+    Route::post('/project-recruits/{project}/duplicate', [ProjectControllerRecruit::class, 'duplicate'])->name('project-recruits.duplicate');
+
+
     Route::resource('project-aplications-recruits',AplicationControllerRecruit::class)->parameters(['project-aplications-recruits' => 'aplication']);
     Route::get('project-aplications-recruits/{aplication}/recruitmentView',[AplicationControllerRecruit::class,'recruitmentView'])->name('project-aplications-recruits.recruitmentView');
+    Route::get('acceptedApplicationsRecruit',[AplicationControllerRecruit::class,'acceptedApplications'])->name('project-aplications-recruits.acceptedApplications');
+    Route::get('maybeApplicationsRecruit',[AplicationControllerRecruit::class,'maybeApplications'])->name('project-aplications-recruits.maybeApplications');
+    Route::get('noApplicationsRecruit',[AplicationControllerRecruit::class,'noApplications'])->name('project-aplications-recruits.noApplications');
+    Route::post('project-aplications-recruit/export', [AplicationControllerRecruit::class, 'export'])->middleware('role:recruit')->name('recruit.project-aplications-recruits.export');
+
+    Route::post('project-aplications-recruits/{aplication}/notes',[AplicationControllerRecruit::class,'storeNote'])->name('project-aplications-recruits.store-note');
+    Route::put('project-aplications-recruits/notes/{note}',[AplicationControllerRecruit::class,'updateNote'])->name('project-aplications-recruits.update-note');
+    Route::delete('project-aplications-recruits/notes/{note}',[AplicationControllerRecruit::class,'deleteNote'])->name('project-aplications-recruits.delete-note');
+
+
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
-//    WORKER
+    //    WORKER
     Route::put('workerForm',WorkerDetailController::class)->middleware('role:worker')->name('worker.update.form');
+
+    //    ADMIN
+    Route::middleware(['role:admin'])->name('admin.')->group(function () {
+        Route::get('questions-accepts',[QuestionAcceptController::class,'index'])->name('questions-accepts.index');
+        Route::get('questions-accepts/{projectQuestion}',[QuestionAcceptController::class,'show'])->name('questions-accepts.show');
+        Route::delete('questions-accepts/{projectQuestion}',[QuestionAcceptController::class,'destroy'])->name('questions-accepts.destroy');
+        Route::put('questions-accepts/{projectQuestion}/accept', [QuestionAcceptController::class, 'accept'])->name('questions-accepts.accept');
+//        APLIKACJE
+        Route::get('aplicationsAdmin',[\App\Http\Controllers\Admin\AplicationController::class,'index'])->name('aplicationsA.index');
+        Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])
+            ->name('aplicationsA.export');
+
+
+        Route::put('aplicationsAdmin/{aplication}/status',[App\Http\Controllers\Admin\AplicationController::class,'updateStatus'])->name('aplicationsA.update-status');
+        Route::post('aplicationsAdmin/{aplication}/notes',[App\Http\Controllers\Admin\AplicationController::class,'storeNote'])->name('aplicationsA.store-note');
+        Route::get('aplicationsAdmin/show/{aplication}',[App\Http\Controllers\Admin\AplicationController::class,'show'])->name('aplicationsA.show');
+        Route::put('aplicationsAdmin/notes/{note}',[App\Http\Controllers\Admin\AplicationController::class,'updateNote'])->name('aplicationsA.update-note');
+        Route::delete('aplicationsAdmin/notes/{note}',[App\Http\Controllers\Admin\AplicationController::class,'deleteNote'])->name('aplicationsA.delete-note');
+        Route::get('acceptedApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'acceptedApplications'])->name('aplicationsA.acceptedApplications');
+        Route::get('maybeApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'maybeApplications'])->name('aplicationsA.maybeApplications');
+        Route::get('noApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'noApplications'])->name('aplicationsA.noApplications');
+
+
+    });
+
 });
 Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');
 Route::delete('temporary/delete',DeleteTemporaryFileController::class)->name('temporary.delete');

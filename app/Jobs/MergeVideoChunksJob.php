@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -70,8 +72,10 @@ class MergeVideoChunksJob implements ShouldQueue
         }
 
         rename($processedPath, $finalFullPath);
+        Cache::put('cv_session_'.$this->userId, $this->uploadId, now()->addMinutes(30));
 
         CvVideo::create([
+            'temp_session_id' => $this->uploadId,
             'project_id' => $this->projectId,
             'user_id' => $this->userId,
             'file_path' => $finalPath,

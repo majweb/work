@@ -28,11 +28,17 @@ class Aplication extends Model implements HasMedia
         'status',
         'whenDeleted',
         'whenMaybe',
+        'opened_by_user_id',
+        'opened_at',
+        'status_changed_by_user_id',
+        'status_changed_at',
+        'questions_unlocked_at'
     ];
 
     protected $casts = [
         'whenDeleted' => 'datetime',
         'whenMaybe' => 'datetime',
+        'questions_unlocked_at' => 'datetime',
     ];
 
     public function user(): BelongsTo
@@ -61,11 +67,50 @@ class Aplication extends Model implements HasMedia
     }
 
     /**
+     * Relacja do nagrań audio
+     */
+    public function cvAudio(): HasOne
+    {
+        return $this->hasOne(CvAudio::class, 'aplication_id');
+    }
+
+    /**
+     * Relacja do nagrań wideo
+     */
+    public function cvVideo(): HasOne
+    {
+        return $this->hasOne(CvVideo::class, 'aplication_id');
+    }
+
+    /**
      * Relacja do notatek
      */
     public function notes(): HasMany
     {
         return $this->hasMany(ApplicationNote::class, 'application_id');
+    }
+
+    public function candidateAnswers(): HasMany
+    {
+        return $this->hasMany(CandidateAnswer::class, 'aplication_id');
+    }
+
+    /**
+     * Sprawdza, czy pytania zostały odblokowane dla tej aplikacji
+     */
+    public function getQuestionsUnlockedAttribute(): bool
+    {
+        return !is_null($this->questions_unlocked_at);
+    }
+
+    public function opened_by()
+    {
+        return $this->belongsTo(User::class, 'opened_by_user_id');
+    }
+
+    public function status_changed_by()
+    {
+        return $this->belongsTo(User::class, 'status_changed_by_user_id');
     }
 
     /**
@@ -86,10 +131,10 @@ class Aplication extends Model implements HasMedia
         return false;
     }
 
-    public function scopeActive($query)
+    public function scopeActiveStart($query)
     {
-        return $query->where('status', '!=', 'yes')
-            ->where(function($q) {
+        return $query->whereNull('status')
+            ->orWhere(function($q) {
                 $q->whereNotIn('status', ['no', 'maybe'])
                     ->orWhere(function($subQ) {
                         $subQ->where('status', 'no')
@@ -118,4 +163,22 @@ class Aplication extends Model implements HasMedia
         });
     }
 
+    public function scopeForRecruiterWithOther($query)
+    {
+        return $query->where('recruiter_id', auth()->id())
+            ->orWhereHas('project', function ($q) {
+                $q->whereJsonContains('other_recruits', ['value' => auth()->user()->id]);
+            });
+    }
+
+    // Dodaj nowe relacje
+    public function openedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'opened_by_user_id');
+    }
+
+    public function statusChangedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'status_changed_by_user_id');
+    }
 }

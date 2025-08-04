@@ -91,6 +91,11 @@ onUnmounted(()=>{
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
+                                <NavLink :href="route('candidate-questions.index')" :active="route().current('candidate-questions.*')">
+                                    {{__('translate.candidateQuestions')}}
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('projects.index')" :active="route().current('projects.index')">
                                     {{__('translate.projects')}}
                                 </NavLink>
@@ -135,6 +140,18 @@ onUnmounted(()=>{
                                     {{__('translate.articles')}}
                                 </NavLink>
                             </div>
+                            <!--Admin-->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('admin')">
+                                <NavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">
+                                    {{__('translate.admin-questions')}}
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('admin')">
+                                <NavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">
+                                    {{__('translate.aplications')}}
+                                </NavLink>
+                            </div>
+                            <!--Admin-->
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -360,6 +377,13 @@ onUnmounted(()=>{
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')" v-if="hasRole('firm')">
                             {{__('translate.articles')}}
+                        </ResponsiveNavLink>
+                        <!--Admin-->
+                        <ResponsiveNavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')" v-if="hasRole('admin')">
+                            {{__('translate.admin-questions')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')" v-if="hasRole('admin')">
+                            {{__('translate.aplications')}}
                         </ResponsiveNavLink>
                     </div>
                     <!-- Responsive Settings Options -->

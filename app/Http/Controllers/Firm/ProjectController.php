@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Firm;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\OtherRecruitsResource;
+use App\Models\Aplication;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
@@ -117,6 +118,18 @@ class ProjectController extends Controller
                 'other_recruits'=>$array1,
             ]);
 
+            session()->flash('flash.banner', __('translate.otherRecruitsChangeMain'));
+            session()->flash('flash.bannerStyle', 'success');
+            return back();
+        }
+    }
+    public function changeRecruitApp(Aplication $aplication)
+    {
+        if(isset(request()->recruit['value'])){
+            $aplication->update([
+                'opened_by_user_id'=>request()->recruit['value'],
+                'opened_at'=>now(),
+            ]);
             session()->flash('flash.banner', __('translate.otherRecruitsChangeMain'));
             session()->flash('flash.bannerStyle', 'success');
             return back();

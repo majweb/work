@@ -1,210 +1,476 @@
 <script setup>
-import {computed, ref, watch} from 'vue';
-import { router,Link,usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Pagination from '@/Components/Pagination.vue';
-
+import {Link, usePage} from '@inertiajs/vue3';
+import {computed, ref, watch} from 'vue';
+import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
-import DangerButton from "@/Components/DangerButton.vue";
-import DialogModal from "@/Components/DialogModal.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
+import Multiselect from "vue-multiselect";
+import InputLabel from "@/Components/InputLabel.vue";
+const isExporting = ref(false);
 
 const props = defineProps({
-    aplications: Object,
-    recruiters: Object,
-    filters: Object
-});
-const selectedAplication = ref(null);
-const confirmCancelAplication = ref(false);
-
-const params = ref({
-    field: props.filters.field,
-    direction: props.filters.direction,
-    recruiter:props.filters.recruiter ?? 'all',
+    acceptedCount: Number,
+    maybeCount: Number,
+    noCount: Number,
+    optionsPosition: Object,
+    applications: Object,
+    filters: Object,
+    langLevels: Array,
 
 });
-
 const can = computed(()=>usePage().props.permissionsCan);
+const lang = computed(()=>usePage().props.language);
+const firmLoginPoints = computed(()=>usePage().props.firmLoginPoints);
+const exportRequiredPoints = computed(()=>usePage().props.exportRequiredPoints);
 
-const resetFilters = ()=>{
-    router.get(route('project-aplications-recruits.index'));
+
+const form = ref({
+    project: props.filters?.project || '',
+    status: props.filters?.status || '',
+    recruiter: props.filters?.recruiter || '',
+    category: props.filters?.category?.value || '',
+    has_cv: props.filters?.has_cv || 'all',
+    lang: props.filters?.lang || '',
+    Langlevel: props.filters?.Langlevel || '',
+    skill: props.filters?.skill || '',
+});
+
+const updateStatus = (id, status) => {
+    router.put(route('project-aplications-recruits.update', id), {
+        status
+    }, {
+        preserveScroll: true,
+        preserveState: true
+    });
+};
+
+// Funkcja do zastosowania filtrów została usunięta, bo teraz używamy watch
+
+const resetFilters = () => {
+    form.value = {
+        project: '',
+        status: '',
+        category: '',
+        recruiter: '',
+        has_cv: 'all',
+        lang: '',
+        Langlevel: '',
+        driveLicense: '',
+    };
+
+    router.get(route('project-aplications-recruits.index'), {}, {
+        preserveState: true,
+        replace: true,
+    });
+};
+
+const getBackgroundStyle = (application) => {
+    if (application.opened_by?.color) {
+        return {
+            backgroundColor: `${application.opened_by.color}15` // Dodajemy 15 na końcu dla przezroczystości
+        }
+    }
+    return {}
 }
-const openModal = (aplication)=>{
-    confirmCancelAplication.value = true;
-    selectedAplication.value = aplication;
-}
-const DeleteAplication = () => {
-    if(selectedAplication){
-        router.delete(route('project-aplications-recruits.destroy',selectedAplication.value), {
-            onSuccess: () => {
-                confirmCancelAplication.value = false;
-                selectedAplication.value = null;
-            }
+
+const sortLangs = computed(() => {
+    const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+    return usePage().props.languages
+        .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
+        .sort((a, b) => a.label.localeCompare(b.label));
+});
+const exportToCSV = async () => {
+    isExporting.value = true;
+
+    try {
+        const response = await axios.post(route('recruit.project-aplications-recruits.export'), {
+            form: form.value,
+        }, {
+            responseType: 'blob',
         });
+
+        const blob = new Blob([response.data], {
+            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `aplikacje_${new Date().toISOString().split('T')[0]}.xlsx`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        router.reload({ only: ['firmLoginPoints'] });
+    } catch (error) {
+        if (error.response?.status === 403) {
+            alert(error.response.data.message || 'Brak punktów!');
+        } else {
+            alert('Wystąpił błąd przy eksporcie.');
+        }
+    } finally {
+        isExporting.value = false;
     }
 };
 
 
-const sort = (field) => {
-    params.value.field = field;
-    params.value.direction = params.value.direction === 'asc' ? 'desc' : 'asc';
-}
-const resetSort = (field) => {
-    params.value.field = null;
-    params.value.direction = null;
-}
+watch(form, debounce(function (value) {
+    let rest = pickBy({
+        ...form.value,
+        category: form.value.category?.value || form.value.category,
+        recruiter: form.value.recruiter?.value || form.value.recruiter,
+        lang: form.value.has_cv === 'yes' ? (form.value.lang?.value || form.value.lang) : undefined,
+        Langlevel: form.value.has_cv === 'yes' ? (form.value.Langlevel?.name || form.value.Langlevel) : undefined,
+        experience:form.value.has_cv === 'yes' ? (form.value.experience?.value || form.value.experience) : undefined,
+        driveLicense:form.value.has_cv === 'yes' ? form.value.driveLicense  : '',
+    });
+    router.get(route('project-aplications-recruits.index'), rest, {
+        preserveState: true,
+        preserveScroll: true,
+        replace: true
+    });
+}, 300), { deep: true });
 
-watch(params.value, debounce(function (value) {
-    let rest = pickBy(params.value);
-    router.get(route('project-aplications-recruits.index'), rest, { preserveState: true, replace: true });
-}, 300));
+
 
 </script>
+
 <template>
     <AppLayout :title="__('translate.aplications')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{__('translate.aplications')}}
             </h2>
         </template>
+
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-                        <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6 sm:rounded-bl-md sm:rounded-br-md">
-                            <Link v-if="can['adding aplications']" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" :href="route('project-aplications-recruits.create')">
-                                {{__('translate.createProject')}}
-                            </Link>
-                        </div>
+            <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white shadow-xl sm:rounded-lg p-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-6">{{ __('translate.applicationsList') }}</h3>
 
-                        <div class="overflow-hidden bg-white shadow-md sm:rounded-lg">
-                            <div class="flex flex-col">
-                                <div class="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-8">
-                                    <div class="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
-                                        <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                                            <table class="min-w-full divide-y divide-gray-200 table-fixed">
-                                                <thead class="bg-blue-work">
-                                                <tr>
-                                                    <th scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
-                                                        <div class="flex items-center">
-                                                            <span class="inline-flex w-full py-3 px-6 justify-between" @click="sort('id')">Id
-                                                                <svg v-if="params.field === 'id' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
-                                                                </svg>
-
-                                                                <svg v-if="params.field === 'id' && params.direction === 'desc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
-                                                                </svg>
-                                                            </span>
-                                                            <div v-if="params.field === 'id' && params.direction" @click="resetSort">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.aplicationsType')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.othersRecruits')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.actions')}}
-                                                    </th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody class="bg-white divide-y divide-gray-200">
-                                                <tr v-if="props.aplications.data.length == 0">
-                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundProjects')}}</p></td>
-                                                </tr>
-                                                <tr v-else v-for="(aplication) in props.aplications.data" :key="aplication.id" :class="{'bg-blue-100': aplication.project.other_recruits?.some(el=>el.value == usePage().props.auth.user.id)}">
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="flex items-center">
-                                                            <div class="ml-4">
-                                                                <div class="text-sm text-gray-900">
-                                                                    {{aplication.id}}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                {{aplication.aplication_user_id ? __('translate.aplicationsWorker') : __('translate.makeAplicationNotRegister') }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="flex items-center">
-                                                            <div class="ml-4">
-                                                                <div class="text-sm text-gray-900">
-                                                                    <div v-if="aplication.project.other_recruits?.some(el=>el.value == usePage().props.auth.user.id)">
-                                                                        {{__('translate.yes')}}
-                                                                    </div>
-                                                                    <div v-else>
-                                                                        {{__('translate.no')}}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="flex items-center">
-                                                            <div class="ml-4">
-                                                                <DangerButton @click="openModal(aplication)" class="!flex mx-auto text-center justify-center">
-                                                                    {{__('translate.delete')}}
-                                                                </DangerButton>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <Link :href="route('project-aplications-recruits.show',aplication)" class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('translate.show')}}
-                                                                </Link>
-                                                                <Link :href="route('project-aplications-recruits.edit',aplication)" class="ml-2 flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('translate.edit')}}
-                                                                </Link>
-                                                                <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="ml-2 flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('translate.recruitment')}}
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- Formularz filtrowania -->
+                    <div class="mb-6 bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-gray-700 mb-3">{{ __('translate.filterApplications') }}</h4>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">{{ __('translate.applicationWithCV') }}</label>
+                            <div class="flex space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="form-radio text-indigo-600" v-model="form.has_cv" value="all">
+                                    <span class="ml-2">{{ __('translate.all') }}</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="form-radio text-indigo-600" v-model="form.has_cv" value="yes">
+                                    <span class="ml-2">{{ __('translate.onlyWithCV') }}</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="form-radio text-indigo-600" v-model="form.has_cv" value="no">
+                                    <span class="ml-2">{{ __('translate.onlyWithoutCV') }}</span>
+                                </label>
                             </div>
                         </div>
-                        <Pagination v-if="aplications.total > 5" class="mt-10 text-center mx-auto" :links="aplications.links" />
+                        <!-- Filtry projektu -->
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">{{__('translate.projectID')}}</label>
+                                <input
+                                    v-model="form.project"
+                                    type="text"
+                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    :placeholder="__('translate.enterProjectID')"
+                                >
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">{{__('translate.applicationStatus')}}</label>
+                                <select
+                                    v-model="form.status"
+                                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                >
+                                    <option value="">{{__('translate.all')}}</option>
+                                    <option value="yes">{{__('translate.statusYes')}}</option>
+                                    <option value="no">{{__('translate.statusNo')}}</option>
+                                    <option value="maybe">{{__('translate.statusMaybe')}}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <InputLabel :value="__('translate.position')"/>
+                                <multiselect
+                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectedLabel="__('translate.selectedLabel')"
+                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :noOptions="__('translate.noOptions')"
+                                    :noResult="__('translate.noResult')"
+                                    track-by="value"
+                                    label="name"
+                                    :placeholder="__('translate.placeholder')"
+                                    v-model="form.category" :options="optionsPosition">
+                                    <template #noResult>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
+                                    </template>
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <!--FILTRY-->
+                        <div v-if="form.has_cv == 'yes'" class="my-3">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <!-- LANG -->
+                                <div>
+                                    <InputLabel :value="__('translate.language')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        track-by="value"
+                                        v-model="form.lang"
+                                        label="label"
+                                        :placeholder="__('translate.placeholder')"
+                                        :options="sortLangs">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <!-- NAME -->
+                                <!--                                                    LEVEL-->
+                                <div v-if="props.langLevels" :class="{'opacity-50': !form.lang}">
+                                    <InputLabel :value="__('translate.levelLang')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :disabled="!form.lang"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="form.Langlevel" :options="props.langLevels">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <!--                                                    LEVEL-->
+                                <!--JEZYKI-->
+
+                                <!--                            EXPERIENCES-->
+                                <div>
+                                    <InputLabel :value="__('translate.position')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="form.experience" :options="optionsPosition">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                </div>
+                                <!--                            EXPERIENCES-->
+                                <!--                            DRIVE-->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">{{__('translate.driveLicense')}}</label>
+                                    <div class="flex space-x-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" v-model="form.driveLicense" value="yes">
+                                            <span class="ml-2">{{ __('translate.yes') }}</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" class="form-radio text-indigo-600" v-model="form.driveLicense" value="no">
+                                            <span class="ml-2">{{ __('translate.no') }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!--                            DRIVE-->
+                            </div>
+                        </div>
+                        <!--FILTRY-->
+
+
+
+                        <div class="flex justify-end space-x-3">
+                            <button
+                                @click="exportToCSV"
+                                :disabled="isExporting || (firmLoginPoints < exportRequiredPoints)"
+                                class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <span v-if="isExporting">{{ __('translate.resetFilters') }}</span>
+                                <span v-else>{{ __('translate.exportToCsv')}}</span>
+                            </button>
+                            <button
+                                @click="resetFilters"
+                                type="button"
+                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition"
+                            >
+                                {{ __('translate.resetFilters') }}
+                            </button>
+                        </div>
+                        <div class="flex space-x-2">
+                            <Link v-if="acceptedCount > 0" :href="route('project-aplications-recruits.acceptedApplications')" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                {{ __('translate.statusPotentialUsers') }}
+                            </Link>
+                            <Link v-if="maybeCount > 0" :href="route('project-aplications-recruits.maybeApplications')" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-600 focus:bg-yellow-600 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 transition ease-in-out duration-150">
+                                {{ __('translate.New') }}
+                            </Link>
+                            <Link v-if="noCount > 0" :href="route('project-aplications-recruits.noApplications')" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                {{ __('translate.No') }}
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div v-if="applications.data.length === 0" class="text-center py-8 text-gray-500">
+                        {{ __('translate.noApplicationsAvailable') }}
+                    </div>
+                    <div v-else class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Id
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.nameUser') }} {{ __('translate.surname') }}
+                                </th>
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">-->
+<!--                                    {{ __('translate.email') }}-->
+<!--                                </th>-->
+<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">-->
+<!--                                    {{ __('translate.phone') }}-->
+<!--                                </th>-->
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.project') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.cv') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.applicationStatus') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.actions') }}
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tr v-for="application in applications.data" :key="application.id" :style="getBackgroundStyle(application)"
+                            >
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ application.id }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">{{ application.name }} {{ application.surname }}</div>
+                                </td>
+<!--                                <td class="px-6 py-4 whitespace-nowrap">-->
+<!--                                    <div class="text-sm text-gray-500">{{ application.email }}</div>-->
+<!--                                </td>-->
+<!--                                <td class="px-6 py-4 whitespace-nowrap">-->
+<!--                                    <div class="text-sm text-gray-500">{{ application.phone }}</div>-->
+<!--                                </td>-->
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-500">{{ application.project?.id }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div v-if="application.cv_classic" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        {{ __('translate.hasCv') }}
+                                    </div>
+                                    <div v-else class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        {{ __('translate.noCv') }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex gap-2">
+                                        <button @click="can['application status'] && updateStatus(application.id, 'yes')"
+                                                :class="[application.status === 'yes' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700',
+                !can['application status'] ? 'opacity-50 cursor-not-allowed' : '',
+                'px-3 py-1 rounded text-xs font-medium']">
+                                            {{__('translate.statusYes')}}
+                                        </button>
+                                        <button @click="can['application status'] && updateStatus(application.id, 'no')"
+                                                :class="[application.status === 'no' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700',
+                !can['application status'] ? 'opacity-50 cursor-not-allowed' : '',
+                'px-3 py-1 rounded text-xs font-medium']">
+                                            {{__('translate.statusNo')}}
+                                        </button>
+                                        <button @click="can['application status'] && updateStatus(application.id, 'maybe')"
+                                                :class="[application.status === 'maybe' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700',
+                !can['application status'] ? 'opacity-50 cursor-not-allowed' : '',
+                'px-3 py-1 rounded text-xs font-medium']">
+                                            {{__('translate.statusMaybe')}}
+                                        </button>
+
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <Link :href="route('project-aplications-recruits.show', application.id)" class="text-indigo-600 hover:text-indigo-900 mr-4">{{ __('translate.applicationDetails') }}</Link>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <DialogModal :show="confirmCancelAplication" @close="confirmCancelAplication = false">
-                <template #title>
-                    {{__('translate.questionDelete')}} - {{__('translate.aplication').toLowerCase()}} id. {{selectedAplication && selectedAplication.id}}
-                </template>
-
-                <template #content>
-                    {{__('translate.questionDeleteConfirm')}} - {{__('translate.project').toLowerCase()}} id.{{selectedAplication && selectedAplication.id}}
-                </template>
-
-                <template #footer>
-                    <SecondaryButton @click.native="confirmCancelAplication = false">
-                        {{__('translate.cancel')}}
-                    </SecondaryButton>
-
-                    <DangerButton class="ml-2" @click.native="DeleteAplication">
-                        {{__('translate.delete')}}
-                    </DangerButton>
-                </template>
-            </DialogModal>
-
         </div>
     </AppLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+
+.multiselect__tag{
+    background: #00a0e3 !important;
+}
+.multiselect__option--highlight {
+    background: #00a0e3 !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #00a0e3 !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
+}
+</style>

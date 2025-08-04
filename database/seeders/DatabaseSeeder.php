@@ -76,6 +76,9 @@ class DatabaseSeeder extends Seeder
             DetailProjectUsluga2Seeder::class,
             DetailProjectRolnictwo2Seeder::class,
 //             Detale
+
+
+            AdminSeeder::class,
             ]);
 
     }

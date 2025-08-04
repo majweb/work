@@ -11,6 +11,7 @@ use App\Models\Agreement;
 use App\Models\Aplication;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\CvAudio;
 use App\Models\CvClassic;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
@@ -76,7 +77,9 @@ class FrontController extends Controller
         }
 
         if(auth()->check() && auth()->user()->hasRole('worker')){
-            $project->load(['questions']);
+            $project->load(['questions' => function($query) {
+                $query->whereNotNull('accepted');
+            }]);
 
             if (CvClassic::where('worker_id', auth()->id())->where('project_id', $project->id)->exists()) {
                 $project->load([
@@ -111,7 +114,6 @@ class FrontController extends Controller
     }
     public function makeAplication(AplicationRequest $request, Project $project)
     {
-
 //        dd($request->user());
 //        dd($request->aplicationData(),'okokok');
 //        dd($request->aplicationData(),'kkkk',$request->aplicationData()['cvStandardType']);
@@ -193,7 +195,7 @@ class FrontController extends Controller
                             }
                         }
                     }
-                    if($request->aplicationData()['templateCv']){
+                    if($request->aplicationData()['templateCv'] && $request->aplicationData()['cv'] == 1){
                         $previousLocale = App::getLocale();
                         $this->changeLangToGenerate(request()->get('cvLang'));
 
@@ -218,7 +220,7 @@ class FrontController extends Controller
                     }
                 }
                 session()->forget('captcha_text');
-                AplicationMakeEvent::dispatch($aplication,auth()->user());
+                AplicationMakeEvent::dispatch($aplication,auth()->user(),$request->aplicationData()['cv']);
             },
             $decaySeconds = 60 * 60 * 24
         );

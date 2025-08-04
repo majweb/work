@@ -1,20 +1,20 @@
 <template>
     <div class="max-w-4xl mx-auto text-center">
         <div v-if="recordedBlobUrl" class="mt-6">
-            <h3 class="text-lg font-semibold mb-2">odtwórz nagrania:</h3>
+            <h3 class="text-lg font-semibold mb-2">{{ __('translate.audioPreview') }}:</h3>
             <audio :src="recordedBlobUrl" controls class="w-full rounded-xl"></audio>
         </div>
         <audio  v-else ref="audio" controls autoplay class="w-full rounded-xl"></audio>
         <div v-if="currentQuestion && recording" class="mt-6 p-4 bg-white/80 rounded-xl">
             <h2 class="text-xl font-semibold">{{ currentQuestion.content }}</h2>
-            <div class="text-gray-600 mt-2">Pozostały czas: {{ timer }}s</div>
+            <div class="text-gray-600 mt-2">{{ __('translate.remainingTime') }}: {{ timer }}s</div>
             <button
                 type="button"
                 class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
                 @click="nextQuestion"
                 :disabled="uploading"
             >
-                Następne pytanie
+                {{ __('translate.nextQuestion') }}
             </button>
         </div>
 
@@ -25,7 +25,7 @@
                 class="px-6 py-3 bg-green-600 text-white rounded-lg shadow"
                 @click="startRecording"
             >
-                Rozpocznij nagrywanie
+                {{ __('translate.startRecording') }}
             </button>
 
             <button
@@ -34,22 +34,30 @@
                 class="px-6 py-3 bg-red-600 text-white rounded-lg shadow"
                 @click="stopRecording"
             >
-                Zatrzymaj nagrywanie
+                {{ __('translate.stopRecording') }}
             </button>
         </div>
 
         <div v-if="uploading" class="mt-6">
-            <p>Przesyłanie audio...</p>
+            <p>{{ __('translate.uploadingAudio') }}...</p>
             <progress :value="uploadProgress" max="100" class="w-full rounded"></progress>
             <p>{{ uploadProgress.toFixed(1) }}%</p>
         </div>
 
         <div v-if="uploadError" class="mt-4 text-red-600 font-semibold">
-            Błąd uploadu: {{ uploadError }}
+            {{ __('translate.uploadError') }}: {{ uploadError }}
+        </div>
+        <div class="flex items-center justify-center my-4">
+            <InputError :message="form.errors.application" class="mt-2"/>
         </div>
 
-        <div v-if="uploadSuccess" class="mt-4 text-green-600 font-semibold">
-            Nagranie zapisane pomyślnie!
+        <div v-if="uploadSuccess" class="mt-4 text-green-600 font-semibold flex flex-col gap-4 items-center">
+            {{ __('translate.audioRecordingSaved') }}
+            <PrimaryButton         @click="$emit('submit')"
+                                   class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+                                   :disabled="form.processing">
+                {{ __('translate.apply') }}
+            </PrimaryButton>
         </div>
     </div>
 </template>
@@ -57,9 +65,11 @@
 <script setup>
 import { ref, computed } from 'vue';
 import axios from 'axios';
-
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import InputError from "@/Components/InputError.vue";
 const props = defineProps({
     questions: Array,
+    form: Object,
     projectId: Number,
 });
 
@@ -129,9 +139,44 @@ const nextQuestion = () => {
     }
 };
 
+// const stopRecording = () => {
+//     if (countdownInterval) clearInterval(countdownInterval);
+//     if (!mediaRecorder.value) return;
+//
+//     mediaRecorder.value.onstop = async () => {
+//         recording.value = false;
+//         uploading.value = true;
+//         uploadProgress.value = 0;
+//
+//         const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+//         recordedBlobUrl.value = URL.createObjectURL(blob);
+//
+//         try {
+//             await uploadInChunks(blob);
+//             uploadSuccess.value = true;
+//             currentIndex.value = 0;
+//         } catch (e) {
+//             uploadError.value = e.message || 'Nieznany błąd';
+//         } finally {
+//             uploading.value = false;
+//
+//             // 👉 zatrzymaj mikrofon
+//             const tracks = audio.value.srcObject?.getTracks();
+//             tracks?.forEach(track => track.stop());
+//             audio.value.srcObject = null;
+//         }
+//     };
+//
+//     mediaRecorder.value.stop();
+// };
 const stopRecording = () => {
     if (countdownInterval) clearInterval(countdownInterval);
     if (!mediaRecorder.value) return;
+
+    // Zatrzymaj strumień audio natychmiast
+    const tracks = audio.value.srcObject?.getTracks();
+    tracks?.forEach(track => track.stop());
+    audio.value.srcObject = null;
 
     mediaRecorder.value.onstop = async () => {
         recording.value = false;
@@ -146,14 +191,9 @@ const stopRecording = () => {
             uploadSuccess.value = true;
             currentIndex.value = 0;
         } catch (e) {
-            uploadError.value = e.message || 'Nieznany błąd';
+            uploadError.value = e.message || __('translate.audioError');
         } finally {
             uploading.value = false;
-
-            // 👉 zatrzymaj mikrofon
-            const tracks = audio.value.srcObject?.getTracks();
-            tracks?.forEach(track => track.stop());
-            audio.value.srcObject = null;
         }
     };
 

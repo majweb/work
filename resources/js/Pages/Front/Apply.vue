@@ -1156,7 +1156,7 @@ const removeFile =  async (source,load) => {
                                                     <!-- NAME -->
                                                     <!--                                                    LEVEL-->
                                                     <div v-if="props.langLevels" class="col-span-2">
-                                                        <InputLabel :value="__('translate.levelEducation')"/>
+                                                        <InputLabel :value="__('translate.levelLang')"/>
                                                         <multiselect
                                                             :selectLabel="__('translate.selectLabel')"
                                                             :selectGroupLabel="__('translate.selectGroupLabel')"
@@ -1282,10 +1282,40 @@ const removeFile =  async (source,load) => {
                             </div>
                         </div>
                         <div v-if="formStep == 2 && form.cv == 2">
-                            <VideoRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
+                            <div v-if="props.project.questions.length">
+                                <VideoRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
+                            </div>
+                            <div v-else class="p-4 text-center">
+                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <p class="text-lg font-medium text-gray-900 mb-1">
+                                    {{ __('translate.noQuestionsFound') }}
+                                </p>
+                                <p class="text-sm text-gray-500">
+                                    {{ __('translate.noQuestionsDescription') }}
+                                </p>
+                            </div>
                         </div>
                         <div v-else-if="formStep == 2 && form.cv == 3">
-                            <AudioRecorder :questions="props.project.questions" :projectId="props.project.id"/>
+                            <div v-if="props.project.questions.length">
+                                <AudioRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
+                            </div>
+                            <div v-else class="p-4 text-center">
+                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <p class="text-lg font-medium text-gray-900 mb-1">
+                                    {{ __('translate.noQuestionsFound') }}
+                                </p>
+                                <p class="text-sm text-gray-500">
+                                    {{ __('translate.noQuestionsDescription') }}
+                                </p>
+                            </div>
                         </div>
 
                     <div class="flex items-center justify-center mt-4 gap-4">
@@ -1298,7 +1328,7 @@ const removeFile =  async (source,load) => {
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
                             {{__('translate.previousStep')}}
                         </PrimaryButton>
-                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
+                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && form.cv == 1 && formStep == 2" class="w-1/4 flex justify-center">
                             <span>{{__('translate.chosetemplate')}}</span>
                         </PrimaryButton>
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 3" class="w-1/4 flex justify-center">

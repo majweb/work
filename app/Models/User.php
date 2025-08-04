@@ -42,8 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'recruiter_from_firm_id',
         'recruiter_phone',
-        'user_blocked'
-
+        'user_blocked',
+        'color'
     ];
 
     /**

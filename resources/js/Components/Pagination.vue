@@ -1,87 +1,19 @@
+<template>
+    <div v-show="links.length > 2" class="flex justify-center">
+        <div class="flex flex-wrap -mb-1">
+            <template v-for="(link, key) in links" :key="key">
+                <div v-if="link.url === null" :key="`${key}-disabled`" class="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-600 dark:text-gray-400 border rounded" v-html="link.label"/>
+                <Link v-else :key="key" class="mr-1 mb-1 px-4 py-3 transition text-sm leading-4 border rounded hover:dark:bg-gray-50 hover:bg-gray-200 text-gray-600 dark:text-gray-400 focus:border-gray-500 focus:text-gray-500" :class="{ 'border-gray-500 text-gray-500 font-semibold': link.active }" :href="link.url" preserve-scroll>
+                    <span v-html="link.label"></span>
+                </Link>
+            </template>
+        </div>
+    </div>
+</template>
 <script setup>
+import { Link } from '@inertiajs/vue3';
 const props = defineProps({
-  links: Array
+    links: Array
 });
 
-const emit = defineEmits(['change-page']);
-
-const navigate = (url) => {
-  if (url) {
-    // Wyciągnij numer strony z URL
-    const urlObj = new URL(url);
-    const page = urlObj.searchParams.get('page');
-    emit('change-page', page);
-  }
-};
 </script>
-
-<template>
-  <div class="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
-    <div class="flex flex-1 justify-between sm:hidden">
-      <button
-        v-if="links.find(l => l.label === '&laquo; Poprzednia')"
-        @click="navigate(links.find(l => l.label === '&laquo; Poprzednia')?.url)"
-        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        :disabled="!links.find(l => l.label === '&laquo; Poprzednia')?.url"
-      >
-        Poprzednia
-      </button>
-      <button
-        v-if="links.find(l => l.label === 'Następna &raquo;')"
-        @click="navigate(links.find(l => l.label === 'Następna &raquo;')?.url)"
-        class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        :disabled="!links.find(l => l.label === 'Następna &raquo;')?.url"
-      >
-        Następna
-      </button>
-    </div>
-    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-center">
-      <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-        <template v-for="(link, index) in links" :key="index">
-          <!-- Poprzednia strona -->
-          <button
-            v-if="link.label === '&laquo; Poprzednia'"
-            @click="navigate(link.url)"
-            :disabled="!link.url"
-            class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            :class="{ 'cursor-not-allowed opacity-50': !link.url, 'cursor-pointer': link.url }"
-          >
-            <span class="sr-only">Poprzednia</span>
-            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-            </svg>
-          </button>
-
-          <!-- Numery stron -->
-          <button
-            v-else-if="link.label !== 'Następna &raquo;'"
-            @click="navigate(link.url)"
-            :disabled="!link.url"
-            :class="[
-              link.active ? 'z-10 bg-indigo-600 text-white focus:outline focus:ring-2 focus:ring-indigo-500'
-                      : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0',
-              'relative inline-flex items-center px-4 py-2 text-sm font-semibold focus:z-20'
-            ]"
-          >
-            <span v-html="link.label"></span>
-          </button>
-
-          <!-- Następna strona -->
-          <button
-            v-else
-            @click="navigate(link.url)"
-            :disabled="!link.url"
-            class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            :class="{ 'cursor-not-allowed opacity-50': !link.url, 'cursor-pointer': link.url }"
-          >
-            <span class="sr-only">Następna</span>
-            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-            </svg>
-          </button>
-        </template>
-      </nav>
-    </div>
-  </div>
-</template>
-

@@ -402,4 +402,16 @@ class ProjectController extends Controller implements HasMiddleware
     {
         return MultiselectResource::collection(Category::where('parent_id',$parent)->with('detailprojects')->get());
     }
+
+    public function duplicate(Project $project)
+    {
+        $newProject = $project->replicate();
+        $newProject->save();
+
+
+        session()->flash('flash.banner', __('translate.projectDuplicated'));
+        session()->flash('flash.bannerStyle', 'success');
+        return to_route('project-recruits.index');
+    }
+
 }

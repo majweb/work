@@ -10,6 +10,8 @@ import TextInput from '@/Components/TextInput.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import { ColorPicker } from 'vue3-colorpicker';
+import "vue3-colorpicker/style.css";
 
 const props = defineProps({
     recruit: Object,
@@ -25,6 +27,7 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     recruiter_phone: props.recruit.recruiter_phone ?? null,
+    color: props.recruit.color || '#00a0e3',
     permissions: props.recruit.permissions.map(el=>{
         return {
             'id':el.id,
@@ -128,6 +131,15 @@ const updateUser = () => {
                                         type="password"
                                     />
                                     <InputError :message="form.errors.password_confirmation" class="mt-2"/>
+                                </div>
+                                <div class="mt-4">
+                                    <InputLabel for="color" :value="__('translate.color')" />
+                                    <div class="mt-1">
+                                        <ColorPicker v-model:pureColor="form.color" format="hex" />
+                                        <p class="mt-1 text-sm text-gray-500">{{ __('translate.colorHelper') }}</p>
+                                        <p class="text-xs text-gray-400 italic">{{ __('translate.colorOptional') }}</p>
+                                    </div>
+                                    <InputError :message="form.errors.color" class="mt-2"/>
                                 </div>
                                 <div class="mt-4">
                                     <InputLabel for="permissions" value="Uprawnienia"/>

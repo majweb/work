@@ -124,4 +124,15 @@ class Project extends Model
     {
         return $this->hasMany(ProjectQuestion::class);
     }
+
+    public function audio()
+    {
+        return $this->hasOne(CvAudio::class); // lub hasMany, zależnie od relacji
+    }
+
+    public function video()
+    {
+        return $this->hasOne(CvVideo::class); // lub hasMany, zależnie od relacji
+    }
+
 }

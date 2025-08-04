@@ -15,6 +15,7 @@ class ProjectQuestion extends Model
         'user_id',
         'content',
         'answer_time',
+        'accepted',
     ];
 
     /**

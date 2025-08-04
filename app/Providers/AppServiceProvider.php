@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Aplication;
+use App\Models\CandidateQuestion;
 use App\Models\Project;
 use App\Models\User;
+use App\Policies\CandidateQuestionPolicy;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(CandidateQuestion::class, CandidateQuestionPolicy::class);
+
 
         if (request()->is('logged/*') || request()->is('projects/apply/*') || request()->is('projects/apply') || request()->is('user/profile')) {
             Config::set('inertia.ssr.enabled', false);
@@ -63,6 +67,10 @@ class AppServiceProvider extends ServiceProvider
             $aplication->load('project');
             $data = collect($aplication->project->other_recruits)->pluck('value');
             return $user->id === $aplication->recruiter_id || $data->contains($user->id);
+        });
+
+        Gate::define('admin', function (User $user) {
+            return $user->hasRole('admin');
         });
 
     }
