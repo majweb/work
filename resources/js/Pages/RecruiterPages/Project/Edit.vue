@@ -35,7 +35,9 @@ const props = defineProps({
     educations: Array,
     project: Object,
     currencies: Array,
-    cvs: Array
+    cvs: Array,
+    externalCompanies: Array,
+
 });
 
 const form = useForm({
@@ -74,6 +76,11 @@ const form = useForm({
     cityWork: props.project.cityWork,
     cv: props.project.cv ?? [],
     questions: props.project.questions ?? [],
+    external_company_id: props.externalCompanies.find(
+        company => company.id === props.project.external_company_id
+    ) || '',
+
+
 });
 
 
@@ -131,7 +138,6 @@ watch(() => form.profession, async (profession) => {
     }
     form.position = '';
     form.detailProjects = [];
-
 });
 watch(() => form.position, async (position) => {
     if (form.position) {
@@ -290,6 +296,28 @@ watch(() => form.cv, (newValue) => {
                                         <!--                                        <pre class="language-json"><code>{{ form.country }}</code></pre>-->
 
                                         <InputError :message="form.errors.country" class="mt-2"/>
+                                    </div>
+                                    <div v-if="externalCompanies && externalCompanies.length > 0">
+                                        <InputLabel :value="__('translate.externalCompany')"/>
+                                        <multiselect
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            track-by="id"
+                                            label="name"
+                                            :value="externalCompanies.find(company => company.id === form.external_company_id)"
+                                            :placeholder="__('translate.placeholder')"
+                                            v-model="form.external_company_id"
+                                            :options="externalCompanies">
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                            <template #noOptions>
+                                                <span>{{__('translate.noResult')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.external_company_id" class="mt-2"/>
                                     </div>
                                 </div>
                                 <div class="col-span-6 grid grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">

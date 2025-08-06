@@ -14,6 +14,7 @@ use App\Models\CvType;
 use App\Models\Day;
 use App\Models\Education;
 use App\Models\Experience;
+use App\Models\ExternalCompany;
 use App\Models\Offer;
 use App\Models\PayoutMode;
 use App\Models\PaySystem;
@@ -75,6 +76,7 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function create()
     {
+        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->recruiter_from_firm_id)->latest()->get();
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
         });
@@ -145,6 +147,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'welcomes' =>$welcomes,
                 'educations' =>$educations,
                 'cvs' =>$cvs,
+                'externalCompanies' =>$externalCompanies,
             ]);
     }
 
@@ -194,6 +197,7 @@ class ProjectController extends Controller implements HasMiddleware
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'external_company_id' => $request->projectData()['external_company_id'],
         ]);
 
         if($project && count($request->projectData()['detailProjects'])){
@@ -222,7 +226,7 @@ class ProjectController extends Controller implements HasMiddleware
     public function show(Project $project)
     {
         Gate::authorize('project-recruiter',$project);
-        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name']);
+        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name','externalCompany:id,name,abbreviation']);
         $locale = app()->getLocale();
         return inertia()->render('RecruiterPages/Project/Show',['project'=>$project,'locale'=>$locale]);
     }
@@ -233,6 +237,7 @@ class ProjectController extends Controller implements HasMiddleware
     public function edit(Project $project)
     {
         Gate::authorize('project-recruiter',$project);
+        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->recruiter_from_firm_id)->latest()->get();
         $project->load('detailprojects','questions');
         Gate::authorize('project-recruiter',$project);
         $category = Cache::rememberForever('category', function() {
@@ -310,6 +315,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'educations' =>$educations,
                 'project' =>$project,
                 'cvs' =>$cvs,
+                'externalCompanies' =>$externalCompanies,
             ]);
     }
 
@@ -359,6 +365,7 @@ class ProjectController extends Controller implements HasMiddleware
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'external_company_id' => $request->projectData()['external_company_id'],
 
         ]);
 

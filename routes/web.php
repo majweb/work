@@ -8,6 +8,7 @@ use App\Http\Controllers\Firm\AplicationController;
 use App\Http\Controllers\Firm\ArticleController;
 use App\Http\Controllers\Firm\BuyController;
 use App\Http\Controllers\Firm\CandidateQuestionController;
+use App\Http\Controllers\ExternalCompanyController;
 use App\Http\Controllers\Firm\FirmBuyController;
 use App\Http\Controllers\Firm\FirmController;
 use App\Http\Controllers\Firm\InvoiceController;
@@ -115,6 +116,9 @@ Route::middleware([
     // Trasy dla zarządzania pytaniami kandydatów
     Route::resource('candidate-questions', CandidateQuestionController::class)->middleware('role:firm');
     Route::put('candidate-questions/{candidateQuestion}/toggle-active', [CandidateQuestionController::class, 'toggleActive'])->name('candidate-questions.toggle-active')->middleware('role:firm');
+
+    // Zarządzanie firmami zewnętrznymi
+    Route::resource('external-companies', App\Http\Controllers\ExternalCompanyController::class)->middleware('role:firm');
 
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);

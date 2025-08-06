@@ -76,7 +76,6 @@ class AplicationController extends Controller
         }
 
         $aplication->load(['project', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo','candidateAnswers']);
-
         if($aplication->opened_by_user_id){
         $otherRecruits = OtherRecruitsResource::collection($aplication->user->recruits()->whereNull('user_blocked')->where('id','!=',$aplication->opened_by_user_id)->get());
         } else {

@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\Aplication;
 use App\Models\CandidateQuestion;
+use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\User;
 use App\Policies\CandidateQuestionPolicy;
+use App\Policies\ExternalCompanyPolicy;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -34,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::policy(CandidateQuestion::class, CandidateQuestionPolicy::class);
+        Gate::policy(ExternalCompany::class, ExternalCompanyPolicy::class);
 
 
         if (request()->is('logged/*') || request()->is('projects/apply/*') || request()->is('projects/apply') || request()->is('user/profile')) {

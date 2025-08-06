@@ -104,6 +104,8 @@ class StoreProject extends FormRequest
             ],
             'questions.*.content' => 'required_with:questions|string',
             'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
+            'external_company_id' => 'nullable|exists:App\Models\ExternalCompany,id',
+
         ];
     }
 
@@ -117,6 +119,21 @@ class StoreProject extends FormRequest
 
     public function projectData(){
         return $this->validated();
+    }
+
+
+
+
+    /**
+     * Przygotuj dane do walidacji.
+     */
+    protected function prepareForValidation(): void
+    {
+        if (is_array($this->external_company_id) && isset($this->external_company_id['id'])) {
+            $this->merge([
+                'external_company_id' => $this->external_company_id['id']
+            ]);
+        }
     }
 
     public function attributes(): array
@@ -155,6 +172,7 @@ class StoreProject extends FormRequest
             'streetWorkNumber' => strtolower(__('translate.City')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
             'questions' => strtolower(__('translate.questions')),
+            'external_company_id' => strtolower(__('translate.externalCompany')),
         ];
     }
 }

@@ -131,6 +131,12 @@ const generateUrl = computed(() => {
                                             {{props.project.workingPlace?.allTranslations.name[usePage().props.language]}}
                                         </span>
                                     </li>
+                                    <li class="text-md mb-1" v-if="props.project.external_company">
+                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.externalCompany')}}:</span>
+                                        <span class="text-md font-semibold">
+                                            {{props.project.external_company?.name}} ({{props.project.external_company?.abbreviation}})
+                                        </span>
+                                    </li>
                                     <li class="flex text-md mb-1">
                                         <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.typesOfContract')}}:</span>
                                         <div class="flex items-center flex-wrap text-md font-semibold">

@@ -49,6 +49,7 @@ class Project extends Model
         'detailProjects',
         'other_recruits',
         'cv',
+        'external_company_id',
     ];
 
     protected $casts = [
@@ -133,6 +134,11 @@ class Project extends Model
     public function video()
     {
         return $this->hasOne(CvVideo::class); // lub hasMany, zależnie od relacji
+    }
+
+    public function externalCompany(): BelongsTo
+    {
+        return $this->belongsTo(ExternalCompany::class);
     }
 
 }

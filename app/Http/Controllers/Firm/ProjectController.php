@@ -54,7 +54,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         Gate::authorize('view',$project);
-        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name']);
+        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name','externalCompany:id,name,abbreviation']);
         $otherRecruits = OtherRecruitsResource::collection($project->user->recruits()->whereNull('user_blocked')->where('id','!=',$project->recruiter_id)->get());
         $locale = app()->getLocale();
         return inertia()->render('Project/Show',['project'=>$project,'locale'=>$locale,'otherRecruits'=>$otherRecruits]);

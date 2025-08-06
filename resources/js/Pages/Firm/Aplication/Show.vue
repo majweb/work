@@ -380,6 +380,7 @@ const dispatchActionSingleRecruit = value => {
                     <div v-if="candidateQuestions && candidateQuestions.length > 0" class="bg-white rounded-lg shadow-md p-6 mb-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateQuestions') }}</h3>
                         <div v-if="application.questions_unlocked_at" class="space-y-4">
+                            <p class="text-sm text-gray-600 mb-3">{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(application.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
                         <p>{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(application.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
                             <div v-for="(question, index) in candidateQuestions" :key="question.id" class="border p-4 rounded-lg">
                                 <h4 class="font-medium mb-2">{{ question.question }}</h4>
