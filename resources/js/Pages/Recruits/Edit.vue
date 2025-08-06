@@ -10,8 +10,9 @@ import TextInput from '@/Components/TextInput.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import { ColorPicker } from 'vue3-colorpicker';
-import "vue3-colorpicker/style.css";
+import 'vue-color/style.css';
+import { ChromePicker  } from 'vue-color'
+
 
 const props = defineProps({
     recruit: Object,
@@ -135,7 +136,7 @@ const updateUser = () => {
                                 <div class="mt-4">
                                     <InputLabel for="color" :value="__('translate.color')" />
                                     <div class="mt-1">
-                                        <ColorPicker v-model:pureColor="form.color" format="hex" />
+                                        <ChromePicker v-model="form.color" formats="hex" />
                                         <p class="mt-1 text-sm text-gray-500">{{ __('translate.colorHelper') }}</p>
                                         <p class="text-xs text-gray-400 italic">{{ __('translate.colorOptional') }}</p>
                                     </div>
