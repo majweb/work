@@ -16,7 +16,7 @@ class ExternalCompanyController extends Controller
      */
     public function index()
     {
-        $externalCompanies = Auth::user()->externalCompanies()->orderBy('name')->get();
+        $externalCompanies = auth()->user()->externalCompanies()->orderBy('name')->get();
 
         return Inertia::render('ExternalCompany/Index', [
             'externalCompanies' => $externalCompanies,
