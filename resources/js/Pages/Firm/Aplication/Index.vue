@@ -130,6 +130,7 @@ const getBackgroundStyle = (application) => {
 }
 
 
+
 </script>
 
 <template>
