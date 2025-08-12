@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CandidatesController;
+use Illuminate\Support\Facades\Route;
+
 use App\Charts\MonthlyUsersChart;
 use App\Http\Controllers\Admin\QuestionAcceptController;
 use App\Http\Controllers\BookingController;
@@ -27,7 +30,6 @@ use App\Http\Resources\PageResource;
 use App\Models\Page;
 use App\Models\ProjectQuestion;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::mediaLibrary();
@@ -62,6 +64,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->prefix('logged')->group(function () {
+    // Trasa do synchronizacji istniejących aplikacji z kandydatami
+    Route::get('/sync-applications', [\App\Http\Controllers\BatchProcessController::class, 'syncExistingApplicationsWithCandidates'])
+        ->middleware('role:admin')
+        ->name('sync.applications.candidates');
     Route::get('/dashboard', function (MonthlyUsersChart $chart) {
 
         $countQuestions = ProjectQuestion::whereNull('accepted')->count();
@@ -123,8 +129,11 @@ Route::middleware([
 
     // Trasy dla kandydatów
     Route::middleware(['role:firm'])->group(function () {
-        Route::get('/candidates', [\App\Http\Controllers\CandidatesController::class, 'index'])->name('candidates.index');
-        Route::get('/candidates/{candidate}', [\App\Http\Controllers\CandidatesController::class, 'show'])->name('candidates.show');
+            Route::get('/candidates', [CandidatesController::class, 'index'])->name('candidates.index');
+            Route::get('/candidates/{candidate}', [CandidatesController::class, 'show'])->name('candidates.show');
+            Route::get('/candidates/{candidate}/tags', [CandidatesController::class, 'getTags'])->name('candidates.getTags');
+            Route::post('/candidates/{candidate}/tags', [CandidatesController::class, 'saveTags'])->name('candidates.saveTags');
+
     });
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);

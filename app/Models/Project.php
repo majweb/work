@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Casts\TimeCast;
+use App\Models\Candidate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
@@ -141,4 +143,37 @@ class Project extends Model
         return $this->belongsTo(ExternalCompany::class);
     }
 
+    /**
+     * Kandydaci, którzy aplikowali na ten projekt
+     */
+    public function candidates()
+    {
+        return $this->belongsToMany(Candidate::class, 'candidate_project')
+            ->withTimestamps();
+    }
+
+    /**
+     * Bezpieczna metoda dostępu do tłumaczeń pól
+     *
+     * @param string $field Nazwa pola
+     * @param string|null $locale Kod języka (null dla aktualnego języka)
+     * @param string $default Wartość domyślna
+     * @return string
+     */
+    public function getTranslatedAttribute(string $field, ?string $locale = null, string $default = 'Brak nazwy'): string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $value = $this->getAttribute($field);
+
+        if (!is_array($value)) {
+            return $value ?: $default;
+        }
+
+        if (isset($value[$locale])) {
+            return $value[$locale];
+        }
+
+        $firstKey = array_key_first($value);
+        return ($firstKey !== null && !empty($value[$firstKey])) ? $value[$firstKey] : $default;
+    }
 }

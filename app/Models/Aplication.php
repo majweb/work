@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Prompts\Note;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -180,5 +181,13 @@ class Aplication extends Model implements HasMedia
     public function statusChangedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'status_changed_by_user_id');
+    }
+
+    /**
+     * Relacja do kandydata
+     */
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class, 'email', 'email');
     }
 }

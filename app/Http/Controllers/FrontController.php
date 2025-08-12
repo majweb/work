@@ -5,30 +5,24 @@ namespace App\Http\Controllers;
 use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
 use App\Http\Resources\FrontArticleResource;
-use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Agreement;
 use App\Models\Aplication;
+use App\Models\Candidate;
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\CvAudio;
 use App\Models\CvClassic;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
 use App\Models\Project;
 use App\Models\TemporaryFile;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Inertia\Inertia;
-use Mews\Captcha\Facades\Captcha;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
-use Spatie\Browsershot\Browsershot;
 use Illuminate\Validation\ValidationException;
 
 
@@ -128,6 +122,21 @@ class FrontController extends Controller
             $key,
             $maxAttempts = 1,
             function () use ($request,$project) {
+                // Tworzenie lub aktualizacja kandydata
+                $candidate = Candidate::firstOrCreate(
+                    ['email' => $request->aplicationData()['email']],
+                    [
+                        'name' => $request->aplicationData()['name'],
+                        'surname' => $request->aplicationData()['surname'],
+                        'phone' => $request->aplicationData()['phone'],
+                    ]
+                );
+
+                // Przypisanie projektu do kandydata
+                if (!$candidate->projects->contains($project->id)) {
+                    $candidate->projects()->attach($project->id);
+                }
+
                 $aplication = Aplication::create([
                     'user_id'=>$project->user_id,
                     'recruiter_id'=>$project->recruiter_id,
@@ -138,6 +147,20 @@ class FrontController extends Controller
                     'email'=>$request->aplicationData()['email'],
                     'aplication_user_id'=>auth()->check() && auth()->user()->hasRole('worker') ? auth()->user()->id : NULL,
                 ]);
+
+                // Tworzenie lub aktualizacja rekordu kandydata
+                $candidate = Candidate::firstOrCreate(
+                    ['email' => $request->aplicationData()['email']],
+                    [
+                        'name' => $request->aplicationData()['name'],
+                        'surname' => $request->aplicationData()['surname'],
+                        'phone' => $request->aplicationData()['phone']
+                    ]
+                );
+
+                // Dodanie powiązania kandydata z projektem
+                $candidate->projects()->syncWithoutDetaching([$project->id]);
+
                 if(is_array($request->aplicationData()['files']) && count($request->aplicationData()['files']) && $aplication){
                     $temporaryFiles = TemporaryFile::whereIn('folder',$request->aplicationData()['files'])->get();
                     if($temporaryFiles->count()){
