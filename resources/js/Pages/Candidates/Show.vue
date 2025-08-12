@@ -494,7 +494,8 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-2">
                                 <span v-for="tag in selectedTags" :key="tag.id"
                                       class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium flex items-center">
-                                    {{ tag.type === 'category' && tag.rawTitle ? getLocalizedTitle(tag.rawTitle) : (tag.name || tag.title) }}
+                                    {{}}
+                                    {{ tag.type === 'category' && tag.rawTitle ? tag.rawTitle?.[locale] : (tag.name || tag.title) }}
                                     <button @click="removeTag(tag)" class="ml-1 text-indigo-600 hover:text-indigo-800">
                                         &times;
                                     </button>
