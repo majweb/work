@@ -114,6 +114,7 @@ class CandidatesController extends Controller
                 return isset($title[$locale]) && !empty($title[$locale]);
             })
             ->values();
+        dd($categories);
         $customTags = Auth::user()->tags()->orderBy('name')->get();
 
         // Pobieranie tagów przypisanych do kandydata
