@@ -106,6 +106,12 @@ onUnmounted(()=>{
                                             <DropdownLink :href="route('external-companies.index')">
                                                 {{__('translate.externalCompanies')}}
                                             </DropdownLink>
+                                            <DropdownLink :href="route('tags.index')">
+                                                {{__('translate.tags')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('candidates.index')">
+                                                {{__('translate.candidates')}}
+                                            </DropdownLink>
                                         </div>
                                     </template>
                                 </Dropdown>

@@ -119,7 +119,13 @@ Route::middleware([
 
     // Zarządzanie firmami zewnętrznymi
     Route::resource('external-companies', App\Http\Controllers\ExternalCompanyController::class)->middleware('role:firm');
+    Route::resource('tags', App\Http\Controllers\Firm\TagController::class)->middleware('role:firm');
 
+    // Trasy dla kandydatów
+    Route::middleware(['role:firm'])->group(function () {
+        Route::get('/candidates', [\App\Http\Controllers\CandidatesController::class, 'index'])->name('candidates.index');
+        Route::get('/candidates/{candidate}', [\App\Http\Controllers\CandidatesController::class, 'show'])->name('candidates.show');
+    });
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
     Route::post('/project-recruits/{project}/duplicate', [ProjectControllerRecruit::class, 'duplicate'])->name('project-recruits.duplicate');
