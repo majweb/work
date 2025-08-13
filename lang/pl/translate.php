@@ -721,4 +721,35 @@ return [
     'noMatchingTags' => 'Brak pasujących tagów',
     'noMatchingCategories' => 'Brak pasujących kategorii',
     'errorUpdatingTags' => 'Błąd podczas aktualizacji tagów',
+    'notifications' => 'Powiadomienia',
+    'yourNotifications' => 'Twoje powiadomienia',
+    'noNotificationsYet' => 'Nie masz jeszcze żadnych powiadomień',
+    'viewAllNotifications' => 'Zobacz wszystkie powiadomienia',
+    'markAllAsRead' => 'Oznacz wszystkie jako przeczytane',
+    'markAsRead' => 'Oznacz jako przeczytane',
+    'read' => 'Przeczytane',
+    'youHaveNotifications' => 'Masz :count nieprzeczytanych powiadomień',
+    'noNewNotifications' => 'Brak nowych powiadomień',
+    'notification' => 'Powiadomienie',
+    'unknownNotification' => 'Nieznane powiadomienie',
+    'viewDetails' => 'Zobacz szczegóły',
+    // Typy powiadomień
+    'applicationSubmitted' => 'Złożenie aplikacji',
+    'projectCreated' => 'Utworzenie projektu',
+    'applicationStatusChanged' => 'Zmiana statusu aplikacji',
+    'newRecruitAssigned' => 'Przypisanie nowego rekrutera',
+    'orderCompleted' => 'Zakończenie zamówienia',
+    'invoiceGenerated' => 'Wygenerowanie faktury',
+    'paymentReceived' => 'Otrzymanie płatności',
+    'questionApproved' => 'Zatwierdzenie pytania',
+
+    // Komunikaty powiadomień
+    'newNotification' => 'Nowe powiadomienie',
+    'applicationNotificationMessage' => 'Dotyczy aplikacji nr :id',
+    'notificationsList' => 'Lista powiadomień',
+    'noNotificationsAvailable' => 'Brak powiadomień',
+    'unread' => 'Nieprzeczytane',
+    'of' => 'z',
+
+
 ];

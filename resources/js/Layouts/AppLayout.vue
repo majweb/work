@@ -8,6 +8,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import {usePermission} from "@/Composables/usePermission";
+import NotificationBell from "@/Components/NotificationBell.vue";
 
 const {hasRole} = usePermission();
 
@@ -18,8 +19,8 @@ defineProps({
 const showingNavigationDropdown = ref(false);
 const currentUser = computed(() => usePage().props.auth.user);
 
-const unreadNotifications = ref(usePage().props.unreadNotifications);
-const notifications = computed(() => unreadNotifications.value);
+// Pobranie liczby nieprzeczytanych powiadomień bezpośrednio z Inertia props
+const notifications = computed(() => usePage().props.unreadNotifications || 0);
 
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
@@ -48,7 +49,8 @@ const logout = () => {
 onMounted(() => {
     Echo.private(`App.Models.User.${currentUser.value.id}`)
         .notification((notification)=>{
-            unreadNotifications.value++;
+            // Odświeżenie strony aby zaktualizować licznik powiadomień
+            router.reload({ only: ['unreadNotifications'] });
         });
 });
 onUnmounted(()=>{
@@ -247,20 +249,7 @@ onUnmounted(()=>{
                                 </Dropdown>
 <!--                                <Link :href="route('firm.notifications')" class="ml-3 flex isolate relative flex items-center pl-6 ml-auto">-->
 <!--                                </Link>-->
-                                    <div class="relative z-0">
-                                        <div class="relative">
-                                            <button type="button" class="border inline-flex items-center justify-center appearance-none cursor-pointer rounded text-sm font-bold focus:outline-none relative disabled:cursor-not-allowed bg-transparent border-transparent text-gray-500 dark:text-gray-400 hover:enabled:text-primary-500 h-9 w-9">
-                                        <span class="flex items-center gap-1"><span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path>
-                                            </svg>
-                                        </span>
-                                            <span v-if="notifications > 0" class="counter-noty font-black tracking-normal absolute border-[3px] border-blue dark:border-gray-800 top-[-5px] right-[15px] inline-flex items-center justify-center bg-blue-500 rounded-full text-white text-xxs p-[0px] px-1 min-w-[26px]">
-                                                {{notifications}}
-                                            </span>
-                                        </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                <notification-bell :count="notifications" />
                             </div>
 
 <!--                            Cart-->
@@ -419,6 +408,7 @@ onUnmounted(()=>{
                         <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')" v-if="hasRole('admin')">
                             {{__('translate.aplications')}}
                         </ResponsiveNavLink>
+                        <notification-bell :count="notifications" />
                     </div>
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">

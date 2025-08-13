@@ -64,6 +64,14 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->prefix('logged')->group(function () {
+
+    Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{id}/mark-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/mark-all-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::get('/notifications/count', [\App\Http\Controllers\NotificationsController::class, 'getCount'])->name('notifications.count');
+
+
+
     // Trasa do synchronizacji istniejących aplikacji z kandydatami
     Route::get('/sync-applications', [\App\Http\Controllers\BatchProcessController::class, 'syncExistingApplicationsWithCandidates'])
         ->middleware('role:admin')
