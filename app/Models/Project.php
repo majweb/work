@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Project extends Model
 {
@@ -175,5 +176,17 @@ class Project extends Model
 
         $firstKey = array_key_first($value);
         return ($firstKey !== null && !empty($value[$firstKey])) ? $value[$firstKey] : $default;
+    }
+
+
+    public function scopeFeatured(Builder $query)
+    {
+        $query->withCount(['user as is_featured' => function (Builder $q) {
+            $q->whereHas('changeProducts', function (Builder $q2) {
+                $q2->where('product_id', 8)
+                    ->whereDate('start', '<=', now())
+                    ->whereDate('end', '>=', now());
+            });
+        }]);
     }
 }

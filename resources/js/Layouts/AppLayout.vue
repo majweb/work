@@ -9,19 +9,20 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import {usePermission} from "@/Composables/usePermission";
 import NotificationBell from "@/Components/NotificationBell.vue";
+import { Dialog, DialogPanel, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 
 const {hasRole} = usePermission();
 
 defineProps({
     title: String,
 });
+const open = ref(false)
 
 const showingNavigationDropdown = ref(false);
 const currentUser = computed(() => usePage().props.auth.user);
 
 // Pobranie liczby nieprzeczytanych powiadomień bezpośrednio z Inertia props
 const notifications = computed(() => usePage().props.unreadNotifications || 0);
-
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
         team_id: team.id,
@@ -56,6 +57,30 @@ onMounted(() => {
 onUnmounted(()=>{
     Echo.leave(`App.Models.User.${currentUser.value?.id}`);
 });
+
+const products = ref([
+    {
+        id: 1,
+        name: 'Tattoo Ink Set',
+        price: '$49.99',
+        color: 'Red/Black',
+        quantity: 1,
+        imageSrc: '/images/ink-set.jpg',
+        imageAlt: 'Tattoo Ink Set',
+        href: '#'
+    },
+    {
+        id: 2,
+        name: 'Tattoo Machine',
+        price: '$199.99',
+        color: 'Black',
+        quantity: 1,
+        imageSrc: '/images/machine.jpg',
+        imageAlt: 'Tattoo Machine',
+        href: '#'
+    }
+])
+
 
 </script>
 
@@ -123,12 +148,12 @@ onUnmounted(()=>{
                                     {{__('translate.projects')}}
                                 </NavLink>
                             </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit') && !hasRole('firm')">
                                 <NavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">
                                     {{__('translate.projects')}}
                                 </NavLink>
                             </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit') && !hasRole('firm')">
                                 <NavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')">
                                     {{__('translate.aplications')}}
                                 </NavLink>
@@ -161,20 +186,42 @@ onUnmounted(()=>{
                                     </template>
                                 </Dropdown>
                             </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
-                                <NavLink :href="route('buy.index')" :active="route().current('buy.index')">
-                                    {{__('translate.buy')}}
-                                </NavLink>
-                            </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
-                                <NavLink :href="route('points.index')" :active="route().current('points.index')">
-                                    {{__('translate.points')}}
-                                </NavLink>
-                            </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
-                                <NavLink :href="route('articles.index')" :active="route().current('articles.index')">
-                                    {{__('translate.articles')}}
-                                </NavLink>
+                            <div class="hidden sm:-my-px sm:ms-10 sm:flex items-center" v-if="hasRole('firm')">
+                                <Dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                            {{__('translate.extra')}}
+                                            <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                            </svg>
+                                        </button>
+                                    </template>
+                                    <template #content>
+                                        <div class="w-48">
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                {{__('translate.extraPackages')}}
+                                            </div>
+                                            <DropdownLink :href="route('firm.p50')">
+                                                {{__('translate.p50')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('articles.index')">
+                                                {{__('translate.articles')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('firm.banners')">
+                                                {{__('translate.banners')}}
+                                            </DropdownLink>
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                {{__('translate.cartAndPoints')}}
+                                            </div>
+                                            <DropdownLink :href="route('points.index')">
+                                                {{__('translate.points')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('buy.index')" v-if="hasRole('firm')">
+                                                {{__('translate.buy')}}
+                                            </DropdownLink>
+                                        </div>
+                                    </template>
+                                </Dropdown>
                             </div>
                             <!--Admin-->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('admin')">
@@ -251,48 +298,7 @@ onUnmounted(()=>{
 <!--                                </Link>-->
                                 <notification-bell :count="notifications" />
                             </div>
-
-<!--                            Cart-->
-                            <div class="ms-3 relative" v-if="countCart > 0">
-                                <Dropdown align="right" width="48">
-                                    <template #trigger>
-                                        <button class="flex text-sm transition">
-                                            <span class="mr-2">{{countTotal}} {{currency}}</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                            </svg>
-                                            {{countCart}}
-                                        </button>
-                                    </template>
-
-                                    <template #content>
-                                        <!-- Cart -->
-                                        <DropdownLink :href="route('profile.show')" class="w-68">
-                                            <div v-for="cartItem in usePage().props.cart">
-                                                <div class="cart-item flex flex-col">
-                                                    <div class="flex items-center justify-between">
-                                                        <span class="font-semibold text-sm">
-                                                    {{cartItem.name}} ({{cartItem.price}} {{currency}})
-                                                        </span>
-                                                        <span class="font-semibold text-sm">
-                                                    {{cartItem.qty}}x
-                                                        </span>
-                                                    </div>
-                                                    <div class="flex items-center justify-end">
-                                                        <span class="font-normal">
-                                                {{cartItem.subtotal}} {{currency}}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center justify-end mt-2 bg-blue-work-100 font-bold pr-1">
-                                            {{__('translate.sum')}}: {{countTotal}} {{currency}}
-                                            </div>
-                                            <Link :href="route('buy.detail')" class="flex items-center  justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">{{__('translate.cart')}}</Link>
-                                        </DropdownLink>
-                                    </template>
-                                </Dropdown>
-                            </div>
+                            <!--                            Cart-->
 <!--                            Cart-->
                             <!-- Settings Dropdown -->
                             <div class="ms-3 relative">
@@ -497,6 +503,102 @@ onUnmounted(()=>{
             <main>
                 <slot />
             </main>
+            <button
+                v-if="countCart > 0"
+                @click="open = true"
+                class="fixed right-4 bottom-4 flex items-center justify-center w-14 h-14 bg-blue-500 text-white rounded-full shadow-lg animate-pulse transition-transform hover:scale-110"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span class="font-bold">{{ countCart }}</span>
+            </button>
+            <TransitionRoot as="template" :show="open">
+                <Dialog class="relative z-10" @close="open = false">
+
+                    <!-- Overlay -->
+                    <TransitionChild
+                        as="template"
+                        enter="ease-in-out duration-500"
+                        enter-from="opacity-0"
+                        enter-to="opacity-100"
+                        leave="ease-in-out duration-500"
+                        leave-from="opacity-100"
+                        leave-to="opacity-0"
+                    >
+                        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" />
+                    </TransitionChild>
+
+                    <div class="fixed inset-0 overflow-hidden">
+                        <div class="absolute inset-0 overflow-hidden">
+                            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+
+                                <!-- Panel -->
+                                <TransitionChild
+                                    as="template"
+                                    enter="transform transition ease-in-out duration-500 sm:duration-700"
+                                    enter-from="translate-x-full"
+                                    enter-to="translate-x-0"
+                                    leave="transform transition ease-in-out duration-500 sm:duration-700"
+                                    leave-from="translate-x-0"
+                                    leave-to="translate-x-full"
+                                >
+                                    <DialogPanel class="pointer-events-auto w-screen max-w-md">
+                                        <div class="flex h-full flex-col overflow-y-auto bg-white shadow-xl">
+                                            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                                                <div class="flex items-start justify-between">
+                                                    <DialogTitle class="text-lg font-medium text-gray-900">                                <span class="mr-2">{{ countTotal }} {{ currency }}</span>
+                                                    </DialogTitle>
+                                                    <div class="ml-3 flex h-7 items-center">
+                                                        <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                                                                @click="open = false">
+                                                            <span class="absolute -inset-0.5" />
+                                                            <span class="sr-only">Close panel</span>
+                                                            X
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-8">
+                                                    <ul role="list" class="-my-6 divide-y divide-gray-200">
+                                                        <li v-for="item in usePage().props.cart" :key="item.id" class="flex py-6">
+                                                            <div class="ml-4 flex flex-1 flex-col">
+                                                                <div class="flex justify-between text-base font-medium text-gray-900">
+                                                                    <h3>{{ item.name }} ({{ item.price }} {{ currency }})</h3>
+                                                                    <p class="ml-4">{{ item.qty }}x</p>
+                                                                </div>
+                                                                <div class="flex items-center justify-end text-sm mt-1 text-gray-500">
+                                                                    {{ item.subtotal }} {{ currency }}
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                                                <div class="flex justify-between text-base font-medium text-gray-900">
+                                                    <p>{{__('translate.subtotal')}}</p>
+                                                    <p>{{ countTotal }} {{ currency }}</p>
+                                                </div>
+                                                <div class="mt-6">
+                                                    <Link :href="route('buy.detail')"
+                                                          class="flex items-center justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">
+                                                        {{__('translate.cart')}}
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </DialogPanel>
+                                </TransitionChild>
+
+                            </div>
+                        </div>
+                    </div>
+                </Dialog>
+            </TransitionRoot>
         </div>
     </div>
 </template>

@@ -38,11 +38,8 @@ class UpdateArticleRequest extends FormRequest
             'active' => ['boolean'],
             'sections.*.title'=>['required','string','max:100', 'distinct'],
             'sections.*.description'=>['required','string','max:2000'],
-            'baner' => ['required',$this
-                ->validateSingleMedia()
-                ->extension(['png','jpeg','jpg'])
-                ->maxItemSizeInKb(1024)
-            ]
+            'photo' => ['required', 'array'],
+
 
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\Category;
+use App\Models\ExternalCompany;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -20,11 +21,11 @@ class ApplicationFilterService
      */
     public function getFilteredApplications(Request $request, ?string $status = null): array
     {
-
         // Bazowe zapytanie z relacjami
         $query = Aplication::query()
             ->with(['project', 'cvClassic','openedBy','statusChangedBy'])
             ->forCurrentRecruiter();
+
 
         // Filtrowanie według statusu
         if ($status === 'yes') {
@@ -104,15 +105,15 @@ class ApplicationFilterService
         // Pobieranie i cachowanie kategorii
         $categories = $this->getCategories();
         $recruits = $this->getRecruits();
-
+        $externals = $this->getExternal();
         // Przygotowanie danych do widoku
         $applications = $query->orderBy('created_at', 'desc')->paginate(10);
         $counters = $this->getStatusCounters();
-
         return [
             'applications' => $applications->withQueryString(),
             'optionsPosition' => $categories,
             'optionsRecruits' => $recruits,
+            'optionsExternal' => $externals,
             'counters' => $counters,
             'filters' => $request->only(['project', 'status', 'category', 'experience', 'lang', 'skill', 'has_cv','Langlevel']),
         ];
@@ -465,6 +466,13 @@ class ApplicationFilterService
     {
         return User::role('recruit')->get()->map(function ($item) {
             return ['name' => $item['name'], 'value' => $item['id']];
+        });
+    }
+
+    private function getExternal()
+    {
+        return ExternalCompany::where('user_id',auth()->id())->get()->map(function ($item) {
+            return ['name' => $item['name'], 'value' => $item['id'],'email' => $item['email']];
         });
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('candidate_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('candidate_question_id')->constrained()->onDelete('cascade');
-            $table->foreignId('aplication_id')->constrained('aplications')->onDelete('cascade');
+            $table->foreignId('candidate_id')->constrained('users')->onDelete('cascade');
             $table->text('text_answer')->nullable();
             $table->boolean('boolean_answer')->nullable();
             $table->timestamps();

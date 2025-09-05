@@ -12,11 +12,10 @@ class DeleteTemporaryFileController extends Controller
 {
     public function __invoke()
     {
-        Log::info('Delete request data:', ['raw' => request()->getContent(), 'parsed' => request()->all()]);
-
         $temporaryImage = TemporaryFile::where('folder',request()->getContent())->first();
         if($temporaryImage){
             Storage::deleteDirectory('temps/'.$temporaryImage->folder);
+            Storage::disk('local')->deleteDirectory('temp_uploads/'.$temporaryImage->folder);
             $temporaryImage->delete();
         }
         return request()->getContent();

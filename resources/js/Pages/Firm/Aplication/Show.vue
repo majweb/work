@@ -8,8 +8,18 @@ import Multiselect from "vue-multiselect";
 const props = defineProps({
     application: Object,
     otherRecruits: Array,
-    candidateQuestions: Array,
 });
+
+// Formularz do tworzenia kandydata
+const candidateForm = useForm({});
+
+// Funkcja tworząca kandydata
+const createCandidate = () => {
+    // Koszt punktów za utworzenie kandydata
+    candidateForm.post(route('firm.applications.create-candidate', props.application.id), {
+        preserveScroll: true,
+    });
+};
 
 // Stan dla modalu notatek
 const showNoteModal = ref(false);
@@ -26,48 +36,6 @@ const form = useForm({
 const answersForm = useForm({
     answers: []
 });
-
-// Inicjalizacja formularza odpowiedzi
-const initAnswersForm = () => {
-    const formattedAnswers = props.candidateQuestions.map(question => {
-        // Znajdź odpowiedź na to pytanie jeśli istnieje
-        const existingAnswer = props.application.candidate_answers?.find(
-            answer => answer.candidate_question_id === question.id
-        );
-
-        return {
-            question_id: question.id,
-            text_answer: existingAnswer?.text_answer || '',
-            boolean_answer: existingAnswer?.boolean_answer === null ? null : existingAnswer?.boolean_answer,
-        };
-    });
-
-    answersForm.answers = formattedAnswers;
-};
-
-// Inicjalizacja przy załadowaniu strony
-initAnswersForm();
-
-// Formularz do odblokowywania pytań
-const questionsForm = useForm({});
-
-// Odblokowuje pytania dla tej aplikacji pobierając punkty
-const unlockQuestions = () => {
-    questionsForm.post(route('applications.unlock-questions', props.application.id), {
-        preserveScroll: true,
-    });
-};
-
-// Zapisanie odpowiedzi
-const saveAnswers = () => {
-    answersForm.post(route('applications.save-answers', props.application.id), {
-        preserveScroll: true,
-        onSuccess: () => {
-            // Odświeżenie danych
-            initAnswersForm();
-        }
-    });
-};
 
 // Otwiera modal do dodania notatki
 const openAddNoteModal = () => {
@@ -376,100 +344,26 @@ const dispatchActionSingleRecruit = value => {
                             {{ __('translate.getCv') }}
                         </a>
                     </div>
-
-                    <div v-if="candidateQuestions && candidateQuestions.length > 0" class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateQuestions') }}</h3>
-                        <div v-if="application.questions_unlocked_at" class="space-y-4">
-                            <p class="text-sm text-gray-600 mb-3">{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(application.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
-                        <p>{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(application.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
-                            <div v-for="(question, index) in candidateQuestions" :key="question.id" class="border p-4 rounded-lg">
-                                <h4 class="font-medium mb-2">{{ question.question }}</h4>
-
-                                <div v-if="question.answer_type === 'text'">
-                                    <textarea
-                                        v-model="answersForm.answers[index].text_answer"
-                                        class="w-full border-gray-300 rounded-md shadow-sm"
-                                        :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
-                                        rows="3"
-                                    ></textarea>
-                                    <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-sm text-red-600 mt-1">
-                                        {{ answersForm.errors[`answers.${index}.text_answer`] }}
-                                    </p>
-                                </div>
-
-                                <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
-                                    <div class="flex space-x-4 mb-1">
-                                        <label class="inline-flex items-center">
-                                            <input
-                                                type="radio"
-                                                :name="`question-${question.id}`"
-                                                :value="true"
-                                                v-model="answersForm.answers[index].boolean_answer"
-                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
-                                                class="border-gray-300 text-indigo-600"
-                                            >
-                                            <span class="ml-2">{{ __('translate.yes') }}</span>
-                                        </label>
-
-                                        <label class="inline-flex items-center">
-                                            <input
-                                                type="radio"
-                                                :name="`question-${question.id}`"
-                                                :value="false"
-                                                v-model="answersForm.answers[index].boolean_answer"
-                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
-                                                class="border-gray-300 text-indigo-600"
-                                            >
-                                            <span class="ml-2">{{ __('translate.no') }}</span>
-                                        </label>
-                                    </div>
-                                    <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-sm text-red-600">
-                                        {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="mt-4">
-                                <div v-if="answersForm.errors.answers" class="p-4 mb-4 bg-red-50 border border-red-500 rounded-md">
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-3">
-                                            <h3 class="text-sm font-medium text-red-800">{{ __('translate.validationError') }}</h3>
-                                            <p class="text-sm text-red-700 mt-1">
-                                                {{ answersForm.errors.answers }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex justify-end">
-                                    <button
-                                        @click="saveAnswers"
-                                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
-                                        :disabled="answersForm.processing"
-                                    >
-                                        {{ __('translate.save') }}
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.createCandidate') }}</h3>
+                        <div class="text-sm text-gray-600 mb-4">
+                            <p v-if="application.candidate" class="text-green-600 font-medium">
+                                {{ __('translate.candidateExists') }}
+                                <Link :href="route('candidates.show', application.candidate.id)" class="text-indigo-600 hover:text-indigo-800 ml-2">
+                                    {{ __('translate.viewCandidateDetails') }} &rarr;
+                                </Link>
+                            </p>
+                            <p v-else>{{ __('translate.candidateCreateInfo') }}</p>
                         </div>
-
-                        <div v-else class="text-center py-6">
-                            <p class="text-gray-600 mb-4">{{ __('translate.unlockQuestionsInfo') }}</p>
-                            <button
-                                @click="unlockQuestions"
-                                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
-                                :disabled="questionsForm.processing"
-                            >
-                                {{ __('translate.unlockQuestions') }}
-                            </button>
-                            <p class="text-sm text-gray-500 mt-2">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
-                        </div>
+                        <button
+                            v-if="!application.candidate"
+                            @click="createCandidate"
+                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
+                            :disabled="candidateForm.processing"
+                        >
+                            {{ __('translate.createCandidate') }}
+                        </button>
                     </div>
-
                     <div v-if="application.media && application.media.length > 0"
                          class="bg-white rounded-lg shadow-md p-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.addedFiles') }}</h3>

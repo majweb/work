@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\Category;
+use App\Models\ExternalCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -104,6 +105,7 @@ class ApplicationRecruitFilterService
         // Pobieranie i cachowanie kategorii
         $categories = $this->getCategories();
         $recruits = $this->getRecruits();
+        $externals = $this->getExternal();
 
         // Przygotowanie danych do widoku
         $applications = $query->orderBy('created_at', 'desc')->paginate(10);
@@ -113,6 +115,7 @@ class ApplicationRecruitFilterService
             'applications' => $applications->withQueryString(),
             'optionsPosition' => $categories,
             'optionsRecruits' => $recruits,
+            'optionsExternal' => $externals,
             'counters' => $counters,
             'filters' => $request->only(['project', 'status', 'category', 'experience', 'education', 'course', 'lang', 'skill', 'has_cv','Langlevel']),
         ];
@@ -127,6 +130,13 @@ class ApplicationRecruitFilterService
             return MultiselectWithoutDetailResource::collection(
                 Category::whereNotNull('parent_id')->get()
             );
+        });
+    }
+
+    private function getExternal()
+    {
+        return ExternalCompany::where('user_id',auth()->user()->user->id)->get()->map(function ($item) {
+            return ['name' => $item['name'], 'value' => $item['id'],'email' => $item['email']];
         });
     }
 

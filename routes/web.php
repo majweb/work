@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CandidatesController;
+use App\Http\Controllers\Global\ExternalResponseController;
 use Illuminate\Support\Facades\Route;
 
 use App\Charts\MonthlyUsersChart;
@@ -59,6 +60,16 @@ Route::get('/', function () {
     ]);
 })->name('front');
 
+
+Route::get('/external-response', [ExternalResponseController::class, 'showResponseView'])
+    ->name('external.response');
+
+Route::post('/external-response/answer', [ExternalResponseController::class, 'storeAnswer'])
+    ->name('external.answer');
+
+Route::get('/thank-you/{app?}/{decision?}', function () {
+    return Inertia::render('External/ThankYou')->with(['app'=>request()->app,'decision'=>request()->decision]);
+})->name('thank.you');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -97,8 +108,9 @@ Route::middleware([
     Route::post('applications/export', [AplicationController::class, 'export'])->middleware('role:firm')->name('firm.applications.export');
     Route::put('aplications/{aplication}/status',[AplicationController::class,'updateStatus'])->middleware('role:firm')->name('firm.applications.update-status');
     Route::post('aplications/{aplication}/notes',[AplicationController::class,'storeNote'])->middleware('role:firm')->name('firm.applications.store-note');
-    Route::post('applications/{aplication}/save-answers', [AplicationController::class, 'saveAnswers'])->middleware('role:firm')->name('applications.save-answers');
-    Route::post('applications/{aplication}/unlock-questions', [AplicationController::class, 'unlockQuestions'])->middleware('role:firm')->name('applications.unlock-questions');
+    Route::post('applications/{candidate}/save-answers', [AplicationController::class, 'saveAnswers'])->middleware('role:firm')->name('candidate.save-answers');
+    Route::post('applications/{candidate}/unlock-questions', [AplicationController::class, 'unlockQuestions'])->middleware('role:firm')->name('candidate.unlock-questions');
+    Route::post('applications/{aplication}/create-candidate', [AplicationController::class, 'createCandidate'])->middleware('role:firm')->name('firm.applications.create-candidate');
     Route::put('aplications/notes/{note}',[AplicationController::class,'updateNote'])->middleware('role:firm')->name('firm.applications.update-note');
     Route::delete('aplications/notes/{note}',[AplicationController::class,'deleteNote'])->middleware('role:firm')->name('firm.applications.delete-note');
     Route::get('acceptedApplications',[AplicationController::class,'acceptedApplications'])->middleware('role:firm')->name('firm.applications.acceptedApplications');
@@ -112,6 +124,11 @@ Route::middleware([
     Route::get('/statistics',[StatisticController::class,'index'])->name('statistics.index')->middleware('role:firm');
     Route::get('/buy',[BuyController::class,'index'])->name('buy.index')->middleware('role:firm');
     Route::get('/buydetail',[BuyController::class,'detail'])->name('buy.detail')->middleware('role:firm');
+    Route::get('50/50',[BuyController::class,'p50'])->middleware('role:firm')->name('firm.p50');
+    Route::post('50/50',[BuyController::class,'generate50'])->middleware('role:firm')->name('firm.generate50');
+    Route::get('download/50/50',[BuyController::class,'downloadPDF'])->middleware('role:firm')->name('firm.download50');
+    Route::get('banners',[BuyController::class,'banners'])->middleware('role:firm')->name('firm.banners');
+    Route::post('banners',[BuyController::class,'bannersStore'])->middleware('role:firm')->name('firm.banners.store');
     Route::get('/points',[PoinstController::class,'index'])->name('points.index')->middleware('role:firm');
     Route::post('/addMoreRecruits/{project}',[ProjectController::class,'addMoreRecruits'])->name('firm.addMoreRecruits')->middleware('role:firm');
     Route::post('/changeRecruit/{project}',[ProjectController::class,'changeRecruit'])->name('firm.changeRecruit')->middleware('role:firm');
@@ -126,6 +143,7 @@ Route::middleware([
     Route::get('/paymentView',[BuyController::class,'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView',[BuyController::class,'successView'])->name('buy.successView')->middleware('role:firm');
     Route::post('/changeToPoints/{product}/{points}',[BuyController::class,'changeToPoints'])->name('buy.change')->middleware('role:firm');
+    Route::post('/reservedProject',[BuyController::class,'reservedProject'])->name('buy.reservedProject')->middleware('role:firm');
 
     // Trasy dla zarządzania pytaniami kandydatów
     Route::resource('candidate-questions', CandidateQuestionController::class)->middleware('role:firm');
@@ -139,8 +157,20 @@ Route::middleware([
     Route::middleware(['role:firm'])->group(function () {
             Route::get('/candidates', [CandidatesController::class, 'index'])->name('candidates.index');
             Route::get('/candidates/{candidate}', [CandidatesController::class, 'show'])->name('candidates.show');
+            Route::get('/candidates/{candidate}/evidence', [CandidatesController::class, 'evidence'])->name('candidates.evidence');
+            Route::post('/candidates/{candidate}/evidence', [CandidatesController::class, 'evidencesStore'])->name('candidates.evidence.store');
+            Route::delete('/candidates/{candidate}/evidence/{evidence}', [CandidatesController::class, 'evidencesDelete'])->name('candidates.evidence.delete');
+            Route::put('/candidates/{candidate}/evidence/{evidence}', [CandidatesController::class, 'evidencesUpdate'])->name('candidates.evidence.update');
             Route::get('/candidates/{candidate}/tags', [CandidatesController::class, 'getTags'])->name('candidates.getTags');
             Route::post('/candidates/{candidate}/tags', [CandidatesController::class, 'saveTags'])->name('candidates.saveTags');
+
+        // Zarządzanie CV kandydatów
+            Route::post('/candidate-cv/upload', [\App\Http\Controllers\CandidateCvController::class, 'uploadCv'])->name('candidate-cv.upload');
+            Route::post('/candidate-cv/{candidate}/save', [\App\Http\Controllers\CandidateCvController::class, 'saveCv'])->name('candidate-cv.save');
+            Route::delete('/candidate-cv/{candidate}', [\App\Http\Controllers\CandidateCvController::class, 'deleteCv'])->name('candidate-cv.delete');
+            // Wysyłka aplikacji do firm zewnetrznych
+            Route::post('/send-external', [\App\Http\Controllers\CandidateCvController::class, 'sendExternal'])->name('send.external');
+
 
     });
 //    RECRUIT
@@ -158,6 +188,8 @@ Route::middleware([
     Route::post('project-aplications-recruits/{aplication}/notes',[AplicationControllerRecruit::class,'storeNote'])->name('project-aplications-recruits.store-note');
     Route::put('project-aplications-recruits/notes/{note}',[AplicationControllerRecruit::class,'updateNote'])->name('project-aplications-recruits.update-note');
     Route::delete('project-aplications-recruits/notes/{note}',[AplicationControllerRecruit::class,'deleteNote'])->name('project-aplications-recruits.delete-note');
+    Route::post('applications/{aplication}/create-candidate', [AplicationControllerRecruit::class, 'createCandidate'])->middleware('role:recruit')->name('recruit.applications.create-candidate');
+    Route::post('/send-external-recruit', [\App\Http\Controllers\CandidateCvController::class, 'sendExternalRecruit'])->name('send.external.recruit');
 
 
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
@@ -184,14 +216,20 @@ Route::middleware([
         Route::get('acceptedApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'acceptedApplications'])->name('aplicationsA.acceptedApplications');
         Route::get('maybeApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'maybeApplications'])->name('aplicationsA.maybeApplications');
         Route::get('noApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'noApplications'])->name('aplicationsA.noApplications');
-
-
     });
-
 });
 Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');
 Route::delete('temporary/delete',DeleteTemporaryFileController::class)->name('temporary.delete');
 Route::post('temporary/poster',DeletePosterFile::class)->name('temporary.delete.poster');
+
+Route::get('/download/cv-audio/{id}', function ($id) {
+    $app = App\Models\Aplication::findOrFail($id);
+    if($app->cvAudio){
+    return Storage::download($app->cvAudio->file_path);
+    } elseif ($app->cvVideo){
+        return Storage::download($app->cvVideo->file_path);
+    }
+})->name('cv_audio.download');
 
 
 require __DIR__.'/socialstream.php';

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
+use App\Http\Resources\BannerResource;
 use App\Http\Resources\FrontArticleResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Agreement;
 use App\Models\Aplication;
+use App\Models\Banner;
 use App\Models\Candidate;
 use App\Models\Article;
 use App\Models\Category;
@@ -32,15 +34,20 @@ class FrontController extends Controller
     {
 
         $articles = Article::active()->lang()->paginate(10)->withQueryString();
+        $banners = BannerResource::collection(Banner::withActiveBanner()->get());
         return inertia()->render('Front/Articles', [
             'articles' => $articles,
+            'banners' => $banners,
         ]);
     }
 
     public function projects()
     {
         $countryCode = getLocalBrowserLang();
-        $projects = Project::orderByRaw("JSON_SEARCH(country, 'one', ?, NULL, '$[*].countryCode') IS NULL ASC", [$countryCode])->paginate(20)->withQueryString();
+        $projects = Project::orderByRaw("JSON_SEARCH(country, 'one', ?, NULL, '$[*].countryCode') IS NULL ASC", [$countryCode])
+            ->featured() // dodaje flagę is_featured
+            ->with('user.changeProducts')
+            ->paginate(20)->withQueryString();
 
         return inertia()->render('Front/Projects', [
             'projects' => $projects,
@@ -108,13 +115,6 @@ class FrontController extends Controller
     }
     public function makeAplication(AplicationRequest $request, Project $project)
     {
-//        dd($request->user());
-//        dd($request->aplicationData(),'okokok');
-//        dd($request->aplicationData(),'kkkk',$request->aplicationData()['cvStandardType']);
-//        RateLimiter::clear('make-aplication:2-4');
-//        RateLimiter::clear('make-aplication:172.26.0.1');
-//        return;
-
         $user = $request->user();
         $key = 'make-aplication:' .$project->id.'-'. ($user?->id ?? $request->ip());
 
@@ -122,20 +122,6 @@ class FrontController extends Controller
             $key,
             $maxAttempts = 1,
             function () use ($request,$project) {
-                // Tworzenie lub aktualizacja kandydata
-                $candidate = Candidate::firstOrCreate(
-                    ['email' => $request->aplicationData()['email']],
-                    [
-                        'name' => $request->aplicationData()['name'],
-                        'surname' => $request->aplicationData()['surname'],
-                        'phone' => $request->aplicationData()['phone'],
-                    ]
-                );
-
-                // Przypisanie projektu do kandydata
-                if (!$candidate->projects->contains($project->id)) {
-                    $candidate->projects()->attach($project->id);
-                }
 
                 $aplication = Aplication::create([
                     'user_id'=>$project->user_id,
@@ -147,19 +133,6 @@ class FrontController extends Controller
                     'email'=>$request->aplicationData()['email'],
                     'aplication_user_id'=>auth()->check() && auth()->user()->hasRole('worker') ? auth()->user()->id : NULL,
                 ]);
-
-                // Tworzenie lub aktualizacja rekordu kandydata
-                $candidate = Candidate::firstOrCreate(
-                    ['email' => $request->aplicationData()['email']],
-                    [
-                        'name' => $request->aplicationData()['name'],
-                        'surname' => $request->aplicationData()['surname'],
-                        'phone' => $request->aplicationData()['phone']
-                    ]
-                );
-
-                // Dodanie powiązania kandydata z projektem
-                $candidate->projects()->syncWithoutDetaching([$project->id]);
 
                 if(is_array($request->aplicationData()['files']) && count($request->aplicationData()['files']) && $aplication){
                     $temporaryFiles = TemporaryFile::whereIn('folder',$request->aplicationData()['files'])->get();

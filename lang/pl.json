@@ -36,5 +36,11 @@
     "CvContact" : "Kontakt",
     "CvNow" : "obecnie",
     "cannotResetNonAcceptedApplication" : "Nie można zresetować statusu aplikacji, która nie jest zaakceptowana",
-    "applications" : "Aplikacje"
+    "applications" : "Aplikacje",
+    "extraRegister" : "Jeśli chcesz zwiększyć swoją szansę na aplikację, załóż konto.",
+    "registerNow" : "Zarejestruj się tutaj",
+    "Social-info" : "Klient **:name** o adresie email **:email** wybrał usługę Promowanie social",
+    "Social-buy" : "Usługa promowanie social",
+    "Project-info" : "Klient **:name** o adresie email **:email** wysłał prośbę o zaprojektowanie projektu baneru",
+    "Project-buy" : "Pytanie o projekt graficzny baneru"
 }

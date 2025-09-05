@@ -44,8 +44,33 @@ class ExternalCompanyController extends Controller
                 'max:50',
                 'uppercase',
                 Rule::unique('external_companies', 'abbreviation')
-            ]
+                    ->where(function ($query) {
+                        $query->where('user_id', Auth::id());
+                    }),
+            ],
+            'email' => [
+                'required',
+                'string',
+                Rule::unique('external_companies', 'email')
+                    ->where(function ($query) {
+                        $query->where('user_id', Auth::id());
+                    }),
+            ],
         ]);
+
+        // Koszt utworzenia kandydata
+        $cost = config('getPoints.CreateExternalFirm', 5);
+
+        // Sprawdź czy firma ma wystarczającą liczbę punktów
+        $firm = auth()->user()->firm;
+
+        if ($firm->points < $cost) {
+            session()->flash('flash.banner', __('translate.noPoints'));
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        }
+
+        $firm->decrement('points', $cost);
 
 
         Auth::user()->externalCompanies()->create($validated);
@@ -80,8 +105,17 @@ class ExternalCompanyController extends Controller
                 'string',
                 'max:50',
                 'uppercase',
-                Rule::unique('external_companies', 'abbreviation')->ignore($externalCompany->id ?? null)
-            ]
+                Rule::unique('external_companies', 'abbreviation')
+                    ->ignore($externalCompany->id) // pomija aktualny rekord
+                    ->where(fn ($query) => $query->where('user_id', Auth::id()))
+            ],
+            'email' => [
+                'required',
+                'string',
+                Rule::unique('external_companies', 'email')
+                    ->ignore($externalCompany->id) // pomija aktualny rekord
+                    ->where(fn ($query) => $query->where('user_id', Auth::id()))
+            ],
         ]);
 
 

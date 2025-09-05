@@ -14,7 +14,8 @@ class ExternalCompany extends Model
     protected $fillable = [
         'name',
         'abbreviation',
-        'user_id'
+        'user_id',
+        'email'
     ];
 
     /**

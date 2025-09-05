@@ -98,6 +98,9 @@ const deleteCompany = () => {
                                     {{ __('translate.abbreviation') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{ __('translate.email') }}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     {{ __('translate.actions') }}
                                 </th>
                             </tr>
@@ -106,6 +109,7 @@ const deleteCompany = () => {
                                 <tr class="h-16 border-gray-300 border-b" v-for="company in externalCompanies" :key="company.id">
                                     <td class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 tracking-normal leading-4">{{ company.name }}</td>
                                     <td class="pr-6 text-left whitespace-no-wrap text-sm text-gray-800 tracking-normal leading-4">{{ company.abbreviation }}</td>
+                                    <td class="pr-6 text-left whitespace-no-wrap text-sm text-gray-800 tracking-normal leading-4">{{ company.email }}</td>
                                     <td class="pr-6 text-left whitespace-no-wrap text-sm text-gray-800 tracking-normal leading-4">
                                         <div class="flex items-center">
                                             <Link :href="route('external-companies.edit', company.id)" class="text-blue-500 mr-4">

@@ -1,17 +1,19 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import {Link, useForm, usePage} from '@inertiajs/vue3';
+import {Link, router, useForm, usePage} from '@inertiajs/vue3';
 import __ from '@/lang.js';
 import { ref, onMounted, computed, watch } from 'vue';
 import axios from 'axios';
-
+import moment from "moment/moment.js";
+// Importy FilePond
 const props = defineProps({
     candidate: Object,
     candidateProjects: Array,
     candidateFullProjects: Array,
     categories: Array,
     customTags: Array,
-    selectedCandidateTags: Array
+    selectedCandidateTags: Array,
+    candidateQuestions: Array,
 });
 const locale = computed(()=>usePage().props.language);
 
@@ -106,6 +108,12 @@ const hexToRgb = (hex) => {
     } : null;
 };
 
+const removeFile =  async (source,load) => {
+    console.log(source)
+    await router.delete(route('candidate-cv.delete',props.candidate.id),{'source':source});
+    load();
+}
+
 // Obsługa tagów
 const toggleCategoryTag = (category) => {
     const index = selectedTags.value.findIndex(tag =>
@@ -158,6 +166,10 @@ const form = useForm({
     tags: []
 });
 
+const answersForm = useForm({
+    answers: []
+});
+
 // Obliczanie całkowitej liczby stron dla kategorii
 const totalCategoryPages = computed(() => {
     return Math.ceil(filteredCategories.value.length / categoriesPerPage);
@@ -190,19 +202,22 @@ const paginatedCategories = computed(() => {
 
 // Filtrowanie tagów niestandardowych na podstawie wyszukiwania
 const filteredCustomTags = computed(() => {
+    // Upewnij się, że customTags.value jest tablicą
+    const tags = Array.isArray(customTags.value) ? customTags.value : [];
+
     if (customTagSearchQuery.value.trim() === '') {
-        return customTags.value;
+        return tags;
     }
 
     const searchTerm = customTagSearchQuery.value.toLowerCase();
-    return customTags.value.filter(tag => {
+    return tags.filter(tag => {
         return tag.name.toLowerCase().includes(searchTerm);
     });
 });
 
 
+
 const saveTags = () => {
-    console.log(selectedTags.value)
     // Przygotowanie tagów do zapisu - musimy mieć tylko id i type
     const tagsToSave = Array.isArray(selectedTags.value) ? selectedTags.value.map(tag => ({
         id: tag.id,
@@ -260,6 +275,119 @@ onMounted(async () => {
         }
     }
 });
+
+// Inicjalizacja formularza odpowiedzi
+const initAnswersForm = () => {
+    const formattedAnswers = props.candidateQuestions.map(question => {
+        // Znajdź odpowiedź na to pytanie jeśli istnieje
+        const existingAnswer = question.candidate_answers?.find(
+            answer => answer.candidate_question_id === question.id && answer.candidate_id === props.candidate.id
+        );
+
+        return {
+            question_id: question.id,
+            text_answer: existingAnswer?.text_answer || '',
+            boolean_answer: existingAnswer?.boolean_answer === null ? null : existingAnswer?.boolean_answer,
+        };
+    });
+
+    answersForm.answers = formattedAnswers;
+};
+
+// Formularz do odblokowywania pytań
+const questionsForm = useForm({});
+
+
+const existingFile = [{
+    source: props.candidate?.cv_file?.name,
+    options: {
+        type: 'local',
+        file: {
+            name: props.candidate?.cv_file?.name,
+            size: props.candidate?.cv_file?.size,
+        },
+        metadata: {
+            poster: props.candidate?.cv_file?.url
+        }
+    }
+}];
+
+// Formularz do CV
+const cvForm = useForm({
+    cvFile: (props.candidate?.cv_file && existingFile) ? existingFile : []
+});
+
+// Konfiguracja FilePond
+const filepondOptions = {
+    labelIdle: __('translate.label-idle'),
+    labelFileProcessing: __('translate.labelFileProcessing'),
+    labelInvalidField: __('translate.labelInvalidField'),
+    labelFileWaitingForSize: __('translate.labelFileWaitingForSize'),
+    labelFileSizeNotAvailable: __('translate.labelFileSizeNotAvailable'),
+    labelFileLoading: __('translate.labelFileLoading'),
+    labelMaxFileSize:__('translate.labelMaxFileSize'),
+    labelMaxFileSizeExceeded:__('translate.labelMaxFileSizeExceeded'),
+    labelFileLoadError: __('translate.labelFileLoadError'),
+    labelFileProcessingComplete: __('translate.labelFileProcessingComplete'),
+    labelFileProcessingAborted: __('translate.labelFileProcessingAborted'),
+    labelFileProcessingError: __('translate.labelFileProcessingError'),
+    labelFileProcessingRevertError: __('translate.labelFileProcessingRevertError'),
+    labelFileRemoveError: __('translate.labelFileRemoveError'),
+    labelTapToCancel: __('translate.labelTapToCancel'),
+    labelTapToRetry: __('translate.labelTapToRetry'),
+    labelTapToUndo: __('translate.labelTapToUndo'),
+    labelButtonRemoveItem: __('translate.labelButtonRemoveItem'),
+    labelButtonAbortItemLoad: __('translate.labelButtonAbortItemLoad'),
+    labelButtonRetryItemLoad: __('translate.labelButtonRetryItemLoad'),
+    labelButtonAbortItemProcessing: __('translate.labelButtonAbortItemProcessing'),
+    labelButtonUndoItemProcessing: __('translate.labelButtonUndoItemProcessing'),
+    labelButtonRetryItemProcessing: __('translate.labelButtonRetryItemProcessing'),
+    labelButtonProcessItem: __('translate.labelButtonProcessItem'),
+    acceptedFileTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+    maxFileSize: '10MB',
+    credits:'false',
+};
+
+// Obsługa przesyłania CV
+const handleCvUpload = () => {
+    cvForm.post(route('candidate-cv.save', props.candidate.id), {
+        preserveScroll: true,
+    });
+};
+
+// Odblokowuje pytania dla tej aplikacji pobierając punkty
+const unlockQuestions = () => {
+    questionsForm.post(route('candidate.unlock-questions', props.candidate.id), {
+        preserveScroll: true,
+    });
+};
+// Zapisanie odpowiedzi
+const saveAnswers = () => {
+    answersForm.post(route('candidate.save-answers', props.candidate.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            // Odświeżenie danych
+            initAnswersForm();
+        }
+    });
+};
+
+// Usuwanie pliku CV
+const deleteFile = (fileId) => {
+    if (confirm(__('translate.confirmDeleteFile'))) {
+        axios.delete(route('candidate-cv.delete', { candidate: props.candidate.id, file: fileId }))
+            .then(response => {
+                // Odśwież stronę aby zaktualizować listę plików
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Błąd podczas usuwania pliku', error);
+            });
+    }
+};
+
+// Inicjalizacja przy załadowaniu strony
+initAnswersForm();
 </script>
 
 <template>
@@ -310,6 +438,19 @@ onMounted(async () => {
                                 <div>
                                     <span class="font-medium">{{ __('translate.createdAt') }}:</span> {{ new Date(candidate.created_at).toLocaleDateString() }}
                                 </div>
+                                <div class="flex items-center gap-2" v-if="candidate.created_by">
+                                    <span class="font-medium">{{ __('translate.createdBy') }}:</span> {{ candidate.created_by?.name }}
+
+                                    <div
+                                        class="rounded-full"
+                                        :style="{
+                                        width: '20px',
+                                        height: '20px',
+                                        backgroundColor: candidate.created_by?.color
+                                        }"
+                                    ></div>
+
+                                </div>
                             </div>
                         </div>
 
@@ -344,7 +485,7 @@ onMounted(async () => {
                                         {{ __('translate.applicationDate') }}: {{ new Date(project.created_at).toLocaleDateString() }}
                                     </div>
                                     <div class="text-sm text-gray-600">
-                                        <Link :href="route('aplications.show', project.application_id)" class="text-indigo-600 hover:text-indigo-800 text-sm">
+                                        <Link :href="route('candidates.show', candidate.id)" class="text-indigo-600 hover:text-indigo-800 text-sm">
                                             {{ __('translate.viewApplication') }}
                                         </Link>
                                     </div>
@@ -383,6 +524,176 @@ onMounted(async () => {
                             </div>
                         </div>
                     </div>
+                    <!-- Pytania -->
+                    <div v-if="candidateQuestions && candidateQuestions.length > 0" class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateQuestions') }}</h3>
+                        <div v-if="candidate.questions_unlocked_at" class="space-y-4">
+                            <p class="text-sm text-gray-600 mb-3">{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
+                            <p>{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
+                            <div v-for="(question, index) in candidateQuestions" :key="question.id" class="border p-4 rounded-lg">
+                                <h4 class="font-medium mb-2">{{ question.question }}</h4>
+
+                                <div v-if="question.answer_type === 'text'">
+                                    <textarea
+                                        v-model="answersForm.answers[index].text_answer"
+                                        class="w-full border-gray-300 rounded-md shadow-sm"
+                                        :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
+                                        rows="3"
+                                    ></textarea>
+                                    <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-sm text-red-600 mt-1">
+                                        {{ answersForm.errors[`answers.${index}.text_answer`] }}
+                                    </p>
+                                </div>
+
+                                <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
+                                    <div class="flex space-x-4 mb-1">
+                                        <label class="inline-flex items-center">
+                                            <input
+                                                type="radio"
+                                                :name="`question-${question.id}`"
+                                                :value="true"
+                                                v-model="answersForm.answers[index].boolean_answer"
+                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
+                                                class="border-gray-300 text-indigo-600"
+                                            >
+                                            <span class="ml-2">{{ __('translate.yes') }}</span>
+                                        </label>
+
+                                        <label class="inline-flex items-center">
+                                            <input
+                                                type="radio"
+                                                :name="`question-${question.id}`"
+                                                :value="false"
+                                                v-model="answersForm.answers[index].boolean_answer"
+                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
+                                                class="border-gray-300 text-indigo-600"
+                                            >
+                                            <span class="ml-2">{{ __('translate.no') }}</span>
+                                        </label>
+                                    </div>
+                                    <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-sm text-red-600">
+                                        {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <div v-if="answersForm.errors.answers" class="p-4 mb-4 bg-red-50 border border-red-500 rounded-md">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <h3 class="text-sm font-medium text-red-800">{{ __('translate.validationError') }}</h3>
+                                            <p class="text-sm text-red-700 mt-1">
+                                                {{ answersForm.errors.answers }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button
+                                        @click="saveAnswers"
+                                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                                        :disabled="answersForm.processing"
+                                    >
+                                        {{ __('translate.save') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div v-else class="text-center py-6">
+                            <p class="text-gray-600 mb-4">{{ __('translate.unlockQuestionsInfo') }}</p>
+                            <button
+                                @click="unlockQuestions"
+                                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
+                                :disabled="questionsForm.processing"
+                            >
+                                {{ __('translate.unlockQuestions') }}
+                            </button>
+                            <p class="text-sm text-gray-500 mt-2">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
+                        </div>
+                    </div>
+
+                    <!-- CV Upload -->
+                    <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateCV') }}</h3>
+
+                        <!-- Wyświetlanie aktualnych plików CV -->
+                        <div v-if="candidate.cv_files && candidate.cv_files.length > 0" class="mb-4">
+                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.currentCVFiles') }}</h4>
+                            <div class="space-y-2">
+                                <div v-for="file in candidate.cv_files" :key="file.id" class="flex items-center justify-between bg-white p-2 rounded border">
+                                    <div class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        <span>{{ file.name }}</span>
+                                    </div>
+                                    <div>
+                                        <a :href="file.url" target="_blank" class="text-blue-600 hover:text-blue-800 mr-2">{{ __('translate.view') }}</a>
+                                        <button @click="deleteFile(file.id)" class="text-red-600 hover:text-red-800">{{ __('translate.delete') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dodawanie nowego pliku CV -->
+                        <div>
+                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.uploadNewCV') }}</h4>
+                            <div class="mb-3">
+                                <file-pond
+                                    ref="pond"
+                                    name="cvFile"
+                                    :files="cvForm.cvFile"
+                                    :allow-multiple="false"
+                                    v-bind="filepondOptions"
+                                    :server="{
+                                            url:'',
+                                               headers: {
+                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
+                                                },
+                                            process: {
+                                                url: '/temporary/upload',
+                                                    onload: (response) => {
+                                                    cvForm.cvFile.push(response);
+                                                    return response;
+                                                    },
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.cv_file[0];
+                                                    }
+
+                                            },
+                                            revert:{
+                                                url: '/temporary/delete',
+                                                onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = cvForm.cvFile.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) {
+                                                            cvForm.cvFile.splice(fileIndex, 1);
+                                                       }
+                                                }
+                                            },
+                                            remove:removeFile
+                                            }"
+                                />
+                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.allowedFileTypes') }}: PDF, DOC, DOCX ({{ __('translate.maxFileSize') }}: 10MB)</p>
+                            </div>
+                            <div class="flex justify-end">
+                                <button
+                                    @click="handleCvUpload"
+                                    class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
+                                    :disabled="cvForm.processing"
+                                >
+                                    {{ __('translate.saveCv') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Notatki -->
                     <div class="mt-6 bg-gray-50 p-4 rounded-lg">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.notes') }}</h3>

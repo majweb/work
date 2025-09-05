@@ -1,10 +1,107 @@
 <template>
     <div class="max-w-4xl mx-auto text-center">
+        <div class="prose max-w-none">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold flex items-center gap-2 flex-col md:flex-row">
+                    {{__('translate.instructionVideo')}}
+                    <button
+                        type="button"
+                        @click="toggle()"
+                        class="text-sm text-blue-600 hover:text-blue-800 font-semibold transition flex items-center"
+                    >
+                        <span>{{ open ? __('translate.collapse') : __('translate.expand') }}</span>
+                        <svg
+                            :class="{ 'rotate-180': open }"
+                            class="ml-2 h-4 w-4 transform transition-transform duration-300"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                        <!-- Spinner -->
+                        <svg v-if="animating" class="animate-spin ml-2 h-4 w-4 text-blue-600"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                        </svg>
+                    </button>
+                </h2>
+            </div>
+
+            <Transition
+                enter-active-class="transition-all duration-500 ease-out"
+                leave-active-class="transition-all duration-500 ease-in"
+                @before-enter="animating = true"
+                @after-enter="animating = false"
+                @before-leave="animating = true"
+                @after-leave="animating = false"
+            >
+                <div v-show="open">
+                    <ol class="list-decimal list-inside space-y-4 text-left">
+                        <li>
+                            <strong>{{ __('translate.video_cv.title') }}</strong>
+                            <ol class="list-decimal list-inside ml-6 space-y-2">
+                                <li>{{ __('translate.video_cv.steps.start.step_1') }}</li>
+                                <li>{{ __('translate.video_cv.steps.start.step_2') }}</li>
+                                <li>{{ __('translate.video_cv.steps.start.step_3') }}</li>
+                            </ol>
+                        </li>
+
+                        <li>
+                            <strong>{{ __('translate.video_cv.steps.questions.title') }}</strong>
+                            <ol class="list-decimal list-inside ml-6 space-y-2">
+                                <li>{{ __('translate.video_cv.steps.questions.step_1') }}</li>
+                                <li>{{ __('translate.video_cv.steps.questions.step_2') }}</li>
+                                <li>{{ __('translate.video_cv.steps.questions.step_3') }}</li>
+                                <ul class="list-disc list-inside ml-6 space-y-1">
+                                    <li>{{ __('translate.video_cv.steps.questions.sub_points.finish_early') }}</li>
+                                    <li>{{ __('translate.video_cv.steps.questions.sub_points.time_up') }}</li>
+                                </ul>
+                            </ol>
+                        </li>
+
+                        <li>
+                            <strong>{{ __('translate.video_cv.steps.recording.title') }}</strong>
+                            <ul class="list-disc list-inside ml-6 space-y-2">
+                                <li>{{ __('translate.video_cv.steps.recording.stop') }}</li>
+                                <li>{{ __('translate.video_cv.steps.recording.after_stop') }}
+                                    <ul class="list-disc list-inside ml-6 space-y-1">
+                                        <li>{{ __('translate.video_cv.steps.recording.sub_points.play') }}</li>
+                                        <li>{{ __('translate.video_cv.steps.recording.sub_points.retry') }}</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>{{ __('translate.video_cv.steps.finish.title') }}</strong>
+                            <ul class="list-disc list-inside ml-6 space-y-1">
+                                <li>{{ __('translate.video_cv.steps.finish.apply') }}</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>{{ __('translate.video_cv.steps.tips.title') }}</strong>
+                            <ul class="list-disc list-inside ml-6 space-y-1">
+                                <li>{{ __('translate.video_cv.steps.tips.tip_1') }}</li>
+                                <li>{{ __('translate.video_cv.steps.tips.tip_2') }}</li>
+                                <li>{{ __('translate.video_cv.steps.tips.tip_3') }}</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </Transition>
+        </div>
+
         <div v-if="recordedBlobUrl" class="mt-6">
             <h3 class="text-lg font-semibold mb-2">{{ __('translate.videoPreview') }}:</h3>
             <video :src="recordedBlobUrl" controls class="w-full rounded-xl shadow-lg"></video>
         </div>
-        <video v-else ref="video" autoplay muted class="w-full rounded-xl shadow-lg" ></video>
+        <video v-else ref="video" autoplay muted class="w-full rounded-xl shadow-lg"></video>
         <div v-if="currentQuestion && recording" class="mt-6 p-4 bg-white/80 rounded-xl">
             <h2 class="text-xl font-semibold">{{ currentQuestion.content }}</h2>
             <div class="text-gray-600 mt-2">{{ __('translate.remainingTime') }}: {{ timer }}s</div>
@@ -55,8 +152,8 @@
 
         <div v-if="uploadSuccess" class="mt-4 text-green-600 font-semibold flex flex-col gap-4 items-center">
             {{ __('translate.recordingSaved') }}
-            <PrimaryButton         @click="$emit('submit')"
-                                   class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+            <PrimaryButton @click="$emit('submit')"
+                           class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
                            :disabled="form.processing">
                 {{ __('translate.apply') }}
             </PrimaryButton>
@@ -66,7 +163,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
@@ -94,11 +191,17 @@ const uploading = ref(false);
 const uploadProgress = ref(0);
 const uploadError = ref('');
 const uploadSuccess = ref(false);
+const open = ref(false)
+const animating = ref(false)
+
+function toggle() {
+    open.value = !open.value
+}
 
 const startRecording = async () => {
     if (countdownInterval) clearInterval(countdownInterval);
     recordedBlobUrl.value = null;
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    const stream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
     video.value.srcObject = stream;
 
     recordedChunks.length = 0;
@@ -178,7 +281,7 @@ const stopRecording = () => {
         uploading.value = true;
         uploadProgress.value = 0;
 
-        const blob = new Blob(recordedChunks, { type: 'video/mp4' });
+        const blob = new Blob(recordedChunks, {type: 'video/mp4'});
         recordedBlobUrl.value = URL.createObjectURL(blob);
 
         try {
@@ -211,7 +314,7 @@ async function uploadInChunks(blob) {
         formData.append('project_id', props.projectId);
 
         await axios.post(route('front.video.upload'), formData, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers: {'Content-Type': 'multipart/form-data'},
         });
 
         uploadProgress.value = ((chunkIndex + 1) / totalChunks) * 100;
@@ -224,6 +327,7 @@ video {
     aspect-ratio: 16 / 9;
     background: black;
 }
+
 progress {
     height: 20px;
 }

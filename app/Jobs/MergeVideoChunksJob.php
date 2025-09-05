@@ -72,7 +72,7 @@ class MergeVideoChunksJob implements ShouldQueue
         }
 
         rename($processedPath, $finalFullPath);
-        Cache::put('cv_session_'.$this->userId, $this->uploadId, now()->addMinutes(30));
+        Cache::put('cv_session_'.$this->userId, $this->uploadId, 1800); // 1800 sekund = 30 minut
 
         CvVideo::create([
             'temp_session_id' => $this->uploadId,

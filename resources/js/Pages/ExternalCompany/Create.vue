@@ -10,6 +10,7 @@ import FormSection from '@/Components/FormSection.vue';
 const form = useForm({
     name: '',
     abbreviation: '',
+    email: '',
 });
 
 const createExternalCompany = () => {
@@ -66,6 +67,16 @@ const createExternalCompany = () => {
                             />
                             <p class="mt-1 text-sm text-gray-500">{{ __('translate.abbreviationHelper') }}</p>
                             <InputError :message="form.errors.abbreviation" class="mt-2" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <InputLabel for="email" :value="__('translate.email')" />
+                            <TextInput
+                                id="email"
+                                v-model="form.email"
+                                type="text"
+                                class="mt-1 block w-full"
+                            />
+                            <InputError :message="form.errors.email" class="mt-2" />
                         </div>
                     </template>
 

@@ -24,11 +24,13 @@ class AplicationMakeListener
         $auth = $event->auth;
         $cvType = $event->cvType;
         $lang = app()->getLocale();
-        if (Cache::has('cv_session_'.auth()->id())) {
-            $tempSessionId = Cache::get('cv_session_'.auth()->id());
+        $userId = $event->auth ? $event->auth->id : $event->aplication->user_id;
+
+        if ($userId && Cache::has('cv_session_'.$userId)) {
+            $tempSessionId = Cache::get('cv_session_'.$userId);
             if($cvType == '3'){
                 $d = CVAudio::where('temp_session_id', $tempSessionId)
-                    ->where('user_id', auth()->id())
+                    ->where('user_id', $userId)
                     ->where('aplication_id', null)
                     ->update([
                         'aplication_id' => $aplication->id,
@@ -36,7 +38,7 @@ class AplicationMakeListener
                     ]);
             } elseif ($cvType == '2'){
                 CvVideo::where('temp_session_id', $tempSessionId)
-                    ->where('user_id', auth()->id())
+                    ->where('user_id', $userId)
                     ->where('aplication_id', null)
                     ->update([
                         'aplication_id' => $aplication->id,
@@ -45,11 +47,9 @@ class AplicationMakeListener
             }
         }
 
+
         // Czyszczenie sesji
-        Cache::forget('cv_session_'.auth()->id());
-
-
-
+        Cache::forget('cv_session_'.$userId);
         if($auth){
             $auth->notify((new ApplicationMadeNotification($aplication))->locale($lang));
             $aplication->user->notify((new ApplicationMadeNotification($aplication))->locale($lang));

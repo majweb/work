@@ -78,7 +78,7 @@ class HandleInertiaRequests extends Middleware
             'pageName' => env('APP_NAME'),
             'unreadNotifications'=>$request->user() ? $request->user()->unreadNotifications()->count() :0,
             'mapsApi' => env('GOOGLE_MAPS_API'),
-            'currencyFromClient' => fn()=> request()->user() && request()->user()->hasRole('recruit')  ? request()->user()->user->firm->currency : null
+            'currencyFromClient' => fn()=> (request()->user() && request()->user()->hasRole('recruit') && !request()->user()->hasRole('firm'))  ? request()->user()->user->firm->currency : null
         ]);
     }
 }

@@ -33,14 +33,16 @@ class Aplication extends Model implements HasMedia
         'opened_at',
         'status_changed_by_user_id',
         'status_changed_at',
-        'questions_unlocked_at'
+        'points_downloaded_at'
     ];
 
     protected $casts = [
         'whenDeleted' => 'datetime',
         'whenMaybe' => 'datetime',
-        'questions_unlocked_at' => 'datetime',
     ];
+
+    protected $appends = ['HasCv'];
+
 
     public function user(): BelongsTo
     {
@@ -96,13 +98,7 @@ class Aplication extends Model implements HasMedia
         return $this->hasMany(CandidateAnswer::class, 'aplication_id');
     }
 
-    /**
-     * Sprawdza, czy pytania zostały odblokowane dla tej aplikacji
-     */
-    public function getQuestionsUnlockedAttribute(): bool
-    {
-        return !is_null($this->questions_unlocked_at);
-    }
+
 
     public function opened_by()
     {
@@ -160,7 +156,10 @@ class Aplication extends Model implements HasMedia
     public function scopeForCurrentRecruiter($query)
     {
         return $query->whereHas('project.recruit', function ($query) {
-            $query->where('recruiter_from_firm_id', auth()->id());
+            $query->where(function ($query) {
+                $query->where('recruiter_id', auth()->id())
+                    ->orWhere('recruiter_from_firm_id', auth()->id());
+            });
         });
     }
 
@@ -189,5 +188,10 @@ class Aplication extends Model implements HasMedia
     public function candidate()
     {
         return $this->belongsTo(Candidate::class, 'email', 'email');
+    }
+
+    public function getHasCvAttribute()
+    {
+        return $this->cvClassic()->exists() || $this->media()->where('collection_name', 'aplications_cvFile')->first();
     }
 }

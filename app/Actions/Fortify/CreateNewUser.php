@@ -46,7 +46,7 @@ class CreateNewUser implements CreatesNewUsers
             }
         } elseif($input['type'] == 'firm'){
             if($user){
-                $user->assignRole('firm');
+                $user->assignRole('firm','recruit');
                 $user->firm()->create();
             }
         }

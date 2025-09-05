@@ -94,6 +94,21 @@ watch(params.value, debounce(function () {
                                     <Link preserve-scroll method="post" as="button" v-else-if="points && points >= parseInt(product.price)" :href="route('buy.change',[product,product.price])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-work rounded-lg hover:bg-red-work-100 focus:ring-4 focus:outline-none focus:ring-blue-work transition">
                                         {{__('translate.changePoints')}}
                                     </Link>
+
+                                    <div v-if="parseInt(product.id) == 8">
+                                         <p
+                                             class="text-left text-xs duration-200 my-4"
+                                         >
+                                            ❓
+                                              Aby wymienić punkty na baner, musisz mieć przygotowaną już własną grafikę.
+                                            </p>
+                                        <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[product,product.price])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center focus:outline-none focus:ring-blue-work transition underline">
+                                            {{__('translate.reservervedProject')}}
+                                        </Link>
+
+                                    </div>
+
+
                                 </div>
                             </div>
                                 <Link v-if="countCart > 0" as="button" :href="route('buy.detail')" :active="route().current('buy.index')" class="flex w-[100px] text-center justify-center items-center mx-auto px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">

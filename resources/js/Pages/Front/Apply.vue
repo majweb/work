@@ -444,6 +444,8 @@ const removeFile =  async (source,load) => {
                                     :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
                                     :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
                                     :labelFileLoading="__('translate.labelFileLoading')"
+                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
                                     :labelFileLoadError="__('translate.labelFileLoadError')"
                                     :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
                                     :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
@@ -606,6 +608,8 @@ const removeFile =  async (source,load) => {
                                             :max-file-size="'5MB'"
                                             imagePreviewMaxHeight="300"
                                             :label-idle="__('translate.label-idle')"
+                                            :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                            :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
                                             :labelFileProcessing="__('translate.labelFileProcessing')"
                                             :labelInvalidField="__('translate.labelInvalidField')"
                                             :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
@@ -703,6 +707,8 @@ const removeFile =  async (source,load) => {
                                                 :label-idle="__('translate.label-idle')"
                                                 :labelFileProcessing="__('translate.labelFileProcessing')"
                                                 :labelInvalidField="__('translate.labelInvalidField')"
+                                                :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                                :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
                                                 :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
                                                 :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
                                                 :labelFileLoading="__('translate.labelFileLoading')"
@@ -1317,7 +1323,9 @@ const removeFile =  async (source,load) => {
                                 </p>
                             </div>
                         </div>
-
+                        <div class="flex items-center justify-center my-4">
+                            <InputError :message="form.errors.application" class="mt-2"/>
+                        </div>
                     <div class="flex items-center justify-center mt-4 gap-4">
                         <PrimaryButton type="button" @click="nextStep" v-if="form.cv && formStep == 1" class="w-1/4 flex justify-center">
                             <span v-if="form.cv && form.cv == 1 && formStep == 1">{{__('translate.generateCv')}}</span>
@@ -1328,7 +1336,11 @@ const removeFile =  async (source,load) => {
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
                             {{__('translate.previousStep')}}
                         </PrimaryButton>
-                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && form.cv == 1 && formStep == 2" class="w-1/4 flex justify-center">
+                        <PrimaryButton v-if="form.cv && formStep == 2 && form.cvStandardType == 1" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+                                       :disabled="form.processing || !isReadyToSubmit">
+                            {{ __('translate.apply') }}
+                        </PrimaryButton>
+                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && form.cv == 1 && formStep == 2 && form.cvStandardType != 1" class="w-1/4 flex justify-center">
                             <span>{{__('translate.chosetemplate')}}</span>
                         </PrimaryButton>
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 3" class="w-1/4 flex justify-center">

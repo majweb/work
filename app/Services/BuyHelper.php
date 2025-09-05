@@ -4,6 +4,9 @@ namespace App\Services;
 
 use App\Models\ChangeProduct;
 use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\User;
+use App\Notifications\SendRequestSocialAdminNotification;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\RedirectResponse;
@@ -95,6 +98,42 @@ class BuyHelper
         }
 
     }
+    public function generate50Pdf($cert50)
+    {
+        try {
+            $date = now()->timestamp;
+            $foundation = Order::where('user_id',auth()->id())->latest()->first()?->foundation;
+            if ($foundation) {
+                    $pdf = Pdf::loadView('templates.pdf.50',compact('foundation'))->setPaper('a4', 'landscape');;
+                    $filenameInvoice = 'firm/' . auth()->id().'/pdf/certyficates50/'.$date.'.pdf';
+
+                    // Pobierz ścieżkę do starego pliku, jeśli istnieje
+                    $oldFilePath = $cert50->certificate_pdf;
+
+                    // Sprawdź, czy istnieje poprzedni plik i usuń go
+                    if ($oldFilePath && Storage::disk('local')->exists($oldFilePath)) {
+                        Storage::disk('local')->delete($oldFilePath);
+                    }
+
+                    Storage::disk('local')->put($filenameInvoice, $pdf->output());
+                    $cert50->update([
+                        'certificate_pdf' => $filenameInvoice
+                    ]);
+                    session()->flash('flash.banner',__('translate.success50Pdf'));
+                    session()->flash('flash.bannerStyle', 'success');
+                    return redirect()->route('firm.p50');
+            } else {
+                session()->flash('flash.banner',__('translate.noFundation50Pdf'));
+                session()->flash('flash.bannerStyle', 'danger');
+                return redirect()->route('firm.p50');            }
+
+
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return $e->getMessage();
+        }
+
+    }
 
     /**
      * @param $cartItems
@@ -135,10 +174,18 @@ class BuyHelper
     public function createFromPoints($points, $product)
     {
         try {
-            if (Auth::user()->firm->points > $points) {
+            if (Auth::user()->firm->points >= $points) {
                     $now = now();
                     $lastChange = ChangeProduct::where('user_id',Auth::user()->id)->where('product_id',$product->id)->first();
                 if($product->id != 10){
+//                    różne od artykułu
+                    if($product->id == 11 ){
+                        $admins=User::role('admin')->get();
+                        $lang = app()->getLocale();
+                        $admins->each(function ($admin) use ($product,$lang){
+                            $admin->notify((new SendRequestSocialAdminNotification($product,Auth::user()))->locale($lang));
+                        });
+                    }
                     if($lastChange){
                         $end = $lastChange->end->addDays(30);
                         $lastChange->update(['end'=>$end]);

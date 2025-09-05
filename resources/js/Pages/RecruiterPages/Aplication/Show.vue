@@ -103,6 +103,16 @@ const resetStatus = (id, status) => {
         preserveState: true
     });
 };
+const candidateForm = useForm({});
+const createCandidate = () => {
+    // Koszt punktów za utworzenie kandydata
+    candidateForm.post(route('recruit.applications.create-candidate', props.application.id), {
+        preserveScroll: true,
+    });
+};
+
+
+
 </script>
 
 <template>
@@ -305,6 +315,29 @@ const resetStatus = (id, status) => {
                             {{ __('translate.getCv') }}
                         </a>
                     </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.createCandidate') }}</h3>
+                        <div class="text-sm text-gray-600 mb-4">
+                            <p v-if="application.candidate" class="text-green-600 font-medium">
+                                {{ __('translate.candidateExists') }}
+                                <Link :href="route('candidates.show', application.candidate.id)" class="text-indigo-600 hover:text-indigo-800 ml-2">
+                                    {{ __('translate.viewCandidateDetails') }} &rarr;
+                                </Link>
+                            </p>
+                            <p v-else>{{ __('translate.candidateCreateInfo') }}</p>
+                        </div>
+                        <button
+                            v-if="!application.candidate"
+                            @click="createCandidate"
+                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
+                            :disabled="candidateForm.processing"
+                        >
+                            {{ __('translate.createCandidate') }}
+                        </button>
+                    </div>
+
+
                     <div v-if="application.cv_audio" class="bg-white rounded-lg shadow-md p-6 mb-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.cvAudio') }}</h3>
                         <audio

@@ -12,7 +12,7 @@ class CandidateAnswer extends Model
 
     protected $fillable = [
         'candidate_question_id',
-        'aplication_id',
+        'candidate_id',
         'text_answer',
         'boolean_answer'
     ];
@@ -26,8 +26,8 @@ class CandidateAnswer extends Model
         return $this->belongsTo(CandidateQuestion::class, 'candidate_question_id');
     }
 
-    public function application(): BelongsTo
+    public function candidate(): BelongsTo
     {
-        return $this->belongsTo(Aplication::class, 'aplication_id');
+        return $this->belongsTo(Candidate::class, 'candidate_id');
     }
 }

@@ -13,7 +13,7 @@ const props = defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="h-[200px]">
-                    <img class="media-library-thumb-img" :src="article.banerUrl" :alt="article.title">
+                    <img class="media-library-thumb-img" :src="article.photo.original_url" :alt="article.title">
                     </div>
                 <Link :href="route('front.articles')" class="font-bold text-xl underline p-4">{{__('translate.backToList')}}</Link>
                     <h2 class="font-bold text-2xl p-4 text-center text-red-500">{{article.title}}</h2>

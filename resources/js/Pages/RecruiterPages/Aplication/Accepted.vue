@@ -16,6 +16,7 @@ const props = defineProps({
     noCount: Number,
     optionsPosition: Object,
     applications: Object,
+    optionsExternal: Object,
     filters: Object,
     langLevels: Array,
 
@@ -93,8 +94,6 @@ const closeNoteModal = () => {
     formNote.reset();
     showNoteModal.value = false;
     formNote.clearErrors();
-
-
 };
 
 // Zapisuje notatkę
@@ -156,12 +155,34 @@ watch(form, debounce(function (value) {
     });
 }, 300), {deep: true});
 
+const formSend = useForm({
+    externalFirms: [],
+    apps: []
+})
+
+
+
 const sortLangs = computed(() => {
     const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
     return usePage().props.languages
         .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
         .sort((a, b) => a.label.localeCompare(b.label));
 });
+const changeIds = (e) => {
+    if (formSend.apps.length === 0) {
+        formSend.externalFirms = []
+    }
+}
+
+
+const submitForm = () => {
+    formSend.post(route('send.external.recruit'), {
+        onSuccess: () => {
+            // wyczyść pola po udanej wysyłce
+            formSend.reset('externalFirms', 'apps')
+        }
+    })
+}
 
 </script>
 
@@ -429,6 +450,38 @@ const sortLangs = computed(() => {
                         </div>
                     </div>
 
+                    <div v-if="formSend.apps.length">
+                        <multiselect
+                            :multiple="true"
+                            :selectLabel="__('translate.selectLabel')"
+                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                            :selectedLabel="__('translate.selectedLabel')"
+                            :deselectLabel="__('translate.deselectLabel')"
+                            :noOptions="__('translate.noOptions')"
+                            :noResult="__('translate.noResult')"
+                            track-by="value"
+                            class="mb-4"
+                            label="name"
+                            :placeholder="__('translate.placeholder')"
+                            v-model="formSend.externalFirms" :options="optionsExternal">
+                            <template #noResult>
+                                <span>{{__('translate.noOptions')}}</span>
+                            </template>
+                            <template #noOptions>
+                                <span>{{__('translate.noResult')}}</span>
+                            </template>
+                        </multiselect>
+                        <button
+                            v-if="formSend.externalFirms.length"
+                            @click="submitForm"
+                            class="flex justify-center items-center w-full text-center px-4 py-2 my-4 bg-blue-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wide hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-md transition ease-in-out duration-150"
+                        >
+                            Prześlij aplikacje
+                        </button>
+                    </div>
+
+
+
                     <div v-if="applications.data.length === 0" class="text-center py-8 text-gray-500">
                         {{ __('translate.noApplicationsAvailable') }}
                     </div>
@@ -477,7 +530,11 @@ const sortLangs = computed(() => {
                             <tbody class="bg-white divide-y divide-gray-200">
                             <tr v-for="application in applications.data" :key="application.id">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900">{{ application.id }}</div>
+                                    <input
+                                        @change="changeIds"
+                                        class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                        type="checkbox" :id="'app-'+application.id" v-model="formSend.apps" :value="application.id"/>
+                                    <label class="text-sm font-medium text-gray-900" :for="'app-'+application.id">{{application.id}}</label>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900">{{ application.name }}

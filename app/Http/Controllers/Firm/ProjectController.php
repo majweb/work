@@ -42,7 +42,6 @@ class ProjectController extends Controller
 
         return inertia()->render('Project/Index', [
             'recruiters' => $recruiters,
-//            'ttttttttttt' => $c,
             'projects' => $query->paginate(5)->withQueryString(),
             'filters' => request()->only(['field', 'direction', 'recruiter'])
         ]);

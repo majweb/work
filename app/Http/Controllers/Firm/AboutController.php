@@ -17,6 +17,19 @@ class AboutController extends Controller
     public function __invoke(FirmAboutRequest $request)
     {
         if ($request->hasFile('video')) {
+
+            // Koszt utworzenia kandydata
+            $cost = config('getPoints.AddVideoToProfile', 1000);
+
+            // Sprawdź czy firma ma wystarczającą liczbę punktów
+            $firm = auth()->user()->firm;
+
+            if ($firm->points < $cost) {
+                session()->flash('flash.banner', __('translate.noPoints'));
+                session()->flash('flash.bannerStyle', 'danger');
+                return back();
+            }
+
             $file = $request->video;
             $folder = 'videos';
             if (!file_exists(storage_path('app/public/' . $folder))) {
@@ -27,6 +40,9 @@ class AboutController extends Controller
             }
             $extension = $file->extension();
             $path = $file->storeAs($folder, Str::slug(Auth::user()->name).'-'.time().'-video.'.$extension,'public');
+
+            $firm->decrement('points', $cost);
+
         }
         Auth::user()->firm()->update([
             'www'=>$request->aboutData()['www'],

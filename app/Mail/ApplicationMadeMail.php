@@ -44,6 +44,9 @@ class ApplicationMadeMail extends Mailable implements ShouldQueue
             markdown: 'mail.aplications.made',
             with: [
                 'url' => url('/applications/' . $this->aplication->id),
+                'registerUrl'  => url('/register'),
+                'registerText' => __('extraRegister'),
+                'registerNow' => __('registerNow')
             ],
         );
     }

@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import {Link, usePage} from '@inertiajs/vue3';
+import {Link, useForm, usePage} from '@inertiajs/vue3';
 import {computed, ref, watch} from 'vue';
 import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
@@ -14,6 +14,7 @@ const props = defineProps({
     noCount: Number,
     optionsPosition: Object,
     applications: Object,
+    optionsExternal: Object,
     filters: Object,
     langLevels: Array,
 
@@ -34,6 +35,11 @@ const form = ref({
     Langlevel: props.filters?.Langlevel || '',
     skill: props.filters?.skill || '',
 });
+
+const formSend = useForm({
+    externalFirms: [],
+    apps: []
+})
 
 const updateStatus = (id, status) => {
     router.put(route('project-aplications-recruits.update', id), {
@@ -130,7 +136,21 @@ watch(form, debounce(function (value) {
     });
 }, 300), { deep: true });
 
+const changeIds = (e) => {
+    if (formSend.apps.length === 0) {
+        formSend.externalFirms = []
+    }
+}
 
+
+const submitForm = () => {
+    formSend.post(route('send.external.recruit'), {
+        onSuccess: () => {
+            // wyczyść pola po udanej wysyłce
+            formSend.reset('externalFirms', 'apps')
+        }
+    })
+}
 
 </script>
 
@@ -339,6 +359,38 @@ watch(form, debounce(function (value) {
                         </div>
                     </div>
 
+                    <div v-if="formSend.apps.length">
+                        <multiselect
+                            :multiple="true"
+                            :selectLabel="__('translate.selectLabel')"
+                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                            :selectedLabel="__('translate.selectedLabel')"
+                            :deselectLabel="__('translate.deselectLabel')"
+                            :noOptions="__('translate.noOptions')"
+                            :noResult="__('translate.noResult')"
+                            track-by="value"
+                            class="mb-4"
+                            label="name"
+                            :placeholder="__('translate.placeholder')"
+                            v-model="formSend.externalFirms" :options="optionsExternal">
+                            <template #noResult>
+                                <span>{{__('translate.noOptions')}}</span>
+                            </template>
+                            <template #noOptions>
+                                <span>{{__('translate.noResult')}}</span>
+                            </template>
+                        </multiselect>
+                        <button
+                            v-if="formSend.externalFirms.length"
+                            @click="submitForm"
+                            class="flex justify-center items-center w-full text-center px-4 py-2 my-4 bg-blue-600 border border-transparent rounded-lg font-semibold text-sm text-white tracking-wide hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-md transition ease-in-out duration-150"
+                        >
+                            Prześlij aplikacje
+                        </button>
+                    </div>
+
+
+
                     <div v-if="applications.data.length === 0" class="text-center py-8 text-gray-500">
                         {{ __('translate.noApplicationsAvailable') }}
                     </div>
@@ -352,12 +404,6 @@ watch(form, debounce(function (value) {
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     {{ __('translate.nameUser') }} {{ __('translate.surname') }}
                                 </th>
-<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">-->
-<!--                                    {{ __('translate.email') }}-->
-<!--                                </th>-->
-<!--                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">-->
-<!--                                    {{ __('translate.phone') }}-->
-<!--                                </th>-->
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     {{ __('translate.project') }}
                                 </th>
@@ -376,17 +422,15 @@ watch(form, debounce(function (value) {
                             <tr v-for="application in applications.data" :key="application.id" :style="getBackgroundStyle(application)"
                             >
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900">{{ application.id }}</div>
+                                    <input
+                                        @change="changeIds"
+                                        class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                        type="checkbox" :id="'app-'+application.id" v-model="formSend.apps" :value="application.id"/>
+                                    <label class="text-sm font-medium text-gray-900" :for="'app-'+application.id">{{application.id}}</label>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900">{{ application.name }} {{ application.surname }}</div>
                                 </td>
-<!--                                <td class="px-6 py-4 whitespace-nowrap">-->
-<!--                                    <div class="text-sm text-gray-500">{{ application.email }}</div>-->
-<!--                                </td>-->
-<!--                                <td class="px-6 py-4 whitespace-nowrap">-->
-<!--                                    <div class="text-sm text-gray-500">{{ application.phone }}</div>-->
-<!--                                </td>-->
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-500">{{ application.project?.id }}</div>
                                 </td>

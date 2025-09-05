@@ -16,17 +16,28 @@ import draggable from 'vuedraggable/src/vuedraggable'
 import { MediaLibraryAttachment } from '@spatie/media-library-pro-vue3-attachment';
 import InputHelper from "@/Components/InputHelper.vue";
 import Checkbox from "@/Components/Checkbox.vue";
+import SectionBorder from "@/Components/SectionBorder.vue";
+import {ref} from "vue";
 
 const props = defineProps({
     article: Object
 });
+let serverMessage=ref(null);
 
 const form = useForm({
     _method: 'POST',
     title: props.article.title,
     content: props.article.content,
     lang: props.article.lang,
-    baner: props.article.baner ?? {},
+    photo: (props.article && props.article?.photo)
+        ?  [{
+            source: props.article.photo.original_url,
+            options: {
+                type: 'local',
+                metadata: { poster: props.article.photo.preview_url }
+            }
+        }]
+        : [],
     sections: props.article.sections ?? [],
     active: props.article.active ? true : false
 
@@ -45,15 +56,19 @@ const addSection = () => {
 const removeElement = (index, array) => {
     array.splice(index, 1);
 }
-const onChange = (baner) => {
-    form.baner = baner;
-}
 const updateArticle = () => {
     form.put(route('articles.update',props.article), {
         errorBag: 'updateArticle',
         preserveScroll: true
     });
 };
+
+const removeFile =  async (source,load) => {
+    await axios.post(route('temporary.delete.poster'),{'source':source});
+    load();
+    form.photo = [];
+}
+
 </script>
 
 <template>
@@ -98,35 +113,75 @@ const updateArticle = () => {
                                 </div>
                             </div>
                             <div class="col-span-6">
-                                <media-library-attachment
-                                    name="baner"
-                                    :initial-value="form.baner"
-                                    :validation-errors="form.errors.baner"
-                                    :validation-rules="{ accept: ['image/png', 'image/jpeg'], maxSizeInKB: 1024 }"
-                                    @is-ready-to-submit-change="isReadyToSubmit = $event"
-                                    @change="onChange"
-                                    :translations="{
-                                              fileTypeNotAllowed : __('translate.fileTypeNotAllowed'),
-                                                tooLarge : __('translate.tooLarge'),
-                                                tooSmall : __('translate.tooSmall'),
-                                                tryAgain : __('translate.tryAgain'),
-                                                somethingWentWrong : __('translate.somethingWentWrong'),
-                                                selectOrDrag : __('translate.selectOrDrag'),
-                                                selectOrDragMax : __('translate.selectOrDragMax'),
-                                                file : {
-                                                    singular : __('translate.file.singular'),
-                                                    plural : __('translate.file.plural'),
+                                <InputLabel for="title" :value="__('translate.photo')"/>
+                                <file-pond
+                                    name="photo"
+                                    ref="uploadPhoto"
+                                    :files="form.photo"
+                                    :allow-multiple="false"
+                                    :max-file-size="'4MB'"
+                                    imagePreviewMaxHeight="300"
+                                    filePosterHeight="300"
+                                    :label-idle="__('translate.label-idle')"
+                                    :labelFileProcessing="__('translate.labelFileProcessing')"
+                                    :labelInvalidField="__('translate.labelInvalidField')"
+                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                                    :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                    :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                    :labelFileLoading="__('translate.labelFileLoading')"
+                                    :labelFileLoadError="__('translate.labelFileLoadError')"
+                                    :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                    :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                    :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                    :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                    :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                    :labelTapToCancel="__('translate.labelTapToCancel')"
+                                    :labelTapToRetry="__('translate.labelTapToRetry')"
+                                    :labelTapToUndo="__('translate.labelTapToUndo')"
+                                    :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                    :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                    :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                    :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                    :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                    :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                    :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                    :accepted-file-types="'image/png, image/jpeg, image/jpg, image/gif, image/svg, image/webp'"
+                                    credits="false"
+                                    :server="{
+                                                url:'',
+                                                   headers: {
+                                                'X-CSRF-TOKEN': usePage().props.csrf_token,
+                                                    },
+                                                process: {
+                                                    url: '/temporary/upload',
+                                                        onload: (response) => {
+                                                        form.photo.push(response);
+                                                        return response;
+                                                        },
+                                                        onerror: (response) => {
+                                                            serverMessage = JSON.parse(response).error.photo[0];
+                                                        }
+
                                                 },
-                                                anyImage : __('translate.anyImage'),
-                                                anyVideo : __('translate.anyVideo'),
-                                                goBack : __('translate.goBack'),
-                                                dropFile : __('translate.dropFile'),
-                                                dragHere : __('translate.dragHere'),
-                                                remove : __('translate.remove'),
-                                                download : __('translate.download')
-                                }"
-                                />
-                                <InputError  :message="form.errors.baner" class="mt-1"/>
+                                                revert:{
+                                                    url: '/temporary/delete',
+                                                    onload: (response) => {
+                                                            if (!response) return;
+                                                            const fileIndex = form.photo.findIndex(el => el === response);
+                                                            if (fileIndex !== -1) {
+                                                                form.photo.splice(fileIndex, 1);
+                                                           }
+                                                    }
+                                                },
+                                                remove:removeFile
+                                                }"
+
+                                ></file-pond>
+                                <InputError  :message="form.errors.photo" class="mt-1"/>
+                                <div v-for="(error, fileKey) in form.errors" :key="fileKey">
+                                    <span class="text-sm text-red-600" v-if="fileKey.startsWith('baner.')">{{ error }}</span>
+                                </div>
                             </div>
                             <div class="col-span-6">
                                 <div class="mt-4">

@@ -6,15 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Http\Resources\FrontArticleResource;
-use App\Http\Resources\PermissionsResource;
 use App\Models\Article;
-use App\Models\Category;
-use App\Models\ChangeProduct;
+
+use App\Models\TemporaryFile;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Storage;
 
 
 class ArticleController extends Controller
@@ -87,10 +84,26 @@ class ArticleController extends Controller
                         'sections' => $request->articleData()['sections'],
                         'lang' => $request->articleData()['lang'],
                     ]);
+                    $folder =$request['photo'][0]; // bo tutaj przychodzi sam folder string
+                    $temporaryFile = TemporaryFile::where('folder', $folder)->first();
 
-                    $article
-                        ->addFromMediaLibraryRequest($request->baner)
-                        ->toMediaCollection('baner');
+                    if (!$temporaryFile) {
+                        return redirect()->back()->with('error', 'Nie znaleziono przesłanego zdjęcia.');
+                    }
+
+                    $filePath = 'temps/'.$folder.'/'.$temporaryFile->filename;
+
+                    if (!Storage::disk('public')->exists($filePath)) {
+                        return redirect()->back()->with('error', 'Nie znaleziono pliku tymczasowego.');
+                    }
+                    if ($filePath) {
+                        $article->addMediaFromDisk($filePath, 'public')
+                            ->usingName(basename($filePath))
+                            ->usingFileName(basename($filePath))
+                            ->toMediaCollection('articles_images');
+                        Storage::disk('public')->deleteDirectory('temps/' . $folder);
+                        $temporaryFile->delete();
+                    }
 
                     session()->flash('flash.banner', __('translate.addedArticle'));
                     session()->flash('flash.bannerStyle', 'success');
@@ -118,17 +131,51 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, Article $article)
     {
         Gate::authorize('update',auth()->user());
+
         $article->update([
             'title' => $request->articleData()['title'],
             'content' => $request->articleData()['content'],
             'active' => $request->articleData()['active'],
             'sections' => $request->articleData()['sections'],
             'lang' => $request->articleData()['lang'],
-
         ]);
-        $article
-            ->syncFromMediaLibraryRequest($request->baner)
-            ->toMediaCollection('baner');
+
+        $photo = $request['photo'][0];
+
+        // 🔑 Sprawdź, czy przesłano nowe zdjęcie (folder) czy istniejące (URL)
+        if (isset($photo['source']) && str_starts_with($photo['source'], 'http')) {
+            // 📌 Zdjęcie już istnieje → nie ruszamy TemporaryFile
+            $filePath = null;
+        } else {
+            // 📌 Nowe zdjęcie → folder z tymczasowego uploadu
+            $folder = $photo; // bo tutaj przychodzi sam folder string
+            $temporaryFile = TemporaryFile::where('folder', $folder)->first();
+
+            if (!$temporaryFile) {
+                return redirect()->back()->with('error', 'Nie znaleziono przesłanego zdjęcia.');
+            }
+
+            $filePath = 'temps/'.$folder.'/'.$temporaryFile->filename;
+
+            if (!Storage::disk('public')->exists($filePath)) {
+                return redirect()->back()->with('error', 'Nie znaleziono pliku tymczasowego.');
+            }
+        }
+
+        if ($filePath) {
+            // Usuń stare media
+            $article->clearMediaCollection('articles_images');
+
+            // Dodaj nowe
+            $article->addMediaFromDisk($filePath, 'public')
+                ->usingName(basename($filePath))
+                ->usingFileName(basename($filePath))
+                ->toMediaCollection('articles_images');
+
+            // Usuń tymczasowy folder i rekord
+            Storage::disk('public')->deleteDirectory('temps/' . $folder);
+            $temporaryFile->delete();
+        }
 
         session()->flash('flash.banner', __('translate.updateArticle'));
         session()->flash('flash.bannerStyle', 'success');

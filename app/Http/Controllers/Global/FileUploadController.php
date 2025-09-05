@@ -14,7 +14,7 @@ class FileUploadController extends Controller
         try {
             $fileFields = [
                 'files' => ['file', 'mimes:pdf,doc,docx', 'max:3000'],
-                'photo' => ['image', 'mimes:png,jpg,jpeg', 'max:2000','dimensions:min_width=300,min_height=300'],
+                'photo' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:2000','dimensions:min_width=300,min_height=200'],
                 'cvFile' => ['file', 'mimes:pdf,doc,docx', 'max:5000'],
             ];
             $customMessages = [
@@ -43,7 +43,7 @@ class FileUploadController extends Controller
 
             $filename = $file->getClientOriginalName();
             $folder = uniqid() . '-' . now()->timestamp;
-            $file->storeAs("temps/$folder", $filename);
+            $file->storeAs("/temps/$folder", $filename);
 
             TemporaryFile::create([
                 'folder' => $folder,

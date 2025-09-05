@@ -26,8 +26,7 @@ class FrontArticleResource extends JsonResource
                     'logo'=>$this->user['profile_photo_url'],
                     'description'=>$this->user->firm['description'],
                 ],
-            'baner' => $this->getMedia('baner'),
-            'banerUrl' => $this->getFirstMediaUrl('baner')
+            'photo'=> $this->getFirstMedia('articles_images'), // pierwszy plik z kolekcji
         ];
     }
 }

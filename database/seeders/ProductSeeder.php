@@ -152,7 +152,7 @@ class ProductSeeder extends Seeder
                 'vi' => '1000 điểm', // Wietnamski
                 'zh' => '1000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 2, 'points'=>3000, 'price'=>200.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 2, 'points'=>3000, 'price'=>285.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '3000 ነጥቦች', // Amharski
@@ -219,7 +219,7 @@ class ProductSeeder extends Seeder
                 'vi' => '3000 điểm', // Wietnamski
                 'zh' => '3000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 3, 'points'=>5000, 'price'=>300.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 3, 'points'=>5000, 'price'=>450.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '5000 ነጥቦች', // Amharski
@@ -286,7 +286,7 @@ class ProductSeeder extends Seeder
                 'vi' => '5000 điểm', // Wietnamski
                 'zh' => '5000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 4, 'points'=>10000, 'price'=>400.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 4, 'points'=>10000, 'price'=>850.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '10000 ነጥቦች', // Amharski
@@ -353,7 +353,7 @@ class ProductSeeder extends Seeder
                 'vi' => '10000 điểm', // Wietnamski
                 'zh' => '10000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 5, 'points'=>30000, 'price'=>500.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 5, 'points'=>30000, 'price'=>2400.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '30000 ነጥቦች', // Amharski
@@ -420,7 +420,7 @@ class ProductSeeder extends Seeder
                 'vi' => '30000 điểm', // Wietnamski
                 'zh' => '30000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 6, 'points'=>50000, 'price'=>600.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 6, 'points'=>50000, 'price'=>3750.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '50000 ነጥቦች', // Amharski
@@ -487,7 +487,7 @@ class ProductSeeder extends Seeder
                 'vi' => '50000 điểm', // Wietnamski
                 'zh' => '50000分' // Chiński
             ]), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 7, 'points'=>100000, 'price'=>700.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 7, 'points'=>100000, 'price'=>7000.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '100000 ነጥቦች', // Amharski
@@ -682,7 +682,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Banner', // Uzbecki
                 'vi' => 'Biểu ngữ', // Wietnamski
                 'zh' => '横幅' // Chiński
-            ]),'price'=>250.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]),'price'=>3000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 9, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -811,7 +811,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Tanlangan ish beruvchi', // Uzbecki
                 'vi' => 'Nhà tuyển dụng nổi bật', // Wietnamski
                 'zh' => '特色雇主' // Chiński
-            ]), 'price'=>100.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>5000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 10, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -940,7 +940,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Maqola', // Uzbecki
                 'vi' => 'Bài báo', // Wietnamski
                 'zh' => '文章' // Chiński
-            ]), 'price'=>250.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>3000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 11, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -1069,7 +1069,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Ijtimoiy targ‘ibot', // Uzbecki
                 'vi' => 'Quảng bá xã hội', // Wietnamski
                 'zh' => '社交推广' // Chiński
-            ]), 'price'=>350.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>7000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 12, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -1198,7 +1198,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Sertifikat50/50', // Uzbecki
                 'vi' => 'Chứng chỉ50/50', // Wietnamski
                 'zh' => '证书50/50' // Chiński
-            ]), 'price'=>150.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>1000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
         ];
 
         DB::table('products')->insert($products);

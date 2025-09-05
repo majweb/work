@@ -10,6 +10,7 @@ use App\Models\Aplication;
 use App\Models\ApplicationNote;
 use App\Models\CandidateQuestion;
 use App\Models\CandidateAnswer;
+use App\Models\Candidate;
 use App\Models\LangLevel;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel as ExcelFormat;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
@@ -57,6 +59,7 @@ class AplicationController extends Controller
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
             'optionsRecruits' => $result['optionsRecruits'],
+            'optionsExternal' => $result['optionsExternal'],
             'filters' => $result['filters'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'maybeCount' => $result['counters']['maybeCount'],
@@ -70,12 +73,13 @@ class AplicationController extends Controller
      */
     public function show(Aplication $aplication)
     {
+
         // Sprawdź, czy firma ma dostęp do tej aplikacji
         if ($aplication->user_id !== auth()->id()) {
             abort(403, 'Brak uprawnień do tej aplikacji');
         }
 
-        $aplication->load(['project', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo','candidateAnswers']);
+        $aplication->load(['project', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo', 'candidate']);
         if($aplication->opened_by_user_id){
         $otherRecruits = OtherRecruitsResource::collection($aplication->user->recruits()->whereNull('user_blocked')->where('id','!=',$aplication->opened_by_user_id)->get());
         } else {
@@ -95,16 +99,10 @@ class AplicationController extends Controller
         } elseif ($result instanceof \Illuminate\Http\RedirectResponse) {
             return $result; // Przekierowanie z powodu braku punktów
         }
-        // Pobierz tylko aktywne pytania
-        $candidateQuestions = CandidateQuestion::where('is_active', true)
-            ->where('created_by_id', auth()->id())
-            ->orderBy('created_at', 'desc')
-            ->get();
 
         return inertia()->render('Firm/Aplication/Show', [
             'application' => $aplication,
             'otherRecruits'=>$otherRecruits,
-            'candidateQuestions'=>$candidateQuestions,
         ]);
     }
 
@@ -181,6 +179,7 @@ class AplicationController extends Controller
             'optionsPosition' => $result['optionsPosition'],
             'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
+            'optionsExternal' => $result['optionsExternal'],
             'otherCount' => $result['counters']['otherCount'],
             'maybeCount' => $result['counters']['maybeCount'],
             'noCount' => $result['counters']['noCount'],
@@ -201,11 +200,13 @@ class AplicationController extends Controller
         });
         $result = $this->filterService->getFilteredApplications($request, 'maybe');
 
+
         return inertia()->render('Firm/Aplication/Maybe', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
             'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
+            'optionsExternal' => $result['optionsExternal'],
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'noCount' => $result['counters']['noCount'],
@@ -232,6 +233,7 @@ class AplicationController extends Controller
             'optionsPosition' => $result['optionsPosition'],
             'optionsRecruits' => $result['optionsRecruits'],
             'filters' => $result['filters'],
+            'optionsExternal' => $result['optionsExternal'],
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'maybeCount' => $result['counters']['maybeCount'],
@@ -339,15 +341,10 @@ class AplicationController extends Controller
      * @param Aplication $aplication
      * @return RedirectResponse
      */
-    public function unlockQuestions(Request $request, Aplication $aplication)
+    public function unlockQuestions(Request $request, Candidate $candidate)
     {
-        // Sprawdź, czy firma ma dostęp do tej aplikacji
-        if ($aplication->user_id !== auth()->id()) {
-            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
-        }
-
         // Jeśli pytania już zostały odblokowane, zwróć sukces
-        if ($aplication->questions_unlocked_at) {
+        if ($candidate->questions_unlocked_at) {
             return $this->flashAndRedirect('translate.questionsAlreadyUnlocked');
         }
 
@@ -366,7 +363,7 @@ class AplicationController extends Controller
         $firm->decrement('points', $cost);
 
         // Oznacz pytania jako odblokowane
-        $aplication->update([
+        $candidate->update([
             'questions_unlocked_at' => now()
         ]);
 
@@ -380,15 +377,11 @@ class AplicationController extends Controller
      * @param Aplication $aplication
      * @return RedirectResponse
      */
-    public function saveAnswers(Request $request, Aplication $aplication)
+    public function saveAnswers(Request $request, Candidate $candidate)
     {
-        // Sprawdź, czy firma ma dostęp do tej aplikacji
-        if ($aplication->user_id !== auth()->id()) {
-            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
-        }
 
         // Sprawdź czy pytania zostały odblokowane
-        if (!$aplication->questions_unlocked_at) {
+        if (!$candidate->questions_unlocked_at) {
             return $this->flashAndRedirect('translate.questionsNotUnlocked', 'danger');
         }
 
@@ -409,7 +402,7 @@ class AplicationController extends Controller
 
         // Dodaj dynamiczne reguły walidacji na podstawie typu pytania i sprawdzaj braki odpowiedzi
         $missingAnswers = [];
-
+//dd($request->answers);
         foreach ($request->answers as $index => $answer) {
             $question = $questions->firstWhere('id', $answer['question_id']);
 
@@ -427,9 +420,10 @@ class AplicationController extends Controller
                     $messages["answers.{$index}.boolean_answer.required"] = __('translate.booleanAnswerRequired');
                     $messages["answers.{$index}.boolean_answer.boolean"] = __('translate.booleanAnswerInvalid');
 
-                    if (!isset($answer['boolean_answer']) && $answer['boolean_answer'] !== false) {
+                    if (!array_key_exists('boolean_answer', $answer) || $answer['boolean_answer'] === null) {
                         $missingAnswers[] = $question->question;
                     }
+
                 }
             }
         }
@@ -448,7 +442,7 @@ class AplicationController extends Controller
             CandidateAnswer::updateOrCreate(
                 [
                     'candidate_question_id' => $answer['question_id'],
-                    'aplication_id' => $aplication->id,
+                    'candidate_id' => $candidate->id,
                 ],
                 [
                     'text_answer' => $answer['text_answer'] ?? null,
@@ -458,6 +452,66 @@ class AplicationController extends Controller
         }
 
         return $this->flashAndRedirect('translate.answersUpdated');
+    }
+
+    /**noPoints
+     * Tworzy kandydata z danych aplikacji
+     *
+     * @param Aplication $aplication
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function createCandidate(Aplication $aplication)
+    {
+        // Sprawdź, czy firma ma dostęp do tej aplikacji
+        if ($aplication->user_id !== auth()->id()) {
+            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
+        }
+
+        // Sprawdź, czy kandydat już istnieje w bazie danych
+        $candidate = Candidate::where('email', $aplication->email)->first();
+
+        if ($candidate) {
+            return $this->flashAndRedirect('translate.candidateAlreadyExists');
+        }
+
+        // Koszt utworzenia kandydata
+        $cost = config('getPoints.CreateCandidate', 5);
+
+        // Sprawdź czy firma ma wystarczającą liczbę punktów
+        $firm = auth()->user()->firm;
+
+        if ($firm->points < $cost) {
+            return $this->flashAndRedirect('translate.noPoints', 'danger');
+        }
+
+        // Rozpocznij transakcję bazodanową
+        DB::beginTransaction();
+
+        try {
+            // Odejmij punkty z konta firmy
+            $firm->decrement('points', $cost);
+
+            // Utwórz nowego kandydata
+            $candidate = Candidate::create([
+                'name' => $aplication->name,
+                'surname' => $aplication->surname,
+                'email' => $aplication->email,
+                'phone' => $aplication->phone,
+                'created_by_id' => auth()->user()->id,
+            ]);
+
+            // Jeśli aplikacja ma przypisany projekt, dodaj powiązanie
+            if ($aplication->project_id) {
+                $candidate->projects()->attach($aplication->project_id);
+            }
+
+            DB::commit();
+            return $this->flashAndRedirect('translate.candidateCreated');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->flashAndRedirect('translate.errorCreatingCandidate', 'danger');
+        }
     }
 
 }

@@ -38,8 +38,8 @@ class ProjectController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('role:recruit'),
-            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
-            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
+//            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
+//            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
 
         ];
     }
@@ -194,7 +194,7 @@ class ProjectController extends Controller implements HasMiddleware
             'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
-            'user_id' => auth()->user()->recruiter_from_firm_id,
+            'user_id' => auth()->user()->recruiter_from_firm_id || auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
             'external_company_id' => $request->projectData()['external_company_id'],

@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\Candidate;
+use App\Models\CandidateEvidence;
+use App\Models\CandidateQuestion;
+use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
@@ -40,6 +46,16 @@ class CandidatesController extends Controller
      */
     public function index(Request $request)
     {
+        $locale = app()->getLocale();
+        $categories = Category::whereNotNull('parent_id')
+            ->get()
+            ->filter(function($category) use ($locale) {
+                $title = json_decode($category,true)['title'];
+                return isset($title[$locale]) && !empty($title[$locale]);
+            })
+            ->values();
+        $customTags = Auth::user()->tags()->orderBy('name')->get();
+
         // Pobieramy kandydatów, którzy aplikowali na projekty zalogowanej firmy
         $query = Candidate::whereHas('applications', function($q) {
             $q->where('user_id', Auth::id());
@@ -68,8 +84,47 @@ class CandidatesController extends Controller
             });
         }
 
+        if ($request->filled('recruiter')) {
+            $query->where('created_by_id',$request->recruiter);
+        }
+
+        if ($request->filled('position')) {
+            $query->whereHas('tags', function ($q) use ($request) {
+                $q->where('categories.id', $request->position);
+            });
+        }
+        if ($request->filled('tags')) {
+            $tags = array_filter(explode(',', $request->tags));
+
+            $categoryTags = array_filter($tags, fn($t) => strpos($t, 's') === false);
+            $pivotTags    = array_filter($tags, fn($t) => strpos($t, 's') !== false);
+
+            $query->where(function($q) use ($categoryTags, $pivotTags) {
+                // filtr po categories.id przez relację tags()
+                if (!empty($categoryTags)) {
+                    $q->whereHas('tags', function($sub) use ($categoryTags) {
+                        $sub->whereIn('categories.id', $categoryTags);
+                    });
+                }
+
+                // filtr po candidate_tag.tag_id
+                if (!empty($pivotTags)) {
+                    $pivotTagsIds = array_map(fn($t) => str_replace('s','',$t), $pivotTags);
+
+                    $q->orWhereExists(function ($sub) use ($pivotTagsIds) {
+                        $sub->selectRaw(1)
+                            ->from('candidate_tag')
+                            ->whereColumn('candidate_tag.candidate_id', 'candidates.id')
+                            ->whereIn('candidate_tag.tag_id', $pivotTagsIds);
+                    });
+                }
+
+            });
+        }
+
+
         // Pobieramy kandydatów z ich projektami
-        $candidates = $query->with('projects')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+        $candidates = $query->with('projects','created_by:id,color')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         // Pobieranie unikalnych projektów dla filtra
         $projectIds = Aplication::where('user_id', Auth::id())
@@ -77,11 +132,21 @@ class CandidatesController extends Controller
             ->pluck('project_id');
 
         $projects = Project::whereIn('id', $projectIds)->get();
+        $optionsRecruits = auth()->user()->recruits()->get()->map(function ($item) {
+        return ['name' => $item['name'], 'value' => $item['id']];
+        });
+        $optionsPosition = Cache::remember('categoriesWithoutDetail', now()->addDay(), function() {
+            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
+        });
 
         return Inertia::render('Candidates/Index', [
             'candidates' => $candidates,
+            'optionsRecruits' => $optionsRecruits,
+            'optionsPosition' => $optionsPosition,
             'projects' => $projects,
-            'filters' => $request->only(['name', 'surname', 'email', 'phone', 'project'])
+            'categories' => $categories,
+            'customTags' => $customTags,
+            'filters' => $request->only(['name', 'surname', 'email', 'phone', 'project','recruiter','position','tags'])
         ]);
     }
 
@@ -94,7 +159,7 @@ class CandidatesController extends Controller
         if (!$candidate->applications()->where('user_id', Auth::id())->exists()) {
             abort(403);
         }
-
+        $candidate->load('media','created_by');
         // Pobieranie wszystkich projektów, na które aplikował kandydat
         $candidateProjects = $candidate->projects;
 
@@ -120,6 +185,21 @@ class CandidatesController extends Controller
         $candidateTags = [];
         // Tutaj pobieranie tagów kandydata - implementacja w zależności od struktury DB
 
+        // Pobierz tylko aktywne pytania z odpowiedziami kandydata
+        $candidateQuestions = CandidateQuestion::where('is_active', true)
+            ->where('created_by_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->with(['answers' => function($query) use ($candidate) {
+                $query->where('candidate_id', $candidate->id);
+            }])
+            ->get();
+
+        // Zmień nazwę relacji dla widoku Vue
+        $candidateQuestions->each(function ($question) {
+            $question->candidate_answers = $question->answers;
+            unset($question->answers);
+        });
+
         // Przygotowanie danych dla widoku
         $candidateData = [
             'id' => $candidate->id,
@@ -127,9 +207,23 @@ class CandidatesController extends Controller
             'surname' => $candidate->surname,
             'email' => $candidate->email,
             'phone' => $candidate->phone,
+            'questions_unlocked_at' => $candidate->questions_unlocked_at,
             'created_at' => $candidate->created_at,
             'status' => $lastApplication ? $lastApplication->status : null,
             'notes' => $lastApplication ? $lastApplication->notes : null,
+          'cv_file' => $candidate->getMedia('candidate_cv_files')->last() ? [
+            'id' => $candidate->getMedia('candidate_cv_files')->last()->id,
+            'name' => $candidate->getMedia('candidate_cv_files')->last()->file_name,
+            'url' => $candidate->getMedia('candidate_cv_files')->last()->getUrl(),
+            'mime' => $candidate->getMedia('candidate_cv_files')->last()->mime_type,
+            'size' => $candidate->getMedia('candidate_cv_files')->last()->size,
+            'created_at' => $candidate->getMedia('candidate_cv_files')->last()->created_at->format('Y-m-d H:i:s'),
+        ] : null,
+            'created_by' => $candidate->created_by ? [
+                'id' => $candidate->created_by->id,
+                'color' => $candidate->created_by->color,
+                'name' => $candidate->created_by->name
+            ] : null,
         ];
 
         return Inertia::render('Candidates/Show', [
@@ -138,7 +232,8 @@ class CandidatesController extends Controller
             'candidateFullProjects' => $candidateProjects,
             'categories' => $categories,
             'customTags' => $customTags,
-            'selectedCandidateTags' => $candidateTags
+            'selectedCandidateTags' => $candidateTags,
+            'candidateQuestions' => $candidateQuestions,
         ]);
     }
 
@@ -296,5 +391,102 @@ class CandidatesController extends Controller
             DB::rollBack();
             return response()->json(['success' => false, 'message' => __('translate.errorUpdatingTags')], 500);
         }
+    }
+
+    public function evidence(Candidate $candidate)
+    {
+        // Sprawdzenie czy kandydat ma aplikację w firmie zalogowanego użytkownika
+        if (!$candidate->where('created_by_id', Auth::id())) {
+            abort(403);
+        }
+        $candidate->load('media','created_by');
+        $optionsPosition = Cache::remember('categoriesWithoutDetail', now()->addDay(), function() {
+            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
+        });
+        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->id)->latest()->get();
+        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function() {
+            return (new Helper())->makeCountriesToSelect();
+        });
+        $currencies = Cache::rememberForever('currencies', function() {
+            return config('currencyShorts');
+        });
+
+        $candidate->load(['evidences' => function($query) {
+            $query->orderBy('date_of_hire', 'desc'); // 'desc' dla malejąco
+        }]);
+
+        return Inertia::render('Candidates/Evidence', [
+            'candidate' => $candidate,
+            'externalCompanies' =>$externalCompanies,
+            'countries' =>$countries,
+            'optionsPosition' =>$optionsPosition,
+            'currencies' =>$currencies,
+        ]);
+    }
+
+    public function evidencesStore(Request $request, Candidate $candidate)
+    {
+        $validated = $request->validate([
+        'external_company'=>'required|array',
+        'position'=>'required',
+        'salary' => 'required|numeric|min:0|max:99999999.99', // DECIMAL(10,2) maksymalnie 10 cyfr, 2 po przecinku
+        'currency'=>'required_with:salary|nullable|array',
+        'date_of_hire'=>'required|date',
+        'country'=>'required',
+        'notes'=>'nullable|string|max:1500',
+        ],[],[
+            'salary'=>strtolower(__('translate.salary')),
+            'position'=>strtolower(__('translate.position')),
+            'external_company_id'=>strtolower(__('translate.externalCompany')),
+            'currency'=>strtolower(__('translate.currency')),
+            'date_of_hire'=>strtolower(__('translate.date_of_hire')),
+            'country'=>strtolower(__('translate.country')),
+        ]);
+
+
+        $candidate->evidences()->create($validated);
+
+        session()->flash('flash.banner', __('translate.evidencesCreated'));
+        session()->flash('flash.bannerStyle','success');
+        return back();
+
+    }
+
+    public function evidencesUpdate(Request $request, Candidate $candidate, CandidateEvidence $evidence)
+    {
+        if ($evidence->candidate_id !== $candidate->id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $validated = $request->validate([
+            'external_company'=>'required|array',
+            'position'=>'required',
+            'salary' => 'required|numeric|min:0|max:99999999.99', // DECIMAL(10,2) maksymalnie 10 cyfr, 2 po przecinku
+            'currency'=>'required_with:salary|nullable|array',
+            'date_of_hire'=>'required|date',
+            'country'=>'required',
+            'notes'=>'nullable|string|max:1500',
+        ],[],[
+            'salary'=>strtolower(__('translate.salary')),
+            'position'=>strtolower(__('translate.position')),
+            'external_company_id'=>strtolower(__('translate.externalCompany')),
+            'currency'=>strtolower(__('translate.currency')),
+            'date_of_hire'=>strtolower(__('translate.date_of_hire')),
+            'country'=>strtolower(__('translate.country')),
+        ]);
+        $evidence->update($validated);
+        session()->flash('flash.banner', __('translate.evidencesUpdated'));
+        session()->flash('flash.bannerStyle','success');
+        return back();
+    }
+
+    public function evidencesDelete(Candidate $candidate,CandidateEvidence $evidence)
+    {
+        if ($evidence->candidate_id !== $candidate->id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $evidence->delete();
+        session()->flash('flash.banner', __('translate.evidencesDeleted'));
+        session()->flash('flash.bannerStyle','success');
+        return back();
     }
 }

@@ -75,7 +75,8 @@ class MergeAudioChunksJob implements ShouldQueue
         unlink($finalFullPath);
         rename($mp3Path, $finalFullPath);
 
-        Cache::put('cv_session_'.$this->userId, $this->uploadId, now()->addMinutes(30));
+        Cache::put('cv_session_'.$this->userId, $this->uploadId, 1800); // 1800 sekund = 30 minut
+
         CvAudio::create([
             'temp_session_id' => $this->uploadId,
             'project_id' => $this->projectId,

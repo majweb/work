@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\ApplicationNote;
+use App\Models\Candidate;
 use App\Models\LangLevel;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationRecruitFilterService;
@@ -17,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Excel as ExcelFormat;
 use Maatwebsite\Excel\Facades\Excel;
@@ -47,7 +49,7 @@ class AplicationController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('role:recruit'),
-            new Middleware('only_direct_permission:application status', only: ['update']),
+//            new Middleware('only_direct_permission:application status', only: ['update']),
 
         ];
     }
@@ -65,6 +67,7 @@ class AplicationController extends Controller implements HasMiddleware
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
             'optionsRecruits' => $result['optionsRecruits'],
+            'optionsExternal' => $result['optionsExternal'],
             'filters' => $result['filters'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'maybeCount' => $result['counters']['maybeCount'],
@@ -107,7 +110,7 @@ class AplicationController extends Controller implements HasMiddleware
     public function show(Aplication $aplication)
     {
         Gate::authorize('aplication-recruiter', $aplication);
-        $aplication->load(['project','project', 'cvClassic', 'media', 'worker', 'notes', 'opened_by', 'status_changed_by','cvAudio','cvVideo']);
+        $aplication->load(['project','project', 'cvClassic', 'media', 'worker', 'notes', 'opened_by', 'status_changed_by','cvAudio','cvVideo','candidate']);
 
 
         // Aktualizuj informacje o otwarciu tylko jeśli pola są puste
@@ -166,6 +169,7 @@ class AplicationController extends Controller implements HasMiddleware
             'filters' => $result['filters'],
             'otherCount' => $result['counters']['otherCount'],
             'maybeCount' => $result['counters']['maybeCount'],
+            'optionsExternal' => $result['optionsExternal'],
             'noCount' => $result['counters']['noCount'],
             'langLevels' => $langLevels,
         ]);
@@ -189,6 +193,7 @@ class AplicationController extends Controller implements HasMiddleware
             'filters' => $result['filters'],
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
+            'optionsExternal' => $result['optionsExternal'],
             'noCount' => $result['counters']['noCount'],
             'langLevels' => $langLevels,
         ]);
@@ -212,6 +217,7 @@ class AplicationController extends Controller implements HasMiddleware
             'filters' => $result['filters'],
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
+            'optionsExternal' => $result['optionsExternal'],
             'maybeCount' => $result['counters']['maybeCount'],
             'langLevels' => $langLevels,
         ]);
@@ -300,6 +306,63 @@ class AplicationController extends Controller implements HasMiddleware
         } catch (\Exception $e) {
             \Log::error('Export failed: ' . $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function createCandidate(Aplication $aplication)
+    {
+        $otherRecruits = collect($aplication->project->other_recruits)
+            ->pluck('value') // bierzemy tylko ID
+            ->toArray();
+        // Sprawdź, czy rekruter ma dostęp do tej aplikacji
+        if ($aplication->recruiter_id !== auth()->id() && !in_array(auth()->id(), $otherRecruits)) {
+            return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
+        }
+
+        // Sprawdź, czy kandydat już istnieje w bazie danych
+        $candidate = Candidate::where('email', $aplication->email)->first();
+
+        if ($candidate) {
+            return $this->flashAndRedirect('translate.candidateAlreadyExists');
+        }
+
+        // Koszt utworzenia kandydata
+        $cost = config('getPoints.CreateCandidate', 5);
+
+        // Sprawdź czy firma ma wystarczającą liczbę punktów
+        $firm = auth()->user()->user->firm;
+
+        if ($firm->points < $cost) {
+            return $this->flashAndRedirect('translate.noPoints', 'danger');
+        }
+
+        // Rozpocznij transakcję bazodanową
+        DB::beginTransaction();
+
+        try {
+            // Odejmij punkty z konta firmy
+            $firm->decrement('points', $cost);
+
+            // Utwórz nowego kandydata
+            $candidate = Candidate::create([
+                'name' => $aplication->name,
+                'surname' => $aplication->surname,
+                'email' => $aplication->email,
+                'phone' => $aplication->phone,
+                'created_by_id' => auth()->user()->id,
+            ]);
+
+            // Jeśli aplikacja ma przypisany projekt, dodaj powiązanie
+            if ($aplication->project_id) {
+                $candidate->projects()->attach($aplication->project_id);
+            }
+
+            DB::commit();
+            return $this->flashAndRedirect('translate.candidateCreated');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->flashAndRedirect('translate.errorCreatingCandidate', 'danger');
         }
     }
 
