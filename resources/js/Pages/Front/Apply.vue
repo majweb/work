@@ -14,14 +14,15 @@ import Checkbox from "@/Components/Checkbox.vue";
 import moment from "moment";
 import VideoRecorder from "@/Pages/Front/VideoRecorder.vue";
 import AudioRecorder from "@/Pages/Front/AudioRecorder.vue";
+import AudioRecorderNew from "@/Pages/Front/AudioRecorderNew.vue";
 
 const props = defineProps({
     project: Object,
+    professionCv: Object,
     agreements: Array,
     levelEducations: Array,
     langLevels: Array,
 });
-
 const optionsPositions = ref([]);
 const formStep = ref(1);
 const isReadyToSubmit = ref(true);
@@ -135,6 +136,7 @@ const form = useForm({
     langs: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.langs : []) : [],
     skills: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.skills : []) : [],
     position: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.position : '') : '',
+    isSelected:false
 });
 
 const pond = ref(null);
@@ -462,8 +464,6 @@ const removeFile =  async (source,load) => {
                                     :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
                                     :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
                                     :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
-                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
-                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
                                     :labelMaxTotalFileSizeExceeded="__('translate.labelMaxTotalFileSizeExceeded')"
                                     :labelMaxTotalFileSize="__('translate.labelMaxTotalFileSize')"
                                     :labelFileTypeNotAllowed="__('translate.labelFileTypeNotAllowed')"
@@ -597,7 +597,55 @@ const removeFile =  async (source,load) => {
                                     </ul>
                                     <InputError :message="form.errors.cvStandardType" class="mt-2"/>
                                 </div>
-                                <div v-if="form.cvStandardType == 1">
+                                <div v-if="professionCv" class="my-3">
+                                    <InputLabel for="cvcvFile" :value="__('translate.fileCv')"/>
+                                    <div>
+                                        <!-- Box klikalny jako checkbox -->
+                                        <label
+                                            :class="[
+    'flex items-center space-x-3 cursor-pointer border rounded-xl p-4 hover:shadow-md transition select-none',
+    form.isSelected ? 'border-gray-600' : 'border-gray-300'
+  ]"                                        >
+
+                                            <!-- Checkbox ukryty -->
+                                            <input
+                                                type="checkbox"
+                                                v-model="form.isSelected"
+                                                class="hidden"
+                                                :true-value="professionCv.id"
+                                                :false-value="null"
+                                            />
+
+                                            <!-- Ikona PDF -->
+                                            <div class="flex items-center justify-center w-12 h-12 bg-red-100 text-red-600 rounded-lg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                                </svg>
+                                            </div>
+
+                                            <!-- Dane CV -->
+                                            <div class="flex flex-col">
+                                                <span class="font-medium text-gray-800">{{__('translate.yourCv')}}</span>
+                                                <span class="text-sm text-gray-500">{{ moment(professionCv.created_at).format('DD.MM.YYYY HH:mm') }}</span>
+                                                <a
+                                                    :href="professionCv.pathCv"
+                                                    target="_blank"
+                                                    download
+                                                    class="text-xs text-blue-600 underline hover:text-blue-800"
+                                                    @click.stop
+                                                >
+                                                    {{__('translate.getPdf')}}
+                                                </a>
+                                            </div>
+
+                                            <!-- Zaznaczenie -->
+                                            <div v-if="form.isSelected" class="ml-auto text-green-600">
+                                                ✓
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div v-if="form.cvStandardType == 1 && !form.isSelected">
                                     <div class="col-span-6">
                                         <InputLabel for="cvcvFile" :value="__('translate.fileCv')"/>
                                         <file-pond
@@ -667,7 +715,7 @@ const removeFile =  async (source,load) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div v-else-if="form.cvStandardType == 2">
+                                <div v-else-if="form.cvStandardType == 2 && !form.isSelected">
                                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <div>
                                             <InputLabel for="birthday" :value="__('translate.birthdayDate')"/>
@@ -1274,9 +1322,6 @@ const removeFile =  async (source,load) => {
                                     {{ __('translate.viewCv') }}
                                 </PrimaryButton>
                             </div>
-
-                            trzeci krok
-
                             <div class="flex items-center justify-center my-4">
                                 <InputError :message="form.errors.application" class="mt-2"/>
                             </div>
@@ -1307,7 +1352,9 @@ const removeFile =  async (source,load) => {
                         </div>
                         <div v-else-if="formStep == 2 && form.cv == 3">
                             <div v-if="props.project.questions.length">
-                                <AudioRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
+<!--                                <AudioRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>-->
+                                <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
+
                             </div>
                             <div v-else class="p-4 text-center">
                                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
@@ -1336,11 +1383,11 @@ const removeFile =  async (source,load) => {
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 2" class="w-1/4 flex justify-center">
                             {{__('translate.previousStep')}}
                         </PrimaryButton>
-                        <PrimaryButton v-if="form.cv && formStep == 2 && form.cvStandardType == 1" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
+                        <PrimaryButton v-if="form.cv && formStep == 2 && form.cvStandardType == 1 || form.isSelected" class="w-1/4 flex justify-center" :class="{ 'opacity-25': form.processing }"
                                        :disabled="form.processing || !isReadyToSubmit">
                             {{ __('translate.apply') }}
                         </PrimaryButton>
-                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && form.cv == 1 && formStep == 2 && form.cvStandardType != 1" class="w-1/4 flex justify-center">
+                        <PrimaryButton type="button" @click="nextStep" v-if="form.cv && form.cv == 1 && formStep == 2 && form.cvStandardType != 1 && !form.isSelected" class="w-1/4 flex justify-center">
                             <span>{{__('translate.chosetemplate')}}</span>
                         </PrimaryButton>
                         <PrimaryButton type="button" @click="prevStep" v-if="form.cv && formStep == 3" class="w-1/4 flex justify-center">

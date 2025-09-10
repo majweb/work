@@ -105,7 +105,7 @@ class AplicationRequest extends FormRequest
             'photo' => ['nullable'],
             'cvFile' => [
             function ($attribute, $value, $fail) {
-                $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 1;
+             $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 1 && !request()->isSelected;
                 if ($isCvAndStep2) {
                     if (empty($value)) {
                         return $fail(__('translate.fileCvRequired'));
@@ -409,6 +409,7 @@ class AplicationRequest extends FormRequest
                     }
                 }
             }],
+            'isSelected'=>'nullable'
         ];
     }
 

@@ -6,6 +6,7 @@ use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
 use App\Http\Resources\BannerResource;
 use App\Http\Resources\FrontArticleResource;
+use App\Http\Resources\FrontUserResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Agreement;
 use App\Models\Aplication;
@@ -13,11 +14,13 @@ use App\Models\Banner;
 use App\Models\Candidate;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\CvClassic;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
 use App\Models\Project;
 use App\Models\TemporaryFile;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
@@ -62,11 +65,44 @@ class FrontController extends Controller
         ]);
     }
 
+    public function SingleFirm(User $user)
+    {
+        $user->load('firm');
+        return inertia()->render('Front/SingleFirm', [
+            'firm' => new FrontUserResource($user),
+        ]);
+    }
+
     public function SingleProject(Project $project)
     {
+        $locale = getLocalBrowserLang();
+        $image = Country::firstWhere('countryCode', $locale)?->active_image_url;
+
         return inertia()->render('Front/SingleProject', [
             'project' => $project,
+            'image' => $image,
         ]);
+    }
+
+    public function Contact()
+    {
+        return inertia()->render('Front/Contact');
+    }
+
+    public function Privacy()
+    {
+        return inertia()->render('Front/Privacy');
+    }
+
+    public function Terms()
+    {
+        return inertia()->render('Front/Terms');
+    }
+
+    public function Firms()
+    {
+        $firms = User::role('firm')->paginate(10)->withQueryString();
+        return inertia()->render('Front/Firms',compact('firms'));
     }
 
     public function applyView(Project $project)
@@ -81,7 +117,6 @@ class FrontController extends Controller
             $project->load(['questions' => function($query) {
                 $query->whereNotNull('accepted');
             }]);
-
             if (CvClassic::where('worker_id', auth()->id())->where('project_id', $project->id)->exists()) {
                 $project->load([
                     'cvClassics' => function ($query) use ($project) {
@@ -93,7 +128,6 @@ class FrontController extends Controller
                 ]);
             }
         }
-
         $agreements = Agreement::where('type','Apply without register')->get(['description','id']);
         $levelEducations=  Cache::rememberForever('levelEducations', function() {
             return MultiselectWithoutDetailResource::collection(LevelEducation::get());
@@ -101,11 +135,21 @@ class FrontController extends Controller
         $langLevels=  Cache::rememberForever('langLevels', function() {
             return MultiselectWithoutDetailResource::collection(LangLevel::get());
         });
+        $professionCv = $project->categorySub['value'];
+
+        if(auth()->check() && auth()->user()->hasRole('worker')) {
+            $existsCv = Aplication::where('aplication_user_id',auth()->id())->whereNotNull('pathCv')->whereHas('project', function ($query) use ($project, $professionCv) {
+                $query->whereJsonContains('categorySub->value', $professionCv);
+            })->first();
+        }
+
+
         return inertia()->render('Front/Apply', [
             'project' => $project,
             'agreements' => $agreements,
             'levelEducations' => $levelEducations,
             'langLevels' => $langLevels,
+            'professionCv' => $existsCv,
         ]);
     }
 
@@ -123,10 +167,15 @@ class FrontController extends Controller
             $maxAttempts = 1,
             function () use ($request,$project) {
 
+                if(isset($request->aplicationData()['isSelected'])){
+                    $pathExist = Aplication::where('id',$request->aplicationData()['isSelected'])->pluck('pathCv')->first();
+                }
+
                 $aplication = Aplication::create([
                     'user_id'=>$project->user_id,
                     'recruiter_id'=>$project->recruiter_id,
                     'project_id'=>$project->id,
+                    'pathCv'=>$pathExist ?? NULL,
                     'name'=>$request->aplicationData()['name'],
                     'surname'=>$request->aplicationData()['surname'],
                     'phone'=>$request->aplicationData()['phone'],
@@ -191,7 +240,7 @@ class FrontController extends Controller
                             }
                         }
                     }
-                    if($request->aplicationData()['templateCv'] && $request->aplicationData()['cv'] == 1){
+                    if($request->aplicationData()['templateCv'] && $request->aplicationData()['cv'] == 1 && !$request->aplicationData()['isSelected']){
                         $previousLocale = App::getLocale();
                         $this->changeLangToGenerate(request()->get('cvLang'));
 

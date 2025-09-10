@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class MergeVideoChunksJob implements ShouldQueue
+class OldMergeVideoChunksJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -34,19 +34,17 @@ class MergeVideoChunksJob implements ShouldQueue
     {
         $tempDir = "temp_uploads/{$this->uploadId}";
         $fileName = 'video_' . Str::uuid() . '.mp4';
+        $finalPath = "videos/{$fileName}";
         $finalDir = 'videos';
-        $finalPath = $finalDir . '/' . $fileName;
         $finalFullPath = Storage::disk('public')->path($finalPath);
 
-        // Tworzenie folderu, jeśli nie istnieje
+        // Upewnij się, że folder 'videos' istnieje
         if (!Storage::disk('public')->exists($finalDir)) {
             Storage::disk('public')->makeDirectory($finalDir);
         }
 
-        // Scalanie chunków
         $out = fopen($finalFullPath, 'wb');
         if (!$out) {
-            Log::error("Nie udało się otworzyć pliku do zapisu: {$finalFullPath}");
             return;
         }
 
@@ -54,7 +52,6 @@ class MergeVideoChunksJob implements ShouldQueue
             $chunkPath = Storage::disk('local')->path("{$tempDir}/chunk_{$i}");
             if (!file_exists($chunkPath)) {
                 fclose($out);
-                Log::error("Brak chunku: {$chunkPath}");
                 return;
             }
 
@@ -64,14 +61,9 @@ class MergeVideoChunksJob implements ShouldQueue
         }
         fclose($out);
 
-        // Konwersja VP8/Opus → H.264/AAC MP4 (wysoka jakość)
+        // Przetwarzanie ffmpeg - faststart
         $processedPath = Storage::disk('public')->path("processed_{$fileName}");
-        $cmd = "ffmpeg -i " . escapeshellarg($finalFullPath) . " " .
-            "-vf \"scale='if(gt(iw,1280),1280,iw)':-2\" -r 30 " .
-            "-c:v libx264 -preset slow -crf 20 -profile:v high -level 4.0 " .
-            "-c:a aac -b:a 192k -movflags +faststart " .
-            escapeshellarg($processedPath) . " -y 2>&1";
-
+        $cmd = "ffmpeg -i " . escapeshellarg($finalFullPath) . " -movflags faststart -c:v copy -c:a aac -b:a 128k " . escapeshellarg($processedPath) . " -y 2>&1";
         exec($cmd, $output, $returnVar);
 
         if ($returnVar !== 0) {
@@ -80,10 +72,9 @@ class MergeVideoChunksJob implements ShouldQueue
             return;
         }
 
-        // Zamiana pliku scalonego na przetworzony
         rename($processedPath, $finalFullPath);
+        Cache::put('cv_session_'.$this->userId, $this->uploadId, 1800); // 1800 sekund = 30 minut
 
-        // Tworzenie rekordu CvVideo
         try {
             CvVideo::create([
                 'temp_session_id' => $this->uploadId,
@@ -94,17 +85,15 @@ class MergeVideoChunksJob implements ShouldQueue
         } catch (\Exception $e) {
             Log::error('Nie udało się stworzyć CvVideo', [
                 'error' => $e->getMessage(),
-                'uploadId' => $this->uploadId,
-                'projectId'=> $this->projectId,
-                'userId'   => $this->userId,
-                'filePath' => $finalPath
+                'data'  => [
+                    'uploadId' => $this->uploadId,
+                    'projectId'=> $this->projectId,
+                    'userId'   => $this->userId,
+                    'filePath' => $finalPath
+                ]
             ]);
         }
 
-        // Cache session
-        Cache::put('cv_session_'.$this->userId, $this->uploadId, 1800); // 30 minut
-
-        // Usuń folder tymczasowy
         Storage::disk('local')->deleteDirectory($tempDir);
     }
 }

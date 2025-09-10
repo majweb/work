@@ -18,7 +18,6 @@ Route::name('front.')->group(function () {
     Route::post('/projects/apply/deletePdf', [FrontController::class, 'deletePdf'])->name('projects.deletePdf');
     Route::get('projects/apply/{project}',[FrontController::class,'applyView'])->name('projects.applyView');
 
-
     Route::get('projects/{project}',[FrontController::class,'SingleProject'])->name('projects.single');
     Route::get('articles/{article}',[FrontController::class,'SingleArticle'])->name('articles.single');
     Route::get('adminCategories',CategoryController::class)->name('adminCategories');
@@ -28,6 +27,12 @@ Route::name('front.')->group(function () {
     Route::get('getChildsCategoryWitoutDetail',[FrontController::class,'getChildsCategoryWitoutDetail'])->name('getChildsCategoryWitoutDetail');
     Route::post('uploadVideo', [VideoController::class, 'upload'])->name('video.upload');
     Route::post('uploadAudio', [AudioUploadController::class, 'upload'])->name('audio.upload');
+    Route::post('uploadAudioNew', [AudioUploadController::class, 'uploadAudioNew'])->name('audio.uploadNew');
+    Route::get('contact',[FrontController::class,'Contact'])->name('contact');
+    Route::get('privacy',[FrontController::class,'Privacy'])->name('privacy');
+    Route::get('terms',[FrontController::class,'Terms'])->name('terms');
+    Route::get('firms',[FrontController::class,'Firms'])->name('firms');
+    Route::get('firms/{user}',[FrontController::class,'SingleFirm'])->name('firms.single');
 
 });
 

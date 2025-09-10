@@ -48,9 +48,28 @@ class ApplicationRecruitFilterService
         // Filtrowanie aplikacji według CV
         $query->when($request->has('has_cv'), function ($q) use ($request) {
             if ($request->has_cv === 'yes') {
-                $q->whereHas('cvClassic');
+                $q->where(function ($query) {
+                    $query->whereHas('cvClassic')
+                        ->whereDoesntHave('cvAudio')
+                        ->whereDoesntHave('cvVideo')
+                        ->orWhereNotNull('pathCv')
+                        ->orWhereHas('media', function ($q) {
+                            $q->where('collection_name', 'aplications_cvFile');
+                        });
+                });
+
+
+
             } elseif ($request->has_cv === 'no') {
-                $q->whereDoesntHave('cvClassic');
+                $q->where(function ($query) {
+                    $query->whereDoesntHave('cvClassic')
+                        ->whereNull('pathCv')
+                        ->orWhereHas('cvAudio')
+                        ->orWhereHas('cvVideo')
+                        ->whereDoesntHave('media', function ($q) {
+                            $q->where('collection_name', 'aplications_cvFile');
+                        });
+                });
             }
         });
 
@@ -214,13 +233,28 @@ class ApplicationRecruitFilterService
         } elseif ($status === null) {
             $query->activeStart();
         }
-
         // Filtrowanie według CV
         $query->when(isset($form['has_cv']), function ($q) use ($form) {
             if ($form['has_cv'] === 'yes') {
-                $q->whereHas('cvClassic');
+                $q->where(function ($query) {
+                    $query->whereHas('cvClassic')
+                        ->whereDoesntHave('cvAudio')
+                        ->whereDoesntHave('cvVideo')
+                        ->orWhereNotNull('pathCv')
+                        ->orWhereHas('media', function ($q) {
+                            $q->where('collection_name', 'aplications_cvFile');
+                        });
+                });
             } elseif ($form['has_cv'] === 'no') {
-                $q->whereDoesntHave('cvClassic');
+                $q->where(function ($query) {
+                    $query->whereDoesntHave('cvClassic')
+                        ->whereNull('pathCv')
+                        ->orWhereHas('cvAudio')
+                        ->orWhereHas('cvVideo')
+                        ->whereDoesntHave('media', function ($q) {
+                            $q->where('collection_name', 'aplications_cvFile');
+                        });
+                });
             }
         });
 

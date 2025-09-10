@@ -435,7 +435,7 @@ const submitForm = () => {
                                     <div class="text-sm text-gray-500">{{ application.project?.id }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div v-if="application.cv_classic" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    <div v-if="application.HasCv" class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                         {{ __('translate.hasCv') }}
                                     </div>
                                     <div v-else class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">

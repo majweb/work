@@ -364,6 +364,26 @@ const dispatchActionSingleRecruit = value => {
                             {{ __('translate.createCandidate') }}
                         </button>
                     </div>
+
+                    <div v-if="application.cv_audio" class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.cvAudio') }}</h3>
+                        <audio
+                            v-if="application.cv_audio?.file_path"
+                            :src="'/storage/'+application.cv_audio?.file_path"
+                            controls
+                            class="w-full rounded-xl"
+                        ></audio>
+                    </div>
+                    <div v-if="application.cv_video" class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.cvVideo') }}</h3>
+                        <video
+                            v-if="application.cv_video?.file_path"
+                            :src="'/storage/'+application.cv_video?.file_path"
+                            controls
+                            class="w-full rounded-xl"
+                        ></video>
+                    </div>
+
                     <div v-if="application.media && application.media.length > 0"
                          class="bg-white rounded-lg shadow-md p-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.addedFiles') }}</h3>

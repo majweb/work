@@ -6,10 +6,6 @@ defineProps({
     page: Object
 });
 </script>
-
-
-
-
 <template>
     <FrontLayout
         :title="page.title"

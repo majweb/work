@@ -192,6 +192,6 @@ class Aplication extends Model implements HasMedia
 
     public function getHasCvAttribute()
     {
-        return $this->cvClassic()->exists() || $this->media()->where('collection_name', 'aplications_cvFile')->first();
+        return  $this->media()->where('collection_name', 'aplications_cvFile')->first() || !is_null($this->pathCv);
     }
 }

@@ -79,6 +79,7 @@ class DatabaseSeeder extends Seeder
 
 
             AdminSeeder::class,
+            HolidaySeeder::class
             ]);
 
     }
