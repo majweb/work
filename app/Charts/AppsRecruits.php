@@ -17,8 +17,6 @@ class AppsRecruits
 
         return (new OriginalPieChart)
             ->setTitle('Aplikacje rekruterów')
-            ->setHeight(200)
-            ->setWidth(500)
             ->setSubtitle('Top 5')
             ->addData($recruiters->pluck('applications_recruits_count')->toArray())
             ->setLabels($recruiters->pluck('name')->toArray())

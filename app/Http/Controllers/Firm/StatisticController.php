@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Firm;
 
 use App\Charts\AppsRecruits;
+use App\Charts\AppsStatus;
+use App\Charts\AppsStatusPercentYes;
 use App\Charts\AppWithStatus;
+use App\Charts\PercentYes;
 use App\Charts\ProjectsRecruits;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,12 +16,14 @@ class StatisticController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProjectsRecruits $chart,AppsRecruits $chart2)
+    public function index(ProjectsRecruits $chart,AppsRecruits $chart2,AppsStatus $chart3, PercentYes $chart4)
     {
         $recruiters = auth()->user()->recruits()->withCount(['projectsRecruits', 'applicationsRecruits'])->get();
         return inertia()->render('Statistic/Index',[
             'ProjectsRecruits' => $chart->build(),
             'AppsRecruits' => $chart2->build(),
+            'AppsStatus' => $chart3->build(),
+            'AppsStatusPercentYes' => $chart4->build(),
             'recruiters' => $recruiters,
         ]);
     }

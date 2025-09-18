@@ -4,6 +4,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 const props = defineProps({
     ProjectsRecruits: Object,
     AppsRecruits: Object,
+    AppsStatus: Object,
+    AppsStatusPercentYes: Object,
     recruiters: {
         type: Array,
         default: () => []
@@ -26,9 +28,13 @@ const props = defineProps({
                     <h3 class="text-lg font-bold mb-6">
                         {{ __('translate.recruiterStatistics') }}
                     </h3>
-                    <div class="flex items-center">
-                        <apexchart :width="ProjectsRecruits?.width" :height="ProjectsRecruits?.height" :type="ProjectsRecruits?.type" :options="ProjectsRecruits?.options" :series="ProjectsRecruits?.series"></apexchart>
-                        <apexchart :width="AppsRecruits?.width" :height="AppsRecruits?.height" :type="AppsRecruits?.type" :options="AppsRecruits?.options" :series="AppsRecruits?.series"></apexchart>
+                    <div class="flex items-center flex-wrap">
+                        <apexchart class="flex-1" :type="ProjectsRecruits?.type" :options="ProjectsRecruits?.options" :series="ProjectsRecruits?.series"></apexchart>
+                        <apexchart class="flex-1" :type="AppsRecruits?.type" :options="AppsRecruits?.options" :series="AppsRecruits?.series"></apexchart>
+                        <apexchart class="flex-1" :type="AppsStatus?.type" :options="AppsStatus?.options" :series="AppsStatus?.series"></apexchart>
+                        <apexchart class="flex-1" :type="AppsStatusPercentYes?.type" :options="AppsStatusPercentYes?.options" :series="AppsStatusPercentYes?.series"></apexchart>
+                        <div class="flex-1"></div>
+                        <div class="flex-1"></div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
