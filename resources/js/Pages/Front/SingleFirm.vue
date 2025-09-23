@@ -77,7 +77,6 @@ const props = defineProps({
                                 {{ props.firm.description }}
                             </div>
                         </div>
-
                         <!-- Wideo o firmie -->
                         <div v-if="props.firm?.video" class="mt-6">
                             <h2 class="text-xl font-semibold mb-3">{{ __('translate.companyVideo') }}</h2>
