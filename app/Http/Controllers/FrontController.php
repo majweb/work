@@ -101,7 +101,11 @@ class FrontController extends Controller
 
     public function Firms()
     {
-        $firms = User::role('firm')->paginate(10)->withQueryString();
+        $firms = User::role('firm')->with(['firm' => function($query) {
+            $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
+                           'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points');
+        }])->paginate(10)->withQueryString();
+
         return inertia()->render('Front/Firms',compact('firms'));
     }
 

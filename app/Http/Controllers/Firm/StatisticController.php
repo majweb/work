@@ -18,13 +18,27 @@ class StatisticController extends Controller
      */
     public function index(ProjectsRecruits $chart,AppsRecruits $chart2,AppsStatus $chart3, PercentYes $chart4)
     {
-        $recruiters = auth()->user()->recruits()->withCount(['projectsRecruits', 'applicationsRecruits'])->get();
+        $recruiters = auth()->user()->recruits()
+            ->withCount(['projectsRecruits', 'applicationsRecruits'])
+            ->withMax('applicationsRecruits', 'status_changed_at') // dodaje latest_status_changed_at
+            ->get();
+        $projects = auth()->user()
+            ->recruits()
+            ->with(['projectsRecruits' => function ($query) {
+                $query->withCount('aplications')
+                    ->with('recruit:id,name'); // tylko id i name rekrutera
+            }])
+            ->get()
+            ->pluck('projectsRecruits')
+            ->flatten();
+
         return inertia()->render('Statistic/Index',[
             'ProjectsRecruits' => $chart->build(),
             'AppsRecruits' => $chart2->build(),
             'AppsStatus' => $chart3->build(),
             'AppsStatusPercentYes' => $chart4->build(),
             'recruiters' => $recruiters,
+            'projects' => $projects,
         ]);
     }
 

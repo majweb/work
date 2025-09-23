@@ -15,7 +15,7 @@ class ProjectsRecruits
             ->take(5) // np. TOP 5 rekruterów
             ->get();
         return (new OriginalPieChart)
-            ->setTitle('Projekty rekruterów')
+            ->setTitle(__('translate.recruiterProjects'))
             ->setSubtitle('Top 5')
             ->addData($recruiters->pluck('projects_recruits_count')->toArray())
             ->setLabels($recruiters->pluck('name')->toArray())

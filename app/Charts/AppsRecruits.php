@@ -16,7 +16,7 @@ class AppsRecruits
             ->get();
 
         return (new OriginalPieChart)
-            ->setTitle('Aplikacje rekruterów')
+            ->setTitle(__('translate.recruiterApps'))
             ->setSubtitle('Top 5')
             ->addData($recruiters->pluck('applications_recruits_count')->toArray())
             ->setLabels($recruiters->pluck('name')->toArray())

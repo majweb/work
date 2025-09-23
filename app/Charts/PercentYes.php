@@ -28,13 +28,14 @@ class PercentYes
         $emptyPercent = $total > 0 ? round($statusCounts->empty_count / $total * 100, 2) : 0;
 
         return (new OriginalDonutChart)
-            ->setTitle('Procent aplikacji wg statusu')
+            ->setTitle(__('translate.percentApp'))
+            ->setSubtitle(__('translate.percentAppSub'))
             ->addData([$yesPercent, $noPercent, $maybePercent, $emptyPercent])
             ->setLabels([
-                "Tak $yesPercent%",
-                "Nie $noPercent%",
-                "Może $maybePercent%",
-                "Brak $emptyPercent%"
+                __("translate.yes") . " $yesPercent%",
+                __("translate.no") . " $noPercent%",
+                __("translate.statusMaybe") . " $maybePercent%",
+                __("translate.without") . " $emptyPercent%"
             ])
             ->setColors(['#16a34a', '#dc2626', '#eab308', 'gray'])
             ->setDataLabels(true)

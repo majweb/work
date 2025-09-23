@@ -27,8 +27,8 @@ class AppsStatus
         $empty = $statuses[null]    ?? 0;
 
         return (new OriginalPieChart)
-            ->setTitle('Statusy aplikacji')
-            ->setSubtitle('Podział aplikacji według statusów')
+            ->setTitle(__('translate.statusApps'))
+            ->setSubtitle(__('translate.podzial'))
             ->addData([$yes, $no, $maybe, $empty])
             ->setColors(['#16a34a', '#dc2626', '#eab308','gray'])
             ->setLabels(['Tak', 'Nie', 'Może','Brak'])

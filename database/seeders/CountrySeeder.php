@@ -13726,7 +13726,6 @@ class CountrySeeder extends Seeder
                     'tr' => 'Yeni Zelanda',
                     'uk' => 'Нова Зеландія',
                     'hu' => 'Új-Zéland'
-
                 ]),
                 'lang' => 'en',
                 'countryCode' => 'nz',
