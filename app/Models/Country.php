@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
 
-class Country extends Model
+class Country extends Model implements HasMedia
 {
     use HasFactory;
     use HasTranslations;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'continent',
@@ -26,31 +29,23 @@ class Country extends Model
         'continent' => 'array',
     ];
 
-    public function holidays()
+    public static function getRandomImageFromBrowserLocale()
     {
-        return $this->hasMany(Holiday::class);
-    }
+        $locale = getLocalBrowserLang(); // np. 'pl', 'en'
 
-    public function currentHoliday()
-    {
-        return $this->holidays()
-            ->whereDate('date', now()->toDateString())
-            ->first();
-    }
+        // Szukamy kraju po kodzie języka lub fallback na domyślny
+        $country = self::where('lang', $locale)->first() ?? self::first();
 
-    public function getActiveImageAttribute()
-    {
-        return $this->currentHoliday()?->special_image ?? $this->default_image;
-    }
+        if (!$country) {
+            return null;
+        }
 
-    public function getActiveImageUrlAttribute()
-    {
-        return $this->active_image ? Storage::url($this->active_image) : null;
-    }
+        $media = $country->getMedia('countries_images'); // kolekcja media 'images'
 
-    //$country = Country::where('code', 'PL')->first();
-    //
-    //$image = $country->active_image;
-    // jeśli dziś święto -> weź special_image
-    // jeśli nie -> weź default_image
+        if (!$media->isEmpty()) {
+            return $media->random()->getUrl(); // losowy obrazek z kolekcji
+        }
+    }
 }
+
+//$country->addMedia(public_path('images/polska/1.png'))->toMediaCollection('countries_images');

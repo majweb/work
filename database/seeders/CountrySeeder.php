@@ -486,7 +486,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'dz',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-dz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -560,7 +559,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pt',
                 'countryCode' => 'ao',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ao.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -634,7 +632,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'bj',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-bj.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -708,7 +705,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'bw',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-bw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -782,7 +778,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'bf',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-bf.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -856,7 +851,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'bi',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-bi.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -930,7 +924,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'td',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-td.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1004,7 +997,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'cd',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-cd.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1078,7 +1070,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'dj',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-dj.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1152,7 +1143,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'eg',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-eg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1225,7 +1215,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ti',
                 'countryCode' => 'er',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-er.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1299,7 +1288,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'sz',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-sz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1373,7 +1361,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'am',
                 'countryCode' => 'et',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-et.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1447,7 +1434,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'ga',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ga.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1521,7 +1507,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'gm',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-gm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1595,7 +1580,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'gh',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-gh.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1669,7 +1653,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'gn',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-gn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1743,7 +1726,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pt',
                 'countryCode' => 'gw',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-gw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1817,7 +1799,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'gq',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-gq.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1891,7 +1872,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'cm',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-cm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -1965,7 +1945,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ke',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ke.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2039,7 +2018,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'km',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-km.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2113,7 +2091,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ls',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ls.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2187,7 +2164,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'lr',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-lr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2261,7 +2237,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'ly',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ly.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2335,7 +2310,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'mg',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-mg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2409,7 +2383,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'mw',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-mw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2483,7 +2456,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'ml',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ml.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2557,7 +2529,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'ma',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ma.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2631,7 +2602,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'mr',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-mr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2705,7 +2675,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pt',
                 'countryCode' => 'mz',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-mz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2779,7 +2748,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'na',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-na.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2853,7 +2821,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'ne',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ne.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -2927,7 +2894,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ng',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ng.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3001,7 +2967,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'za',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-za.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3075,7 +3040,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'rw',
                 'countryCode' => 'rw',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-rw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3149,7 +3113,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'sc',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-sc.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3223,7 +3186,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'sl',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-sl.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3297,7 +3259,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'so',
                 'countryCode' => 'so',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-so.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3371,7 +3332,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'sd',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-sd.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3445,7 +3405,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ss',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ss.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3519,7 +3478,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'sw',
                 'countryCode' => 'tz',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-tz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3593,7 +3551,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'tg',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-tg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3667,7 +3624,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'tn',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-tn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3741,7 +3697,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ug',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ug.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3815,7 +3770,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'ci',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-ci.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3889,7 +3843,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'zm',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-zm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -3963,7 +3916,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'zw',
                 'continent' => json_encode($africa),
-                'default_image' => 'countries/image-zw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4037,7 +3989,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'ar',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-ar.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4111,7 +4062,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'bo',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-bo.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4185,7 +4135,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pt',
                 'countryCode' => 'br',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-br.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4259,7 +4208,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'cl',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-cl.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4333,7 +4281,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'ec',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-ec.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4407,7 +4354,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'gy',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-gy.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4481,7 +4427,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'co',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-co.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4555,7 +4500,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'py',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-py.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4629,7 +4573,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'pe',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-pe.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4703,7 +4646,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'nl',
                 'countryCode' => 'sr',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-sr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4777,7 +4719,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'tt',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-tt.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4851,7 +4792,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'uy',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-uy.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4925,7 +4865,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 've',
                 'continent' => json_encode($sAmerica),
-                'default_image' => 'countries/image-ve.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -4999,7 +4938,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ag',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-ag.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5073,7 +5011,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'bs',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-bs.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5147,7 +5084,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'bb',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-bb.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5221,7 +5157,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'bz',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-bz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5295,7 +5230,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'dm',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-dm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5369,7 +5303,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'do',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-do.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5443,7 +5376,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'gd',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-gd.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5517,7 +5449,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'gt',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-gt.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5591,7 +5522,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'ht',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-ht.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5665,7 +5595,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'hn',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-hn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5739,7 +5668,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'jm',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-jm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5813,7 +5741,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ca',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-ca.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5887,7 +5814,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'cr',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-cr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -5961,7 +5887,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'cu',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-cu.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6035,7 +5960,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'mx',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-mx.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6109,7 +6033,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'ni',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-ni.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6183,7 +6106,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'pa',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-pa.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6257,7 +6179,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'kn',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-kn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6331,7 +6252,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'lc',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-lc.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6405,7 +6325,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'vc',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-vc.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6479,7 +6398,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'sv',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-sv.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6553,7 +6471,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'us',
                 'continent' => json_encode($nAmeriaca),
-                'default_image' => 'countries/image-us.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6627,7 +6544,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ps',
                 'countryCode' => 'af',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-af.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6701,7 +6617,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'sa',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-sa.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6775,7 +6690,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'hy',
                 'countryCode' => 'am',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-am.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6849,7 +6763,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'az',
                 'countryCode' => 'az',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-az.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6923,7 +6836,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'bh',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-bh.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -6997,7 +6909,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'bn',
                 'countryCode' => 'bd',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-bd.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7071,7 +6982,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'dz',
                 'countryCode' => 'bt',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-bt.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7145,7 +7055,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ms',
                 'countryCode' => 'bn',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-bn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7219,7 +7128,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'zh',
                 'countryCode' => 'cn',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-cn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7293,7 +7201,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ph',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-ph.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7367,7 +7274,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ka',
                 'countryCode' => 'ge',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-ge.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7441,7 +7347,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'hi',
                 'countryCode' => 'in',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-in.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7515,7 +7420,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'id',
                 'countryCode' => 'id',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-id.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7589,7 +7493,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'iq',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-iq.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7663,7 +7566,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fa',
                 'countryCode' => 'ir',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-ir.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7737,7 +7639,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'he',
                 'countryCode' => 'il',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-il.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7811,7 +7712,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ja',
                 'countryCode' => 'jp',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-jp.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7885,7 +7785,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'ye',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-ye.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -7959,7 +7858,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'jo',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-jo.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8033,7 +7931,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'km',
                 'countryCode' => 'kh',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-kh.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8107,7 +8004,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'qa',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-qa.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8181,7 +8077,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ru',
                 'countryCode' => 'kg',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-kg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8255,7 +8150,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ko',
                 'countryCode' => 'kr',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-kr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8329,7 +8223,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ko',
                 'countryCode' => 'kp',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-kp.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8403,7 +8296,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'kw',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-kw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8477,7 +8369,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'lo',
                 'countryCode' => 'la',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-la.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8551,7 +8442,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'lb',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-lb.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8625,7 +8515,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'dv',
                 'countryCode' => 'mv',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-mv.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8699,7 +8588,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ms',
                 'countryCode' => 'my',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-my.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8773,7 +8661,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'my',
                 'countryCode' => 'mm',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-mm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8847,7 +8734,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'mn',
                 'countryCode' => 'mn',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-mn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8921,7 +8807,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ne',
                 'countryCode' => 'np',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-np.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -8995,7 +8880,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'om',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-om.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9069,7 +8953,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'pk',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-pk.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9143,7 +9026,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'sg',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-sg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9217,7 +9099,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'si',
                 'countryCode' => 'lk',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-lk.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9291,7 +9172,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'sy',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-sy.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9365,7 +9245,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'tg',
                 'countryCode' => 'tj',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-tj.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9439,7 +9318,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'th',
                 'countryCode' => 'th',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-th.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9513,7 +9391,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pt',
                 'countryCode' => 'tl',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-tl.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9587,7 +9464,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'tk',
                 'countryCode' => 'tm',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-tm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9661,7 +9537,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'uz',
                 'countryCode' => 'uz',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-uz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9735,7 +9610,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'vi',
                 'countryCode' => 'vn',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-vn.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9809,7 +9683,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ar',
                 'countryCode' => 'ae',
                 'continent' => json_encode($Asia),
-                'default_image' => 'countries/image-ae.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9883,7 +9756,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'sq',
                 'countryCode' => 'al',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-al.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -9957,7 +9829,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ca',
                 'countryCode' => 'ad',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ad.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10031,7 +9902,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'de',
                 'countryCode' => 'at',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-at.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10105,7 +9975,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'nl',
                 'countryCode' => 'be',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-be.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10179,7 +10048,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'be',
                 'countryCode' => 'by',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-by.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10253,7 +10121,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'bs',
                 'countryCode' => 'ba',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ba.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10327,7 +10194,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'bg',
                 'countryCode' => 'bg',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-bg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10401,7 +10267,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'hr',
                 'countryCode' => 'hr',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-hr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10475,7 +10340,6 @@ class CountrySeeder extends Seeder
                 'lang' => json_encode(['el', 'tr']),
                 'countryCode' => 'cy',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-cy.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10549,7 +10413,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'me',
                 'countryCode' => 'me',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-me.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10623,7 +10486,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'cs',
                 'countryCode' => 'cz',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-cz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10697,7 +10559,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'da',
                 'countryCode' => 'dk',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-dk.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10771,7 +10632,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'et',
                 'countryCode' => 'ee',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ee.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10845,7 +10705,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fi',
                 'countryCode' => 'fi',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-fi.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10919,7 +10778,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'fr',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-fr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -10993,7 +10851,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'el',
                 'countryCode' => 'gr',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-gr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11067,7 +10924,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'es',
                 'countryCode' => 'es',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-es.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11141,7 +10997,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'nl',
                 'countryCode' => 'nl',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-nl.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11215,7 +11070,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ie',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ie.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11289,7 +11143,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'is',
                 'countryCode' => 'is',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-is.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11363,7 +11216,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ru',
                 'countryCode' => 'kz',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-kz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11437,7 +11289,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'de',
                 'countryCode' => 'li',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-li.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11511,7 +11362,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'lt',
                 'countryCode' => 'lt',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-lt.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11585,7 +11435,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'lb',
                 'countryCode' => 'lu',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-lu.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11659,7 +11508,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'lv',
                 'countryCode' => 'lv',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-lv.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11733,7 +11581,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'mk',
                 'countryCode' => 'mk',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-mk.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11807,7 +11654,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'mt',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-mt.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11881,7 +11727,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ro',
                 'countryCode' => 'md',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-md.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -11955,7 +11800,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'fr',
                 'countryCode' => 'mc',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-mc.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12029,7 +11873,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'de',
                 'countryCode' => 'de',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-de.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12103,7 +11946,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'no',
                 'countryCode' => 'no',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-no.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12177,7 +12019,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pl',
                 'countryCode' => 'pl',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-pl.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12251,7 +12092,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'pt',
                 'countryCode' => 'pt',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-pt.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12325,7 +12165,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ru',
                 'countryCode' => 'ru',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ru.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12399,7 +12238,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'ro',
                 'countryCode' => 'ro',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ro.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12473,7 +12311,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'it',
                 'countryCode' => 'sm',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-sm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12547,7 +12384,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'sr',
                 'countryCode' => 'rs',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-rs.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12621,7 +12457,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'sk',
                 'countryCode' => 'sk',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-sk.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12695,7 +12530,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'sl',
                 'countryCode' => 'si',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-si.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12769,7 +12603,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'de',
                 'countryCode' => 'ch',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ch.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12843,7 +12676,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'sv',
                 'countryCode' => 'se',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-se.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12917,7 +12749,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'tr',
                 'countryCode' => 'tr',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-tr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -12991,7 +12822,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'uk',
                 'countryCode' => 'ua',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-ua.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13065,7 +12895,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'it',
                 'countryCode' => 'va',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-va.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13139,7 +12968,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'hu',
                 'countryCode' => 'hu',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-hu.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13213,7 +13041,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'gb',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-gb.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13287,7 +13114,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'it',
                 'countryCode' => 'it',
                 'continent' => json_encode($europa),
-                'default_image' => 'countries/image-it.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13361,7 +13187,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'au',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-au.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13435,7 +13260,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'fj',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-fj.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13509,7 +13333,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ki',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-ki.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13583,7 +13406,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'fm',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-fm.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13657,7 +13479,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'nr',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-nr.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13730,7 +13551,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'nz',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-nz.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13804,7 +13624,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'pw',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-pw.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13878,7 +13697,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'pg',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-pg.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -13952,7 +13770,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'ws',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-ws.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -14026,7 +13843,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'to',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-to.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -14100,7 +13916,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'tv',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-tv.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -14174,7 +13989,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'vu',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-vu.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -14248,7 +14062,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'mh',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-mh.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -14322,7 +14135,6 @@ class CountrySeeder extends Seeder
                 'lang' => 'en',
                 'countryCode' => 'sb',
                 'continent' => json_encode($oceania),
-                'default_image' => 'countries/image-sb.png',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],

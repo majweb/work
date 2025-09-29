@@ -3,7 +3,8 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 
 defineProps({
-    page: Object
+    page: Object,
+    imageUrl:String
 });
 </script>
 <template>
@@ -12,12 +13,10 @@ defineProps({
         :image="page.image"
         :keywords="page.keywords"
         :description="page.description"
+        :imageUrl="imageUrl"
     >
-        <main class="mt-6 min-h-screen flex items-center justify-center">
-            <div class="flex items-center justify-center">
-                <ApplicationLogo class="block h-auto w-auto"/>
-            </div>
-            {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}
-        </main>
+<!--        <div class="flex items-center justify-center">-->
+<!--            {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}-->
+<!--        </div>-->
     </FrontLayout>
 </template>

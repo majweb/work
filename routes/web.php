@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\Global\ExternalResponseController;
+use App\Models\Country;
 use Illuminate\Support\Facades\Route;
 
 use App\Charts\MonthlyUsersChart;
@@ -53,10 +54,12 @@ Route::get('/test', function () {
 
 Route::get('/', function () {
     $page = Page::whereId(1)->first();
+    $imageUrl = Country::getRandomImageFromBrowserLocale();
     return Inertia::render('Welcome', [
         'page' => new PageResource($page),
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
+        'canRegister' => Route::has('register'),
+        'imageUrl' => $imageUrl,
     ]);
 })->name('front');
 
