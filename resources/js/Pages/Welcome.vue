@@ -1,5 +1,4 @@
 <script setup>
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 
 defineProps({
@@ -15,7 +14,35 @@ defineProps({
         :description="page.description"
         :imageUrl="imageUrl"
     >
-<!--        <div class="flex items-center justify-center">-->
+        <div class="flex flex-col md:flex-row items-start justify-center min-h-screen pt-20 px-4 gap-8">
+            <!-- Formularz -->
+            <form class="flex flex-col md:flex-row gap-3 p-7 bg-gray-50 rounded-lg shadow-md w-full md:w-2/3 max-w-4xl">
+                <input
+                    type="text"
+                    placeholder="Branża"
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
+                />
+                <input
+                    type="text"
+                    placeholder="Stanowisko"
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
+                />
+                <input
+                    type="text"
+                    placeholder="Kraj"
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
+                />
+                <button
+                    type="submit"
+                    class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition"
+                >
+                    Szukaj
+                </button>
+            </form>
+        </div>
+
+
+        <!--        <div class="flex items-center justify-center">-->
 <!--            {{ __('test.mama', {test: 'aaaaa', oko: 'asdasds'}) }}-->
 <!--        </div>-->
     </FrontLayout>
