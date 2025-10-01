@@ -62,8 +62,6 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
         <!-- Header -->
         <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="text-white">{{props.imageUrl}}
-</span>
             <header class="flex items-center h-16 justify-between mt-4">
                 <Link :href="route('dashboard')" class="flex items-center">
                     <ApplicationMark class="block h-12 w-auto" />
