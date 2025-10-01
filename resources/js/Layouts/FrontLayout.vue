@@ -70,9 +70,9 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
                 <!-- Desktop nav -->
                 <nav class="hidden md:flex space-x-6">
-                    <NavLink class="text-white hover:text-gray-100" :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
-                    <NavLink class="text-white hover:text-gray-100" :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</NavLink>
-                    <NavLink class="text-white hover:text-gray-100" :href="route('front.firms')" :active="route().current('front.firms')">{{__('translate.firms')}}</NavLink>
+                    <NavLink class="text-white hover:text-gray-200" :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
+                    <NavLink class="text-white hover:text-gray-200" :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</NavLink>
+                    <NavLink class="text-white hover:text-gray-200" :href="route('front.firms')" :active="route().current('front.firms')">{{__('translate.firms')}}</NavLink>
                 </nav>
 
                 <!-- Language selector and auth -->
@@ -97,7 +97,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
                     <Link v-if="auth?.user" :href="route('dashboard')" class="px-4 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-700">{{__('translate.dashboard')}}</Link>
                     <template v-else>
-                        <Link :href="route('login')" class="px-3 py-2 text-white hover:text-gray-100">{{__('translate.login')}}</Link>
+                        <Link :href="route('login')" class="px-3 py-2 text-white hover:text-gray-200">{{__('translate.login')}}</Link>
                         <Link v-if="page.props.canRegister" :href="route('register')" class="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-100">{{__('translate.register')}}</Link>
                     </template>
                 </div>
@@ -177,7 +177,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                         Work4You.global
                     </span>
                     </Link>
-                    <Link :href="route('front.contact')" class="inline-flex items-center rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:text-gray-100">
+                    <Link :href="route('front.contact')" class="inline-flex items-center rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200">
                         Get in touch
                     </Link>
                 </div>
@@ -186,7 +186,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                 <div class="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     <!-- Column 1 -->
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Product</h3>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Product</h3>
                         <ul class="mt-4 space-y-2 text-sm">
                             <li><a href="/features" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Features</a></li>
                             <li><a href="/pricing" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Pricing</a></li>
@@ -197,7 +197,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
                     <!-- Column 2 -->
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Company</h3>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Company</h3>
                         <ul class="mt-4 space-y-2 text-sm">
                             <li><a href="/about" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">About</a></li>
                             <li><a href="/careers" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Careers</a></li>
@@ -208,7 +208,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
                     <!-- Column 3 -->
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Resources</h3>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Resources</h3>
                         <ul class="mt-4 space-y-2 text-sm">
                             <li><a href="/docs" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Docs</a></li>
                             <li><a href="/guides" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Guides</a></li>
@@ -219,11 +219,11 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
                     <!-- Column 4: Newsletter -->
                     <div>
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Stay in the loop</h3>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Stay in the loop</h3>
                         <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Get product updates, articles, and resources.</p>
                         <form action="/newsletter/subscribe" method="post" class="mt-4">
                             <div class="flex rounded-xl border border-gray-300 bg-white p-1 shadow-sm focus-within:ring-2 focus-within:ring-blue-500 dark:border-gray-800 dark:bg-gray-900">
-                                <input type="email" name="email" required placeholder="you@example.com" class="w-full rounded-xl bg-transparent px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none dark:text-gray-100" />
+                                <input type="email" name="email" required placeholder="you@example.com" class="w-full rounded-xl bg-transparent px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none dark:text-gray-200" />
                                 <button type="submit" class="ml-2 inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-blue-700">Subscribe</button>
                             </div>
                             <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">We respect your privacy. Unsubscribe anytime.</p>
