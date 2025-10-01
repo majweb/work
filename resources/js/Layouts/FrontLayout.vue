@@ -61,7 +61,7 @@ const sortLangs = computed(() => {
                 class="absolute inset-0 bg-no-repeat"
                 :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'cover',backgroundPosition: 'center' }">
             </div>
-            <div class="flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
+            <div class="relative flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="flex items-center mt-4">
                         <div class="shrink-0 flex items-center">
@@ -151,7 +151,7 @@ const sortLangs = computed(() => {
             </div>
             <footer
                 class="border-t border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800 w-full
-           sm:fixed sm:bottom-0 sm:left-0 sm:right-0">
+           relative sm:fixed sm:bottom-0 sm:left-0 sm:right-0">
                 <div class="mx-auto max-w-7xl px-6 py-4 lg:px-8">
                     <!-- Top: Logo + CTA -->
                     <div class="flex flex-col items-center justify-between gap-2 sm:flex-row">
