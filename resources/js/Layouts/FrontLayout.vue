@@ -5,6 +5,7 @@ import ApplicationMark from "@/Components/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
 import { computed, ref, watch } from "vue";
 import Multiselect from 'vue-multiselect';
+import __ from "@/lang.js";
 
 const props = defineProps({
     title: String,
@@ -69,13 +70,13 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
                 <!-- Desktop nav -->
                 <nav class="hidden md:flex space-x-6">
-                    <NavLink :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
-                    <NavLink :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</NavLink>
-                    <NavLink :href="route('front.firms')" :active="route().current('front.firms')">{{__('translate.firms')}}</NavLink>
+                    <NavLink class="text-white hover:text-gray-100" :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
+                    <NavLink class="text-white hover:text-gray-100" :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</NavLink>
+                    <NavLink class="text-white hover:text-gray-100" :href="route('front.firms')" :active="route().current('front.firms')">{{__('translate.firms')}}</NavLink>
                 </nav>
 
                 <!-- Language selector and auth -->
-                <div class="hidden md:flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-6">
                     <Multiselect
                         v-model="lang"
                         :options="sortLangs"
@@ -83,13 +84,21 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                         track-by="value"
                         @select="dispatchAction"
                         class="w-full"
+                        :selectLabel="__('translate.selectLabel')"
+                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                        :selectedLabel="__('translate.selectedLabel')"
+                        :deselectLabel="__('translate.deselectLabel')"
+                        :deselectGroupLabel="__('translate.deselectGroupLabel')"
+                        :noOptions="__('translate.noOptions')"
+                        :noResult="__('translate.noResult')"
+                        :placeholder="__('translate.placeholder')"
                     ></Multiselect>
                     <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="underline">{{ page.props.currentCountry }}</button>
 
                     <Link v-if="auth?.user" :href="route('dashboard')" class="px-4 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-700">{{__('translate.dashboard')}}</Link>
                     <template v-else>
-                        <Link :href="route('login')" class="px-3 py-2 text-black dark:text-white rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">{{__('translate.login')}}</Link>
-                        <Link v-if="page.props.canRegister" :href="route('register')" class="px-4 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-700">{{__('translate.register')}}</Link>
+                        <Link :href="route('login')" class="px-3 py-2 text-white hover:text-gray-100">{{__('translate.login')}}</Link>
+                        <Link v-if="page.props.canRegister" :href="route('register')" class="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-100">{{__('translate.register')}}</Link>
                     </template>
                 </div>
 
@@ -131,6 +140,14 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                         <NavLink :href="route('front.projects')" :active="route().current('front.projects')" @click="closeMenu">{{__('translate.projects')}}</NavLink>
                         <NavLink :href="route('front.firms')" :active="route().current('front.firms')" @click="closeMenu">{{__('translate.firms')}}</NavLink>
                         <Multiselect
+                            :selectLabel="__('translate.selectLabel')"
+                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                            :selectedLabel="__('translate.selectedLabel')"
+                            :deselectLabel="__('translate.deselectLabel')"
+                            :deselectGroupLabel="__('translate.deselectGroupLabel')"
+                            :noOptions="__('translate.noOptions')"
+                            :noResult="__('translate.noResult')"
+                            :placeholder="__('translate.placeholder')"
                             v-model="lang"
                             :options="sortLangs"
                             label="label"
