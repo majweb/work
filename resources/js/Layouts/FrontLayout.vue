@@ -61,7 +61,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
         ></div>
 
         <!-- Header -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <header class="flex items-center h-16 justify-between mt-4">
                 <Link :href="route('dashboard')" class="flex items-center">
                     <ApplicationMark class="block h-12 w-auto" />
@@ -81,16 +81,9 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                         :options="sortLangs"
                         label="label"
                         track-by="value"
-                        :selectLabel="__('translate.selectLabel')"
-                        :selectedLabel="__('translate.selectedLabel')"
-                        :deselectLabel="__('translate.deselectLabel')"
-                        :noOptions="__('translate.noOptions')"
-                        :noResult="__('translate.noResult')"
-                        :placeholder="__('translate.placeholder')"
                         @select="dispatchAction"
-                        class="w-48"
+                        class="w-full"
                     ></Multiselect>
-
                     <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="underline">{{ page.props.currentCountry }}</button>
 
                     <Link v-if="auth?.user" :href="route('dashboard')" class="px-4 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-700">{{__('translate.dashboard')}}</Link>
@@ -101,14 +94,13 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                 </div>
 
                 <!-- Mobile menu button -->
-                <button @click="toggleMenu" class="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300">
-                    <svg v-if="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
+                <div class="md:hidden relative z-50">
+                    <button @click="toggleMenu" class="p-2 rounded-md text-red-600 dark:text-gray-300">
+                        <svg v-if="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
             </header>
         </div>
 
@@ -121,13 +113,20 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
         <transition name="slide">
             <div v-if="mobileMenuOpen" class="fixed inset-0 z-40 flex md:hidden">
                 <div class="relative w-full flex flex-col bg-violet-50 dark:bg-gray-900 shadow-xl overflow-y-auto">
+                    <!-- Red cross button inside menu -->
+                    <button @click="closeMenu" class="absolute top-9 right-6 z-50 text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+
                     <div class="flex items-center justify-between p-4">
                         <Link href="/" @click="closeMenu">
                             <ApplicationMark class="h-12 w-auto" />
                         </Link>
-                        <button @click="closeMenu" class="p-2 rounded-md text-violet-600 dark:text-violet-200">✕</button>
                     </div>
-                    <nav class="flex flex-col p-4 space-y-3">
+
+                    <nav class="flex flex-col p-4 space-y-3 mt-12">
                         <NavLink :href="route('front.articles')" :active="route().current('front.articles')" @click="closeMenu">{{__('translate.articles')}}</NavLink>
                         <NavLink :href="route('front.projects')" :active="route().current('front.projects')" @click="closeMenu">{{__('translate.projects')}}</NavLink>
                         <NavLink :href="route('front.firms')" :active="route().current('front.firms')" @click="closeMenu">{{__('translate.firms')}}</NavLink>
@@ -137,8 +136,10 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                             label="label"
                             track-by="value"
                             @select="dispatchAction"
-                            class="w-full"
+                            class="w-full z-60 relative "
                         ></Multiselect>
+                        <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="underline">{{ page.props.currentCountry }}</button>
+
                     </nav>
                 </div>
                 <div class="flex-1 bg-black/25" @click="closeMenu"></div>

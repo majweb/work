@@ -265,6 +265,7 @@ return [
     'selectedLabel' => 'Wybrany',
     'deselectLabel' => 'Naciśnij Enter, aby usunąć',
     'placeholder' => 'Wybierz opcję',
+    'placeholderCountry' => 'Wybierz kraj',
     'noOptions' => 'Lista jest pusta',
     'noResult' => 'Nie znaleziono żadnych elementów',
     'category' => 'Branża',
