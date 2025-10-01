@@ -58,7 +58,7 @@ const sortLangs = computed(() => {
             <!-- Tło tylko na home -->
             <div
                 v-if="route().current('front')"
-                class="absolute inset-0 bg-no-repeat"
+                class="absolute inset-0 min-h-[400px] bg-no-repeat"
                 :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'cover',backgroundPosition: 'center' }">
             </div>
             <div class="relative flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
