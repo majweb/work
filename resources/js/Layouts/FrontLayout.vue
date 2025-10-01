@@ -63,6 +63,10 @@ const sortLangs = computed(() => {
             </div>
             <div class="relative flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+                    <span class="text-white">
+                        sss{{props.imageUrl}}
+                    </span>
+
                     <header class="flex items-center mt-4">
                         <div class="shrink-0 flex items-center">
                             <Link :href="route('dashboard')">
