@@ -6,6 +6,7 @@ import NavLink from "@/Components/NavLink.vue";
 import { computed, ref, watch } from "vue";
 import Multiselect from 'vue-multiselect';
 import __ from "@/lang.js";
+import ApplicationMarkWhite from "@/Components/ApplicationMarkWhite.vue";
 
 const props = defineProps({
     title: String,
@@ -64,9 +65,8 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
         <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <header class="flex items-center h-16 justify-between mt-4">
                 <Link :href="route('dashboard')" class="flex items-center">
-                    <ApplicationMark class="block h-12 w-auto" />
+                    <ApplicationMarkWhite class="h-16 w-auto" />
                 </Link>
-
                 <!-- Desktop nav -->
                 <nav class="hidden md:flex space-x-6">
                     <NavLink class="text-white hover:text-gray-200" :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
