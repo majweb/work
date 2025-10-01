@@ -57,7 +57,6 @@ const sortLangs = computed(() => {
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 min-h-screen flex flex-col">
             <!-- Tło tylko na home -->
             <div
-                v-if="route().current('front')"
                 class="absolute inset-0 bg-no-repeat"
                 :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'cover',backgroundPosition: 'center' }">
             </div>
@@ -69,8 +68,11 @@ const sortLangs = computed(() => {
                                 <ApplicationMark class="block h-12 w-auto" />
                             </Link>
                         </div>
+                        <span class="text-white">{{props.imageUrl}}
 
-                        <span class="text-white">{{props.imageUrl}}</span>
+{{route().current()}}
+
+                        </span>
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <NavLink :href="route('front.articles')" :active="route().current('front.articles')">
