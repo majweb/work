@@ -54,9 +54,10 @@ const sortLangs = computed(() => {
         <Banner />
 
 
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 min-h-screen flex flex-col">
+        <div class="relative bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 flex flex-col">
             <!-- Tło tylko na home -->
             <div
+                v-if="route().current('front')"
                 class="absolute inset-0 bg-no-repeat"
                 :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'cover',backgroundPosition: 'center' }">
             </div>
