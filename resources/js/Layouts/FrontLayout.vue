@@ -58,7 +58,7 @@ const sortLangs = computed(() => {
             <!-- Tło tylko na home -->
             <div
                 v-if="route().current('front')"
-                class="absolute inset-0 min-h-[400px] bg-no-repeat"
+                class="absolute inset-0 bg-no-repeat"
                 :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'cover',backgroundPosition: 'center' }">
             </div>
             <div class="relative flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
@@ -149,7 +149,9 @@ const sortLangs = computed(() => {
                     </main>
                 </div>
             </div>
-            <footer class="fixed bottom-0 border-t border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800 w-full">
+            <footer
+                class="border-t border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800 w-full
+           sm:fixed sm:bottom-0 sm:left-0 sm:right-0">
                 <div class="mx-auto max-w-7xl px-6 py-4 lg:px-8">
                     <!-- Top: Logo + CTA -->
                     <div class="flex flex-col items-center justify-between gap-2 sm:flex-row">
