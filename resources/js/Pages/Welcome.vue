@@ -28,7 +28,7 @@ const form = useForm({
         :description="page.description"
         :imageUrl="imageUrl"
     >
-        <div class="flex flex-col md:flex-row items-start justify-center md:min-h-screen pt-20 pb-20 md:pb-0 px-4 gap-8">
+        <div class="flex flex-col md:flex-row items-start justify-center md:min-h-screen pt-[3rem] pb-[14rem] md:pb-0 px-4 gap-8">
             <!-- Formularz -->
             <form class="flex flex-col md:flex-row gap-3 p-7 bg-gray-50 rounded-lg shadow-md w-full md:w-2/3 max-w-4xl">
                 <div>
