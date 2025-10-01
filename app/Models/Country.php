@@ -36,6 +36,7 @@ class Country extends Model implements HasMedia
 
         // Sprawdzenie, czy użytkownik jest na urządzeniu mobilnym
         $isMobile = $detect->isMobile();
+        $isTablet = $detect->isTablet();
 
         $locale = getLocalBrowserLang(); // np. 'pl', 'en'
 
@@ -47,7 +48,7 @@ class Country extends Model implements HasMedia
         }
 
         // Wybór kolekcji w zależności od urządzenia
-        $collectionName = $isMobile ? 'countries_images_mobile' : 'countries_images_desktop';
+        $collectionName = $isMobile || $isTablet ? 'countries_images_mobile' : 'countries_images_desktop';
 
         $media = $country->getMedia($collectionName); // kolekcja media
 
