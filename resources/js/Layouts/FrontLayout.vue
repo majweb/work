@@ -38,7 +38,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 </script>
 
 <template>
-    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900 relative">
+    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
         <Head>
             <title>{{ props.title }}</title>
             <meta name="description" :content="props.description" />
@@ -53,7 +53,6 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
         </Head>
 
         <Banner />
-
         <!-- Background only on home page -->
         <div
             v-if="route().current('front')"
@@ -63,6 +62,8 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 
         <!-- Header -->
         <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span class="text-white">{{props.imageUrl}}
+</span>
             <header class="flex items-center h-16 justify-between mt-4">
                 <Link :href="route('dashboard')" class="flex items-center">
                     <ApplicationMark class="block h-12 w-auto" />
