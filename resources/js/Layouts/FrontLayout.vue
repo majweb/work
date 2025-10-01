@@ -59,7 +59,7 @@ const sortLangs = computed(() => {
             <div
                 v-if="route().current('front')"
                 class="absolute inset-0 bg-no-repeat"
-                :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'contain',backgroundPosition: 'center' }">
+                :style="{ backgroundImage: `url(${props.imageUrl})`,backgroundSize: 'cover',backgroundPosition: 'center' }">
             </div>
             <div class="relative flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">

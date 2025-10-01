@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
+use Detection\MobileDetect;
 
 class Country extends Model implements HasMedia
 {
@@ -31,6 +32,11 @@ class Country extends Model implements HasMedia
 
     public static function getRandomImageFromBrowserLocale()
     {
+        $detect = new MobileDetect();
+
+        // Sprawdzenie, czy użytkownik jest na urządzeniu mobilnym
+        $isMobile = $detect->isMobile();
+
         $locale = getLocalBrowserLang(); // np. 'pl', 'en'
 
         // Szukamy kraju po kodzie języka lub fallback na domyślny
@@ -40,11 +46,16 @@ class Country extends Model implements HasMedia
             return null;
         }
 
-        $media = $country->getMedia('countries_images'); // kolekcja media 'images'
+        // Wybór kolekcji w zależności od urządzenia
+        $collectionName = $isMobile ? 'countries_images_mobile' : 'countries_images_desktop';
+
+        $media = $country->getMedia($collectionName); // kolekcja media
 
         if (!$media->isEmpty()) {
             return $media->random()->getUrl(); // losowy obrazek z kolekcji
         }
+
+        return null;
     }
 }
 

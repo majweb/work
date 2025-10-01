@@ -3,6 +3,8 @@
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Models\Country;
+use App\Services\Helper;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 use App\Charts\MonthlyUsersChart;
@@ -55,11 +57,16 @@ Route::get('/test', function () {
 Route::get('/', function () {
     $page = Page::whereId(1)->first();
     $imageUrl = Country::getRandomImageFromBrowserLocale();
+    $countries = Cache::remember('countriesWithProject', now()->addMinutes(5), function() {
+        return (new Helper())->makeCountriesToSelectHasProjects();
+    });
+
     return Inertia::render('Welcome', [
         'page' => new PageResource($page),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'imageUrl' => $imageUrl,
+        'countries' => $countries,
     ]);
 })->name('front');
 

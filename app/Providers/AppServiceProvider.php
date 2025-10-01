@@ -8,6 +8,7 @@ use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Tag;
 use App\Models\User;
+use App\Observers\projectObserver;
 use App\Policies\CandidateQuestionPolicy;
 use App\Policies\ExternalCompanyPolicy;
 use App\Policies\TagPolicy;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
-use Spatie\Permission\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //        observer
+        Project::observe(ProjectObserver::class);
+
+
         Gate::policy(CandidateQuestion::class, CandidateQuestionPolicy::class);
         Gate::policy(ExternalCompany::class, ExternalCompanyPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);

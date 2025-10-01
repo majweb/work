@@ -1,10 +1,24 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import Multiselect from "vue-multiselect";
+import InputError from "@/Components/InputError.vue";
+import {useForm, Link, usePage} from '@inertiajs/vue3';
+import {ref} from "vue";
 
-defineProps({
+const props = defineProps({
     page: Object,
-    imageUrl:String
+    imageUrl:String,
+    countries: Array,
 });
+
+
+const optionsCountry = ref(props.countries);
+
+const form = useForm({
+    country: [],
+});
+
 </script>
 <template>
     <FrontLayout
@@ -17,19 +31,37 @@ defineProps({
         <div class="flex flex-col md:flex-row items-start justify-center min-h-screen pt-20 px-4 gap-8">
             <!-- Formularz -->
             <form class="flex flex-col md:flex-row gap-3 p-7 bg-gray-50 rounded-lg shadow-md w-full md:w-2/3 max-w-4xl">
+                <div>
+                    <InputLabel :value="__('translate.CountryPublish')"/>
+                    <multiselect
+                        group-values="elements" group-label="group"
+                        :group-select="false"
+                        :selectLabel="__('translate.selectLabel')"
+                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                        :selectedLabel="__('translate.selectedLabel')"
+                        :deselectLabel="__('translate.deselectLabel')"
+                        track-by="name"
+                        :multiple="true"
+                        label="name"
+                        :placeholder="__('translate.placeholder')"
+                        v-model="form.country" :options="optionsCountry">
+                        <template #noResult>
+                            <span>{{__('translate.noOptions')}}</span>
+                        </template>
+                        <template #noOptions>
+                            <span>{{__('translate.noResult')}}</span>
+                        </template>
+                    </multiselect>
+                    <InputError :message="form.errors.country" class="mt-2"/>
+                </div>
+                <input
+                    type="text"
+                    placeholder="Miejscowość"
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
+                />
                 <input
                     type="text"
                     placeholder="Branża"
-                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
-                />
-                <input
-                    type="text"
-                    placeholder="Stanowisko"
-                    class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
-                />
-                <input
-                    type="text"
-                    placeholder="Kraj"
                     class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-500"
                 />
                 <button
