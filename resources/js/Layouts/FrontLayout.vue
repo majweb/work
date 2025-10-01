@@ -54,7 +54,7 @@ const sortLangs = computed(() => {
         <Banner />
 
 
-        <div class="relative bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 flex flex-col">
+        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 flex flex-col">
             <!-- Tło tylko na home -->
             <div
                 v-if="route().current('front')"
@@ -63,10 +63,6 @@ const sortLangs = computed(() => {
             </div>
             <div class="relative flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <span class="text-white">
-                        sss{{props.imageUrl}}
-                    </span>
-
                     <header class="flex items-center mt-4">
                         <div class="shrink-0 flex items-center">
                             <Link :href="route('dashboard')">
