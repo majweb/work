@@ -69,6 +69,8 @@ const sortLangs = computed(() => {
                                 <ApplicationMark class="block h-12 w-auto" />
                             </Link>
                         </div>
+
+                        <span class="text-white">{{props.imageUrl}}</span>
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <NavLink :href="route('front.articles')" :active="route().current('front.articles')">
