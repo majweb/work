@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CandidatesController;
+use App\Http\Controllers\CategoryControllerInvoke;
 use App\Http\Controllers\Global\ExternalResponseController;
+use App\Http\Controllers\LocationController;
 use App\Models\Country;
 use App\Services\Helper;
 use Illuminate\Support\Facades\Cache;
@@ -54,12 +56,15 @@ Route::get('/test', function () {
     return $pdf->stream();
 });
 
+Route::get('/cities/{countryCode}', LocationController::class)
+    ->name('cities.byCountry');
+Route::get('/categories/{countryCode}', CategoryControllerInvoke::class)
+    ->name('categories.byCountry');
+
 Route::get('/', function () {
     $page = Page::whereId(1)->first();
     $imageUrl = Country::getRandomImageFromBrowserLocale();
-    $countries = Cache::remember('countriesWithProject', now()->addMinutes(5), function() {
-        return (new Helper())->makeCountriesToSelectHasProjects();
-    });
+    $countries = (new Helper())->makeCountriesToSelectHasProjects();
 
     return Inertia::render('Welcome', [
         'page' => new PageResource($page),
@@ -69,6 +74,8 @@ Route::get('/', function () {
         'countries' => $countries,
     ]);
 })->name('front');
+
+
 
 
 Route::get('/external-response', [ExternalResponseController::class, 'showResponseView'])

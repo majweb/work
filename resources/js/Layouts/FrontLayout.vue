@@ -69,9 +69,15 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                 </Link>
                 <!-- Desktop nav -->
                 <nav class="hidden md:flex space-x-6">
-                    <NavLink class="text-white hover:text-gray-200" :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
-                    <NavLink class="text-white hover:text-gray-200" :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</NavLink>
-                    <NavLink class="text-white hover:text-gray-200" :href="route('front.firms')" :active="route().current('front.firms')">{{__('translate.firms')}}</NavLink>
+                    <NavLink
+                        :class="{ 'text-white hover:text-gray-200': route().current('front') }"
+                        :href="route('front.articles')" :active="route().current('front.articles')">{{__('translate.articles')}}</NavLink>
+                    <NavLink
+                        :class="{ 'text-white hover:text-gray-200': route().current('front') }"
+                        :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</NavLink>
+                    <NavLink
+                        :class="{ 'text-white hover:text-gray-200': route().current('front') }"
+                        :href="route('front.firms')" :active="route().current('front.firms')">{{__('translate.firms')}}</NavLink>
                 </nav>
 
                 <!-- Language selector and auth -->
@@ -182,11 +188,11 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                 </div>
 
                 <!-- Middle: Grid -->
-                <div class="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="mt-6 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     <!-- Column 1 -->
                     <div>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Product</h3>
-                        <ul class="mt-4 space-y-2 text-sm">
+                        <ul class="mt-2 space-y-2 text-sm">
                             <li><a href="/features" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Features</a></li>
                             <li><a href="/pricing" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Pricing</a></li>
                             <li><a href="/integrations" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Integrations</a></li>
@@ -197,7 +203,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                     <!-- Column 2 -->
                     <div>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Company</h3>
-                        <ul class="mt-4 space-y-2 text-sm">
+                        <ul class="mt-2 space-y-2 text-sm">
                             <li><a href="/about" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">About</a></li>
                             <li><a href="/careers" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Careers</a></li>
                             <li><a href="/blog" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Blog</a></li>
@@ -208,7 +214,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
                     <!-- Column 3 -->
                     <div>
                         <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-200">Resources</h3>
-                        <ul class="mt-4 space-y-2 text-sm">
+                        <ul class="mt-2 space-y-2 text-sm">
                             <li><a href="/docs" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Docs</a></li>
                             <li><a href="/guides" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">Guides</a></li>
                             <li><a href="/status" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200">System status</a></li>
@@ -277,13 +283,13 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 
 <style lang="scss">
-.multiselect__tag { background: #00a0e3 !important; }
-.multiselect__option--highlight { background: #00a0e3 !important; outline: none; color: white; }
-.multiselect__option--highlight:after { content: attr(data-select); background: #00a0e3 !important; color: white; }
-.multiselect__option--selected { background: #00A0E3B2 !important; color: #35495E; font-weight: bold; }
-.multiselect__option--selected.multiselect__option--highlight { background: #00A0E3B2 !important; color: #fff; }
-.multiselect__option--selected.multiselect__option--highlight:after { background: #00A0E3B2 !important; content: attr(data-deselect); color: white !important; }
-.multiselect__option--selected:after { content: attr(data-selected); color: #00A0E3B2; background: transparent !important; }
+.multiselect__tag { background: #0A2C5C !important; }
+.multiselect__option--highlight { background: #0A2C5C !important; outline: none; color: white; }
+.multiselect__option--highlight:after { content: attr(data-select); background: #0A2C5C !important; color: white; }
+.multiselect__option--selected { background: #12315d !important; color: white; font-weight: bold; }
+.multiselect__option--selected.multiselect__option--highlight { background: #12315d !important; color: #fff; }
+.multiselect__option--selected.multiselect__option--highlight:after { background: #12315d !important; content: attr(data-deselect); color: white !important; }
+.multiselect__option--selected:after { content: attr(data-selected); color: #12315d; background: transparent !important; }
 .slide-enter-active, .slide-leave-active { transition: transform 0.3s ease-in-out; }
 .slide-enter-from { transform: translateX(-100%); }
 .slide-enter-to { transform: translateX(0); }
