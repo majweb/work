@@ -11,12 +11,11 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
-import draggable from 'vuedraggable/src/vuedraggable'
 import InputHelper from "@/Components/InputHelper.vue";
-import DangerButton from "@/Components/DangerButton.vue";
 import {ref} from 'vue';
 import Checkbox from "@/Components/Checkbox.vue";
-import SectionBorder from "@/Components/SectionBorder.vue";
+import Tiptap from "@/Components/TipTap.vue"
+
 let serverMessage=ref(null);
 const form = useForm({
     title: '',
@@ -24,7 +23,11 @@ const form = useForm({
     active: true,
     lang: usePage().props.language,
     photo:[],
-    sections:[]
+    meta_title: '',
+    meta_description: '',
+    shortDescription: '',
+    alt: '',
+    meta_keywords:''
 });
 
 const isReadyToSubmit = ref(true);
@@ -90,7 +93,7 @@ const createArticle = () => {
                         <template #form>
                             <div class="col-span-6">
                                 <div class="mt-4">
-                                    <InputLabel for="title" :value="__('translate.language')"/>
+                                    <InputLabel for="lang" :value="__('translate.language')"/>
                                     <select v-model=" form.lang" name="lang" id="lang" class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full">
                                         <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value" :selected="language.value === usePage().props.language">
                                             {{ language.value }}
@@ -100,7 +103,7 @@ const createArticle = () => {
                                 </div>
                             </div>
                             <div class="col-span-6">
-                                <InputLabel for="title" :value="__('translate.photo')"/>
+                                <InputLabel for="title" :value="__('translate.Photo')"/>
                                 <file-pond
                                     name="photo"
                                     ref="uploadPhoto"
@@ -167,6 +170,17 @@ const createArticle = () => {
                                 <div v-for="(error, fileKey) in form.errors" :key="fileKey">
                                     <span class="text-sm text-red-600" v-if="fileKey.startsWith('baner.')">{{ error }}</span>
                                 </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="alt" :value="__('translate.alt')"/>
+                                    <TextInput
+                                        id="alt"
+                                        v-model="form.alt"
+                                        class="mt-1 block w-full"
+                                        type="text"
+                                    />
+                                    <InputError :message="form.errors.alt" class="mt-2"/>
+                                </div>
                             </div>
                             <div class="col-span-6">
                                 <div class="mt-4">
@@ -180,96 +194,62 @@ const createArticle = () => {
                                     />
                                     <InputError :message="form.errors.title" class="mt-2"/>
                                 </div>
-                                <div class="mt-4">
-                                    <InputLabel for="content" :value="__('translate.content')"/>
-                                    <TextareaLimit id="content" v-model="form.content" :limit="2000"/>
+                                <!-- SHORT DESCRIPTION -->
+                                <div class="col-span-6 mt-4">
+                                    <InputLabel for="shortDescription" :value="__('translate.shortDescription')" />
+                                    <TextareaLimit
+                                        id="shortDescription"
+                                        v-model="form.shortDescription"
+                                        :limit="500"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError :message="form.errors.shortDescription" class="mt-2"/>
+                                </div>
+                                <div class="pt-4">
+
+                                <InputLabel for="content" :value="__('translate.content')"/>
+                                    <Tiptap id="content" v-model="form.content" />
                                     <InputError :message="form.errors.content" class="mt-2"/>
                                 </div>
+                                <div class="mt-8 border-t border-gray-300 pt-4">
+                                    <h3 class="font-semibold text-lg text-gray-700 mb-4">{{ __('translate.seoSection') }}</h3>
 
-                                <!--SECTIONS-->
-                                <div class="col-span-6 mb-3">
-                                    <PrimaryButton :disabled="form.processing || form.sections.length >= 5"
-                                                   @click="addSection" type="button"
-                                                   class="!flex justify-center w-100 mx-auto mt-3">
-                                                <span class="flex items-center" v-if="form.sections.length >= 5">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none"
-                                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                      <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                                                    </svg>
-                                                    Limit osiągnięty</span>
-                                        <div v-else class="flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                                            </svg>
-                                            Sekcja
-                                        </div>
-                                    </PrimaryButton>
-                                    <InputHelper id="helper-pricelist-explanation"
-                                                 class="flex justify-center w-100 mx-auto my-2"
-                                                 >
-                                        Dodaj sekcje
-                                    </InputHelper>
-                                    <InputError :message="form.errors.sections" class="text-center"/>
-                                    <div v-if="form.sections.length" class="text-center text-sm my-1">
-                                        Liczba stworzonych sekcji: <span
-                                        class="text-indigo-600 font-semibold">{{ form.sections.length }}</span>
+                                    <!-- META TITLE -->
+                                    <div class="col-span-6 mt-2">
+                                        <InputLabel for="meta_title" :value="__('translate.metaTitle')" />
+                                        <TextInput
+                                            id="meta_title"
+                                            v-model="form.meta_title"
+                                            class="mt-1 block w-full"
+                                            type="text"
+                                        />
+                                        <InputError :message="form.errors.meta_title" class="mt-2"/>
                                     </div>
-                                    <draggable ghost-class="ghost" :list="form.sections" item-key="id" handle=".handle">
-                                        <template #item="{ element: section,index }">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="outline-none h-5 w-5 handle stroke-indigo-300 ml-1 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                                                </svg>
-                                                <div class="col-span-6 gap-4 grid grid-cols-1 md:grid-cols-2">
-                                                    <!-- TITLE -->
-                                                    <div>
-                                                        <InputLabel :for="`sections-${index}-title`" value="Tytuł"/>
-                                                        <TextInput
-                                                            :id="`sections-${index}-title`"
-                                                            v-model="section.title"
-                                                            type="text"
-                                                            class="mt-1 block w-full"
-                                                        />
-                                                        <InputHelper id="helper-value-explanation">
-                                                            Tytuł
-                                                        </InputHelper>
-                                                        <InputError :message="form.errors[`sections.${index}.title`]"
-                                                                    class="mt-2"/>
 
-                                                    </div>
-                                                    <!-- VALUE -->
-                                                </div>
-                                                <!-- DESCRIPTION -->
-                                                <div class="col-span-6 mt-4">
-                                                    <InputLabel :for="`sections-${index}-description`"
-                                                                value="Treść"/>
-                                                    <TextareaLimit v-model="section.description" :limit="2000"
-                                                                   :id="`sections-${index}-description`"/>
-                                                    <InputHelper id="`helper-sections-${index}-description-explanation`">
-                                                        Opis
-                                                    </InputHelper>
-                                                    <InputError :message="form.errors[`sections.${index}.description`]"/>
-                                                </div>
-                                                <!-- DESCRIPTION -->
-                                                <DangerButton @click="removeElement(index,form.sections)"
-                                                              class="mt-3 !flex justify-center w-100 mx-auto">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
-                                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                                    </svg>
-                                                    usuń sekcje
-                                                </DangerButton>
-                                            </div>
-                                        </template>
-                                    </draggable>
-                                    <SectionBorder/>
+                                    <!-- META DESCRIPTION -->
+                                    <div class="col-span-6 mt-4">
+                                        <InputLabel for="meta_description" :value="__('translate.metaDescription')" />
+                                        <TextareaLimit
+                                            id="meta_description"
+                                            v-model="form.meta_description"
+                                            :limit="160"
+                                            class="mt-1 block w-full"
+                                        />
+                                        <InputError :message="form.errors.meta_description" class="mt-2"/>
+                                    </div>
+
+                                    <!-- META KEYWORDS -->
+                                    <div class="col-span-6 mt-4">
+                                        <InputLabel for="meta_keywords" :value="__('translate.metaKeywords')" />
+                                        <TextInput
+                                            id="meta_keywords"
+                                            v-model="form.meta_keywords"
+                                            class="mt-1 block w-full"
+                                        />
+                                        <p class="mt-1 text-sm text-gray-500">{{ __('translate.keyWordsDesc') }}</p>
+                                        <InputError :message="form.errors.meta_keywords" class="mt-2"/>
+                                    </div>
                                 </div>
-                                <!--SECTIONS-->
-
                                 <!-- PUBLISH -->
                                 <div class="col-span-6">
                                     <div class="flex mt-4">
@@ -291,6 +271,7 @@ const createArticle = () => {
                                 <!-- PUBLISH -->
 
                             </div>
+
                         </template>
 
                         <template #actions>

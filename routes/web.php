@@ -6,7 +6,6 @@ use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\LocationController;
 use App\Models\Country;
 use App\Services\Helper;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 use App\Charts\MonthlyUsersChart;
@@ -37,8 +36,25 @@ use App\Models\Page;
 use App\Models\ProjectQuestion;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Inertia\Inertia;
+use Illuminate\Http\Request; // to jest instancja, nie fasada
 
 Route::mediaLibrary();
+
+Route::post('/upload-image', function (Request $request) { // <- instancja!
+    $request->validate([
+        'image' => 'required|image|max:5120',
+    ]);
+    $file = $request->file('image');
+    if ($file && $file->isValid()) {
+        $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('/images', $filename);
+        return response()->json([
+            'url' => Storage::url($path)
+        ]);
+    }
+    return response()->json(['error' => 'Niepoprawny plik'], 400);
+});
+
 
 Route::get('/moje', function () {
     return inertia()->render('Moje');

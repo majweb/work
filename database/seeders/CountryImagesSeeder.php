@@ -23,19 +23,19 @@ class CountryImagesSeeder extends Seeder
 
         // Ścieżki do lokalnych plików (możesz je trzymać np. w public/images/seeds/)
         $desktopImages = [
-            public_path('images/seeds/desktop1.png'),
-            public_path('images/seeds/desktop2.png'),
-            public_path('images/seeds/desktop3.png'),
-            public_path('images/seeds/desktop4.png'),
-            public_path('images/seeds/desktop5.png'),
+            public_path('images/seeds/desktop1.jpg'),
+            public_path('images/seeds/desktop2.jpg'),
+            public_path('images/seeds/desktop3.jpg'),
+            public_path('images/seeds/desktop4.jpg'),
+            public_path('images/seeds/desktop5.jpg'),
         ];
 
         $mobileImages = [
-            public_path('images/seeds/mobile1.png'),
-            public_path('images/seeds/mobile2.png'),
-            public_path('images/seeds/mobile3.png'),
-            public_path('images/seeds/mobile4.png'),
-            public_path('images/seeds/mobile5.png'),
+            public_path('images/seeds/mobile1.jpg'),
+            public_path('images/seeds/mobile2.jpg'),
+            public_path('images/seeds/mobile3.jpg'),
+            public_path('images/seeds/mobile4.jpg'),
+            public_path('images/seeds/mobile5.jpg'),
         ];
 
         // Dodajemy obrazki do kolekcji desktopowej

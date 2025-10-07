@@ -18,7 +18,6 @@ class Article extends Model implements HasMedia
 
     protected $casts = [
         'active'=>'boolean',
-        'sections'=>'array',
     ];
 
     protected $fillable = [
@@ -26,7 +25,6 @@ class Article extends Model implements HasMedia
         'title',
         'active',
         'content',
-        'sections',
         'lang',
     ];
 

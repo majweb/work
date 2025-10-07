@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('title');
-            $table->json('sections');
             $table->boolean('active')->default(0);
             $table->longText('content');
             $table->timestamps();

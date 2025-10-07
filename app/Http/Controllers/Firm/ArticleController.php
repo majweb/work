@@ -81,7 +81,6 @@ class ArticleController extends Controller
                         'title' => $request->articleData()['title'],
                         'active' => $request->articleData()['active'],
                         'content' => $request->articleData()['content'],
-                        'sections' => $request->articleData()['sections'],
                         'lang' => $request->articleData()['lang'],
                     ]);
                     $folder =$request['photo'][0]; // bo tutaj przychodzi sam folder string

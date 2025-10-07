@@ -29,34 +29,20 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:100'],
-            'content' => ['required', 'string', 'max:2000'],
+            'content' => ['required', 'string'],
+            'shortDescription' => ['required', 'string','max:500'],
+            'meta_title' => ['nullable', 'string','max:70'],
+            'alt' => ['nullable', 'string','max:70'],
+            'meta_description' => ['nullable', 'string','max:160'],
+            'meta_keywords' => ['required', 'string','max:160'],
             'lang' => ['required', 'string', new Enum(Lang::class)],
-            'sections' => ['required', 'array','between:1,5'=>function($attribute, $val, $fail){
-                    if(count($val) > 5){
-                        $fail('Za dużo elementów');
-                    }
-            }],
             'active' => ['boolean'],
-            'sections.*.title'=>['required','string','max:100', 'distinct'],
-            'sections.*.description'=>['required','string','max:2000'],
             'photo' => ['required', 'array'],
-
         ];
     }
 
     public function articleData(){
         return $this->validated();
-    }
-    public function messages(): array
-    {
-        return [
-            'sections.required' => __('translate.addSection'),
-            'sections.*.title.required' => __('translate.addSectionTitle'),
-            'sections.*.title.distinct' => __('translate.addSectionTitleDistinct'),
-            'sections.*.title.max' => __('translate.addSectionTitleMax'),
-            'sections.*.description.required' => __('translate.addSectionDescription'),
-            'sections.*.description.max' => __('translate.addSectionDescriptionMax')
-        ];
     }
     public function attributes(): array
     {
@@ -64,6 +50,8 @@ class StoreArticleRequest extends FormRequest
             'title' => strtolower(__('translate.title')),
             'content' => strtolower(__('translate.content')),
             'lang' => strtolower(__('translate.language')),
+            'photo' => strtolower(__('translate.photo')),
+            'shortDescription' => strtolower(__('translate.shortDescription')),
         ];
     }
 

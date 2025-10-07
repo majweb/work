@@ -77,9 +77,7 @@ class DatabaseSeeder extends Seeder
             DetailProjectRolnictwo2Seeder::class,
 //             Detale
 
-
             AdminSeeder::class,
-            HolidaySeeder::class
             ]);
 
     }
