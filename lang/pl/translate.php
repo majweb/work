@@ -267,6 +267,7 @@ return [
     'placeholder' => 'Wybierz opcję',
     'placeholderCountry' => 'Wybierz kraj',
     'placeholderCity' => 'Wybierz miasto',
+    'placeholderCategory' => 'Wybierz branżę',
     'noOptions' => 'Lista jest pusta',
     'noResult' => 'Nie znaleziono żadnych elementów',
     'category' => 'Branża',

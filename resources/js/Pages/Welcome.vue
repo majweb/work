@@ -128,7 +128,7 @@ watch(() => form.country, async (newCountry) => {
                         :multiple="false"
                         v-model="form.category"
                         :options="optionsCategories"
-                        :placeholder="__('translate.placeholderCountry')"
+                        :placeholder="__('translate.placeholderCategory')"
                     >
                         <template #noResult>
                             <span>{{__('translate.noOptions')}}</span>
