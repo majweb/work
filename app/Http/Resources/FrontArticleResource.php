@@ -27,6 +27,13 @@ class FrontArticleResource extends JsonResource
                     'description'=>$this->user->firm['description'],
                 ],
             'photo'=> $this->getFirstMedia('articles_images'), // pierwszy plik z kolekcji
+            'meta_title' => $this->meta_title,
+            'meta_description' => $this->meta_description,
+            'short_description' => $this->short_description,
+            'alt' => $this->alt,
+            'meta_keywords' => $this->meta_keywords,
+            'category' => $this->category,
+
         ];
     }
 }

@@ -18,6 +18,8 @@ class Article extends Model implements HasMedia
 
     protected $casts = [
         'active'=>'boolean',
+        'category'=>'array',
+
     ];
 
     protected $fillable = [
@@ -26,6 +28,13 @@ class Article extends Model implements HasMedia
         'active',
         'content',
         'lang',
+        'meta_title',
+        'meta_description',
+        'short_description',
+        'alt',
+        'meta_keywords',
+        'category',
+
     ];
 
     public function user(): BelongsTo

@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
-
-class Category extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Category extends Model implements HasMedia
 {
+    use InteractsWithMedia;
     use HasFactory;
     use HasRecursiveRelationships;
     use HasTranslations;
@@ -23,5 +24,10 @@ class Category extends Model
     public function detailprojects()
     {
         return $this->belongsToMany(DetailProject::class,'category_detailproject');
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('images_category');
     }
 }

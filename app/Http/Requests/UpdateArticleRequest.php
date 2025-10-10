@@ -27,17 +27,16 @@ class UpdateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:60'],
-            'content' => ['required', 'string', 'max:2000'],
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string'],
+            'category' => ['required', 'array'],
+            'short_description' => ['required', 'string','max:500'],
+            'meta_title' => ['nullable', 'string','max:70'],
+            'alt' => ['nullable', 'string','max:70'],
+            'meta_description' => ['nullable', 'string','max:160'],
+            'meta_keywords' => ['required', 'string','max:160'],
             'lang' => ['required', 'string', new Enum(Lang::class)],
-            'sections' => ['required', 'array','between:1,5'=>function($attribute, $val, $fail){
-                if(count($val) > 5){
-                    $fail('Za dużo elementów');
-                }
-            }],
             'active' => ['boolean'],
-            'sections.*.title'=>['required','string','max:100', 'distinct'],
-            'sections.*.description'=>['required','string','max:2000'],
             'photo' => ['required', 'array'],
 
 
@@ -47,17 +46,6 @@ class UpdateArticleRequest extends FormRequest
     public function articleData(){
         return $this->validated();
     }
-    public function messages(): array
-    {
-        return [
-            'sections.required' => __('translate.addSection'),
-            'sections.*.title.required' => __('translate.addSectionTitle'),
-            'sections.*.title.distinct' => __('translate.addSectionTitleDistinct'),
-            'sections.*.title.max' => __('translate.addSectionTitleMax'),
-            'sections.*.description.required' => __('translate.addSectionDescription'),
-            'sections.*.description.max' => __('translate.addSectionDescriptionMax')
-        ];
-    }
 
     public function attributes(): array
     {
@@ -65,7 +53,9 @@ class UpdateArticleRequest extends FormRequest
             'title' => strtolower(__('translate.title')),
             'content' => strtolower(__('translate.content')),
             'lang' => strtolower(__('translate.language')),
-
+            'photo' => strtolower(__('translate.photo')),
+            'short_description' => strtolower(__('translate.shortDescription')),
+            'category' => strtolower(__('translate.category')),
         ];
     }
 }

@@ -15,8 +15,16 @@ import InputHelper from "@/Components/InputHelper.vue";
 import {ref} from 'vue';
 import Checkbox from "@/Components/Checkbox.vue";
 import Tiptap from "@/Components/TipTap.vue"
+import Multiselect from "vue-multiselect";
 
 let serverMessage=ref(null);
+
+
+const props = defineProps({
+    categories: Array,
+});
+
+
 const form = useForm({
     title: '',
     content: '',
@@ -25,27 +33,15 @@ const form = useForm({
     photo:[],
     meta_title: '',
     meta_description: '',
-    shortDescription: '',
+    short_description: '',
     alt: '',
-    meta_keywords:''
-});
+    meta_keywords:'',
+    category: '',
 
+});
+const optionsCategory = ref(props.categories);
 const isReadyToSubmit = ref(true);
 
-
-const addSection = () => {
-    if (form.sections.length < 5) {
-        form.sections.push({
-            title: '',
-            description: ''
-        });
-    } else {
-        return;
-    }
-}
-const removeElement = (index, array) => {
-    array.splice(index, 1);
-}
 
 const createArticle = () => {
     form.post(route('articles.store'), {
@@ -171,6 +167,27 @@ const createArticle = () => {
                                     <span class="text-sm text-red-600" v-if="fileKey.startsWith('baner.')">{{ error }}</span>
                                 </div>
 
+                                <div>
+                                    <InputLabel :value="__('translate.category')"/>
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="form.category" :options="optionsCategory">
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                    </multiselect>
+                                    <InputError :message="form.errors.category" class="mt-2"/>
+                                </div>
+
                                 <div class="mt-4">
                                     <InputLabel for="alt" :value="__('translate.alt')"/>
                                     <TextInput
@@ -196,17 +213,16 @@ const createArticle = () => {
                                 </div>
                                 <!-- SHORT DESCRIPTION -->
                                 <div class="col-span-6 mt-4">
-                                    <InputLabel for="shortDescription" :value="__('translate.shortDescription')" />
+                                    <InputLabel for="short_description" :value="__('translate.shortDescription')" />
                                     <TextareaLimit
-                                        id="shortDescription"
-                                        v-model="form.shortDescription"
+                                        id="short_description"
+                                        v-model="form.short_description"
                                         :limit="500"
                                         class="mt-1 block w-full"
                                     />
-                                    <InputError :message="form.errors.shortDescription" class="mt-2"/>
+                                    <InputError :message="form.errors.short_description" class="mt-2"/>
                                 </div>
                                 <div class="pt-4">
-
                                 <InputLabel for="content" :value="__('translate.content')"/>
                                     <Tiptap id="content" v-model="form.content" />
                                     <InputError :message="form.errors.content" class="mt-2"/>
@@ -269,9 +285,7 @@ const createArticle = () => {
                                     </InputHelper>
                                 </div>
                                 <!-- PUBLISH -->
-
                             </div>
-
                         </template>
 
                         <template #actions>
@@ -288,11 +302,44 @@ const createArticle = () => {
         </div>
     </AppLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.ghost{
-    background: rgba(79, 70, 229, 0.15);
+
+.multiselect__tag{
+    background: #00a0e3 !important;
 }
-.handle {
-    cursor:pointer;
+.multiselect__option--highlight {
+    background: #00a0e3 !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #00a0e3 !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
 }
 </style>

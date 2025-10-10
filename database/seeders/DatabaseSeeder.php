@@ -78,6 +78,7 @@ class DatabaseSeeder extends Seeder
 //             Detale
 
             AdminSeeder::class,
+            CategoryImageSeeder::class
             ]);
 
     }

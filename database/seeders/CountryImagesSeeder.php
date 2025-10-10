@@ -13,45 +13,44 @@ class CountryImagesSeeder extends Seeder
      */
     public function run(): void
     {
-        // Wybieramy kraj do którego dodamy media (np. Polska)
-        $country = Country::where('countryCode', 'pl')->first();
+        $countries = Country::all();
 
-        if (!$country) {
-            $this->command->info('Brak kraju z językiem "pl"');
+        if ($countries->isEmpty()) {
+            $this->command->info('Brak krajów w bazie danych.');
             return;
         }
 
-        // Ścieżki do lokalnych plików (możesz je trzymać np. w public/images/seeds/)
-        $desktopImages = [
-            public_path('images/seeds/desktop1.jpg'),
-            public_path('images/seeds/desktop2.jpg'),
-            public_path('images/seeds/desktop3.jpg'),
-            public_path('images/seeds/desktop4.jpg'),
-            public_path('images/seeds/desktop5.jpg'),
-        ];
+        foreach ($countries as $country) {
+            $this->command->info("Przetwarzam kraj: {$country->countryCode}");
 
-        $mobileImages = [
-            public_path('images/seeds/mobile1.jpg'),
-            public_path('images/seeds/mobile2.jpg'),
-            public_path('images/seeds/mobile3.jpg'),
-            public_path('images/seeds/mobile4.jpg'),
-            public_path('images/seeds/mobile5.jpg'),
-        ];
+            // Foldery desktop i mobile
+            $basePath = public_path("/images/seeds/countries/{$country->countryCode}");
+            $desktopPath = "{$basePath}/desktop";
+            $mobilePath  = "{$basePath}/mobile";
 
-        // Dodajemy obrazki do kolekcji desktopowej
-        foreach ($desktopImages as $image) {
-            if (file_exists($image)) {
-                $country->addMedia($image)->toMediaCollection('countries_images_desktop');
+            // Dodajemy 5 zdjęć dla desktop
+            for ($i = 1; $i <= 5; $i++) {
+                $file = "{$desktopPath}/{$i}.jpg";
+
+                if (file_exists($file)) {
+                    $country->addMedia($file)
+                        ->preservingOriginal()
+                        ->toMediaCollection('countries_images_desktop');
+                }
+            }
+
+            // Dodajemy 5 zdjęć dla mobile
+            for ($i = 1; $i <= 5; $i++) {
+                $file = "{$mobilePath}/{$i}.jpg";
+
+                if (file_exists($file)) {
+                    $country->addMedia($file)
+                        ->preservingOriginal()
+                        ->toMediaCollection('countries_images_mobile');
+                }
             }
         }
 
-        // Dodajemy obrazki do kolekcji mobile
-        foreach ($mobileImages as $image) {
-            if (file_exists($image)) {
-                $country->addMedia($image)->toMediaCollection('countries_images_mobile');
-            }
-        }
-
-        $this->command->info('Dodano 5 obrazków desktopowych i 5 mobilnych do kraju: ' . $country->lang);
+        $this->command->info('✅ Dodano zdjęcia do wszystkich krajów.');
     }
 }

@@ -30,7 +30,8 @@ class StoreArticleRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:100'],
             'content' => ['required', 'string'],
-            'shortDescription' => ['required', 'string','max:500'],
+            'category' => ['required', 'array'],
+            'short_description' => ['required', 'string','max:500'],
             'meta_title' => ['nullable', 'string','max:70'],
             'alt' => ['nullable', 'string','max:70'],
             'meta_description' => ['nullable', 'string','max:160'],
@@ -51,7 +52,8 @@ class StoreArticleRequest extends FormRequest
             'content' => strtolower(__('translate.content')),
             'lang' => strtolower(__('translate.language')),
             'photo' => strtolower(__('translate.photo')),
-            'shortDescription' => strtolower(__('translate.shortDescription')),
+            'short_description' => strtolower(__('translate.shortDescription')),
+            'category' => strtolower(__('translate.category')),
         ];
     }
 

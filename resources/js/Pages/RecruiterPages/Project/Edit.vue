@@ -2,8 +2,6 @@
 
 import {useForm, Link, usePage} from '@inertiajs/vue3';
 
-import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
@@ -12,7 +10,6 @@ import InputLabel from "@/Components/InputLabel.vue";
 import {computed, ref, watch} from "vue";
 import Multiselect from 'vue-multiselect'
 import TextInput from "@/Components/TextInput.vue";
-import DangerButton from "@/Components/DangerButton.vue";
 import FormSectionProject from "@/Components/FormSectionProject.vue";
 import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 import QuestionForm from "@/Components/QuestionForm.vue";

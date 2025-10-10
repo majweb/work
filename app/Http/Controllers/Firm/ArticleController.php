@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Http\Resources\FrontArticleResource;
+use App\Http\Resources\MultiselectResource;
 use App\Models\Article;
 
+use App\Models\Category;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,7 +58,9 @@ class ArticleController extends Controller
     public function create()
     {
         Gate::authorize('create', User::class);
-
+        $category = Cache::rememberForever('category', function() {
+            return MultiselectResource::collection(Category::isRoot()->get());
+        });
         $articleProduct = auth()->user()->changeProducts()->where('product_id', 10)->first();
 
         if ($articleProduct) {
@@ -65,7 +70,9 @@ class ArticleController extends Controller
         } else {
             return $this->errorArticle();
         }
-        return inertia()->render('Buy/Article/Create');
+        return inertia()->render('Buy/Article/Create',[
+            'categories' =>$category,
+        ]);
     }
 
     /**
@@ -73,6 +80,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
+
         $articleProduct = auth()->user()->changeProducts()->where('product_id', 10)->first();
          if ($articleProduct) {
                 if ($articleProduct->qty > 0) {
@@ -82,6 +90,12 @@ class ArticleController extends Controller
                         'active' => $request->articleData()['active'],
                         'content' => $request->articleData()['content'],
                         'lang' => $request->articleData()['lang'],
+                        'meta_title' => $request->articleData()['meta_title'],
+                        'meta_description' => $request->articleData()['meta_description'],
+                        'short_description' => $request->articleData()['short_description'],
+                        'alt' => $request->articleData()['alt'],
+                        'meta_keywords' => $request->articleData()['meta_keywords'],
+                        'category' => $request->articleData()['category'],
                     ]);
                     $folder =$request['photo'][0]; // bo tutaj przychodzi sam folder string
                     $temporaryFile = TemporaryFile::where('folder', $folder)->first();
@@ -121,7 +135,10 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         Gate::authorize('update',auth()->user());
-        return inertia()->render('Buy/Article/Edit',['article'=>new FrontArticleResource($article)]);
+        $category = Cache::rememberForever('category', function() {
+            return MultiselectResource::collection(Category::isRoot()->get());
+        });
+        return inertia()->render('Buy/Article/Edit',['article'=>new FrontArticleResource($article),'categories'=>$category]);
     }
 
     /**
@@ -135,8 +152,13 @@ class ArticleController extends Controller
             'title' => $request->articleData()['title'],
             'content' => $request->articleData()['content'],
             'active' => $request->articleData()['active'],
-            'sections' => $request->articleData()['sections'],
             'lang' => $request->articleData()['lang'],
+            'meta_title' => $request->articleData()['meta_title'],
+            'meta_description' => $request->articleData()['meta_description'],
+            'short_description' => $request->articleData()['short_description'],
+            'alt' => $request->articleData()['alt'],
+            'meta_keywords' => $request->articleData()['meta_keywords'],
+            'category' => $request->articleData()['category'],
         ]);
 
         $photo = $request['photo'][0];

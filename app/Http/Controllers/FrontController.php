@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
 use App\Http\Resources\BannerResource;
+use App\Http\Resources\CategoryWithArticlesResource;
 use App\Http\Resources\FrontArticleResource;
 use App\Http\Resources\FrontUserResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
+use App\Http\Resources\NewestArticleArticlesPageResource;
 use App\Models\Agreement;
 use App\Models\Aplication;
 use App\Models\Banner;
@@ -29,18 +31,71 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 
 class FrontController extends Controller
 {
     public function articles()
     {
-
-        $articles = Article::active()->lang()->paginate(10)->withQueryString();
+        $newest = new NewestArticleArticlesPageResource(Article::active()
+            ->with('user:id,name') // ważne, żeby pobrać kategorię
+            ->lang()
+            ->latest()
+            ->first());
+        $most3Articles = NewestArticleArticlesPageResource::collection(Article::active()->lang()->limit(3)->get());
         $banners = BannerResource::collection(Banner::withActiveBanner()->get());
+        // Pobierz wszystkie unikalne kategorie z JSON-a
+        $categories = Article::active()
+            ->lang()
+            ->select(DB::raw('DISTINCT JSON_UNQUOTE(JSON_EXTRACT(category, "$.value")) as value'),
+                DB::raw('JSON_UNQUOTE(JSON_EXTRACT(category, "$.name")) as name'))
+            ->get();
+        $recentArticles = Article::active()
+            ->lang()
+            ->latest()
+            ->get();
+        $grouped = $recentArticles
+            ->map(function($article, $index) {
+                $article->index = $index; // dodajemy index do artykułu
+                $article->category = collect($article->category ?? []);
+                return $article;
+            })
+            ->flatMap(function($article) {
+                $categories = $article->category;
+
+                if (isset($categories['value'])) {
+                    $categories = [$categories];
+                }
+
+                return collect($categories)->map(fn($cat) => [
+                    'value' => $cat['value'],
+                    'name' => $cat['name'],
+                    'article' => $article,
+                ]);
+            })
+            ->groupBy('value')
+            ->map(fn($items) => [
+                'name' => $items->first()['name'],
+                'value' => $items->first()['value'],
+                'articles' => $items->pluck('article')->take(3),
+            ])
+            ->values();
+
         return inertia()->render('Front/Articles', [
-            'articles' => $articles,
             'banners' => $banners,
+            'newest' => $newest,
+            'categories' => $categories,
+            'most3Articles' => $most3Articles,
+            'grouped' => CategoryWithArticlesResource::collection($grouped),
+        ]);
+    }
+
+
+    public function groupArticles($category)
+    {
+        return inertia()->render('Front/ArticlesGroup', [
+            'category' => $category,
         ]);
     }
 

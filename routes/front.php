@@ -12,6 +12,7 @@ Route::name('front.')->group(function () {
     Route::post('buy/webhook', [BuyController::class,'webhook'])->name('buy.webhook');
     Route::post('language', LanguageStoreController::class)->name('language.store');
     Route::get('articles',[FrontController::class,'articles'])->name('articles');
+    Route::get('articlesGroups/{category}',[FrontController::class,'groupArticles'])->name('groupArticles');
     Route::get('projects',[FrontController::class,'projects'])->name('projects');
     Route::post('projects/apply/{project}/next-step', [FrontController::class, 'nextStep'])->name('projects.next.step');
     Route::post('/projects/apply/generate-pdf/{templateId}', [FrontController::class, 'generatePdf'])->name('projects.generate.pdf');

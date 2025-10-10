@@ -35,10 +35,6 @@ const props = defineProps({
 
                             <div class="mb-5">
                                 <p class="mb-4" v-html="article.content"></p>
-                                <div v-for="section in article.sections" :key="section.title">
-                                    <h5 class="font-bold mb-2 text-lg">{{section.title}}</h5>
-                                    <p>{{section.description}}</p>
-                                </div>
                             </div>
 
                             <div class="flex items-center gap-6" v-if="article.user">
