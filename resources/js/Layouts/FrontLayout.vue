@@ -169,7 +169,7 @@ const sortLangs = computed(() => page.props.languages.sort((a,b) => a.label.loca
         </transition>
 
         <!-- Scroll to top -->
-        <button v-if="showScrollTop" @click="scrollToTop" class="fixed right-6 bottom-6 bg-violet-900 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-violet-800">↑</button>
+        <button v-if="showScrollTop" @click="scrollToTop" class="fixed right-6 bottom-6 bg-blue-900 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-blue-800 z-40">↑</button>
 
         <!-- Footer -->
         <footer class="border-t border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800 w-full relative md:bottom-0 md:left-0 md:right-0 z-50" :class="{'md:fixed':route().current('front')}">
