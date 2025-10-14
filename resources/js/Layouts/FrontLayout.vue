@@ -20,6 +20,7 @@ const props = defineProps({
     description: String,
     keywords: String,
     image: String,
+    author: String,
     imageUrl: String,
 });
 
@@ -52,15 +53,45 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
 <template>
     <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
         <Head>
+<!--            <title>{{ props.title || 'Domyślny tytuł' }}</title>-->
+<!--            <meta name="description" :content="props.description || ''" />-->
+<!--            <meta name="keywords" :content="props.keywords || ''" />-->
+<!--            <meta property="og:title" :content="props.title ? props.title + ' - ' + page.props.pageName : page.props.pageName" />-->
+<!--            <meta property="og:description" :content="props.description || ''" />-->
+<!--            <meta property="og:type" content="website" />-->
+<!--            <meta property="og:image" :content="props.image || '/default-image.png'" />-->
+<!--            <meta property="og:url" :content="ogUrl" />-->
+<!--            <meta property="og:locale" :content="page.props.language || 'pl'" />-->
+            <!-- Title & Meta -->
             <title>{{ props.title || 'Domyślny tytuł' }}</title>
             <meta name="description" :content="props.description || ''" />
             <meta name="keywords" :content="props.keywords || ''" />
-            <meta property="og:title" :content="props.title ? props.title + ' - ' + page.props.pageName : page.props.pageName" />
-            <meta property="og:description" :content="props.description || ''" />
-            <meta property="og:type" content="website" />
-            <meta property="og:image" :content="props.image || '/default-image.png'" />
-            <meta property="og:url" :content="ogUrl" />
+            <link rel="canonical" :href="ogUrl" />
+
+            <!-- Open Graph -->
             <meta property="og:locale" :content="page.props.language || 'pl'" />
+            <meta property="og:type" content="article" />
+            <meta property="og:title" :content="props.title || page.props.pageName" />
+            <meta property="og:description" :content="props.description || ''" />
+            <meta property="og:url" :content="ogUrl" />
+            <meta property="og:site_name" content="RocketSpace.pl" />
+            <meta property="article:published_time" :content="props.publishedAt" />
+            <meta property="article:modified_time" :content="props.modifiedAt" />
+            <meta property="og:image" :content="props.image || '/default-image.png'" />
+            <meta property="og:image:width" content="1724" />
+            <meta property="og:image:height" content="1149" />
+            <meta property="og:image:type" content="image/jpeg" />
+
+            <!-- Author -->
+            <meta name="author" :content="props.author" />
+
+            <!-- Twitter -->
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:label1" content="Napisane przez" />
+            <meta name="twitter:data1" :content="props.author" />
+            <meta name="twitter:label2" content="Szacowany czas czytania" />
+
+
         </Head>
 
         <Banner />

@@ -68,6 +68,7 @@ function shareOnInstagram() {
         :title="article.title || 'Artykuł'"
         :description="article.title || ''"
         keywords="test, artykuł"
+        :author="article.user?.name"
         image="https://via.placeholder.com/1200x630.png?text=Article+Image"
     >
         <div class="py-12 singleArticle">
