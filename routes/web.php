@@ -47,7 +47,7 @@ Route::post('/upload-image', function (Request $request) { // <- instancja!
     $file = $request->file('image');
     if ($file && $file->isValid()) {
         $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('/images', $filename);
+        $path = $file->storeAs('/images', $filename,'public');
         return response()->json([
             'url' => Storage::url($path)
         ]);
