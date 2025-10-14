@@ -6,6 +6,14 @@ import moment from "moment";
 
 const props = defineProps({
     article: Object,
+    sidebarSections: {
+        type: Array,
+        default: () => []
+    },
+    allOtherArticles: {
+        type: Array,
+        default: () => []
+    },
 });
 const copied = ref(false);
 
@@ -179,8 +187,68 @@ function shareOnInstagram() {
                 </div>
 
                 <!-- Sidebar -->
-                <aside class="lg:w-1/4 w-full bg-red-100 p-4">
-                    Sidebar
+                <aside class="lg:w-1/4 w-full p-4">
+                    <div v-for="(section, index) in sidebarSections" :key="index" class="mb-6 border-b pb-4" v-if="sidebarSections">
+                        <!-- Kategorie -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <Link
+                                v-for="category in section.categories"
+                                :key="category.value"
+                                :href="route('front.groupArticles', { category: category.value })"
+                                class="hover:scale-95 uppercase bg-[#0B2B4C] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap"
+                            >
+                                {{ category.name }}
+                            </Link>
+                        </div>
+
+                        <!-- Artykuły -->
+                        <div class="grid grid-cols-1 gap-4">
+                            <article
+                                v-for="article in section.articles"
+                                :key="article.id"
+                                class="flex flex-col items-start overflow-hidden bg-white rounded shadow"
+                            >
+                                <div class="w-full flex items-center justify-center">
+                                    <div
+                                        class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
+                                        :style="`background-image: url(${article.image});`"
+                                    ></div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
+                                        <Link :href="route('front.articles.single', article.id)">
+                                            {{ article.title }}
+                                        </Link>
+                                    </h3>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Dodatkowe artykuły (inne niż obecny) -->
+                    <div class="mt-6">
+                        <div class="grid grid-cols-1 gap-4">
+                            <article
+                                v-for="article in allOtherArticles"
+                                :key="article.id"
+                                class="flex flex-col items-start overflow-hidden bg-white rounded shadow"
+                            >
+                                <div class="w-full flex items-center justify-center">
+                                    <div
+                                        class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
+                                        :style="`background-image: url(${article.image});`"
+                                    ></div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
+                                        <Link :href="route('front.articles.single', article.id)">
+                                            {{ article.title }}
+                                        </Link>
+                                    </h3>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
                 </aside>
 
             </div>

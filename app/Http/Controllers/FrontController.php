@@ -128,12 +128,50 @@ class FrontController extends Controller
 
     public function SingleArticle(Article $article)
     {
+        // Wszystkie unikalne kategorie
+        $categories = Article::active()
+            ->lang()
+            ->select(
+                DB::raw('DISTINCT JSON_UNQUOTE(JSON_EXTRACT(category, "$.value")) as value'),
+                DB::raw('JSON_UNQUOTE(JSON_EXTRACT(category, "$.name")) as name')
+            )
+            ->get();
+
+        // Wszystkie artykuły oprócz aktualnego
+        $recentArticles = Article::active()
+            ->lang()
+            ->where('id', '!=', $article->id)
+            ->latest()
+            ->get()
+            ->map(fn($a) => new NewestArticleArticlesPageResource($a));
+
+        $sections = [];
+        $catIndex = 0;
+        $artIndex = 0;
+
+        while ($catIndex < $categories->count() || $artIndex < $recentArticles->count()) {
+            $sectionCategories = $categories->slice($catIndex, 4)->values();
+            $sectionArticles   = $recentArticles->slice($artIndex, 3)->values();
+
+            $sections[] = [
+                'categories' => $sectionCategories,
+                'articles' => $sectionArticles,
+            ];
+
+            $catIndex += 4;
+            $artIndex += 3;
+        }
+
+        $allOtherArticles = $recentArticles;
+
         $article->load('user.firm');
+
         return inertia()->render('Front/SingleArticle', [
             'article' => new FrontArticleResource($article),
+            'sidebarSections' => $sections,
+            'allOtherArticles' => $allOtherArticles,
         ]);
     }
-
     public function SingleFirm(User $user)
     {
         $user->load('firm');
