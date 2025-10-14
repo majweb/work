@@ -7,6 +7,7 @@ import moment from "moment";
 const props = defineProps({
     article: Object,
 });
+const copied = ref(false);
 
 const headings = ref([]);
 
@@ -16,6 +17,24 @@ const isClient = typeof window !== 'undefined' && typeof navigator !== 'undefine
 // Funkcja generująca unikalny ID dla nagłówków
 function generateId(text, index) {
     return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') + '-' + index;
+}
+
+function copyLink() {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+
+    const url = window.location.href; // lub inny link do skopiowania
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                copied.value = true;
+                setTimeout(() => {
+                    copied.value = false;
+                }, 1000); // komunikat znika po 1s
+            })
+            .catch(err => {
+                console.error('Błąd przy kopiowaniu do schowka:', err);
+            });
+    }
 }
 
 // Spis treści po renderze
@@ -107,25 +126,32 @@ function shareOnInstagram() {
                         <p class="font-bold mt-4">Udostępnij artykuł</p>
                         <div class="flex gap-3 mt-2">
                             <button
-                                @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)"
-                                class="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700">
-                                <i class="fab fa-facebook-f"></i>
+                                @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)">
+                                <img src="/images/icons/facebook.svg" alt="facebook" class="h-10 w-10 transition hover:scale-95" />
                             </button>
                             <button
-                                @click="shareOnInstagram()"
-                                class="p-2 rounded-full bg-pink-500 text-white hover:bg-pink-600">
-                                <i class="fab fa-instagram"></i>
+                                @click="shareOnInstagram()">
+                                <img src="/images/icons/instagram.svg" alt="instagram" class="h-10 w-10 transition hover:scale-95" />
                             </button>
                             <button
-                                @click="openShare(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`)"
-                                class="p-2 rounded-full bg-green-500 text-white hover:bg-green-600">
+                                @click="openShare(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`)">
                                 <i class="fab fa-whatsapp"></i>
+                                <img src="/images/icons/whats_app.svg" alt="whats_app" class="h-10 w-10 transition hover:scale-95" />
                             </button>
                             <button
-                                @click="openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`)"
-                                class="p-2 rounded-full bg-blue-700 text-white hover:bg-blue-800">
-                                <i class="fab fa-linkedin-in"></i>
+                                @click="openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`)">
+                                <img src="/images/icons/linkedin.svg" alt="linkedin" class="h-10 w-10 transition hover:scale-95" />
                             </button>
+                            <div class="relative inline-block">
+                                <button @click="copyLink">
+                                    <img src="/images/icons/link.svg" alt="link" class="h-10 w-10 transition hover:scale-95" />
+                                </button>
+                                <span
+                                    v-if="copied"
+                                    class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full bg-black text-white text-sm px-2 py-1 rounded shadow">
+            Skopiowano!
+        </span>
+                            </div>
                         </div>
 
 
