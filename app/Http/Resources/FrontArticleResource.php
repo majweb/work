@@ -33,6 +33,7 @@ class FrontArticleResource extends JsonResource
             'meta_keywords' => $this->meta_keywords,
             'category' => $this->category,
             'created_at' => $this->created_at,
+            'comments' => $this->whenLoaded('comments'),
 
         ];
     }

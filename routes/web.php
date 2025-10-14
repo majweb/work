@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\CategoryControllerInvoke;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\LocationController;
 use App\Models\Country;
@@ -228,6 +229,13 @@ Route::middleware([
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
     //    WORKER
     Route::put('workerForm',WorkerDetailController::class)->middleware('role:worker')->name('worker.update.form');
+
+
+
+
+    Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
+
 
     //    ADMIN
     Route::middleware(['role:admin'])->name('admin.')->group(function () {

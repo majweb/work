@@ -128,6 +128,12 @@ class FrontController extends Controller
 
     public function SingleArticle(Article $article)
     {
+        $article->load(['comments' => function ($query) {
+            $query->with(['user', 'replies' => function ($q) {
+                $q->with('user', 'replies'); // rekurencyjnie wczytujemy replies
+            }])->whereNull('parent_id');
+        }]);
+
         // Wszystkie unikalne kategorie
         $categories = Article::active()
             ->lang()

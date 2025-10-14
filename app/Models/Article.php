@@ -60,4 +60,11 @@ class Article extends Model implements HasMedia
             ->nonQueued();
     }
 
+    // app/Models/Article.php
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+
 }

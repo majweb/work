@@ -146,7 +146,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
         </div>
 
         <!-- Main content -->
-        <main class="relative z-10 flex-grow px-4 sm:px-6 lg:px-8">
+        <main class="relative z-0 flex-grow px-4 sm:px-6 lg:px-8">
             <slot />
         </main>
 

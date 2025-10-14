@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Models\Aplication;
 use App\Models\CandidateQuestion;
+use App\Models\Comment;
 use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Tag;
 use App\Models\User;
 use App\Observers\projectObserver;
 use App\Policies\CandidateQuestionPolicy;
+use App\Policies\CommentPolicy;
 use App\Policies\ExternalCompanyPolicy;
 use App\Policies\TagPolicy;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::policy(CandidateQuestion::class, CandidateQuestionPolicy::class);
         Gate::policy(ExternalCompany::class, ExternalCompanyPolicy::class);
+        Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
 
 

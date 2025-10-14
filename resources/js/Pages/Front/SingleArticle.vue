@@ -3,7 +3,11 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {Link} from '@inertiajs/vue3';
 import {ref, onMounted, nextTick} from 'vue';
 import moment from "moment";
+import CommentSection from "@/Components/Comments/CommentSection.vue";
+import {usePermission} from "@/Composables/usePermission.js";
 
+
+const {hasRole} = usePermission();
 const props = defineProps({
     article: Object,
     sidebarSections: {
@@ -183,6 +187,17 @@ function shareOnInstagram() {
                                 <p>{{ article.user.description }}</p>
                             </div>
                         </div>
+                        <div class="mt-12">
+                            {{ console.log(article) }}
+
+                            <!-- Tylko użytkownicy z rolą 'worker' mogą komentować -->
+                            <CommentSection
+                                :article-id="article.id"
+                                :comments="article.comments"
+                                :user="$page.props.auth.user"
+                            />
+                        </div>
+
                     </div>
                 </div>
 
