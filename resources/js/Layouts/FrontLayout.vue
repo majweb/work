@@ -20,6 +20,8 @@ const props = defineProps({
     description: String,
     keywords: String,
     image: String,
+    publishedAt: String,
+    modifiedAt: String,
     author: String,
     imageUrl: String,
 });
@@ -74,7 +76,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
             <meta property="og:title" :content="props.title || page.props.pageName" />
             <meta property="og:description" :content="props.description || ''" />
             <meta property="og:url" :content="ogUrl" />
-            <meta property="og:site_name" content="RocketSpace.pl" />
+            <meta property="og:site_name" :content="page.props.pageUrl || 'work4you.global'" />
             <meta property="article:published_time" :content="props.publishedAt" />
             <meta property="article:modified_time" :content="props.modifiedAt" />
             <meta property="og:image" :content="props.image || '/default-image.png'" />
@@ -89,9 +91,6 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:label1" content="Napisane przez" />
             <meta name="twitter:data1" :content="props.author" />
-            <meta name="twitter:label2" content="Szacowany czas czytania" />
-
-
         </Head>
 
         <Banner />
