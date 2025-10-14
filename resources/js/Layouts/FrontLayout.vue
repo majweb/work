@@ -76,7 +76,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
             <meta property="og:title" :content="props.title || page.props.pageName" />
             <meta property="og:description" :content="props.description || ''" />
             <meta property="og:url" :content="ogUrl" />
-            <meta property="og:site_name" :content="page.props.pageUrl || 'work4you.global'" />
+            <meta property="og:site_name" :content="ogUrl" />
             <meta property="article:published_time" :content="props.publishedAt" />
             <meta property="article:modified_time" :content="props.modifiedAt" />
             <meta property="og:image" :content="props.image || '/default-image.png'" />
