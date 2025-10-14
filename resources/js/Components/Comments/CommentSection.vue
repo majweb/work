@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import Comment from './Comment.vue';
 
@@ -25,12 +25,27 @@ const submitComment = () => {
     });
 };
 
+// Funkcja do rekurencyjnego liczenia wszystkich odpowiedzi
+const countRepliesRecursive = (comment) => {
+    if (!comment.replies || !comment.replies.length) return 0;
+    return comment.replies.length + comment.replies.reduce((acc, reply) => acc + countRepliesRecursive(reply), 0);
+};
 
+// Liczba głównych komentarzy
+const mainCommentsCount = computed(() => props.comments.length);
+
+// Liczba wszystkich odpowiedzi
+const allRepliesCount = computed(() =>
+    props.comments.reduce((acc, comment) => acc + countRepliesRecursive(comment), 0)
+);
 </script>
 
 <template>
     <div class="mt-8">
-        <h3 class="text-xl font-bold mb-4">Komentarze</h3>
+        <!-- Licznik komentarzy -->
+        <h3 class="text-xl font-bold mb-4">
+            Komentarze ({{ mainCommentsCount }} główne, {{ allRepliesCount }} odpowiedzi)
+        </h3>
 
         <!-- Formularz dodawania nowego komentarza -->
         <div v-if="user" class="mb-6">
