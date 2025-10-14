@@ -128,27 +128,33 @@ function shareOnInstagram() {
                         <p class="font-bold mt-4">Udostępnij artykuł</p>
                         <div class="flex gap-3 mt-2">
                             <button
+                                title="facebook"
                                 @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)">
                                 <img src="/images/icons/facebook.svg" alt="facebook"
                                      class="h-10 w-10 transition hover:scale-95"/>
                             </button>
                             <button
+                                title="instagram"
                                 @click="shareOnInstagram()">
                                 <img src="/images/icons/instagram.svg" alt="instagram"
                                      class="h-10 w-10 transition hover:scale-95"/>
                             </button>
                             <button
+                                title="whatsapp"
                                 @click="openShare(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`)">
                                 <i class="fab fa-whatsapp"></i>
                                 <img src="/images/icons/whats_app.svg" alt="whats_app"
                                      class="h-10 w-10 transition hover:scale-95"/>
                             </button>
                             <button
+                                title="linkedin"
                                 @click="openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`)">
                                 <img src="/images/icons/linkedin.svg" alt="linkedin"
                                      class="h-10 w-10 transition hover:scale-95"/>
                             </button>
-                            <button @click="copyLink" class="relative">
+                            <button @click="copyLink" class="relative"
+                                    title="link"
+                            >
                                 <img src="/images/icons/link.svg" alt="link"
                                      class="h-10 w-10 transition hover:scale-95"/>
                                 <span
