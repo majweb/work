@@ -22,6 +22,7 @@ const props = defineProps({
     image: String,
     publishedAt: String,
     modifiedAt: String,
+    type: String,
     author: String,
     imageUrl: String,
 });
@@ -55,43 +56,40 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
 <template>
     <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
         <Head>
-<!--            <title>{{ props.title || 'Domyślny tytuł' }}</title>-->
-<!--            <meta name="description" :content="props.description || ''" />-->
-<!--            <meta name="keywords" :content="props.keywords || ''" />-->
-<!--            <meta property="og:title" :content="props.title ? props.title + ' - ' + page.props.pageName : page.props.pageName" />-->
-<!--            <meta property="og:description" :content="props.description || ''" />-->
-<!--            <meta property="og:type" content="website" />-->
-<!--            <meta property="og:image" :content="props.image || '/default-image.png'" />-->
-<!--            <meta property="og:url" :content="ogUrl" />-->
-<!--            <meta property="og:locale" :content="page.props.language || 'pl'" />-->
-            <!-- Title & Meta -->
-            <title>{{ props.title || 'Domyślny tytuł' }}</title>
-            <meta name="description" :content="props.description || ''" />
-            <meta name="keywords" :content="props.keywords || ''" />
-            <link rel="canonical" :href="ogUrl" />
+            <!-- Title -->
+            <title v-if="props.title">{{ props.title }}</title>
+            <title v-else>Domyślny tytuł</title>
+
+            <!-- Meta description & keywords -->
+            <meta v-if="props.description" name="description" :content="props.description" />
+            <meta v-if="props.keywords" name="keywords" :content="props.keywords" />
+
+            <!-- Canonical -->
+            <link v-if="ogUrl" rel="canonical" :href="ogUrl" />
 
             <!-- Open Graph -->
             <meta property="og:locale" :content="page.props.language || 'pl'" />
-            <meta property="og:type" content="article" />
-            <meta property="og:title" :content="props.title || page.props.pageName" />
-            <meta property="og:description" :content="props.description || ''" />
-            <meta property="og:url" :content="ogUrl" />
-            <meta property="og:site_name" :content="ogUrl" />
-            <meta property="article:published_time" :content="props.publishedAt" />
-            <meta property="article:modified_time" :content="props.modifiedAt" />
+            <meta v-if="props.type" property="og:type" :content="props.type" />
+            <meta v-if="props.title" property="og:title" :content="props.title" />
+            <meta v-if="props.description" property="og:description" :content="props.description" />
+            <meta v-if="ogUrl" property="og:url" :content="ogUrl" />
+            <meta v-if="ogUrl" property="og:site_name" :content="ogUrl" />
+            <meta v-if="props.publishedAt" property="article:published_time" :content="props.publishedAt" />
+            <meta v-if="props.modifiedAt" property="article:modified_time" :content="props.modifiedAt" />
             <meta property="og:image" :content="props.image || '/default-image.png'" />
             <meta property="og:image:width" content="1724" />
             <meta property="og:image:height" content="1149" />
             <meta property="og:image:type" content="image/jpeg" />
 
             <!-- Author -->
-            <meta name="author" :content="props.author" />
+            <meta v-if="props.author" name="author" :content="props.author" />
 
             <!-- Twitter -->
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:label1" content="Napisane przez" />
-            <meta name="twitter:data1" :content="props.author" />
+            <meta v-if="props.author" name="twitter:data1" :content="props.author" />
         </Head>
+
 
         <Banner />
 

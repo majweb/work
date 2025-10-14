@@ -87,6 +87,7 @@ function shareOnInstagram() {
         :title="article.title || 'Artykuł'"
         :description="article.title || ''"
         keywords="test, artykuł"
+        type="article"
         :publishedAt="moment(article.created_at).format('YYYY-MM-DD')"
         :modifiedAt="moment(article.created_at).format('YYYY-MM-DD')"
         :author="article.user?.name"
