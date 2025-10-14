@@ -1,7 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import { Link } from '@inertiajs/vue3';
-import { ref, onMounted, nextTick } from 'vue';
+import {Link} from '@inertiajs/vue3';
+import {ref, onMounted, nextTick} from 'vue';
 import moment from "moment";
 
 const props = defineProps({
@@ -50,7 +50,7 @@ onMounted(async () => {
     headings.value = Array.from(nodes).map((node, index) => {
         const id = generateId(node.innerText, index);
         node.id = id;
-        return { text: node.innerText, tag: node.tagName, id };
+        return {text: node.innerText, tag: node.tagName, id};
     });
 });
 
@@ -72,7 +72,7 @@ function openShare(url) {
 function scrollToHeading(id) {
     if (!isClient) return;
     const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (element) element.scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 function shareOnInstagram() {
@@ -100,7 +100,8 @@ function shareOnInstagram() {
                     <div class="bg-white dark:bg-gray-800 overflow-hidden">
                         <h2 class="font-bold text-2xl mb-4">{{ article.title }}</h2>
                         <div class="h-[400px] mb-4">
-                            <img class="w-full h-full object-cover" :src="article.photo?.original_url" :alt="article.title">
+                            <img class="w-full h-full object-cover" :src="article.photo?.original_url"
+                                 :alt="article.title">
                         </div>
 
                         <Link :href="route('front.articles')" class="font-bold text-xl underline p-4 block">
@@ -113,7 +114,8 @@ function shareOnInstagram() {
                         <div v-if="headings.length" class="mb-6 p-4 border rounded border-[#0B2B4C]">
                             <h3 class="font-semibold mb-2 pl-6 uppercase text-[#0B2B4C]">Artykuł w skrócie:</h3>
                             <ul class="pl-5">
-                                <li v-for="heading in headings" :key="heading.id" class="mb-1 cursor-pointer hover:font-semibold">
+                                <li v-for="heading in headings" :key="heading.id"
+                                    class="mb-1 cursor-pointer hover:font-semibold">
                                     <a @click.prevent="scrollToHeading(heading.id)">{{ heading.text }}</a>
                                 </li>
                             </ul>
@@ -127,31 +129,34 @@ function shareOnInstagram() {
                         <div class="flex gap-3 mt-2">
                             <button
                                 @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)">
-                                <img src="/images/icons/facebook.svg" alt="facebook" class="h-10 w-10 transition hover:scale-95" />
+                                <img src="/images/icons/facebook.svg" alt="facebook"
+                                     class="h-10 w-10 transition hover:scale-95"/>
                             </button>
                             <button
                                 @click="shareOnInstagram()">
-                                <img src="/images/icons/instagram.svg" alt="instagram" class="h-10 w-10 transition hover:scale-95" />
+                                <img src="/images/icons/instagram.svg" alt="instagram"
+                                     class="h-10 w-10 transition hover:scale-95"/>
                             </button>
                             <button
                                 @click="openShare(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`)">
                                 <i class="fab fa-whatsapp"></i>
-                                <img src="/images/icons/whats_app.svg" alt="whats_app" class="h-10 w-10 transition hover:scale-95" />
+                                <img src="/images/icons/whats_app.svg" alt="whats_app"
+                                     class="h-10 w-10 transition hover:scale-95"/>
                             </button>
                             <button
                                 @click="openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`)">
-                                <img src="/images/icons/linkedin.svg" alt="linkedin" class="h-10 w-10 transition hover:scale-95" />
+                                <img src="/images/icons/linkedin.svg" alt="linkedin"
+                                     class="h-10 w-10 transition hover:scale-95"/>
                             </button>
-                            <div class="relative inline-block">
-                                <button @click="copyLink">
-                                    <img src="/images/icons/link.svg" alt="link" class="h-10 w-10 transition hover:scale-95" />
-                                </button>
+                            <button @click="copyLink" class="relative">
+                                <img src="/images/icons/link.svg" alt="link"
+                                     class="h-10 w-10 transition hover:scale-95"/>
                                 <span
                                     v-if="copied"
                                     class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full bg-black text-white text-sm px-2 py-1 rounded shadow">
-            Skopiowano!
-        </span>
-                            </div>
+                Skopiowano!
+            </span>
+                            </button>
                         </div>
 
 
@@ -176,18 +181,53 @@ function shareOnInstagram() {
     </FrontLayout>
 </template>
 <style lang="scss">
-.singleArticle{
+.singleArticle {
     img {
         max-width: 100%;
     }
 
     // Nagłówki
-    h1 { font-size: 1.8rem; font-weight: 700; margin: 1.5rem 0 1rem 0;color:#0B2B4C; }
-    h2 { font-size: 1.6rem; font-weight: 600; margin: 1.4rem 0 0.9rem 0;color:#0B2B4C; }
-    h3 { font-size: 1.4rem; font-weight: 600; margin: 1.2rem 0 0.8rem 0;color:#0B2B4C; }
-    h4 { font-size: 1.2rem; font-weight: 500; margin: 1rem 0 0.6rem 0;color:#0B2B4C; }
-    h5 { font-size: 1rem; font-weight: 500; margin: 0.9rem 0 0.5rem 0;color:#0B2B4C; }
-    h6 { font-size: 0.9rem; font-weight: 500; margin: 0.8rem 0 0.4rem 0;color:#0B2B4C; }
+    h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 1.5rem 0 1rem 0;
+        color: #0B2B4C;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin: 1.4rem 0 0.9rem 0;
+        color: #0B2B4C;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 1.2rem 0 0.8rem 0;
+        color: #0B2B4C;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 1rem 0 0.6rem 0;
+        color: #0B2B4C;
+    }
+
+    h5 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0.9rem 0 0.5rem 0;
+        color: #0B2B4C;
+    }
+
+    h6 {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0.8rem 0 0.4rem 0;
+        color: #0B2B4C;
+    }
 
     // Listy
     ul {
@@ -209,9 +249,9 @@ function shareOnInstagram() {
     // YouTube wideo
     iframe {
         display: block;
-        width: 100% !important;   // pełna szerokość
-        height: auto;             // proporcje dopasują się przy responsywności
-        aspect-ratio: 16/9;       // zachowanie proporcji 16:9
+        width: 100% !important; // pełna szerokość
+        height: auto; // proporcje dopasują się przy responsywności
+        aspect-ratio: 16/9; // zachowanie proporcji 16:9
         margin: 1rem 0;
         border: none;
     }
@@ -238,8 +278,8 @@ function shareOnInstagram() {
     }
 
     // Linki
-    p{
-        color:#0B2B4C;
+    p {
+        color: #0B2B4C;
     }
 }
 </style>
