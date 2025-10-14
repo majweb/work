@@ -1,13 +1,9 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import { Link } from '@inertiajs/vue3';
-import {Navigation, Pagination, Autoplay} from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import moment from "moment/moment.js";
 
 const props = defineProps({
     articles: Object,

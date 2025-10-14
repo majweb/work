@@ -17,7 +17,6 @@ class FrontArticleResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'sections' => $this->sections,
             'content' => $this->content,
             'lang' => $this->lang,
             'active' => $this->active,
@@ -33,6 +32,7 @@ class FrontArticleResource extends JsonResource
             'alt' => $this->alt,
             'meta_keywords' => $this->meta_keywords,
             'category' => $this->category,
+            'created_at' => $this->created_at,
 
         ];
     }

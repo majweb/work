@@ -15,6 +15,9 @@ class CategoryWithArticlesResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        if (!$this->resource) {
+            return [];
+        }
         return [
             'name' => $this->resource['name'], // pobieramy z tablicy resource
             'value' => $this->resource['value'], // pobieramy z tablicy resource

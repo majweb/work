@@ -38,23 +38,39 @@ class FrontController extends Controller
 {
     public function articles()
     {
-        $newest = new NewestArticleArticlesPageResource(Article::active()
-            ->with('user:id,name') // ważne, żeby pobrać kategorię
+        // Najnowszy artykuł — zabezpieczenie przed brakiem rekordów
+        $latestArticle = Article::active()
+            ->with('user:id,name') // Pobieramy autora
             ->lang()
             ->latest()
-            ->first());
-        $most3Articles = NewestArticleArticlesPageResource::collection(Article::active()->lang()->limit(3)->get());
-        $banners = BannerResource::collection(Banner::withActiveBanner()->get());
-        // Pobierz wszystkie unikalne kategorie z JSON-a
+            ->first();
+
+        $newest = $latestArticle
+            ? new NewestArticleArticlesPageResource($latestArticle)
+            : null;
+
+        // 3 najnowsze artykuły
+        $most3Articles = NewestArticleArticlesPageResource::collection(
+            Article::active()->lang()->limit(3)->get()
+        );
+
+        // Bannery
+        $banners = BannerResource::collection(
+            Banner::withActiveBanner()->get()
+        );
+
+        // Wszystkie unikalne kategorie z JSON
         $categories = Article::active()
             ->lang()
-            ->select(DB::raw('DISTINCT JSON_UNQUOTE(JSON_EXTRACT(category, "$.value")) as value'),
-                DB::raw('JSON_UNQUOTE(JSON_EXTRACT(category, "$.name")) as name'))
+            ->select(
+                DB::raw('DISTINCT JSON_UNQUOTE(JSON_EXTRACT(category, "$.value")) as value'),
+                DB::raw('JSON_UNQUOTE(JSON_EXTRACT(category, "$.name")) as name')
+            )
             ->get();
-        $recentArticles = Article::active()
-            ->lang()
-            ->latest()
-            ->get();
+
+        // Grupa artykułów po kategoriach
+        $recentArticles = Article::active()->lang()->latest()->get();
+
         $grouped = $recentArticles
             ->map(function($article, $index) {
                 $article->index = $index; // dodajemy index do artykułu
@@ -63,7 +79,6 @@ class FrontController extends Controller
             })
             ->flatMap(function($article) {
                 $categories = $article->category;
-
                 if (isset($categories['value'])) {
                     $categories = [$categories];
                 }
@@ -90,7 +105,6 @@ class FrontController extends Controller
             'grouped' => CategoryWithArticlesResource::collection($grouped),
         ]);
     }
-
 
     public function groupArticles($category)
     {

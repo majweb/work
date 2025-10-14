@@ -8,7 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class NewestArticleArticlesPageResource extends JsonResource
 {
-
     protected static $usedImages = [];
 
 

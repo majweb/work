@@ -68,7 +68,6 @@ const props = defineProps({
                                 <div
                                     class="w-[280px] md:w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm"
                                     :style="`background-image: url(${newest.image});`"
-                                    alt="Laptop"
                                 ></div>
                             </div>
                         </div>
@@ -182,7 +181,7 @@ const props = defineProps({
                                 :modules="[Autoplay, Scrollbar]"
                                 :slidesPerView="'auto'"
                                 :slides-per-view="1.4"
-                            :spaceBetween="30"
+                                :spaceBetween="30"
                                 :loop="category.articles.length > 1"
                                 :autoplay="category.articles.length > 1 ? { delay: 3000, disableOnInteraction: false } : false"
                                 :scrollbar="{
