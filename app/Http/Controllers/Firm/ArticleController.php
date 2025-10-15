@@ -10,6 +10,7 @@ use App\Http\Resources\MultiselectResource;
 use App\Models\Article;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\TemporaryFile;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -135,11 +136,41 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         Gate::authorize('update',auth()->user());
+
+        $article->load(['comments' => function ($query) {
+            $query->with(['user', 'replies' => function ($q) {
+                $q->with('user', 'replies');
+            }])
+                ->whereNull('parent_id');
+        }]);
+
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
         });
         return inertia()->render('Buy/Article/Edit',['article'=>new FrontArticleResource($article),'categories'=>$category]);
     }
+
+    public function toggleCommentVisibility($commentId)
+    {
+        // Możesz dodać autoryzację np. tylko właściciel artykułu lub admin
+        $comment = Comment::findOrFail($commentId);
+
+        // Sprawdzenie, czy użytkownik ma prawo do edycji komentarza
+        if ($comment->article->user_id !== auth()->id()) {
+            abort(403, 'Nie masz uprawnień do zmiany widoczności komentarza.');
+        }
+
+        // Odwrócenie statusu show
+        $comment->show = !$comment->show;
+        $comment->save();
+
+        // Zwracamy nowy status w JSON
+        return response()->json([
+            'id' => $comment->id,
+            'show' => $comment->show
+        ]);
+    }
+
 
     /**
      * Update the specified resource in storage.

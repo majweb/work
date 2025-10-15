@@ -13,9 +13,10 @@ import InputLabel from "@/Components/InputLabel.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
 import InputHelper from "@/Components/InputHelper.vue";
 import Checkbox from "@/Components/Checkbox.vue";
-import {ref} from "vue";
+import {ref,computed} from "vue";
 import Tiptap from "@/Components/TipTap.vue"
 import Multiselect from "vue-multiselect";
+import __ from "@/lang.js";
 
 const props = defineProps({
     article: Object,
@@ -29,6 +30,7 @@ const form = useForm({
     title: props.article.title,
     content: props.article.content,
     lang: props.article.lang,
+    show: props.article.show || false,
     photo: (props.article && props.article?.photo)
         ?  [{
             source: props.article.photo.original_url,
@@ -62,6 +64,31 @@ const removeFile =  async (source,load) => {
     form.photo = [];
 }
 
+const toggleCommentVisibility = async (comment) => {
+    try {
+        await axios.post(route('comments.toggle-visibility', comment.id));
+        comment.show = !comment.show;
+    } catch (error) {
+        console.error('Błąd podczas zmiany widoczności komentarza:', error);
+    }
+}
+const perPage = 4; // liczba komentarzy na stronę
+const currentPage = ref(1);
+const totalPages = computed(() => {
+    return Math.ceil(props.article.comments?.length / perPage);
+});
+
+const paginatedComments = computed(() => {
+    const start = (currentPage.value - 1) * perPage;
+    const end = start + perPage;
+    return props.article.comments?.slice(start, end) || [];
+});
+
+const goToPage = (page) => {
+    if(page >= 1 && page <= totalPages.value) {
+        currentPage.value = page;
+    }
+};
 </script>
 
 <template>
@@ -279,25 +306,92 @@ const removeFile =  async (source,load) => {
                                     </div>
                                 </div>
                             </div>
+
                             <!-- PUBLISH -->
                             <div class="col-span-6">
-                                <div class="flex mt-4">
-                                    <label
-                                           class="flex items-center"
-                                           for="active">
+                                <div class="flex mt-4 space-x-4">
+                                    <label class="flex items-center" for="active">
                                         <Checkbox id="active" v-model:checked="form.active"
                                                   name="active"/>
                                         <div class="flex flex-col">
-                                                <span class="ml-2 mr-1 text-gray-600 dark:text-gray-400">
-                                                 Publikacja
-                                                </span>
+                                            <span class="ml-2 mr-1 text-gray-600 dark:text-gray-400">
+                                                Publikacja
+                                            </span>
                                         </div>
                                     </label>
                                 </div>
-                                <InputHelper id="helper-publish-explanation">Czy artykuł ma być opublikowany.
+                                <InputHelper id="helper-publish-explanation">
+                                    Zarządzaj publikacją i widocznością artykułu
                                 </InputHelper>
                             </div>
                             <!-- PUBLISH -->
+                            <div class="col-span-6">
+
+                                <!-- KOMENTARZE -->
+                                <div class="flex gap-2">
+                                    <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-4 rounded-lg shadow">
+                                        <div class="flex justify-between items-start flex-wrap gap-2">
+                                            <div>
+                                                <p class="font-medium text-gray-800">{{ comment.user?.name || 'Anonim' }}</p>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ new Date(comment.created_at).toLocaleString('pl-PL') }}
+                                                </p>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <button @click="toggleCommentVisibility(comment)" type="button"
+                                                        class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
+                                                        :class="comment.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
+                                                    {{ comment.show ? 'Widoczny' : 'Ukryty' }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2 text-gray-700">{{ comment.content }}</p>
+
+                                        <!-- Odpowiedzi do komentarza -->
+                                        <div v-if="comment.replies?.length" class="ml-6 mt-4 space-y-3">
+                                            <div v-for="reply in comment.replies" :key="reply.id" class="bg-gray-50 p-3 rounded border-l-2 border-gray-200">
+                                                <div class="flex justify-between items-start flex-wrap gap-2">
+                                                    <div>
+                                                        <p class="font-medium text-gray-800">{{ reply.user?.name || 'Anonim' }}</p>
+                                                        <p class="text-sm text-gray-500">
+                                                            {{ new Date(reply.created_at).toLocaleString('pl-PL') }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <button @click="toggleCommentVisibility(reply)"
+                                                                class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
+                                                                :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
+                                                            {{ reply.show ? 'Widoczny' : 'Ukryty' }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-2 text-gray-700">{{ reply.content }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PAGINACJA -->
+                                <div class="flex justify-center mt-4 space-x-2" v-if="totalPages > 1">
+                                    <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
+                                            class="px-3 py-1 border rounded bg-gray-100 disabled:opacity-50 hover:bg-gray-200">
+                                        Poprzednia
+                                    </button>
+
+                                    <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
+                                            class="px-3 py-1 border rounded"
+                                            :class="page === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-100 hover:bg-gray-200'">
+                                        {{ page }}
+                                    </button>
+
+                                    <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
+                                            class="px-3 py-1 border rounded bg-gray-100 disabled:opacity-50 hover:bg-gray-200">
+                                        Następna
+                                    </button>
+                                </div>
+                                <!-- KOMENTARZE -->
+
+                            </div>
+
                         </template>
 
                         <template #actions>

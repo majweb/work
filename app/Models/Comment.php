@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comment extends Model
 {
-    protected $fillable = ['content', 'article_id', 'user_id', 'parent_id'];
+    protected $fillable = ['content', 'article_id', 'user_id', 'parent_id','show'];
 
     protected $with = ['user', 'replies'];
+
+    protected $casts = [
+        'show' => 'boolean',
+    ];
 
     public function user(): BelongsTo
     {
@@ -31,4 +35,10 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id')->with(['user', 'replies']); // rekurencyjne
     }
+
+    public function scopeVisible($query)
+    {
+        return $query->where('show', true);
+    }
+
 }

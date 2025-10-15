@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import Comment from './Comment.vue';
+import TextareaLimit from "@/Components/TextareaLimit.vue";
+import InputError from "@/Components/InputError.vue";
 
 const props = defineProps({
     articleId: Number,
@@ -50,16 +52,19 @@ const allRepliesCount = computed(() =>
         <!-- Formularz dodawania nowego komentarza -->
         <div v-if="user" class="mb-6">
             <form @submit.prevent="submitComment">
-                <textarea
+                <TextareaLimit
+                    id="content"
                     v-model="form.content"
-                    class="w-full p-3 border rounded"
+                    :limit="1000"
+                    class="w-full rounded"
                     placeholder="Napisz komentarz..."
-                    rows="3"
-                ></textarea>
+                />
+                <InputError :message="form.errors.content"/>
+
                 <div class="flex justify-end mt-2">
                     <button
                         type="submit"
-                        class="px-4 py-2 bg-[#0B2B4C] text-white rounded hover:bg-[#133C69]"
+                        class="px-4 py-2 bg-[#0B2B4C] text-white rounded hover:bg-[#133C69] mt-4"
                         :disabled="form.processing"
                     >
                         Dodaj komentarz

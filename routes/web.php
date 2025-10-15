@@ -152,6 +152,8 @@ Route::middleware([
     Route::get('noApplications',[AplicationController::class,'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');
     Route::resource('projects',ProjectController::class)->middleware('role:firm');
     Route::resource('articles',ArticleController::class)->middleware('role:firm')->except('show');
+    Route::post('/comments/{comment}/toggle-visibility', [ArticleController::class, 'toggleCommentVisibility'])->middleware('role:firm')
+        ->name('comments.toggle-visibility');
     Route::put('firmForm',FirmController::class)->middleware('role:firm')->name('firm.update.form');
     Route::put('firmUpdateForm',AboutController::class)->middleware('role:firm')->name('firm.update.about.form');
     Route::put('firmBuy',FirmBuyController::class)->middleware('role:firm')->name('firm-buy-information.update');

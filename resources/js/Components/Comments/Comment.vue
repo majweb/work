@@ -2,6 +2,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import TextareaLimit from "@/Components/TextareaLimit.vue";
+import InputError from "@/Components/InputError.vue";
 
 const props = defineProps({
     comment: Object,
@@ -72,12 +74,16 @@ const cancelReply = () => {
 
                 <!-- Formularz odpowiedzi -->
                 <div v-if="replyingTo === comment.id" class="mt-2">
-                    <textarea
+                    <TextareaLimit
+                        id="content"
                         v-model="form.content"
-                        class="w-full p-2 border rounded"
+                        :limit="1000"
                         rows="2"
+                        class="w-full rounded"
                         placeholder="Napisz odpowiedź..."
-                    ></textarea>
+                    />
+                    <InputError :message="form.errors.content"/>
+
                     <div class="flex gap-2 mt-1">
                         <button
                             @click="submitReply(comment.id)"

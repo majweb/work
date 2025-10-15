@@ -130,8 +130,11 @@ class FrontController extends Controller
     {
         $article->load(['comments' => function ($query) {
             $query->with(['user', 'replies' => function ($q) {
-                $q->with('user', 'replies'); // rekurencyjnie wczytujemy replies
-            }])->whereNull('parent_id');
+                $q->with('user', 'replies')
+                    ->where('show', true); // tylko widoczne odpowiedzi
+            }])
+                ->whereNull('parent_id')
+                ->where('show', true); // tylko widoczne główne komentarze
         }]);
 
         // Wszystkie unikalne kategorie
