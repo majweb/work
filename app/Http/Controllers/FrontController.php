@@ -113,6 +113,7 @@ class FrontController extends Controller
         ->lang()
         ->whereJsonContains('category', ['value' => (int) $category])
         ->latest()
+        ->limit(10)
         ->get();
 
         // Pobranie nazwy kategorii z pierwszego artykułu (jeśli istnieje)
