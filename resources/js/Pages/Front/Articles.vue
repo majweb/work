@@ -49,29 +49,33 @@ const props = defineProps({
                         </a>
                     </swiper-slide>
                     </swiper>
-                    <section v-if="newest" class="bg-[#0A2E6D] text-white rounded-xl overflow-hidden flex flex-col md:flex-row items-center justify-between p-6 md:p-10 shadow-md">
+                    <Link
+                        :href="route('front.articles.single', newest.id)"
+                        v-if="newest"
+                        class="bg-[#0A2E6D] text-white rounded-xl overflow-hidden flex flex-col md:flex-row items-center justify-between p-6 md:p-10 shadow-md group hover:cursor-pointer"
+                    >
                         <!-- Tekst -->
                         <div class="md:w-1/2 space-y-3 text-center md:text-left">
-                            <Link :href="route('front.articles.single',newest.id)" class="hover:underline text-2xl md:text-3xl font-bold leading-snug">
-                                {{newest.title}}
-                            </Link>
+                            <h3 class="text-white text-2xl md:text-3xl font-bold mb-2 relative group">
+            <span class="border-b-2 border-transparent group-hover:border-white transition-all duration-300">
+                {{ newest.title }}
+            </span>
+                            </h3>
                             <p class="text-sm uppercase tracking-wider text-gray-200">
-                                Artykuł firmy<br> <span class="font-semibold">{{newest.author}}</span>
+                                Artykuł firmy<br> <span class="font-semibold">{{ newest.author }}</span>
                             </p>
                         </div>
 
                         <!-- Obraz -->
-                        <div class="md:w-1/2 mt-6 md:mt-0 flex justify-center md:justify-end">
-                            <div
-                                class="bg-white p-2 rounded-md"
-                            >
+                        <div class="md:w-1/2 mt-6 md:mt-0 flex justify-center md:justify-end overflow-hidden">
+                            <div class="bg-white p-2 rounded-md">
                                 <div
-                                    class="w-[280px] md:w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm"
+                                    class="w-[280px] md:w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
                                     :style="`background-image: url(${newest.image});`"
                                 ></div>
                             </div>
                         </div>
-                    </section>
+                    </Link>
 
                     <section v-if="categories" class="pt-12 bg-white">
                         <!-- Sekcja kategorii (Swiper) -->
@@ -145,16 +149,23 @@ const props = defineProps({
                         </div>
                         <!-- Desktop Grid -->
                         <div class="hidden md:grid md:grid-cols-3 gap-10">
-                            <article v-for="article in most3Articles" :key="article.id" class="flex flex-col items-start overflow-hidden">
-                                <div class="w-full flex items-center justify-center">
+                            <Link
+                                :href="route('front.articles.single', article.id)"
+                                v-for="article in most3Articles"
+                                :key="article.id"
+                                class="flex flex-col items-start overflow-hidden group"
+                            >
+                                <div class="w-full flex items-center justify-center overflow-hidden">
                                     <div
-                                        class="w-[400px] aspect-[4/3] bg-center bg-cover"
+                                        class="w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
                                         :style="`background-image: url(${article.image});`"
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                        <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                {{ article.title }}
+            </span>
                                     </h3>
                                     <p class="text-sm text-gray-500 mb-1">
                                         {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
@@ -164,7 +175,7 @@ const props = defineProps({
                                         <span>{{ article.author }}</span>
                                     </p>
                                 </div>
-                            </article>
+                            </Link>
                         </div>
                     </section>
 
@@ -213,14 +224,23 @@ const props = defineProps({
 
                         <!-- Desktop Grid -->
                         <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
-                            <article v-for="article in category.articles" :key="article.id" class="flex flex-col items-start overflow-hidden">
-                                <div class="w-full flex items-center justify-center">
-                                    <div class="w-[400px] aspect-[4/3] bg-center bg-cover"
-                                         :style="`background-image: url(${article.image});`"></div>
+                            <Link
+                                :href="route('front.articles.single', article.id)"
+                                v-for="article in category.articles"
+                                :key="article.id"
+                                class="flex flex-col items-start overflow-hidden group"
+                            >
+                                <div class="w-full flex items-center justify-center overflow-hidden">
+                                    <div
+                                        class="w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
+                                        :style="`background-image: url(${article.image});`"
+                                    ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                        <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                {{ article.title }}
+            </span>
                                     </h3>
                                     <p class="text-sm text-gray-500 mb-1">
                                         {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
@@ -230,7 +250,7 @@ const props = defineProps({
                                         <span>{{ article.author }}</span>
                                     </p>
                                 </div>
-                            </article>
+                            </Link>
                         </div>
                     </div>
 

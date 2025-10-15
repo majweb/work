@@ -22,16 +22,23 @@ const props = defineProps({
                 <div v-for="(section, i) in sections" :key="i" class="mb-12">
                     <!-- Sekcja 2-elementowa -->
                     <div v-if="section.length === 2" class="grid grid-cols-2 gap-4">
-                        <article v-for="article in section" :key="article.id" class="flex flex-col items-start overflow-hidden">
-                            <div class="w-full flex items-center justify-center">
+                        <Link
+                            :href="route('front.articles.single', article.id)"
+                            v-for="article in section"
+                            :key="article.id"
+                            class="group flex flex-col items-start overflow-hidden"
+                        >
+                            <div class="w-full flex items-center justify-center overflow-hidden">
                                 <div
-                                    class="w-[400px] aspect-[4/3] bg-center bg-cover"
+                                    class="w-[400px] aspect-[4/3] bg-center bg-cover transform transition-transform duration-300 group-hover:scale-105"
                                     :style="`background-image: url(${article.image});`"
                                 ></div>
                             </div>
                             <div class="p-6">
-                                <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                    <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
+                                <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative group">
+    <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+        {{ article.title }}
+    </span>
                                 </h3>
                                 <p class="text-sm text-gray-500 mb-1">{{ moment(article.created).format('DD.MM.YYYY HH:mm') }}</p>
                                 <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
@@ -39,7 +46,7 @@ const props = defineProps({
                                     <span>{{ article.author }}</span>
                                 </p>
                             </div>
-                        </article>
+                        </Link>
                     </div>
 
                     <!-- Sekcja 3-elementowa -->
@@ -55,7 +62,7 @@ const props = defineProps({
                                 :scrollbar="{ hide: false }"
                             >
                                 <SwiperSlide v-for="article in section" :key="article.id">
-                                    <article class="flex flex-col items-start overflow-hidden">
+                                    <Link :href="route('front.articles.single', article.id)" class="flex flex-col items-start overflow-hidden">
                                         <div class="w-full flex items-center justify-center">
                                             <div
                                                 class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
@@ -64,7 +71,7 @@ const props = defineProps({
                                         </div>
                                         <div class="p-6">
                                             <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                                <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
+                                                {{ article.title }}
                                             </h3>
                                             <p class="text-sm text-gray-500 mb-1">{{ moment(article.created).format('DD.MM.YYYY HH:mm') }}</p>
                                             <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
@@ -72,30 +79,40 @@ const props = defineProps({
                                                 <span>{{ article.author }}</span>
                                             </p>
                                         </div>
-                                    </article>
+                                    </Link>
                                 </SwiperSlide>
                             </Swiper>
                         </div>
                         <!-- Desktop Grid -->
                         <div class="hidden md:grid md:grid-cols-3 gap-4">
-                            <article v-for="article in section" :key="article.id" class="flex flex-col items-start overflow-hidden">
-                                <div class="w-full flex items-center justify-center">
+                            <Link
+                                :href="route('front.articles.single', article.id)"
+                                v-for="article in section"
+                                :key="article.id"
+                                class="group flex flex-col items-start overflow-hidden"
+                            >
+                                <div class="w-full flex items-center justify-center overflow-hidden">
                                     <div
-                                        class="w-[400px] aspect-[4/3] bg-center bg-cover"
+                                        class="w-[400px] aspect-[4/3] bg-center bg-cover transform transition-transform duration-300 group-hover:scale-105"
                                         :style="`background-image: url(${article.image});`"
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                        <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative group">
+    <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+        {{ article.title }}
+    </span>
                                     </h3>
-                                    <p class="text-sm text-gray-500 mb-1">{{ moment(article.created).format('DD.MM.YYYY HH:mm') }}</p>
+                                    <p class="text-sm text-gray-500 mb-1">
+                                        {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
+                                    </p>
                                     <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
                                         <img :src="article.avatar" :alt="article.title" class="h-5 object-contain">
                                         <span>{{ article.author }}</span>
                                     </p>
                                 </div>
-                            </article>
+                            </Link>
+
                         </div>
                     </div>
                 </div>

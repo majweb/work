@@ -218,50 +218,54 @@ function shareOnInstagram() {
 
                         <!-- Artykuły -->
                         <div class="grid grid-cols-1 gap-4">
-                            <article
+                            <Link
+                                :href="route('front.articles.single', article.id)"
                                 v-for="article in section.articles"
                                 :key="article.id"
-                                class="flex flex-col items-start overflow-hidden bg-white rounded shadow"
+                                class="flex flex-col items-start overflow-hidden bg-white rounded shadow group"
                             >
-                                <div class="w-full flex items-center justify-center">
+                                <div class="w-full flex items-center justify-center overflow-hidden">
                                     <div
-                                        class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
+                                        class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
                                         :style="`background-image: url(${article.image});`"
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                        <Link :href="route('front.articles.single', article.id)">
-                                            {{ article.title }}
-                                        </Link>
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                {{ article.title }}
+            </span>
                                     </h3>
                                 </div>
-                            </article>
+                            </Link>
+
                         </div>
                     </div>
 
                     <!-- Dodatkowe artykuły (inne niż obecny) -->
                     <div class="mt-6">
                         <div class="grid grid-cols-1 gap-4">
-                            <article
+                            <Link
+                                :href="route('front.articles.single', article.id)"
                                 v-for="article in allOtherArticles"
                                 :key="article.id"
-                                class="flex flex-col items-start overflow-hidden bg-white rounded shadow"
+                                class="flex flex-col items-start overflow-hidden bg-white rounded shadow group"
                             >
-                                <div class="w-full flex items-center justify-center">
+                                <div class="w-full flex items-center justify-center overflow-hidden">
                                     <div
-                                        class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
+                                        class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
                                         :style="`background-image: url(${article.image});`"
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
-                                        <Link :href="route('front.articles.single', article.id)">
-                                            {{ article.title }}
-                                        </Link>
+                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                {{ article.title }}
+            </span>
                                     </h3>
                                 </div>
-                            </article>
+                            </Link>
+
                         </div>
                     </div>
                 </aside>
