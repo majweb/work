@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import moment from "moment/moment.js";
+import moment from "moment";
 
 const props = defineProps({
     articles: Object,

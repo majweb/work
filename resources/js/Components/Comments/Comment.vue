@@ -69,7 +69,7 @@ const cancelReply = () => {
                     @click="startReply(comment.id)"
                     class="text-sm text-[#0B2B4C] mt-2 hover:underline"
                 >
-                    Odpowiedz
+                    {{__('comments.response')}}
                 </button>
 
                 <!-- Formularz odpowiedzi -->
@@ -80,7 +80,7 @@ const cancelReply = () => {
                         :limit="1000"
                         rows="2"
                         class="w-full rounded"
-                        placeholder="Napisz odpowiedź..."
+                        :placeholder="__('comments.WriteResponse')"
                     />
                     <InputError :message="form.errors.content"/>
 
@@ -90,13 +90,13 @@ const cancelReply = () => {
                             class="px-3 py-1 bg-[#0B2B4C] text-white rounded hover:bg-[#133C69]"
                             :disabled="form.processing"
                         >
-                            Odpowiedz
+                            {{__('comments.response')}}
                         </button>
                         <button
                             @click="cancelReply"
                             class="px-3 py-1 text-gray-600 hover:text-gray-800"
                         >
-                            Anuluj
+                            {{__('translate.cancel')}}
                         </button>
                     </div>
                 </div>

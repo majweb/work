@@ -108,8 +108,38 @@ class FrontController extends Controller
 
     public function groupArticles($category)
     {
+        $articles = Article::active()
+        ->with('user:id,name')
+        ->lang()
+        ->whereJsonContains('category', ['value' => (int) $category])
+        ->latest()
+        ->get();
+
+        // Pobranie nazwy kategorii z pierwszego artykułu (jeśli istnieje)
+        $categoryName = optional($articles->first())->category['name'] ?? 'Nieznana kategoria';
+
+        // Podział na sekcje 2,3,2,3...
+        $sectionPattern = [2,3]; // wzór sekcji
+        $sections = [];
+        $index = 0;
+
+        while ($index < $articles->count()) {
+            foreach ($sectionPattern as $count) {
+                $section = $articles->slice($index, $count)->values();
+                if ($section->isNotEmpty()) {
+                    // Zastosuj Resource do pojedynczych artykułów w sekcji
+                    $sections[] = NewestArticleArticlesPageResource::collection($section);
+                }
+                $index += $count;
+                if ($index >= $articles->count()) break;
+            }
+        }
+
+
         return inertia()->render('Front/ArticlesGroup', [
             'category' => $category,
+            'categoryName' => $categoryName,
+            'sections' => $sections, // każda sekcja już ma Resource
         ]);
     }
 

@@ -321,7 +321,7 @@ const goToPage = (page) => {
                                     </label>
                                 </div>
                                 <InputHelper id="helper-publish-explanation">
-                                    Zarządzaj publikacją i widocznością artykułu
+                                    {{__('comments.publishComment')}}
                                 </InputHelper>
                             </div>
                             <!-- PUBLISH -->
@@ -332,16 +332,16 @@ const goToPage = (page) => {
                                     <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-4 rounded-lg shadow">
                                         <div class="flex justify-between items-start flex-wrap gap-2">
                                             <div>
-                                                <p class="font-medium text-gray-800">{{ comment.user?.name || 'Anonim' }}</p>
+                                                <p class="font-medium text-gray-800">{{ comment.user?.name || __('comments.anonim') }}</p>
                                                 <p class="text-sm text-gray-500">
-                                                    {{ new Date(comment.created_at).toLocaleString('pl-PL') }}
+                                                    {{ new Date(comment.created_at).toLocaleString() }}
                                                 </p>
                                             </div>
                                             <div class="flex-shrink-0">
                                                 <button @click="toggleCommentVisibility(comment)" type="button"
                                                         class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
                                                         :class="comment.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
-                                                    {{ comment.show ? 'Widoczny' : 'Ukryty' }}
+                                                    {{ comment.show ? __('comments.see') : __('comments.hide') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -352,16 +352,16 @@ const goToPage = (page) => {
                                             <div v-for="reply in comment.replies" :key="reply.id" class="bg-gray-50 p-3 rounded border-l-2 border-gray-200">
                                                 <div class="flex justify-between items-start flex-wrap gap-2">
                                                     <div>
-                                                        <p class="font-medium text-gray-800">{{ reply.user?.name || 'Anonim' }}</p>
+                                                        <p class="font-medium text-gray-800">{{ reply.user?.name || __('comments.anonim') }}</p>
                                                         <p class="text-sm text-gray-500">
-                                                            {{ new Date(reply.created_at).toLocaleString('pl-PL') }}
+                                                            {{ new Date(reply.created_at).toLocaleString() }}
                                                         </p>
                                                     </div>
                                                     <div class="flex-shrink-0">
                                                         <button type="button" @click="toggleCommentVisibility(reply)"
                                                                 class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
                                                                 :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
-                                                            {{ reply.show ? 'Widoczny' : 'Ukryty' }}
+                                                            {{ reply.show ? __('comments.see') : __('comments.hide') }}
                                                         </button>
                                                     </div>
                                                 </div>
@@ -374,7 +374,7 @@ const goToPage = (page) => {
                                 <div class="flex justify-center mt-4 space-x-2" v-if="totalPages > 1">
                                     <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
                                             class="px-3 py-1 border rounded bg-gray-100 disabled:opacity-50 hover:bg-gray-200">
-                                        Poprzednia
+                                        {{__('translate.previous')}}
                                     </button>
 
                                     <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
@@ -385,7 +385,7 @@ const goToPage = (page) => {
 
                                     <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
                                             class="px-3 py-1 border rounded bg-gray-100 disabled:opacity-50 hover:bg-gray-200">
-                                        Następna
+                                        {{__('translate.next')}}
                                     </button>
                                 </div>
                                 <!-- KOMENTARZE -->

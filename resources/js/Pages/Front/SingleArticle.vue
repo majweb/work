@@ -111,7 +111,7 @@ function shareOnInstagram() {
                 <!-- Main Column -->
                 <div class="flex-1">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden">
-                        <h2 class="font-bold text-2xl mb-4">{{ article.title }}</h2>
+                        <h1 class="font-bold text-2xl mb-4">{{ article.title }}</h1>
                         <div class="h-[400px] mb-4">
                             <img class="w-full h-full object-cover" :src="article.photo?.original_url"
                                  :alt="article.title">

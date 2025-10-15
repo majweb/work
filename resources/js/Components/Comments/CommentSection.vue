@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import Comment from './Comment.vue';
 import TextareaLimit from "@/Components/TextareaLimit.vue";
@@ -46,7 +46,7 @@ const allRepliesCount = computed(() =>
     <div class="mt-8">
         <!-- Licznik komentarzy -->
         <h3 class="text-xl font-bold mb-4">
-            Komentarze ({{ mainCommentsCount }} główne, {{ allRepliesCount }} odpowiedzi)
+            {{__('comments.comments')}} ({{ mainCommentsCount }} {{__('comments.main')}} {{ allRepliesCount }} {{__('comments.responses')}}
         </h3>
 
         <!-- Formularz dodawania nowego komentarza -->
@@ -57,7 +57,7 @@ const allRepliesCount = computed(() =>
                     v-model="form.content"
                     :limit="1000"
                     class="w-full rounded"
-                    placeholder="Napisz komentarz..."
+                    :placeholder="__('comments.WriteComment')"
                 />
                 <InputError :message="form.errors.content"/>
 
@@ -67,14 +67,14 @@ const allRepliesCount = computed(() =>
                         class="px-4 py-2 bg-[#0B2B4C] text-white rounded hover:bg-[#133C69] mt-4"
                         :disabled="form.processing"
                     >
-                        Dodaj komentarz
+                        {{__('comments.add')}}
                     </button>
                 </div>
             </form>
         </div>
 
         <div v-else class="mb-6 p-4 bg-gray-100 rounded">
-            <p>Zaloguj się, aby dodać komentarz</p>
+            <p>{{__('comments.addLogin')}}</p>
         </div>
 
         <!-- Lista komentarzy -->
