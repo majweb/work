@@ -40,8 +40,12 @@ class CommentPostedNotification extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
+        $editUrl = route('articles.edit', $this->comment->article_id);
+
+
+
         return [
-            'message'=> __('comments.notyComment').$this->comment->article_id,
+            'message' => __('comments.notyComment') . ' <a href="' . $editUrl . '">'.$this->comment->article_id.'</a>',
             'comment_id' => $this->comment->id,
             'article_id' => $this->comment->article_id,
             'user_name' => $this->comment->user->name,

@@ -186,7 +186,7 @@ const markAllAsRead = () => {
                             <div class="flex justify-between items-start">
                                 <div>
                                     <h4 class="font-medium text-gray-900">{{ formatNotification(notification).title }}</h4>
-                                    <p class="mt-1 text-gray-600">{{ formatNotification(notification).message }}</p>
+                                    <p class="mt-1 text-gray-600" v-html="formatNotification(notification).message"></p>
 
                                     <Link v-if="formatNotification(notification).actionUrl"
                                           :href="formatNotification(notification).actionUrl"
@@ -239,3 +239,8 @@ const markAllAsRead = () => {
         </div>
     </AppLayout>
 </template>
+<style>
+a{
+    text-decoration: underline;
+}
+</style>

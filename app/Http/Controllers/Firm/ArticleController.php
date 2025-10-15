@@ -139,9 +139,11 @@ class ArticleController extends Controller
 
         $article->load(['comments' => function ($query) {
             $query->with(['user', 'replies' => function ($q) {
-                $q->with('user', 'replies');
+                $q->with('user', 'replies')->orderBy('show', 'asc');   // niewidoczne najpierw
+
             }])
-                ->whereNull('parent_id');
+                ->whereNull('parent_id')
+                ->orderBy('show', 'asc');
         }]);
 
         $category = Cache::rememberForever('category', function() {
