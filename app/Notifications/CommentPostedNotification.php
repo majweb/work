@@ -42,8 +42,6 @@ class CommentPostedNotification extends Notification implements ShouldQueue
     {
         $editUrl = route('articles.edit', $this->comment->article_id);
 
-
-
         return [
             'message' => __('comments.notyComment') . ' <a href="' . $editUrl . '">'.$this->comment->article_id.'</a>',
             'comment_id' => $this->comment->id,
