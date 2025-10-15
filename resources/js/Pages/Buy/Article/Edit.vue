@@ -358,7 +358,7 @@ const goToPage = (page) => {
                                                         </p>
                                                     </div>
                                                     <div class="flex-shrink-0">
-                                                        <button @click="toggleCommentVisibility(reply)"
+                                                        <button type="button" @click="toggleCommentVisibility(reply)"
                                                                 class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
                                                                 :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
                                                             {{ reply.show ? 'Widoczny' : 'Ukryty' }}
