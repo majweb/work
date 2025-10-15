@@ -17,7 +17,7 @@ const props = defineProps({
     <FrontLayout :title="__('translate.articles')">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <h1 class="text-4xl font-bold text-[#0B2B4C] mb-8">{{ categoryName }}</h1>
+                <h1 class="text-4xl font-bold text-[#0a2c5c] mb-8">{{ categoryName }}</h1>
 
                 <div v-for="(section, i) in sections" :key="i" class="mb-12">
                     <!-- Sekcja 2-elementowa -->
@@ -35,8 +35,8 @@ const props = defineProps({
                                 ></div>
                             </div>
                             <div class="p-6">
-                                <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative group">
-    <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                                <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative group">
+    <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
         {{ article.title }}
     </span>
                                 </h3>
@@ -70,7 +70,7 @@ const props = defineProps({
                                             ></div>
                                         </div>
                                         <div class="p-6">
-                                            <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
+                                            <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 hover:underline">
                                                 {{ article.title }}
                                             </h3>
                                             <p class="text-sm text-gray-500 mb-1">{{ moment(article.created).format('DD.MM.YYYY HH:mm') }}</p>
@@ -98,8 +98,8 @@ const props = defineProps({
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative group">
-    <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative group">
+    <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
         {{ article.title }}
     </span>
                                     </h3>
@@ -123,6 +123,6 @@ const props = defineProps({
 
 <style>
 .swiper-scrollbar-drag {
-    background: #0B2B4C;
+    background: #0a2c5c;
 }
 </style>

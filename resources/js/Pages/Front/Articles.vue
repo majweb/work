@@ -70,7 +70,7 @@ const props = defineProps({
                         <div class="md:w-1/2 mt-6 md:mt-0 flex justify-center md:justify-end overflow-hidden">
                             <div class="bg-white p-2 rounded-md">
                                 <div
-                                    class="w-[280px] md:w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
+                                    class="w-[280px] md:w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300"
                                     :style="`background-image: url(${newest.image});`"
                                 ></div>
                             </div>
@@ -100,7 +100,7 @@ const props = defineProps({
                                 >
                                     <Link
                                         :href="route('front.groupArticles', { category: category.value })"
-                                        class="hover:scale-95 uppercase bg-[#0B2B4C] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap"
+                                        class="hover:scale-95 uppercase bg-[#0a2c5c] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap"
                                     >
                                         {{ category.name }}
                                     </Link>
@@ -132,7 +132,7 @@ const props = defineProps({
                                             ></div>
                                         </div>
                                         <div class="p-6">
-                                            <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
+                                            <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 hover:underline">
                                                 <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
                                             </h3>
                                             <p class="text-sm text-gray-500 mb-1">
@@ -162,8 +162,8 @@ const props = defineProps({
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
-            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
                 {{ article.title }}
             </span>
                                     </h3>
@@ -182,7 +182,7 @@ const props = defineProps({
                     <div v-if="grouped.length" v-for="category in grouped" :key="category.name" class="mb-12">
                         <!-- Nazwa grupy -->
                         <Link :href="route('front.groupArticles', { category: category.value })"
-                              class="mx-5 text-center hover:scale-95 uppercase bg-[#0B2B4C] text-white font-semibold py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap mb-6">
+                              class="mx-5 text-center hover:scale-95 uppercase bg-[#0a2c5c] text-white font-semibold py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap mb-6">
                             {{ category.name }}
                         </Link>
 
@@ -206,7 +206,7 @@ const props = defineProps({
                                                  :style="`background-image: url(${article.image});`"></div>
                                         </div>
                                         <div class="p-6">
-                                            <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 hover:underline">
+                                            <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 hover:underline">
                                                 <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
                                             </h3>
                                             <p class="text-sm text-gray-500 mb-1">
@@ -237,8 +237,8 @@ const props = defineProps({
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
-            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
                 {{ article.title }}
             </span>
                                     </h3>
@@ -264,6 +264,6 @@ const props = defineProps({
 </template>
 <style>
 .swiper-scrollbar-drag{
-    background: #0B2B4C;
+    background: #0a2c5c;
 }
 </style>

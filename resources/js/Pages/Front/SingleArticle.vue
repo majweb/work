@@ -117,25 +117,25 @@ function shareOnInstagram() {
                                  :alt="article.title">
                         </div>
 
-                        <Link :href="route('front.articles')" class="font-bold text-xl underline p-4 block">
-                            Powrót do listy
+                        <Link :href="route('front.articles')" class="font-bold text-xl underline block text-[#0a2c5c]">
+                            {{__('translate.backToList')}}
                         </Link>
 
                         <p class="py-5" v-html="article.short_description"></p>
 
                         <!-- Table of Contents -->
-                        <div v-if="headings.length" class="mb-6 p-4 border rounded border-[#0B2B4C]">
-                            <h3 class="font-semibold mb-2 pl-6 uppercase text-[#0B2B4C]">Artykuł w skrócie:</h3>
+                        <div v-if="headings.length" class="mb-6 p-4 border rounded border-[#0a2c5c]">
+                            <h3 class="font-semibold mb-2 pl-6 uppercase text-[#0a2c5c]">Artykuł w skrócie:</h3>
                             <ul class="pl-5">
                                 <li v-for="heading in headings" :key="heading.id"
                                     class="mb-1 cursor-pointer hover:font-semibold">
-                                    <a @click.prevent="scrollToHeading(heading.id)">{{ heading.text }}</a>
+                                    <a class="text-[#0a2c5c]" @click.prevent="scrollToHeading(heading.id)">{{ heading.text }}</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="article-content" v-html="article.content"></div>
-                        <span>Opublikowano: {{ moment(article.created_at).format('DD.MM.YYYY HH:mm') }}</span>
+                        <span class="text-[#0a2c5c] my-2 block font-bold">Opublikowano: {{ moment(article.created_at).format('DD.MM.YYYY HH:mm') }}</span>
 
                         <!-- Share Buttons -->
                         <p class="font-bold mt-4">Udostępnij artykuł</p>
@@ -210,7 +210,7 @@ function shareOnInstagram() {
                                 v-for="category in section.categories"
                                 :key="category.value"
                                 :href="route('front.groupArticles', { category: category.value })"
-                                class="hover:scale-95 uppercase bg-[#0B2B4C] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap"
+                                class="hover:scale-95 uppercase bg-[#0a2c5c] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap"
                             >
                                 {{ category.name }}
                             </Link>
@@ -231,8 +231,8 @@ function shareOnInstagram() {
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
-            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
                 {{ article.title }}
             </span>
                                     </h3>
@@ -258,8 +258,8 @@ function shareOnInstagram() {
                                     ></div>
                                 </div>
                                 <div class="p-6">
-                                    <h3 class="text-[#0B2B4C] text-lg font-bold mb-2 relative">
-            <span class="border-b-2 border-transparent group-hover:border-[#0B2B4C] transition-all duration-300">
+                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative">
+            <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
                 {{ article.title }}
             </span>
                                     </h3>
@@ -285,42 +285,42 @@ function shareOnInstagram() {
         font-size: 1.8rem;
         font-weight: 700;
         margin: 1.5rem 0 1rem 0;
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 
     h2 {
         font-size: 1.6rem;
         font-weight: 600;
         margin: 1.4rem 0 0.9rem 0;
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 
     h3 {
         font-size: 1.4rem;
         font-weight: 600;
         margin: 1.2rem 0 0.8rem 0;
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 
     h4 {
         font-size: 1.2rem;
         font-weight: 500;
         margin: 1rem 0 0.6rem 0;
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 
     h5 {
         font-size: 1rem;
         font-weight: 500;
         margin: 0.9rem 0 0.5rem 0;
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 
     h6 {
         font-size: 0.9rem;
         font-weight: 500;
         margin: 0.8rem 0 0.4rem 0;
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 
     // Listy
@@ -373,7 +373,7 @@ function shareOnInstagram() {
 
     // Linki
     p {
-        color: #0B2B4C;
+        color: #0a2c5c;
     }
 }
 </style>
