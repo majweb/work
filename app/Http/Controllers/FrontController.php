@@ -150,7 +150,7 @@ class FrontController extends Controller
 
         $projects = Project::with('user.changeProducts')
             ->featured() // dodaje flagę is_featured
-            ->paginate(20)->withQueryString();
+            ->paginate(5)->withQueryString();
         $countries = (new Helper())->makeCountriesToSelectHasProjects();
 
         // Pobierz opcje z pamięci podręcznej lub z bazy danych
