@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, router, usePage } from '@inertiajs/vue3';
+import { Head, Link, router, usePage, useForm } from '@inertiajs/vue3';
 import Multiselect from 'vue-multiselect';
 import Banner from '@/Components/Banner.vue';
 import ApplicationMark from "@/Components/ApplicationMark.vue";
@@ -7,6 +7,21 @@ import ApplicationMarkWhite from "@/Components/ApplicationMarkWhite.vue";
 import NavLink from "@/Components/NavLink.vue";
 
 import { ref, computed, watch,onMounted  } from "vue";
+
+const form = useForm({
+    email: '',
+});
+
+const submitForm = () => {
+    form.post(route('newsletter.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset('email');
+        },
+    });
+};
+import __ from "@/lang.js";
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 const ogUrl = ref('');
 onMounted(() => {
     if (typeof window !== 'undefined') {
@@ -187,26 +202,118 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
         </transition>
 
         <!-- Scroll to top -->
-        <button v-if="showScrollTop" @click="scrollToTop" class="fixed right-6 bottom-6 bg-blue-900 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-blue-800 z-[99]">↑</button>
+        <button v-if="showScrollTop" @click="scrollToTop" class="fixed right-6 bottom-6 bg-[#0a2c5c] text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-[#143d8c] z-[99]">↑</button>
 
         <!-- Footer -->
-        <footer class="border-t border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800 w-full relative md:bottom-0 md:left-0 md:right-0 z-50">
-            <div class="mx-auto max-w-7xl px-6 py-4 lg:px-8">
-                <div class="flex flex-col items-center justify-between gap-2 sm:flex-row">
-                    <Link :href="route('front')" class="inline-flex items-center gap-3 group">
-                        <img src="/images/logoTransparent.png" alt="Company logo" class="h-9 w-auto" />
-                        <span class="text-xl font-semibold tracking-tight text-gray-900 group-hover:opacity-90 dark:text-white">Work4You.global</span>
-                    </Link>
-                    <Link :href="route('front.contact')" class="inline-flex items-center rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200">
-                        Get in touch
-                    </Link>
+        <footer class="border-t border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800 w-full relative md:bottom-0 md:left-0 md:right-0 z-50 text-[#0a2c5c]">
+            <div class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+
+                <div class="flex flex-col md:flex-row items-center justify-between mb-4">
+                    <img src="/images/logo-horizontal.svg" alt="logo" />
+                    <div class="socials flex items-center gap-1">
+                        <a href="https://facebook.com">
+                            <img src="/images/icons/facebook.svg" alt="facebook"
+                                 class="h-10 w-10 transition hover:scale-95"/>
+                        </a>
+                        <a href="https://instagram.com">
+                            <img src="/images/icons/instagram.svg" alt="instagram"
+                                 class="h-10 w-10 transition hover:scale-95"/>
+                        </a>
+                        <a href="https://instagram.com">
+                            <img src="/images/icons/linkedin.svg" alt="linkedin"
+                                 class="h-10 w-10 transition hover:scale-95"/>
+                        </a>
+                        <a href="https://instagram.com">
+                            <img src="/images/icons/x.svg" alt="x"
+                                 class="h-10 w-10 transit ion hover:scale-95"/>
+                        </a>
+                        <a href="https://instagram.com">
+                            <img src="/images/icons/tik_tok.svg" alt="tik tok"
+                                 class="h-10 w-10 transition hover:scale-95"/>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8">
+                    <!-- Dla kandydatów -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">{{ __('footer.for_candidates') }}</h3>
+                        <ul class="space-y-2">
+                            <li><Link :href="route('front.articles')" class="text-[#0a2c5c] hover:underline">{{ __('footer.browse_offers') }}</Link></li>
+                            <li><Link :href="route('front.articles')" class="text-[#0a2c5c] hover:underline">{{ __('footer.articles_and_guides') }}</Link></li>
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.login') }}</Link></li>
+                            <li><Link :href="route('register')" class="text-[#0a2c5c] hover:underline">{{ __('footer.register') }}</Link></li>
+                        </ul>
+                    </div>
+
+                    <!-- Dla firm -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">{{ __('footer.for_companies') }}</h3>
+                        <ul class="space-y-2">
+                            <li><Link :href="route('front.firms')" class="text-[#0a2c5c] hover:underline">{{ __('footer.add_offer') }}</Link></li>
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.pricing') }}</Link></li>
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.login') }}</Link></li>
+                            <li><Link :href="route('register')" class="text-[#0a2c5c] hover:underline">{{ __('footer.register') }}</Link></li>
+                        </ul>
+                    </div>
+
+                    <!-- O nas -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">{{ __('footer.about_us') }}</h3>
+                        <ul class="space-y-2">
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.companies') }}</Link></li>
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.about') }}</Link></li>
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.contact') }}</Link></li>
+                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.partners') }}</Link></li>
+                        </ul>
+                    </div>
+
+                    <!-- Bądźmy w kontakcie -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">{{ __('footer.stay_in_touch') }}</h3>
+                        <p class="text-[#0a2c5c] mb-4">{{ __('footer.newsletter_text') }}</p>
+                        <form @submit.prevent="submitForm" class="space-y-2">
+                            <div class="flex">
+                                <input
+                                    type="email"
+                                    v-model="form.email"
+                                    :placeholder="__('footer.email_placeholder')"
+                                    class="flex-1 px-3 py-2 border border-[#0a2c5c] rounded-l"
+                                    :class="{'border-red-500': form.errors.email}"
+                                >
+                                <button
+                                    type="submit"
+                                    class="px-4 py-2 bg-[#0a2c5c] text-white rounded-r transition hover:bg-[#143d8c]"
+                                    :disabled="form.processing"
+                                >
+                                    {{ __('footer.subscribe') }}
+                                </button>
+                            </div>
+                            <div v-if="form.errors.email" class="text-red-500 text-sm">
+                                {{ form.errors.email }}
+                            </div>
+                            <p class="text-xs text-[#0a2c5c]">{{ __('footer.privacy_notice') }}</p>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- Bottom bar -->
-                <div class="flex flex-col items-center justify-between gap-4 sm:flex-row mt-4">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                        © <span x-data x-text="new Date().getFullYear()"></span> Work4You.global. All rights reserved.
-                    </p>
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div class="flex flex-wrap gap-4 justify-center text-sm text-[#0a2c5c]">
+                            <Link class="hover:underline" :href="route('login')">{{ __('footer.privacy_policy') }}</Link>
+                            <span>|</span>
+                            <Link class="hover:underline" :href="route('login')">{{ __('footer.terms') }}</Link>
+                            <span>|</span>
+                            <Link class="hover:underline" :href="route('login')">{{ __('footer.cookies') }}</Link>
+                            <span>|</span>
+                            <Link class="hover:underline" :href="route('login')">{{ __('footer.gdpr') }}</Link>
+                        </div>
+                        <p class="text-sm text-[#0a2c5c]">
+                            {{ __('footer.copyright') }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -23,6 +23,7 @@ use App\Models\LevelEducation;
 use App\Models\Project;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use App\Services\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
@@ -146,14 +147,44 @@ class FrontController extends Controller
 
     public function projects()
     {
-        $countryCode = getLocalBrowserLang();
-        $projects = Project::orderByRaw("JSON_SEARCH(country, 'one', ?, NULL, '$[*].countryCode') IS NULL ASC", [$countryCode])
+
+        $projects = Project::with('user.changeProducts')
             ->featured() // dodaje flagę is_featured
-            ->with('user.changeProducts')
             ->paginate(20)->withQueryString();
+        $countries = (new Helper())->makeCountriesToSelectHasProjects();
+
+        // Pobierz opcje z pamięci podręcznej lub z bazy danych
+        $workingModes = Cache::rememberForever('workingModes', function () {
+            return MultiselectWithoutDetailResource::collection(
+                \App\Models\WorkingMode::all()
+            );
+        });
+
+        $experiences = Cache::rememberForever('experiences', function () {
+            return MultiselectWithoutDetailResource::collection(
+                \App\Models\Experience::all()
+            );
+        });
+
+        $typesOfContract = Cache::rememberForever('typesOfContract', function () {
+            return MultiselectWithoutDetailResource::collection(
+                \App\Models\TypeOfContract::all()
+            );
+        });
+
+        $workLoads = Cache::rememberForever('workLoads', function () {
+            return MultiselectWithoutDetailResource::collection(
+                \App\Models\WorkLoad::all()
+            );
+        });
 
         return inertia()->render('Front/Projects', [
             'projects' => $projects,
+            'countries' => $countries,
+            'workingModes' => $workingModes,
+            'experiences' => $experiences,
+            'typesOfContract' => $typesOfContract,
+            'workLoads' => $workLoads,
         ]);
     }
 
@@ -456,6 +487,96 @@ class FrontController extends Controller
     {
         return Cache::rememberForever('categoriesWithoutDetail', function() {
             return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
+        });
+    }
+
+    public function getCategorySub($categoryId)
+    {
+        return Cache::remember('category_sub_'.$categoryId, 3600, function() use ($categoryId) {
+            $categorySubs = Project::all()
+                ->map(function ($item) {
+                    return [
+                        'categorySub' => is_string($item->categorySub)
+                            ? json_decode($item->categorySub, true)
+                            : $item->categorySub,
+                        'category' => is_string($item->category)
+                            ? json_decode($item->category, true)
+                            : $item->category,
+                    ];
+                })
+                ->filter(fn($item) => isset($item['category']['value']) && $item['category']['value'] == $categoryId)
+                ->pluck('categorySub')
+                ->filter()
+                ->unique('value')
+                ->values()
+                ->map(fn($cat) => [
+                    'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
+                    'value' => $cat['value'],
+                    'allTranslations' => $cat['allTranslations']['title'],
+                ])
+                ->toArray();
+
+            return response()->json($categorySubs);
+        });
+    }
+
+    public function getProfessions($categorySubId)
+    {
+        return Cache::remember('professions_'.$categorySubId, 3600, function() use ($categorySubId) {
+            $professions = Project::all()
+                ->map(function ($item) {
+                    return [
+                        'profession' => is_string($item->profession)
+                            ? json_decode($item->profession, true)
+                            : $item->profession,
+                        'categorySub' => is_string($item->categorySub)
+                            ? json_decode($item->categorySub, true)
+                            : $item->categorySub,
+                    ];
+                })
+                ->filter(fn($item) => isset($item['categorySub']['value']) && $item['categorySub']['value'] == $categorySubId)
+                ->pluck('profession')
+                ->filter()
+                ->unique('value')
+                ->values()
+                ->map(fn($prof) => [
+                    'name' => $prof['allTranslations']['title'][app()->getLocale()] ?? $prof['name'],
+                    'value' => $prof['value'],
+                    'allTranslations' => $prof['allTranslations']['title'],
+                ])
+                ->toArray();
+
+            return response()->json($professions);
+        });
+    }
+
+    public function getPositions($professionId)
+    {
+        return Cache::remember('positions_'.$professionId, 3600, function() use ($professionId) {
+            $positions = Project::all()
+                ->map(function ($item) {
+                    return [
+                        'position' => is_string($item->position)
+                            ? json_decode($item->position, true)
+                            : $item->position,
+                        'profession' => is_string($item->profession)
+                            ? json_decode($item->profession, true)
+                            : $item->profession,
+                    ];
+                })
+                ->filter(fn($item) => isset($item['profession']['value']) && $item['profession']['value'] == $professionId)
+                ->pluck('position')
+                ->filter()
+                ->unique('value')
+                ->values()
+                ->map(fn($pos) => [
+                    'name' => $pos['allTranslations']['title'][app()->getLocale()] ?? $pos['name'],
+                    'value' => $pos['value'],
+                    'allTranslations' => $pos['allTranslations']['title'],
+                ])
+                ->toArray();
+
+            return response()->json($positions);
         });
     }
 

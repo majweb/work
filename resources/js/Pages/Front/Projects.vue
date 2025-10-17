@@ -2,37 +2,432 @@
 import Pagination from '@/Components/Pagination.vue';
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {usePage, Link} from '@inertiajs/vue3';
+import Multiselect from "vue-multiselect";
+import InputError from "@/Components/InputError.vue";
+import { useForm } from '@inertiajs/vue3';
+import { ref, watch } from "vue";
+import __ from "@/lang.js";
 
 const props = defineProps({
-    projects: Object
+    projects: Object,
+    countries: Array,
+    workingModes: Array,
+    experiences: Array,
+    typesOfContract: Array,
+    workLoads: Array,
 });
+
+const showFilters = ref(false);
+const optionsCities = ref([]);
+const optionsCategories = ref([]);
+const optionsCategorySub = ref([]);
+const optionsProfession = ref([]);
+const optionsPosition = ref([]);
+
+const form = useForm({
+    country: null,
+    city: null,
+    category: null,
+    categorySub: null,
+    profession: null,
+    position: null,
+    workingMode: null,
+    experience: null,
+    typeOfContract: null,
+    workLoad: null,
+});
+
+// Obsługa zmiany kraju
+watch(() => form.country, async (newCountry) => {
+    if (!newCountry || !newCountry.countryCode) {
+        optionsCities.value = [];
+        optionsCategories.value = [];
+        optionsCategorySub.value = [];
+        optionsProfession.value = [];
+        optionsPosition.value = [];
+        form.city = null;
+        form.category = null;
+        form.categorySub = null;
+        form.profession = null;
+        form.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("cities.byCountry", newCountry.countryCode));
+        const data = await response.json();
+        optionsCities.value = data;
+        form.city = null;
+    } catch (e) {
+        console.error(__('translate.errorLoadingCities'), e);
+    }
+
+    try {
+        const responseCategories = await fetch(route("categories.byCountry", newCountry.countryCode));
+        const categoriesData = await responseCategories.json();
+        optionsCategories.value = categoriesData;
+        form.category = null;
+    } catch (e) {
+        console.error(__('translate.errorLoadingCategories'), e);
+    }
+});
+
+// Obsługa zmiany kategorii
+watch(() => form.category, async (newCategory) => {
+    if (!newCategory) {
+        optionsCategorySub.value = [];
+        optionsProfession.value = [];
+        optionsPosition.value = [];
+        form.categorySub = null;
+        form.profession = null;
+        form.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("category.sub", newCategory.value));
+        const data = await response.json();
+        optionsCategorySub.value = data;
+        form.categorySub = null;
+    } catch (e) {
+        console.error(__('translate.errorLoadingSubcategories'), e);
+    }
+});
+
+// Obsługa zmiany podkategorii
+watch(() => form.categorySub, async (newCategorySub) => {
+    if (!newCategorySub) {
+        optionsProfession.value = [];
+        optionsPosition.value = [];
+        form.profession = null;
+        form.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("category.professions", newCategorySub.value));
+        const data = await response.json();
+        optionsProfession.value = data;
+        form.profession = null;
+    } catch (e) {
+        console.error(__('translate.errorLoadingProfessions'), e);
+    }
+});
+
+// Obsługa zmiany zawodu
+watch(() => form.profession, async (newProfession) => {
+    if (!newProfession) {
+        optionsPosition.value = [];
+        form.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("category.positions", newProfession.value));
+        const data = await response.json();
+        optionsPosition.value = data;
+        form.position = null;
+    } catch (e) {
+        console.error(__('translate.errorLoadingPositions'), e);
+    }
+});
+
+const toggleFilters = () => {
+    showFilters.value = !showFilters.value;
+};
+
+const submit = () => {
+    form.get(route('front.projects'), {
+        preserveState: true,
+        preserveScroll: true,
+    });
+};
 
 </script>
 <template>
     <FrontLayout :title="__('translate.projects')">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <!-- Formularz wyszukiwania -->
+                <div class="mb-6">
+                    <form @submit.prevent="submit" class="w-full">
+                        <div class="bg-white rounded-lg shadow-md p-4">
+                            <div class="flex gap-3">
+                                <button
+                                    type="button"
+                                    @click="toggleFilters"
+                                    :class="[
+                                        'px-4 py-2 border border-2 border-red-500 text-gray-700 rounded-md transition',
+                                        showFilters ? 'bg-red-300' : 'hover:bg-red-300'
+                                    ]"
+                                >
+                                    {{ __('translate.filters') }}
+                                </button>
+                                <button
+                                    type="submit"
+                                    class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition"
+                                >
+                                    {{ __('translate.search') }}
+                                </button>
+                            </div>
+
+                            <!-- Panel filtrów -->
+                            <div v-show="showFilters" class="mt-4 space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <!-- Select Country -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.country"
+                                            :options="props.countries"
+                                            group-values="elements"
+                                            group-label="group"
+                                            :group-select="false"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderCountry')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.country" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select City -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.city"
+                                            :options="optionsCities"
+                                            :disabled="!form.country"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderCity')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.city" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Category -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.category"
+                                            :options="optionsCategories"
+                                            :disabled="!form.country"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderCategory')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.category" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select CategorySub -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.categorySub"
+                                            :options="optionsCategorySub"
+                                            :disabled="!form.category"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderCategorySub')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.categorySub" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Profession -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.profession"
+                                            :options="optionsProfession"
+                                            :disabled="!form.categorySub"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderProfession')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.profession" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Position -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.position"
+                                            :options="optionsPosition"
+                                            :disabled="!form.profession"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderPosition')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.position" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Working Mode -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.workingMode"
+                                            :options="props.workingModes"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderWorkingMode')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.workingMode" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Experience -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.experience"
+                                            :options="props.experiences"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderExperience')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.experience" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Type of Contract -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.typeOfContract"
+                                            :options="props.typesOfContract"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderTypeOfContract')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.typeOfContract" class="mt-2"/>
+                                    </div>
+
+                                    <!-- Select Work Load -->
+                                    <div>
+                                        <multiselect
+                                            v-model="form.workLoad"
+                                            :options="props.workLoads"
+                                            track-by="value"
+                                            label="name"
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :placeholder="__('translate.placeholderWorkLoad')"
+                                        >
+                                            <template #noResult>
+                                                <span>{{__('translate.noOptions')}}</span>
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.workLoad" class="mt-2"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <h2 class="font-bold text-2xl p-4 text-center">{{ __('translate.projects') }}</h2>
                     <div v-if="props.projects.total"
-                         class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-                        <div v-for="(project) in props.projects.data" :key="project.id" class="mb-6 space-y-1">
-                            <div v-if="project.is_featured">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-400"
-                                     fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.538 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.783.57-1.838-.197-1.538-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.293z"/>
-                                </svg>
-                            </div>
-                            <Link :href="route('front.projects.single',project)"
-                                  class="font-bold mb-2 text-xl text-red-500 underline">
-                                {{ project.title[usePage().props.language] }}
+                         class="p-6 lg:p-8 bg-white">
+                        <div v-for="(project) in props.projects.data" :key="project.id"
+                             class="mb-4 p-4 border border-blue-100 rounded-lg hover:shadow-lg transition duration-200 md:hover:bg-blue-50"    :class="{
+         'border-blue-600 ring-2 ring-blue-400 ring-offset-2': project.is_featured
+     }">
+                            <Link :href="route('front.projects.single', project)" class="flex items-start justify-between">
+                                <div class="flex items-start space-x-4">
+                                    <div
+                                        class="w-20 h-20 rounded-lg bg-gray-50"
+                                        :style="{
+                                            backgroundImage: `url('${project.user?.profile_photo_url || '/default-company-logo.png'}')`,
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundSize: 'cover'
+                                        }"
+                                    >
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-900 hover:text-red-500 transition-colors"
+                                        >
+                                            {{ project.position?.allTranslations.title[usePage().props.language] }}
+                                        </h3>
+                                        <div class="flex items-center mt-1 text-sm text-gray-600">
+                                            <span class="font-medium">{{ project.user?.name }}</span>
+                                        </div>
+                                        <div class="flex items-center mt-1 text-sm text-gray-500">
+                                            <span>{{ project.category.allTranslations.title[usePage().props.language] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xl font-bold text-red-500">
+                                        {{ project.basicSalaryFrom }} zł
+                                    </div>
+                                    <div class="text-sm text-gray-500 mt-1">
+                                        {{ project.cityWork }}, {{ project.country[0]?.allTranslations[usePage().props.language] }}
+                                    </div>
+                                </div>
                             </Link>
-                            <p class="mb-4">
-                                {{ __('translate.category') }}:{{ project.category.allTranslations.title[usePage().props.language] }}</p>
-                            <div v-for="country in project.country">
-                                {{ country.allTranslations[usePage().props.language] }}
-                            </div>
                         </div>
                         <Pagination v-if="props.projects.total > 10" class="mt-10 text-center mx-auto"
                                     :links="props.projects.links"/>

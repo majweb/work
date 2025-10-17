@@ -116,13 +116,10 @@ function shareOnInstagram() {
                             <img class="w-full h-full object-cover" :src="article.photo?.original_url"
                                  :alt="article.title">
                         </div>
-
                         <Link :href="route('front.articles')" class="font-bold text-xl underline block text-[#0a2c5c]">
                             {{__('translate.backToList')}}
                         </Link>
-
                         <p class="py-5" v-html="article.short_description"></p>
-
                         <!-- Table of Contents -->
                         <div v-if="headings.length" class="mb-6 p-4 border rounded border-[#0a2c5c]">
                             <h3 class="font-semibold mb-2 pl-6 uppercase text-[#0a2c5c]">Artykuł w skrócie:</h3>

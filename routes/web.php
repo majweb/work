@@ -3,8 +3,10 @@
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\CategoryControllerInvoke;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\NewsletterController;
 use App\Models\Country;
 use App\Services\Helper;
 use Illuminate\Support\Facades\Route;
@@ -60,8 +62,8 @@ Route::post('/upload-image', function (Request $request) { // <- instancja!
 Route::get('/moje', function () {
     return inertia()->render('Moje');
 });
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 Route::get('/test', function () {
-
     $unsupportedLanguages = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
 
     if (in_array(app()->getLocale(), $unsupportedLanguages)) {
@@ -264,6 +266,10 @@ Route::middleware([
 Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');
 Route::delete('temporary/delete',DeleteTemporaryFileController::class)->name('temporary.delete');
 Route::post('temporary/poster',DeletePosterFile::class)->name('temporary.delete.poster');
+
+Route::get('category/sub/{categoryId}', [FrontController::class, 'getCategorySub'])->name('category.sub');
+Route::get('category/professions/{categorySubId}', [FrontController::class, 'getProfessions'])->name('category.professions');
+Route::get('category/positions/{professionId}', [FrontController::class, 'getPositions'])->name('category.positions');
 
 Route::get('/download/cv-audio/{id}', function ($id) {
     $app = App\Models\Aplication::findOrFail($id);
