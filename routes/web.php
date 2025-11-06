@@ -3,6 +3,7 @@
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\CategoryControllerInvoke;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Firm\PremiumCertificateController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\LocationController;
@@ -190,7 +191,21 @@ Route::middleware([
     // Zarządzanie firmami zewnętrznymi
     Route::resource('external-companies', App\Http\Controllers\ExternalCompanyController::class)->middleware('role:firm');
     Route::resource('tags', App\Http\Controllers\Firm\TagController::class)->middleware('role:firm');
+Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
+    Route::get('/premium-certificate', [PremiumCertificateController::class, 'show'])
+        ->name('firm.premium-certificate.show');
+    Route::post('/premium-certificate/generate', [PremiumCertificateController::class, 'generate'])
+        ->name('firm.premium-certificate.generate');
+    Route::get('/premium-certificate/download', [PremiumCertificateController::class, 'download'])
+        ->name('firm.premium-certificate.download');
+    Route::get('/premium-certificate/downloadFromList/{history}', [PremiumCertificateController::class, 'downloadFromList'])
+        ->name('firm.premium-certificate.downloadFromList');
+    Route::get('/premium-certificate/list', [PremiumCertificateController::class, 'list'])
+        ->name('firm.premium-certificate.list');
 
+
+
+});
     // Trasy dla kandydatów
     Route::middleware(['role:firm'])->group(function () {
             Route::get('/candidates', [CandidatesController::class, 'index'])->name('candidates.index');

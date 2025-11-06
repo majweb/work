@@ -15,8 +15,8 @@ class WorkingModesResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
-            'title'=>$this->title,
+            'value'=>$this->id,
+            'name'=>$this->title,
             'allTranslations'=>$this->getTranslations()
         ];
     }

@@ -147,10 +147,62 @@ class FrontController extends Controller
 
     public function projects()
     {
+//        dd(request()->all());
+        $query = Project::with('user.changeProducts')->featured();
 
-        $projects = Project::with('user.changeProducts')
-            ->featured() // dodaje flagę is_featured
-            ->paginate(5)->withQueryString();
+        // Filtrowanie po kraju
+        if (request('country')) {
+            $query->whereJsonContains('country', ['value'=>(int) request('country')]);
+        }
+
+        // Filtrowanie po mieście
+        if (request('city')) {
+            $query->where('cityWork', 'like', '%' . request('city') . '%');
+        }
+
+        // Filtrowanie po kategorii
+        if (request('category')) {
+            $categoryValue = (int) request('category');
+            $query->whereJsonContains('category', ['value'=>$categoryValue]);
+        }
+
+        // Filtrowanie po podkategorii
+        if (request('categorySub')) {
+            $categorySubValue = (int) request('categorySub');
+            $query->whereJsonContains('categorySub', ['value'=>$categorySubValue]);
+        }
+
+        // Filtrowanie po zawodzie
+        if (request('profession')) {
+            $professionValue = (int) request('profession');
+            $query->whereJsonContains('profession', ['value'=>$professionValue]);
+        }
+
+        // Filtrowanie po trybie pracy
+        if (request('workingMode')) {
+            $workingModeId = (int) request('workingMode');
+            $query->whereJsonContains('workingMode', ['value'=>$workingModeId]);
+        }
+
+        if (request('experience')) {
+            $experienceId = (int) request('experience');
+            $query->whereJsonContains('experience', ['id'=>$experienceId]);
+        }
+
+        // Filtrowanie po typie umowy
+        if (request('typeOfContract')) {
+            $typeOfContractId = (int) request('typeOfContract');
+            $query->whereJsonContains('typeOfContract', ['id'=>$typeOfContractId]);
+        }
+
+        // Filtrowanie po wymiarze pracy
+        if (request('workLoad')) {
+            $workLoadId = (int) request('workLoad');
+            $query->whereJsonContains('workLoad', ['value'=>$workLoadId]);
+        }
+
+        $projects = $query->paginate(5)->withQueryString();
+
         $countries = (new Helper())->makeCountriesToSelectHasProjects();
 
         // Pobierz opcje z pamięci podręcznej lub z bazy danych

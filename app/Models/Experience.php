@@ -18,6 +18,6 @@ class Experience extends Model
     public array $translatable = ['name'];
 
     protected $casts = [
-        'name' => 'array',
+        'name' => 'array'
     ];
 }

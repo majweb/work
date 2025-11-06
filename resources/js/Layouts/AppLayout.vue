@@ -58,30 +58,6 @@ onUnmounted(()=>{
     Echo.leave(`App.Models.User.${currentUser.value?.id}`);
 });
 
-const products = ref([
-    {
-        id: 1,
-        name: 'Tattoo Ink Set',
-        price: '$49.99',
-        color: 'Red/Black',
-        quantity: 1,
-        imageSrc: '/images/ink-set.jpg',
-        imageAlt: 'Tattoo Ink Set',
-        href: '#'
-    },
-    {
-        id: 2,
-        name: 'Tattoo Machine',
-        price: '$199.99',
-        color: 'Black',
-        quantity: 1,
-        imageSrc: '/images/machine.jpg',
-        imageAlt: 'Tattoo Machine',
-        href: '#'
-    }
-])
-
-
 </script>
 
 <template>
@@ -215,6 +191,12 @@ const products = ref([
                                             </div>
                                             <DropdownLink :href="route('points.index')">
                                                 {{__('translate.points')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('firm.premium-certificate.show')" v-if="hasRole('firm')">
+                                                {{__('translate.premium_certificate')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('firm.premium-certificate.list')" v-if="hasRole('firm')">
+                                                {{__('premium.history_link')}}
                                             </DropdownLink>
                                             <DropdownLink :href="route('buy.index')" v-if="hasRole('firm')">
                                                 {{__('translate.buy')}}

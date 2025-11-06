@@ -21,6 +21,7 @@ class StoreProject extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'category' => ['required', 'array', 'max:100'],
             'categorySub' => ['required', 'array', 'max:100'],
@@ -28,11 +29,11 @@ class StoreProject extends FormRequest
             'position' => ['nullable', 'array', 'max:100'],
             'detailProjects' => ['required', 'array', 'min:1'],
             'workingMode' => ['required','array','min:1'],
-            'workingMode.*.id' => ['required','exists:App\Models\WorkingMode,id'],
-            'workingMode.*.title' => ['required'],
+            'workingMode.*.value' => ['required','exists:App\Models\WorkingMode,id'],
+            'workingMode.*.name' => ['required'],
             'workingMode.*.allTranslations' => ['required'],
             'workLoad' => ['required','array'],
-            'workLoad.id' => ['required','exists:App\Models\WorkLoad,id'],
+            'workLoad.value' => ['required','exists:App\Models\WorkLoad,id'],
             'workLoad.name' => ['required'],
             'workLoad.allTranslations' => ['required'],
             'shiftWork' => ['required','exists:App\Models\ShiftWork,id'],
@@ -40,8 +41,8 @@ class StoreProject extends FormRequest
             'payoutMode' => ['required','array'],
             'payoutMode.id' => ['required','exists:App\Models\PayoutMode,id'],
             'payoutMode.name' => ['required'],
-            'currency' => ['required'],
             'payoutMode.allTranslations' => ['required'],
+            'currency' => ['required'],
             'typeOfContract' => ['required', 'array', 'min:1',],
             'typeOfContract.*.id' => ['required','exists:App\Models\TypeOfContract,id'],
             'typeOfContract.*.name' => ['required'],
@@ -63,9 +64,9 @@ class StoreProject extends FormRequest
             'wait.*.name' => ['required'],
             'wait.*.allTranslations' => ['required'],
             'experience' => ['required', 'array', 'min:1',],
-            'experience.*.id' => ['required','exists:App\Models\Experience,id'],
-            'experience.*.name' => ['required'],
-            'experience.*.allTranslations' => ['required'],
+            'experience.id' => ['required','exists:App\Models\Experience,id'],
+            'experience.name' => ['required'],
+            'experience.allTranslations' => ['required'],
             'welcome' => ['required', 'array', 'min:1',],
             'welcome.*.id' => ['required','exists:App\Models\Welcome,id'],
             'welcome.*.name' => ['required'],

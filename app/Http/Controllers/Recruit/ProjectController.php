@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
+use App\Http\Resources\PayModesResource;
 use App\Http\Resources\TypeOfContractResource;
 use App\Http\Resources\WorkingModesResource;
 use App\Http\Resources\WorkLoadResource;
@@ -83,7 +84,7 @@ class ProjectController extends Controller implements HasMiddleware
         $workingModes = Cache::rememberForever('workingModes', function() {
             return WorkingModesResource::collection(WorkingMode::all());
         });
-        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function() {
+        $countries = Cache::rememberForever('countries', function() {
             return (new Helper())->makeCountriesToSelect();
         });
         $workingPlaces = Cache::rememberForever('workingPlaces', function() {
@@ -95,39 +96,43 @@ class ProjectController extends Controller implements HasMiddleware
         $workLoads = Cache::rememberForever('workLoads', function() {
             return WorkLoadResource::collection(WorkLoad::all());
         });
+
         $payoutModes = Cache::rememberForever('payoutModes', function() {
-            return WorkLoadResource::collection(PayoutMode::all());
+            return PayModesResource::collection(PayoutMode::all());
         });
+
         $paySystems = Cache::rememberForever('paySystems', function() {
-            return WorkLoadResource::collection(PaySystem::all());
+            return PayModesResource::collection(PaySystem::all());
         });
+
         $days = Cache::rememberForever('days', function() {
-            return WorkLoadResource::collection(Day::all());
+            return PayModesResource::collection(Day::all());
         });
         $shiftWorks = Cache::rememberForever('shiftWorks', function() {
-            return WorkLoadResource::collection(ShiftWork::all());
+            return PayModesResource::collection(ShiftWork::all());
         });
         $offers = Cache::rememberForever('offers', function() {
-            return WorkLoadResource::collection(Offer::all());
+            return PayModesResource::collection(Offer::all());
         });
         $waits = Cache::rememberForever('waits', function() {
-            return WorkLoadResource::collection(Wait::all());
+            return PayModesResource::collection(Wait::all());
         });
         $experiences = Cache::rememberForever('experiences', function() {
-            return WorkLoadResource::collection(Experience::all());
+            return PayModesResource::collection(Experience::all());
         });
         $welcomes = Cache::rememberForever('welcomes', function() {
-            return WorkLoadResource::collection(Welcome::all());
+            return PayModesResource::collection(Welcome::all());
         });
         $educations = Cache::rememberForever('educations', function() {
-            return WorkLoadResource::collection(Education::all());
+            return PayModesResource::collection(Education::all());
         });
         $currencies = Cache::rememberForever('currencies', function() {
             return config('currencyShorts');
         });
         $cvs = Cache::rememberForever('cvs', function() {
-            return WorkLoadResource::collection(CvType::all());
+            return PayModesResource::collection(CvType::all());
         });
+
         return inertia()->render('RecruiterPages/Project/Create',
             [
                 'categories' =>$category,
@@ -217,7 +222,12 @@ class ProjectController extends Controller implements HasMiddleware
         session()->flash('flash.banner', __('translate.addedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
-        return to_route('project-recruits.index');
+        if($request->user()->hasRole('firm')){
+            return to_route('projects.index');
+        } elseif ($request->user()->hasRole('recruit')){
+            return to_route('project-recruits.index');
+        }
+
     }
 
     /**
@@ -236,6 +246,7 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function edit(Project $project)
     {
+
         Gate::authorize('project-recruiter',$project);
         $externalCompanies = ExternalCompany::where('user_id',auth()->user()->recruiter_from_firm_id)->latest()->get();
         $project->load('detailprojects','questions');
@@ -260,39 +271,39 @@ class ProjectController extends Controller implements HasMiddleware
         });
 
         $payoutModes = Cache::rememberForever('payoutModes', function() {
-            return WorkLoadResource::collection(PayoutMode::all());
+            return PayModesResource::collection(PayoutMode::all());
         });
 
         $paySystems = Cache::rememberForever('paySystems', function() {
-            return WorkLoadResource::collection(PaySystem::all());
+            return PayModesResource::collection(PaySystem::all());
         });
 
         $days = Cache::rememberForever('days', function() {
-            return WorkLoadResource::collection(Day::all());
+            return PayModesResource::collection(Day::all());
         });
         $shiftWorks = Cache::rememberForever('shiftWorks', function() {
-            return WorkLoadResource::collection(ShiftWork::all());
+            return PayModesResource::collection(ShiftWork::all());
         });
         $offers = Cache::rememberForever('offers', function() {
-            return WorkLoadResource::collection(Offer::all());
+            return PayModesResource::collection(Offer::all());
         });
         $waits = Cache::rememberForever('waits', function() {
-            return WorkLoadResource::collection(Wait::all());
+            return PayModesResource::collection(Wait::all());
         });
         $experiences = Cache::rememberForever('experiences', function() {
-            return WorkLoadResource::collection(Experience::all());
+            return PayModesResource::collection(Experience::all());
         });
         $welcomes = Cache::rememberForever('welcomes', function() {
-            return WorkLoadResource::collection(Welcome::all());
+            return PayModesResource::collection(Welcome::all());
         });
         $educations = Cache::rememberForever('educations', function() {
-            return WorkLoadResource::collection(Education::all());
+            return PayModesResource::collection(Education::all());
         });
         $currencies = Cache::rememberForever('currencies', function() {
             return config('currencyShorts');
         });
         $cvs = Cache::rememberForever('cvs', function() {
-            return WorkLoadResource::collection(CvType::all());
+            return PayModesResource::collection(CvType::all());
         });
 
         return inertia()->render('RecruiterPages/Project/Edit',

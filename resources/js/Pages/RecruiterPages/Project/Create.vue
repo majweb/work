@@ -420,10 +420,10 @@ watch(() => form.cv, (newValue) => {
                                         <div v-for="workingMode in workingModes" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'workingMode-'+workingMode.id" v-model="form.workingMode"
+                                                type="checkbox" :id="'workingMode-'+workingMode.value" v-model="form.workingMode"
                                                 @change="addToArray(workingModeSelect,workingMode)"
                                                 :value="workingMode" />
-                                            <label :for="'workingMode-'+workingMode.id">{{workingMode.title}}</label>
+                                            <label :for="'workingMode-'+workingMode.value">{{workingMode.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.workingMode" class="mt-2"/>
                                     </div>
@@ -445,9 +445,9 @@ watch(() => form.cv, (newValue) => {
                                             <input
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 @change="workLoadSelect = workLoad.name"
-                                                type="radio" :id="'workLoad-'+workLoad.id" v-model="form.workLoad"
+                                                type="radio" :id="'workLoad-'+workLoad.value" v-model="form.workLoad"
                                                 :value="workLoad" />
-                                            <label :for="'workLoad-'+workLoad.id">{{workLoad.name}}</label>
+                                            <label :for="'workLoad-'+workLoad.value">{{workLoad.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.workLoad" class="mt-2"/>
                                     </div>
@@ -651,9 +651,9 @@ watch(() => form.cv, (newValue) => {
                                             <input
                                                 @change="addToArray(offerSelect,offer.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'offer'+offer.id" v-model="form.offer"
+                                                type="checkbox" :id="'offer-'+offer.id" v-model="form.offer"
                                                 :value="offer" />
-                                            <label :for="'offer'+offer.id">{{offer.name}}</label>
+                                            <label :for="'offer-'+offer.id">{{offer.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.offer" class="mt-2"/>
                                     </div>
@@ -673,11 +673,11 @@ watch(() => form.cv, (newValue) => {
                                         <InputLabel for="day" :value="__('translate.experience')" />
                                         <div v-for="experience in experiences" class="flex items-center mt-1">
                                             <input
-                                                @change="addToArray(experienceSelect,experience.name)"
-                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'experience'+experience.id" v-model="form.experience"
+                                                @change="experienceSelect = experience.name"
+                                                type="radio" :id="'experience-'+experience.id" v-model="form.experience"
+                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 :value="experience" />
-                                            <label :for="'experience'+experience.id">{{experience.name}}</label>
+                                            <label :for="'experience-'+experience.id">{{experience.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.experience" class="mt-2"/>
                                     </div>

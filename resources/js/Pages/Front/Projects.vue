@@ -1,11 +1,11 @@
 <script setup>
 import Pagination from '@/Components/Pagination.vue';
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import {usePage, Link} from '@inertiajs/vue3';
+import {usePage, Link, router} from '@inertiajs/vue3';
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
 import { useForm } from '@inertiajs/vue3';
-import { ref, watch } from "vue";
+import { ref, watch, computed  } from "vue";
 import __ from "@/lang.js";
 
 const props = defineProps({
@@ -25,16 +25,16 @@ const optionsProfession = ref([]);
 const optionsPosition = ref([]);
 
 const form = useForm({
-    country: null,
-    city: null,
-    category: null,
-    categorySub: null,
-    profession: null,
-    position: null,
-    workingMode: null,
-    experience: null,
-    typeOfContract: null,
-    workLoad: null,
+    country: undefined,
+    city: undefined,
+    category: undefined,
+    categorySub: undefined,
+    profession: undefined,
+    position: undefined,
+    workingMode: undefined,
+    experience: undefined,
+    typeOfContract: undefined,
+    workLoad: undefined,
 });
 
 // Obsługa zmiany kraju
@@ -136,9 +136,32 @@ const toggleFilters = () => {
     showFilters.value = !showFilters.value;
 };
 
+const isFilterActive = computed(() => {
+    return Object.values(form).some(value => value !== undefined && value !== null);
+});
+
+
+import { pickBy } from 'lodash';
+
 const submit = () => {
-    form.get(route('front.projects'), {
+    const transformedData = {
+        country: form.country?.value || null,
+        city: form.city?.value || null,
+        category: form.category?.value || null,
+        categorySub: form.categorySub?.value || null,
+        profession: form.profession?.value || null,
+        position: form.position?.value || null,
+        workingMode: form.workingMode?.value || null,
+        experience: form.experience?.value || null,
+        typeOfContract: form.typeOfContract?.value || null,
+        workLoad: form.workLoad?.value || null
+    };
+
+    const filteredData = pickBy(transformedData);
+
+    router.get(route('front.projects'),filteredData, {
         preserveState: true,
+        replace: true,
         preserveScroll: true,
     });
 };
@@ -151,8 +174,8 @@ const submit = () => {
                 <!-- Formularz wyszukiwania -->
                 <div class="mb-6">
                     <form @submit.prevent="submit" class="w-full">
-                        <div class="bg-white rounded-lg shadow-md p-4">
-                            <div class="flex gap-3">
+                        <div class="bg-white p-4">
+                            <div class="flex gap-3 items-center">
                                 <button
                                     type="button"
                                     @click="toggleFilters"
@@ -169,6 +192,10 @@ const submit = () => {
                                 >
                                     {{ __('translate.search') }}
                                 </button>
+                                <Link         v-if="isFilterActive"
+                                              :href="route('front.projects')" class="underline">
+                                    {{__('translate.resetFilters')}}
+                                </Link>
                             </div>
 
                             <!-- Panel filtrów -->
@@ -409,6 +436,7 @@ const submit = () => {
                                     <div>
                                         <h3 class="text-lg font-semibold text-gray-900 hover:text-red-500 transition-colors"
                                         >
+                                            {{project.id}}
                                             {{ project.position?.allTranslations.title[usePage().props.language] }}
                                         </h3>
                                         <div class="flex items-center mt-1 text-sm text-gray-600">
@@ -436,9 +464,61 @@ const submit = () => {
                         {{ __('translate.notFoundArticles') }}
                     </div>
                     <Pagination v-if="props.projects.total > 5" class="my-5 text-center mx-auto" :links="props.projects.links" />
-
                 </div>
             </div>
         </div>
     </FrontLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+.multiselect__tags{
+    border:1px solid #0A2E6D;
+}
+.multiselect__tag{
+    background: #0A2E6D !important;
+}
+.multiselect__option--highlight {
+    background: #0A2E6D !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #0A2E6D !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
+}
+.multiselect__select{
+    height: 98%;
+    background: rgba(10, 46, 109, 0.14);
+}
+.multiselect__select::before{
+    border-color: #0A2E6D transparent transparent;
+}
+.multiselect--disabled.multiselect .multiselect__select{
+    background: rgba(10, 46, 109, 0.14);
+}
+</style>

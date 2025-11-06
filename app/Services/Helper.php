@@ -58,25 +58,29 @@ class Helper{
             ->toArray();
 
 
-        // Pobierz kraje, które mają projekty
-        $countries = Country::whereIn('countryCode', $countryCodes)
-            ->get()
-            ->groupBy('continent')->toArray(); // przykładowa grupa, możesz grupować np. po kontynencie
+        if(!empty($countryCodes)){
+            // Pobierz kraje, które mają projekty
+            $countries = Country::whereIn('countryCode', $countryCodes)
+                ->get()
+                ->groupBy('continent')->toArray(); // przykładowa grupa, możesz grupować np. po kontynencie
 
-        foreach ($countries as $key => $value) {
-            $data[] = [
-                'group' => $key,
-                'elements' =>array_map(function($el){
-                    return [
-                        'name' =>$el['name'][app()->getLocale()],
-                        'value'=>$el['id'],
-                        'countryCode'=>$el['countryCode'],
-                        'allTranslations'=>$el['name']
-                    ];
-                },$value)
-            ];
+            foreach ($countries as $key => $value) {
+                $data[] = [
+                    'group' => $key,
+                    'elements' =>array_map(function($el){
+                        return [
+                            'name' =>$el['name'][app()->getLocale()],
+                            'value'=>$el['id'],
+                            'countryCode'=>$el['countryCode'],
+                            'allTranslations'=>$el['name']
+                        ];
+                    },$value)
+                ];
+            }
+            return $data;
+        } else {
+            return [];
         }
 
-        return $data;
     }
 }

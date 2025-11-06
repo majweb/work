@@ -11,6 +11,11 @@ class Firm extends Model
 {
     use HasFactory;
 
+    public function premiumCertificateHistories()
+    {
+        return $this->hasMany(PremiumCertificateHistory::class);
+    }
+
     protected $fillable = [
         'user_id',
         'nip',
@@ -45,6 +50,8 @@ class Firm extends Model
         'video',
         'points',
         'currency',
+        'premium_certificate_path',
+        'premium_certificate_level'
     ];
 
     protected $casts = [
