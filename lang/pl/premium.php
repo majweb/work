@@ -26,6 +26,8 @@ return [
         'collect_more' => 'Zbierz więcej punktów, aby móc wygenerować certyfikat.',
         'generate' => 'Generuj certyfikat :level',
         'generating' => 'Generowanie...',
+        'generated' => 'Wygenerowany:',
+        'no_history' => 'Brak historii certyfikatów',
     ],
     'history_link' => 'Certyfikaty Premium lista',
     'history_certyficate' => 'Historia certyfikatów',

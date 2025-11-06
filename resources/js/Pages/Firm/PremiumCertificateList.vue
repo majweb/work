@@ -101,6 +101,12 @@ const resetFilters = () => {
                                 </a>
                             </td>
                         </tr>
+                        <!-- Jeśli brak wyników -->
+                        <tr v-if="!histories.data.length">
+                            <td colspan="4" class="py-4 text-center text-gray-500">
+                                {{__('premium.certificates.no_history')}}
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
 

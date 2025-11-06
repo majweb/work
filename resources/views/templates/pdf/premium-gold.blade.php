@@ -62,7 +62,15 @@
 <div class="inner" style="background-image: url({{ App::environment() == 'local' ? public_path().'/images/certyficate_bg.png' : asset('images/certyficate_bg.png') }});">
     <div class="title">
         {{__('translate.certyficate')}}
-        Gold
+        {{__('premium.certificates.levels.gold')}}
+    </div>
+    <div class="date">
+        <p>
+            {{$id.'/'.$year}}
+        </p>
+        <p>
+            {{__('premium.certificates.generated')}} {{$date}}
+        </p>
     </div>
     <div class="firm">
         {{auth()->user()->name}}

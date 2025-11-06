@@ -72,19 +72,11 @@ class PremiumCertificateController extends Controller
             ]);
         }
 
-        $pdf = PDF::loadView($templates[$selectedLevel], [
-            'firm' => $firm,
-            'level' => $selectedLevel,
-            'date' => now()->format('d.m.Y'),
-        ])->setPaper('a4', 'landscape');
+        // Używamy już wcześniej obliczonej wartości pointsToDeduct
+        $remainingPoints = $firm->points - $pointsToDeduct;
 
         $fileName = 'premium_certificate_' . $firm->id . '_' . time() . '.pdf';
         $path = 'certificates/' . $fileName;
-
-        Storage::disk('local')->put($path, $pdf->output());
-
-        // Używamy już wcześniej obliczonej wartości pointsToDeduct
-        $remainingPoints = $firm->points - $pointsToDeduct;
 
         $firm->update([
             'premium_certificate_path' => $path,
@@ -93,12 +85,23 @@ class PremiumCertificateController extends Controller
         ]);
 
         // Zapisz historię certyfikatu
-        $firm->premiumCertificateHistories()->create([
+        $history = $firm->premiumCertificateHistories()->create([
             'certificate_path' => $path,
             'level' => $selectedLevel,
             'amount' => $amount ?? NULL, // Pusta kwota do uzupełnienia w przyszłości
             'generated_at' => now(),
         ]);
+
+        $pdf = PDF::loadView($templates[$selectedLevel], [
+            'firm' => $firm,
+            'level' => $selectedLevel,
+            'date' => now()->format('d.m.Y'),
+            'id' => $history->id,
+            'year' => now()->format('Y'),
+        ])->setPaper('a4', 'landscape');
+
+        Storage::disk('local')->put($path, $pdf->output());
+
 
         return to_route('firm.premium-certificate.show')->with([
             'flash.banner' => __('Certyfikat został wygenerowany'),
