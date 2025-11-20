@@ -52,6 +52,11 @@ const user = computed(()=>usePage().props.auth.user);
                             </div>
                             <!-- Right: badge + button -->
                             <div class="flex items-center space-x-4 -top-8 relative">
+                                <Link v-if="!user"
+                                      class="bg-[#0b2b59] hover:bg-[#566d8e] text-white font-semibold px-6 py-2 rounded transition-all"
+                                      :href="route('login',{ projectToRedirect: project.id })">{{ __('translate.login') }}
+                                </Link>
+
                                 <Link class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded transition-all" :href="route('front.projects.applyView',project)" v-if="!user || (user && hasRole('worker'))">{{ user && (user && hasRole('worker')) ? __('translate.apply') :  __('translate.applyWithoutLogin') }}</Link>
                             </div>
 
@@ -107,10 +112,9 @@ const user = computed(()=>usePage().props.auth.user);
                     </div>
 
                     <div class="py-12">
-                        <div class="mx-auto sm:px-6 lg:px-8 relative">
-
-                            <!-- pionowa linia łącząca sekcje -->
-                            <div class="absolute left-6 top-0 h-full w-[3px] bg-[#0b2b59]"></div>
+                        <div class="mx-auto relative max-w-5xl">
+                            <!-- pionowa linia w osobnym wrapperze -->
+                            <div class="absolute left-6 inset-y-0 w-[3px] bg-[#0b2b59]"></div>
 
                             <!-- Sekcja 1: PŁATNOŚĆ -->
                             <div class="flex items-start mb-12 relative">
@@ -144,8 +148,8 @@ const user = computed(()=>usePage().props.auth.user);
                                     <p><strong>Praca nocna:</strong> {{ project.workNight == 1 ? __('translate.yes') : __('translate.no') }}</p>
                                     <p><strong>Dni tygodnia:</strong>
                                         <span v-for="(day, index) in project.days" :key="index">
-                                          {{ day.allTranslations.name[usePage().props.language]}}<span v-if="index !== project.days.length - 1">, </span>
-                                        </span>
+                        {{ day.allTranslations.name[usePage().props.language]}}<span v-if="index !== project.days.length - 1">, </span>
+                    </span>
                                     </p>
                                 </div>
                             </div>
@@ -174,44 +178,54 @@ const user = computed(()=>usePage().props.auth.user);
 
                         </div>
                     </div>
-                    <swiper
-                        v-if="project.offer"
-                        :modules="[Navigation, Pagination, Autoplay]"
-                        :slides-per-view="4"
-                        :space-between="30"
-                        :loop="true"
-                        :autoplay="{
-    delay: 3000,
-    disableOnInteraction: false
-  }"
-                        :allowTouchMove="false"
-                        navigation
-                        :pagination="{ clickable: true }"
-                        class="h-[350px] w-full"
-                    >
-                        <swiper-slide v-for="offer in project.offer" :key="offer.id">
-                            <div class="flex justify-center flex-col items-center">
-                                <img
-                                    :src="`/images/icons/${offer.id}.svg`"
-                                    :alt="offer.allTranslations.name[usePage().props.language]"
-                                />
-                                <span>
-                                  {{offer.allTranslations.name[usePage().props.language]}}
-                                </span>
-                            </div>
-                        </swiper-slide>
-                    </swiper>
 
-                    <div class="flex flex-col items-center pb-4">
-                        <span class="mb-4" v-if="!user">{{ __('projects.hiden') }}</span>
-                        <span class="mb-4" v-else-if="user && hasRole('worker')">{{ __('projects.hidenWhich') }} <strong>{{user?.name}}</strong></span>
-                        <div class="flex space-x-1">
-                            <Link v-if="!user"
-                                  class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150"
-                                  :href="route('login',{ projectToRedirect: project.id })">{{ __('translate.login') }}
-                            </Link>
-                            <Link class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150" :href="route('front.projects.applyView',project)" v-if="!user || (user && hasRole('worker'))">{{ user && (user && hasRole('worker')) ? __('translate.apply') :  __('translate.applyWithoutLogin') }}</Link>
-                        </div>
+                    <div class="py-4">
+                        <swiper
+                            v-if="project.offer"
+                            :modules="[Navigation, Pagination, Autoplay]"
+                            :slides-per-view="4"
+                            :space-between="30"
+                            :loop="true"
+                            :autoplay="{
+        delay: 3000,
+        disableOnInteraction: false
+      }"
+                            :allowTouchMove="false"
+                            navigation
+                            :pagination="{ clickable: true }"
+                            class="h-[350px] w-full"
+                            :breakpoints="{
+                            320: { // mobile
+                                slidesPerView: 1,
+                                spaceBetween: 10
+                            },
+                            640: { // sm
+                                slidesPerView: 2,
+                                spaceBetween: 15
+                            },
+                            768: { // md
+                                slidesPerView: 3,
+                                spaceBetween: 20
+                            },
+                            1024: { // lg
+                                slidesPerView: 4,
+                                spaceBetween: 30
+                            }
+                        }"
+                        >
+                            <swiper-slide v-for="offer in project.offer" :key="offer.id">
+                                <div class="flex justify-center flex-col items-center">
+                                    <img
+                                        :src="`/images/icons/${offer.id}.svg`"
+                                        :alt="offer.allTranslations.name[usePage().props.language]"
+                                    />
+                                    <span>
+                                      {{offer.allTranslations.name[usePage().props.language]}}
+                                    </span>
+                                </div>
+                            </swiper-slide>
+                        </swiper>
+
                     </div>
                 </div>
             </div>
