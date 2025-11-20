@@ -21,7 +21,6 @@ const props = defineProps({
     countries: Array,
     workingPlaces: Array,
     workLoads: Array,
-    currencies: Array,
     shiftWorks: Array,
     payoutModes: Array,
     days: Array,
@@ -31,47 +30,54 @@ const props = defineProps({
     experiences: Array,
     welcomes: Array,
     educations: Array,
+    project: Object,
+    currencies: Array,
     cvs: Array,
     externalCompanies: Array,
+
 });
 
 const form = useForm({
-    category: '',
-    categorySub: '',
-    profession: '',
-    position: '',
-    title: '',
-    currency: '',
-    basicSalaryFrom: '',
-    basicSalaryTo: '',
-    bonusSalaryFrom: '',
-    bonusSalaryTo: '',
-    hoursFrom: '',
-    hoursTo: '',
-    workLoad: '',
-    education: '',
-    shiftWork: '',
-    payoutMode: '',
-    workNight: '',
-    workingMode: [],
-    typeOfContract: [],
-    paySystem: [],
-    workingPlace: [],
-    country: [],
-    days: [],
-    offer: [],
-    wait: [],
-    experience: [],
-    welcome: [],
-    detailProjects: [],
-    countryWork: '',
-    streetWork: '',
-    streetWorkNumber: '',
-    postalWork: '',
-    cityWork: '',
-    cv: [],
-    questions: [],
-    external_company_id: '',
+    category: props.project.category,
+    categorySub: props.project.categorySub,
+    profession: props.project.profession,
+    position: props.project.position,
+    title: props.project.title,
+    basicSalaryFrom: props.project.basicSalaryFrom,
+    basicSalaryTo: props.project.basicSalaryTo,
+    currency: props.project.currency,
+    bonusSalaryFrom: props.project.bonusSalaryFrom,
+    bonusSalaryTo: props.project.bonusSalaryTo,
+    hoursFrom: props.project.hoursFrom,
+    hoursTo: props.project.hoursTo,
+    workLoad: props.project.workLoad,
+    education: props.project.education,
+    shiftWork: props.project.shiftWork,
+    payoutMode: props.project.payoutMode,
+    workNight: props.project.workNight,
+    workingMode: props.project.workingMode ?? [],
+    typeOfContract: props.project.typeOfContract ?? [],
+    paySystem: props.project.paySystem ?? [],
+    workingPlace: props.project.workingPlace ?? [],
+    country: props.project.country ?? [],
+    days: props.project.days ?? [],
+    offer: props.project.offer ?? [],
+    wait: props.project.wait ?? [],
+    experience: props.project.experience ?? [],
+    welcome: props.project.welcome ?? [],
+    detailProjects:  props.project.detailprojects.map(el=>el.id) ?? [],
+    countryWork: props.project.countryWork,
+    streetWork: props.project.streetWork,
+    streetWorkNumber: props.project.streetWorkNumber,
+    postalWork: props.project.postalWork,
+    cityWork: props.project.cityWork,
+    cv: props.project.cv ?? [],
+    questions: props.project.questions ?? [],
+    external_company_id: props.externalCompanies.find(
+        company => company.id === props.project.external_company_id
+    ) || '',
+
+
 });
 
 
@@ -82,61 +88,74 @@ const optionsCurrency = ref(props.currencies);
 const optionsSubCategory = ref([]);
 const optionsProfession = ref([]);
 const optionsPosition = ref([]);
+const titles = ref([]);
 let workingModeSelect = ref([]);
 let workLoadSelect = ref(null);
 let typesOfContractSelect = ref([]);
 let paySystemSelect = ref([]);
 let payoutModeSelect = ref(null);
 let daySelect = ref([]);
+let cvSelect = ref([]);
 let offerSelect = ref([]);
 let welcomeSelect = ref([]);
 let waitSelect = ref([]);
 let experienceSelect = ref([]);
-let cvSelect = ref([]);
 let educationSelect = ref(null);
+let toTitleArray = ref([]);
+let listOfTitle = ref([]);
+
+
 
 watch(() => form.category, async (category) => {
     if (form.category) {
         optionsSubCategory.value =(await axios.get(route('getChildsCategory',category.value))).data
     }
-        optionsProfession.value = [];
-        optionsPosition.value = [];
-        form.categorySub = '';
-        form.profession = '';
-        form.position = '';
-        form.detailProjects = [];
+    optionsProfession.value = [];
+    optionsPosition.value = [];
+    form.categorySub = '';
+    form.profession = '';
+    form.position = '';
+    form.detailProjects = [];
+
 });
 watch(() => form.categorySub, async (categorySub) => {
     if (form.categorySub) {
         optionsProfession.value =(await axios.get(route('getChildsCategory',categorySub.value))).data
     }
-        optionsPosition.value = [];
-        form.profession = '';
-        form.position = '';
+    optionsPosition.value = [];
+    form.profession = '';
+    form.position = '';
     form.detailProjects = [];
 
 });
-
 watch(() => form.profession, async (profession) => {
     if (form.profession) {
+        titles.value = (await axios.get(route('getTitlesCategory',profession.value))).data
         optionsPosition.value =(await axios.get(route('getChildsCategory',profession.value))).data
     }
-        form.position = '';
+    form.position = '';
     form.detailProjects = [];
-
 });
 watch(() => form.position, async (position) => {
-    form.title = '';
+    if (form.position) {
+        titles.value = (await axios.get(route('getTitlesCategory',position.value))).data
+    } else {
+        titles.value = [];
+        form.title = '';
+    }
     form.detailProjects = [];
+
 });
 
-const createProject = () => {
-    form.post(route('project-recruits.store'), {
-        errorBag: 'createProject',
+
+const updateProject = () => {
+    form.put(route('projects.update',props.project), {
+        errorBag: 'updateProject',
         preserveScroll: true,
         onSuccess: () => {
-            form.reset();
+            // form.reset();
         },
+
     });
 };
 
@@ -148,15 +167,15 @@ const generateUrl = computed(() => {
     }
 });
 
-
 const addAll = () => {
     if(form.position.detailprojects || form.profession.detailprojects){
         form.detailProjects = (form.position.detailprojects || form.profession.detailprojects).map(el=>el.id)
     }
 }
 const zeroAll = () => {
-        form.detailProjects = []
+    form.detailProjects = []
 }
+
 
 const addToArray = (array,name) =>{
     if(array.includes(name)){
@@ -166,6 +185,43 @@ const addToArray = (array,name) =>{
         array.push(name)
     }
 }
+
+const addToTitleArray = (e) => {
+    let name = e.target.textContent;
+    if(name){
+        if(toTitleArray.value.includes(name)){
+            let found = toTitleArray.value.indexOf(name);
+            toTitleArray.value.splice(found, 1);
+        } else {
+            if(toTitleArray.value.length  < 4){
+                toTitleArray.value.push(name)
+            }
+        }
+    }
+}
+
+const addToTitleArrayKey = (key,el) => {
+    let str  = key+':'+el;
+    if(toTitleArray.value.includes(str)){
+        let found = toTitleArray.value.indexOf(str);
+        toTitleArray.value.splice(found, 1);
+    } else {
+        if(toTitleArray.value.length  < 4){
+            toTitleArray.value.push(str)
+        }
+    }
+
+}
+
+const lessThan4 = computed(()=>{
+    return toTitleArray.value.length < 4;
+})
+const titleEqual4 = computed(()=>{
+    return toTitleArray.value.length == 4;
+})
+const titlesFromLang = computed(()=>{
+    return listOfTitle.value.map((el)=>el[usePage().props.language]);
+});
 
 const clearCountry = () => {
     form.countryWork = '';
@@ -195,7 +251,7 @@ watch(() => form.cv, (newValue) => {
             <div class="flex justify-between">
 
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('translate.createProject')}}
+                    {{__('translate.updateProject')}}
                 </h2>
                 <Link :href="route('project-recruits.index')" class="text-gray-500 mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -209,7 +265,7 @@ watch(() => form.cv, (newValue) => {
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div>
-                    <FormSectionProject @submitted="createProject">
+                    <FormSectionProject @submitted="updateProject">
                         <template #form>
                             <div class="col-span-12">
                                 <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -234,6 +290,8 @@ watch(() => form.cv, (newValue) => {
                                                 <span>{{__('translate.noResult')}}</span>
                                             </template>
                                         </multiselect>
+                                        <!--                                        <pre class="language-json"><code>{{ form.country }}</code></pre>-->
+
                                         <InputError :message="form.errors.country" class="mt-2"/>
                                     </div>
                                     <div v-if="externalCompanies && externalCompanies.length > 0">
@@ -245,6 +303,7 @@ watch(() => form.cv, (newValue) => {
                                             :deselectLabel="__('translate.deselectLabel')"
                                             track-by="id"
                                             label="name"
+                                            :value="externalCompanies.find(company => company.id === form.external_company_id)"
                                             :placeholder="__('translate.placeholder')"
                                             v-model="form.external_company_id"
                                             :options="externalCompanies">
@@ -262,6 +321,7 @@ watch(() => form.cv, (newValue) => {
                                     <div>
                                         <InputLabel :value="__('translate.category')"/>
                                         <multiselect
+                                            :disabled="true"
                                             :selectLabel="__('translate.selectLabel')"
                                             :selectGroupLabel="__('translate.selectGroupLabel')"
                                             :selectedLabel="__('translate.selectedLabel')"
@@ -278,11 +338,12 @@ watch(() => form.cv, (newValue) => {
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.category" class="mt-2"/>
+
                                     </div>
                                     <div>
                                         <InputLabel :value="__('translate.subcategory')"/>
                                         <multiselect
-                                            :disabled="!form.category"
+                                            :disabled="true"
                                             :selectLabel="__('translate.selectLabel')"
                                             :selectGroupLabel="__('translate.selectGroupLabel')"
                                             :selectedLabel="__('translate.selectedLabel')"
@@ -301,11 +362,12 @@ watch(() => form.cv, (newValue) => {
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.categorySub" class="mt-2"/>
+
                                     </div>
                                     <div>
                                         <InputLabel :value="__('translate.profession')"/>
                                         <multiselect
-                                            :disabled="!form.categorySub"
+                                            :disabled="true"
                                             :selectLabel="__('translate.selectLabel')"
                                             :selectGroupLabel="__('translate.selectGroupLabel')"
                                             :selectedLabel="__('translate.selectedLabel')"
@@ -324,11 +386,12 @@ watch(() => form.cv, (newValue) => {
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.profession" class="mt-2"/>
+
                                     </div>
                                     <div>
                                         <InputLabel :value="__('translate.position')"/>
                                         <multiselect
-                                            :disabled="!form.profession"
+                                            :disabled="true"
                                             :selectLabel="__('translate.selectLabel')"
                                             :selectGroupLabel="__('translate.selectGroupLabel')"
                                             :selectedLabel="__('translate.selectedLabel')"
@@ -347,6 +410,7 @@ watch(() => form.cv, (newValue) => {
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.position" class="mt-2"/>
+
                                     </div>
                                 </div>
                                 <div class="col-span-6 mt-4">
@@ -376,10 +440,10 @@ watch(() => form.cv, (newValue) => {
                                         <InputError :message="form.errors.countryWork" class="mt-2"/>
                                     </div>
                                     <AddressFieldGroup class="mt-4" v-if="form.countryWork" :code="form.countryWork?.countryCode"
-                                    v-model:street="form.streetWork"
-                                    v-model:streetNumber="form.streetWorkNumber"
-                                    v-model:postcode="form.postalWork"
-                                    v-model:city="form.cityWork"
+                                                       v-model:street="form.streetWork"
+                                                       v-model:streetNumber="form.streetWorkNumber"
+                                                       v-model:postcode="form.postalWork"
+                                                       v-model:city="form.cityWork"
                                     />
                                     <InputError :message="form.errors.streetWork" class="mt-2"/>
                                     <InputError :message="form.errors.streetWorkNumber" class="mt-2"/>
@@ -405,23 +469,24 @@ watch(() => form.cv, (newValue) => {
                                     <div class="grid grid grid-cols-1 lg:grid-cols-2">
                                         <InputLabel for="detail" :value="__('translate.detailProjects')" />
                                         <div v-for="detail in (form.position.detailprojects || form.profession.detailprojects)" class="flex items-center">
-                                                <input
-                                                    class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                    type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
-                                                    :value="detail.id" />
-                                                <label class="text-sm" :for="'detailProjects-'+detail.id">{{detail.name[usePage().props.language]}}</label>
+                                            <input
+                                                class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
+                                                :value="detail.id" :checked="form.detailProjects.some(el=>el.id == detail.id)"
+                                            />
+                                            <label class="text-sm" :for="'detailProjects-'+detail.id">{{detail.name[usePage().props.language]}}</label>
                                         </div>
-                                        <InputError :message="form.errors.detailProjects" class="mt-2"/>
+                                            <InputError :message="form.errors.detailProjects" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid grid-cols-1 lg:grid-cols-4 gap-6">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-4 gap-6">
                                     <div class="mt-4" v-if="workingModes">
                                         <InputLabel for="workingMode" :value="__('translate.workingMode')" />
                                         <div v-for="workingMode in workingModes" class="flex items-center mt-1">
                                             <input
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
                                                 type="checkbox" :id="'workingMode-'+workingMode.value" v-model="form.workingMode"
-                                                @change="addToArray(workingModeSelect,workingMode)"
+                                                @change="addToArray(workingModeSelect,workingMode.name)"
                                                 :value="workingMode" />
                                             <label :for="'workingMode-'+workingMode.value">{{workingMode.name}}</label>
                                         </div>
@@ -477,11 +542,10 @@ watch(() => form.cv, (newValue) => {
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.basicSalaryFrom')" />
-                                        <TextInput
+                                        <input type="number"
                                             id="basicSalaryFrom"
                                             v-model="form.basicSalaryFrom"
-                                            class="mt-1 block w-full"
-                                            type="number"
+                                            class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
                                             step="0.1"
                                         />
                                         <InputError :message="form.errors.basicSalaryFrom" class="mt-2"/>
@@ -489,14 +553,14 @@ watch(() => form.cv, (newValue) => {
                                     </div>
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.basicSalaryTo')" />
-                                        <input
+                                        <input type="number"
                                             id="basicSalaryTo"
                                             v-model="form.basicSalaryTo"
                                             class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
-                                            type="number"
                                             step="0.1"
                                         />
                                         <InputError :message="form.errors.basicSalaryTo" class="mt-2"/>
+
                                     </div>
                                     <div class="mt-4">
                                         <div>
@@ -552,11 +616,10 @@ watch(() => form.cv, (newValue) => {
                                 <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.bonusSalaryFrom')" />
-                                        <TextInput
+                                        <input type="number"
                                             id="bonusSalaryFrom"
                                             v-model="form.bonusSalaryFrom"
-                                            class="mt-1 block w-full"
-                                            type="number"
+                                            class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
                                             step="0.1"
                                         />
                                         <InputError :message="form.errors.bonusSalaryFrom" class="mt-2"/>
@@ -564,11 +627,10 @@ watch(() => form.cv, (newValue) => {
                                     </div>
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.bonusSalaryTo')" />
-                                        <TextInput
+                                        <input type="number"
                                             id="bonusSalaryTo"
                                             v-model="form.bonusSalaryTo"
-                                            class="mt-1 block w-full"
-                                            type="number"
+                                            class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
                                             step="0.1"
                                         />
                                         <InputError :message="form.errors.bonusSalaryTo" class="mt-2"/>
@@ -651,9 +713,9 @@ watch(() => form.cv, (newValue) => {
                                             <input
                                                 @change="addToArray(offerSelect,offer.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'offer-'+offer.id" v-model="form.offer"
+                                                type="checkbox" :id="'offer'+offer.id" v-model="form.offer"
                                                 :value="offer" />
-                                            <label :for="'offer-'+offer.id">{{offer.name}}</label>
+                                            <label :for="'offer'+offer.id">{{offer.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.offer" class="mt-2"/>
                                     </div>
@@ -674,8 +736,8 @@ watch(() => form.cv, (newValue) => {
                                         <div v-for="experience in experiences" class="flex items-center mt-1">
                                             <input
                                                 @change="experienceSelect = experience.name"
-                                                type="radio" :id="'experience-'+experience.value" v-model="form.experience"
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="radio" :id="'experience-'+experience.value" v-model="form.experience"
                                                 :value="experience" />
                                             <label :for="'experience-'+experience.value">{{experience.name}}</label>
                                         </div>
@@ -694,18 +756,18 @@ watch(() => form.cv, (newValue) => {
                                         <InputError :message="form.errors.welcome" class="mt-2"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                <div class="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6us">
                                     <div class="mt-4" v-if="educations">
-                                    <InputLabel :value="__('translate.education')" />
-                                    <div v-for="education in educations" class="flex items-center mt-1">
-                                        <input
-                                            @change="educationSelect = education.name"
-                                            class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                            type="radio" :id="'education-'+education.id" v-model="form.education"
-                                            :value="education.id" />
-                                        <label :for="'education-'+education.id">{{education.name}}</label>
-                                    </div>
-                                    <InputError :message="form.errors.education" class="mt-2"/>
+                                        <InputLabel :value="__('translate.education')" />
+                                        <div v-for="education in educations" class="flex items-center mt-1">
+                                            <input
+                                                @change="educationSelect = education.name"
+                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                                type="radio" :id="'education-'+education.id" v-model="form.education"
+                                                :value="education.id" />
+                                            <label :for="'education-'+education.id">{{education.name}}</label>
+                                        </div>
+                                        <InputError :message="form.errors.education" class="mt-2"/>
                                     </div>
                                     <div class="mt-4" v-if="cvs">
                                         <InputLabel for="cv" :value="__('translate.cv')" />
@@ -713,16 +775,16 @@ watch(() => form.cv, (newValue) => {
                                             <input
                                                 @change="addToArray(cvSelect,cv.name)"
                                                 class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="checkbox" :id="'cv'+cv.id" v-model="form.cv"
+                                                type="checkbox" :id="'cv-'+cv.id" v-model="form.cv"
                                                 :value="cv" />
-                                            <label :for="'cv'+cv.id">{{cv.name}}</label>
+                                            <label :for="'cv-'+cv.id">{{cv.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.cv" class="mt-2"/>
                                     </div>
                                 </div>
 
-                                <!-- Sekcja pytań do projektu -->
-                                <div class="col-span-6 mt-6" v-if="shouldShowQuestions">
+                                                                    <!-- Sekcja pytań do projektu -->
+                                                                    <div class="col-span-6 mt-6" v-if="shouldShowQuestions">
                                     <div class="p-4 bg-blue-50 rounded-lg border border-blue-100 mb-4">
                                         <h3 class="font-medium text-blue-900">{{ __('translate.questionsInfo') }}</h3>
                                         <p class="text-sm text-blue-700 mt-1">
@@ -730,12 +792,12 @@ watch(() => form.cv, (newValue) => {
                                         </p>
                                     </div>
                                     <QuestionForm v-model="form.questions" :error="form.errors" />
-                                </div>
-                                </div>
+                                                                    </div>
+                            </div>
                         </template>
                         <template #actions>
                             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('translate.add')}}</spinner-action>
+                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>
                         </template>
                     </FormSectionProject>
@@ -785,3 +847,4 @@ watch(() => form.cv, (newValue) => {
     background: transparent !important;
 }
 </style>
+

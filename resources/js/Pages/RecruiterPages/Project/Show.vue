@@ -153,7 +153,6 @@ const generateUrl = computed(() => {
                                     </li>
                                 </ul>
                                 <ul class="p-4">
-
                                     <li class="text-md mb-1">
                                         <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.basicSalaryFrom')}}:</span>
                                         <span class="text-md font-semibold">
@@ -245,9 +244,7 @@ const generateUrl = computed(() => {
                                     <li class="text-md mb-1 flex flex-wrap items-center">
                                         <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.experience')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
-                                            <div v-for="(ex,index) in props.project.experience">
-                                                {{ex.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.experience.length - 1">,</span>
-                                            </div>
+                                           {{props.project.experience.allTranslations.name[usePage().props.language]}}
                                         </div>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
@@ -293,16 +290,13 @@ const generateUrl = computed(() => {
                         <template #title>
                             {{__('translate.questionDelete')}} - {{__('translate.project').toLowerCase()}} id. {{selectedProject && selectedProject.id}}
                         </template>
-
                         <template #content>
                             {{__('translate.questionDeleteConfirm')}} - {{__('translate.project').toLowerCase()}} id.{{selectedProject && selectedProject.id}}
                         </template>
-
                         <template #footer>
                             <SecondaryButton @click.native="confirmCancelProject = false">
                                 {{__('translate.cancel')}}
                             </SecondaryButton>
-
                             <DangerButton class="ml-2" @click.native="DeleteProject">
                                 {{__('translate.delete')}}
                             </DangerButton>

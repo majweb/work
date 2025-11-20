@@ -737,9 +737,9 @@ watch(() => form.cv, (newValue) => {
                                             <input
                                                 @change="experienceSelect = experience.name"
                                                 class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="radio" :id="'experience-'+experience.id" v-model="form.experience"
+                                                type="radio" :id="'experience-'+experience.value" v-model="form.experience"
                                                 :value="experience" />
-                                            <label :for="'experience-'+experience.id">{{experience.name}}</label>
+                                            <label :for="'experience-'+experience.value">{{experience.name}}</label>
                                         </div>
                                         <InputError :message="form.errors.experience" class="mt-2"/>
                                     </div>

@@ -305,9 +305,12 @@ class FrontController extends Controller
 
     public function SingleProject(Project $project)
     {
+        $project = Project::query()
+            ->with(['user','education','detailprojects'])
+            ->featured() // <<--- tu używasz scopeFeatured
+            ->findOrFail($project->id);
         $locale = getLocalBrowserLang();
         $image = Country::firstWhere('countryCode', $locale)?->active_image_url;
-
         return inertia()->render('Front/SingleProject', [
             'project' => $project,
             'image' => $image,
@@ -383,7 +386,7 @@ class FrontController extends Controller
             'agreements' => $agreements,
             'levelEducations' => $levelEducations,
             'langLevels' => $langLevels,
-            'professionCv' => $existsCv,
+            'professionCv' => $existsCv ?? NULL,
         ]);
     }
 

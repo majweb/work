@@ -21,7 +21,6 @@ class StoreProject extends FormRequest
      */
     public function rules(): array
     {
-
         return [
             'category' => ['required', 'array', 'max:100'],
             'categorySub' => ['required', 'array', 'max:100'],
@@ -64,7 +63,7 @@ class StoreProject extends FormRequest
             'wait.*.name' => ['required'],
             'wait.*.allTranslations' => ['required'],
             'experience' => ['required', 'array', 'min:1',],
-            'experience.id' => ['required','exists:App\Models\Experience,id'],
+            'experience.value' => ['required','exists:App\Models\Experience,id'],
             'experience.name' => ['required'],
             'experience.allTranslations' => ['required'],
             'welcome' => ['required', 'array', 'min:1',],

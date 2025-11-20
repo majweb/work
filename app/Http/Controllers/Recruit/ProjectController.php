@@ -118,7 +118,7 @@ class ProjectController extends Controller implements HasMiddleware
             return PayModesResource::collection(Wait::all());
         });
         $experiences = Cache::rememberForever('experiences', function() {
-            return PayModesResource::collection(Experience::all());
+            return WorkLoadResource::collection(Experience::all());
         });
         $welcomes = Cache::rememberForever('welcomes', function() {
             return PayModesResource::collection(Welcome::all());
@@ -246,11 +246,9 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function edit(Project $project)
     {
-
         Gate::authorize('project-recruiter',$project);
         $externalCompanies = ExternalCompany::where('user_id',auth()->user()->recruiter_from_firm_id)->latest()->get();
         $project->load('detailprojects','questions');
-        Gate::authorize('project-recruiter',$project);
         $category = Cache::rememberForever('category', function() {
             return MultiselectResource::collection(Category::isRoot()->get());
         });
@@ -291,7 +289,7 @@ class ProjectController extends Controller implements HasMiddleware
             return PayModesResource::collection(Wait::all());
         });
         $experiences = Cache::rememberForever('experiences', function() {
-            return PayModesResource::collection(Experience::all());
+            return WorkLoadResource::collection(Experience::all());
         });
         $welcomes = Cache::rememberForever('welcomes', function() {
             return PayModesResource::collection(Welcome::all());

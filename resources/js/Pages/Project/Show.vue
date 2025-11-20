@@ -318,9 +318,7 @@ watch(
                                 <li class="text-md mb-1 flex flex-wrap items-center">
                                     <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.experience')}}:</span>
                                     <div class="text-md font-semibold flex flex-wrap">
-                                        <div v-for="(ex,index) in props.project.experience">
-                                            {{ex.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.experience.length - 1">,</span>
-                                        </div>
+                                        {{props.project.experience.allTranslations.name[usePage().props.language]}}
                                     </div>
                                 </li>
                                 <li class="text-md mb-1 flex flex-wrap items-center">
