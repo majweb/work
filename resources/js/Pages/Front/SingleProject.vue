@@ -34,7 +34,7 @@ const generateUrl = computed(() => {
 </script>
 <template>
     <FrontLayout :title="__('translate.project')" :image="image" keywords="asdsadas" description="asdsadasdsasas">
-        <div class="py-12">
+        <div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg">
                     <Link :href="route('front.projects')" class="font-bold text-md underline">
