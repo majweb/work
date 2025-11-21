@@ -19,6 +19,7 @@ const user = computed(()=>usePage().props.auth.user);
 
 const generateUrl = computed(() => {
     if (props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber) {
+        console.log('ssss')
         let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
         myUrlWithParams.searchParams.append("q", props.project.countryWork?.allTranslations[usePage().props.language]+' '+props.project.cityWork+' '+props.project.streetWork+' '+props.project.streetWorkNumber +' '+props.project.postalWork);
         return myUrlWithParams.toString(); // <-- TO ROZWIĄZUJE HYDRATION MISMATCH
