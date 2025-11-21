@@ -16,7 +16,6 @@ const props = defineProps({
 const {hasRole} = usePermission();
 const user = computed(()=>usePage().props.auth.user);
 const isClient = ref(false);
-
 onMounted(() => {
     isClient.value = true;
 });
@@ -27,8 +26,6 @@ const generateUrl = computed(() => {
         return myUrlWithParams.toString(); // <-- TO ROZWIĄZUJE HYDRATION MISMATCH
     }
 });
-
-
 </script>
 <template>
     <FrontLayout :title="__('translate.project')" :image="image" keywords="asdsadas" description="asdsadasdsasas">
