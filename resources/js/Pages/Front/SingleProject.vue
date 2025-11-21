@@ -43,7 +43,7 @@ const generateUrl = computed(() => {
                     <div class="overflow-hidden shadow-md w-full mx-auto mt-3">
                         <!-- Top section -->
                         <div class="bg-[#0b2b59] text-white p-8 md:pl-[100px] relative overflow-hidden z-0">
-                            <h1 class="text-2xl md:text-4xl font-bold">{{ project.position.allTranslations.title[usePage().props.language] }}</h1>
+                            <h1 class="text-2xl md:text-4xl font-bold w-3/5 md:w-full">{{ project.position.allTranslations.title[usePage().props.language] }}</h1>
                             <div v-if="project.is_featured" class="absolute top-0 right-0">
                                 <div
                                     class="z-0 absolute -top-10 -right-2 h-[120px] w-[120px] bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1"
