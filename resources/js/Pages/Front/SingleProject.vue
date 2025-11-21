@@ -198,7 +198,7 @@ const generateUrl = computed(() => {
                             :allowTouchMove="false"
                             navigation
                             :pagination="{ clickable: true }"
-                            class="h-[300px] md:h-[350px] w-full"
+                            class="h-[230px] md:h-[250px] w-full"
                             :breakpoints="{
                             320: { // mobile
                                 slidesPerView: 2,
@@ -214,13 +214,14 @@ const generateUrl = computed(() => {
                             },
                             1024: { // lg
                                 slidesPerView: 4,
-                                spaceBetween: 30
+                                spaceBetween: 10
                             }
                         }"
                         >
                             <swiper-slide v-for="offer in project.offer" :key="offer.id">
                                 <div class="flex justify-center flex-col items-center">
                                     <img
+                                        class="w-[150px]"
                                         :src="`/images/icons/${offer.id}.svg`"
                                         :alt="offer.allTranslations.name[usePage().props.language]"
                                     />
