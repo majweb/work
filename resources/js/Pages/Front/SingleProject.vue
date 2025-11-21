@@ -47,7 +47,7 @@ const generateUrl = computed(() => {
                             </div>
                         </div>
                         <!-- Bottom section -->
-                        <div class="bg-white flex justify-between items-center px-8 py-5">
+                        <div class="bg-white flex flex-col md:flex-row justify-between md:items-center px-8 py-5">
                             <!-- Left: company info -->
                             <div class="flex items-center space-x-4">
                                 <img
@@ -61,7 +61,7 @@ const generateUrl = computed(() => {
                                 </div>
                             </div>
                             <!-- Right: badge + button -->
-                            <div class="flex items-center space-x-4 -top-8 relative">
+                            <div class="flex flex-col md:flex-row items-center space-x-4 -top-8 relative gap-2 md:gap-0">
                                 <Link v-if="!user"
                                       class="bg-[#0b2b59] hover:bg-[#566d8e] text-white font-semibold px-6 py-2 rounded transition-all"
                                       :href="route('login',{ projectToRedirect: project.id })">{{ __('translate.login') }}
@@ -120,9 +120,7 @@ const generateUrl = computed(() => {
                             </ul>
                         </section>
                     </div>
-
-                    <div class="py-12">
-                        <div class="mx-auto relative max-w-6xl">
+                     <div class="mx-auto relative max-w-6xl">
                             <!-- pionowa linia w osobnym wrapperze -->
                             <div class="absolute left-6 md:left-9 inset-y-0 w-[3px] bg-[#0b2b59]"></div>
 
@@ -187,10 +185,7 @@ const generateUrl = computed(() => {
                             </div>
 
                         </div>
-                    </div>
-
-                    <div class="py-4">
-                        <swiper
+                     <swiper
                             v-if="project.offer"
                             :modules="[Navigation, Pagination, Autoplay]"
                             :slides-per-view="4"
@@ -203,7 +198,7 @@ const generateUrl = computed(() => {
                             :allowTouchMove="false"
                             navigation
                             :pagination="{ clickable: true }"
-                            class="h-[350px] w-full"
+                            class="h-[300px] md:h-[350px] w-full"
                             :breakpoints="{
                             320: { // mobile
                                 slidesPerView: 2,
@@ -229,15 +224,13 @@ const generateUrl = computed(() => {
                                         :src="`/images/icons/${offer.id}.svg`"
                                         :alt="offer.allTranslations.name[usePage().props.language]"
                                     />
-                                    <span>
+                                    <span class="block text-center">
                                       {{offer.allTranslations.name[usePage().props.language]}}
                                     </span>
                                 </div>
                             </swiper-slide>
                         </swiper>
-
-                    </div>
-                    <div class="py-4 flex justify-center">
+                        <div class="py-4 flex justify-center">
                         <Link class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded transition-all" :href="route('front.projects.applyView',project)" v-if="!user || (user && hasRole('worker'))">{{ user && (user && hasRole('worker')) ? __('translate.apply') :  __('translate.applyWithoutLogin') }}</Link>
                     </div>
                     <div class="map">
