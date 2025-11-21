@@ -78,7 +78,7 @@ const generateUrl = computed(() => {
                         <!-- SEK CJA 1 -->
                         <section class="bg-white p-6 pt-0">
                             <!-- Pasek z ikonami -->
-                            <div class="flex flex-wrap gap-4 justify-between pb-4 mb-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-between pb-4 mb-6">
                                 <!-- Widełki -->
                                 <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/wynagrodzenie.svg" alt="money icon" class="w-20 h-20" />
