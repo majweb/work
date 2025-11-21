@@ -137,7 +137,7 @@ const generateUrl = computed(() => {
                                 </div>
 
                                 <!-- treść -->
-                                <div class="ml-8 p-6 w-full">
+                                <div class="p-6 w-full">
                                     <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4">{{__('translate.platnosc')}}</h2>
                                     <p><strong>{{__('translate.tryb_wyplaty')}}</strong> {{project.payoutMode.allTranslations.name[usePage().props.language]}}</p>
                                     <p><strong>{{__('translate.premia')}}</strong> {{__('translate.od')}} {{project.bonusSalaryFrom}}{{project.currency?.name}} {{__('translate.do')}} {{project.bonusSalaryTo}}{{project.currency?.name}}</p>
@@ -154,7 +154,7 @@ const generateUrl = computed(() => {
                                     <img src="/images/icons/organizacja_pracy_i_oczekiwania.svg" :alt="__('translate.ikona_org')" class=" w-12 h-12 md:w-20 md:h-20" />
                                 </div>
 
-                                <div class="ml-8 p-6 w-full">
+                                <div class="p-6 w-full">
                                     <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4 uppercase">{{__('translate.org_prac')}}</h2>
                                     <p><strong>{{__('translate.org_prac')}}</strong> {{__('translate.od')}} {{project.hoursFrom}} {{__('translate.do')}} {{project.hoursTo}}</p>
                                     <p><strong>{{__('translate.prac_zm')}}</strong>  {{ project.shiftWork == 1 ? __('translate.yes') : __('translate.no') }}</p>
@@ -173,7 +173,7 @@ const generateUrl = computed(() => {
                                     <img src="/images/icons/wymagania_i_oczekiwania.svg" :alt="__('translate.iko_wym')" class=" w-12 h-12 md:w-20 md:h-20" />
                                 </div>
 
-                                <div class="ml-8 p-6 w-full">
+                                <div class="p-6 w-full">
                                     <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4 uppercase">{{__('translate.wym_i_oczek')}}</h2>
                                     <p><strong>{{__('translate.experience')}}:</strong> {{ project.experience.allTranslations.name[usePage().props.language]}}</p>
                                     <p><strong>{{__('translate.education')}}:</strong> {{ project.education.name[usePage().props.language] }}</p>
