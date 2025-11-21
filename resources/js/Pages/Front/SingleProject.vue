@@ -37,7 +37,7 @@ const generateUrl = computed(() => {
                     </Link>
                     <div class="overflow-hidden shadow-md w-full mx-auto mt-3">
                         <!-- Top section -->
-                        <div class="bg-[#0b2b59] text-white p-8 pl-[100px] relative overflow-hidden z-0">
+                        <div class="bg-[#0b2b59] text-white p-8 md:pl-[100px] relative overflow-hidden z-0">
                             <h1 class="text-4xl font-bold">{{ project.position.allTranslations.title[usePage().props.language] }}</h1>
                             <div v-if="project.is_featured" class="absolute top-0 right-0">
                                 <div
@@ -47,7 +47,7 @@ const generateUrl = computed(() => {
                             </div>
                         </div>
                         <!-- Bottom section -->
-                        <div class="bg-white flex flex-col md:flex-row justify-between md:items-center px-8 py-5">
+                        <div class="bg-white flex flex-col md:flex-row justify-between md:items-center px-2 md:px-8 py-5">
                             <!-- Left: company info -->
                             <div class="flex items-center space-x-4">
                                 <img
@@ -78,16 +78,16 @@ const generateUrl = computed(() => {
                         <!-- SEK CJA 1 -->
                         <section class="bg-white p-6 pt-0">
                             <!-- Pasek z ikonami -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-between pb-4 mb-6">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 justify-between pb-4 mb-6">
                                 <!-- Widełki -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
+                                <div class="flex-1 md:min-w-[150px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/wynagrodzenie.svg" alt="money icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('premium.history_from')}} <span class="font-bold text-black">{{project.basicSalaryFrom}} {{project.currency?.value}}</span> {{__('translate.msc')}}</p>
                                     <p class="text-sm text-gray-600">{{__('premium.history_to')}} <span class="font-bold text-black">{{project.basicSalaryTo}} {{project.currency?.value}}</span> {{__('translate.msc')}}</p>
                                 </div>
 
                                 <!-- Tryb pracy -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
+                                <div class="flex-1 md:min-w-[150px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/praca_hybrydowa.svg" alt="hybrid icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('projects.work')}}</p>
                                     <p class="font-bold" v-for="workingMode in project.workingMode">
@@ -96,7 +96,7 @@ const generateUrl = computed(() => {
                                 </div>
 
                                 <!-- Umowa -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
+                                <div class="flex-1 md:min-w-[150px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/5.svg" alt="contract icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('projects.agreement')}}</p>
                                     <p class="font-bold" v-for="typeOfContract in project.typeOfContract">
@@ -104,7 +104,7 @@ const generateUrl = computed(() => {
                                     </p>
                                 </div>
                                 <!-- Wymiar pracy -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
+                                <div class="flex-1 md:min-w-[150px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/wymiar_pracy.svg" alt="time icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('projects.time')}}</p>
                                     <p class="font-bold">
