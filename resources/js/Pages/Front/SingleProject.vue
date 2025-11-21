@@ -16,6 +16,16 @@ const props = defineProps({
 });
 const {hasRole} = usePermission();
 const user = computed(()=>usePage().props.auth.user);
+
+const generateUrl = computed(() => {
+    if (props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber) {
+        let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
+        myUrlWithParams.searchParams.append("q", props.project.countryWork?.allTranslations[usePage().props.language]+' '+props.project.cityWork+' '+props.project.streetWork+' '+props.project.streetWorkNumber +' '+props.project.postalWork);
+        return myUrlWithParams;
+    }
+});
+
+
 </script>
 <template>
     <FrontLayout :title="__('translate.project')" :image="image" keywords="asdsadas" description="asdsadasdsasas">
@@ -70,14 +80,14 @@ const user = computed(()=>usePage().props.auth.user);
                             <!-- Pasek z ikonami -->
                             <div class="flex flex-wrap gap-4 justify-between pb-4 mb-6">
                                 <!-- Widełki -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4]">
+                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/wynagrodzenie.svg" alt="money icon" class="w-20 h-20" />
-                                    <p class="text-sm text-gray-600">{{__('premium.history_from')}} <span class="font-bold text-black">{{project.basicSalaryFrom}} {{project.currency?.value}}</span> /msc</p>
-                                    <p class="text-sm text-gray-600">{{__('premium.history_to')}} <span class="font-bold text-black">{{project.basicSalaryTo}} {{project.currency?.value}}</span> /msc</p>
+                                    <p class="text-sm text-gray-600">{{__('premium.history_from')}} <span class="font-bold text-black">{{project.basicSalaryFrom}} {{project.currency?.value}}</span> {{__('translate.msc')}}</p>
+                                    <p class="text-sm text-gray-600">{{__('premium.history_to')}} <span class="font-bold text-black">{{project.basicSalaryTo}} {{project.currency?.value}}</span> {{__('translate.msc')}}</p>
                                 </div>
 
                                 <!-- Tryb pracy -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4]">
+                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/praca_hybrydowa.svg" alt="hybrid icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('projects.work')}}</p>
                                     <p class="font-bold" v-for="workingMode in project.workingMode">
@@ -86,7 +96,7 @@ const user = computed(()=>usePage().props.auth.user);
                                 </div>
 
                                 <!-- Umowa -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4]">
+                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/5.svg" alt="contract icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('projects.agreement')}}</p>
                                     <p class="font-bold" v-for="typeOfContract in project.typeOfContract">
@@ -94,7 +104,7 @@ const user = computed(()=>usePage().props.auth.user);
                                     </p>
                                 </div>
                                 <!-- Wymiar pracy -->
-                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4]">
+                                <div class="flex-1 min-w-[200px] text-center flex flex-col items-center border border-2 border-[#009FE4] p-2">
                                     <img src="/images/icons/wymiar_pracy.svg" alt="time icon" class="w-20 h-20" />
                                     <p class="text-sm text-gray-600">{{__('projects.time')}}</p>
                                     <p class="font-bold">
@@ -112,23 +122,23 @@ const user = computed(()=>usePage().props.auth.user);
                     </div>
 
                     <div class="py-12">
-                        <div class="mx-auto relative max-w-5xl">
+                        <div class="mx-auto relative max-w-6xl">
                             <!-- pionowa linia w osobnym wrapperze -->
-                            <div class="absolute left-6 inset-y-0 w-[3px] bg-[#0b2b59]"></div>
+                            <div class="absolute left-6 md:left-9 inset-y-0 w-[3px] bg-[#0b2b59]"></div>
 
                             <!-- Sekcja 1: PŁATNOŚĆ -->
                             <div class="flex items-start mb-12 relative">
                                 <!-- ikona -->
-                                <div class="z-10 flex-shrink-0 bg-[#0b2b59] w-12 h-12 rounded-full flex items-center justify-center text-white">
-                                    <img src="/images/icons/płatnosc_i_oczekiwania.svg" alt="ikona płatności" class="w-12 h-12" />
+                                <div class="z-10 flex-shrink-0 bg-[#0b2b59] w-12 h-12 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white">
+                                    <img src="/images/icons/płatnosc_i_oczekiwania.svg" :alt="__('translate.icon_pay')" class="w-12 h-12 md:w-20 md:h-20" />
                                 </div>
 
                                 <!-- treść -->
                                 <div class="ml-8 p-6 w-full">
-                                    <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4">PŁATNOŚĆ</h2>
-                                    <p><strong>Tryb wypłaty:</strong> {{project.payoutMode.allTranslations.name[usePage().props.language]}}</p>
-                                    <p><strong>Premia:</strong> od {{project.bonusSalaryFrom}}{{project.currency?.name}} do {{project.bonusSalaryTo}}{{project.currency?.name}}</p>
-                                    <p><strong>System wynagrodzeń:</strong></p>
+                                    <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4">{{__('translate.platnosc')}}</h2>
+                                    <p><strong>{{__('translate.tryb_wyplaty')}}</strong> {{project.payoutMode.allTranslations.name[usePage().props.language]}}</p>
+                                    <p><strong>{{__('translate.premia')}}</strong> {{__('translate.od')}} {{project.bonusSalaryFrom}}{{project.currency?.name}} {{__('translate.do')}} {{project.bonusSalaryTo}}{{project.currency?.name}}</p>
+                                    <p><strong>{{__('translate.system_wynagr')}}</strong></p>
                                     <ul class="list-disc list-inside text-gray-700 ml-4">
                                         <li v-for="paySystem in project.paySystem">{{paySystem.allTranslations.name[usePage().props.language]}}</li>
                                     </ul>
@@ -137,16 +147,16 @@ const user = computed(()=>usePage().props.auth.user);
 
                             <!-- Sekcja 2: ORGANIZACJA PRACY -->
                             <div class="flex items-start mb-12 relative">
-                                <div class="z-10 flex-shrink-0 bg-[#0b2b59] w-12 h-12 rounded-full flex items-center justify-center text-white">
-                                    <img src="/images/icons/organizacja_pracy_i_oczekiwania.svg" alt="ikona organizacji" class="w-12 h-12" />
+                                <div class="z-10 flex-shrink-0 bg-[#0b2b59]  w-12 h-12 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white">
+                                    <img src="/images/icons/organizacja_pracy_i_oczekiwania.svg" :alt="__('translate.ikona_org')" class=" w-12 h-12 md:w-20 md:h-20" />
                                 </div>
 
                                 <div class="ml-8 p-6 w-full">
-                                    <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4">ORGANIZACJA PRACY</h2>
-                                    <p><strong>Godziny pracy:</strong> od {{project.hoursFrom}} do {{project.hoursTo}}</p>
-                                    <p><strong>Praca zmianowa:</strong>  {{ project.shiftWork == 1 ? __('translate.yes') : __('translate.no') }}</p>
-                                    <p><strong>Praca nocna:</strong> {{ project.workNight == 1 ? __('translate.yes') : __('translate.no') }}</p>
-                                    <p><strong>Dni tygodnia:</strong>
+                                    <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4 uppercase">{{__('translate.org_prac')}}</h2>
+                                    <p><strong>{{__('translate.org_prac')}}</strong> {{__('translate.od')}} {{project.hoursFrom}} {{__('translate.do')}} {{project.hoursTo}}</p>
+                                    <p><strong>{{__('translate.prac_zm')}}</strong>  {{ project.shiftWork == 1 ? __('translate.yes') : __('translate.no') }}</p>
+                                    <p><strong>{{__('translate.prac_noc')}}</strong> {{ project.workNight == 1 ? __('translate.yes') : __('translate.no') }}</p>
+                                    <p><strong>{{__('translate.dni_tyg')}}</strong>
                                         <span v-for="(day, index) in project.days" :key="index">
                         {{ day.allTranslations.name[usePage().props.language]}}<span v-if="index !== project.days.length - 1">, </span>
                     </span>
@@ -156,20 +166,20 @@ const user = computed(()=>usePage().props.auth.user);
 
                             <!-- Sekcja 3: WYMAGANIA I OCZEKIWANIA -->
                             <div class="flex items-start mb-4 relative">
-                                <div class="z-10 flex-shrink-0 bg-[#0b2b59] w-12 h-12 rounded-full flex items-center justify-center text-white">
-                                    <img src="/images/icons/wymagania_i_oczekiwania.svg" alt="ikona wymagań" class="w-12 h-12" />
+                                <div class="z-10 flex-shrink-0 bg-[#0b2b59]  w-12 h-12 md:w-20 md:h-20 rounded-full flex items-center justify-center text-white">
+                                    <img src="/images/icons/wymagania_i_oczekiwania.svg" :alt="__('translate.iko_wym')" class=" w-12 h-12 md:w-20 md:h-20" />
                                 </div>
 
                                 <div class="ml-8 p-6 w-full">
-                                    <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4">WYMAGANIA I OCZEKIWANIA</h2>
-                                    <p><strong>Doświadczenie:</strong> {{ project.experience.allTranslations.name[usePage().props.language]}}</p>
-                                    <p><strong>Wykształcenie:</strong> {{ project.education.name[usePage().props.language] }}</p>
-                                    <p><strong>Oczekujemy:</strong></p>
+                                    <h2 class="text-xl font-extrabold text-[#0b2b59] mb-4 uppercase">{{__('translate.wym_i_oczek')}}</h2>
+                                    <p><strong>{{__('translate.experience')}}:</strong> {{ project.experience.allTranslations.name[usePage().props.language]}}</p>
+                                    <p><strong>{{__('translate.education')}}:</strong> {{ project.education.name[usePage().props.language] }}</p>
+                                    <p><strong>{{__('translate.wait')}}:</strong></p>
                                     <ul class="list-disc list-inside text-gray-700 ml-4 mb-3">
                                         <li v-for="el in project.wait">{{el.allTranslations.name[usePage().props.language]}}</li>
                                     </ul>
 
-                                    <p><strong>Mile widziane:</strong></p>
+                                    <p><strong>{{__('translate.welcome')}}:</strong></p>
                                     <ul class="list-disc list-inside text-gray-700 ml-4">
                                         <li v-for="el in project.welcome">{{el.allTranslations.name[usePage().props.language]}}</li>
                                     </ul>
@@ -196,7 +206,7 @@ const user = computed(()=>usePage().props.auth.user);
                             class="h-[350px] w-full"
                             :breakpoints="{
                             320: { // mobile
-                                slidesPerView: 1,
+                                slidesPerView: 2,
                                 spaceBetween: 10
                             },
                             640: { // sm
@@ -226,6 +236,21 @@ const user = computed(()=>usePage().props.auth.user);
                             </swiper-slide>
                         </swiper>
 
+                    </div>
+                    <div class="py-4 flex justify-center">
+                        <Link class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded transition-all" :href="route('front.projects.applyView',project)" v-if="!user || (user && hasRole('worker'))">{{ user && (user && hasRole('worker')) ? __('translate.apply') :  __('translate.applyWithoutLogin') }}</Link>
+                    </div>
+                    <div class="map">
+                        <div class="col-span-6 mt-3" v-if="props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber">
+                            <iframe
+                                width="100%"
+                                height="250"
+                                frameborder="0" style="border:0"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                :src="generateUrl"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             </div>
