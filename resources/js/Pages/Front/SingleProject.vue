@@ -1,7 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {Link, usePage} from '@inertiajs/vue3';
-import {computed} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {usePermission} from "@/Composables/usePermission.js";
 import {Navigation, Pagination, Autoplay, Scrollbar} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -16,7 +16,11 @@ const props = defineProps({
 });
 const {hasRole} = usePermission();
 const user = computed(()=>usePage().props.auth.user);
+const isClient = ref(false);
 
+onMounted(() => {
+    isClient.value = true;
+});
 const generateUrl = computed(() => {
     if (props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber) {
         console.log('ssss')
@@ -234,7 +238,7 @@ const generateUrl = computed(() => {
                         <div class="py-4 flex justify-center">
                         <Link class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded transition-all" :href="route('front.projects.applyView',project)" v-if="!user || (user && hasRole('worker'))">{{ user && (user && hasRole('worker')) ? __('translate.apply') :  __('translate.applyWithoutLogin') }}</Link>
                     </div>
-                    <div class="map">
+                    <div class="map" v-if="isClient">
                         <div class="col-span-6 mt-3" v-if="props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber">
                             <iframe
                                 width="100%"
