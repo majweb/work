@@ -439,10 +439,10 @@ const submit = () => {
                                             {{project.id}}
                                             {{ project.position?.allTranslations.title[usePage().props.language] }}
                                         </h3>
-                                        <div class="flex items-center mt-1 text-sm text-gray-600">
+                                        <div class="flex items-center text-sm text-gray-600">
                                             <span class="font-medium">{{ project.user?.name }}</span>
                                         </div>
-                                        <div class="flex items-center mt-1 text-sm text-gray-500">
+                                        <div class="flex items-center text-sm text-gray-500">
                                             <span>{{ project.category.allTranslations.title[usePage().props.language] }}</span>
                                         </div>
                                     </div>
