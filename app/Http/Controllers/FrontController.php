@@ -337,20 +337,19 @@ class FrontController extends Controller
     {
         $query = User::role('firm')->with(['firm' => function($query) {
             $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
-                           'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points');
+                           'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points','countryJson');
         }]);
         $features = User::featured()->with('firm')->get();
         // Filtrowanie po kraju
         if (request('country')) {
-            $q->whereHas('country', function($c) use ($countryId) {
-                $c->where('value', $countryId);
+            $countryId = request('country');
+            $query->whereHas('firm', function ($q) use ($countryId) {
+                $q->whereJsonContains('countryJson', ['value' => (int) $countryId]);
             });
-
-//            $query->whereJsonContains('country', ['value'=>(int) request('country')]);
         }
         $firms = $query->paginate(10)->withQueryString();
 
-        $countries = (new Helper())->makeCountriesToSelectHasProjects();
+        $countries = (new Helper())->makeCountriesToSelect();
 
         return inertia()->render('Front/Firms', [
             'firms' => $firms,

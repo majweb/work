@@ -1035,4 +1035,6 @@ return [
     'dni_tyg' => 'Dni tygodnia:',
     'iko_wym' => 'ikona wymagań',
     'wym_i_oczek' => 'Wymagania I oczekiwania',
+    'check' => 'SPRAWDŹ',
+    'favorite_firms' => 'polecane firmy',
 ];
