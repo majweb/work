@@ -22,7 +22,8 @@ class FirmController extends Controller
             'number'=>$request->firmData()['number'],
             'city'=>$request->firmData()['city'],
             'postal'=>$request->firmData()['postal'],
-            'country'=>$request->firmData()['country'],
+            'country'=>$request->firmData()['countryJson']['name'],
+            'countryJson'=>$request->firmData()['countryJson'],
             'contact_phone'=>$request->firmData()['contact_phone'],
             'invoice_same'=>$request->firmData()['invoice_same'] ? 1 : 0,
             'name_invoice'=>$request->firmData()['invoice_same'] ? Auth::user()->name : $request->firmData()['name_invoice'],
@@ -32,7 +33,8 @@ class FirmController extends Controller
             'number_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['number'] : $request->firmData()['number_invoice'],
             'city_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['city'] : $request->firmData()['city_invoice'],
             'postal_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['postal'] : $request->firmData()['postal_invoice'],
-            'country_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['country'] : $request->firmData()['country_invoice'],
+            'country_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['countryJson']['name'] : $request->firmData()['countryInvoiceJson']['name'],
+            'countryInvoiceJson'=>$request->firmData()['invoice_same'] ? $request->firmData()['countryJson'] : $request->firmData()['countryInvoiceJson'],
         ]);
         session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');

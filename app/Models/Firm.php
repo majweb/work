@@ -57,6 +57,8 @@ class Firm extends Model
     protected $casts = [
         'invoice_same' => 'boolean',
         'contact_phone' => 'array',
+        'countryJson' => 'array',
+        'countryInvoiceJson' => 'array',
         'currency' => Currency::class,
     ];
 

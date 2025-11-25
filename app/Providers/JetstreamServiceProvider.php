@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
+use App\Services\Helper;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
-
+use Illuminate\Http\Request;
 class JetstreamServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +25,17 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->configurePermissions();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
+
+        Jetstream::inertia()->whenRendering(
+            'Profile/Show',
+            function (Request $request, array $data) {
+                $countries = (new Helper())->makeCountriesToSelect();
+                return array_merge($data, [
+                    'countries'=>$countries
+                ]);
+            }
+        );
+
     }
 
     /**

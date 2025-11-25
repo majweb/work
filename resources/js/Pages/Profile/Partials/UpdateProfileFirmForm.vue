@@ -10,10 +10,16 @@ import Checkbox from "@/Components/Checkbox.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import InputHelper from "@/Components/InputHelper.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
+import Multiselect from "vue-multiselect";
+import {ref} from "vue";
 
 const props = defineProps({
     user: Object,
+    countries: Array,
+
 });
+const optionsCountry = ref(props.countries);
+
 
 const form = useForm({
     _method: 'PUT',
@@ -25,6 +31,8 @@ const form = useForm({
     city: props.user.firm?.city,
     postal: props.user.firm?.postal,
     country: props.user.firm?.country,
+    countryJson: props.user.firm?.countryJson,
+    countryInvoiceJson: props.user.firm?.countryInvoiceJson,
     contact_phone: props.user.firm?.contact_phone ?? [],
     name_invoice: props.user.firm?.invoice_same ? props.user.name : props.user.firm?.name_invoice,
     nip_invoice: props.user.firm?.invoice_same ? props.user.firm?.nip : props.user.firm?.nip_invoice,
@@ -141,16 +149,30 @@ const removeElement = (index, array) => {
             </div>
 
             <!-- COUNTRY -->
-            <div class="col-span-6 sm:col-span-2">
-                <InputLabel for="country" :value="__('translate.Country')"/>
-                <TextInput
-                    id="country"
-                    v-model="form.country"
-                    type="text"
-                    class="mt-1 block w-full"
-                />
-                <InputError :message="form.errors.country" class="mt-2"/>
+            <div class="col-span-6 sm:col-span-3">
+                <InputLabel :value="__('translate.Country')"/>
+                <multiselect
+                    group-values="elements" group-label="group"
+                    :group-select="false"
+                    :selectLabel="__('translate.selectLabel')"
+                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                    :selectedLabel="__('translate.selectedLabel')"
+                    :deselectLabel="__('translate.deselectLabel')"
+                    track-by="name"
+                    :multiple="false"
+                    label="name"
+                    :placeholder="__('translate.placeholder')"
+                    v-model="form.countryJson" :options="optionsCountry">
+                    <template #noResult>
+                        <span>{{ __('translate.noOptions') }}</span>
+                    </template>
+                    <template #noOptions>
+                        <span>{{ __('translate.noResult') }}</span>
+                    </template>
+                </multiselect>
+                <InputError :message="form.errors.countryJson" class="mt-2"/>
             </div>
+
 
             <div class="col-span-6 sm:col-span-2 flex items-center">
                 <Checkbox v-model:checked="form.invoice_same" id="invoice_same" name="invoice_same" class="mr-2"/>
@@ -217,7 +239,6 @@ const removeElement = (index, array) => {
                                 {{ __('translate.phoneDescHelper') }}
                             </InputHelper>
                             <InputError :message="form.errors[`contact_phone.${index}.desc`]" class="mt-2"/>
-
                         </div>
                         <!-- DESC -->
                     </div>
@@ -320,16 +341,30 @@ const removeElement = (index, array) => {
                     </div>
 
                     <!-- COUNTRY-INVOICE -->
-                    <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="country_invoice" :value="__('translate.Country')"/>
-                        <TextInput
-                            id="country_invoice"
-                            v-model="form.country_invoice"
-                            type="text"
-                            class="mt-1 block w-full"
-                        />
-                        <InputError :message="form.errors.country_invoice" class="mt-2"/>
+                    <div class="col-span-6 sm:col-span-3">
+                        <InputLabel :value="__('translate.Country')"/>
+                        <multiselect
+                            group-values="elements" group-label="group"
+                            :group-select="false"
+                            :selectLabel="__('translate.selectLabel')"
+                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                            :selectedLabel="__('translate.selectedLabel')"
+                            :deselectLabel="__('translate.deselectLabel')"
+                            track-by="name"
+                            :multiple="false"
+                            label="name"
+                            :placeholder="__('translate.placeholder')"
+                            v-model="form.countryInvoiceJson" :options="optionsCountry">
+                            <template #noResult>
+                                <span>{{ __('translate.noOptions') }}</span>
+                            </template>
+                            <template #noOptions>
+                                <span>{{ __('translate.noResult') }}</span>
+                            </template>
+                        </multiselect>
+                        <InputError :message="form.errors.countryInvoiceJson" class="mt-2"/>
                     </div>
+
                 </div>
 
             </div>
@@ -346,3 +381,45 @@ const removeElement = (index, array) => {
         </template>
     </FormSection>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+
+.multiselect__tag {
+    background: #00a0e3 !important;
+}
+
+.multiselect__option--highlight {
+    background: #00a0e3 !important;
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    content: attr(data-select);
+    background: #00a0e3 !important;
+    color: white;
+}
+
+.multiselect__option--selected {
+    background: #00A0E3B2 !important;
+    color: #35495E;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #00A0E3B2 !important;
+    color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #00A0E3B2 !important;
+    content: attr(data-deselect);
+    color: white !important;
+}
+
+.multiselect__option--selected:after {
+    content: attr(data-selected);
+    color: #00A0E3B2;
+    background: transparent !important;
+}
+</style>

@@ -18,6 +18,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\CvClassic;
+use App\Models\Firm;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
 use App\Models\Project;
@@ -334,12 +335,28 @@ class FrontController extends Controller
 
     public function Firms()
     {
-        $firms = User::role('firm')->with(['firm' => function($query) {
+        $query = User::role('firm')->with(['firm' => function($query) {
             $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
                            'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points');
-        }])->paginate(10)->withQueryString();
+        }]);
+        $features = User::featured()->with('firm')->get();
+        // Filtrowanie po kraju
+        if (request('country')) {
+            $q->whereHas('country', function($c) use ($countryId) {
+                $c->where('value', $countryId);
+            });
 
-        return inertia()->render('Front/Firms',compact('firms'));
+//            $query->whereJsonContains('country', ['value'=>(int) request('country')]);
+        }
+        $firms = $query->paginate(10)->withQueryString();
+
+        $countries = (new Helper())->makeCountriesToSelectHasProjects();
+
+        return inertia()->render('Front/Firms', [
+            'firms' => $firms,
+            'countries' => $countries,
+            'features' => $features,
+        ]);
     }
 
     public function applyView(Project $project)

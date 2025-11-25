@@ -43,7 +43,7 @@ const {hasRole} = usePermission();
                 </div>
                 <div v-if="hasRole('firm')">
                     <SectionBorder/>
-                    <UpdateProfileFirmForm :user="$page.props.auth.user" class="mt-10 sm:mt-0"/>
+                    <UpdateProfileFirmForm :user="$page.props.auth.user" :countries="$page.props.countries" class="mt-10 sm:mt-0"/>
                 </div>
 
                 <div v-if="hasRole('firm')">

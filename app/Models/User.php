@@ -16,6 +16,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -142,5 +143,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Aplication::class,'recruiter_id');
     }
+
+    // Scope do sprawdzenia featured
+    public function scopeFeatured(Builder $query)
+    {
+        $query->whereHas('changeProducts', function ( $q) {
+            $q->where('product_id', 9)
+                ->whereDate('start', '<=', now())
+                ->whereDate('end', '>=', now());
+        });
+    }
+
 
 }
