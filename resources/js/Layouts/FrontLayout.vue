@@ -130,7 +130,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
                 </nav>
 
                 <!-- Language selector and auth -->
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-6 w-2/5">
                     <Multiselect
                         v-model="lang"
                         :options="sortLangs"
@@ -144,7 +144,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
 
                     <Link v-if="auth?.user" :href="route('dashboard')" class="px-4 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-700">{{__('translate.dashboard')}}</Link>
                     <template v-else>
-                        <Link :href="route('login')" class="px-3 py-2 text-white hover:text-gray-200">{{__('translate.login')}}</Link>
+                        <Link :href="route('login')" class="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-100">{{__('translate.login')}}</Link>
                         <Link v-if="page.props.canRegister" :href="route('register')" class="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-100">{{__('translate.register')}}</Link>
                     </template>
                 </div>

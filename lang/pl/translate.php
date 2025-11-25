@@ -206,6 +206,7 @@ return [
     'addToCart' => 'Dodaj do koszyka',
     'addedToCart' => 'Dodano do koszyka',
     'clearFilters' => 'Zeruj filtry i sortowanie',
+    'clearFiltersOnly' => 'Zeruj filtry',
     'typeProduct' => 'Typ produktu',
     'frontPage' => 'Strona główna',
     'cart' => 'Koszyk',
@@ -1037,4 +1038,5 @@ return [
     'wym_i_oczek' => 'Wymagania I oczekiwania',
     'check' => 'SPRAWDŹ',
     'favorite_firms' => 'polecane firmy',
+    'searching' => 'Szukanie...',
 ];

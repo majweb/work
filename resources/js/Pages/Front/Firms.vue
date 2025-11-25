@@ -18,6 +18,7 @@ const props = defineProps({
     firms: Object,
     features: Object,
 });
+const loading = ref(false);
 
 const optionsCategories = ref([]);
 
@@ -30,6 +31,17 @@ const formatEmployeeCount = (count) => {
     if (count < 250) return __('translate.moreThanFifty');
     return __('translate.moreThanTwoHundred');
 };
+
+const clearFilters = () => {
+    form.country = null;
+
+    router.get(route('front.firms'), {}, {
+        preserveState: false,
+        replace: true,
+        preserveScroll: true,
+    });
+};
+
 
 // Funkcja do ustalania kolorów tła dla firm w oparciu o ich ID (dla różnorodności wizualnej)
 const getGradientClass = (id) => {
@@ -44,6 +56,8 @@ const getGradientClass = (id) => {
 };
 
 const submit = () => {
+    loading.value = true;
+
     const transformedData = {
         country: form.country?.value || null,
     }
@@ -54,6 +68,9 @@ const submit = () => {
         preserveState: true,
         replace: true,
         preserveScroll: true,
+        onFinish: () => {
+            loading.value = false;
+        }
     });
 };
 
@@ -106,12 +123,49 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     </div>
                                     <button
                                         type="submit"
-                                        class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition"
+                                        :disabled="loading || !form.country"
+                                        class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        {{ __('translate.search') }}
+                                        <svg
+                                            v-if="loading"
+                                            class="animate-spin h-5 w-5 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle
+                                                class="opacity-25"
+                                                cx="12"
+                                                cy="12"
+                                                r="10"
+                                                stroke="currentColor"
+                                                stroke-width="4"
+                                            ></circle>
+                                            <path
+                                                class="opacity-75"
+                                                fill="currentColor"
+                                                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                            ></path>
+                                        </svg>
+
+                                        <span v-if="!loading">
+        {{ __('translate.search') }}
+    </span>
+                                        <span v-else>
+        {{ __('translate.searching') ?? 'Szukam…' }}
+    </span>
                                     </button>
                                 </div>
                             </form>
+                            <!-- 🔥 PRZYCISK RESET — widoczny tylko jeśli wybrano kraj -->
+                            <button
+                                v-if="form.country"
+                                type="button"
+                                @click="clearFilters"
+                                class="ml-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"
+                            >
+                                {{ __('translate.clearFiltersOnly') ?? 'Wyczyść' }}
+                            </button>
                         </div>
 
                         <!-- Możesz dodać tutaj jakieś opcje filtrowania -->
