@@ -224,7 +224,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                 <Link :href="route('front.firms.single',firm.id)"
                                     v-for="firm in props.firms.data"
                                     :key="firm.id"
-                                    class="border rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition cursor-pointer hover:bg-gray-50"
+                                    class="border rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition cursor-pointer hover:bg-gray-50 min-h-[180px] sm:min-h-[150px]"
                                 >
                                     <img :src="firm.profile_photo_url" class="h-10 mb-5" />
                                     <h3 class="font-semibold text-lg">{{ firm.name }}</h3>
