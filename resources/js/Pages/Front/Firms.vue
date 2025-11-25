@@ -94,7 +94,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 items-center mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 items-center">
                         <!-- Formularz wyszukiwania -->
                         <div class="mb-6">
                             <form @submit.prevent="submit" class="w-full">
@@ -174,26 +174,18 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                             <span class="text-sm text-gray-500 dark:text-gray-400">{{ props.firms.total }} firm</span>
                         </div>
                     </div>
-                    <div class="max-w-6xl mx-auto px-6">
+                    <div class="max-w-6xl px-6">
                         <!-- TYTUŁ -->
-                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-8">
-
+                        <div class="flex flex-col items-start justify-between mb-10 gap-8">
                             <!-- LEWA KOLUMNA -->
                             <div class="flex items-start md:items-center flex-row gap-4 shrink-0">
-                                <h2 class="text-4xl font-bold text-[#0A2E6D] leading-7 order-1  md:order-0">
+                                <h2 class="text-4xl font-bold text-[#0A2E6D] leading-7 order-1">
                                     {{__('translate.check')}}<br />
                                     <span class="text-[#0A2E6D]">{{__('translate.favorite_firms')}}</span>
                                 </h2>
-
-                                <svg height="20" viewBox="0 0 90 20" class="w-1/5 md:w-32 order-0 md:order-1 rotate-90 md:rotate-0">
-                                    <path d="M0 10 H90" stroke="#1e3a8a" stroke-width="3" stroke-linecap="round"/>
-                                    <path d="M75 5 L90 10 L75 15" fill="#1e3a8a"/>
-                                </svg>
                             </div>
-
-
                             <!-- PRAWA KOLUMNA (SWIPER) -->
-                            <div class="w-full md:max-w-[60%]">
+                            <div class="w-full ">
                                 <Swiper
                                     :modules="[Autoplay]"
                                     :slides-per-view="3"
@@ -204,7 +196,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
             slidesPerView: 2
         },
         1024: {
-            slidesPerView: 3
+            slidesPerView: 4
         }
     }"
                                     :autoplay="true"
@@ -224,12 +216,11 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     </SwiperSlide>
                                 </Swiper>
                             </div>
-
                         </div>
 
                         <!-- SIATKA FIRM -->
                         <div v-if="props.firms.total">
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                                 <Link :href="route('front.firms.single',firm.id)"
                                     v-for="firm in props.firms.data"
                                     :key="firm.id"
