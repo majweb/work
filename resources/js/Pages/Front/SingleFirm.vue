@@ -183,7 +183,7 @@ onMounted(() => {
                         </div>
                     </div>
 <!--                    PHOTOS-->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full max-w-4xl">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full max-w-4xl mt-6">
                         <img
                             v-for="(img) in props.firm.media"
                             :key="img.url"
