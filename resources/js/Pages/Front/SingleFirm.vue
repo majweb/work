@@ -256,9 +256,6 @@ onMounted(() => {
                     </Link>
                 </div>
                 </div>
-
-
-
             </div>
         </div>
         <!--        <div class="py-12">-->
