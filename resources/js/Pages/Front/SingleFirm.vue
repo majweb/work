@@ -156,7 +156,7 @@ onMounted(() => {
                         </iframe>
                     </div>
                 </div>
-                <div class="text-center px-6 py-12 max-w-4xl mx-auto text-slate-800">
+                <div class="text-center px-6 py-12 max-w-7xl mx-auto text-slate-800">
                     <!-- Tytuł -->
                     <h2 class="text-3xl font-bold mb-6" v-if="firm.extra_description">
                         {{ __('translate.poznajmy_sie') }}
@@ -184,27 +184,26 @@ onMounted(() => {
                     </div>
 <!--                    PHOTOS-->
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full max-w-4xl mt-6">
-                        <img
-                            v-for="(img) in props.firm.media"
+                        <div
+                            v-for="img in props.firm.media"
                             :key="img.url"
-                            :src="img.url"
-                            :alt="img.name"
-                            class="cursor-pointer object-cover w-full h-45 rounded shadow hover:scale-105 transition"
+                            class="cursor-pointer bg-center bg-cover bg-no-repeat rounded shadow hover:scale-105 transition h-48"
+                            :style="{ backgroundImage: `url('${img.url}')` }"
                             @click="openLightbox(img.url)"
-                        />
+                        ></div>
                     </div>
 <!--                    PHOTOS-->
                     <!-- Opinie -->
                     <div v-if="props.firm?.opinion_google || props.firm?.opinion_trust || props.firm?.opinion_facebook"
                          class="mt-6">
-                        <h2 class="text-xl font-semibold mb-3">{{ __('translate.reviews') }}</h2>
+                        <h2 class="text-3xl font-bold mb-6">{{ __('translate.reviews') }}</h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div v-if="props.firm.opinion_google" class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
                                 <h3 class="font-semibold text-lg mb-2 flex items-center justify-center">
                                     <span class="mr-2">Google</span>
                                     <span class="text-red-500">★</span>
                                 </h3>
-                                <p>{{ props.firm.opinion_google }}</p>
+                                <a class="underline" :href="props.firm.opinion_google" target="_blank">{{ props.firm.opinion_google }}</a>
                             </div>
 
                             <div v-if="props.firm.opinion_trust" class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
@@ -212,7 +211,7 @@ onMounted(() => {
                                     <span class="mr-2">Trustpilot</span>
                                     <span class="text-green-500">★</span>
                                 </h3>
-                                <p>{{ props.firm.opinion_trust }}</p>
+                                <a class="underline" :href="props.firm.opinion_trust" target="_blank">{{ props.firm.opinion_trust }}</a>
                             </div>
 
                             <div v-if="props.firm.opinion_facebook" class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
@@ -220,7 +219,7 @@ onMounted(() => {
                                     <span class="mr-2">Facebook</span>
                                     <span class="text-blue-500">★</span>
                                 </h3>
-                                <p>{{ props.firm.opinion_facebook }}</p>
+                                <a class="underline" :href="props.firm.opinion_facebook" target="_blank">{{ props.firm.opinion_facebook }}</a>
                             </div>
                         </div>
                     </div>
