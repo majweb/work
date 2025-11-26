@@ -189,7 +189,7 @@ onMounted(() => {
                             :key="img.url"
                             :src="img.url"
                             :alt="img.name"
-                            class="cursor-pointer object-cover w-full h-48 rounded shadow hover:scale-105 transition"
+                            class="cursor-pointer object-cover w-full h-45 rounded shadow hover:scale-105 transition"
                             @click="openLightbox(img.url)"
                         />
                     </div>
