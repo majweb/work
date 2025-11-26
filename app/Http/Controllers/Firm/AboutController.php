@@ -57,6 +57,7 @@ class AboutController extends Controller
             'social_tiktok'=>$request->aboutData()['social_tiktok'],
             'count_workers'=>$request->aboutData()['count_workers'],
             'annual_turnover'=>$request->aboutData()['annual_turnover'],
+            'extra_description'=>$request->aboutData()['extra_description'],
             'video'=>$request->video && isset($path) ? $path : Auth::user()->firm->video
         ]);
         session()->flash('flash.banner', __('translate.dataUpdated'));

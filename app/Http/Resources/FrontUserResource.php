@@ -29,12 +29,14 @@ class FrontUserResource extends JsonResource
             'nip' => $this->firm->nip,
             'regon' => $this->firm->regon,
             'description' => $this->firm->description,
+            'extra_description' => $this->firm->extra_description,
             'website' => $this->firm->www,
             'count_workers' => $this->firm->count_workers,
             'video' => Storage::url($this->firm->video),
             'street' => $this->firm->street,
             'number' => $this->firm->number,
             'country' => $this->firm->country,
+            'countryJson' => $this->firm->countryJson,
             'annual_turnover' => $this->firm->annual_turnover,
             'social_facebook' => $this->firm->social_facebook,
             'social_google' => $this->firm->social_google,
@@ -44,6 +46,7 @@ class FrontUserResource extends JsonResource
             'social_tiktok' => $this->firm->social_tiktok,
             'points' => $this->firm->points,
             'currency' => $this->firm->currency,
+            'projects' => $this->whenLoaded('projects'),
         ];
     }
 }

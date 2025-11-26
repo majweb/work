@@ -139,6 +139,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Project::class,'recruiter_id');
     }
 
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class,'user_id');
+    }
+
+
     public function applicationsRecruits(): HasMany
     {
         return $this->hasMany(Aplication::class,'recruiter_id');

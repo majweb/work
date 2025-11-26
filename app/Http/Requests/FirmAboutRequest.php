@@ -35,6 +35,7 @@ class FirmAboutRequest extends FormRequest
             'social_tiktok' => ['nullable','string','max:100','url:http,https'],
             'count_workers' => ['nullable','integer','digits between:1,5'],
             'annual_turnover' => ['nullable','string','max:50'],
+            'extra_description' => ['nullable','string','max:2000'],
             'video' => ['nullable','sometimes','file','mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4','max:50240'],
         ];
     }
@@ -56,7 +57,8 @@ class FirmAboutRequest extends FormRequest
             'social_linkedin' => strtolower(__('translate.social_linkedin')),
             'social_tiktok' => strtolower(__('translate.social_tiktok')),
             'count_workers' => strtolower(__('translate.count_workers')),
-            'annual_turnover' => strtolower(__('translate.annual_turnover'))
+            'annual_turnover' => strtolower(__('translate.annual_turnover')),
+            'extra_description' => strtolower(__('translate.extra_description'))
         ];
     }
 }

@@ -7,6 +7,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {ref} from "vue";
+import TextareaLimit from "@/Components/TextareaLimit.vue";
 
 const props = defineProps({
     user: Object,
@@ -27,6 +28,7 @@ const form = useForm({
     social_tiktok: props.user.firm?.social_tiktok,
     count_workers: props.user.firm?.count_workers,
     annual_turnover: props.user.firm?.annual_turnover,
+    extra_description: props.user.firm?.extra_description,
     video: null,
 });
 
@@ -222,7 +224,6 @@ const updateProfileFirm = () => {
                         />
                         <InputError :message="form.errors.annual_turnover" class="mt-2"/>
                     </div>
-
                     <!-- video -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="video" :value="__('translate.video')"/>
@@ -241,7 +242,12 @@ const updateProfileFirm = () => {
                         <InputError :message="form.errors.video" class="mt-2"/>
                     </div>
                 </div>
-                    <video :key="uploaderVideoKey" v-if="props.user.firm?.video" height="640" controls class="mt-4">
+                <div class="my-4">
+                    <InputLabel for="extra_description" :value="__('translate.extra_description')"/>
+                    <TextareaLimit id="extra_description" v-model="form.extra_description" :limit="2000"/>
+                    <InputError :message="form.errors.extra_description" class="mt-2"/>
+                </div>
+                    <video :key="uploaderVideoKey" v-if="props.user.firm?.video" height="640" controls class="mt-6">
                         <source :src="'/storage/'+props.user.firm?.video" type="video/mp4">
                         <source :src="'/storage/'+props.user.firm?.video" type="video/ogg">
                         <source :src="'/storage/'+props.user.firm?.video" type="video/avi">

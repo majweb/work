@@ -298,7 +298,7 @@ class FrontController extends Controller
     }
     public function SingleFirm(User $user)
     {
-        $user->load('firm');
+        $user->load('firm','projects.user');
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
         ]);

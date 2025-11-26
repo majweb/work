@@ -51,7 +51,8 @@ class Firm extends Model
         'points',
         'currency',
         'premium_certificate_path',
-        'premium_certificate_level'
+        'premium_certificate_level',
+        'extra_description',
     ];
 
     protected $casts = [
