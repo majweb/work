@@ -1050,4 +1050,5 @@ return [
     'obrot_roczny'        => 'OBRÓT ROCZNY',
     'extra_description'        => 'Opis dodatkowy',
     'offerts'        => 'Oferty pracy',
+    'extra_image'        => 'Dodatkowe zdjęcia',
 ];

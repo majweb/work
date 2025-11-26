@@ -59,7 +59,10 @@ class AppServiceProvider extends ServiceProvider
             },
             'auth.user.workerDetail' => function () {
                 return Auth::user() && Auth::user()->hasRole('worker')  ? Auth::user()->workerDetail : null;
-            }
+            },
+            'auth.user.firm.media' => function () {
+                return Auth::user() && Auth::user()->hasRole('firm')  ? Auth::user()->firm->media : null;
+            },
         ]);
 
         JsonResource::withoutWrapping();

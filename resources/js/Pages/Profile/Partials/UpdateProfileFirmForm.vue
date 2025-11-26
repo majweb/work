@@ -33,7 +33,10 @@ const form = useForm({
     country: props.user.firm?.country,
     countryJson: props.user.firm?.countryJson,
     countryInvoiceJson: props.user.firm?.countryInvoiceJson,
-    contact_phone: props.user.firm?.contact_phone ?? [],
+    contact_phone: (props.user.firm?.contact_phone || []).map(p => ({
+        phone: p.phone?.toString() || '',
+        desc: p.desc || ''
+    })),
     name_invoice: props.user.firm?.invoice_same ? props.user.name : props.user.firm?.name_invoice,
     nip_invoice: props.user.firm?.invoice_same ? props.user.firm?.nip : props.user.firm?.nip_invoice,
     regon_invoice: props.user.firm?.invoice_same ? props.user.firm?.regon : props.user.firm?.regon_invoice,
@@ -219,7 +222,7 @@ const removeElement = (index, array) => {
                             <InputLabel :for="`contact_phone-${index}-phone`" :value="__('translate.phone')"/>
                             <TextInput
                                 :id="`contact_phone-${index}-phone`"
-                                v-model.number="phone.phone"
+                                v-model="phone.phone"
                                 type="number"
                                 class="mt-1 block w-full"
                             />

@@ -1,5 +1,5 @@
 <script setup>
-import {useForm} from '@inertiajs/vue3';
+import {useForm, usePage} from '@inertiajs/vue3';
 import ActionMessage from '@/Components/ActionMessage.vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
@@ -13,6 +13,7 @@ const props = defineProps({
     user: Object,
 });
 const uploaderVideoKey = ref(0)
+const serverMessage = ref('');
 
 const form = useForm({
     _method: 'PUT',
@@ -26,12 +27,26 @@ const form = useForm({
     social_instagram: props.user.firm?.social_instagram,
     social_linkedin: props.user.firm?.social_linkedin,
     social_tiktok: props.user.firm?.social_tiktok,
-    count_workers: props.user.firm?.count_workers,
-    annual_turnover: props.user.firm?.annual_turnover,
+    count_workers: props.user.firm?.count_workers?.toString() || '',
+    annual_turnover: props.user.firm?.annual_turnover?.toString() || '',
     extra_description: props.user.firm?.extra_description,
     video: null,
+    photo: (props.user && props.user?.firm?.media)
+        ? props.user?.firm.media.map(el => ({
+            source: el.original_url,
+            options: {
+                type: 'local',
+                metadata:{
+                    poster:el.preview_url
+                }
+            }
+        }))
+        : []
 });
-
+const removeFile =  async (source,load) => {
+    await axios.post(route('temporary.delete.poster'),{'source':source});
+    load();
+}
 const updateProfileFirm = () => {
     form.post(route('firm.update.about.form'), {
         errorBag: 'updateProfileFirm',
@@ -224,6 +239,88 @@ const updateProfileFirm = () => {
                         />
                         <InputError :message="form.errors.annual_turnover" class="mt-2"/>
                     </div>
+
+
+<!--                    photos-->
+                    <div class="col-span-6">
+                        <div class="mt-4">
+                            <InputLabel for="photo" :value="__('translate.extra_image')" class="mb-1"/>
+                            <file-pond
+                                name="photo"
+                                ref="uploadPhoto"
+                                :files="form.photo"
+                                :allow-multiple="true"
+                                :max-file-size="'4MB'"
+                                :max-files="4"
+                                imagePreviewMaxHeight="300"
+                                filePosterHeight="300"
+                                :label-idle="__('translate.label-idle')"
+                                :labelFileProcessing="__('translate.labelFileProcessing')"
+                                :labelInvalidField="__('translate.labelInvalidField')"
+                                :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                                :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                :labelFileLoading="__('translate.labelFileLoading')"
+                                :labelFileLoadError="__('translate.labelFileLoadError')"
+                                :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                :labelFileProcessingError="serverMessage.value || __('translate.labelFileProcessingError')"
+                                :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                :labelTapToCancel="__('translate.labelTapToCancel')"
+                                :labelTapToRetry="__('translate.labelTapToRetry')"
+                                :labelTapToUndo="__('translate.labelTapToUndo')"
+                                :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                :accepted-file-types="'image/png, image/jpeg, image/jpg, image/gif, image/svg, image/webp'"
+                                credits=""
+                                :server="{
+                                                url:'',
+                                                   headers: {
+                                                'X-CSRF-TOKEN': usePage().props.csrf_token,
+                                                    },
+                                                process: {
+                                                    url: '/temporary/upload',
+                                                        onload: (response) => {
+                                                        form.photo.push(response);
+                                                        return response;
+                                                        },
+                                                        onerror: (response) => {
+                                                            serverMessage.value = JSON.parse(response).error.photo[0];
+                                                        }
+
+                                                },
+                                                revert:{
+                                                    url: '/temporary/delete',
+                                                    onload: (response) => {
+                                                            if (!response) return;
+                                                            const fileIndex = form.photo.findIndex(el => el === response);
+                                                            if (fileIndex !== -1) {
+                                                                form.photo.splice(fileIndex, 1);
+                                                           }
+                                                    }
+                                                },
+                                                remove:removeFile
+                                                }"
+                            ></file-pond>
+                            <InputError  :message="form.errors.photo" class="mt-1"/>
+                            <div v-for="(error, fileKey) in form.errors" :key="fileKey">
+                                <span class="text-sm text-red-600" v-if="fileKey.startsWith('photos.')">{{ error }}</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--                    photos-->
+
+
+
                     <!-- video -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="video" :value="__('translate.video')"/>

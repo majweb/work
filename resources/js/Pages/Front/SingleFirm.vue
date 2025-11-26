@@ -3,7 +3,6 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {Link, usePage} from "@inertiajs/vue3";
 import __ from "@/lang";
 import {computed, onMounted, ref} from "vue";
-
 const props = defineProps({
     firm: Object
 });
@@ -16,10 +15,25 @@ const generateUrl = computed(() => {
     }
 });
 
+// Lightbox
+const showLightbox = ref(false);
+const currentImage = ref('');
+
+function openLightbox(url) {
+    currentImage.value = url;
+    showLightbox.value = true;
+}
+
+function closeLightbox() {
+    showLightbox.value = false;
+}
+
+
 const isClient = ref(false);
 onMounted(() => {
     isClient.value = true;
 });
+
 </script>
 
 <template>
@@ -87,8 +101,8 @@ onMounted(() => {
                     <!-- przyciski -->
 
 
-                    <div class="flex justify-center gap-4 mb-8">
-                        <div class="flex flex-col gap-3">
+                    <div class="flex justify-center flex-col md:flex-row gap-4 mb-8">
+                        <div class="flex flex-col md:flex-row gap-3">
                             <a
                                 v-for="(p, i) in firm.phone"
                                 :key="i"
@@ -168,6 +182,18 @@ onMounted(() => {
                                 }}</span>:{{ props.firm.annual_turnover }}
                         </div>
                     </div>
+<!--                    PHOTOS-->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full max-w-4xl">
+                        <img
+                            v-for="(img) in props.firm.media"
+                            :key="img.url"
+                            :src="img.url"
+                            :alt="img.name"
+                            class="cursor-pointer object-cover w-full h-48 rounded shadow hover:scale-105 transition"
+                            @click="openLightbox(img.url)"
+                        />
+                    </div>
+<!--                    PHOTOS-->
                     <!-- Opinie -->
                     <div v-if="props.firm?.opinion_google || props.firm?.opinion_trust || props.firm?.opinion_facebook"
                          class="mt-6">
@@ -385,5 +411,26 @@ onMounted(() => {
         <!--                </div>-->
         <!--            </div>-->
         <!--        </div>-->
+
+        <!-- Lightbox musi być w tym samym miejscu lub globalnie w DOM -->
+        <!-- Lightbox -->
+        <div
+            v-if="showLightbox"
+            class="fixed inset-0 bg-black/75 flex items-center justify-center p-4 z-50"
+            @click.self="closeLightbox"
+        >
+        <button
+            @click="closeLightbox"
+            class="absolute top-4 right-4 text-white bg-black/50 px-3 py-1 rounded hover:bg-black/70 transition"
+        >
+            X
+        </button>
+        <img
+            :src="currentImage"
+            class="max-h-[90vh] max-w-[90vw] rounded shadow-lg"
+            @click.stop
+        />
+        </div>
+
     </FrontLayout>
 </template>

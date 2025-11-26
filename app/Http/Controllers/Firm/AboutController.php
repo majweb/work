@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FirmAboutRequest;
+use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,8 @@ class AboutController extends Controller
      */
     public function __invoke(FirmAboutRequest $request)
     {
+        $firm = auth()->user()->firm;
+
         if ($request->hasFile('video')) {
 
             // Koszt utworzenia kandydata
@@ -43,6 +46,36 @@ class AboutController extends Controller
 
             $firm->decrement('points', $cost);
 
+        }
+
+        // ------------------- ZDJĘCIA -------------------
+        if ($request->has('photo') && is_array($request->photo)) {
+            foreach ($request->photo as $photo) {
+                // Jeśli przesłany URL → nie ruszamy
+                if (isset($photo['source']) && str_starts_with($photo['source'], 'http')) {
+                    continue;
+                }
+
+                // Nowe zdjęcie z tymczasowego folderu
+                $folderName = $photo; // Filepond przesyła sam folder
+                $temporaryFile = TemporaryFile::where('folder', $folderName)->first();
+
+                if (!$temporaryFile) continue;
+
+                $filePath = 'temps/' . $folderName . '/' . $temporaryFile->filename;
+
+                if (!Storage::disk('public')->exists($filePath)) continue;
+
+                // 🔑 Dodaj każde zdjęcie do kolekcji
+                $firm->addMediaFromDisk($filePath, 'public')
+                    ->usingName(basename($filePath))
+                    ->usingFileName(basename($filePath))
+                    ->toMediaCollection('firms_images');
+
+                // Usuń tymczasowy folder i rekord
+                Storage::disk('public')->deleteDirectory('temps/' . $folderName);
+                $temporaryFile->delete();
+            }
         }
         Auth::user()->firm()->update([
             'www'=>$request->aboutData()['www'],

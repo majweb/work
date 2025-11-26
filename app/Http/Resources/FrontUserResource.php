@@ -47,6 +47,9 @@ class FrontUserResource extends JsonResource
             'points' => $this->firm->points,
             'currency' => $this->firm->currency,
             'projects' => $this->whenLoaded('projects'),
-        ];
+            'media' => $this->firm->getMedia('firms_images')->map(fn($item) => [
+                'url' => $item->getUrl(),
+                'name' => $item->name, // to będzie użyte jako alt
+            ]),        ];
     }
 }
