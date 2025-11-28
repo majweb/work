@@ -65,7 +65,7 @@ import { Link } from "@inertiajs/vue3";
                 </div>
 
                 <!-- Sekcja dobroczynna -->
-                <div class="flex flex-col md:flex-row items-center justify-center">
+                <div class="flex flex-col md:flex-row items-center justify-center relative md:left-20">
 
                     <!-- IMG -->
                     <img
