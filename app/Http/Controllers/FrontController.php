@@ -8,6 +8,8 @@ use App\Http\Resources\BannerResource;
 use App\Http\Resources\CategoryWithArticlesResource;
 use App\Http\Resources\FrontArticleResource;
 use App\Http\Resources\FrontUserResource;
+use App\Http\Resources\MultiselectResource;
+use App\Http\Resources\MultiselectResourceCountry;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\NewestArticleArticlesPageResource;
 use App\Models\Agreement;
@@ -231,6 +233,27 @@ class FrontController extends Controller
             );
         });
 
+        $countryId = request('country');
+        $cityValue = request('city');
+        $country = NULL;
+        if (request('country')) {
+            $country = Country::where('id',request('country'))->first();
+        }
+        $cityFront = null;
+
+        if ($countryId && $cityValue) {
+            $cityFront = [
+                'name' => $cityValue,
+                'value' => $cityValue,
+                'countryCode' => $country->countryCode,
+            ];
+        }
+
+        $category = NULL;
+        if (request('category')) {
+            $category = Category::where('id',request('category'))->first();
+        }
+
         return inertia()->render('Front/Projects', [
             'projects' => $projects,
             'countries' => $countries,
@@ -238,6 +261,9 @@ class FrontController extends Controller
             'experiences' => $experiences,
             'typesOfContract' => $typesOfContract,
             'workLoads' => $workLoads,
+            'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
+            'categoryFront' => $category ? new MultiselectResourceCountry($category) : null,
+            'cityFront' => $cityFront,
         ]);
     }
 
@@ -692,5 +718,10 @@ class FrontController extends Controller
 
             return response()->json(['message' => 'Plik został usunięty.']);
         }
+    }
+
+    public function aboutView()
+    {
+        return inertia()->render('Front/About');
     }
 }

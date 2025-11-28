@@ -5,7 +5,7 @@ import {usePage, Link, router} from '@inertiajs/vue3';
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
 import { useForm } from '@inertiajs/vue3';
-import { ref, watch, computed  } from "vue";
+import {ref, watch, computed, onMounted} from "vue";
 import __ from "@/lang.js";
 
 const props = defineProps({
@@ -15,7 +15,13 @@ const props = defineProps({
     experiences: Array,
     typesOfContract: Array,
     workLoads: Array,
+    countryFront: Object,
+    categoryFront: Object,
+    cityFront: Object,
 });
+
+const page = usePage();
+
 
 const showFilters = ref(false);
 const optionsCities = ref([]);
@@ -25,9 +31,9 @@ const optionsProfession = ref([]);
 const optionsPosition = ref([]);
 
 const form = useForm({
-    country: undefined,
-    city: undefined,
-    category: undefined,
+    country: props.countryFront ?? undefined,
+    city: props.cityFront ?? undefined,
+    category: props.categoryFront ?? undefined,
     categorySub: undefined,
     profession: undefined,
     position: undefined,
@@ -36,6 +42,37 @@ const form = useForm({
     typeOfContract: undefined,
     workLoad: undefined,
 });
+
+onMounted(async () => {
+    if (props.countryFront) {
+        try {
+            // --- miasta ---
+            const responseCities = await fetch(route("cities.byCountry", props.countryFront.countryCode));
+            const citiesData = await responseCities.json();
+            optionsCities.value = citiesData;
+
+            if (props.cityFront) {
+                form.city = props.cityFront;
+            }
+        } catch (e) {
+            console.error(__('translate.errorLoadingCities'), e);
+        }
+
+        try {
+            // --- kategorie ---
+            const responseCategories = await fetch(route("categories.byCountry", props.countryFront.countryCode));
+            const categoriesData = await responseCategories.json();
+            optionsCategories.value = categoriesData;
+
+            if (props.categoryFront) {
+                form.category = props.categoryFront;
+            }
+        } catch (e) {
+            console.error(__('translate.errorLoadingCategories'), e);
+        }
+    }
+});
+
 
 // Obsługa zmiany kraju
 watch(() => form.country, async (newCountry) => {

@@ -2,7 +2,7 @@
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
-import { useForm } from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
 import { ref, watch } from "vue";
 
 const props = defineProps({
@@ -51,6 +51,19 @@ watch(() => form.country, async (newCountry) => {
     }
 
 });
+
+// Funkcja submitu
+const submit = () => {
+    // Tworzymy query string
+    const query = {
+        country: form.country?.value || '',
+        city: form.city?.value || '',
+        category: form.category?.value || ''
+    };
+
+    router.get(route('front.projects'), query);
+};
+
 </script>
 
 <template>
@@ -63,7 +76,7 @@ watch(() => form.country, async (newCountry) => {
     >
         <div class="flex flex-col md:flex-row items-start justify-center pt-[3rem] pb-[14rem] md:pb-0 md:pt-20 px-4">
             <!-- Formularz -->
-            <form class="flex flex-col md:flex-row gap-3 p-7 bg-gray-50 rounded-lg shadow-md w-full max-w-5xl">
+            <form @submit.prevent="submit" class="flex flex-col md:flex-row gap-3 p-7 bg-gray-50 rounded-lg shadow-md w-full max-w-5xl">
                 <!-- Select Country -->
                 <div class="flex-1">
                     <multiselect

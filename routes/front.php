@@ -30,6 +30,7 @@ Route::name('front.')->group(function () {
     Route::post('uploadAudio', [AudioUploadController::class, 'upload'])->name('audio.upload');
     Route::post('uploadAudioNew', [AudioUploadController::class, 'uploadAudioNew'])->name('audio.uploadNew');
     Route::get('contact',[FrontController::class,'Contact'])->name('contact');
+    Route::get('aboutus',[FrontController::class,'aboutView'])->name('aboutus');
     Route::get('privacy',[FrontController::class,'Privacy'])->name('privacy');
     Route::get('terms',[FrontController::class,'Terms'])->name('terms');
     Route::get('firms',[FrontController::class,'Firms'])->name('firms');
