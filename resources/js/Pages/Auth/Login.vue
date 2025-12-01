@@ -48,7 +48,7 @@ const submit = () => {
             <img
                 src="/images/auth/dymek.svg"
                 alt="Shadow"
-                class="absolute -bottom-[250px] -right-[200px] -z-999"
+                class="absolute -bottom-[100px] -right-[150px]"
             />
             <!-- LOGIN CARD -->
             <div class="bg-white rounded-xl shadow-xl  w-full text-gray-800 relative z-0">
