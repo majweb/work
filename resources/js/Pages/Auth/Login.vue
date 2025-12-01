@@ -5,6 +5,7 @@ import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import Socialstream from '@/Components/Socialstream.vue'
 import TextInput from '@/Components/TextInput.vue'
+import {computed} from "vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -17,7 +18,23 @@ const form = useForm({
     remember: false,
     type: 'firm'
 })
+const headerText = computed(() => {
+    if (form.type === 'worker') {
+        return {
+            line1: 'Poszukajmy',
+            line2: 'wspólnie',
+            line3: 'idealnej',
+            line4: 'pracy', // np. dla pracownika
+        };
+    }
 
+    return {
+        line1: 'Poszukajmy',
+        line2: 'wspólnie',
+        line3: 'idealnego',
+        line4: 'pracownika', // dla firmy
+    };
+});
 const submit = () => {
     form.transform(data => ({
         ...data,
@@ -36,10 +53,12 @@ const submit = () => {
         <!-- HEADER TEXT -->
         <div class="pl-5 text-center">
             <h2 class="text-5xl font-bold text-white pb-4">
-                Poszukajmy<br />
-                <span class="text-5xl">wspólnie</span><br />
-                <span class="text-5xl">idealnego</span><br />
-                <span class="font-semibold uppercase text-[#00A0E3]">pracownika</span>
+                {{ headerText.line1 }}<br />
+                <span class="text-5xl">{{ headerText.line2 }}</span><br />
+                <span class="text-5xl">{{ headerText.line3 }}</span><br />
+                <span class="font-semibold uppercase text-[#00A0E3]">
+            {{ headerText.line4 }}
+        </span>
             </h2>
         </div>
         <div class="relative bg-[#0d2a52]">
