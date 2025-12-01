@@ -51,8 +51,10 @@ const submit = () => {
             <!-- LOGIN CARD -->
             <div class="bg-white rounded-xl shadow-xl  w-full max-w-xl text-gray-800 relative z-0">
                 <img
-                    src="/images/auth/LOGOWANIE_FIRMA.svg"
-                    alt="Man"
+                    :src="form.type === 'worker'
+        ? '/images/auth/LOGOWANIE_PRAC.svg'
+        : '/images/auth/LOGOWANIE_FIRMA.svg'"
+                    alt="Login Graphic"
                     class="absolute bottom-0 right-2 w-[150px] transform -scale-x-100"
                 />
                 <div class="relative z-999 p-6">
@@ -113,7 +115,7 @@ const submit = () => {
                         </div>
 
                         <!-- BUTTONS -->
-                        <div class="flex flex-col items-center justify-center mt-4 mr-10 gap-1">
+                        <div class="flex flex-col items-center justify-center mt-4 gap-1">
 
                             <div class="flex gap-2">
                                 <Link

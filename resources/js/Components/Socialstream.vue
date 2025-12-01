@@ -17,23 +17,20 @@ defineProps({
 </script>
 
 <template>
-    <div  class="space-y-6 mt-6 mb-2">
-        <div class="relative flex items-center">
-            <div class="flex-grow border-t border-gray-400 dark:border-gray-500"></div>
-            <span class="flex-shrink text-gray-400 dark:text-gray-500 px-6">
+    <div  class="mb-2">
+        <div class="flex items-center justify-center">
+            <span class="text-center text-[#0a2b57]">
                 {{ __('translate.orLogin') }}
              </span>
-            <div class="flex-grow border-t border-gray-400 dark:border-gray-500"></div>
         </div>
 
         <InputError v-if="error" :message="error" class="text-center"/>
 
-        <div class="grid gap-4">
+        <div class="flex justify-center gap-1">
             <a v-for="provider in providers" :key="provider.id"
-               class="flex gap-2 items-center justify-center transition duration-200 border border-gray-400 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
+               class="w-auto flex gap-1 items-center justify-center transition duration-200 py-1 text-sm font-normal text-center block"
                :href="route('oauth.redirect', provider.id)">
-                <ProviderIcon :provider="provider" classes="h-6 w-6 mx-2"/>
-                <span class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ provider.buttonLabel || provider.name }}</span>
+                <ProviderIcon :provider="provider" classes="h-10 w-10"/>
             </a>
         </div>
     </div>

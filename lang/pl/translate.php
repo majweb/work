@@ -255,7 +255,7 @@ return [
     'description' => 'Opis',
     'language' => 'Język',
     'baner' => 'Baner',
-    'orLogin' => 'Albo loguj',
+    'orLogin' => 'Lub za pośrednictwem',
     'createProject' => 'Utwórz projekt',
     'updateProject' => 'Aktualizuj projekt',
     'projectInfo' => 'Opis do tworzenia projektu',
