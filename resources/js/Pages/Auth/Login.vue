@@ -37,10 +37,10 @@ const submit = () => {
     <div class="bg-[#0d2a52] flex flex-col justify-center items-center h-full min-h-screen overflow-hidden">
         <!-- HEADER TEXT -->
         <div class="pl-5 text-center">
-            <h2 class="text-3xl sm:text-5xl font-bold text-white">
+            <h2 class="text-5xl font-bold text-white pb-4">
                 Poszukajmy<br />
-                <span class="text-3xl sm:text-5xl">wspólnie</span><br />
-                <span class="text-3xl sm:text-5xl">idealnego</span><br />
+                <span class="text-5xl">wspólnie</span><br />
+                <span class="text-5xl">idealnego</span><br />
                 <span class="font-semibold uppercase">pracownika</span>
             </h2>
         </div>
@@ -51,7 +51,7 @@ const submit = () => {
                 class="absolute -bottom-[100px] -right-[150px]"
             />
             <!-- LOGIN CARD -->
-            <div class="bg-white rounded-xl shadow-xl  w-full text-gray-800 relative z-0">
+            <div class="bg-white rounded-xl shadow-xl  w-full max-w-xl text-gray-800 relative z-0">
                 <img
                     src="/images/auth/log_firma.png"
                     alt="Man"
