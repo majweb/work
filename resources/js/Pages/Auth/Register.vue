@@ -67,7 +67,6 @@ const submit = () => {
 
             <!-- REGISTRATION CARD -->
             <div class="bg-white rounded-xl shadow-xl w-full max-w-xl text-gray-800 relative z-0">
-
                 <!-- DYNAMIC IMAGE -->
                 <img
                     :src="form.type === 'worker'
