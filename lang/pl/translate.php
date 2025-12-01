@@ -19,7 +19,7 @@ return [
     'terms' => 'Warunki usługi',
     'and' => 'i',
     'policy' => 'Polityka prywatności',
-    'already' => 'Już zarejestrowany?',
+    'already' => 'Mam już konto',
     'register' => 'Rejestracja',
     'verify' => 'Zanim przejdziesz dalej, czy możesz zweryfikować swój adres e-mail, klikając link, który właśnie wysłaliśmy do Ciebie e-mailem? Jeśli nie otrzymałeś e-maila, chętnie wyślemy Ci kolejny.',
     'verifylink' => 'Na adres e-mail podany w ustawieniach profilu został wysłany nowy link weryfikacyjny.',
