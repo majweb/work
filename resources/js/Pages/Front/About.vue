@@ -10,7 +10,7 @@ import { Link } from "@inertiajs/vue3";
 
                 <!-- Nagłówek -->
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">{{__('info.about_us')}}</h2>
+                    <h2 class="text-4xl font-bold mb-2 uppercase">{{__('info.about_us')}}</h2>
                     <div class="flex justify-center items-center">
                         <img src="/images/icons/about/o_nas_2.svg" :alt="__('info.first_img')" class="w-16 self-end" />
                         <h3 class="text-3xl font-semibold mb-10">
