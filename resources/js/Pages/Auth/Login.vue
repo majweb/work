@@ -39,7 +39,7 @@ const submit = () => {
                 Poszukajmy<br />
                 <span class="text-5xl">wspólnie</span><br />
                 <span class="text-5xl">idealnego</span><br />
-                <span class="font-semibold uppercase">pracownika</span>
+                <span class="font-semibold uppercase text-[#00A0E3]">pracownika</span>
             </h2>
         </div>
         <div class="relative bg-[#0d2a52]">
@@ -53,7 +53,7 @@ const submit = () => {
                 <img
                     src="/images/auth/LOGOWANIE_FIRMA.svg"
                     alt="Man"
-                    class="absolute bottom-0 right-2 w-[150px]"
+                    class="absolute bottom-0 right-2 w-[150px] transform -scale-x-100"
                 />
                 <div class="relative z-999 p-6">
                     <div class="flex justify-center mb-4">
