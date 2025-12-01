@@ -1064,6 +1064,8 @@ return [
     'aby_łatwo'        => 'aby łatwo',
     'znaleźć'        => 'znaleźć',
     'zatrudnienie'        => 'zatrudnienie',
+    'resetPassword'        => 'Resetuj hasło',
+    'resetText'        => 'Resetuj',
 
 
 

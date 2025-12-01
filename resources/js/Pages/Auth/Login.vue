@@ -136,7 +136,6 @@ const submit = () => {
 
                         <!-- BUTTONS -->
                         <div class="flex flex-col items-center justify-center mt-4 gap-1">
-
                             <div class="flex gap-2">
                                 <Link
                                     :href="route('register')"

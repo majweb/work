@@ -28,8 +28,10 @@ use App\Models\TemporaryFile;
 use App\Models\User;
 use App\Services\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -347,6 +349,36 @@ class FrontController extends Controller
     public function Contact()
     {
         return inertia()->render('Front/Contact');
+    }
+
+    public function ContactSend(Request $request)
+    {
+        // Walidacja, łącznie z CAPTCHA
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+            'captcha' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (session('captcha_text') !== $value) {
+                        $fail('Niepoprawny kod CAPTCHA.');
+                    }
+                }
+            ],
+        ]);
+
+        // (opcjonalnie) wysyłka maila
+        Mail::raw($validated['message'], function ($mail) use ($validated) {
+            $mail->from($validated['email']);
+            $mail->to('contact@work4you.global');
+            $mail->subject('[Formularz kontaktowy] ' . $validated['subject']);
+        });
+
+        // Wyczyszczenie CAPTCHA po użyciu
+        session()->forget('captcha_text');
+
+        return back()->with('success', 'Wiadomość została wysłana.');
     }
 
     public function Privacy()
