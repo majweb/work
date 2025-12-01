@@ -22,6 +22,8 @@ export default {
                 'blue-work-100': '#00A0E3B2',
                 'red-work-100': '#E31E2499',
                 'red-work': '#e31e24',
+                'work-main': '#0d2a52',
+                'work-main-light': '#00A0E3',
             },
         },
     },

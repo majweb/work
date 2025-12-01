@@ -1053,4 +1053,18 @@ return [
     'extra_image'        => 'Dodatkowe zdjęcia',
     'createAccount'        => 'Załóż konto',
     'logIn'        => 'Zaloguj się',
+    'Found'        => 'Poszukajmy',
+    'together'        => 'wspólnie',
+    'idealnej'        => 'idealnej',
+    'idealnego'        => 'idealnego',
+    'pracy'        => 'pracy',
+    'pracownika'        => 'pracownika',
+    'Zarejestruj'        => 'Zarejestruj się,',
+    'aby_szybko'        => 'aby szybko',
+    'aby_łatwo'        => 'aby łatwo',
+    'znaleźć'        => 'znaleźć',
+    'zatrudnienie'        => 'zatrudnienie',
+
+
+
 ];

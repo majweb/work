@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel.vue'
 import Socialstream from '@/Components/Socialstream.vue'
 import TextInput from '@/Components/TextInput.vue'
 import { computed } from "vue"
+import __ from "@/lang.js";
 
 const form = useForm({
     name: '',
@@ -19,18 +20,18 @@ const form = useForm({
 const headerText = computed(() => {
     if (form.type === 'worker') {
         return {
-            line1: 'Poszukajmy',
-            line2: 'wspólnie',
-            line3: 'idealnej',
-            line4: 'pracy',
+            line1: __('translate.Zarejestruj'),
+            line2: __('translate.aby_szybko'),
+            line3: __('translate.znaleźć'),
+            line4: __('translate.zatrudnienie'),
         }
     }
 
     return {
-        line1: 'Załóż',
-        line2: 'konto',
-        line3: 'i znajdź',
-        line4: 'pracownika',
+        line1: __('translate.Zarejestruj'),
+        line2:  __('translate.aby_łatwo'),
+        line3: __('translate.znaleźć'),
+        line4: __('translate.pracownika'),
     }
 })
 
@@ -42,7 +43,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Rejestracja" />
+    <Head :title="__('translate.register')" />
 
     <div class="bg-[#0d2a52] flex flex-col justify-center items-center h-full min-h-screen overflow-hidden">
 
@@ -52,7 +53,7 @@ const submit = () => {
                 {{ headerText.line1 }}<br />
                 <span class="text-5xl">{{ headerText.line2 }}</span><br />
                 <span class="text-5xl">{{ headerText.line3 }}</span><br />
-                <span class="font-semibold uppercase text-[#00A0E3]">
+                <span class="font-semibold uppercase text-work-main-light">
                     {{ headerText.line4 }}
                 </span>
             </h2>
@@ -60,7 +61,7 @@ const submit = () => {
 
         <div class="relative bg-[#0d2a52]">
             <img
-                src="/images/auth/dymek.svg"
+                src="/images/auth/shadow.svg"
                 alt="Shadow"
                 class="absolute -bottom-[100px] -right-[150px]"
             />
@@ -70,8 +71,8 @@ const submit = () => {
                 <!-- DYNAMIC IMAGE -->
                 <img
                     :src="form.type === 'worker'
-                        ? '/images/auth/REJESTRACJA_PRAC.svg'
-                        : '/images/auth/REJESTRACJA_FIRMA.svg'"
+                        ? '/images/auth/register_work.svg'
+                        : '/images/auth/register_firm.svg'"
                     alt="Registration Graphic"
                     class="absolute bottom-0 right-2 w-[150px] transform -scale-x-100"
                 />
@@ -159,7 +160,7 @@ const submit = () => {
                                         <a
                                             :href="route('terms.show')"
                                             target="_blank"
-                                            class="underline hover:text-[#00A0E3]"
+                                            class="underline hover:text-work-main-light"
                                         >
                                             {{ __('translate.terms') }}
                                         </a>
@@ -167,7 +168,7 @@ const submit = () => {
                                         <a
                                             :href="route('policy.show')"
                                             target="_blank"
-                                            class="underline hover:text-[#00A0E3]"
+                                            class="underline hover:text-work-main-light"
                                         >
                                             {{ __('translate.policy') }}
                                         </a>
@@ -181,13 +182,13 @@ const submit = () => {
                         <div class="flex flex-col gap-2 items-center justify-end mt-6">
                             <Link
                                 :href="route('login')"
-                                class="text-sm text-[#0a2b57] hover:text-[#00A0E3]"
+                                class="text-sm text-work-main hover:text-work-main-light"
                             >
                                 {{ __('translate.already') }}
                             </Link>
 
                             <Button
-                                class="text-xl uppercase bg-[#0a2b57] text-white font-bold px-6 py-2 rounded-md w-auto transition hover:bg-[#00A0E3]"
+                                class="text-xl uppercase bg-work-main text-white font-bold px-6 py-2 rounded-md w-auto transition hover:bg-work-main-light"
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
                             >
