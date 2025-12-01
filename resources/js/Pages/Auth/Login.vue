@@ -41,7 +41,7 @@ const submit = () => {
             alt="Rekruter"
             class="
                 absolute bottom-0
-                left-[200px]
+                left-0
                 max-w-[220px]
                 sm:max-w-[280px]
                 md:max-w-[360px]
@@ -65,7 +65,6 @@ const submit = () => {
                 </div>
 
                 <form @submit.prevent="submit">
-
                     <!-- TYPE -->
                     <div>
                         <InputLabel for="type" :value="__('translate.type')" />
