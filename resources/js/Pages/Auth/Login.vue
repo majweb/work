@@ -53,7 +53,7 @@ const submit = () => {
             <!-- LOGIN CARD -->
             <div class="bg-white rounded-xl shadow-xl  w-full max-w-xl text-gray-800 relative z-0">
                 <img
-                    src="/images/auth/log_firma.png"
+                    src="/images/auth/LOGOWANIE_FIRMA.svg"
                     alt="Man"
                     class="absolute bottom-0 left-2 w-[150px]"
                 />
@@ -66,7 +66,7 @@ const submit = () => {
                         {{ status }}
                     </div>
 
-                    <form @submit.prevent="submit">
+                    <form @submit.prevent="submit" class="min-h-[400px]">
                         <!-- TYPE -->
                         <div>
                             <InputLabel for="type" :value="__('translate.type')" />
@@ -106,9 +106,6 @@ const submit = () => {
                             <InputError :message="form.errors.password" class="mt-2" />
                         </div>
 
-
-                        <!-- BUTTONS -->
-                        <div class="flex flex-col items-center justify-center mt-4 ml-10 gap-2">
                         <!-- REMEMBER -->
                         <div class="block mt-4">
                             <label class="flex items-center">
@@ -116,6 +113,9 @@ const submit = () => {
                                 <span class="ml-2 text-sm text-gray-600">{{ __('translate.remember') }}</span>
                             </label>
                         </div>
+
+                        <!-- BUTTONS -->
+                        <div class="flex flex-col items-center justify-center mt-4 ml-10 gap-2">
 
                             <div class="flex gap-2">
                                 <Link
@@ -128,18 +128,18 @@ const submit = () => {
 
                                 <Link
                                     :href="route('register')"
-                                    class="underline text-sm text-gray-600 hover:text-gray-900"
+                                    class="underline text-md uppercase text-[#0a2b57] hover:text-[#00A0E3]"
                                 >
-                                    {{ __('translate.register') }}
+                                    {{ __('translate.createAccount') }}
                                 </Link>
                             </div>
 
                             <PrimaryButton
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
-                                class="w-auto mt-2"
+                                class="bg-[#0a2b57] text-white font-bold px-6 py-2 rounded-full w-auto transition hover:bg-[#00A0E3]"
                             >
-                                {{ __('translate.login') }}
+                                {{ __('translate.logIn') }}
                             </PrimaryButton>
                         </div>
                     </form>

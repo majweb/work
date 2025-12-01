@@ -1051,4 +1051,6 @@ return [
     'extra_description'        => 'Opis dodatkowy',
     'offerts'        => 'Oferty pracy',
     'extra_image'        => 'Dodatkowe zdjęcia',
+    'createAccount'        => 'Załóż konto',
+    'logIn'        => 'Zaloguj się',
 ];
