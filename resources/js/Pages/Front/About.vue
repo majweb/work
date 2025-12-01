@@ -22,7 +22,7 @@ import { Link } from "@inertiajs/vue3";
                 </div>
 
                 <!-- Opis -->
-                <p class="max-w-4xl mx-auto leading-relaxed mb-16 text-lg">
+                <p class="max-w-4xl mx-auto leading-relaxed mb-16 text-lg mt-5">
                     <strong>WORK4YOU.GLOBAL</strong> {{__('info.about')}}
                 </p>
 
@@ -50,7 +50,7 @@ import { Link } from "@inertiajs/vue3";
                     <!-- CELE -->
                     <div class="flex flex-col items-center">
                         <img src="/images/icons/about/o_nas_cele.svg" :alt="__('info.targetT')" class="w-20" />
-                        <h4 class="font-bold text-lg mb-2">{{__('info.targetT')}}</h4>
+                        <h4 class="font-bold text-lg mb-2 uppercase">{{__('info.targetT')}}</h4>
                         <p class="text-sm leading-relaxed">
                             {{__('info.target')}}
                         </p>
