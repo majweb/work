@@ -1,10 +1,8 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3'
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue'
 import Checkbox from '@/Components/Checkbox.vue'
 import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
 import Socialstream from '@/Components/Socialstream.vue'
 import TextInput from '@/Components/TextInput.vue'
 
@@ -55,7 +53,7 @@ const submit = () => {
                 <img
                     src="/images/auth/LOGOWANIE_FIRMA.svg"
                     alt="Man"
-                    class="absolute bottom-0 left-2 w-[150px]"
+                    class="absolute bottom-0 right-2 w-[150px]"
                 />
                 <div class="relative z-999 p-6">
                     <div class="flex justify-center mb-4">
@@ -73,7 +71,7 @@ const submit = () => {
                             <select
                                 v-model="form.type"
                                 name="type"
-                                class="border-[#0d2a52] focus:blue-work rounded-md shadow-sm mt-1 block w-full mb-2 focus:ring-[#0d2a52]"
+                                class="border-[#0d2a52] focus:blue-work rounded-md shadow-sm mt-1 block w-full mb-2 focus:ring-[#0d2a52] font-semibold ext-[#0a2b57] uppercase"
                             >
                                 <option value="firm">{{ __('translate.firmrecruit') }}</option>
                                 <option value="worker">{{ __('translate.worker') }}</option>
@@ -115,32 +113,34 @@ const submit = () => {
                         </div>
 
                         <!-- BUTTONS -->
-                        <div class="flex flex-col items-center justify-center mt-4 ml-10 gap-2">
+                        <div class="flex flex-col items-center justify-center mt-4 mr-10 gap-1">
 
                             <div class="flex gap-2">
                                 <Link
-                                    v-if="canResetPassword"
-                                    :href="route('password.request')"
-                                    class="underline text-sm text-gray-600 hover:text-gray-900"
-                                >
-                                    {{ __('translate.forgot') }}
-                                </Link>
-
-                                <Link
                                     :href="route('register')"
-                                    class="underline text-md uppercase text-[#0a2b57] hover:text-[#00A0E3]"
+                                    class="text-md uppercase text-[#0a2b57] hover:text-[#00A0E3]"
                                 >
                                     {{ __('translate.createAccount') }}
                                 </Link>
                             </div>
 
-                            <PrimaryButton
+                            <Button
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
-                                class="bg-[#0a2b57] text-white font-bold px-6 py-2 rounded-full w-auto transition hover:bg-[#00A0E3]"
+                                class="text-2xl uppercase bg-[#0a2b57] text-white font-bold px-6 py-2 rounded-md w-auto transition hover:bg-[#00A0E3]"
                             >
                                 {{ __('translate.logIn') }}
-                            </PrimaryButton>
+                            </Button>
+
+                            <Link
+                                v-if="canResetPassword"
+                                :href="route('password.request')"
+                                class="text-sm text-[#0a2b57] hover:text-[#00A0E3] mt-2"
+                            >
+                                {{ __('translate.forgot') }}
+                            </Link>
+
+
                         </div>
                     </form>
 

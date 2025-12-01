@@ -228,6 +228,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'email'    => 'adres e-mail',
+        'password' => 'hasło',
+        'name'     => 'nazwa',
+    ],
 
 ];

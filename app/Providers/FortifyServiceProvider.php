@@ -20,6 +20,7 @@ use Laravel\Fortify\Fortify;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -40,7 +41,9 @@ class FortifyServiceProvider extends ServiceProvider
             if ($request->has('projectToRedirect')) {
                 Session::put('redirect_project_after_login',$request->query('projectToRedirect'));
             }
-            return inertia('Auth/Login');
+            return inertia('Auth/Login',[
+                'canResetPassword' => Route::has('password.request'),
+            ]);
         });
         Fortify::authenticateUsing(function (Request $request) {
             $user = null;
