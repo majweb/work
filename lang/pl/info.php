@@ -14,5 +14,10 @@ return [
     'talent'=>'talentem, a możliwościami',
     'values'=>'wartości każdego pakietu przekazujemy',
     'onTarget'=>'na cele dobroczynne.',
-    'more'=>'DOWIEDZ SIĘ WIĘCEJ'
+    'more'=>'DOWIEDZ SIĘ WIĘCEJ',
+    'subject'=>'Temat',
+    'message'=>'Wiadomość',
+    'code'=>'Kod',
+    'agree'=>'Wyrażam zgodę na przetwarzania danych osobowych...',
+    'sent'=>'Wysłano wiadomość.',
     ];

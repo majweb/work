@@ -7,7 +7,6 @@ import { Link } from "@inertiajs/vue3";
     <FrontLayout :title="'O nas'">
         <section class="bg-[#0d2a52] text-white pt-16 px-4">
             <div class="max-w-6xl mx-auto text-center relative">
-
                 <!-- Nagłówek -->
                 <div>
                     <h2 class="text-4xl font-bold mb-2 uppercase">{{__('info.about_us')}}</h2>

@@ -12,6 +12,7 @@ use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectResourceCountry;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\NewestArticleArticlesPageResource;
+use App\Mail\ContactFormMarkdownMail;
 use App\Models\Agreement;
 use App\Models\Aplication;
 use App\Models\Banner;
@@ -353,34 +354,49 @@ class FrontController extends Controller
 
     public function ContactSend(Request $request)
     {
-        // Walidacja, łącznie z CAPTCHA
+        // WALIDACJA
         $validated = $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
+            'agree' => 'accepted',
             'captcha' => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    if (session('captcha_text') !== $value) {
+                    $captcha = session('captcha_text', '');
+                    if (!hash_equals($captcha, $value)) {
                         $fail('Niepoprawny kod CAPTCHA.');
                     }
                 }
             ],
         ]);
 
-        // (opcjonalnie) wysyłka maila
-        Mail::raw($validated['message'], function ($mail) use ($validated) {
-            $mail->from($validated['email']);
-            $mail->to('contact@work4you.global');
-            $mail->subject('[Formularz kontaktowy] ' . $validated['subject']);
-        });
+        // LIMITER: po IP i email
+        $ipKey = 'contact-form:ip:' . $request->ip();
+        $emailKey = 'contact-form:email:' . strtolower($validated['email']);
 
-        // Wyczyszczenie CAPTCHA po użyciu
+        if (RateLimiter::tooManyAttempts($ipKey, 1) || RateLimiter::tooManyAttempts($emailKey, 1)) {
+            $secondsIp = RateLimiter::availableIn($ipKey);
+            $secondsEmail = RateLimiter::availableIn($emailKey);
+            $seconds = max($secondsIp, $secondsEmail);
+            throw ValidationException::withMessages([
+                'captcha' => "Możesz wysłać tylko 1 wiadomość na godzinę. Spróbuj ponownie za {$seconds} sekund."
+            ]);
+        }
+
+        // HIT LIMITER
+        RateLimiter::hit($ipKey, 3600);
+        RateLimiter::hit($emailKey, 3600);
+
+        // WYSYŁKA MAILA
+        Mail::to('contact@work4you.global')
+            ->send(new ContactFormMarkdownMail($validated['email'], $validated['subject'], $validated['message']));
+
+        // Dopiero po pomyślnym wysłaniu resetujemy CAPTCHA
         session()->forget('captcha_text');
 
         return back()->with('success', 'Wiadomość została wysłana.');
     }
-
     public function Privacy()
     {
         return inertia()->render('Front/Privacy');

@@ -232,6 +232,10 @@ return [
         'email'    => 'adres e-mail',
         'password' => 'hasło',
         'name'     => 'nazwa',
+        'message'     => 'wiadomość',
+        'agree'     => 'zgoda',
+        'captcha'     => 'kod',
+        'subject'     => 'temat',
     ],
 
 ];
