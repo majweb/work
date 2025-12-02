@@ -39,6 +39,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 
 class FrontController extends Controller
@@ -389,8 +390,7 @@ class FrontController extends Controller
         RateLimiter::hit($emailKey, 3600);
 
         // WYSYŁKA MAILA
-        Mail::to('contact@work4you.global')
-            ->send(new ContactFormMarkdownMail($validated['email'], $validated['subject'], $validated['message']));
+        Mail::to(Config::get('mail.ContactEmail'))->send(new ContactFormMarkdownMail($validated['email'], $validated['subject'], $validated['message']));
 
         // Dopiero po pomyślnym wysłaniu resetujemy CAPTCHA
         session()->forget('captcha_text');

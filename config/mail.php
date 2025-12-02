@@ -112,5 +112,7 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+    'ContactEmail' => env('CONTACT_EMAIL', 'contact@work4you.global'),
+
 
 ];
