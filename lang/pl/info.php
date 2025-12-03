@@ -17,7 +17,7 @@ return [
     'more'=>'DOWIEDZ SIĘ WIĘCEJ',
     'subject'=>'Temat',
     'message'=>'Wiadomość',
-    'code'=>'Kod',
+    'code'=>'Przepisz Kod',
     'agree'=>'Wyrażam zgodę na przetwarzania danych osobowych...',
     'sent'=>'Wysłano wiadomość.',
     ];

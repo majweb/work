@@ -109,12 +109,12 @@ onMounted(() => loadCaptcha())
                             <div class="flex items-center gap-3">
                                 <!-- Kolorowy 6-literowy kod -->
                                 <div class="bg-gray-100 p-2 rounded text-center">
-                  <span v-for="(item,index) in coloredCaptcha"
-                        :key="index"
-                        :style="{ color:item.color }"
-                        class="font-bold text-lg mr-1">
-                    {{ item.letter }}
-                  </span>
+                                      <span v-for="(item,index) in coloredCaptcha"
+                                            :key="index"
+                                            :style="{ color:item.color }"
+                                            class="font-bold text-lg mr-1">
+                                        {{ item.letter }}
+                                      </span>
                                 </div>
                                 <!-- Pole wpisywania -->
                                 <TextInput
@@ -126,6 +126,10 @@ onMounted(() => loadCaptcha())
                                     class="mt-1 block border-work-main focus:ring-work-main relative z-10"
                                 />
                             </div>
+                                <!-- Błędy -->
+                                <div v-if="form.errors.captcha" class="text-red-600 text-sm mt-1 w-3/5">
+                                    {{ form.errors.captcha }}
+                                </div>
                             <!-- AGREE -->
                             <div class="block mt-4">
                                 <label class="flex items-center">
@@ -143,11 +147,6 @@ onMounted(() => loadCaptcha())
                                     class="text-work-main text-xs mt-2 hover:underline">
                                 Odśwież CAPTCHA
                             </button>
-
-                            <!-- Błędy -->
-                            <div v-if="form.errors.captcha" class="text-red-600 text-sm mt-1 w-3/5">
-                                {{ form.errors.captcha }}
-                            </div>
                         </div>
 
                         <!-- SUBMIT -->
