@@ -784,4 +784,9 @@ class FrontController extends Controller
     {
         return inertia()->render('Front/About');
     }
+
+    public function ReadMore()
+    {
+        return inertia()->render('Front/ReadMore');
+    }
 }

@@ -1,6 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import { ref, computed } from "vue";
+import {Link} from "@inertiajs/vue3";
 
 //
 // ✔ 1) ODBIÓR PRODUKTÓW Z BACKENDU
@@ -13,44 +14,30 @@ const props = defineProps({
 });
 
 //
-// ✔ 2) IKONY NEONOWE
-//
-const icons = {
-    education: `<svg width="38" height="38" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 3L2 9l10 6 8-4.5V17h2V9L12 3z" fill="#00eaff"/></svg>`,
-    sun: `<svg width="38" height="38" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v3M12 20v3M4.2 4.2l2.2 2.2M17.6 17.6l2.2 2.2M1 12h3M20 12h3M4.2 19.8l2.2-2.2M17.6 6.4l2.2-2.2" stroke="#00eaff" stroke-width="1.8"/></svg>`,
-    heart: `<svg width="38" height="38" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 21s-6.5-4.5-9-9c-1.5-3 1-7 5-7 2 0 4 1.5 4 3.5C12 6.5 14 5 16 5c4 0 6.5 4 5 7-2.5 4.5-9 9-9 9z" fill="#00eaff"/></svg>`,
-    rocket: `<svg width="42" height="42" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 2c2 1 4 4 4 7s-2 8-4 10c-2-2-4-7-4-10s2-6 4-7zM9 14l-4 4 3-7M15 14l4 4-3-7" fill="#00eaff"/></svg>`,
-    megaphone: `<svg width="38" height="38" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M3 10v4c0 .6.4 1 1 1h2l4 4v-14l-4 4H4c-.6 0-1 .4-1 1zM16 9a3 3 0 010 6" fill="none" stroke="#00eaff" stroke-width="2"/></svg>`,
-    star: `<svg width="38" height="38" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 3l2.7 6.2L21 10l-4.5 4 1.3 7-6-3-6 3 1.3-7L3 10l6.3-.8L12 3z" fill="#00eaff"/></svg>`,
-    diamond: `<svg width="42" height="42" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 2l4 4 4 6-8 10L4 12l4-6 4-4z" fill="#00eaff"/></svg>`
-};
-
-//
-// ✔ 3) PAKIETY Z BACKENDU
+// ✔ 2) PAKIETY Z BACKENDU
 //
 const packages = ref(
-    props.products.map((p, idx) => ({
+    props.products.map((p) => ({
         id: p.id,
         points: p.points,
-        price: p.price,
-        icon: p.icon ?? Object.keys(icons)[idx]
+        price: p.price
     }))
 );
 
 //
-// ✔ 4) DOMYŚLNY PAKIET → ŚRODKOWY
+// ✔ 3) DOMYŚLNY PAKIET → ŚRODKOWY
 //
 const selected = ref(packages.value[Math.floor(packages.value.length / 2)]);
 
 //
-// ✔ 5) INDEX PAKIETU (x) → używany do przesuwania progresu
+// ✔ 4) INDEX PAKIETU → używany do przesuwania progresu
 //
 const currentIndex = computed(() =>
     packages.value.findIndex(p => p.id === selected.value.id)
 );
 
 //
-// ✔ 6) OBLICZENIE POZYCJI KROPKI (PIXEL PERFECT)
+// ✔ 5) OBLICZENIE POZYCJI KROPKI (PIXEL PERFECT)
 //
 const barWidth = 400;        // długość w px
 const totalSlots = computed(() => packages.value.length - 1);
@@ -65,7 +52,7 @@ const progressWidth = computed(() => {
 });
 
 //
-// ✔ 7) DONATION
+// ✔ 6) DONATION
 //
 const donated = computed(() =>
     (selected.value.price * 0.5).toFixed(2)
@@ -85,32 +72,51 @@ const donated = computed(() =>
                         KUPUJ PUNKTY I PUBLIKUJ<br>OGŁOSZENIA BEZ OGRANICZEŃ
                     </h1>
 
-                    <p class="mt-4 text-lg opacity-90 max-w-2xl mx-auto">
-                        Razem zmieniamy świat na lepsze —
-                        <strong class="text-[#00eaff]">50% płatności</strong>
-                        trafia do organizacji charytatywnych.
+                    <p class="my-4 text-lg opacity-90 max-w-2xl mx-auto">
+                        Razem zmieniamy świat na lepsze. Każdy nasz sukces to<br>
+                        wsparcie dla potrzebujacych - <strong class="text-white font-semibold">50% płatności</strong>
+                        trafia do<br>
+                        wybranej przez Ciebie organizacji charytatywnej.
                     </p>
 
-                    <button class="mt-6 bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full text-white font-bold">
+                    <Link :href="route('front.readMore')" class="mt-6 bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full text-white font-bold">
                         DOWIEDZ SIĘ WIĘCEJ
-                    </button>
+                    </Link>
                 </div>
 
                 <!-- ===================== LISTA PAKIETÓW ===================== -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
 
-                    <div v-for="pack in packages" :key="pack.id"
+                    <div v-for="(pack, index) in packages" :key="pack.id"
                          @click="selected = pack"
-                         class="cursor-pointer rounded-xl p-6 text-center transition relative border
-                           hover:scale-[1.04] duration-200"
-                         :class="{
-                        'bg-blue-700 border-white shadow-2xl scale-[1.15] z-10': selected.id === pack.id,
-                        'bg-blue-900 border-blue-400': selected.id !== pack.id
-                     }">
+                         class="cursor-pointer rounded-xl p-6 text-center transition relative border duration-200"
+                         :class="[
 
-                        <div class="mb-3" v-html="icons[pack.icon]"></div>
+selected.id === pack.id
+? 'bg-[linear-gradient(45deg,#0B2A55_0%,#0D3874_50%,#0B2A55_100%)] border-[#00aaff] shadow-2xl lg:scale-[1.15] scale-100 z-10'
+    : 'bg-[#0d3874] border-[#00aaff]',
 
-                        <div class="text-3xl font-bold">{{ pack.points.toLocaleString() }}</div>
+        // ⭐ TYLKO NA MOBILE → pakiet 10000 na całą szerokość
+        index === 6 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : '',
+
+        'hover:scale-[1.04]'
+     ]">
+
+                        <!-- NOWA IKONA: z folderu /images/price/{points}.svg -->
+                        <div class="mb-3">
+                            <img
+                                :src="`/images/price/${pack.points}.svg`"
+                                class="w-[48px] h-[48px] mx-auto"
+                                alt=""
+                            />
+                        </div>
+
+                        <div
+                            class="text-3xl font-bold"
+                            :class="selected.id === pack.id ? 'glow-white-soft' : ''"
+                        >
+                            {{ pack.points.toLocaleString() }}
+                        </div>
                         <div class="text-sm opacity-80 mb-4">PUNKTÓW</div>
 
                         <button class="bg-[#00aaff] px-4 py-2 rounded-lg font-semibold text-white">
@@ -122,7 +128,7 @@ const donated = computed(() =>
 
                 </div>
 
-                <!-- ===================== PROGRESS + PODZIAŁKI + IKONY ===================== -->
+                <!-- ===================== PROGRESS + IKONY ===================== -->
 
                 <div class="flex justify-end w-full">
                     <div class="text-right">
@@ -132,41 +138,48 @@ const donated = computed(() =>
 
                             <p class="text-lg">
                                 Kupując pakiet
-                                <span class="text-[#00eaff] font-bold">{{ selected.points.toLocaleString() }} punktów</span>
-                                za <span class="text-[#00eaff] font-bold">${{ selected.price }}</span>,
+                                <span class="text-[#00aaff] font-bold">{{ selected.points.toLocaleString() }} punktów</span>
+                                za <span class="text-[#00aaff] font-bold">${{ selected.price }}</span>,
                                 przekazujesz
-                                <span class="text-green-400 font-bold">${{ donated }}</span>
+                                <span class="text-[#00aaff] font-bold">${{ donated }}</span>
                             </p>
                         </div>
 
-                        <!-- PROGRESS BAR + TICKS + ICONS -->
+                        <!-- PROGRESS BAR -->
                         <div class="relative w-[400px] ml-auto">
-                            <!-- TŁO -->
-                            <div class="h-3 w-full bg-blue-500 rounded-full"></div>
 
-                            <!-- AKTYWNY PROGRES -->
-                            <div class="h-3 bg-blue-300 rounded-full absolute top-0 left-0 transition-all duration-500"
+                            <!-- TŁO -->
+                            <div class="h-3 w-full border-[#00aaff] border-2 rounded-full"></div>
+
+                            <!-- PROGRES -->
+                            <div class="h-3 bg-[#00aaff] rounded-full absolute top-0 left-0 transition-all duration-500"
                                  :style="{ width: progressWidth + '%' }"></div>
 
                             <!-- KROPKA -->
-                            <div class="w-6 h-6 bg-blue-300 border-4 border-blue-900 rounded-full
-                absolute -top-1.5 transition-all duration-500"
+                            <div class="w-6 h-6 bg-[#00aaff] border-4 border-[#00aaff] rounded-full
+                                        absolute -top-1.5 transition-all duration-500"
                                  :style="{ left: `calc(${progressLeft}px - 12px)` }"></div>
 
                         </div>
 
-                        <!-- IKONY POD PROGRESEM – identyczny układ jak TICKI -->
-                        <div class="relative mt-6 w-[400px] ml-auto">
-
+                        <!-- IKONY POD PROGRESEM -->
+                        <div class="relative mt-6 ml-auto" :style="{ width: barWidth + 'px' }">
                             <div v-for="(pack, index) in packages" :key="'ico'+index"
-                                 v-html="icons[pack.icon]"
                                  class="absolute transition"
                                  :style="{
-            left: `${(400 / (packages.length - 1)) * index}px`,
-            transform: index <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
-            opacity: index <= currentIndex ? 1 : 0.25,
-            transition: '0.3s'
-        }">
+                                     left: `${(400 / (packages.length - 1)) * index}px`,
+                                     transform: index <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
+                                     opacity: index <= currentIndex ? 1 : 0.25,
+                                     transition: '0.3s'
+                                 }">
+
+                                <!-- NOWA IKONA SVG Z DYSKU -->
+                                <img
+                                    :src="`/images/price/${pack.points}.svg`"
+                                    alt=""
+                                    class="w-[40px] h-[40px] min-w-[40px]"
+                                />
+
                             </div>
 
                         </div>

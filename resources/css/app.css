@@ -15,3 +15,10 @@
 .filepond--panel-root {
     background-color: #cfeffc !important;
 }
+.glow-white-soft {
+    color: #ffffff;
+    text-shadow:
+        0 0 3px #ffffff,
+        0 0 6px rgba(255, 255, 255, 0.8),
+        0 0 10px rgba(255, 255, 255, 0.6);
+}
