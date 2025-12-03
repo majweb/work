@@ -119,9 +119,9 @@ selected.id === pack.id
                         </div>
                         <div class="text-sm opacity-80 mb-4">PUNKTÓW</div>
 
-                        <button class="bg-[#00aaff] px-4 py-2 rounded-lg font-semibold text-white">
+                        <Link :href="route('login')" class="bg-[#00aaff] px-4 py-2 rounded-lg font-semibold text-white">
                             KUP TERAZ
-                        </button>
+                        </Link>
 
                         <div class="mt-4">cena: ${{ pack.price }}</div>
                     </div>
