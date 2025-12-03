@@ -3,7 +3,7 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import { ref, computed } from "vue";
 
 //
-// ODBIÓR PRODUKTÓW Z BACKENDU
+// ✔ 1) ODBIÓR PRODUKTÓW Z BACKENDU
 //
 const props = defineProps({
     products: {
@@ -13,7 +13,7 @@ const props = defineProps({
 });
 
 //
-// IKONY NEONOWE
+// ✔ 2) IKONY NEONOWE
 //
 const icons = {
     education: `<svg width="38" height="38" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003a70"/><path d="M12 3L2 9l10 6 8-4.5V17h2V9L12 3z" fill="#00eaff"/></svg>`,
@@ -26,37 +26,52 @@ const icons = {
 };
 
 //
-// TWORZENIE PAKIETÓW NA PODSTAWIE PRODUKTÓW Z DB
+// ✔ 3) PAKIETY Z BACKENDU
 //
 const packages = ref(
     props.products.map((p, idx) => ({
         id: p.id,
         points: p.points,
         price: p.price,
-        icon: p.icon ?? Object.keys(icons)[idx] // fallback ikony wg kolejności
+        icon: p.icon ?? Object.keys(icons)[idx]
     }))
 );
 
 //
-// DOMYŚLNY WYBÓR — ŚRODKOWY PAKIET
+// ✔ 4) DOMYŚLNY PAKIET → ŚRODKOWY
 //
 const selected = ref(packages.value[Math.floor(packages.value.length / 2)]);
 
 //
-// OBLICZENIA
+// ✔ 5) INDEX PAKIETU (x) → używany do przesuwania progresu
 //
-const maxPoints = computed(() =>
-    Math.max(...packages.value.map(p => p.points))
+const currentIndex = computed(() =>
+    packages.value.findIndex(p => p.id === selected.value.id)
 );
 
-const progress = computed(() =>
-    (selected.value.points / maxPoints.value) * 100
-);
+//
+// ✔ 6) OBLICZENIE POZYCJI KROPKI (PIXEL PERFECT)
+//
+const barWidth = 400;        // długość w px
+const totalSlots = computed(() => packages.value.length - 1);
 
+const progressLeft = computed(() => {
+    const step = barWidth / totalSlots.value;
+    return step * currentIndex.value;
+});
+
+const progressWidth = computed(() => {
+    return (progressLeft.value / barWidth) * 100;
+});
+
+//
+// ✔ 7) DONATION
+//
 const donated = computed(() =>
     (selected.value.price * 0.5).toFixed(2)
 );
 </script>
+
 
 <template>
     <FrontLayout title="Cennik">
@@ -81,7 +96,7 @@ const donated = computed(() =>
                     </button>
                 </div>
 
-                <!-- ===================== CENNIK (DYNAMICZNY) ===================== -->
+                <!-- ===================== LISTA PAKIETÓW ===================== -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
 
                     <div v-for="pack in packages" :key="pack.id"
@@ -107,10 +122,9 @@ const donated = computed(() =>
 
                 </div>
 
-                <!-- ===================== PROGRESS + IKONY ===================== -->
+                <!-- ===================== PROGRESS + PODZIAŁKI + IKONY ===================== -->
 
                 <div class="flex justify-end w-full">
-
                     <div class="text-right">
 
                         <div class="mb-6">
@@ -125,36 +139,39 @@ const donated = computed(() =>
                             </p>
                         </div>
 
-                        <!-- PROGRESS BAR -->
-                        <div class="w-[500px] ml-auto">
-                            <div class="h-3 bg-blue-500 rounded-full relative">
+                        <!-- PROGRESS BAR + TICKS + ICONS -->
+                        <div class="relative w-[400px] ml-auto">
+                            <!-- TŁO -->
+                            <div class="h-3 w-full bg-blue-500 rounded-full"></div>
 
-                                <!-- ANIMOWANY PASEK -->
-                                <div class="h-3 bg-blue-300 rounded-full transition-all duration-500"
-                                     :style="{ width: progress + '%' }"></div>
+                            <!-- AKTYWNY PROGRES -->
+                            <div class="h-3 bg-blue-300 rounded-full absolute top-0 left-0 transition-all duration-500"
+                                 :style="{ width: progressWidth + '%' }"></div>
 
-                                <!-- ANIMOWANA KROPKA -->
-                                <div class="w-6 h-6 bg-blue-300 border-4 border-blue-900 rounded-full absolute -top-1.5
-                    transition-all duration-500"
-                                     :style="{ left: `calc(${progress}% - 12px)` }"></div>
-                            </div>
+                            <!-- KROPKA -->
+                            <div class="w-6 h-6 bg-blue-300 border-4 border-blue-900 rounded-full
+                absolute -top-1.5 transition-all duration-500"
+                                 :style="{ left: `calc(${progressLeft}px - 12px)` }"></div>
+
                         </div>
 
-                        <!-- IKONY POD PROGRESSEM -->
-                        <div class="flex justify-end gap-6 mt-8">
-                            <div v-for="(pack, index) in packages" :key="index"
-                                 class="transition"
+                        <!-- IKONY POD PROGRESEM – identyczny układ jak TICKI -->
+                        <div class="relative mt-6 w-[400px] ml-auto">
+
+                            <div v-for="(pack, index) in packages" :key="'ico'+index"
                                  v-html="icons[pack.icon]"
+                                 class="absolute transition"
                                  :style="{
-                                opacity: index <= packages.findIndex(p => p.id === selected.id) ? 1 : 0.25,
-                                transform: index <= packages.findIndex(p => p.id === selected.id) ? 'scale(1.20)' : 'scale(1)',
-                                transition: '0.3s'
-                            }">
+            left: `${(400 / (packages.length - 1)) * index}px`,
+            transform: index <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
+            opacity: index <= currentIndex ? 1 : 0.25,
+            transition: '0.3s'
+        }">
                             </div>
+
                         </div>
 
                     </div>
-
                 </div>
 
             </div>
