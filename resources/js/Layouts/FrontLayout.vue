@@ -240,7 +240,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
                     <div>
                         <h3 class="text-lg font-semibold mb-4">{{ __('footer.for_candidates') }}</h3>
                         <ul class="space-y-2">
-                            <li><Link :href="route('front.articles')" class="text-[#0a2c5c] hover:underline">{{ __('footer.browse_offers') }}</Link></li>
+                            <li><Link :href="route('front.projects')" class="text-[#0a2c5c] hover:underline">{{ __('footer.browse_offers') }}</Link></li>
                             <li><Link :href="route('front.articles')" class="text-[#0a2c5c] hover:underline">{{ __('footer.articles_and_guides') }}</Link></li>
                             <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.login') }}</Link></li>
                             <li><Link :href="route('register')" class="text-[#0a2c5c] hover:underline">{{ __('footer.register') }}</Link></li>
@@ -251,7 +251,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
                     <div>
                         <h3 class="text-lg font-semibold mb-4">{{ __('footer.for_companies') }}</h3>
                         <ul class="space-y-2">
-                            <li><Link :href="route('front.firms')" class="text-[#0a2c5c] hover:underline">{{ __('footer.add_offer') }}</Link></li>
+                            <li><Link :href="route('project-recruits.create')" class="text-[#0a2c5c] hover:underline">{{ __('footer.add_offer') }}</Link></li>
                             <li><Link :href="route('front.price')" class="text-[#0a2c5c] hover:underline">{{ __('footer.pricing') }}</Link></li>
                             <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.login') }}</Link></li>
                             <li><Link :href="route('register')" class="text-[#0a2c5c] hover:underline">{{ __('footer.register') }}</Link></li>
@@ -262,10 +262,10 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
                     <div>
                         <h3 class="text-lg font-semibold mb-4">{{ __('footer.about_us') }}</h3>
                         <ul class="space-y-2">
-                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.companies') }}</Link></li>
+                            <li><Link :href="route('front.firms')" class="text-[#0a2c5c] hover:underline">{{ __('footer.companies') }}</Link></li>
                             <li><Link :href="route('front.aboutus')" class="text-[#0a2c5c] hover:underline">{{ __('footer.about') }}</Link></li>
                             <li><Link :href="route('front.contact')" class="text-[#0a2c5c] hover:underline">{{ __('footer.contact') }}</Link></li>
-                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.partners') }}</Link></li>
+                            <li><Link :href="route('front.partners')" class="text-[#0a2c5c] hover:underline">{{ __('footer.partners') }}</Link></li>
                         </ul>
                     </div>
 

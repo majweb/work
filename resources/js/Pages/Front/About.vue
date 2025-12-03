@@ -75,7 +75,7 @@ import { Link } from "@inertiajs/vue3";
                         </p>
 
                         <Link
-                            href="/charity"
+                            :href="route('front.price')"
                             class="inline-block bg-[#4db8ff] hover:bg-[#37a0e2] text-black font-semibold px-6 py-2 rounded-lg transition"
                         >
                             {{__('info.more')}}

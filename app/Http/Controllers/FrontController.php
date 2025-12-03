@@ -789,4 +789,9 @@ class FrontController extends Controller
     {
         return inertia()->render('Front/ReadMore');
     }
+
+    public function Partners()
+    {
+        return inertia()->render('Front/Partners');
+    }
 }
