@@ -101,7 +101,6 @@ onMounted(() => loadCaptcha())
                                 class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full border-work-main focus:ring-work-main"></textarea>
                             <InputError :message="form.errors.message" class="mt-2" />
                         </div>
-
                         <!-- CAPTCHA -->
                         <div>
                             <label class="block font-semibold mb-2">Przepisz kod</label>

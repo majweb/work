@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
         DB::table('products')->truncate();
 
         $products = [
-            ['id' => 1, 'points'=>1000,'price'=>100.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 1, 'points'=>1000,'price'=>30.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '1000 ነጥቦች', // Amharski
@@ -152,7 +152,7 @@ class ProductSeeder extends Seeder
                 'vi' => '1000 điểm', // Wietnamski
                 'zh' => '1000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 2, 'points'=>3000, 'price'=>285.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 2, 'points'=>3000, 'price'=>80.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '3000 ነጥቦች', // Amharski
@@ -219,7 +219,7 @@ class ProductSeeder extends Seeder
                 'vi' => '3000 điểm', // Wietnamski
                 'zh' => '3000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 3, 'points'=>5000, 'price'=>450.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 3, 'points'=>5000, 'price'=>120.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '5000 ነጥቦች', // Amharski
@@ -286,7 +286,7 @@ class ProductSeeder extends Seeder
                 'vi' => '5000 điểm', // Wietnamski
                 'zh' => '5000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 4, 'points'=>10000, 'price'=>850.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 4, 'points'=>10000, 'price'=>220.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '10000 ነጥቦች', // Amharski
@@ -353,7 +353,7 @@ class ProductSeeder extends Seeder
                 'vi' => '10000 điểm', // Wietnamski
                 'zh' => '10000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 5, 'points'=>30000, 'price'=>2400.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 5, 'points'=>30000, 'price'=>630.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '30000 ነጥቦች', // Amharski
@@ -420,7 +420,7 @@ class ProductSeeder extends Seeder
                 'vi' => '30000 điểm', // Wietnamski
                 'zh' => '30000分' // Chiński
             ]),'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 6, 'points'=>50000, 'price'=>3750.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 6, 'points'=>50000, 'price'=>1000.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '50000 ነጥቦች', // Amharski
@@ -487,7 +487,7 @@ class ProductSeeder extends Seeder
                 'vi' => '50000 điểm', // Wietnamski
                 'zh' => '50000分' // Chiński
             ]), 'created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
-            ['id' => 7, 'points'=>100000, 'price'=>7000.00,'product_type'=>'Points','type'=>json_encode([
+            ['id' => 7, 'points'=>100000, 'price'=>1800.00,'product_type'=>'Points','type'=>json_encode([
                 $points
             ]),'name'=>json_encode([
                 'am' => '100000 ነጥቦች', // Amharski

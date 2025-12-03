@@ -394,13 +394,25 @@ class FrontController extends Controller
 
         // Dopiero po pomyślnym wysłaniu resetujemy CAPTCHA
         session()->forget('captcha_text');
-
-        return back()->with('success', 'Wiadomość została wysłana.');
+        return back();
     }
     public function Privacy()
     {
         return inertia()->render('Front/Privacy');
     }
+    public function Price()
+    {
+        $products = \App\Models\Product::where('product_type', 'Points')
+            ->where('active', true)
+            ->orderBy('points', 'asc')
+            ->get();
+
+        return inertia('Front/Price', [
+            'products' => $products
+        ]);
+    }
+
+
 
     public function Terms()
     {

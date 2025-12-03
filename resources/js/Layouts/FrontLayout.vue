@@ -252,7 +252,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
                         <h3 class="text-lg font-semibold mb-4">{{ __('footer.for_companies') }}</h3>
                         <ul class="space-y-2">
                             <li><Link :href="route('front.firms')" class="text-[#0a2c5c] hover:underline">{{ __('footer.add_offer') }}</Link></li>
-                            <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.pricing') }}</Link></li>
+                            <li><Link :href="route('front.price')" class="text-[#0a2c5c] hover:underline">{{ __('footer.pricing') }}</Link></li>
                             <li><Link :href="route('login')" class="text-[#0a2c5c] hover:underline">{{ __('footer.login') }}</Link></li>
                             <li><Link :href="route('register')" class="text-[#0a2c5c] hover:underline">{{ __('footer.register') }}</Link></li>
                         </ul>
