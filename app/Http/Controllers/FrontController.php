@@ -24,6 +24,7 @@ use App\Models\CvClassic;
 use App\Models\Firm;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
+use App\Models\Partner;
 use App\Models\Project;
 use App\Models\TemporaryFile;
 use App\Models\User;
@@ -792,6 +793,20 @@ class FrontController extends Controller
 
     public function Partners()
     {
-        return inertia()->render('Front/Partners');
-    }
+
+        $partners = Partner::where('active', true)
+            ->orderBy('id')
+            ->get()
+            ->map(function ($partner) {
+                return [
+                    'id'    => $partner->id,
+                    'name'  => $partner->name,
+                    'link'  => $partner->link,
+                    'logo'  => $partner->getFirstMediaUrl('partner_logo'),  // ⬅️ logo
+                ];
+            });
+
+        return inertia()->render('Front/Partners', [
+            'partners' => $partners
+        ]);    }
 }

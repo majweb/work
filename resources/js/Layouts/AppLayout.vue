@@ -216,6 +216,11 @@ onUnmounted(()=>{
                                     {{__('translate.aplications')}}
                                 </NavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('admin')">
+                                <NavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">
+                                    {{__('partners.partners')}}
+                                </NavLink>
+                            </div>
                             <!--Admin-->
                         </div>
 
@@ -395,6 +400,9 @@ onUnmounted(()=>{
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')" v-if="hasRole('admin')">
                             {{__('translate.aplications')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')" v-if="hasRole('admin')">
+                            {{__('partners.partners')}}
                         </ResponsiveNavLink>
                         <notification-bell :count="notifications" />
                     </div>

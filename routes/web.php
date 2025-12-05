@@ -266,7 +266,10 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
         Route::get('aplicationsAdmin',[\App\Http\Controllers\Admin\AplicationController::class,'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])
             ->name('aplicationsA.export');
-
+//        PARTNERZY
+        Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
+        Route::put('partners/{partner}/toggle', [\App\Http\Controllers\Admin\PartnerController::class, 'toggle'])
+            ->name('partners.toggle');
 
         Route::put('aplicationsAdmin/{aplication}/status',[App\Http\Controllers\Admin\AplicationController::class,'updateStatus'])->name('aplicationsA.update-status');
         Route::post('aplicationsAdmin/{aplication}/notes',[App\Http\Controllers\Admin\AplicationController::class,'storeNote'])->name('aplicationsA.store-note');
