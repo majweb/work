@@ -53,7 +53,7 @@ const props = defineProps({
                             v-for="partner in props.partners"
                             :key="partner.id"
                         >
-                            <div class="flex flex-col items-center justify-center">
+                            <div class="flex flex-col items-center justify-center group"> <!-- dodajemy group -->
 
                                 <!-- Jeśli link istnieje → klikamy -->
                                 <a
@@ -78,16 +78,15 @@ const props = defineProps({
                                     class="h-20 w-auto object-contain mb-3 transition-transform duration-300 hover:scale-105"
                                 />
 
-                                <p class="text-sm text-center text-[#0d2a2]"
-                                   :class="{'cursor-pointer hover:underline': partner.link}"
-                                >
+                                <p class="text-sm text-center text-[#0d2a2]">
                                     <a
                                         v-if="partner.link"
                                         :href="partner.link"
                                         target="_blank"
                                         rel="noopener"
+                                        class="transition-all duration-300 group-hover:underline"
                                     >
-                                        {{ partner.name }}
+                                    {{ partner.name }}
                                     </a>
                                     <span v-else>{{ partner.name }}</span>
                                 </p>
