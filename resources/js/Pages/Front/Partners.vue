@@ -1,9 +1,13 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
+import MapBoxFundations from "@/Components/MapBoxFundations.vue";
+mapboxgl.accessToken = "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ"; // ← Wstaw swój token
+
 // SWIPER IMPORTS
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import mapboxgl from "mapbox-gl";
 const props = defineProps({
     partners: {
         type: Array,
@@ -121,6 +125,10 @@ const props = defineProps({
                     <h2 class="text-4xl font-extrabold mb-6 uppercase mt-6">
                         ZNAJDŹ FUNDACJĘ
                     </h2>
+                </div>
+
+                <div class="mapa mt-10">
+                    <MapBoxFundations />
                 </div>
             </div>
         </section>

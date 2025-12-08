@@ -809,4 +809,11 @@ class FrontController extends Controller
         return inertia()->render('Front/Partners', [
             'partners' => $partners
         ]);    }
+
+    public function Partner(Partner $partner)
+    {
+        return inertia()->render('Front/Partner', [
+            'partner' => $partner
+        ]);
+    }
 }
