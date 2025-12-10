@@ -827,7 +827,7 @@ class FrontController extends Controller
                     'id' => $f->id,
                     'name' => $f->name,
                     'country' => $f->country,
-                    'category' => $f->category_id['allTranslations']['name'][app()->getLocale()],
+                    'category' => $f->category?->allTranslations['name'][app()->getLocale()] ?? null,
                     'categoryId' => $f->category_id['value'],
                     'logo'  => $f->getFirstMediaUrl('foundation_logo'),  // ⬅️ logo
                     'address_country' => $f->address_country,
