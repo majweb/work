@@ -391,7 +391,7 @@ watch(() => props.foundations, () => {
             </div>
         </div>
 
-        <div class="w-full grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div class="w-full grid grid-cols-1 md:grid-cols-4 md:gap-3">
             <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 text-lg font-semibold text-[#0d2a52]">
                 <button
                     class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
