@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FoundationController;
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\CategoryControllerInvoke;
 use App\Http\Controllers\CommentController;
@@ -270,6 +271,13 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
         Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
         Route::put('partners/{partner}/toggle', [\App\Http\Controllers\Admin\PartnerController::class, 'toggle'])
             ->name('partners.toggle');
+
+        //        FUNDACJE
+        Route::resource('foundations', FoundationController::class);
+        Route::put('foundations/{foundation}/toggle', [FoundationController::class, 'toggle'])
+            ->name('foundations.toggle');
+        Route::get('foundations/getChildsCategory/{parent}',[FoundationController::class,'getChildsCategory'])->name('getChildsCategory');
+
 
         Route::put('aplicationsAdmin/{aplication}/status',[App\Http\Controllers\Admin\AplicationController::class,'updateStatus'])->name('aplicationsA.update-status');
         Route::post('aplicationsAdmin/{aplication}/notes',[App\Http\Controllers\Admin\AplicationController::class,'storeNote'])->name('aplicationsA.store-note');

@@ -22,6 +22,8 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\CvClassic;
 use App\Models\Firm;
+use App\Models\Foundation;
+use App\Models\FoundationCategory;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
 use App\Models\Partner;
@@ -805,10 +807,43 @@ class FrontController extends Controller
                     'logo'  => $partner->getFirstMediaUrl('partner_logo'),  // ⬅️ logo
                 ];
             });
+        $categories = FoundationCategory::query()
+            ->whereNull('parent_id')
+            ->orderBy('id')
+            ->get()
+            ->map(function ($cat) {
+                return [
+                    'id'    => $cat->id,
+                    'label' => $cat->getTranslation('name', app()->getLocale()),
+                ];
+            });
 
+
+        $foundations = Foundation::where('active', true)
+            ->orderBy('id')
+            ->get()
+            ->map(function ($f) {
+                return [
+                    'id' => $f->id,
+                    'name' => $f->name,
+                    'country' => $f->country,
+                    'category' => $f->category_id['allTranslations']['name'][app()->getLocale()],
+                    'categoryId' => $f->category_id['value'],
+                    'logo'  => $f->getFirstMediaUrl('foundation_logo'),  // ⬅️ logo
+                    'address_country' => $f->address_country,
+                    'coords' => [$f->longitude, $f->latitude],  // [lng, lat]
+                ];
+            });
+        $countries = (new Helper())->makeCountriesToSelect();
+        $foundationsCount = Foundation::where('active', true)->count();
         return inertia()->render('Front/Partners', [
-            'partners' => $partners
-        ]);    }
+            'partners' => $partners,
+            'categories' => $categories,
+            'foundations' => $foundations,
+            'countries' => $countries,
+            'foundationsCount' => $foundationsCount,
+        ]);
+    }
 
     public function Partner(Partner $partner)
     {

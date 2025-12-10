@@ -8,12 +8,18 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import mapboxgl from "mapbox-gl";
+import {computed} from "vue";
 const props = defineProps({
     partners: {
         type: Array,
         required: true
-    }
+    },
+    categories: Array,
+    foundations:Array,
+    countries:Array,
+    foundationsCount:Number,
 });
+const foundations = computed(() => props.foundations);
 
 </script>
 <template>
@@ -117,18 +123,22 @@ const props = defineProps({
                 <!-- Sekcja liczby fundacji + przycisk -->
                 <div class="text-center mt-24">
                     <p class="text-xl md:text-2xl font-semibold text-[#0d2a52]">
-                        Obecnie nasze wsparcie dociera do
+                        {{__('translate.current_count')}}
                         <a href="#" class="text-[#00a1e6] font-bold hover:underline">
-                            5259 FUNDACJI
+                            {{props.foundationsCount}} {{__('translate.fundacji')}}
                         </a>
                     </p>
                     <h2 class="text-4xl font-extrabold mb-6 uppercase mt-6">
-                        ZNAJDŹ FUNDACJĘ
+                        {{__('translate.search_foundation')}}
                     </h2>
                 </div>
 
                 <div class="mapa mt-10">
-                    <MapBoxFundations />
+                    <MapBoxFundations
+                        :categories="props.categories"
+                        :foundations="foundations"
+                        :countries="props.countries"
+                    />
                 </div>
             </div>
         </section>

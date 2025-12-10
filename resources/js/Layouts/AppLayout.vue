@@ -221,6 +221,11 @@ onUnmounted(()=>{
                                     {{__('partners.partners')}}
                                 </NavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('admin')">
+                                <NavLink :href="route('admin.foundations.index')" :active="route().current('admin.foundations.index')">
+                                    {{__('foundations.foundations')}}
+                                </NavLink>
+                            </div>
                             <!--Admin-->
                         </div>
 

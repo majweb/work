@@ -1066,6 +1066,9 @@ return [
     'zatrudnienie'        => 'zatrudnienie',
     'resetPassword'        => 'Resetuj hasło',
     'resetText'        => 'Resetuj',
+    'current_count' => 'Obecnie nasze wsparcie dociera do',
+    'fundacji' => 'FUNDACJI',
+    'search_foundation' => 'ZNAJDŹ FUNDACJĘ',
 
 
 
