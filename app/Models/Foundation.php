@@ -30,15 +30,21 @@ class Foundation extends Model implements HasMedia
         'address_country',
         'year_of_foundation',
         'worker_count',
-        'annual_turnover',
+        'benefit_organization',
         'latitude',
         'longitude',
-        'active'
+        'active',
+        'facebook_url',
+        'instagram_url',
+        'linkedin_url',
+        'x_url',
+        'tiktok_url',
     ];
     protected $casts = [
         'latitude' => 'float',
         'longitude' => 'float',
         'active' => 'boolean',
+        'benefit_organization' => 'boolean',
         'category_id' => 'json',
         'subcategory_id' => 'json',
         'address_country' => 'json',

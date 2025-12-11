@@ -1069,7 +1069,4 @@ return [
     'current_count' => 'Obecnie nasze wsparcie dociera do',
     'fundacji' => 'FUNDACJI',
     'search_foundation' => 'ZNAJDŹ FUNDACJĘ',
-
-
-
 ];

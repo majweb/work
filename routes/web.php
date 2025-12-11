@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FoundationController;
+use App\Http\Controllers\BannerUploadController;
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\CategoryControllerInvoke;
 use App\Http\Controllers\CommentController;
@@ -292,6 +293,9 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
 Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');
 Route::delete('temporary/delete',DeleteTemporaryFileController::class)->name('temporary.delete');
 Route::post('temporary/poster',DeletePosterFile::class)->name('temporary.delete.poster');
+
+//Baner
+Route::post('temporary/upload/banner',[BannerUploadController::class,'upload'])->name('temporary.upload.banner');
 
 Route::get('category/sub/{categoryId}', [FrontController::class, 'getCategorySub'])->name('category.sub');
 Route::get('category/professions/{categorySubId}', [FrontController::class, 'getProfessions'])->name('category.professions');

@@ -35,7 +35,7 @@ return new class extends Migration
             // Dane o organizacji
             $table->year('year_of_foundation')->nullable();
             $table->integer('worker_count')->nullable();
-            $table->decimal('annual_turnover', 15, 2)->nullable(); // 15 cyfr, 2 po przecinku
+            $table->boolean('benefit_organization')->default(false);
 
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
@@ -62,7 +62,7 @@ return new class extends Migration
                 'address_country',
                 'year_of_foundation',
                 'worker_count',
-                'annual_turnover',
+                'benefit_organization',
                 'latitude',
                 'longitude',
             ]);

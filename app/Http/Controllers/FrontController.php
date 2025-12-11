@@ -845,10 +845,41 @@ class FrontController extends Controller
         ]);
     }
 
-    public function Partner(Partner $partner)
+    public function Foundation(Foundation $foundation)
     {
-        return inertia()->render('Front/Partner', [
-            'partner' => $partner
+        $data = [
+            'id' => $foundation->id,
+            'name' => $foundation->name,
+            'country' => $foundation->country,
+            'category' => $foundation->category?->allTranslations['name'][app()->getLocale()] ?? null,
+            'categoryId' => $foundation->category_id['value'] ?? null,
+
+            // logo
+            'logo' => $foundation->getFirstMediaUrl('foundation_logo'),
+
+            // kraj jako pełny obiekt (dla frontu!)
+            'address_country' => $foundation->address_country,
+            'address_street' => $foundation->address_street,
+            'address_city' => $foundation->address_city,
+
+            // centrum mapy
+            'coords' => [
+                $foundation->longitude,
+                $foundation->latitude,
+            ],
+
+            // dane kontaktowe
+            'phone' => $foundation->phone,
+            'email' => $foundation->email,
+            'www' => $foundation->www,
+            'description' => $foundation->description,
+
+            // banner jeśli masz
+            'banner' => $foundation->getFirstMediaUrl('foundation_banner') ?? null,
+        ];
+
+        return inertia()->render('Front/Foundation', [
+            'foundation' => $data
         ]);
     }
 }

@@ -34,6 +34,36 @@ class StoreFoundationRequest extends FormRequest
                 'max:255',
                 'regex:/^https?:\/\/.+$/i' // <- link musi zaczynać się od http:// lub https://
             ],
+            'facebook_url' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^https?:\/\/.+$/i'
+            ],
+            'instagram_url' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^https?:\/\/.+$/i'
+            ],
+            'linkedin_url' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^https?:\/\/.+$/i'
+            ],
+            'x_url' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^https?:\/\/.+$/i'
+            ],
+            'tiktok_url' => [
+                'nullable',
+                'string',
+                'max:255',
+                'regex:/^https?:\/\/.+$/i'
+            ],
             'description' => ['required', 'string'],
 
             'address_street' => ['required', 'string', 'max:255'],
@@ -43,7 +73,7 @@ class StoreFoundationRequest extends FormRequest
 
             'year_of_foundation' => ['required', 'digits:4', 'integer', 'min:1901', 'max:' . date('Y')],
             'worker_count' => ['required', 'integer', 'min:0'],
-            'annual_turnover' => ['required', 'numeric', 'min:0'],
+            'benefit_organization' => ['boolean'],
 
             'country' => ['required', 'string', 'max:5'],   // ← to jest ważne
 
@@ -56,6 +86,7 @@ class StoreFoundationRequest extends FormRequest
 
             'active' => ['boolean'],
             'photo'   => ['required','array'],
+            'banner'   => ['required','array'],
 
         ];
     }
@@ -64,6 +95,11 @@ class StoreFoundationRequest extends FormRequest
     {
         return [
             'www.regex' => 'Link musi zaczynać się od http:// lub https://',
+            'facebook_url.regex' => 'Link Facebook musi zaczynać się od http:// lub https://',
+            'instagram_url.regex' => 'Link Instagram musi zaczynać się od http:// lub https://',
+            'linkedin_url.regex' => 'Link LinkedIn musi zaczynać się od http:// lub https://',
+            'x_url.regex' => 'Link X (Twitter) musi zaczynać się od http:// lub https://',
+            'tiktok_url.regex' => 'Link TikTok musi zaczynać się od http:// lub https://',
         ];
     }
 
@@ -81,6 +117,11 @@ class StoreFoundationRequest extends FormRequest
             'phone' =>'telefon',
             'description' =>'opis',
             'photo' =>'logo',
+            'facebook_url' =>'Facebook URL',
+            'instagram_url' =>'Instagram URL',
+            'linkedin_url' =>'LinkedIn URL',
+            'x_url' =>'X (Twitter) URL',
+            'tiktok_url' =>'TikTok URL',
         ];
     }
 }

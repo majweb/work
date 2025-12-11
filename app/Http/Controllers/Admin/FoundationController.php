@@ -82,6 +82,11 @@ class FoundationController extends Controller
         $foundation = Foundation::create([
             'name' => $data['name'],
             'www' => $data['www'] ?? null,
+            'facebook_url' => $data['facebook_url'] ?? null,
+            'instagram_url' => $data['instagram_url'] ?? null,
+            'linkedin_url' => $data['linkedin_url'] ?? null,
+            'x_url' => $data['x_url'] ?? null,
+            'tiktok_url' => $data['tiktok_url'] ?? null,
             'phone' => $data['phone'] ?? null,
             'email' => $data['email'] ?? null,
             'description' => $data['description'] ?? null,
@@ -96,7 +101,7 @@ class FoundationController extends Controller
 
             'year_of_foundation' => $data['year_of_foundation'] ?? null,
             'worker_count' => $data['worker_count'] ?? null,
-            'annual_turnover' => $data['annual_turnover'] ?? null,
+            'benefit_organization' => $data['benefit_organization'] ?? false,
 
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
@@ -121,6 +126,17 @@ class FoundationController extends Controller
             foreach ($temporaryFiles as $file) {
                 // Dodaj plik do kolekcji mediów kandydata
                 $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))->toMediaCollection('foundation_logo');
+//                // Usuń tymczasowy folder i wpis
+                Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
+                $file->delete();
+            }
+        }
+        if ($request->banner) {
+            $folders = $request->banner;
+            $temporaryFiles = TemporaryFile::whereIn('folder', $folders)->get();
+            foreach ($temporaryFiles as $file) {
+                // Dodaj plik do kolekcji mediów kandydata
+                $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))->toMediaCollection('foundation_banner');
 //                // Usuń tymczasowy folder i wpis
                 Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
                 $file->delete();
@@ -162,6 +178,11 @@ class FoundationController extends Controller
                 'id' => $foundation->id,
                 'name' => $foundation->name,
                 'www' => $foundation->www,
+                'facebook_url' => $foundation->facebook_url,
+                'instagram_url' => $foundation->instagram_url,
+                'linkedin_url' => $foundation->linkedin_url,
+                'x_url' => $foundation->x_url,
+                'tiktok_url' => $foundation->tiktok_url,
                 'phone' => $foundation->phone,
                 'email' => $foundation->email,
                 'description' => $foundation->description,
@@ -187,9 +208,10 @@ class FoundationController extends Controller
 
                 'year_of_foundation' => $foundation->year_of_foundation,
                 'worker_count'       => $foundation->worker_count,
-                'annual_turnover'    => $foundation->annual_turnover,
+                'benefit_organization' => (bool) $foundation->benefit_organization,
                 'orders_count'=> $foundation->orders_count,
                 'photo'  => $foundation->getFirstMediaUrl('foundation_logo'),
+                'banner'  => $foundation->getFirstMediaUrl('foundation_banner'),
             ],
         ]);
     }
@@ -213,6 +235,27 @@ class FoundationController extends Controller
                     // Dodaj plik do kolekcji mediów partnera
                     $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))
                         ->toMediaCollection('foundation_logo');
+
+                    // Usuń tymczasowy folder i wpis w DB
+                    Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
+                    $file->delete();
+                }
+            }
+        }
+        if ($request->banner) {
+            $banner = $request->banner[0];
+            // Jeśli zdjęcie to URL, pomijamy aktualizację mediów
+            if (!(isset($banner['source']) && str_starts_with($banner['source'], 'http'))) {
+                // Czyścimy istniejącą kolekcję mediów
+                $foundation->clearMediaCollection('foundation_banner');
+
+                $folders = $request->banner; // Tablica folderów tymczasowych
+                $temporaryFiles = TemporaryFile::whereIn('folder', $folders)->get();
+
+                foreach ($temporaryFiles as $file) {
+                    // Dodaj plik do kolekcji mediów partnera
+                    $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))
+                        ->toMediaCollection('foundation_banner');
 
                     // Usuń tymczasowy folder i wpis w DB
                     Storage::disk('public')->deleteDirectory('temps/' . $file->folder);

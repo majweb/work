@@ -284,7 +284,7 @@ function addGlowPoints() {
 
     map.value.on("click", "foundation-point", e => {
         const id = e.features[0].properties.id;
-        router.visit(route("front.partner", id));
+        router.visit(route("front.foundation.single", id));
     });
 }
 
@@ -442,8 +442,8 @@ watch(() => props.foundations, () => {
                     <Link
                         v-for="f in paginatedFoundations"
                         :key="f.id"
-                        :href="route('front.partner', f.id)"
-                        class="flex flex-col gap-2 border rounded-xl p-4 shadow-sm hover:shadow-md transition cursor-pointer"
+                        :href="route('front.foundation.single', f.id)"
+                        class="flex flex-col gap-2 border border-work-main-light rounded-xl p-4 shadow-sm hover:shadow-md transition cursor-pointer"
                     >
                         <div class="flex items-start gap-3">
                             <!-- Logo -->

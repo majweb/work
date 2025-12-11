@@ -10,6 +10,7 @@ import { ref, watch } from "vue";
 import __ from "@/lang.js";
 import multiselect from "vue-multiselect";
 import axios from "axios";
+import Tiptap from "@/Components/TipTap.vue";
 
 const props = defineProps({
     categories: Array,
@@ -95,20 +96,23 @@ const selectSuggestion = (item) => {
     // współrzędne
     form.latitude = item.center[1];
     form.longitude = item.center[0];
-
-    console.log("Wybrano adres:", form.address_street, form.address_city, form.address_country, form.country);
-    console.log("Coords:", form.latitude, form.longitude);
 };
 // ===============================
 // 🔵 FORMULARZ
 // ===============================
 let serverMessage = ref(null);
+let serverMessage2 = ref(null);
 const optionsCategory = ref(props.categories);
 const optionsSubCategory = ref([]);
 
 const form = useForm({
     name: "",
     www: "",
+    facebook_url: "",
+    instagram_url: "",
+    linkedin_url: "",
+    x_url: "",
+    tiktok_url: "",
     phone: "",
     email: "",
     description: "",
@@ -122,12 +126,13 @@ const form = useForm({
     subcategory_id: "",
     active: true,
     photo: [],
+    banner: [],
     iban: "",    // ⬅️ nowo dodane
     swift: "",   // ⬅️ nowo dodane
     krs: "",
     year_of_foundation: "",
     worker_count: "",
-    annual_turnover: "",
+    benefit_organization: true,
 });
 
 // Ładowanie podkategorii
@@ -239,10 +244,12 @@ const submit = () => {
                         <input v-model="form.worker_count" type="number" class="w-full rounded border-gray-300" placeholder="np. 25">
                         <InputError :message="form.errors.worker_count" />
                     </div>
-                    <div>
-                        <InputLabel value="Roczny obrót (PLN)" />
-                        <input v-model="form.annual_turnover" type="number" class="w-full rounded border-gray-300" placeholder="np. 100000">
-                        <InputError :message="form.errors.annual_turnover" />
+                    <div class="flex items-end">
+                        <label class="flex items-center" for="benefit_organization">
+                        <Checkbox id="benefit_organization" v-model:checked="form.benefit_organization" class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2" />
+                            <span class="ml-2 text-gray-700">Organizacja pożytku publicznego</span>
+                        </label>
+                        <InputError :message="form.errors.benefit_organization" />
                     </div>
                 </div>
 
@@ -326,6 +333,48 @@ const submit = () => {
                     <InputError :message="form.errors.www" />
                 </div>
 
+                <!-- SOCIAL MEDIA -->
+                <div class="border-t pt-4">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Media społecznościowe</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Facebook -->
+                        <div>
+                            <InputLabel value="Facebook URL (opcjonalnie)" />
+                            <input v-model="form.facebook_url" class="w-full rounded border-gray-300" type="text" placeholder="https://facebook.com/...">
+                            <InputError :message="form.errors.facebook_url" />
+                        </div>
+
+                        <!-- Instagram -->
+                        <div>
+                            <InputLabel value="Instagram URL (opcjonalnie)" />
+                            <input v-model="form.instagram_url" class="w-full rounded border-gray-300" type="text" placeholder="https://instagram.com/...">
+                            <InputError :message="form.errors.instagram_url" />
+                        </div>
+
+                        <!-- LinkedIn -->
+                        <div>
+                            <InputLabel value="LinkedIn URL (opcjonalnie)" />
+                            <input v-model="form.linkedin_url" class="w-full rounded border-gray-300" type="text" placeholder="https://linkedin.com/...">
+                            <InputError :message="form.errors.linkedin_url" />
+                        </div>
+
+                        <!-- X (Twitter) -->
+                        <div>
+                            <InputLabel value="X (Twitter) URL (opcjonalnie)" />
+                            <input v-model="form.x_url" class="w-full rounded border-gray-300" type="text" placeholder="https://x.com/...">
+                            <InputError :message="form.errors.x_url" />
+                        </div>
+
+                        <!-- TikTok -->
+                        <div>
+                            <InputLabel value="TikTok URL (opcjonalnie)" />
+                            <input v-model="form.tiktok_url" class="w-full rounded border-gray-300" type="text" placeholder="https://tiktok.com/@...">
+                            <InputError :message="form.errors.tiktok_url" />
+                        </div>
+                    </div>
+                </div>
+
                 <!-- DANE KONTAKTOWE -->
                 <div>
                     <InputLabel value="Telefon" />
@@ -342,10 +391,9 @@ const submit = () => {
                 <!-- OPIS -->
                 <div>
                     <InputLabel value="Opis fundacji" />
-                    <textarea v-model="form.description" class="w-full rounded border-gray-300" rows="3"></textarea>
+                    <Tiptap id="content" v-model="form.description" />
                     <InputError :message="form.errors.description" />
                 </div>
-
                 <!-- LOGO -->
                 <div>
                     <InputLabel value="Logo fundacji"/>
@@ -409,7 +457,69 @@ const submit = () => {
 
                     <InputError :message="form.errors.photo"/>
                 </div>
+                <!-- BANER -->
+                <div>
+                    <InputLabel value="Baner fundacji"/>
+                    <file-pond
+                        name="banner"
+                        ref="uploadBaner"
+                        :files="form.banner"
+                        :allow-multiple="false"
+                        :max-file-size="'4MB'"
+                        credits="false"
+                        :accepted-file-types="'image/png, image/jpeg, image/jpg, image/webp'"
+                        imagePreviewMaxHeight="300"
+                        filePosterHeight="300"
+                        :label-idle="__('translate.label-idle')"
+                        :labelFileProcessing="__('translate.labelFileProcessing')"
+                        :labelInvalidField="__('translate.labelInvalidField')"
+                        :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                        :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                        :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                        :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                        :labelFileLoading="__('translate.labelFileLoading')"
+                        :labelFileLoadError="__('translate.labelFileLoadError')"
+                        :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                        :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                        :labelFileProcessingError="serverMessage2 ? serverMessage2 : __('translate.labelFileProcessingError')"
+                        :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                        :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                        :labelTapToCancel="__('translate.labelTapToCancel')"
+                        :labelTapToRetry="__('translate.labelTapToRetry')"
+                        :labelTapToUndo="__('translate.labelTapToUndo')"
+                        :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                        :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                        :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                        :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                        :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                        :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                        :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                        :server="{
+                            url: '',
+                            headers: { 'X-CSRF-TOKEN': usePage().props.csrf_token },
+                            process: {
+                                url: '/temporary/upload/banner',
+                                onload: (response) => {
+                                    console.log(response)
+                                    form.banner.push(response);
+                                    return response;
+                                },
+                                onerror: (res) => serverMessage2 = JSON.parse(res).error.banner
+                            },
+                            revert: {
+                                url: '/temporary/delete',
+                                onload: (response) => {
+                                    if (!response) return;
+                                    const idx = form.banner.findIndex(el => el === response);
+                                    if (idx !== -1) form.banner.splice(idx, 1);
+                                }
+                            },
+                            remove: removeFile
+                        }"
+                    ></file-pond>
 
+                    <InputError :message="form.errors.banner"/>
+                </div>
                 <!-- AKTYWNOŚĆ -->
                 <div class="flex items-center">
                     <label class="flex items-center" for="active">
