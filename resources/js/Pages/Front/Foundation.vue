@@ -166,7 +166,7 @@ function addMarker() {
             <div class="max-w-6xl mx-auto mt-12">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Rok założenia -->
-                    <div v-if="props.foundation.year_of_foundation" class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                    <div v-if="props.foundation.year_of_foundation" class="bg-white border-2 border-work-main-light rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
                         <div class="flex justify-center mb-4">
                             <div class="w-14 h-14 flex items-center justify-center">
                                 <img src="/images/partners/lokalizacja.svg" :alt="__('translate.year_of_foundation')">
@@ -177,7 +177,7 @@ function addMarker() {
                     </div>
 
                     <!-- Roczny obrót -->
-                    <div class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                    <div class="bg-white border-2 border-work-main-light rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
                         <div class="flex justify-center mb-4">
                             <div class="w-14 h-14 flex items-center justify-center">
                                 <img src="/images/partners/lokalizacja.svg" alt="tik_tok">
@@ -188,7 +188,7 @@ function addMarker() {
                     </div>
 
                     <!-- Liczba pracowników -->
-                    <div v-if="props.foundation.worker_count" class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                    <div v-if="props.foundation.worker_count" class="bg-white border-2 border-work-main-light rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
                         <div class="flex justify-center mb-4">
                             <div class="w-14 h-14 flex items-center justify-center">
                                 <img src="/images/partners/lokalizacja.svg" alt="tik_tok">

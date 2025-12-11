@@ -19,7 +19,16 @@
 .mapboxgl-map{
     position: relative;
 }
-
+.foundation-popup {
+    /*background: #ffffff;*/
+    color: #0d2a52;
+    /*padding: 6px 12px;*/
+    font-size: 13px;
+    font-weight: 600;
+    position: absolute !important;
+    left: 0 !important;
+    top:0 !important;
+}
 .mapboxgl-ctrl-logo{
     display: none !important;
 }
