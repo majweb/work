@@ -8,10 +8,9 @@ import InputError from "@/Components/InputError.vue";
 import {pickBy} from "lodash";
 import {ref} from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, Scrollbar } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-import moment from "moment/moment.js";
 
 const props = defineProps({
     countries: Array,

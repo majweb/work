@@ -1069,4 +1069,9 @@ return [
     'current_count' => 'Obecnie nasze wsparcie dociera do',
     'fundacji' => 'FUNDACJI',
     'search_foundation' => 'ZNAJDŹ FUNDACJĘ',
+    'year_of_foundation' => 'Rok założenia',
+    'benefit_organization' => 'Organizacja pożytku publicznego',
+    'worker_count' => 'Liczba pracowników',
+    'map' => 'Mapa',
+    'satelite' => 'Satellita',
 ];

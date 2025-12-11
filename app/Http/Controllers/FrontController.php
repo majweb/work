@@ -862,6 +862,16 @@ class FrontController extends Controller
             'address_street' => $foundation->address_street,
             'address_city' => $foundation->address_city,
 
+
+            // socials
+            'facebook_url' => $foundation->facebook_url,
+            'instagram_url' => $foundation->instagram_url,
+            'linkedin_url' => $foundation->linkedin_url,
+            'x_url' => $foundation->x_url,
+            'tiktok_url' => $foundation->tiktok_url,
+
+
+
             // centrum mapy
             'coords' => [
                 $foundation->longitude,
@@ -869,6 +879,9 @@ class FrontController extends Controller
             ],
 
             // dane kontaktowe
+            'year_of_foundation' => $foundation->year_of_foundation,
+            'worker_count' => $foundation->worker_count,
+            'benefit_organization' => $foundation->benefit_organization,
             'phone' => $foundation->phone,
             'email' => $foundation->email,
             'www' => $foundation->www,
