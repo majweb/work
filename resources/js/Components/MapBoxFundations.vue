@@ -5,6 +5,7 @@ import {Link, router, usePage} from "@inertiajs/vue3";
 import Multiselect from "vue-multiselect";
 import __ from "@/lang.js";
 import TextInput from "@/Components/TextInput.vue";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken =
     "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
@@ -265,20 +266,37 @@ function addGlowPoints() {
         className: "foundation-popup"
     });
 
+    let currentPopupId = null;
+
     map.value.on("mouseenter", "foundation-point", e => {
         map.value.getCanvas().style.cursor = "pointer";
-        const coords = e.features[0].geometry.coordinates;
+
+        const id = e.features[0].properties.id;
+        const coords = e.features[0].geometry.coordinates.slice();
         const name = e.features[0].properties.name;
 
+        // Jeśli popup jest już wyświetlony dla tego samego punktu, nie rób nic
+        if (currentPopupId === id && popup.isOpen()) {
+            return;
+        }
+
+        // Usuń poprzedni popup (jeśli istnieje)
+        popup.remove();
+
+        // Zapisz ID aktualnego popupu
+        currentPopupId = id;
+
+        // Dodaj nowy popup
         popup
             .setLngLat(coords)
-            .setHTML(`<div class="popup-boxsss">${name}</div>`)
+            .setHTML(`<div class="popup-box">${name}</div>`)
             .addTo(map.value);
     });
 
     map.value.on("mouseleave", "foundation-point", () => {
         map.value.getCanvas().style.cursor = "";
         popup.remove();
+        currentPopupId = null;
     });
 
     map.value.on("click", "foundation-point", e => {
