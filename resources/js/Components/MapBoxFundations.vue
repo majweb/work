@@ -262,7 +262,6 @@ function addGlowPoints() {
     const popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: 10,
         className: "foundation-popup"
     });
 
@@ -273,7 +272,7 @@ function addGlowPoints() {
 
         popup
             .setLngLat(coords)
-            .setHTML(`<div class="popup-box">${name}</div>`)
+            .setHTML(`<div class="popup-boxsss">${name}</div>`)
             .addTo(map.value);
     });
 
