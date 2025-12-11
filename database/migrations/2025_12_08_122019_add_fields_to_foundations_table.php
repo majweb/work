@@ -62,7 +62,7 @@ return new class extends Migration
                 'address_country',
                 'year_of_foundation',
                 'worker_count',
-//                'benefit_organization',
+                'benefit_organization',
                 'latitude',
                 'longitude',
             ]);
