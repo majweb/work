@@ -19,9 +19,6 @@
 .mapboxgl-map{
     position: relative;
 }
-.mapboxgl-popup{
-    position: relative;
-}
 .foundation-popup {
     background: #ffffff;
     color: #0d2a52;
