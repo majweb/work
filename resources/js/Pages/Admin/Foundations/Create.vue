@@ -67,12 +67,37 @@ const selectSuggestion = (item) => {
     addressQuery.value = item.place_name;
     suggestions.value = [];
 
+
     const ctx = item.context || [];
 
     // obiekt kraju (ma text + short_code)
     const countryObj = ctx.find(c => c.id.startsWith("country"));
 
-    form.address_street = item.text || null;
+    // ⭐ POPRAWKA: Wyciąganie numeru domu
+    // Mapbox może zwrócić numer w polu "address" lub na początku place_name
+    let streetWithNumber = item.text || "";
+
+    if (item.address) {
+        // Jeśli Mapbox zwraca numer w osobnym polu "address"
+        streetWithNumber = `${item.text} ${item.address}`;
+    } else {
+        // Próba wyciągnięcia numeru z place_name (np. "4 Furgola, Warszawa")
+        const parts = item.place_name.split(',')[0].trim();
+        const match = parts.match(/^(\d+[\w\-\/]*)\s+(.+)$/);
+
+        if (match) {
+            // Jeśli zaczyna się od numeru (np. "4 Furgola")
+            streetWithNumber = `${match[2]} ${match[1]}`;
+        } else {
+            // Sprawdź czy numer jest na końcu (np. "Furgola 4")
+            const endMatch = parts.match(/^(.+)\s+(\d+[\w\-\/]*)$/);
+            if (endMatch) {
+                streetWithNumber = parts;
+            }
+        }
+    }
+
+    form.address_street = streetWithNumber || null;
 
     form.address_city =
         ctx.find(c => c.id.startsWith("place"))?.text ||
