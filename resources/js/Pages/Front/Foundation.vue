@@ -98,7 +98,7 @@ function addMarker() {
                 </div>
 
                 <!-- BUTTONS -->
-                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <div class="flex flex-wrap justify-center gap-4 mt-8 uppercase">
                     <a v-if="props.foundation.phone"
                        :href="`tel:${props.foundation.phone}`"
                        class="btn-primary">
