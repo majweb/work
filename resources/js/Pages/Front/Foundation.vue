@@ -15,7 +15,7 @@ const map = ref(null);
 const marker = ref(null);
 
 const mapStyles = {
-    streets: "mapbox://styles/mapbox/streets-v12",
+    streets: "mapbox://styles/mapbox/light-v11",
     satellite: "mapbox://styles/mapbox/satellite-streets-v12"
 };
 
@@ -131,7 +131,7 @@ function addMarker() {
                 <div class="space-y-6 text-[17px] leading-relaxed">
                     <div class="flex items-center justify-center gap-3">
                         <img src="/images/partners/lokalizacja.svg" class="h-10 opacity-70" />
-                        <p class="text-xl">
+                        <p class="text-xl text-work-main-light">
                             {{ props.foundation.address_street }}
                             {{ props.foundation.address_postcode }}
                             {{ props.foundation.address_city }},
