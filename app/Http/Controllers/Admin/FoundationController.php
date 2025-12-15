@@ -94,6 +94,7 @@ class FoundationController extends Controller
             'address_street' => $data['address_street'] ?? null,
             'address_city' => $data['address_city'] ?? null,
             'address_country' => $data['address_country'] ?? null,
+            'address_postcode' => $data['address_postcode'] ?? null,
             'country' => $data['country'] ?? null,
 
             'category_id' => $data['category_id'] ?? null,
@@ -190,6 +191,7 @@ class FoundationController extends Controller
                 'address_street'  => $foundation->address_street,
                 'address_city'    => $foundation->address_city,
                 'address_country' => $foundation->address_country,
+                'address_postcode' => $foundation->address_postcode,
                 'country'         => $foundation->country,
 
                 'latitude'  => $foundation->latitude,

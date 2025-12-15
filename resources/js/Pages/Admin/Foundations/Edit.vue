@@ -23,7 +23,15 @@ const props = defineProps({
 // ===============================
 const MAPBOX_TOKEN = "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
 
-const addressQuery = ref("");
+const addressQuery = ref(
+    [
+        props.foundation.address_street,
+        props.foundation.address_postcode,
+        props.foundation.address_city
+    ]
+        .filter(Boolean)
+        .join(", ")
+);
 const suggestions = ref([]);
 let searchTimeout = null;
 
@@ -68,6 +76,7 @@ const selectSuggestion = (item) => {
 
     const ctx = item.context || [];
     const countryObj = ctx.find(c => c.id.startsWith("country"));
+    const postcodeObj = ctx.find(c => c.id.startsWith("postcode"));
 
     const iso = countryObj?.short_code?.toUpperCase();
 
@@ -85,6 +94,7 @@ const selectSuggestion = (item) => {
         };
 
     form.country = iso?.toLowerCase() ?? null;
+    form.address_postcode = postcodeObj ? postcodeObj.text : "";
 
     // ⭐ POPRAWKA: Wyciąganie numeru domu
     // Mapbox może zwrócić numer w polu "address" lub na początku place_name
@@ -142,6 +152,8 @@ const form = useForm({
 
     address_street: props.foundation.address_street ?? "",
     address_city: props.foundation.address_city ?? "",
+    address_postcode: props.foundation.address_postcode ?? "", // ⬅️ nowe pole
+
     address_country: null,
     country: props.foundation.country ?? "",
 
@@ -412,8 +424,12 @@ const submit = () => {
                                 <span>{{ __('translate.noOptions') }}</span>
                             </template>
                         </multiselect>
-
                         <InputError :message="form.errors.address_country" class="mt-2"/>
+                    </div>
+                    <div>
+                        <InputLabel value="Kod pocztowy" />
+                        <input v-model="form.address_postcode" class="w-full rounded border-gray-300">
+                        <InputError :message="form.errors.address_postcode" />
                     </div>
                 </div>
 

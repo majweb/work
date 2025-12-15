@@ -508,7 +508,6 @@ class FrontController extends Controller
             $key,
             $maxAttempts = 1,
             function () use ($request,$project) {
-
                 if(isset($request->aplicationData()['isSelected'])){
                     $pathExist = Aplication::where('id',$request->aplicationData()['isSelected'])->pluck('pathCv')->first();
                 }
@@ -549,7 +548,6 @@ class FrontController extends Controller
                             }
                         }
                     }
-
                 }
                 if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 2){
                     //CV generator
@@ -861,6 +859,7 @@ class FrontController extends Controller
             'address_country' => $foundation->address_country,
             'address_street' => $foundation->address_street,
             'address_city' => $foundation->address_city,
+            'address_postcode' => $foundation->address_postcode,
 
 
             // socials

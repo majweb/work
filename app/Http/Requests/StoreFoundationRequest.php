@@ -69,7 +69,7 @@ class StoreFoundationRequest extends FormRequest
             'address_street' => ['required', 'string', 'max:255'],
             'address_city' => ['required', 'string', 'max:255'],
             'address_country' => ['required', 'array'],
-
+            'address_postcode' => ['required','string', 'max:255'],
 
             'year_of_foundation' => ['required', 'digits:4', 'integer', 'min:1901', 'max:' . date('Y')],
             'worker_count' => ['required', 'integer', 'min:0'],
@@ -114,6 +114,7 @@ class StoreFoundationRequest extends FormRequest
             'address_street' =>'ulica automplete',
             'address_city' =>'miasto automplete',
             'address_country' =>'kraj automplete',
+            'address_postcode' =>'kod pocztowy autocmplete',
             'phone' =>'telefon',
             'description' =>'opis',
             'photo' =>'logo',

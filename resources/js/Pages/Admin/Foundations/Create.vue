@@ -72,6 +72,7 @@ const selectSuggestion = (item) => {
 
     // obiekt kraju (ma text + short_code)
     const countryObj = ctx.find(c => c.id.startsWith("country"));
+    const postcodeObj = ctx.find(c => c.id.startsWith("postcode"));
 
     // ⭐ POPRAWKA: Wyciąganie numeru domu
     // Mapbox może zwrócić numer w polu "address" lub na początku place_name
@@ -103,6 +104,8 @@ const selectSuggestion = (item) => {
         ctx.find(c => c.id.startsWith("place"))?.text ||
         ctx.find(c => c.id.startsWith("locality"))?.text ||
         null;
+    form.address_postcode = postcodeObj ? postcodeObj.text : "";
+
     // pełna nazwa kraju (np. "Polska")
     const iso = countryObj?.short_code?.toUpperCase();
 
@@ -144,6 +147,7 @@ const form = useForm({
     address_street: "",
     address_city: "",
     address_country: "",
+    address_postcode: "", // ⬅️ nowe pole
     country: "",          // ⬅️ NOWE – kod ISO kraju (pl, gb, it...)
     latitude: null,
     longitude: null,
@@ -348,6 +352,11 @@ const submit = () => {
                         </multiselect>
 
                         <InputError :message="form.errors.address_country" class="mt-2"/>
+                    </div>
+                    <div>
+                        <InputLabel value="Kod pocztowy" />
+                        <input v-model="form.address_postcode" class="w-full rounded border-gray-300">
+                        <InputError :message="form.errors.address_postcode" />
                     </div>
                 </div>
 

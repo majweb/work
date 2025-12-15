@@ -125,19 +125,15 @@ function addMarker() {
 
             <div class="max-w-6xl mx-auto" v-html="props.foundation.description"></div>
 
-            <div class="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="max-w-6xl mx-auto items-center mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
 
                 <!-- ADDRESS -->
                 <div class="space-y-6 text-[17px] leading-relaxed">
                     <div class="flex items-start gap-3">
-                        <img src="/images/partners/lokalizacja.svg" class="h-10 opacity-70" />
-                        <p>{{ props.foundation.address_country.allTranslations[usePage().props.language] }}</p>
-                    </div>
-
-                    <div class="flex items-start gap-3">
-                        <img src="/images/partners/lokalizacja2.svg" class="h-10 opacity-70" />
-                        <p>
+                        <img src="/images/partners/lokalizacja.svg" class="h-20 opacity-70" />
+                        <p class="text-3xl">
                             {{ props.foundation.address_street }}<br>
+                            {{ props.foundation.address_postcode }}<br>
                             {{ props.foundation.address_city }},
                             {{ props.foundation.address_country.allTranslations[usePage().props.language] }}
                         </p>

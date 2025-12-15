@@ -39,6 +39,7 @@ class Foundation extends Model implements HasMedia
         'linkedin_url',
         'x_url',
         'tiktok_url',
+        'address_postcode',
     ];
     protected $casts = [
         'latitude' => 'float',
