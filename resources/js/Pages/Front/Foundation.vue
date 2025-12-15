@@ -19,7 +19,6 @@ const mapStyles = {
     satellite: "mapbox://styles/mapbox/satellite-streets-v12"
 };
 
-
 onMounted(() => {
         initMap();
 });
