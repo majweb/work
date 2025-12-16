@@ -45,6 +45,16 @@ class FortifyServiceProvider extends ServiceProvider
                 'canResetPassword' => Route::has('password.request'),
             ]);
         });
+
+        Fortify::registerView(function (Request $request) {
+            if ($request->has('foundation')) {
+                Session::put('foundation_to_register', $request->query('foundation'));
+            } else {
+                Session::forget('foundation_to_register'); // usuwa starą wartość
+            }
+            return inertia('Auth/Register');
+        });
+
         Fortify::authenticateUsing(function (Request $request) {
             $user = null;
             $provider = $request->route('provider');

@@ -187,6 +187,7 @@ class FoundationController extends Controller
                 'phone' => $foundation->phone,
                 'email' => $foundation->email,
                 'description' => $foundation->description,
+                'registration_code' => $foundation->registration_code,
 
                 'address_street'  => $foundation->address_street,
                 'address_city'    => $foundation->address_city,

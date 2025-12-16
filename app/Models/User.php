@@ -44,7 +44,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'recruiter_from_firm_id',
         'recruiter_phone',
         'user_blocked',
-        'color'
+        'color',
+        'foundation'
     ];
 
     /**
@@ -77,6 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+            'foundation' => 'array',
         ];
     }
 

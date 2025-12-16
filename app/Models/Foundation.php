@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -40,6 +41,7 @@ class Foundation extends Model implements HasMedia
         'x_url',
         'tiktok_url',
         'address_postcode',
+        'registration_code',
     ];
     protected $casts = [
         'latitude' => 'float',
@@ -65,5 +67,19 @@ class Foundation extends Model implements HasMedia
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($foundation) {
+            if (empty($foundation->registration_code)) {
+                $foundation->registration_code =
+                    'FND-' .
+                    $foundation->id . '-' .
+                    strtoupper(Str::random(4));
+
+                $foundation->saveQuietly(); // ⬅️ ważne
+            }
+        });
     }
 }

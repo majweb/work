@@ -1,5 +1,5 @@
 <script setup>
-import {computed, ref, watch} from 'vue';
+import {computed, onMounted, ref, watch} from 'vue';
 import {Link, router, usePage} from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Multiselect from 'vue-multiselect'
@@ -9,12 +9,22 @@ const props = defineProps({
     countCart: Number,
     cartItems: Object,
     foundations: Object,
+    existoundation: Object, // fundacja z sesji lub user->foundation
 });
 const optionsFundations = ref([...props.foundations]);
-const foundation = ref(null);
+const foundation = ref(props.existoundation ? {
+    name: props.existoundation.name,
+    value: props.existoundation.value
+} : null);
 const clicked = ref(false);
 const formRef = ref(null);
 
+// Jeśli istnieje fundacja z sesji, wywołujemy dispatchAction od razu
+onMounted(() => {
+    if (props.existoundation) {
+        dispatchAction();
+    }
+});
 
 watch(() => props.foundations, (newVal) => {
     optionsFundations.value = [...newVal];
@@ -35,8 +45,17 @@ let currency  = computed(()=>{
     return usePage().props.auth.user?.firm?.currency;
 });
 const dispatchAction = () => {
-    router.post(route('buy.addFoundation', { foundation: foundation.value }),null,{ preserveScroll: true });
+    if (foundation.value) {
+        router.post(route('buy.addFoundation', {foundation: foundation.value}), null, {preserveScroll: true});
+    }
 }
+onMounted(() => {
+    if (props.existoundation) {
+        dispatchAction();
+    }
+});
+
+
 const csrf_token = computed(() => usePage().props.csrf_token);
 const submitForm = () => {
     clicked.value = true;

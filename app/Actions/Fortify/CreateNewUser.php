@@ -2,8 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Foundation;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -19,7 +21,29 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+        $redirectData =   Session::pull('foundation_to_register');
+        $foundationData = null;
+        if ($redirectData) {
+            // Wyciągamy ID z formatu --123--
+            if (preg_match('/-(\d+)-/', $redirectData, $matches)) {
+                $foundationId = $matches[1] ?? null;
 
+                if ($foundationId) {
+                    $foundation = Foundation::find($foundationId);
+                    if ($foundation) {
+                        $foundationData = [
+                            'name' => $foundation->name,
+                            'value' => $foundation->id
+                        ];
+                    }
+                }
+            }
+
+
+
+
+
+        }
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'type' => ['required', 'in:firm,worker'],
@@ -37,6 +61,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'foundation' => $foundationData, // ⬅️ tutaj zapis JSON
         ]);
 
         if($input['type'] == 'worker'){

@@ -73,11 +73,14 @@ class BuyController extends Controller
         $countCart = Cart::content()->count();
         $countryCode = getLocalBrowserLang();
         $foundations = Foundation::where('country',$countryCode)->get();
+        $existoundation = auth()->user()->foundation;
+
         return inertia()->render('Buy/Detail',[
             'total'=>$total,
             'cartItems'=>$cartItems,
             'countCart'=>$countCart,
             'foundations'=>$foundations,
+            'existoundation'=>$existoundation ?? null,
         ]);
     }
 
@@ -239,8 +242,13 @@ class BuyController extends Controller
     public function addFoundation()
     {
         $foundation = request()->foundation;
-        if ($foundation){
-            Session::put('foundation', $foundation['id']);
+        if ($foundation) {
+            // Jeśli mamy tablicę z 'id' albo 'value', wybierz pierwsze dostępne
+            $foundationId = $foundation['id'] ?? $foundation['value'] ?? null;
+
+            if ($foundationId) {
+                Session::put('foundation', $foundationId);
+            }
         }
     }
 

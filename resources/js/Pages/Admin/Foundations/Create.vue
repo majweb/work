@@ -191,11 +191,11 @@ const submit = () => {
 </script>
 
 <template>
-    <AppLayout title="Dodaj Fundacje">
+    <AppLayout :title="__('translate.addFoundation')">
         <template #header>
             <div class="flex justify-between items-center">
-                <h2 class="font-semibold text-xl text-gray-800">Dodaj Fundacje</h2>
-                <Link :href="route('admin.foundations.index')" class="text-gray-600">Powrót</Link>
+                <h2 class="font-semibold text-xl text-gray-800">{{ __('translate.addFoundation') }}</h2>
+                <Link :href="route('admin.foundations.index')" class="text-gray-600">{{ __('translate.back') }}</Link>
             </div>
         </template>
 
@@ -204,7 +204,7 @@ const submit = () => {
 
                 <!-- NAZWA -->
                 <div>
-                    <InputLabel value="Nazwa fundacji" />
+                    <InputLabel :value="__('translate.foundationName')" />
                     <input v-model="form.name" class="w-full rounded border-gray-300" type="text">
                     <InputError :message="form.errors.name" />
                 </div>
@@ -212,27 +212,27 @@ const submit = () => {
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- KATEGORIA + PODKATEGORIA -->
                     <div>
-                        <InputLabel value="Kategoria" />
+                        <InputLabel :value="__('translate.categoryI')" />
                         <multiselect
                             track-by="value"
                             label="name"
                             v-model="form.category_id"
                             :options="optionsCategory"
-                            placeholder="Wybierz kategorię"
+                            :placeholder="__('translate.selectCategory')"
                         />
                         <InputError :message="form.errors.category_id" />
                     </div>
 
 
                     <div>
-                        <InputLabel value="Podkategoria" />
+                        <InputLabel :value="__('translate.subcategoryI')" />
                         <multiselect
                             :disabled="!form.category_id"
                             track-by="value"
                             label="name"
                             v-model="form.subcategory_id"
                             :options="optionsSubCategory"
-                            placeholder="Wybierz podkategorię"
+                            :placeholder="__('translate.selectSubcategory')"
                         />
                         <InputError :message="form.errors.subcategory_id" />
                     </div>
@@ -264,19 +264,19 @@ const submit = () => {
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <InputLabel value="Rok założenia" />
+                        <InputLabel :value="__('translate.year_of_foundation')" />
                         <input v-model="form.year_of_foundation" type="number" class="w-full rounded border-gray-300" placeholder="np. 1999">
                         <InputError :message="form.errors.year_of_foundation" />
                     </div>
                     <div>
-                        <InputLabel value="Liczba pracowników" />
+                        <InputLabel :value="__('translate.count_workers')" />
                         <input v-model="form.worker_count" type="number" class="w-full rounded border-gray-300" placeholder="np. 25">
                         <InputError :message="form.errors.worker_count" />
                     </div>
                     <div class="flex items-end">
                         <label class="flex items-center" for="benefit_organization">
                         <Checkbox id="benefit_organization" v-model:checked="form.benefit_organization" class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2" />
-                            <span class="ml-2 text-gray-700">Organizacja pożytku publicznego</span>
+                            <span class="ml-2 text-gray-700">{{ __('translate.publicBenefitOrg') }}</span>
                         </label>
                         <InputError :message="form.errors.benefit_organization" />
                     </div>
@@ -284,14 +284,13 @@ const submit = () => {
 
                 <!-- ADRES Z MAPBOX AUTOCOMPLETE -->
                 <div class="relative">
-                    <InputLabel value="Adres (autocomplete Mapbox)" />
-
+                    <InputLabel :value="__('translate.addressAutocomplete')" />
                     <input
                         class="w-full rounded border-gray-300"
                         type="text"
                         v-model="addressQuery"
                         @input="fetchSuggestions"
-                        placeholder="np. Aleje Jerozolimskie 1, Warszawa"
+                        :placeholder="__('translate.addressExample')"
                     />
 
                     <ul
@@ -314,24 +313,17 @@ const submit = () => {
                 <!-- POZOSTAŁE POLA ADRESOWE -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <InputLabel value="Ulica" />
+                        <InputLabel :value="__('translate.Street')" />
                         <input v-model="form.address_street" class="w-full rounded border-gray-300">
                         <InputError :message="form.errors.address_street" />
                     </div>
                     <div>
-                        <InputLabel value="Miasto" />
+                        <InputLabel :value="__('translate.City')" />
                         <input v-model="form.address_city" class="w-full rounded border-gray-300">
                         <InputError :message="form.errors.address_city" />
                     </div>
-<!--                    <div>-->
-<!--                        <InputLabel value="Kraj" />-->
-<!--                        <input v-model="form.address_country" class="w-full rounded border-gray-300">-->
-<!--                        <InputError :message="form.errors.address_country" />-->
-
-<!--                    </div>-->
                     <div>
                         <InputLabel :value="__('translate.Country')" />
-
                         <multiselect
                             v-model="form.address_country"
                             :options="props.countries"
@@ -354,7 +346,7 @@ const submit = () => {
                         <InputError :message="form.errors.address_country" class="mt-2"/>
                     </div>
                     <div>
-                        <InputLabel value="Kod pocztowy" />
+                        <InputLabel :value="__('translate.Postal')" />
                         <input v-model="form.address_postcode" class="w-full rounded border-gray-300">
                         <InputError :message="form.errors.address_postcode" />
                     </div>
@@ -362,47 +354,47 @@ const submit = () => {
 
                 <!-- WWW -->
                 <div>
-                    <InputLabel value="Adres URL (opcjonalnie)" />
+                    <InputLabel :value="__('translate.adressOptional')" />
                     <input v-model="form.www" class="w-full rounded border-gray-300" type="text">
                     <InputError :message="form.errors.www" />
                 </div>
 
                 <!-- SOCIAL MEDIA -->
                 <div class="border-t pt-4">
-                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Media społecznościowe</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">{{ __('translate.socialMedia') }}</h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- Facebook -->
                         <div>
-                            <InputLabel value="Facebook URL (opcjonalnie)" />
+                            <InputLabel :value="__('translate.facebookOptional')" />
                             <input v-model="form.facebook_url" class="w-full rounded border-gray-300" type="text" placeholder="https://facebook.com/...">
                             <InputError :message="form.errors.facebook_url" />
                         </div>
 
                         <!-- Instagram -->
                         <div>
-                            <InputLabel value="Instagram URL (opcjonalnie)" />
+                            <InputLabel :value="__('translate.instagramOptional')" />
                             <input v-model="form.instagram_url" class="w-full rounded border-gray-300" type="text" placeholder="https://instagram.com/...">
                             <InputError :message="form.errors.instagram_url" />
                         </div>
 
                         <!-- LinkedIn -->
                         <div>
-                            <InputLabel value="LinkedIn URL (opcjonalnie)" />
+                            <InputLabel :value="__('translate.linkedinOptional')" />
                             <input v-model="form.linkedin_url" class="w-full rounded border-gray-300" type="text" placeholder="https://linkedin.com/...">
                             <InputError :message="form.errors.linkedin_url" />
                         </div>
 
                         <!-- X (Twitter) -->
                         <div>
-                            <InputLabel value="X (Twitter) URL (opcjonalnie)" />
+                            <InputLabel :value="__('translate.xOptional')" />
                             <input v-model="form.x_url" class="w-full rounded border-gray-300" type="text" placeholder="https://x.com/...">
                             <InputError :message="form.errors.x_url" />
                         </div>
 
                         <!-- TikTok -->
                         <div>
-                            <InputLabel value="TikTok URL (opcjonalnie)" />
+                            <InputLabel :value="__('translate.tiktokOptional')" />
                             <input v-model="form.tiktok_url" class="w-full rounded border-gray-300" type="text" placeholder="https://tiktok.com/@...">
                             <InputError :message="form.errors.tiktok_url" />
                         </div>
@@ -411,26 +403,26 @@ const submit = () => {
 
                 <!-- DANE KONTAKTOWE -->
                 <div>
-                    <InputLabel value="Telefon" />
+                    <InputLabel :value="__('translate.phone')" />
                     <input v-model="form.phone" class="w-full rounded border-gray-300">
                     <InputError :message="form.errors.phone" />
                 </div>
 
                 <div>
-                    <InputLabel value="Email" />
+                    <InputLabel :value="__('translate.email')" />
                     <input v-model="form.email" class="w-full rounded border-gray-300" type="email">
                     <InputError :message="form.errors.email" />
                 </div>
 
                 <!-- OPIS -->
                 <div>
-                    <InputLabel value="Opis fundacji" />
+                    <InputLabel :value="__('translate.foundationDescription')" />
                     <Tiptap id="content" v-model="form.description" />
                     <InputError :message="form.errors.description" />
                 </div>
                 <!-- LOGO -->
                 <div>
-                    <InputLabel value="Logo fundacji"/>
+                    <InputLabel :value="__('translate.foundationLogo')" />
                     <file-pond
                         name="photo"
                         ref="uploadLogo"
@@ -488,12 +480,11 @@ const submit = () => {
                             remove: removeFile
                         }"
                     ></file-pond>
-
                     <InputError :message="form.errors.photo"/>
                 </div>
                 <!-- BANER -->
                 <div>
-                    <InputLabel value="Baner fundacji"/>
+                    <InputLabel :value="__('translate.foundationBanner')" />
                     <file-pond
                         name="banner"
                         ref="uploadBaner"
@@ -558,17 +549,16 @@ const submit = () => {
                 <div class="flex items-center">
                     <label class="flex items-center" for="active">
                         <Checkbox v-model:checked="form.active" id="active"/>
-                        <span class="ml-2 text-gray-700">Aktywny</span>
+                        <span class="ml-2 text-gray-700">{{ __('translate.active') }}</span>
                     </label>
                 </div>
 
                 <!-- SUBMIT -->
                 <div class="flex justify-end">
                     <PrimaryButton :disabled="form.processing">
-                        <SpinnerAction :process="form.processing">Zapisz</SpinnerAction>
+                        <SpinnerAction :process="form.processing">{{ __('translate.save') }}</SpinnerAction>
                     </PrimaryButton>
                 </div>
-
             </form>
         </div>
     </AppLayout>

@@ -142,7 +142,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
                     ></Multiselect>
                     <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="underline">{{ page.props.currentCountry }}</button>
 
-                    <Link v-if="auth?.user" :href="route('dashboard')" class="px-4 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-700">{{__('translate.dashboard')}}</Link>
+                    <Link v-if="auth?.user" :href="route('dashboard')" class="px-4 py-2 bg-work-main text-white rounded-md hover:bg-work-main-light">{{__('translate.dashboard')}}</Link>
                     <template v-else>
                         <Link :href="route('login')" class="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-100">{{__('translate.login')}}</Link>
                         <Link v-if="page.props.canRegister" :href="route('register')" class="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-100">{{__('translate.register')}}</Link>
