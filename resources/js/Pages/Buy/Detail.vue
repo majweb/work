@@ -51,7 +51,7 @@ const dispatchAction = () => {
 }
 onMounted(() => {
     if (props.existoundation) {
-        dispatchAction();
+        // dispatchAction();
     }
 });
 

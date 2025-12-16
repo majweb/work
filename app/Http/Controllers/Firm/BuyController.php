@@ -282,7 +282,7 @@ class BuyController extends Controller
 
     public function makeOrder(BuyHelper $buyHelper)
     {
-        $cartItems = Cart::content();
+            $cartItems = Cart::content();
         $totalPoints = Cart::content()->sum(function ($item) {
             return $item->options->points ?? 0;
         });
