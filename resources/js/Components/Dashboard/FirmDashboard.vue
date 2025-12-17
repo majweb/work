@@ -9,5 +9,4 @@
 const props = defineProps({
     chart: Object
 });
-import ApexCharts from "vue3-apexcharts";
 </script>
