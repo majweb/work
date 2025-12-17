@@ -56,12 +56,6 @@ const formatNotification = (notification) => {
     };
 };
 
-const noneRead = computed(() => {
-    console.log(props.notifications.length,'sssss');
-    return props.notifications.length > 0 &&
-        props.notifications.every(notification => !notification.read_at)
-})
-
 </script>
 <template>
     <div class="p-6 bg-gray-100 min-h-screen">
@@ -146,7 +140,7 @@ const noneRead = computed(() => {
             <div class="bg-white rounded-2xl shadow p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">Powiadomienia</h2>
-                    <Link v-if="noneRead" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-sm text-red-500 hover:underline">
+                    <Link v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-sm text-red-500 hover:underline">
                         {{ __('translate.markAllAsRead') }}
                     </Link>
                 </div>
