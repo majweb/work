@@ -37,7 +37,7 @@ return [
     'recovery' => 'Kod odzyskiwania',
     'usecode' => 'Użyj kodu odzyskiwania',
     'authenticationCode' => 'Użyj kodu uwierzytelniającego',
-    'dashboard' => 'Panel',
+    'dashboard' => 'Pulpit',
     'agree' => 'Zgadzam się z',
     'emailVerifySubject' => 'Zweryfikuj adres e-mail',
     'emailVerifyLine' => 'Kliknij poniższy przycisk, aby zweryfikować swój adres e-mail.',
@@ -1096,4 +1096,6 @@ return [
     'linkRegisterFoundation' => 'Link rejestracyjny fundacji',
     'copied' => 'Skopiowano ✓',
     'copy' => 'Kopiuj',
+    'lastAplications' => 'ostatnie aplikacje',
+    'newAplication' => 'Nowa aplikacja nr.',
 ];

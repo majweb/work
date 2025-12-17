@@ -13,29 +13,6 @@ const formatDate = (dateString) => {
     return date.toLocaleString();
 };
 
-// Funkcja formatująca typy notyfikacji
-const formatNotificationType = (type) => {
-    if (!type) return __('translate.notification');
-
-    // Wyciągnięcie nazwy klasy z pełnej ścieżki
-    const className = type.split('\\').pop();
-
-    // Mapowanie typów notyfikacji na przyjazne dla użytkownika komunikaty
-    const typeMap = {
-        'ApplicationMadeNotification': __('translate.applicationSubmitted'),
-        'ProjectCreatedNotification': __('translate.projectCreated'),
-        'ApplicationStatusChangedNotification': __('translate.applicationStatusChanged'),
-        'NewRecruitAssignedNotification': __('translate.newRecruitAssigned'),
-        'OrderCompletedNotification': __('translate.orderCompleted'),
-        'InvoiceGeneratedNotification': __('translate.invoiceGenerated'),
-        'PaymentReceivedNotification': __('translate.paymentReceived'),
-        'QuestionApprovedNotification': __('translate.questionApproved'),
-        // Dodaj więcej typów powiadomień według potrzeb
-    };
-
-    return typeMap[className] || className.replace('Notification', '');
-};
-
 // Konwertuje obiekt danych powiadomienia na czytelny format
 const formatNotification = (notification) => {
     const data = notification.data;

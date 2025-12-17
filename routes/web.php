@@ -10,8 +10,11 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Worker\WorkerController;
+use App\Models\Aplication;
 use App\Models\Country;
 use App\Services\Helper;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Charts\MonthlyUsersChart;
@@ -126,14 +129,33 @@ Route::middleware([
     Route::get('/sync-applications', [\App\Http\Controllers\BatchProcessController::class, 'syncExistingApplicationsWithCandidates'])
         ->middleware('role:admin')
         ->name('sync.applications.candidates');
-    Route::get('/dashboard', function (MonthlyUsersChart $chart) {
 
+
+
+    Route::get('/dashboard', function (MonthlyUsersChart $chart) {
         $countQuestions = ProjectQuestion::whereNull('accepted')->count();
+        $lastAplications = Aplication::with('project.user')->where('aplication_user_id',auth()->user()->id)->latest()->first();
+        $otherAplications = Aplication::with('project.user')
+            ->where('aplication_user_id', auth()->user()->id)
+            ->when($lastAplications, function ($query) use ($lastAplications) {
+                $query->where('id', '!=', $lastAplications->id);
+            })
+            ->latest()
+            ->take(4)
+            ->get();
+        $user = Auth::user();
+        $notifications = $user->notifications()->get();
         return inertia()->render('Dashboard',[
             'chart' => $chart->build(),
-            'countQuestions'=>$countQuestions
+            'lastAplications'=>$lastAplications,
+            'countQuestions'=>$countQuestions,
+            'otherAplications' => $otherAplications,
+            'notifications' => $notifications,
+
         ]);
     })->name('dashboard');
+
+
     Route::resource('recruits',RecruitController::class)->middleware('role:firm');
     Route::resource('orders',OrderController::class)->middleware('role:firm')->only([
         'index'
@@ -288,6 +310,9 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
         Route::get('acceptedApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'acceptedApplications'])->name('aplicationsA.acceptedApplications');
         Route::get('maybeApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'maybeApplications'])->name('aplicationsA.maybeApplications');
         Route::get('noApplicationsAdmin',[App\Http\Controllers\Admin\AplicationController::class,'noApplications'])->name('aplicationsA.noApplications');
+    });
+    Route::middleware(['role:worker'])->name('worker.')->prefix('worker')->group(function () {
+        Route::get('aplications', [WorkerController::class, 'aplications'])->name('aplications');
     });
 });
 Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');
