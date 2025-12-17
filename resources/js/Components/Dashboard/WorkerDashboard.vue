@@ -62,12 +62,11 @@ const formatNotification = (notification) => {
         <!-- APLIKACJE -->
         <div class="bg-white rounded-2xl shadow p-6 mb-6">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold">Aplikacje</h2>
+                <h2 class="text-xl font-semibold">{{__('translate.aplications')}}</h2>
                 <Link :href="route('worker.aplications')" class="text-sm text-red-500 hover:underline">
-                    Szczegóły
+                    {{__('translate.details')}}
                 </Link>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Status aplikacji -->
                 <div class="flex flex-col">
