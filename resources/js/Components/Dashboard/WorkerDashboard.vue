@@ -149,7 +149,7 @@ const formatNotification = (notification) => {
                     <li v-for="notification in notifications" :key="notification.id"
                         :class="{
     'font-semibold': !notification.read_at,
-    'front-semioldP': notification.read_at
+    'font-normal': notification.read_at
 }"                    >
                         <div class="flex justify-between items-start">
                             <div>
