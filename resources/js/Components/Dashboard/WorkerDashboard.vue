@@ -145,18 +145,22 @@ const formatNotification = (notification) => {
                     </Link>
                 </div>
 
-                <ul class="space-y-2 text-sm text-gray-700 max-h-40 overflow-y-auto">
-                    <li v-for="notification in notifications" :key="notification.id"
+                <ul class="text-sm text-gray-700 max-h-40 overflow-y-auto">
+                    <li
+                        v-for="notification in notifications"
+                        :key="notification.id"
+                        class="relative flex items-start gap-1
+               before:content-['•']
+               before:ml-1
+               before:mt-1
+               before:text-gray-600"
                         :class="{
-    'font-semibold': !notification.read_at,
-    'font-normal': notification.read_at
-}"                    >
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <Link v-html="formatNotification(notification).message" v-if="!notification.read_at" :href="route('notifications.markAsRead', notification.id)" method="post" as="button" class="mt-1 text-gray-600"></Link>
-                                <span v-else class="mt-1 text-gray-600" v-html="formatNotification(notification).message"></span>
-                            </div>
-                        </div>
+            'font-semibold': !notification.read_at,
+            'font-normal': notification.read_at
+        }"
+                    >
+                        <Link v-html="formatNotification(notification).message" v-if="!notification.read_at" :href="route('notifications.markAsRead', notification.id)" method="post" as="button" class="mt-1 text-gray-600"></Link>
+                        <span v-else class="mt-1 text-gray-600" v-html="formatNotification(notification).message"></span>
                     </li>
                 </ul>
             </div>

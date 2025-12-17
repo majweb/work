@@ -1,5 +1,4 @@
 <script setup>
-import { ref, computed } from 'vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import __ from '@/lang.js';
@@ -62,75 +61,6 @@ const markAllAsRead = () => {
     });
 };
 </script>
-<!--<template>-->
-<!--    <AppLayout :title="__('translate.notifications')">-->
-<!--        <template #header>-->
-<!--            <h2 class="font-semibold text-xl text-gray-800 leading-tight">-->
-<!--                {{ __('translate.notifications') }}-->
-<!--            </h2>-->
-<!--        </template>-->
-
-<!--        <div class="py-12">-->
-<!--            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">-->
-<!--                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">-->
-<!--                    <div class="flex justify-between items-center mb-6">-->
-<!--                        <h3 class="text-lg font-medium text-gray-900">{{ __('translate.notificationsList') }}</h3>-->
-<!--                        <Link :href="route('notifications.markAllAsRead')" method="post" as="button" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">-->
-<!--                            {{ __('translate.markAllAsRead') }}-->
-<!--                        </Link>-->
-<!--                    </div>-->
-
-<!--                    <div v-if="notifications.data.length === 0" class="text-center py-8 text-gray-500">-->
-<!--                        {{ __('translate.noNotificationsAvailable') }}-->
-<!--                    </div>-->
-<!--                    <div v-else class="space-y-4">-->
-<!--                        <div v-for="notification in notifications.data" :key="notification.id" class="border-l-4 p-4 mb-4" :class="{'border-blue-500 bg-blue-50': !notification.read_at, 'border-gray-200 bg-gray-50': notification.read_at}">-->
-<!--                            <div class="flex justify-between">-->
-<!--                                <div class="font-medium" v-text="notification.data.title || __('translate.notification')"></div>-->
-<!--                                <div class="text-sm text-gray-600">{{ formatDate(notification.created_at) }}</div>-->
-<!--                            </div>-->
-<!--                            <div class="mt-2" v-text="notification.data.message || notification.data.body || ''"></div>-->
-<!--                            <div class="mt-3 flex justify-between items-center">-->
-<!--                                <div>-->
-<!--                                    <span v-if="!notification.read_at" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">-->
-<!--                                        {{ __('translate.unread') }}-->
-<!--                                    </span>-->
-<!--                                    <span v-else class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">-->
-<!--                                        {{ __('translate.read') }}-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                                <div class="flex space-x-2">-->
-<!--                                    <Link v-if="!notification.read_at" :href="route('notifications.markAsRead', notification.id)" method="post" as="button" class="text-xs text-blue-600 hover:text-blue-800">-->
-<!--                                        {{ __('translate.markAsRead') }}-->
-<!--                                    </Link>-->
-<!--                                    <Link v-if="notification.data.action_url" :href="notification.data.action_url" class="text-xs text-indigo-600 hover:text-indigo-800">-->
-<!--                                        {{ notification.data.action_text || __('translate.viewDetails') }}-->
-<!--                                    </Link>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Paginacja &ndash;&gt;-->
-<!--                        <div class="mt-6" v-if="notifications.links && notifications.links.length > 3">-->
-<!--                            <div class="flex justify-between items-center">-->
-<!--                                <Link v-if="notifications.prev_page_url" :href="notifications.prev_page_url" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">-->
-<!--                                    {{ __('translate.previous') }}-->
-<!--                                </Link>-->
-<!--                                <div class="text-sm text-gray-700">-->
-<!--                                    {{ __('translate.page') }} {{ notifications.current_page }} {{ __('translate.of') }} {{ notifications.last_page }}-->
-<!--                                </div>-->
-<!--                                <Link v-if="notifications.next_page_url" :href="notifications.next_page_url" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">-->
-<!--                                    {{ __('translate.next') }}-->
-<!--                                </Link>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </AppLayout>-->
-<!--</template>-->
-
 <template>
     <AppLayout :title="__('translate.notifications')">
         <template #header>
