@@ -57,6 +57,7 @@ const formatNotification = (notification) => {
 };
 
 const noneRead = computed(() => {
+    console.log(props.notifications.length,'sssss');
     return props.notifications.length > 0 &&
         props.notifications.every(notification => !notification.read_at)
 })
