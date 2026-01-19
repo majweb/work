@@ -162,5 +162,10 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
+    public function myCvs(): HasMany
+    {
+        return $this->hasMany(CvClassic::class,'worker_id');
+    }
+
 
 }

@@ -99,6 +99,7 @@ class BuyController extends Controller
     public function banners()
     {
         $check=ChangeProduct::where(['user_id'=>auth()->id(),'product_id'=>8])->isCurrent()->first();
+
         if(!$check){
             session()->flash('flash.banner',__('translate.forbidden'));
             session()->flash('flash.bannerStyle', 'danger');

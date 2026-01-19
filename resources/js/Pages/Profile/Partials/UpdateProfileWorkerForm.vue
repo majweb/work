@@ -34,11 +34,11 @@ const removeElement = (index, array) => {
 <template>
     <FormSection @submitted="updateProfileWorker">
         <template #title>
-            {{ __('translate.Firm') }}
+            {{ __('translate.rest') }}
         </template>
 
         <template #description>
-            {{ __('translate.FirmDescription') }}
+            {{ __('translate.data') }}
         </template>
 
         <template #form>

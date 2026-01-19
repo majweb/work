@@ -25,6 +25,12 @@ export default {
                 'work-main': '#0d2a52',
                 'work-main-light': '#00A0E3',
             },
+            gap: {
+                18: '4.5rem',
+                19: '5rem',
+                22: '5.5rem',
+                26: '6.5rem',
+            }
         },
     },
 

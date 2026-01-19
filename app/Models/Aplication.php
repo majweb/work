@@ -37,6 +37,8 @@ class Aplication extends Model implements HasMedia
     ];
 
     protected $casts = [
+        'created_at' => 'datetime',
+        'status_changed_at' => 'datetime',
         'whenDeleted' => 'datetime',
         'whenMaybe' => 'datetime',
     ];
@@ -194,4 +196,29 @@ class Aplication extends Model implements HasMedia
     {
         return  $this->media()->where('collection_name', 'aplications_cvFile')->first() || !is_null($this->pathCv);
     }
+
+    public function resolvedDate(): ?\Carbon\Carbon
+    {
+        return $this->whenDeleted
+            ?? $this->whenMaybe
+            ?? ($this->status === 'yes' ? $this->status_changed_at : null)
+            ?? $this->created_at;
+    }
+
+    public function statusDates(): array
+    {
+        return [
+            'sent' => optional($this->created_at)?->format('d.m.Y H:i'),
+            'review' => $this->whenMaybe
+                ? optional($this->whenMaybe)->format('d.m.Y H:i')
+                : null,
+            'accepted' => ($this->status === 'yes' && $this->status_changed_at)
+                ? optional($this->status_changed_at)->format('d.m.Y H:i')
+                : null,
+            'rejected' => $this->whenDeleted
+                ? optional($this->whenDeleted)->format('d.m.Y H:i')
+                : null,
+        ];
+    }
+
 }

@@ -155,7 +155,6 @@ Route::middleware([
         ]);
     })->name('dashboard');
 
-
     Route::resource('recruits',RecruitController::class)->middleware('role:firm');
     Route::resource('orders',OrderController::class)->middleware('role:firm')->only([
         'index'
@@ -313,6 +312,9 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
     });
     Route::middleware(['role:worker'])->name('worker.')->prefix('worker')->group(function () {
         Route::get('aplications', [WorkerController::class, 'aplications'])->name('aplications');
+        Route::get('mycv', [WorkerController::class, 'myCv'])->name('myCv');
+        Route::put('myCvUpdateCv/{selectedCv}', [WorkerController::class, 'myCvUpdateCv'])->name('myCvUpdateCv');
+        Route::get('aplication/{aplication}', [WorkerController::class, 'singleAplication'])->name('singleAplication');
     });
 });
 Route::post('temporary/upload',FileUploadController::class)->name('temporary.upload');

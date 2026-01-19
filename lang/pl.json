@@ -42,5 +42,32 @@
     "Social-info" : "Klient **:name** o adresie email **:email** wybrał usługę Promowanie social",
     "Social-buy" : "Usługa promowanie social",
     "Project-info" : "Klient **:name** o adresie email **:email** wysłał prośbę o zaprojektowanie projektu baneru",
-    "Project-buy" : "Pytanie o projekt graficzny baneru"
+    "Project-buy" : "Pytanie o projekt graficzny baneru",
+    "Mail-submitted-subject": "Aplikacja wysłana",
+    "Mail-submitted-hello": "Dzień dobry,",
+    "Mail-submitted-line1": "Dziękujemy za przesłanie aplikacji.",
+    "Mail-submitted-line2": "Twoje zgłoszenie zostało pomyślnie wysłane i wkrótce zostanie przekazane do weryfikacji.",
+    "Mail-submitted-line3": "O wszelkich zmianach statusu aplikacji będziemy informować na bieżąco.",
+
+    "Mail-processing-subject": "Aplikacja w trakcie rozpatrywania",
+    "Mail-processing-hello": "Dzień dobry,",
+    "Mail-processing-line1": "Informujemy, że Twoja aplikacja jest obecnie w trakcie rozpatrywania.",
+    "Mail-processing-line2": "Aktualnie analizujemy przesłane zgłoszenie.",
+    "Mail-processing-line3": "W przypadku przejścia do kolejnego etapu rekrutacji skontaktujemy się z Tobą w najbliższym czasie.",
+
+    "Mail-accepted-subject": "Aplikacja wstępnie rozpatrzona pozytywnie",
+    "Mail-accepted-hello": "Dzień dobry,",
+    "Mail-accepted-line1": "Gratulujemy! Twoja aplikacja została wstępnie oceniona pozytywnie.",
+    "Mail-accepted-line2": "Na tym etapie spełnia ona nasze oczekiwania rekrutacyjne.",
+    "Mail-accepted-line3": "Prosimy o cierpliwość — wkrótce skontaktujemy się z Tobą w sprawie dalszych kroków.",
+
+    "Mail-rejected-subject": "Aplikacja odrzucona",
+    "Mail-rejected-hello": "Dzień dobry,",
+    "Mail-rejected-line1": "Dziękujemy za udział w procesie rekrutacyjnym oraz zainteresowanie naszą ofertą.",
+    "Mail-rejected-line2": "Niestety, na tym etapie nie możemy zaproponować dalszego udziału w rekrutacji.",
+    "Mail-rejected-line3": "Zachęcamy do aplikowania na inne oferty, które mogą pojawić się w przyszłości.",
+
+    "Mail-goodluck": "Życzymy powodzenia",
+    "Mail-button-view": "Zobacz aplikację",
+    "Mail-thanks": "Pozdrawiamy"
 }

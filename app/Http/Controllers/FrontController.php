@@ -793,7 +793,6 @@ class FrontController extends Controller
 
     public function Partners()
     {
-
         $partners = Partner::where('active', true)
             ->orderBy('id')
             ->get()

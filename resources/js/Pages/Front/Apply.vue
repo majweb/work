@@ -1,6 +1,6 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import {Link, useForm, usePage, router} from '@inertiajs/vue3';
+import {Link, useForm, usePage} from '@inertiajs/vue3';
 import {computed, onMounted, ref, watch} from "vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
@@ -13,7 +13,6 @@ import Multiselect from 'vue-multiselect'
 import Checkbox from "@/Components/Checkbox.vue";
 import moment from "moment";
 import VideoRecorder from "@/Pages/Front/VideoRecorder.vue";
-import AudioRecorder from "@/Pages/Front/AudioRecorder.vue";
 import AudioRecorderNew from "@/Pages/Front/AudioRecorderNew.vue";
 
 const props = defineProps({
@@ -74,12 +73,12 @@ const dateFormatter = (date) => {
     return date.toISOString().split('T')[0]; // Format: yyyy-mm-dd
 }
 
-    // Funkcja formatująca pozostały czas w formacie mm:ss
-    const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-    };
+// Funkcja formatująca pozostały czas w formacie mm:ss
+const formatTime = (seconds) => {
+const minutes = Math.floor(seconds / 60);
+const remainingSeconds = seconds % 60;
+return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+};
 const adjustMonth = (date) => {
     if (!date) return null;
 
@@ -813,9 +812,8 @@ const removeFile =  async (source,load) => {
                                             </div>
                                         </div>
                                     </div>
-<!--                                    EXPERIENCE-->
-                                    <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button"
-                                                   @click="addExperience" v-if="form.experiences.length < 5">
+                                    <!--EXPERIENCE-->
+                                    <PrimaryButton class="!flex justify-center w-100 mx-auto mt-3" type="button" @click="addExperience" v-if="form.experiences.length < 5">
                                         {{__('translate.addExperience')}}
                                     </PrimaryButton>
                                     <span v-if="form.experiences.length == 5" class="inline-flex items-center justify-center px-4 py-2 bg-red-300 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-3 !flex justify-center w-1/4 mx-auto">{{__('translate.limitComplete')}}</span>
@@ -950,7 +948,7 @@ const removeFile =  async (source,load) => {
                                             </div>
                                         </template>
                                     </draggable>
-                                    <!--                                    EXPERIENCE-->
+                                    <!--EXPERIENCE-->
 
 
 <!--                                    EDUCATION-->
@@ -1352,7 +1350,6 @@ const removeFile =  async (source,load) => {
                         </div>
                         <div v-else-if="formStep == 2 && form.cv == 3">
                             <div v-if="props.project.questions.length">
-<!--                                <AudioRecorder :questions="props.project.questions" :projectId="props.project.id" :form="form"/>-->
                                 <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id" :form="form"/>
 
                             </div>

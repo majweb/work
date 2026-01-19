@@ -15,13 +15,12 @@ class ApplicationConsideredMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $aplication;
+    public $status;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(Aplication $aplication)
+    public function __construct(Aplication $aplication, string $status)
     {
         $this->aplication = $aplication;
+        $this->status = $status;
     }
 
 
@@ -30,9 +29,14 @@ class ApplicationConsideredMail extends Mailable implements ShouldQueue
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: __('ApplicationConsidered-subject'),
-        );
+        $subject = match ($this->status) {
+            'no' => __('Mail-rejected-subject'),
+            'maybe' => __('Mail-processing-subject'),
+            'yes' => __('Mail-accepted-subject'),
+            default => __('Mail-submitted-subject'),
+        };
+
+        return new Envelope(subject: $subject);
     }
 
     /**
@@ -40,8 +44,15 @@ class ApplicationConsideredMail extends Mailable implements ShouldQueue
      */
     public function content(): Content
     {
+        $view = match ($this->status) {
+            'no' => 'mail.aplications.rejected',
+            'maybe' => 'mail.aplications.maybe',
+            'yes' => 'mail.aplications.accepted',
+            default => 'mail.aplications.submitted',
+        };
+
         return new Content(
-            markdown: 'mail.aplications.considered',
+            markdown: $view,
             with: [
                 'url' => url('/applications/' . $this->aplication->id),
             ],

@@ -31,7 +31,7 @@ class ApplicationStatusService
 
         // Wyślij e-mail z powiadomieniem
         if ($updated) {
-            $this->sendStatusUpdateEmail($aplication);
+            $this->sendStatusUpdateEmail($aplication,$status);
         }
 
         return $updated;
@@ -67,11 +67,11 @@ class ApplicationStatusService
      * @param Aplication $aplication Aplikacja, której status został zmieniony
      * @return void
      */
-    private function sendStatusUpdateEmail(Aplication $aplication): void
+    private function sendStatusUpdateEmail(Aplication $aplication, string $status): void
     {
         $lang = app()->getLocale();
         Mail::to($aplication->email)
             ->locale($lang)
-            ->send(new ApplicationConsideredMail($aplication));
+            ->send(new ApplicationConsideredMail($aplication, $status));
     }
 }

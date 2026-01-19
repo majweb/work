@@ -88,7 +88,7 @@ const formatNotification = (notification) => {
                 <!-- Ostatnie aplikacje -->
                 <div>
                     <h3 class="text-sm font-semibold mb-2 uppercase">{{__('translate.lastAplications')}}</h3>
-                    <div class="grid grid-cols-2 gap-3" v-if="otherAplications.length">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" v-if="otherAplications.length">
                         <div
                             v-for="other in otherAplications"
                             :key="other.id"
@@ -115,22 +115,21 @@ const formatNotification = (notification) => {
             <!-- MOJE DANE -->
             <div class="bg-white rounded-2xl shadow p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold">Moje dane</h2>
+                    <h2 class="text-lg font-semibold">{{__('translate.myData')}}</h2>
                     <Link :href="route('profile.show')" class="text-sm text-red-500 hover:underline">
                         {{__('translate.edit')}}
                     </Link>
                 </div>
-
-                <div class="flex items-center gap-4">
+                <div class="flex sm:items-center flex-col sm:flex-row gap-4">
                     <div
                         class="w-20 h-20 rounded-full bg-contain bg-center bg-no-repeat"
                         :style="`background-image: url(${auth.user?.profile_photo_url})`"
                     ></div>
                     <div class="text-sm">
-                        <p><strong>Imię:</strong> {{auth.user?.name}}</p>
-                        <p><strong>Nazwisko:</strong>  {{auth.user?.worker_detail?.surname}}</p>
-                        <p><strong>Telefon:</strong>{{auth.user?.worker_detail?.contact_phone}}</p>
-                        <p><strong>E-mail:</strong> {{auth.user?.email}}</p>
+                        <p><strong>{{__('translate.nameUser')}}:</strong>{{auth.user?.name}}</p>
+                        <p><strong>{{__('translate.surname')}}:</strong>{{auth.user?.worker_detail?.surname}}</p>
+                        <p><strong>{{__('translate.phone')}}:</strong>{{auth.user?.worker_detail?.contact_phone}}</p>
+                        <p><strong>{{__('translate.email')}}:</strong> {{auth.user?.email}}</p>
                     </div>
                 </div>
             </div>
@@ -138,12 +137,11 @@ const formatNotification = (notification) => {
             <!-- POWIADOMIENIA -->
             <div class="bg-white rounded-2xl shadow p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold">Powiadomienia</h2>
+                    <h2 class="text-lg font-semibold">{{__('translate.notifications')}}</h2>
                     <Link v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-sm text-red-500 hover:underline">
                         {{ __('translate.markAllAsRead') }}
                     </Link>
                 </div>
-
                 <ul class="text-sm text-gray-700 max-h-40 overflow-y-auto">
                     <li
                         v-for="notification in notifications"

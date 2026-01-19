@@ -84,8 +84,18 @@ onUnmounted(()=>{
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('worker')">
+                                <NavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')">
+                                    Moje CV
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('worker')">
                                 <NavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')">
                                     {{__('translate.aplications')}}
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('worker')">
+                                <NavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                                    Moj profil
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
@@ -330,8 +340,14 @@ onUnmounted(()=>{
                                         </DropdownLink>
 
                                         <div class="border-t border-gray-200" />
-                                        <DropdownLink :href="route('front')">
+                                        <DropdownLink :href="route('front')" v-if="hasRole('worker')">
                                             {{__('translate.frontPage')}}
+                                        </DropdownLink>
+                                        <DropdownLink :href="route('worker.myCv')" v-if="hasRole('worker')">
+                                            {{__('translate.myCv')}}
+                                        </DropdownLink>
+                                        <DropdownLink :href="route('worker.aplications')">
+                                            {{__('translate.aplications')}}
                                         </DropdownLink>
                                         <div class="border-t border-gray-200" />
                                         <!-- Authentication -->
@@ -379,6 +395,9 @@ onUnmounted(()=>{
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             {{__('translate.dashboard')}}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')" v-if="hasRole('worker')">
+                            {{__('translate.myCv')}}
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')" v-if="hasRole('worker')">
                             {{__('translate.aplications')}}
