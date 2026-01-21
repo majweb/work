@@ -24,11 +24,11 @@ const props = defineProps({
                     </div>
 
                     <div v-if="createdAt !== null" class="text-xs text-gray-500">
-                        Connected {{ createdAt }}
+                        {{ __('translate.connected') }} {{ createdAt }}
                     </div>
 
                     <div v-else class="text-xs text-gray-500">
-                        Not connected.
+                        {{ __('translate.notConnected') }}
                     </div>
                 </div>
             </div>
