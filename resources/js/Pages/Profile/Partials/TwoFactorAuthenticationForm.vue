@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import { router, useForm, usePage } from '@inertiajs/vue3';
-import ActionSection from '@/Components/ActionSection.vue';
 import ConfirmsPassword from '@/Components/ConfirmsPassword.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import InputError from '@/Components/InputError.vue';
@@ -9,6 +8,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import __ from "@/lang.js";
 
 const props = defineProps({
     requiresConfirmation: Boolean,
@@ -105,16 +105,15 @@ const disableTwoFactorAuthentication = () => {
 </script>
 
 <template>
-    <ActionSection>
-        <template #title>
-            {{__('translate.2factorAuth')}}
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+            {{ __('translate.2factorAuth') }}
+        </h3>
 
-        <template #description>
-            {{__('translate.2factorAuthDescription')}}
-        </template>
 
-        <template #content>
+        <!-- Content -->
+        <div class="px-6 py-6 space-y-6">
             <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900">
                 {{__('translate.2factorAuthDescriptionEnabled')}}
             </h3>
@@ -246,6 +245,6 @@ const disableTwoFactorAuthentication = () => {
                     </ConfirmsPassword>
                 </div>
             </div>
-        </template>
-    </ActionSection>
+        </div>
+    </div>
 </template>

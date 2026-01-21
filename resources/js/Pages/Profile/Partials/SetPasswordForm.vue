@@ -3,10 +3,10 @@ import {ref} from 'vue';
 import {useForm} from '@inertiajs/vue3';
 import ActionMessage from '@/Components/ActionMessage.vue';
 import Button from '@/Components/PrimaryButton.vue';
-import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
+import __ from "@/lang.js";
 
 const passwordInput = ref(null);
 
@@ -31,52 +31,56 @@ const setPassword = () => {
 };
 </script>
 
-
 <template>
-    <FormSection @submitted="setPassword">
-        <template #title>
-            Set Password
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-work-main px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+                {{ __('translate.setPassword') }}
+            </h3>
+        </div>
 
-        <template #description>
-            Ensure your account is using a long, random password to stay secure.
-        </template>
+        <!-- Form -->
+        <form @submit.prevent="setPassword">
+            <div class="px-6 py-6 space-y-6">
+                <!-- New Password -->
+                <div>
+                    <InputLabel for="password" :value="__('translate.newPassword')"/>
+                    <TextInput
+                        id="password"
+                        ref="passwordInput"
+                        v-model="form.password"
+                        autocomplete="new-password"
+                        class="mt-1 block w-full"
+                        type="password"
+                    />
+                    <InputError :message="form.errors.password" class="mt-2"/>
+                </div>
 
-        <template #form>
-            <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password" value="New Password"/>
-                <TextInput
-                    id="password"
-                    ref="passwordInput"
-                    v-model="form.password"
-                    autocomplete="new-password"
-                    class="mt-1 block w-full"
-                    type="password"
-                />
-                <InputError :message="form.errors.password" class="mt-2"/>
+                <!-- Confirm Password -->
+                <div>
+                    <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')"/>
+                    <TextInput
+                        id="password_confirmation"
+                        v-model="form.password_confirmation"
+                        autocomplete="new-password"
+                        class="mt-1 block w-full"
+                        type="password"
+                    />
+                    <InputError :message="form.errors.password_confirmation" class="mt-2"/>
+                </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password_confirmation" value="Confirm Password"/>
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    autocomplete="new-password"
-                    class="mt-1 block w-full"
-                    type="password"
-                />
-                <InputError :message="form.errors.password_confirmation" class="mt-2"/>
+            <!-- Actions -->
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-end gap-3">
+                <ActionMessage :on="form.recentlySuccessful" class="text-sm text-green-600">
+                    {{ __('translate.Saved') }}
+                </ActionMessage>
+
+                <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    {{ __('translate.Save') }}
+                </Button>
             </div>
-        </template>
-
-        <template #actions>
-            <ActionMessage :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </ActionMessage>
-
-            <Button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
-            </Button>
-        </template>
-    </FormSection>
+        </form>
+    </div>
 </template>

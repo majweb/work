@@ -3,7 +3,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import ConnectedAccountsForm from '@/Pages/Profile/Partials/ConnectedAccountsForm.vue';
 import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue';
 import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue';
-import SectionBorder from '@/Components/SectionBorder.vue';
 import SetPasswordForm from '@/Pages/Profile/Partials/SetPasswordForm.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
@@ -28,72 +27,77 @@ const {hasRole} = usePermission();
     <AppLayout title="Profile">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
+                {{ __('translate.Profile') }}
             </h2>
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <div v-if="$page.props.jetstream.canUpdateProfileInformation">
-                    <UpdateProfileInformationForm :user="$page.props.auth.user"/>
+        <div class="py-10">
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <!-- Grid 2-kolumnowy -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Lewa kolumna -->
+                    <div class="space-y-6">
+                        <!-- Profile Information -->
+                        <div v-if="$page.props.jetstream.canUpdateProfileInformation">
+                            <UpdateProfileInformationForm :user="$page.props.auth.user"/>
+                        </div>
+
+                        <!-- About Firm -->
+                        <div v-if="hasRole('firm')">
+                            <UpdateProfileAboutFirmForm :user="$page.props.auth.user"/>
+                        </div>
+
+                        <!-- Password Form -->
+                        <div v-if="$page.props.jetstream.canUpdatePassword && $page.props.socialstream.hasPassword">
+                            <UpdatePasswordForm/>
+                        </div>
+
+                        <!-- Set Password -->
+                        <div v-else>
+                            <SetPasswordForm/>
+                        </div>
+
+                        <!-- Two Factor Authentication -->
+                        <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication && $page.props.socialstream.hasPassword">
+                            <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication"/>
+                        </div>
+                    </div>
+
+                    <!-- Prawa kolumna -->
+                    <div class="space-y-6">
+                        <!-- Buy Form -->
+                        <div v-if="hasRole('firm')">
+                            <UpdateBuyForm :user="$page.props.auth.user"/>
+                        </div>
+
+                        <!-- Worker Form -->
+                        <div v-if="hasRole('worker')">
+                            <UpdateProfileWorkerForm :user="$page.props.auth.user"/>
+                        </div>
+
+                        <!-- Firm Form -->
+                        <div v-if="hasRole('firm')">
+                            <UpdateProfileFirmForm :user="$page.props.auth.user" :countries="$page.props.countries"/>
+                        </div>
+
+
+                        <!-- Connected Accounts -->
+                        <div v-if="$page.props.socialstream.show">
+                            <ConnectedAccountsForm/>
+                        </div>
+
+                        <!-- Browser Sessions -->
+                        <div v-if="$page.props.socialstream.hasPassword">
+                            <LogoutOtherBrowserSessionsForm :sessions="sessions"/>
+                        </div>
+
+
+                        <!-- Delete User -->
+                        <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword">
+                            <DeleteUserForm/>
+                        </div>
+                    </div>
                 </div>
-                <div v-if="hasRole('worker')">
-                    <SectionBorder/>
-                    <UpdateProfileWorkerForm :user="$page.props.auth.user" class="mt-10 sm:mt-0"/>
-                </div>
-                <div v-if="hasRole('firm')">
-                    <SectionBorder/>
-                    <UpdateProfileFirmForm :user="$page.props.auth.user" :countries="$page.props.countries" class="mt-10 sm:mt-0"/>
-                </div>
-
-                <div v-if="hasRole('firm')">
-                    <SectionBorder/>
-                    <UpdateProfileAboutFirmForm :user="$page.props.auth.user" class="mt-10 sm:mt-0"/>
-                </div>
-
-                <div v-if="hasRole('firm')">
-                    <SectionBorder/>
-                    <UpdateBuyForm :user="$page.props.auth.user" class="mt-10 sm:mt-0"/>
-                </div>
-
-                <div v-if="$page.props.jetstream.canUpdatePassword && $page.props.socialstream.hasPassword">
-                    <SectionBorder/>
-
-                    <UpdatePasswordForm class="mt-10 sm:mt-0"/>
-
-                    <SectionBorder/>
-                </div>
-
-                <div v-else>
-                    <SetPasswordForm class="mt-10 sm:mt-0"/>
-
-                    <SectionBorder/>
-                </div>
-
-                <div
-                    v-if="$page.props.jetstream.canManageTwoFactorAuthentication && $page.props.socialstream.hasPassword">
-                    <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication"
-                                                 class="mt-10 sm:mt-0"/>
-
-                    <SectionBorder/>
-                </div>
-
-                <div v-if="$page.props.socialstream.show">
-                    <ConnectedAccountsForm class="mt-10 sm:mt-0"/>
-                </div>
-
-                <div v-if="$page.props.socialstream.hasPassword">
-                    <SectionBorder/>
-
-                    <LogoutOtherBrowserSessionsForm :sessions="sessions" class="mt-10 sm:mt-0"/>
-                </div>
-
-                <template
-                    v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword">
-                    <SectionBorder/>
-
-                    <DeleteUserForm class="mt-10 sm:mt-0"/>
-                </template>
             </div>
         </div>
     </AppLayout>

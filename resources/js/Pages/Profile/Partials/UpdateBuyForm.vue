@@ -1,10 +1,10 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
 import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import __ from "@/lang.js";
 
 const props = defineProps({
     user: Object,
@@ -24,36 +24,39 @@ const updateBuyInformation = () => {
 </script>
 
 <template>
-    <FormSection @submitted="updateBuyInformation">
-        <template #title>
-            {{__('translate.BuyInformation')}}
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-work-main px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+                {{ __('translate.BuyInformation') }}
+            </h3>
+        </div>
 
-        <template #description>
-            {{__('translate.BuyInformationDescription')}}
-        </template>
-
-        <template #form>
-            <!-- Currency -->
-            <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="currency" :value="__('translate.currency')" />
-                <select id="currency" v-model="form.currency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-1 block w-full">
-                    <option selected value="EUR">EUR</option>
-                    <option value="USD">USD</option>
-                    <option value="PLN">PLN</option>
-                </select>
-                <InputError :message="form.errors.currency" class="mt-2" />
+        <!-- Form -->
+        <form @submit.prevent="updateBuyInformation">
+            <div class="px-6 py-6 space-y-6">
+                <!-- Currency -->
+                <div>
+                    <InputLabel for="currency" :value="__('translate.currency')" />
+                    <select id="currency" v-model="form.currency" class="bg-gray-50 border border-work-main text-gray-900 text-sm rounded-lg focus:ring-work-main focus:border-work-main block w-full p-2.5 mt-1">
+                        <option selected value="EUR">EUR</option>
+                        <option value="USD">USD</option>
+                        <option value="PLN">PLN</option>
+                    </select>
+                    <InputError :message="form.errors.currency" class="mt-2" />
+                </div>
             </div>
-        </template>
 
-        <template #actions>
-            <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{__('translate.Saved')}}
-            </ActionMessage>
+            <!-- Actions -->
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-end gap-3">
+                <ActionMessage :on="form.recentlySuccessful" class="text-sm text-green-600">
+                    {{ __('translate.Saved') }}
+                </ActionMessage>
 
-            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{__('translate.Save')}}
-            </PrimaryButton>
-        </template>
-    </FormSection>
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    {{ __('translate.Save') }}
+                </PrimaryButton>
+            </div>
+        </form>
+    </div>
 </template>

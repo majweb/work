@@ -1,15 +1,11 @@
 <script setup>
 import {useForm} from '@inertiajs/vue3';
 import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import Checkbox from "@/Components/Checkbox.vue";
-import DangerButton from "@/Components/DangerButton.vue";
-import InputHelper from "@/Components/InputHelper.vue";
-import TextareaLimit from "@/Components/TextareaLimit.vue";
+import __ from "@/lang.js";
 
 const props = defineProps({
     user: Object,
@@ -20,42 +16,39 @@ const form = useForm({
     contact_phone: props.user.worker_detail?.contact_phone ?? '',
     surname: props.user.worker_detail?.surname ?? '',
 });
+
 const updateProfileWorker = () => {
     form.post(route('worker.update.form'), {
         errorBag: 'updateProfileWorker',
         preserveScroll: true,
     });
 };
-const removeElement = (index, array) => {
-    array.splice(index, 1);
-}
 </script>
 
 <template>
-    <FormSection @submitted="updateProfileWorker">
-        <template #title>
-            {{ __('translate.rest') }}
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+            {{ __('translate.myData') }}
+        </h3>
 
-        <template #description>
-            {{ __('translate.data') }}
-        </template>
+        <!-- Form -->
+        <form @submit.prevent="updateProfileWorker">
+            <div class="px-6 py-6 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- SURNAME -->
+                    <div>
+                        <InputLabel for="surname" :value="__('translate.surname')"/>
+                        <TextInput
+                            id="surname"
+                            v-model="form.surname"
+                            type="text"
+                            class="mt-1 block w-full"
+                        />
+                        <InputError :message="form.errors.surname" class="mt-2"/>
+                    </div>
 
-        <template #form>
-            <!-- SURNAME -->
-            <div class="col-span-6 grid grid-cols-2 gap-2">
-                <div>
-                    <InputLabel for="surname" :value="__('translate.surname')"/>
-                    <TextInput
-                        id="surname"
-                        v-model="form.surname"
-                        type="text"
-                        class="mt-1 block w-full"
-                    />
-                    <InputError :message="form.errors.surname" class="mt-2"/>
-                </div>
-                <div>
-                    <!-- NUMBER -->
+                    <!-- PHONE -->
                     <div>
                         <InputLabel for="contact_phone" :value="__('translate.phone')"/>
                         <TextInput
@@ -66,19 +59,19 @@ const removeElement = (index, array) => {
                         />
                         <InputError :message="form.errors.contact_phone" class="mt-2"/>
                     </div>
-                    <!-- NUMBER -->
                 </div>
             </div>
-        </template>
 
-        <template #actions>
-            <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{ __('translate.Saved') }}
-            </ActionMessage>
+            <!-- Actions -->
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-end gap-3">
+                <ActionMessage :on="form.recentlySuccessful" class="text-sm text-green-600">
+                    {{ __('translate.Saved') }}
+                </ActionMessage>
 
-            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{ __('translate.Save') }}
-            </PrimaryButton>
-        </template>
-    </FormSection>
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    {{ __('translate.Save') }}
+                </PrimaryButton>
+            </div>
+        </form>
+    </div>
 </template>

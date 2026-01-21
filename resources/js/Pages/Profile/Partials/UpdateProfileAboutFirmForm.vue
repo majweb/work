@@ -1,7 +1,6 @@
 <script setup>
 import {useForm, usePage} from '@inertiajs/vue3';
 import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -63,16 +62,18 @@ const updateProfileFirm = () => {
 </script>
 
 <template>
-    <FormSection @submitted="updateProfileFirm">
-        <template #title>
-            {{ __('translate.rest') }}
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-work-main px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+                {{ __('translate.rest') }}
+            </h3>
+        </div>
 
-        <template #description>
-            {{ __('translate.restDescription') }}
-        </template>
-
-        <template #form>
+        <!-- Form -->
+        <form @submit.prevent="updateProfileFirm">
+            <div class="px-6 py-6">
+                <div class="grid grid-cols-6 gap-6">
             <!-- WWW -->
             <div class="col-span-6 sm:col-span-4">
                 <InputLabel for="www" :value="__('translate.www')"/>
@@ -352,16 +353,19 @@ const updateProfileFirm = () => {
             </div>
 
 
-        </template>
+                </div>
+            </div>
 
-        <template #actions>
-            <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                {{ __('translate.Saved') }}
-            </ActionMessage>
+            <!-- Actions -->
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-end gap-3">
+                <ActionMessage :on="form.recentlySuccessful" class="text-sm text-green-600">
+                    {{ __('translate.Saved') }}
+                </ActionMessage>
 
-            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                {{ __('translate.Save') }}
-            </PrimaryButton>
-        </template>
-    </FormSection>
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    {{ __('translate.Save') }}
+                </PrimaryButton>
+            </div>
+        </form>
+    </div>
 </template>

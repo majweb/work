@@ -2,12 +2,12 @@
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import ActionMessage from '@/Components/ActionMessage.vue';
-import ActionSection from '@/Components/ActionSection.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import __ from "@/lang.js";
 
 defineProps({
     sessions: Array,
@@ -43,18 +43,16 @@ const closeModal = () => {
 </script>
 
 <template>
-    <ActionSection>
-        <template #title>
-            {{__('translate.browserSessions')}}
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+            {{ __('translate.browserSessions') }}
+        </h3>
 
-        <template #description>
-            {{__('translate.browserSessionsDescription')}}
-        </template>
-
-        <template #content>
+        <!-- Content -->
+        <div class="px-6 py-6 space-y-6">
             <div class="max-w-xl text-sm text-gray-600">
-                {{__('translate.browserSessionsContent')}}
+                {{ __('translate.browserSessionsContent') }}
             </div>
 
             <!-- Other Browser Sessions -->
@@ -133,6 +131,6 @@ const closeModal = () => {
                     </PrimaryButton>
                 </template>
             </DialogModal>
-        </template>
-    </ActionSection>
+        </div>
+    </div>
 </template>

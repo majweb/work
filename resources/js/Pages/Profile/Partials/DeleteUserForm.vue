@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import ActionSection from '@/Components/ActionSection.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import InputError from '@/Components/InputError.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import __ from "@/lang.js";
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);
@@ -38,23 +38,21 @@ const closeModal = () => {
 </script>
 
 <template>
-    <ActionSection>
-        <template #title>
-            {{__('translate.removeAccount')}}
-        </template>
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Header -->
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+            {{ __('translate.removeAccount') }}
+        </h3>
 
-        <template #description>
-            {{__('translate.removeAccountPermanently')}}
-        </template>
-
-        <template #content>
+        <!-- Content -->
+        <div class="px-6 py-6 space-y-6">
             <div class="max-w-xl text-sm text-gray-600">
-                {{__('translate.removeAccountPermanentlyText')}}
+                {{ __('translate.removeAccountPermanentlyText') }}
             </div>
 
-            <div class="mt-5">
+            <div>
                 <DangerButton @click="confirmUserDeletion">
-                    {{__('translate.delete')}}
+                    {{ __('translate.delete') }}
                 </DangerButton>
             </div>
 
@@ -94,6 +92,6 @@ const closeModal = () => {
                     </DangerButton>
                 </template>
             </DialogModal>
-        </template>
-    </ActionSection>
+        </div>
+    </div>
 </template>
