@@ -157,8 +157,7 @@ class FrontController extends Controller
 
     public function projects()
     {
-//        dd(request()->all());
-        $query = Project::with('user.changeProducts')->featured();
+        $query = Project::with('user.changeProducts')->featured()->active();
 
         // Filtrowanie po kraju
         if (request('country')) {
@@ -337,12 +336,26 @@ class FrontController extends Controller
         ]);
     }
 
-    public function SingleProject(Project $project)
+    public function SingleProject(Project $project, Request $request)
     {
         $project = Project::query()
             ->with(['user','education','detailprojects'])
-            ->featured() // <<--- tu używasz scopeFeatured
+            ->featured()
+            ->active() // <<--- dodane filtrowanie tylko aktywnych
             ->findOrFail($project->id);
+
+        // Zliczanie odwiedzin - 1 inkrementacja na IP na 24h
+        $key = 'project-view:' . $project->id . ':' . $request->ip();
+
+        $executed = RateLimiter::attempt(
+            $key,
+            $maxAttempts = 1,
+            function () use ($project) {
+                $project->increment('views_count');
+            },
+            $decaySeconds = 60 * 60 * 24 // 24 godziny
+        );
+
         $locale = getLocalBrowserLang();
         $image = Country::firstWhere('countryCode', $locale)?->active_image_url;
         return inertia()->render('Front/SingleProject', [

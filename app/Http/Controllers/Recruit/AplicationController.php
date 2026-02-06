@@ -59,6 +59,7 @@ class AplicationController extends Controller implements HasMiddleware
      */
     public function index(Request $request)
     {
+
         $result = $this->filterService->getFilteredApplications($request);
         $langLevels=  Cache::rememberForever('langLevels', function() {
             return MultiselectWithoutDetailResource::collection(LangLevel::get());

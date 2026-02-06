@@ -494,8 +494,6 @@ const submit = () => {
                                 </div>
                             </Link>
                         </div>
-                        <Pagination v-if="props.projects.total > 10" class="mt-10 text-center mx-auto"
-                                    :links="props.projects.links"/>
                     </div>
                     <div v-else class="text-center text-lg my-3">
                         {{ __('translate.notFoundArticles') }}

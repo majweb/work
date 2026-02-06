@@ -13,6 +13,7 @@ import TextInput from "@/Components/TextInput.vue";
 import FormSectionProject from "@/Components/FormSectionProject.vue";
 import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 import QuestionForm from "@/Components/QuestionForm.vue";
+import __ from "@/lang.js";
 
 const props = defineProps({
     categories: Array,
@@ -76,6 +77,7 @@ const form = useForm({
     external_company_id: props.externalCompanies.find(
         company => company.id === props.project.external_company_id
     ) || '',
+    is_active: props.project.is_active ?? true,
 
 
 });
@@ -781,6 +783,25 @@ watch(() => form.cv, (newValue) => {
                                         </div>
                                         <InputError :message="form.errors.cv" class="mt-2"/>
                                     </div>
+                                </div>
+
+                                <!-- Pole is_active (widoczność projektu) -->
+                                <div class="col-span-6 mt-6">
+                                    <div class="flex items-center">
+                                        <input
+                                            class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                            type="checkbox"
+                                            id="is_active"
+                                            v-model="form.is_active"
+                                            :true-value="true"
+                                            :false-value="false"
+                                        />
+                                        <InputLabel for="is_active" :value="__('translate.projectIsActive')" class="mb-0" />
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1 ml-6">
+                                        {{ __('translate.projectIsActiveDescription') }}
+                                    </p>
+                                    <InputError :message="form.errors.is_active" class="mt-2"/>
                                 </div>
 
                                                                     <!-- Sekcja pytań do projektu -->

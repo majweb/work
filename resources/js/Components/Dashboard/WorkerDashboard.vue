@@ -2,7 +2,7 @@
 <script setup>
 import {computed} from "vue";
 import CircularProgress from "@/Components/CircularProgress.vue";
-import {Link, usePage} from "@inertiajs/vue3";
+import {Link, router, usePage} from "@inertiajs/vue3";
 import moment from "moment"
 import __ from "@/lang.js";
 const props = defineProps({
@@ -55,6 +55,21 @@ const formatNotification = (notification) => {
         actionUrl: data.actionUrl || null
     };
 };
+
+const markAsRead = (id) => {
+    router.post(
+        route('notifications.markAsRead', id),
+        {},
+        {
+            preserveScroll: true,
+            preserveState: true,
+            only: ['notifications', 'unreadNotifications'],
+
+        }
+    );
+};
+
+
 
 </script>
 <template>
@@ -138,7 +153,7 @@ const formatNotification = (notification) => {
             <div class="bg-white rounded-2xl shadow p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">{{__('translate.notifications')}}</h2>
-                    <Link v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-sm text-red-500 hover:underline">
+                    <Link preserveScroll v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-sm text-red-500 hover:underline">
                         {{ __('translate.markAllAsRead') }}
                     </Link>
                 </div>
@@ -156,7 +171,12 @@ const formatNotification = (notification) => {
             'font-normal': notification.read_at
         }"
                     >
-                        <Link v-html="formatNotification(notification).message" v-if="!notification.read_at" :href="route('notifications.markAsRead', notification.id)" method="post" as="button" class="mt-1 text-gray-600"></Link>
+                        <button
+                            v-if="!notification.read_at"
+                            class="mt-1 text-gray-600 text-left"
+                            v-html="formatNotification(notification).message"
+                            @click="markAsRead(notification.id)"
+                        ></button>
                         <span v-else class="mt-1 text-gray-600" v-html="formatNotification(notification).message"></span>
                     </li>
                 </ul>

@@ -9,6 +9,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import __ from "@/lang.js";
 
 const props = defineProps({
     projects: Object,
@@ -22,6 +23,7 @@ const params = ref({
     field: props.filters.field,
     direction: props.filters.direction,
     recruiter:props.filters.recruiter ?? 'all',
+    onlyActive: props.filters.onlyActive ?? false,
 
 });
 
@@ -76,7 +78,7 @@ watch(params.value, debounce(function (value) {
                             </Link>
                         </div>
                         <h2 class="text-sm font-semibold text-indigo-300">{{__('translate.filters')}}</h2>
-                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="(params.recruiter && params.recruiter != 'all')">{{ __('translate.clearFilters') }}</button>
+                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="(params.recruiter && params.recruiter != 'all') || params.onlyActive">{{ __('translate.clearFilters') }}</button>
                         <div class="col-span-6 flex mb-3 items-center">
                             <div class="flex mt-1 flex flex-col mr-2">
                                 <InputLabel :value="__('translate.recruiter')" class="text-sm"/>
@@ -85,6 +87,15 @@ watch(params.value, debounce(function (value) {
                                     <option value="all" id="all">{{__('translate.all')}}</option>
                                     <option :key="recruit.id" v-for="recruit in recruiters" :value="recruit.id" :id="recruit.id">{{recruit.name}}</option>
                                 </select>
+                            </div>
+                            <div class="flex items-center mt-1">
+                                <input
+                                    type="checkbox"
+                                    id="onlyActive"
+                                    v-model="params.onlyActive"
+                                    class="rounded border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
+                                />
+                                <InputLabel for="onlyActive" :value="__('translate.onlyActiveProjects')" class="mb-0 text-sm" />
                             </div>
                         </div>
 

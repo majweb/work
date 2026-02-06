@@ -46,6 +46,7 @@ class TagController extends Controller
                     return $query->where('user_id', $request->user()->id);
                 }),
             ],
+            'color' => 'required|string|max:255',
         ]);
 
 
@@ -70,7 +71,7 @@ class TagController extends Controller
     {
         Gate::authorize('update', $tag);
 
-        return Inertia::render('Tag/Edit', [
+        return Inertia::render('Tags/Edit', [
             'tag' => $tag,
         ]);
     }
@@ -84,6 +85,7 @@ class TagController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'color' => 'required|string|max:255',
             Rule::unique('tags', 'name')
                 ->ignore($tag->id ?? null) // ignoruj edytowany rekord
                 ->where(fn ($query) => $query->where('user_id', auth()->id()))

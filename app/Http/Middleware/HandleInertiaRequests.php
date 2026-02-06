@@ -39,7 +39,6 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-
         return array_merge(parent::share($request), [
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
@@ -70,6 +69,7 @@ class HandleInertiaRequests extends Middleware
                         });
                 });
             },
+            'sender' => session()->pull('sender') ?? null,
             'csrf_token'=>csrf_token(),
             'cart' => Cart::content(),
             'canLogin' => Route::has('login'),
@@ -78,6 +78,7 @@ class HandleInertiaRequests extends Middleware
             'pageName' => env('APP_NAME'),
             'unreadNotifications'=>$request->user() ? $request->user()->unreadNotifications()->count() :0,
             'mapsApi' => env('GOOGLE_MAPS_API'),
+            'mapboxToken' => config('services.mapbox.token'),
             'currencyFromClient' => fn()=> (request()->user() && request()->user()->hasRole('recruit') && !request()->user()->hasRole('firm'))  ? request()->user()->user->firm->currency : null
         ]);
     }

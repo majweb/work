@@ -53,9 +53,12 @@ class Project extends Model
         'other_recruits',
         'cv',
         'external_company_id',
+        'is_active',
+        'views_count'
     ];
 
     protected $casts = [
+        'is_active'=>'boolean',
         'title'=>'array',
         'category'=>'array',
         'currency'=>'array',
@@ -178,7 +181,6 @@ class Project extends Model
         return ($firstKey !== null && !empty($value[$firstKey])) ? $value[$firstKey] : $default;
     }
 
-
     public function scopeFeatured(Builder $query)
     {
         $query->withCount(['user as is_featured' => function (Builder $q) {
@@ -189,4 +191,9 @@ class Project extends Model
             });
         }]);
     }
+
+        public function scopeActive(Builder $query)
+        {
+            return $query->where('is_active', true);
+        }
 }

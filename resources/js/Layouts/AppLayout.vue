@@ -149,6 +149,16 @@ onUnmounted(()=>{
                                     {{__('translate.aplications')}}
                                 </NavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit') || hasRole('firm')">
+                                <NavLink :href="route('candidates.index')" :active="route().current('candidates.index')">
+                                    {{__('translate.candidates')}}
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
+                                <NavLink :href="route('tags.index')" :active="route().current('tags.index')">
+                                    {{__('translate.tags')}}
+                                </NavLink>
+                            </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('statistics.index')" :active="route().current('statistics.index')">
                                     {{__('translate.statistics')}}
@@ -340,13 +350,16 @@ onUnmounted(()=>{
                                         </DropdownLink>
 
                                         <div class="border-t border-gray-200" />
-                                        <DropdownLink :href="route('front')" v-if="hasRole('worker')">
+                                        <DropdownLink :href="route('front')">
                                             {{__('translate.frontPage')}}
                                         </DropdownLink>
                                         <DropdownLink :href="route('worker.myCv')" v-if="hasRole('worker')">
                                             {{__('translate.myCv')}}
                                         </DropdownLink>
-                                        <DropdownLink :href="route('worker.aplications')">
+                                        <DropdownLink :href="route('worker.aplications')" v-if="!hasRole('recruit')">
+                                            {{__('translate.aplications')}}
+                                        </DropdownLink>
+                                        <DropdownLink :href="route('project-aplications-recruits.index')" v-if="hasRole('recruit')">
                                             {{__('translate.aplications')}}
                                         </DropdownLink>
                                         <div class="border-t border-gray-200" />
@@ -455,10 +468,24 @@ onUnmounted(()=>{
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
-                                Profile
+                            <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')" v-if="hasRole('recruit') && !hasRole('firm')">
+                                {{__('translate.projects')}}
                             </ResponsiveNavLink>
-
+                            <ResponsiveNavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')" v-if="hasRole('recruit') && !hasRole('firm')">
+                                {{__('translate.aplications')}}
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')" v-if="hasRole('recruit') && !hasRole('firm')">
+                                {{__('translate.candidates')}}
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')" v-if="hasRole('recruit')">
+                                {{__('translate.tags')}}
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('statistics.index')" :active="route().current('statistics.index')" v-if="hasRole('firm')">
+                                {{__('translate.statistics')}}
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                                {{__('translate.Profile')}}
+                            </ResponsiveNavLink>
                             <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
                                 API Tokens
                             </ResponsiveNavLink>
@@ -466,7 +493,7 @@ onUnmounted(()=>{
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">
                                 <ResponsiveNavLink as="button">
-                                    Log Out
+                                    {{__('translate.logout')}}
                                 </ResponsiveNavLink>
                             </form>
 

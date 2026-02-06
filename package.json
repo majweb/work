@@ -26,6 +26,7 @@
     "dependencies": {
         "@easepick/bundle": "^1.2.1",
         "@headlessui/vue": "^1.7.23",
+        "@mapbox/mapbox-gl-geocoder": "^5.1.2",
         "@popperjs/core": "^2.11.8",
         "@spatie/media-library-pro-styles": "^1.4.0",
         "@spatie/media-library-pro-vue3-attachment": "^1.5.3",
@@ -51,7 +52,7 @@
         "filepond-plugin-image-resize": "^2.0.10",
         "filepond-plugin-image-transform": "^3.8.7",
         "lodash": "^4.17.21",
-        "mapbox-gl": "^3.17.0",
+        "mapbox-gl": "^3.18.1",
         "moment": "^2.30.1",
         "swiper": "^11.2.10",
         "vue-color": "^3.3.1",

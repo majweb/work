@@ -46,7 +46,8 @@ class ProjectController extends Controller
 
         request()->validate([
             'direction' => ['in:asc,desc'],
-            'field' => ['in:id']
+            'field' => ['in:id'],
+            'is_active' => ['nullable', 'in:all,active,inactive']
         ]);
 
         $query = Project::query()->with('recruit')->where('user_id', auth()->user()->id);
@@ -59,13 +60,26 @@ class ProjectController extends Controller
                 $q->where('recruiter_id', request()->get('recruiter'));
             }
         });
+        $query->when(request()->has('is_active'), function ($q) {
+            $filter = request()->get('is_active');
+            if ($filter === 'active') {
+                $q->where('is_active', true);
+            } elseif ($filter === 'inactive') {
+                $q->where('is_active', false);
+            }
+            // jeśli 'all' - nie dodajemy warunku
+        });
+
+        $query->when(request()->has('onlyActive') && request()->get('onlyActive'), function ($q) {
+            $q->active();
+        });
 
         $recruiters = auth()->user()->recruits()->get();
 
         return inertia()->render('Project/Index', [
             'recruiters' => $recruiters,
             'projects' => $query->paginate(5)->withQueryString(),
-            'filters' => request()->only(['field', 'direction', 'recruiter'])
+            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active'])
         ]);
     }
 
@@ -217,6 +231,7 @@ class ProjectController extends Controller
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
             'external_company_id' => $request->projectData()['external_company_id'],
+            'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
         if($project && count($request->projectData()['detailProjects'])){

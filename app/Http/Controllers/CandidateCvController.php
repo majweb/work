@@ -142,10 +142,12 @@ class CandidateCvController extends Controller
 
     public function sendExternalRecruit(Request $request)
     {
+
         $externals = $request->externalFirms; // lista firm do powiadomienia
         $aplications = $request->apps;
 
         $firm = auth()->user()->user->firm;
+
         $cost = config('getPoints.SendToExternalFirm', 1);
 
         // Ile maksymalnie firm możemy obsłużyć
@@ -175,9 +177,8 @@ class CandidateCvController extends Controller
             $firm->decrement('points', $cost);
         }
 
-        session()->flash('flash.banner', __('translate.sendExternalSuccess'));
-        session()->flash('flash.bannerStyle', 'success');
-
-        return redirect()->back();
+        return back()->with('sender', [
+            'id' => now()->timestamp // albo uniqid()
+        ]);
     }
 }

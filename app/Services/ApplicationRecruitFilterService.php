@@ -22,7 +22,9 @@ class ApplicationRecruitFilterService
     {
         // Bazowe zapytanie z relacjami
         $query = Aplication::query()
-            ->with(['project:id,other_recruits','cvClassic','openedBy','statusChangedBy'])
+            ->with(['project:id,other_recruits,position','cvClassic','openedBy','statusChangedBy','worker','cvAudio','cvVideo','media','notes' => function ($q) {
+                $q->latest()->limit(1);
+            }])
             ->forRecruiterWithOther();
 
         // Filtrowanie według statusu
@@ -74,12 +76,16 @@ class ApplicationRecruitFilterService
         });
 
         // Filtrowanie według projektu i kategorii
-        $query->when($request->filled('project'), fn($q) => $q->where('project_id', $request->project))
+        $query->when($request->filled('project'), fn($q) => $q->where('id', $request->project))
             ->when($request->filled('status') && $status === null, fn($q) => $q->where('status', $request->status))
             ->when($request->filled('category'), function ($q) use ($request) {
                 $q->whereHas('project', fn($query) =>
                 $query->whereJsonContains('position->value', (int)$request->category)
                 );
+            })
+            // Filtrowanie według daty utworzenia
+            ->when($request->filled('date'), function ($q) use ($request) {
+                $q->whereDate('created_at', $request->date);
             })
 
 
@@ -112,7 +118,7 @@ class ApplicationRecruitFilterService
                 // Dodatkowe filtrowanie po poziomie języka, jeśli został podany
                 if ($request->filled('Langlevel')) {
                     $query->whereJsonContains('langs', [
-                        'level' => ['allTranslations' => ['name' => [app()->getLocale() => $request->Langlevel]]]
+                        'level' => ['value' => (int)$request->Langlevel]
                     ]);
                 }
             });
@@ -136,7 +142,7 @@ class ApplicationRecruitFilterService
             'optionsRecruits' => $recruits,
             'optionsExternal' => $externals,
             'counters' => $counters,
-            'filters' => $request->only(['project', 'status', 'category', 'experience', 'education', 'course', 'lang', 'skill', 'has_cv','Langlevel']),
+            'filters' => $request->only(['project', 'status', 'category', 'experience', 'education', 'course', 'lang', 'skill', 'has_cv','Langlevel', 'date', 'driveLicense']),
         ];
     }
 
@@ -211,8 +217,11 @@ class ApplicationRecruitFilterService
     {
         $form = $request->input('form', []);
 
+        // Bazowe zapytanie z relacjami - takie same jak w getFilteredApplications
         $query = Aplication::query()
-            ->with(['project', 'cvClassic'])
+            ->with(['project:id,other_recruits,position,wait,recruiter_id,user_id','cvClassic','openedBy','statusChangedBy','worker','cvAudio','cvVideo','notes' => function ($q) {
+                $q->latest()->limit(1);
+            }])
             ->forRecruiterWithOther();
 
         // Filtrowanie według statusu (z parametru funkcji)
@@ -233,6 +242,7 @@ class ApplicationRecruitFilterService
         } elseif ($status === null) {
             $query->activeStart();
         }
+
         // Filtrowanie według CV
         $query->when(isset($form['has_cv']), function ($q) use ($form) {
             if ($form['has_cv'] === 'yes') {
@@ -258,65 +268,77 @@ class ApplicationRecruitFilterService
             }
         });
 
-        // Filtrowanie według projektu
-        $query->when(!empty($form['project']), fn($q) => $q->where('project_id', $form['project']));
+        // Filtrowanie według projektu - używamy 'id' jak w getFilteredApplications
+        $query->when(!empty($form['project']), fn($q) => $q->where('id', $form['project']));
+
         // Filtrowanie według statusu (z formularza, jeśli nie przekazano jako parametr)
         $query->when(!empty($form['status']) && $status === null, fn($q) => $q->where('status', $form['status']));
-        // Filtrowanie po kategorii
+
+        // Filtrowanie po kategorii - używamy 'category->value' jak w getFilteredApplications
         $query->when(!empty($form['category']), function ($q) use ($form) {
-            $q->whereHas('project', function ($query) use ($form) {
-                $query->whereJsonContains('categorySub', [
-                    'value' => (int)data_get($form, 'category.value'),
-                ]);
-            });
+            $categoryValue = is_array($form['category']) ? ($form['category']['value'] ?? $form['category']) : $form['category'];
+            $q->whereHas('project', fn($query) =>
+                $query->whereJsonContains('position->value', (int)$categoryValue)
+            );
         });
 
-        // Filtrowanie według języka i poziomu
-        $query->when(!empty($form['lang']), function ($q) use ($form) {
-            $langValue = data_get($form, 'lang.value');
-            $langLevel = data_get($form, 'Langlevel.value');
-
-            $q->whereHas('cvClassic', function ($query) use ($langValue, $langLevel) {
-                $query->whereJsonContains('langs', [
-                    'name' => ['value' => $langValue],
-                ]);
-
-                if ($langLevel) {
-                    $query->whereJsonContains('langs', [
-                        'level' => ['value' => (int)$langLevel],
-                    ]);
-                }
-            });
-        });
+        // Filtrowanie według daty utworzenia
+        $query->when(!empty($form['date']), fn($q) => $q->whereDate('created_at', $form['date']));
 
         // Filtrowanie według doświadczenia
         $query->when(!empty($form['experience']), function ($q) use ($form) {
-            $q->whereHas('cvClassic', function ($query) use ($form) {
+            $experienceValue = is_array($form['experience']) ? ($form['experience']['value'] ?? $form['experience']) : $form['experience'];
+            $q->whereHas('cvClassic', function ($query) use ($experienceValue) {
                 $query->whereJsonContains('experiences', [
-                    'position' => ['value' => (int)data_get($form, 'experience.value')],
+                    'position' => ['value' => (int)$experienceValue]
                 ]);
             });
         });
 
-        // Filtrowanie według prawa jazdy (wait.id == 19)
-        $query->when(array_key_exists('driveLicense', $form), function ($q) use ($form) {
-            if (filter_var($form['driveLicense'], FILTER_VALIDATE_BOOLEAN)) {
+        // Filtrowanie według prawa jazdy
+        $query->when(isset($form['driveLicense']) && $form['driveLicense'] !== '', function ($q) use ($form) {
+            $hasDriveLicense = $form['driveLicense'] === 'yes' || filter_var($form['driveLicense'], FILTER_VALIDATE_BOOLEAN);
+            if ($hasDriveLicense) {
                 $q->whereHas('project', function ($query) {
                     $query->whereJsonContains('wait', ['id' => 19]);
                 });
             } else {
                 $q->whereHas('project', function ($query) {
-                    $query->whereJsonDoesntContain('wait', ['id' => 19]);
+                    $query->where(function($q) {
+                        $q->whereJsonDoesntContain('wait', ['id' => 19])
+                          ->orWhereNull('wait');
+                    });
                 });
             }
         });
 
-        // Filtrowanie po rekruterze
-        $query->when(!empty($form['recruiter']), fn($q) => $q->where('recruiter_id', $form['recruiter']));
+        // Filtrowanie według języka
+        $query->when(!empty($form['lang']), function ($q) use ($form) {
+            $langValue = is_array($form['lang']) ? ($form['lang']['value'] ?? $form['lang']) : $form['lang'];
+            $q->whereHas('cvClassic', function ($query) use ($form, $langValue) {
+                $query->whereJsonContains('langs', [
+                    'name' => ['value' => $langValue]
+                ]);
+                // Dodatkowe filtrowanie po poziomie języka, jeśli został podany
+                if (!empty($form['Langlevel'])) {
+                    $langLevel = is_array($form['Langlevel']) ? ($form['Langlevel']['value'] ?? $form['Langlevel']) : $form['Langlevel'];
+                    $query->whereJsonContains('langs', [
+                        'level' => ['value' => (int)$langLevel]
+                    ]);
+                }
+            });
+        });
+
+        // Filtrowanie według rekrutera
+        $query->when(!empty($form['recruiter']), function($q) use ($form) {
+            $recruiterValue = is_array($form['recruiter']) ? ($form['recruiter']['value'] ?? $form['recruiter']) : $form['recruiter'];
+            $q->where('recruiter_id', $recruiterValue);
+        });
 
         // Pobieranie i cachowanie kategorii i rekruterów
         $categories = $this->getCategories();
         $recruits = $this->getRecruits();
+        $externals = $this->getExternal();
 
         // Pobranie aplikacji
         $applications = $query->orderBy('created_at', 'desc')->get();
@@ -327,8 +349,9 @@ class ApplicationRecruitFilterService
             'applications' => $applications,
             'optionsPosition' => $categories,
             'optionsRecruits' => $recruits,
+            'optionsExternal' => $externals,
             'counters' => $counters,
-            'filters' => collect($form)->only(['project', 'status', 'category', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel']),
+            'filters' => collect($form)->only(['project', 'status', 'category', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'date', 'driveLicense']),
         ];
     }
 

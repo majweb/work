@@ -62,7 +62,6 @@ const {hasRole} = usePermission();
                             <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication"/>
                         </div>
                     </div>
-
                     <!-- Prawa kolumna -->
                     <div class="space-y-6">
                         <!-- Buy Form -->
@@ -92,11 +91,12 @@ const {hasRole} = usePermission();
                         </div>
 
 
-                        <!-- Delete User -->
-                        <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword">
-                            <DeleteUserForm/>
-                        </div>
+
                     </div>
+                </div>
+                <!-- Delete User -->
+                <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword">
+                    <DeleteUserForm/>
                 </div>
             </div>
         </div>

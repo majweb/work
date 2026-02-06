@@ -3,10 +3,20 @@ import { Link, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import __ from "@/lang.js";
 
-defineProps({
+const props = defineProps({
     tags: Array,
+});
+
+// Wyszukiwarka tagów
+const customTagSearchQuery = ref('');
+
+// Filtrowanie tagów według wyszukiwarki
+const filteredCustomTags = computed(() => {
+    if (!customTagSearchQuery.value) return props.tags;
+    return props.tags.filter(tag => tag.name.toLowerCase().includes(customTagSearchQuery.value.toLowerCase()));
 });
 
 // Stan dla modalu usuwania
@@ -14,8 +24,8 @@ const showDeleteModal = ref(false);
 const tagToDelete = ref(null);
 
 // Otwiera modal potwierdzenia usunięcia
-const openDeleteModal = (company) => {
-    tagToDelete.value = company;
+const openDeleteModal = (tag) => {
+    tagToDelete.value = tag;
     showDeleteModal.value = true;
 };
 
@@ -27,7 +37,7 @@ const closeDeleteModal = () => {
     }, 300);
 };
 
-// Usuwa firmę zewnętrzną
+// Usuwa tag
 const deleteTag = () => {
     if (tagToDelete.value) {
         router.delete(route('tags.destroy', tagToDelete.value.id), {
@@ -36,12 +46,22 @@ const deleteTag = () => {
         });
     }
 };
+
+// Kontrast tekstu w zależności od tła
+const getContrastColor = (bgColor) => {
+    if (!bgColor) return '#000';
+    const color = bgColor.replace('#', '');
+    const r = parseInt(color.substr(0,2),16);
+    const g = parseInt(color.substr(2,2),16);
+    const b = parseInt(color.substr(4,2),16);
+    return (r*0.299 + g*0.587 + b*0.114) > 186 ? '#000' : '#fff';
+};
 </script>
 
 <template>
     <AppLayout :title="__('translate.tags')">
         <template #header>
-            <div class="flex justify-between">
+            <div class="flex justify-between items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('translate.tags') }}
                 </h2>
@@ -53,7 +73,7 @@ const deleteTag = () => {
             </div>
         </template>
 
-        <!-- Modal potwierdzenia usunięcia firmy zewnętrznej -->
+        <!-- Modal potwierdzenia usunięcia -->
         <DialogModal :show="showDeleteModal" @close="closeDeleteModal">
             <template #title>
                 {{ __('translate.deleteTag') }}
@@ -85,40 +105,48 @@ const deleteTag = () => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <div class="overflow-x-auto">
+                <div class="bg-white shadow-xl sm:rounded-lg p-6">
+                    <!-- Header -->
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-semibold text-gray-900">
+                            {{ __('translate.listTag') }}
+                        </h1>
+                        <p class="mt-1 text-sm text-gray-500">
+                            {{__('translate.listTagInfo')}}
+                        </p>
+                    </div>
+                    <!-- Wyszukiwarka -->
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            v-model="customTagSearchQuery"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            :placeholder="__('translate.searchCustomTags')"
+                        />
+                    </div>
 
-                        <table class="min-w-full divide-y divide-gray-200" v-if="tags.length">
-                            <thead class="bg-gray-50">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('translate.name') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('translate.actions') }}
-                                </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr class="h-16 border-gray-300 border-b" v-for="company in tags" :key="company.id">
-                                    <td class="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 tracking-normal leading-4">{{ company.name }}</td>
-                                    <td class="pr-6 text-left whitespace-no-wrap text-sm text-gray-800 tracking-normal leading-4">
-                                        <div class="flex items-center">
-                                            <Link :href="route('external-companies.edit', company.id)" class="text-blue-500 mr-4">
+                    <!-- Lista tagów -->
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            v-for="tag in filteredCustomTags"
+                            :key="tag.id"
+                            class="px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2"
+                            :style="{ backgroundColor: tag.color || '#ccc', color: getContrastColor(tag.color) }"
+                        >
+                            {{ tag.name }}
+                            <!-- Edycja -->
+                                <Link :href="route('tags.edit', tag.id)" class="ml-1 text-blue-500 hover:underline text-xs">
                                                 {{ __('translate.edit') }}
                                             </Link>
-                                            <button type="button" class="text-red-500" @click="openDeleteModal(company)">
-                                                {{ __('translate.delete') }}
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div v-else class="flex items-center justify-center h-24 text-gray-500">
-                            {{ __('translate.noTags') }}
-                        </div>
+                            <!-- Usuwanie -->
+                            <button type="button" @click="openDeleteModal(tag)" class="ml-1 text-red-500 hover:underline text-xs">
+                                {{ __('translate.delete') }}
+                            </button>
+                        </span>
+
+                        <span v-if="filteredCustomTags.length === 0" class="text-gray-500 text-sm">
+                            {{ customTagSearchQuery ? __('translate.noMatchingTags') : __('translate.noTagsAvailable') }}
+                        </span>
                     </div>
                 </div>
             </div>

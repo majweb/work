@@ -6,6 +6,7 @@ use App\Events\AplicationMakeEvent;
 use App\Mail\ApplicationMadeMail;
 use App\Models\CvAudio;
 use App\Models\CvVideo;
+use App\Models\User;
 use App\Notifications\ApplicationMadeNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -52,10 +53,30 @@ class AplicationMakeListener
         Cache::forget('cv_session_'.$userId);
         if($auth){
             $auth->notify((new ApplicationMadeNotification($aplication))->locale($lang));
-            $aplication->user->notify((new ApplicationMadeNotification($aplication))->locale($lang));
         } else {
             Mail::to($aplication->email)->locale($lang)->send(new ApplicationMadeMail($aplication));
-            $aplication->user->notify((new ApplicationMadeNotification($aplication))->locale($lang));
+        }
+
+        // Powiadom rekrutera i użytkownika (logika wspólna)
+        $this->notifyRecruitAndUser($aplication, $lang);
+    }
+
+    /**
+     * Powiadom rekrutera i użytkownika
+     */
+    private function notifyRecruitAndUser($aplication, $lang)
+    {
+        // Jeśli user != recruiter, powiadom rekrutera
+        if ($aplication->user_id != $aplication->recruiter_id) {
+            $recruit = User::find($aplication->recruiter_id);
+            if ($recruit) {
+                $recruit->notify((new ApplicationMadeNotification($aplication))->locale($lang));
+            }
+        } else {
+            // Powiadom użytkownika (jeśli istnieje)
+            if ($aplication->user) {
+                $aplication->user->notify((new ApplicationMadeNotification($aplication))->locale($lang));
+            }
         }
     }
 }

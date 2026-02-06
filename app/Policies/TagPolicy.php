@@ -13,7 +13,7 @@ class TagPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasRole(['firm','recruit']);
     }
 
     /**
@@ -21,7 +21,7 @@ class TagPolicy
      */
     public function view(User $user, Tag $tag): bool
     {
-        return $user->hasRole('firm') && $user->id === $tag->user_id;
+        return $user->hasRole(['firm','recruit']) && $user->id === $tag->user_id;
     }
 
     /**
@@ -29,7 +29,7 @@ class TagPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasRole(['firm','recruit']);
     }
 
     /**
@@ -37,7 +37,7 @@ class TagPolicy
      */
     public function update(User $user, Tag $tag): bool
     {
-        return $user->hasRole('firm') && $user->id === $tag->user_id;
+        return $user->hasRole(['firm','recruit']) && $user->id === $tag->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class TagPolicy
      */
     public function delete(User $user, Tag $tag): bool
     {
-        return $user->hasRole('firm') && $user->id === $tag->user_id;
+        return $user->hasRole(['firm','recruit']) && $user->id === $tag->user_id;
     }
 
     /**
@@ -53,6 +53,6 @@ class TagPolicy
      */
     public function forceDelete(User $user, Tag $tag): bool
     {
-        return $user->hasRole('firm') && $user->id === $tag->user_id;
+        return $user->hasRole(['firm','recruit']) && $user->id === $tag->user_id;
     }
 }

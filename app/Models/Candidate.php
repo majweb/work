@@ -104,4 +104,9 @@ class Candidate extends Model implements HasMedia
         return $this->belongsToMany(Category::class, 'candidate_tag', 'candidate_id', 'category_id')
             ->withTimestamps();
     }
+
+    public function userByEmail()
+    {
+        return $this->hasOne(\App\Models\User::class, 'email', 'email');
+    }
 }

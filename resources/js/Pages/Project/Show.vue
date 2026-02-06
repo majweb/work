@@ -9,6 +9,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import {reactive, ref, watch} from "vue";
 import Multiselect from 'vue-multiselect'
 import Info from "@/Components/Info.vue";
+import __ from "@/lang.js";
 
 
 const props = defineProps({
@@ -79,9 +80,20 @@ watch(
     <AppLayout :title="__('translate.project')+' id.' + props.project.id">
         <template #header>
             <div class="flex justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('translate.project')}} id. {{props.project.id}}
-                </h2>
+                <div class="flex items-center gap-3">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        {{__('translate.project')}} id. {{props.project.id}}
+                    </h2>
+                    <span
+                        class="px-3 py-1 text-sm rounded-full font-medium"
+                        :class="{
+                            'bg-green-100 text-green-700': props.project.is_active,
+                            'bg-red-100 text-red-700': !props.project.is_active
+                        }"
+                    >
+                        {{ props.project.is_active ? __('translate.active') : __('translate.inactive') }}
+                    </span>
+                </div>
                 <div class="flex items-center">
                     <Link :href="route('projects.index')" class="text-gray-500 mr-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -135,6 +147,18 @@ watch(
                                 <li class="text-md mb-1">
                                     <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">Id:</span>
                                     <span class="text-md font-semibold">{{props.project.id}}</span>
+                                </li>
+                                <li class="text-md mb-1">
+                                    <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.status')}}:</span>
+                                    <span
+                                        class="text-md font-semibold"
+                                        :class="{
+                                            'text-green-600': props.project.is_active,
+                                            'text-red-600': !props.project.is_active
+                                        }"
+                                    >
+                                        {{ props.project.is_active ? __('translate.active') : __('translate.inactive') }}
+                                    </span>
                                 </li>
                                 <li class="text-md mb-1">
                                     <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.category')}}:</span>

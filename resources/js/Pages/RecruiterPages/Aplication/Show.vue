@@ -1,12 +1,14 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import {computed, ref} from 'vue';
-import {Link, router, useForm, usePage} from '@inertiajs/vue3';
+import { computed, ref } from 'vue';
+import { Link, router, useForm, usePage } from '@inertiajs/vue3';
 import DialogModal from '@/Components/DialogModal.vue';
 import moment from "moment";
+
 const props = defineProps({
     application: Object,
     otherRecruits: Array,
+    project: Object,
 });
 
 // Stan dla modalu notatek
@@ -15,7 +17,8 @@ const showDeleteModal = ref(false);
 const currentNote = ref(null);
 const isEditing = ref(false);
 const noteToDelete = ref(null);
-const can = computed(()=>usePage().props.permissionsCan);
+
+const can = computed(() => usePage().props.permissionsCan);
 
 const form = useForm({
     content: ''
@@ -103,27 +106,34 @@ const resetStatus = (id, status) => {
         preserveState: true
     });
 };
+
 const candidateForm = useForm({});
 const createCandidate = () => {
-    // Koszt punktów za utworzenie kandydata
     candidateForm.post(route('recruit.applications.create-candidate', props.application.id), {
         preserveScroll: true,
     });
 };
-
-
-
 </script>
 
 <template>
     <AppLayout :title="__('translate.aplicationDetails')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('translate.aplicationDetails') }}
-            </h2>
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-gray-900">
+                    {{ __('translate.aplicationDetails') }}
+                </h2>
+
+                <Link
+                    :href="route('project-aplications-recruits.index')"
+                    class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+                >
+                    <span class="text-lg leading-none">←</span>
+                    {{ __('translate.backToList') }}
+                </Link>
+            </div>
         </template>
 
-        <!-- Modal do dodawania/edycji notatek -->
+        <!-- Modal: Add/Edit note -->
         <DialogModal :show="showNoteModal" @close="closeNoteModal">
             <template #title>
                 {{ isEditing ? __('translate.editNote') : __('translate.addNote') }}
@@ -134,17 +144,23 @@ const createCandidate = () => {
                     <label for="note-content" class="block text-sm font-medium text-gray-700">
                         {{ __('translate.noteContent') }}
                     </label>
+
                     <textarea
                         id="note-content"
                         v-model="form.content"
                         rows="4"
                         maxlength="500"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        class="mt-2 block w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100"
                         :placeholder="__('translate.enterNoteContent')"
-                    ></textarea>
-                    <div class="flex justify-between mt-1">
-                        <p v-if="form.errors.content" class="text-sm text-red-600">{{ form.errors.content }}</p>
-                        <p class="text-sm text-gray-500 ml-auto">{{ form.content.length }}/500</p>
+                    />
+
+                    <div class="mt-2 flex items-center justify-between">
+                        <p v-if="form.errors.content" class="text-sm text-red-600">
+                            {{ form.errors.content }}
+                        </p>
+                        <p class="ml-auto text-xs text-gray-500">
+                            {{ form.content.length }}/500
+                        </p>
                     </div>
                 </div>
             </template>
@@ -152,14 +168,15 @@ const createCandidate = () => {
             <template #footer>
                 <button
                     type="button"
-                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    class="inline-flex justify-center rounded-xl border border-gray-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm hover:bg-gray-50"
                     @click="closeNoteModal"
                 >
                     {{ __('translate.cancel') }}
                 </button>
+
                 <button
                     type="button"
-                    class="ml-2 inline-flex justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    class="ml-2 inline-flex justify-center rounded-xl bg-work-main px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white shadow-sm hover:bg-work-main/90 transition"
                     @click="saveNote"
                 >
                     {{ __('translate.save') }}
@@ -167,7 +184,7 @@ const createCandidate = () => {
             </template>
         </DialogModal>
 
-        <!-- Modal potwierdzenia usunięcia notatki -->
+        <!-- Modal: Delete note -->
         <DialogModal :show="showDeleteModal" @close="closeDeleteModal">
             <template #title>
                 {{ __('translate.deleteNote') }}
@@ -175,21 +192,24 @@ const createCandidate = () => {
 
             <template #content>
                 <div class="mt-2">
-                    <p class="text-sm text-gray-600">{{ __('translate.confirmDeleteNote') }}</p>
+                    <p class="text-sm text-gray-600">
+                        {{ __('translate.confirmDeleteNote') }}
+                    </p>
                 </div>
             </template>
 
             <template #footer>
                 <button
                     type="button"
-                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    class="inline-flex justify-center rounded-xl border border-gray-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm hover:bg-gray-50"
                     @click="closeDeleteModal"
                 >
                     {{ __('translate.cancel') }}
                 </button>
+
                 <button
                     type="button"
-                    class="ml-2 inline-flex justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    class="ml-2 inline-flex justify-center rounded-xl bg-red-600 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white shadow-sm hover:bg-red-700"
                     @click="deleteNote"
                 >
                     {{ __('translate.delete') }}
@@ -197,178 +217,348 @@ const createCandidate = () => {
             </template>
         </DialogModal>
 
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <Link :href="route('project-aplications-recruits.index')"
-                          class="inline-flex items-center px-4 py-2 bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-gray-800 uppercase tracking-widest hover:bg-gray-300 active:bg-gray-400 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-300 disabled:opacity-25 transition mb-6">
-                        &larr;{{ __('translate.backToList') }}
-                    </Link>
-
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-6" v-if="application.status === 'yes' ">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-lg font-medium text-gray-900">{{ __('translate.notes') }}</h3>
-                            <button
-                                @click="openAddNoteModal"
-                                class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
-                            >
-                                {{ __('translate.addNote') }}
-                            </button>
-                        </div>
-                        <div v-if="application.notes && application.notes.length > 0" class="space-y-4">
-                            <div v-for="note in application.notes" :key="note.id" class="bg-gray-50 p-4 rounded-lg">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-grow">
-                                        <p class="text-sm text-gray-600">{{ note.content }}</p>
-                                        <p class="text-xs text-gray-400 mt-1">
-                                            {{ moment(note.created_at).format('DD.MM.YYYY HH:mm') }}</p>
+        <div class="py-10">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <!-- MAIN CARD -->
+                <div class="rounded-2xl border border-gray-200 bg-white shadow-sm">
+                    <div class="p-6">
+                        <!-- Header row -->
+                        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                            <!-- Left: Avatar + info -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-[#EBF4FF] flex items-center justify-center text-lg overflow-hidden text-[#7F9CF5]">
+                                        <img v-if="application.worker?.profile_photo_url" :src="application.worker?.profile_photo_url" :alt="application.name" class="w-full h-full object-cover"/>
+                                        <span v-else>{{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}</span>
                                     </div>
-                                    <div class="flex space-x-2">
-                                        <button
-                                            @click="openEditNoteModal(note)"
-                                            class="text-indigo-600 hover:text-indigo-800"
-                                        >
-                                            {{ __('translate.edit') }}
-                                        </button>
-                                        <button
-                                            @click="openDeleteModal(note)"
-                                            class="text-red-600 hover:text-red-800"
-                                        >
-                                            {{ __('translate.delete') }}
-                                        </button>
+
+                                <div class="min-w-0">
+                                    <div class="text-xs font-semibold text-sky-600">
+                                        ID {{ application.id }}
                                     </div>
+
+                                    <div class="mt-1 text-xs text-gray-400">
+                                        {{ moment(application.created_at).format('DD.MM.YYYY') }}
+                                    </div>
+                                    <div class="truncate text-lg font-bold text-gray-900">
+                                        {{ application.name }} {{ application.surname }}
+                                    </div>
+
+                                    <div class="text-sm text-gray-500">
+                                        {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Right: status buttons (kolory inline style) -->
+                            <div class="flex flex-col items-start gap-2 md:items-end">
+                                <div class="text-xs text-gray-400">
+                                    {{ __('translate.applicationStatus') }}
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <button
+                                        @click="can['application status'] && updateStatus(application.id, 'yes')"
+                                        :disabled="!can['application status']"
+                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border"
+                                        :class="[
+                                            !can['application status'] ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90',
+                                            application.status === 'yes' ? 'text-white border-transparent' : 'bg-white border-gray-200'
+                                        ]"
+                                        :style="application.status === 'yes'
+                                            ? { backgroundColor: '#0d2a52' }
+                                            : { color: '#0d2a52' }"
+                                    >
+                                        {{ __('translate.statusYes') }}
+                                    </button>
+
+                                    <button
+                                        @click="can['application status'] && updateStatus(application.id, 'no')"
+                                        :disabled="!can['application status']"
+                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border"
+                                        :class="[
+                                            !can['application status'] ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90',
+                                            application.status === 'no' ? 'text-white border-transparent' : 'bg-white border-gray-200'
+                                        ]"
+                                        :style="application.status === 'no'
+                                            ? { backgroundColor: '#e31e24' }
+                                            : { color: '#e31e24' }"
+                                    >
+                                        {{ __('translate.statusNo') }}
+                                    </button>
+
+                                    <button
+                                        @click="can['application status'] && updateStatus(application.id, 'maybe')"
+                                        :disabled="!can['application status']"
+                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border"
+                                        :class="[
+                                            !can['application status'] ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90',
+                                            application.status === 'maybe' ? 'text-white border-transparent' : 'bg-white border-gray-200'
+                                        ]"
+                                        :style="application.status === 'maybe'
+                                            ? { backgroundColor: '#00a0e3' }
+                                            : { color: '#00a0e3' }"
+                                    >
+                                        {{ __('translate.statusMaybe') }}
+                                    </button>
+                                </div>
+                                <div class="text-xs float-right text-work-main flex flex-col items-end" v-if="application && application.status_changed_at">
+                                    <span>{{__('translate.actualStatus')}}</span>
+                                    <span>
+                                        {{moment(application.status_changed_at).format('DD.MM.YYYY HH:mm') }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <div v-else class="text-center text-gray-500 py-4">
-                            {{ __('translate.noNotes') }}
-                        </div>
-                    </div>
 
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.mainData') }}</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.mainData') }}
-                                    {{ __('translate.nameUser') }} {{ __('translate.and') }} {{
-                                        __('translate.surname')
-                                    }}</p>
-                                <p class="text-base">{{ application.name }} {{ application.surname }}</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.email') }}</p>
-                                <p class="text-base">{{ application.email }}</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.phone') }}</p>
-                                <p class="text-base">{{ application.phone }}</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.project') }}</p>
-                                <p class="text-base">{{ application.project?.name || __('translate.noProject') }}</p>
-                            </div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.aplicationsType') }}</p>
-                                <p class="text-base">{{application.aplication_user_id ? __('translate.aplicationsWorker') : __('translate.makeAplicationNotRegister') }}</p>
-                            </div>
-                            <div v-if="application.opened_by">
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.whoOpened') }}</p>
-                                <p class="text-base">{{ application.opened_by.name }} ({{ moment(application.opened_at).format('DD.MM.YYYY HH:mm') }})</p>
-                            </div>
-                            <div v-else>
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.whoOpened') }}</p>
-                                <p class="text-base">{{ __('translate.notViewed') }}</p>
-                            </div>
-                            <div v-if="application.status_changed_by_user_id">
-                                <p class="text-sm font-medium text-gray-500">{{ __('translate.whoChangedStatus') }}</p>
-                                <p class="text-base">{{ application.status_changed_by?.name }} ({{ moment(application.status_changed_at).format('DD.MM.YYYY HH:mm') }})</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.applicationStatus') }}</h3>
-                        <div class="flex gap-2 mb-4"><button @click="can['application status'] && updateStatus(application.id, 'yes')"
-                                                             :class="[application.status === 'yes' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700',
-                !can['application status'] ? 'opacity-50 cursor-not-allowed' : '',
-                'px-4 py-2 rounded text-sm font-medium']">
-                            {{ __('translate.statusYes') }}
-                        </button>
-                            <button @click="can['application status'] && updateStatus(application.id, 'no')"
-                                    :class="[application.status === 'no' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700',
-                !can['application status'] ? 'opacity-50 cursor-not-allowed' : '',
-                'px-4 py-2 rounded text-sm font-medium']">
-                                {{ __('translate.statusNo') }}
-                            </button>
-                            <button @click="can['application status'] && updateStatus(application.id, 'maybe')"
-                                    :class="[application.status === 'maybe' ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700',
-                !can['application status'] ? 'opacity-50 cursor-not-allowed' : '',
-                'px-4 py-2 rounded text-sm font-medium']">
-                                {{ __('translate.statusMaybe') }}
-                            </button>
-                        </div>
-                    </div>
-                    <div v-if="application.pathCv" class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.cv') }}</h3>
-                        <a :href="application.pathCv" target="_blank"
-                           class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition">
-                            {{ __('translate.getCv') }}
-                        </a>
-                    </div>
+                        <!-- NOTE + ACTIONS -->
+                        <div class="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+                            <!-- Notes -->
+                            <div class="lg:col-span-2">
+                                <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                                        <div class="mb-2 flex items-center justify-between">
+                                            <div class="text-sm font-semibold text-gray-800">
+                                                {{ __('translate.notes') }}
+                                            </div>
 
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.createCandidate') }}</h3>
-                        <div class="text-sm text-gray-600 mb-4">
-                            <p v-if="application.candidate" class="text-green-600 font-medium">
-                                {{ __('translate.candidateExists') }}
-                                <Link :href="route('candidates.show', application.candidate.id)" class="text-indigo-600 hover:text-indigo-800 ml-2">
-                                    {{ __('translate.viewCandidateDetails') }} &rarr;
+                                            <button
+                                                v-if="application.status === 'yes'"
+                                                @click="openAddNoteModal"
+                                                class="rounded-xl bg-work-main px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white shadow-sm hover:bg-work-main/90"
+                                            >
+                                                {{ __('translate.addNote') }}
+                                            </button>
+                                        </div>
+
+                                        <div v-if="application.status !== 'yes'" class="text-sm text-gray-500">
+                                            {{ __('translate.noNotes') }}
+                                        </div>
+
+                                        <div v-else>
+                                            <div v-if="application.notes && application.notes.length > 0" class="space-y-3">
+                                                <div
+                                                    v-for="note in application.notes"
+                                                    :key="note.id"
+                                                    class="rounded-xl border border-gray-200 bg-white p-4"
+                                                >
+                                                    <div class="flex items-start justify-between gap-3">
+                                                        <div class="min-w-0">
+                                                            <p class="text-sm text-gray-700">
+                                                                {{ note.content }}
+                                                            </p>
+                                                            <p class="mt-1 text-xs text-gray-400">
+                                                                {{ moment(note.created_at).format('DD.MM.YYYY HH:mm') }}
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="flex shrink-0 items-center gap-2">
+                                                            <button
+                                                                @click="openEditNoteModal(note)"
+                                                                class="rounded-lg px-3 py-1 text-xs font-semibold text-work-main hover:bg-work-main/10"
+                                                            >
+                                                                {{ __('translate.edit') }}
+                                                            </button>
+                                                            <button
+                                                                @click="openDeleteModal(note)"
+                                                                class="rounded-lg px-3 py-1 text-xs font-semibold text-red-600 hover:bg-red-50"
+                                                            >
+                                                                {{ __('translate.delete') }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div v-else class="rounded-xl border border-dashed border-gray-300 bg-white p-6 text-center text-sm text-gray-500">
+                                                {{ __('translate.noNotes') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- DANE PODSTAWOWE + LICZNIKI -->
+                                <div class="mt-6 rounded-2xl border border-gray-200 bg-white p-6">
+                                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                        <div class="rounded-2xl bg-gray-50 p-4">
+                                            <div class="text-xs font-medium text-gray-500">
+                                                {{ __('translate.nameUser') }} {{ __('translate.and') }} {{ __('translate.surname') }}
+                                            </div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900">
+                                                {{ application.name }} {{ application.surname }}
+                                            </div>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-gray-50 p-4">
+                                            <div class="text-xs font-medium text-gray-500">{{ __('translate.email') }}</div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900 break-all">
+                                                {{ application.email }}
+                                            </div>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-gray-50 p-4">
+                                            <div class="text-xs font-medium text-gray-500">{{ __('translate.phone') }}</div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900">
+                                                {{ application.phone }}
+                                            </div>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-gray-50 p-4">
+                                            <div class="text-xs font-medium text-gray-500">{{ __('translate.project') }}</div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900">
+                                                {{ application.project?.name || __('translate.noProject') }}
+                                            </div>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-gray-50 p-4">
+                                            <div class="text-xs font-medium text-gray-500">{{ __('translate.aplicationsType') }}</div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900">
+                                                {{ application.aplication_user_id ? __('translate.aplicationsWorker') : __('translate.makeAplicationNotRegister') }}
+                                            </div>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-gray-50 p-4">
+                                            <div class="text-xs font-medium text-gray-500">{{ __('translate.whoOpened') }}</div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900">
+                                                <template v-if="application.opened_by">
+                                                    {{ application.opened_by.name }}
+                                                    <span class="text-gray-400 font-normal">
+                                                ({{ moment(application.opened_at).format('DD.MM.YYYY HH:mm') }})
+                                            </span>
+                                                </template>
+                                                <template v-else>
+                                                    <span class="text-gray-400 font-normal">{{ __('translate.notViewed') }}</span>
+                                                </template>
+                                            </div>
+                                        </div>
+
+                                        <div v-if="application.status_changed_by_user_id" class="rounded-2xl bg-gray-50 p-4 md:col-span-2">
+                                            <div class="text-xs font-medium text-gray-500">{{ __('translate.whoChangedStatus') }}</div>
+                                            <div class="mt-1 text-sm font-semibold text-gray-900">
+                                                {{ application.status_changed_by?.name }}
+                                                <span class="text-gray-400 font-normal">
+                                            ({{ moment(application.status_changed_at).format('DD.MM.YYYY HH:mm') }})
+                                        </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- MEDIA -->
+                                <div
+                                    v-if="application.media && application.media.length > 0"
+                                    class="mt-6 rounded-2xl border border-gray-200 bg-white p-4"
+                                >
+                                    <h3 class="mb-4 text-sm font-semibold text-gray-800">
+                                        {{ __('translate.addedFiles') }}
+                                    </h3>
+
+                                    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+                                        <div
+                                            v-for="media in application.media"
+                                            :key="media.id"
+                                            class="rounded-xl border border-gray-200 bg-gray-50 p-4"
+                                        >
+                                            <p class="truncate text-sm font-semibold text-gray-800">
+                                                {{ media.file_name }}
+                                            </p>
+                                            <a
+                                                :href="media.original_url"
+                                                target="_blank"
+                                                class="mt-2 inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-800"
+                                            >
+                                                {{ __('translate.getFiles') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Actions -->
+                            <div class="rounded-2xl border border-gray-200 bg-white p-4 self-start">
+                                <!-- CV ikona -->
+                                <div class="flex mb-2">
+                                    <div>
+                                        <div v-if="application.cv_audio" class="flex items-center justify-center" :title="__('translate.cv_audio')">
+                                            <img class="rounded text-gray-600 w-16 h-16" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
+                                            <span>{{__('translate.cv_audio')}}</span>
+                                        </div>
+                                        <div v-else-if="application.cv_video" class="flex items-center justify-center" :title="__('translate.cv_video')">
+                                            <img class="rounded text-gray-600 w-16 h-16 " src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
+                                            <span>{{__('translate.cv_video')}}</span>
+
+                                        </div>
+                                        <div v-else class="flex items-center justify-center" :title="__('translate.cv_classic')">
+                                            <img class="rounded text-gray-600 w-16 h-16 " src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
+                                            <span>{{__('translate.classicCV')}}</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm font-semibold text-gray-800">
+                                    Akcje
+                                </div>
+                                <div class="mt-3 grid grid-cols-2 gap-3">
+                                    <a
+                                        v-if="application.pathCv"
+                                        :href="application.pathCv"
+                                        target="_blank"
+                                        class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+                                    >
+                                        {{ __('translate.getCv') }}
+                                    </a>
+
+                                    <div
+                                        v-else
+                                        class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm font-semibold text-gray-400"
+                                    >
+                                        {{ __('translate.cv') }}
+                                    </div>
+                                    <button
+                                        v-if="!application.candidate"
+                                        @click="createCandidate"
+                                        class="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 disabled:opacity-50"
+                                        :disabled="candidateForm.processing"
+                                    >
+                                        {{ __('translate.createCandidate') }}
+                                    </button>
+                                    <Link
+                                        v-else
+                                        :href="route('candidates.show', application.candidate.id)"
+                                        class="inline-flex items-center justify-center rounded-xl bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-100"
+                                    >
+                                        {{ __('translate.viewCandidateDetails') }} →
+                                    </Link>
+                                </div>
+                                <Link :href="route('front.projects.single',application)"
+                                    type="button"
+                                    class="bg-white inline-flex items-center justify-center rounded-xl px-1 py-1 my-3 w-full text-sm font-extrabold uppercase text-work-main shadow-sm hover:opacity-90 gap-2 border border-work-main transition hover:bg-work-main hover:text-white"
+                                >
+                                    <img class="w-12 h-12" src="/images/icons/recruit/zobacz_oferte.svg" alt="zobacz_oferte">
+                                    Przejdź do oferty
                                 </Link>
-                            </p>
-                            <p v-else>{{ __('translate.candidateCreateInfo') }}</p>
-                        </div>
-                        <button
-                            v-if="!application.candidate"
-                            @click="createCandidate"
-                            class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
-                            :disabled="candidateForm.processing"
-                        >
-                            {{ __('translate.createCandidate') }}
-                        </button>
-                    </div>
+                                <div class="grid grid-cols-1 gap-3" v-if="application.cv_audio || application.cv_video">
+                                    <!-- CV AUDIO -->
+                                    <div v-if="application.cv_audio" class="rounded-2xl">
+                                        <h3 class="mb-3 text-sm font-semibold text-gray-800">
+                                            {{ __('translate.cvAudio') }}
+                                        </h3>
+                                        <audio
+                                            v-if="application.cv_audio?.file_path"
+                                            :src="'/storage/' + application.cv_audio?.file_path"
+                                            controls
+                                            class="w-full"
+                                        />
+                                    </div>
 
-
-                    <div v-if="application.cv_audio" class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.cvAudio') }}</h3>
-                        <audio
-                            v-if="application.cv_audio?.file_path"
-                            :src="'/storage/'+application.cv_audio?.file_path"
-                            controls
-                            class="w-full rounded-xl"
-                        ></audio>
-                    </div>
-                    <div v-if="application.cv_video" class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.cvVideo') }}</h3>
-                        <video
-                            v-if="application.cv_video?.file_path"
-                            :src="'/storage/'+application.cv_video?.file_path"
-                            controls
-                            class="w-full rounded-xl"
-                        ></video>
-                    </div>
-
-
-
-                    <div v-if="application.media && application.media.length > 0"
-                         class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.addedFiles') }}</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <div v-for="media in application.media" :key="media.id" class="border rounded p-3">
-                                <p class="text-sm font-medium truncate mb-2">{{ media.file_name }}</p>
-                                <a :href="media.original_url" target="_blank"
-                                   class="text-indigo-600 hover:text-indigo-800 text-sm">
-                                    {{ __('translate.getFiles') }}
-                                </a>
+                                    <!-- CV VIDEO -->
+                                    <div v-if="application.cv_video" class="rounded-2xl">
+                                        <h3 class="mb-3 text-sm font-semibold text-gray-800">
+                                            {{ __('translate.cvVideo') }}
+                                        </h3>
+                                        <video
+                                            v-if="application.cv_video?.file_path"
+                                            :src="'/storage/' + application.cv_video?.file_path"
+                                            controls
+                                            class="w-full rounded-xl"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

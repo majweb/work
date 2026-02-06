@@ -38,7 +38,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden my-6 mx-auto text-center">
         <!-- Header -->
         <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
             {{ __('translate.removeAccount') }}
@@ -46,7 +46,7 @@ const closeModal = () => {
 
         <!-- Content -->
         <div class="px-6 py-6 space-y-6">
-            <div class="max-w-xl text-sm text-gray-600">
+            <div class="max-w-xl mx-auto text-sm text-gray-600">
                 {{ __('translate.removeAccountPermanentlyText') }}
             </div>
 

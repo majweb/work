@@ -11,6 +11,7 @@ use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,7 +59,10 @@ class CandidatesController extends Controller
 
         // Pobieramy kandydatów, którzy aplikowali na projekty zalogowanej firmy
         $query = Candidate::whereHas('applications', function($q) {
-            $q->where('user_id', Auth::id());
+            $q->where(function ($qq) {
+                $qq->where('user_id', Auth::id())
+                    ->orWhere('recruiter_id', Auth::id());
+            });
         });
 
         // Filtry
@@ -124,10 +128,12 @@ class CandidatesController extends Controller
 
 
         // Pobieramy kandydatów z ich projektami
-        $candidates = $query->with('projects','created_by:id,color')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-
+        $candidates = $query->with('projects','created_by:id,color','tags','userByEmail')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
         // Pobieranie unikalnych projektów dla filtra
-        $projectIds = Aplication::where('user_id', Auth::id())
+        $projectIds = Aplication::where(function ($q) {
+            $q->where('user_id', Auth::id())
+                ->orWhere('recruiter_id', Auth::id());
+        })
             ->distinct()
             ->pluck('project_id');
 
@@ -155,17 +161,39 @@ class CandidatesController extends Controller
      */
     public function show(Candidate $candidate)
     {
+
         // Sprawdzenie czy kandydat ma aplikację w firmie zalogowanego użytkownika
-        if (!$candidate->applications()->where('user_id', Auth::id())->exists()) {
+        if (
+            !$candidate->applications()
+                ->where(function ($q) {
+                    $q->where('user_id', Auth::id())
+                        ->orWhere('recruiter_id', Auth::id());
+                })
+                ->exists()
+        ) {
             abort(403);
         }
         $candidate->load('media','created_by');
         // Pobieranie wszystkich projektów, na które aplikował kandydat
-        $candidateProjects = $candidate->projects;
+        $candidateProjects = $candidate->projects->map(function($project) {
+                return [
+                    'application_id'   => $project->application_id,
+                    'project_id'   => $project->project_id,
+                    'project_name' => $project->project_name,
+                    'created_at'   => $project->created_at,
+                    'status'       => $project->status,
+                ];
+            });
+
+
+
 
         // Pobieranie ostatniej aplikacji kandydata w celu pobrania dodatkowych danych
         $lastApplication = $candidate->applications()
-            ->where('user_id', Auth::id())
+            ->where(function ($q) {
+                $q->where('user_id', Auth::id())
+                    ->orWhere('recruiter_id', Auth::id());
+            })
             ->with(['project', 'cvClassic', 'notes'])
             ->latest()
             ->first();
@@ -200,12 +228,16 @@ class CandidatesController extends Controller
             unset($question->answers);
         });
 
+//        dd(User::where('email',$candidate->email)->first(),$candidate->email);
+
+
         // Przygotowanie danych dla widoku
         $candidateData = [
             'id' => $candidate->id,
             'name' => $candidate->name,
             'surname' => $candidate->surname,
             'email' => $candidate->email,
+            'worker_image'=> User::where('email',$candidate->email)->first()->profile_photo_url ?? null,
             'phone' => $candidate->phone,
             'questions_unlocked_at' => $candidate->questions_unlocked_at,
             'created_at' => $candidate->created_at,
@@ -222,14 +254,14 @@ class CandidatesController extends Controller
             'created_by' => $candidate->created_by ? [
                 'id' => $candidate->created_by->id,
                 'color' => $candidate->created_by->color,
-                'name' => $candidate->created_by->name
+                'name' => $candidate->created_by->name.''.$candidate->created_by->surname,
+                'avatar' => $candidate->created_by->profile_photo_url,
             ] : null,
         ];
 
         return Inertia::render('Candidates/Show', [
             'candidate' => $candidateData,
             'candidateProjects' => $this->formatCandidateProjects($candidate),
-            'candidateFullProjects' => $candidateProjects,
             'categories' => $categories,
             'customTags' => $customTags,
             'selectedCandidateTags' => $candidateTags,
@@ -245,7 +277,10 @@ class CandidatesController extends Controller
         $formattedProjects = collect();
 
         $applications = $candidate->applications()
-            ->where('user_id', Auth::id())
+            ->where(function ($q) {
+                $q->where('user_id', Auth::id())
+                    ->orWhere('recruiter_id', Auth::id());
+            })
             ->with('project')
             ->get();
 
@@ -261,7 +296,11 @@ class CandidatesController extends Controller
                 'project_id' => $application->project->id,
                 'project_name' => $projectPosition,
                 'created_at' => $application->created_at,
-                'status' => $application->status
+                'status' => $application->status,
+                'country'       => $application->project?->countryWork['allTranslations'][app()->getLocale()],
+                'city'       => $application->project?->cityWork,
+                'price'       => $application->project?->basicSalaryFrom,
+                'currency'       => $application->project?->currency['name'],
             ]);
         }
 
@@ -274,10 +313,16 @@ class CandidatesController extends Controller
     public function getTags(Candidate $candidate)
     {
         // Sprawdzenie czy kandydat należy do zalogowanej firmy
-        if (!$candidate->applications()->where('user_id', Auth::id())->exists()) {
+        if (
+            !$candidate->applications()
+                ->where(function ($q) {
+                    $q->where('user_id', Auth::id())
+                        ->orWhere('recruiter_id', Auth::id());
+                })
+                ->exists()
+        ) {
             abort(403);
         }
-
         // Pobieranie tagów kandydata
         $tags = DB::table('candidate_tag')
             ->where('candidate_id', $candidate->id)
@@ -331,7 +376,14 @@ class CandidatesController extends Controller
     public function saveTags(Request $request, Candidate $candidate)
     {
         // Sprawdzenie czy kandydat należy do zalogowanej firmy
-        if (!$candidate->applications()->where('user_id', Auth::id())->exists()) {
+        if (
+            !$candidate->applications()
+                ->where(function ($q) {
+                    $q->where('user_id', Auth::id())
+                        ->orWhere('recruiter_id', Auth::id());
+                })
+                ->exists()
+        ) {
             abort(403);
         }
 
@@ -441,6 +493,7 @@ class CandidatesController extends Controller
             'currency'=>strtolower(__('translate.currency')),
             'date_of_hire'=>strtolower(__('translate.date_of_hire')),
             'country'=>strtolower(__('translate.country')),
+            'external_company'=>strtolower(__('translate.external_company')),
         ]);
 
 

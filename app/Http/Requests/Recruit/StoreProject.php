@@ -105,6 +105,7 @@ class StoreProject extends FormRequest
             'questions.*.content' => 'required_with:questions|string',
             'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
             'external_company_id' => 'nullable|exists:App\Models\ExternalCompany,id',
+            'is_active' => 'nullable|boolean',
 
         ];
     }
@@ -173,6 +174,7 @@ class StoreProject extends FormRequest
             'detailProjects' => strtolower(__('translate.detailProjects')),
             'questions' => strtolower(__('translate.questions')),
             'external_company_id' => strtolower(__('translate.externalCompany')),
+            'is_active' => strtolower(__('translate.projectIsActive')),
         ];
     }
 }

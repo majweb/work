@@ -5,11 +5,11 @@ import __ from '@/lang.js';
 import { ref, onMounted, computed, watch } from 'vue';
 import axios from 'axios';
 import moment from "moment/moment.js";
+import TextInput from "@/Components/TextInput.vue";
 // Importy FilePond
 const props = defineProps({
     candidate: Object,
     candidateProjects: Array,
-    candidateFullProjects: Array,
     categories: Array,
     customTags: Array,
     selectedCandidateTags: Array,
@@ -26,6 +26,8 @@ const categoriesPerPage = 60; // Liczba kategorii na stronę
 const tagColors = {};
 const categorySearchQuery = ref('');
 const customTagSearchQuery = ref('');
+const isSavingTags = ref(false);
+const isSavingCv = ref(false);
 
 // Upewniamy się, że selectedTags jest zawsze tablicą
 if (!Array.isArray(selectedTags.value)) {
@@ -218,15 +220,24 @@ const filteredCustomTags = computed(() => {
 
 
 const saveTags = () => {
-    // Przygotowanie tagów do zapisu - musimy mieć tylko id i type
-    const tagsToSave = Array.isArray(selectedTags.value) ? selectedTags.value.map(tag => ({
-        id: tag.id,
-        type: tag.type
-    })) : [];
+    if (isSavingTags.value) return;
+
+    isSavingTags.value = true;
+
+    const tagsToSave = Array.isArray(selectedTags.value)
+        ? selectedTags.value.map(tag => ({
+            id: tag.id,
+            type: tag.type
+        }))
+        : [];
 
     form.tags = tagsToSave;
+
     form.post(route('candidates.saveTags', props.candidate.id), {
-        preserveScroll: true
+        preserveScroll: true,
+        onFinish: () => {
+            isSavingTags.value = false;
+        }
     });
 };
 
@@ -350,11 +361,17 @@ const filepondOptions = {
 
 // Obsługa przesyłania CV
 const handleCvUpload = () => {
+    if (isSavingCv.value) return;
+
+    isSavingCv.value = true;
+
     cvForm.post(route('candidate-cv.save', props.candidate.id), {
         preserveScroll: true,
+        onFinish: () => {
+            isSavingCv.value = false;
+        }
     });
 };
-
 // Odblokowuje pytania dla tej aplikacji pobierając punkty
 const unlockQuestions = () => {
     questionsForm.post(route('candidate.unlock-questions', props.candidate.id), {
@@ -393,133 +410,168 @@ initAnswersForm();
 <template>
     <AppLayout :title="__('translate.candidateDetails')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('translate.candidateDetails') }}
-            </h2>
+            <div class="flex justify-between">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('translate.candidateDetails') }}
+                </h2>
+                <Link
+                    :href="route('candidates.index')"
+                    class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+                >
+                    <span class="text-lg leading-none">←</span>
+                    {{ __('translate.backToList') }}
+                </Link>
+            </div>
+
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl sm:rounded-lg p-6">
-                    <div class="mb-4">
-                        <Link :href="route('candidates.index')" class="text-indigo-600 hover:text-indigo-900">
-                            &larr; {{ __('translate.backToCandidates') }}
-                        </Link>
-                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- LEFT: Candidate info -->
+                        <div class="rounded-2xl shadow-sm p-5 bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start justify-between">
+                                <h3 class="text-sm font-semibold text-slate-700">
+                                    {{ __('translate.candidateInfo') }}
+                                </h3>
+                            </div>
+                            <!-- Avatar + name -->
+                            <div class="mt-5 flex flex-col items-center text-center">
+                                <div class="h-28 w-28 rounded-full bg-orange-500/10 ring-4 ring-orange-100 flex items-center justify-center overflow-hidden">
+                                    <img
+                                        v-if="candidate?.worker_image"
+                                        :src="candidate?.worker_image"
+                                        alt="avatar"
+                                        class="h-full w-full object-cover"
+                                    />
+                                    <div v-else class="text-orange-600 font-bold text-3xl">
+                                        {{ (candidate?.name?.[0] ?? 'A') + (candidate?.surname?.[0] ?? 'N') }}
+                                    </div>
+                                </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Informacje o kandydacie -->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateInfo') }}</h3>
+                                <div class="mt-4">
+                                    <div class="text-2xl font-extrabold text-slate-800 leading-tight">
+                                        {{ candidate.name }} {{ candidate.surname }}
+                                    </div>
+                                </div>
 
-                            <div class="space-y-3">
-                                <div>
-                                    <span class="font-medium">{{ __('translate.name') }}:</span> {{ candidate.name }}
+                                <div class="mt-4 space-y-1 text-sm text-slate-600">
+                                    <div class="font-semibold text-slate-700">
+                                        {{ candidate.phone ?? '—' }}
+                                    </div>
+                                    <div class="text-slate-500">
+                                        {{ candidate.email ?? '—' }}
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="font-medium">{{ __('translate.surname') }}:</span> {{ candidate.surname }}
+                                <!-- CV buttons -->
+                                <div class="mt-5 w-full">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <a
+                                            v-if="candidate?.cv_file?.url"
+                                            :href="candidate.cv_file.url"
+                                            target="_blank"
+                                            class="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
+                                        >
+                                            <span class="text-slate-500">📄</span>
+                                            {{ __('translate.classicCV') ?? 'klasyczne CV' }}
+                                        </a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="font-medium">{{ __('translate.email') }}:</span> {{ candidate.email }}
-                                </div>
-                                <div>
-                                    <span class="font-medium">{{ __('translate.phone') }}:</span> {{ candidate.phone }}
-                                </div>
-                                <div>
-                                    <span class="font-medium">{{ __('translate.status') }}:</span>
-                                    <span :class="{
-                                        'text-green-600': candidate.status === 'yes',
-                                        'text-red-600': candidate.status === 'no',
-                                        'text-yellow-600': candidate.status === 'maybe'
-                                    }">
-                                        {{ candidate.status ? __(`translate.status${candidate.status.charAt(0).toUpperCase() + candidate.status.slice(1)}`) : __('translate.statusPending') }}
-                                    </span>
-                                </div>
-                                <div>
-                                    <span class="font-medium">{{ __('translate.createdAt') }}:</span> {{ new Date(candidate.created_at).toLocaleDateString() }}
-                                </div>
-                                <div class="flex items-center gap-2" v-if="candidate.created_by">
-                                    <span class="font-medium">{{ __('translate.createdBy') }}:</span> {{ candidate.created_by?.name }}
 
-                                    <div
-                                        class="rounded-full"
-                                        :style="{
-                                        width: '20px',
-                                        height: '20px',
-                                        backgroundColor: candidate.created_by?.color
-                                        }"
-                                    ></div>
-
+                                <!-- Recruiter -->
+                                <div v-if="candidate.created_by" class="mt-6 flex items-center gap-3 rounded-xl bg-slate-50 px-4 py-3">
+                                    <img
+                                        v-if="candidate?.created_by?.avatar"
+                                        :src="candidate?.created_by?.avatar"
+                                        alt="avatar"
+                                        class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold border border-2 border-work-main"
+                                    />
+                                    <div v-else class="text-orange-600 font-bold text-3xl">
+                                        {{ (candidate?.created_by?.name?.[0] ?? 'A') + (candidate?.created_by?.surname?.[0] ?? 'N') }}
+                                    </div>
+                                    <div class="text-left">
+                                        <div class="text-xs text-slate-500">{{ __('translate.createdBy') }}</div>
+                                        <div class="text-sm font-semibold text-slate-700">
+                                            {{ candidate.created_by?.name }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Informacje o projekcie -->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <!-- Lista wszystkich projektów -->
-                            <h4 class="font-medium text-gray-800 mb-3">{{ __('translate.allCandidateProjects') }}</h4>
+                        <!-- RIGHT: Candidate projects -->
+                        <div class="rounded-2xl shadow-sm p-5 bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-slate-700">
+                                    {{ __('translate.allCandidateProjects') }}
+                                </h3>
+                            </div>
 
-                            <!-- Sformatowane projekty z aplikacjami kandydata -->
-                            <div v-if="candidateProjects && candidateProjects.length > 0" class="space-y-3 mb-6">
-                                <div v-for="project in candidateProjects" :key="project.project_id" class="bg-white p-3 rounded border border-gray-200">
-                                    <div class="flex justify-between items-center">
-                                        <div class="font-medium flex items-center">
-                                            <Link :href="route('projects.show', project.project_id)" class="text-blue-600 hover:text-blue-800">
+                            <div v-if="candidateProjects && candidateProjects.length" class="mt-4 space-y-3">
+                                <div
+                                    v-for="project in candidateProjects"
+                                    :key="project.project_id"
+                                    class="rounded-2xl bg-white px-4 py-3 shadow-sm hover:shadow-md transition"
+                                >
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div class="min-w-0">
+                                            <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wide">
+                                                ID: {{ project.project_id }}
+                                            </div>
+
+                                            <Link
+                                                :href="route('projects.show', project.project_id)"
+                                                class="block truncate text-sm font-bold text-slate-800 hover:text-indigo-600"
+                                            >
                                                 {{ project.project_name }}
                                             </Link>
-                                            <span class="text-gray-500 text-sm ml-2">(ID: {{ project.project_id }})</span>
+                                            <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wide">
+                                                {{ project.country }}
+                                                {{ project.city }}
+                                            </div>
+                                            <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wide">
+                                                {{ project.price }}
+                                                {{ project.currency }}
+                                            </div>
+                                            <div class="mt-1 text-xs text-slate-500">
+                                                {{ __('translate.applicationDate') }}:
+                                                <span class="font-semibold text-slate-600">
+                                {{ new Date(project.created_at).toLocaleDateString() }}
+                            </span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span class="px-2 py-1 text-xs rounded-full"
-                                                  :class="{
-                                                    'bg-green-100 text-green-800': project.status === 'yes',
-                                                    'bg-red-100 text-red-800': project.status === 'no',
-                                                    'bg-yellow-100 text-yellow-800': project.status === 'maybe',
-                                                    'bg-gray-100 text-gray-800': !project.status
-                                                  }">
-                                                {{ project.status ? __(`translate.status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`) : __('translate.statusPending') }}
-                                            </span>
+
+                                        <div class="flex items-center gap-2 shrink-0">
+                                            <!-- preview button -->
+                                            <Link
+                                                :href="route('project-recruits.show', project.project_id)"
+                                                class="rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase"
+                                            >
+                                                {{__('translate.view')}}
+                                            </Link>
+
+                                            <!-- status button -->
+                                            <span
+                                                class="rounded-lg px-3 py-2 text-[11px] font-extrabold uppercase"
+                                                :class="{
+                                'bg-blue-900 text-white': project.status === 'yes',
+                                'bg-red-600 text-white': project.status === 'no',
+                                'bg-blue-600 text-white': project.status === 'maybe',
+                                'bg-bg-[#9ca3af] text-white': !project.status
+                            }"
+                                            >
+                            {{ project.status
+                                                ? __(`translate.status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`)
+                                                : __('translate.statusPending')
+                                                }}
+                        </span>
                                         </div>
-                                    </div>
-                                    <div class="text-sm text-gray-600 mt-1">
-                                        {{ __('translate.applicationDate') }}: {{ new Date(project.created_at).toLocaleDateString() }}
-                                    </div>
-                                    <div class="text-sm text-gray-600">
-                                        <Link :href="route('candidates.show', candidate.id)" class="text-indigo-600 hover:text-indigo-800 text-sm">
-                                            {{ __('translate.viewApplication') }}
-                                        </Link>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Pełne projekty kandydata -->
-                            <h4 v-if="candidateFullProjects && candidateFullProjects.length > 0" class="font-medium text-gray-800 mb-3">{{ __('translate.projectDetails') }}</h4>
-                            <div v-if="candidateFullProjects && candidateFullProjects.length > 0" class="space-y-3">
-                                <div v-for="project in candidateFullProjects" :key="project.id" class="bg-white p-3 rounded border border-gray-200">
-                                    <div class="font-medium">
-                                        <Link :href="route('projects.show', project.id)" class="text-blue-600 hover:text-blue-800">
-                                            {{project?.title?.[locale]}}
-                                        </Link>
-                                        <span class="text-gray-500 text-sm ml-2">(ID: {{ project.id }})</span>
-                                    </div>
-                                    <div class="text-sm text-gray-600 mt-1" v-if="project.position">
-                                        <strong>{{ __('translate.position') }}:</strong> {{project.position?.allTranslations?.title?.[locale]}}
-
-                                    </div>
-                                    <div class="text-sm text-gray-600" v-if="project.workingMode">
-                                        <strong>{{ __('translate.workingMode') }}:</strong>{{ getLocalizedProjectAttribute(project, 'workingMode')[0]?.allTranslations?.title?.[locale] ?? 'Brak tłumaczenia' }}
-                                    </div>
-                                    <div class="text-sm text-gray-600" v-if="project.country && project.country.length">
-                                        <strong>{{ __('translate.country') }}:</strong>
-                                        <span v-for="(country, index) in project.country" :key="index">
-                                            {{ country.allTranslations?.[locale] }}{{ index < project.country.length - 1 ? ', ' : '' }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Komunikat o braku projektów -->
-                            <div v-if="(!candidateProjects || candidateProjects.length === 0) && (!candidateFullProjects || candidateFullProjects.length === 0)" class="text-gray-500">
+                            <div v-else class="mt-6 text-sm text-slate-500">
                                 {{ __('translate.noProjectsAvailable') }}
                             </div>
                         </div>
@@ -621,7 +673,6 @@ initAnswersForm();
                     <!-- CV Upload -->
                     <div class="mt-6 bg-gray-50 p-4 rounded-lg">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateCV') }}</h3>
-
                         <!-- Wyświetlanie aktualnych plików CV -->
                         <div v-if="candidate.cv_files && candidate.cv_files.length > 0" class="mb-4">
                             <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.currentCVFiles') }}</h4>
@@ -640,7 +691,6 @@ initAnswersForm();
                                 </div>
                             </div>
                         </div>
-
                         <!-- Dodawanie nowego pliku CV -->
                         <div>
                             <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.uploadNewCV') }}</h4>
@@ -685,10 +735,26 @@ initAnswersForm();
                             <div class="flex justify-end">
                                 <button
                                     @click="handleCvUpload"
-                                    class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
-                                    :disabled="cvForm.processing"
+                                    class="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase transition
+           disabled:opacity-50 disabled:cursor-not-allowed"
+                                    :disabled="cvForm.processing || isSavingCv"
                                 >
-                                    {{ __('translate.saveCv') }}
+                                    <svg
+                                        v-if="cvForm.processing || isSavingCv"
+                                        class="h-4 w-4 animate-spin"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                              d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z">
+                                        </path>
+                                    </svg>
+
+                                    <span>
+        {{ (cvForm.processing || isSavingCv) ? __('translate.saving') : __('translate.saveCv') }}
+    </span>
                                 </button>
                             </div>
                         </div>
@@ -717,7 +783,8 @@ initAnswersForm();
                             <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.professionCategories') }}</h4>
                             <!-- Pole wyszukiwania kategorii -->
                             <div class="mb-3">
-                                <input
+
+                                <TextInput
                                     type="text"
                                     v-model="categorySearchQuery"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
@@ -770,7 +837,7 @@ initAnswersForm();
                             <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.customTags') }}</h4>
                             <!-- Pole wyszukiwania tagów niestandardowych -->
                             <div class="mb-3">
-                                <input
+                                <TextInput
                                     type="text"
                                     v-model="customTagSearchQuery"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
@@ -816,9 +883,28 @@ initAnswersForm();
                             <div class="mt-4">
                                 <button
                                     @click="saveTags"
-                                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
-                                    {{ __('translate.saveTags') }}
+                                    class="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase transition
+           disabled:opacity-50 disabled:cursor-not-allowed"
+                                    :disabled="form.processing || isSavingTags"
+                                >
+                                    <svg
+                                        v-if="form.processing || isSavingTags"
+                                        class="h-4 w-4 animate-spin"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                              d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z">
+                                        </path>
+                                    </svg>
+
+                                    <span>
+        {{ (form.processing || isSavingTags) ? __('translate.saving') : __('translate.saveTags') }}
+    </span>
                                 </button>
+
                             </div>
                         </div>
                     </div>
@@ -827,4 +913,3 @@ initAnswersForm();
         </div>
     </AppLayout>
 </template>
-<!--`Wyswietl w tym elemencie tagi klikalne wszystkie zawody z bazy danych (categories) oraz dodatkowe z tabeli tags. Zwróc uwagę na tłumaczenia w tabeli categories żeby po przełaczeniu na jezyk pojawiały sie ztego jezyka.Tagi mają być w różnych pastylowych kolorach Te tagi beda załączane do tabeli aplications chyba ze masz inny pomysł zrób to optymalnie,-->

@@ -46,14 +46,11 @@ class NotificationsController extends Controller
      *
      * @param Request $request
      * @param string $id
-     * @return \Illuminate\Http\JsonResponse
      */
     public function markAsRead(Request $request, string $id)
     {
         $notification = Auth::user()->notifications()->findOrFail($id);
         $notification->markAsRead();
-
-        return redirect()->back();
     }
 
     /**

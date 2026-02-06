@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerUploadController;
 use App\Http\Controllers\CandidatesController;
 use App\Http\Controllers\CategoryControllerInvoke;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Firm\PremiumCertificateController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\ExternalResponseController;
@@ -16,16 +17,13 @@ use App\Models\Country;
 use App\Services\Helper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 use App\Charts\MonthlyUsersChart;
 use App\Http\Controllers\Admin\QuestionAcceptController;
-use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Firm\AboutController;
 use App\Http\Controllers\Firm\AplicationController;
 use App\Http\Controllers\Firm\ArticleController;
 use App\Http\Controllers\Firm\BuyController;
 use App\Http\Controllers\Firm\CandidateQuestionController;
-use App\Http\Controllers\ExternalCompanyController;
 use App\Http\Controllers\Firm\FirmBuyController;
 use App\Http\Controllers\Firm\FirmController;
 use App\Http\Controllers\Firm\InvoiceController;
@@ -132,29 +130,7 @@ Route::middleware([
 
 
 
-    Route::get('/dashboard', function (MonthlyUsersChart $chart) {
-        $countQuestions = ProjectQuestion::whereNull('accepted')->count();
-        $lastAplications = Aplication::with('project.user')->where('aplication_user_id',auth()->user()->id)->latest()->first();
-        $otherAplications = Aplication::with('project.user')
-            ->where('aplication_user_id', auth()->user()->id)
-            ->when($lastAplications, function ($query) use ($lastAplications) {
-                $query->where('id', '!=', $lastAplications->id);
-            })
-            ->latest()
-            ->take(4)
-            ->get();
-        $user = Auth::user();
-        $notifications = $user->notifications()->get();
-        return inertia()->render('Dashboard',[
-            'chart' => $chart->build(),
-            'lastAplications'=>$lastAplications,
-            'countQuestions'=>$countQuestions,
-            'otherAplications' => $otherAplications,
-            'notifications' => $notifications,
-
-        ]);
-    })->name('dashboard');
-
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::resource('recruits',RecruitController::class)->middleware('role:firm');
     Route::resource('orders',OrderController::class)->middleware('role:firm')->only([
         'index'
@@ -213,7 +189,7 @@ Route::middleware([
 
     // Zarządzanie firmami zewnętrznymi
     Route::resource('external-companies', App\Http\Controllers\ExternalCompanyController::class)->middleware('role:firm');
-    Route::resource('tags', App\Http\Controllers\Firm\TagController::class)->middleware('role:firm');
+    Route::resource('tags', App\Http\Controllers\Firm\TagController::class)->middleware('role:firm|recruit');
 Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
     Route::get('/premium-certificate', [PremiumCertificateController::class, 'show'])
         ->name('firm.premium-certificate.show');
@@ -230,7 +206,7 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
 
 });
     // Trasy dla kandydatów
-    Route::middleware(['role:firm'])->group(function () {
+    Route::middleware(['role:firm|recruit'])->group(function () {
             Route::get('/candidates', [CandidatesController::class, 'index'])->name('candidates.index');
             Route::get('/candidates/{candidate}', [CandidatesController::class, 'show'])->name('candidates.show');
             Route::get('/candidates/{candidate}/evidence', [CandidatesController::class, 'evidence'])->name('candidates.evidence');
@@ -246,15 +222,16 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
             Route::delete('/candidate-cv/{candidate}', [\App\Http\Controllers\CandidateCvController::class, 'deleteCv'])->name('candidate-cv.delete');
             // Wysyłka aplikacji do firm zewnetrznych
             Route::post('/send-external', [\App\Http\Controllers\CandidateCvController::class, 'sendExternal'])->name('send.external');
-
-
     });
+
 //    RECRUIT
     Route::resource('project-recruits',ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
     Route::post('/project-recruits/{project}/duplicate', [ProjectControllerRecruit::class, 'duplicate'])->name('project-recruits.duplicate');
-
+    Route::post('/project-recruits/validate-step', [ProjectControllerRecruit::class, 'validateStep'])
+        ->name('project-recruits.validate-step');
 
     Route::resource('project-aplications-recruits',AplicationControllerRecruit::class)->parameters(['project-aplications-recruits' => 'aplication']);
+    Route::put('project-aplications-recruits/{aplication}/status',[AplicationControllerRecruit::class,'updateStatus'])->name('project-aplications-recruits.update-status');
     Route::get('project-aplications-recruits/{aplication}/recruitmentView',[AplicationControllerRecruit::class,'recruitmentView'])->name('project-aplications-recruits.recruitmentView');
     Route::get('acceptedApplicationsRecruit',[AplicationControllerRecruit::class,'acceptedApplications'])->name('project-aplications-recruits.acceptedApplications');
     Route::get('maybeApplicationsRecruit',[AplicationControllerRecruit::class,'maybeApplications'])->name('project-aplications-recruits.maybeApplications');
@@ -271,13 +248,11 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
     Route::get('getChildsCategory/{parent}',[ProjectControllerRecruit::class,'getChildsCategory'])->middleware('role:recruit')->name('getChildsCategory');
     //    WORKER
     Route::put('workerForm',WorkerDetailController::class)->middleware('role:worker')->name('worker.update.form');
-
-
-
-
     Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
-
+    Route::get('/project-recruits/category-sub/{categoryId}', [ProjectControllerRecruit::class, 'getCategorySubForRecruit'])->name('project-recruits.category.sub');
+    Route::get('/project-recruits/professions/{categorySubId}', [ProjectControllerRecruit::class, 'getProfessionsForRecruit'])->name('project-recruits.category.professions');
+    Route::get('/project-recruits/positions/{professionId}', [ProjectControllerRecruit::class, 'getPositionsForRecruit'])->name('project-recruits.category.positions');
 
     //    ADMIN
     Route::middleware(['role:admin'])->name('admin.')->group(function () {
