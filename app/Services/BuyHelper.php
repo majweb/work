@@ -73,17 +73,18 @@ class BuyHelper
      * @param $order
      * @return string|void
      */
-    public function generateInvoiceAndPdf($order)
+    public function generateInvoiceAndPdf()
     {
         try {
+            $user = auth()->user();
             $lastInvoiceFromMonth= (new BuyHelper())->lastInvoiceFromMonth() ?? 0;
             $maskNumber = sprintf("%03d", $lastInvoiceFromMonth + 1);
             $date = Carbon::now();
             $pdf = Pdf::loadView('templates.pdf.invoice',compact('order','maskNumber','date'));
-            $filenameInvoice = 'firm/' . $order->user_id.'/pdf/invoices/'.$maskNumber.'-'.$date->format('m').'-' .(string) $date->format('Y') .'.pdf';
+            $filenameInvoice = 'firm/' . $user->id.'/pdf/invoices/'.$maskNumber.'-'.$date->format('m').'-' .(string) $date->format('Y') .'_Work.pdf';
             Storage::disk('invoices')->put($filenameInvoice, $pdf->output());
 
-            $order->invoice()->create([
+            $user->invoice()->create([
                 'number' => (string) $maskNumber,
                 'day' => $date->format('d'),
                 'month' => $date->format('m'),

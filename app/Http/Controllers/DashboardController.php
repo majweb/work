@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Charts\MonthlyUsersChart;
 use App\Models\Aplication;
+use App\Models\Invoice;
 use App\Models\Project;
 use App\Models\ProjectQuestion;
 use App\Models\User;
@@ -31,6 +32,13 @@ class DashboardController extends Controller
         // Dane dla rekrutera (recruit)
         $recruitData = [];
         $firmData = [];
+        $packages = collect();
+        $additionalServices = collect();
+        $recruits = collect();
+        $projectsCount = 0;
+        $aplicationCount = 0;
+        $viewCount = 0;
+
         if ($user->hasRole('recruit')) {
             // Pobierz projekty rekrutera
             $projects = \App\Models\Project::where('recruiter_id', $user->id)
@@ -148,10 +156,13 @@ class DashboardController extends Controller
             $recruits = User::where('recruiter_from_firm_id',auth()->id())->orWhere('id', auth()->id())->get();
             $activeRecruits = $recruits->whereNull('user_blocked')->count();
             $noRecruits = $recruits->whereNotNull('user_blocked', false)->count();
-            $projectsCount = Project::where('user_id', $user->id)
-                ->orWhereJsonContains('other_recruits', $user->id)->count();
-            $aplicationCount  =Aplication::query()
+            $projects = Project::where('user_id', $user->id)
+                ->orWhereJsonContains('other_recruits', $user->id)->get();
+            $aplicationCount=Aplication::query()
                 ->forCurrentRecruiter()->count();
+
+            $projectsCount = $projects->count();
+            $viewCount = $projects->sum('views_count');
 
             $baseQuery = Aplication::where(function ($q) use ($user) {
                 $q->whereHas('project', function ($query) use ($user) {
@@ -165,11 +176,39 @@ class DashboardController extends Controller
             $totalMaybe = (clone $baseQuery)->where('status', 'maybe')->count();
             $totalNew = (clone $baseQuery)->whereNull('status')->count();
 
-            $products = \App\Models\Product::where('product_type', 'Points')
-                ->where('active', true)
+            $allProducts = \App\Models\Product::where('active', true)
                 ->orderBy('points', 'asc')
+                ->with('chageProduct')
                 ->get();
 
+            $packages = $allProducts->filter(function ($product) {
+                return $product->product_type->value === 'Points';
+            })->map(function ($product) {
+                return [
+                    'id' => $product->id,
+                    'points' => $product->points,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'product_type' => $product->product_type->value,
+                ];
+            })->values();
+
+            $additionalServices = $allProducts->filter(function ($product) {
+                return $product->product_type->value !== 'Points';
+            })->map(function ($product) {
+                return [
+                    'id' => $product->id,
+                    'price' => $product->price,
+                    'name' => $product->name,
+                    'product_type' => $product->product_type->value,
+                    'service_type' => $product->getTranslation('type', 'en'),
+                    'description' => $product->description ?? null,
+                    'icon' => asset('images/price/' . $product->id.'-points.svg'),
+                ];
+            })->sortBy('price')->values();
+            $lastInvoices = Invoice::whereHas('order.user', function($r) {
+                $r->where('user_id', auth()->user()->id);
+            })->latest()->take(3)->get();
             $firmData = [
                 'aplications' => [
                     'yes' => $totalYes,
@@ -181,6 +220,7 @@ class DashboardController extends Controller
                     'active' => $activeRecruits,
                     'no' => $noRecruits,
                 ],
+                'lastInvoices' => $lastInvoices,
             ];
         }
 
@@ -193,10 +233,12 @@ class DashboardController extends Controller
             'countQuestions'=>$countQuestions,
             'otherAplications' => $otherAplications,
             'notifications' => $notifications,
-            'products' => $products,
+            'packages' => $packages,
+            'additionalServices' => $additionalServices,
             'recruitsCount' => $recruits->count(),
             'projectsCount' => $projectsCount,
             'aplicationCount' => $aplicationCount,
+            'viewCount' => $viewCount,
         ]);
     }
 

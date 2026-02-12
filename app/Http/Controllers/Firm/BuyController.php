@@ -295,19 +295,22 @@ class BuyController extends Controller
             $sessionId = uniqid() . '-' . time();
             $subtotal = Cart::subtotal();
 
-            $register = $this->przelewy24->transactions()->register(
-                sessionId: $sessionId,
-                amount: (float) str_replace(',', '', $subtotal) * 100,
-                description: "Kredyty za {$subtotal}",
-                email: request()->user()->email,
-                urlReturn: route('buy.successView'),
-                urlStatus: route('front.buy.webhook'),
-            );
-            $order = $buyHelper->createOrder($subtotal, $foundation);
-            $buyHelper->generateOrderPdf($order, $cartItems);
-            $buyHelper->addOrderItemsClearCartResetFundation($cartItems, $order);
+//            $register = $this->przelewy24->transactions()->register(
+//                sessionId: $sessionId,
+//                amount: (float) str_replace(',', '', $subtotal) * 100,
+//                description: "Kredyty za {$subtotal}",
+//                email: request()->user()->email,
+//                urlReturn: route('buy.successView'),
+//                urlStatus: route('front.buy.webhook'),
+//            );
+//            $order = $buyHelper->createOrder($subtotal, $foundation);
+//            $buyHelper->generateOrderPdf($order, $cartItems);
+//            $buyHelper->addOrderItemsClearCartResetFundation($cartItems, $order);
 
-            Transaction::create([
+
+
+
+            $transaction = Transaction::create([
                 'status' => 'pending',
                 'price' => str_replace(',', '', $subtotal),
                 'session_id' => $sessionId,
@@ -316,9 +319,17 @@ class BuyController extends Controller
                 'order_id' => $order->id,
             ]);
 
-            return redirect(
-                $register->gatewayUrl()
-            );
+            if($transaction && $transaction->status === 'pending'){
+                $transaction->status = 'paid';
+                $transaction->save();
+                auth()->user()->firm()->increment('points', $transaction->credits);
+                $buyHelper->generateInvoiceAndPdf($cartItems);
+//                    Mail::to(env('MAIL_ADMIN'))->queue(new NewBuy($transaction->user,$transaction));
+            }
+
+//            return redirect(
+//                $register->gatewayUrl()
+//            );
         } else {
             session()->flash('flash.banner', "Zakup niemożliwy – brak fundacji albo koszyk pusty!.");
             session()->flash('flash.bannerStyle', 'danger');

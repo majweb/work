@@ -39,4 +39,9 @@ class Product extends Model
     {
         return $query->where('product_type','Points');
     }
+
+    public function chageProduct()
+    {
+        return $this->hasOne(ChangeProduct::class);
+    }
 }

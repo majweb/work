@@ -14,11 +14,13 @@ const props = defineProps({
     lastAplications: Object,
     otherAplications: Object,
     notifications: Array,
-    products: Array,
+    packages: Array,
+    additionalServices: Array,
     countQuestions: Number,
     recruitsCount: Number,
     projectsCount: Number,
     aplicationCount: Number,
+    viewCount: Number,
 });
 </script>
 
@@ -36,7 +38,7 @@ const props = defineProps({
                 <AdminDashboard v-if="hasRole('admin')" :countQuestions="countQuestions"/>
                 <WorkerDashboard v-else-if="hasRole('worker')" :notifications="notifications" :lastAplications="lastAplications" :otherAplications="otherAplications" />
                 <RecruitDashboard v-else-if="hasRole('recruit') && !hasRole('firm')" :applications="otherAplications" :notifications="notifications" :projects="chartRecruit?.projects || []" :chartData="chartRecruit?.data || null" :lastAplications="chartRecruit?.applications" || []/>
-                <FirmDashboard v-else-if="hasRole('firm')" :aplicationCount="aplicationCount" :projectsCount="projectsCount" :recruitsCount="recruitsCount" :chartData="chartFirm?.recruits || null"  :chartDataApp="chartFirm?.aplications || null"  :notifications="notifications" :products="products"/>
+                <FirmDashboard v-else-if="hasRole('firm')" :aplicationCount="aplicationCount" :viewCount="viewCount" :projectsCount="projectsCount" :recruitsCount="recruitsCount" :chartData="chartFirm?.recruits || null"  :chartDataApp="chartFirm?.aplications || null" :chartDataInvoices="chartFirm?.lastInvoices"  :notifications="notifications" :packages="packages" :additionalServices="additionalServices"/>
             </div>
         </div>
     </AppLayout>

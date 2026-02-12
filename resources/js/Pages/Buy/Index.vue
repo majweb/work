@@ -100,7 +100,7 @@ watch(params.value, debounce(function () {
                                              class="text-left text-xs duration-200 my-4"
                                          >
                                             ❓
-                                              Aby wymienić punkty na baner, musisz mieć przygotowaną już własną grafikę.
+                                             {{__('translate.exchangeBanner')}}
                                             </p>
                                         <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[product,product.price])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center focus:outline-none focus:ring-blue-work transition underline">
                                             {{__('translate.reservervedProject')}}

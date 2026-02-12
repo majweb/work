@@ -682,7 +682,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Banner', // Uzbecki
                 'vi' => 'Biểu ngữ', // Wietnamski
                 'zh' => '横幅' // Chiński
-            ]),'price'=>3000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]),'price'=>5000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 9, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -811,7 +811,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Tanlangan ish beruvchi', // Uzbecki
                 'vi' => 'Nhà tuyển dụng nổi bật', // Wietnamski
                 'zh' => '特色雇主' // Chiński
-            ]), 'price'=>5000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>8000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 10, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -940,7 +940,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Maqola', // Uzbecki
                 'vi' => 'Bài báo', // Wietnamski
                 'zh' => '文章' // Chiński
-            ]), 'price'=>3000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>6000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 11, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -1069,7 +1069,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Ijtimoiy targ‘ibot', // Uzbecki
                 'vi' => 'Quảng bá xã hội', // Wietnamski
                 'zh' => '社交推广' // Chiński
-            ]), 'price'=>7000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>10000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
             ['id' => 12, 'points'=>0,'type'=>json_encode([
                 'am' => 'ተጨማሪ', // Amharski
                 'ar' => 'إضافي', // Arabski
@@ -1198,7 +1198,7 @@ class ProductSeeder extends Seeder
                 'uz' => 'Sertifikat50/50', // Uzbecki
                 'vi' => 'Chứng chỉ50/50', // Wietnamski
                 'zh' => '证书50/50' // Chiński
-            ]), 'price'=>1000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
+            ]), 'price'=>2000.00,'product_type'=>'Extra','created_at' => date('Y-m-d H:i:s'), 'updated_at' =>date('Y-m-d H:i:s')],
         ];
 
         DB::table('products')->insert($products);

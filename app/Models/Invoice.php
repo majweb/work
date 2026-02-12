@@ -20,6 +20,7 @@ class Invoice extends Model
         'date_invoice',
         'amount',
         'opened',
+        'foundation_id',
     ];
 
     protected $casts = [
@@ -29,6 +30,11 @@ class Invoice extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function foundation(): BelongsTo
+    {
+        return $this->belongsTo(Foundation::class);
     }
 
 
