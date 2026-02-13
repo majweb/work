@@ -27,14 +27,30 @@ class RecruitController extends Controller
             'field' => ['in:id,name']
         ]);
 
-        $query = User::query()->where('recruiter_from_firm_id', auth()->user()->id);
+        $query = User::query()->where('recruiter_from_firm_id', auth()->user()->id)
+            ->withCount([
+                'projectsRecruits as projects_count',
+                'applicationsRecruits as applications_count',
+                'applicationsRecruits as yes_count' => function ($query) {
+                    $query->where('status', 'yes');
+                }
+            ]);
 
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
         });
 
+        $users = $query->paginate(5)->withQueryString();
+
+        $users->getCollection()->transform(function ($user) {
+            $user->quality = $user->applications_count > 0
+                ? round(($user->yes_count / $user->applications_count) * 100, 1)
+                : 0;
+            return $user;
+        });
+
         return inertia()->render('Recruits/Index', [
-            'users' => $query->paginate(5)->withQueryString(),
+            'users' => $users,
             'filters' => request()->only(['field', 'direction'])
         ]);
     }
@@ -45,8 +61,7 @@ class RecruitController extends Controller
     public function create()
     {
         Gate::authorize('create',User::class);
-        $permissions = PermissionsResource::collection(Role::findByName('recruit','web')->permissions);
-        return inertia()->render('Recruits/Create',['permissions'=>$permissions]);
+        return inertia()->render('Recruits/Create');
     }
 
     /**
@@ -64,7 +79,10 @@ class RecruitController extends Controller
             'password' => Hash::make($request->userData()['password']),
         ]);
         $user->assignRole('recruit');
-        $user->givePermissionTo(collect($request->userData()['permissions'])->pluck('id'));
+
+        if (isset($request->userData()['photo'])) {
+            $user->updateProfilePhoto($request->userData()['photo']);
+        }
 
         session()->flash('flash.banner', __('translate.addedRecruit'));
         session()->flash('flash.bannerStyle', 'success');
@@ -85,11 +103,8 @@ class RecruitController extends Controller
      */
     public function edit(User $recruit)
     {
-        $recruit->load('permissions:id,name,trans');
         Gate::authorize('update',auth()->user());
-        $permissions = PermissionsResource::collection(Role::findByName('recruit','web')->permissions);
-        $locale = app()->getLocale();
-        return inertia()->render('Recruits/Edit',['permissions'=>$permissions,'recruit'=>$recruit,'locale'=>$locale]);
+        return inertia()->render('Recruits/Edit',['recruit'=>$recruit]);
     }
 
     /**
@@ -107,8 +122,11 @@ class RecruitController extends Controller
             'color' => $request->userData()['color'],
             'password' => !is_null($request->userData()['password']) ? Hash::make($request->userData()['password']) : $recruit->password,
         ]);
-        $per = collect($request->userData()['permissions'])->pluck('name');
-        $recruit->syncPermissions($per);
+
+        if (isset($request->userData()['photo'])) {
+            $recruit->updateProfilePhoto($request->userData()['photo']);
+        }
+
         session()->flash('flash.banner', __('translate.updateRecruit'));
         session()->flash('flash.bannerStyle', 'success');
 
@@ -124,5 +142,17 @@ class RecruitController extends Controller
         session()->flash('flash.banner', __('translate.deleteRecruit'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('recruits.index');
+    }
+
+    /**
+     * Delete the recruit's profile photo.
+     */
+    public function destroyPhoto(User $recruit)
+    {
+        Gate::authorize('update', auth()->user());
+
+        $recruit->deleteProfilePhoto();
+
+        return back(303);
     }
 }

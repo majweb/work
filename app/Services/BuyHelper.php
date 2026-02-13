@@ -12,6 +12,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -70,34 +71,40 @@ class BuyHelper
     }
 
     /**
-     * @param $order
+     * @param $cartItems
+     * @param $amount
+     * @param $foundationId
      * @return string|void
      */
-    public function generateInvoiceAndPdf()
+    public function generateInvoiceAndPdf($cartItems, $amount, $foundationId = null)
     {
         try {
             $user = auth()->user();
-            $lastInvoiceFromMonth= (new BuyHelper())->lastInvoiceFromMonth() ?? 0;
+            $lastInvoiceFromMonth = (new BuyHelper())->lastInvoiceFromMonth() ?? 0;
             $maskNumber = sprintf("%03d", $lastInvoiceFromMonth + 1);
             $date = Carbon::now();
-            $pdf = Pdf::loadView('templates.pdf.invoice',compact('order','maskNumber','date'));
-            $filenameInvoice = 'firm/' . $user->id.'/pdf/invoices/'.$maskNumber.'-'.$date->format('m').'-' .(string) $date->format('Y') .'_Work.pdf';
+
+            $pdf = Pdf::loadView('templates.pdf.invoice', compact('cartItems', 'amount', 'maskNumber', 'date', 'user', 'foundationId'));
+            $filenameInvoice = 'firm/' . $user->id . '/pdf/invoices/' . $maskNumber . '-' . $date->format('m') . '-' . (string)$date->format('Y') . '_Work.pdf';
+
             Storage::disk('invoices')->put($filenameInvoice, $pdf->output());
 
-            $user->invoice()->create([
-                'number' => (string) $maskNumber,
+            Invoice::create([
+                'user_id' => $user->id,
+                'number' => (string)$maskNumber,
                 'day' => $date->format('d'),
                 'month' => $date->format('m'),
                 'year' => $date->format('Y'),
                 'pdf' => $filenameInvoice,
                 'date_invoice' => $date->format('Y-m-d'),
-                'amount' => $order->amount
+                'amount' => $amount,
+                'foundation_id' => $foundationId
             ]);
         } catch (Exception $e) {
-            Log::info($e->getMessage());
-            return $e->getMessage();
+            Log::error('Invoice generation failed: ' . $e->getMessage());
+            Log::error($e->getTraceAsString());
+            throw $e;
         }
-
     }
     public function generate50Pdf($cert50)
     {

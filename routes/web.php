@@ -132,6 +132,7 @@ Route::middleware([
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::resource('recruits',RecruitController::class)->middleware('role:firm');
+    Route::delete('recruits/{recruit}/photo', [RecruitController::class, 'destroyPhoto'])->name('recruits.photo.destroy')->middleware('role:firm');
     Route::resource('orders',OrderController::class)->middleware('role:firm')->only([
         'index'
     ]);

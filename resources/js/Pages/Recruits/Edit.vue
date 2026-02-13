@@ -1,26 +1,29 @@
 <script setup>
 
-import {useForm, Link} from '@inertiajs/vue3';
+import {useForm, Link, router} from '@inertiajs/vue3';
 
 import ActionMessage from '@/Components/ActionMessage.vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import 'vue-color/style.css';
 import { ChromePicker  } from 'vue-color'
-
+import { ref } from 'vue';
 
 const props = defineProps({
     recruit: Object,
-    permissions: Array,
-    locale: String,
 });
 
+// Zakładki
+const activeTab = ref('basic')
+
 const form = useForm({
+    _method: 'PUT',
     id: props.recruit.id,
     name: props.recruit.name,
     email: props.recruit.email,
@@ -29,20 +32,59 @@ const form = useForm({
     password_confirmation: '',
     recruiter_phone: props.recruit.recruiter_phone ?? null,
     color: props.recruit.color || '#00a0e3',
-    permissions: props.recruit.permissions.map(el=>{
-        return {
-            'id':el.id,
-            'name':el.name,
-            'trans':JSON.parse(el.trans)[props.locale],
-        }
-    })
+    photo: null,
 });
 
+const photoPreview = ref(null);
+const photoInput = ref(null);
+
 const updateUser = () => {
-    form.put(route('recruits.update',props.recruit), {
+    if (photoInput.value) {
+        form.photo = photoInput.value.files[0];
+    }
+
+    form.post(route('recruits.update', props.recruit.id), {
         errorBag: 'updateUser',
-        preserveScroll: true
+        preserveScroll: true,
+        onSuccess: () => {
+            photoPreview.value = null;
+            clearPhotoFileInput();
+        },
     });
+};
+
+const selectNewPhoto = () => {
+    photoInput.value.click();
+};
+
+const updatePhotoPreview = () => {
+    const photo = photoInput.value.files[0];
+
+    if (! photo) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        photoPreview.value = e.target.result;
+    };
+
+    reader.readAsDataURL(photo);
+};
+
+const deletePhoto = () => {
+    router.delete(route('recruits.photo.destroy', props.recruit.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            photoPreview.value = null;
+            clearPhotoFileInput();
+        },
+    });
+};
+
+const clearPhotoFileInput = () => {
+    if (photoInput.value?.value) {
+        photoInput.value.value = null;
+    }
 };
 </script>
 
@@ -63,116 +105,137 @@ const updateUser = () => {
             </div>
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <div>
-                    <FormSection @submitted="updateUser">
-                        <template #title>
-                            {{props.recruit.name}}
-                        </template>
+        <div class="py-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white rounded-[2rem] shadow-sm p-6">
+                    <div class="flex gap-6 px-4 mb-6">
+                        <button type="button" @click="activeTab = 'basic'" :class="[activeTab==='basic' ? 'text-[#0b2a55] font-black border-b-2 border-[#0b2a55]' : 'text-gray-500 font-semibold']" class="pb-2 transition-all duration-200">
+                            {{ __('translate.mainData') }}
+                        </button>
+                        <button type="button" @click="activeTab = 'personal'" :class="[activeTab==='personal' ? 'text-[#0b2a55] font-black border-b-2 border-[#0b2a55]' : 'text-gray-500 font-semibold']" class="pb-2 transition-all duration-200">
+                            Personalizacja
+                        </button>
+                    </div>
 
-                        <template #description>
-                            {{__('translate.recruitInfo')}}
-                        </template>
+                    <form @submit.prevent="updateUser">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                            <!-- Avatar Section -->
+                            <div class="flex flex-col items-center">
+                                <input
+                                    id="photo"
+                                    ref="photoInput"
+                                    type="file"
+                                    class="hidden"
+                                    @change="updatePhotoPreview"
+                                >
 
-                        <template #form>
-
-                            <div class="col-span-6">
-                                <div class="mt-4">
-                                    <InputLabel for="name" :value="__('translate.name')"/>
-                                    <TextInput
-                                        id="name"
-                                        v-model="form.name"
-                                        autocomplete="name"
-                                        autofocus
-                                        class="mt-1 block w-full"
-                                        type="text"
-                                    />
-                                    <InputError :message="form.errors.name" class="mt-2"/>
-                                </div>
-                                <div class="mt-4">
-                                    <InputLabel for="recruiter_phone" :value="__('translate.phone')"/>
-                                    <TextInput
-                                        id="recruiter_phone"
-                                        v-model="form.recruiter_phone"
-                                        class="mt-1 block w-full"
-                                        type="number"
-                                    />
-                                    <InputError :message="form.errors.recruiter_phone" class="mt-2"/>
-                                </div>
-
-                                <div class="mt-4">
-                                    <InputLabel for="email" :value="__('translate.email')"/>
-                                    <TextInput
-                                        id="email"
-                                        v-model="form.email"
-                                        class="mt-1 block w-full"
-                                        type="email"
-                                    />
-                                    <InputError :message="form.errors.email" class="mt-2"/>
-                                </div>
-
-                                <div class="mt-4">
-                                    <InputLabel for="password" :value="__('translate.password')"/>
-                                    <TextInput
-                                        id="password"
-                                        v-model="form.password"
-                                        class="mt-1 block w-full"
-                                        type="password"
-                                    />
-                                    <InputError :message="form.errors.password" class="mt-2"/>
-                                </div>
-
-                                <div class="mt-4">
-                                    <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')"/>
-                                    <TextInput
-                                        id="password_confirmation"
-                                        v-model="form.password_confirmation"
-                                        class="mt-1 block w-full"
-                                        type="password"
-                                    />
-                                    <InputError :message="form.errors.password_confirmation" class="mt-2"/>
-                                </div>
-                                <div class="mt-4">
-                                    <InputLabel for="color" :value="__('translate.color')" />
-                                    <div class="mt-1">
-                                        <ChromePicker v-model="form.color" formats="hex" />
-                                        <p class="mt-1 text-sm text-gray-500">{{ __('translate.colorHelper') }}</p>
-                                        <p class="text-xs text-gray-400 italic">{{ __('translate.colorOptional') }}</p>
+                                <div class="relative w-40 h-40">
+                                    <!-- Current Profile Photo -->
+                                    <div v-show="! photoPreview" class="w-full h-full rounded-full border-4 bg-gray-100 flex items-center justify-center overflow-hidden" :style="{ borderColor: form.color || '#0b2a55' }">
+                                        <img :src="recruit.profile_photo_url" :alt="recruit.name" class="w-full h-full object-cover">
                                     </div>
-                                    <InputError :message="form.errors.color" class="mt-2"/>
+
+                                    <!-- New Profile Photo Preview -->
+                                    <div v-show="photoPreview" class="w-full h-full rounded-full border-4 bg-gray-100 flex items-center justify-center overflow-hidden" :style="{ borderColor: form.color || '#0b2a55' }">
+                                        <span
+                                            class="block rounded-full w-full h-full bg-cover bg-no-repeat bg-center"
+                                            :style="'background-image: url(\'' + photoPreview + '\');'"
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#0b2a55] text-white text-[10px] font-bold px-3 py-1 rounded-md hover:bg-[#162a44] transition whitespace-nowrap z-10 shadow-md"
+                                        @click.prevent="selectNewPhoto"
+                                    >
+                                        {{ __('translate.ProfileInformationPhoto') }}
+                                    </button>
                                 </div>
-                                <div class="mt-4">
-                                    <InputLabel for="permissions" value="Uprawnienia"/>
-                                    <div v-for="permission in permissions">
+
+                                <div class="flex flex-wrap justify-center gap-2 mt-4">
+                                    <SecondaryButton
+                                        v-if="recruit.profile_photo_path"
+                                        type="button"
+                                        @click.prevent="deletePhoto"
+                                    >
+                                        {{ __('translate.ProfileInformationPhotoRemove') }}
+                                    </SecondaryButton>
+                                </div>
+
+                                <InputError :message="form.errors.photo" class="mt-2" />
+                            </div>
+
+                            <!-- Form Fields -->
+                            <div class="lg:col-span-2">
+                                <!-- Dane podstawowe -->
+                                <div v-if="activeTab === 'basic'" class="space-y-4">
+                                    <div>
+                                        <InputLabel for="name" :value="__('translate.name')"/>
+                                        <TextInput id="name" v-model="form.name" autocomplete="name" class="mt-1 block w-full" type="text" />
+                                        <InputError :message="form.errors.name" class="mt-2"/>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <InputLabel for="email" :value="__('translate.email')"/>
+                                            <TextInput id="email" v-model="form.email" class="mt-1 block w-full" type="email" />
+                                            <InputError :message="form.errors.email" class="mt-2"/>
+                                        </div>
+                                        <div>
+                                            <InputLabel for="recruiter_phone" :value="__('translate.phone')"/>
+                                            <TextInput id="recruiter_phone" v-model="form.recruiter_phone" class="mt-1 block w-full" type="number" />
+                                            <InputError :message="form.errors.recruiter_phone" class="mt-2"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <InputLabel for="password" :value="__('translate.password')"/>
+                                            <TextInput id="password" v-model="form.password" class="mt-1 block w-full" type="password" />
+                                            <InputError :message="form.errors.password" class="mt-2"/>
+                                        </div>
+                                        <div>
+                                            <InputLabel for="password_confirmation" :value="__('translate.passwordconfirm')"/>
+                                            <TextInput id="password_confirmation" v-model="form.password_confirmation" class="mt-1 block w-full" type="password" />
+                                            <InputError :message="form.errors.password_confirmation" class="mt-2"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center mt-4">
                                         <input
-                                            class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 mr-2"
-                                            type="checkbox" :id="permission.id" v-model="form.permissions"
-                                            :value="permission" name="permissions">
-                                        <label :for="permission.id">{{permission.trans}}</label>
+                                            class="rounded border-gray-300 text-[#0b2a55] shadow-sm focus:ring-[#0b2a55] mr-2"
+                                            type="checkbox" id="blocked" v-model="form.user_blocked"
+                                            name="user_blocked">
+                                        <label for="blocked" class="text-sm font-semibold text-gray-700">{{__('translate.user_blocked')}}</label>
+                                        <InputError :message="form.errors.user_blocked" class="mt-2"/>
                                     </div>
-                                    <InputError :message="form.errors.permissions" class="mt-2"/>
                                 </div>
-                                <div class="mt-4">
-                                    <input
-                                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 mr-2"
-                                        type="checkbox" id="blocked" v-model="form.user_blocked"
-                                        name="user_blocked">
-                                    <label for="blocked">{{__('translate.user_blocked')}}</label>
-                                    <InputError :message="form.errors.user_blocked" class="mt-2"/>
+
+                                <!-- Personalizacja -->
+                                <div v-else class="space-y-4">
+                                    <div>
+                                        <InputLabel for="color" :value="__('translate.color')" />
+                                        <div class="mt-2">
+                                            <ChromePicker v-model="form.color" formats="hex" />
+                                            <p class="mt-2 text-sm text-gray-500">{{ __('translate.colorHelper') }}</p>
+                                            <p class="text-xs text-gray-400 italic">{{ __('translate.colorOptional') }}</p>
+                                        </div>
+                                        <InputError :message="form.errors.color" class="mt-2"/>
+                                    </div>
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="mt-8 flex items-center justify-end gap-3">
+                                    <ActionMessage :on="form.recentlySuccessful" class="text-green-600 font-bold">
+                                        {{__('translate.updateRecruit')}}
+                                    </ActionMessage>
+                                    <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                        <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
+                                    </PrimaryButton>
                                 </div>
                             </div>
-                        </template>
-
-                        <template #actions>
-                            <ActionMessage :on="form.recentlySuccessful" class="mr-3">
-                                {{__('translate.updateRecruit')}}
-                            </ActionMessage>
-                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
-                            </PrimaryButton>
-                        </template>
-                    </FormSection>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

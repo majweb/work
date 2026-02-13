@@ -206,9 +206,8 @@ class DashboardController extends Controller
                     'icon' => asset('images/price/' . $product->id.'-points.svg'),
                 ];
             })->sortBy('price')->values();
-            $lastInvoices = Invoice::whereHas('order.user', function($r) {
-                $r->where('user_id', auth()->user()->id);
-            })->latest()->take(3)->get();
+            $lastInvoices = Invoice::where('user_id', auth()->id())->latest()->take(3)->get();
+            $firm = auth()->user()->firm;
             $firmData = [
                 'aplications' => [
                     'yes' => $totalYes,
@@ -221,6 +220,14 @@ class DashboardController extends Controller
                     'no' => $noRecruits,
                 ],
                 'lastInvoices' => $lastInvoices,
+                'certificate' => [
+                    'currentLevel' => $firm->premium_certificate_level,
+                    'collectedPoints' => $firm->points,
+                    'levelPoints' => config('premium.points_required'),
+                    'levelNames' => collect(config('premium.level_names'))->mapWithKeys(function ($translationKey, $level) {
+                        return [$level => __($translationKey)];
+                    })->all(),
+                ]
             ];
         }
 

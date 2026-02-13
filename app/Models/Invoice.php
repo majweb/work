@@ -11,7 +11,7 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
+        'user_id',
         'number',
         'day',
         'month',
@@ -27,9 +27,9 @@ class Invoice extends Model
         'opened' => 'boolean',
     ];
 
-    public function order(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(User::class);
     }
 
     public function foundation(): BelongsTo

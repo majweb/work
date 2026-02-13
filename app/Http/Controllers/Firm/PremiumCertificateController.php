@@ -103,7 +103,7 @@ class PremiumCertificateController extends Controller
         Storage::disk('local')->put($path, $pdf->output());
 
 
-        return to_route('firm.premium-certificate.show')->with([
+        return back()->with([
             'flash.banner' => __('Certyfikat został wygenerowany'),
             'flash.bannerStyle' => 'success',
         ]);

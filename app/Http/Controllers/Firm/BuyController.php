@@ -18,9 +18,11 @@ use App\Notifications\SendRequestBannerAdminNotification;
 use App\Notifications\SendRequestSocialAdminNotification;
 use App\Services\BuyHelper;
 use App\Services\Helper;
+use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
@@ -283,59 +285,48 @@ class BuyController extends Controller
 
     public function makeOrder(BuyHelper $buyHelper)
     {
-            $cartItems = Cart::content();
-        $totalPoints = Cart::content()->sum(function ($item) {
-            return $item->options->points ?? 0;
-        });
+        $cartItems = Cart::content();
 
-
-        if (Session::has('foundation') && $cartItems->count() > 0) {
-            $foundation = Session::get('foundation');
-
-            $sessionId = uniqid() . '-' . time();
-            $subtotal = Cart::subtotal();
-
-//            $register = $this->przelewy24->transactions()->register(
-//                sessionId: $sessionId,
-//                amount: (float) str_replace(',', '', $subtotal) * 100,
-//                description: "Kredyty za {$subtotal}",
-//                email: request()->user()->email,
-//                urlReturn: route('buy.successView'),
-//                urlStatus: route('front.buy.webhook'),
-//            );
-//            $order = $buyHelper->createOrder($subtotal, $foundation);
-//            $buyHelper->generateOrderPdf($order, $cartItems);
-//            $buyHelper->addOrderItemsClearCartResetFundation($cartItems, $order);
-
-
-
-
-            $transaction = Transaction::create([
-                'status' => 'pending',
-                'price' => str_replace(',', '', $subtotal),
-                'session_id' => $sessionId,
-                'credits' => $totalPoints,
-                'user_id' => request()->user()->id,
-                'order_id' => $order->id,
-            ]);
-
-            if($transaction && $transaction->status === 'pending'){
-                $transaction->status = 'paid';
-                $transaction->save();
-                auth()->user()->firm()->increment('points', $transaction->credits);
-                $buyHelper->generateInvoiceAndPdf($cartItems);
-//                    Mail::to(env('MAIL_ADMIN'))->queue(new NewBuy($transaction->user,$transaction));
-            }
-
-//            return redirect(
-//                $register->gatewayUrl()
-//            );
-        } else {
-            session()->flash('flash.banner', "Zakup niemożliwy – brak fundacji albo koszyk pusty!.");
+        if (!Session::has('foundation') || $cartItems->isEmpty()) {
+            session()->flash('flash.banner', "Zakup niemożliwy – brak fundacji albo koszyk pusty!");
             session()->flash('flash.bannerStyle', 'danger');
             return back();
         }
 
+        try {
+            DB::transaction(function () use ($buyHelper, $cartItems) {
+                $totalPoints = $cartItems->sum(function ($item) {
+                    return $item->options->points ?? 0;
+                });
+
+                $subtotal = Cart::subtotal();
+                $amount = (float)str_replace(',', '', $subtotal);
+
+                $transaction = Transaction::create([
+                    'status' => 'paid',
+                    'price' => $amount,
+                    'session_id' => uniqid() . '-' . time(),
+                    'credits' => $totalPoints,
+                    'user_id' => auth()->id(),
+                ]);
+
+                auth()->user()->firm()->increment('points', $transaction->credits);
+                $buyHelper->generateInvoiceAndPdf($cartItems, $amount, Session::get('foundation'));
+
+                Cart::destroy();
+                Session::forget('foundation');
+            });
+
+            session()->flash('flash.banner', __('translate.orderPay'));
+            session()->flash('flash.bannerStyle', 'success');
+
+            return to_route('buy.successView');
+        } catch (Exception $e) {
+            Log::error('Order process failed: ' . $e->getMessage());
+            session()->flash('flash.banner', "Wystąpił błąd podczas procesowania zamówienia: " . $e->getMessage());
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        }
     }
 
     public function webhook(Request $request,BuyHelper $buyHelper)
@@ -365,15 +356,19 @@ class BuyController extends Controller
                 $transaction->price * 100,
             );
             $user = User::where('id',$transaction->user_id)->with('firm')->first();
-            $order = Order::where('id',$transaction->order_id)->with('user.firm')->first();
 
-            if($user && $transaction && $order){
+            if($user && $transaction){
                 if($transaction->status === 'pending'){
                     $transaction->status = 'paid';
                     $transaction->save();
                     $user->firm()->increment('points', $transaction->credits);
-                    $buyHelper->generateInvoiceAndPdf($order);
-//                    Mail::to(env('MAIL_ADMIN'))->queue(new NewBuy($transaction->user,$transaction));
+
+                    // Uwaga: webhook zazwyczaj nie ma dostępu do koszyka (Cart),
+                    // więc generateInvoiceAndPdf może wymagać innej logiki dla webhooka
+                    // lub dane o koszyku powinny być zapisane w transakcji/metadanych.
+                    // Jednak w makeOrder() faktura jest generowana od razu po "opłaceniu" transakcji (paid).
+                    // Jeśli system przejdzie na prawdziwe płatności P24, trzeba będzie to dopracować.
+                    // TODO: Powiązać transakcję z fakturą, jeśli nie została wygenerowana w makeOrder.
                 }
             }
         } catch (Przelewy24Exception $exception) {

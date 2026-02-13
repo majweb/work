@@ -46,8 +46,8 @@ class StoreRecruitRequest extends FormRequest
             'recruiter_phone' => $rulePhone,
             'email' => $ruleEmail,
             'password' => $rulePassword,
-            'permissions' => ['required','array','min:1'],
             'color' => ['required','string'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ];
     }
 
@@ -68,7 +68,6 @@ class StoreRecruitRequest extends FormRequest
             'recruiter_phone' => strtolower(__('translate.phone')),
             'email' => strtolower(__('translate.email')),
             'password' => strtolower(__('translate.password')),
-            'permissions' => strtolower(__('translate.permissions')),
         ];
     }
 

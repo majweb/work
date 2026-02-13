@@ -86,33 +86,39 @@ const clearPhotoFileInput = () => {
             <div class="px-6 py-6 space-y-6">
                 <!-- Profile Photo -->
                 <div v-if="$page.props.jetstream.managesProfilePhotos" class="flex flex-col items-center">
-                <!-- Profile Photo File Input -->
-                <input
-                    id="photo"
-                    ref="photoInput"
-                    type="file"
-                    class="hidden"
-                    @change="updatePhotoPreview"
-                >
+                    <!-- Profile Photo File Input -->
+                    <input
+                        id="photo"
+                        ref="photoInput"
+                        type="file"
+                        class="hidden"
+                        @change="updatePhotoPreview"
+                    >
 
-                    <!-- Current Profile Photo -->
-                    <div v-show="! photoPreview" class="mb-4">
-                        <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-32 w-32 object-cover border-4 border-work-main">
-                    </div>
+                    <div class="relative w-32 h-32">
+                        <!-- Current Profile Photo -->
+                        <div v-show="! photoPreview" class="w-full h-full rounded-full border-4 border-work-main overflow-hidden">
+                            <img :src="user.profile_photo_url" :alt="user.name" class="w-full h-full object-cover">
+                        </div>
 
-                    <!-- New Profile Photo Preview -->
-                    <div v-show="photoPreview" class="mb-4">
-                        <span
-                            class="block rounded-full w-32 h-32 bg-cover bg-no-repeat bg-center border-4 border-work-main"
-                            :style="'background-image: url(\'' + photoPreview + '\');'"
-                        />
-                    </div>
+                        <!-- New Profile Photo Preview -->
+                        <div v-show="photoPreview" class="w-full h-full rounded-full border-4 border-work-main overflow-hidden">
+                            <span
+                                class="block rounded-full w-full h-full bg-cover bg-no-repeat bg-center"
+                                :style="'background-image: url(\'' + photoPreview + '\');'"
+                            />
+                        </div>
 
-                    <div class="flex gap-2">
-                        <SecondaryButton type="button" @click.prevent="selectNewPhoto">
+                        <button
+                            type="button"
+                            class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-work-main text-white text-[10px] font-bold px-3 py-1 rounded-md hover:bg-work-main-dark transition whitespace-nowrap z-10 shadow-md"
+                            @click.prevent="selectNewPhoto"
+                        >
                             {{ __('translate.ProfileInformationPhoto') }}
-                        </SecondaryButton>
+                        </button>
+                    </div>
 
+                    <div class="flex gap-2 mt-4">
                         <SecondaryButton
                             v-if="user.profile_photo_path"
                             type="button"

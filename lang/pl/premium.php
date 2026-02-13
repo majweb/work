@@ -10,6 +10,7 @@ return [
             'diamond' => 'Diamentowy'
         ],
         'points' => 'pkt|punktów',
+        'premium_certificate' => 'Certyfikat Premium',
         'progress' => 'Postęp certyfikacji:',
         'current_level' => 'Aktualny poziom',
         'requirements' => 'Wymagania dla certyfikatów',

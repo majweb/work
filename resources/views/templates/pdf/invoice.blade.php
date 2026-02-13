@@ -4,251 +4,276 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Faktura Pdf - zamówienia {{$order->id}}</title>
+    <title>Faktura PDF</title>
     <style>
-        body{
-            background-repeat: no-repeat;
-            background-position: bottom left;
-            background-size:contain;
+        @page {
+            margin: 0.5cm;
         }
-        #watermark {
-            position: fixed;
-            top:   1px;
-            left:     0px;
-            width:    18.57cm;
-            height:   27cm;
-            z-index:  -1000;
-            border:1px solid #00a0e3;
-        }
-
         html {
             box-sizing: border-box;
-            color: gray;
+            color: #1e293b;
             font-family: 'DejaVu Sans', Helvetica, sans-serif;
+            line-height: 1.4;
         }
-        table{
-            border-collapse: collapse;
+        body {
+            margin: 0;
+            padding: 20px;
         }
-        .inner{
-
-            position: relative;
-        }
-        .logo{
-
-            position: relative;
-            top:2px;
-            left: 50px;
-        }
-        .right-column{
-            position: absolute;
-            left:403px;
-            top:1px;
-            width: 300px;
-            border-left:1px solid rgb(212, 212, 212);
-            border-bottom:1px solid rgb(212, 212, 212);
-            border-collapse: collapse;
-        }
-        td{
-            padding:0;
-            padding-top: 3px;
-            padding-bottom: 3px;
-            border:none;
-        }
-        .right-column-second-row{
-            position: relative;
-            left:403px;
-            top:0;
-            width: 300px;
-            font-size: 10px;
-            height: 50px;
-            border:1px solid #00a0e3;
-            border-bottom: 0;
-            border-right: 0;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .column-title{
-            text-align: center;
+        .header {
             width: 100%;
-            display: block;
+            margin-bottom: 30px;
+        }
+        .header table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .logo-section {
+            width: 50%;
+            vertical-align: top;
+        }
+        .info-section {
+            width: 50%;
+            text-align: right;
+            vertical-align: top;
+        }
+        .invoice-title {
+            font-size: 36px;
+            color: #0b2a55;
             font-weight: bold;
-            font-size:14px;
-            border:none;
-            border-bottom:1px solid #00a0e3;
-            vertical-align: middle;
-            margin: 0;padding: 0;
-            outline:none;
-            position: relative;
-            top: -5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
-        .table-result{
+        .info-table {
+            float: right;
+            border-collapse: collapse;
+        }
+        .info-table td {
+            padding: 2px 5px;
+            font-size: 14px;
+        }
+        .info-label {
+            color: #64748b;
+            text-align: right;
+            padding-right: 15px !important;
+        }
+        .info-value {
+            color: #0b2a55;
+            font-weight: bold;
+            text-align: left;
+        }
+        .info-value-large {
+            font-size: 18px;
+        }
+
+        .address-section {
             width: 100%;
+            margin-top: 70px;
+            margin-bottom: 10px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 40px;
         }
-        .table-result th{
-            background: rgb(230, 229, 229);
-            color:gray;
-            font-size:12px;
-            border:1px solid rgb(212, 212, 212);
+        .address-table {
+            width: 100%;
+            border-collapse: separate;
         }
-        .table-result td{
-            color:gray;
-            font-size:10px;
-            border:1px solid rgb(196, 194, 194);
+        .address-box {
+            width: 48%;
+            border: 1px solid #0b2a55;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 120px;
+            vertical-align: top;
         }
-        .tr-result{
-            background:#E31E249E;
+        .address-box h3 {
+            margin: 0 0 10px 0;
+            color: #64748b;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        .address-content {
+            font-size: 12px;
+            color: #0b2a55;
+        }
+        .address-content strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
         }
 
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .items-table th {
+            background-color: #e2e8f0;
+            color: #0b2a55;
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 8px;
+            border: 1px solid #cbd5e1;
+        }
+        .items-table td {
+            padding: 8px;
+            font-size: 12px;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+        }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
 
+        .summary-row td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #0b2a55;
+        }
+        .summary-label {
+            text-align: right;
+            background-color: white;
+            color: #64748b !important;
+            font-weight: normal !important;
+        }
+
+        .payment-details {
+            margin-top: 40px;
+            width: 100%;
+            font-size: 12px;
+            color: #64748b;
+        }
+        .payment-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .payment-details td {
+            padding: 5px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .payment-label {
+            width: 150px;
+        }
+        .payment-value {
+            color: #0b2a55;
+            font-weight: bold;
+        }
+
+        .clear { clear: both; }
     </style>
 </head>
 <body>
-<div id="watermark"></div>
-<div class="inner">
-    <div class="logo">
-        @if (App::environment() == 'local')
-            <img height="200" src="{{ public_path().'/images/logo.png' }}" alt="logo">
-        @else
-            <img height="200" src="{{ asset('images/logo.png') }}" alt="logo">
-        @endif
-    </div>
-    <table class="right-column" border="0">
-        <tbody>
+
+<div class="header">
+    <table>
         <tr>
-            <td colspan="2" style="text-align:center;text-transform:uppercase;font-size:15px;border-bottom:1px solid rgb(212, 212, 212);">Invoice</td>
-            {{ $order->user->firm->name_invoice }}
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:center;font-size:10px;">Reverse Charge</td>
-        </tr>
-        <tr style="color:white;">
-            <td style="font-weight:bold;border:1px solid rgb(67, 151, 219);background:#00a0e3;width:90px;font-size:10px;text-align:right;padding-right:30px;">Invoice No</td>
-            <td style="border:1px solid rgb(67, 151, 219);border-right:none;background:#00a0e3;font-size:13px;font-weight:bold;text-align:center;">{{ isset($GenNumber) ? $GenNumber : (string)$maskNumber.'/'.\Carbon\Carbon::now()->format('m').'/'.\Carbon\Carbon::now()->format('Y') }}</td>
-        </tr>
-        <tr>
-            <td style="width:90px;;font-size:10px;text-align:right;padding-right:30px;border-right:1px solid rgb(212, 212, 212);border-bottom:1px solid rgb(212, 212, 212);">Date</td>
-            <td style="font-size:10px;text-align:center;border-bottom:1px solid rgb(212, 212, 212);">{{ $date->format('d.m.Y') }}</td>
-        </tr>
-        <tr>
-            <td style="width:90px;font-size:10px;text-align:right;padding-right:30px;border-right:1px solid rgb(212, 212, 212);border-bottom:1px solid rgb(212, 212, 212);">Due Date</td>
-            <td style="font-size:10px;text-align:center;">{{ $date->format('d.m.Y') }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <table class="right-column-second-row" border="0" style="margin-top:-50px;">
-        <tr>
-            <td style="width:90px;font-size:10px;text-align:center;padding-right:30px;border-right:1px solid lightblue;font-weight:bold;">
-                              <span style="margin-left:42px">
-                                    Ship to:
-                              </span>
+            <td class="logo-section">
+                @if (App::environment() == 'local')
+                    <img height="120" src="{{ public_path().'/images/logo.png' }}" alt="logo">
+                @else
+                    <img height="120" src="{{ asset('images/logo.png') }}" alt="logo">
+                @endif
             </td>
-            <td style="padding-left:10px;font-size:10px;">
-                {{ $order->user->firm->name_invoice }}<br>
-                {{ $order->user->firm->street_invoice }}<br>
-                {{ $order->user->firm->postal_invoice }} {{ $order->user->firm->city_invoice }} {{ $order->user->firm->country_invoice }}
+            <td class="info-section">
+                <div class="invoice-title">INVOICE</div>
+                <table class="info-table">
+                    <tr>
+                        <td class="info-label">Invoice No.:</td>
+                        <td class="info-value info-value-large">{{ isset($GenNumber) ? $GenNumber : (string)$maskNumber.'/'.\Carbon\Carbon::now()->format('m').'/'.\Carbon\Carbon::now()->format('Y').'_Work' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">Date:</td>
+                        <td class="info-value">{{ $date->format('d.m.Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">Due date:</td>
+                        <td class="info-value">{{ $date->format('d.m.Y') }}</td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
-    <div style="width: 100%;background:#00a0e3;height:20px;"></div>
-    <div style="margin-bottom:30px;">
-        <div class="left" style="float:left;width:320px;border:1px solid #00a0e3;border-top:none;border-left:0;min-height:170px;text-align:center;">
-            <span class="column-title" style="border-color:#00a0e3;padding-top:5px;">Seller</span>
-            <p style="margin:0;font-weight:bold;font-size:12px;">WORK 4 YOU GLOBAL LTD</p>
-            <p style="margin:0;line-height:16px;font-size:12px;padding-bottom:10px;">Office 180B, 182-184 High Street, North London<br>
-                E6 2JA
-            </p>
-            <p style="background:#E31E249E;font-weight:bold;padding:5px 0;margin:0;border:none;outline:none;border-left:1px solid #00a0e3;line-height: 11px;">
-                <span style="padding-left:30px;font-size:12px;color:white;">Company No.: 11112672</span>
-            </p>
-        </div>
-        <div class="right" style="float:right;width:300px;border:1px solid #00a0e3;border-top:none;border-right:none;min-height:170px;text-align:center;">
-            <span class="column-title" style="border-color:#00a0e3;padding-top:5px;">Bill to</span>
-            <p style="margin:0;font-weight:bold;text-transform:normal;font-size:12px;padding: 0 5px;">{{ $order->user->firm->name_invoice }}<br></p>
-            <p style="margin:0;margin-bottom:10px;line-height:16px;font-size:13px;padding-bottom:10px;padding: 0 5px;">{{ $order->user->firm->street_invoice }}<br>
-                {{ $order->user->firm->postal_invoice }} {{ $order->user->firm->city_invoice }} {{ $order->user->firm->country_invoice }}
-            </p>
-            <p style="background:#E31E249E;font-weight:bold;padding:5px 0;margin:0;border:none;outline:none;line-height: 11px;">
-                <span style="padding-left:30px;font-size:12px;color:white;">Company No.: {{ $order->user->firm->nip_invoice }}</span>
-            </p>
-        </div>
-    </div>
-    <div class="clear" style="clear:both;"></div>
-    <div style="height:30px;"></div>
-    <table class="table-result">
-        <thead>
-        <tr>
-            <th style="border-left-color:#00a0e3;">q</th>
-            <th>Description</th>
-            <th>GBP/PLN Exchange Rate</th>
-            <th>Unit price (GBP)</th>
-            <th>Unit price PL</th>
-            <th>Total PLN</th>
-        </tr>
-        </thead>
-        <tbody>
-        @php
-            $price=0;
-        @endphp
-        <tr>
-            <td style="border-left:none;text-align:center;">1</td>
-            <td style="border-left:none;">
-                @foreach ($order->orderProducts as $product)
-                    <span style="padding-left:5px;">
-                                              {{ $product->product->name }}<br>
-                                          </span>
-                @endforeach
-                <br>
-                <span style="text-align:left !important;padding-left:5px;">
-                                          portal work4you.global.pl<br>
-                                    </span>
-                <span style="text-align:left !important;padding-left:5px;">
-                                          Nr zamówienia {{$order->id}}
-                                    </span>
-            </td>
-            <td></td>
-            <td></td>
-            <td style="border-right:none;text-align:center;">{{$order->amount}} {{$order->user->firm->currency}}</td>
-            <td style="border-right:none;text-align:center;">{{$order->amount}} {{$order->user->firm->currency}}</td>
-        </tr>
-        <tr class="tr-result" style="border-left:none;">
-            <td colspan="2" style="text-align:right;padding-right:20px;border:none;color:white;"><span>Total amount<br></span><span>Notes:</span></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td style="border-right:none;text-align:center;">
-                {{$order->price}}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:right;padding-right:20px;border-left:none;">Reverse charge</td>
-            <td colspan="3" style="border:none;"></td>
-            <td style="border-right:none;"></td>
-        </tr>
-        <tr>
-            <td colspan="6" style="border:none;height:30px;border-right:none;"></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border-left:none;text-align:right;padding-right:20px;">Payment terms</td>
-            <td colspan="2" style="text-align:left;padding-left:20px;">Bank Transfer</td>
-            <td style="border:none;"></td>
-            <td style="border-bottom:none;border-right:none;"></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border-left:none;text-align:right;padding-right:20px;">Transfer Detail</td>
-            <td colspan="2" style="text-align:left;padding-left:20px;">M Bank</td>
-            <td style="border:none;"></td>
-            <td style="border-top:none;border-bottom:none;border-right:none;text-align:center;">Bank transfer</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="border-left:none;text-align:right;padding-right:20px;">Bank account</td>
-            <td colspan="2" style="text-align:left;padding-left:20px;">39 11401179 0000 4255 2700 1001</td>
-            <td style="border-top:none;"></td>
-            <td style="border-top:none;border-left:none;border-right:none;"></td>
-        </tr>
-        </tbody>
-    </table>
-    <p style="background:rgb(230, 229, 229);margin-top:50px;text-align:right;font-size:10px;width:400px;float:right;padding:5px 0;padding-right:20px;">Please contact us for more information about payment options<br>Thank you for your business</p>
-    <div class="clear" style="clear:both;"></div>
 </div>
+
+<div class="address-section">
+    <table class="address-table">
+        <tr>
+            <td class="address-box">
+                <h3>SELLER</h3>
+                <div class="address-content">
+                    <strong>WORK 4 YOU GLOBAL LTD</strong>
+                    Office 180B, 182-184 High Street<br>
+                    North London E6 2JA<br><br>
+                    Company No.: 11112672
+                </div>
+            </td>
+            <td width="4%"></td>
+            <td class="address-box">
+                <h3>BILL TO</h3>
+                <div class="address-content">
+                    <strong>{{ $user->firm->name_invoice }}</strong>
+                    {{ $user->firm->street_invoice }}<br>
+                    {{ $user->firm->postal_invoice }} {{ $user->firm->city_invoice }}<br>
+                    {{ $user->firm->country_invoice }}<br><br>
+                    Company No.: {{ $user->firm->nip_invoice }}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="clear"></div>
+<div style="height: 20px;"></div>
+
+<table class="items-table">
+    <thead>
+        <tr>
+            <th width="40">No.</th>
+            <th>Description</th>
+            <th width="60">Qty</th>
+            <th width="100">Unit price</th>
+            <th width="100">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php $i = 1; @endphp
+        @foreach ($cartItems as $item)
+        <tr>
+            <td class="text-center">{{ $i++ }}</td>
+            <td>{{ $item->name }}</td>
+            <td class="text-center">{{ $item->qty }}</td>
+            <td class="text-right">${{ number_format($item->price, 0) }}</td>
+            <td class="text-right">${{ number_format($item->price * $item->qty, 0) }}</td>
+        </tr>
+        @endforeach
+
+        <tr class="summary-row">
+            <td colspan="4" class="summary-label">Total amount:</td>
+            <td class="text-right">${{ number_format($amount, 0) }}</td>
+        </tr>
+        <tr class="summary-row">
+            <td colspan="4" class="summary-label">Reverse charge:</td>
+            <td class="text-right"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="payment-details">
+    <table>
+        <tr>
+            <td class="payment-label">Payment terms:</td>
+            <td class="payment-value">Bank Transfer</td>
+        </tr>
+        <tr>
+            <td class="payment-label">Transfer Detail:</td>
+            <td class="payment-value">MBank</td>
+        </tr>
+        <tr>
+            <td class="payment-label">Transfer Detail:</td>
+            <td class="payment-value">39 1140 1179 0000 4255 2700 1001</td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>

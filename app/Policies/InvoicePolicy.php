@@ -20,7 +20,7 @@ class InvoicePolicy
      */
     public function view(User $user, Invoice $invoice): bool
     {
-        return $user->hasRole('firm') && $invoice->order->user_id == $user->id;
+        return $user->hasRole('firm') && $invoice->user_id == $user->id;
     }
 
     /**
@@ -28,7 +28,7 @@ class InvoicePolicy
      */
     public function update(User $user, Invoice $invoice): bool
     {
-        return $user->hasRole('firm') && $invoice->order->user_id == $user->id;
+        return $user->hasRole('firm') && $invoice->user_id == $user->id;
 
     }
 
@@ -37,7 +37,7 @@ class InvoicePolicy
      */
     public function delete(User $user, Invoice $invoice): bool
     {
-        return $user->hasRole('firm') && $invoice->order->user_id == $user->id;
+        return $user->hasRole('firm') && $invoice->user_id == $user->id;
 
     }
 
@@ -46,7 +46,7 @@ class InvoicePolicy
      */
     public function restore(User $user, Invoice $invoice): bool
     {
-        return $user->hasRole('firm') && $invoice->order->user_id == $user->id;
+        return $user->hasRole('firm') && $invoice->user_id == $user->id;
 
     }
 
@@ -55,7 +55,7 @@ class InvoicePolicy
      */
     public function forceDelete(User $user, Invoice $invoice): bool
     {
-        return $user->hasRole('firm') && $invoice->order->user_id == $user->id;
+        return $user->hasRole('firm') && $invoice->user_id == $user->id;
 
     }
 }

@@ -28,14 +28,9 @@ class InvoiceController extends Controller
             'field' => ['in:id,day']
         ]);
 
-        $query = Invoice::query()->whereHas('order.user',function($r){
-            $r->where('user_id',auth()->user()->id);
-        });
+        $query = Invoice::query()->where('user_id', auth()->id());
 
 
-        $query->when(request()->has('order_id'), function ($q) {
-            $q->where('order_id',request()->get('order_id'));
-        });
         $query->when(request()->has('amount'), function ($q) {
             $q->where('amount',request()->get('amount'));
         });
@@ -46,7 +41,7 @@ class InvoiceController extends Controller
 
         return inertia()->render('Invoice/Index',[
             'invoices' => $query->paginate(5)->withQueryString(),
-            'filters' => request()->only(['field', 'direction','order_id','amount'])
+            'filters' => request()->only(['field', 'direction','amount'])
         ]);
     }
 
@@ -59,8 +54,7 @@ class InvoiceController extends Controller
 
         if ($invoice) {
             try {
-                $order = $invoice->order;
-                $firm = $invoice->order->user;
+                $firm = auth()->user();
                 $date = $request->invoiceData()['date_invoice'];
                 DB::beginTransaction();
                 if (isset($firm)) {
@@ -87,11 +81,11 @@ class InvoiceController extends Controller
 
                 $testInvoice = false;
                  $pdf = Pdf::loadView('templates.pdf.invoice',
-                        compact('order', 'maskNumber', 'date', 'testInvoice','GenNumber')
+                        compact('maskNumber', 'date', 'testInvoice','GenNumber')
                     );
 
 
-                $filename = 'firm/' . $invoice->order->user_id . '/pdf/invoices/' . $GenNumberFile . '-corections.pdf';
+                $filename = 'firm/' . auth()->id() . '/pdf/invoices/' . $GenNumberFile . '-corections.pdf';
                 Storage::disk('invoices')->put($filename, $pdf->output());
                 DB::commit();
                 return redirect()->back();
