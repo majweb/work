@@ -34,13 +34,13 @@ class ApplicationRecruitFilterService
             $query->where('status', 'no')
                 ->where(function($q) {
                     $q->whereNull('whenDeleted')
-                      ->orWhere('whenDeleted', '>=', now()->subDays(90));
+                        ->orWhere('whenDeleted', '>=', now()->subDays(90));
                 });
         } elseif ($status === 'maybe') {
             $query->where(function($q) {
                 $q->where('status', 'maybe')
-                  ->orWhereNull('status')
-                  ->orWhere('status', '');
+                    ->orWhereNull('status')
+                    ->orWhere('status', '');
             });
         } elseif ($status === null) {
             // Dla widoku głównego, użyj scope 'active'
@@ -76,7 +76,7 @@ class ApplicationRecruitFilterService
         });
 
         // Filtrowanie według projektu i kategorii
-        $query->when($request->filled('project'), fn($q) => $q->where('id', $request->project))
+        $query->when($request->filled('project'), fn($q) => $q->where('project_id', $request->project))
             ->when($request->filled('status') && $status === null, fn($q) => $q->where('status', $request->status))
             ->when($request->filled('category'), function ($q) use ($request) {
                 $q->whereHas('project', fn($query) =>
@@ -89,40 +89,40 @@ class ApplicationRecruitFilterService
             })
 
 
-        // Filtrowanie według Doświadzcenie
-        ->when($request->filled('experience'), function ($q) use ($request) {
-        $q->whereHas('cvClassic', function ($query) use ($request) {
-            $query->whereJsonContains('experiences', [
-                'position' => ['value' => (int)$request->experience]
-            ]);
-        });
-    })
-        // Filtrowanie według Prawo jazdy
-        ->when($request->has('driveLicense'), function ($q) use ($request) {
-            if ($request->boolean('driveLicense')) {
-                $q->whereHas('project', function ($query) {
-                    $query->whereJsonContains('wait', ['id' => 19]);
-                });
-            } else {
-                $q->whereHas('project', function ($query) {
-                    $query->whereJsonDoesntContain('wait', ['id' => 19]);
-                });
-            }
-        })
-        // Filtrowanie według jezyka
-        ->when($request->filled('lang'), function ($q) use ($request) {
-            $q->whereHas('cvClassic', function ($query) use ($request) {
-                $query->whereJsonContains('langs', [
-                    'name' => ['value' => $request->lang]
-                ]);
-                // Dodatkowe filtrowanie po poziomie języka, jeśli został podany
-                if ($request->filled('Langlevel')) {
-                    $query->whereJsonContains('langs', [
-                        'level' => ['value' => (int)$request->Langlevel]
+            // Filtrowanie według Doświadzcenie
+            ->when($request->filled('experience'), function ($q) use ($request) {
+                $q->whereHas('cvClassic', function ($query) use ($request) {
+                    $query->whereJsonContains('experiences', [
+                        'position' => ['value' => (int)$request->experience]
                     ]);
+                });
+            })
+            // Filtrowanie według Prawo jazdy
+            ->when($request->has('driveLicense'), function ($q) use ($request) {
+                if ($request->boolean('driveLicense')) {
+                    $q->whereHas('project', function ($query) {
+                        $query->whereJsonContains('wait', ['id' => 19]);
+                    });
+                } else {
+                    $q->whereHas('project', function ($query) {
+                        $query->whereJsonDoesntContain('wait', ['id' => 19]);
+                    });
                 }
+            })
+            // Filtrowanie według jezyka
+            ->when($request->filled('lang'), function ($q) use ($request) {
+                $q->whereHas('cvClassic', function ($query) use ($request) {
+                    $query->whereJsonContains('langs', [
+                        'name' => ['value' => $request->lang]
+                    ]);
+                    // Dodatkowe filtrowanie po poziomie języka, jeśli został podany
+                    if ($request->filled('Langlevel')) {
+                        $query->whereJsonContains('langs', [
+                            'level' => ['value' => (int)$request->Langlevel]
+                        ]);
+                    }
+                });
             });
-        });
 
         // Filtrowanie według rekrutera
         $query->when($request->filled('recruiter'), fn($q) => $q->where('recruiter_id', $request->recruiter));
@@ -196,7 +196,7 @@ class ApplicationRecruitFilterService
             ->where('status', 'no')
             ->where(function($q) {
                 $q->whereNull('whenDeleted')
-                  ->orWhere('whenDeleted', '>=', now()->subDays(90));
+                    ->orWhere('whenDeleted', '>=', now()->subDays(90));
             })
             ->count();
 
@@ -278,7 +278,7 @@ class ApplicationRecruitFilterService
         $query->when(!empty($form['category']), function ($q) use ($form) {
             $categoryValue = is_array($form['category']) ? ($form['category']['value'] ?? $form['category']) : $form['category'];
             $q->whereHas('project', fn($query) =>
-                $query->whereJsonContains('position->value', (int)$categoryValue)
+            $query->whereJsonContains('position->value', (int)$categoryValue)
             );
         });
 
@@ -306,7 +306,7 @@ class ApplicationRecruitFilterService
                 $q->whereHas('project', function ($query) {
                     $query->where(function($q) {
                         $q->whereJsonDoesntContain('wait', ['id' => 19])
-                          ->orWhereNull('wait');
+                            ->orWhereNull('wait');
                     });
                 });
             }
