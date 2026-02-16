@@ -483,54 +483,70 @@ const duplicateProject = (project) => {
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tags{
-    border:1px solid #0A2E6D;
+.multiselect__tags {
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0.75rem 2.5rem 0.75rem 1rem; /* px-4 py-3, but with space for the arrow */
 }
-.multiselect__tag{
-    background: #0A2E6D !important;
+
+.multiselect__placeholder {
+    margin-bottom: 0;
+    padding-top: 0;
+    color: #9ca3af; /* text-gray-400 */
 }
+
+.multiselect__single {
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: 1rem;
+}
+
+.multiselect__input {
+    margin-bottom: 0;
+}
+
+.multiselect__select {
+    height: 100%;
+    width: 2.5rem;
+}
+
 .multiselect__option--highlight {
-    background: #0A2E6D !important;
+    background: #0d2a52 !important; /* work-main */
     outline: none;
     color: white;
 }
 
 .multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #0A2E6D !important;
-    color: white;
+    background: #0d2a52 !important;
 }
 
 .multiselect__option--selected {
-    background: #00A0E3B2 !important;
-    color: #35495E;
+    background: #f3f4f6 !important; /* gray-100 */
+    color: #0d2a52;
     font-weight: bold;
 }
 
 .multiselect__option--selected.multiselect__option--highlight {
-    background: #00A0E3B2 !important;
+    background: #0d2a52 !important;
     color: #fff;
 }
 
-.multiselect__option--selected.multiselect__option--highlight:after {
-    background: #00A0E3B2 !important;
-    content: attr(data-deselect);
+.multiselect__tag {
+    background: #0d2a52 !important;
+}
+
+.multiselect__tag-icon:after {
     color: white !important;
 }
 
-.multiselect__option--selected:after {
-    content: attr(data-selected);
-    color: #00A0E3B2;
-    background: transparent !important;
+.multiselect__tag-icon:hover {
+    background: #1e3a8a !important; /* darker blue */
 }
-.multiselect__select{
-    height: 98%;
-    background: rgba(10, 46, 109, 0.14);
-}
-.multiselect__select::before{
-    border-color: #0A2E6D transparent transparent;
-}
-.multiselect--disabled.multiselect .multiselect__select{
-    background: rgba(10, 46, 109, 0.14);
+
+.multiselect__content-wrapper {
+    border: 1px solid #d1d5db;
+    border-top: none;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 </style>

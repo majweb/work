@@ -319,15 +319,72 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
         </footer>
     </div>
 </template>
-
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tag { background: #0A2C5C !important; }
-.multiselect__option--highlight { background: #0A2C5C !important; outline: none; color: white; }
-.multiselect__option--selected { background: #12315d !important; color: white; font-weight: bold; }
-.slide-enter-active, .slide-leave-active { transition: transform 0.3s ease-in-out; }
-.slide-enter-from { transform: translateX(-100%); }
-.slide-enter-to { transform: translateX(0); }
-.slide-leave-from { transform: translateX(0); }
-.slide-leave-to { transform: translateX(-100%); }
+.multiselect__tags {
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0.75rem 2.5rem 0.75rem 1rem; /* px-4 py-3, but with space for the arrow */
+}
+
+.multiselect__placeholder {
+    margin-bottom: 0;
+    padding-top: 0;
+    color: #9ca3af; /* text-gray-400 */
+}
+
+.multiselect__single {
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: 1rem;
+}
+
+.multiselect__input {
+    margin-bottom: 0;
+}
+
+.multiselect__select {
+    height: 100%;
+    width: 2.5rem;
+}
+
+.multiselect__option--highlight {
+    background: #0d2a52 !important; /* work-main */
+    outline: none;
+    color: white;
+}
+
+.multiselect__option--highlight:after {
+    background: #0d2a52 !important;
+}
+
+.multiselect__option--selected {
+    background: #f3f4f6 !important; /* gray-100 */
+    color: #0d2a52;
+    font-weight: bold;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+    background: #0d2a52 !important;
+    color: #fff;
+}
+
+.multiselect__tag {
+    background: #0d2a52 !important;
+}
+
+.multiselect__tag-icon:after {
+    color: white !important;
+}
+
+.multiselect__tag-icon:hover {
+    background: #1e3a8a !important; /* darker blue */
+}
+
+.multiselect__content-wrapper {
+    border: 1px solid #d1d5db;
+    border-top: none;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
 </style>

@@ -137,7 +137,9 @@ class CandidateCvController extends Controller
         session()->flash('flash.banner', __('translate.sendExternalSuccess'));
         session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->back();
+        return back()->with('sender', [
+            'id' => now()->timestamp // albo uniqid()
+        ]);
     }
 
     public function sendExternalRecruit(Request $request)
