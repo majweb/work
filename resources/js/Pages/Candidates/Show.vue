@@ -6,6 +6,9 @@ import { ref, onMounted, computed, watch } from 'vue';
 import axios from 'axios';
 import moment from "moment/moment.js";
 import TextInput from "@/Components/TextInput.vue";
+import {usePermission} from "@/Composables/usePermission.js";
+const {noRole} = usePermission();
+
 // Importy FilePond
 const props = defineProps({
     candidate: Object,
@@ -521,7 +524,7 @@ initAnswersForm();
                                             </div>
 
                                             <Link
-                                                :href="route('projects.show', project.project_id)"
+                                                :href="route('projects.show', project.project_id) "
                                                 class="block truncate text-sm font-bold text-slate-800 hover:text-indigo-600"
                                             >
                                                 {{ project.project_name }}
@@ -545,11 +548,25 @@ initAnswersForm();
                                         <div class="flex items-center gap-2 shrink-0">
                                             <!-- preview button -->
                                             <Link
+                                                v-if="noRole('firm')"
                                                 :href="route('project-recruits.show', project.project_id)"
                                                 class="rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase"
                                             >
                                                 {{__('translate.view')}}
                                             </Link>
+
+                                            <Link
+                                                v-else
+                                                :href="route('projects.show', project.project_id)"
+                                                class="rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase"
+                                            >
+                                                {{__('translate.view')}}
+                                            </Link>
+
+
+
+
+
 
                                             <!-- status button -->
                                             <span
@@ -577,96 +594,124 @@ initAnswersForm();
                         </div>
                     </div>
                     <!-- Pytania -->
-                    <div v-if="candidateQuestions && candidateQuestions.length > 0" class="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateQuestions') }}</h3>
-                        <div v-if="candidate.questions_unlocked_at" class="space-y-4">
-                            <p class="text-sm text-gray-600 mb-3">{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
-                            <p>{{ __('translate.candidateQuestionsUnlockedDate') }} <strong>{{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}</strong></p>
-                            <div v-for="(question, index) in candidateQuestions" :key="question.id" class="border p-4 rounded-lg">
-                                <h4 class="font-medium mb-2">{{ question.question }}</h4>
+                    <div v-if="candidateQuestions && candidateQuestions.length > 0" class="mt-8">
+                        <h3 class="text-xl font-bold text-[#1e293b] mb-4">
+                            {{ __('translate.candidateQuestions') || 'Dodatkowe pytania do kandydata' }}
+                        </h3>
 
-                                <div v-if="question.answer_type === 'text'">
-                                    <textarea
-                                        v-model="answersForm.answers[index].text_answer"
-                                        class="w-full border-gray-300 rounded-md shadow-sm"
-                                        :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
-                                        rows="3"
-                                    ></textarea>
-                                    <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-sm text-red-600 mt-1">
-                                        {{ answersForm.errors[`answers.${index}.text_answer`] }}
-                                    </p>
-                                </div>
+                        <div v-if="candidate.questions_unlocked_at" class="bg-white rounded-[20px] border border-[#e2e8f0] p-8 shadow-sm">
+                            <p class="text-[13px] text-[#94a3b8] mb-6">
+                                {{ __('translate.candidateQuestionsUnlockedDate') }} {{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}
+                            </p>
 
-                                <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
-                                    <div class="flex space-x-4 mb-1">
-                                        <label class="inline-flex items-center">
-                                            <input
-                                                type="radio"
-                                                :name="`question-${question.id}`"
-                                                :value="true"
-                                                v-model="answersForm.answers[index].boolean_answer"
-                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
-                                                class="border-gray-300 text-indigo-600"
-                                            >
-                                            <span class="ml-2">{{ __('translate.yes') }}</span>
-                                        </label>
+                            <div class="space-y-6">
+                                <div v-for="(question, index) in candidateQuestions" :key="question.id" class="relative group">
+                                    <div class="rounded-[15px] border-2 border-[#1e3a8a]/10 bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all hover:border-[#1e3a8a]/20">
+                                        <h4 class="text-[16px] font-bold text-[#1e3a8a] mb-4">{{ question.question }}</h4>
 
-                                        <label class="inline-flex items-center">
-                                            <input
-                                                type="radio"
-                                                :name="`question-${question.id}`"
-                                                :value="false"
-                                                v-model="answersForm.answers[index].boolean_answer"
-                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.boolean_answer`]}"
-                                                class="border-gray-300 text-indigo-600"
-                                            >
-                                            <span class="ml-2">{{ __('translate.no') }}</span>
-                                        </label>
-                                    </div>
-                                    <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-sm text-red-600">
-                                        {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="mt-4">
-                                <div v-if="answersForm.errors.answers" class="p-4 mb-4 bg-red-50 border border-red-500 rounded-md">
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                                            </svg>
+                                        <div v-if="question.answer_type === 'text'">
+                                            <textarea
+                                                v-model="answersForm.answers[index].text_answer"
+                                                class="w-full border-[#e2e8f0] rounded-[12px] bg-[#f8fafc]/50 focus:bg-white focus:border-[#00a0e3] focus:ring-4 focus:ring-[#00a0e3]/10 transition-all resize-none text-[#334155] placeholder-[#94a3b8]"
+                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
+                                                rows="3"
+                                            ></textarea>
+                                            <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-xs text-red-500 mt-2 flex items-center gap-1">
+                                                <span class="text-lg">⚠</span> {{ answersForm.errors[`answers.${index}.text_answer`] }}
+                                            </p>
                                         </div>
-                                        <div class="ml-3">
-                                            <h3 class="text-sm font-medium text-red-800">{{ __('translate.validationError') }}</h3>
-                                            <p class="text-sm text-red-700 mt-1">
-                                                {{ answersForm.errors.answers }}
+
+                                        <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
+                                            <div class="flex items-center gap-8">
+                                                <label class="group/label flex items-center cursor-pointer">
+                                                    <div class="relative flex items-center justify-center">
+                                                        <input
+                                                            type="radio"
+                                                            :name="`question-${question.id}`"
+                                                            :value="true"
+                                                            v-model="answersForm.answers[index].boolean_answer"
+                                                            class="peer sr-only"
+                                                        >
+                                                        <div class="h-6 w-6 rounded-full border-2 border-[#cbd5e1] bg-white transition-all peer-checked:border-[#00a0e3] peer-checked:border-[6px] group-hover/label:border-[#00a0e3]/50"></div>
+                                                    </div>
+                                                    <span class="ml-3 text-[15px] font-medium text-[#475569] group-hover/label:text-[#00a0e3] transition-colors">
+                                                        {{ __('translate.yes') || 'tak' }}
+                                                    </span>
+                                                </label>
+
+                                                <label class="group/label flex items-center cursor-pointer">
+                                                    <div class="relative flex items-center justify-center">
+                                                        <input
+                                                            type="radio"
+                                                            :name="`question-${question.id}`"
+                                                            :value="false"
+                                                            v-model="answersForm.answers[index].boolean_answer"
+                                                            class="peer sr-only"
+                                                        >
+                                                        <div class="h-6 w-6 rounded-full border-2 border-[#cbd5e1] bg-white transition-all peer-checked:border-[#00a0e3] peer-checked:border-[6px] group-hover/label:border-[#00a0e3]/50"></div>
+                                                    </div>
+                                                    <span class="ml-3 text-[15px] font-medium text-[#475569] group-hover/label:text-[#00a0e3] transition-colors">
+                                                        {{ __('translate.no') || 'nie' }}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-xs text-red-500 mt-2 flex items-center gap-1">
+                                                <span class="text-lg">⚠</span> {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
                                             </p>
                                         </div>
                                     </div>
+                                    <!-- Dekoracyjny cień pod spodem -->
+                                    <div class="absolute -bottom-1 left-4 right-4 h-4 bg-[#1e3a8a]/5 rounded-b-[15px] -z-10 blur-sm"></div>
                                 </div>
-                                <div class="flex justify-end">
-                                    <button
-                                        @click="saveAnswers"
-                                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:border-indigo-900 focus:ring focus:ring-indigo-300 disabled:opacity-25 transition"
-                                        :disabled="answersForm.processing"
-                                    >
-                                        {{ __('translate.save') }}
-                                    </button>
+                            </div>
+
+                            <div class="mt-8 flex items-center justify-end gap-4 border-t border-[#f1f5f9] pt-6">
+                                <div v-if="answersForm.errors.answers" class="mr-auto flex items-center gap-2 text-sm text-red-600 bg-red-50 px-4 py-2 rounded-lg border border-red-100">
+                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                    {{ answersForm.errors.answers }}
                                 </div>
+
+                                <Link :href="route('candidate-questions.create')"
+                                    class="inline-flex items-center px-6 py-2.5 bg-[#00a0e3] text-white text-[14px] font-bold rounded-[10px] uppercase tracking-wider hover:bg-[#008cc6] active:transform active:scale-95 transition-all shadow-sm shadow-[#00a0e3]/20"
+                                >
+                                    {{ __('translate.addQuestion') || 'DODAJ PYTANIE' }}
+                                </Link>
+
+                                <button
+                                    @click="saveAnswers"
+                                    class="inline-flex items-center px-8 py-2.5 bg-[#1e3a8a] text-white text-[14px] font-bold rounded-[10px] uppercase tracking-wider hover:bg-[#1a3175] active:transform active:scale-95 transition-all shadow-sm shadow-[#1e3a8a]/20 disabled:opacity-50"
+                                    :disabled="answersForm.processing"
+                                >
+                                    <svg v-if="answersForm.processing" class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z"></path>
+                                    </svg>
+                                    {{ __('translate.save') || 'ZAPISZ' }}
+                                </button>
                             </div>
                         </div>
 
-                        <div v-else class="text-center py-6">
-                            <p class="text-gray-600 mb-4">{{ __('translate.unlockQuestionsInfo') }}</p>
+                        <div v-else class="bg-white rounded-[20px] border border-[#e2e8f0] p-12 text-center shadow-sm">
+                            <div class="mx-auto w-16 h-16 bg-[#f1f5f9] rounded-full flex items-center justify-center mb-4">
+                                <span class="text-2xl">🔒</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-[#1e293b] mb-2">{{ __('translate.unlockQuestions') }}</h4>
+                            <p class="text-gray-500 mb-8 max-w-sm mx-auto">{{ __('translate.unlockQuestionsInfo') }}</p>
+
                             <button
                                 @click="unlockQuestions"
-                                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition"
+                                class="inline-flex items-center px-8 py-3 bg-[#1e3a8a] text-white text-[14px] font-bold rounded-[12px] uppercase tracking-wider hover:bg-[#1a3175] active:transform active:scale-95 transition-all shadow-lg shadow-[#1e3a8a]/20 disabled:opacity-50"
                                 :disabled="questionsForm.processing"
                             >
+                                <svg v-if="questionsForm.processing" class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z"></path>
+                                </svg>
                                 {{ __('translate.unlockQuestions') }}
                             </button>
-                            <p class="text-sm text-gray-500 mt-2">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
+                            <p class="text-xs text-gray-400 mt-4">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
                         </div>
                     </div>
 
