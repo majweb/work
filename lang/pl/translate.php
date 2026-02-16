@@ -651,6 +651,12 @@ return [
     'questionsUnlocked' => 'Pytania zostały odblokowane',
     'questionsAlreadyUnlocked' => 'Pytania są już odblokowane',
     'questionsNotUnlocked' => 'Musisz najpierw odblokować pytania',
+    'confirmUnlockQuestions' => 'Czy na pewno chcesz odblokować pytania? Z Twojego konta zostanie pobrane 200 punktów.',
+    'additionalQuestionsToCandidate' => 'Dodatkowe pytania do kandydata',
+    'unlockQuestionsDate' => 'Odblokowanie pytań:',
+    'addQuestion' => 'DODAJ PYTANIE',
+    'yes' => 'tak',
+    'no' => 'nie',
     'answersRequired' => 'Odpowiedzi są wymagane.',
     'allAnswersRequired' => 'Proszę odpowiedzieć na wszystkie pytania.',
     'validationError' => 'Błąd walidacji',
@@ -1329,4 +1335,5 @@ return [
     'daysAgo' => ':count dni temu',
     'weekAgo' => 'tydzień temu',
     'yesterday' => 'wczoraj',
+    'goToOffer' => 'Przejdź do oferty',
     ];

@@ -18,7 +18,6 @@ const currentNote = ref(null);
 const isEditing = ref(false);
 const noteToDelete = ref(null);
 
-const can = computed(() => usePage().props.permissionsCan);
 
 const form = useForm({
     content: ''
@@ -258,11 +257,9 @@ const createCandidate = () => {
 
                                 <div class="flex gap-2">
                                     <button
-                                        @click="can['application status'] && updateStatus(application.id, 'yes')"
-                                        :disabled="!can['application status']"
-                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border"
+                                        @click="updateStatus(application.id, 'yes')"
+                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border hover:opacity-90"
                                         :class="[
-                                            !can['application status'] ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90',
                                             application.status === 'yes' ? 'text-white border-transparent' : 'bg-white border-gray-200'
                                         ]"
                                         :style="application.status === 'yes'
@@ -273,11 +270,9 @@ const createCandidate = () => {
                                     </button>
 
                                     <button
-                                        @click="can['application status'] && updateStatus(application.id, 'no')"
-                                        :disabled="!can['application status']"
-                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border"
+                                        @click="updateStatus(application.id, 'no')"
+                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border hover:opacity-90"
                                         :class="[
-                                            !can['application status'] ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90',
                                             application.status === 'no' ? 'text-white border-transparent' : 'bg-white border-gray-200'
                                         ]"
                                         :style="application.status === 'no'
@@ -288,11 +283,9 @@ const createCandidate = () => {
                                     </button>
 
                                     <button
-                                        @click="can['application status'] && updateStatus(application.id, 'maybe')"
-                                        :disabled="!can['application status']"
-                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border"
+                                        @click="updateStatus(application.id, 'maybe')"
+                                        class="rounded-xl px-4 py-2 text-sm font-semibold transition border hover:opacity-90"
                                         :class="[
-                                            !can['application status'] ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90',
                                             application.status === 'maybe' ? 'text-white border-transparent' : 'bg-white border-gray-200'
                                         ]"
                                         :style="application.status === 'maybe'
@@ -530,7 +523,7 @@ const createCandidate = () => {
                                     class="bg-white inline-flex items-center justify-center rounded-xl px-1 py-1 my-3 w-full text-sm font-extrabold uppercase text-work-main shadow-sm hover:opacity-90 gap-2 border border-work-main transition hover:bg-work-main hover:text-white"
                                 >
                                     <img class="w-12 h-12" src="/images/icons/recruit/zobacz_oferte.svg" alt="zobacz_oferte">
-                                    Przejdź do oferty
+                                    {{ __('translate.goToOffer') || 'Przejdź do oferty' }}
                                 </Link>
                                 <div class="grid grid-cols-1 gap-3" v-if="application.cv_audio || application.cv_video">
                                     <!-- CV AUDIO -->

@@ -20,7 +20,6 @@ const props = defineProps({
     langLevels: Array,
 });
 
-const can = computed(() => usePage().props.permissionsCan);
 const firmLoginPoints = computed(() => usePage().props.firmLoginPoints);
 const exportRequiredPoints = computed(() => usePage().props.exportRequiredPoints);
 
@@ -288,10 +287,10 @@ const submitForm = () => {
 
                             <!-- Status buttons -->
                             <div class="col-span-2 flex justify-center md:justify-start">
-                                <button v-if="application.status==='maybe'" @click="can['application status'] && updateStatus(application.id,'yes')" :disabled="!can['application status']" class="min-w-[90px] px-6 py-2 bg-blue-500 text-white font-bold text-sm rounded-lg hover:bg-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.maybe') }}</button>
-                                <button v-else-if="application.status==='yes'" @click="can['application status'] && updateStatus(application.id,'no')" :disabled="!can['application status']" class="min-w-[90px] px-6 py-2 bg-blue-900 text-white font-bold text-sm rounded-lg hover:bg-blue-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.yes') }}</button>
-                                <button v-else-if="application.status==='no'" @click="can['application status'] && updateStatus(application.id,'maybe')" :disabled="!can['application status']" class="min-w-[90px] px-6 py-2 bg-red-600 text-white font-bold text-sm rounded-lg hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.no') }}</button>
-                                <button v-else @click="can['application status'] && updateStatus(application.id,'maybe')" :disabled="!can['application status']" class="min-w-[90px] px-6 py-2 bg-gray-300 text-gray-700 font-bold text-sm rounded-lg hover:bg-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">---</button>
+                                <button v-if="application.status==='maybe'" @click="updateStatus(application.id,'yes')" class="min-w-[90px] px-6 py-2 bg-blue-500 text-white font-bold text-sm rounded-lg hover:bg-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.maybe') }}</button>
+                                <button v-else-if="application.status==='yes'" @click="updateStatus(application.id,'no')" class="min-w-[90px] px-6 py-2 bg-blue-900 text-white font-bold text-sm rounded-lg hover:bg-blue-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.yes') }}</button>
+                                <button v-else-if="application.status==='no'" @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-red-600 text-white font-bold text-sm rounded-lg hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.no') }}</button>
+                                <button v-else @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-gray-300 text-gray-700 font-bold text-sm rounded-lg hover:bg-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">---</button>
                             </div>
 
                             <div class="col-span-2 flex justify-center md:justify-start text-sm text-gray-600">{{ application.created_at ? new Date(application.created_at).toLocaleDateString('pl-PL') : '' }}</div>

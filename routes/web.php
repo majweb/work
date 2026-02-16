@@ -147,7 +147,7 @@ Route::middleware([
     Route::post('aplications/{aplication}/notes',[AplicationController::class,'storeNote'])->middleware('role:firm')->name('firm.applications.store-note');
     Route::post('applications/{candidate}/save-answers', [AplicationController::class, 'saveAnswers'])->middleware('role:firm')->name('candidate.save-answers');
     Route::post('applications/{candidate}/unlock-questions', [AplicationController::class, 'unlockQuestions'])->middleware('role:firm')->name('candidate.unlock-questions');
-    Route::post('applications/{aplication}/create-candidate', [AplicationController::class, 'createCandidate'])->middleware('role:firm')->name('firm.applications.create-candidate');
+    Route::post('firm/applications/{aplication}/create-candidate', [AplicationController::class, 'createCandidate'])->middleware('role:firm')->name('firm.applications.create-candidate');
     Route::put('aplications/notes/{note}',[AplicationController::class,'updateNote'])->middleware('role:firm')->name('firm.applications.update-note');
     Route::delete('aplications/notes/{note}',[AplicationController::class,'deleteNote'])->middleware('role:firm')->name('firm.applications.delete-note');
     Route::get('acceptedApplications',[AplicationController::class,'acceptedApplications'])->middleware('role:firm')->name('firm.applications.acceptedApplications');
@@ -242,7 +242,7 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
     Route::post('project-aplications-recruits/{aplication}/notes',[AplicationControllerRecruit::class,'storeNote'])->name('project-aplications-recruits.store-note');
     Route::put('project-aplications-recruits/notes/{note}',[AplicationControllerRecruit::class,'updateNote'])->name('project-aplications-recruits.update-note');
     Route::delete('project-aplications-recruits/notes/{note}',[AplicationControllerRecruit::class,'deleteNote'])->name('project-aplications-recruits.delete-note');
-    Route::post('applications/{aplication}/create-candidate', [AplicationControllerRecruit::class, 'createCandidate'])->middleware('role:recruit')->name('recruit.applications.create-candidate');
+    Route::post('recruit/applications/{aplication}/create-candidate', [AplicationControllerRecruit::class, 'createCandidate'])->middleware('role:recruit')->name('recruit.applications.create-candidate');
     Route::post('/send-external-recruit', [\App\Http\Controllers\CandidateCvController::class, 'sendExternalRecruit'])->name('send.external.recruit');
 
 

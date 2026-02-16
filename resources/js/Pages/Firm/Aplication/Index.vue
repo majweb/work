@@ -6,6 +6,8 @@ import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
 import Multiselect from "vue-multiselect";
 import InputLabel from "@/Components/InputLabel.vue";
+import Pagination from "@/Components/Pagination.vue";
+
 const isExporting = ref(false);
 const props = defineProps({
     acceptedCount: Number,
@@ -48,8 +50,6 @@ const updateStatus = (id, status) => {
         preserveState: true
     });
 };
-
-// Funkcja do zastosowania filtrów została usunięta, bo teraz używamy watch
 
 const resetFilters = () => {
     form.value = {
@@ -171,7 +171,7 @@ watch(() => usePage().props.sender, (newVal) => {
     <AppLayout :title="__('translate.aplications')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{__('translate.aplications')}}
+                {{ __('translate.aplications') }}
             </h2>
         </template>
 
@@ -213,14 +213,14 @@ watch(() => usePage().props.sender, (newVal) => {
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.position') }}</label>
-                                <multiselect v-model="form.category" :options="props.optionsPosition" label="name" :placeholder="__('translate.selectPosition')" class="custom-multiselects"/>
+                                <multiselect v-model="form.category" :options="props.optionsPosition" label="name" :placeholder="__('translate.selectPosition')" class="custom-multiselect"/>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.applicationStatus') }}</label>
                                 <select v-model="form.status" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
                                     <option value="">{{ __('translate.all') }}</option>
-                                    <option value="yes">{{ __('translate.statusYes') }}</option>
-                                    <option value="no">{{ __('translate.statusNo') }}</option>
+                                    <option value="yes">{{ __('translate.yes') }}</option>
+                                    <option value="no">{{ __('translate.no') }}</option>
                                     <option value="maybe">{{ __('translate.statusMaybe') }}</option>
                                 </select>
                             </div>
@@ -260,6 +260,7 @@ watch(() => usePage().props.sender, (newVal) => {
 
                         <!-- Action buttons -->
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-6 space-y-2 sm:space-y-0">
+                            <!-- Lewa grupa przycisków -->
                             <div class="flex flex-col sm:flex-row sm:space-x-3 w-full sm:w-auto space-y-2 sm:space-y-0">
                                 <button
                                     @click="exportToCSV"
@@ -285,6 +286,10 @@ watch(() => usePage().props.sender, (newVal) => {
                     <div v-if="formSend.apps.length" class="mb-6">
                         <multiselect v-model="formSend.externalFirms" :options="props.optionsExternal" label="name" :placeholder="__('translate.selectExternalFirms')" class="custom-multiselect mb-4" :multiple="true"/>
                         <button @click="submitForm" :disabled="formSend.processing || !formSend.externalFirms.length" class="w-full px-4 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                            <svg v-if="formSend.processing" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 010 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
+                            </svg>
                             <span v-if="!formSend.processing">{{ __('translate.submitApplications') }}</span>
                             <span v-else>{{ __('translate.sending') }}</span>
                         </button>
@@ -325,10 +330,10 @@ watch(() => usePage().props.sender, (newVal) => {
 
                             <!-- Status buttons -->
                             <div class="col-span-2 flex justify-center md:justify-start">
-                                <button v-if="application.status==='maybe'" @click="updateStatus(application.id,'yes')" class="min-w-[90px] px-6 py-2 bg-blue-500 text-white font-bold text-sm rounded-lg hover:bg-blue-600 transition-all uppercase">{{ __('translate.statusMaybe') }}</button>
-                                <button v-else-if="application.status==='yes'" @click="updateStatus(application.id,'no')" class="min-w-[90px] px-6 py-2 bg-blue-900 text-white font-bold text-sm rounded-lg hover:bg-blue-800 transition-all uppercase">{{ __('translate.statusYes') }}</button>
-                                <button v-else-if="application.status==='no'" @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-red-600 text-white font-bold text-sm rounded-lg hover:bg-red-700 transition-all uppercase">{{ __('translate.statusNo') }}</button>
-                                <button v-else @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-gray-300 text-gray-700 font-bold text-sm rounded-lg hover:bg-gray-400 transition-all uppercase">---</button>
+                                <button v-if="application.status==='maybe'" @click="updateStatus(application.id,'yes')" class="min-w-[90px] px-6 py-2 bg-blue-500 text-white font-bold text-sm rounded-lg hover:bg-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.maybe') }}</button>
+                                <button v-else-if="application.status==='yes'" @click="updateStatus(application.id,'no')" class="min-w-[90px] px-6 py-2 bg-blue-900 text-white font-bold text-sm rounded-lg hover:bg-blue-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.yes') }}</button>
+                                <button v-else-if="application.status==='no'" @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-red-600 text-white font-bold text-sm rounded-lg hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.no') }}</button>
+                                <button v-else @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-gray-300 text-gray-700 font-bold text-sm rounded-lg hover:bg-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">---</button>
                             </div>
 
                             <div class="col-span-2 flex justify-center md:justify-start text-sm text-gray-600">{{ application.created_at ? new Date(application.created_at).toLocaleDateString('pl-PL') : '' }}</div>
@@ -353,7 +358,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                     :href="route('aplications.show', application.id)"
                                     class="px-4 py-2 bg-blue-900 text-white font-bold text-xs rounded-lg hover:bg-blue-800 transition-all uppercase"
                                 >
-                                    {{__('translate.check')}}
+                                    {{ __('translate.check') }}
                                 </Link>
                             </div>
                         </div>
