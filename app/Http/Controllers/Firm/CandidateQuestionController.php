@@ -42,8 +42,10 @@ class CandidateQuestionController extends Controller
             'is_active' => true,
         ]);
 
-        return redirect()->route('candidate-questions.index')
-            ->with('success', 'Pytanie zostało dodane.');
+        session()->flash('flash.banner', __('translate.questionAdded'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('candidate-questions.index');
     }
 
     public function edit(CandidateQuestion $candidateQuestion)
@@ -66,9 +68,11 @@ class CandidateQuestionController extends Controller
         ]);
 
         $candidateQuestion->update($validated);
+        session()->flash('flash.banner', __('translate.questionUpdated'));
+        session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('candidate-questions.index')
-            ->with('success', 'Pytanie zostało zaktualizowane.');
+        return redirect()->route('candidate-questions.index');
+
     }
 
     public function destroy(CandidateQuestion $candidateQuestion)
@@ -76,9 +80,10 @@ class CandidateQuestionController extends Controller
         Gate::authorize('delete', $candidateQuestion);
 
         $candidateQuestion->delete();
+        session()->flash('flash.banner', __('translate.questionDeleted'));
+        session()->flash('flash.bannerStyle', 'success');
 
-        return redirect()->route('candidate-questions.index')
-            ->with('success', 'Pytanie zostało usunięte.');
+        return redirect()->route('candidate-questions.index');
     }
 
     public function toggleActive(CandidateQuestion $candidateQuestion)
@@ -89,6 +94,9 @@ class CandidateQuestionController extends Controller
             'is_active' => !$candidateQuestion->is_active,
         ]);
 
-        return back()->with('success', 'Status pytania został zmieniony.');
+        session()->flash('flash.banner', __('translate.questionStatusChanged'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
     }
 }

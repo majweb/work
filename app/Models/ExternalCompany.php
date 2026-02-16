@@ -15,7 +15,8 @@ class ExternalCompany extends Model
         'name',
         'abbreviation',
         'user_id',
-        'email'
+        'email',
+        'note',
     ];
 
     /**

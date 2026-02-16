@@ -56,6 +56,9 @@ class ExternalCompanyController extends Controller
                         $query->where('user_id', Auth::id());
                     }),
             ],
+            'note' => 'nullable|string|max:1000',
+        ], [], [
+            'abbreviation' => __('translate.abbreviation'),
         ]);
 
         // Koszt utworzenia kandydata
@@ -116,6 +119,9 @@ class ExternalCompanyController extends Controller
                     ->ignore($externalCompany->id) // pomija aktualny rekord
                     ->where(fn ($query) => $query->where('user_id', Auth::id()))
             ],
+            'note' => 'nullable|string|max:1000',
+        ], [], [
+            'abbreviation' => __('translate.abbreviation'),
         ]);
 
 

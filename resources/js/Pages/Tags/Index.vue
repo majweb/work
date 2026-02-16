@@ -61,16 +61,9 @@ const getContrastColor = (bgColor) => {
 <template>
     <AppLayout :title="__('translate.tags')">
         <template #header>
-            <div class="flex justify-between items-center">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('translate.tags') }}
-                </h2>
-                <Link :href="route('tags.create')">
-                    <PrimaryButton>
-                        {{ __('translate.create') }}
-                    </PrimaryButton>
-                </Link>
-            </div>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('translate.tags') }}
+            </h2>
         </template>
 
         <!-- Modal potwierdzenia usunięcia -->
@@ -103,50 +96,67 @@ const getContrastColor = (bgColor) => {
             </template>
         </DialogModal>
 
-        <div class="py-12">
+        <div class="py-8">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-xl sm:rounded-lg p-6">
-                    <!-- Header -->
-                    <div class="mb-6">
-                        <h1 class="text-2xl font-semibold text-gray-900">
-                            {{ __('translate.listTag') }}
-                        </h1>
-                        <p class="mt-1 text-sm text-gray-500">
-                            {{__('translate.listTagInfo')}}
-                        </p>
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 tracking-tight">{{ __('translate.listTag') }}</h3>
+                        <Link :href="route('tags.create')">
+                            <button class="bg-[#1a335d] text-white px-10 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-[#14284b] transition-all active:scale-95 shadow-md">
+                                {{ __('translate.create') }}
+                            </button>
+                        </Link>
                     </div>
+
                     <!-- Wyszukiwarka -->
-                    <div class="mb-3">
-                        <input
-                            type="text"
-                            v-model="customTagSearchQuery"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                            :placeholder="__('translate.searchCustomTags')"
-                        />
+                    <div class="mb-6">
+                        <div class="relative">
+                            <input
+                                type="text"
+                                v-model="customTagSearchQuery"
+                                class="w-full px-6 py-3 border-2 border-gray-50 rounded-2xl shadow-sm focus:outline-none focus:ring-0 focus:border-[#00b0e8] transition-all text-[#1a335d] font-medium placeholder:text-gray-300"
+                                :placeholder="__('translate.searchCustomTags')"
+                            />
+                        </div>
                     </div>
 
                     <!-- Lista tagów -->
-                    <div class="flex flex-wrap gap-2">
-                        <span
+                    <div v-if="filteredCustomTags.length" class="flex flex-wrap gap-3">
+                        <div
                             v-for="tag in filteredCustomTags"
                             :key="tag.id"
-                            class="px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2"
+                            class="pl-4 pr-2 py-2 rounded-2xl flex items-center gap-4 border border-gray-50 shadow-sm transition-all hover:shadow-md"
                             :style="{ backgroundColor: tag.color || '#ccc', color: getContrastColor(tag.color) }"
                         >
-                            {{ tag.name }}
-                            <!-- Edycja -->
-                                <Link :href="route('tags.edit', tag.id)" class="ml-1 text-blue-500 hover:underline text-xs">
-                                                {{ __('translate.edit') }}
-                                            </Link>
-                            <!-- Usuwanie -->
-                            <button type="button" @click="openDeleteModal(tag)" class="ml-1 text-red-500 hover:underline text-xs">
-                                {{ __('translate.delete') }}
-                            </button>
-                        </span>
+                            <span class="font-bold text-sm uppercase tracking-wider">{{ tag.name }}</span>
 
-                        <span v-if="filteredCustomTags.length === 0" class="text-gray-500 text-sm">
-                            {{ customTagSearchQuery ? __('translate.noMatchingTags') : __('translate.noTagsAvailable') }}
-                        </span>
+                            <div class="flex items-center gap-1 bg-white/20 rounded-xl p-1">
+                                <!-- Edycja -->
+                                <Link :href="route('tags.edit', tag.id)"
+                                      class="p-1.5 hover:bg-white/30 rounded-lg transition-colors"
+                                      :title="__('translate.edit')"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </Link>
+
+                                <!-- Usuwanie -->
+                                <button type="button"
+                                        @click="openDeleteModal(tag)"
+                                        class="p-1.5 hover:bg-red-500/80 hover:text-white rounded-lg transition-colors"
+                                        :title="__('translate.delete')"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-else class="py-16 text-center text-gray-400 bg-gray-50/50 rounded-3xl border-2 border-dashed border-gray-100 font-medium">
+                        {{ customTagSearchQuery ? __('translate.noMatchingTags') : __('translate.noTagsAvailable') }}
                     </div>
                 </div>
             </div>
