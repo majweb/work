@@ -4,7 +4,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from "@/Components/DangerButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import { reactive, ref, computed, onMounted, nextTick } from "vue";
+import { ref, computed, onMounted, nextTick } from "vue";
 import Multiselect from 'vue-multiselect'
 import Info from "@/Components/Info.vue";
 import __ from "@/lang.js";
@@ -20,7 +20,6 @@ const props = defineProps({
     otherRecruits: Array,
     locale: String,
 });
-
 const selectedProject = ref(null);
 const confirmCancelProject = ref(false);
 const showChangeRecruit = ref(false);
