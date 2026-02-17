@@ -327,7 +327,6 @@
                             <th class="pb-2">{{ __('translate.invoiceNumber') }}</th>
                             <th class="pb-2">{{ __('translate.invoiceDate') }}</th>
                             <th class="pb-2">{{ __('translate.invoiceAmount') }}</th>
-                            <th class="pb-2">{{ __('translate.invoiceOrderNumber') }}</th>
                             <th class="pb-2">{{ __('translate.invoiceRead') }}</th>
                             <th class="pb-2">{{ __('translate.invoiceAction') }}</th>
                         </tr>
@@ -349,9 +348,6 @@
                             </td>
                             <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
                                 ${{ parseFloat(invoice.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
-                            </td>
-                            <td class="py-4 px-2 text-center text-slate-500 text-xs">
-                                {{ invoice.number }}/{{ invoice.month }}/{{ invoice.year }}
                             </td>
                             <td class="py-4 px-2 text-center">
                                 <div class="flex justify-center">

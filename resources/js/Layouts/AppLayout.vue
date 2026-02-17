@@ -165,33 +165,16 @@ onUnmounted(()=>{
                                 </NavLink>
                             </div>
 
-                            <div class="hidden sm:-my-px sm:ms-10 sm:flex items-center" v-if="hasRole('firm')">
-                                <Dropdown align="right" width="48">
-                                    <template #trigger>
-                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                            {{__('translate.invoices')}}
-                                            <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
-                                            </svg>
-                                        </button>
-                                    </template>
-                                    <template #content>
-                                        <div class="w-48">
-                                            <DropdownLink :href="route('invoices.index')">
-                                                {{__('translate.invoices')}}
-                                            </DropdownLink>
-                                            <DropdownLink :href="route('orders.index')">
-                                                {{__('translate.orders')}}
-                                            </DropdownLink>
-                                        </div>
-                                    </template>
-                                </Dropdown>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
+                                <NavLink :href="route('invoices.index')" :active="route().current('invoices.index')">
+                                    {{__('translate.invoices')}}
+                                </NavLink>
                             </div>
                             <div class="hidden sm:-my-px sm:ms-10 sm:flex items-center" v-if="hasRole('firm')">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
                                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                            {{__('translate.extra')}}
+                                            {{__('translate.services')}}
                                             <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
                                             </svg>
@@ -199,9 +182,6 @@ onUnmounted(()=>{
                                     </template>
                                     <template #content>
                                         <div class="w-48">
-                                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                                {{__('translate.extraPackages')}}
-                                            </div>
                                             <DropdownLink :href="route('firm.p50')">
                                                 {{__('translate.p50')}}
                                             </DropdownLink>
@@ -211,25 +191,40 @@ onUnmounted(()=>{
                                             <DropdownLink :href="route('firm.banners')">
                                                 {{__('translate.banners')}}
                                             </DropdownLink>
-                                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                                {{__('translate.cartAndPoints')}}
-                                            </div>
-                                            <DropdownLink :href="route('points.index')">
-                                                {{__('translate.points')}}
-                                            </DropdownLink>
                                             <DropdownLink :href="route('firm.premium-certificate.show')" v-if="hasRole('firm')">
                                                 {{__('translate.premium_certificate')}}
                                             </DropdownLink>
                                             <DropdownLink :href="route('firm.premium-certificate.list')" v-if="hasRole('firm')">
                                                 {{__('premium.history_link')}}
                                             </DropdownLink>
+                                        </div>
+                                    </template>
+                                </Dropdown>
+                            </div>
+
+                            <div class="hidden sm:-my-px sm:ms-10 sm:flex items-center" v-if="hasRole('firm')">
+                                <Dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                            {{__('translate.buy')}}
+                                            <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                            </svg>
+                                        </button>
+                                    </template>
+                                    <template #content>
+                                        <div class="w-48">
                                             <DropdownLink :href="route('buy.index')" v-if="hasRole('firm')">
                                                 {{__('translate.buy')}}
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('points.index')">
+                                                {{__('translate.points')}}
                                             </DropdownLink>
                                         </div>
                                     </template>
                                 </Dropdown>
                             </div>
+
                             <!--Admin-->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('admin')">
                                 <NavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">

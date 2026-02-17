@@ -110,7 +110,7 @@ class BuyHelper
     {
         try {
             $date = now()->timestamp;
-            $foundation = Order::where('user_id',auth()->id())->latest()->first()?->foundation;
+            $foundation = Invoice::where('user_id',auth()->id())->latest()->first();
             if ($foundation) {
                     $pdf = Pdf::loadView('templates.pdf.50',compact('foundation'))->setPaper('a4', 'landscape');
                     $filenameInvoice = 'firm/' . auth()->id().'/pdf/certyficates50/'.$date.'.pdf';

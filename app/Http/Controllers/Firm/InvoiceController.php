@@ -25,23 +25,30 @@ class InvoiceController extends Controller
 
         request()->validate([
             'direction' => ['in:asc,desc'],
-            'field' => ['in:id,day']
+            'field' => ['in:id,date_invoice'],
+            'amount' => ['nullable','string'],
+            'number' => ['nullable','string'],
+            'date' => ['nullable','date']
         ]);
 
         $query = Invoice::query()->where('user_id', auth()->id());
 
-
-        $query->when(request()->has('amount'), function ($q) {
-            $q->where('amount',request()->get('amount'));
+        $query->when(request()->filled('amount'), function ($q) {
+            $q->where('amount', request()->string('amount'));
+        });
+        $query->when(request()->filled('number'), function ($q) {
+            $q->where('number', request()->string('number'));
+        });
+        $query->when(request()->filled('date'), function ($q) {
+            $q->whereDate('date_invoice', request()->date('date'));
         });
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
         });
 
-
-        return inertia()->render('Invoice/Index',[
+        return inertia()->render('Invoice/Index', [
             'invoices' => $query->paginate(5)->withQueryString(),
-            'filters' => request()->only(['field', 'direction','amount'])
+            'filters' => request()->only(['field', 'direction', 'amount', 'number', 'date'])
         ]);
     }
 

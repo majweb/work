@@ -207,6 +207,7 @@ return [
     'extra' => 'Extra',
     'invoiceAmount' => 'Invoice amount',
     'orderNumber' => 'Order number',
+    'orderProductCount' => 'Product quantity',
     'search' => 'Search',
     'opened' => 'Opened',
     'notFoundInvoices' => 'Not found invoices',
@@ -446,4 +447,5 @@ return [
     'industryTrends' => 'Industry trends',
     'qualityStatus' => 'Quality (% YES)',
     'noResults' => 'No results found',
+    'certGenerated' => 'Your certificate has been generated!',
 ];

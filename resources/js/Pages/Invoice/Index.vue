@@ -16,8 +16,9 @@ const props = defineProps({
 const params = ref({
     field: props.filters.field,
     direction: props.filters.direction,
-    order_id: props.filters.order_id,
     amount: props.filters.amount,
+    number: props.filters.number,
+    date: props.filters.date,
 });
 
 const resetFilters = () => {
@@ -32,9 +33,15 @@ const resetSort = (field) => {
     params.value.field = null;
     params.value.direction = null;
 }
+const searching = ref(false);
 const search = () => {
     let rest = pickBy(params.value);
-    router.get(route('invoices.index'), rest, {preserveState: true, replace: true});
+    router.get(route('invoices.index'), rest, {
+        preserveState: true,
+        replace: true,
+        onStart: () => searching.value = true,
+        onFinish: () => searching.value = false
+    });
 }
 
 
@@ -50,219 +57,152 @@ const search = () => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div
-                        class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-sm font-semibold text-indigo-300">{{__('translate.filters')}}</h2>
-                        <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="params.amount || params.order_id">{{ __('translate.clearFilters') }}</button>
-                        <div class="col-span-6 flex mb-3 items-center">
-                            <div class="mr-2">
-                                <InputLabel :value="__('translate.invoiceAmount')"/>
-                                <TextInput
-                                    id="amount"
-                                    v-model="params.amount"
-                                    type="text"
-                                    class="mt-1 block"
-                                    @keyup.enter="search"
-                                />
-                            </div>
-                            <div class="mr-2">
-                                <InputLabel for="ends_at" :value="__('translate.orderNumber')"/>
-                                <TextInput
-                                    id="order_id"
-                                    v-model="params.order_id"
-                                    @keyup.enter="search"
-                                    type="text"
-                                    class="mt-1 block"
-                                />
-                            </div>
-                            <div class="mr-2">
-                                <PrimaryButton class="mt-6" @click="search">{{__('translate.search')}}</PrimaryButton>
-                            </div>
+                <!-- FILTRY -->
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 mb-8">
+                    <h2 class="text-[#0b2a55] text-xl font-bold mb-6 uppercase tracking-wider">{{ __('translate.filter') }}</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                        <div>
+                            <InputLabel :value="__('translate.invoiceAmount')" class="text-[#00aaff] text-[10px] font-black uppercase mb-1" />
+                            <TextInput
+                                v-model="params.amount"
+                                type="text"
+                                class="w-full rounded-xl border-slate-200 text-sm focus:border-[#00aaff] focus:ring-[#00aaff]"
+                                :placeholder="__('translate.invoiceAmount')"
+                                @keyup.enter="search"
+                            />
                         </div>
-
-                        <div class="overflow-hidden bg-white shadow-md sm:rounded-lg">
-                            <div class="flex flex-col">
-                                <div class="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-8">
-                                    <div class="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
-                                        <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                                            <table class="min-w-full divide-y divide-gray-200 table-fixed">
-                                                <thead class="bg-blue-work">
-                                                <tr>
-                                                    <th scope="col"
-                                                        class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
-                                                        <div class="flex items-center">
-                                                            <span class="inline-flex w-full py-3 px-6 justify-between"
-                                                                  @click="sort('id')">Id
-                                                                <svg
-                                                                    v-if="params.field === 'id' && params.direction === 'asc'"
-                                                                    xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                                    viewBox="0 0 20 20" fill="currentColor">
-                                                                <path
-                                                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
-                                                                </svg>
-
-                                                                <svg
-                                                                    v-if="params.field === 'id' && params.direction === 'desc'"
-                                                                    xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                                    viewBox="0 0 20 20" fill="currentColor">
-                                                                <path
-                                                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
-                                                                </svg>
-                                                            </span>
-                                                            <div v-if="params.field === 'id' && params.direction"
-                                                                 @click="resetSort">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3"
-                                                                     fill="none" viewBox="0 0 24 24"
-                                                                     stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          d="M6 18L18 6M6 6l12 12"/>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
-                                                        <div class="flex items-center">
-                                                            <span class="inline-flex w-full py-3 px-6 justify-between"
-                                                                  @click="sort('day')">{{__('translate.day')}}
-                                                                <svg
-                                                                    v-if="params.field === 'day' && params.direction === 'asc'"
-                                                                    xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                                    viewBox="0 0 20 20" fill="currentColor">
-                                                                <path
-                                                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
-                                                                </svg>
-
-                                                                <svg
-                                                                    v-if="params.field === 'day' && params.direction === 'desc'"
-                                                                    xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                                    viewBox="0 0 20 20" fill="currentColor">
-                                                                <path
-                                                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
-                                                                </svg>
-                                                            </span>
-                                                            <div v-if="params.field === 'day' && params.direction"
-                                                                 @click="resetSort">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3"
-                                                                     fill="none" viewBox="0 0 24 24"
-                                                                     stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          d="M6 18L18 6M6 6l12 12"/>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.Number')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.invoiceAmount')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.opened')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.orderNumber')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.actions')}}
-                                                    </th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody class="bg-white divide-y divide-gray-200">
-                                                <tr v-if="props.invoices.data.length == 0">
-                                                    <td colspan="7" class="text-center py-4 px-6 whitespace-nowrap font-semibold"><p>
-                                                        {{__('translate.notFoundInvoices')}}</p></td>
-                                                </tr>
-                                                <tr v-else v-for="(invoice) in props.invoices.data" :key="invoice.id">
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="flex items-center">
-                                                            <div class="ml-4">
-                                                                <div class="text-sm text-gray-900">
-                                                                    {{ invoice.id }}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                {{ invoice.day }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                {{ invoice.number }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                {{ invoice.amount }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                <div v-if="invoice.opened">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                         class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                                         stroke="currentColor" stroke-width="2">
-                                                                        <path stroke-linecap="round"
-                                                                              stroke-linejoin="round"
-                                                                              d="M5 13l4 4L19 7"/>
-                                                                    </svg>
-                                                                </div>
-                                                                <div v-else>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                         class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                                         stroke="currentColor" stroke-width="2">
-                                                                        <path stroke-linecap="round"
-                                                                              stroke-linejoin="round"
-                                                                              d="M6 18L18 6M6 6l12 12"/>
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                {{ invoice.order_id }}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap flex items-center">
-                                                        <div class="ml-4">
-                                                            <a :href="route('invoicesDownload',invoice)"
-                                                                  class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                {{__('translate.getPdf')}}
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div>
+                            <InputLabel :value="__('translate.invoiceNumber')" class="text-[#00aaff] text-[10px] font-black uppercase mb-1" />
+                            <TextInput
+                                v-model="params.number"
+                                type="text"
+                                class="w-full rounded-xl border-slate-200 text-sm focus:border-[#00aaff] focus:ring-[#00aaff]"
+                                :placeholder="__('translate.invoiceNumber')"
+                                @keyup.enter="search"
+                            />
                         </div>
-                        <Pagination v-if="invoices.total > 5" class="mt-10 text-center mx-auto"
-                                    :links="invoices.links"/>
+                        <div>
+                            <InputLabel :value="__('translate.invoiceDate')" class="text-[#00aaff] text-[10px] font-black uppercase mb-1" />
+                            <TextInput
+                                v-model="params.date"
+                                type="date"
+                                class="w-full rounded-xl border-slate-200 text-sm focus:border-[#00aaff] focus:ring-[#00aaff]"
+                                @keyup.enter="search"
+                            />
+                        </div>
                     </div>
 
+                    <div class="flex justify-end gap-3 mt-6">
+                        <button
+                            @click="resetFilters"
+                            class="border-2 border-slate-200 text-slate-500 font-black px-6 py-2 rounded-xl text-xs uppercase tracking-widest hover:bg-slate-50 transition"
+                        >
+                            {{ __('translate.clearFilters') }}
+                        </button>
+                        <button
+                            @click="search"
+                            :disabled="searching"
+                            class="bg-[#e31e24] text-white font-black px-8 py-2 rounded-xl text-xs uppercase tracking-widest hover:bg-red-700 transition shadow-lg flex items-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+                        >
+                            <svg v-if="searching" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            {{ __('translate.search') }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TABELA -->
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
+                    <div class="flex justify-between items-center mb-8 px-4">
+                        <h2 class="text-4xl font-bold text-[#0b2a55]">
+                            {{ __('translate.Invoices') }}
+                        </h2>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-separate border-spacing-y-3">
+                            <thead>
+                            <tr class="text-[#00aaff] text-[10px] font-black uppercase tracking-widest text-center">
+                                <th class="pb-2 cursor-pointer" @click="sort('id')">
+                                    <div class="flex items-center justify-center gap-1">
+                                        {{ __('translate.invoiceId') }}
+                                        <svg v-if="params.field === 'id'" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" :class="params.direction === 'asc' ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </th>
+                                <th class="pb-2">{{ __('translate.invoiceNumber') }}</th>
+                                <th class="pb-2 cursor-pointer" @click="sort('date_invoice')">
+                                    <div class="flex items-center justify-center gap-1">
+                                        {{ __('translate.invoiceDate') }}
+                                        <svg v-if="params.field === 'date_invoice'" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" :class="params.direction === 'asc' ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </th>
+                                <th class="pb-2">{{ __('translate.invoiceAmount') }}</th>
+                                <th class="pb-2">{{ __('translate.invoiceRead') }}</th>
+                                <th class="pb-2">{{ __('translate.invoiceAction') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-if="props.invoices.data.length == 0">
+                                <td colspan="6" class="text-center py-8 text-slate-400 font-semibold bg-white rounded-2xl shadow-sm">
+                                    {{ __('translate.notFoundInvoices') }}
+                                </td>
+                            </tr>
+                            <tr
+                                v-else
+                                v-for="invoice in props.invoices.data"
+                                :key="invoice.id"
+                                class="bg-white rounded-2xl shadow-sm overflow-hidden"
+                            >
+                                <td class="py-4 px-2 text-center text-slate-400 text-xs first:rounded-l-2xl">
+                                    {{ invoice.id }}
+                                </td>
+                                <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
+                                    {{ invoice.number }}
+                                </td>
+                                <td class="py-4 px-2 text-center text-slate-500 text-xs">
+                                    {{ invoice.date_invoice }}
+                                </td>
+                                <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
+                                    ${{ parseFloat(invoice.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+                                </td>
+                                <td class="py-4 px-2 text-center">
+                                    <div class="flex justify-center">
+                                        <template v-if="invoice.opened">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#00aaff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </template>
+                                        <template v-else>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </template>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 last:rounded-r-2xl">
+                                    <div class="flex flex-col gap-1 w-24 mx-auto">
+                                        <a
+                                            :href="route('invoicesDownload', invoice.id)"
+                                            class="bg-[#0b2a55] text-white text-[10px] font-black py-1 px-3 rounded-md hover:bg-[#162a44] transition text-center uppercase"
+                                            @click="invoice.opened = true"
+                                        >
+                                            {{ __('translate.invoiceDownload') }}
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <Pagination v-if="invoices.total > 5" class="mt-10 text-center mx-auto" :links="invoices.links"/>
                 </div>
             </div>
         </div>

@@ -20,6 +20,7 @@ use App\Services\BuyHelper;
 use App\Services\Helper;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\PremiumCertificateHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -86,15 +87,46 @@ class BuyController extends Controller
         ]);
     }
 
-    public function p50()
+    public function p50(Request $request)
     {
-        $cert50=ChangeProduct::where(['user_id'=>auth()->id(),'product_id'=>12])->isCurrent()->first();
-        if(!$cert50){
-            session()->flash('flash.banner',__('translate.forbidden'));
-            session()->flash('flash.bannerStyle', 'danger');
-            return redirect()->route('dashboard');
+        $cert50 = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 12])->isCurrent()->first();
+
+        // Jeśli użytkownik nie ma aktywnego certyfikatu 50/50, przekierowujemy na dashboard
+        // ALE w nowym designie chcemy pokazać opis i możliwość zakupu/wymiany, więc może nie powinniśmy blokować?
+        // Issue mówi "wymień punkty z logged/buy".
+        // Jeśli jednak cert50 jest wymagany do "Generuj", to zostawmy logikę, ale dodajmy historię.
+
+        $query = PremiumCertificateHistory::where('firm_id', auth()->user()->id);
+
+        if ($request->filled('from')) {
+            $query->whereDate('generated_at', '>=', $request->from);
         }
-        return inertia()->render('Buy/50',compact('cert50'));
+
+        if ($request->filled('to')) {
+            $query->whereDate('generated_at', '<=', $request->to);
+        }
+
+        $histories = $query
+            ->orderByDesc('generated_at')
+            ->paginate(10)
+            ->withQueryString();
+
+        $totalAmount = $query->sum('amount');
+
+        $firm = auth()->user()->firm;
+        $product = Product::find(12); // Załóżmy że 12 to Certyfikat 50/50
+
+        return inertia()->render('Buy/50', [
+            'cert50' => $cert50,
+            'histories' => $histories,
+            'filters' => $request->only(['from', 'to']),
+            'totalAmount' => $totalAmount,
+            'points' => $firm->points,
+            'product' => $product,
+            'levelNames' => collect(config('premium.level_names'))->mapWithKeys(function ($translationKey, $level) {
+                return [$level => __($translationKey)];
+            }),
+        ]);
     }
 
 

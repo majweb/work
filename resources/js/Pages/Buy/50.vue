@@ -1,21 +1,34 @@
 <script setup>
-import {computed, ref, watch} from 'vue';
-import {Link, router, usePage} from '@inertiajs/vue3';
+import { router, Link } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Multiselect from 'vue-multiselect'
-import InputLabel from "@/Components/InputLabel.vue";
 import __ from "@/lang.js";
+import Pagination from "@/Components/Pagination.vue";
+import pickBy from 'lodash/pickBy';
+
 const props = defineProps({
     cert50: Object,
+    histories: Object,
+    filters: Object,
+    totalAmount: Number,
+    points: Number,
+    product: Object,
+    levelNames: Object,
 });
 
-const generatePdf = () => {
-    router.post(route('firm.generate50'));
-}
-const download = () => {
-    router.get(route('firm.download50'));
-}
+
+const updateFilter = () => {
+    const filters = pickBy({
+        from: props.filters.from,
+        to: props.filters.to,
+    }, value => value !== null && value !== '' && value !== undefined);
+
+    router.get(route('buy.p50'), filters, {
+        preserveState: true,
+        replace: true,
+    });
+};
 </script>
+
 <template>
     <AppLayout :title="__('translate.p50')">
         <template #header>
@@ -23,42 +36,103 @@ const download = () => {
                 {{ __('translate.p50') }}
             </h2>
         </template>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
 
-                    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-                        <div class="mx-auto max-w-screen-xl px-4">
-                            <p class="font-semibold text-gray-900 dark:text-white text-center mb-4">{{__('translate.active')}}</p>
-                            <!-- Przycisk do pobierania pliku PDF -->
-                            <div class="flex items-center flex-col">
-                                <p v-if="cert50.start" class="text-gray-700 dark:text-gray-400 text-sm flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="green" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span>{{ cert50.start }}</span>
-                                </p>
-                                <p v-if="cert50.end" class="text-gray-700 dark:text-gray-400 text-sm flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="red" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span>{{ cert50.end }}</span>
-                                </p>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <!-- Header section with certificate image and description -->
+                <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
+                    <div class="md:w-1/2">
+                        <div class="flex items-center gap-4 mb-4">
+                            <h1 class="text-3xl font-bold text-[#143d8c] uppercase">{{ __('translate.p50') }}</h1>
+                        </div>
+                        <p class="text-xl font-semibold text-[#143d8c] mb-6">{{ __('translate.forInfo') }}</p>
+                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {{ __('translate.cert50HeaderDesc') }}
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 flex flex-col items-center">
+                        <img src="/images/icons/firm/certyfikat50_50.svg" alt="Certyfikat 50/50" class="max-w-sm h-auto mb-4">
+                        <div v-if="cert50 && cert50.certificate_pdf" class="text-center">
+                            <h3 class="text-2xl font-bold text-[#143d8c] uppercase mb-2">{{ __('translate.congratulations') }}!</h3>
+                            <p class="text-lg font-bold text-[#143d8c] mb-4">{{ __('translate.certGenerated') }}</p>
+                            <div class="mb-4">
+                                <p class="text-sm font-bold text-[#143d8c] uppercase tracking-wider">{{ __('translate.active') }}</p>
+                                <p class="text-gray-600 font-semibold">{{ cert50.start }}</p>
+                                <p class="text-gray-600 font-semibold">{{ cert50.end }}</p>
                             </div>
-                            <div class="mt-8 flex justify-center">
-                                <button
-                                    @click="generatePdf"
-                                    class="rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                >
-                                    {{__('translate.generateCertyficate')}}
-                                </button>
-                            </div>
-                            <a v-if="cert50.certificate_pdf" :href="route('firm.download50')"
-                               class="mx-auto flex justify-center w-1/6 my-4 px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                {{__('translate.getPdf')}}
+                            <a :href="route('firm.download50')"
+                                  class="inline-block bg-[#143d8c] hover:bg-[#0f2d66] text-white font-bold py-2 px-12 transition shadow-lg uppercase">
+                                {{ __('translate.invoiceDownload') }}
                             </a>
                         </div>
-                    </section>
+                    </div>
+                </div>
+
+                <!-- Info columns -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="/images/icons/firm/certyfikat50_50.svg" alt="50/50" class="h-16 mb-4">
+                        <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.whatIsCert50') }}</h3>
+                        <p class="text-gray-600 dark:text-gray-400">{{ __('translate.whatIsCert50Desc') }}</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="/images/icons/firm/certyfikat50_50.svg" alt="Gift" class="h-16 mb-4">
+                        <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.whatContainsCert50') }}</h3>
+                        <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left" v-html="__('translate.whatContainsCert50List')"></ul>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="/images/icons/firm/certyfikat50_50.svg" alt="Social" class="h-16 mb-4">
+                        <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.howUseCert50') }}</h3>
+                        <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left" v-html="__('translate.howUseCert50List')"></ul>
+                    </div>
+                </div>
+
+                <!-- Action Box -->
+                <div class="bg-[#143d8c] rounded-3xl p-8 text-center text-white mb-16 relative overflow-hidden">
+                    <h2 class="text-4xl font-bold mb-4">{{ __('translate.joinFirms') }}</h2>
+                    <p class="text-2xl font-semibold mb-2">
+                        {{ __('translate.give').toUpperCase() }}: {{ points?.toLocaleString() }} {{ __('translate.pkt').toUpperCase() }}
+                    </p>
+                    <p class="text-2xl font-bold mb-8">
+                        {{ __('translate.p50').toUpperCase() }}: {{ parseInt(product?.price)?.toLocaleString() }} {{ __('translate.pkt').toUpperCase() }}
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                        <div class="relative group">
+                            <span class="absolute -left-8 top-1/2 -translate-y-1/2 text-5xl font-bold text-white/20 group-hover:text-white/40 transition">1</span>
+                            <Link
+                                v-if="points && product && points >= parseInt(product.price)"
+                                :href="route('buy.change', [product.id, product.price])"
+                                method="post"
+                                preserve-scroll
+                                as="button"
+                                class="bg-[#e31e24] hover:bg-[#c1191f] text-white font-bold py-4 px-8 rounded-xl text-xl transition shadow-lg uppercase"
+                            >
+                                {{ __('translate.exchangePointsForCert') }}
+                            </Link>
+                            <button
+                                v-else
+                                disabled
+                                class="bg-gray-400 text-white font-bold py-4 px-8 rounded-xl text-xl uppercase cursor-not-allowed shadow-lg"
+                            >
+                                {{ __('translate.notEnoughPoints') }}
+                            </button>
+                        </div>
+
+                        <div class="relative group">
+                            <span class="absolute -left-8 top-1/2 -translate-y-1/2 text-5xl font-bold text-white/20 group-hover:text-white/40 transition">2</span>
+                            <Link
+                                :href="route('firm.generate50')"
+                                method="post"
+                                preserve-scroll
+                                as="button"
+                                :disabled="!cert50"
+                                class="bg-[#00a3e0] hover:bg-[#008cc2] text-white font-bold py-4 px-8 rounded-xl text-xl transition shadow-lg uppercase disabled:bg-gray-400 disabled:cursor-not-allowed"
+                            >
+                                {{ __('translate.generateCertyficate') }}
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
