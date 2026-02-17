@@ -10,7 +10,7 @@ import __ from "@/lang.js";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken = "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
+mapboxgl.accessToken = usePage().props.mapboxToken;
 
 const props = defineProps({
     project: Object,
