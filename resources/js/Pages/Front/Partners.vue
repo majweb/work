@@ -21,7 +21,6 @@ const props = defineProps({
 });
 const foundations = computed(() => props.foundations);
 mapboxgl.accessToken = usePage().props.mapboxToken;
-
 </script>
 <template>
     <FrontLayout :title="__('partners.about_title')">
