@@ -94,315 +94,271 @@ const goToPage = (page) => {
 <template>
     <AppLayout :title="__('translate.editArticle')">
         <template #header>
-            <div class="flex justify-between">
-
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{__('translate.editArticle')}}
-                </h2>
-                <Link :href="route('articles.index')" class="text-gray-500 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-                    </svg>
-                </Link>
-            </div>
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('translate.editArticle') }}
+            </h2>
         </template>
 
-        <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <div>
-                    <FormSection @submitted="updateArticle">
-                        <template #title>
-                            {{props.article.title}}
-                        </template>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                    <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
 
-                        <template #description>
-                            {{__('translate.articleInfo')}}
-                        </template>
+                        <div class="flex justify-between items-center mb-8">
+                            <h1 class="text-2xl font-bold text-[#143d8c] uppercase">{{ __('translate.editArticle') }}</h1>
+                            <Link :href="route('articles.index')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                                </svg>
+                                {{ __('translate.back') }}
+                            </Link>
+                        </div>
 
-                        <template #form>
-                            <div class="col-span-6">
-                                <div class="mt-4">
-                                    <InputLabel for="title" :value="__('translate.language')"/>
-                                    <select v-model=" form.lang" name="lang" id="lang" class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full">
-                                        <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value" :selected="language.value === usePage().props.language">
-                                            {{ language.value }}
-                                        </option>
-                                    </select>
-                                    <InputError :message="form.errors.lang" class="mt-2"/>
-                                </div>
-                            </div>
-                            <div class="col-span-6">
-                                <InputLabel for="title" :value="__('translate.photo')"/>
-                                <file-pond
-                                    name="photo"
-                                    ref="uploadPhoto"
-                                    :files="form.photo"
-                                    :allow-multiple="false"
-                                    :max-file-size="'4MB'"
-                                    imagePreviewMaxHeight="300"
-                                    filePosterHeight="300"
-                                    :label-idle="__('translate.label-idle')"
-                                    :labelFileProcessing="__('translate.labelFileProcessing')"
-                                    :labelInvalidField="__('translate.labelInvalidField')"
-                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
-                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
-                                    :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
-                                    :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
-                                    :labelFileLoading="__('translate.labelFileLoading')"
-                                    :labelFileLoadError="__('translate.labelFileLoadError')"
-                                    :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
-                                    :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
-                                    :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
-                                    :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
-                                    :labelFileRemoveError="__('translate.labelFileRemoveError')"
-                                    :labelTapToCancel="__('translate.labelTapToCancel')"
-                                    :labelTapToRetry="__('translate.labelTapToRetry')"
-                                    :labelTapToUndo="__('translate.labelTapToUndo')"
-                                    :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
-                                    :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
-                                    :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
-                                    :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
-                                    :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
-                                    :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
-                                    :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
-                                    :accepted-file-types="'image/png, image/jpeg, image/jpg, image/gif, image/svg, image/webp'"
-                                    credits="false"
-                                    :server="{
-                                                url:'',
-                                                   headers: {
-                                                'X-CSRF-TOKEN': usePage().props.csrf_token,
-                                                    },
-                                                process: {
-                                                    url: '/temporary/upload',
-                                                        onload: (response) => {
-                                                        form.photo.push(response);
-                                                        return response;
-                                                        },
-                                                        onerror: (response) => {
-                                                            serverMessage = JSON.parse(response).error.photo[0];
-                                                        }
+                        <form @submit.prevent="updateArticle" class="space-y-8">
+                            <!-- Sekcja podstawowa -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-6">
+                                    <div>
+                                        <InputLabel for="lang" :value="__('translate.language')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                        <select v-model="form.lang" name="lang" id="lang" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl shadow-sm">
+                                            <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value">
+                                                {{ language.value }}
+                                            </option>
+                                        </select>
+                                        <InputError :message="form.errors.lang" class="mt-2" />
+                                    </div>
 
-                                                },
-                                                revert:{
-                                                    url: '/temporary/delete',
-                                                    onload: (response) => {
-                                                            if (!response) return;
-                                                            const fileIndex = form.photo.findIndex(el => el === response);
-                                                            if (fileIndex !== -1) {
-                                                                form.photo.splice(fileIndex, 1);
-                                                           }
-                                                    }
-                                                },
-                                                remove:removeFile
-                                                }"
+                                    <div>
+                                        <InputLabel :value="__('translate.category')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                        <multiselect
+                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectGroupLabel="__('translate.selectGroupLabel')"
+                                            :selectedLabel="__('translate.selectedLabel')"
+                                            :deselectLabel="__('translate.deselectLabel')"
+                                            track-by="value"
+                                            label="name"
+                                            :placeholder="__('translate.placeholder')"
+                                            v-model="form.category"
+                                            :options="optionsCategory"
+                                            class="rounded-xl"
+                                        >
+                                            <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                            <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.category" class="mt-2" />
+                                    </div>
 
-                                ></file-pond>
-                                <InputError  :message="form.errors.photo" class="mt-1"/>
-                                <div v-for="(error, fileKey) in form.errors" :key="fileKey">
-                                    <span class="text-sm text-red-600" v-if="fileKey.startsWith('baner.')">{{ error }}</span>
+                                    <div>
+                                        <InputLabel for="title" :value="__('translate.title')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                        <TextInput id="title" v-model="form.title" autofocus class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" type="text" />
+                                        <InputError :message="form.errors.title" class="mt-2" />
+                                    </div>
+
+                                    <div>
+                                        <InputLabel for="alt" :value="__('translate.alt')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                        <TextInput id="alt" v-model="form.alt" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" type="text" />
+                                        <InputError :message="form.errors.alt" class="mt-2" />
+                                    </div>
                                 </div>
 
                                 <div>
-                                    <InputLabel :value="__('translate.category')"/>
-                                    <multiselect
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
-                                        track-by="value"
-                                        label="name"
-                                        :placeholder="__('translate.placeholder')"
-                                        v-model="form.category" :options="optionsCategory">
-                                        <template #noResult>
-                                            <span>{{__('translate.noOptions')}}</span>
-                                        </template>
-                                        <template #noOptions>
-                                            <span>{{__('translate.noResult')}}</span>
-                                        </template>
-                                    </multiselect>
-                                    <InputError :message="form.errors.category" class="mt-2"/>
-                                </div>
-
-
-                                <div class="mt-4">
-                                    <InputLabel for="alt" :value="__('translate.alt')"/>
-                                    <TextInput
-                                        id="alt"
-                                        v-model="form.alt"
-                                        class="mt-1 block w-full"
-                                        type="text"
-                                    />
-                                    <InputError :message="form.errors.alt" class="mt-2"/>
+                                    <InputLabel for="photo" :value="__('translate.photo')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                    <div class="border-2 border-dashed border-gray-300 rounded-3xl p-4">
+                                        <file-pond
+                                            name="photo"
+                                            ref="uploadPhoto"
+                                            :files="form.photo"
+                                            :allow-multiple="false"
+                                            :max-file-size="'4MB'"
+                                            imagePreviewMaxHeight="300"
+                                            filePosterHeight="300"
+                                            :label-idle="__('translate.label-idle')"
+                                            :labelFileProcessing="__('translate.labelFileProcessing')"
+                                            :labelInvalidField="__('translate.labelInvalidField')"
+                                            :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                            :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                                            :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                            :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                            :labelFileLoading="__('translate.labelFileLoading')"
+                                            :labelFileLoadError="__('translate.labelFileLoadError')"
+                                            :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                            :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                            :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                            :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                            :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                            :labelTapToCancel="__('translate.labelTapToCancel')"
+                                            :labelTapToRetry="__('translate.labelTapToRetry')"
+                                            :labelTapToUndo="__('translate.labelTapToUndo')"
+                                            :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                            :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                            :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                            :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                            :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                            :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                            :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                            :accepted-file-types="'image/png, image/jpeg, image/jpg, image/gif, image/svg, image/webp'"
+                                            credits="false"
+                                            :server="{
+                                                url:'',
+                                                headers: { 'X-CSRF-TOKEN': usePage().props.csrf_token },
+                                                process: {
+                                                    url: '/temporary/upload',
+                                                    onload: (response) => {
+                                                        form.photo.push(response);
+                                                        return response;
+                                                    },
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.photo[0];
+                                                    }
+                                                },
+                                                revert: {
+                                                    url: '/temporary/delete',
+                                                    onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = form.photo.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) { form.photo.splice(fileIndex, 1); }
+                                                    }
+                                                },
+                                                remove: removeFile
+                                            }"
+                                        ></file-pond>
+                                    </div>
+                                    <InputError :message="form.errors.photo" class="mt-1" />
                                 </div>
                             </div>
 
+                            <div class="space-y-6">
+                                <div>
+                                    <InputLabel for="short_description" :value="__('translate.shortDescription')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                    <TextareaLimit id="short_description" v-model="form.short_description" :limit="500" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" />
+                                    <InputError :message="form.errors.short_description" class="mt-2" />
+                                </div>
 
-                            <div class="col-span-6">
-                                <div class="mt-4">
-                                    <InputLabel for="title" :value="__('translate.title')"/>
-                                    <TextInput
-                                        id="title"
-                                        v-model="form.title"
-                                        autofocus
-                                        class="mt-1 block w-full"
-                                        type="text"
-                                    />
-                                    <InputError :message="form.errors.title" class="mt-2"/>
+                                <div>
+                                    <InputLabel for="content" :value="__('translate.content')" class="text-[#143d8c] font-bold uppercase mb-2" />
+                                    <div class="prose max-w-none">
+                                        <Tiptap id="content" v-model="form.content" class="border border-gray-300 rounded-xl overflow-hidden" />
+                                    </div>
+                                    <InputError :message="form.errors.content" class="mt-2" />
                                 </div>
-                                <!-- SHORT DESCRIPTION -->
-                                <div class="col-span-6 mt-4">
-                                    <InputLabel for="short_description" :value="__('translate.shortDescription')" />
-                                    <TextareaLimit
-                                        id="short_description"
-                                        v-model="form.short_description"
-                                        :limit="500"
-                                        class="mt-1 block w-full"
-                                    />
-                                    <InputError :message="form.errors.short_description" class="mt-2"/>
-                                </div>
-                                <div class="pt-4">
-                                    <InputLabel for="content" :value="__('translate.content')"/>
-                                    <Tiptap id="content" v-model="form.content" />
-                                    <InputError :message="form.errors.content" class="mt-2"/>
-                                </div>
-                                <div class="mt-8 border-t border-gray-300 pt-4">
-                                    <h3 class="font-semibold text-lg text-gray-700 mb-4">{{ __('translate.seoSection') }}</h3>
+                            </div>
 
-                                    <!-- META TITLE -->
-                                    <div class="col-span-6 mt-2">
-                                        <InputLabel for="meta_title" :value="__('translate.metaTitle')" />
-                                        <TextInput
-                                            id="meta_title"
-                                            v-model="form.meta_title"
-                                            class="mt-1 block w-full"
-                                            type="text"
-                                        />
-                                        <InputError :message="form.errors.meta_title" class="mt-2"/>
+                            <!-- SEO Section -->
+                            <div class="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-3xl border border-gray-200 dark:border-gray-700 space-y-6">
+                                <h3 class="text-xl font-bold text-[#143d8c] uppercase border-b pb-2">{{ __('translate.seoSection') }}</h3>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <InputLabel for="meta_title" :value="__('translate.metaTitle')" class="text-[#143d8c] font-bold mb-2" />
+                                        <TextInput id="meta_title" v-model="form.meta_title" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" type="text" />
+                                        <InputError :message="form.errors.meta_title" class="mt-2" />
                                     </div>
 
-                                    <!-- META DESCRIPTION -->
-                                    <div class="col-span-6 mt-4">
-                                        <InputLabel for="meta_description" :value="__('translate.metaDescription')" />
-                                        <TextareaLimit
-                                            id="meta_description"
-                                            v-model="form.meta_description"
-                                            :limit="160"
-                                            class="mt-1 block w-full"
-                                        />
-                                        <InputError :message="form.errors.meta_description" class="mt-2"/>
+                                    <div>
+                                        <InputLabel for="meta_keywords" :value="__('translate.metaKeywords')" class="text-[#143d8c] font-bold mb-2" />
+                                        <TextInput id="meta_keywords" v-model="form.meta_keywords" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" />
+                                        <p class="mt-1 text-xs text-gray-500">{{ __('translate.keyWordsDesc') }}</p>
+                                        <InputError :message="form.errors.meta_keywords" class="mt-2" />
                                     </div>
 
-                                    <!-- META KEYWORDS -->
-                                    <div class="col-span-6 mt-4">
-                                        <InputLabel for="meta_keywords" :value="__('translate.metaKeywords')" />
-                                        <TextInput
-                                            id="meta_keywords"
-                                            v-model="form.meta_keywords"
-                                            class="mt-1 block w-full"
-                                        />
-                                        <p class="mt-1 text-sm text-gray-500">{{ __('translate.keyWordsDesc') }}</p>
-                                        <InputError :message="form.errors.meta_keywords" class="mt-2"/>
+                                    <div class="md:col-span-2">
+                                        <InputLabel for="meta_description" :value="__('translate.metaDescription')" class="text-[#143d8c] font-bold mb-2" />
+                                        <TextareaLimit id="meta_description" v-model="form.meta_description" :limit="160" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" />
+                                        <InputError :message="form.errors.meta_description" class="mt-2" />
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- PUBLISH -->
-                            <div class="col-span-6">
-                                <div class="flex mt-4 space-x-4">
-                                    <label class="flex items-center" for="active">
-                                        <Checkbox id="active" v-model:checked="form.active"
-                                                  name="active"/>
-                                        <div class="flex flex-col">
-                                            <span class="ml-2 mr-1 text-gray-600 dark:text-gray-400">
-                                                Publikacja
-                                            </span>
-                                        </div>
-                                    </label>
-                                </div>
-                                <InputHelper id="helper-publish-explanation">
-                                    {{__('comments.publishComment')}}
-                                </InputHelper>
+                            <!-- Publish toggle -->
+                            <div class="flex items-center gap-4 bg-[#00a3e0]/10 p-4 rounded-xl border border-[#00a3e0]/20">
+                                <label class="flex items-center cursor-pointer group" for="active">
+                                    <Checkbox id="active" v-model:checked="form.active" name="active" class="text-[#00a3e0] focus:ring-[#00a3e0]" />
+                                    <span class="ml-3 font-bold text-[#143d8c] uppercase group-hover:text-[#00a3e0] transition">Publikacja</span>
+                                </label>
+                                <div class="h-4 w-px bg-gray-300 mx-2"></div>
+                                <p class="text-sm text-gray-600 italic">{{ __('comments.publishComment') }}</p>
                             </div>
-                            <!-- PUBLISH -->
-                            <div class="col-span-6">
 
-                                <!-- KOMENTARZE -->
-                                <div class="flex gap-2">
-                                    <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-4 rounded-lg shadow">
-                                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <div class="flex items-center justify-end gap-4 pt-6 border-t">
+                                <ActionMessage :on="form.recentlySuccessful" class="text-green-600 font-bold">
+                                    {{ __('translate.updateRecruit') }}
+                                </ActionMessage>
+
+                                <button
+                                    type="submit"
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing"
+                                    class="bg-[#143d8c] hover:bg-[#0f2d66] text-white font-bold py-4 px-12 rounded-xl text-xl transition shadow-lg uppercase flex items-center gap-2"
+                                >
+                                    <spinner-action :process="form.processing">{{ __('translate.update') }}</spinner-action>
+                                </button>
+                            </div>
+
+                            <!-- Komentarze Section -->
+                            <div v-if="props.article.comments?.length" class="mt-12 space-y-6">
+                                <h3 class="text-2xl font-bold text-[#143d8c] uppercase border-b-2 border-[#143d8c] pb-2 inline-block">Komentarze</h3>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white dark:bg-gray-900 p-6 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col h-full">
+                                        <div class="flex justify-between items-start mb-4">
                                             <div>
-                                                <p class="font-medium text-gray-800">{{ comment.user?.name || __('comments.anonim') }}</p>
-                                                <p class="text-sm text-gray-500">
-                                                    {{ new Date(comment.created_at).toLocaleString() }}
-                                                </p>
+                                                <p class="font-bold text-[#143d8c]">{{ comment.user?.name || __('comments.anonim') }}</p>
+                                                <p class="text-xs text-gray-500">{{ new Date(comment.created_at).toLocaleString() }}</p>
                                             </div>
-                                            <div class="flex-shrink-0">
-                                                <button @click="toggleCommentVisibility(comment)" type="button"
-                                                        class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
-                                                        :class="comment.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
-                                                    {{ comment.show ? __('comments.see') : __('comments.hide') }}
-                                                </button>
-                                            </div>
+                                            <button @click="toggleCommentVisibility(comment)" type="button"
+                                                    class="px-4 py-1 text-xs font-bold text-white rounded-full transition uppercase"
+                                                    :class="comment.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
+                                                {{ comment.show ? __('comments.see') : __('comments.hide') }}
+                                            </button>
                                         </div>
-                                        <p class="mt-2 text-gray-700">{{ comment.content }}</p>
 
-                                        <!-- Odpowiedzi do komentarza -->
-                                        <div v-if="comment.replies?.length" class="ml-6 mt-4 space-y-3">
-                                            <div v-for="reply in comment.replies" :key="reply.id" class="bg-gray-50 p-3 rounded border-l-2 border-gray-200">
-                                                <div class="flex justify-between items-start flex-wrap gap-2">
+                                        <p class="text-gray-700 dark:text-gray-300 flex-grow italic">"{{ comment.content }}"</p>
+
+                                        <!-- Odpowiedzi -->
+                                        <div v-if="comment.replies?.length" class="mt-4 space-y-3 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl border-l-4 border-[#00a3e0]">
+                                            <div v-for="reply in comment.replies" :key="reply.id" class="border-b last:border-0 border-gray-200 dark:border-gray-700 pb-3 last:pb-0">
+                                                <div class="flex justify-between items-start mb-2">
                                                     <div>
-                                                        <p class="font-medium text-gray-800">{{ reply.user?.name || __('comments.anonim') }}</p>
-                                                        <p class="text-sm text-gray-500">
-                                                            {{ new Date(reply.created_at).toLocaleString() }}
-                                                        </p>
+                                                        <p class="font-bold text-sm text-[#00a3e0]">{{ reply.user?.name || __('comments.anonim') }}</p>
+                                                        <p class="text-[10px] text-gray-500">{{ new Date(reply.created_at).toLocaleString() }}</p>
                                                     </div>
-                                                    <div class="flex-shrink-0">
-                                                        <button type="button" @click="toggleCommentVisibility(reply)"
-                                                                class="px-3 py-1 text-sm text-white rounded transition-colors duration-150"
-                                                                :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'">
-                                                            {{ reply.show ? __('comments.see') : __('comments.hide') }}
-                                                        </button>
-                                                    </div>
+                                                    <button type="button" @click="toggleCommentVisibility(reply)"
+                                                            class="px-2 py-0.5 text-[10px] font-bold text-white rounded-full transition uppercase"
+                                                            :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
+                                                        {{ reply.show ? __('comments.see') : __('comments.hide') }}
+                                                    </button>
                                                 </div>
-                                                <p class="mt-2 text-gray-700">{{ reply.content }}</p>
+                                                <p class="text-sm text-gray-600 dark:text-gray-400"> {{ reply.content }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- PAGINACJA -->
-                                <div class="flex justify-center mt-4 space-x-2" v-if="totalPages > 1">
+
+                                <!-- PAGINACJA KOMENTARZY -->
+                                <div class="flex justify-center items-center gap-2 mt-8" v-if="totalPages > 1">
                                     <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
-                                            class="px-3 py-1 border rounded bg-gray-100 disabled:opacity-50 hover:bg-gray-200">
-                                        {{__('translate.previous')}}
+                                            class="p-2 border rounded-xl bg-white hover:bg-gray-100 disabled:opacity-25 transition">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#143d8c]" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                        </svg>
                                     </button>
 
                                     <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
-                                            class="px-3 py-1 border rounded"
-                                            :class="page === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-100 hover:bg-gray-200'">
+                                            class="w-10 h-10 border rounded-xl font-bold transition flex items-center justify-center"
+                                            :class="page === currentPage ? 'bg-[#143d8c] text-white shadow-md' : 'bg-white text-[#143d8c] hover:bg-gray-100'">
                                         {{ page }}
                                     </button>
 
                                     <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
-                                            class="px-3 py-1 border rounded bg-gray-100 disabled:opacity-50 hover:bg-gray-200">
-                                        {{__('translate.next')}}
+                                            class="p-2 border rounded-xl bg-white hover:bg-gray-100 disabled:opacity-25 transition">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#143d8c]" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                        </svg>
                                     </button>
                                 </div>
-                                <!-- KOMENTARZE -->
-
                             </div>
-
-                        </template>
-
-                        <template #actions>
-                            <ActionMessage :on="form.recentlySuccessful" class="mr-3">
-                                {{__('translate.updateRecruit')}}
-                            </ActionMessage>
-                            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
-                            </PrimaryButton>
-                        </template>
-                    </FormSection>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
