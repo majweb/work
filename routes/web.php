@@ -154,6 +154,7 @@ Route::middleware([
     Route::get('maybeApplications',[AplicationController::class,'maybeApplications'])->middleware('role:firm')->name('firm.applications.maybeApplications');
     Route::get('noApplications',[AplicationController::class,'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');
     Route::resource('projects',ProjectController::class)->middleware('role:firm');
+    Route::get('projects/getChildsCategory/{parent}',[ProjectController::class,'getChildsCategory'])->middleware('role:firm')->name('projects.getChildsCategory');
     Route::post('/projects/{project}/duplicate', [ProjectController::class, 'duplicate'])->name('projects.duplicate');
     Route::resource('articles',ArticleController::class)->middleware('role:firm')->except('show');
     Route::post('/comments/{comment}/toggle-visibility', [ArticleController::class, 'toggleCommentVisibility'])->middleware('role:firm')

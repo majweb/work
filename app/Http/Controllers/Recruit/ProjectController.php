@@ -180,16 +180,8 @@ class ProjectController extends Controller implements HasMiddleware
             ];
         });
 
-        // Pobierz kategorie główne dla filtrów
-        $categories = Cache::rememberForever('categoriesWithoutDetail', function() {
-            return Category::whereNull('parent_id')->get()->map(function($cat) {
-                return [
-                    'value' => $cat->id,
-                    'name' => $cat->allTranslations['title'][app()->getLocale()] ?? $cat->name,
-                    'allTranslations' => $cat->allTranslations['title'] ?? []
-                ];
-            });
-        });
+        $categories = Category::getCachedWithoutDetail();
+
         return inertia()->render('RecruiterPages/Project/Index', [
             'projects' => $projects,
             'categories' => $categories,

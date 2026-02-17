@@ -14,7 +14,6 @@ import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import FormSectionProject from "@/Components/FormSectionProject.vue";
 import AddressFieldGroup from "@/Components/AddressFieldGroup.vue";
 import QuestionForm from "@/Components/QuestionForm.vue";
 import __ from "@/lang.js";
@@ -26,6 +25,7 @@ const props = defineProps({
     countries: Array,
     workingPlaces: Array,
     workLoads: Array,
+    currencies: Array,
     shiftWorks: Array,
     payoutModes: Array,
     days: Array,
@@ -35,12 +35,8 @@ const props = defineProps({
     experiences: Array,
     welcomes: Array,
     educations: Array,
-    project: Object,
-    currencies: Array,
     cvs: Array,
     externalCompanies: Array,
-
-
 });
 
 // Kroki formularza
@@ -129,52 +125,43 @@ const goToStep = async (step) => {
 };
 
 const form = useForm({
-
-    category: props.project.category,
-    categorySub: props.project.categorySub,
-    profession: props.project.profession,
-    position: props.project.position,
-    title: props.project.title,
-    currency: props.project.currency,
-    basicSalaryFrom: props.project.basicSalaryFrom,
-    basicSalaryTo: props.project.basicSalaryTo,
-    bonusSalaryFrom: props.project.bonusSalaryFrom,
-    bonusSalaryTo: props.project.bonusSalaryTo,
-    hoursFrom: props.project.hoursFrom,
-    hoursTo: props.project.hoursTo,
-    workLoad: props.project.workLoad,
-    education: props.project.education,
-    shiftWork: props.project.shiftWork,
-    payoutMode: props.project.payoutMode,
-    workNight: props.project.workNight,
-    workingMode: props.project.workingMode ?? [],
-    typeOfContract: props.project.typeOfContract ?? [],
-    paySystem: props.project.paySystem ?? [],
-    workingPlace: props.project.workingPlace ?? [],
-    country: props.project.country ?? [],
-    days: props.project.days ?? [],
-    offer: props.project.offer ?? [],
-    wait: props.project.wait ?? [],
-    experience: props.project.experience ?? [],
-    welcome: props.project.welcome ?? [],
-    detailProjects:  props.project.detailprojects.map(el=>el.id) ?? [],
-    countryWork: props.project.countryWork,
-    streetWork: props.project.streetWork,
-    streetWorkNumber: props.project.streetWorkNumber,
-    postalWork: props.project.postalWork,
-    cityWork: props.project.cityWork,
-    cv: props.project.cv ?? [],
-    questions: props.project.questions ?? [],
-    external_company_id: props.externalCompanies.find(
-        company => company.id === props.project.external_company_id
-    ) || '',
-    is_active: props.project.is_active ?? true,
-
-
-
-
-
-
+    category: '',
+    categorySub: '',
+    profession: '',
+    position: '',
+    title: '',
+    currency: '',
+    basicSalaryFrom: '',
+    basicSalaryTo: '',
+    bonusSalaryFrom: '',
+    bonusSalaryTo: '',
+    hoursFrom: '',
+    hoursTo: '',
+    workLoad: '',
+    education: '',
+    shiftWork: 2, // 2 = NIE, 1 = TAK
+    payoutMode: '',
+    workNight: 2, // 2 = NIE, 1 = TAK
+    workingMode: [],
+    typeOfContract: [],
+    paySystem: [],
+    workingPlace: [],
+    country: [],
+    days: [],
+    offer: [],
+    wait: [],
+    experience: '',
+    welcome: [],
+    detailProjects: [],
+    countryWork: '',
+    streetWork: '',
+    streetWorkNumber: '',
+    postalWork: '',
+    cityWork: '',
+    cv: [],
+    questions: [],
+    external_company_id: '',
+    is_active: true,
 });
 
 
@@ -237,20 +224,20 @@ watch(() => form.category, async (category) => {
     if (form.category) {
         optionsSubCategory.value =(await axios.get(route('projects.getChildsCategory',category.value))).data
     }
-    optionsProfession.value = [];
-    optionsPosition.value = [];
-    form.categorySub = '';
-    form.profession = '';
-    form.position = '';
-    form.detailProjects = [];
+        optionsProfession.value = [];
+        optionsPosition.value = [];
+        form.categorySub = '';
+        form.profession = '';
+        form.position = '';
+        form.detailProjects = [];
 });
 watch(() => form.categorySub, async (categorySub) => {
     if (form.categorySub) {
         optionsProfession.value =(await axios.get(route('projects.getChildsCategory',categorySub.value))).data
     }
-    optionsPosition.value = [];
-    form.profession = '';
-    form.position = '';
+        optionsPosition.value = [];
+        form.profession = '';
+        form.position = '';
     form.detailProjects = [];
 
 });
@@ -259,7 +246,7 @@ watch(() => form.profession, async (profession) => {
     if (form.profession) {
         optionsPosition.value =(await axios.get(route('projects.getChildsCategory',profession.value))).data
     }
-    form.position = '';
+        form.position = '';
     form.detailProjects = [];
 
 });
@@ -268,12 +255,12 @@ watch(() => form.position, async (position) => {
     form.detailProjects = [];
 });
 
-const updateProject = () => {
-    form.put(route('projects.update',props.project), {
-        errorBag: 'updateProject',
+const createProject = () => {
+    form.post(route('projects.store'), {
+        errorBag: 'createProject',
         preserveScroll: true,
         onSuccess: () => {
-            // form.reset();
+            form.reset();
         },
     });
 };
@@ -293,7 +280,7 @@ const addAll = () => {
     }
 }
 const zeroAll = () => {
-    form.detailProjects = []
+        form.detailProjects = []
 }
 
 const addToArray = (array,name) =>{
@@ -349,7 +336,7 @@ const initializeMap = () => {
         marker: false,
         placeholder: __('translate.enterAddress'),
         countries: form.countryWork?.countryCode?.toLowerCase() || 'pl',
-        language: usePage().props.locale || 'pl',
+        language: usePage().props.locale,
     });
 
     geocoderContainer.value.appendChild(geocoder.onAdd(map.value));
@@ -456,88 +443,24 @@ const toggleExperience = () => {
 // Włączone = pierwszy element z tablicy experiences
 const isExperienceEnabled = computed(() => {
     return form.experience &&
-        form.experience.value &&
-        props.experiences &&
-        props.experiences.length > 0 &&
-        form.experience.value === props.experiences[0].value;
+           form.experience.value &&
+           props.experiences &&
+           props.experiences.length > 0 &&
+           form.experience.value === props.experiences[0].value;
 });
 
-// Inicjalizacja przy montowaniu komponentu
-onMounted(async () => {
-    // Ustaw drugi element jako domyślny dla experience (Niewymagane/Bez doświadczenia)
+// Inicjalizacja wartości domyślnej dla experience przy montowaniu komponentu
+onMounted(() => {
+    // Ustaw drugi element jako domyślny (Niewymagane/Bez doświadczenia)
     if (!form.experience && props.experiences && props.experiences.length > 1) {
         form.experience = props.experiences[1];
-    }
-
-    // Załaduj podkategorie, zawody i stanowiska jeśli projekt ma je wypełnione
-    if (form.category && form.category.value) {
-        try {
-            optionsSubCategory.value = (await axios.get(route('getChildsCategory', form.category.value))).data;
-        } catch (error) {
-            console.error(__('translate.errorLoadingSubcategories'), error);
-        }
-    }
-
-    if (form.categorySub && form.categorySub.value) {
-        try {
-            optionsProfession.value = (await axios.get(route('getChildsCategory', form.categorySub.value))).data;
-        } catch (error) {
-            console.error(__('translate.errorLoadingProfessions'), error);
-        }
-    }
-
-    if (form.profession && form.profession.value) {
-        try {
-            optionsPosition.value = (await axios.get(route('getChildsCategory', form.profession.value))).data;
-        } catch (error) {
-            console.error(__('translate.errorLoadingPositions'), error);
-        }
-    }
-
-    // Inicjalizacja mapy jeśli jest wybrany kraj pracy
-    if (form.countryWork && form.countryWork.name) {
-        setTimeout(() => {
-            initializeMap();
-
-            // Jeśli mamy wszystkie dane adresowe, dodaj marker na mapie
-            if (form.cityWork && form.streetWork && form.streetWorkNumber) {
-                // Użyj geocodera do znalezienia współrzędnych
-                const fullAddress = `${form.streetWork} ${form.streetWorkNumber}, ${form.postalWork} ${form.cityWork}, ${form.countryWork.name}`;
-
-                // Spróbuj pobrać współrzędne dla istniejącego adresu
-                fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(fullAddress)}.json?access_token=${usePage().props.mapboxToken}&limit=1`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.features && data.features.length > 0) {
-                            const coords = data.features[0].center;
-
-                            // Wycentruj mapę na adresie
-                            if (map.value) {
-                                map.value.setCenter(coords);
-                                map.value.setZoom(15);
-
-                                // Dodaj marker
-                                if (marker.value) {
-                                    marker.value.remove();
-                                }
-                                marker.value = new mapboxgl.Marker()
-                                    .setLngLat(coords)
-                                    .addTo(map.value);
-                            }
-                        }
-                    })
-                    .catch(error => {
-                        console.error(__('translate.errorGeocodingAddress'), error);
-                    });
-            }
-        }, 300); // Zwiększony timeout dla pewności że DOM jest gotowy
     }
 });
 
 </script>
 
 <template>
-    <AppLayout :title="__('translate.updateProject')">
+    <AppLayout :title="__('translate.createProject')">
         <div class="py-6 bg-gray-50 min-h-screen">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Nagłówek z linkiem wstecz -->
@@ -556,7 +479,7 @@ onMounted(async () => {
                 <!-- Tytuł -->
                 <div class="mb-6">
                     <h1 class="text-3xl font-bold text-gray-900">
-                        {{ __('translate.updateProject') }}
+                        {{ __('translate.createProject') }}
                     </h1>
                 </div>
 
@@ -597,7 +520,7 @@ onMounted(async () => {
                 </div>
 
                 <!-- Formularz -->
-                <form @submit.prevent="updateProject">
+                <form @submit.prevent="createProject">
 
                     <!-- KROK 1: Podstawowe informacje -->
                     <div v-show="currentStep === 1">
@@ -613,32 +536,32 @@ onMounted(async () => {
 
                             <!-- Karty wyboru typu CV -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" v-if="cvs">
-                                <div
-                                    v-for="cv in cvs"
-                                    :key="cv.id"
-                                    @click="addToArray(cvSelect,cv.name); if(!form.cv.some(item => item.id === cv.id)) { form.cv.push(cv) } else { form.cv = form.cv.filter(item => item.id !== cv.id) }"
-                                    class="border-2 rounded-xl p-6 cursor-pointer transition-all hover:shadow-lg"
-                                    :class="form.cv.some(item => item.id === cv.id) ? 'border-[#00a0e3] bg-blue-50' : 'border-gray-200 hover:border-[#00a0e3]'"
-                                >
-                                    <div class="flex flex-col items-center text-center">
-                                        <div
-                                            class="w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all"
-                                            :class="form.cv.some(item => item.id === cv.id) ? 'bg-[#00a0e3] text-white' : 'bg-gray-100 text-gray-600'"
-                                        >
-                                            <img v-if="cv.id === 1" class="w-16 h-16" src="/images/icons/recruit/klasyczne_cv.svg" alt="cv">
-                                            <img v-else-if="cv.id === 2" class="w-16 h-16" src="/images/icons/recruit/video_cv.svg" alt="video_cv">
-                                            <img v-else-if="cv.id === 3" class="w-16 h-16" src="/images/icons/recruit/audio_cv.svg" alt="audio_cv">
-                                        </div>
-                                        <h3 class="font-bold text-lg mb-2">{{ cv.name }}</h3>
-                                        <input
-                                            class="mt-4"
-                                            type="checkbox"
-                                            :checked="form.cv.some(item => item.id === cv.id)"
-                                            readonly
-                                        />
+                            <div
+                                v-for="cv in cvs"
+                                :key="cv.id"
+                                @click="addToArray(cvSelect,cv.name); if(!form.cv.some(item => item.id === cv.id)) { form.cv.push(cv) } else { form.cv = form.cv.filter(item => item.id !== cv.id) }"
+                                class="border-2 rounded-xl p-6 cursor-pointer transition-all hover:shadow-lg"
+                                :class="form.cv.some(item => item.id === cv.id) ? 'border-[#00a0e3] bg-blue-50' : 'border-gray-200 hover:border-[#00a0e3]'"
+                            >
+                                <div class="flex flex-col items-center text-center">
+                                    <div
+                                        class="w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all"
+                                        :class="form.cv.some(item => item.id === cv.id) ? 'bg-[#00a0e3] text-white' : 'bg-gray-100 text-gray-600'"
+                                    >
+                                        <img v-if="cv.id === 1" class="w-16 h-16" src="/images/icons/recruit/klasyczne_cv.svg" alt="cv">
+                                        <img v-else-if="cv.id === 2" class="w-16 h-16" src="/images/icons/recruit/video_cv.svg" alt="video_cv">
+                                        <img v-else-if="cv.id === 3" class="w-16 h-16" src="/images/icons/recruit/audio_cv.svg" alt="audio_cv">
                                     </div>
+                                    <h3 class="font-bold text-lg mb-2">{{ cv.name }}</h3>
+                                    <input
+                                        class="mt-4"
+                                        type="checkbox"
+                                        :checked="form.cv.some(item => item.id === cv.id)"
+                                        readonly
+                                    />
                                 </div>
                             </div>
+                        </div>
                             <InputError :message="form.errors.cv" class="mt-2 text-center"/>
 
                             <!-- Pole is_active -->
@@ -927,10 +850,10 @@ onMounted(async () => {
                             </div>
 
                             <AddressFieldGroup class="mt-4" v-if="form.countryWork" :code="form.countryWork?.countryCode"
-                                               v-model:street="form.streetWork"
-                                               v-model:streetNumber="form.streetWorkNumber"
-                                               v-model:postcode="form.postalWork"
-                                               v-model:city="form.cityWork"
+                                v-model:street="form.streetWork"
+                                v-model:streetNumber="form.streetWorkNumber"
+                                v-model:postcode="form.postalWork"
+                                v-model:city="form.cityWork"
                             />
                             <InputError :message="form.errors.streetWork" class="mt-2"/>
                             <InputError :message="form.errors.streetWorkNumber" class="mt-2"/>
@@ -1239,7 +1162,7 @@ onMounted(async () => {
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                                 <span>{{ isValidating ? __('translate.validating') : __('translate.next') + ' →' }}</span>
-                            </button>
+            </button>
                         </div>
                     </div>
 
@@ -1419,7 +1342,7 @@ onMounted(async () => {
                                         v-model="waitFilter"
                                         type="text"
                                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-[#00a0e3] focus:border-[#00a0e3] sm:text-sm"
-                                        :placeholder="'Szukaj w wymaganiach...'"
+                                        :placeholder="__('translate.searchInRequirements')"
                                     />
                                     <button
                                         v-if="waitFilter"
@@ -1448,7 +1371,7 @@ onMounted(async () => {
                                     <svg class="mx-auto h-12 w-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                    <p class="text-sm">Nie znaleziono wymagań pasujących do wyszukiwania</p>
+                                    <p class="text-sm">{{ __('translate.noRequirementsFound') }}</p>
                                 </div>
                                 <InputError :message="form.errors.wait" class="mt-2"/>
                             </div>
@@ -1471,7 +1394,7 @@ onMounted(async () => {
                                         v-model="welcomeFilter"
                                         type="text"
                                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-[#00a0e3] focus:border-[#00a0e3] sm:text-sm"
-                                        :placeholder="'Szukaj w preferencjach...'"
+                                        :placeholder="__('translate.searchInPreferences')"
                                     />
                                     <button
                                         v-if="welcomeFilter"
@@ -1500,7 +1423,7 @@ onMounted(async () => {
                                     <svg class="mx-auto h-12 w-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                    <p class="text-sm">Nie znaleziono preferencji pasujących do wyszukiwania</p>
+                                    <p class="text-sm">{{ __('translate.noPreferencesFound') }}</p>
                                 </div>
                                 <InputError :message="form.errors.welcome" class="mt-2"/>
                             </div>
@@ -1515,7 +1438,7 @@ onMounted(async () => {
                                 <div class="flex items-center justify-between">
                                     <div class="flex-1">
                                         <InputLabel :value="__('translate.experience')" class="mb-1 font-semibold" />
-                                        <p class="text-xs text-gray-500">Czy doświadczenie jest wymagane?</p>
+                                        <p class="text-xs text-gray-500">{{ __('translate.isExperienceRequired') }}</p>
                                         <p v-if="isExperienceEnabled" class="text-sm text-[#00a0e3] font-medium mt-2">
                                             {{ form.experience.name }}
                                         </p>
@@ -1575,7 +1498,7 @@ onMounted(async () => {
                                 :disabled="form.processing"
                                 class="px-8 py-3 bg-[#00a0e3] hover:bg-blue-600"
                             >
-                                <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
+                                <spinner-action :process="form.processing">{{__('translate.add')}}</spinner-action>
                             </PrimaryButton>
                         </div>
                     </div>
