@@ -12,8 +12,10 @@ const props = defineProps({
 });
 
 const activeTab = ref('general');
+const isClient = ref(false);
 
 onMounted(() => {
+    isClient.value = true;
     const savedTab = localStorage.getItem('statistic_active_tab');
     if (savedTab) {
         activeTab.value = savedTab;
@@ -113,7 +115,7 @@ const setProjectPage = (p) => {
                 </div>
 
                 <!-- Tab content: GENERAL -->
-                <div v-if="activeTab === 'general'" class="space-y-6">
+                <div v-show="activeTab === 'general'" class="space-y-6">
 
                     <!-- KPI Tiles -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -171,14 +173,14 @@ const setProjectPage = (p) => {
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                             <h3 class="text-center font-black text-[#0d2a52] text-xl mb-6">{{ __('translate.industryInterest') }} <span class="text-gray-400 font-normal block text-sm">{{ __('translate.visits') }}</span></h3>
-                            <apexchart v-if="props.charts.visitsByIndustry?.series?.length" type="pie" height="350" :options="props.charts.visitsByIndustry.options" :series="props.charts.visitsByIndustry.series"></apexchart>
+                            <apexchart v-if="isClient && props.charts.visitsByIndustry?.series?.length" type="pie" height="350" :options="props.charts.visitsByIndustry.options" :series="props.charts.visitsByIndustry.series"></apexchart>
                             <div v-else class="h-[350px] flex items-center justify-center text-gray-400 font-bold italic">
                                 {{ __('translate.NoData') }}
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                             <h3 class="text-center font-black text-[#0d2a52] text-xl mb-6">{{ __('translate.industryInterest') }} <span class="text-gray-400 font-normal block text-sm">{{ __('translate.applications') }}</span></h3>
-                            <apexchart v-if="props.charts.appsByIndustry?.series?.length" type="pie" height="350" :options="props.charts.appsByIndustry.options" :series="props.charts.appsByIndustry.series"></apexchart>
+                            <apexchart v-if="isClient && props.charts.appsByIndustry?.series?.length" type="pie" height="350" :options="props.charts.appsByIndustry.options" :series="props.charts.appsByIndustry.series"></apexchart>
                             <div v-else class="h-[350px] flex items-center justify-center text-gray-400 font-bold italic">
                                 {{ __('translate.NoData') }}
                             </div>
@@ -247,7 +249,7 @@ const setProjectPage = (p) => {
                 </div>
 
                 <!-- Tab content: DETAILED -->
-                <div v-else class="space-y-8">
+                <div v-show="activeTab === 'detailed'" class="space-y-8">
 
                     <!-- Recruiters Table -->
                     <div>
@@ -404,7 +406,7 @@ const setProjectPage = (p) => {
                             <h3 class="text-2xl font-black text-[#0d2a52]">{{ __('translate.industryTrends') }}</h3>
                         </div>
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <apexchart v-if="props.charts.industryTrends?.series?.length" type="line" height="400" :options="props.charts.industryTrends.options" :series="props.charts.industryTrends.series"></apexchart>
+                            <apexchart v-if="isClient && props.charts.industryTrends?.series?.length" type="line" height="400" :options="props.charts.industryTrends.options" :series="props.charts.industryTrends.series"></apexchart>
                             <div v-else class="h-[400px] flex items-center justify-center text-gray-400 font-bold italic">
                                 {{ __('translate.NoData') }}
                             </div>

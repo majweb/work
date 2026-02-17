@@ -20,7 +20,7 @@ const props = defineProps({
 // ===============================
 // 🔵 MAPBOX AUTOCOMPLETE
 // ===============================
-const MAPBOX_TOKEN = "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
+const MAPBOX_TOKEN = usePage().props.mapboxToken;
 
 // tekst wpisywany w pole adresu
 const addressQuery = ref("");
