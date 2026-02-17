@@ -149,16 +149,6 @@ onUnmounted(()=>{
                                     {{__('translate.aplications')}}
                                 </NavLink>
                             </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit') || hasRole('firm')">
-                                <NavLink :href="route('candidates.index')" :active="route().current('candidates.index')">
-                                    {{__('translate.candidates')}}
-                                </NavLink>
-                            </div>
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('recruit')">
-                                <NavLink :href="route('tags.index')" :active="route().current('tags.index')">
-                                    {{__('translate.tags')}}
-                                </NavLink>
-                            </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="hasRole('firm')">
                                 <NavLink :href="route('statistics.index')" :active="route().current('statistics.index')">
                                     {{__('translate.statistics')}}
