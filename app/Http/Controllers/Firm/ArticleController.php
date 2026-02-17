@@ -11,6 +11,7 @@ use App\Models\Article;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Product;
 use App\Models\TemporaryFile;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -46,9 +47,11 @@ class ArticleController extends Controller
             $q->orderBy(request('field'), request('direction'));
         });
 
+        $product = Product::find(10);
         return inertia()->render('Buy/Article/Index', [
             'articles' => $query->paginate(5)->withQueryString(),
-            'filters' => request()->only(['field', 'direction'])
+            'filters' => request()->only(['field', 'direction']),
+            'product' => $product
         ]);
     }
 

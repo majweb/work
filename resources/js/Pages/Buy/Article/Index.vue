@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { Link,router } from '@inertiajs/vue3';
+import { ref, watch, computed } from 'vue';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 
@@ -11,8 +11,14 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
     articles: Object,
-    filters: Object
+    filters: Object,
+    // Opcjonalnie, jeśli backend przekaże produkt (np. pakiet artykułu)
+    product: { type: Object, required: false },
 });
+
+const page = usePage();
+const firmPoints = computed(() => page?.props?.auth?.user?.firm?.points ?? null);
+
 const selectedArticle = ref(null);
 const confirmCancelArticle = ref(false);
 
@@ -21,16 +27,16 @@ const params = ref({
     direction: props.filters.direction,
 });
 
-const resetFilters = ()=>{
+const resetFilters = () => {
     router.get(route('articles.index'));
 }
-const openModal = (user)=>{
+const openModal = (user) => {
     confirmCancelArticle.value = true;
     selectedArticle.value = user;
 }
 const DeleteUser = () => {
-    if(selectedArticle){
-        router.delete(route('articles.destroy',selectedArticle.value), {
+    if (selectedArticle) {
+        router.delete(route('articles.destroy', selectedArticle.value), {
             onSuccess: () => {
                 confirmCancelArticle.value = false;
                 selectedArticle.value = null;
@@ -44,12 +50,12 @@ const sort = (field) => {
     params.value.field = field;
     params.value.direction = params.value.direction === 'asc' ? 'desc' : 'asc';
 }
-const resetSort = (field) => {
+const resetSort = () => {
     params.value.field = null;
     params.value.direction = null;
 }
 
-watch(params.value, debounce(function (value) {
+watch(params.value, debounce(function () {
     let rest = pickBy(params.value);
     router.get(route('articles.index'), rest, { preserveState: true, replace: true });
 }, 300));
@@ -67,107 +73,146 @@ watch(params.value, debounce(function (value) {
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
 
-                        <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6 sm:rounded-bl-md sm:rounded-br-md">
-                            <Link class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" :href="route('articles.create')">
-                                {{__('translate.createArticles')}}
-                            </Link>
+                        <!-- Sekcja nagłówka i opisu jak na designie -->
+                        <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
+                            <div class="md:w-1/2">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <h1 class="text-3xl font-bold text-[#143d8c] uppercase">ARTYKUŁ</h1>
+                                </div>
+                                <p class="text-xl font-semibold text-[#143d8c] mb-6">Twoja wiedza, która buduje markę i zaufanie.</p>
+                                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                    Artykuł ekspercki to przestrzeń do zaprezentowania wiedzy, doświadczenia i perspektywy Twojej firmy – w wybranych przez Ciebie językach. To profesjonalna forma komunikacji, która buduje wiarygodność i pozycję eksperta w branży.
+                                    Wykorzystaj go w działaniach employer brandingowych, komunikacji marketingowej i relacjach z partnerami biznesowymi, pokazując, że Twoja marka nie tylko działa, ale także inspiruje i wyznacza kierunki.
+                                </p>
+                            </div>
+                            <div class="md:w-1/2 flex flex-col items-center">
+                                <img src="/images/icons/firm/certyfikat.svg" alt="Artykuł" class="max-w-sm h-auto mb-4">
+                            </div>
                         </div>
 
-                        <div class="overflow-hidden bg-white shadow-md sm:rounded-lg">
-                            <div class="flex flex-col">
-                                <div class="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-8">
-                                    <div class="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
-                                        <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                                            <table class="min-w-full divide-y divide-gray-200 table-fixed">
-                                                <thead class="bg-blue-work">
-                                                <tr>
-                                                    <th scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-left uppercase cursor-pointer">
-                                                        <div class="flex items-center">
-                                                            <span class="inline-flex w-full py-3 px-6 justify-between" @click="sort('id')">Id
-                                                                <svg v-if="params.field === 'id' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
-                                                                </svg>
-                                                                <svg v-if="params.field === 'id' && params.direction === 'desc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
-                                                                </svg>
-                                                            </span>
-                                                            <div v-if="params.field === 'id' && params.direction" @click="resetSort">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.title')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.active')}}
-                                                    </th>
-                                                    <th scope="col"
-                                                        class="py-3 px-6 w-3/12 text-xs font-semibold tracking-wider text-left uppercase">
-                                                        {{__('translate.actions')}}
-                                                    </th>
-                                                </tr>
-                                                </thead>
+                        <!-- Kolumny informacyjne -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                            <div class="flex flex-col items-center text-center">
+                                <img src="/images/icons/firm/certyfikat.svg" alt="Co to?" class="h-16 mb-4">
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Czym jest tak usługa?</h3>
+                                <p class="text-gray-600 dark:text-gray-400">
+                                    Artykuł reklamowy to możliwość publikacji treści przygotowanej przez Twoją firmę w sekcji artykułów na portalu WORK4YOU.GLOBAL – w wybranych przez Ciebie językach.
+                                </p>
+                            </div>
+                            <div class="flex flex-col items-center text-center">
+                                <img src="/images/icons/firm/certyfikat.svg" alt="Co zawiera" class="h-16 mb-4">
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Co zawiera usługa?</h3>
+                                <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left">
+                                    <li>Publikację artykułu na portalu</li>
+                                    <li>treść dostarczoną przez firmę,</li>
+                                    <li>możliwość wyboru języka publikacji,</li>
+                                    <li>prezentację firmy jako autora materiału</li>
+                                    <li>ekspozycję w sekcji artykułów WORK4YOU.GLOBAL.</li>
+                                </ul>
+                                <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Usługa nieograniczona czasowo.</p>
+                            </div>
+                            <div class="flex flex-col items-center text-center">
+                                <img src="/images/icons/firm/certyfikat.svg" alt="Jak wykorzystać" class="h-16 mb-4">
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Jak możesz ją wykorzystać?</h3>
+                                <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left">
+                                    <li>do budowania wizerunku eksperta w branży,</li>
+                                    <li>w działaniach employer brandingowych,</li>
+                                    <li>w komunikacji marketingowej i PR,</li>
+                                    <li>do zwiększenia rozpoznawalności wśród kandydatów i partnerów biznesowych.</li>
+                                </ul>
+                            </div>
+                        </div>
 
-                                                <tbody class="bg-white divide-y divide-gray-200">
-                                                <tr v-if="props.articles.data.length == 0">
-                                                    <td colspan="4" class="text-center py-4 px-6 whitespace-nowrap"><p>{{__('translate.notFoundArticle')}}</p></td>
-                                                </tr>
-                                                <tr v-else v-for="(article) in props.articles.data" :key="article.id">
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="flex items-center">
-                                                            <div class="ml-4">
-                                                                <div class="text-sm text-gray-900">
-                                                                    {{article.id}}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                {{article.title}}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="ml-4">
-                                                            <div class="text-sm text-gray-900">
-                                                                    <svg v-if="article.active" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                                                    </svg>
-                                                                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="py-4 px-6 whitespace-nowrap">
-                                                        <div class="flex items-center">
-                                                            <div class="ml-4">
-                                                                <DangerButton @click="openModal(article)" class="!flex mx-auto text-center justify-center">
-                                                                    {{__('translate.delete')}}
-                                                                </DangerButton>
-                                                            </div>
-                                                            <div class="ml-4">
-                                                                <Link :href="route('articles.edit',article)" class="flex items-center inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
-                                                                    {{__('translate.edit')}}
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                        <!-- Akcje: Wymiana punktów / Dodanie artykułu -->
+                        <div class="bg-[#143d8c] rounded-3xl p-8 text-center text-white mb-16 relative overflow-hidden">
+                            <h2 class="text-4xl font-bold mb-4">Dołącz do firm, które dzielą się wiedzą</h2>
+                            <p class="text-2xl font-semibold mb-2">
+                                POSIADASZ: <span>{{ firmPoints !== null ? firmPoints.toLocaleString() : '—' }}</span> PKT
+                            </p>
+                            <p class="text-2xl font-bold mb-8">
+                                ARTYKUŁ: <span>{{ props.product?.price ? parseInt(props.product.price).toLocaleString() : '—' }}</span> PKT
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                                <div class="relative group">
+                                    <span class="absolute -left-8 top-1/2 -translate-y-1/2 text-5xl font-bold text-white/20 group-hover:text-white/40 transition">1</span>
+                                    <Link
+                                        v-if="firmPoints !== null && props.product && firmPoints >= parseInt(props.product.price)"
+                                        :href="route('buy.change', [props.product.id, props.product.price])"
+                                        method="post"
+                                        preserve-scroll
+                                        as="button"
+                                        class="bg-[#e31e24] hover:bg-[#c1191f] text-white font-bold py-4 px-8 rounded-xl text-xl transition shadow-lg uppercase"
+                                    >
+                                        WYMIeŃ PUNKTY NA ARTYKUŁ
+                                    </Link>
+                                    <button
+                                        v-else
+                                        disabled
+                                        class="bg-gray-400 text-white font-bold py-4 px-8 rounded-xl text-xl uppercase cursor-not-allowed shadow-lg"
+                                    >
+                                        Niewystarczająca liczba punktów
+                                    </button>
+                                </div>
+
+                                <div class="relative group">
+                                    <span class="absolute -left-8 top-1/2 -translate-y-1/2 text-5xl font-bold text-white/20 group-hover:text-white/40 transition">2</span>
+                                    <Link
+                                        :href="route('articles.create')"
+                                        as="button"
+                                        class="bg-[#00a3e0] hover:bg-[#008cc2] text-white font-bold py-4 px-8 rounded-xl text-xl transition shadow-lg uppercase"
+                                    >
+                                        DODAJ ARTYKUŁ
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8 px-4">
+                            <h2 class="text-2xl font-bold text-[#143d8c] mb-6">Opublikowane artykuły</h2>
+
+                            <!-- Nagłówek listy -->
+                            <div class="grid grid-cols-12 gap-4 px-6 mb-2 text-[#00a3e0] text-xs font-bold uppercase">
+                                <div class="col-span-2">DATA</div>
+                                <div class="col-span-5 text-center">TYTUŁ</div>
+                                <div class="col-span-2 text-center">AKTYWNOŚĆ</div>
+                                <div class="col-span-3 text-center">AKCJE</div>
+                            </div>
+
+                            <!-- Lista artykułów -->
+                            <div class="flex flex-col gap-4">
+                                <div v-if="props.articles.data.length == 0" class="bg-white border border-blue-work/20 rounded-xl p-6 text-center shadow-sm">
+                                    <p class="text-gray-500">{{__('translate.notFoundArticle')}}</p>
+                                </div>
+                                <div v-else v-for="(article) in props.articles.data" :key="article.id" class="grid grid-cols-12 gap-4 items-center bg-white border border-blue-work/30 rounded-lg py-3 px-6 shadow-sm">
+                                    <div class="col-span-2 text-sm font-semibold text-[#143d8c]">
+                                        {{ (article.created_at || '').slice(0, 10) }}
+                                    </div>
+                                    <div class="col-span-5 text-center text-sm font-bold text-[#143d8c] line-clamp-2 px-2">
+                                        {{ article.title }}
+                                    </div>
+                                    <div class="col-span-2 flex justify-center">
+                                        <div class="text-sm text-gray-900">
+                                            <svg v-if="article.active" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
                                         </div>
+                                    </div>
+                                    <div class="col-span-3 flex items-center justify-center gap-3">
+                                        <Link :href="route('articles.edit',article)" as="button" class="bg-[#143d8c] hover:bg-[#0f2d66] text-white font-bold py-1 px-4 rounded text-xs uppercase w-24">
+                                            EDYTUJ
+                                        </Link>
+                                        <button @click="openModal(article)" class="bg-[#e31e24] hover:bg-[#c1191f] text-white font-bold py-1 px-4 rounded text-xs uppercase w-24">
+                                            USUŃ
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <Pagination v-if="articles.total > 5" class="mt-10 text-center mx-auto" :links="articles.links" />
                     </div>
                 </div>
