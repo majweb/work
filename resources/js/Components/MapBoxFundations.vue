@@ -7,8 +7,7 @@ import __ from "@/lang.js";
 import TextInput from "@/Components/TextInput.vue";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken =
-    "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
+mapboxgl.accessToken = usePage().props.mapboxToken;
 
 const visibleFoundations = ref([]);
 const currentBox = ref(null);

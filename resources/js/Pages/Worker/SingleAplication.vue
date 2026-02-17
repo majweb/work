@@ -16,7 +16,7 @@ const isClient = ref(false);
 onMounted(() => { isClient.value = true; })
 const map = ref(null);
 const marker = ref(null);
-mapboxgl.accessToken = "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
+mapboxgl.accessToken = usePage().props.mapboxToken;
 
 onMounted(async () => {
     isClient.value = true;
