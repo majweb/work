@@ -154,6 +154,7 @@ Route::middleware([
     Route::get('maybeApplications',[AplicationController::class,'maybeApplications'])->middleware('role:firm')->name('firm.applications.maybeApplications');
     Route::get('noApplications',[AplicationController::class,'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');
     Route::resource('projects',ProjectController::class)->middleware('role:firm');
+    Route::post('/projects/{project}/duplicate', [ProjectController::class, 'duplicate'])->name('projects.duplicate');
     Route::resource('articles',ArticleController::class)->middleware('role:firm')->except('show');
     Route::post('/comments/{comment}/toggle-visibility', [ArticleController::class, 'toggleCommentVisibility'])->middleware('role:firm')
         ->name('comments.toggle-visibility');
@@ -230,6 +231,8 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
     Route::post('/project-recruits/{project}/duplicate', [ProjectControllerRecruit::class, 'duplicate'])->name('project-recruits.duplicate');
     Route::post('/project-recruits/validate-step', [ProjectControllerRecruit::class, 'validateStep'])
         ->name('project-recruits.validate-step');
+    Route::post('/projects/validate-step', [ProjectController::class, 'validateStep'])
+        ->name('projects.validate-step');
 
     Route::resource('project-aplications-recruits',AplicationControllerRecruit::class)->parameters(['project-aplications-recruits' => 'aplication']);
     Route::put('project-aplications-recruits/{aplication}/status',[AplicationControllerRecruit::class,'updateStatus'])->name('project-aplications-recruits.update-status');

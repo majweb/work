@@ -96,9 +96,8 @@ class WorkerController extends Controller
             ->get()
             ->groupBy(fn ($cv) => $cv->project->category_id);
 
-        $positions =  Cache::rememberForever('categoriesWithoutDetail', function() {
-            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
-        });
+        $positions =  Category::getCachedWithoutPositionsWithoutDetail();
+
         $levelEducations=  Cache::rememberForever('levelEducations', function() {
             return MultiselectWithoutDetailResource::collection(LevelEducation::get());
         });

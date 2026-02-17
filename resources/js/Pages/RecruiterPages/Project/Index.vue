@@ -41,7 +41,6 @@ const params = ref({
     positionSelect: null
 });
 
-const can = computed(()=>usePage().props.permissionsCan);
 
 // Obsługa zmiany kategorii
 watch(() => params.value.category, async (newCategory) => {
@@ -188,7 +187,6 @@ const duplicateProject = (project) => {
                     {{ __('translate.offerts') }}
                 </h2>
                 <Link
-                    v-if="can['adding projects']"
                     :href="route('project-recruits.create')"
                     class="px-6 py-2 bg-[#0d2a52] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors"
                 >
@@ -420,7 +418,6 @@ const duplicateProject = (project) => {
                                 </Link>
 
                                 <Link
-                                    v-if="can['editing projects']"
                                     :href="route('project-recruits.edit', project)"
                                     class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors"
                                 >
