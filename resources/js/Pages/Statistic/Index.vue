@@ -298,6 +298,7 @@ const setProjectPage = (p) => {
                                 </table>
                             </div>
                         </div>
+
                         <!-- Pagination: Recruiters -->
                         <div v-if="totalRecruiterPages > 1" class="flex items-center justify-between mt-4">
                             <p class="text-sm text-gray-500">{{ (recruiterPage - 1) * itemsPerPage + 1 }} -
