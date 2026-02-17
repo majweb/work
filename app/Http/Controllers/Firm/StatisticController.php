@@ -14,12 +14,14 @@ use Illuminate\Http\Request;
 class StatisticController extends Controller
 {
     public function index(
+        Request $request,
         \App\Charts\IndustryInterestVisits $visitsChart,
         \App\Charts\IndustryInterestApps $appsChart,
         \App\Charts\AppsStatus $statusChart,
         \App\Charts\IndustryTrends $trendsChart
     ) {
         $user = auth()->user();
+        $trendPeriod = $request->query('trend_period', 'month');
 
         // 1. KPI Tiles (Statystyki ogólne)
         $recruitersCount = $user->recruits()->whereNull('user_blocked')->count() + 1; // +1 for the owner
@@ -122,8 +124,9 @@ class StatisticController extends Controller
                 'visitsByIndustry' => $visitsChart->build() ?: ['options' => [], 'series' => []],
                 'appsByIndustry' => $appsChart->build() ?: ['options' => [], 'series' => []],
                 'statusDistribution' => $statusChart->build() ?: ['options' => [], 'series' => []],
-                'industryTrends' => $trendsChart->build() ?: ['options' => [], 'series' => []],
+                'industryTrends' => $trendsChart->build($trendPeriod) ?: ['options' => [], 'series' => []],
             ],
+            'trendPeriod' => $trendPeriod,
             'recruiters' => $recruiters,
             'projects' => $projects,
         ]);

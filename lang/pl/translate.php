@@ -1371,4 +1371,6 @@ return [
     'industryTrends' => 'Trendy branżowe',
     'qualityStatus' => 'Jakość (% TAK)',
     'noResults' => 'Nie znaleziono wyników',
+    'days' => 'Dni',
+    'months' => 'Miesiące',
 ];

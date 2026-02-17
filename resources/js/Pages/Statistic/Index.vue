@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref, onMounted, computed } from 'vue';
+import { router } from '@inertiajs/vue3';
 import __ from "@/lang.js";
 
 const props = defineProps({
@@ -9,10 +10,23 @@ const props = defineProps({
     charts: Object,
     recruiters: Array,
     projects: Array,
+    trendPeriod: String,
 });
 
 const activeTab = ref('general');
 const isClient = ref(false);
+const currentTrendPeriod = ref(props.trendPeriod || 'month');
+
+const changeTrendPeriod = (period) => {
+    currentTrendPeriod.value = period;
+    router.get(route('statistics.index'), {
+        trend_period: period,
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+        only: ['charts', 'trendPeriod']
+    });
+};
 
 onMounted(() => {
     isClient.value = true;
@@ -404,9 +418,25 @@ const setProjectPage = (p) => {
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <h3 class="text-2xl font-black text-[#0d2a52]">{{ __('translate.industryTrends') }}</h3>
+                            <div class="flex gap-1 bg-gray-200 p-1 rounded-lg">
+                                <button
+                                    @click="changeTrendPeriod('day')"
+                                    class="px-4 py-1.5 rounded-md text-xs font-bold transition-all"
+                                    :class="currentTrendPeriod === 'day' ? 'bg-white text-[#0d2a52] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
+                                >
+                                    {{ __('translate.days') }}
+                                </button>
+                                <button
+                                    @click="changeTrendPeriod('month')"
+                                    class="px-4 py-1.5 rounded-md text-xs font-bold transition-all"
+                                    :class="currentTrendPeriod === 'month' ? 'bg-white text-[#0d2a52] shadow-sm' : 'text-gray-500 hover:text-gray-700'"
+                                >
+                                    {{ __('translate.months') }}
+                                </button>
+                            </div>
                         </div>
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <apexchart v-if="isClient && props.charts.industryTrends?.series?.length" type="line" height="400" :options="props.charts.industryTrends.options" :series="props.charts.industryTrends.series"></apexchart>
+                            <apexchart v-if="isClient && props.charts.industryTrends?.series?.length" :key="`trends-${currentTrendPeriod}-${JSON.stringify(props.charts.industryTrends.options.xaxis.categories)}`" type="line" height="400" :options="props.charts.industryTrends.options" :series="props.charts.industryTrends.series"></apexchart>
                             <div v-else class="h-[400px] flex items-center justify-center text-gray-400 font-bold italic">
                                 {{ __('translate.NoData') }}
                             </div>
