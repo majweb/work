@@ -15,6 +15,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 mapboxgl.accessToken = usePage().props.mapboxToken;
 
 
+
 const props = defineProps({
     project: Object,
     otherRecruits: Array,
