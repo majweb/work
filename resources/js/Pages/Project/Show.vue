@@ -12,7 +12,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 // Używamy tokena z propsów jeśli jest dostępny, w przeciwnym razie fallback na ten z designu
-mapboxgl.accessToken = usePage().props.mapboxToken || "pk.eyJ1Ijoid29yazR5b3UiLCJhIjoiY21pc255bnNtMGJkcTNncXhzZDdveWowdCJ9.OWMREe5d718nrvgfNfGIMQ";
+mapboxgl.accessToken = usePage().props.mapboxToken;
 
 const props = defineProps({
     project: Object,
