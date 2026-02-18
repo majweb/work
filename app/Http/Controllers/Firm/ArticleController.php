@@ -10,6 +10,7 @@ use App\Http\Resources\MultiselectResource;
 use App\Models\Article;
 
 use App\Models\Category;
+use App\Models\ChangeProduct;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\TemporaryFile;
@@ -38,7 +39,7 @@ class ArticleController extends Controller
 
         request()->validate([
             'direction' => ['in:asc,desc'],
-            'field' => ['in:id']
+            'field' => ['in:id'],
         ]);
 
         $query = Article::query()->where('user_id', auth()->user()->id);
@@ -48,10 +49,13 @@ class ArticleController extends Controller
         });
 
         $product = Product::find(10);
+        $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 10])->isCurrent()->first();
+
         return inertia()->render('Buy/Article/Index', [
             'articles' => $query->paginate(5)->withQueryString(),
             'filters' => request()->only(['field', 'direction']),
-            'product' => $product
+            'product' => $product,
+            'check' => $check,
         ]);
     }
 

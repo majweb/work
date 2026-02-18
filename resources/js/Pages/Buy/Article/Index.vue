@@ -14,6 +14,7 @@ const props = defineProps({
     filters: Object,
     // Opcjonalnie, jeśli backend przekaże produkt (np. pakiet artykułu)
     product: { type: Object, required: false },
+    check: { type: Object, required: false },
 });
 
 const page = usePage();
@@ -129,9 +130,17 @@ watch(params.value, debounce(function () {
                             <p class="text-2xl font-semibold mb-2">
                                 POSIADASZ: <span>{{ firmPoints !== null ? firmPoints.toLocaleString() : '—' }}</span> PKT
                             </p>
-                            <p class="text-2xl font-bold mb-8">
+                            <p class="text-2xl font-bold mb-4">
                                 ARTYKUŁ: <span>{{ props.product?.price ? parseInt(props.product.price).toLocaleString() : '—' }}</span> PKT
                             </p>
+
+                            <div v-if="props.check" class="mb-8 text-sm bg-white/10 py-2 px-4 rounded-lg inline-block text-white">
+                                <p class="font-semibold uppercase">
+                                    Dostępna liczba artykułów: <span class="text-yellow-400 text-lg">{{ props.check.qty }}</span>
+                                    | Aktywne od: <span class="text-yellow-400">{{ props.check.start.slice(0, 10) }}</span>
+                                    do: <span class="text-yellow-400">{{ props.check.end.slice(0, 10) }}</span>
+                                </p>
+                            </div>
 
                             <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
                                 <div class="relative group">

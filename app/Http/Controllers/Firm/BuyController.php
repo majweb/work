@@ -132,18 +132,21 @@ class BuyController extends Controller
 
     public function banners()
     {
-        $check=ChangeProduct::where(['user_id'=>auth()->id(),'product_id'=>8])->isCurrent()->first();
+        $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 8])->isCurrent()->first();
 
-        if(!$check){
-            session()->flash('flash.banner',__('translate.forbidden'));
+        if (! $check) {
+            session()->flash('flash.banner', __('translate.forbidden'));
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('dashboard');
         }
-        $banner = Banner::where('user_id', auth()->id())->with('media')->first();;
-        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function() {
+        $banner = Banner::where('user_id', auth()->id())->with('media')->first();
+        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function () {
             return (new Helper())->makeCountriesToSelect();
         });
-        return inertia()->render('Buy/Banner',compact('banner','countries'));
+        $product = Product::find(8);
+
+        return inertia()->render('Buy/Banner', compact('banner', 'countries', 'product', 'check'));
     }
     public function bannersStore(Request $request)
     {
@@ -205,8 +208,9 @@ class BuyController extends Controller
             Storage::disk('public')->deleteDirectory('temps/' . $folder);
             $temporaryFile->delete();
         }
-
-        return redirect()->back()->with('success', 'Baner został zapisany.');
+        session()->flash('flash.banner', __('translate.updatedBanner'));
+        session()->flash('flash.bannerStyle', 'success');
+        return back();
     }
     public function reservedProject()
     {
