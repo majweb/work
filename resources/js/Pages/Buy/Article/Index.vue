@@ -78,12 +78,11 @@ watch(params.value, debounce(function () {
                         <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
                             <div class="md:w-1/2">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <h1 class="text-3xl font-bold text-[#143d8c] uppercase">ARTYKUŁ</h1>
+                                    <h1 class="text-3xl font-bold text-[#143d8c] uppercase">{{ __('translate.article').toUpperCase() }}</h1>
                                 </div>
-                                <p class="text-xl font-semibold text-[#143d8c] mb-6">Twoja wiedza, która buduje markę i zaufanie.</p>
+                                <p class="text-xl font-semibold text-[#143d8c] mb-6">{{ __('translate.articleSlogan') }}</p>
                                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    Artykuł ekspercki to przestrzeń do zaprezentowania wiedzy, doświadczenia i perspektywy Twojej firmy – w wybranych przez Ciebie językach. To profesjonalna forma komunikacji, która buduje wiarygodność i pozycję eksperta w branży.
-                                    Wykorzystaj go w działaniach employer brandingowych, komunikacji marketingowej i relacjach z partnerami biznesowymi, pokazując, że Twoja marka nie tylko działa, ale także inspiruje i wyznacza kierunki.
+                                    {{ __('translate.articleDescription') }}
                                 </p>
                             </div>
                             <div class="md:w-1/2 flex flex-col items-center">
@@ -95,50 +94,50 @@ watch(params.value, debounce(function () {
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                             <div class="flex flex-col items-center text-center">
                                 <img src="/images/icons/firm/certyfikat.svg" alt="Co to?" class="h-16 mb-4">
-                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Czym jest tak usługa?</h3>
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.whatIsArticleService') }}</h3>
                                 <p class="text-gray-600 dark:text-gray-400">
-                                    Artykuł reklamowy to możliwość publikacji treści przygotowanej przez Twoją firmę w sekcji artykułów na portalu WORK4YOU.GLOBAL – w wybranych przez Ciebie językach.
+                                    {{ __('translate.whatIsArticleServiceDescription') }}
                                 </p>
                             </div>
                             <div class="flex flex-col items-center text-center">
                                 <img src="/images/icons/firm/certyfikat.svg" alt="Co zawiera" class="h-16 mb-4">
-                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Co zawiera usługa?</h3>
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.whatIncludeArticle') }}</h3>
                                 <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left">
-                                    <li>Publikację artykułu na portalu</li>
-                                    <li>treść dostarczoną przez firmę,</li>
-                                    <li>możliwość wyboru języka publikacji,</li>
-                                    <li>prezentację firmy jako autora materiału</li>
-                                    <li>ekspozycję w sekcji artykułów WORK4YOU.GLOBAL.</li>
+                                    <li>{{ __('translate.articleInclude1') }}</li>
+                                    <li>{{ __('translate.articleInclude2') }}</li>
+                                    <li>{{ __('translate.articleInclude3') }}</li>
+                                    <li>{{ __('translate.articleInclude4') }}</li>
+                                    <li>{{ __('translate.articleInclude5') }}</li>
                                 </ul>
-                                <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">Usługa nieograniczona czasowo.</p>
+                                <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">{{ __('translate.articleUnlimitedTime') }}</p>
                             </div>
                             <div class="flex flex-col items-center text-center">
                                 <img src="/images/icons/firm/certyfikat.svg" alt="Jak wykorzystać" class="h-16 mb-4">
-                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Jak możesz ją wykorzystać?</h3>
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.howUseArticle') }}</h3>
                                 <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left">
-                                    <li>do budowania wizerunku eksperta w branży,</li>
-                                    <li>w działaniach employer brandingowych,</li>
-                                    <li>w komunikacji marketingowej i PR,</li>
-                                    <li>do zwiększenia rozpoznawalności wśród kandydatów i partnerów biznesowych.</li>
+                                    <li>{{ __('translate.articleUse1') }}</li>
+                                    <li>{{ __('translate.articleUse2') }}</li>
+                                    <li>{{ __('translate.articleUse3') }}</li>
+                                    <li>{{ __('translate.articleUse4') }}</li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Akcje: Wymiana punktów / Dodanie artykułu -->
                         <div class="bg-[#143d8c] rounded-3xl p-8 text-center text-white mb-16 relative overflow-hidden">
-                            <h2 class="text-4xl font-bold mb-4">Dołącz do firm, które dzielą się wiedzą</h2>
+                            <h2 class="text-4xl font-bold mb-4">{{ __('translate.articleCallToAction') }}</h2>
                             <p class="text-2xl font-semibold mb-2">
-                                POSIADASZ: <span>{{ firmPoints !== null ? firmPoints.toLocaleString() : '—' }}</span> PKT
+                                {{ __('translate.youHave') }} <span>{{ firmPoints !== null ? firmPoints.toLocaleString() : '—' }}</span> {{ __('translate.points').toUpperCase() }}
                             </p>
                             <p class="text-2xl font-bold mb-4">
-                                ARTYKUŁ: <span>{{ props.product?.price ? parseInt(props.product.price).toLocaleString() : '—' }}</span> PKT
+                                {{ __('translate.article').toUpperCase() }}: <span>{{ props.product?.price ? parseInt(props.product.price).toLocaleString() : '—' }}</span> {{ __('translate.points').toUpperCase() }}
                             </p>
 
                             <div v-if="props.check" class="mb-8 text-sm bg-white/10 py-2 px-4 rounded-lg inline-block text-white">
                                 <p class="font-semibold uppercase">
-                                    Dostępna liczba artykułów: <span class="text-yellow-400 text-lg">{{ props.check.qty }}</span>
-                                    | Aktywne od: <span class="text-yellow-400">{{ props.check.start.slice(0, 10) }}</span>
-                                    do: <span class="text-yellow-400">{{ props.check.end.slice(0, 10) }}</span>
+                                    {{ __('translate.availableArticlesCount') }} <span class="text-yellow-400 text-lg">{{ props.check.qty }}</span>
+                                    | {{ __('translate.activeFrom') }} <span class="text-yellow-400">{{ props.check.start.slice(0, 10) }}</span>
+                                    {{ __('translate.activeTo').toLowerCase() }} <span class="text-yellow-400">{{ props.check.end.slice(0, 10) }}</span>
                                 </p>
                             </div>
 
@@ -153,14 +152,14 @@ watch(params.value, debounce(function () {
                                         as="button"
                                         class="bg-[#e31e24] hover:bg-[#c1191f] text-white font-bold py-4 px-8 rounded-xl text-xl transition shadow-lg uppercase"
                                     >
-                                        WYMIeŃ PUNKTY NA ARTYKUŁ
+                                        {{ __('translate.exchangePointsArticle') }}
                                     </Link>
                                     <button
                                         v-else
                                         disabled
                                         class="bg-gray-400 text-white font-bold py-4 px-8 rounded-xl text-xl uppercase cursor-not-allowed shadow-lg"
                                     >
-                                        Niewystarczająca liczba punktów
+                                        {{ __('translate.insufficientPoints') }}
                                     </button>
                                 </div>
 
@@ -171,21 +170,21 @@ watch(params.value, debounce(function () {
                                         as="button"
                                         class="bg-[#00a3e0] hover:bg-[#008cc2] text-white font-bold py-4 px-8 rounded-xl text-xl transition shadow-lg uppercase"
                                     >
-                                        DODAJ ARTYKUŁ
+                                        {{ __('translate.addArticle') }}
                                     </Link>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-8 px-4">
-                            <h2 class="text-2xl font-bold text-[#143d8c] mb-6">Opublikowane artykuły</h2>
+                            <h2 class="text-2xl font-bold text-[#143d8c] mb-6">{{ __('translate.publishedArticles') }}</h2>
 
                             <!-- Nagłówek listy -->
                             <div class="grid grid-cols-12 gap-4 px-6 mb-2 text-[#00a3e0] text-xs font-bold uppercase">
-                                <div class="col-span-2">DATA</div>
-                                <div class="col-span-5 text-center">TYTUŁ</div>
-                                <div class="col-span-2 text-center">AKTYWNOŚĆ</div>
-                                <div class="col-span-3 text-center">AKCJE</div>
+                                <div class="col-span-2">{{ __('translate.date').toUpperCase() }}</div>
+                                <div class="col-span-5 text-center">{{ __('translate.title').toUpperCase() }}</div>
+                                <div class="col-span-2 text-center">{{ __('translate.active').toUpperCase() }}</div>
+                                <div class="col-span-3 text-center">{{ __('translate.actions').toUpperCase() }}</div>
                             </div>
 
                             <!-- Lista artykułów -->
@@ -212,10 +211,10 @@ watch(params.value, debounce(function () {
                                     </div>
                                     <div class="col-span-3 flex items-center justify-center gap-3">
                                         <Link :href="route('articles.edit',article)" as="button" class="bg-[#143d8c] hover:bg-[#0f2d66] text-white font-bold py-1 px-4 rounded text-xs uppercase w-24">
-                                            EDYTUJ
+                                            {{ __('translate.edit').toUpperCase() }}
                                         </Link>
                                         <button @click="openModal(article)" class="bg-[#e31e24] hover:bg-[#c1191f] text-white font-bold py-1 px-4 rounded text-xs uppercase w-24">
-                                            USUŃ
+                                            {{ __('translate.delete').toUpperCase() }}
                                         </button>
                                     </div>
                                 </div>

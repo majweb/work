@@ -98,6 +98,7 @@ class PremiumCertificateController extends Controller
             'date' => now()->format('d.m.Y'),
             'id' => $history->id,
             'year' => now()->format('Y'),
+            'amount' => $amount,
         ])->setPaper('a4', 'landscape');
 
         Storage::disk('local')->put($path, $pdf->output());

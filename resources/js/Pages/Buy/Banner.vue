@@ -78,10 +78,10 @@ const sortLangs = computed(() => {
                         <!-- Sekcja nagłówka i opisu -->
                         <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
                             <div class="md:w-1/2">
-                                <h1 class="text-3xl font-bold text-[#143d8c] uppercase mb-4">BANER</h1>
-                                <p class="text-xl font-semibold text-[#143d8c] mb-6">Twoja marka widoczna od pierwszego kliknięcia.</p>
+                                <h1 class="text-3xl font-bold text-[#143d8c] uppercase mb-4">{{ __('translate.banner').toUpperCase() }}</h1>
+                                <p class="text-xl font-semibold text-[#143d8c] mb-6">{{ __('translate.bannerSlogan') }}</p>
                                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    Baner reklamowy to szybka i skuteczna forma promocji Twojej firmy na WORK4YOU.GLOBAL. Po zakupie dodajesz gotowy baner z linkiem przekierowującym i natychmiast zwiększasz widoczność swojej marki wśród użytkowników portalu.
+                                    {{ __('translate.bannerDescription') }}
                                 </p>
                             </div>
                             <div class="md:w-1/2 flex justify-center">
@@ -97,9 +97,9 @@ const sortLangs = computed(() => {
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Czym jest baner reklamowy?</h3>
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.whatIsBanner') }}</h3>
                                 <p class="text-gray-600 dark:text-gray-400">
-                                    Baner reklamowy to graficzna forma promocji firmy wyświetlana na stronie WORK4YOU.GLOBAL. Po wykupieniu usługi baner jest od razu publikowany, dlatego musi być wcześniej przygotowany przez firmę.
+                                    {{ __('translate.whatIsBannerDescription') }}
                                 </p>
                             </div>
                             <div class="flex flex-col items-center text-center">
@@ -108,11 +108,11 @@ const sortLangs = computed(() => {
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Co zawiera usługa baner?</h3>
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.whatIncludeBanner') }}</h3>
                                 <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left">
-                                    <li>baner graficzny dostarczony przez firmę (gotowy do publikacji),</li>
-                                    <li>samodzielne dodanie baneru przez firmę po zakupie usługi,</li>
-                                    <li>możliwość ustawienia linku przekierowującego do wybranej strony.</li>
+                                    <li>{{ __('translate.bannerInclude1') }}</li>
+                                    <li>{{ __('translate.bannerInclude2') }}</li>
+                                    <li>{{ __('translate.bannerInclude3') }}</li>
                                 </ul>
                             </div>
                             <div class="flex flex-col items-center text-center">
@@ -121,29 +121,29 @@ const sortLangs = computed(() => {
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">Jak możesz go wykorzystać?</h3>
+                                <h3 class="text-xl font-bold text-[#00a3e0] mb-4">{{ __('translate.howUseBanner') }}</h3>
                                 <ul class="text-gray-600 dark:text-gray-400 list-disc list-inside text-left">
-                                    <li>do promocji oferty pracy, usług lub marki,</li>
-                                    <li>do kierowania ruchu na stronę firmową lub landing page,</li>
-                                    <li>jako szybkie i widoczne wsparcie działań rekrutacyjnych i marketingowych.</li>
+                                    <li>{{ __('translate.bannerUse1') }}</li>
+                                    <li>{{ __('translate.bannerUse2') }}</li>
+                                    <li>{{ __('translate.bannerUse3') }}</li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Akcje: Wymiana punktów / Dodanie baneru -->
                         <div class="bg-[#143d8c] rounded-3xl p-8 text-center text-white mb-16 relative overflow-hidden">
-                            <h2 class="text-3xl font-bold mb-4 uppercase">Zwiększ rozpoznawalność. Postaw na baner, który działa.</h2>
+                            <h2 class="text-3xl font-bold mb-4 uppercase">{{ __('translate.bannerCallToAction') }}</h2>
                             <p class="text-xl font-semibold mb-2">
-                                POSIADASZ: <span>{{ firmPoints !== null ? firmPoints.toLocaleString() : '—' }}</span> PKT
+                                {{ __('translate.youHave') }} <span>{{ firmPoints !== null ? firmPoints.toLocaleString() : '—' }}</span> {{ __('translate.points').toUpperCase() }}
                             </p>
                             <p class="text-xl font-bold mb-4">
-                                BANER: <span>{{ props.product?.price ? parseInt(props.product.price).toLocaleString() : '—' }}</span> PKT
+                                {{ __('translate.banner').toUpperCase() }}: <span>{{ props.product?.price ? parseInt(props.product.price).toLocaleString() : '—' }}</span> {{ __('translate.points').toUpperCase() }}
                             </p>
 
                             <div v-if="props.check" class="mb-8 text-sm bg-white/10 py-2 px-4 rounded-lg inline-block">
                                 <p class="font-semibold">
-                                    AKTYWNY OD: <span class="text-yellow-400">{{ props.check.start.slice(0, 10) }}</span>
-                                    DO: <span class="text-yellow-400">{{ props.check.end.slice(0, 10) }}</span>
+                                    {{ __('translate.activeFrom') }} <span class="text-yellow-400">{{ props.check.start.slice(0, 10) }}</span>
+                                    {{ __('translate.activeTo') }} <span class="text-yellow-400">{{ props.check.end.slice(0, 10) }}</span>
                                 </p>
                             </div>
 
@@ -158,14 +158,14 @@ const sortLangs = computed(() => {
                                         as="button"
                                         class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white font-bold py-4 px-4 rounded-xl text-lg transition shadow-lg uppercase"
                                     >
-                                        WYMIeŃ PUNKTY NA BANER
+                                        {{ __('translate.exchangePointsBanner') }}
                                     </Link>
                                     <button
                                         v-else
                                         disabled
                                         class="w-full bg-gray-400 text-white font-bold py-4 px-4 rounded-xl text-lg uppercase cursor-not-allowed shadow-lg"
                                     >
-                                        Niewystarczająca liczba punktów
+                                        {{ __('translate.insufficientPoints') }}
                                     </button>
                                 </div>
 
@@ -175,7 +175,7 @@ const sortLangs = computed(() => {
                                         @click="showForm = !showForm"
                                         class="w-full bg-[#00a3e0] hover:bg-[#008cc2] text-white font-bold py-4 px-4 rounded-xl text-lg transition shadow-lg uppercase"
                                     >
-                                        {{ props.banner ? __('translate.update') : 'DODAJ NOWY BANER' }}
+                                        {{ props.banner ? __('translate.update') : __('translate.addNewBanner') }}
                                     </button>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@ const sortLangs = computed(() => {
                                                     {{ __('translate.active') }}
                                                 </label>
                                             </div>
-                                            <p class="mt-2 text-xs text-gray-600 italic">Określ, czy baner ma być widoczny w serwisie.</p>
+                                            <p class="mt-2 text-xs text-gray-600 italic">{{ __('translate.bannerVisibilityInfo') }}</p>
                                         </div>
                                     </div>
 
