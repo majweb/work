@@ -1419,4 +1419,8 @@ return [
     'days' => 'Dni',
     'months' => 'Miesiące',
     'services' => 'Usługi',
+
+    // Dla komponentów filtrów (zgodnie z użyciem w UI)
+    'filter_title' => 'Filtruj',
+    'filter_apply' => 'Filtruj',
 ];

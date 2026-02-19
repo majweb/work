@@ -1,89 +1,108 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{__('translate.certyficate')}} - {{auth()->user()->name}}</title>
+    <title>{{ __('premium.certificates.pdf.title') }} - {{ $firm->user->name }}</title>
     <style>
-        html {
-            box-sizing: border-box;
-            color: #0a2c5c;
-            font-family: 'DejaVu Sans', Helvetica, sans-serif;
+        @page {
+            margin: 0;
+            size: a4 landscape;
         }
-        table{
-            border-collapse: collapse;
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 297mm;
+            height: 210mm;
+            overflow: hidden;
+            font-family: 'DejaVu Sans', sans-serif;
+            color: #ddc890;
         }
-        .inner{
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            text-align: center;
-
-        }
-        .title{
-            padding-top: 20px;
-            text-transform: uppercase;
-            font-size: 60px;
-        }
-        .for{
-            font-size: 20px;
-            text-transform: uppercase;
-        }
-        .firm{
-            font-size: 50px;
-            padding: 20px 0;
-            font-weight: bold;
-        }
-        .desc{
-            width: 47%;
-            text-align: center;
-            margin:0 auto;
-        }
-        .logo{
+        .container {
+            width: 297mm;
+            height: 210mm;
             position: absolute;
-            bottom:30px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            top: 0;
+            background-image: url('{{ public_path('images/certificate/certyfikat_gold.jpg') }}');
+            background-size: cover;
+            overflow: hidden;
         }
-        .fundation{
-            color: #6bacea;
+        .main-content {
+            padding: 85mm 45mm 0 65mm;
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .confirmation {
+            font-size: 16pt;
+            color: #666;
+        }
+        .firm-name {
+            font-size: 26pt;
+            font-weight: bold;
+            margin-top: 2mm;
+            color: #ddc890;
             text-transform: uppercase;
-            padding: 20px 0;
-            font-size: 40px;
+        }
+        .donated {
+            font-size: 20pt;
+            font-weight: bold;
+            margin-top: 2mm;
+            color: #ddc890;
+        }
+        .description {
+            margin-top: 4mm;
+            padding: 0 10mm;
+            font-size: 13pt;
+            line-height: 1.5;
+            color: #666;
+            text-align: center;
+        }
+        .footer {
+            position: absolute;
+            bottom: 25mm;
+            right: 30mm;
+            text-align: right;
+        }
+        .date {
+            font-size: 12pt;
+            font-weight: bold;
+            font-style: italic;
+            color: #ddc890;
         }
     </style>
 </head>
 <body>
-<div id="watermark"></div>
-<div class="inner" style="background-image: url({{ App::environment() == 'local' ? public_path().'/images/certyficate_bg.png' : asset('images/certyficate_bg.png') }});">
-    <div class="title">
-        {{__('translate.certyficate')}}
-        {{__('premium.certificates.levels.gold')}}
+    <div class="container">
+        <div class="main-content">
+            <div class="confirmation">
+                {{ __('premium.certificates.pdf.confirmation') }}
+            </div>
+
+            <div class="firm-name">
+                {{ $firm->user->name }}
+            </div>
+
+            <div class="donated">
+                {{ __('premium.certificates.pdf.donated', ['amount' => number_format($amount, 0, ',', ' ')]) }}
+            </div>
+
+            <div class="description">
+                {{ __('premium.certificates.pdf.description') }}
+            </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="date">
+                {{ __('premium.certificates.pdf.date', ['date' => $date]) }}
+            </div>
+        </div>
     </div>
-    <div class="date">
-        <p>
-            {{$id.'/'.$year}}
-        </p>
-        <p>
-            {{__('premium.certificates.generated')}} {{$date}}
-        </p>
-    </div>
-    <div class="firm">
-        {{auth()->user()->name}}
-    </div>
-    <div class="desc">{{__('translate.forInfo')}}</div>
-    <div class="logo">
-        <div class="with">{{__('translate.forPosre')}}</div>
-        @if (App::environment() == 'local')
-            <img width="400" src="{{ public_path().'/images/certyficate_logo.png' }}" alt="logo">
-        @else
-            <img width="400" src="{{ asset('images/certyficate_logo.png') }}" alt="logo">
-        @endif
-    </div>
-</div>
 </body>
 </html>

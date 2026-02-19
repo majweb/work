@@ -160,7 +160,7 @@ class PremiumCertificateController extends Controller
 
     public function list(Request $request)
     {
-        $query = PremiumCertificateHistory::where('firm_id', auth()->user()->id);
+        $query = PremiumCertificateHistory::where('firm_id', auth()->user()->firm->id);
 
         if ($request->filled('from')) {
             $query->whereDate('generated_at', '>=', $request->from);
@@ -182,6 +182,7 @@ class PremiumCertificateController extends Controller
             'levelNames' => collect(config('premium.level_names'))->mapWithKeys(function ($translationKey, $level) {
                 return [$level => __($translationKey)];
             }),
+            'levelColors' => config('premium.level_colors'),
             'filters' => [
                 'from' => $request->from,
                 'to' => $request->to,

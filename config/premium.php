@@ -52,9 +52,9 @@ return [
     |
     */
     'level_colors' => [
-        1 => '#143d8c', // Podstawowy
-        2 => '#4267b2', // Jaśniejszy
-        3 => '#6f8fd8', // Jeszcze jaśniejszy
-        4 => '#9cb7ff'  // Najjaśniejszy
+        1 => '#aa8f75', // Brązowy (Bronze)
+        2 => '#c6c6c6', // Srebrny (Silver)
+        3 => '#ddc890', // Złoty (Gold)
+        4 => '#c8bdbc'  // Diamentowy (Diamond)
     ],
 ];

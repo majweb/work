@@ -54,4 +54,8 @@ return [
     'history_level' => 'Poziom',
     'history_cost' => 'Kwota',
     'history_date' => 'Data wygenerowania',
+
+    // Tłumaczenia dla komponentu filtrów w module Premium
+    'filter_title' => 'Filtruj',
+    'filter_apply' => 'Filtruj',
 ];
