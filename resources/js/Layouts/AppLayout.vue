@@ -38,9 +38,6 @@ const countTotal = computed(() =>{
     let items = Object.values(usePage().props.cart);
     return items.reduce((acc, curr) => acc + curr.subtotal, 0);
 });
-let currency  = computed(()=>{
-    return usePage().props.auth.user?.firm?.currency;
-});
 
 const logout = () => {
     router.post(route('logout'));
@@ -592,7 +589,7 @@ onUnmounted(()=>{
                                         <div class="flex h-full flex-col overflow-y-auto bg-white shadow-xl">
                                             <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                                 <div class="flex items-start justify-between">
-                                                    <DialogTitle class="text-lg font-medium text-gray-900">                                <span class="mr-2">{{ countTotal }} {{ currency }}</span>
+                                                    <DialogTitle class="text-lg font-medium text-gray-900">                                <span class="mr-2">${{ countTotal }}</span>
                                                     </DialogTitle>
                                                     <div class="ml-3 flex h-7 items-center">
                                                         <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
@@ -609,11 +606,11 @@ onUnmounted(()=>{
                                                         <li v-for="item in usePage().props.cart" :key="item.id" class="flex py-6">
                                                             <div class="ml-4 flex flex-1 flex-col">
                                                                 <div class="flex justify-between text-base font-medium text-gray-900">
-                                                                    <h3>{{ item.name }} ({{ item.price }} {{ currency }})</h3>
+                                                                    <h3>{{ item.name }} (${{ item.price }})</h3>
                                                                     <p class="ml-4">{{ item.qty }}x</p>
                                                                 </div>
                                                                 <div class="flex items-center justify-end text-sm mt-1 text-gray-500">
-                                                                    {{ item.subtotal }} {{ currency }}
+                                                                    ${{ item.subtotal }}
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -624,7 +621,7 @@ onUnmounted(()=>{
                                             <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                                                 <div class="flex justify-between text-base font-medium text-gray-900">
                                                     <p>{{__('translate.subtotal')}}</p>
-                                                    <p>{{ countTotal }} {{ currency }}</p>
+                                                    <p>${{ countTotal }}</p>
                                                 </div>
                                                 <div class="mt-6">
                                                     <Link :href="route('buy.detail')"
