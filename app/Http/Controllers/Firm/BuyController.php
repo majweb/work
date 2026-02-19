@@ -51,7 +51,7 @@ class BuyController extends Controller
             }
         });
         return inertia()->render('Buy/Index',[
-            'products' => BuyResource::collection($query->paginate(10)->withQueryString()),
+            'products' => BuyResource::collection($query->get()),
             'filters' => request()->only(['product_type']),
             'countCart' => $countCart,
         ]);

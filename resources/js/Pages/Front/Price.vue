@@ -24,16 +24,14 @@ const currentIndex = computed(() =>
     packages.value.findIndex(p => p.id === selected.value.id)
 );
 
-const barWidth = 400;
 const totalSlots = computed(() => packages.value.length - 1);
 
-const progressLeft = computed(() => {
-    const step = barWidth / totalSlots.value;
-    return step * currentIndex.value;
-});
+const progressPercentage = computed(() => {
+    if (totalSlots.value === 0) {
+        return 0;
+    }
 
-const progressWidth = computed(() => {
-    return (progressLeft.value / barWidth) * 100;
+    return (currentIndex.value / totalSlots.value) * 100;
 });
 
 const donated = computed(() =>
@@ -117,15 +115,15 @@ const donated = computed(() =>
 
                 <!-- ===================== PROGRESS + IKONY ===================== -->
 
-                <div class="flex justify-end w-full">
-                    <div class="text-right">
+                <div class="flex justify-center lg:justify-end w-full">
+                    <div class="text-center lg:text-right w-full lg:max-w-md">
 
-                        <div class="mb-6">
-                            <h3 class="text-3xl font-bold mb-2">
+                        <div class="mb-8">
+                            <h3 class="text-2xl sm:text-3xl font-bold mb-4">
                                 {{ __('info.help_title') }}
                             </h3>
 
-                            <p class="text-lg">
+                            <p class="text-base sm:text-lg">
                                 {{ __('info.help_text_1') }}
                                 <span class="text-[#00aaff] font-bold">{{ selected.points.toLocaleString() }} {{ __('info.points2') }}</span>
                                 {{ __('info.help_text_2') }}
@@ -136,39 +134,37 @@ const donated = computed(() =>
                         </div>
 
                         <!-- PROGRESS BAR -->
-                        <div class="relative w-[400px] ml-auto">
+                        <div class="relative w-full max-w-[400px] mx-auto lg:ml-auto lg:mr-0 px-4 sm:px-0">
+                            <div class="relative h-3">
+                                <div class="h-3 w-full border-[#00aaff] border-2 rounded-full"></div>
 
-                            <div class="h-3 w-full border-[#00aaff] border-2 rounded-full"></div>
+                                <div class="h-3 bg-[#00aaff] rounded-full absolute top-0 left-0 transition-all duration-500"
+                                     :style="{ width: progressPercentage + '%' }"></div>
 
-                            <div class="h-3 bg-[#00aaff] rounded-full absolute top-0 left-0 transition-all duration-500"
-                                 :style="{ width: progressWidth + '%' }"></div>
-
-                            <div class="w-6 h-6 bg-[#00aaff] border-4 border-[#00aaff] rounded-full
-                                        absolute -top-1.5 transition-all duration-500"
-                                 :style="{ left: `calc(${progressLeft}px - 12px)` }"></div>
-
-                        </div>
-
-                        <!-- IKONY POD PROGRESEM -->
-                        <div class="relative mt-6 ml-auto" :style="{ width: barWidth + 'px' }">
-                            <div v-for="(pack, index) in packages" :key="'ico'+index"
-                                 class="absolute transition"
-                                 :style="{
-                                     left: `${(400 / (packages.length - 1)) * index}px`,
-                                     transform: index <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
-                                     opacity: index <= currentIndex ? 1 : 0.25,
-                                     transition: '0.3s'
-                                 }">
-
-                                <img
-                                    :src="`/images/price/${pack.points}.svg`"
-                                    :alt="pack.points"
-                                    class="w-[40px] h-[40px] min-w-[40px]"
-                                />
+                                <div class="w-6 h-6 bg-[#00aaff] border-4 border-[#00aaff] rounded-full
+                                            absolute -top-1.5 transition-all duration-500 -ml-3"
+                                     :style="{ left: progressPercentage + '%' }"></div>
                             </div>
 
-                        </div>
+                            <!-- IKONY POD PROGRESEM -->
+                            <div class="relative mt-8 h-10">
+                                <div v-for="(pack, index) in packages" :key="'ico'+index"
+                                     class="absolute transition"
+                                     :style="{
+                                         left: `${(index / totalSlots) * 100}%`,
+                                         transform: index <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
+                                         opacity: index <= currentIndex ? 1 : 0.25,
+                                         transition: '0.3s'
+                                     }">
 
+                                    <img
+                                        :src="`/images/price/${pack.points}.svg`"
+                                        :alt="pack.points"
+                                        class="w-[32px] h-[32px] sm:w-[40px] sm:h-[40px] min-w-[32px] sm:min-w-[40px]"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

@@ -448,4 +448,5 @@ return [
     'qualityStatus' => 'Quality (% YES)',
     'noResults' => 'No results found',
     'certGenerated' => 'Your certificate has been generated!',
+    'pointsServicesDesc' => 'With points, you can buy additional services that increase the visibility of your advertisements and brand. Exchange them for certificates, banners, sponsored articles, employer distinctions or social media promotion.',
 ];

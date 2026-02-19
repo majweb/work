@@ -1376,6 +1376,7 @@ return [
     'noNotifications' => 'Brak powiadomień',
     'pointsUnit' => 'PKT',
     'exchangeBanner' => 'Aby wymienić punkty na baner, musisz mieć przygotowaną już własną grafikę.',
+    'pointsServicesDesc' => 'Za punkty możesz kupować dodatkowe usługi zwiększające widoczność Twoich ogłoszeń i marki. Wymieniaj je na certyfikaty, banery, artykuły sponsorowane, wyróżnienia pracodawcy czy promocję w social media.',
     'buyFirst' => 'KUPUJ PUNKTY I PUBLIKUJ',
     'buySecond' => 'OGŁOSZENIA BEZ OGRANICZEŃ',
     'invoiceId' => 'ID',
