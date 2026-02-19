@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\MonthlyUsersChart;
 use App\Models\Aplication;
 use App\Models\Invoice;
 use App\Models\Project;
 use App\Models\ProjectQuestion;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller

@@ -2,31 +2,31 @@
 
 return [
     // Koszt pobrania aplikacji z CV PDF
-    'OpenAppWithPdf' => 50,
+    'OpenAppWithPdf' => 120,
 
     // Koszt pobrania aplikacji z CV audio
-    'OpenAppWithAudio' => 70,
+    'OpenAppWithAudio' => 180,
 
     // Koszt pobrania aplikacji z CV wideo
-    'OpenAppWithVideo' => 100,
+    'OpenAppWithVideo' => 250,
 
     // Koszt eksportu aplikacji
-    'ExportAplications' => 100,
+    'ExportAplications' => 150,
 
     // Koszt odblokowania pytań dla aplikacji
-    'UnlockQuestions' => 200,
+    'UnlockQuestions' => 250,
 
     // Koszt utworzenia kandydata
-    'CreateCandidate' => 150,
+    'CreateCandidate' => 200,
 
     // Koszt utworzenia firmy
-    'CreateExternalFirm' => 300,
+    'CreateExternalFirm' => 500,
 
     // Wysyłka aplikacji do firmy
-    'SendToExternalFirm' => 500,
+    'SendToExternalFirm' => 800,
 
     // Wysyłka aplikacji do firmy
-    'AddVideoToProfile' => 1000,
+    'AddVideoToProfile' => 1500,
 
     // Wysyłka zapytania o projekt baneru
     'sendReservedProject' => 4000,

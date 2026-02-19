@@ -13,7 +13,8 @@ class PoinstController extends Controller
     public function index()
     {
         return inertia()->render('Points/Index', [
-            'products' => PointsResource::collection(Auth::user()->changeProducts()->with('product')->paginate(10)->withQueryString())
+            'products' => PointsResource::collection(Auth::user()->changeProducts()->with('product')->paginate(10)->withQueryString()),
+            'pointCosts' => config('getPoints')
         ]);
     }
 

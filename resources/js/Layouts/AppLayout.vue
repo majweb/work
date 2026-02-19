@@ -556,8 +556,7 @@ onUnmounted(()=>{
                 <span class="font-bold">{{ countCart }}</span>
             </button>
             <TransitionRoot as="template" :show="open">
-                <Dialog class="relative z-10" @close="open = false">
-
+                <Dialog class="relative z-50" @close="open = false">
                     <!-- Overlay -->
                     <TransitionChild
                         as="template"
@@ -568,73 +567,134 @@ onUnmounted(()=>{
                         leave-from="opacity-100"
                         leave-to="opacity-0"
                     >
-                        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" />
+                        <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity" />
                     </TransitionChild>
 
                     <div class="fixed inset-0 overflow-hidden">
                         <div class="absolute inset-0 overflow-hidden">
-                            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
-
+                            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                                 <!-- Panel -->
                                 <TransitionChild
                                     as="template"
-                                    enter="transform transition ease-in-out duration-500 sm:duration-700"
+                                    enter="transform transition ease-in-out duration-500"
                                     enter-from="translate-x-full"
                                     enter-to="translate-x-0"
-                                    leave="transform transition ease-in-out duration-500 sm:duration-700"
+                                    leave="transform transition ease-in-out duration-500"
                                     leave-from="translate-x-0"
                                     leave-to="translate-x-full"
                                 >
                                     <DialogPanel class="pointer-events-auto w-screen max-w-md">
-                                        <div class="flex h-full flex-col overflow-y-auto bg-white shadow-xl">
-                                            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                                                <div class="flex items-start justify-between">
-                                                    <DialogTitle class="text-lg font-medium text-gray-900">                                <span class="mr-2">${{ countTotal }}</span>
-                                                    </DialogTitle>
-                                                    <div class="ml-3 flex h-7 items-center">
-                                                        <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                                                                @click="open = false">
-                                                            <span class="absolute -inset-0.5" />
-                                                            <span class="sr-only">Close panel</span>
-                                                            X
-                                                        </button>
+                                        <div class="flex h-full flex-col bg-white shadow-2xl overflow-hidden rounded-l-3xl">
+                                            <!-- Header -->
+                                            <div class="px-6 py-6 bg-[#0b2a55] text-white">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="p-2 bg-white/10 rounded-xl">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#00aaff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                            </svg>
+                                                        </div>
+                                                        <div>
+                                                            <DialogTitle class="text-xl font-black uppercase tracking-tight leading-none">
+                                                                {{ __('translate.cart') }}
+                                                            </DialogTitle>
+                                                            <p class="text-xs text-[#00aaff] font-bold mt-1 uppercase tracking-wider">
+                                                                {{ countCart }} {{ countCart === 1 ? __('translate.service') : __('translate.service') }}
+                                                            </p>
+                                                        </div>
                                                     </div>
+                                                    <button type="button"
+                                                            class="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+                                                            @click="open = false">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+                                                    </button>
                                                 </div>
+                                            </div>
 
-                                                <div class="mt-8">
-                                                    <ul role="list" class="-my-6 divide-y divide-gray-200">
-                                                        <li v-for="item in usePage().props.cart" :key="item.id" class="flex py-6">
+                                            <!-- Content -->
+                                            <div class="flex-1 overflow-y-auto px-6 py-6 custom-scrollbar">
+                                                <div v-if="countCart > 0" class="space-y-6">
+                                                    <ul role="list" class="divide-y divide-gray-100">
+                                                        <li v-for="item in usePage().props.cart" :key="item.id" class="flex py-6 first:pt-0 last:pb-0 transition-all hover:bg-gray-50/50 rounded-2xl -mx-2 px-2">
+                                                            <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100 flex items-center justify-center border border-gray-200 shadow-sm">
+                                                                <img :src="`/images/price/${item.id}-points.svg`"
+                                                                     class="h-10 w-10 object-contain opacity-80"
+                                                                     @error="(e) => e.target.src = '/images/icons/recruit/organizacja_pracy.svg'" />
+                                                            </div>
+
                                                             <div class="ml-4 flex flex-1 flex-col">
-                                                                <div class="flex justify-between text-base font-medium text-gray-900">
-                                                                    <h3>{{ item.name }} (${{ item.price }})</h3>
-                                                                    <p class="ml-4">{{ item.qty }}x</p>
+                                                                <div>
+                                                                    <div class="flex justify-between items-start">
+                                                                        <h3 class="text-base font-bold text-gray-900 leading-tight">
+                                                                            {{ item.name }}
+                                                                        </h3>
+                                                                        <p class="ml-4 text-sm font-black text-[#0b2a55] bg-gray-100 px-2 py-1 rounded-lg">
+                                                                            ${{ item.price }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="flex items-center gap-2 mt-1">
+                                                                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                                            {{ __('translate.quantity') }}:
+                                                                        </span>
+                                                                        <span class="text-sm font-black text-gray-600">{{ item.qty }}</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="flex items-center justify-end text-sm mt-1 text-gray-500">
-                                                                    ${{ item.subtotal }}
+                                                                <div class="flex flex-1 items-end justify-end">
+                                                                    <div class="text-sm font-black text-[#00aaff]">
+                                                                        <span class="text-[10px] text-gray-400 uppercase mr-1">{{ __('translate.subtotal') }}</span>
+                                                                        ${{ item.subtotal }}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                     </ul>
                                                 </div>
+
+                                                <!-- Empty state -->
+                                                <div v-else class="h-full flex flex-col items-center justify-center text-center space-y-4">
+                                                    <div class="p-6 bg-gray-50 rounded-full">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div>
+                                                        <h3 class="text-lg font-bold text-gray-900 uppercase tracking-tight">{{ __('translate.emptyCart') }}</h3>
+                                                        <p class="text-sm text-gray-500 mt-1 max-w-[200px]">{{ __('translate.notFoundProducts') }}</p>
+                                                    </div>
+                                                    <button @click="open = false" class="text-[#00aaff] font-black text-xs uppercase tracking-widest hover:underline pt-4">
+                                                        {{ __('translate.continueBuy') }}
+                                                    </button>
+                                                </div>
                                             </div>
 
-                                            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-                                                <div class="flex justify-between text-base font-medium text-gray-900">
-                                                    <p>{{__('translate.subtotal')}}</p>
-                                                    <p>${{ countTotal }}</p>
+                                            <!-- Footer -->
+                                            <div v-if="countCart > 0" class="border-t border-gray-100 px-6 py-8 bg-gray-50/50">
+                                                <div class="flex justify-between items-end mb-6">
+                                                    <div class="space-y-1">
+                                                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.summary') }}</p>
+                                                        <p class="text-base font-bold text-gray-900 uppercase leading-none">{{ __('translate.subtotal') }}</p>
+                                                    </div>
+                                                    <p class="text-3xl font-black text-[#0b2a55] tracking-tighter">
+                                                        <span class="text-lg font-bold text-[#00aaff] mr-1">$</span>{{ countTotal }}
+                                                    </p>
                                                 </div>
-                                                <div class="mt-6">
-                                                    <Link :href="route('buy.detail')"
-                                                          class="flex items-center justify-center px-2 py-2 mx-auto bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150 mt-2">
-                                                        {{__('translate.cart')}}
-                                                    </Link>
-                                                </div>
+                                                <Link :href="route('buy.detail')"
+                                                      class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#0b2a55] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#0d3874] active:scale-[0.98]">
+                                                    <span class="relative z-10">{{ __('translate.cart') }}</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                    </svg>
+                                                    <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
+                                                </Link>
+                                                <button @click="open = false" class="w-full text-center mt-4 text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-gray-600 transition-colors">
+                                                    {{ __('translate.continueBuy') }}
+                                                </button>
                                             </div>
-
                                         </div>
                                     </DialogPanel>
                                 </TransitionChild>
-
                             </div>
                         </div>
                     </div>

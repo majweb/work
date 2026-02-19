@@ -64,7 +64,7 @@
                         class="cursor-pointer rounded-xl p-6 text-center transition relative border duration-200"
                         :class="[
                                 selected.id === pack.id
-                                    ? 'bg-[linear-gradient(45deg,#0B2A55_0%,#0D3874_50%,#0B2A55_100%)] border-[#00aaff] shadow-2xl lg:scale-[1.15] scale-100 z-10'
+                                    ? 'bg-[linear-gradient(45deg,#0B2A55_0%,#0D3874_50%,#0B2A55_100%)] border-[#00aaff] shadow-2xl lg:scale-[1.15] scale-100 z-1'
                                     : 'bg-[#0d3874] border-[#00aaff]',
 
                                 index === 6 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : '',
