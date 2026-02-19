@@ -21,14 +21,16 @@ class MergeAudioChunksJob implements ShouldQueue
     protected $projectId;
     protected $userId;
     protected $outputFormat; // 'mp3' lub 'flac'
+    protected $cvAudioId;
 
-    public function __construct(string $uploadId, int $totalChunks, int $projectId, int $userId, string $outputFormat = 'mp3')
+    public function __construct(string $uploadId, int $totalChunks, int $projectId, int $userId, string $outputFormat = 'mp3', int $cvAudioId = null)
     {
         $this->uploadId = $uploadId;
         $this->totalChunks = $totalChunks;
         $this->projectId = $projectId;
         $this->userId = $userId;
         $this->outputFormat = $outputFormat;
+        $this->cvAudioId = $cvAudioId;
     }
 
     public function handle()
@@ -44,56 +46,84 @@ class MergeAudioChunksJob implements ShouldQueue
         }
 
         // Scalanie chunków
-        $out = fopen($finalFullPath, 'wb');
-        if (!$out) return;
+        $chunkFiles = collect(Storage::disk('local')->files($tempDir))
+            ->filter(fn($p) => str_contains($p, 'chunk_'))
+            ->sortBy(function ($p) {
+                $base = basename($p);
+                return (int) str_replace('chunk_', '', $base);
+            })
+            ->values();
 
-        for ($i = 0; $i < $this->totalChunks; $i++) {
-            $chunkPath = Storage::disk('local')->path("{$tempDir}/chunk_{$i}");
-            if (!file_exists($chunkPath)) {
-                fclose($out);
-                return;
+        if ($chunkFiles->isEmpty()) {
+            \Log::error('Brak chunków do scalenia (audio)', [
+                'uploadId' => $this->uploadId,
+                'tempDir' => $tempDir,
+            ]);
+            return;
+        }
+
+        $rawTempPath = Storage::disk('local')->path("{$tempDir}/raw_merged.wav");
+        $out = fopen($rawTempPath, 'wb');
+        if (!$out) {
+            \Log::error('Nie można otworzyć pliku tymczasowego audio do zapisu', ['path' => $rawTempPath]);
+            return;
+        }
+
+        foreach ($chunkFiles as $relativePath) {
+            $chunkAbsPath = Storage::disk('local')->path($relativePath);
+            $in = fopen($chunkAbsPath, 'rb');
+            if ($in) {
+                stream_copy_to_stream($in, $out);
+                fclose($in);
             }
-            $in = fopen($chunkPath, 'rb');
-            stream_copy_to_stream($in, $out);
-            fclose($in);
         }
         fclose($out);
 
-        // Sprawdzenie liczby kanałów w nagraniu źródłowym
-        $cmdInfo = "ffprobe -v error -select_streams a:0 -show_entries stream=channels -of default=noprint_wrappers=1:nokey=1 " . escapeshellarg($finalFullPath);
-        $channels = trim(shell_exec($cmdInfo));
-        $channels = in_array($channels, ['1', '2']) ? $channels : '2'; // fallback do stereo
-
-        // Wysokiej jakości konwersja zachowująca liczbę kanałów
+        // KROK 2: Konwersja i naprawa przez FFmpeg
+        // RecordRTC WAV (PCM) → MP3 320k
         $processedPath = Storage::disk('public')->path("processed_{$fileName}");
+
+        // Uproszczona i bardziej stabilna komenda dla WAV
         if ($this->outputFormat === 'mp3') {
-            $cmd = "ffmpeg -i " . escapeshellarg($finalFullPath) .
-                " -c:a libmp3lame -b:a 320k -ac {$channels} -af 'loudnorm=I=-16:TP=-1.5:LRA=11'" .
-                " " . escapeshellarg($processedPath) . " -y 2>&1";
-        } else { // flac bezstratne
-            $cmd = "ffmpeg -i " . escapeshellarg($finalFullPath) .
-                " -c:a flac -compression_level 5 -ac {$channels} -af 'loudnorm=I=-16:TP=-1.5:LRA=11'" .
-                " " . escapeshellarg($processedPath) . " -y 2>&1";
+            $cmd = "ffmpeg -i " . escapeshellarg($rawTempPath) .
+                " -c:a libmp3lame -b:a 320k -af 'loudnorm=I=-16:TP=-1.5:LRA=11' " .
+                escapeshellarg($processedPath) . " -y 2>&1";
+        } else {
+            $cmd = "ffmpeg -i " . escapeshellarg($rawTempPath) .
+                " -c:a flac -af 'loudnorm=I=-16:TP=-1.5:LRA=11' " .
+                escapeshellarg($processedPath) . " -y 2>&1";
         }
 
         exec($cmd, $output, $returnVar);
 
         if ($returnVar !== 0) {
-            \Log::error('FFMPEG error', $output);
+            \Log::error('FFMPEG error podczas scalania audio', [
+                'output' => $output,
+                'uploadId' => $this->uploadId,
+                'cmd' => $cmd
+            ]);
             return;
         }
 
-        unlink($finalFullPath);
-        rename($processedPath, $finalFullPath);
+        if (file_exists($processedPath)) {
+            rename($processedPath, $finalFullPath);
+        } else {
+            \Log::error('Plik audio przetworzony nie istnieje mimo sukcesu FFmpeg', ['path' => $processedPath]);
+            return;
+        }
 
-        Cache::put('cv_session_'.$this->userId, $this->uploadId, 1800);
-
-        CvAudio::create([
-            'temp_session_id' => $this->uploadId,
-            'project_id' => $this->projectId,
-            'user_id' => $this->userId,
-            'file_path' => $finalPath,
-        ]);
+        if ($this->cvAudioId) {
+            CvAudio::where('id', $this->cvAudioId)->update([
+                'file_path' => $finalPath,
+            ]);
+        } else {
+            CvAudio::create([
+                'temp_session_id' => $this->uploadId,
+                'project_id' => $this->projectId,
+                'user_id' => $this->userId,
+                'file_path' => $finalPath,
+            ]);
+        }
 
         Storage::disk('local')->deleteDirectory($tempDir);
     }

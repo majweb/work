@@ -408,7 +408,8 @@ class AplicationRequest extends FormRequest
                     }
                 }
             }],
-            'isSelected'=>'nullable'
+            'isSelected'=>'nullable',
+            'cv_upload_id' => 'nullable|string',
         ];
     }
 

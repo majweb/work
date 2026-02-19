@@ -28,7 +28,6 @@ Route::name('front.')->group(function () {
     Route::get('getChildsCategoryWitoutDetail',[FrontController::class,'getChildsCategoryWitoutDetail'])->name('getChildsCategoryWitoutDetail');
     Route::post('uploadVideo', [VideoController::class, 'upload'])->name('video.upload');
     Route::post('uploadAudio', [AudioUploadController::class, 'upload'])->name('audio.upload');
-    Route::post('uploadAudioNew', [AudioUploadController::class, 'uploadAudioNew'])->name('audio.uploadNew');
     Route::get('contact',[FrontController::class,'Contact'])->name('contact');
     Route::post('contact', [FrontController::class, 'ContactSend'])->name('contact.post');
     Route::get('aboutus',[FrontController::class,'aboutView'])->name('aboutus');

@@ -41,38 +41,21 @@ class AudioUploadController extends Controller
             return response()->json(['success' => false, 'message' => 'Chunk not saved'], 500);
         }
 
-        // Jeśli to ostatni chunk, dispatch job do scalania
+        // Jeśli to ostatni chunk, stwórz rekord i dispatch job do scalania
         if ($chunkIndex == $totalChunks - 1) {
-            MergeAudioChunksJob::dispatch($uploadId, $totalChunks, $projectId, auth()->id(),'mp3');
+            $cvAudio = CvAudio::create([
+                'temp_session_id' => $uploadId,
+                'project_id' => $projectId,
+                'user_id' => auth()->id(),
+                'file_path' => '', // placeholder, zostanie uzupełnione przez Job
+            ]);
+
+            MergeAudioChunksJob::dispatch($uploadId, $totalChunks, $projectId, auth()->id(), 'mp3', $cvAudio->id);
         }
 
         return response()->json([
             'success' => true,
             'message' => "Chunk {$chunkIndex} uploaded",
-        ]);
-    }
-
-    public function uploadAudioNew(Request $request)
-    {
-        $request->validate([
-            'audio' => 'required|file|mimes:webm,ogg,wav|max:10240', // max 10 MB
-            'project_id' => 'required|integer',
-            'upload_id' => 'required|string',
-
-        ]);
-
-
-        $file = $request->file('audio');
-        $fileName = 'audio_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        $filePath = $file->storeAs('audios', $fileName);
-        Cache::put('cv_session_'.$request->user()->id, $request->upload_id, 1800);
-
-        // Tworzymy rekord w bazie
-        $cvAudio = CvAudio::create([
-            'temp_session_id' => $request->upload_id,
-            'user_id' => $request->user()->id ?? null, // jeśli masz auth
-            'project_id' => $request->project_id,
-            'file_path' => $filePath,
         ]);
     }
 }

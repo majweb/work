@@ -3,18 +3,19 @@
 namespace App\Listeners;
 
 use App\Events\AplicationMakeEvent;
+use App\Jobs\MergeVideoChunksJob;
 use App\Mail\ApplicationMadeMail;
 use App\Models\CvAudio;
 use App\Models\CvVideo;
 use App\Models\User;
 use App\Notifications\ApplicationMadeNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
-class AplicationMakeListener
+class AplicationMakeListener implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -24,33 +25,27 @@ class AplicationMakeListener
         $aplication = $event->aplication;
         $auth = $event->auth;
         $cvType = $event->cvType;
+        $sessionId = $event->sessionId;
         $lang = app()->getLocale();
-        $userId = $event->auth ? $event->auth->id : $event->aplication->user_id;
 
-        if ($userId && Cache::has('cv_session_'.$userId)) {
-            $tempSessionId = Cache::get('cv_session_'.$userId);
-            if($cvType == '3'){
-                $d = CVAudio::where('temp_session_id', $tempSessionId)
-                    ->where('user_id', $userId)
-                    ->where('aplication_id', null)
+        // Powiązanie CV Audio/Video jeśli sesja istnieje
+        if ($sessionId) {
+            if ($cvType == '3') { // Audio
+                CvAudio::where('temp_session_id', $sessionId)
                     ->update([
                         'aplication_id' => $aplication->id,
-                        'temp_session_id' => null // czyścimy tymczasowy identyfikator
+                        'temp_session_id' => null
                     ]);
-            } elseif ($cvType == '2'){
-                CvVideo::where('temp_session_id', $tempSessionId)
-                    ->where('user_id', $userId)
-                    ->where('aplication_id', null)
+            } elseif ($cvType == '2') { // Video
+                // Powiąż istniejące/placholderowe rekordy ze złożoną aplikacją
+                CvVideo::where('temp_session_id', $sessionId)
                     ->update([
                         'aplication_id' => $aplication->id,
-                        'temp_session_id' => null // czyścimy tymczasowy identyfikator
+                        'temp_session_id' => null
                     ]);
             }
         }
 
-
-        // Czyszczenie sesji
-        Cache::forget('cv_session_'.$userId);
         if($auth){
             $auth->notify((new ApplicationMadeNotification($aplication))->locale($lang));
         } else {

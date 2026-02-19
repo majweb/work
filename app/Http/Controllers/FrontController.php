@@ -20,7 +20,9 @@ use App\Models\Candidate;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\CvAudio;
 use App\Models\CvClassic;
+use App\Models\CvVideo;
 use App\Models\Firm;
 use App\Models\Foundation;
 use App\Models\FoundationCategory;
@@ -618,7 +620,11 @@ class FrontController extends Controller
                     }
                 }
                 session()->forget('captcha_text');
-                AplicationMakeEvent::dispatch($aplication,auth()->user(),$request->aplicationData()['cv']);
+
+                $cvUploadId = $request->aplicationData()['cv_upload_id'] ?? $request->input('cv_upload_id');
+                $cvType = $request->aplicationData()['cv'] ?? $request->input('cv');
+
+                AplicationMakeEvent::dispatch($aplication, auth()->user(), $cvType, $cvUploadId);
             },
             $decaySeconds = 60 * 60 * 24
         );
