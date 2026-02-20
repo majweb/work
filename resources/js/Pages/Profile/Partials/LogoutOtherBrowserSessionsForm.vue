@@ -86,7 +86,7 @@ const closeModal = () => {
             </div>
 
             <div class="flex items-center mt-5">
-                <PrimaryButton @click="confirmLogout">
+                <PrimaryButton @click="confirmLogout" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all">
                     {{__('translate.browserSessionsLogout')}}
                 </PrimaryButton>
 
@@ -117,12 +117,12 @@ const closeModal = () => {
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <SecondaryButton @click="closeModal" class="rounded-xl px-8 transition-all">
                         {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <PrimaryButton
-                        class="ms-3"
+                        class="ms-3 rounded-xl px-8 shadow-md hover:shadow-lg transition-all"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"

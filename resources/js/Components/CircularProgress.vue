@@ -43,7 +43,7 @@ import { computed } from "vue"
 
 const props = defineProps<{
     value: number
-    color?: "blue" | "red" | "gray"
+    color?: "blue" | "red" | "gray" | "cyan"
 }>()
 
 /* ===== SVG ===== */
@@ -60,11 +60,13 @@ const dashOffset = computed(() => {
 const strokeColor = computed(() => {
     switch (props.color) {
         case "red":
-            return "#ef4444" // red-500
+            return "#dc2626" // red-600
         case "gray":
-            return "#9ca3af" // gray-400
+            return "#d1d5db" // gray-300
+        case "cyan":
+            return "#06b6d4" // cyan-500
         default:
-            return "#3b82f6" // blue-500
+            return "#1e3a8a" // blue-900
     }
 })
 </script>

@@ -52,7 +52,9 @@ class ApplicationMadeNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => __('translate.newAplication') . $this->aplication->id,
+            'title' => 'translate.newNotification',
+            'message' => 'translate.applicationNotificationMessage',
+            'id' => $this->aplication->id, // Parametr dla klucza tłumaczenia (opcjonalnie)
             'aplication' => $this->aplication->id,
         ];
     }
@@ -63,7 +65,9 @@ class ApplicationMadeNotification extends Notification implements ShouldQueue
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
         return new BroadcastMessage([
-            'message' => __('translate.newAplication') . $this->aplication->id,
+            'title' => 'translate.newNotification',
+            'message' => 'translate.applicationNotificationMessage',
+            'id' => $this->aplication->id,
             'aplication' => $this->aplication->id,
         ]);
     }

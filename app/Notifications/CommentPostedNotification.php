@@ -43,11 +43,14 @@ class CommentPostedNotification extends Notification implements ShouldQueue
         $editUrl = route('articles.edit', $this->comment->article_id);
 
         return [
-            'message' => __('comments.notyComment') . ' <a href="' . $editUrl . '">'.$this->comment->article_id.'</a>',
+            'title' => 'translate.newComment',
+            'message' => 'translate.commentNotificationMessage',
+            'id' => $this->comment->article_id,
             'comment_id' => $this->comment->id,
             'article_id' => $this->comment->article_id,
             'user_name' => $this->comment->user->name,
             'content' => $this->comment->content,
+            'actionUrl' => $editUrl
         ];
     }
 }

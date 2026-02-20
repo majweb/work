@@ -359,14 +359,14 @@ const removeElement = (index, array) => {
                 </div>
                 <!-- Actions -->
                 <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-end gap-3">
-                <ActionMessage :on="form.recentlySuccessful" class="text-sm text-green-600">
-                    {{ __('translate.Saved') }}
-                </ActionMessage>
+                    <ActionMessage :on="form.recentlySuccessful" class="text-sm text-green-600">
+                        {{ __('translate.Saved') }}
+                    </ActionMessage>
 
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    {{ __('translate.Save') }}
-                </PrimaryButton>
-            </div>
+                    <PrimaryButton :disabled="form.processing" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all" :class="{ 'opacity-25': form.processing }">
+                        {{ __('translate.Save') }}
+                    </PrimaryButton>
+                </div>
             </div>
         </form>
     </div>

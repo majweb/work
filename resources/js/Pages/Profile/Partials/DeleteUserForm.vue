@@ -51,7 +51,7 @@ const closeModal = () => {
             </div>
 
             <div>
-                <DangerButton @click="confirmUserDeletion">
+                <DangerButton @click="confirmUserDeletion" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all">
                     {{ __('translate.delete') }}
                 </DangerButton>
             </div>
@@ -78,12 +78,12 @@ const closeModal = () => {
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <SecondaryButton @click="closeModal" class="rounded-xl px-8 transition-all">
                         {{__('translate.cancel')}}
                     </SecondaryButton>
 
                     <DangerButton
-                        class="ms-3"
+                        class="ms-3 rounded-xl px-8 shadow-md hover:shadow-lg transition-all"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="deleteUser"

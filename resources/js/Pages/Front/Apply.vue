@@ -1654,12 +1654,21 @@ const removeFile = async (source, load) => {
                                                    :class="{ 'opacity-25 scale-95': form.processing }"
                                                    :disabled="form.processing || !isReadyToSubmit"
                                     >
-                                        <span>{{ __('translate.apply') }}</span>
-                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                             viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
+                                        <template v-if="form.processing">
+                                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                            </svg>
+                                            <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
+                                        </template>
+                                        <template v-else>
+                                            <span>{{ __('translate.apply') }}</span>
+                                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                 viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </template>
                                     </PrimaryButton>
                                 </div>
                             </div>
@@ -1732,11 +1741,20 @@ const removeFile = async (source, load) => {
                                     :class="{ 'opacity-25': form.processing }"
                                     :disabled="form.processing || !isReadyToSubmit"
                                 >
-                                    <span>{{ __('translate.apply') }}</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
+                                    <template v-if="form.processing">
+                                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                        <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span>{{ __('translate.apply') }}</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </template>
                                 </PrimaryButton>
 
                                 <!-- Przycisk Wybierz szablon widoczny w kroku 2 dla CV Klasycznego (Kreator) -->
@@ -1760,11 +1778,20 @@ const removeFile = async (source, load) => {
                                     :class="{ 'opacity-25': form.processing }"
                                     :disabled="form.processing || !isReadyToSubmit"
                                 >
-                                    <span>{{ __('translate.apply') }}</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
+                                    <template v-if="form.processing">
+                                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                        <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span>{{ __('translate.apply') }}</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </template>
                                 </PrimaryButton>
                             </div>
                     </form>

@@ -795,6 +795,8 @@ return [
 
     // Komunikaty powiadomień
     'newNotification' => 'Nowe powiadomienie',
+    'newComment' => 'Nowy komentarz',
+    'commentNotificationMessage' => 'Komentarz do artykułu #:id',
     'applicationNotificationMessage' => 'Dotyczy aplikacji nr :id',
     'notificationsList' => 'Lista powiadomień',
     'noNotificationsAvailable' => 'Brak powiadomień',
@@ -819,7 +821,6 @@ return [
     'noAplications' => 'Brak aplikacji do wyświetlenia',
     'evidence' => 'Ewidencja',
     'date_of_hire' => 'Data zatrudnienia',
-    'salary' => 'Wynagrodzenie',
     'evidencesCreated' => 'Utworzono ewidencje kandydata',
     'evidencesUpdated' => 'Zaaktualizowano ewidencje kandydata',
     'note' => 'Notatka',
@@ -1183,6 +1184,9 @@ return [
     "noCvs" => "Nie posiadasz jeszcze żadnego CV",
     "langKnow" => "Znajomość języków",
     "updateCv" => "Zaktualizowano Cv",
+    'basic_info' => 'Informacje podstawowe',
+    'select_photo' => 'Wybierz nowe zdjęcie',
+    'saved_success' => 'Zapisano pomyślnie',
     'reserved' => 'ZAAKCEPTOWANE',
     'rejected' => 'ODRZUCONE',
     'viewed'   => 'ROZPATRYWANE',
@@ -1219,7 +1223,11 @@ return [
     'work_mode' => 'Tryb pracy',
     'contract' => 'Rodzaj umowy',
     'work_time' => 'Wymiar pracy',
-    'check_offer' => 'Sprawdź ofertę',
+    'application_status' => 'Status aplikacji',
+    'salary' => 'Wynagrodzenie',
+    'monthly' => 'miesięcznie',
+    'messages' => 'Wiadomości',
+    'location' => 'Lokalizacja',
 
     // Timeline
     'application_sent' => 'Wysłano aplikację',
@@ -1430,4 +1438,10 @@ return [
     // Dla komponentów filtrów (zgodnie z użyciem w UI)
     'filter_title' => 'Filtruj',
     'filter_apply' => 'Filtruj',
+    'manageYourApplications' => 'Zarządzaj swoimi aplikacjami i śledź ich statusy',
+    'keepYourProfileUpdated' => 'Dbaj o aktualność swoich danych, aby rekruterzy mogli się z Tobą skontaktować',
+    'stayInformedAboutYourUpdates' => 'Bądź na bieżąco z aktualizacjami Twoich aplikacji',
+    'noRecentApplications' => 'Brak ostatnich aplikacji',
+    'noOtherApplications' => 'Brak innych aplikacji',
+    'check_offer' => 'Sprawdź ofertę',
 ];

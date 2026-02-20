@@ -26,11 +26,9 @@ const updateBuyInformation = () => {
 <template>
     <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
         <!-- Header -->
-        <div class="bg-work-main px-6 py-4">
-            <h3 class="text-lg font-semibold text-white">
-                {{ __('translate.BuyInformation') }}
-            </h3>
-        </div>
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+            {{ __('translate.BuyInformation') }}
+        </h3>
 
         <!-- Form -->
         <form @submit.prevent="updateBuyInformation">
@@ -53,7 +51,7 @@ const updateBuyInformation = () => {
                     {{ __('translate.Saved') }}
                 </ActionMessage>
 
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton :disabled="form.processing" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all" :class="{ 'opacity-25': form.processing }">
                     {{ __('translate.Save') }}
                 </PrimaryButton>
             </div>

@@ -181,7 +181,7 @@ const clearPhotoFileInput = () => {
                     {{ __('translate.Saved') }}
                 </ActionMessage>
 
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton :disabled="form.processing" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all" :class="{ 'opacity-25': form.processing }">
                     {{ __('translate.Save') }}
                 </PrimaryButton>
             </div>

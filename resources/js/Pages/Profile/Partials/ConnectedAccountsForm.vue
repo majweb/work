@@ -85,6 +85,7 @@ const closeModal = () => {
                                     </button>
 
                                     <DangerButton @click="confirmRemoveAccount(getAccountForProvider(provider).id)"
+                                                  class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all"
                                                   v-if="$page.props.socialstream.connectedAccounts.length > 1 || $page.props.socialstream.hasPassword">
                                         {{ __('translate.remove') }}
                                     </DangerButton>
@@ -126,11 +127,11 @@ const closeModal = () => {
             </template>
 
             <template #footer>
-                <SecondaryButton @click="closeModal">
+                <SecondaryButton @click="closeModal" class="rounded-xl px-8 transition-all">
                     {{ __('translate.cancel') }}
                 </SecondaryButton>
 
-                <PrimaryButton class="ml-2" @click="removeAccount"
+                <PrimaryButton class="ml-2 rounded-xl px-8 shadow-md hover:shadow-lg transition-all" @click="removeAccount"
                                :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     {{ __('translate.removeAccount') }}
                 </PrimaryButton>

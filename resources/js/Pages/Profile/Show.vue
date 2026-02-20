@@ -24,17 +24,29 @@ const {hasRole} = usePermission();
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <AppLayout :title="__('translate.Profile')">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('translate.Profile') }}
             </h2>
         </template>
 
-        <div class="py-10">
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                <!-- HEADER -->
+                <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-8">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.Profile') }}</h2>
+                                <p class="text-sm text-gray-500 mt-1">Zarządzaj swoimi danymi osobowymi, ustawieniami konta i bezpieczeństwem</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Grid 2-kolumnowy -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Lewa kolumna -->
                     <div class="space-y-6">
                         <!-- Profile Information -->
@@ -95,7 +107,7 @@ const {hasRole} = usePermission();
                     </div>
                 </div>
                 <!-- Delete User -->
-                <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword">
+                <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword" class="pb-12">
                     <DeleteUserForm/>
                 </div>
             </div>

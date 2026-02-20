@@ -18,18 +18,17 @@ class NotificationsController extends Controller
         $user = Auth::user();
         $notifications = $user->notifications()->paginate(10);
 
-        // Przygotowanie danych powiadomień z dodatkowymi informacjami
+        // Przygotowanie danych powiadomień - zostawiamy tłumaczenie frontendowi
         $formattedNotifications = $notifications->through(function($notification) {
             $data = $notification->data;
 
-            // Dodajemy odpowiednie dane w zależności od typu powiadomienia
-            if (isset($data['aplication'])) {
-                $data['message'] = __('translate.applicationNotificationMessage', ['id' => $data['aplication']]);
+            // Ustaw domyślne klucze, jeśli nie istnieją (dla starych powiadomień)
+            if (!isset($data['title'])) {
+                $data['title'] = 'translate.newNotification';
             }
 
-            // Ustaw domyślny tytuł, jeśli nie istnieje
-            if (!isset($data['title'])) {
-                $data['title'] = __('translate.newNotification');
+            if (!isset($data['message']) && isset($data['aplication'])) {
+                $data['message'] = 'translate.applicationNotificationMessage';
             }
 
             $notification->data = $data;
