@@ -1234,6 +1234,7 @@ return [
     'application_reviewing' => 'Rozpatrywanie aplikacji',
     'application_accepted' => 'Zaakceptowano',
     'application_rejected' => 'Odrzucono',
+    'aplicationDetailsInfo' => 'Zarządzaj procesem rekrutacyjnym kandydata',
 
     // Dashboard placeholders
     'noApplicationSelected' => 'Nie wybrano aplikacji',

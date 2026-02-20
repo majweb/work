@@ -183,59 +183,54 @@ const duplicateProject = (project) => {
     <AppLayout :title="__('translate.projects')">
         <template #header>
             <div class="flex justify-between items-center">
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('translate.offerts') }}
                 </h2>
                 <Link
                     :href="route('project-recruits.create')"
-                    class="px-6 py-2 bg-[#0d2a52] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors"
+                    class="inline-flex items-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
                 >
                     {{ __('translate.create') || 'UTWÓRZ' }}
                 </Link>
             </div>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- FILTRY -->
-                <div class="bg-white rounded-lg shadow p-6 mb-6">
-                    <h3 class="text-lg font-semibold mb-4">{{ __('translate.filter') || 'Filtruj' }}</h3>
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') || 'Filtruj' }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <!-- ID -->
-                        <div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">ID</label>
                             <input
                                 v-model="params.id"
                                 type="number"
                                 placeholder="ID"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                         </div>
 
                         <!-- Miasto -->
-                        <div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.City') || 'MIASTO' }}</label>
                             <input
                                 v-model="params.city"
                                 type="text"
                                 :placeholder="__('translate.City') || 'MIASTO'"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                         </div>
-
-                        <!-- Data -->
-                        <div>
-                            <input
-                                v-model="params.date"
-                                type="date"
-                                :placeholder="__('translate.date') || 'DATA'"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            />
-                        </div>
-
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <!-- Branża (Category) -->
-                        <div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategory') }}</label>
                             <multiselect
                                 v-model="params.category"
                                 :options="props.categories"
@@ -245,6 +240,7 @@ const duplicateProject = (project) => {
                                 :selectedLabel="__('translate.selectedLabel')"
                                 :deselectLabel="__('translate.deselectLabel')"
                                 :placeholder="__('translate.placeholderCategory')"
+                                class="custom-multiselect"
                             >
                                 <template #noResult>
                                     <span>{{__('translate.noOptions')}}</span>
@@ -253,7 +249,8 @@ const duplicateProject = (project) => {
                         </div>
 
                         <!-- Podbranża (CategorySub) -->
-                        <div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategorySub') }}</label>
                             <multiselect
                                 v-model="params.categorySub"
                                 :options="optionsCategorySub"
@@ -264,6 +261,7 @@ const duplicateProject = (project) => {
                                 :selectedLabel="__('translate.selectedLabel')"
                                 :deselectLabel="__('translate.deselectLabel')"
                                 :placeholder="__('translate.placeholderCategorySub')"
+                                class="custom-multiselect"
                             >
                                 <template #noResult>
                                     <span>{{__('translate.noOptions')}}</span>
@@ -272,7 +270,8 @@ const duplicateProject = (project) => {
                         </div>
 
                         <!-- Zawód (Profession) -->
-                        <div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderProfession') }}</label>
                             <multiselect
                                 v-model="params.profession"
                                 :options="optionsProfession"
@@ -283,6 +282,7 @@ const duplicateProject = (project) => {
                                 :selectedLabel="__('translate.selectedLabel')"
                                 :deselectLabel="__('translate.deselectLabel')"
                                 :placeholder="__('translate.placeholderProfession')"
+                                class="custom-multiselect"
                             >
                                 <template #noResult>
                                     <span>{{__('translate.noOptions')}}</span>
@@ -291,7 +291,8 @@ const duplicateProject = (project) => {
                         </div>
 
                         <!-- Stanowisko (Position) -->
-                        <div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderPosition') }}</label>
                             <multiselect
                                 v-model="params.positionSelect"
                                 :options="optionsPosition"
@@ -302,19 +303,31 @@ const duplicateProject = (project) => {
                                 :selectedLabel="__('translate.selectedLabel')"
                                 :deselectLabel="__('translate.deselectLabel')"
                                 :placeholder="__('translate.placeholderPosition')"
+                                class="custom-multiselect"
                             >
                                 <template #noResult>
                                     <span>{{__('translate.noOptions')}}</span>
                                 </template>
                             </multiselect>
                         </div>
+
+                        <!-- Data -->
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date') || 'DATA' }}</label>
+                            <input
+                                v-model="params.date"
+                                type="date"
+                                :placeholder="__('translate.date') || 'DATA'"
+                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
+                            />
+                        </div>
                     </div>
                     <!-- Przyciski filtrów -->
-                    <div class="flex gap-3">
+                    <div class="flex flex-wrap gap-4 pt-6 border-t border-gray-50">
                         <button
                             @click="applyFilters"
                             :disabled="isLoading"
-                            class="px-6 py-2 bg-[#0d2a52] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
                         >
                             <svg v-if="isLoading" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -325,7 +338,7 @@ const duplicateProject = (project) => {
                         <button
                             @click="resetFilters"
                             :disabled="isLoading"
-                            class="px-6 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {{ __('translate.reset') || 'RESETUJ' }}
                         </button>
@@ -335,13 +348,13 @@ const duplicateProject = (project) => {
                 <!-- LISTA PROJEKTÓW -->
                 <div class="relative space-y-4">
                     <!-- Spinner Overlay -->
-                    <div v-if="isLoading" class="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-10 rounded-lg">
-                        <div class="flex flex-col items-center gap-3">
-                            <svg class="animate-spin h-12 w-12 text-[#0d2a52]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            <p class="text-[#0d2a52] font-semibold">{{ __('translate.searching') || 'Wyszukiwanie...' }}</p>
+                    <div v-if="isLoading" class="absolute inset-0 bg-white/80 flex items-center justify-center z-10 rounded-[3rem] backdrop-blur-sm transition-all duration-300">
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="relative">
+                                <div class="w-16 h-16 border-4 border-gray-100 rounded-full"></div>
+                                <div class="w-16 h-16 border-4 border-[#0A2C5C] border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+                            </div>
+                            <p class="text-[#0A2C5C] font-black uppercase tracking-[0.2em] text-xs">{{ __('translate.searching') || 'Wyszukiwanie...' }}</p>
                         </div>
                     </div>
 
@@ -349,129 +362,177 @@ const duplicateProject = (project) => {
                     <div
                         v-for="project in projects.data"
                         :key="project.id"
-                        class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow"
+                        class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
                     >
                         <!-- Górna linia -->
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center gap-3">
-                                <span class="text-blue-500 font-semibold text-sm">ID {{ project.id }}</span>
-                                <span class="text-gray-400">•</span>
-                                <span class="text-sm text-gray-700 font-medium">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                            <div class="flex items-center gap-4">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[10px] uppercase tracking-widest rounded-lg border border-blue-100/50">
+                                    ID {{ project.id }}
+                                </span>
+                                <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
+                                <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
                                     {{ project.position }}
+                                </h4>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                                    {{ project.created_at }}
                                 </span>
                             </div>
-                            <span class="text-xs text-gray-500">
-                                {{ project.created_at }}
-                            </span>
                         </div>
 
-                        <!-- Lokalizacja -->
-                        <div class="mb-3">
-                            <p class="text-sm text-gray-600">
-                                <span v-if="project.country">{{ project.country }}</span>
-                                <span v-if="project.country && project.city"> • </span>
-                                <span v-if="project.city">{{ project.city }}</span>
-                                <span v-if="!project.country && !project.city" class="text-gray-400">{{ __('translate.noLocation') || 'Brak lokalizacji' }}</span>
-                            </p>
-                            <p v-if="project.basicSalaryFrom" class="text-xs text-gray-500 mt-1 font-semibold">
-                                {{ project.basicSalaryFrom }} {{ project.currency }}
-                            </p>
+                        <!-- Środkowa sekcja: Lokalizacja i płaca -->
+                        <div class="flex flex-wrap items-center gap-6 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <p class="text-xs font-black text-gray-700 uppercase tracking-widest">
+                                    <span v-if="project.country">{{ project.country }}</span>
+                                    <span v-if="project.country && project.city"> • </span>
+                                    <span v-if="project.city">{{ project.city }}</span>
+                                    <span v-if="!project.country && !project.city" class="text-gray-400 italic font-medium">{{ __('translate.noLocation') || 'Brak lokalizacji' }}</span>
+                                </p>
+                            </div>
+
+                            <div v-if="project.basicSalaryFrom" class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-xl bg-green-50 flex items-center justify-center text-green-500">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </div>
+                                <p class="text-xs font-black text-green-600 uppercase tracking-widest">
+                                    {{ project.basicSalaryFrom }} {{ project.currency }}
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Statystyki i przyciski -->
-                        <div class="flex items-center justify-between gap-4 pt-3 border-t">
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pt-6 border-t border-gray-100">
                             <!-- Statystyki -->
-                            <div class="flex items-center gap-6 text-xs flex-1">
-                                <div class="text-center">
-                                    <div class="text-gray-500 uppercase mb-1 font-medium">{{ __('translate.views') || 'Wyświetlenia' }}</div>
-                                    <div class="font-bold text-gray-900">{{ project.views_count }}</div>
+                            <div class="flex flex-wrap items-center gap-3 flex-1">
+                                <!-- Wyświetlenia -->
+                                <div class="bg-gray-50/80 px-4 py-3 rounded-2xl border border-gray-100 flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                    <div class="flex flex-col">
+                                        <span class="text-[8px] font-black text-gray-400 uppercase leading-none mb-1">{{ __('translate.views') || 'Wyświetlenia' }}</span>
+                                        <span class="text-xs font-black text-gray-900 leading-none">{{ project.views_count }}</span>
+                                    </div>
                                 </div>
 
-                                <div class="text-center">
-                                    <div class="text-gray-500 uppercase mb-1 font-medium">{{ __('translate.applications') || 'Aplikacje' }}</div>
-                                    <div class="font-bold text-gray-900">{{ project.aplications_count }}</div>
+                                <!-- Aplikacje -->
+                                <div class="bg-gray-50/80 px-4 py-3 rounded-2xl border border-gray-100 flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                    <div class="flex flex-col">
+                                        <span class="text-[8px] font-black text-gray-400 uppercase leading-none mb-1">{{ __('translate.applications') || 'Aplikacje' }}</span>
+                                        <span class="text-xs font-black text-gray-900 leading-none">{{ project.aplications_count }}</span>
+                                    </div>
                                 </div>
 
-                                <div class="text-center">
-                                    <div class="text-gray-500 uppercase mb-1 font-medium">{{ __('translate.yes') || 'Tak' }}</div>
-                                    <div class="font-bold" style="color: #0d2a52;">{{ project.yes_count }}</div>
+                                <!-- Tak -->
+                                <div class="bg-blue-50/50 px-4 py-3 rounded-2xl border border-blue-100/50 flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#0A2C5C] shadow-sm shadow-blue-200"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-1">{{ __('translate.yes') || 'Tak' }}</span>
+                                        <span class="text-xs font-black text-[#0A2C5C] leading-none">{{ project.yes_count }}</span>
+                                    </div>
                                 </div>
 
-                                <div class="text-center">
-                                    <div class="text-gray-500 uppercase mb-1 font-medium">{{ __('translate.no') || 'Nie' }}</div>
-                                    <div class="font-bold" style="color: #e31e24;">{{ project.no_count }}</div>
+                                <!-- Może -->
+                                <div class="bg-cyan-50/50 px-4 py-3 rounded-2xl border border-cyan-100/50 flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a0e3] shadow-sm shadow-cyan-200"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1">{{ __('translate.maybe') || 'Może' }}</span>
+                                        <span class="text-xs font-black text-[#00a0e3] leading-none">{{ project.maybe_count }}</span>
+                                    </div>
                                 </div>
 
-                                <div class="text-center">
-                                    <div class="text-gray-500 uppercase mb-1 font-medium">{{ __('translate.maybe') || 'Może' }}</div>
-                                    <div class="font-bold" style="color: #00a0e3;">{{ project.maybe_count }}</div>
+                                <!-- Nie -->
+                                <div class="bg-red-50/50 px-4 py-3 rounded-2xl border border-red-100/50 flex items-center gap-3">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#e31e24] shadow-sm shadow-red-200"></div>
+                                    <div class="flex flex-col">
+                                        <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-1">{{ __('translate.no') || 'Nie' }}</span>
+                                        <span class="text-xs font-black text-[#e31e24] leading-none">{{ project.no_count }}</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Przyciski akcji -->
-                            <div class="flex gap-2">
+                            <div class="flex flex-wrap gap-2 shrink-0">
                                 <Link
                                     :href="route('project-recruits.show', project)"
-                                    class="px-4 py-2 bg-[#0d2a52] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors"
+                                    class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
+                                    :title="__('translate.show') || 'POKAŻ'"
                                 >
-                                    {{ __('translate.show') || 'POKAŻ' }}
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                 </Link>
 
                                 <Link
                                     :href="route('project-recruits.edit', project)"
-                                    class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
+                                    :title="__('translate.edit') || 'EDYTUJ'"
                                 >
-                                    {{ __('translate.edit') || 'EDYTUJ' }}
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                 </Link>
 
                                 <button
                                     @click="duplicateProject(project)"
-                                    class="px-4 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
+                                    :title="__('translate.duplicate') || 'DUPLIKUJ'"
                                 >
-                                    {{ __('translate.duplicate') || 'DUPLIKUJ' }}
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V7m-12 0h12" /></svg>
                                 </button>
 
                                 <button
                                     @click="openModal(project)"
-                                    class="px-4 py-2 bg-[#e31e24] text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors"
+                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-red-500 hover:bg-red-600 hover:text-white hover:border-transparent transition-all shadow-sm"
+                                    :title="__('translate.delete') || 'USUŃ'"
                                 >
-                                    {{ __('translate.delete') || 'USUŃ' }}
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                 </button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Brak projektów -->
-                    <div v-if="!projects.data.length" class="bg-white rounded-lg shadow p-12 text-center">
-                        <svg class="w-16 h-16 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <p class="text-gray-500 font-medium">{{ __('translate.notFoundProjects') }}</p>
+                    <div v-if="!projects.data.length" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.notFoundProjects') }}</p>
                     </div>
                 </div>
 
                 <!-- PAGINACJA -->
-                <Pagination v-if="projects.total > 10" class="mt-6" :links="projects.links" />
+                <Pagination v-if="projects.total > 10" class="mt-12" :links="projects.links" />
             </div>
 
             <!-- MODAL USUWANIA -->
             <DialogModal :show="confirmCancelProject" @close="confirmCancelProject = false">
                 <template #title>
-                    {{ __('translate.questionDelete') }} - {{ __('translate.project').toLowerCase() }} id. {{ selectedProject && selectedProject.id }}
+                    <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                        {{ __('translate.questionDelete') }} - {{ __('translate.project').toLowerCase() }} id. {{ selectedProject && selectedProject.id }}
+                    </span>
                 </template>
 
                 <template #content>
-                    {{ __('translate.questionDeleteConfirm') }} - {{ __('translate.project').toLowerCase() }} id.{{ selectedProject && selectedProject.id }}
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                        {{ __('translate.questionDeleteConfirm') }} - {{ __('translate.project').toLowerCase() }} id.{{ selectedProject && selectedProject.id }}
+                    </p>
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click.native="confirmCancelProject = false">
-                        {{ __('translate.cancel') }}
-                    </SecondaryButton>
+                    <div class="flex gap-3">
+                        <SecondaryButton @click.native="confirmCancelProject = false" class="!rounded-xl !text-[10px] !font-black !uppercase !tracking-widest">
+                            {{ __('translate.cancel') }}
+                        </SecondaryButton>
 
-                    <DangerButton class="ml-2" @click.native="DeleteProject">
-                        {{ __('translate.delete') }}
-                    </DangerButton>
+                        <DangerButton @click.native="DeleteProject" class="!rounded-xl !text-[10px] !font-black !uppercase !tracking-widest">
+                            {{ __('translate.delete') }}
+                        </DangerButton>
+                    </div>
                 </template>
             </DialogModal>
         </div>
@@ -480,70 +541,69 @@ const duplicateProject = (project) => {
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tags {
-    border: 1px solid #d1d5db; /* border-gray-300 */
-    border-radius: 0.5rem; /* rounded-lg */
-    padding: 0.75rem 2.5rem 0.75rem 1rem; /* px-4 py-3, but with space for the arrow */
-}
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        background: #f9fafb; /* bg-gray-50 */
+        transition: all 0.3s ease;
+    }
 
-.multiselect__placeholder {
-    margin-bottom: 0;
-    padding-top: 0;
-    color: #9ca3af; /* text-gray-400 */
-}
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af; /* text-gray-400 */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__single {
-    margin-bottom: 0;
-    padding-left: 0;
-    font-size: 1rem;
-}
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__input {
-    margin-bottom: 0;
-}
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
 
-.multiselect__select {
-    height: 100%;
-    width: 2.5rem;
-}
+    .multiselect__select {
+        height: 100%;
+        width: 2.5rem;
+    }
 
-.multiselect__option--highlight {
-    background: #0d2a52 !important; /* work-main */
-    outline: none;
-    color: white;
-}
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__option--highlight:after {
-    background: #0d2a52 !important;
-}
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C;
+        font-weight: 900;
+    }
 
-.multiselect__option--selected {
-    background: #f3f4f6 !important; /* gray-100 */
-    color: #0d2a52;
-    font-weight: bold;
-}
-
-.multiselect__option--selected.multiselect__option--highlight {
-    background: #0d2a52 !important;
-    color: #fff;
-}
-
-.multiselect__tag {
-    background: #0d2a52 !important;
-}
-
-.multiselect__tag-icon:after {
-    color: white !important;
-}
-
-.multiselect__tag-icon:hover {
-    background: #1e3a8a !important; /* darker blue */
-}
-
-.multiselect__content-wrapper {
-    border: 1px solid #d1d5db;
-    border-top: none;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6;
+        border-top: none;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 }
 </style>

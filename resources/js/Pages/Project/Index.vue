@@ -209,7 +209,7 @@ const duplicateProject = (project) => {
                     </h2>
                     <Link
                         :href="route('projects.create')"
-                        class="px-6 py-2 bg-[#0d2a52] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors"
+                        class="inline-flex items-center px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5"
                     >
                         {{ __('translate.create') || 'UTWÓRZ' }}
                     </Link>
@@ -217,7 +217,7 @@ const duplicateProject = (project) => {
             </div>
         </template>
 
-        <div class="py-12">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <div class="mx-auto flex justify-center items-center mb-6">
@@ -253,17 +253,20 @@ const duplicateProject = (project) => {
                 </div>
 
                 <!-- FILTRY -->
-                <div class="bg-white rounded-lg shadow p-6 mb-6">
-                    <h3 class="text-lg font-semibold mb-4">{{ __('translate.filter') || 'Filtruj' }}</h3>
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-6">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') || 'Filtruj' }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                         <!-- ID -->
                         <div>
                             <input
                                 v-model="params.id"
                                 type="number"
                                 placeholder="ID"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                         </div>
 
@@ -273,7 +276,7 @@ const duplicateProject = (project) => {
                                 v-model="params.city"
                                 type="text"
                                 :placeholder="__('translate.City') || 'MIASTO'"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                         </div>
 
@@ -283,20 +286,20 @@ const duplicateProject = (project) => {
                                 v-model="params.date"
                                 type="date"
                                 :placeholder="__('translate.date') || 'DATA'"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                         </div>
 
                         <!-- Rekruter -->
                         <div>
-                            <select v-model="params.recruiter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <select v-model="params.recruiter" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
                                 <option value="all">{{ __('translate.recruiter') }} - {{ __('translate.all') }}</option>
                                 <option v-for="recruit in recruiters" :key="recruit.id" :value="recruit.id">{{ recruit.name }}</option>
                             </select>
                         </div>
 
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                         <!-- Branża (Category) -->
                         <div>
                             <multiselect
@@ -373,11 +376,11 @@ const duplicateProject = (project) => {
                         </div>
                     </div>
                     <!-- Przyciski filtrów -->
-                    <div class="flex gap-3">
+                    <div class="flex flex-wrap gap-4 pt-4 border-t border-gray-50">
                         <button
                             @click="applyFilters"
                             :disabled="isLoading"
-                            class="px-6 py-2 bg-[#0d2a52] text-white text-sm font-semibold rounded-lg hover:bg-[#1a3d6e] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-blue-900/20 hover:-translate-y-0.5"
                         >
                             <svg v-if="isLoading" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -388,7 +391,7 @@ const duplicateProject = (project) => {
                         <button
                             @click="resetFilters"
                             :disabled="isLoading"
-                            class="px-6 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:-translate-y-0.5"
                         >
                             {{ __('translate.reset') || 'RESETUJ' }}
                         </button>
@@ -412,7 +415,7 @@ const duplicateProject = (project) => {
                     <div
                         v-for="project in projects.data"
                         :key="project.id"
-                        class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow"
+                        class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
                     >
                         <!-- Górna linia -->
                         <div class="flex items-center justify-between mb-3">
@@ -505,7 +508,7 @@ const duplicateProject = (project) => {
                     </div>
 
                     <!-- Brak projektów -->
-                    <div v-if="!projects.data.length" class="bg-white rounded-lg shadow p-12 text-center">
+                    <div v-if="!projects.data.length" class="bg-white rounded-[3rem] border border-gray-100 p-20 text-center shadow-xl shadow-blue-900/5">
                         <svg class="w-16 h-16 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
@@ -571,18 +574,18 @@ const duplicateProject = (project) => {
 }
 
 .multiselect__option--highlight {
-    background: #0d2a52 !important; /* work-main */
+    background: #0A2C5C !important; /* work-main */
     outline: none;
     color: white;
 }
 
 .multiselect__option--highlight:after {
-    background: #0d2a52 !important;
+    background: #0A2C5C !important;
 }
 
 .multiselect__option--selected {
     background: #f3f4f6 !important; /* gray-100 */
-    color: #0d2a52;
+    color: #0A2C5C;
     font-weight: bold;
 }
 
@@ -592,7 +595,7 @@ const duplicateProject = (project) => {
 }
 
 .multiselect__tag {
-    background: #0d2a52 !important;
+    background: #0A2C5C !important;
 }
 
 .multiselect__tag-icon:after {

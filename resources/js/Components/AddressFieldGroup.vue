@@ -1,40 +1,40 @@
 <template>
-    <div class="grid grid-cols-2 gap-5">
-        <div>
-            <InputLabel for="street" :value="__('translate.Street')" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+            <InputLabel for="street" :value="__('translate.Street')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
                 type="text"
                 id="street"
                 @input="$emit('update:street', $event.target.value)"
-                class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
+                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                 :value="street"
                 ref="streetRef"
                 :placeholder="__('translate.Street')"/>
         </div>
-        <div>
-            <InputLabel for="number" :value="__('translate.Number')" />
+        <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+            <InputLabel for="number" :value="__('translate.Number')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
-                class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
+                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                 type="text"
                 id="number"
                 @input="$emit('update:streetNumber', $event.target.value)"
                 :value="streetNumber"
                 :placeholder="__('translate.Number')"/>
         </div>
-        <div>
-            <InputLabel for="postcode" :value="__('translate.Postal')" />
+        <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+            <InputLabel for="postcode" :value="__('translate.Postal')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
-                    class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
+                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                     type="text"
                     id="postcode"
                     @input="$emit('update:postcode', $event.target.value)"
                     :value="postcode"
                     :placeholder="__('translate.Postal')"/>
         </div>
-        <div>
-            <InputLabel for="city" :value="__('translate.City')" />
+        <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+            <InputLabel for="city" :value="__('translate.City')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
             <input
-                    class="border-gray-300 focus:blue-work rounded-md shadow-sm mt-1 block w-full"
+                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                     type="text"
                     id="city"
                     @input="$emit('update:city', $event.target.value)"

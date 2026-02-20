@@ -2,11 +2,12 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import {Link, router, useForm, usePage} from '@inertiajs/vue3';
 import __ from '@/lang.js';
-import { ref, onMounted, computed, watch } from 'vue';
+import {ref, onMounted, computed, watch} from 'vue';
 import axios from 'axios';
 import moment from "moment/moment.js";
 import TextInput from "@/Components/TextInput.vue";
 import {usePermission} from "@/Composables/usePermission.js";
+
 const {noRole} = usePermission();
 
 // Importy FilePond
@@ -18,7 +19,7 @@ const props = defineProps({
     selectedCandidateTags: Array,
     candidateQuestions: Array,
 });
-const locale = computed(()=>usePage().props.language);
+const locale = computed(() => usePage().props.language);
 
 // Dane
 const professionCategories = ref(props.categories || []);
@@ -89,7 +90,7 @@ const getTagColor = (id) => {
 // Określanie koloru tekstu na podstawie tła
 const getContrastColor = (backgroundColor) => {
     // Prosty algorytm do określenia ciemności koloru
-    const rgb = hexToRgb(backgroundColor) || { r: 200, g: 200, b: 200 };
+    const rgb = hexToRgb(backgroundColor) || {r: 200, g: 200, b: 200};
     const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
     return brightness > 128 ? '#000000' : '#FFFFFF';
 };
@@ -98,7 +99,7 @@ const getContrastColor = (backgroundColor) => {
 const hexToRgb = (hex) => {
     // Jeśli to jest format HSL, zwracamy domyślne wartości
     if (hex.startsWith('hsl')) {
-        return { r: 200, g: 200, b: 200 };
+        return {r: 200, g: 200, b: 200};
     }
 
     // Konwersja HEX do RGB
@@ -113,9 +114,9 @@ const hexToRgb = (hex) => {
     } : null;
 };
 
-const removeFile =  async (source,load) => {
+const removeFile = async (source, load) => {
     console.log(source)
-    await router.delete(route('candidate-cv.delete',props.candidate.id),{'source':source});
+    await router.delete(route('candidate-cv.delete', props.candidate.id), {'source': source});
     load();
 }
 
@@ -219,7 +220,6 @@ const filteredCustomTags = computed(() => {
         return tag.name.toLowerCase().includes(searchTerm);
     });
 });
-
 
 
 const saveTags = () => {
@@ -339,8 +339,8 @@ const filepondOptions = {
     labelFileWaitingForSize: __('translate.labelFileWaitingForSize'),
     labelFileSizeNotAvailable: __('translate.labelFileSizeNotAvailable'),
     labelFileLoading: __('translate.labelFileLoading'),
-    labelMaxFileSize:__('translate.labelMaxFileSize'),
-    labelMaxFileSizeExceeded:__('translate.labelMaxFileSizeExceeded'),
+    labelMaxFileSize: __('translate.labelMaxFileSize'),
+    labelMaxFileSizeExceeded: __('translate.labelMaxFileSizeExceeded'),
     labelFileLoadError: __('translate.labelFileLoadError'),
     labelFileProcessingComplete: __('translate.labelFileProcessingComplete'),
     labelFileProcessingAborted: __('translate.labelFileProcessingAborted'),
@@ -359,7 +359,7 @@ const filepondOptions = {
     labelButtonProcessItem: __('translate.labelButtonProcessItem'),
     acceptedFileTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
     maxFileSize: '10MB',
-    credits:'false',
+    credits: 'false',
 };
 
 // Obsługa przesyłania CV
@@ -395,7 +395,7 @@ const saveAnswers = () => {
 // Usuwanie pliku CV
 const deleteFile = (fileId) => {
     if (confirm(__('translate.confirmDeleteFile'))) {
-        axios.delete(route('candidate-cv.delete', { candidate: props.candidate.id, file: fileId }))
+        axios.delete(route('candidate-cv.delete', {candidate: props.candidate.id, file: fileId}))
             .then(response => {
                 // Odśwież stronę aby zaktualizować listę plików
                 window.location.reload();
@@ -413,216 +413,278 @@ initAnswersForm();
 <template>
     <AppLayout :title="__('translate.candidateDetails')">
         <template #header>
-            <div class="flex justify-between">
+            <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('translate.candidateDetails') }}
                 </h2>
+
                 <Link
                     :href="route('candidates.index')"
-                    class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+                    class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
                 >
                     <span class="text-lg leading-none">←</span>
                     {{ __('translate.backToList') }}
                 </Link>
             </div>
-
         </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-xl sm:rounded-lg p-6">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <!-- LEFT: Candidate info -->
-                        <div class="rounded-2xl shadow-sm p-5 bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-start justify-between">
-                                <h3 class="text-sm font-semibold text-slate-700">
-                                    {{ __('translate.candidateInfo') }}
-                                </h3>
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                <!-- HEADER CARD -->
+                <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-8">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.candidateDetails') }}</h2>
+                                <p class="text-sm text-gray-500 mt-1">Zarządzaj danymi kandydata i jego procesem
+                                    rekrutacyjnym</p>
                             </div>
-                            <!-- Avatar + name -->
-                            <div class="mt-5 flex flex-col items-center text-center">
-                                <div class="h-28 w-28 rounded-full bg-orange-500/10 ring-4 ring-orange-100 flex items-center justify-center overflow-hidden">
+                        </div>
+                    </div>
+                </section>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- LEFT COLUMN: Candidate info -->
+                    <div class="lg:col-span-4 space-y-8">
+                        <div
+                            class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8 flex flex-col items-center text-center">
+                            <div class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-8 w-full">
+                                {{ __('translate.candidateInfo') }}
+                            </div>
+
+                            <div class="relative group">
+                                <div
+                                    class="h-32 w-32 rounded-[2.5rem] bg-blue-50 ring-4 ring-white shadow-lg flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
                                     <img
                                         v-if="candidate?.worker_image"
                                         :src="candidate?.worker_image"
                                         alt="avatar"
                                         class="h-full w-full object-cover"
                                     />
-                                    <div v-else class="text-orange-600 font-bold text-3xl">
+                                    <div v-else class="text-[#0A2C5C] font-black text-4xl">
                                         {{ (candidate?.name?.[0] ?? 'A') + (candidate?.surname?.[0] ?? 'N') }}
                                     </div>
                                 </div>
-
-                                <div class="mt-4">
-                                    <div class="text-2xl font-extrabold text-slate-800 leading-tight">
-                                        {{ candidate.name }} {{ candidate.surname }}
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 space-y-1 text-sm text-slate-600">
-                                    <div class="font-semibold text-slate-700">
-                                        {{ candidate.phone ?? '—' }}
-                                    </div>
-                                    <div class="text-slate-500">
-                                        {{ candidate.email ?? '—' }}
-                                    </div>
-                                </div>
-                                <!-- CV buttons -->
-                                <div class="mt-5 w-full">
-                                    <div class="flex items-center justify-center gap-3">
-                                        <a
-                                            v-if="candidate?.cv_file?.url"
-                                            :href="candidate.cv_file.url"
-                                            target="_blank"
-                                            class="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
-                                        >
-                                            <span class="text-slate-500">📄</span>
-                                            {{ __('translate.classicCV') ?? 'klasyczne CV' }}
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <!-- Recruiter -->
-                                <div v-if="candidate.created_by" class="mt-6 flex items-center gap-3 rounded-xl bg-slate-50 px-4 py-3">
-                                    <img
-                                        v-if="candidate?.created_by?.avatar"
-                                        :src="candidate?.created_by?.avatar"
-                                        alt="avatar"
-                                        class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold border border-2 border-work-main"
-                                    />
-                                    <div v-else class="text-orange-600 font-bold text-3xl">
-                                        {{ (candidate?.created_by?.name?.[0] ?? 'A') + (candidate?.created_by?.surname?.[0] ?? 'N') }}
-                                    </div>
-                                    <div class="text-left">
-                                        <div class="text-xs text-slate-500">{{ __('translate.createdBy') }}</div>
-                                        <div class="text-sm font-semibold text-slate-700">
-                                            {{ candidate.created_by?.name }}
-                                        </div>
-                                    </div>
-                                </div>
+                                <div
+                                    class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white shadow-sm"></div>
                             </div>
-                        </div>
 
-                        <!-- RIGHT: Candidate projects -->
-                        <div class="rounded-2xl shadow-sm p-5 bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-semibold text-slate-700">
-                                    {{ __('translate.allCandidateProjects') }}
+                            <div class="mt-6">
+                                <h3 class="text-2xl font-black text-gray-900 uppercase tracking-tight leading-tight">
+                                    {{ candidate.name }} {{ candidate.surname }}
                                 </h3>
                             </div>
 
-                            <div v-if="candidateProjects && candidateProjects.length" class="mt-4 space-y-3">
+                            <div class="mt-6 w-full space-y-4">
+                                <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                        {{ __('translate.phone') }}</p>
+                                    <p class="text-sm font-black text-gray-700 tracking-widest">
+                                        {{ candidate.phone ?? '—' }}</p>
+                                </div>
+                                <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                        {{ __('translate.email') }}</p>
+                                    <p class="text-sm font-black text-gray-700 truncate lowercase">
+                                        {{ candidate.email ?? '—' }}</p>
+                                </div>
+                            </div>
+
+                            <!-- CV buttons -->
+                            <div class="mt-8 w-full">
+                                <a
+                                    v-if="candidate?.cv_file?.url"
+                                    :href="candidate.cv_file.url"
+                                    target="_blank"
+                                    class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-6 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                                >
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                    </svg>
+                                    {{ __('translate.classicCV') ?? 'klasyczne CV' }}
+                                </a>
+                            </div>
+
+                            <!-- Recruiter -->
+                            <div v-if="candidate.created_by" class="mt-8 w-full pt-8 border-t border-gray-100">
+                                <div
+                                    class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
+                                    <div
+                                        class="h-12 w-12 rounded-xl overflow-hidden shadow-sm border-2 border-white shrink-0">
+                                        <img
+                                            v-if="candidate?.created_by?.avatar"
+                                            :src="candidate?.created_by?.avatar"
+                                            alt="avatar"
+                                            class="h-full w-full object-cover"
+                                        />
+                                        <div v-else
+                                             class="w-full h-full bg-blue-100 flex items-center justify-center text-[#0A2C5C] font-black">
+                                            {{
+                                                (candidate?.created_by?.name?.[0] ?? 'A') + (candidate?.created_by?.surname?.[0] ?? 'N')
+                                            }}
+                                        </div>
+                                    </div>
+                                    <div class="text-left min-w-0">
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">
+                                            {{ __('translate.createdBy') }}</p>
+                                        <p class="text-sm font-black text-gray-900 truncate uppercase tracking-tight">
+                                            {{ candidate.created_by?.name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Projects -->
+                    <div class="lg:col-span-8 space-y-8">
+                        <!-- Candidate projects -->
+                        <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8">
+                            <div class="flex items-center gap-4 mb-8">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                                    {{ __('translate.allCandidateProjects') }}</h3>
+                                <div class="h-px flex-1 bg-gray-100"></div>
+                            </div>
+
+                            <div v-if="candidateProjects && candidateProjects.length"
+                                 class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div
                                     v-for="project in candidateProjects"
                                     :key="project.project_id"
-                                    class="rounded-2xl bg-white px-4 py-3 shadow-sm hover:shadow-md transition"
+                                    class="group relative bg-gray-50/50 border border-gray-100/50 rounded-3xl p-6 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 hover:bg-white"
                                 >
-                                    <div class="flex items-start justify-between gap-3">
-                                        <div class="min-w-0">
-                                            <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wide">
-                                                ID: {{ project.project_id }}
-                                            </div>
-
-                                            <Link
-                                                :href="route('projects.show', project.project_id) "
-                                                class="block truncate text-sm font-bold text-slate-800 hover:text-indigo-600"
-                                            >
-                                                {{ project.project_name }}
-                                            </Link>
-                                            <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wide">
-                                                {{ project.country }}
-                                                {{ project.city }}
-                                            </div>
-                                            <div class="text-[11px] text-slate-400 font-semibold uppercase tracking-wide">
-                                                {{ project.price }}
-                                                {{ project.currency }}
-                                            </div>
-                                            <div class="mt-1 text-xs text-slate-500">
-                                                {{ __('translate.applicationDate') }}:
-                                                <span class="font-semibold text-slate-600">
-                                {{ new Date(project.created_at).toLocaleDateString() }}
-                            </span>
-                                            </div>
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <span
+                                                class="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-white px-2.5 py-1 rounded-lg border border-blue-100/50 shadow-sm">
+                                                ID {{ project.project_id }}
+                                            </span>
+                                            <span
+                                                class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                                {{ new Date(project.created_at).toLocaleDateString() }}
+                                            </span>
                                         </div>
 
-                                        <div class="flex items-center gap-2 shrink-0">
-                                            <!-- preview button -->
-                                            <Link
-                                                v-if="noRole('firm')"
-                                                :href="route('project-recruits.show', project.project_id)"
-                                                class="rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase"
-                                            >
-                                                {{__('translate.view')}}
-                                            </Link>
+                                        <Link
+                                            :href="route('projects.show', project.project_id) "
+                                            class="text-lg font-black text-gray-900 truncate group-hover:text-[#0A2C5C] transition-colors uppercase tracking-tight leading-tight mb-2"
+                                        >
+                                            {{ project.project_name }}
+                                        </Link>
 
-                                            <Link
-                                                v-else
-                                                :href="route('projects.show', project.project_id)"
-                                                class="rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase"
-                                            >
-                                                {{__('translate.view')}}
-                                            </Link>
-
-
-
-
-
-
-                                            <!-- status button -->
+                                        <div class="flex flex-wrap gap-2 mb-6">
                                             <span
-                                                class="rounded-lg px-3 py-2 text-[11px] font-extrabold uppercase"
+                                                class="text-[10px] font-bold text-gray-400 uppercase tracking-tight bg-white px-2 py-0.5 rounded border border-gray-100">
+                                                {{ project.city }}, {{ project.country }}
+                                            </span>
+                                            <span
+                                                class="text-[10px] font-bold text-blue-900 uppercase tracking-tight bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                                                {{ project.price }} {{ project.currency }}
+                                            </span>
+                                        </div>
+
+                                        <div class="mt-auto flex items-center justify-between gap-4">
+                                            <div class="flex gap-2">
+                                                <Link
+                                                    v-if="noRole('firm')"
+                                                    :href="route('project-recruits.show', project.project_id)"
+                                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
+                                                >
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2.5"
+                                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                    </svg>
+                                                </Link>
+
+                                                <Link
+                                                    v-else
+                                                    :href="route('projects.show', project.project_id)"
+                                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
+                                                >
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2.5"
+                                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                    </svg>
+                                                </Link>
+                                            </div>
+
+                                            <span
+                                                class="rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-sm"
                                                 :class="{
-                                'bg-blue-900 text-white': project.status === 'yes',
-                                'bg-red-600 text-white': project.status === 'no',
-                                'bg-blue-600 text-white': project.status === 'maybe',
-                                'bg-bg-[#9ca3af] text-white': !project.status
-                            }"
+                                                    'bg-[#0A2C5C]': project.status === 'yes',
+                                                    'bg-red-600': project.status === 'no',
+                                                    'bg-cyan-500': project.status === 'maybe',
+                                                    'bg-gray-300': !project.status
+                                                }"
                                             >
-                            {{ project.status
-                                                ? __(`translate.status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`)
-                                                : __('translate.statusPending')
+                                                {{
+                                                    project.status
+                                                        ? __(`translate.status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`)
+                                                        : __('translate.statusPending')
                                                 }}
-                        </span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div v-else class="mt-6 text-sm text-slate-500">
-                                {{ __('translate.noProjectsAvailable') }}
+                            <div v-else
+                                 class="py-12 text-center bg-gray-50/50 rounded-[2rem] border border-dashed border-gray-200">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                    {{ __('translate.noProjectsAvailable') }}</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Pytania -->
-                    <div v-if="candidateQuestions && candidateQuestions.length > 0" class="mt-8">
-                        <h3 class="text-xl font-bold text-[#1e293b] mb-4">
-                            {{ __('translate.candidateQuestions') || 'Dodatkowe pytania do kandydata' }}
-                        </h3>
+                </div>
 
-                        <div v-if="candidate.questions_unlocked_at" class="bg-white rounded-[20px] border border-[#e2e8f0] p-8 shadow-sm">
-                            <p class="text-[13px] text-[#94a3b8] mb-6">
-                                {{ __('translate.candidateQuestionsUnlockedDate') }} {{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}
+                <!-- BOTTOM SECTION: Questions, CV Upload, Notes, Tags -->
+                <div class="space-y-8">
+                    <!-- Pytania -->
+                    <div v-if="candidateQuestions && candidateQuestions.length > 0">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                                {{ __('translate.candidateQuestions') || 'Dodatkowe pytania do kandydata' }}
+                            </h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
+
+                        <div v-if="candidate.questions_unlocked_at"
+                             class="bg-white rounded-[3rem] border border-gray-100 p-10 shadow-xl shadow-blue-900/5">
+                            <p class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-10">
+                                {{ __('translate.candidateQuestionsUnlockedDate') }}
+                                {{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}
                             </p>
 
-                            <div class="space-y-6">
-                                <div v-for="(question, index) in candidateQuestions" :key="question.id" class="relative group">
-                                    <div class="rounded-[15px] border-2 border-[#1e3a8a]/10 bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all hover:border-[#1e3a8a]/20">
-                                        <h4 class="text-[16px] font-bold text-[#1e3a8a] mb-4">{{ question.question }}</h4>
+                            <div class="space-y-10">
+                                <div v-for="(question, index) in candidateQuestions" :key="question.id"
+                                     class="relative group">
+                                    <div
+                                        class="rounded-[2.5rem] border border-gray-100 bg-gray-50/30 p-8 transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5">
+                                        <h4 class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight mb-6">{{
+                                                question.question
+                                            }}</h4>
 
                                         <div v-if="question.answer_type === 'text'">
                                             <textarea
                                                 v-model="answersForm.answers[index].text_answer"
-                                                class="w-full border-[#e2e8f0] rounded-[12px] bg-[#f8fafc]/50 focus:bg-white focus:border-[#00a0e3] focus:ring-4 focus:ring-[#00a0e3]/10 transition-all resize-none text-[#334155] placeholder-[#94a3b8]"
+                                                class="w-full text-xs rounded-2xl border-gray-100 bg-white/50 focus:bg-white focus:border-[#00a0e3] focus:ring-0 transition-all resize-none text-gray-700 placeholder-gray-400"
                                                 :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
-                                                rows="3"
+                                                rows="4"
                                             ></textarea>
-                                            <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-xs text-red-500 mt-2 flex items-center gap-1">
-                                                <span class="text-lg">⚠</span> {{ answersForm.errors[`answers.${index}.text_answer`] }}
+                                            <p v-if="answersForm.errors[`answers.${index}.text_answer`]"
+                                               class="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tight">
+                                                {{ answersForm.errors[`answers.${index}.text_answer`] }}
                                             </p>
                                         </div>
 
                                         <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
-                                            <div class="flex items-center gap-8">
+                                            <div class="flex items-center gap-10">
                                                 <label class="group/label flex items-center cursor-pointer">
                                                     <div class="relative flex items-center justify-center">
                                                         <input
@@ -632,10 +694,12 @@ initAnswersForm();
                                                             v-model="answersForm.answers[index].boolean_answer"
                                                             class="peer sr-only"
                                                         >
-                                                        <div class="h-6 w-6 rounded-full border-2 border-[#cbd5e1] bg-white transition-all peer-checked:border-[#00a0e3] peer-checked:border-[6px] group-hover/label:border-[#00a0e3]/50"></div>
+                                                        <div
+                                                            class="h-6 w-6 rounded-full border-2 border-gray-200 bg-white transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px] group-hover/label:border-blue-200"></div>
                                                     </div>
-                                                    <span class="ml-3 text-[15px] font-medium text-[#475569] group-hover/label:text-[#00a0e3] transition-colors">
-                                                        {{ __('translate.yes') || 'tak' }}
+                                                    <span
+                                                        class="ml-4 text-xs font-black text-gray-500 uppercase tracking-widest group-hover/label:text-[#0A2C5C] transition-colors">
+                                                       {{ __('translate.yes') || 'tak' }}
                                                     </span>
                                                 </label>
 
@@ -648,313 +712,336 @@ initAnswersForm();
                                                             v-model="answersForm.answers[index].boolean_answer"
                                                             class="peer sr-only"
                                                         >
-                                                        <div class="h-6 w-6 rounded-full border-2 border-[#cbd5e1] bg-white transition-all peer-checked:border-[#00a0e3] peer-checked:border-[6px] group-hover/label:border-[#00a0e3]/50"></div>
+                                                        <div
+                                                            class="h-6 w-6 rounded-full border-2 border-gray-200 bg-white transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px] group-hover/label:border-blue-200"></div>
                                                     </div>
-                                                    <span class="ml-3 text-[15px] font-medium text-[#475569] group-hover/label:text-[#00a0e3] transition-colors">
-                                                        {{ __('translate.no') || 'nie' }}
+                                                    <span
+                                                        class="ml-4 text-xs font-black text-gray-500 uppercase tracking-widest group-hover/label:text-[#0A2C5C] transition-colors">
+                                                       {{ __('translate.no') || 'nie' }}
                                                     </span>
                                                 </label>
                                             </div>
-                                            <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-xs text-red-500 mt-2 flex items-center gap-1">
-                                                <span class="text-lg">⚠</span> {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
+                                            <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]"
+                                               class="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tight">
+                                                {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
                                             </p>
                                         </div>
                                     </div>
-                                    <!-- Dekoracyjny cień pod spodem -->
-                                    <div class="absolute -bottom-1 left-4 right-4 h-4 bg-[#1e3a8a]/5 rounded-b-[15px] -z-10 blur-sm"></div>
                                 </div>
                             </div>
 
-                            <div class="mt-8 flex items-center justify-end gap-4 border-t border-[#f1f5f9] pt-6">
-                                <div v-if="answersForm.errors.answers" class="mr-auto flex items-center gap-2 text-sm text-red-600 bg-red-50 px-4 py-2 rounded-lg border border-red-100">
-                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                                    </svg>
+                            <div class="mt-10 flex items-center justify-end gap-4 border-t border-gray-100 pt-8">
+                                <div v-if="answersForm.errors.answers"
+                                     class="mr-auto flex items-center gap-2 text-[10px] font-black text-red-600 bg-red-50 px-4 py-2 rounded-xl border border-red-100 uppercase tracking-widest">
                                     {{ answersForm.errors.answers }}
                                 </div>
 
                                 <Link :href="route('candidate-questions.create')"
-                                    class="inline-flex items-center px-6 py-2.5 bg-[#00a0e3] text-white text-[14px] font-bold rounded-[10px] uppercase tracking-wider hover:bg-[#008cc6] active:transform active:scale-95 transition-all shadow-sm shadow-[#00a0e3]/20"
+                                      class="inline-flex items-center px-6 py-4 bg-white text-[#0A2C5C] text-[10px] font-black rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all uppercase tracking-widest"
                                 >
                                     {{ __('translate.addQuestion') || 'DODAJ PYTANIE' }}
                                 </Link>
 
                                 <button
                                     @click="saveAnswers"
-                                    class="inline-flex items-center px-8 py-2.5 bg-[#1e3a8a] text-white text-[14px] font-bold rounded-[10px] uppercase tracking-wider hover:bg-[#1a3175] active:transform active:scale-95 transition-all shadow-sm shadow-[#1e3a8a]/20 disabled:opacity-50"
+                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                                     :disabled="answersForm.processing"
                                 >
-                                    <svg v-if="answersForm.processing" class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z"></path>
-                                    </svg>
                                     {{ __('translate.save') || 'ZAPISZ' }}
                                 </button>
                             </div>
                         </div>
 
-                        <div v-else class="bg-white rounded-[20px] border border-[#e2e8f0] p-12 text-center shadow-sm">
-                            <div class="mx-auto w-16 h-16 bg-[#f1f5f9] rounded-full flex items-center justify-center mb-4">
-                                <span class="text-2xl">🔒</span>
+                        <div v-else
+                             class="bg-white rounded-[3rem] border border-gray-100 p-16 text-center shadow-xl shadow-blue-900/5">
+                            <div
+                                class="mx-auto w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-8 border border-gray-100 shadow-sm">
+                                <span class="text-4xl text-gray-200">🔒</span>
                             </div>
-                            <h4 class="text-lg font-bold text-[#1e293b] mb-2">{{ __('translate.unlockQuestions') }}</h4>
-                            <p class="text-gray-500 mb-8 max-w-sm mx-auto">{{ __('translate.unlockQuestionsInfo') }}</p>
+                            <h4 class="text-lg font-black text-gray-900 uppercase tracking-widest mb-4">{{
+                                    __('translate.unlockQuestions')
+                                }}</h4>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-10 max-w-sm mx-auto">{{
+                                    __('translate.unlockQuestionsInfo')
+                                }}</p>
 
                             <button
                                 @click="unlockQuestions"
-                                class="inline-flex items-center px-8 py-3 bg-[#1e3a8a] text-white text-[14px] font-bold rounded-[12px] uppercase tracking-wider hover:bg-[#1a3175] active:transform active:scale-95 transition-all shadow-lg shadow-[#1e3a8a]/20 disabled:opacity-50"
+                                class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                                 :disabled="questionsForm.processing"
                             >
-                                <svg v-if="questionsForm.processing" class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z"></path>
-                                </svg>
                                 {{ __('translate.unlockQuestions') }}
                             </button>
-                            <p class="text-xs text-gray-400 mt-4">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
+                            <p class="text-[10px] font-bold text-gray-400 mt-6 uppercase tracking-widest">{{
+                                    __('translate.unlockQuestionsPointsInfo')
+                                }}</p>
                         </div>
                     </div>
 
                     <!-- CV Upload -->
-                    <div class="mt-6 bg-gray-50 p-4 rounded-lg">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.candidateCV') }}</h3>
+                    <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-10 mt-8">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                                {{ __('translate.candidateCV') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
+
                         <!-- Wyświetlanie aktualnych plików CV -->
-                        <div v-if="candidate.cv_files && candidate.cv_files.length > 0" class="mb-4">
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.currentCVFiles') }}</h4>
-                            <div class="space-y-2">
-                                <div v-for="file in candidate.cv_files" :key="file.id" class="flex items-center justify-between bg-white p-2 rounded border">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        <div v-if="candidate.cv_files && candidate.cv_files.length > 0" class="mb-10">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{
+                                    __('translate.currentCVFiles')
+                                }}</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div v-for="file in candidate.cv_files" :key="file.id"
+                                     class="flex items-center justify-between bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
+                                    <div class="flex items-center min-w-0">
+                                        <svg class="h-6 w-6 text-[#0A2C5C] shrink-0 mr-3" fill="none"
+                                             stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                         </svg>
-                                        <span>{{ file.name }}</span>
+                                        <span class="text-xs font-black text-gray-900 truncate uppercase tracking-tight">{{ file.name }}</span>
                                     </div>
-                                    <div>
-                                        <a :href="file.url" target="_blank" class="text-blue-600 hover:text-blue-800 mr-2">{{ __('translate.view') }}</a>
-                                        <button @click="deleteFile(file.id)" class="text-red-600 hover:text-red-800">{{ __('translate.delete') }}</button>
+                                    <div class="flex items-center gap-3 shrink-0 ml-4">
+                                        <a :href="file.url" target="_blank"
+                                           class="text-[10px] font-black text-blue-500 hover:text-blue-700 uppercase tracking-widest transition-colors">{{
+                                                __('translate.view')
+                                            }}</a>
+                                        <button @click="deleteFile(file.id)"
+                                                class="text-[10px] font-black text-red-500 hover:text-red-700 uppercase tracking-widest transition-colors">{{
+                                                __('translate.delete')
+                                            }}
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <!-- Dodawanie nowego pliku CV -->
-                        <div>
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.uploadNewCV') }}</h4>
-                            <div class="mb-3">
+                        <div class="bg-gray-50/30 rounded-[2.5rem] p-8 border border-gray-100">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{
+                                    __('translate.uploadNewCV')
+                                }}</h4>
+                            <div class="mb-6">
                                 <file-pond
                                     ref="pond"
                                     name="cvFile"
+                                    class="custom-filepond"
                                     :files="cvForm.cvFile"
                                     :allow-multiple="false"
                                     v-bind="filepondOptions"
                                     :server="{
-                                            url:'',
-                                               headers: {
+                                        url:'',
+                                        headers: {
                                             'X-CSRF-TOKEN': usePage().props.csrf_token,
-                                                },
-                                            process: {
-                                                url: '/temporary/upload',
-                                                    onload: (response) => {
-                                                    cvForm.cvFile.push(response);
-                                                    return response;
-                                                    },
-                                                    onerror: (response) => {
-                                                        serverMessage = JSON.parse(response).error.cv_file[0];
-                                                    }
-
+                                        },
+                                        process: {
+                                            url: '/temporary/upload',
+                                            onload: (response) => {
+                                                cvForm.cvFile.push(response);
+                                                return response;
                                             },
-                                            revert:{
-                                                url: '/temporary/delete',
-                                                onload: (response) => {
-                                                        if (!response) return;
-                                                        const fileIndex = cvForm.cvFile.findIndex(el => el === response);
-                                                        if (fileIndex !== -1) {
-                                                            cvForm.cvFile.splice(fileIndex, 1);
-                                                       }
+                                            onerror: (response) => {
+                                                serverMessage = JSON.parse(response).error.cv_file[0];
+                                            }
+                                        },
+                                        revert:{
+                                            url: '/temporary/delete',
+                                            onload: (response) => {
+                                                if (!response) return;
+                                                const fileIndex = cvForm.cvFile.findIndex(el => el === response);
+                                                if (fileIndex !== -1) {
+                                                    cvForm.cvFile.splice(fileIndex, 1);
                                                 }
-                                            },
-                                            remove:removeFile
-                                            }"
+                                            }
+                                        },
+                                        remove:removeFile
+                                    }"
                                 />
-                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.allowedFileTypes') }}: PDF, DOC, DOCX ({{ __('translate.maxFileSize') }}: 10MB)</p>
+                                <p class="text-[10px] font-bold text-gray-400 mt-4 uppercase tracking-tight">{{ __('translate.allowedFileTypes') }}: PDF,
+                                    DOC, DOCX ({{ __('translate.maxFileSize') }}: 10MB)</p>
                             </div>
                             <div class="flex justify-end">
                                 <button
                                     @click="handleCvUpload"
-                                    class="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase transition
-           disabled:opacity-50 disabled:cursor-not-allowed"
+                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                                     :disabled="cvForm.processing || isSavingCv"
                                 >
-                                    <svg
-                                        v-if="cvForm.processing || isSavingCv"
-                                        class="h-4 w-4 animate-spin"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                              d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z">
-                                        </path>
-                                    </svg>
-
                                     <span>
-        {{ (cvForm.processing || isSavingCv) ? __('translate.saving') : __('translate.saveCv') }}
-    </span>
+                                        {{ (cvForm.processing || isSavingCv) ? __('translate.saving') : __('translate.saveCv') }}
+                                    </span>
                                 </button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Notatki -->
-                    <div class="mt-6 bg-gray-50 p-4 rounded-lg">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.notes') }}</h3>
+                    <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-10 mt-8">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                                {{ __('translate.notes') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
 
-                        <div v-if="candidate.notes && candidate.notes.length > 0" class="space-y-4">
-                            <div v-for="note in candidate.notes" :key="note.id" class="border-l-4 border-indigo-500 pl-4 py-2">
-                                <div class="text-sm text-gray-600">{{ new Date(note.created_at).toLocaleString() }}</div>
-                                <div class="mt-1">{{ note.content }}</div>
+                        <div v-if="candidate.notes && candidate.notes.length > 0" class="space-y-4 mb-8">
+                            <div v-for="note in candidate.notes" :key="note.id"
+                                 class="bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
+                                <div class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-3">
+                                    {{ new Date(note.created_at).toLocaleString() }}
+                                </div>
+                                <div class="text-sm font-bold text-gray-700 leading-relaxed">{{ note.content }}</div>
                             </div>
                         </div>
-                        <div v-else class="text-gray-500">
-                            {{ __('translate.noNotesAvailable') }}
+                        <div v-else class="flex flex-col items-center justify-center py-12 text-center bg-gray-50/30 rounded-[2.5rem] border border-dashed border-gray-200 mb-8">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                {{ __('translate.noNotesAvailable') }}
+                            </p>
                         </div>
                     </div>
+
                     <!-- Tagi -->
-                    <div class="mt-6 bg-gray-50 p-4 rounded-lg">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('translate.tags') }}</h3>
+                    <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-10 mt-8">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                                {{ __('translate.tags') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
 
-                        <!-- Sekcja tagów kategorii zawodowych -->
-                        <div class="mb-4">
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.professionCategories') }}</h4>
-                            <!-- Pole wyszukiwania kategorii -->
-                            <div class="mb-3">
+                        <div class="grid grid-cols-1 gap-10">
+                            <!-- Sekcja tagów kategorii zawodowych -->
+                            <div class="space-y-6">
+                                <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                    {{ __('translate.professionCategories') }}</h4>
 
-                                <TextInput
-                                    type="text"
-                                    v-model="categorySearchQuery"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                    :placeholder="__('translate.searchCategories')"
-                                />
-                            </div>
-                            <div>
-                                <div class="flex flex-wrap gap-2 mb-3">
+                                <div class="relative">
+                                    <TextInput
+                                        type="text"
+                                        v-model="categorySearchQuery"
+                                        class="w-full text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 transition-all placeholder-gray-400 p-4 pl-12"
+                                        :placeholder="__('translate.searchCategories')"
+                                    />
+                                    <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+
+                                <div class="flex flex-wrap gap-2">
                                     <span v-for="category in paginatedCategories" :key="category.id"
-                                          class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-colors"
+                                          class="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-sm"
                                           :style="{ backgroundColor: getTagColor(category.id), color: getContrastColor(getTagColor(category.id)) }"
                                           @click="toggleCategoryTag(category)">
-                                        {{category.title?.[locale]}}
+                                        {{ category.title?.[locale] }}
                                     </span>
-                                    <span v-if="filteredCategories.length === 0" class="text-gray-500 text-sm">
-                                        {{ categorySearchQuery ? __('translate.noMatchingCategories') : __('translate.noCategoriesAvailable') }}
-                                    </span>
+                                    <div v-if="filteredCategories.length === 0" class="w-full text-center py-8 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                            {{ categorySearchQuery ? __('translate.noMatchingCategories') : __('translate.noCategoriesAvailable') }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="flex justify-between items-center mt-4" v-if="filteredCategories.length > categoriesPerPage">
+
+                                <div class="flex justify-between items-center bg-gray-50/50 p-4 rounded-2xl border border-gray-100" v-if="filteredCategories.length > categoriesPerPage">
                                     <button
                                         @click="currentCategoryPage = Math.max(currentCategoryPage - 1, 1)"
                                         :disabled="currentCategoryPage === 1"
-                                        class="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50"
+                                        class="px-4 py-2 bg-white text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest rounded-xl border border-gray-100 shadow-sm disabled:opacity-50 transition-all"
                                     >
-                                        &lt; {{__('translate.previous')}}
+                                        {{ __('translate.previous') }}
                                     </button>
-                                    <span class="text-sm">{{__('translate.page')}} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
+                                    <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest">{{ __('translate.page') }} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
                                     <button
                                         @click="currentCategoryPage = Math.min(currentCategoryPage + 1, totalCategoryPages)"
                                         :disabled="currentCategoryPage === totalCategoryPages"
-                                        class="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50"
+                                        class="px-4 py-2 bg-white text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest rounded-xl border border-gray-100 shadow-sm disabled:opacity-50 transition-all"
                                     >
-                                        {{__('translate.next')}} &gt;
-                                    </button>
-                                </div>
-                                <!-- Przycisk do czyszczenia wyszukiwania -->
-                                <div v-if="categorySearchQuery" class="mt-2 text-right">
-                                    <button
-                                        @click="categorySearchQuery = ''; currentCategoryPage = 1"
-                                        class="text-indigo-600 text-sm hover:text-indigo-800"
-                                    >
-                                        {{ __('translate.clearSearch') }}
+                                        {{ __('translate.next') }}
                                     </button>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Sekcja tagów firmowych -->
-                        <div>
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.customTags') }}</h4>
-                            <!-- Pole wyszukiwania tagów niestandardowych -->
-                            <div class="mb-3">
-                                <TextInput
-                                    type="text"
-                                    v-model="customTagSearchQuery"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                                    :placeholder="__('translate.searchCustomTags')"
-                                />
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span v-for="tag in filteredCustomTags" :key="tag.id"
-                                      class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-colors"
-                                      :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
-                                      @click="toggleCustomTag(tag)">
-                                    {{ tag.name }}
-                                </span>
-                                <span v-if="filteredCustomTags.length === 0" class="text-gray-500 text-sm">
-                                    {{ customTagSearchQuery ? __('translate.noMatchingTags') : __('translate.noTagsAvailable') }}
-                                </span>
-                            </div>
-                            <!-- Przycisk do czyszczenia wyszukiwania tagów niestandardowych -->
-                            <div v-if="customTagSearchQuery" class="mt-2 text-right">
-                                <button
-                                    @click="customTagSearchQuery = ''"
-                                    class="text-indigo-600 text-sm hover:text-indigo-800"
-                                >
-                                    {{ __('translate.clearSearch') }}
-                                </button>
+                            <!-- Sekcja tagów firmowych -->
+                            <div class="space-y-6">
+                                <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.customTags') }}</h4>
+
+                                <div class="relative">
+                                    <TextInput
+                                        type="text"
+                                        v-model="customTagSearchQuery"
+                                        class="w-full text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 transition-all placeholder-gray-400 p-4 pl-12"
+                                        :placeholder="__('translate.searchCustomTags')"
+                                    />
+                                    <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <span v-for="tag in filteredCustomTags" :key="tag.id"
+                                          class="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-sm"
+                                          :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
+                                          @click="toggleCustomTag(tag)">
+                                        {{ tag.name }}
+                                    </span>
+                                    <div v-if="filteredCustomTags.length === 0" class="w-full text-center py-8 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                            {{ customTagSearchQuery ? __('translate.noMatchingTags') : __('translate.noTagsAvailable') }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Sekcja wybranych tagów -->
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.selectedTags') }}</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span v-for="tag in selectedTags" :key="tag.id"
-                                      class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium flex items-center">
-                                    {{ tag.type === 'category' && tag.rawTitle ? tag.rawTitle?.[locale] : (tag.name || tag.title) }}
-                                    <button @click="removeTag(tag)" class="ml-1 text-indigo-600 hover:text-indigo-800">
-                                        &times;
-                                    </button>
-                                </span>
-                                <span v-if="selectedTags.length === 0" class="text-gray-500 text-sm">{{ __('translate.noTagsSelected') }}</span>
-                            </div>
+                        <div class="mt-12 pt-10 border-t border-gray-100">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ __('translate.selectedTags') }}</h4>
+                            <div class="bg-gray-50/30 p-8 rounded-[2.5rem] border border-gray-100">
+                                <div class="flex flex-wrap gap-3">
+                                    <span v-for="tag in selectedTags" :key="tag.id"
+                                          class="px-5 py-3 bg-[#0A2C5C] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center shadow-lg shadow-blue-900/10">
+                                        {{ tag.type === 'category' && tag.rawTitle ? tag.rawTitle?.[locale] : (tag.name || tag.title) }}
+                                        <button @click="removeTag(tag)" class="ml-4 hover:text-red-400 transition-colors">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" /></svg>
+                                        </button>
+                                    </span>
+                                    <div v-if="selectedTags.length === 0" class="text-[10px] font-black text-gray-400 uppercase tracking-widest italic">
+                                        {{ __('translate.noTagsSelected') }}
+                                    </div>
+                                </div>
 
-                            <div class="mt-4">
-                                <button
-                                    @click="saveTags"
-                                    class="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 text-[11px] font-bold text-white hover:bg-slate-700 uppercase transition
-           disabled:opacity-50 disabled:cursor-not-allowed"
-                                    :disabled="form.processing || isSavingTags"
-                                >
-                                    <svg
-                                        v-if="form.processing || isSavingTags"
-                                        class="h-4 w-4 animate-spin"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
+                                <div class="mt-10 flex justify-end">
+                                    <button
+                                        @click="saveTags"
+                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                        :disabled="form.processing || isSavingTags"
                                     >
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                              d="M4 12a8 8 0 018-8v3a5 5 0 00-5 5H4z">
-                                        </path>
-                                    </svg>
-
-                                    <span>
-        {{ (form.processing || isSavingTags) ? __('translate.saving') : __('translate.saveTags') }}
-    </span>
-                                </button>
-
+                                        <span>
+                                            {{ (form.processing || isSavingTags) ? __('translate.saving') : __('translate.saveTags') }}
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
     </AppLayout>
 </template>
+
+<style>
+.custom-filepond .filepond--panel-root {
+    background-color: #f9fafb;
+    border: 2px dashed #e5e7eb;
+    border-radius: 2rem;
+}
+
+.custom-filepond .filepond--drop-label {
+    color: #6b7280;
+}
+
+.custom-filepond .filepond--label-action {
+    color: #0A2C5C;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+</style>

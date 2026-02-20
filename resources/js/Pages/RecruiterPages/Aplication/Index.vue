@@ -140,10 +140,14 @@ const submitForm = () => {
 <template>
     <AppLayout :title="__('translate.applications')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('translate.applications') }}</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('translate.applications') }}
+                </h2>
+            </div>
         </template>
 
-        <div class="py-12 relative">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <Transition
                 enter-active-class="transition-opacity duration-500"
                 enter-from-class="opacity-0"
@@ -152,176 +156,293 @@ const submitForm = () => {
                 leave-from-class="opacity-100"
                 leave-to-class="opacity-0"
             >
-                <div v-if="showMessage" class="bg-white bg-opacity-90 fixed inset-0 flex items-center justify-center z-50 min-h-screen min-w-full text-center">
+                <div v-if="showMessage" class="bg-white/90 fixed inset-0 flex items-center justify-center z-50 min-h-screen min-w-full text-center backdrop-blur-sm">
                     <div class="w-3/4 mx-auto">
-                        <h2 class="text-2xl font-bold mb-4 text-gray-800">{{ __('translate.sent') }}</h2>
-                        <p class="w-2/4 mx-auto text-gray-600 leading-relaxed">{{ __('translate.cvSentMessage') }}</p>
+                        <h2 class="text-4xl font-black mb-4 text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.sent') }}</h2>
+                        <p class="w-2/4 mx-auto text-gray-500 font-bold uppercase tracking-widest leading-relaxed">{{ __('translate.cvSentMessage') }}</p>
                     </div>
                 </div>
             </Transition>
 
-            <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-xl sm:rounded-lg p-8">
-                    <!-- Filters Section -->
-                    <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">{{ __('translate.filter') }}</h3>
-
-                        <!-- CV type tabs -->
-                        <div class="flex space-x-2 mb-6 border-b border-gray-200 flex-col md:flex-row">
-                            <button @click="form.has_cv='all'" :class="form.has_cv==='all' ? 'bg-blue-500 text-white rounded-t-lg px-6 py-3' : 'bg-white text-gray-600 hover:bg-gray-50 px-6 py-3'">{{ __('translate.all') }}</button>
-                            <button @click="form.has_cv='yes'" :class="form.has_cv==='yes' ? 'bg-blue-500 text-white rounded-t-lg px-6 py-3' : 'bg-white text-gray-600 hover:bg-gray-50 px-6 py-3'">{{ __('translate.classicCV') }}</button>
-                            <button @click="form.has_cv='no'" :class="form.has_cv==='no' ? 'bg-blue-500 text-white rounded-t-lg px-6 py-3' : 'bg-white text-gray-600 hover:bg-gray-50 px-6 py-3'">{{ __('translate.videoAudioCV') }}</button>
-                        </div>
-
-                        <!-- Filters grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.projectID') }}</label>
-                                <input v-model="form.project" type="text" :placeholder="__('translate.enterID')" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"/>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.position') }}</label>
-                                <multiselect v-model="form.category" :options="props.optionsPosition" label="name" :placeholder="__('translate.selectPosition')" class="custom-multiselect"/>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.applicationStatus') }}</label>
-                                <select v-model="form.status" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
-                                    <option value="">{{ __('translate.all') }}</option>
-                                    <option value="yes">{{ __('translate.yes') }}</option>
-                                    <option value="no">{{ __('translate.no') }}</option>
-                                    <option value="maybe">{{ __('translate.statusMaybe') }}</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.date') }}</label>
-                                <input v-model="form.date" type="date" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"/>
-                            </div>
-                        </div>
-
-                        <!-- Additional CV filters -->
-                        <div v-if="form.has_cv==='yes'" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.language') }}</label>
-                                <multiselect v-model="form.lang" :options="sortLangs" label="label" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
-                            </div>
-                            <div :class="{ 'opacity-50': !form.lang }">
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.languageLevel') }}</label>
-                                <multiselect v-model="form.Langlevel" :options="props.langLevels" label="name" :placeholder="__('translate.selectLevel')" :disabled="!form.lang" class="custom-multiselect"/>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2 uppercase">{{ __('translate.driveLicenseB') }}</label>
-                                <select v-model="form.driveLicense" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
-                                    <option value="">{{ __('translate.all') }}</option>
-                                    <option value="yes">{{ __('translate.yes') }}</option>
-                                    <option value="no">{{ __('translate.no') }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Action buttons -->
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-6 space-y-2 sm:space-y-0">
-                            <!-- Lewa grupa przycisków -->
-                            <div class="flex flex-col sm:flex-row sm:space-x-3 w-full sm:w-auto space-y-2 sm:space-y-0">
-                                <button
-                                    @click="exportToCSV"
-                                    :disabled="isExporting || (firmLoginPoints < exportRequiredPoints)"
-                                    class="w-full sm:w-auto px-6 py-3 bg-gray-800 text-white font-semibold text-sm rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all uppercase"
-                                >
-                                    <span v-if="isExporting">{{ __('translate.exporting') }}</span>
-                                    <span v-else>{{ __('translate.exportToSpreadsheet') }}</span>
-                                </button>
-
-                                <button
-                                    @click="resetFilters"
-                                    type="button"
-                                    class="w-full sm:w-auto px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold text-sm rounded-lg hover:bg-gray-50 transition-all uppercase"
-                                >
-                                    {{ __('translate.resetFilters') }}
-                                </button>
-                            </div>
-                        </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                <!-- Filters Section -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
 
-                    <!-- External firms section -->
-                    <div v-if="formSend.apps.length" class="mb-6">
-                        <multiselect v-model="formSend.externalFirms" :options="props.optionsExternal" label="name" :placeholder="__('translate.selectExternalFirms')" class="custom-multiselect mb-4" :multiple="true"/>
-                        <button @click="submitForm" :disabled="formSend.processing || !formSend.externalFirms.length" class="w-full px-4 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
-                            <svg v-if="formSend.processing" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 010 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
-                            </svg>
-                            <span v-if="!formSend.processing">{{ __('translate.submitApplications') }}</span>
-                            <span v-else>{{ __('translate.sending') }}</span>
+                    <!-- CV type tabs -->
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <button
+                            @click="form.has_cv='all'"
+                            :class="form.has_cv==='all'
+                                ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20'
+                                : 'bg-white text-gray-500 border border-gray-100 hover:bg-gray-50'"
+                            class="px-8 py-3 text-[10px] font-black uppercase tracking-widest rounded-2xl transition-all"
+                        >
+                            {{ __('translate.all') }}
+                        </button>
+                        <button
+                            @click="form.has_cv='yes'"
+                            :class="form.has_cv==='yes'
+                                ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20'
+                                : 'bg-white text-gray-500 border border-gray-100 hover:bg-gray-50'"
+                            class="px-8 py-3 text-[10px] font-black uppercase tracking-widest rounded-2xl transition-all"
+                        >
+                            {{ __('translate.classicCV') }}
+                        </button>
+                        <button
+                            @click="form.has_cv='no'"
+                            :class="form.has_cv==='no'
+                                ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20'
+                                : 'bg-white text-gray-500 border border-gray-100 hover:bg-gray-50'"
+                            class="px-8 py-3 text-[10px] font-black uppercase tracking-widest rounded-2xl transition-all"
+                        >
+                            {{ __('translate.videoAudioCV') }}
                         </button>
                     </div>
 
-                    <!-- Applications table -->
-                    <div class="space-y-1">
-                        <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 rounded-t-lg font-semibold text-sm text-gray-600 uppercase">
-                            <div class="col-span-1">ID</div>
-                            <div class="col-span-3">{{ __('translate.candidate') }}</div>
-                            <div class="col-span-2">{{ __('translate.status') }}</div>
-                            <div class="col-span-2">{{ __('translate.date') }}</div>
-                            <div class="col-span-2">{{ __('translate.note') }}</div>
-                            <div class="col-span-1">CV</div>
+                    <!-- Filters grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.projectID') }}</label>
+                            <input v-model="form.project" type="text" :placeholder="__('translate.enterID')" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"/>
                         </div>
-                        <div v-if="applications.data.length === 0" class="text-center py-12 text-gray-500">{{ __('translate.noApplicationsAvailable') }}</div>
-                        <div v-for="application in applications.data" :key="application.id" :style="getBackgroundStyle(application)" class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-4 bg-white border-b border-gray-200 hover:bg-gray-50 transition-all items-center">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
+                            <multiselect v-model="form.category" :options="props.optionsPosition" label="name"
+                                         :selectLabel="__('translate.selectLabel')"
+                                         :selectGroupLabel="__('translate.selectGroupLabel')"
+                                         :selectedLabel="__('translate.selectedLabel')"
+                                         :deselectLabel="__('translate.deselectLabel')"
+
+                                         :placeholder="__('translate.selectPosition')" class="custom-multiselect"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.applicationStatus') }}</label>
+                            <select v-model="form.status" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
+                                <option value="">{{ __('translate.all') }}</option>
+                                <option value="yes">{{ __('translate.yes') }}</option>
+                                <option value="no">{{ __('translate.no') }}</option>
+                                <option value="maybe">{{ __('translate.statusMaybe') }}</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date') }}</label>
+                            <input v-model="form.date" type="date" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"/>
+                        </div>
+                    </div>
+
+                    <!-- Additional CV filters -->
+                    <div v-if="form.has_cv==='yes'" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 pt-6 border-t border-gray-50">
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.language') }}</label>
+                            <multiselect
+                                :selectLabel="__('translate.selectLabel')"
+                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                :selectedLabel="__('translate.selectedLabel')"
+                                :deselectLabel="__('translate.deselectLabel')"
+                                v-model="form.lang" :options="sortLangs" label="label" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
+                        </div>
+                        <div class="space-y-2" :class="{ 'opacity-50 pointer-events-none': !form.lang }">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.languageLevel') }}</label>
+                            <multiselect
+                                :selectLabel="__('translate.selectLabel')"
+                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                :selectedLabel="__('translate.selectedLabel')"
+                                :deselectLabel="__('translate.deselectLabel')"
+                                v-model="form.Langlevel" :options="props.langLevels" label="name" :placeholder="__('translate.selectLevel')" :disabled="!form.lang" class="custom-multiselect"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.driveLicenseB') }}</label>
+                            <select v-model="form.driveLicense" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
+                                <option value="">{{ __('translate.all') }}</option>
+                                <option value="yes">{{ __('translate.yes') }}</option>
+                                <option value="no">{{ __('translate.no') }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-6 gap-4 pt-6 border-t border-gray-50">
+                        <div class="flex flex-wrap gap-4">
+                            <button
+                                @click="exportToCSV"
+                                :disabled="isExporting || (firmLoginPoints < exportRequiredPoints)"
+                                class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
+                            >
+                                <span v-if="isExporting">{{ __('translate.exporting') }}</span>
+                                <span v-else>{{ __('translate.exportToSpreadsheet') }}</span>
+                            </button>
+
+                            <button
+                                @click="resetFilters"
+                                type="button"
+                                class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                            >
+                                {{ __('translate.resetFilters') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- External firms section -->
+                <div v-if="formSend.apps.length" class="bg-white rounded-[2rem] border border-blue-100 p-8 shadow-xl shadow-blue-900/5">
+                    <div class="flex items-center gap-4 mb-6">
+                        <h3 class="text-[10px] font-black text-blue-500 uppercase tracking-widest">{{ __('translate.submitApplications') }}</h3>
+                        <div class="h-px flex-1 bg-blue-50"></div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 items-end">
+                        <div class="flex-1 w-full">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.selectExternalFirms') }}</label>
+                            <multiselect
+                                :selectLabel="__('translate.selectLabel')"
+                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                :selectedLabel="__('translate.selectedLabel')"
+                                :deselectLabel="__('translate.deselectLabel')"
+                                v-model="formSend.externalFirms" :options="props.optionsExternal" label="name" :placeholder="__('translate.selectExternalFirms')" class="custom-multiselect" :multiple="true"/>
+                        </div>
+                        <button @click="submitForm" :disabled="formSend.processing || !formSend.externalFirms.length" class="w-full md:w-auto px-10 py-4 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-700 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-600/20">
+                            <svg v-if="formSend.processing" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 010 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
+                            </svg>
+                            <span>{{ formSend.processing ? __('translate.sending') : __('translate.submitApplications') }}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Applications List -->
+                <div class="space-y-4 pb-12">
+                    <div class="flex items-center gap-4 mb-6 px-6">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.applications') }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
+
+                    <div v-if="applications.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noApplicationsAvailable') }}</p>
+                    </div>
+
+                    <div v-for="application in applications.data" :key="application.id"
+                         :style="getBackgroundStyle(application)"
+                         class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
+                    >
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                             <!-- checkbox + ID -->
-                            <div class="col-span-1 flex items-center">
-                                <input @change="changeIds" class="rounded border-gray-300 text-blue-500 shadow-sm focus:ring-blue-500 mr-2" type="checkbox" :id="'app-'+application.id" v-model="formSend.apps" :value="application.id"/>
-                                <label class="text-sm font-medium text-gray-900" :for="'app-'+application.id">{{ application.id }}</label>
+                            <div class="col-span-1 md:col-span-1 flex items-center justify-center md:justify-start">
+                                <label class="group/check flex items-center cursor-pointer">
+                                    <div class="relative flex items-center justify-center">
+                                        <input
+                                            @change="changeIds"
+                                            type="checkbox"
+                                            :id="'app-'+application.id"
+                                            v-model="formSend.apps"
+                                            :value="application.id"
+                                            class="peer sr-only"
+                                        />
+                                        <div class="h-6 w-6 rounded-lg border-2 border-gray-100 bg-white transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent group-hover/check:border-blue-200 flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover/check:text-[#0A2C5C] transition-colors">ID {{ application.id }}</span>
+                                </label>
                             </div>
 
                             <!-- Candidate info -->
-                            <div class="col-span-2 md:col-span-3 flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-full bg-[#EBF4FF] flex items-center justify-center text-lg overflow-hidden text-[#7F9CF5]">
+                            <div class="col-span-1 md:col-span-3 flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
                                     <img v-if="application.worker?.profile_photo_url" :src="application.worker?.profile_photo_url" :alt="application.name" class="w-full h-full object-cover"/>
-                                    <span v-else>{{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}</span>
+                                    <div v-else class="text-[#0A2C5C] font-black text-lg">
+                                        {{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="font-bold text-gray-900">{{ application.name }} {{ application.surname }}</div>
-                                    <div class="text-sm text-gray-500">{{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}</div>
+                                <div class="min-w-0">
+                                    <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight">{{ application.name }} {{ application.surname }}</div>
+                                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
+                                        {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Status buttons -->
-                            <div class="col-span-2 flex justify-center md:justify-start">
-                                <button v-if="application.status==='maybe'" @click="updateStatus(application.id,'yes')" class="min-w-[90px] px-6 py-2 bg-blue-500 text-white font-bold text-sm rounded-lg hover:bg-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.maybe') }}</button>
-                                <button v-else-if="application.status==='yes'" @click="updateStatus(application.id,'no')" class="min-w-[90px] px-6 py-2 bg-blue-900 text-white font-bold text-sm rounded-lg hover:bg-blue-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.yes') }}</button>
-                                <button v-else-if="application.status==='no'" @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-red-600 text-white font-bold text-sm rounded-lg hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">{{ __('translate.no') }}</button>
-                                <button v-else @click="updateStatus(application.id,'maybe')" class="min-w-[90px] px-6 py-2 bg-gray-300 text-gray-700 font-bold text-sm rounded-lg hover:bg-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase">---</button>
+                            <div class="col-span-1 md:col-span-2 flex justify-center">
+                                <button
+                                    v-if="application.status==='maybe'"
+                                    @click="updateStatus(application.id,'yes')"
+                                    class="w-full px-4 py-3 bg-cyan-500 text-white text-[10px] font-black rounded-xl hover:bg-cyan-600 shadow-md shadow-cyan-500/10 transition-all uppercase tracking-widest"
+                                >
+                                    {{ __('translate.maybe') }}
+                                </button>
+                                <button
+                                    v-else-if="application.status==='yes'"
+                                    @click="updateStatus(application.id,'no')"
+                                    class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
+                                >
+                                    {{ __('translate.yes') }}
+                                </button>
+                                <button
+                                    v-else-if="application.status==='no'"
+                                    @click="updateStatus(application.id,'maybe')"
+                                    class="w-full px-4 py-3 bg-red-600 text-white text-[10px] font-black rounded-xl hover:bg-red-700 shadow-md shadow-red-600/10 transition-all uppercase tracking-widest"
+                                >
+                                    {{ __('translate.no') }}
+                                </button>
+                                <button
+                                    v-else
+                                    @click="updateStatus(application.id,'maybe')"
+                                    class="w-full px-4 py-3 bg-gray-50 text-gray-400 text-[10px] font-black rounded-xl hover:bg-gray-100 border border-gray-100 transition-all uppercase tracking-widest"
+                                >
+                                    ---
+                                </button>
                             </div>
 
-                            <div class="col-span-2 flex justify-center md:justify-start text-sm text-gray-600">{{ application.created_at ? new Date(application.created_at).toLocaleDateString('pl-PL') : '' }}</div>
-                            <div class="col-span-2 flex justify-center md:justify-start text-sm text-gray-600 truncate max-w-[150px]" :title="application.notes?.[0]?.content">{{ application.notes?.[0]?.content || '-' }}</div>
+                            <!-- Date & Note -->
+                            <div class="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
+                                <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.date') }}</div>
+                                <div class="text-xs font-bold text-gray-700 uppercase tracking-tight">{{ application.created_at ? new Date(application.created_at).toLocaleDateString('pl-PL') : '' }}</div>
+                            </div>
 
-                            <!-- CV ikona -->
-                            <div class="col-span-1 flex">
-                                <div>
-                                    <div v-if="application.cv_audio" class="w-10 h-15 rounded flex items-center justify-center" :title="__('translate.cv_audio')">
-                                        <img class="text-gray-600" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
-                                    </div>
-                                    <div v-else-if="application.cv_video" class="w-10 h-15 rounded flex items-center justify-center" :title="__('translate.cv_video')">
-                                        <img class="text-gray-600" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
-                                    </div>
-                                    <div v-else class="w-10 h-15 rounded flex items-center justify-center" :title="__('translate.cv_classic')">
-                                        <img class="text-gray-600" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
-                                    </div>
+                            <div class="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
+                                <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.note') }}</div>
+                                <div class="text-xs font-bold text-gray-700 uppercase tracking-tight truncate w-full max-w-[200px]" :title="application.notes?.[0]?.content">
+                                    {{ application.notes?.[0]?.content || '—' }}
                                 </div>
                             </div>
-                            <div class="col-span-1 flex">
+
+                            <!-- CV Icon & Action -->
+                            <div class="col-span-1 md:col-span-2 flex items-center justify-center md:justify-end gap-6">
+                                <div class="shrink-0 transition-transform group-hover:scale-110">
+                                    <div v-if="application.cv_audio" class="w-20 h-20 flex items-center justify-center" :title="__('translate.cv_audio')">
+                                        <img class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
+                                    </div>
+                                    <div v-else-if="application.cv_video" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_video')">
+                                        <img class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
+                                    </div>
+                                    <div v-else class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
+                                        <img class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
+                                    </div>
+                                </div>
+
                                 <Link
                                     :href="route('project-aplications-recruits.show', application.id)"
-                                    class="px-6 py-2 bg-blue-900 text-white font-bold text-sm rounded-lg hover:bg-blue-800 transition-all uppercase"
+                                    class="px-8 py-3 bg-white text-[#0A2C5C] text-[10px] font-black rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all uppercase tracking-widest"
                                 >
                                     {{__('translate.check')}}
                                 </Link>
                             </div>
                         </div>
                     </div>
+
                     <!-- Pagination -->
-                    <Pagination class="mt-4" :links="applications.links"/>
+                    <div class="mt-8">
+                        <Pagination :links="applications.links"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -330,55 +451,76 @@ const submitForm = () => {
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
 .multiselect__tags {
-    border: 1px solid #d1d5db; /* border-gray-300 */
-    border-radius: 0.5rem; /* rounded-lg */
-    padding: 0.75rem 2.5rem 0.75rem 1rem; /* px-4 py-3, but with space for the arrow */
+    border: 1px solid #f3f4f6 !important; /* gray-100 */
+    border-radius: 1rem !important; /* rounded-2xl */
+    padding: 1rem 2.5rem 1rem 1.25rem !important;
+    background: #f9fafb !important; /* gray-50 */
+    min-height: 58px !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
 }
 
 .multiselect__placeholder {
-    margin-bottom: 0;
-    padding-top: 0;
-    color: #9ca3af; /* text-gray-400 */
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    color: #9ca3af !important; /* text-gray-400 */
+    font-size: 0.75rem !important; /* text-xs */
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
 }
 
 .multiselect__single {
-    margin-bottom: 0;
-    padding-left: 0;
-    font-size: 1rem;
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+    font-size: 0.75rem !important;
+    background: transparent !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #374151 !important;
 }
 
 .multiselect__input {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
+    background: transparent !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
 }
 
 .multiselect__select {
-    height: 100%;
-    width: 2.5rem;
+    height: 58px !important;
+    width: 2.5rem !important;
 }
 
 .multiselect__option--highlight {
-    background: #0d2a52 !important; /* work-main */
+    background: #0A2C5C !important;
     outline: none;
-    color: white;
+    color: white !important;
 }
 
 .multiselect__option--highlight:after {
-    background: #0d2a52 !important;
+    background: #0A2C5C !important;
 }
 
 .multiselect__option--selected {
-    background: #f3f4f6 !important; /* gray-100 */
-    color: #0d2a52;
-    font-weight: bold;
-}
-
-.multiselect__option--selected.multiselect__option--highlight {
-    background: #0d2a52 !important;
-    color: #fff;
+    background: #f3f4f6 !important;
+    color: #0A2C5C !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    font-size: 10px !important;
+    letter-spacing: 0.1em !important;
 }
 
 .multiselect__tag {
-    background: #0d2a52 !important;
+    background: #0A2C5C !important;
+    border-radius: 0.5rem !important;
+    padding: 6px 26px 6px 10px !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
 }
 
 .multiselect__tag-icon:after {
@@ -386,13 +528,28 @@ const submitForm = () => {
 }
 
 .multiselect__tag-icon:hover {
-    background: #1e3a8a !important; /* darker blue */
+    background: #1e3a8a !important;
 }
 
 .multiselect__content-wrapper {
-    border: 1px solid #d1d5db;
-    border-top: none;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    border: 1px solid #f3f4f6 !important;
+    border-top: none !important;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
 }
 </style>

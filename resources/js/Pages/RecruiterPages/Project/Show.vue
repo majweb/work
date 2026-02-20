@@ -102,312 +102,341 @@ onMounted(async () => {
 
 <template>
     <AppLayout :title="__('translate.project')+' #' + props.project.id">
-        <div class="py-6 bg-gray-50 min-h-screen">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- Nagłówek z linkiem wstecz -->
-                <div class="mb-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-black text-gray-900 uppercase tracking-tight leading-tight">
+                            {{ getPositionTitle }}
+                        </h2>
+                        <p class="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1">
+                            {{ __('translate.project') }} #{{ props.project.id }}
+                        </p>
+                    </div>
+
                     <Link
                         :href="route('project-recruits.index')"
-                        class="inline-flex items-center text-[#e31e24] hover:text-red-700 font-semibold text-xs uppercase tracking-wider transition-colors"
+                        class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                        </svg>
+                        <span class="text-lg leading-none">←</span>
                         {{ __('translate.backButton') }}
                     </Link>
                 </div>
 
-                <!-- Tytuł projektu -->
-                <div class="mb-6">
-                    <h1 class="text-3xl font-bold text-gray-900">
-                        {{ getPositionTitle }}
-                    </h1>
-                </div>
-
                 <!-- Status naboru i statystyki -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Status naboru z licznikami -->
-                        <div class="bg-gray-50 rounded-lg p-5">
-                            <div class="flex items-center mb-3">
-                                <div class="w-3 h-3 rounded-full mr-2 animate-pulse"
-                                     :class="props.project.is_active ? 'bg-green-500' : 'bg-gray-400'">
+                        <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100/50">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-2.5 h-2.5 rounded-full animate-pulse"
+                                     :class="props.project.is_active ? 'bg-green-500 shadow-sm shadow-green-200' : 'bg-gray-300'">
                                 </div>
-                                <p class="text-sm text-gray-600 font-medium">{{ __('translate.recruitmentStatus') }}:</p>
+                                <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.recruitmentStatus') }}</h3>
                             </div>
-                            <p class="text-lg font-bold mb-4"
-                               :class="props.project.is_active ? 'text-green-600' : 'text-gray-600'">
+                            <p class="text-sm font-black mb-6 uppercase tracking-tight"
+                               :class="props.project.is_active ? 'text-green-600' : 'text-gray-400'">
                                 {{ props.project.is_active ? __('translate.recruitmentActive') : __('translate.inactive') }}
                             </p>
 
                             <div class="grid grid-cols-3 gap-3 text-center">
-                                <div class="bg-white rounded-lg p-2">
-                                    <div class="text-xs text-gray-500 mb-1 font-medium">{{ __('translate.statusYesLabel') }}</div>
-                                    <div class="text-2xl font-bold" style="color: #0d2a52;">{{ props.project.yes_count || 0 }}</div>
+                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
+                                    <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.statusYesLabel') }}</div>
+                                    <div class="text-xl font-black text-[#0A2C5C]">{{ props.project.yes_count || 0 }}</div>
                                 </div>
-                                <div class="bg-white rounded-lg p-2">
-                                    <div class="text-xs text-gray-500 mb-1 font-medium">{{ __('translate.statusNoLabel') }}</div>
-                                    <div class="text-2xl font-bold" style="color: #e31e24;">{{ props.project.no_count || 0 }}</div>
+                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
+                                    <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.statusNoLabel') }}</div>
+                                    <div class="text-xl font-black text-red-600">{{ props.project.no_count || 0 }}</div>
                                 </div>
-                                <div class="bg-white rounded-lg p-2">
-                                    <div class="text-xs text-gray-500 mb-1 font-medium">{{ __('translate.statusMaybeLabel') }}</div>
-                                    <div class="text-2xl font-bold" style="color: #00a0e3;">{{ props.project.maybe_count || 0 }}</div>
+                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
+                                    <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.statusMaybeLabel') }}</div>
+                                    <div class="text-xl font-black text-cyan-500">{{ props.project.maybe_count || 0 }}</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Aplikacje -->
-                        <div class="bg-gray-50 rounded-lg p-5">
-                            <p class="text-sm text-gray-600 mb-2 font-medium">{{ __('translate.applications') }}</p>
-                            <p class="text-4xl font-bold text-[#0d2a52]">{{ props.project.aplications_count || 0 }}</p>
+                        <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100/50 flex flex-col justify-center">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.applications') }}</p>
+                            <p class="text-5xl font-black text-[#0A2C5C] tracking-tight">{{ props.project.aplications_count || 0 }}</p>
                         </div>
 
                         <!-- Wyświetlenia -->
-                        <div class="bg-gray-50 rounded-lg p-5">
-                            <p class="text-sm text-gray-600 mb-2 font-medium">{{ __('translate.viewsCount') }}</p>
-                            <p class="text-4xl font-bold text-[#0d2a52]">{{ props.project.views_count || 0 }}</p>
+                        <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100/50 flex flex-col justify-center">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.viewsCount') }}</p>
+                            <p class="text-5xl font-black text-[#0A2C5C] tracking-tight">{{ props.project.views_count || 0 }}</p>
                         </div>
 
                         <!-- Nowe aplikacje -->
-                        <div class="bg-gray-50 rounded-lg p-5">
-                            <p class="text-sm text-gray-600 mb-2 font-medium">{{ __('translate.newApplications') }}</p>
-                            <p class="text-4xl font-bold text-[#00a0e3]">{{ props.project.new_count || 0 }}</p>
+                        <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100/50 flex flex-col justify-center">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.newApplications') }}</p>
+                            <p class="text-5xl font-black text-[#00a0e3] tracking-tight">{{ props.project.new_count || 0 }}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Główna zawartość -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Lewa kolumna - szczegóły (2/3) -->
-                    <div class="lg:col-span-2 space-y-6">
+                    <div class="lg:col-span-2 space-y-8">
 
                         <!-- Podstawowe informacje -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/informacje_podstawowe.svg" :alt="__('translate.altBasicInfo')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.basicInfo') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/informacje_podstawowe.svg" :alt="__('translate.altBasicInfo')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.basicInfo') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">Id:</span>
-                                    <span class="font-bold text-gray-900 text-lg">{{ props.project.id }}</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">ID</p>
+                                    <p class="text-xl font-black text-gray-900 tracking-widest">{{ props.project.id }}</p>
                                 </div>
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.statusLabel') }}:</span>
-                                    <span class="font-semibold text-lg"
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.statusLabel') }}</p>
+                                    <p class="text-xl font-black uppercase tracking-tight"
                                           :class="props.project.is_active ? 'text-green-600' : 'text-red-600'">
                                         {{ props.project.is_active ? __('translate.activeStatus') : __('translate.inactiveStatus') }}
-                                    </span>
+                                    </p>
                                 </div>
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.recruiterLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.recruit?.name }}</span>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2 flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
+                                         <div class="text-[#0A2C5C] font-black text-sm uppercase">
+                                             {{ props.project.recruit?.name?.[0] }}{{ props.project.recruit?.name?.split(' ')?.[1]?.[0] }}
+                                         </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.recruiterLabel') }}</p>
+                                        <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.recruit?.name }}</p>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-50 rounded-lg p-4 col-span-2" v-if="props.otherRecruits && props.otherRecruits.length">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.otherRecruitersLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        {{ props.otherRecruits.map(r => r.name).join(', ') }}
-                                    </span>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2" v-if="props.otherRecruits && props.otherRecruits.length">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{{ __('translate.otherRecruitersLabel') }}</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span v-for="recruit in props.otherRecruits" :key="recruit.id"
+                                              class="px-4 py-2 bg-white rounded-xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
+                                            {{ recruit.name }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="bg-gray-50 rounded-lg p-4 col-span-2" v-if="props.project.title">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.projectTitleLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.title[usePage().props.language] }}</span>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2" v-if="props.project.title">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.projectTitleLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.title[usePage().props.language] }}</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Kategoria -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/kategoria.svg" :alt="__('translate.altCategory')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.categorySection') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/kategoria.svg" :alt="__('translate.altCategory')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <span class="text-xs text-gray-500 block mb-1">{{ __('translate.industryLabel') }}:</span>
-                                        <span class="font-semibold text-gray-900 text-sm">{{ props.project.category?.allTranslations?.title[usePage().props.language] }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-gray-500 block mb-1">{{ __('translate.subIndustryLabel') }}:</span>
-                                        <span class="font-semibold text-gray-900 text-sm">{{ props.project.categorySub?.allTranslations?.title[usePage().props.language] }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-gray-500 block mb-1">{{ __('translate.professionLabel') }}:</span>
-                                        <span class="font-semibold text-gray-900 text-sm">{{ props.project.profession?.allTranslations?.title[usePage().props.language] }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-gray-500 block mb-1">{{ __('translate.positionLabel') }}:</span>
-                                        <span class="font-semibold text-gray-900 text-sm">{{ props.project.position?.allTranslations?.title[usePage().props.language] }}</span>
-                                    </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.industryLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.category?.allTranslations?.title[usePage().props.language] }}</p>
+                                </div>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.subIndustryLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.categorySub?.allTranslations?.title[usePage().props.language] }}</p>
+                                </div>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.professionLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.profession?.allTranslations?.title[usePage().props.language] }}</p>
+                                </div>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.positionLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.position?.allTranslations?.title[usePage().props.language] }}</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Wynagrodzenie -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/wynagrodzenie.svg" :alt="__('translate.altSalary')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.salarySection') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/wynagrodzenie.svg" :alt="__('translate.altSalary')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.salarySection') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.salaryLabel') }}:</span>
-                                    <span class="font-bold text-[#0d2a52] text-xl">
-                                        {{ props.project.basicSalaryFrom }} - {{ props.project.basicSalaryTo }}
-                                    </span>
-                                    <span class="text-gray-600 text-sm ml-2">{{ props.project.currency?.name }}</span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.payoutModeLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.payoutMode?.allTranslations?.name[usePage().props.language] }}</span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4" v-if="props.project.bonusSalaryFrom || props.project.bonusSalaryTo">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.bonusLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        {{ props.project.bonusSalaryFrom }} - {{ props.project.bonusSalaryTo }} {{ props.project.currency?.name }}
-                                    </span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4" v-if="props.project.paySystem && props.project.paySystem.length">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.incomeTypeLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        <span v-for="(pay, index) in props.project.paySystem" :key="index">
-                                            {{ pay.allTranslations?.name[usePage().props.language] }}<span v-if="index !== props.project.paySystem.length - 1">, </span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salaryLabel') }}</p>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="text-2xl font-black text-[#0A2C5C] tracking-tight">
+                                            {{ props.project.basicSalaryFrom }} - {{ props.project.basicSalaryTo }}
                                         </span>
-                                    </span>
+                                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ props.project.currency?.name }}</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.payoutModeLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.payoutMode?.allTranslations?.name[usePage().props.language] }}</p>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.bonusSalaryFrom || props.project.bonusSalaryTo">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.bonusLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        {{ props.project.bonusSalaryFrom }} - {{ props.project.bonusSalaryTo }} {{ props.project.currency?.name }}
+                                    </p>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.paySystem && props.project.paySystem.length">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.incomeTypeLabel') }}</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span v-for="(pay, index) in props.project.paySystem" :key="index"
+                                              class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
+                                            {{ pay.allTranslations?.name[usePage().props.language] }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Organizacja pracy -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/organizacja_pracy.svg" :alt="__('translate.altWorkOrganization')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.workOrganization') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/organizacja_pracy.svg" :alt="__('translate.altWorkOrganization')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workOrganization') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.workModeLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        <span v-for="(working, index) in props.project.workingMode" :key="index">
-                                            {{ working.allTranslations?.title[usePage().props.language] }}<span v-if="index !== props.project.workingMode.length - 1">, </span>
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.contractTypeLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        <span v-for="(type, index) in props.project.typeOfContract" :key="index">
-                                            {{ type.allTranslations?.name[usePage().props.language] }}<span v-if="index !== props.project.typeOfContract.length - 1">, </span>
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.workScopeLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.workLoad?.allTranslations?.name[usePage().props.language] }}</span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.workHoursLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.hoursFrom }} - {{ props.project.hoursTo }}</span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.nightWorkLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        {{ props.project.workNight == 2 ? __('translate.no') : __('translate.yes') }}
-                                    </span>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4" v-if="props.project.shift_work">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.shiftWorkLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">
-                                        {{ props.project.shift_work?.name?.[usePage().props.language] }}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 gap-4 mt-4" v-if="props.project.days && props.project.days.length">
-                                <div class="bg-gray-50 rounded-lg p-4">
-                                    <span class="text-xs text-gray-500 block mb-2">{{ __('translate.workDaysLabel') }}:</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{{ __('translate.workModeLabel') }}</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <span v-for="(day, index) in props.project.days"
-                                              :key="index"
-                                              class="inline-block bg-white px-3 py-1 rounded-full text-xs font-medium text-gray-700 border border-gray-200">
-                                            {{ day.allTranslations?.name[usePage().props.language] }}
+                                        <span v-for="working in props.project.workingMode" :key="working.id"
+                                              class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
+                                            {{ working.allTranslations?.title[usePage().props.language] }}
                                         </span>
                                     </div>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{{ __('translate.contractTypeLabel') }}</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span v-for="type in props.project.typeOfContract" :key="type.id"
+                                              class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
+                                            {{ type.allTranslations?.name[usePage().props.language] }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workScopeLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.workLoad?.allTranslations?.name[usePage().props.language] }}</p>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workHoursLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] tracking-widest">{{ props.project.hoursFrom }} - {{ props.project.hoursTo }}</p>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.nightWorkLabel') }}</p>
+                                    <p class="text-sm font-black uppercase tracking-tight" :class="props.project.workNight == 2 ? 'text-gray-400' : 'text-[#0A2C5C]'">
+                                        {{ props.project.workNight == 2 ? __('translate.no') : __('translate.yes') }}
+                                    </p>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.shift_work">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.shiftWorkLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        {{ props.project.shift_work?.name?.[usePage().props.language] }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-8" v-if="props.project.days && props.project.days.length">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{ __('translate.workDaysLabel') }}</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span v-for="day in props.project.days"
+                                          :key="day.id"
+                                          class="px-5 py-2.5 bg-gray-50 rounded-2xl text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest border border-gray-100 shadow-sm">
+                                        {{ day.allTranslations?.name[usePage().props.language] }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- mile widziane -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.altWelcomed')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.welcomed') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.altWelcomed')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.welcomed') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="space-y-3">
-                                <div class="bg-gray-50 rounded-lg p-4" v-if="props.project.experience">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.experienceInternational') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.experience?.allTranslations?.name[usePage().props.language] }}</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.experience">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.experienceInternational') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.experience?.allTranslations?.name[usePage().props.language] }}</p>
                                 </div>
 
-                                <div class="bg-gray-50 rounded-lg p-4" v-if="props.project.welcome && props.project.welcome.length">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.welcomedLabel') }}:</span>
-                                    <div class="flex flex-wrap gap-2 mt-2">
-                                        <span v-for="(w, index) in props.project.welcome"
-                                              :key="index"
-                                              class="inline-block bg-white px-3 py-1 rounded-full text-xs font-medium text-gray-700 border border-gray-200">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.education">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.educationLabel') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.education?.name?.[usePage().props.language] }}</p>
+                                </div>
+
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2" v-if="props.project.welcome && props.project.welcome.length">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{ __('translate.welcomedLabel') }}</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span v-for="w in props.project.welcome" :key="w.id"
+                                              class="px-5 py-2.5 bg-white rounded-2xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
                                             {{ w.allTranslations?.name[usePage().props.language] }}
                                         </span>
                                     </div>
-                                </div>
-
-                                <div class="bg-gray-50 rounded-lg p-4" v-if="props.project.education">
-                                    <span class="text-xs text-gray-500 block mb-1">{{ __('translate.educationLabel') }}:</span>
-                                    <span class="font-semibold text-gray-900 text-sm">{{ props.project.education?.name?.[usePage().props.language] }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- oferujemy -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6" v-if="props.project.offer && props.project.offer.length">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/oferujemy.svg" :alt="__('translate.altWeOffer')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.weOffer') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.offer && props.project.offer.length">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/oferujemy.svg" :alt="__('translate.altWeOffer')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.weOffer') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="flex flex-wrap gap-2">
-                                <span v-for="(off, index) in props.project.offer"
-                                      :key="index"
-                                      class="inline-block bg-[#00a0e3] text-white px-4 py-2 rounded-lg text-sm font-medium">
+                            <div class="flex flex-wrap gap-3">
+                                <span v-for="off in props.project.offer" :key="off.id"
+                                      class="px-6 py-3 bg-[#00a0e3] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-400/20 transition-all hover:-translate-y-0.5">
                                     {{ off.allTranslations?.name[usePage().props.language] }}
                                 </span>
                             </div>
                         </div>
 
                         <!-- oczekujemy -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6" v-if="props.project.wait && props.project.wait.length">
-                            <div class="flex items-center gap-2 mb-5">
-                                <img class="w-10 h-10" src="/images/icons/recruit/oczekujemy.svg" :alt="__('translate.altWeExpect')">
-                                <h2 class="text-lg font-bold text-gray-900">{{ __('translate.weExpect') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.wait && props.project.wait.length">
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/oczekujemy.svg" :alt="__('translate.altWeExpect')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.weExpect') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="flex flex-wrap gap-2">
-                                <span v-for="(w, index) in props.project.wait"
-                                      :key="index"
-                                      class="inline-block bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium border border-gray-300">
+                            <div class="flex flex-wrap gap-3">
+                                <span v-for="w in props.project.wait" :key="w.id"
+                                      class="px-6 py-3 bg-white text-gray-700 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-gray-100 shadow-sm transition-all hover:bg-gray-50">
                                     {{ w.allTranslations?.name[usePage().props.language] }}
                                 </span>
                             </div>
@@ -416,100 +445,111 @@ onMounted(async () => {
                     </div>
 
                     <!-- Prawa kolumna - mapa i akcje (1/3) -->
-                    <div class="space-y-6">
+                    <div class="space-y-8">
                         <!-- Mapa -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden h-[300px] relative"
                              v-if="hasLocation">
-                            <div id="projectMap" style="width: 100%; height: 250px;"></div>
+                            <div id="projectMap" class="w-full h-full"></div>
                         </div>
 
                         <!-- Lokalizacja -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div class="flex items-center gap-2 mb-4">
-                                <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" :alt="__('translate.altLocation')">
-                                <h2 class="text-base font-bold text-gray-900">{{ __('translate.locationLabel') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" :alt="__('translate.altLocation')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.locationLabel') }}</h2>
                             </div>
 
-                            <div class="space-y-2 text-sm">
-                                <div class="flex items-start">
-                                    <svg class="w-4 h-4 text-gray-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    </svg>
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                                    </div>
                                     <div>
-                                        <p class="font-semibold text-gray-900">{{ props.project.cityWork }}</p>
-                                        <p class="text-gray-600">{{ props.project.countryWork?.allTranslations?.[usePage().props.language] || props.project.countryWork }}</p>
+                                        <p class="text-sm font-black text-gray-900 uppercase tracking-tight">{{ props.project.cityWork }}</p>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                                            {{ props.project.countryWork?.allTranslations?.[usePage().props.language] || props.project.countryWork }}
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div class="flex items-start" v-if="props.project.streetWork">
-                                    <svg class="w-4 h-4 text-gray-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                                    </svg>
-                                    <p class="text-gray-700">
-                                        {{ props.project.streetWork }} {{ props.project.streetWorkNumber }}
-                                    </p>
-                                </div>
-
-                                <div class="flex items-start" v-if="props.project.postalWork">
-                                    <svg class="w-4 h-4 text-gray-400 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
-                                    <p class="text-gray-700">{{ props.project.postalWork }}</p>
+                                <div class="flex items-start gap-4" v-if="props.project.streetWork">
+                                    <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-black text-gray-900 uppercase tracking-tight">
+                                            {{ props.project.streetWork }} {{ props.project.streetWorkNumber }}
+                                        </p>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="props.project.postalWork">{{ props.project.postalWork }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Kraj publikacji -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6" v-if="props.project.country && props.project.country.length">
-                            <div class="flex items-center gap-2 mb-4">
-                                <img class="w-10 h-10" src="/images/icons/recruit/kraj_publikacji.svg" :alt="__('translate.altPublicationCountry')">
-                                <h2 class="text-base font-bold text-gray-900">{{ __('translate.publicationCountry') }}</h2>
+                        <!-- Kraje publikacji -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.country && props.project.country.length">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/kraj_publikacji.svg" :alt="__('translate.altPublicationCountry')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.publicationCountry') }}</h2>
                             </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span v-for="(country, index) in props.project.country"
-                                      :key="index"
-                                      class="inline-block bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg text-xs font-medium">
+                            <div class="flex flex-wrap gap-3">
+                                <span v-for="country in props.project.country" :key="country.id"
+                                      class="px-4 py-2 bg-gray-50 rounded-xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
                                     {{ country.allTranslations?.[usePage().props.language] }}
                                 </span>
                             </div>
                         </div>
 
                         <!-- Miejsce pracy -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6" v-if="props.project.workingPlace">
-                            <div class="flex items-center gap-2 mb-4">
-                                <img class="w-10 h-10" src="/images/icons/recruit/miejsce_pracy.svg" :alt="__('translate.altWorkplace')">
-                                <h2 class="text-base font-bold text-gray-900">{{ __('translate.workplaceLabel') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.workingPlace">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/miejsce_pracy.svg" :alt="__('translate.altWorkplace')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workplaceLabel') }}</h2>
                             </div>
-                            <p class="text-sm font-semibold text-gray-900">
+                            <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
                                 {{ props.project.workingPlace?.allTranslations?.name[usePage().props.language] }}
                             </p>
                         </div>
 
                         <!-- Firma zewnętrzna -->
-                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6" v-if="props.project.external_company">
-                            <div class="flex items-center gap-2 mb-4">
-                                <img class="w-10 h-10" src="/images/icons/recruit/firma_zewnetrzna.svg" :alt="__('translate.altExternalCompany')">
-                                <h2 class="text-base font-bold text-gray-900">{{ __('translate.externalCompanyLabel') }}</h2>
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.external_company">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/firma_zewnetrzna.svg" :alt="__('translate.altExternalCompany')">
+                                </div>
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.externalCompanyLabel') }}</h2>
                             </div>
-                            <p class="text-sm font-semibold text-gray-900">
-                                {{ props.project.external_company.name }}
-                                <span class="text-gray-500">({{ props.project.external_company.abbreviation }})</span>
-                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#0A2C5C] font-black uppercase text-xs">
+                                    {{ props.project.external_company.abbreviation }}
+                                </div>
+                                <p class="text-sm font-black text-gray-900 uppercase tracking-tight">
+                                    {{ props.project.external_company.name }}
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Przyciski akcji -->
-                        <div class="space-y-3">
+                        <div class="flex flex-col gap-4">
                             <Link
                                 :href="route('project-recruits.edit', props.project)"
-                                class="w-full block text-center px-6 py-3.5 bg-[#0d2a52] text-white font-bold rounded-lg hover:bg-[#1a3d6e] transition-all duration-200 shadow-sm hover:shadow-md uppercase tracking-wider text-sm"
+                                class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-8 py-5 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
                             >
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                 {{ __('translate.editButton') }}
                             </Link>
 
                             <button
                                 @click="openModal(props.project)"
-                                class="w-full px-6 py-3.5 bg-[#e31e24] text-white font-bold rounded-lg hover:bg-red-700 transition-all duration-200 shadow-sm hover:shadow-md uppercase tracking-wider text-sm"
+                                class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-red-600 px-8 py-5 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5"
                             >
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                 {{ __('translate.deleteButton') }}
                             </button>
                         </div>
@@ -519,18 +559,24 @@ onMounted(async () => {
                 <!-- Modal usuwania -->
                 <DialogModal :show="confirmCancelProject" @close="confirmCancelProject = false">
                     <template #title>
-                        {{ __('translate.questionDelete') }} - {{ __('translate.project').toLowerCase() }} #{{ selectedProject && selectedProject.id }}
+                        <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                            {{ __('translate.questionDelete') }} - {{ __('translate.project').toLowerCase() }} #{{ selectedProject && selectedProject.id }}
+                        </span>
                     </template>
                     <template #content>
-                        {{ __('translate.questionDeleteConfirm') }} - {{ __('translate.project').toLowerCase() }} #{{ selectedProject && selectedProject.id }}
+                        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                            {{ __('translate.questionDeleteConfirm') }} - {{ __('translate.project').toLowerCase() }} #{{ selectedProject && selectedProject.id }}
+                        </p>
                     </template>
                     <template #footer>
-                        <SecondaryButton @click.native="confirmCancelProject = false">
-                            {{ __('translate.cancel') }}
-                        </SecondaryButton>
-                        <DangerButton class="ml-2" @click.native="DeleteProject">
-                            {{ __('translate.delete') }}
-                        </DangerButton>
+                        <div class="flex gap-3">
+                            <SecondaryButton @click.native="confirmCancelProject = false" class="!rounded-xl !text-[10px] !font-black !uppercase !tracking-widest">
+                                {{ __('translate.cancel') }}
+                            </SecondaryButton>
+                            <DangerButton @click.native="DeleteProject" class="!rounded-xl !text-[10px] !font-black !uppercase !tracking-widest">
+                                {{ __('translate.delete') }}
+                            </DangerButton>
+                        </div>
                     </template>
                 </DialogModal>
             </div>

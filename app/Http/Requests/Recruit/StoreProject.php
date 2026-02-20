@@ -170,7 +170,7 @@ class StoreProject extends FormRequest
             'streetWork' => strtolower(__('translate.Street')),
             'postalWork' => strtolower(__('translate.Postal')),
             'cityWork' => strtolower(__('translate.City')),
-            'streetWorkNumber' => strtolower(__('translate.City')),
+            'streetWorkNumber' => strtolower(__('translate.Number')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
             'questions' => strtolower(__('translate.questions')),
             'external_company_id' => strtolower(__('translate.externalCompany')),
