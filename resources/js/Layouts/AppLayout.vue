@@ -351,8 +351,17 @@ onUnmounted(()=>{
                                         <DropdownLink :href="route('worker.aplications')" v-if="!hasRole('recruit')">
                                             {{__('translate.aplications')}}
                                         </DropdownLink>
+                                        <DropdownLink :href="route('project-recruits.index')" v-if="hasRole('recruit')">
+                                            {{__('translate.projects')}}
+                                        </DropdownLink>
                                         <DropdownLink :href="route('project-aplications-recruits.index')" v-if="hasRole('recruit')">
                                             {{__('translate.aplications')}}
+                                        </DropdownLink>
+                                        <DropdownLink :href="route('candidates.index')" v-if="hasRole('recruit')">
+                                            {{__('translate.candidates')}}
+                                        </DropdownLink>
+                                        <DropdownLink :href="route('tags.index')" v-if="hasRole('recruit')">
+                                            {{__('translate.tags')}}
                                         </DropdownLink>
                                         <div class="border-t border-gray-200" />
                                         <!-- Authentication -->

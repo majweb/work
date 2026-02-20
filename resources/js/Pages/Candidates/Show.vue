@@ -95,6 +95,15 @@ const getContrastColor = (backgroundColor) => {
     return brightness > 128 ? '#000000' : '#FFFFFF';
 };
 
+const getContrastColorText = (bgColor) => {
+    if (!bgColor) return '#000';
+    const color = bgColor.replace('#', '');
+    const r = parseInt(color.substr(0,2),16);
+    const g = parseInt(color.substr(2,2),16);
+    const b = parseInt(color.substr(4,2),16);
+    return (r*0.299 + g*0.587 + b*0.114) > 186 ? '#000' : '#fff';
+};
+
 // Konwersja HSL do RGB
 const hexToRgb = (hex) => {
     // Jeśli to jest format HSL, zwracamy domyślne wartości
@@ -977,7 +986,7 @@ initAnswersForm();
                                 <div class="flex flex-wrap gap-2">
                                     <span v-for="tag in filteredCustomTags" :key="tag.id"
                                           class="px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-sm"
-                                          :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
+                                          :style="{ backgroundColor: tag.color || '#ccc', color: getContrastColorText(tag.color) }"
                                           @click="toggleCustomTag(tag)">
                                         {{ tag.name }}
                                     </span>

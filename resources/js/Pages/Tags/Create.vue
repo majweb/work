@@ -22,6 +22,15 @@ const createTag = () => {
         },
     });
 };
+
+const getContrastColor = (bgColor) => {
+    if (!bgColor) return '#000';
+    const color = bgColor.replace('#', '');
+    const r = parseInt(color.substr(0,2),16);
+    const g = parseInt(color.substr(2,2),16);
+    const b = parseInt(color.substr(4,2),16);
+    return (r*0.299 + g*0.587 + b*0.114) > 186 ? '#000' : '#fff';
+};
 </script>
 
 <template>
@@ -32,44 +41,51 @@ const createTag = () => {
             </h2>
         </template>
 
-        <div class="py-8">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white p-8 sm:p-12 rounded-[2rem] shadow-sm border border-gray-100">
-                    <div class="mb-8">
-                        <Link :href="route('tags.index')" class="text-red-500 font-bold text-xs uppercase tracking-[0.2em] hover:underline transition-all">
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <div class="mb-10">
+                        <Link :href="route('tags.index')" class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5 mb-8">
+                            <span class="text-lg leading-none">←</span>
                             {{ __('translate.goBack') }}
                         </Link>
 
-                        <h2 class="font-bold text-3xl text-[#1a335d] leading-tight mt-6">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.createTag') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
+
+                        <h2 class="font-black text-3xl text-gray-900 leading-tight">
                             {{ __('translate.createTag') }}
                         </h2>
-                        <p class="mt-4 text-gray-500 max-w-2xl text-base font-medium leading-relaxed">
+                        <p class="mt-4 text-gray-400 max-w-2xl text-[10px] font-bold uppercase tracking-widest leading-relaxed">
                             {{ __('translate.createTagInfo') }}
                         </p>
                     </div>
 
                     <form @submit.prevent="createTag">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                             <!-- Lewa kolumna: Nazwa -->
-                            <div class="space-y-6">
-                                <div class="relative group">
+                            <div class="space-y-8">
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.name') }}</label>
                                     <TextInput
                                         id="name"
                                         v-model="form.name"
                                         type="text"
-                                        class="mt-1 block w-full rounded-2xl border-gray-100 py-3 px-6 text-lg font-bold text-[#1a335d] focus:border-[#00b0e8] focus:ring-0 transition-all placeholder:text-gray-200"
-                                        :placeholder="__('translate.name')"
+                                        class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-300 font-bold tracking-widest uppercase"
+                                        :placeholder="__('translate.enterName')"
                                         autofocus
                                     />
                                     <InputError :message="form.errors.name" class="mt-2" />
                                 </div>
 
-                                <div class="flex justify-start mt-8">
+                                <div class="flex justify-start">
                                     <button
                                         type="submit"
                                         :class="{ 'opacity-25': form.processing }"
                                         :disabled="form.processing"
-                                        class="bg-[#1a335d] text-white px-12 py-3 rounded-xl font-black text-lg uppercase tracking-[0.2em] hover:bg-[#14284b] transition-all active:scale-95 shadow-lg"
+                                        class="bg-[#0A2C5C] text-white px-12 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition-all active:scale-95 shadow-lg shadow-blue-900/20"
                                     >
                                         {{ __('translate.create') }}
                                     </button>
@@ -77,12 +93,24 @@ const createTag = () => {
                             </div>
 
                             <!-- Prawa kolumna: Kolor -->
-                            <div>
-                                <InputLabel for="color" :value="__('translate.color')" class="mb-2 text-[#1a335d] font-bold uppercase tracking-widest text-xs" />
+                            <div class="space-y-6">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.color') }}</label>
                                 <div class="mt-1">
+                                    <div class="mb-6 flex items-center gap-4">
+                                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest">{{ __('translate.preview') || 'Podgląd' }}:</p>
+                                        <span
+                                            class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm border border-black/5"
+                                            :style="{ backgroundColor: form.color.hex || form.color, color: getContrastColor(form.color.hex || form.color) }"
+                                        >
+                                            {{ form.name || (__('translate.tagName') || 'Nazwa tagu') }}
+                                        </span>
+                                    </div>
+
                                     <ChromePicker v-model="form.color" formats="hex" class="!shadow-none !border-gray-50 !rounded-2xl overflow-hidden" />
-                                    <p class="mt-4 text-sm text-gray-500 font-medium">{{ __('translate.colorTag') }}</p>
-                                    <p class="text-xs text-gray-400 italic">{{ __('translate.colorTagDesc') }}</p>
+                                    <div class="mt-6 space-y-2">
+                                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest">{{ __('translate.colorTag') }}</p>
+                                        <p class="text-[10px] text-gray-300 font-bold uppercase tracking-widest italic leading-relaxed">{{ __('translate.colorTagDesc') }}</p>
+                                    </div>
                                 </div>
                                 <InputError :message="form.errors.color" class="mt-2"/>
                             </div>

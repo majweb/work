@@ -4,8 +4,6 @@ import {Link, usePage} from '@inertiajs/vue3';
 import {computed, ref, watch} from 'vue';
 import { router } from '@inertiajs/vue3';
 import { debounce, pickBy } from 'lodash';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
 import __ from '@/lang.js';
 import Multiselect from "vue-multiselect";
 const locale = computed(()=>usePage().props.language);
@@ -262,7 +260,7 @@ watch(selectedTags, (newTags) => {
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div
                 v-if="loading"
                 class="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90"
@@ -271,51 +269,52 @@ watch(selectedTags, (newTags) => {
             </div>
 
             <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-xl sm:rounded-lg p-6">
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-8">
                     <!-- Header -->
-                    <div class="mb-6">
-                        <h1 class="text-2xl font-semibold text-gray-900">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
                             {{ __('translate.candidatesList') }}
-                        </h1>
-                        <p class="mt-1 text-sm text-gray-500">
-                            {{__('translate.candidatesListP')}}
-                        </p>
+                        </h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
 
                     <!-- Formularz filtrowania -->
-                    <div class="mb-6 bg-gray-50 p-4 rounded-lg">
-                        <h4 class="font-medium text-gray-700 mb-3">{{ __('translate.filterCandidates') }}</h4>
+                    <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <InputLabel :value="__('translate.name')" />
-                                <TextInput
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.name') }}</label>
+                                <input
                                     v-model="form.name"
                                     type="text"
-                                    class="w-full"
+                                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                     :placeholder="__('translate.enterName')"
                                 />
                             </div>
-                            <div>
-                                <InputLabel :value="__('translate.surname')" />
-                                <TextInput
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.surname') }}</label>
+                                <input
                                     v-model="form.surname"
                                     type="text"
-                                    class="w-full"
+                                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                     :placeholder="__('translate.enterSurname')"
                                 />
                             </div>
-                            <div>
-                                <InputLabel :value="__('translate.email')" />
-                                <TextInput
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.email') }}</label>
+                                <input
                                     v-model="form.email"
                                     type="text"
-                                    class="w-full"
+                                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                     :placeholder="__('translate.enterEmail')"
                                 />
                             </div>
-                            <div>
-                                <InputLabel :value="__('translate.recruiter')"/>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.recruiter') }}</label>
                                 <multiselect
                                     :selectLabel="__('translate.selectLabel')"
                                     :selectGroupLabel="__('translate.selectGroupLabel')"
@@ -326,17 +325,11 @@ watch(selectedTags, (newTags) => {
                                     track-by="value"
                                     label="name"
                                     :placeholder="__('translate.placeholder')"
-                                    v-model="form.recruiter" :options="optionsRecruits">
-                                    <template #noResult>
-                                        <span>{{__('translate.noOptions')}}</span>
-                                    </template>
-                                    <template #noOptions>
-                                        <span>{{__('translate.noResult')}}</span>
-                                    </template>
+                                    v-model="form.recruiter" :options="optionsRecruits" class="custom-multiselect">
                                 </multiselect>
                             </div>
-                            <div>
-                                <InputLabel :value="__('translate.position')"/>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
                                 <multiselect
                                     :selectLabel="__('translate.selectLabel')"
                                     :selectGroupLabel="__('translate.selectGroupLabel')"
@@ -348,23 +341,23 @@ watch(selectedTags, (newTags) => {
                                     label="name"
                                     :placeholder="__('translate.placeholder')"
                                     v-model="form.position"
-                                    :options="optionsPosition">
+                                    :options="optionsPosition" class="custom-multiselect">
                                 </multiselect>
                             </div>
-                            <div>
-                                <InputLabel :value="__('translate.phone')" />
-                                <TextInput
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.phone') }}</label>
+                                <input
                                     v-model="form.phone"
                                     type="text"
-                                    class="w-full"
+                                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                     :placeholder="__('translate.enterPhone')"
                                 />
                             </div>
-                            <div class="col-span-2">
-                                <InputLabel :value="__('translate.project')" />
+                            <div class="col-span-2 space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.project') }}</label>
                                 <select
                                     v-model="form.project"
-                                    class="w-full border-work-main focus:border-work-main rounded-md shadow-sm"
+                                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none"
                                 >
                                     <option value="">{{ __('translate.allProjects') }}</option>
                                     <option v-for="project in projects" :key="project.id" :value="project.id">
@@ -373,253 +366,236 @@ watch(selectedTags, (newTags) => {
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.professionCategories') }}</h4>
-                            <!-- Pole wyszukiwania kategorii -->
-                            <div class="mb-3">
+
+                        <div class="mb-8 pt-6 border-t border-gray-50">
+                            <h4 class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest">{{ __('translate.professionCategories') }}</h4>
+                            <div class="mb-4">
                                 <input
                                     type="text"
                                     v-model="categorySearchQuery"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                    class="w-full px-5 py-3 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                     :placeholder="__('translate.searchCategories')"
                                 />
                             </div>
                             <div>
-                                <div class="flex flex-wrap gap-2 mb-3">
+                                <div class="flex flex-wrap gap-2 mb-4">
                                     <span v-for="category in paginatedCategories" :key="category.id"
-                                          class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-colors"
+                                          class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-[1.02]"
+                                          :class="[selectedTags.some(t => t.id === category.id && t.type === 'category') ? 'ring-2 ring-white outline outline-2 outline-offset-2 outline-blue-300 shadow-sm' : '']"
                                           :style="{ backgroundColor: getTagColor(category.id), color: getContrastColor(getTagColor(category.id)) }"
                                           @click="toggleCategoryTag(category)">
                                         {{category.title?.[locale]}}
                                     </span>
-                                    <span v-if="filteredCategories.length === 0" class="text-gray-500 text-sm">
+                                    <span v-if="filteredCategories.length === 0" class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                                         {{ categorySearchQuery ? __('translate.noMatchingCategories') : __('translate.noCategoriesAvailable') }}
                                     </span>
                                 </div>
-                                <div class="flex justify-between items-center mt-4" v-if="filteredCategories.length > categoriesPerPage">
+                                <div class="flex justify-between items-center mt-6" v-if="filteredCategories.length > categoriesPerPage">
                                     <button
                                         @click="currentCategoryPage = Math.max(currentCategoryPage - 1, 1)"
                                         :disabled="currentCategoryPage === 1"
-                                        class="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50"
+                                        class="px-6 py-2 bg-white border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 disabled:opacity-50 transition-all"
                                     >
                                         &lt; {{__('translate.previous')}}
                                     </button>
-                                    <span class="text-sm">{{__('translate.page')}} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
+                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{__('translate.page')}} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
                                     <button
                                         @click="currentCategoryPage = Math.min(currentCategoryPage + 1, totalCategoryPages)"
                                         :disabled="currentCategoryPage === totalCategoryPages"
-                                        class="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50"
+                                        class="px-6 py-2 bg-white border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 disabled:opacity-50 transition-all"
                                     >
                                         {{__('translate.next')}} &gt;
                                     </button>
                                 </div>
-                                <!-- Przycisk do czyszczenia wyszukiwania -->
-                                <div v-if="categorySearchQuery" class="mt-2 text-right">
+                                <div v-if="categorySearchQuery" class="mt-4 text-right">
                                     <button
                                         @click="categorySearchQuery = ''; currentCategoryPage = 1"
-                                        class="text-indigo-600 text-sm hover:text-indigo-800"
+                                        class="text-blue-500 text-[10px] font-black uppercase tracking-widest hover:text-blue-700"
                                     >
                                         {{ __('translate.clearSearch') }}
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <!-- Sekcja tagów firmowych -->
-                        <div>
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.customTags') }}</h4>
-                            <!-- Pole wyszukiwania tagów niestandardowych -->
-                            <div class="mb-3">
+
+                        <div class="mb-8 pt-6 border-t border-gray-50">
+                            <h4 class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest">{{ __('translate.customTags') }}</h4>
+                            <div class="mb-4">
                                 <input
                                     type="text"
                                     v-model="customTagSearchQuery"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                                    class="w-full px-5 py-3 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                     :placeholder="__('translate.searchCustomTags')"
                                 />
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 <span v-for="tag in filteredCustomTags" :key="tag.id"
-                                      class="px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-colors"
+                                      class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-[1.02]"
+                                      :class="[selectedTags.some(t => t.id === tag.id && t.type === 'custom') ? 'ring-2 ring-white outline outline-2 outline-offset-2 outline-blue-300 shadow-sm' : '']"
                                       :style="{ backgroundColor: tag.color || '#ccc', color: getContrastColorText(tag.color) }"
                                       @click="toggleCustomTag(tag)">
                                     {{ tag.name }}
                                 </span>
-                                <span v-if="filteredCustomTags.length === 0" class="text-gray-500 text-sm">
+                                <span v-if="filteredCustomTags.length === 0" class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                                     {{ customTagSearchQuery ? __('translate.noMatchingTags') : __('translate.noTagsAvailable') }}
                                 </span>
                             </div>
-                            <!-- Przycisk do czyszczenia wyszukiwania tagów niestandardowych -->
-                            <div v-if="customTagSearchQuery" class="mt-2 text-right">
+                            <div v-if="customTagSearchQuery" class="mt-4 text-right">
                                 <button
                                     @click="customTagSearchQuery = ''"
-                                    class="text-indigo-600 text-sm hover:text-indigo-800"
+                                    class="text-blue-500 text-[10px] font-black uppercase tracking-widest hover:text-blue-700"
                                 >
                                     {{ __('translate.clearSearch') }}
                                 </button>
                             </div>
                         </div>
-                        <!-- Sekcja wybranych tagów -->
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <h4 class="text-md font-medium text-gray-700 mb-2">{{ __('translate.selectedTags') }}</h4>
+
+                        <div class="mt-8 pt-6 border-t border-gray-50">
+                            <h4 class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest">{{ __('translate.selectedTags') }}</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span v-for="tag in selectedTags" :key="tag.id"
-                                      class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium flex items-center">
+                                      class="px-4 py-2 bg-[#0A2C5C] text-white rounded-full text-[10px] font-black uppercase tracking-widest flex items-center shadow-lg shadow-blue-900/10">
                                     {{ tag.type === 'category' && tag.rawTitle ? tag.rawTitle?.[locale] : (tag.name || tag.title) }}
-                                    <button @click="removeTag(tag)" class="ml-1 text-indigo-600 hover:text-indigo-800">
+                                    <button @click="removeTag(tag)" class="ml-2 text-blue-200 hover:text-white transition-colors">
                                         &times;
                                     </button>
                                 </span>
-                                <span v-if="selectedTags.length === 0" class="text-gray-500 text-sm">{{ __('translate.noTagsSelected') }}</span>
+                                <span v-if="selectedTags.length === 0" class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noTagsSelected') }}</span>
                             </div>
                         </div>
 
-
-
-
-                        <div class="flex justify-end space-x-3">
+                        <div class="flex justify-end mt-8 pt-6 border-t border-gray-50">
                             <button
                                 @click="resetFilters"
                                 type="button"
-                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition"
+                                class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
                             >
                                 {{ __('translate.resetFilters') }}
                             </button>
                         </div>
                     </div>
 
-                    <div v-if="candidates.data.length === 0" class="text-center py-8 text-gray-500">
-                        {{ __('translate.noCandidatesAvailable') }}
+                    <div v-if="candidates.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noCandidatesAvailable') }}</p>
                     </div>
-                    <div v-else class="overflow-x-auto">
-                        <div class="flex items-center justify-between mb-3">
-                            <h2 class="text-sm font-semibold text-gray-900">
-                                {{ __('translate.foundCandidates') }} ({{ candidates?.data?.length || 0 }})
-                            </h2>
+
+                    <div v-else class="space-y-4 pb-12">
+                        <div class="flex items-center gap-4 mb-6 px-6">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.foundCandidates') }} ({{ candidates?.data?.length || 0 }})</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <div v-if="candidates.data.length === 0" class="text-center py-12 text-gray-500">
-                            {{ __('translate.noCandidatesAvailable') }}
-                        </div>
-
-                        <div v-else class="space-y-3">
+                        <div class="space-y-4">
                             <div
                                 v-for="candidate in candidates.data"
                                 :key="candidate.id"
                                 :style="getBackgroundStyle(candidate)"
-                                class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-4 bg-white border border-gray-200 hover:bg-gray-50 transition-all items-center rounded-lg"
+                                class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
                             >
-                                <!-- ID -->
-                                <div class="col-span-1">
-                                    <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
-                                        ID
-                                    </div>
-                                    <div class="text-sm font-bold text-gray-900">
-                                        {{ candidate.id }}
-                                    </div>
-                                </div>
-
-                                <!-- Candidate -->
-                                <div class="col-span-3">
-                                    <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-1">
-                                        {{ __('translate.candidate') ?? 'Kandydat' }}
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                                    <!-- ID -->
+                                    <div class="col-span-1 flex flex-col items-center md:items-start">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                            ID
+                                        </div>
+                                        <div class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest">
+                                            {{ candidate.id }}
+                                        </div>
                                     </div>
 
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 rounded-full bg-work-main flex items-center justify-center text-white font-bold text-lg overflow-hidden">
+                                    <!-- Candidate -->
+                                    <div class="col-span-3 flex items-center gap-4">
+                                        <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
                                             <img
                                                 v-if="candidate.user_by_email?.profile_photo_url"
                                                 :src="candidate.user_by_email?.profile_photo_url"
                                                 :alt="candidate.name"
-                                                class="w-full h-full object-cover"
+                                                class="h-full w-full object-cover"
                                             />
-                                            <span v-else>
-                        {{ (candidate.name?.[0] || '') + (candidate.surname?.[0] || '') }}
-                    </span>
+                                            <span v-else class="text-[#0A2C5C] font-black text-sm">
+                                                {{ (candidate.name?.[0] || '') + (candidate.surname?.[0] || '') }}
+                                            </span>
                                         </div>
 
-                                        <div>
-                                            <div class="font-bold text-gray-900">
+                                        <div class="min-w-0">
+                                            <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight">
                                                 {{ candidate.name }} {{ candidate.surname }}
                                             </div>
-                                            <div class="text-sm text-gray-500">
+                                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
                                                 {{ candidate.email || '-' }}
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Phone -->
-                                <div class="col-span-1">
-                                    <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
-                                        {{ __('translate.phone') }}
-                                    </div>
-                                    <div class="text-sm text-gray-700">
-                                        {{ candidate.phone || '-' }}
-                                    </div>
-                                </div>
-
-                                <!-- Project -->
-                                <div class="col-span-1">
-                                    <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-1">
-                                        {{ __('translate.project') }}
+                                    <!-- Phone -->
+                                    <div class="col-span-1 flex flex-col items-center md:items-start">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                            {{ __('translate.phone') }}
+                                        </div>
+                                        <div class="text-xs font-bold text-gray-700 uppercase tracking-tight">
+                                            {{ candidate.phone || '-' }}
+                                        </div>
                                     </div>
 
-                                    <div class="flex flex-wrap gap-2">
-                                        <template v-if="candidate.projects && candidate.projects.length > 0">
-                                            <Link
-                                                v-for="project in candidate.projects"
-                                                :key="project.id"
-                                                :href="route('project-recruits.show', project.id)"
-                                                class="text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full hover:bg-blue-100 transition"
-                                            >
-                                                ID: {{ project.id }}
-                                            </Link>
-                                        </template>
+                                    <!-- Project -->
+                                    <div class="col-span-2 flex flex-col items-center md:items-start">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                            {{ __('translate.project') }}
+                                        </div>
 
-                                        <span v-else class="text-sm text-gray-500">
-                    {{ candidate.project?.id ? `ID: ${candidate.project.id}` : '-' }}
-                </span>
-                                    </div>
-                                </div>
-
-                                <!-- Tags -->
-                                <div class="col-span-4">
-                                    <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-1">
-                                        {{ __('translate.tags') }}
+                                        <div class="flex flex-wrap gap-2">
+                                            <template v-if="candidate.projects && candidate.projects.length > 0">
+                                                <Link
+                                                    v-for="project in candidate.projects"
+                                                    :key="project.id"
+                                                    :href="route('project-recruits.show', project.id)"
+                                                    class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-lg hover:bg-blue-100 transition-colors uppercase tracking-widest"
+                                                >
+                                                    ID: {{ project.id }}
+                                                </Link>
+                                            </template>
+                                            <span v-else class="text-xs font-bold text-gray-500">-</span>
+                                        </div>
                                     </div>
 
-                                    <div class="flex flex-wrap gap-2 w-full">
-                                        <template v-if="candidate.tags && candidate.tags.length">
-                    <span
-                        v-for="tag in candidate.tags"
-                        :key="tag.id"
-                        class="px-3 py-1 rounded-full text-xs font-medium transition-colors"
-                        :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
-                    >
-                        {{ tag.title?.[usePage().props.language] || '-' }}
-                    </span>
-                                        </template>
+                                    <!-- Tags -->
+                                    <div class="col-span-3">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                            {{ __('translate.tags') }}
+                                        </div>
 
-                                        <span v-else class="text-xs text-gray-500">-</span>
+                                        <div class="flex flex-wrap gap-2 w-full">
+                                            <template v-if="candidate.tags && candidate.tags.length">
+                                                <span
+                                                    v-for="tag in candidate.tags"
+                                                    :key="tag.id"
+                                                    class="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02]"
+                                                    :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
+                                                >
+                                                    {{ tag.title?.[usePage().props.language] || '-' }}
+                                                </span>
+                                            </template>
+                                            <span v-else class="text-xs font-bold text-gray-500">-</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <!-- Actions -->
-                                <div class="col-span-2">
-                                    <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-1 text-right">
-                                        {{ __('translate.actions') }}
-                                    </div>
-
-                                    <div class="flex flex-wrap md:justify-end gap-3">
+                                    <!-- Actions -->
+                                    <div class="col-span-2 flex items-center justify-center md:justify-end gap-3">
                                         <Link
                                             :href="route('candidates.show', candidate.id)"
-                                            class="px-4 py-2 bg-blue-900 text-white font-bold text-xs rounded-lg hover:bg-blue-800 transition-all uppercase whitespace-nowrap"
+                                            class="w-full md:w-auto px-6 py-3 bg-[#0A2C5C] text-white text-[9px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest text-center"
                                         >
                                             {{ __('translate.candidateDetails') }}
                                         </Link>
 
                                         <Link
                                             :href="route('candidates.evidence', candidate.id)"
-                                            class="px-4 py-2 bg-blue-500 text-white font-bold text-xs rounded-lg hover:bg-blue-600 transition-all uppercase whitespace-nowrap"
+                                            class="w-full md:w-auto px-6 py-3 bg-blue-500 text-white text-[9px] font-black rounded-xl hover:bg-blue-600 shadow-md shadow-blue-500/10 transition-all uppercase tracking-widest text-center"
                                         >
                                             {{ __('translate.evidence') }}
                                         </Link>
@@ -628,13 +604,12 @@ watch(selectedTags, (newTags) => {
                             </div>
                         </div>
 
-
                         <!-- Paginacja -->
-                        <div class="mt-6" v-if="candidates.links.length > 3">
-                            <div class="flex flex-wrap -mb-1">
+                        <div class="mt-8 flex justify-center" v-if="candidates.links.length > 3">
+                            <div class="flex flex-wrap gap-2">
                                 <template v-for="(link, index) in candidates.links" :key="index">
-                                    <div v-if="link.url === null" class="mb-1 mr-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded" v-html="link.label"></div>
-                                    <Link preserveScroll v-else class="mb-1 mr-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" :class="{'bg-indigo-600 text-white': link.active}" :href="link.url" v-html="link.label"></Link>
+                                    <div v-if="link.url === null" class="px-6 py-3 bg-white border border-gray-100 text-gray-300 text-[10px] font-black uppercase tracking-widest rounded-xl" v-html="link.label"></div>
+                                    <Link preserveScroll v-else class="px-6 py-3 border rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm hover:shadow-md" :class="link.active ? 'bg-[#0A2C5C] border-transparent text-white' : 'bg-white border-gray-100 text-[#0A2C5C] hover:bg-gray-50'" :href="link.url" v-html="link.label"></Link>
                                 </template>
                             </div>
                         </div>
@@ -682,5 +657,134 @@ watch(selectedTags, (newTags) => {
     content: attr(data-selected);
     color: #12315d;
     background: transparent !important;
+}
+</style>
+
+<style lang="scss">
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+}
+
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6 !important; /* gray-100 */
+        border-radius: 1rem !important; /* rounded-2xl */
+        padding: 1rem 2.5rem 1rem 1.25rem !important;
+        background: #f9fafb !important; /* gray-50 */
+        min-height: 58px !important;
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+    }
+
+    .multiselect__placeholder {
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        color: #9ca3af !important; /* text-gray-400 */
+        font-size: 0.75rem !important; /* text-xs */
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .multiselect__single {
+        margin-bottom: 0 !important;
+        padding-left: 0 !important;
+        font-size: 0.75rem !important;
+        background: transparent !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: #374151 !important;
+    }
+
+    .multiselect__input {
+        margin-bottom: 0 !important;
+        background: transparent !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+    }
+
+    .multiselect__select {
+        height: 58px !important;
+        width: 2.5rem !important;
+    }
+
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+
+        &:after {
+            background: #0A2C5C !important;
+            color: white !important;
+        }
+    }
+
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
+        font-size: 10px !important;
+        letter-spacing: 0.1em !important;
+
+        &:after {
+            background: transparent !important;
+            color: #9ca3af !important;
+        }
+
+        &.multiselect__option--highlight {
+            background: #0A2C5C !important;
+            color: white !important;
+
+            &:after {
+                background: #0A2C5C !important;
+                color: white !important;
+            }
+        }
+    }
+
+    .multiselect__tag {
+        background: #0A2C5C !important;
+        border-radius: 0.5rem !important;
+        padding: 6px 26px 6px 10px !important;
+        font-size: 10px !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    .multiselect__tag-icon {
+        &:after {
+            color: white !important;
+        }
+
+        &:hover {
+            background: #1e3a8a !important;
+        }
+    }
+
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6 !important;
+        border-top: none !important;
+        border-bottom-left-radius: 1rem !important;
+        border-bottom-right-radius: 1rem !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    }
 }
 </style>

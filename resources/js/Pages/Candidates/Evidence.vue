@@ -155,23 +155,30 @@ const getCandidateInitials = (c) => {
             </div>
         </template>
 
-        <div class="py-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
-                <div class="bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 p-6">
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <!-- Header -->
-                    <div class="mb-4 flex items-center justify-between">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                            {{ __('translate.evidence') }}
+                        </h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-10">
                         <div>
-                            <h1 class="text-2xl font-semibold text-gray-900">
+                            <h1 class="text-2xl font-black text-gray-900 uppercase tracking-tight">
                                 {{ __('translate.evidence') }}
                             </h1>
-                            <p class="mt-1 text-sm text-gray-500">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
                                 {{ __('translate.candidateDetails') }}
                             </p>
                         </div>
                         <Link
                             :href="route('candidates.show', candidate.id)"
-                            class="justify-end px-4 py-2 bg-blue-900 text-white font-bold text-xs rounded-xl hover:bg-blue-800 transition-all uppercase whitespace-nowrap"
+                            class="px-8 py-3 bg-red-50 text-red-600 text-[10px] font-black rounded-xl hover:bg-red-100 transition-all uppercase tracking-widest"
                         >
                             {{ __('translate.candidateDetails') }}
                         </Link>
@@ -186,11 +193,11 @@ const getCandidateInitials = (c) => {
                                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
                                         <div>
-                                            <InputLabel :value="__('translate.salary')" />
+                                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.salary') }}</label>
                                             <TextInput
                                                 id="salary"
                                                 v-model="form.salary"
-                                                class="mt-1 block w-full"
+                                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                                                 type="number"
                                                 step="0.1"
                                             />
@@ -198,7 +205,7 @@ const getCandidateInitials = (c) => {
                                         </div>
 
                                         <div>
-                                            <InputLabel :value="__('translate.currency')" />
+                                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.currency') }}</label>
                                             <multiselect
                                                 :selectLabel="__('translate.selectLabel')"
                                                 :selectGroupLabel="__('translate.selectGroupLabel')"
@@ -212,12 +219,13 @@ const getCandidateInitials = (c) => {
                                                 :placeholder="__('translate.placeholder')"
                                                 v-model="form.currency"
                                                 :options="optionsCurrency"
+                                                class="custom-multiselect"
                                             />
                                             <InputError :message="form.errors.currency" class="mt-2" />
                                         </div>
 
                                         <div>
-                                            <InputLabel :value="__('translate.position')" />
+                                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
                                             <multiselect
                                                 :selectLabel="__('translate.selectLabel')"
                                                 :selectGroupLabel="__('translate.selectGroupLabel')"
@@ -230,12 +238,13 @@ const getCandidateInitials = (c) => {
                                                 :placeholder="__('translate.placeholder')"
                                                 v-model="form.position"
                                                 :options="optionsPosition"
+                                                class="custom-multiselect"
                                             />
                                             <InputError :message="form.errors.position" class="mt-2" />
                                         </div>
 
                                         <div>
-                                            <InputLabel :value="__('translate.Country')" />
+                                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.Country') }}</label>
                                             <multiselect
                                                 group-values="elements"
                                                 group-label="group"
@@ -252,12 +261,13 @@ const getCandidateInitials = (c) => {
                                                 :placeholder="__('translate.placeholder')"
                                                 v-model="form.country"
                                                 :options="optionsCountry"
+                                                class="custom-multiselect"
                                             />
                                             <InputError :message="form.errors.country" class="mt-2" />
                                         </div>
 
                                         <div v-if="externalCompanies && externalCompanies.length > 0">
-                                            <InputLabel :value="__('translate.externalCompany')" />
+                                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.externalCompany') }}</label>
                                             <multiselect
                                                 :selectLabel="__('translate.selectLabel')"
                                                 :selectGroupLabel="__('translate.selectGroupLabel')"
@@ -268,16 +278,17 @@ const getCandidateInitials = (c) => {
                                                 :placeholder="__('translate.placeholder')"
                                                 v-model="form.external_company"
                                                 :options="externalCompanies"
+                                                class="custom-multiselect"
                                             />
                                             <InputError :message="form.errors.external_company" class="mt-2" />
                                         </div>
 
                                         <div>
-                                            <InputLabel for="date_of_hire" :value="__('translate.date_of_hire')" />
+                                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date_of_hire') }}</label>
                                             <VueDatePicker
                                                 model-type="dd-MM-yyyy"
                                                 format="dd-MM-yyyy"
-                                                class="border-gray-200 focus:blue-work rounded-xl shadow-sm mt-1 block w-full"
+                                                class="custom-datepicker"
                                                 :enable-time-picker="false"
                                                 v-model="form.date_of_hire"
                                                 :locale="lang"
@@ -288,7 +299,7 @@ const getCandidateInitials = (c) => {
                                         </div>
 
                                         <div class="lg:col-span-2">
-                                            <label for="note-content" class="block text-sm font-medium text-gray-700">
+                                            <label for="note-content" class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">
                                                 {{ __('translate.noteContent') }}
                                             </label>
 
@@ -296,7 +307,7 @@ const getCandidateInitials = (c) => {
                                                 id="note-content"
                                                 v-model="form.notes"
                                                 :limit="1500"
-                                                class="mt-1 block w-full rounded-xl border-gray-200 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                                class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase min-h-[120px]"
                                                 :placeholder="__('translate.enterNoteContent')"
                                             />
 
@@ -312,153 +323,167 @@ const getCandidateInitials = (c) => {
                             </template>
 
                             <template #actions>
-                                <DangerButton class="mr-2" v-if="editingEvidenceId" @click="exitMode">
+                                <button
+                                    v-if="editingEvidenceId"
+                                    @click="exitMode"
+                                    type="button"
+                                    class="mr-4 px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                                >
                                     {{ __('translate.cancel') }}
-                                </DangerButton>
+                                </button>
 
-                                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                <button
+                                    :disabled="form.processing"
+                                    type="submit"
+                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                >
                                     <SpinnerAction :process="form.processing">
                                         {{ editingEvidenceId ? __('translate.save') : __('translate.add') }}
                                     </SpinnerAction>
-                                </PrimaryButton>
+                                </button>
                             </template>
                         </FormSectionProject>
 
                     <!-- LISTA HISTORII -->
-                    <div class="mt-10">
-                        <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-lg font-semibold text-gray-900">
+                    <div class="mt-16">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
                                 {{__('translate.historyEvidence')}}
-                            </h2>
-
-                            <span v-if="candidate.evidences?.length" class="text-sm text-gray-500">
+                            </h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                            <span v-if="candidate.evidences?.length" class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                                 {{ candidate.evidences.length }} wpisów
                             </span>
                         </div>
 
-                        <div v-if="!candidate.evidences?.length" class="text-center py-12 text-gray-500">
-                            Brak historii zatrudnienia
+                        <div v-if="!candidate.evidences?.length" class="bg-gray-50/50 rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noHistoryAvailable') || 'Brak historii zatrudnienia' }}</p>
                         </div>
 
-                        <div v-else class="space-y-3">
+                        <div v-else class="space-y-4">
                             <div
                                 v-for="evidence in candidate.evidences"
                                 :key="evidence.id"
-                                class="bg-white border border-gray-200 rounded-2xl p-5 hover:bg-gray-50 transition-all"
+                                class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8"
                             >
-                                <div class="flex flex-wrap items-start justify-between gap-3">
-                                    <div>
-                                        <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                                    <div class="col-span-1 md:col-span-4">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.position') }}
                                         </div>
-                                        <h3 class="text-base font-semibold text-gray-900">
+                                        <h3 class="text-base font-black text-gray-900 uppercase tracking-tight">
                                             {{ getPositionName(evidence) }}
                                         </h3>
                                     </div>
 
-                                    <div class="text-right">
-                                        <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
+                                    <div class="col-span-1 md:col-span-3">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.salary') }}
                                         </div>
-                                        <div class="text-sm font-semibold text-gray-700">
+                                        <div class="text-sm font-black text-[#0A2C5C] tracking-widest">
                                             {{ getCurrencySymbol(evidence) }} {{ formatNumber(evidence.salary) }}
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                                    <div>
-                                        <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
-                                            {{ __('translate.firm') }}
-                                        </div>
-                                        <div class="text-gray-800 font-medium">
-                                            {{ evidence.external_company?.name ?? '—' }}
-                                            <span v-if="evidence.external_company?.abbreviation" class="text-gray-400">
-                                                ({{ evidence.external_company.abbreviation }})
-                                            </span>
-                                        </div>
-
-                                        <div v-if="evidence.external_company?.email" class="text-xs text-gray-500">
-                                            Email: {{ evidence.external_company.email }}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
+                                    <div class="col-span-1 md:col-span-3">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.date_of_hire') }}
                                         </div>
-                                        <div class="text-gray-800 font-medium">
+                                        <div class="text-xs font-bold text-gray-700 uppercase tracking-tight">
                                             {{ evidence.date_of_hire ? formatDate(evidence.date_of_hire) : '—' }}
                                         </div>
                                     </div>
 
-                                    <div v-if="evidence.country?.length">
-                                        <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
+                                    <div class="col-span-1 md:col-span-2 flex justify-end gap-3">
+                                        <button
+                                            type="button"
+                                            class="p-3 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-all"
+                                            @click="editEvidence(evidence)"
+                                            title="Edytuj"
+                                        >
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="p-3 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-all"
+                                            @click="openDeleteModal(evidence)"
+                                            title="Usuń"
+                                        >
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="col-span-1 md:col-span-4 border-t border-gray-50 pt-4 mt-2">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                            {{ __('translate.firm') }}
+                                        </div>
+                                        <div class="text-xs font-black text-gray-900 uppercase tracking-tight">
+                                            {{ evidence.external_company?.name ?? '—' }}
+                                            <span v-if="evidence.external_company?.abbreviation" class="text-gray-400 ml-1">
+                                                ({{ evidence.external_company.abbreviation }})
+                                            </span>
+                                        </div>
+                                        <div v-if="evidence.external_company?.email" class="text-[10px] font-bold text-gray-400 lowercase mt-1">
+                                            {{ evidence.external_company.email }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-span-1 md:col-span-3 border-t border-gray-50 pt-4 mt-2" v-if="evidence.country?.length">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.Country') }}
                                         </div>
-                                        <div class="text-gray-800 font-medium">
+                                        <div class="text-xs font-black text-gray-700 uppercase tracking-tight">
                                             {{ evidence.country.map(c => c.name ?? c).join(', ') }}
                                         </div>
                                     </div>
 
-                                    <div v-if="evidence.notes">
-                                        <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">
+                                    <div class="col-span-1 md:col-span-5 border-t border-gray-50 pt-4 mt-2" v-if="evidence.notes">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.note') }}
                                         </div>
-                                        <div class="text-gray-800">
-                                            {{ evidence.notes }}
+                                        <div class="text-xs font-medium text-gray-600 leading-relaxed italic">
+                                            "{{ evidence.notes }}"
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="mt-4 flex items-center gap-3">
-                                    <button
-                                        type="button"
-                                        class="px-4 py-2 bg-blue-900 text-white font-bold text-xs rounded-xl hover:bg-blue-800 transition-all uppercase"
-                                        @click="editEvidence(evidence)"
-                                    >
-                                        ✏️ {{ __('translate.edit') }}
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="px-4 py-2 bg-red-600 text-white font-bold text-xs rounded-xl hover:bg-red-700 transition-all uppercase flex items-center gap-2"
-                                        @click="openDeleteModal(evidence)"
-                                    >
-                                        🗑 {{ __('translate.delete') }}
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- MODAL -->
-                    <DialogModal :show="showDeleteModal" @close="closeDeleteModal">
+                    <DialogModal :show="showDeleteModal" @close="closeDeleteModal" max-width="lg">
                         <template #title>
-                            {{ __('translate.deleteNote') }}
+                            <div class="text-lg font-black text-gray-900 uppercase tracking-tight">
+                                {{ __('translate.deleteNote') }}
+                            </div>
                         </template>
 
                         <template #content>
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-600">{{ __('translate.confirmDeleteNote') }}</p>
+                            <div class="mt-4">
+                                <p class="text-sm font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
+                                    {{ __('translate.confirmDeleteNote') }}
+                                </p>
                             </div>
                         </template>
 
                         <template #footer>
-                            <button
-                                type="button"
-                                class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-xl font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                                @click="closeDeleteModal"
-                            >
-                                {{ __('translate.cancel') }}
-                            </button>
-                            <button
-                                type="button"
-                                class="ml-2 inline-flex justify-center px-4 py-2 bg-red-600 border border-transparent rounded-xl font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                                @click="deleteEvidence"
-                            >
-                                {{ __('translate.delete') }}
-                            </button>
+                            <div class="flex gap-3">
+                                <button
+                                    type="button"
+                                    class="px-8 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 transition-all"
+                                    @click="closeDeleteModal"
+                                >
+                                    {{ __('translate.cancel') }}
+                                </button>
+                                <button
+                                    type="button"
+                                    class="px-8 py-3 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all"
+                                    @click="deleteEvidence"
+                                >
+                                    {{ __('translate.delete') }}
+                                </button>
+                            </div>
                         </template>
                     </DialogModal>
                 </div>
@@ -471,58 +496,139 @@ const getCandidateInitials = (c) => {
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 
 <style lang="scss">
-.multiselect__tag{
-    background: #0A2C5C !important;
-}
-.multiselect__option--highlight {
-    background: #0A2C5C !important;
-    outline: none;
-    color: white;
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6 !important; /* gray-100 */
+        border-radius: 1rem !important; /* rounded-2xl */
+        padding: 1rem 2.5rem 1rem 1.25rem !important;
+        background: #f9fafb !important; /* gray-50 */
+        min-height: 58px !important;
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+    }
+
+    .multiselect__placeholder {
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        color: #9ca3af !important; /* text-gray-400 */
+        font-size: 0.75rem !important; /* text-xs */
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .multiselect__single {
+        margin-bottom: 0 !important;
+        padding-left: 0 !important;
+        font-size: 0.75rem !important;
+        background: transparent !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: #374151 !important;
+    }
+
+    .multiselect__input {
+        margin-bottom: 0 !important;
+        background: transparent !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+    }
+
+    .multiselect__select {
+        height: 58px !important;
+        width: 2.5rem !important;
+    }
+
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+
+        &:after {
+            background: #0A2C5C !important;
+            color: white !important;
+        }
+    }
+
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
+        font-size: 10px !important;
+        letter-spacing: 0.1em !important;
+
+        &:after {
+            background: transparent !important;
+            color: #9ca3af !important;
+        }
+
+        &.multiselect__option--highlight {
+            background: #0A2C5C !important;
+            color: white !important;
+
+            &:after {
+                background: #0A2C5C !important;
+                color: white !important;
+            }
+        }
+    }
+
+    .multiselect__tag {
+        background: #0A2C5C !important;
+        border-radius: 0.5rem !important;
+        padding: 6px 26px 6px 10px !important;
+        font-size: 10px !important;
+        font-weight: 900 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    .multiselect__tag-icon {
+        &:after {
+            color: white !important;
+        }
+
+        &:hover {
+            background: #1e3a8a !important;
+        }
+    }
+
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6 !important;
+        border-top: none !important;
+        border-bottom-left-radius: 1rem !important;
+        border-bottom-right-radius: 1rem !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    }
 }
 
-.multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #0A2C5C !important;
-    color: white;
-}
+.custom-datepicker {
+    .dp__main {
+        border-radius: 1rem !important;
+    }
+    .dp__input {
+        border-radius: 1rem !important;
+        border: 1px solid #f3f4f6 !important;
+        background: #f9fafb !important;
+        padding: 1rem 1.25rem !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: #374151 !important;
+        min-height: 58px !important;
 
-.multiselect__option--selected {
-    background: #12315d !important;
-    color: white;
-    font-weight: bold;
-}
-
-.multiselect__option--selected.multiselect__option--highlight {
-    background: #12315d !important;
-    color: #fff;
-}
-
-.multiselect__option--selected.multiselect__option--highlight:after {
-    background: #12315d !important;
-    content: attr(data-deselect);
-    color: white !important;
-}
-
-.multiselect__option--selected:after {
-    content: attr(data-selected);
-    color: #12315d;
-    background: transparent !important;
-}
-
-/* Dopasowanie multiselect do rounded-2xl look */
-.multiselect {
-    border-radius: 12px !important;
-    min-height: 44px;
-}
-.multiselect__tags {
-    border-radius: 12px !important;
-    border: 1px solid #e5e7eb !important;
-    min-height: 44px !important;
-    padding: 10px 12px !important;
-}
-.multiselect__content-wrapper {
-    border-radius: 12px !important;
-    border: 1px solid #e5e7eb !important;
-    overflow: hidden;
+        &:focus {
+            background: white !important;
+            border-color: #00a0e3 !important;
+        }
+    }
 }
 </style>

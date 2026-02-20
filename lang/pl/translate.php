@@ -1376,6 +1376,8 @@ return [
     'createTagInfo' => 'Pozwoli on na sklasyfikowanie kandydata do konkretnej grupy którą sobie stworzysz',
     'colorTag' => 'Kolor tagu',
     'colorTagDesc' => 'Wybierz kolor, który będzie używany na liscie tagów',
+    'tagName' => 'Nazwa tagu',
+    'preview' => 'Podgląd',
     'listTag' => 'Lista tagów',
     'listTagInfo' => 'Lista tagów z kolorami wraz z przyciskami akcji',
     'foundCandidates' => 'Znaleziono kandydatów',

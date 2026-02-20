@@ -637,7 +637,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/kategoria.svg" :alt="__('translate.altCategory')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/kategoria.svg" :alt="__('translate.altCategory')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -784,7 +784,7 @@ onMounted(() => {
                                     </div>
                                     <div v-else class="flex flex-col items-center justify-center bg-gray-50/50 rounded-[2.5rem] border-2 border-dashed border-gray-200 p-12 text-center h-full">
                                         <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-sm border border-gray-100">
-                                            <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-20 h-20 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                                             </svg>
                                         </div>
@@ -795,7 +795,7 @@ onMounted(() => {
                                 <!-- Placeholder gdy nic nie wybrano -->
                                 <div v-else class="flex flex-col items-center justify-center bg-gray-50/50 rounded-[2.5rem] border-2 border-dashed border-gray-200 p-12 text-center h-full">
                                     <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 shadow-sm border border-gray-100">
-                                        <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-20 h-20 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                                     </div>
                                     <p class="text-xs font-black text-gray-400 uppercase tracking-widest leading-relaxed max-w-[200px]">{{ __('translate.selectPositionToSeeDetails') }}</p>
@@ -807,7 +807,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/kraj_publikacji.svg" :alt="__('translate.CountryPublish')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/kraj_publikacji.svg" :alt="__('translate.CountryPublish')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.CountryPublish') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -867,7 +867,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/lokalizacja.svg" :alt="__('translate.altLocation')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" :alt="__('translate.altLocation')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.locationLabel') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -1011,7 +1011,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/wynagrodzenie.svg" :alt="__('translate.salary')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/wynagrodzenie.svg" :alt="__('translate.salary')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.salary') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -1296,7 +1296,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/organizacja_pracy.svg" :alt="__('translate.altWorkOrganization')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/organizacja_pracy.svg" :alt="__('translate.altWorkOrganization')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workOrganization') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -1378,7 +1378,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="offers">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/oferujemy.svg" :alt="__('translate.altWeOffer')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/oferujemy.svg" :alt="__('translate.altWeOffer')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.offer') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -1422,28 +1422,28 @@ onMounted(() => {
                                             :class="form.offer.some(item => item.id === offer.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
                                         >
                                             <!-- Ikony dla różnych ofert -->
-                                            <img v-if="offer.id == 2" class="w-8 h-8" src="/images/icons/offers/długoterminowa_wspolpraca.svg" alt="długoterminowa_wspolpraca">
-                                            <img v-else-if="offer.id == 1" class="w-8 h-8" src="/images/icons/offers/umowa_o_prace.svg" alt="umowa_o_prace">
-                                            <img v-else-if="offer.id == 3" class="w-8 h-8" src="/images/icons/offers/brak_okresu_probnego.svg" alt="brak_okresu_probnego">
-                                            <img v-else-if="offer.id == 4" class="w-8 h-8" src="/images/icons/offers/system_premiowy.svg" alt="system_premiowy">
-                                            <img v-else-if="offer.id == 5" class="w-8 h-8" src="/images/icons/offers/szkolenia.svg" alt="szkolenia">
-                                            <img v-else-if="offer.id == 6" class="w-8 h-8" src="/images/icons/offers/możliwosc_awansu_zawodowego.svg" alt="możliwosc_awansu_zawodowego">
-                                            <img v-else-if="offer.id == 7" class="w-8 h-8" src="/images/icons/offers/wynagrodzenie.svg" alt="wynagrodzenie">
-                                            <img v-else-if="offer.id == 8" class="w-8 h-8" src="/images/icons/offers/praca_zdalna.svg" alt="praca_zdalna">
-                                            <img v-else-if="offer.id == 9" class="w-8 h-8" src="/images/icons/offers/prywatna_opieka_medyczna.svg" alt="prywatna_opieka_medyczna">
-                                            <img v-else-if="offer.id == 10" class="w-8 h-8" src="/images/icons/offers/karta_sportowa.svg" alt="karta_sportowa">
-                                            <img v-else-if="offer.id == 11" class="w-8 h-8" src="/images/icons/offers/dofinansowanie_do_posilkow.svg" alt="dofinansowanie_do_posilkow">
-                                            <img v-else-if="offer.id == 12" class="w-8 h-8" src="/images/icons/offers/biuro_w_centrum_miasta.svg" alt="biuro_w_centrum_miasta">
-                                            <img v-else-if="offer.id == 13" class="w-8 h-8" src="/images/icons/offers/parking_dla_pracownikow.svg" alt="parking_dla_pracownikow">
-                                            <img v-else-if="offer.id == 14" class="w-8 h-8" src="/images/icons/offers/samochod_sluzbowy.svg" alt="samochod_sluzbowy">
-                                            <img v-else-if="offer.id == 15" class="w-8 h-8" src="/images/icons/offers/dodatkowe_ubezpieczenie.svg" alt="dodatkowe_ubezpieczenie">
-                                            <img v-else-if="offer.id == 16" class="w-8 h-8" src="/images/icons/offers/znizka_na_zakupy.svg" alt="znizka_na_zakupy">
-                                            <img v-else-if="offer.id == 17" class="w-8 h-8" src="/images/icons/offers/wydarzenia_integracyjne.svg" alt="wydarzenia_integracyjne">
-                                            <img v-else-if="offer.id == 18" class="w-8 h-8" src="/images/icons/offers/kawa_herbata.svg" alt="kawa_herbata">
-                                            <img v-else-if="offer.id == 19" class="w-8 h-8" src="/images/icons/offers/owoce.svg" alt="owoce">
-                                            <img v-else-if="offer.id == 20" class="w-8 h-8" src="/images/icons/offers/brak_dres_codeu.svg" alt="brak_dres_codeu">
-                                            <img v-else-if="offer.id == 21" class="w-8 h-8" src="/images/icons/offers/nagrody_pracownicze.svg" alt="nagrody_pracownicze">
-                                            <img v-else-if="offer.id == 22" class="w-8 h-8" src="/images/icons/offers/dofinansowanie_do_transportu.svg" alt="dofinansowanie_do_transportu">
+                                            <img v-if="offer.id == 2" class="w-20 h-20" src="/images/icons/offers/długoterminowa_wspolpraca.svg" alt="długoterminowa_wspolpraca">
+                                            <img v-else-if="offer.id == 1" class="w-20 h-20" src="/images/icons/offers/umowa_o_prace.svg" alt="umowa_o_prace">
+                                            <img v-else-if="offer.id == 3" class="w-20 h-20" src="/images/icons/offers/brak_okresu_probnego.svg" alt="brak_okresu_probnego">
+                                            <img v-else-if="offer.id == 4" class="w-20 h-20" src="/images/icons/offers/system_premiowy.svg" alt="system_premiowy">
+                                            <img v-else-if="offer.id == 5" class="w-20 h-20" src="/images/icons/offers/szkolenia.svg" alt="szkolenia">
+                                            <img v-else-if="offer.id == 6" class="w-20 h-20" src="/images/icons/offers/możliwosc_awansu_zawodowego.svg" alt="możliwosc_awansu_zawodowego">
+                                            <img v-else-if="offer.id == 7" class="w-20 h-20" src="/images/icons/offers/wynagrodzenie.svg" alt="wynagrodzenie">
+                                            <img v-else-if="offer.id == 8" class="w-20 h-20" src="/images/icons/offers/praca_zdalna.svg" alt="praca_zdalna">
+                                            <img v-else-if="offer.id == 9" class="w-20 h-20" src="/images/icons/offers/prywatna_opieka_medyczna.svg" alt="prywatna_opieka_medyczna">
+                                            <img v-else-if="offer.id == 10" class="w-20 h-20" src="/images/icons/offers/karta_sportowa.svg" alt="karta_sportowa">
+                                            <img v-else-if="offer.id == 11" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_posilkow.svg" alt="dofinansowanie_do_posilkow">
+                                            <img v-else-if="offer.id == 12" class="w-20 h-20" src="/images/icons/offers/biuro_w_centrum_miasta.svg" alt="biuro_w_centrum_miasta">
+                                            <img v-else-if="offer.id == 13" class="w-20 h-20" src="/images/icons/offers/parking_dla_pracownikow.svg" alt="parking_dla_pracownikow">
+                                            <img v-else-if="offer.id == 14" class="w-20 h-20" src="/images/icons/offers/samochod_sluzbowy.svg" alt="samochod_sluzbowy">
+                                            <img v-else-if="offer.id == 15" class="w-20 h-20" src="/images/icons/offers/dodatkowe_ubezpieczenie.svg" alt="dodatkowe_ubezpieczenie">
+                                            <img v-else-if="offer.id == 16" class="w-20 h-20" src="/images/icons/offers/znizka_na_zakupy.svg" alt="znizka_na_zakupy">
+                                            <img v-else-if="offer.id == 17" class="w-20 h-20" src="/images/icons/offers/wydarzenia_integracyjne.svg" alt="wydarzenia_integracyjne">
+                                            <img v-else-if="offer.id == 18" class="w-20 h-20" src="/images/icons/offers/kawa_herbata.svg" alt="kawa_herbata">
+                                            <img v-else-if="offer.id == 19" class="w-20 h-20" src="/images/icons/offers/owoce.svg" alt="owoce">
+                                            <img v-else-if="offer.id == 20" class="w-20 h-20" src="/images/icons/offers/brak_dres_codeu.svg" alt="brak_dres_codeu">
+                                            <img v-else-if="offer.id == 21" class="w-20 h-20" src="/images/icons/offers/nagrody_pracownicze.svg" alt="nagrody_pracownicze">
+                                            <img v-else-if="offer.id == 22" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_transportu.svg" alt="dofinansowanie_do_transportu">
                                         </div>
                                         <h3 class="font-black text-[10px] uppercase tracking-widest mb-3 leading-tight" :class="form.offer.some(item => item.id === offer.id) ? 'text-white' : 'text-gray-900'">{{ offer.name }}</h3>
 
@@ -1469,7 +1469,7 @@ onMounted(() => {
                             <div v-if="waits" class="mb-12">
                                 <div class="flex items-center gap-4 mb-8">
                                     <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                        <img class="w-6 h-6" src="/images/icons/recruit/oczekujemy.svg" :alt="__('translate.altWeExpect')">
+                                        <img class="w-10 h-10" src="/images/icons/recruit/oczekujemy.svg" :alt="__('translate.altWeExpect')">
                                     </div>
                                     <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.wait') }}</h2>
                                     <div class="h-px flex-1 bg-gray-100"></div>
@@ -1533,7 +1533,7 @@ onMounted(() => {
                             <div v-if="welcomes">
                                 <div class="flex items-center gap-4 mb-8">
                                     <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                        <img class="w-6 h-6" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.altWelcomed')">
+                                        <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.altWelcomed')">
                                     </div>
                                     <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.welcome') }}</h2>
                                     <div class="h-px flex-1 bg-gray-100"></div>
@@ -1598,7 +1598,7 @@ onMounted(() => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="experiences && experiences.length > 0">
                             <div class="flex items-center gap-4 mb-8">
                                 <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-6 h-6" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.experience')">
+                                    <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.experience')">
                                 </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.experience') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
