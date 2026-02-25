@@ -466,10 +466,10 @@ onMounted(async () => {
                                     </p>
                                 </div>
 
-                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.shiftWork">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.shift_work">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.shiftWorkLabel') }}</p>
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                        {{ props.project.shiftWork?.name?.[lang] || props.project.shiftWork?.name }}
+                                        {{ props.project.shift_work?.name?.[usePage().props.language] }}
                                     </p>
                                 </div>
                             </div>
