@@ -181,8 +181,3 @@ const markAllAsRead = () => {
         </div>
     </AppLayout>
 </template>
-<style>
-a{
-    text-decoration: underline;
-}
-</style>

@@ -71,78 +71,94 @@ const getInitials = (name) => {
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-end mb-8">
-                    <Link :href="route('recruits.create')" class="inline-flex items-center px-6 py-3 bg-[#00aaff] border border-transparent rounded-xl font-black text-sm text-white uppercase tracking-widest hover:bg-[#0088cc] transition duration-200 shadow-lg">
-                        {{ __('translate.createRecruit') }}
-                    </Link>
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.recruits') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj zespołem rekruterów w Twojej firmie</p>
+                        </div>
+                        <Link :href="route('recruits.create')" class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-blue-800 transition duration-200 shadow-lg shadow-blue-900/20">
+                            {{ __('translate.createRecruit') }}
+                        </Link>
+                    </div>
                 </div>
 
-                <div v-if="props.users.data.length === 0" class="bg-white dark:bg-gray-800 p-12 text-center rounded-[2rem] shadow-xl">
-                    <p class="text-gray-500 dark:text-gray-400 text-lg">{{ __('translate.notFoundRecruit') }}</p>
+                <div v-if="props.users.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                    <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.notFoundRecruit') }}</p>
                 </div>
 
                 <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div v-for="user in props.users.data" :key="user.id" class="bg-white dark:bg-gray-800 rounded-[2rem] p-8 shadow-sm border border-slate-100 dark:border-gray-700 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <div v-for="user in props.users.data" :key="user.id" class="group bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-100 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <!-- Awatar -->
                         <div class="relative mb-6">
-                            <div class="w-24 h-24 rounded-full border-4 flex items-center justify-center overflow-hidden bg-slate-100 dark:bg-gray-700" :style="{ borderColor: user.color || '#00aaff' }">
+                            <div class="w-24 h-24 rounded-[2rem] border-4 flex items-center justify-center overflow-hidden bg-gray-50 shadow-sm transition-transform duration-300 group-hover:scale-105" :style="{ borderColor: user.color || '#0A2C5C' }">
                                 <img v-if="user.profile_photo_url" :src="user.profile_photo_url" :alt="user.name" class="w-full h-full object-cover">
-                                <span v-else class="text-2xl font-black text-slate-400">{{ getInitials(user.name) }}</span>
+                                <span v-else class="text-2xl font-black text-[#0A2C5C]">{{ getInitials(user.name) }}</span>
                             </div>
                         </div>
 
                         <!-- Dane podstawowe -->
-                        <h3 class="text-2xl font-black text-[#0b2a55] dark:text-white leading-tight mb-1 truncate w-full px-2">
+                        <h3 class="text-xl font-black text-gray-900 uppercase tracking-tight leading-tight mb-1 truncate w-full px-2">
                             {{ user.name }}
                         </h3>
-                        <p class="text-sm font-bold text-[#00aaff] mb-1 truncate w-full px-2">
+                        <p class="text-[10px] font-bold text-[#00a0e3] mb-1 truncate w-full px-2 uppercase tracking-widest">
                             {{ user.email }}
                         </p>
-                        <p class="text-sm font-bold text-slate-400 mb-1">
+                        <p class="text-xs font-bold text-gray-400 mb-1 tracking-widest">
                             {{ user.recruiter_phone || '---' }}
                         </p>
-                        <p class="text-xs font-black text-slate-500 uppercase tracking-widest mb-8">
+                        <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] mb-8">
                             ID {{ user.id }}
                         </p>
 
                         <!-- Statystyki -->
-                        <div class="space-y-1 mb-8">
-                            <p class="text-lg font-bold text-[#0b2a55] dark:text-gray-300">
-                                {{ __('translate.projects') }}: <span class="font-black">{{ user.projects_count }}</span>
-                            </p>
-                            <p class="text-lg font-bold text-[#0b2a55] dark:text-gray-300">
-                                {{ __('translate.applications') }}: <span class="font-black">{{ user.applications_count }}</span>
-                            </p>
-                            <p class="text-lg font-bold text-[#0b2a55] dark:text-gray-300">
-                                {{ __('translate.quality') }}: <span class="font-black">{{ user.quality }}%</span>
-                            </p>
+                        <div class="w-full grid grid-cols-1 gap-2 mb-8">
+                            <div class="bg-gray-50/50 p-3 rounded-2xl border border-gray-100/50">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{ __('translate.projects') }}</p>
+                                <p class="text-lg font-black text-[#0A2C5C]">{{ user.projects_count }}</p>
+                            </div>
+                            <div class="bg-gray-50/50 p-3 rounded-2xl border border-gray-100/50">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{ __('translate.applications') }}</p>
+                                <p class="text-lg font-black text-[#0A2C5C]">{{ user.applications_count }}</p>
+                            </div>
+                            <div class="bg-gray-50/50 p-3 rounded-2xl border border-gray-100/50">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{ __('translate.quality') }}</p>
+                                <p class="text-lg font-black text-[#0A2C5C]">{{ user.quality }}%</p>
+                            </div>
                         </div>
 
                         <!-- Aktywność -->
                         <div class="mb-8">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
-                                {{ __('translate.lastActivity') }}:
+                            <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-1">
+                                {{ __('translate.lastActivity') }}
                             </p>
-                            <p class="text-sm font-black text-[#00aaff] lowercase">
+                            <p class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">
                                 {{ formatActivity(user.updated_at) }}
                             </p>
                         </div>
 
                         <!-- Przyciski akcji -->
                         <div class="w-full space-y-2 mt-auto">
-                            <Link :href="route('recruits.edit', user)" class="block w-full bg-[#0b2a55] text-white font-black py-3 rounded-xl text-sm uppercase tracking-widest hover:bg-[#162a44] transition shadow-md">
+                            <Link :href="route('recruits.edit', user)" class="block w-full bg-[#0A2C5C] text-white font-black py-3 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-md shadow-blue-900/10">
                                 {{ __('translate.edit') }}
                             </Link>
-                            <button @click="openModal(user)" class="block w-full bg-red-600 text-white font-black py-3 rounded-xl text-sm uppercase tracking-widest hover:bg-red-700 transition shadow-md">
+                            <button @click="openModal(user)" class="block w-full bg-red-50 text-red-600 font-black py-3 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-red-100 transition">
                                 {{ __('translate.delete') }}
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <Pagination v-if="users.total > 5" class="mt-12 text-center mx-auto" :links="users.links" />
+                <div class="mt-12 flex justify-center" v-if="users.total > 5">
+                    <Pagination :links="users.links" />
+                </div>
             </div>
 
             <DialogModal :show="confirmCancelUser" @close="confirmCancelUser = false">

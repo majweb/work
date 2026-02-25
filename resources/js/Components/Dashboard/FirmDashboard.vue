@@ -4,43 +4,43 @@
             {{ __('translate.firmDashboard') }}
         </h3>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <!-- KAFEL 1 -->
-            <Link :href="route('recruits.index')" class="rounded-xl border border-work-main bg-white hover:bg-work-main hover:text-white transition p-5 text-center group cursor-pointer">
-                <div class="text-4xl font-extrabold text-work-main group-hover:text-white">
-                    {{recruitsCount}}
+            <Link :href="route('recruits.index')" class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8 text-center cursor-pointer">
+                <div class="text-4xl font-black text-[#0A2C5C] group-hover:scale-110 transition-transform duration-300">
+                    {{ recruitsCount }}
                 </div>
-                <div class="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <div class="mt-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-[#0A2C5C] transition-colors">
                     {{ __('translate.recruiterCount') }}
                 </div>
             </Link>
 
-            <!-- KAFEL 2 (aktywny) -->
-            <Link :href="route('projects.index')" class="rounded-xl border border-work-main bg-white hover:bg-work-main hover:text-white transition p-5 text-center group cursor-pointer">
-                <div class="text-4xl font-extrabold text-work-main group-hover:text-white">
-                    {{projectsCount}}
+            <!-- KAFEL 2 -->
+            <Link :href="route('projects.index')" class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8 text-center cursor-pointer">
+                <div class="text-4xl font-black text-[#0A2C5C] group-hover:scale-110 transition-transform duration-300">
+                    {{ projectsCount }}
                 </div>
-                <div class="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <div class="mt-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-[#0A2C5C] transition-colors">
                     {{ __('translate.projectCountStat') }}
                 </div>
             </Link>
 
             <!-- KAFEL 3 -->
-            <Link :href="route('aplications.index')" class="rounded-xl border border-work-main bg-white hover:bg-work-main hover:text-white transition p-5 text-center group cursor-pointer">
-                <div class="text-4xl font-extrabold text-work-main group-hover:text-white">
-                    {{aplicationCount}}
+            <Link :href="route('aplications.index')" class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8 text-center cursor-pointer">
+                <div class="text-4xl font-black text-[#0A2C5C] group-hover:scale-110 transition-transform duration-300">
+                    {{ aplicationCount }}
                 </div>
-                <div class="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <div class="mt-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-[#0A2C5C] transition-colors">
                     {{ __('translate.applicationCountStat') }}
                 </div>
             </Link>
 
             <!-- KAFEL 4 -->
-            <div class="rounded-xl border border-work-main bg-white hover:bg-work-main hover:text-white transition p-5 text-center group cursor-pointer">
-                <div class="text-4xl font-extrabold text-work-main group-hover:text-white">
-                    {{viewCount}}
+            <div class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8 text-center">
+                <div class="text-4xl font-black text-[#0A2C5C] group-hover:scale-110 transition-transform duration-300">
+                    {{ viewCount }}
                 </div>
-                <div class="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <div class="mt-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 transition-colors">
                     {{ __('translate.visitCount') }}
                 </div>
             </div>
@@ -306,73 +306,76 @@
             </div>
         </div>
         <!-- ===================== FAKTURY ===================== -->
-        <div class="mt-8 bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
-            <div class="flex justify-between items-center mb-8 px-4">
-                <h2 class="text-4xl font-bold text-[#0b2a55]">
+        <div class="mt-8 bg-white rounded-[3rem] p-10 shadow-xl shadow-blue-900/5 border border-gray-100">
+            <div class="flex items-center gap-4 mb-8">
+                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
                     {{ __('translate.Invoices') }}
                 </h2>
+                <div class="h-px flex-1 bg-gray-100"></div>
                 <Link
                     :href="route('invoices.index')"
-                    class="text-red-500 font-bold hover:underline text-sm uppercase tracking-wider"
+                    class="text-red-500 font-bold hover:underline text-xs uppercase tracking-widest"
                 >
                     {{ __('translate.fullInvoiceList') }}
                 </Link>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto custom-scrollbar">
                 <table class="w-full border-separate border-spacing-y-3">
                     <thead>
-                        <tr class="text-[#00aaff] text-[10px] font-black uppercase tracking-widest text-center">
-                            <th class="pb-2">{{ __('translate.invoiceId') }}</th>
-                            <th class="pb-2">{{ __('translate.invoiceNumber') }}</th>
-                            <th class="pb-2">{{ __('translate.invoiceDate') }}</th>
-                            <th class="pb-2">{{ __('translate.invoiceAmount') }}</th>
-                            <th class="pb-2">{{ __('translate.invoiceRead') }}</th>
-                            <th class="pb-2">{{ __('translate.invoiceAction') }}</th>
+                        <tr class="text-gray-400 text-[10px] font-black uppercase tracking-widest text-center">
+                            <th class="pb-2 px-4">{{ __('translate.invoiceId') }}</th>
+                            <th class="pb-2 px-4 text-left">{{ __('translate.invoiceNumber') }}</th>
+                            <th class="pb-2 px-4">{{ __('translate.invoiceDate') }}</th>
+                            <th class="pb-2 px-4">{{ __('translate.invoiceAmount') }}</th>
+                            <th class="pb-2 px-4">{{ __('translate.invoiceRead') }}</th>
+                            <th class="pb-2 px-4">{{ __('translate.invoiceAction') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr
                             v-for="invoice in lastInvoices"
                             :key="invoice.id"
-                            class="bg-white rounded-2xl shadow-sm overflow-hidden"
+                            class="group bg-white rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md"
                         >
-                            <td class="py-4 px-2 text-center text-slate-400 text-xs first:rounded-l-2xl">
+                            <td class="py-5 px-4 text-center text-slate-400 text-xs first:rounded-l-2xl border-y border-l border-gray-50 group-hover:border-blue-100">
                                 {{ invoice.id }}
                             </td>
-                            <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
+                            <td class="py-5 px-4 text-left text-[#0b2a55] font-black text-sm border-y border-gray-50 group-hover:border-blue-100">
                                 {{ invoice.number }}/{{ invoice.month }}/{{ invoice.year }}
                             </td>
-                            <td class="py-4 px-2 text-center text-slate-500 text-xs">
+                            <td class="py-5 px-4 text-center text-slate-500 text-xs border-y border-gray-50 group-hover:border-blue-100 font-bold uppercase tracking-widest">
                                 {{ invoice.date_invoice }}
                             </td>
-                            <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
+                            <td class="py-5 px-4 text-center text-[#0b2a55] font-black text-sm border-y border-gray-50 group-hover:border-blue-100">
                                 ${{ parseFloat(invoice.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
                             </td>
-                            <td class="py-4 px-2 text-center">
+                            <td class="py-5 px-4 text-center border-y border-gray-50 group-hover:border-blue-100">
                                 <div class="flex justify-center">
                                     <template v-if="invoice.opened">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#00aaff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                        </svg>
+                                        <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#00aaff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
                                     </template>
                                     <template v-else>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
+                                        <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </div>
                                     </template>
                                 </div>
                             </td>
-                            <td class="py-4 px-4 last:rounded-r-2xl">
-                                <div class="flex flex-col gap-1 w-24 mx-auto">
-                                    <a
-                                        :href="route('invoicesDownload', invoice.id)"
-                                        class="bg-[#0b2a55] text-white text-[10px] font-black py-1 px-3 rounded-md hover:bg-[#162a44] transition text-center uppercase"
-                                        @click="invoice.opened = true"
-                                    >
-                                        {{ __('translate.invoiceDownload') }}
-                                    </a>
-                                </div>
+                            <td class="py-5 px-4 last:rounded-r-2xl border-y border-r border-gray-50 group-hover:border-blue-100 text-center">
+                                <a
+                                    :href="route('invoicesDownload', invoice.id)"
+                                    class="inline-block px-6 py-2 bg-[#0b2a55] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 transition-all shadow-md shadow-blue-900/10 uppercase tracking-widest"
+                                    @click="invoice.opened = true"
+                                >
+                                    {{ __('translate.invoiceDownload') }}
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -380,76 +383,95 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8 pb-12">
             <!-- STATYSTYKI -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white bg-[#f8fafc] rounded-[2.5rem] shadow-sm border border-slate-100">
-                <!-- STATYSTYKI -->
-                <div>
-                    <h2 class="text-xl font-semibold mb-6">{{ __('translate.recruiterStatistics') }}</h2>
-                    <div class="flex justify-center">
-                        <apexchart
-                            v-if="chartData"
-                            width="300"
-                            height="300"
-                            type="donut"
-                            :options="chartOptions"
-                            :series="chartSeries"
-                        />
-                        <div v-else class="text-center text-gray-500">
-                            {{ __('translate.NoData') }}
+            <div class="lg:col-span-8 bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                <div class="flex items-center gap-4 mb-10">
+                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.recruiterStatistics') }}</h2>
+                    <div class="h-px flex-1 bg-gray-100"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="flex flex-col">
+                        <div class="mb-6 flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.recruits') }}</h3>
+                        </div>
+                        <div class="flex justify-center bg-gray-50/50 rounded-[2rem] p-6 border border-gray-50">
+                            <apexchart
+                                v-if="chartData"
+                                width="320"
+                                height="320"
+                                type="donut"
+                                :options="chartOptions"
+                                :series="chartSeries"
+                            />
+                            <div v-else class="h-[320px] flex items-center justify-center text-center text-gray-400 text-[10px] font-black uppercase tracking-widest">
+                                {{ __('translate.NoData') }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold mb-6">{{ __('translate.recruiterStatistics') }}</h2>
-                    <div class="flex justify-center">
-                        <apexchart
-                            v-if="chartDataApp"
-                            width="300"
-                            height="300"
-                            type="donut"
-                            :options="chartOptionsApp"
-                            :series="chartSeriesApp"
-                        />
-                        <div v-else class="text-center text-gray-500">
-                            {{ __('translate.NoData') }}
+
+                    <div class="flex flex-col">
+                        <div class="mb-6 flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-[#00aaff]"></div>
+                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.applications') }}</h3>
+                        </div>
+                        <div class="flex justify-center bg-gray-50/50 rounded-[2rem] p-6 border border-gray-50">
+                            <apexchart
+                                v-if="chartDataApp"
+                                width="320"
+                                height="320"
+                                type="donut"
+                                :options="chartOptionsApp"
+                                :series="chartSeriesApp"
+                            />
+                            <div v-else class="h-[320px] flex items-center justify-center text-center text-gray-400 text-[10px] font-black uppercase tracking-widest">
+                                {{ __('translate.NoData') }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- POWIADOMIENIA -->
-            <div class="bg-white rounded-2xl shadow p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold">{{__('translate.notifications')}}</h2>
-                    <Link  preserveScroll v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-sm text-red-500 hover:underline">
+            <div class="lg:col-span-4 bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 flex flex-col">
+                <div class="flex items-center gap-4 mb-8">
+                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{__('translate.notifications')}}</h2>
+                    <div class="h-px flex-1 bg-gray-100"></div>
+                    <Link  preserveScroll v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-[10px] font-black text-red-500 hover:underline uppercase tracking-widest">
                         {{ __('translate.markAllAsRead') }}
                     </Link>
                 </div>
-                <ul class="text-sm text-gray-700 max-h-40 overflow-y-auto">
-                    <li
-                        v-if="notifications.length"
-                        v-for="notification in notifications"
-                        :key="notification.id"
-                        class="relative flex items-start gap-1
-                       before:content-['•']
-                       before:ml-1
-                       before:mt-1
-                       before:text-gray-600"
-                        :class="{
-                    'font-semibold': !notification.read_at,
-                    'font-normal': notification.read_at
-                }"
-                    >
-                        <button
-                            v-if="!notification.read_at"
-                            class="mt-1 text-gray-600 text-left"
-                            v-html="formatNotification(notification).message"
-                            @click="markAsRead(notification.id)"
-                        ></button>
-                        <span v-else class="mt-1 text-gray-600" v-html="formatNotification(notification).message"></span>
-                    </li>
-                    <li v-else>{{ __('translate.noNotifications') }}</li>
-                </ul>
+
+                <div class="flex-1 custom-scrollbar overflow-y-auto max-h-[450px] pr-2">
+                    <ul class="space-y-4">
+                        <li
+                            v-if="notifications.length"
+                            v-for="notification in notifications"
+                            :key="notification.id"
+                            class="group relative flex items-start gap-4 p-4 rounded-2xl transition-all duration-300 border border-gray-50 hover:bg-gray-50 hover:border-gray-100"
+                        >
+                            <div class="shrink-0 mt-1 w-2 h-2 rounded-full" :class="notification.read_at ? 'bg-gray-200' : 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]'"></div>
+
+                            <div class="flex-1 min-w-0">
+                                <button
+                                    v-if="!notification.read_at"
+                                    class="text-left text-xs font-black text-[#0A2C5C] uppercase tracking-tight leading-snug group-hover:text-blue-600 transition-colors"
+                                    v-html="formatNotification(notification).message"
+                                    @click="markAsRead(notification.id)"
+                                ></button>
+                                <span v-else class="text-xs font-bold text-gray-400 uppercase tracking-tight leading-snug" v-html="formatNotification(notification).message"></span>
+                            </div>
+                        </li>
+                        <li v-else class="py-12 text-center flex flex-col items-center">
+                            <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                            </div>
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noNotifications') }}</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -460,6 +482,7 @@
 import {Link, router, usePage, useForm} from "@inertiajs/vue3";
 import __ from "@/lang.js";
 import {computed, ref, reactive} from "vue";
+import moment from "moment/moment.js";
 
 const props = defineProps({
     notifications: {
@@ -506,6 +529,10 @@ const bannerOptionsVisible = reactive({});
 const lastInvoices = computed(() => {
     return props.chartDataInvoices || [];
 });
+
+// Ustawienie locale dla moment.js
+moment.locale(usePage().props.language);
+
 let points = computed(() => {
     return usePage().props.auth.user?.firm?.points;
 });
@@ -585,10 +612,13 @@ const getServiceDescription = (type) => {
 const formatNotification = (notification) => {
     const data = notification.data;
     if (!data) return { title: __('translate.unknownNotification'), message: '' };
+
+    const message = data.message ? __(data.message, { ...data, id: data.aplication || data.id }) : '';
+
     return {
-        title: data.title || __('translate.notification'),
-        message: data.message || '',
-        action: data.action || null,
+        title: __(data.title || 'translate.newNotification', data) || __('translate.notification'),
+        message: message,
+        action: data.action ? __(data.action, data) : null,
         actionUrl: data.actionUrl || null
     };
 };
@@ -630,7 +660,7 @@ const chartOptions = computed(() => ({
         __('translate.activeRecruits'),      // Aktywni - rekruterzy
         __('translate.notActiveRecruits'),       // Nieaktywni - rekruterzy
     ],
-    colors: ['#0d2a52', '#e31e24'],
+    colors: ['#0A2C5C', '#e31e24'],
     legend: {
         position: 'bottom'
     },
@@ -667,7 +697,7 @@ const chartOptionsApp = computed(() => ({
         __('translate.viewed'),         // Rozpatrywane - status maybe
         __('translate.sent')            // Wysłane - status NULL
     ],
-    colors: ['#0d2a52', '#e31e24', '#00a0e3', '#9ca3af'],
+    colors: ['#0A2C5C', '#e31e24', '#00a0e3', '#9ca3af'],
     legend: {
         position: 'bottom'
     },
