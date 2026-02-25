@@ -287,15 +287,6 @@ const createProject = () => {
     });
 };
 
-const generateUrl = computed(() => {
-    if (form.cityWork && form.streetWork && form.streetWorkNumber) {
-        let myUrlWithParams = new URL(`https://www.google.com/maps/embed/v1/place?key=${usePage().props.mapsApi}`);
-        myUrlWithParams.searchParams.append("q", form.countryWork+' '+form.cityWork+' '+form.streetWork+' '+form.streetWorkNumber +' '+form.postalWork);
-        return myUrlWithParams;
-    }
-});
-
-
 const addAll = () => {
     if(form.position.detailprojects || form.profession.detailprojects){
         form.detailProjects = (form.position.detailprojects || form.profession.detailprojects).map(el=>el.id)
@@ -1880,6 +1871,9 @@ onMounted(() => {
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    .multiselect__tag-icon{
+        top:-3px !important
     }
 }
 </style>
