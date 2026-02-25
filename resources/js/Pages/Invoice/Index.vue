@@ -55,57 +55,69 @@ const search = () => {
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <!-- FILTRY -->
-                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 mb-8">
-                    <h2 class="text-[#0b2a55] text-xl font-bold mb-6 uppercase tracking-wider">{{ __('translate.filter') }}</h2>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                <!-- HEADER CARD -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex items-center justify-between">
                         <div>
-                            <InputLabel :value="__('translate.invoiceAmount')" class="text-[#00aaff] text-[10px] font-black uppercase mb-1" />
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.invoices') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.invoicesDescription') }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILTRY -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="space-y-2">
+                            <InputLabel :value="__('translate.invoiceAmount')" class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                             <TextInput
                                 v-model="params.amount"
                                 type="text"
-                                class="w-full rounded-xl border-slate-200 text-sm focus:border-[#00aaff] focus:ring-[#00aaff]"
                                 :placeholder="__('translate.invoiceAmount')"
                                 @keyup.enter="search"
                             />
                         </div>
-                        <div>
-                            <InputLabel :value="__('translate.invoiceNumber')" class="text-[#00aaff] text-[10px] font-black uppercase mb-1" />
+                        <div class="space-y-2">
+                            <InputLabel :value="__('translate.invoiceNumber')" class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                             <TextInput
                                 v-model="params.number"
                                 type="text"
-                                class="w-full rounded-xl border-slate-200 text-sm focus:border-[#00aaff] focus:ring-[#00aaff]"
                                 :placeholder="__('translate.invoiceNumber')"
                                 @keyup.enter="search"
                             />
                         </div>
-                        <div>
-                            <InputLabel :value="__('translate.invoiceDate')" class="text-[#00aaff] text-[10px] font-black uppercase mb-1" />
+                        <div class="space-y-2">
+                            <InputLabel :value="__('translate.invoiceDate')" class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                             <TextInput
                                 v-model="params.date"
                                 type="date"
-                                class="w-full rounded-xl border-slate-200 text-sm focus:border-[#00aaff] focus:ring-[#00aaff]"
                                 @keyup.enter="search"
+                                class="appearance-none"
                             />
                         </div>
                     </div>
 
-                    <div class="flex justify-end gap-3 mt-6">
+                    <div class="flex flex-col sm:flex-row sm:justify-end sm:items-center mt-6 gap-4 pt-6 border-t border-gray-50">
                         <button
                             @click="resetFilters"
-                            class="border-2 border-slate-200 text-slate-500 font-black px-6 py-2 rounded-xl text-xs uppercase tracking-widest hover:bg-slate-50 transition"
+                            type="button"
+                            class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
                         >
                             {{ __('translate.clearFilters') }}
                         </button>
                         <button
                             @click="search"
                             :disabled="searching"
-                            class="bg-[#e31e24] text-white font-black px-8 py-2 rounded-xl text-xs uppercase tracking-widest hover:bg-red-700 transition shadow-lg flex items-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
+                            class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
                         >
-                            <svg v-if="searching" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg v-if="searching" class="animate-spin h-3 w-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
@@ -114,95 +126,70 @@ const search = () => {
                     </div>
                 </div>
 
-                <!-- TABELA -->
-                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
-                    <div class="flex justify-between items-center mb-8 px-4">
-                        <h2 class="text-4xl font-bold text-[#0b2a55]">
-                            {{ __('translate.Invoices') }}
-                        </h2>
+                <!-- LISTA / TABELA -->
+                <div v-if="props.invoices.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                    <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                     </div>
+                    <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.notFoundInvoices') }}</p>
+                </div>
 
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-separate border-spacing-y-3">
-                            <thead>
-                            <tr class="text-[#00aaff] text-[10px] font-black uppercase tracking-widest text-center">
-                                <th class="pb-2 cursor-pointer" @click="sort('id')">
-                                    <div class="flex items-center justify-center gap-1">
-                                        {{ __('translate.invoiceId') }}
-                                        <svg v-if="params.field === 'id'" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" :class="params.direction === 'asc' ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="pb-2">{{ __('translate.invoiceNumber') }}</th>
-                                <th class="pb-2 cursor-pointer" @click="sort('date_invoice')">
-                                    <div class="flex items-center justify-center gap-1">
-                                        {{ __('translate.invoiceDate') }}
-                                        <svg v-if="params.field === 'date_invoice'" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" :class="params.direction === 'asc' ? 'rotate-180' : ''" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </th>
-                                <th class="pb-2">{{ __('translate.invoiceAmount') }}</th>
-                                <th class="pb-2">{{ __('translate.invoiceRead') }}</th>
-                                <th class="pb-2">{{ __('translate.invoiceAction') }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-if="props.invoices.data.length == 0">
-                                <td colspan="6" class="text-center py-8 text-slate-400 font-semibold bg-white rounded-2xl shadow-sm">
-                                    {{ __('translate.notFoundInvoices') }}
-                                </td>
-                            </tr>
-                            <tr
-                                v-else
-                                v-for="invoice in props.invoices.data"
-                                :key="invoice.id"
-                                class="bg-white rounded-2xl shadow-sm overflow-hidden"
-                            >
-                                <td class="py-4 px-2 text-center text-slate-400 text-xs first:rounded-l-2xl">
-                                    {{ invoice.id }}
-                                </td>
-                                <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
-                                    {{ invoice.number }}
-                                </td>
-                                <td class="py-4 px-2 text-center text-slate-500 text-xs">
-                                    {{ invoice.date_invoice }}
-                                </td>
-                                <td class="py-4 px-2 text-center text-[#0b2a55] font-black text-sm">
+                <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div v-for="invoice in props.invoices.data" :key="invoice.id" class="group bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">
+                                    ID {{ invoice.id }}
+                                </p>
+                                <div v-if="invoice.opened" class="flex items-center gap-1 text-[#00a0e3]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-[8px] font-black uppercase tracking-widest">{{ __('translate.opened') }}</span>
+                                </div>
+                                <div v-else class="flex items-center gap-1 text-red-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    <span class="text-[8px] font-black uppercase tracking-widest">{{ __('translate.notOpened') }}</span>
+                                </div>
+                            </div>
+                            <h4 class="text-xl font-black text-gray-900 uppercase tracking-tight leading-tight truncate">
+                                {{ invoice.number }}
+                            </h4>
+                        </div>
+
+                        <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 mb-8 flex-grow">
+                            <div class="mb-4">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.invoiceAmount') }}</p>
+                                <p class="text-xl font-black text-[#0A2C5C] tracking-tight">
                                     ${{ parseFloat(invoice.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
-                                </td>
-                                <td class="py-4 px-2 text-center">
-                                    <div class="flex justify-center">
-                                        <template v-if="invoice.opened">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#00aaff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </template>
-                                        <template v-else>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </template>
-                                    </div>
-                                </td>
-                                <td class="py-4 px-4 last:rounded-r-2xl">
-                                    <div class="flex flex-col gap-1 w-24 mx-auto">
-                                        <a
-                                            :href="route('invoicesDownload', invoice.id)"
-                                            class="bg-[#0b2a55] text-white text-[10px] font-black py-1 px-3 rounded-md hover:bg-[#162a44] transition text-center uppercase"
-                                            @click="invoice.opened = true"
-                                        >
-                                            {{ __('translate.invoiceDownload') }}
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.invoiceDate') }}</p>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                                    {{ invoice.date_invoice }}
+                                </p>
+                            </div>
+                        </div>
 
-                    <Pagination v-if="invoices.total > 5" class="mt-10 text-center mx-auto" :links="invoices.links"/>
+                        <div class="w-full mt-auto">
+                            <a
+                                :href="route('invoicesDownload', invoice.id)"
+                                class="flex justify-center items-center w-full bg-[#0A2C5C] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg shadow-blue-900/10"
+                                @click="invoice.opened = true"
+                            >
+                                {{ __('translate.invoiceDownload') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-if="invoices.total > props.invoices.per_page" class="mt-12 flex justify-center">
+                    <Pagination :links="invoices.links"/>
                 </div>
             </div>
         </div>

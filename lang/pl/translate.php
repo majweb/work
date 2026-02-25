@@ -180,6 +180,7 @@ return [
     'activeRecruits' => 'Aktywni rekruterzy',
     'notActiveRecruits' => 'Nieaktywni rekruterzy',
     'invoices' => 'Faktury',
+    'invoicesDescription' => 'Zarządzaj swoimi fakturami i pobieraj dokumenty w formacie PDF.',
     'dateInvoice' => 'Data na fakturze',
     'day' => 'Dzień',
     'month' => 'Miesiąc',
