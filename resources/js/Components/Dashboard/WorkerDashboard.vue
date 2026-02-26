@@ -31,15 +31,15 @@ const createdFromNow = computed(() => {
 const applicationProgress = computed(() => {
     const status = props.lastAplications?.status
 
-    if (status === "reserved") {
+    if (status === "yes") {
         return { value: 100, color: "blue" }
     }
 
-    if (status === "viewed") {
+    if (status === "maybe") {
         return { value: 50, color: "cyan" }
     }
 
-    if (status === "rejected") {
+    if (status === "no") {
         return { value: 100, color: "red" }
     }
 
@@ -153,7 +153,7 @@ const markAsRead = (id) => {
                                     </div>
                                     <div class="min-w-0 flex-1">
                                         <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                                            {{ moment(other.project?.created_at).format('DD-MM-YYYY') }}
+                                            {{ moment(other.created_at).format('DD-MM-YYYY') }}
                                         </p>
                                         <h4 class="text-xs font-black text-[#0A2C5C] uppercase tracking-tight truncate group-hover:text-[#00a3e0] transition-colors leading-tight">
                                             {{ other.project?.position?.allTranslations['title'][usePage().props.language] }}

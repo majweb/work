@@ -13,6 +13,7 @@ import Checkbox from "@/Components/Checkbox.vue";
 import moment from "moment";
 import VideoRecorder from "@/Pages/Front/VideoRecorder.vue";
 import AudioRecorderNew from "@/Pages/Front/AudioRecorderNew.vue";
+import __ from '@/lang.js';
 
 const props = defineProps({
     project: Object,
@@ -26,6 +27,19 @@ const formStep = ref(1);
 const isReadyToSubmit = ref(true);
 const generateCvLoading = ref(false);
 const captchaText = ref('');
+
+const isAllAgreementsSelected = computed(() => {
+    return props.agreements.length > 0 && form.agreements.length === props.agreements.length;
+});
+
+const toggleAllAgreements = () => {
+    if (isAllAgreementsSelected.value) {
+        form.agreements = [];
+    } else {
+        form.agreements = props.agreements.map(agreement => agreement.id);
+    }
+};
+
 const coloredCaptcha = ref([]);
 const skillsOptions = ref([]);
 const uploaderKey = ref(0);
@@ -224,10 +238,14 @@ const reloadCaptcha = () => {
     loadCaptcha();
 };
 
+const captchaCopied = ref(false);
 const copyCaptcha = () => {
     if (!captchaText.value) return;
     navigator.clipboard.writeText(captchaText.value).then(() => {
-        alert(__('translate.copied'));
+        captchaCopied.value = true;
+        setTimeout(() => {
+            captchaCopied.value = false;
+        }, 2000);
     }).catch(err => {
         console.error('Błąd podczas kopiowania: ', err);
     });
@@ -358,144 +376,147 @@ const removeFile = async (source, load) => {
 </script>
 <template>
     <FrontLayout :title="__('translate.project')">
-        <div class="py-12 bg-gray-50/50 dark:bg-gray-900/50 min-h-screen">
-
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg p-4">
-                    <!-- Project Info Summary -->
-                    <div
-                        class="mb-8 p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-800 border border-gray-100 dark:border-gray-700 rounded-3xl shadow-sm">
-                        <div
-                            class="flex flex-wrap items-center justify-between mb-6 gap-4 border-b border-gray-100 dark:border-gray-700 pb-4">
-                            <div class="flex items-center gap-3">
-                                <div class="p-2.5 bg-blue-50 dark:bg-blue-900/30 rounded-2xl">
-                                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-400"
-                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h1 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight">
-                                        {{ project.title[usePage().props.language] }}
-                                    </h1>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                                        {{ project.category.allTranslations.title[usePage().props.language] }}
-                                    </p>
-                                </div>
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <!-- HEADER CARD -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-6">
+                            <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#00a0e3] shrink-0">
+                                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
                             </div>
-                            <div class="flex gap-2">
-                                <Link :href="route('front.projects')"
-                                      class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-700 transition shadow-sm">
-                                    {{ __('translate.backToList') }}
-                                </Link>
-                                <Link :href="route('front.projects.single',project)"
-                                      class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-700 transition shadow-sm">
-                                    {{ __('translate.backToProject') }}
-                                </Link>
+                            <div>
+                                <h1 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight">
+                                    {{ project.title[usePage().props.language] }}
+                                </h1>
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">
+                                    {{ project.category.allTranslations.title[usePage().props.language] }}
+                                </p>
                             </div>
                         </div>
+                        <div class="flex flex-wrap gap-3">
+                            <Link :href="route('front.projects')"
+                                  class="px-6 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                </svg>
+                                {{ __('translate.backToList') }}
+                            </Link>
+                            <Link :href="route('front.projects.single',project)"
+                                  class="px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                {{ __('translate.backToProject') }}
+                            </Link>
+                        </div>
+                    </div>
+                </div>
 
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="space-y-1">
-                                <dt class="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.15em] opacity-80">
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <!-- Project Stats Summary -->
+                    <div class="mb-12">
+                        <div class="flex items-center gap-4 mb-8">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Szczegóły Projektu</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                            <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50">
+                                <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                     ID Projektu
                                 </dt>
-                                <dd class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                                    <span class="p-1 bg-gray-100 dark:bg-gray-700 rounded-md px-2 leading-none text-xs">{{
-                                            project.id
-                                        }}</span>
+                                <dd class="text-sm font-black text-[#0A2C5C] flex items-center gap-2">
+                                    #{{ project.id }}
                                 </dd>
                             </div>
-                            <div class="space-y-1">
-                                <dt class="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.15em] opacity-80">
+                            <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50">
+                                <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                     {{ __('translate.aplicationsType') }}
                                 </dt>
-                                <dd class="text-sm font-bold text-gray-900 dark:text-white truncate">
+                                <dd class="text-sm font-black text-[#0A2C5C] truncate uppercase">
                                     {{
                                         user && hasRole('worker') ? __('translate.aplicationsWorker') : __('translate.applyWithoutLogin')
                                     }}
                                 </dd>
                             </div>
-                            <div class="space-y-1">
-                                <dt class="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.15em] opacity-80">
+                            <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50">
+                                <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                     Wymagane CV
                                 </dt>
-                                <dd class="text-sm font-bold text-gray-900 dark:text-white capitalize">
+                                <dd class="text-sm font-black text-[#0A2C5C] uppercase">
                                     {{
                                         form.cv == 1 ? __('translate.cv_classic') : (form.cv == 2 ? __('translate.cv_video') : (form.cv == 3 ? __('translate.cv_audio') : __('translate.cv')))
                                     }}
                                 </dd>
                             </div>
-                            <div class="space-y-1" v-if="project.category.parent">
-                                <dt class="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.15em] opacity-80">
+                            <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50" v-if="project.category.parent">
+                                <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                     Główna kategoria
                                 </dt>
-                                <dd class="text-sm font-bold text-gray-900 dark:text-white truncate">
+                                <dd class="text-sm font-black text-[#0A2C5C] truncate uppercase">
                                     {{ project.category.parent.title }}
                                 </dd>
                             </div>
                         </div>
                     </div>
                     <form @submit.prevent="submit">
-                        <div v-if="formStep == 1" class="space-y-8 animate-fade-in">
+                        <div v-if="formStep == 1" class="space-y-12 animate-fade-in">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="group">
+                                <div class="space-y-2">
                                     <InputLabel for="name" :value="__('translate.nameUser')"
-                                                class="mb-2 font-bold text-gray-700 dark:text-gray-300 group-focus-within:text-blue-600 transition-colors"/>
+                                                class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                     <TextInput
                                         id="name"
                                         v-model="form.name"
                                         autofocus
-                                        class="mt-1 block w-full !rounded-xl !border-gray-200 dark:!border-gray-700 focus:!ring-blue-500/20 focus:!border-blue-500 transition-all bg-gray-50 dark:bg-gray-800/30"
                                         type="text"
                                         placeholder="Wpisz imię..."
                                     />
-                                    <InputError :message="form.errors.name" class="mt-2 text-xs"/>
+                                    <InputError :message="form.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
-                                <div class="group">
+                                <div class="space-y-2">
                                     <InputLabel for="surname" :value="__('translate.surname')"
-                                                class="mb-2 font-bold text-gray-700 dark:text-gray-300 group-focus-within:text-blue-600 transition-colors"/>
+                                                class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                     <TextInput
                                         id="surname"
                                         v-model="form.surname"
-                                        class="mt-1 block w-full !rounded-xl !border-gray-200 dark:!border-gray-700 focus:!ring-blue-500/20 focus:!border-blue-500 transition-all bg-gray-50 dark:bg-gray-800/30"
                                         type="text"
                                         placeholder="Wpisz nazwisko..."
                                     />
-                                    <InputError :message="form.errors.surname" class="mt-2 text-xs"/>
+                                    <InputError :message="form.errors.surname" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
-                                <div class="group">
+                                <div class="space-y-2">
                                     <InputLabel for="phone" :value="__('translate.phone')"
-                                                class="mb-2 font-bold text-gray-700 dark:text-gray-300 group-focus-within:text-blue-600 transition-colors"/>
+                                                class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                     <TextInput
                                         id="phone"
                                         v-model="form.phone"
-                                        class="mt-1 block w-full !rounded-xl !border-gray-200 dark:!border-gray-700 focus:!ring-blue-500/20 focus:!border-blue-500 transition-all bg-gray-50 dark:bg-gray-800/30"
                                         type="text"
                                         placeholder="+48..."
                                     />
-                                    <InputError :message="form.errors.phone" class="mt-2 text-xs"/>
+                                    <InputError :message="form.errors.phone" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
-                                <div class="group">
+                                <div class="space-y-2">
                                     <InputLabel for="email" :value="__('translate.email')"
-                                                class="mb-2 font-bold text-gray-700 dark:text-gray-300 group-focus-within:text-blue-600 transition-colors"/>
+                                                class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                     <TextInput
                                         id="email"
                                         v-model="form.email"
-                                        class="mt-1 block w-full !rounded-xl !border-gray-200 dark:!border-gray-700 focus:!ring-blue-500/20 focus:!border-blue-500 transition-all bg-gray-50 dark:bg-gray-800/30"
                                         type="email"
                                         placeholder="twoj@email.pl..."
                                     />
-                                    <InputError :message="form.errors.email" class="mt-2 text-xs"/>
+                                    <InputError :message="form.errors.email" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2 pt-4">
                                 <InputLabel for="title" :value="__('translate.files')"
-                                            class="mb-4 font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest text-xs"/>
+                                            class="block text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest ml-1"/>
                                 <div
-                                    class="rounded-3xl border-2 border-dashed border-gray-100 dark:border-gray-700 p-2 overflow-hidden hover:border-blue-300 dark:hover:border-blue-900 transition-colors">
+                                    class="rounded-[2.5rem] border border-gray-100 p-4 bg-gray-50/50 overflow-hidden hover:border-[#00a0e3] transition-colors shadow-inner">
                                     <file-pond
                                         name="files"
                                         ref="uploadFiles"
@@ -583,8 +604,8 @@ const removeFile = async (source, load) => {
                                 </div>
                                 <div class="col-span-6 space-y-4 pt-6">
                                     <div class="flex items-center gap-3 mb-2">
-                                        <div class="p-1.5 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-                                            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400"
+                                        <div class="p-1.5 bg-blue-50 rounded-lg">
+                                            <svg class="w-4 h-4 text-blue-600"
                                                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -592,16 +613,16 @@ const removeFile = async (source, load) => {
                                             </svg>
                                         </div>
                                         <InputLabel for="captcha" :value="__('translate.verification')"
-                                                    class="font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest text-xs"/>
+                                                    class="font-bold text-gray-700 uppercase tracking-widest text-xs"/>
                                     </div>
 
                                     <div
-                                        class="p-6 bg-gray-50 dark:bg-gray-800/50 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                        class="p-6 bg-gray-50 rounded-3xl border border-gray-100 relative">
                                         <div class="flex flex-col sm:flex-row items-center gap-6">
                                             <div class="relative group">
                                                 <div
                                                     class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition"></div>
-                                                <p class="relative bg-white dark:bg-gray-800 rounded-xl p-3 px-6 text-center shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-center min-w-[120px]">
+                                                <p class="relative bg-white rounded-xl p-3 px-6 text-center shadow-sm border border-gray-100 flex items-center justify-center min-w-[120px]">
                                                 <span
                                                     v-for="(item, index) in coloredCaptcha"
                                                     :key="index"
@@ -613,7 +634,7 @@ const removeFile = async (source, load) => {
                                                     <button
                                                         type="button"
                                                         @click="copyCaptcha"
-                                                        class="ml-4 p-1.5 text-gray-400 hover:text-blue-500 transition-colors bg-gray-50 dark:bg-gray-700 rounded-lg shadow-sm"
+                                                        class="ml-4 p-1.5 text-gray-400 hover:text-blue-500 transition-colors bg-gray-50 rounded-lg shadow-sm"
                                                         :title="__('translate.copy')"
                                                     >
                                                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -621,6 +642,18 @@ const removeFile = async (source, load) => {
                                                         </svg>
                                                     </button>
                                                 </p>
+                                                <transition
+                                                    enter-active-class="transition duration-300 ease-out"
+                                                    enter-from-class="transform -translate-y-2 opacity-0"
+                                                    enter-to-class="transform translate-y-0 opacity-100"
+                                                    leave-active-class="transition duration-200 ease-in"
+                                                    leave-from-class="transform translate-y-0 opacity-100"
+                                                    leave-to-class="transform -translate-y-2 opacity-0"
+                                                >
+                                                    <div v-if="captchaCopied" class="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                                                        <span class="text-[10px] font-black text-green-500 uppercase tracking-widest bg-white px-2 py-0.5 rounded-full shadow-sm border border-green-50">{{ __('translate.copied') }}</span>
+                                                    </div>
+                                                </transition>
                                             </div>
 
                                             <div class="flex-1 w-full space-y-2">
@@ -646,100 +679,102 @@ const removeFile = async (source, load) => {
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <p class="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-tight font-medium pl-1">
+                                                <p class="text-[10px] text-gray-500 uppercase tracking-tight font-medium pl-1">
                                                     Wprowadź kod z obrazka obok
                                                 </p>
                                             </div>
                                         </div>
-                                        <InputError :message="form.errors.captcha" class="mt-3 text-xs ml-1"/>
+                                        <InputError :message="form.errors.captcha" class="mt-3 text-[10px] font-bold uppercase tracking-widest ml-1"/>
                                     </div>
                                 </div>
                                 <div class="col-span-6 pt-8">
                                     <div
-                                        class="p-6 bg-gradient-to-r from-gray-50/80 to-blue-50/30 dark:from-gray-800/50 dark:to-blue-900/10 rounded-[2rem] border border-gray-100 dark:border-gray-700/50">
+                                        class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 shadow-inner">
                                         <InputLabel for="agreements" :value="__('translate.agreements')"
-                                                    class="mb-6 font-black text-gray-800 dark:text-gray-200 uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
-                                            <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+                                                    class="mb-6 font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 bg-[#00a0e3] rounded-full animate-pulse"></span>
                                             {{ __('translate.agreements') }}
                                         </InputLabel>
 
-                                        <div class="grid gap-3">
+                                        <div class="mb-4 flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm group">
+                                            <div class="flex items-center h-6">
+                                                <input
+                                                    class="w-5 h-5 rounded-md border-gray-200 text-[#00a0e3] shadow-sm focus:ring-[#00a0e3] focus:ring-offset-0 transition-all cursor-pointer"
+                                                    type="checkbox"
+                                                    id="select_all_agreements"
+                                                    :checked="isAllAgreementsSelected"
+                                                    @change="toggleAllAgreements"
+                                                >
+                                            </div>
+                                            <label for="select_all_agreements"
+                                                   class="text-xs font-black text-gray-500 cursor-pointer group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest">
+                                                {{ __('translate.selectAll') }}
+                                            </label>
+                                        </div>
+
+                                        <div class="grid gap-4">
                                             <div v-for="agreement in agreements" :key="agreement.id"
-                                                 class="group relative flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-900/50 transition-all shadow-sm">
+                                                 class="group relative flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm">
                                                 <div class="flex items-center h-6">
                                                     <input
-                                                        class="w-5 h-5 rounded-md border-gray-200 text-blue-600 shadow-sm focus:ring-blue-500 focus:ring-offset-0 transition-all"
+                                                        class="w-5 h-5 rounded-md border-gray-200 text-[#00a0e3] shadow-sm focus:ring-[#00a0e3] focus:ring-offset-0 transition-all"
                                                         type="checkbox" :id="agreement.id" v-model="form.agreements"
                                                         :value="agreement.id" name="agreement">
                                                 </div>
                                                 <label :for="agreement.id"
-                                                       class="text-sm font-medium text-gray-600 dark:text-gray-400 cursor-pointer group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors pt-0.5 leading-relaxed">
+                                                       class="text-xs font-bold text-gray-500 cursor-pointer group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest">
                                                     {{ agreement.description[usePage().props.language] }}
                                                 </label>
                                             </div>
                                         </div>
-                                        <InputError :message="form.errors.agreements" class="mt-4 text-xs font-bold"/>
+                                        <InputError :message="form.errors.agreements" class="mt-4 text-[10px] font-bold uppercase tracking-widest ml-1"/>
                                     </div>
                                 </div>
 
                                 <div
-                                    class="flex flex-col items-center justify-center pt-10 pb-6 border-t border-gray-100 dark:border-gray-700 mt-8">
+                                    class="flex flex-col items-center justify-center pt-10 pb-6 border-t border-gray-50 mt-8">
                                     <InputError :message="form.errors.application"
-                                                class="mb-6 text-center text-sm font-bold bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-6 py-2 rounded-full"/>
-
-                                    <!-- Przycisk Aplikuj widoczny gdy NIE wybrano żadnego typu CV specjalnego (Klasyczne/Video/Audio) -->
-                                    <PrimaryButton v-if="!form.cv && formStep == 1"
-                                                   class="w-full sm:w-[250px] !py-4 !rounded-2xl !bg-blue-600 hover:!bg-blue-700 !text-sm font-black !uppercase !tracking-[0.1em] shadow-lg shadow-blue-500/20 flex justify-center items-center gap-3 transition-all transform active:scale-[0.98]"
-                                                   :class="{ 'opacity-25 scale-95': (form.processing || isUploadDisabled) }"
-                                                   :disabled="form.processing || !isReadyToSubmit || isUploadDisabled"
-                                    >
-                                        <span>{{ __('translate.apply') }}</span>
-                                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                             viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                        </svg>
-                                    </PrimaryButton>
+                                                class="mb-6 text-center text-[10px] font-black uppercase tracking-widest bg-red-50 text-red-600 px-6 py-3 rounded-full border border-red-100"/>
 
                                     <!-- Przycisk Dalej widoczny gdy WYBRANO typ CV specjalny w kroku 1 -->
                                     <PrimaryButton
                                         type="button"
                                         @click="nextStep"
                                         v-if="form.cv && formStep == 1"
-                                        class="w-full sm:w-[300px] !py-4 !rounded-2xl !bg-blue-600 hover:!bg-blue-700 !text-sm font-black !uppercase !tracking-widest shadow-lg shadow-blue-500/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
+                                        class="w-full sm:w-[300px] !py-5 !rounded-2xl !bg-[#0A2C5C] hover:!bg-blue-800 !text-[10px] font-black !uppercase !tracking-widest shadow-lg shadow-blue-900/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
                                         :disabled="form.processing"
                                     >
                                         <span v-if="form.cv == 1">{{ __('translate.generateCv') }}</span>
                                         <span v-else-if="form.cv == 2">{{ __('translate.generateCvVideo') }}</span>
                                         <span v-else-if="form.cv == 3">{{ __('translate.generateCvAudio') }}</span>
                                         <span v-else-if="form.cv == 4">{{ __('translate.testRecruitment') }}</span>
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                                         </svg>
                                     </PrimaryButton>
                                 </div>
                             </div>
                         </div>
-                            <div v-if="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-8">
+                            <div v-if="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-12">
                                 <div
-                                    class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                    class="p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
                                     <InputLabel value="Jak chcesz dostarczyć CV?"
-                                                class="mb-6 font-black text-gray-800 dark:text-gray-200 uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+                                                class="mb-8 font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 bg-[#00a0e3] rounded-full animate-pulse"></span>
                                         Wybierz metodę
                                     </InputLabel>
 
-                                    <ul class="grid w-full gap-6 md:grid-cols-2">
+                                    <ul class="grid w-full gap-8 md:grid-cols-2">
                                         <li>
                                             <input checked name="type" v-model="form.cvStandardType" type="radio"
                                                    id="firm" value="1" class="hidden peer"/>
                                             <label for="firm"
-                                                   class="inline-flex items-center justify-between w-full p-6 text-gray-500 bg-white border-2 border-gray-100 rounded-2xl cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-400 peer-checked:border-blue-500 peer-checked:bg-blue-50/30 dark:peer-checked:bg-blue-900/10 peer-checked:text-blue-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 shadow-sm hover:shadow-md group">
-                                                <div class="flex items-center gap-4">
+                                                   class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
+                                                <div class="flex items-center gap-6">
                                                     <div
-                                                        class="p-3 bg-gray-50 dark:bg-gray-700 rounded-xl group-peer-checked:bg-blue-100 dark:group-peer-checked:bg-blue-900/50 transition-colors">
-                                                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
+                                                        class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
+                                                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
                                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2"
@@ -747,19 +782,19 @@ const removeFile = async (source, load) => {
                                                         </svg>
                                                     </div>
                                                     <div>
-                                                        <div class="w-full text-lg font-black uppercase tracking-tight">
+                                                        <div class="w-full text-xl font-black uppercase tracking-tight">
                                                             Wgraj plik
                                                         </div>
                                                         <div
-                                                            class="w-full text-xs font-medium opacity-60 uppercase tracking-widest">
+                                                            class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
                                                             PDF, DOC, DOCX
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
                                                     <div
-                                                        class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
-                                                        <svg class="w-4 h-4 text-white" fill="none"
+                                                        class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
+                                                        <svg class="w-5 h-5 text-white" fill="none"
                                                              stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -772,11 +807,11 @@ const removeFile = async (source, load) => {
                                             <input name="type" v-model="form.cvStandardType" type="radio" id="client"
                                                    value="2" class="hidden peer"/>
                                             <label for="client"
-                                                   class="inline-flex items-center justify-between w-full p-6 text-gray-500 bg-white border-2 border-gray-100 rounded-2xl cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-400 peer-checked:border-blue-500 peer-checked:bg-blue-50/30 dark:peer-checked:bg-blue-900/10 peer-checked:text-blue-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 shadow-sm hover:shadow-md group">
+                                                   class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
                                                 <div class="flex items-center gap-4">
                                                     <div
-                                                        class="p-3 bg-gray-50 dark:bg-gray-700 rounded-xl group-peer-checked:bg-blue-100 dark:group-peer-checked:bg-blue-900/50 transition-colors">
-                                                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
+                                                        class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
+                                                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
                                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2"
@@ -784,19 +819,19 @@ const removeFile = async (source, load) => {
                                                         </svg>
                                                     </div>
                                                     <div>
-                                                        <div class="w-full text-lg font-black uppercase tracking-tight">
+                                                        <div class="w-full text-xl font-black uppercase tracking-tight">
                                                             Kreator CV
                                                         </div>
                                                         <div
-                                                            class="w-full text-xs font-medium opacity-60 uppercase tracking-widest">
+                                                            class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
                                                             Wypełnij formularz
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
                                                     <div
-                                                        class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
-                                                        <svg class="w-4 h-4 text-white" fill="none"
+                                                        class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
+                                                        <svg class="w-5 h-5 text-white" fill="none"
                                                              stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -807,7 +842,7 @@ const removeFile = async (source, load) => {
                                         </li>
                                     </ul>
                                     <InputError :message="form.errors.cvStandardType"
-                                                class="mt-4 text-xs font-bold text-center"/>
+                                                class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
                                 </div>
 
                                 <div v-if="professionCv"
@@ -954,55 +989,55 @@ const removeFile = async (source, load) => {
                                     </div>
                                 </div>
                                 <div v-else-if="form.cvStandardType == 2 && !form.isSelected"
-                                     class="animate-slide-up space-y-8">
+                                     class="space-y-12">
                                     <div
-                                        class="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
-                                        <div class="col-span-full mb-2">
-                                            <h3 class="text-lg font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
-                                                <span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-                                                Informacje o Tobie
-                                            </h3>
+                                        class="grid grid-cols-1 md:grid-cols-4 gap-8 p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
+                                        <div class="col-span-full mb-4">
+                                            <div class="flex items-center gap-4">
+                                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Informacje o Tobie</h3>
+                                                <div class="h-px flex-1 bg-gray-200"></div>
+                                            </div>
                                         </div>
                                         <div class="md:col-span-1 space-y-2">
                                             <InputLabel for="birthday" :value="__('translate.birthdayDate')"
-                                                        class="font-bold text-xs text-gray-500 uppercase tracking-widest ml-1"/>
+                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                             <VueDatePicker model-type="dd-MM-yyyy" format="dd-MM-yyyy"
-                                                           class="!rounded-xl shadow-sm overflow-hidden"
+                                                           class="shadow-sm"
                                                            :enable-time-picker="false" v-model="form.birthday"
-                                                           :locale="lang" auto-apply id="birthday"/>
+                                                           :locale="lang" auto-apply id="birthday"
+                                                           :teleport="true"
+                                            />
                                             <InputError :message="form.errors.birthday"
-                                                        class="mt-1 text-[10px] font-bold"/>
+                                                        class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                         </div>
                                         <div class="md:col-span-1 space-y-2">
                                             <InputLabel for="city" :value="__('translate.City')"
-                                                        class="font-bold text-xs text-gray-500 uppercase tracking-widest ml-1"/>
+                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                             <TextInput
                                                 id="city"
                                                 v-model="form.city"
-                                                class="mt-1 block w-full !rounded-xl !border-gray-200 dark:!border-gray-700 bg-white dark:bg-gray-800"
                                                 type="text"
                                                 placeholder="np. Warszawa"
                                             />
-                                            <InputError :message="form.errors.city" class="mt-1 text-[10px] font-bold"/>
+                                            <InputError :message="form.errors.city" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                         </div>
                                         <div class="md:col-span-1 space-y-2">
                                             <InputLabel for="postal" :value="__('translate.Postal')"
-                                                        class="font-bold text-xs text-gray-500 uppercase tracking-widest ml-1"/>
+                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                             <TextInput
                                                 id="postal"
                                                 v-model="form.postal"
-                                                class="mt-1 block w-full !rounded-xl !border-gray-200 dark:!border-gray-700 bg-white dark:bg-gray-800"
                                                 type="text"
                                                 placeholder="00-000"
                                             />
                                             <InputError :message="form.errors.postal"
-                                                        class="mt-1 text-[10px] font-bold"/>
+                                                        class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                         </div>
                                         <div class="md:col-span-1 space-y-2">
                                             <InputLabel for="photo" :value="__('translate.Photo')"
-                                                        class="font-bold text-xs text-gray-500 uppercase tracking-widest ml-1"/>
+                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                             <div
-                                                class="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 p-1 bg-white dark:bg-gray-800">
+                                                class="rounded-2xl overflow-hidden border border-gray-100 p-2 bg-white">
                                                 <file-pond
                                                     name="photo"
                                                     ref="uploadPhoto"
@@ -1176,6 +1211,7 @@ const removeFile = async (source, load) => {
                                                             <InputLabel :value="__('translate.experienceStart')"
                                                                         class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <VueDatePicker v-model="experience.start" month-picker
+                                                                           :locale="lang"
                                                                            :format="monthYearFormat" auto-apply
                                                                            class="!rounded-xl"/>
                                                             <InputError
@@ -1198,6 +1234,7 @@ const removeFile = async (source, load) => {
                                                                 </label>
                                                             </div>
                                                             <VueDatePicker v-model="experience.end" month-picker
+                                                                           :locale="lang"
                                                                            :format="monthYearFormat" auto-apply
                                                                            :disabled="experience.isCurrent"
                                                                            :class="{'opacity-30': experience.isCurrent}"/>
@@ -1336,6 +1373,7 @@ const removeFile = async (source, load) => {
                                                             <InputLabel :value="__('translate.experienceSchoolEnd')"
                                                                         class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <VueDatePicker v-model="education.finish" model-type="yyyy"
+                                                                           :locale="lang"
                                                                            year-picker auto-apply/>
                                                             <InputError
                                                                 :message="form.errors[`educations.${index}.finish`]"
@@ -1432,6 +1470,7 @@ const removeFile = async (source, load) => {
                                                         <InputLabel :value="__('translate.date')"
                                                                     class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                         <VueDatePicker v-model="course.date" month-picker
+                                                                       :locale="lang"
                                                                        :format="monthYearFormat" auto-apply/>
                                                         <InputError :message="form.errors[`courses.${index}.date`]"
                                                                     class="text-[10px] font-bold"/>
