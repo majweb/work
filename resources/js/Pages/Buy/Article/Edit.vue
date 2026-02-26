@@ -94,77 +94,80 @@ const goToPage = (page) => {
 <template>
     <AppLayout :title="__('translate.editArticle')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('translate.editArticle') }}
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-
-                        <div class="flex justify-between items-center mb-8">
-                            <h1 class="text-2xl font-bold text-[#143d8c] uppercase">{{ __('translate.editArticle') }}</h1>
-                            <Link :href="route('articles.index')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-xl transition flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
-                                </svg>
-                                {{ __('translate.back') }}
-                            </Link>
+                <!-- HEADER CARD -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.editArticle') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.editArticleDescription') }}</p>
                         </div>
+                        <Link :href="route('articles.index')" class="bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest px-8 py-4 rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                            </svg>
+                            {{ __('translate.back') }}
+                        </Link>
+                    </div>
+                </div>
 
-                        <form @submit.prevent="updateArticle" class="space-y-8">
-                            <!-- Sekcja podstawowa -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="space-y-6">
-                                    <div>
-                                        <InputLabel for="lang" :value="__('translate.language')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                        <select v-model="form.lang" name="lang" id="lang" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl shadow-sm">
-                                            <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value">
-                                                {{ language.value }}
-                                            </option>
-                                        </select>
-                                        <InputError :message="form.errors.lang" class="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel :value="__('translate.category')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                        <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
-                                            track-by="value"
-                                            label="name"
-                                            :placeholder="__('translate.placeholder')"
-                                            v-model="form.category"
-                                            :options="optionsCategory"
-                                            class="rounded-xl"
-                                        >
-                                            <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
-                                            <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.category" class="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel for="title" :value="__('translate.title')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                        <TextInput id="title" v-model="form.title" autofocus class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" type="text" />
-                                        <InputError :message="form.errors.title" class="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel for="alt" :value="__('translate.alt')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                        <TextInput id="alt" v-model="form.alt" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" type="text" />
-                                        <InputError :message="form.errors.alt" class="mt-2" />
-                                    </div>
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <form @submit.prevent="updateArticle" class="space-y-12">
+                        <!-- Sekcja podstawowa -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="space-y-8">
+                                <div>
+                                    <InputLabel for="lang" :value="__('translate.language')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <select v-model="form.lang" name="lang" id="lang" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest">
+                                        <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value">
+                                            {{ language.value }}
+                                        </option>
+                                    </select>
+                                    <InputError :message="form.errors.lang" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                                 </div>
 
                                 <div>
-                                    <InputLabel for="photo" :value="__('translate.photo')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                    <div class="border-2 border-dashed border-gray-300 rounded-3xl p-4">
-                                        <file-pond
+                                    <InputLabel :value="__('translate.category')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <multiselect
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        track-by="value"
+                                        label="name"
+                                        :placeholder="__('translate.placeholder')"
+                                        v-model="form.category"
+                                        :options="optionsCategory"
+                                    >
+                                        <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                        <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                    </multiselect>
+                                    <InputError :message="form.errors.category" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="title" :value="__('translate.title')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <TextInput id="title" v-model="form.title" autofocus type="text" :placeholder="__('translate.title')" />
+                                    <InputError :message="form.errors.title" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="alt" :value="__('translate.alt')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <TextInput id="alt" v-model="form.alt" type="text" :placeholder="__('translate.alt')" />
+                                    <InputError :message="form.errors.alt" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <InputLabel for="photo" :value="__('translate.photo')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                <div class="bg-gray-50 rounded-[2rem] p-4 border border-gray-100">
+                                    <file-pond
                                             name="photo"
                                             ref="uploadPhoto"
                                             :files="form.photo"
@@ -227,138 +230,154 @@ const goToPage = (page) => {
                                 </div>
                             </div>
 
-                            <div class="space-y-6">
-                                <div>
-                                    <InputLabel for="short_description" :value="__('translate.shortDescription')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                    <TextareaLimit id="short_description" v-model="form.short_description" :limit="500" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" />
-                                    <InputError :message="form.errors.short_description" class="mt-2" />
-                                </div>
-
-                                <div>
-                                    <InputLabel for="content" :value="__('translate.content')" class="text-[#143d8c] font-bold uppercase mb-2" />
-                                    <div class="prose max-w-none">
-                                        <Tiptap id="content" v-model="form.content" class="border border-gray-300 rounded-xl overflow-hidden" />
-                                    </div>
-                                    <InputError :message="form.errors.content" class="mt-2" />
-                                </div>
+                        <div class="space-y-10">
+                            <div>
+                                <InputLabel for="short_description" :value="__('translate.shortDescription')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                <TextareaLimit id="short_description" v-model="form.short_description" :limit="500" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest" />
+                                <InputError :message="form.errors.short_description" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>
 
-                            <!-- SEO Section -->
-                            <div class="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-3xl border border-gray-200 dark:border-gray-700 space-y-6">
-                                <h3 class="text-xl font-bold text-[#143d8c] uppercase border-b pb-2">{{ __('translate.seoSection') }}</h3>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <InputLabel for="meta_title" :value="__('translate.metaTitle')" class="text-[#143d8c] font-bold mb-2" />
-                                        <TextInput id="meta_title" v-model="form.meta_title" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" type="text" />
-                                        <InputError :message="form.errors.meta_title" class="mt-2" />
-                                    </div>
-
-                                    <div>
-                                        <InputLabel for="meta_keywords" :value="__('translate.metaKeywords')" class="text-[#143d8c] font-bold mb-2" />
-                                        <TextInput id="meta_keywords" v-model="form.meta_keywords" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" />
-                                        <p class="mt-1 text-xs text-gray-500">{{ __('translate.keyWordsDesc') }}</p>
-                                        <InputError :message="form.errors.meta_keywords" class="mt-2" />
-                                    </div>
-
-                                    <div class="md:col-span-2">
-                                        <InputLabel for="meta_description" :value="__('translate.metaDescription')" class="text-[#143d8c] font-bold mb-2" />
-                                        <TextareaLimit id="meta_description" v-model="form.meta_description" :limit="160" class="w-full border-gray-300 focus:border-[#00a3e0] focus:ring-[#00a3e0] rounded-xl" />
-                                        <InputError :message="form.errors.meta_description" class="mt-2" />
-                                    </div>
+                            <div>
+                                <InputLabel for="content" :value="__('translate.content')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                <div class="prose max-w-none">
+                                    <Tiptap id="content" v-model="form.content" class="border border-gray-100 rounded-2xl overflow-hidden shadow-sm bg-gray-50" />
                                 </div>
+                                <InputError :message="form.errors.content" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                            </div>
+                        </div>
+
+                        <!-- SEO Section -->
+                        <div class="bg-gray-50/50 rounded-[2rem] p-8 border border-gray-100 space-y-8">
+                            <div class="flex items-center gap-4 mb-4">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.seoSection') }}</h3>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <!-- Publish toggle -->
-                            <div class="flex items-center gap-4 bg-[#00a3e0]/10 p-4 rounded-xl border border-[#00a3e0]/20">
-                                <label class="flex items-center cursor-pointer group" for="active">
-                                    <Checkbox id="active" v-model:checked="form.active" name="active" class="text-[#00a3e0] focus:ring-[#00a3e0]" />
-                                    <span class="ml-3 font-bold text-[#143d8c] uppercase group-hover:text-[#00a3e0] transition">Publikacja</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <InputLabel for="meta_title" :value="__('translate.metaTitle')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <TextInput id="meta_title" v-model="form.meta_title" type="text" :placeholder="__('translate.metaTitle')" />
+                                    <InputError :message="form.errors.meta_title" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                </div>
+
+                                <div>
+                                    <InputLabel for="meta_keywords" :value="__('translate.metaKeywords')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <TextInput id="meta_keywords" v-model="form.meta_keywords" :placeholder="__('translate.metaKeywords')" />
+                                    <p class="mt-2 text-[8px] font-bold text-gray-400 uppercase tracking-widest italic">{{ __('translate.keyWordsDesc') }}</p>
+                                    <InputError :message="form.errors.meta_keywords" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <InputLabel for="meta_description" :value="__('translate.metaDescription')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
+                                    <TextareaLimit id="meta_description" v-model="form.meta_description" :limit="160" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest" />
+                                    <InputError :message="form.errors.meta_description" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Publish toggle -->
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input
+                                        id="active"
+                                        v-model="form.active"
+                                        type="checkbox"
+                                        class="sr-only peer"
+                                    />
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a3e0]"></div>
                                 </label>
-                                <div class="h-4 w-px bg-gray-300 mx-2"></div>
-                                <p class="text-sm text-gray-600 italic">{{ __('comments.publishComment') }}</p>
+                                <label for="active" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest cursor-pointer">
+                                    {{ __('translate.active') }}
+                                </label>
+                            </div>
+                            <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest italic text-right">{{ __('comments.publishComment') }}</p>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-6 pt-10 border-t border-gray-50">
+                            <ActionMessage :on="form.recentlySuccessful" class="text-green-500 text-[10px] font-black uppercase tracking-widest">
+                                {{ __('translate.updateRecruit') }}
+                            </ActionMessage>
+
+                            <button
+                                type="submit"
+                                :class="{ 'opacity-50': form.processing }"
+                                :disabled="form.processing"
+                                class="px-16 py-5 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
+                            >
+                                <spinner-action :process="form.processing">{{ __('translate.update') }}</spinner-action>
+                            </button>
+                        </div>
+
+                        <!-- Komentarze Section -->
+                        <div v-if="props.article.comments?.length" class="mt-16 space-y-10">
+                            <div class="flex items-center gap-4">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Komentarze</h3>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div class="flex items-center justify-end gap-4 pt-6 border-t">
-                                <ActionMessage :on="form.recentlySuccessful" class="text-green-600 font-bold">
-                                    {{ __('translate.updateRecruit') }}
-                                </ActionMessage>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm flex flex-col h-full hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300">
+                                    <div class="flex justify-between items-start mb-6">
+                                        <div>
+                                            <p class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-1">{{ comment.user?.name || __('comments.anonim') }}</p>
+                                            <p class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(comment.created_at).toLocaleString() }}</p>
+                                        </div>
+                                        <button @click="toggleCommentVisibility(comment)" type="button"
+                                                class="px-4 py-2 text-[8px] font-black text-white rounded-full transition uppercase tracking-widest shadow-sm"
+                                                :class="comment.show ? 'bg-green-500 hover:bg-green-600 shadow-green-900/10' : 'bg-[#e31e24] hover:bg-[#c1191f] shadow-red-900/10'">
+                                            {{ comment.show ? __('comments.see') : __('comments.hide') }}
+                                        </button>
+                                    </div>
 
-                                <button
-                                    type="submit"
-                                    :class="{ 'opacity-25': form.processing }"
-                                    :disabled="form.processing"
-                                    class="bg-[#143d8c] hover:bg-[#0f2d66] text-white font-bold py-4 px-12 rounded-xl text-xl transition shadow-lg uppercase flex items-center gap-2"
-                                >
-                                    <spinner-action :process="form.processing">{{ __('translate.update') }}</spinner-action>
+                                    <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 flex-grow mb-6 italic text-gray-500 text-sm">
+                                        "{{ comment.content }}"
+                                    </div>
+
+                                    <!-- Odpowiedzi -->
+                                    <div v-if="comment.replies?.length" class="mt-4 space-y-4 bg-blue-50/30 p-6 rounded-2xl border-l-4 border-[#00a3e0]">
+                                        <div v-for="reply in comment.replies" :key="reply.id" class="border-b last:border-0 border-blue-100/50 pb-4 last:pb-0">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <div>
+                                                    <p class="text-[10px] font-black text-[#00a3e0] uppercase tracking-widest mb-0.5">{{ reply.user?.name || __('comments.anonim') }}</p>
+                                                    <p class="text-[8px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(reply.created_at).toLocaleString() }}</p>
+                                                </div>
+                                                <button type="button" @click="toggleCommentVisibility(reply)"
+                                                        class="px-3 py-1 text-[7px] font-black text-white rounded-full transition uppercase tracking-widest"
+                                                        :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
+                                                    {{ reply.show ? __('comments.see') : __('comments.hide') }}
+                                                </button>
+                                            </div>
+                                            <p class="text-xs text-gray-600 italic"> {{ reply.content }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PAGINACJA KOMENTARZY -->
+                            <div class="flex justify-center items-center gap-3 mt-12" v-if="totalPages > 1">
+                                <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
+                                        class="p-4 border border-gray-100 rounded-2xl bg-white hover:bg-gray-50 disabled:opacity-25 transition shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+
+                                <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
+                                        class="w-12 h-12 border border-gray-100 rounded-2xl text-[10px] font-black uppercase tracking-widest transition flex items-center justify-center shadow-sm"
+                                        :class="page === currentPage ? 'bg-[#0A2C5C] text-white shadow-blue-900/20 shadow-lg' : 'bg-white text-[#0A2C5C] hover:bg-gray-50'">
+                                    {{ page }}
+                                </button>
+
+                                <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
+                                        class="p-4 border border-gray-100 rounded-2xl bg-white hover:bg-gray-50 disabled:opacity-25 transition shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
                                 </button>
                             </div>
-
-                            <!-- Komentarze Section -->
-                            <div v-if="props.article.comments?.length" class="mt-12 space-y-6">
-                                <h3 class="text-2xl font-bold text-[#143d8c] uppercase border-b-2 border-[#143d8c] pb-2 inline-block">Komentarze</h3>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white dark:bg-gray-900 p-6 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col h-full">
-                                        <div class="flex justify-between items-start mb-4">
-                                            <div>
-                                                <p class="font-bold text-[#143d8c]">{{ comment.user?.name || __('comments.anonim') }}</p>
-                                                <p class="text-xs text-gray-500">{{ new Date(comment.created_at).toLocaleString() }}</p>
-                                            </div>
-                                            <button @click="toggleCommentVisibility(comment)" type="button"
-                                                    class="px-4 py-1 text-xs font-bold text-white rounded-full transition uppercase"
-                                                    :class="comment.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
-                                                {{ comment.show ? __('comments.see') : __('comments.hide') }}
-                                            </button>
-                                        </div>
-
-                                        <p class="text-gray-700 dark:text-gray-300 flex-grow italic">"{{ comment.content }}"</p>
-
-                                        <!-- Odpowiedzi -->
-                                        <div v-if="comment.replies?.length" class="mt-4 space-y-3 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl border-l-4 border-[#00a3e0]">
-                                            <div v-for="reply in comment.replies" :key="reply.id" class="border-b last:border-0 border-gray-200 dark:border-gray-700 pb-3 last:pb-0">
-                                                <div class="flex justify-between items-start mb-2">
-                                                    <div>
-                                                        <p class="font-bold text-sm text-[#00a3e0]">{{ reply.user?.name || __('comments.anonim') }}</p>
-                                                        <p class="text-[10px] text-gray-500">{{ new Date(reply.created_at).toLocaleString() }}</p>
-                                                    </div>
-                                                    <button type="button" @click="toggleCommentVisibility(reply)"
-                                                            class="px-2 py-0.5 text-[10px] font-bold text-white rounded-full transition uppercase"
-                                                            :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
-                                                        {{ reply.show ? __('comments.see') : __('comments.hide') }}
-                                                    </button>
-                                                </div>
-                                                <p class="text-sm text-gray-600 dark:text-gray-400"> {{ reply.content }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- PAGINACJA KOMENTARZY -->
-                                <div class="flex justify-center items-center gap-2 mt-8" v-if="totalPages > 1">
-                                    <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
-                                            class="p-2 border rounded-xl bg-white hover:bg-gray-100 disabled:opacity-25 transition">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#143d8c]" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-
-                                    <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
-                                            class="w-10 h-10 border rounded-xl font-bold transition flex items-center justify-center"
-                                            :class="page === currentPage ? 'bg-[#143d8c] text-white shadow-md' : 'bg-white text-[#143d8c] hover:bg-gray-100'">
-                                        {{ page }}
-                                    </button>
-
-                                    <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
-                                            class="p-2 border rounded-xl bg-white hover:bg-gray-100 disabled:opacity-25 transition">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#143d8c]" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -367,41 +386,80 @@ const goToPage = (page) => {
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
 
-.multiselect__tag{
-    background: #00a0e3 !important;
+.multiselect__tags {
+    border: 1px solid #f3f4f6; /* border-gray-100 */
+    border-radius: 1rem; /* rounded-2xl */
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    background: #f9fafb; /* bg-gray-50 */
 }
+
+.multiselect__placeholder {
+    margin-bottom: 0;
+    padding-top: 0;
+    color: #9ca3af; /* text-gray-400 */
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.multiselect__single {
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: transparent;
+}
+
+.multiselect__input {
+    margin-bottom: 0;
+    background: transparent;
+    font-size: 0.75rem;
+}
+
+.multiselect__select {
+    height: 100%;
+    width: 2.5rem;
+}
+
 .multiselect__option--highlight {
-    background: #00a0e3 !important;
+    background: #0d2a52 !important; /* work-main */
     outline: none;
     color: white;
 }
 
 .multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #00a0e3 !important;
-    color: white;
+    background: #0d2a52 !important;
 }
 
 .multiselect__option--selected {
-    background: #00A0E3B2 !important;
-    color: #35495E;
+    background: #f3f4f6 !important; /* gray-100 */
+    color: #0d2a52;
     font-weight: bold;
 }
 
 .multiselect__option--selected.multiselect__option--highlight {
-    background: #00A0E3B2 !important;
+    background: #0d2a52 !important;
     color: #fff;
 }
 
-.multiselect__option--selected.multiselect__option--highlight:after {
-    background: #00A0E3B2 !important;
-    content: attr(data-deselect);
+.multiselect__tag {
+    background: #0d2a52 !important;
+    border-radius: 0.5rem;
+}
+
+.multiselect__tag-icon:after {
     color: white !important;
 }
 
-.multiselect__option--selected:after {
-    content: attr(data-selected);
-    color: #00A0E3B2;
-    background: transparent !important;
+.multiselect__tag-icon:hover {
+    background: #1e3a8a !important; /* darker blue */
+}
+
+.multiselect__content-wrapper {
+    border: 1px solid #f3f4f6;
+    border-top: none;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 </style>
