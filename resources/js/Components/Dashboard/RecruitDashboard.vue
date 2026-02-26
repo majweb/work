@@ -271,19 +271,19 @@
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-gray-50 shadow-sm">
                                 <div class="w-2.5 h-2.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
-                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.reserved') }}</span>
+                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.labels.yes') }}</span>
                             </div>
                             <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-gray-50 shadow-sm">
                                 <div class="w-2.5 h-2.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
-                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.rejected') }}</span>
+                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.labels.no') }}</span>
                             </div>
                             <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-gray-50 shadow-sm">
                                 <div class="w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
-                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.viewed') }}</span>
+                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.labels.maybe') }}</span>
                             </div>
                             <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-gray-50 shadow-sm">
                                 <div class="w-2.5 h-2.5 rounded-full bg-gray-300 shadow-sm shadow-gray-200"></div>
-                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.sent') }}</span>
+                                <span class="text-[10px] font-black text-gray-500 uppercase tracking-tight">{{ __('translate.labels.sent') }}</span>
                             </div>
                         </div>
                     </div>
@@ -322,29 +322,29 @@
                                         </div>
                                     </div>
 
-                                    <!-- Zarezerwowane -->
+                                    <!-- Zaakceptowane (yes) -->
                                     <div class="bg-blue-50/50 px-3 py-2 rounded-xl border border-blue-100/50 flex items-center gap-2.5">
                                         <div class="w-1.5 h-1.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
                                         <div class="flex flex-col">
-                                            <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-0.5">{{ __('translate.reserved') }}</span>
+                                            <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-0.5">{{ __('translate.labels.yes') }}</span>
                                             <span class="text-xs font-black text-blue-900 leading-none">{{ project.yes_count || 0 }}</span>
                                         </div>
                                     </div>
 
-                                    <!-- Odrzucone -->
+                                    <!-- Odrzucone (no) -->
                                     <div class="bg-red-50/50 px-3 py-2 rounded-xl border border-red-100/50 flex items-center gap-2.5">
                                         <div class="w-1.5 h-1.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
                                         <div class="flex flex-col">
-                                            <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-0.5">{{ __('translate.rejected') }}</span>
+                                            <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-0.5">{{ __('translate.labels.no') }}</span>
                                             <span class="text-xs font-black text-red-600 leading-none">{{ project.no_count || 0 }}</span>
                                         </div>
                                     </div>
 
-                                    <!-- Przeglądane -->
+                                    <!-- Rozpatrywane (maybe) -->
                                     <div class="bg-cyan-50/50 px-3 py-2 rounded-xl border border-cyan-100/50 flex items-center gap-2.5">
                                         <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
                                         <div class="flex flex-col">
-                                            <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-0.5">{{ __('translate.viewed') }}</span>
+                                            <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-0.5">{{ __('translate.labels.maybe') }}</span>
                                             <span class="text-xs font-black text-cyan-600 leading-none">{{ project.maybe_count || 0 }}</span>
                                         </div>
                                     </div>
@@ -425,10 +425,10 @@ const chartOptions = computed(() => ({
         type: 'donut',
     },
     labels: [
-        __('translate.reserved'),      // Zaakceptowane - status yes
-        __('translate.rejected'),       // Odrzucone - status no
-        __('translate.viewed'),         // Rozpatrywane - status maybe
-        __('translate.sent')            // Wysłane - status NULL
+        __('translate.labels.yes'),      // Zaakceptowane - status yes
+        __('translate.labels.no'),       // Odrzucone - status no
+        __('translate.labels.maybe'),    // Rozpatrywane - status maybe
+        __('translate.labels.sent')      // Wysłane - status NULL
     ],
     colors: ['#0A2C5C', '#dc2626', '#06b6d4', '#d1d5db'],
     legend: {

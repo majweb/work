@@ -113,52 +113,44 @@ const generateUrl = computed(() => {
 
 const statusSteps = computed(() => {
     const steps = [ { key: 'sent', label: __('translate.application_sent') } ];
-    if (application.value.status === 'review') steps.push({ key: 'review', label: __('translate.application_reviewing') });
-    if (application.value.status === 'accepted') steps.push({ key: 'accepted', label: __('translate.application_accepted') });
-    if (application.value.status === 'rejected') steps.push({ key: 'rejected', label: __('translate.application_rejected') });
+    if (application.value.status === 'maybe') steps.push({ key: 'maybe', label: __('translate.application_reviewing') });
+    if (application.value.status === 'yes') steps.push({ key: 'yes', label: __('translate.application_accepted') });
+    if (application.value.status === 'no') steps.push({ key: 'no', label: __('translate.application_rejected') });
     return steps;
 });
 
 const currentIndex = computed(() => statusSteps.value.findIndex(step => step.key === application.value.status));
 const filteredStatusSteps = computed(() => statusSteps.value.filter(step => {
-    if (application.value.status === 'accepted') return step.key !== 'rejected';
-    if (application.value.status === 'rejected') return step.key !== 'accepted';
+    if (application.value.status === 'yes') return step.key !== 'no';
+    if (application.value.status === 'no') return step.key !== 'yes';
     return true;
 }));
 const getStatusColor = (status) => ({
-    accepted: 'bg-blue-900',
-    reserved: 'bg-blue-900',
+    yes: 'bg-blue-900',
     sent: 'bg-gray-300',
-    review: 'bg-cyan-500',
-    viewed: 'bg-cyan-500',
-    rejected: 'bg-red-600'
+    maybe: 'bg-cyan-500',
+    no: 'bg-red-600'
 }[status] || 'bg-gray-300');
 
 const getStatusTextColor = (status) => ({
-    accepted: 'text-blue-900',
-    reserved: 'text-blue-900',
+    yes: 'text-blue-900',
     sent: 'text-gray-400',
-    review: 'text-cyan-500',
-    viewed: 'text-cyan-500',
-    rejected: 'text-red-600'
+    maybe: 'text-cyan-500',
+    no: 'text-red-600'
 }[status] || 'text-gray-400');
 
 const getStatusBorderColor = (status) => ({
-    accepted: 'border-blue-100',
-    reserved: 'border-blue-100',
+    yes: 'border-blue-100',
     sent: 'border-gray-100',
-    review: 'border-cyan-100',
-    viewed: 'border-cyan-100',
-    rejected: 'border-red-100'
+    maybe: 'border-cyan-100',
+    no: 'border-red-100'
 }[status] || 'border-gray-100');
 
 const getStatusPingColor = (status) => ({
-    accepted: 'bg-blue-400',
-    reserved: 'bg-blue-400',
+    yes: 'bg-blue-400',
     sent: 'bg-gray-200',
-    review: 'bg-cyan-400',
-    viewed: 'bg-cyan-400',
-    rejected: 'bg-red-400'
+    maybe: 'bg-cyan-400',
+    no: 'bg-red-400'
 }[status] || 'bg-gray-200');
 
 const isActiveStep = (stepKey) => {

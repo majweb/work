@@ -692,10 +692,10 @@ const chartOptionsApp = computed(() => ({
         type: 'donut',
     },
     labels: [
-        __('translate.reserved'),      // Zaakceptowane - status yes
-        __('translate.rejected'),       // Odrzucone - status no
-        __('translate.viewed'),         // Rozpatrywane - status maybe
-        __('translate.sent')            // Wysłane - status NULL
+        __('translate.labels.yes'),      // Zaakceptowane - status yes
+        __('translate.labels.no'),       // Odrzucone - status no
+        __('translate.labels.maybe'),    // Rozpatrywane - status maybe
+        __('translate.labels.sent')      // Wysłane - status NULL
     ],
     colors: ['#0A2C5C', '#e31e24', '#00a0e3', '#9ca3af'],
     legend: {

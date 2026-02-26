@@ -209,13 +209,13 @@ class Aplication extends Model implements HasMedia
     {
         return [
             'sent' => optional($this->created_at)?->format('d.m.Y H:i'),
-            'review' => $this->whenMaybe
+            'maybe' => $this->whenMaybe
                 ? optional($this->whenMaybe)->format('d.m.Y H:i')
                 : null,
-            'accepted' => ($this->status === 'yes' && $this->status_changed_at)
+            'yes' => ($this->status === 'yes' && $this->status_changed_at)
                 ? optional($this->status_changed_at)->format('d.m.Y H:i')
                 : null,
-            'rejected' => $this->whenDeleted
+            'no' => $this->whenDeleted
                 ? optional($this->whenDeleted)->format('d.m.Y H:i')
                 : null,
         ];

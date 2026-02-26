@@ -13,7 +13,7 @@ const props = defineProps({
     }
 });
 
-const statusFilter = ref('all'); // all, sent, viewed, rejected, reserved
+const statusFilter = ref('all'); // all, sent, maybe, no, yes
 const searchQuery = ref('');
 const activeTab = ref('active'); // 'active' or 'finished'
 
@@ -28,21 +28,21 @@ const applications = computed(() =>
 // Statystyki
 const stats = computed(() => {
     const total = applications.value.length;
-    const reserved = applications.value.filter(a => a.status === 'reserved').length;
-    const declined = applications.value.filter(a => a.status === 'rejected').length;
+    const yes = applications.value.filter(a => a.status === 'yes').length;
+    const no = applications.value.filter(a => a.status === 'no').length;
     const sent = applications.value.filter(a => a.status === 'sent').length;
-    const viewed = applications.value.filter(a => a.status === 'viewed').length;
-    return { reserved, declined, sent, viewed, total };
+    const maybe = applications.value.filter(a => a.status === 'maybe').length;
+    return { yes, no, sent, maybe, total };
 });
 
 // Wykres
 const chartOptions = ref({
     chart: { type: 'donut', fontFamily: 'Inter, sans-serif' },
     labels: [
-        __('translate.labels.reserved'),
-        __('translate.labels.rejected'),
+        __('translate.labels.yes'),
+        __('translate.labels.no'),
         __('translate.labels.sent'),
-        __('translate.labels.viewed')
+        __('translate.labels.maybe')
     ],
     colors: ['#1e3a8a', '#dc2626', '#d1d5db', '#06b6d4'], // blue-900, red-600, gray-300, cyan-500
     legend: { show: false },
@@ -69,10 +69,10 @@ const chartOptions = ref({
 });
 
 const chartSeries = computed(() => [
-    stats.value.reserved,
-    stats.value.declined,
+    stats.value.yes,
+    stats.value.no,
     stats.value.sent,
-    stats.value.viewed
+    stats.value.maybe
 ]);
 
 // Filtrowanie aplikacji
@@ -80,9 +80,9 @@ const filteredApplications = computed(() => {
     let filtered = applications.value;
 
     if (activeTab.value === 'active') {
-        filtered = filtered.filter(app => ['sent', 'viewed'].includes(app.status));
+        filtered = filtered.filter(app => ['sent', 'maybe'].includes(app.status));
     } else {
-        filtered = filtered.filter(app => ['rejected', 'reserved'].includes(app.status));
+        filtered = filtered.filter(app => ['no', 'yes'].includes(app.status));
     }
 
     if (searchQuery.value) {
@@ -103,25 +103,25 @@ const filteredApplications = computed(() => {
 
 // Liczby aktywnych i zakończonych
 const activeCount = computed(() =>
-    applications.value.filter(app => ['sent', 'viewed'].includes(app.status)).length
+    applications.value.filter(app => ['sent', 'maybe'].includes(app.status)).length
 );
 const finishedCount = computed(() =>
-    applications.value.filter(app => ['rejected', 'reserved'].includes(app.status)).length
+    applications.value.filter(app => ['no', 'yes'].includes(app.status)).length
 );
 
 // Kolory statusów
 const getStatusColor = (status) => ({
-    reserved: 'bg-blue-900',
+    yes: 'bg-blue-900',
     sent: 'bg-gray-300',
-    viewed: 'bg-cyan-500',
-    rejected: 'bg-red-600'
+    maybe: 'bg-cyan-500',
+    no: 'bg-red-600'
 }[status] || 'bg-gray-300');
 
 // Postęp aplikacji
 const getApplicationProgress = (status) => {
-    if (status === "reserved") return { value: 100, color: "blue" }
-    if (status === "viewed") return { value: 50, color: "cyan" }
-    if (status === "rejected") return { value: 100, color: "red" }
+    if (status === "yes") return { value: 100, color: "blue" }
+    if (status === "maybe") return { value: 50, color: "cyan" }
+    if (status === "no") return { value: 100, color: "red" }
     return { value: 0, color: "gray" }
 }
 </script>
@@ -167,9 +167,9 @@ const getApplicationProgress = (status) => {
                                     >
                                         <option value="all">{{ __('translate.all_statuses') }}</option>
                                         <option value="sent">{{ __('translate.labels.sent') }}</option>
-                                        <option value="viewed">{{ __('translate.labels.viewed') }}</option>
-                                        <option value="rejected">{{ __('translate.labels.rejected') }}</option>
-                                        <option value="reserved">{{ __('translate.labels.reserved') }}</option>
+                                        <option value="maybe">{{ __('translate.labels.maybe') }}</option>
+                                        <option value="no">{{ __('translate.labels.no') }}</option>
+                                        <option value="yes">{{ __('translate.labels.yes') }}</option>
                                     </select>
                                     <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -237,17 +237,17 @@ const getApplicationProgress = (status) => {
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
                                         <div class="flex items-center gap-3">
                                             <div class="w-2.5 h-2.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.reserved') }}</span>
+                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.yes') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.reserved }}</span>
+                                        <span class="text-sm font-black text-gray-900">{{ stats.yes }}</span>
                                     </div>
 
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
                                         <div class="flex items-center gap-3">
                                             <div class="w-2.5 h-2.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.rejected') }}</span>
+                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.no') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.declined }}</span>
+                                        <span class="text-sm font-black text-gray-900">{{ stats.no }}</span>
                                     </div>
 
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
@@ -261,9 +261,9 @@ const getApplicationProgress = (status) => {
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
                                         <div class="flex items-center gap-3">
                                             <div class="w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.viewed') }}</span>
+                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.maybe') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.viewed }}</span>
+                                        <span class="text-sm font-black text-gray-900">{{ stats.maybe }}</span>
                                     </div>
                                 </div>
                             </div>

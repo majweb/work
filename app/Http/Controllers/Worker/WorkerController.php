@@ -28,22 +28,22 @@ class WorkerController extends Controller
                 // Mapowanie statusów
                 switch ($app->status) {
                     case 'yes':
-                        $status = 'reserved';
-                        $label = __('translate.reserved');
+                        $status = 'yes';
+                        $label = __('translate.yes');
                         $color = 'blue';
                         $percent = 100;
                         break;
 
                     case 'no':
-                        $status = 'rejected';
-                        $label = __('translate.rejected');
+                        $status = 'no';
+                        $label = __('translate.no');
                         $color = 'red';
                         $percent = 100;
                         break;
 
                     case 'maybe':
-                        $status = 'viewed';
-                        $label = __('translate.viewed');
+                        $status = 'maybe';
+                        $label = __('translate.maybe');
                         $color = 'navy';
                         $percent = 50;
                         break;
@@ -74,10 +74,10 @@ class WorkerController extends Controller
 
         // Statystyki pod wykres
         $stats = [
-            'reserved' => $applications->where('status', 'reserved')->count(),
-            'declined' => $applications->where('status', 'rejected')->count(),
+            'yes' => $applications->where('status', 'yes')->count(),
+            'no' => $applications->where('status', 'no')->count(),
             'sent' => $applications->where('status', 'sent')->count(),
-            'viewed' => $applications->where('status', 'viewed')->count(),
+            'maybe' => $applications->where('status', 'maybe')->count(),
             'total' => $applications->count(),
         ];
 
@@ -139,15 +139,15 @@ class WorkerController extends Controller
         // STATUS (mapowanie jak w liście aplikacji)
         switch ($aplication->status) {
             case 'yes':
-                $status = 'accepted';
+                $status = 'yes';
                 break;
 
             case 'no':
-                $status = 'rejected';
+                $status = 'no';
                 break;
 
             case 'maybe':
-                $status = 'review';
+                $status = 'maybe';
                 break;
 
             default:
@@ -187,17 +187,14 @@ class WorkerController extends Controller
 
 // reszta zależnie od statusu
         switch ($aplication->status) {
-            case 'review':
             case 'maybe':
-                $messages[] = ['key' => 'review', 'message' => __('translate.Mail-processing-line')];
+                $messages[] = ['key' => 'maybe', 'message' => __('translate.Mail-processing-line')];
                 break;
             case 'yes':
-            case 'accepted':
-                $messages[] = ['key' => 'accepted', 'message' => __('translate.Mail-accepted-line')];
+                $messages[] = ['key' => 'yes', 'message' => __('translate.Mail-accepted-line')];
                 break;
             case 'no':
-            case 'rejected':
-                $messages[] = ['key' => 'rejected', 'message' => __('translate.Mail-rejected-line')];
+                $messages[] = ['key' => 'no', 'message' => __('translate.Mail-rejected-line')];
                 break;
         }
 

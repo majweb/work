@@ -165,9 +165,9 @@ onMounted(async () => {
 
                 <!-- Status naboru i statystyki -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                         <!-- Status naboru z licznikami -->
-                        <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100/50">
+                        <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100/50 lg:col-span-2">
                             <div class="flex items-center gap-2 mb-4">
                                 <div class="w-2.5 h-2.5 rounded-full animate-pulse"
                                      :class="props.project.is_active ? 'bg-green-500 shadow-sm shadow-green-200' : 'bg-gray-300'">
@@ -179,18 +179,18 @@ onMounted(async () => {
                                 {{ props.project.is_active ? __('translate.recruitmentActive') : __('translate.inactive') }}
                             </p>
 
-                            <div class="grid grid-cols-3 gap-3 text-center">
-                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
-                                    <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.statusYesLabel') }}</div>
-                                    <div class="text-xl font-black text-[#0A2C5C]">{{ props.project.yes_count || 0 }}</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center min-w-0">
+                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.labels.yes') }}</div>
+                                    <div class="text-lg font-black text-[#0A2C5C]">{{ props.project.yes_count || 0 }}</div>
                                 </div>
-                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
-                                    <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.statusNoLabel') }}</div>
-                                    <div class="text-xl font-black text-red-600">{{ props.project.no_count || 0 }}</div>
+                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center min-w-0">
+                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.labels.no') }}</div>
+                                    <div class="text-lg font-black text-red-600">{{ props.project.no_count || 0 }}</div>
                                 </div>
-                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
-                                    <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.statusMaybeLabel') }}</div>
-                                    <div class="text-xl font-black text-cyan-500">{{ props.project.maybe_count || 0 }}</div>
+                                <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center min-w-0">
+                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.labels.maybe') }}</div>
+                                    <div class="text-lg font-black text-cyan-500">{{ props.project.maybe_count || 0 }}</div>
                                 </div>
                             </div>
                         </div>

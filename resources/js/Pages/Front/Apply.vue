@@ -1107,168 +1107,168 @@ const removeFile = async (source, load) => {
                                         </div>
                                     </div>
 
-                                    <!-- SEKCJA DOŚWIADCZENIA -->
-                                    <div class="space-y-6">
-                                        <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-3">
-                                                <div class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
-                                                    <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none"
-                                                         stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                                    </svg>
-                                                </div>
-                                                {{ __('translate.experience') }}
-                                            </h3>
-                                            <div class="flex items-center gap-4">
-                                                <span
-                                                    class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
-                                                        __('translate.quantity')
-                                                    }}: {{ form.experiences.length }}/5</span>
-                                                <button
-                                                    type="button"
-                                                    @click="addExperience"
-                                                    v-if="form.experiences.length < 5"
-                                                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-md shadow-blue-500/20 active:scale-95"
-                                                >
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="3" d="M12 4v16m8-8H4"/>
-                                                    </svg>
-                                                    {{ __('translate.addExperience') }}
-                                                </button>
+                                <!-- SEKCJA DOŚWIADCZENIA -->
+                                <div class="space-y-8">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                            <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
+                                                <svg class="w-6 h-6" fill="none"
+                                                     stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                                </svg>
                                             </div>
+                                            {{ __('translate.experience') }}
+                                        </h3>
+                                        <div class="flex items-center gap-6">
+                                            <span
+                                                class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
+                                                    __('translate.quantity')
+                                                }}: {{ form.experiences.length }}/5</span>
+                                            <button
+                                                type="button"
+                                                @click="addExperience"
+                                                v-if="form.experiences.length < 5"
+                                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-400/20 active:scale-95"
+                                            >
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                     viewBox="0 0 24 24" stroke-width="4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M12 4v16m8-8H4"/>
+                                                </svg>
+                                                {{ __('translate.addExperience') }}
+                                            </button>
                                         </div>
-
-                                        <div v-if="form.experiences.length == 5"
-                                             class="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-2xl text-xs font-bold text-center uppercase tracking-widest border border-red-100 dark:border-red-800/30">
-                                            {{ __('translate.limitComplete') }}
-                                        </div>
-
-                                        <InputError :message="form.errors.experiences" class="text-center font-bold"/>
-
-                                        <draggable :list="form.experiences" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-4">
-                                            <template #item="{ element: experience, index }">
-                                                <div
-                                                    class="group bg-white dark:bg-gray-800/50 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all">
-                                                    <div
-                                                        class="flex items-center justify-between p-2 border-b border-gray-50 dark:border-gray-700/50">
-                                                        <div
-                                                            class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-blue-500 transition-colors">
-                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2" d="M4 8h16M4 16h16"/>
-                                                            </svg>
-                                                        </div>
-                                                        <button @click="removeElement(index, form.experiences)"
-                                                                class="p-2 text-gray-300 hover:text-red-500 transition-colors">
-                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2"
-                                                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-
-                                                    <div
-                                                        class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                                        <div v-if="optionsPositions" class="space-y-2">
-                                                            <InputLabel :value="__('translate.position')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <multiselect
-                                                                v-model="experience.position"
-                                                                :options="optionsPositions"
-                                                                track-by="value"
-                                                                label="name"
-                                                                :placeholder="__('translate.placeholder')"
-                                                                class="custom-multiselect"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`experiences.${index}.position`]"
-                                                                class="text-[10px] font-bold"/>
-                                                        </div>
-
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.employer')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput
-                                                                v-model="experience.employer"
-                                                                class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                type="text"
-                                                                :placeholder="__('translate.employer')"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`experiences.${index}.employer`]"
-                                                                class="text-[10px] font-bold"/>
-                                                        </div>
-
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.experienceStart')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <VueDatePicker v-model="experience.start" month-picker
-                                                                           :locale="lang"
-                                                                           :format="monthYearFormat" auto-apply
-                                                                           class="!rounded-xl"/>
-                                                            <InputError
-                                                                :message="form.errors[`experiences.${index}.start`]"
-                                                                class="text-[10px] font-bold"/>
-                                                        </div>
-
-                                                        <div class="space-y-2">
-                                                            <div class="flex items-center justify-between pr-1">
-                                                                <InputLabel :value="__('translate.experienceEnd')"
-                                                                            class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                                <label class="flex items-center gap-1.5 cursor-pointer">
-                                                                    <Checkbox v-model:checked="experience.isCurrent"
-                                                                              @change="handleIsCurrentChange(index)"
-                                                                              class="w-3 h-3 rounded text-blue-600"/>
-                                                                    <span
-                                                                        class="text-[10px] font-black uppercase text-gray-400">{{
-                                                                            __('translate.currently')
-                                                                        }}</span>
-                                                                </label>
-                                                            </div>
-                                                            <VueDatePicker v-model="experience.end" month-picker
-                                                                           :locale="lang"
-                                                                           :format="monthYearFormat" auto-apply
-                                                                           :disabled="experience.isCurrent"
-                                                                           :class="{'opacity-30': experience.isCurrent}"/>
-                                                            <InputError
-                                                                :message="form.errors[`experiences.${index}.end`]"
-                                                                class="text-[10px] font-bold"/>
-                                                        </div>
-
-                                                        <div class="md:col-span-full space-y-2">
-                                                            <InputLabel :value="__('translate.City')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput
-                                                                v-model="experience.city"
-                                                                class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                type="text"
-                                                                :placeholder="__('translate.City')"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`experiences.${index}.city`]"
-                                                                class="text-[10px] font-bold"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                        </draggable>
                                     </div>
 
+                                    <div v-if="form.experiences.length == 5"
+                                         class="p-5 bg-red-50 text-red-600 rounded-[2rem] text-[10px] font-black text-center uppercase tracking-widest border border-red-100 shadow-sm">
+                                        {{ __('translate.limitComplete') }}
+                                    </div>
+
+                                    <InputError :message="form.errors.experiences" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
+
+                                    <draggable :list="form.experiences" ghost-class="opacity-50" handle=".handle"
+                                               item-key="id" class="space-y-6">
+                                        <template #item="{ element: experience, index }">
+                                            <div
+                                                class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                                                <div
+                                                    class="flex items-center justify-between p-4 border-b border-gray-50">
+                                                    <div
+                                                        class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#00a0e3] transition-colors">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                             viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2" d="M4 8h16M4 16h16"/>
+                                                        </svg>
+                                                    </div>
+                                                    <button @click="removeElement(index, form.experiences)"
+                                                            class="p-2 text-gray-300 hover:text-red-500 transition-colors">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                             viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+
+                                                <div
+                                                    class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                                    <div v-if="optionsPositions" class="space-y-2">
+                                                        <InputLabel :value="__('translate.position')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <multiselect
+                                                            v-model="experience.position"
+                                                            :options="optionsPositions"
+                                                            track-by="value"
+                                                            label="name"
+                                                            :placeholder="__('translate.placeholder')"
+                                                            class="custom-multiselect"
+                                                        />
+                                                        <InputError
+                                                            :message="form.errors[`experiences.${index}.position`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.employer')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <TextInput
+                                                            v-model="experience.employer"
+                                                            type="text"
+                                                            :placeholder="__('translate.employer')"
+                                                        />
+                                                        <InputError
+                                                            :message="form.errors[`experiences.${index}.employer`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.experienceStart')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <VueDatePicker v-model="experience.start" month-picker
+                                                                       class="shadow-sm"
+                                                                       :locale="lang" auto-apply
+                                                                       :teleport="true"
+                                                        />
+                                                        <InputError
+                                                            :message="form.errors[`experiences.${index}.start`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+
+                                                    <div class="space-y-2 relative">
+                                                        <div class="flex items-center justify-between mb-2">
+                                                            <InputLabel :value="__('translate.experienceEnd')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <div class="flex items-center gap-2">
+                                                                <Checkbox v-model:checked="experience.isCurrent"
+                                                                          @change="handleIsCurrentChange(index)"
+                                                                          class="w-4 h-4 !rounded-md text-[#00a0e3] focus:ring-[#00a0e3]"/>
+                                                                <span
+                                                                    class="text-[8px] font-black text-gray-400 uppercase tracking-widest">{{
+                                                                        __('translate.present')
+                                                                    }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <VueDatePicker v-model="experience.end" month-picker
+                                                                       class="shadow-sm"
+                                                                       :disabled="experience.isCurrent"
+                                                                       :locale="lang" auto-apply
+                                                                       :teleport="true"
+                                                        />
+                                                        <InputError
+                                                            :message="form.errors[`experiences.${index}.end`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+
+                                                    <div class="md:col-span-full space-y-2">
+                                                        <InputLabel :value="__('translate.City')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <TextInput
+                                                            v-model="experience.city"
+                                                            type="text"
+                                                            :placeholder="__('translate.City')"
+                                                        />
+                                                        <InputError
+                                                            :message="form.errors[`experiences.${index}.city`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </draggable>
+                                </div>
+
                                     <!-- SEKCJA WYKSZTAŁCENIA -->
-                                    <div class="space-y-6 pt-8 border-t border-gray-100 dark:border-gray-700">
+                                    <div class="space-y-8 pt-8 border-t border-gray-100">
                                         <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-3">
-                                                <div class="p-2 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl">
-                                                    <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400"
-                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                                <div class="p-2.5 bg-indigo-50 rounded-2xl text-[#6366f1]">
+                                                    <svg class="w-6 h-6" fill="none"
+                                                         stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
                                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -1278,7 +1278,7 @@ const removeFile = async (source, load) => {
                                                 </div>
                                                 {{ __('translate.education') }}
                                             </h3>
-                                            <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-6">
                                                 <span
                                                     class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                         __('translate.quantity')
@@ -1287,12 +1287,12 @@ const removeFile = async (source, load) => {
                                                     type="button"
                                                     @click="addEducation"
                                                     v-if="form.educations.length < 5"
-                                                    class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-md shadow-indigo-500/20 active:scale-95"
+                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#6366f1] hover:bg-indigo-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
                                                 >
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
+                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24" stroke-width="4">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="3" d="M12 4v16m8-8H4"/>
+                                                              d="M12 4v16m8-8H4"/>
                                                     </svg>
                                                     {{ __('translate.addEducation') }}
                                                 </button>
@@ -1300,22 +1300,22 @@ const removeFile = async (source, load) => {
                                         </div>
 
                                         <div v-if="form.educations.length == 5"
-                                             class="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-2xl text-xs font-bold text-center uppercase tracking-widest border border-red-100 dark:border-red-800/30">
+                                             class="p-5 bg-red-50 text-red-600 rounded-[2rem] text-[10px] font-black text-center uppercase tracking-widest border border-red-100 shadow-sm">
                                             {{ __('translate.limitComplete') }}
                                         </div>
 
-                                        <InputError :message="form.errors.educations" class="text-center font-bold"/>
+                                        <InputError :message="form.errors.educations" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
 
                                         <draggable :list="form.educations" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-4">
+                                                   item-key="id" class="space-y-6">
                                             <template #item="{ element: education, index }">
                                                 <div
-                                                    class="group bg-white dark:bg-gray-800/50 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all">
+                                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                                                     <div
-                                                        class="flex items-center justify-between p-2 border-b border-gray-50 dark:border-gray-700/50">
+                                                        class="flex items-center justify-between p-4 border-b border-gray-50">
                                                         <div
                                                             class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-indigo-500 transition-colors">
-                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                                  viewBox="0 0 24 24">
                                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                                       stroke-width="2" d="M4 8h16M4 16h16"/>
@@ -1323,7 +1323,7 @@ const removeFile = async (source, load) => {
                                                         </div>
                                                         <button @click="removeElement(index, form.educations)"
                                                                 class="p-2 text-gray-300 hover:text-red-500 transition-colors">
-                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                                  viewBox="0 0 24 24">
                                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                                       stroke-width="2"
@@ -1333,21 +1333,22 @@ const removeFile = async (source, load) => {
                                                     </div>
 
                                                     <div
-                                                        class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                                        class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                                         <div class="space-y-2">
                                                             <InputLabel :value="__('translate.school')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <TextInput v-model="education.school"
-                                                                       class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                       type="text"/>
+                                                                       type="text"
+                                                                       :placeholder="__('translate.school')"
+                                                            />
                                                             <InputError
                                                                 :message="form.errors[`educations.${index}.school`]"
-                                                                class="text-[10px] font-bold"/>
+                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
                                                         </div>
 
                                                         <div v-if="props.levelEducations" class="space-y-2">
                                                             <InputLabel :value="__('translate.levelEducation')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <multiselect v-model="education.level"
                                                                          :options="props.levelEducations"
                                                                          track-by="value" label="name"
@@ -1355,40 +1356,45 @@ const removeFile = async (source, load) => {
                                                                          class="custom-multiselect"/>
                                                             <InputError
                                                                 :message="form.errors[`educations.${index}.level`]"
-                                                                class="text-[10px] font-bold"/>
+                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
                                                         </div>
 
                                                         <div class="space-y-2">
                                                             <InputLabel :value="__('translate.specialization')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <TextInput v-model="education.specialization"
-                                                                       class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                       type="text"/>
+                                                                       type="text"
+                                                                       :placeholder="__('translate.specialization')"
+                                                            />
                                                             <InputError
                                                                 :message="form.errors[`educations.${index}.specialization`]"
-                                                                class="text-[10px] font-bold"/>
+                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
                                                         </div>
 
                                                         <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.experienceSchoolEnd')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <InputLabel :value="__('translate.educationFinish')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <VueDatePicker v-model="education.finish" model-type="yyyy"
-                                                                           :locale="lang"
-                                                                           year-picker auto-apply/>
+                                                                           year-picker
+                                                                           class="shadow-sm"
+                                                                           :locale="lang" auto-apply
+                                                                           :teleport="true"
+                                                            />
                                                             <InputError
                                                                 :message="form.errors[`educations.${index}.finish`]"
-                                                                class="text-[10px] font-bold"/>
+                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
                                                         </div>
 
                                                         <div class="space-y-2 lg:col-span-2">
                                                             <InputLabel :value="__('translate.City')"
-                                                                        class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                             <TextInput v-model="education.city"
-                                                                       class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                       type="text"/>
+                                                                       type="text"
+                                                                       :placeholder="__('translate.City')"
+                                                            />
                                                             <InputError
                                                                 :message="form.errors[`educations.${index}.city`]"
-                                                                class="text-[10px] font-bold"/>
+                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1397,12 +1403,11 @@ const removeFile = async (source, load) => {
                                     </div>
 
                                     <!-- SEKCJA KURSÓW -->
-                                    <div class="space-y-6 pt-8 border-t border-gray-100 dark:border-gray-700">
+                                    <div class="space-y-8 pt-8 border-t border-gray-100">
                                         <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-3">
-                                                <div class="p-2 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl">
-                                                    <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400"
-                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                                <div class="p-2.5 bg-emerald-50 rounded-2xl text-[#10b981]">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2"
                                                               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -1410,70 +1415,75 @@ const removeFile = async (source, load) => {
                                                 </div>
                                                 {{ __('translate.courses') }}
                                             </h3>
-                                            <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-6">
                                                 <span
                                                     class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                         __('translate.quantity')
                                                     }}: {{ form.courses.length }}/5</span>
                                                 <button type="button" @click="addCourse" v-if="form.courses.length < 5"
-                                                        class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-md shadow-emerald-500/20 active:scale-95">
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
+                                                        class="inline-flex items-center gap-2 px-6 py-3 bg-[#10b981] hover:bg-emerald-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24" stroke-width="4">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="3" d="M12 4v16m8-8H4"/>
+                                                              d="M12 4v16m8-8H4"/>
                                                     </svg>
                                                     {{ __('translate.addCourse') }}
                                                 </button>
                                             </div>
                                         </div>
                                         <draggable :list="form.courses" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-4">
+                                                   item-key="id" class="space-y-6">
                                             <template #item="{ element: course, index }">
                                                 <div
-                                                    class="bg-white dark:bg-gray-800/50 rounded-3xl border border-gray-100 dark:border-gray-700 p-6 grid grid-cols-1 md:grid-cols-3 gap-6 relative group">
-                                                    <div
-                                                        class="handle absolute left-2 top-1/2 -translate-y-1/2 p-2 cursor-grab text-gray-200 group-hover:text-emerald-400 transition-colors">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                             viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M4 8h16M4 16h16"/>
-                                                        </svg>
+                                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                                                    <div class="flex items-center justify-between p-4 border-b border-gray-50">
+                                                        <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#10b981] transition-colors">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                                 viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      stroke-width="2" d="M4 8h16M4 16h16"/>
+                                                            </svg>
+                                                        </div>
+                                                        <button @click="removeElement(index, form.courses)"
+                                                                class="p-2 text-gray-300 hover:text-red-500 transition-colors">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                                 viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                            </svg>
+                                                        </button>
                                                     </div>
-                                                    <button @click="removeElement(index, form.courses)"
-                                                            class="absolute right-2 top-2 p-2 text-gray-200 hover:text-red-500 transition-colors">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                             viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div class="space-y-2 pl-4">
-                                                        <InputLabel :value="__('translate.name')"
-                                                                    class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <TextInput v-model="course.name"
-                                                                   class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                   type="text"/>
-                                                        <InputError :message="form.errors[`courses.${index}.name`]"
-                                                                    class="text-[10px] font-bold"/>
-                                                    </div>
-                                                    <div class="space-y-2">
-                                                        <InputLabel :value="__('translate.organizator')"
-                                                                    class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <TextInput v-model="course.organizator"
-                                                                   class="w-full !rounded-xl !border-gray-100 dark:!border-gray-700 bg-gray-50/50 dark:bg-gray-800"
-                                                                   type="text"/>
-                                                        <InputError
-                                                            :message="form.errors[`courses.${index}.organizator`]"
-                                                            class="text-[10px] font-bold"/>
-                                                    </div>
-                                                    <div class="space-y-2">
-                                                        <InputLabel :value="__('translate.date')"
-                                                                    class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <VueDatePicker v-model="course.date" month-picker
-                                                                       :locale="lang"
-                                                                       :format="monthYearFormat" auto-apply/>
-                                                        <InputError :message="form.errors[`courses.${index}.date`]"
-                                                                    class="text-[10px] font-bold"/>
+                                                    <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                                                        <div class="space-y-2">
+                                                            <InputLabel :value="__('translate.name')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <TextInput v-model="course.name"
+                                                                       type="text"
+                                                                       :placeholder="__('translate.name')"/>
+                                                            <InputError :message="form.errors[`courses.${index}.name`]"
+                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        </div>
+                                                        <div class="space-y-2">
+                                                            <InputLabel :value="__('translate.organizator')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <TextInput v-model="course.organizator"
+                                                                       type="text"
+                                                                       :placeholder="__('translate.organizator')"/>
+                                                            <InputError
+                                                                :message="form.errors[`courses.${index}.organizator`]"
+                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        </div>
+                                                        <div class="space-y-2">
+                                                            <InputLabel :value="__('translate.date')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <VueDatePicker v-model="course.date" month-picker
+                                                                           class="shadow-sm"
+                                                                           :locale="lang" auto-apply
+                                                                           :teleport="true"
+                                                            />
+                                                            <InputError :message="form.errors[`courses.${index}.date`]"
+                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </template>
@@ -1481,11 +1491,11 @@ const removeFile = async (source, load) => {
                                     </div>
 
                                     <!-- SEKCJA JĘZYKÓW -->
-                                    <div class="space-y-6 pt-8 border-t border-gray-100 dark:border-gray-700">
+                                    <div class="space-y-8 pt-8 border-t border-gray-100">
                                         <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-3">
-                                                <div class="p-2 bg-amber-50 dark:bg-amber-900/30 rounded-xl">
-                                                    <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="none"
+                                            <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                                <div class="p-2.5 bg-amber-50 rounded-2xl text-[#f59e0b]">
+                                                    <svg class="w-6 h-6" fill="none"
                                                          stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2"
@@ -1494,62 +1504,65 @@ const removeFile = async (source, load) => {
                                                 </div>
                                                 {{ __('translate.language') }}
                                             </h3>
-                                            <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-6">
                                                 <span
                                                     class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                         __('translate.quantity')
                                                     }}: {{ form.langs.length }}/5</span>
                                                 <button type="button" @click="addLang" v-if="form.langs.length < 5"
-                                                        class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-md shadow-amber-500/20 active:scale-95">
-                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
+                                                        class="inline-flex items-center gap-2 px-6 py-3 bg-[#f59e0b] hover:bg-amber-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-amber-500/20 active:scale-95">
+                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24" stroke-width="4">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="3" d="M12 4v16m8-8H4"/>
+                                                              d="M12 4v16m8-8H4"/>
                                                     </svg>
                                                     {{ __('translate.addLang') }}
                                                 </button>
                                             </div>
                                         </div>
                                         <draggable :list="form.langs" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-4">
+                                                   item-key="id" class="space-y-6">
                                             <template #item="{ element: lang, index }">
                                                 <div
-                                                    class="bg-white dark:bg-gray-800/50 rounded-3xl border border-gray-100 dark:border-gray-700 p-6 grid grid-cols-1 md:grid-cols-2 gap-6 relative group">
-                                                    <div
-                                                        class="handle absolute left-2 top-1/2 -translate-y-1/2 p-2 cursor-grab text-gray-200 group-hover:text-amber-400 transition-colors">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                             viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M4 8h16M4 16h16"/>
-                                                        </svg>
+                                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative">
+                                                    <div class="flex items-center justify-between p-4 border-b border-gray-50">
+                                                        <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#f59e0b] transition-colors">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                                 viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      stroke-width="2" d="M4 8h16M4 16h16"/>
+                                                            </svg>
+                                                        </div>
+                                                        <button @click="removeElement(index, form.langs)"
+                                                                class="p-2 text-gray-300 hover:text-red-500 transition-colors">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                                 viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                            </svg>
+                                                        </button>
                                                     </div>
-                                                    <button @click="removeElement(index, form.langs)"
-                                                            class="absolute right-2 top-2 p-2 text-gray-200 hover:text-red-500 transition-colors">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                             viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div class="space-y-2 pl-4">
-                                                        <InputLabel :value="__('translate.name')"
-                                                                    class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <multiselect v-model="lang.name" :options="sortLangs"
-                                                                     track-by="value" label="label"
-                                                                     :placeholder="__('translate.placeholder')"
-                                                                     class="custom-multiselect"/>
-                                                        <InputError :message="form.errors[`langs.${index}.name`]"
-                                                                    class="text-[10px] font-bold"/>
-                                                    </div>
-                                                    <div v-if="props.langLevels" class="space-y-2">
-                                                        <InputLabel :value="__('translate.levelLang')"
-                                                                    class="font-bold text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <multiselect v-model="lang.level" :options="props.langLevels"
-                                                                     track-by="value" label="name"
-                                                                     :placeholder="__('translate.placeholder')"
-                                                                     class="custom-multiselect"/>
-                                                        <InputError :message="form.errors[`langs.${index}.level`]"
-                                                                    class="text-[10px] font-bold"/>
+                                                    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                        <div class="space-y-2">
+                                                            <InputLabel :value="__('translate.name')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <multiselect v-model="lang.name" :options="sortLangs"
+                                                                         track-by="value" label="label"
+                                                                         :placeholder="__('translate.placeholder')"
+                                                                         class="custom-multiselect"/>
+                                                            <InputError :message="form.errors[`langs.${index}.name`]"
+                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        </div>
+                                                        <div v-if="props.langLevels" class="space-y-2">
+                                                            <InputLabel :value="__('translate.levelLang')"
+                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                            <multiselect v-model="lang.level" :options="props.langLevels"
+                                                                         track-by="value" label="name"
+                                                                         :placeholder="__('translate.placeholder')"
+                                                                         class="custom-multiselect"/>
+                                                            <InputError :message="form.errors[`langs.${index}.level`]"
+                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </template>
@@ -1557,10 +1570,10 @@ const removeFile = async (source, load) => {
                                     </div>
 
                                     <!-- SEKCJA UMIEJĘTNOŚCI -->
-                                    <div class="space-y-6 pt-8 border-t border-gray-100 dark:border-gray-700">
-                                        <h3 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-3">
-                                            <div class="p-2 bg-pink-50 dark:bg-pink-900/30 rounded-xl">
-                                                <svg class="w-5 h-5 text-pink-600 dark:text-pink-400" fill="none"
+                                    <div class="space-y-8 pt-8 border-t border-gray-100">
+                                        <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                            <div class="p-2.5 bg-pink-50 rounded-2xl text-[#db2777]">
+                                                <svg class="w-6 h-6" fill="none"
                                                      stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                           stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -1569,7 +1582,7 @@ const removeFile = async (source, load) => {
                                             {{ __('translate.skills') }}
                                         </h3>
                                         <div
-                                            class="p-6 bg-white dark:bg-gray-800/50 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                            class="p-8 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
                                             <multiselect id="tagging" v-model="form.skills" label="name" track-by="code"
                                                          :options="skillsOptions" :max="10" :multiple="true"
                                                          :taggable="true" @tag="addSkill"
@@ -1580,7 +1593,7 @@ const removeFile = async (source, load) => {
                                                 </template>
                                             </multiselect>
                                             <InputError :message="form.errors.skills"
-                                                        class="mt-4 text-xs font-bold text-center"/>
+                                                        class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
                                         </div>
                                     </div>
                                 </div>
