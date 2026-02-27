@@ -116,7 +116,7 @@ const submit = () => {
 
                                 <!-- Select City -->
                                 <div class="space-y-3">
-                                    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.city') }}</label>
+                                    <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.City') }}</label>
                                     <div class="custom-multiselect">
                                         <multiselect
                                             :selectLabel="''"

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('foundations', function (Blueprint $table) {
             // Kategorie (relacja do foundation_categories)
-            $table->json('category_id');
-            $table->json('subcategory_id');
+            $table->json('category_id')->nullable();
+            $table->json('subcategory_id')->nullable();
 
             // Informacje kontaktowe
             $table->string('phone')->nullable();
