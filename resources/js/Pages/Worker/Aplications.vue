@@ -21,7 +21,12 @@ const activeTab = ref('active'); // 'active' or 'finished'
 const applications = computed(() =>
     props.applications.map(app => ({
         ...app,
-        statusLabel: __('translate.' + app.status)
+        statusLabel: ({
+            yes: __('translate.labels.yes'),
+            no: __('translate.labels.no'),
+            sent: __('translate.labels.sent'),
+            maybe: __('translate.labels.maybe')
+        }[app.status] || app.status)
     }))
 );
 
@@ -167,7 +172,7 @@ const getApplicationProgress = (status) => {
                                     >
                                         <option value="all">{{ __('translate.all_statuses') }}</option>
                                         <option value="sent">{{ __('translate.labels.sent') }}</option>
-                                        <option value="maybe">{{ __('translate.statusMaybe') }}</option>
+                                        <option value="maybe">{{ __('translate.labels.maybe') }}</option>
                                         <option value="no">{{ __('translate.labels.no') }}</option>
                                         <option value="yes">{{ __('translate.labels.yes') }}</option>
                                     </select>

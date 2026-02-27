@@ -560,114 +560,68 @@ watch(() => props.foundations, () => {
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
 .custom-multiselect {
-    .multiselect__tags {
-        border: 1px solid #e5e7eb; /* border-gray-200 */
-        border-radius: 1rem;
-        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
-        background: #ffffff;
-        transition: all 0.3s ease;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-    }
+    .multiselect {
+        &__tags {
+            @apply rounded-2xl border-gray-100 bg-gray-50/50 py-3 px-4 min-h-[54px] flex items-center transition-all border-2;
+        }
 
-    &:focus-within .multiselect__tags {
-        border-color: #00a0e3;
-        box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1);
-    }
+        &__placeholder {
+            @apply text-[11px] font-black text-gray-400 uppercase tracking-widest pt-0 mb-0;
+        }
 
-    .multiselect__placeholder {
-        margin-bottom: 0;
-        padding-top: 0;
-        color: #9ca3af; /* text-gray-400 */
-        font-size: 0.75rem; /* text-xs */
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
+        &__single {
+            @apply bg-transparent text-[11px] font-black text-[#0A2C5C] uppercase tracking-widest pt-0 mb-0;
+        }
 
-    .multiselect__single {
-        margin-bottom: 0;
-        padding-left: 0;
-        font-size: 0.75rem;
-        background: transparent;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #0A2C5C;
-    }
+        &__input {
+            @apply bg-transparent text-[11px] font-black uppercase tracking-widest pt-0 mb-0;
+        }
 
-    .multiselect__input {
-        margin-bottom: 0;
-        background: transparent;
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #0A2C5C;
+        &__select {
+            @apply top-1/2 -translate-y-1/2 h-full flex items-center justify-center right-0;
+            &::before {
+                @apply border-t-gray-400 border-l-transparent border-r-transparent border-b-transparent border-t-[6px] border-x-[5px] relative top-0;
+            }
+        }
 
-        &::placeholder {
-            color: #9ca3af;
+        &__content-wrapper {
+            @apply rounded-2xl mt-2 border-none shadow-xl overflow-hidden;
+        }
+
+        &__option {
+            @apply text-[10px] font-bold uppercase tracking-wider py-4;
+
+            &--highlight {
+                @apply bg-[#0A2C5C] text-white;
+                &::after {
+                    @apply bg-red-500 text-[10px] font-black uppercase tracking-widest px-4;
+                }
+            }
+
+            &--selected {
+                @apply bg-gray-100 text-[#0A2C5C] font-black;
+                &::after {
+                    @apply content-['✓'] bg-transparent text-green-500;
+                }
+            }
+
+            &--group {
+                @apply bg-gray-50/50 text-gray-400 text-[9px] font-black uppercase tracking-[0.2em] py-3 px-4;
+            }
         }
     }
 
-    .multiselect__select {
-        height: 48px;
-        width: 2.5rem;
-    }
-
-    .multiselect__option--highlight {
-        background: #0A2C5C !important;
-        outline: none;
-        color: white;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-
-        &:after {
-            display: none;
+    .multiselect--active {
+        .multiselect__tags {
+            @apply border-[#0A2C5C] bg-white ring-4 ring-blue-900/5;
         }
     }
 
-    .multiselect__option--selected {
-        background: #f3f4f6 !important;
-        color: #0A2C5C;
-        font-weight: 900;
-
-        &:after {
-            display: none;
+    .multiselect--disabled {
+        @apply opacity-50;
+        .multiselect__tags {
+            @apply bg-gray-100;
         }
-    }
-
-    .multiselect__option--group {
-        background: #f9fafb !important;
-        color: #9ca3af !important;
-        font-size: 9px !important;
-        font-weight: 900 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        padding: 12px 15px !important;
-    }
-
-    .multiselect__content-wrapper {
-        border: 1px solid #e5e7eb;
-        border-top: none;
-        border-bottom-left-radius: 1.25rem;
-        border-bottom-right-radius: 1.25rem;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        overflow: hidden;
-    }
-
-    .multiselect__content {
-        padding: 4px;
-    }
-
-    .multiselect__option {
-        border-radius: 0.75rem;
-        margin: 2px 0;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        padding: 8px 12px;
     }
 }
 </style>

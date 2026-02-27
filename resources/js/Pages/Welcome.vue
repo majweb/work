@@ -92,10 +92,10 @@ const submit = () => {
                                             group-values="elements"
                                             group-label="group"
                                             :group-select="false"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="value"
                                             label="name"
                                             :multiple="false"
@@ -119,10 +119,10 @@ const submit = () => {
                                     <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.city') }}</label>
                                     <div class="custom-multiselect">
                                         <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="value"
                                             label="name"
                                             :disabled="!form.country"
@@ -147,10 +147,10 @@ const submit = () => {
                                     <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.category') }}</label>
                                     <div class="custom-multiselect">
                                         <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="value"
                                             label="name"
                                             :disabled="!form.country"
@@ -237,6 +237,10 @@ const submit = () => {
                 &::after {
                     @apply content-['✓'] bg-transparent text-green-500;
                 }
+            }
+
+            &--group {
+                @apply bg-gray-50/50 text-gray-400 text-[9px] font-black uppercase tracking-[0.2em] py-3 px-4;
             }
         }
     }
