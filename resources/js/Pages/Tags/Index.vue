@@ -60,12 +60,6 @@ const getContrastColor = (bgColor) => {
 
 <template>
     <AppLayout :title="__('translate.tags')">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('translate.tags') }}
-            </h2>
-        </template>
-
         <!-- Modal potwierdzenia usunięcia -->
         <DialogModal :show="showDeleteModal" @close="closeDeleteModal">
             <template #title>

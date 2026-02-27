@@ -14,26 +14,29 @@ const toggleActive = (id) => {
 
 <template>
     <AppLayout :title="__('partners.partners')">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('partners.partners') }}
-            </h2>
-        </template>
-
-        <div class="py-12">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-xl sm:rounded-lg p-6">
-                    <div class="flex justify-between mb-6">
-                        <h3 class="text-lg font-medium text-gray-900">
-                            Lista partnerów
-                        </h3>
-
+                <!-- Header Card -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('partners.partners') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj partnerami wyświetlanymi w aplikacji</p>
+                        </div>
                         <Link
                             :href="route('admin.partners.create')"
-                            class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                            class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-blue-800 transition duration-200 shadow-lg shadow-blue-900/20"
                         >
                             Dodaj partnera
                         </Link>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
+                    <div class="flex justify-between mb-8 px-2">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                            Lista partnerów
+                        </h3>
                     </div>
 
                     <div class="overflow-x-auto">

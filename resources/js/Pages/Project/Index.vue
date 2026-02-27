@@ -201,27 +201,28 @@ const duplicateProject = (project) => {
 
 <template>
     <AppLayout :title="__('translate.projects')">
-        <template #header>
-            <div class="flex justify-between items-center">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('translate.offerts') }}
-                </h2>
-                <Link
-                    :href="route('projects.create')"
-                    class="inline-flex items-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
-                >
-                    {{ __('translate.create') || 'UTWÓRZ' }}
-                </Link>
-            </div>
-        </template>
-
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                    <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj swoimi ofertami pracy</p>
+                            </div>
+                            <Link
+                                :href="route('projects.create')"
+                                class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                            >
+                                {{ __('translate.create') || 'UTWÓRZ' }}
+                            </Link>
+                        </div>
+                    </div>
+
                 <!-- Statystyki -->
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div class="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-4 transition-all hover:shadow-blue-900/10 hover:-translate-y-1">
                         <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center shrink-0">
-                            <img src="/images/icons/firm/liczba_ofert.svg" class="w-10 h-10" alt="ofert">
+                            <img src="/images/icons/firm/liczba_ofert.svg" class="w-10 h-10" alt="oferty">
                         </div>
                         <div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.offers_count') }}</p>

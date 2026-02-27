@@ -49,21 +49,13 @@ const search = () => {
 
 <template>
     <AppLayout :title="__('translate.invoices')">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('translate.invoices') }}
-            </h2>
-        </template>
-
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <!-- HEADER CARD -->
+                <!-- Header Card -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.invoices') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.invoicesDescription') }}</p>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.invoices') }}</h3>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.invoicesDescription') }}</p>
                     </div>
                 </div>
 

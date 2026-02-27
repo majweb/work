@@ -13,8 +13,8 @@ const hasNotifications = computed(() => notificationCount.value > 0);
 <template>
     <Dropdown align="right" width="80">
         <template #trigger>
-            <button class="relative inline-flex items-center p-2.5 text-gray-500 rounded-2xl hover:text-[#0A2C5C] hover:bg-blue-50/50 focus:outline-none focus:bg-blue-50 transition-all duration-200 group">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform">
+            <button class="relative inline-flex items-center p-2.5 text-gray-500 rounded-2xl hover:text-[#0A2C5C] hover:bg-blue-50/50 focus:outline-none focus:bg-blue-50 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6 transition-transform">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                 </svg>
                 <span v-if="hasNotifications" class="absolute top-1 right-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-black leading-none text-white bg-red-600 rounded-lg shadow-sm border-2 border-white">

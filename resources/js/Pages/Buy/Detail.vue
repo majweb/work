@@ -67,16 +67,23 @@ const submitForm = () => {
 <template>
     <AppLayout :title="__('translate.buy')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('translate.cart') }}
-            </h2>
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.cart') }}</h3>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="countCart > 0">
+                        {{ __('translate.incart') }} {{ countCart }} {{ __('translate.service') }}
+                    </p>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-else>
+                        {{ __('translate.emptyCart') }}
+                    </p>
+                </div>
+            </div>
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
                         <div class="mx-auto max-w-screen-xl px-4">
-                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl" v-if="countCart > 0">{{__('translate.incart')}} {{countCart}} {{__('translate.service')}}</h2>
                             <div class="mt-6 sm:mt-8 flex flex-col lg:flex-row items-start gap-6 xl:gap-8">
                                 <div class="w-full lg:flex-1">
                                         <div v-if="countCart == 0">

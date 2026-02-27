@@ -12,7 +12,7 @@ const props = defineProps({
     },
     contentClasses: {
         type: Array,
-        default: () => ['py-1', 'bg-white'],
+        default: () => ['py-2', 'bg-white'],
     },
 });
 
@@ -30,7 +30,9 @@ onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
 const widthClass = computed(() => {
     return {
         '48': 'w-48',
-    }[props.width.toString()];
+        '56': 'w-56',
+        '64': 'w-64',
+    }[props.width.toString()] || 'w-48';
 });
 
 const alignmentClasses = computed(() => {
@@ -48,7 +50,7 @@ const alignmentClasses = computed(() => {
 
 <template>
     <div class="relative">
-        <div @click="open = ! open">
+        <div @click.stop="open = ! open">
             <slot name="trigger" />
         </div>
 
@@ -56,21 +58,21 @@ const alignmentClasses = computed(() => {
         <div v-show="open" class="fixed inset-0 z-40" @click="open = false" />
 
         <transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="transform opacity-0 scale-95"
-            enter-to-class="transform opacity-100 scale-100"
-            leave-active-class="transition ease-in duration-75"
-            leave-from-class="transform opacity-100 scale-100"
-            leave-to-class="transform opacity-0 scale-95"
+            enter-active-class="transition ease-out duration-300"
+            enter-from-class="transform opacity-0 scale-95 -translate-y-2"
+            enter-to-class="transform opacity-100 scale-100 translate-y-0"
+            leave-active-class="transition ease-in duration-200"
+            leave-from-class="transform opacity-100 scale-100 translate-y-0"
+            leave-to-class="transform opacity-0 scale-95 -translate-y-2"
         >
             <div
                 v-show="open"
-                class="absolute z-50 mt-2 rounded-md shadow-lg"
+                class="absolute z-50 mt-4 rounded-[2rem] shadow-2xl shadow-blue-900/10 border border-gray-100"
                 :class="[widthClass, alignmentClasses]"
                 style="display: none;"
-                @click="open = false"
+                @click.stop="open = false"
             >
-                <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
+                <div class="rounded-[2rem] overflow-hidden" :class="contentClasses">
                     <slot name="content" />
                 </div>
             </div>

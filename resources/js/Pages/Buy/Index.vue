@@ -62,9 +62,12 @@ const getServiceDescription = (type) => {
 <template>
     <AppLayout :title="__('translate.buy')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('translate.buy') }}
-            </h2>
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.buy') }}</h3>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('info.header_big') }}</p>
+                </div>
+            </div>
         </template>
         <div class="py-12 bg-gray-50/50 min-h-screen relative overflow-hidden">
             <!-- Background Decorations -->
