@@ -509,7 +509,7 @@ const duplicateProject = (project) => {
                                 <div class="bg-blue-50/50 px-4 py-3 rounded-2xl border border-blue-100/50 flex items-center gap-3">
                                     <div class="w-1.5 h-1.5 rounded-full bg-[#0A2C5C] shadow-sm shadow-blue-200"></div>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-1">{{ __('translate.yes') || 'Tak' }}</span>
+                                        <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-1">{{ __('translate.statusYes') }}</span>
                                         <span class="text-xs font-black text-[#0A2C5C] leading-none">{{ project.yes_count }}</span>
                                     </div>
                                 </div>
@@ -518,7 +518,7 @@ const duplicateProject = (project) => {
                                 <div class="bg-cyan-50/50 px-4 py-3 rounded-2xl border border-cyan-100/50 flex items-center gap-3">
                                     <div class="w-1.5 h-1.5 rounded-full bg-[#00a0e3] shadow-sm shadow-cyan-200"></div>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1">{{ __('translate.maybe') || 'Może' }}</span>
+                                        <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1">{{ __('translate.statusMaybe') }}</span>
                                         <span class="text-xs font-black text-[#00a0e3] leading-none">{{ project.maybe_count }}</span>
                                     </div>
                                 </div>
@@ -527,7 +527,7 @@ const duplicateProject = (project) => {
                                 <div class="bg-red-50/50 px-4 py-3 rounded-2xl border border-red-100/50 flex items-center gap-3">
                                     <div class="w-1.5 h-1.5 rounded-full bg-[#e31e24] shadow-sm shadow-red-200"></div>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-1">{{ __('translate.no') || 'Nie' }}</span>
+                                        <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-1">{{ __('translate.statusNo') }}</span>
                                         <span class="text-xs font-black text-[#e31e24] leading-none">{{ project.no_count }}</span>
                                     </div>
                                 </div>

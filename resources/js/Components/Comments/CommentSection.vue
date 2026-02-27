@@ -43,42 +43,57 @@ const allRepliesCount = computed(() =>
 </script>
 
 <template>
-    <div class="mt-8">
+    <div class="mt-12">
         <!-- Licznik komentarzy -->
-        <h3 class="text-xl font-bold mb-4">
-            {{__('comments.comments')}} ({{ mainCommentsCount }} {{__('comments.main')}} {{ allRepliesCount }} {{__('comments.responses')}}
-        </h3>
+        <div class="flex items-center gap-4 mb-10">
+            <h2 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                {{__('comments.comments')}}
+                <span class="ml-2 px-3 py-1 bg-blue-50 text-blue-500 text-xs rounded-full border border-blue-100">
+                    {{ mainCommentsCount + allRepliesCount }}
+                </span>
+            </h2>
+            <div class="h-px flex-1 bg-gray-100"></div>
+        </div>
 
         <!-- Formularz dodawania nowego komentarza -->
-        <div v-if="user" class="mb-6">
-            <form @submit.prevent="submitComment">
-                <TextareaLimit
-                    id="content"
-                    v-model="form.content"
-                    :limit="1000"
-                    class="w-full rounded"
-                    :placeholder="__('comments.WriteComment')"
-                />
-                <InputError :message="form.errors.content"/>
+        <div v-if="user" class="mb-12 bg-gray-50/50 p-6 md:p-8 rounded-[2rem] border border-gray-100 shadow-inner">
+            <form @submit.prevent="submitComment" class="space-y-4">
+                <div class="relative">
+                    <TextareaLimit
+                        id="content"
+                        v-model="form.content"
+                        :limit="1000"
+                        class="w-full !rounded-2xl !border-gray-100 !bg-white focus:!ring-blue-500/20 focus:!border-blue-500 transition-all text-sm font-medium placeholder-gray-400 p-5 shadow-sm"
+                        :placeholder="__('comments.WriteComment')"
+                        rows="4"
+                    />
+                </div>
+                <InputError :message="form.errors.content" class="mt-2 text-[10px] font-black uppercase tracking-widest ml-2"/>
 
-                <div class="flex justify-end mt-2">
+                <div class="flex justify-end pt-2">
                     <button
                         type="submit"
-                        class="px-4 py-2 bg-[#0B2B4C] text-white rounded hover:bg-[#133C69] mt-4"
+                        class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
                         :disabled="form.processing"
                     >
                         {{__('comments.add')}}
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
                     </button>
                 </div>
             </form>
         </div>
 
-        <div v-else class="mb-6 p-4 bg-gray-100 rounded">
-            <p>{{__('comments.addLogin')}}</p>
+        <div v-else class="mb-12 p-8 bg-blue-50/50 rounded-[2rem] border border-blue-100/50 text-center">
+            <p class="text-sm font-bold text-blue-900/60 uppercase tracking-widest">{{__('comments.addLogin')}}</p>
+            <Link :href="route('login')" class="inline-block mt-4 text-[10px] font-black text-[#0A2C5C] hover:underline uppercase tracking-widest">
+                {{ __('translate.login') }} →
+            </Link>
         </div>
 
         <!-- Lista komentarzy -->
-        <div class="space-y-4">
+        <div class="space-y-6">
             <Comment
                 v-for="comment in comments"
                 :key="comment.id"

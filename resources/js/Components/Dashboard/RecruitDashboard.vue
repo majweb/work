@@ -326,7 +326,7 @@
                                     <div class="bg-blue-50/50 px-3 py-2 rounded-xl border border-blue-100/50 flex items-center gap-2.5">
                                         <div class="w-1.5 h-1.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
                                         <div class="flex flex-col">
-                                            <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-0.5">{{ __('translate.labels.yes') }}</span>
+                                            <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-0.5">{{ __('translate.statusYes') }}</span>
                                             <span class="text-xs font-black text-blue-900 leading-none">{{ project.yes_count || 0 }}</span>
                                         </div>
                                     </div>
@@ -335,7 +335,7 @@
                                     <div class="bg-red-50/50 px-3 py-2 rounded-xl border border-red-100/50 flex items-center gap-2.5">
                                         <div class="w-1.5 h-1.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
                                         <div class="flex flex-col">
-                                            <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-0.5">{{ __('translate.labels.no') }}</span>
+                                            <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-0.5">{{ __('translate.statusNo') }}</span>
                                             <span class="text-xs font-black text-red-600 leading-none">{{ project.no_count || 0 }}</span>
                                         </div>
                                     </div>
@@ -344,7 +344,7 @@
                                     <div class="bg-cyan-50/50 px-3 py-2 rounded-xl border border-cyan-100/50 flex items-center gap-2.5">
                                         <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
                                         <div class="flex flex-col">
-                                            <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-0.5">{{ __('translate.labels.maybe') }}</span>
+                                            <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-0.5">{{ __('translate.statusMaybe') }}</span>
                                             <span class="text-xs font-black text-cyan-600 leading-none">{{ project.maybe_count || 0 }}</span>
                                         </div>
                                     </div>

@@ -21,243 +21,178 @@ const props = defineProps({
 </script>
 <template>
     <FrontLayout :title="__('translate.articles')">
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
+
+                <!-- BANNERS SWIPER -->
+                <div v-if="props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
                     <swiper
-                        v-if="props.banners?.length"
                         :modules="[Navigation, Pagination, Autoplay]"
                         :slides-per-view="1"
                         :space-between="30"
                         :loop="true"
-                        :autoplay="{
-    delay: 3000,
-    disableOnInteraction: false
-  }"
+                        :autoplay="{ delay: 3000, disableOnInteraction: false }"
                         :allowTouchMove="false"
-                    navigation
-                    :pagination="{ clickable: true }"
-                    class="h-[300px] w-full"
+                        navigation
+                        :pagination="{ clickable: true }"
+                        class="h-[300px] w-full rounded-[2.5rem] overflow-hidden"
                     >
-                    <swiper-slide v-for="slide in props.banners" :key="slide.id">
-                        <a :href="slide.url" class="block w-full h-full">
-                            <img
-                                class="object-contain w-full h-full"
-                                :alt="slide.id"
-                                :src="slide.image"
-                            />
-                        </a>
-                    </swiper-slide>
+                        <swiper-slide v-for="slide in props.banners" :key="slide.id">
+                            <a :href="slide.url" class="block w-full h-full">
+                                <img
+                                    class="object-cover w-full h-full"
+                                    :alt="slide.id"
+                                    :src="slide.image"
+                                />
+                            </a>
+                        </swiper-slide>
                     </swiper>
-                    <Link
-                        :href="route('front.articles.single', newest.id)"
-                        v-if="newest"
-                        class="bg-[#0A2E6D] text-white rounded-xl overflow-hidden flex flex-col md:flex-row items-center justify-between p-6 md:p-10 shadow-md group hover:cursor-pointer"
-                    >
-                        <!-- Tekst -->
-                        <div class="md:w-1/2 space-y-3 text-center md:text-left">
-                            <h3 class="text-white text-2xl md:text-3xl font-bold mb-2 relative group">
-            <span class="border-b-2 border-transparent group-hover:border-white transition-all duration-300">
-                {{ newest.title }}
-            </span>
-                            </h3>
-                            <p class="text-sm uppercase tracking-wider text-gray-200">
-                                Artykuł firmy<br> <span class="font-semibold">{{ newest.author }}</span>
-                            </p>
-                        </div>
+                </div>
 
-                        <!-- Obraz -->
-                        <div class="md:w-1/2 mt-6 md:mt-0 flex justify-center md:justify-end overflow-hidden">
-                            <div class="bg-white p-2 rounded-md">
+                <!-- LATEST ARTICLE -->
+                <div v-if="newest" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                    <Link :href="route('front.articles.single', newest.id)" class="group block">
+                        <div class="flex flex-col lg:flex-row">
+                            <div class="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center space-y-6">
+                                <div class="flex items-center gap-3">
+                                    <span class="px-4 py-1.5 bg-blue-50 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-xl border border-blue-100">
+                                        {{ __('translate.latest_article') }}
+                                    </span>
+                                </div>
+                                <h2 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none group-hover:text-blue-600 transition-colors">
+                                    {{ newest.title }}
+                                </h2>
+                                <p class="text-sm font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
+                                    {{ __('translate.company_article') }} <br>
+                                    <span class="text-[#0A2C5C] font-black">{{ newest.author }}</span>
+                                </p>
+                                <div class="pt-4">
+                                    <span class="inline-flex items-center gap-2 text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+                                        {{ __('translate.check') }}
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/2 relative overflow-hidden bg-gray-50 h-[400px] lg:h-auto">
                                 <div
-                                    class="w-[280px] md:w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300"
+                                    class="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
                                     :style="`background-image: url(${newest.image});`"
                                 ></div>
                             </div>
                         </div>
                     </Link>
+                </div>
 
-                    <section v-if="categories" class="pt-12 bg-white">
-                        <!-- Sekcja kategorii (Swiper) -->
-                        <div class="max-w-6xl mx-auto px-4">
-                            <Swiper
-                                :modules="[Pagination, Autoplay]"
-                                :slides-per-view="'auto'"
-                                :centered-slides="true"
-                            :space-between="12"
-                                :loop="true"
-                                :autoplay="{
-    delay: 3000,
-    disableOnInteraction: false
-  }"
-                                :pagination="{ clickable: true }"
-                                class="categories-swiper h-20 flex justify-center"
-                            >
-                                <SwiperSlide
-                                    v-for="category in categories"
-                                    :key="category.value"
-                                    class="!w-auto"
-                                >
-                                    <Link
-                                        :href="route('front.groupArticles', { category: category.value })"
-                                        class="hover:scale-95 uppercase bg-[#0a2c5c] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap"
-                                    >
-                                        {{ category.name }}
-                                    </Link>
-                                </SwiperSlide>
-                            </Swiper>
-                        </div>
-                    </section>
-                        <!-- Sekcja najnowszych artykułów -->
-                    <section v-if="most3Articles.length" class="pt-12 max-w-6xl mx-auto px-6">
-                        <!-- Mobile Swiper -->
-                        <div class="md:hidden" v-if="most3Articles.length">
-                            <Swiper
-                                :modules="[Autoplay, Scrollbar]"
-                                :slidesPerView="'auto'"
-                                :slides-per-view="1.4"
-                                :spaceBetween="30"
-                                :loop="most3Articles.length > 1"
-                                :autoplay="most3Articles.length > 1 ? { delay: 3000, disableOnInteraction: false } : false"
-                                :scrollbar="{
-      hide: false,
-    }"
-                            >
-                                <SwiperSlide v-for="article in most3Articles" :key="article.id">
-                                    <article class="flex flex-col items-start overflow-hidden">
-                                        <div class="w-full flex items-center justify-center">
-                                            <div
-                                                class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
-                                                :style="`background-image: url(${article.image});`"
-                                            ></div>
-                                        </div>
-                                        <div class="p-6">
-                                            <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 hover:underline">
-                                                <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
-                                            </h3>
-                                            <p class="text-sm text-gray-500 mb-1">
-                                                {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
-                                            </p>
-                                            <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
-                                                <img :src="article.avatar" :alt="article.title" class="h-5 object-contain">
-                                                <span>{{ article.author }}</span>
-                                            </p>
-                                        </div>
-                                    </article>
-                                </SwiperSlide>
-                            </Swiper>
-                        </div>
-                        <!-- Desktop Grid -->
-                        <div class="hidden md:grid md:grid-cols-3 gap-10">
+                <!-- CATEGORIES -->
+                <div v-if="categories" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categories') }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
+                    <Swiper
+                        :modules="[Pagination, Autoplay]"
+                        :slides-per-view="'auto'"
+                        :centered-slides="false"
+                        :space-between="12"
+                        :loop="false"
+                        class="categories-swiper"
+                    >
+                        <SwiperSlide v-for="category in categories" :key="category.value" class="!w-auto">
                             <Link
-                                :href="route('front.articles.single', article.id)"
-                                v-for="article in most3Articles"
-                                :key="article.id"
-                                class="flex flex-col items-start overflow-hidden group"
+                                :href="route('front.groupArticles', { category: category.value })"
+                                class="inline-block px-8 py-3 bg-gray-50 border border-gray-100 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm whitespace-nowrap"
                             >
-                                <div class="w-full flex items-center justify-center overflow-hidden">
-                                    <div
-                                        class="w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
-                                        :style="`background-image: url(${article.image});`"
-                                    ></div>
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative">
-            <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
-                {{ article.title }}
-            </span>
-                                    </h3>
-                                    <p class="text-sm text-gray-500 mb-1">
-                                        {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
-                                    </p>
-                                    <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
-                                        <img :src="article.avatar" :alt="article.title" class="h-5 object-contain">
-                                        <span>{{ article.author }}</span>
-                                    </p>
-                                </div>
+                                {{ category.name }}
                             </Link>
-                        </div>
-                    </section>
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
 
-                    <div v-if="grouped.length" v-for="category in grouped" :key="category.name" class="mb-12">
-                        <!-- Nazwa grupy -->
-                        <Link :href="route('front.groupArticles', { category: category.value })"
-                              class="mx-5 text-center hover:scale-95 uppercase bg-[#0a2c5c] text-white font-semibold py-2 rounded-md hover:bg-[#133C69] transition block whitespace-nowrap mb-6">
-                            {{ category.name }}
+                <!-- MOST RECENT GRID -->
+                <div v-if="most3Articles.length" class="space-y-8">
+                    <div class="flex items-center gap-4">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.all_articles') }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <Link
+                            v-for="article in most3Articles"
+                            :key="article.id"
+                            :href="route('front.articles.single', article.id)"
+                            class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
+                        >
+                            <div class="relative h-64 overflow-hidden bg-gray-50">
+                                <div
+                                    class="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                                    :style="`background-image: url(${article.image});`"
+                                ></div>
+                            </div>
+                            <div class="p-8 flex-1 flex flex-col">
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">
+                                    {{ moment(article.created).format('DD.MM.YYYY') }}
+                                </p>
+                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                    {{ article.title }}
+                                </h4>
+                                <div class="mt-auto pt-6 border-t border-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center overflow-hidden border border-gray-100 shrink-0">
+                                        <img :src="article.avatar" :alt="article.author" class="w-full h-full object-contain">
+                                    </div>
+                                    <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest truncate">{{ article.author }}</span>
+                                </div>
+                            </div>
                         </Link>
+                    </div>
+                </div>
 
-                        <!-- Mobile Swiper -->
-                        <div class="md:hidden" v-if="category.articles.length">
-                            <Swiper
-                                :modules="[Autoplay, Scrollbar]"
-                                :slidesPerView="'auto'"
-                                :slides-per-view="1.4"
-                                :spaceBetween="30"
-                                :loop="category.articles.length > 1"
-                                :autoplay="category.articles.length > 1 ? { delay: 3000, disableOnInteraction: false } : false"
-                                :scrollbar="{
-      hide: false,
-    }"
-                            >
-                                <SwiperSlide v-for="article in category.articles" :key="article.id">
-                                    <article class="flex flex-col items-start overflow-hidden">
-                                        <div class="w-full flex items-center justify-center">
-                                            <div class="w-full md:w-[280px] aspect-[4/3] bg-center bg-cover"
-                                                 :style="`background-image: url(${article.image});`"></div>
-                                        </div>
-                                        <div class="p-6">
-                                            <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 hover:underline">
-                                                <Link :href="route('front.articles.single', article.id)">{{ article.title }}</Link>
-                                            </h3>
-                                            <p class="text-sm text-gray-500 mb-1">
-                                                {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
-                                            </p>
-                                            <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
-                                                <img :src="article.avatar" :alt="article.title" class="h-5 object-contain">
-                                                <span>{{ article.author }}</span>
-                                            </p>
-                                        </div>
-                                    </article>
-                                </SwiperSlide>
-                            </Swiper>
-                        </div>
-
-                        <!-- Desktop Grid -->
-                        <div class="hidden md:grid md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
-                            <Link
-                                :href="route('front.articles.single', article.id)"
-                                v-for="article in category.articles"
-                                :key="article.id"
-                                class="flex flex-col items-start overflow-hidden group"
-                            >
-                                <div class="w-full flex items-center justify-center overflow-hidden">
-                                    <div
-                                        class="w-[400px] aspect-[4/3] bg-center bg-cover rounded-sm transform transition-transform duration-300 group-hover:scale-105"
-                                        :style="`background-image: url(${article.image});`"
-                                    ></div>
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-[#0a2c5c] text-lg font-bold mb-2 relative">
-            <span class="border-b-2 border-transparent group-hover:border-[#0a2c5c] transition-all duration-300">
-                {{ article.title }}
-            </span>
-                                    </h3>
-                                    <p class="text-sm text-gray-500 mb-1">
-                                        {{ moment(article.created).format('DD.MM.YYYY HH:mm') }}
-                                    </p>
-                                    <p class="text-sm font-medium text-[#E41E26] flex items-center gap-2">
-                                        <img :src="article.avatar" :alt="article.title" class="h-5 object-contain">
-                                        <span>{{ article.author }}</span>
-                                    </p>
-                                </div>
-                            </Link>
-                        </div>
+                <!-- GROUPED BY CATEGORY -->
+                <div v-if="grouped.length" v-for="group in grouped" :key="group.name" class="space-y-8">
+                    <div class="flex items-center gap-4">
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ group.name }}</h3>
+                        <div class="h-px flex-1 bg-gray-100"></div>
+                        <Link :href="route('front.groupArticles', { category: group.value })" class="text-[10px] font-black text-blue-500 hover:underline uppercase tracking-widest shrink-0">
+                            {{ __('translate.check_all') }}
+                        </Link>
                     </div>
 
-                    <div v-else class="text-center text-lg my-3">
-                        {{__('translate.notFoundArticles')}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <Link
+                            v-for="article in group.articles"
+                            :key="article.id"
+                            :href="route('front.articles.single', article.id)"
+                            class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
+                        >
+                            <div class="relative h-64 overflow-hidden bg-gray-50">
+                                <div
+                                    class="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                                    :style="`background-image: url(${article.image});`"
+                                ></div>
+                            </div>
+                            <div class="p-8 flex-1 flex flex-col">
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">
+                                    {{ moment(article.created).format('DD.MM.YYYY') }}
+                                </p>
+                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                    {{ article.title }}
+                                </h4>
+                                <div class="mt-auto pt-6 border-t border-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center overflow-hidden border border-gray-100 shrink-0">
+                                        <img :src="article.avatar" :alt="article.author" class="w-full h-full object-contain">
+                                    </div>
+                                    <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest truncate">{{ article.author }}</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
-            </div>
+                </div>
+
+                <div v-if="!most3Articles.length && !grouped.length" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                    <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    </div>
+                    <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.notFoundArticles') }}</p>
+                </div>
             </div>
         </div>
     </FrontLayout>

@@ -90,156 +90,149 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
 
 <template>
     <FrontLayout :title="__('translate.projects')">
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 items-center">
-                        <!-- Formularz wyszukiwania -->
-                        <div class="mb-6">
-                            <form @submit.prevent="submit" class="w-full">
-                                <div class="bg-white p-4 flex items-center gap-2">
-                                    <!-- Panel filtrów -->
-                                    <div class="w-full">
-                                        <multiselect
-                                            v-model="form.country"
-                                            :options="props.countries"
-                                            group-values="elements"
-                                            group-label="group"
-                                            :group-select="false"
-                                            track-by="value"
-                                            label="name"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
-                                            :placeholder="__('translate.placeholderCountry')"
-                                        >
-                                            <template #noResult>
-                           g                     <span>{{__('translate.noOptions')}}</span>
-                                            </template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.country" class="mt-2"/>
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        :disabled="loading || !form.country"
-                                        class="px-6 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        <svg
-                                            v-if="loading"
-                                            class="animate-spin h-5 w-5 text-white"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <circle
-                                                class="opacity-25"
-                                                cx="12"
-                                                cy="12"
-                                                r="10"
-                                                stroke="currentColor"
-                                                stroke-width="4"
-                                            ></circle>
-                                            <path
-                                                class="opacity-75"
-                                                fill="currentColor"
-                                                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                                            ></path>
-                                        </svg>
-
-                                        <span v-if="!loading">
-        {{ __('translate.search') }}
-    </span>
-                                        <span v-else>
-        {{ __('translate.searching') ?? 'Szukam…' }}
-    </span>
-                                    </button>
-                                </div>
-                            </form>
-                            <!-- 🔥 PRZYCISK RESET — widoczny tylko jeśli wybrano kraj -->
-                            <button
-                                v-if="form.country"
-                                type="button"
-                                @click="clearFilters"
-                                class="ml-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"
-                            >
-                                {{ __('translate.clearFiltersOnly') ?? 'Wyczyść' }}
-                            </button>
-                        </div>
-
-                        <!-- Możesz dodać tutaj jakieś opcje filtrowania -->
-                        <div class="flex justify-end space-x-2">
-                            <!-- Przykład filtrów/sortowania (można rozbudować później) -->
-                            <span class="text-sm text-gray-500 dark:text-gray-400">{{ props.firms.total }} firm</span>
-                        </div>
-                    </div>
-                    <div class="max-w-6xl px-6">
-                        <!-- TYTUŁ -->
-                        <div class="flex flex-col items-start justify-between mb-10 gap-8">
-                            <!-- LEWA KOLUMNA -->
-                            <div class="flex items-start md:items-center flex-row gap-4 shrink-0">
-                                <h2 class="text-4xl font-bold text-[#0A2E6D] leading-7 order-1">
-                                    {{__('translate.check')}}<br />
-                                    <span class="text-[#0A2E6D]">{{__('translate.favorite_firms')}}</span>
-                                </h2>
+        <div class="py-12 bg-gray-50/50 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                <!-- Formularz wyszukiwania -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <form @submit.prevent="submit" class="w-full">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-4 flex-1">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                                <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
-                            <!-- PRAWA KOLUMNA (SWIPER) -->
-                            <div class="w-full ">
+                            <div class="flex gap-3 items-center ml-4">
+                                <button
+                                    type="submit"
+                                    :disabled="loading"
+                                    class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                >
+                                    <svg
+                                        v-if="loading"
+                                        class="animate-spin h-4 w-4 text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                    </svg>
+                                    {{ loading ? __('translate.searching') : __('translate.search') }}
+                                </button>
+                                <button
+                                    v-if="form.country"
+                                    type="button"
+                                    @click="clearFilters"
+                                    class="px-6 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                                >
+                                    {{ __('translate.clearFiltersOnly') }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
+                                <multiselect
+                                    v-model="form.country"
+                                    :options="props.countries"
+                                    group-values="elements"
+                                    group-label="group"
+                                    :group-select="false"
+                                    track-by="value"
+                                    label="name"
+                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectedLabel="__('translate.selectedLabel')"
+                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :placeholder="__('translate.placeholderCountry')"
+                                    class="custom-multiselect"
+                                >
+                                    <template #noResult>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                </multiselect>
+                                <InputError :message="form.errors.country" class="mt-2"/>
+                            </div>
+                            <div class="flex items-end pb-4">
+                                <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest">{{ props.firms.total }} {{ __('translate.firms_count') }}</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <!-- FAVORITE FIRMS (SWIPER) -->
+                    <div class="mb-16" v-if="features && features.length">
+                        <div class="flex flex-col md:flex-row items-center justify-between mb-10 gap-8">
+                            <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none order-1">
+                                {{__('translate.check')}} <span class="text-blue-500">{{__('translate.favorite_firms')}}</span>
+                            </h2>
+                            <div class="w-full lg:max-w-4xl">
                                 <Swiper
                                     :modules="[Autoplay]"
                                     :slides-per-view="3"
-                                    :space-between="10"
+                                    :space-between="20"
                                     :loop="true"
                                     :breakpoints="{
-        320: {
-            slidesPerView: 2
-        },
-        1024: {
-            slidesPerView: 4
-        }
-    }"
-                                    :autoplay="true"
+                                        320: { slidesPerView: 1.5, spaceBetween: 15 },
+                                        640: { slidesPerView: 2.5, spaceBetween: 20 },
+                                        1024: { slidesPerView: 3.5, spaceBetween: 20 }
+                                    }"
+                                    :autoplay="{ delay: 3000, disableOnInteraction: false }"
                                 >
-                                    <SwiperSlide
-                                        v-for="c in features"
-                                        :key="c.id"
-                                        class="border-2 border-blue-400 border-dashed rounded-xl p-5 w-56 bg-white shadow-sm min-h-[180px] sm:min-h-[150px] flex flex-col justify-between transition hover:bg-blue-50 cursor-pointer"
-                                    >
-                                        <Link :href="route('front.firms.single', c.id)">
-                                            <img :src="c.profile_photo_url" alt="" class="h-10" />
-                                            <h3 class="font-bold text-lg mt-4">{{ c.name }}</h3>
-                                            <div class="text-gray-600 text-sm min-h-[20px]">
-                                                {{ c.firm?.countryJson?.allTranslations?.[usePage().props.language] }}
+                                    <SwiperSlide v-for="c in features" :key="c.id">
+                                        <Link :href="route('front.firms.single', c.id)" class="block group">
+                                            <div class="bg-gray-50/50 border-2 border-dashed border-blue-200 rounded-[2.5rem] p-6 h-48 flex flex-col justify-between transition-all hover:bg-white hover:border-blue-400 hover:shadow-xl hover:shadow-blue-900/5">
+                                                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden border border-gray-50">
+                                                    <img :src="c.profile_photo_url" alt="logo" class="w-12 h-12 object-contain" />
+                                                </div>
+                                                <div>
+                                                    <h3 class="font-black text-[#0A2C5C] uppercase tracking-tight truncate">{{ c.name }}</h3>
+                                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                                                        {{ c.firm?.countryJson?.allTranslations?.[usePage().props.language] }}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </Link>
                                     </SwiperSlide>
                                 </Swiper>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- SIATKA FIRM -->
+                    <!-- SIATKA FIRM -->
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-4">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.all_firms') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
+
                         <div v-if="props.firms.total">
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 <Link :href="route('front.firms.single',firm.id)"
                                     v-for="firm in props.firms.data"
                                     :key="firm.id"
-                                    class="border rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition cursor-pointer hover:bg-gray-50 min-h-[180px] sm:min-h-[150px]"
+                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8 flex flex-col items-center text-center"
                                 >
-                                    <img :src="firm.profile_photo_url" class="h-10 mb-5" />
-                                    <h3 class="font-semibold text-lg">{{ firm.name }}</h3>
-                                    <p class="text-gray-500 text-sm">
+                                    <div class="w-20 h-20 bg-gray-50 rounded-[1.5rem] flex items-center justify-center shadow-inner mb-6 group-hover:bg-white transition-colors border border-transparent group-hover:border-gray-100">
+                                        <img :src="firm.profile_photo_url" class="w-14 h-14 object-contain" />
+                                    </div>
+                                    <h3 class="font-black text-[#0A2C5C] uppercase tracking-tight text-lg mb-2 group-hover:text-blue-500 transition-colors">{{ firm.name }}</h3>
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                                         {{ firm.firm.countryJson?.allTranslations[usePage().props.language] }}
                                     </p>
                                 </Link>
                             </div>
                         </div>
-                        <div v-else class="text-center py-12">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <div v-else class="text-center py-20 bg-gray-50/50 rounded-[3rem] border border-dashed border-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('translate.noResult') }}</h3>
+                            <h3 class="text-xl font-black text-gray-900 uppercase tracking-tight">{{ __('translate.noResult') }}</h3>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">Spróbuj zmienić parametry wyszukiwania</p>
                         </div>
-                            <Pagination v-if="props.firms.total > 10" class="mt-10 text-center mx-auto" :links="props.firms.links" />
+
+                        <Pagination v-if="props.firms.total > props.firms.per_page" class="mt-12 flex justify-center" :links="props.firms.links" />
                     </div>
                 </div>
             </div>
@@ -248,70 +241,89 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tags {
-    border: 1px solid #d1d5db; /* border-gray-300 */
-    border-radius: 0.5rem; /* rounded-lg */
-    padding: 0.75rem 2.5rem 0.75rem 1rem; /* px-4 py-3, but with space for the arrow */
-}
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        background: #f9fafb; /* bg-gray-50 */
+        transition: all 0.3s ease;
+    }
 
-.multiselect__placeholder {
-    margin-bottom: 0;
-    padding-top: 0;
-    color: #9ca3af; /* text-gray-400 */
-}
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af; /* text-gray-400 */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__single {
-    margin-bottom: 0;
-    padding-left: 0;
-    font-size: 1rem;
-}
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__input {
-    margin-bottom: 0;
-}
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
 
-.multiselect__select {
-    height: 100%;
-    width: 2.5rem;
-}
+    .multiselect__select {
+        height: 100%;
+        width: 2.5rem;
+    }
 
-.multiselect__option--highlight {
-    background: #0d2a52 !important; /* work-main */
-    outline: none;
-    color: white;
-}
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__option--highlight:after {
-    background: #0d2a52 !important;
-}
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C;
+        font-weight: 900;
+    }
 
-.multiselect__option--selected {
-    background: #f3f4f6 !important; /* gray-100 */
-    color: #0d2a52;
-    font-weight: bold;
-}
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6;
+        border-top: none;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 
-.multiselect__option--selected.multiselect__option--highlight {
-    background: #0d2a52 !important;
-    color: #fff;
-}
+    .multiselect__tag {
+        background: #00a0e3 !important;
+        border-radius: 0.75rem;
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__tag {
-    background: #0d2a52 !important;
-}
+    .multiselect__tag-icon:after {
+        color: white !important;
+    }
 
-.multiselect__tag-icon:after {
-    color: white !important;
-}
-
-.multiselect__tag-icon:hover {
-    background: #1e3a8a !important; /* darker blue */
-}
-
-.multiselect__content-wrapper {
-    border: 1px solid #d1d5db;
-    border-top: none;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    .multiselect__tag-icon:hover {
+        background: #0088c2 !important;
+    }
+    .multiselect__tag-icon{
+        top:-3px !important
+    }
 }
 </style>

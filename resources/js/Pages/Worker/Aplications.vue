@@ -167,7 +167,7 @@ const getApplicationProgress = (status) => {
                                     >
                                         <option value="all">{{ __('translate.all_statuses') }}</option>
                                         <option value="sent">{{ __('translate.labels.sent') }}</option>
-                                        <option value="maybe">{{ __('translate.labels.maybe') }}</option>
+                                        <option value="maybe">{{ __('translate.statusMaybe') }}</option>
                                         <option value="no">{{ __('translate.labels.no') }}</option>
                                         <option value="yes">{{ __('translate.labels.yes') }}</option>
                                     </select>

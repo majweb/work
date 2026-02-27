@@ -181,15 +181,15 @@ onMounted(async () => {
 
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                                 <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center min-w-0">
-                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.labels.yes') }}</div>
+                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.statusYes') }}</div>
                                     <div class="text-lg font-black text-[#0A2C5C]">{{ props.project.yes_count || 0 }}</div>
                                 </div>
                                 <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center min-w-0">
-                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.labels.no') }}</div>
+                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.statusNo') }}</div>
                                     <div class="text-lg font-black text-red-600">{{ props.project.no_count || 0 }}</div>
                                 </div>
                                 <div class="bg-white rounded-xl p-3 shadow-sm border border-gray-100 flex flex-col items-center justify-center min-w-0">
-                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.labels.maybe') }}</div>
+                                    <div class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate w-full text-center mb-1">{{ __('translate.statusMaybe') }}</div>
                                     <div class="text-lg font-black text-cyan-500">{{ props.project.maybe_count || 0 }}</div>
                                 </div>
                             </div>

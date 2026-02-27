@@ -585,8 +585,8 @@ const removeFile = async (source, load) => {
                                     ></file-pond>
                                     <InputError :message="form.errors.files" class="mt-1"/>
                                 </div>
-                                <div class="col-span-6">
-                                    <div class="mt-4" v-if="user && project.cv">
+                                <div class="col-span-6" v-if="project.cv && user">
+                                    <div class="mt-4" v-if="project.cv">
                                         <InputLabel :value="__('translate.cv')"/>
                                         <div v-for="cv in project.cv" class="flex items-center mt-1">
                                             <input
@@ -736,201 +736,329 @@ const removeFile = async (source, load) => {
                                     <InputError :message="form.errors.application"
                                                 class="mb-6 text-center text-[10px] font-black uppercase tracking-widest bg-red-50 text-red-600 px-6 py-3 rounded-full border border-red-100"/>
 
-                                    <!-- Przycisk Dalej widoczny gdy WYBRANO typ CV specjalny w kroku 1 -->
+                                    <!-- Przycisk Dalej/Aplikuj widoczny w kroku 1 -->
                                     <PrimaryButton
-                                        type="button"
-                                        @click="nextStep"
-                                        v-if="form.cv && formStep == 1"
+                                        v-if="formStep == 1 && (!user || (user && hasRole('worker') && form.cv) || (user && !hasRole('worker')))"
+                                        :type="!form.cv ? 'submit' : 'button'"
+                                        @click="form.cv ? nextStep() : null"
                                         class="w-full sm:w-[300px] !py-5 !rounded-2xl !bg-[#0A2C5C] hover:!bg-blue-800 !text-[10px] font-black !uppercase !tracking-widest shadow-lg shadow-blue-900/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
                                         :disabled="form.processing"
                                     >
-                                        <span v-if="form.cv == 1">{{ __('translate.generateCv') }}</span>
-                                        <span v-else-if="form.cv == 2">{{ __('translate.generateCvVideo') }}</span>
-                                        <span v-else-if="form.cv == 3">{{ __('translate.generateCvAudio') }}</span>
-                                        <span v-else-if="form.cv == 4">{{ __('translate.testRecruitment') }}</span>
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                        </svg>
+                                        <template v-if="!form.cv">
+                                            <span>{{ __('translate.apply') }}</span>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </template>
+                                        <template v-else>
+                                            <span v-if="form.cv == 1">{{ __('translate.generateCv') }}</span>
+                                            <span v-else-if="form.cv == 2">{{ __('translate.generateCvVideo') }}</span>
+                                            <span v-else-if="form.cv == 3">{{ __('translate.generateCvAudio') }}</span>
+                                            <span v-else-if="form.cv == 4">{{ __('translate.testRecruitment') }}</span>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                            </svg>
+                                        </template>
                                     </PrimaryButton>
                                 </div>
                             </div>
                         </div>
-                            <div v-if="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-12">
-                                <div
-                                    class="p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
-                                    <InputLabel value="Jak chcesz dostarczyć CV?"
-                                                class="mb-8 font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
-                                        <span class="w-1.5 h-1.5 bg-[#00a0e3] rounded-full animate-pulse"></span>
-                                        Wybierz metodę
-                                    </InputLabel>
+                        <div v-if="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-12">
+                            <div
+                                class="p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
+                                <InputLabel value="Jak chcesz dostarczyć CV?"
+                                            class="mb-8 font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 bg-[#00a0e3] rounded-full animate-pulse"></span>
+                                    Wybierz metodę
+                                </InputLabel>
 
-                                    <ul class="grid w-full gap-8 md:grid-cols-2">
-                                        <li>
-                                            <input checked name="type" v-model="form.cvStandardType" type="radio"
-                                                   id="firm" value="1" class="hidden peer"/>
-                                            <label for="firm"
-                                                   class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
-                                                <div class="flex items-center gap-6">
-                                                    <div
-                                                        class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
-                                                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
-                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2"
-                                                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                                        </svg>
-                                                    </div>
-                                                    <div>
-                                                        <div class="w-full text-xl font-black uppercase tracking-tight">
-                                                            Wgraj plik
-                                                        </div>
-                                                        <div
-                                                            class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
-                                                            PDF, DOC, DOCX
-                                                        </div>
-                                                    </div>
+                                <ul class="grid w-full gap-8 md:grid-cols-2">
+                                    <li>
+                                        <input checked name="type" v-model="form.cvStandardType" type="radio"
+                                               id="firm" value="1" class="hidden peer"/>
+                                        <label for="firm"
+                                               class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
+                                            <div class="flex items-center gap-6">
+                                                <div
+                                                    class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
+                                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                                    </svg>
                                                 </div>
-                                                <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
+                                                <div>
+                                                    <div class="w-full text-xl font-black uppercase tracking-tight">
+                                                        Wgraj plik
+                                                    </div>
                                                     <div
-                                                        class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
-                                                        <svg class="w-5 h-5 text-white" fill="none"
-                                                             stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="3" d="M5 13l4 4L19 7"/>
-                                                        </svg>
+                                                        class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
+                                                        PDF, DOC, DOCX
                                                     </div>
-                                                </div>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input name="type" v-model="form.cvStandardType" type="radio" id="client"
-                                                   value="2" class="hidden peer"/>
-                                            <label for="client"
-                                                   class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
-                                                <div class="flex items-center gap-4">
-                                                    <div
-                                                        class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
-                                                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
-                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2"
-                                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                                        </svg>
-                                                    </div>
-                                                    <div>
-                                                        <div class="w-full text-xl font-black uppercase tracking-tight">
-                                                            Kreator CV
-                                                        </div>
-                                                        <div
-                                                            class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
-                                                            Wypełnij formularz
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
-                                                    <div
-                                                        class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
-                                                        <svg class="w-5 h-5 text-white" fill="none"
-                                                             stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="3" d="M5 13l4 4L19 7"/>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                    <InputError :message="form.errors.cvStandardType"
-                                                class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
-                                </div>
-
-                                <div v-if="professionCv"
-                                     class="p-6 bg-blue-50/30 dark:bg-blue-900/10 rounded-3xl border border-blue-100/50 dark:border-blue-800/30">
-                                    <InputLabel for="cvcvFile" :value="__('translate.fileCv')"
-                                                class="mb-4 font-black text-blue-900 dark:text-blue-400 uppercase tracking-widest text-[10px]"/>
-                                    <div class="relative group">
-                                        <div
-                                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[1.5rem] blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
-                                        <label
-                                            :class="[
-                                                'relative flex items-center gap-6 cursor-pointer bg-white dark:bg-gray-800 border-2 rounded-[1.5rem] p-5 transition-all duration-300 select-none shadow-sm',
-                                                form.isSelected ? 'border-blue-500 shadow-blue-100 dark:shadow-none' : 'border-white dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-900'
-                                            ]"
-                                        >
-                                            <input
-                                                type="checkbox"
-                                                v-model="form.isSelected"
-                                                class="hidden"
-                                                :true-value="professionCv.id"
-                                                :false-value="null"
-                                            />
-
-                                            <div
-                                                class="flex items-center justify-center w-16 h-16 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-110 transition-transform duration-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
-                                                     viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                                </svg>
-                                            </div>
-
-                                            <div class="flex-1">
-                                                <span
-                                                    class="block text-lg font-black text-gray-900 dark:text-white uppercase tracking-tight">{{
-                                                        __('translate.yourCv')
-                                                    }}</span>
-                                                <div class="flex items-center gap-3 mt-1">
-                                                    <span
-                                                        class="text-xs font-bold text-gray-400 uppercase tracking-tighter">{{
-                                                            moment(professionCv.created_at).format('DD.MM.YYYY HH:mm')
-                                                        }}</span>
-                                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
-                                                    <a
-                                                        :href="professionCv.pathCv"
-                                                        target="_blank"
-                                                        download
-                                                        class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
-                                                        @click.stop
-                                                    >
-                                                        {{ __('translate.getPdf') }}
-                                                    </a>
                                                 </div>
                                             </div>
-
-                                            <div
-                                                class="w-8 h-8 rounded-full border-2 transition-all flex items-center justify-center"
-                                                :class="form.isSelected ? 'bg-blue-600 border-blue-600 scale-110 shadow-lg shadow-blue-500/40' : 'bg-gray-50 border-gray-100 dark:bg-gray-700 dark:border-gray-600'">
-                                                <svg v-if="form.isSelected" class="w-5 h-5 text-white" fill="none"
-                                                     stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="3" d="M5 13l4 4L19 7"/>
-                                                </svg>
+                                            <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
+                                                <div
+                                                    class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
+                                                    <svg class="w-5 h-5 text-white" fill="none"
+                                                         stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                </div>
                                             </div>
                                         </label>
+                                    </li>
+                                    <li>
+                                        <input name="type" v-model="form.cvStandardType" type="radio" id="client"
+                                               value="2" class="hidden peer"/>
+                                        <label for="client"
+                                               class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
+                                            <div class="flex items-center gap-4">
+                                                <div
+                                                    class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
+                                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <div class="w-full text-xl font-black uppercase tracking-tight">
+                                                        Kreator CV
+                                                    </div>
+                                                    <div
+                                                        class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
+                                                        Wypełnij formularz
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
+                                                <div
+                                                    class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
+                                                    <svg class="w-5 h-5 text-white" fill="none"
+                                                         stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                                <InputError :message="form.errors.cvStandardType"
+                                            class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
+                            </div>
+
+                            <div v-if="professionCv"
+                                 class="p-6 bg-blue-50/30 dark:bg-blue-900/10 rounded-3xl border border-blue-100/50 dark:border-blue-800/30">
+                                <InputLabel for="cvcvFile" :value="__('translate.fileCv')"
+                                            class="mb-4 font-black text-blue-900 dark:text-blue-400 uppercase tracking-widest text-[10px]"/>
+                                <div class="relative group">
+                                    <div
+                                        class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[1.5rem] blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
+                                    <label
+                                        :class="[
+                                            'relative flex items-center gap-6 cursor-pointer bg-white dark:bg-gray-800 border-2 rounded-[1.5rem] p-5 transition-all duration-300 select-none shadow-sm',
+                                            form.isSelected ? 'border-blue-500 shadow-blue-100 dark:shadow-none' : 'border-white dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-900'
+                                        ]"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            v-model="form.isSelected"
+                                            class="hidden"
+                                            :true-value="professionCv.id"
+                                            :false-value="null"
+                                        />
+
+                                        <div
+                                            class="flex items-center justify-center w-16 h-16 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                                                 viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2"
+                                                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                        </div>
+
+                                        <div class="flex-1">
+                                            <span
+                                                class="block text-lg font-black text-gray-900 dark:text-white uppercase tracking-tight">{{
+                                                    __('translate.yourCv')
+                                                }}</span>
+                                            <div class="flex items-center gap-3 mt-1">
+                                                <span
+                                                    class="text-xs font-bold text-gray-400 uppercase tracking-tighter">{{
+                                                        moment(professionCv.created_at).format('DD.MM.YYYY HH:mm')
+                                                    }}</span>
+                                                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                                <a
+                                                    :href="professionCv.pathCv"
+                                                    target="_blank"
+                                                    download
+                                                    class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
+                                                    @click.stop
+                                                >
+                                                    {{ __('translate.getPdf') }}
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="w-8 h-8 rounded-full border-2 transition-all flex items-center justify-center"
+                                            :class="form.isSelected ? 'bg-blue-600 border-blue-600 scale-110 shadow-lg shadow-blue-500/40' : 'bg-gray-50 border-gray-100 dark:bg-gray-700 dark:border-gray-600'">
+                                            <svg v-if="form.isSelected" class="w-5 h-5 text-white" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="3" d="M5 13l4 4L19 7"/>
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div v-if="form.cvStandardType == 1 && !form.isSelected" class="animate-slide-up">
+                                <div
+                                    class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                    <InputLabel for="cvcvFile" :value="__('translate.fileCv')"
+                                                class="mb-4 font-black text-gray-800 dark:text-gray-200 uppercase tracking-widest text-[10px]"/>
+                                    <div
+                                        class="rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 p-1">
+                                        <file-pond
+                                            name="cvFile"
+                                            ref="uploadCv"
+                                            :files="form.cvFile"
+                                            :allow-multiple="false"
+                                            :max-file-size="'5MB'"
+                                            imagePreviewMaxHeight="300"
+                                            :label-idle="__('translate.label-idle')"
+                                            :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                            :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                                            :labelFileProcessing="__('translate.labelFileProcessing')"
+                                            :labelInvalidField="__('translate.labelInvalidField')"
+                                            :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                            :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                            :labelFileLoading="__('translate.labelFileLoading')"
+                                            :labelFileLoadError="__('translate.labelFileLoadError')"
+                                            :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                            :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                            :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                            :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                            :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                            :labelTapToCancel="__('translate.labelTapToCancel')"
+                                            :labelTapToRetry="__('translate.labelTapToRetry')"
+                                            :labelTapToUndo="__('translate.labelTapToUndo')"
+                                            :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                            :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                            :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                            :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                            :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                            :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                            :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                            :accepted-file-types="'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                            credits=""
+                                            :server="{
+                                            url:'',
+                                               headers: {
+                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
+                                                },
+                                            process: {
+                                                url: '/temporary/upload',
+                                                    onload: (response) => {
+                                                    form.cvFile.push(response);
+                                                    return response;
+                                                    },
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.cvFile[0];
+                                                    }
+
+                                            },
+                                            revert:{
+                                                url: '/temporary/delete',
+                                                onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = form.files.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) {
+                                                            form.files.splice(fileIndex, 1);
+                                                       }
+                                                }
+                                            }
+                                            }"
+                                        ></file-pond>
+                                    </div>
+                                    <InputError :message="form.errors.cvFile" class="mt-4 text-xs font-bold"/>
+                                    <div v-for="(error, cvFile) in form.errors" :key="cvFile">
+                                        <span class="text-sm text-red-600 font-bold"
+                                              v-if="cvFile.startsWith('cvFile.')">{{ error }}</span>
                                     </div>
                                 </div>
-
-                                <div v-if="form.cvStandardType == 1 && !form.isSelected" class="animate-slide-up">
-                                    <div
-                                        class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
-                                        <InputLabel for="cvcvFile" :value="__('translate.fileCv')"
-                                                    class="mb-4 font-black text-gray-800 dark:text-gray-200 uppercase tracking-widest text-[10px]"/>
+                            </div>
+                            <div v-else-if="form.cvStandardType == 2 && !form.isSelected"
+                                 class="space-y-12">
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-4 gap-8 p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
+                                    <div class="col-span-full mb-4">
+                                        <div class="flex items-center gap-4">
+                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Informacje o Tobie</h3>
+                                            <div class="h-px flex-1 bg-gray-200"></div>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-1 space-y-2">
+                                        <InputLabel for="birthday" :value="__('translate.birthdayDate')"
+                                                    class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
+                                        <VueDatePicker model-type="dd-MM-yyyy" format="dd-MM-yyyy"
+                                                       class="shadow-sm"
+                                                       :enable-time-picker="false" v-model="form.birthday"
+                                                       :locale="lang" auto-apply id="birthday"
+                                                       :teleport="true"
+                                        />
+                                        <InputError :message="form.errors.birthday"
+                                                    class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    </div>
+                                    <div class="md:col-span-1 space-y-2">
+                                        <InputLabel for="city" :value="__('translate.City')"
+                                                    class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
+                                        <TextInput
+                                            id="city"
+                                            v-model="form.city"
+                                            type="text"
+                                            placeholder="np. Warszawa"
+                                        />
+                                        <InputError :message="form.errors.city" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    </div>
+                                    <div class="md:col-span-1 space-y-2">
+                                        <InputLabel for="postal" :value="__('translate.Postal')"
+                                                    class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
+                                        <TextInput
+                                            id="postal"
+                                            v-model="form.postal"
+                                            type="text"
+                                            placeholder="00-000"
+                                        />
+                                        <InputError :message="form.errors.postal"
+                                                    class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    </div>
+                                    <div class="md:col-span-1 space-y-2">
+                                        <InputLabel for="photo" :value="__('translate.Photo')"
+                                                    class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                         <div
-                                            class="rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 p-1">
+                                            class="rounded-2xl overflow-hidden border border-gray-100 p-2 bg-white">
                                             <file-pond
-                                                name="cvFile"
-                                                ref="uploadCv"
-                                                :files="form.cvFile"
+                                                name="photo"
+                                                ref="uploadPhoto"
+                                                :files="form.photo"
                                                 :allow-multiple="false"
-                                                :max-file-size="'5MB'"
-                                                imagePreviewMaxHeight="300"
+                                                :max-file-size="'2MB'"
+                                                imagePreviewMaxHeight="100"
+                                                filePosterHeight="100"
                                                 :label-idle="__('translate.label-idle')"
-                                                :labelMaxFileSize="__('translate.labelMaxFileSize')"
-                                                :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
                                                 :labelFileProcessing="__('translate.labelFileProcessing')"
                                                 :labelInvalidField="__('translate.labelInvalidField')"
+                                                :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                                :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
                                                 :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
                                                 :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
                                                 :labelFileLoading="__('translate.labelFileLoading')"
@@ -950,221 +1078,258 @@ const removeFile = async (source, load) => {
                                                 :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
                                                 :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
                                                 :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
-                                                :accepted-file-types="'application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
+                                                :accepted-file-types="'image/png, image/jpeg, image/jpg'"
                                                 credits=""
                                                 :server="{
-                                                url:'',
-                                                   headers: {
-                                                'X-CSRF-TOKEN': usePage().props.csrf_token,
-                                                    },
-                                                process: {
-                                                    url: '/temporary/upload',
-                                                        onload: (response) => {
-                                                        form.cvFile.push(response);
-                                                        return response;
-                                                        },
-                                                        onerror: (response) => {
-                                                            serverMessage = JSON.parse(response).error.cvFile[0];
-                                                        }
-
+                                            url:'',
+                                               headers: {
+                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
                                                 },
-                                                revert:{
-                                                    url: '/temporary/delete',
+                                            process: {
+                                                url: '/temporary/upload',
                                                     onload: (response) => {
-                                                            if (!response) return;
-                                                            const fileIndex = form.files.findIndex(el => el === response);
-                                                            if (fileIndex !== -1) {
-                                                                form.files.splice(fileIndex, 1);
-                                                           }
+                                                    form.photo.push(response);
+                                                    return response;
+                                                    },
+                                                    onerror: (response) => {
+                                                        serverMessage = JSON.parse(response).error.photo[0];
                                                     }
+
+                                            },
+                                            revert:{
+                                                url: '/temporary/delete',
+                                                onload: (response) => {
+                                                        if (!response) return;
+                                                        const fileIndex = form.photo.findIndex(el => el === response);
+                                                        if (fileIndex !== -1) {
+                                                            form.photo.splice(fileIndex, 1);
+                                                       }
                                                 }
-                                                }"
+                                            },
+                                            remove:removeFile
+                                            }"
                                             ></file-pond>
                                         </div>
-                                        <InputError :message="form.errors.cvFile" class="mt-4 text-xs font-bold"/>
-                                        <div v-for="(error, cvFile) in form.errors" :key="cvFile">
-                                            <span class="text-sm text-red-600 font-bold"
-                                                  v-if="cvFile.startsWith('cvFile.')">{{ error }}</span>
-                                        </div>
+                                        <InputError :message="form.errors.photo"
+                                                    class="mt-1 text-[10px] font-bold"/>
                                     </div>
                                 </div>
-                                <div v-else-if="form.cvStandardType == 2 && !form.isSelected"
-                                     class="space-y-12">
-                                    <div
-                                        class="grid grid-cols-1 md:grid-cols-4 gap-8 p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
-                                        <div class="col-span-full mb-4">
-                                            <div class="flex items-center gap-4">
-                                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Informacje o Tobie</h3>
-                                                <div class="h-px flex-1 bg-gray-200"></div>
-                                            </div>
-                                        </div>
-                                        <div class="md:col-span-1 space-y-2">
-                                            <InputLabel for="birthday" :value="__('translate.birthdayDate')"
-                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
-                                            <VueDatePicker model-type="dd-MM-yyyy" format="dd-MM-yyyy"
-                                                           class="shadow-sm"
-                                                           :enable-time-picker="false" v-model="form.birthday"
-                                                           :locale="lang" auto-apply id="birthday"
-                                                           :teleport="true"
-                                            />
-                                            <InputError :message="form.errors.birthday"
-                                                        class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
-                                        </div>
-                                        <div class="md:col-span-1 space-y-2">
-                                            <InputLabel for="city" :value="__('translate.City')"
-                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
-                                            <TextInput
-                                                id="city"
-                                                v-model="form.city"
-                                                type="text"
-                                                placeholder="np. Warszawa"
-                                            />
-                                            <InputError :message="form.errors.city" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
-                                        </div>
-                                        <div class="md:col-span-1 space-y-2">
-                                            <InputLabel for="postal" :value="__('translate.Postal')"
-                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
-                                            <TextInput
-                                                id="postal"
-                                                v-model="form.postal"
-                                                type="text"
-                                                placeholder="00-000"
-                                            />
-                                            <InputError :message="form.errors.postal"
-                                                        class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
-                                        </div>
-                                        <div class="md:col-span-1 space-y-2">
-                                            <InputLabel for="photo" :value="__('translate.Photo')"
-                                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
-                                            <div
-                                                class="rounded-2xl overflow-hidden border border-gray-100 p-2 bg-white">
-                                                <file-pond
-                                                    name="photo"
-                                                    ref="uploadPhoto"
-                                                    :files="form.photo"
-                                                    :allow-multiple="false"
-                                                    :max-file-size="'2MB'"
-                                                    imagePreviewMaxHeight="100"
-                                                    filePosterHeight="100"
-                                                    :label-idle="__('translate.label-idle')"
-                                                    :labelFileProcessing="__('translate.labelFileProcessing')"
-                                                    :labelInvalidField="__('translate.labelInvalidField')"
-                                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
-                                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
-                                                    :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
-                                                    :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
-                                                    :labelFileLoading="__('translate.labelFileLoading')"
-                                                    :labelFileLoadError="__('translate.labelFileLoadError')"
-                                                    :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
-                                                    :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
-                                                    :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
-                                                    :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
-                                                    :labelFileRemoveError="__('translate.labelFileRemoveError')"
-                                                    :labelTapToCancel="__('translate.labelTapToCancel')"
-                                                    :labelTapToRetry="__('translate.labelTapToRetry')"
-                                                    :labelTapToUndo="__('translate.labelTapToUndo')"
-                                                    :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
-                                                    :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
-                                                    :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
-                                                    :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
-                                                    :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
-                                                    :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
-                                                    :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
-                                                    :accepted-file-types="'image/png, image/jpeg, image/jpg'"
-                                                    credits=""
-                                                    :server="{
-                                                url:'',
-                                                   headers: {
-                                                'X-CSRF-TOKEN': usePage().props.csrf_token,
-                                                    },
-                                                process: {
-                                                    url: '/temporary/upload',
-                                                        onload: (response) => {
-                                                        form.photo.push(response);
-                                                        return response;
-                                                        },
-                                                        onerror: (response) => {
-                                                            serverMessage = JSON.parse(response).error.photo[0];
-                                                        }
 
-                                                },
-                                                revert:{
-                                                    url: '/temporary/delete',
-                                                    onload: (response) => {
-                                                            if (!response) return;
-                                                            const fileIndex = form.photo.findIndex(el => el === response);
-                                                            if (fileIndex !== -1) {
-                                                                form.photo.splice(fileIndex, 1);
-                                                           }
-                                                    }
-                                                },
-                                                remove:removeFile
-                                                }"
-                                                ></file-pond>
-                                            </div>
-                                            <InputError :message="form.errors.photo"
-                                                        class="mt-1 text-[10px] font-bold"/>
+                            <!-- SEKCJA DOŚWIADCZENIA -->
+                            <div class="space-y-8">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                        <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
+                                            <svg class="w-6 h-6" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2"
+                                                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                            </svg>
                                         </div>
+                                        {{ __('translate.experience') }}
+                                    </h3>
+                                    <div class="flex items-center gap-6">
+                                        <span
+                                            class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
+                                                __('translate.quantity')
+                                            }}: {{ form.experiences.length }}/5</span>
+                                        <button
+                                            type="button"
+                                            @click="addExperience"
+                                            v-if="form.experiences.length < 5"
+                                            class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-400/20 active:scale-95"
+                                        >
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                 viewBox="0 0 24 24" stroke-width="4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M12 4v16m8-8H4"/>
+                                            </svg>
+                                            {{ __('translate.addExperience') }}
+                                        </button>
                                     </div>
+                                </div>
 
-                                <!-- SEKCJA DOŚWIADCZENIA -->
-                                <div class="space-y-8">
+                                <div v-if="form.experiences.length == 5"
+                                     class="p-5 bg-red-50 text-red-600 rounded-[2rem] text-[10px] font-black text-center uppercase tracking-widest border border-red-100 shadow-sm">
+                                    {{ __('translate.limitComplete') }}
+                                </div>
+
+                                <InputError :message="form.errors.experiences" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
+
+                                <draggable :list="form.experiences" ghost-class="opacity-50" handle=".handle"
+                                           item-key="id" class="space-y-6">
+                                    <template #item="{ element: experience, index }">
+                                        <div
+                                            class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                                            <div
+                                                class="flex items-center justify-between p-4 border-b border-gray-50">
+                                                <div
+                                                    class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#00a0e3] transition-colors">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2" d="M4 8h16M4 16h16"/>
+                                                    </svg>
+                                                </div>
+                                                <button @click="removeElement(index, form.experiences)"
+                                                        class="p-2 text-gray-300 hover:text-red-500 transition-colors">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div
+                                                class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                                <div v-if="optionsPositions" class="space-y-2">
+                                                    <InputLabel :value="__('translate.position')"
+                                                                class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                    <multiselect
+                                                        v-model="experience.position"
+                                                        :options="optionsPositions"
+                                                        track-by="value"
+                                                        label="name"
+                                                        :placeholder="__('translate.placeholder')"
+                                                        class="custom-multiselect"
+                                                    />
+                                                    <InputError
+                                                        :message="form.errors[`experiences.${index}.position`]"
+                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                </div>
+
+                                                <div class="space-y-2">
+                                                    <InputLabel :value="__('translate.employer')"
+                                                                class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                    <TextInput
+                                                        v-model="experience.employer"
+                                                        type="text"
+                                                        :placeholder="__('translate.employer')"
+                                                    />
+                                                    <InputError
+                                                        :message="form.errors[`experiences.${index}.employer`]"
+                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                </div>
+
+                                                <div class="space-y-2">
+                                                    <InputLabel :value="__('translate.experienceStart')"
+                                                                class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                    <VueDatePicker v-model="experience.start" month-picker
+                                                                   class="shadow-sm"
+                                                                   :locale="lang" auto-apply
+                                                                   :teleport="true"
+                                                    />
+                                                    <InputError
+                                                        :message="form.errors[`experiences.${index}.start`]"
+                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                </div>
+
+                                                <div class="space-y-2 relative">
+                                                    <div class="flex items-center justify-between mb-2">
+                                                        <InputLabel :value="__('translate.experienceEnd')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <div class="flex items-center gap-2">
+                                                            <Checkbox v-model:checked="experience.isCurrent"
+                                                                      @change="handleIsCurrentChange(index)"
+                                                                      class="w-4 h-4 !rounded-md text-[#00a0e3] focus:ring-[#00a0e3]"/>
+                                                            <span
+                                                                class="text-[8px] font-black text-gray-400 uppercase tracking-widest">{{
+                                                                    __('translate.present')
+                                                                }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <VueDatePicker v-model="experience.end" month-picker
+                                                                   class="shadow-sm"
+                                                                   :disabled="experience.isCurrent"
+                                                                   :locale="lang" auto-apply
+                                                                   :teleport="true"
+                                                    />
+                                                    <InputError
+                                                        :message="form.errors[`experiences.${index}.end`]"
+                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                </div>
+
+                                                <div class="md:col-span-full space-y-2">
+                                                    <InputLabel :value="__('translate.City')"
+                                                                class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                    <TextInput
+                                                        v-model="experience.city"
+                                                        type="text"
+                                                        :placeholder="__('translate.City')"
+                                                    />
+                                                    <InputError
+                                                        :message="form.errors[`experiences.${index}.city`]"
+                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </draggable>
+                            </div>
+
+                                <!-- SEKCJA WYKSZTAŁCENIA -->
+                                <div class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                            <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
+                                            <div class="p-2.5 bg-indigo-50 rounded-2xl text-[#6366f1]">
                                                 <svg class="w-6 h-6" fill="none"
                                                      stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
                                                           stroke-width="2"
-                                                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.083 0 01.665-6.479L12 14z"/>
                                                 </svg>
                                             </div>
-                                            {{ __('translate.experience') }}
+                                            {{ __('translate.education') }}
                                         </h3>
                                         <div class="flex items-center gap-6">
                                             <span
                                                 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                     __('translate.quantity')
-                                                }}: {{ form.experiences.length }}/5</span>
+                                                }}: {{ form.educations.length }}/5</span>
                                             <button
                                                 type="button"
-                                                @click="addExperience"
-                                                v-if="form.experiences.length < 5"
-                                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-400/20 active:scale-95"
+                                                @click="addEducation"
+                                                v-if="form.educations.length < 5"
+                                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#6366f1] hover:bg-indigo-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
                                             >
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
                                                      viewBox="0 0 24 24" stroke-width="4">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                           d="M12 4v16m8-8H4"/>
                                                 </svg>
-                                                {{ __('translate.addExperience') }}
+                                                {{ __('translate.addEducation') }}
                                             </button>
                                         </div>
                                     </div>
 
-                                    <div v-if="form.experiences.length == 5"
+                                    <div v-if="form.educations.length == 5"
                                          class="p-5 bg-red-50 text-red-600 rounded-[2rem] text-[10px] font-black text-center uppercase tracking-widest border border-red-100 shadow-sm">
                                         {{ __('translate.limitComplete') }}
                                     </div>
 
-                                    <InputError :message="form.errors.experiences" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
+                                    <InputError :message="form.errors.educations" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
 
-                                    <draggable :list="form.experiences" ghost-class="opacity-50" handle=".handle"
+                                    <draggable :list="form.educations" ghost-class="opacity-50" handle=".handle"
                                                item-key="id" class="space-y-6">
-                                        <template #item="{ element: experience, index }">
+                                        <template #item="{ element: education, index }">
                                             <div
                                                 class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                                                 <div
                                                     class="flex items-center justify-between p-4 border-b border-gray-50">
                                                     <div
-                                                        class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#00a0e3] transition-colors">
+                                                        class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-indigo-500 transition-colors">
                                                         <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                              viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2" d="M4 8h16M4 16h16"/>
                                                         </svg>
                                                     </div>
-                                                    <button @click="removeElement(index, form.experiences)"
+                                                    <button @click="removeElement(index, form.educations)"
                                                             class="p-2 text-gray-300 hover:text-red-500 transition-colors">
                                                         <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                              viewBox="0 0 24 24">
@@ -1176,84 +1341,67 @@ const removeFile = async (source, load) => {
                                                 </div>
 
                                                 <div
-                                                    class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                                                    <div v-if="optionsPositions" class="space-y-2">
-                                                        <InputLabel :value="__('translate.position')"
+                                                    class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.school')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <multiselect
-                                                            v-model="experience.position"
-                                                            :options="optionsPositions"
-                                                            track-by="value"
-                                                            label="name"
-                                                            :placeholder="__('translate.placeholder')"
-                                                            class="custom-multiselect"
+                                                        <TextInput v-model="education.school"
+                                                                   type="text"
+                                                                   :placeholder="__('translate.school')"
                                                         />
                                                         <InputError
-                                                            :message="form.errors[`experiences.${index}.position`]"
+                                                            :message="form.errors[`educations.${index}.school`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+
+                                                    <div v-if="props.levelEducations" class="space-y-2">
+                                                        <InputLabel :value="__('translate.levelEducation')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <multiselect v-model="education.level"
+                                                                     :options="props.levelEducations"
+                                                                     track-by="value" label="name"
+                                                                     :placeholder="__('translate.placeholder')"
+                                                                     class="custom-multiselect"/>
+                                                        <InputError
+                                                            :message="form.errors[`educations.${index}.level`]"
                                                             class="text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
                                                     <div class="space-y-2">
-                                                        <InputLabel :value="__('translate.employer')"
+                                                        <InputLabel :value="__('translate.specialization')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <TextInput
-                                                            v-model="experience.employer"
-                                                            type="text"
-                                                            :placeholder="__('translate.employer')"
+                                                        <TextInput v-model="education.specialization"
+                                                                   type="text"
+                                                                   :placeholder="__('translate.specialization')"
                                                         />
                                                         <InputError
-                                                            :message="form.errors[`experiences.${index}.employer`]"
+                                                            :message="form.errors[`educations.${index}.specialization`]"
                                                             class="text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
                                                     <div class="space-y-2">
-                                                        <InputLabel :value="__('translate.experienceStart')"
+                                                        <InputLabel :value="__('translate.educationFinish')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <VueDatePicker v-model="experience.start" month-picker
+                                                        <VueDatePicker v-model="education.finish" model-type="yyyy"
+                                                                       year-picker
                                                                        class="shadow-sm"
                                                                        :locale="lang" auto-apply
                                                                        :teleport="true"
                                                         />
                                                         <InputError
-                                                            :message="form.errors[`experiences.${index}.start`]"
+                                                            :message="form.errors[`educations.${index}.finish`]"
                                                             class="text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
-                                                    <div class="space-y-2 relative">
-                                                        <div class="flex items-center justify-between mb-2">
-                                                            <InputLabel :value="__('translate.experienceEnd')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <div class="flex items-center gap-2">
-                                                                <Checkbox v-model:checked="experience.isCurrent"
-                                                                          @change="handleIsCurrentChange(index)"
-                                                                          class="w-4 h-4 !rounded-md text-[#00a0e3] focus:ring-[#00a0e3]"/>
-                                                                <span
-                                                                    class="text-[8px] font-black text-gray-400 uppercase tracking-widest">{{
-                                                                        __('translate.present')
-                                                                    }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <VueDatePicker v-model="experience.end" month-picker
-                                                                       class="shadow-sm"
-                                                                       :disabled="experience.isCurrent"
-                                                                       :locale="lang" auto-apply
-                                                                       :teleport="true"
-                                                        />
-                                                        <InputError
-                                                            :message="form.errors[`experiences.${index}.end`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                    </div>
-
-                                                    <div class="md:col-span-full space-y-2">
+                                                    <div class="space-y-2 lg:col-span-2">
                                                         <InputLabel :value="__('translate.City')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                        <TextInput
-                                                            v-model="experience.city"
-                                                            type="text"
-                                                            :placeholder="__('translate.City')"
+                                                        <TextInput v-model="education.city"
+                                                                   type="text"
+                                                                   :placeholder="__('translate.City')"
                                                         />
                                                         <InputError
-                                                            :message="form.errors[`experiences.${index}.city`]"
+                                                            :message="form.errors[`educations.${index}.city`]"
                                                             class="text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                 </div>
@@ -1262,590 +1410,445 @@ const removeFile = async (source, load) => {
                                     </draggable>
                                 </div>
 
-                                    <!-- SEKCJA WYKSZTAŁCENIA -->
-                                    <div class="space-y-8 pt-8 border-t border-gray-100">
-                                        <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                                <div class="p-2.5 bg-indigo-50 rounded-2xl text-[#6366f1]">
-                                                    <svg class="w-6 h-6" fill="none"
-                                                         stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.083 0 01.665-6.479L12 14z"/>
-                                                    </svg>
-                                                </div>
-                                                {{ __('translate.education') }}
-                                            </h3>
-                                            <div class="flex items-center gap-6">
-                                                <span
-                                                    class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
-                                                        __('translate.quantity')
-                                                    }}: {{ form.educations.length }}/5</span>
-                                                <button
-                                                    type="button"
-                                                    @click="addEducation"
-                                                    v-if="form.educations.length < 5"
-                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#6366f1] hover:bg-indigo-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
-                                                >
-                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24" stroke-width="4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M12 4v16m8-8H4"/>
-                                                    </svg>
-                                                    {{ __('translate.addEducation') }}
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div v-if="form.educations.length == 5"
-                                             class="p-5 bg-red-50 text-red-600 rounded-[2rem] text-[10px] font-black text-center uppercase tracking-widest border border-red-100 shadow-sm">
-                                            {{ __('translate.limitComplete') }}
-                                        </div>
-
-                                        <InputError :message="form.errors.educations" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
-
-                                        <draggable :list="form.educations" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-6">
-                                            <template #item="{ element: education, index }">
-                                                <div
-                                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                                                    <div
-                                                        class="flex items-center justify-between p-4 border-b border-gray-50">
-                                                        <div
-                                                            class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-indigo-500 transition-colors">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2" d="M4 8h16M4 16h16"/>
-                                                            </svg>
-                                                        </div>
-                                                        <button @click="removeElement(index, form.educations)"
-                                                                class="p-2 text-gray-300 hover:text-red-500 transition-colors">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2"
-                                                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-
-                                                    <div
-                                                        class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.school')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput v-model="education.school"
-                                                                       type="text"
-                                                                       :placeholder="__('translate.school')"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`educations.${index}.school`]"
-                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-
-                                                        <div v-if="props.levelEducations" class="space-y-2">
-                                                            <InputLabel :value="__('translate.levelEducation')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <multiselect v-model="education.level"
-                                                                         :options="props.levelEducations"
-                                                                         track-by="value" label="name"
-                                                                         :placeholder="__('translate.placeholder')"
-                                                                         class="custom-multiselect"/>
-                                                            <InputError
-                                                                :message="form.errors[`educations.${index}.level`]"
-                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.specialization')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput v-model="education.specialization"
-                                                                       type="text"
-                                                                       :placeholder="__('translate.specialization')"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`educations.${index}.specialization`]"
-                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.educationFinish')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <VueDatePicker v-model="education.finish" model-type="yyyy"
-                                                                           year-picker
-                                                                           class="shadow-sm"
-                                                                           :locale="lang" auto-apply
-                                                                           :teleport="true"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`educations.${index}.finish`]"
-                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-
-                                                        <div class="space-y-2 lg:col-span-2">
-                                                            <InputLabel :value="__('translate.City')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput v-model="education.city"
-                                                                       type="text"
-                                                                       :placeholder="__('translate.City')"
-                                                            />
-                                                            <InputError
-                                                                :message="form.errors[`educations.${index}.city`]"
-                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                        </draggable>
-                                    </div>
-
-                                    <!-- SEKCJA KURSÓW -->
-                                    <div class="space-y-8 pt-8 border-t border-gray-100">
-                                        <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                                <div class="p-2.5 bg-emerald-50 rounded-2xl text-[#10b981]">
-                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                    </svg>
-                                                </div>
-                                                {{ __('translate.courses') }}
-                                            </h3>
-                                            <div class="flex items-center gap-6">
-                                                <span
-                                                    class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
-                                                        __('translate.quantity')
-                                                    }}: {{ form.courses.length }}/5</span>
-                                                <button type="button" @click="addCourse" v-if="form.courses.length < 5"
-                                                        class="inline-flex items-center gap-2 px-6 py-3 bg-[#10b981] hover:bg-emerald-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
-                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24" stroke-width="4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M12 4v16m8-8H4"/>
-                                                    </svg>
-                                                    {{ __('translate.addCourse') }}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <draggable :list="form.courses" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-6">
-                                            <template #item="{ element: course, index }">
-                                                <div
-                                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                                                    <div class="flex items-center justify-between p-4 border-b border-gray-50">
-                                                        <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#10b981] transition-colors">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2" d="M4 8h16M4 16h16"/>
-                                                            </svg>
-                                                        </div>
-                                                        <button @click="removeElement(index, form.courses)"
-                                                                class="p-2 text-gray-300 hover:text-red-500 transition-colors">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                    <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.name')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput v-model="course.name"
-                                                                       type="text"
-                                                                       :placeholder="__('translate.name')"/>
-                                                            <InputError :message="form.errors[`courses.${index}.name`]"
-                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.organizator')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <TextInput v-model="course.organizator"
-                                                                       type="text"
-                                                                       :placeholder="__('translate.organizator')"/>
-                                                            <InputError
-                                                                :message="form.errors[`courses.${index}.organizator`]"
-                                                                class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.date')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <VueDatePicker v-model="course.date" month-picker
-                                                                           class="shadow-sm"
-                                                                           :locale="lang" auto-apply
-                                                                           :teleport="true"
-                                                            />
-                                                            <InputError :message="form.errors[`courses.${index}.date`]"
-                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                        </draggable>
-                                    </div>
-
-                                    <!-- SEKCJA JĘZYKÓW -->
-                                    <div class="space-y-8 pt-8 border-t border-gray-100">
-                                        <div class="flex items-center justify-between">
-                                            <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                                <div class="p-2.5 bg-amber-50 rounded-2xl text-[#f59e0b]">
-                                                    <svg class="w-6 h-6" fill="none"
-                                                         stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
-                                                    </svg>
-                                                </div>
-                                                {{ __('translate.language') }}
-                                            </h3>
-                                            <div class="flex items-center gap-6">
-                                                <span
-                                                    class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
-                                                        __('translate.quantity')
-                                                    }}: {{ form.langs.length }}/5</span>
-                                                <button type="button" @click="addLang" v-if="form.langs.length < 5"
-                                                        class="inline-flex items-center gap-2 px-6 py-3 bg-[#f59e0b] hover:bg-amber-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-amber-500/20 active:scale-95">
-                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24" stroke-width="4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M12 4v16m8-8H4"/>
-                                                    </svg>
-                                                    {{ __('translate.addLang') }}
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <draggable :list="form.langs" ghost-class="opacity-50" handle=".handle"
-                                                   item-key="id" class="space-y-6">
-                                            <template #item="{ element: lang, index }">
-                                                <div
-                                                    class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative">
-                                                    <div class="flex items-center justify-between p-4 border-b border-gray-50">
-                                                        <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#f59e0b] transition-colors">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2" d="M4 8h16M4 16h16"/>
-                                                            </svg>
-                                                        </div>
-                                                        <button @click="removeElement(index, form.langs)"
-                                                                class="p-2 text-gray-300 hover:text-red-500 transition-colors">
-                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                                                 viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                      stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                    <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                                                        <div class="space-y-2">
-                                                            <InputLabel :value="__('translate.name')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <multiselect v-model="lang.name" :options="sortLangs"
-                                                                         track-by="value" label="label"
-                                                                         :placeholder="__('translate.placeholder')"
-                                                                         class="custom-multiselect"/>
-                                                            <InputError :message="form.errors[`langs.${index}.name`]"
-                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-                                                        <div v-if="props.langLevels" class="space-y-2">
-                                                            <InputLabel :value="__('translate.levelLang')"
-                                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
-                                                            <multiselect v-model="lang.level" :options="props.langLevels"
-                                                                         track-by="value" label="name"
-                                                                         :placeholder="__('translate.placeholder')"
-                                                                         class="custom-multiselect"/>
-                                                            <InputError :message="form.errors[`langs.${index}.level`]"
-                                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                        </draggable>
-                                    </div>
-
-                                    <!-- SEKCJA UMIEJĘTNOŚCI -->
-                                    <div class="space-y-8 pt-8 border-t border-gray-100">
+                                <!-- SEKCJA KURSÓW -->
+                                <div class="space-y-8 pt-8 border-t border-gray-100">
+                                    <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                            <div class="p-2.5 bg-pink-50 rounded-2xl text-[#db2777]">
+                                            <div class="p-2.5 bg-emerald-50 rounded-2xl text-[#10b981]">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                            </div>
+                                            {{ __('translate.courses') }}
+                                        </h3>
+                                        <div class="flex items-center gap-6">
+                                            <span
+                                                class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
+                                                    __('translate.quantity')
+                                                }}: {{ form.courses.length }}/5</span>
+                                            <button type="button" @click="addCourse" v-if="form.courses.length < 5"
+                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#10b981] hover:bg-emerald-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                     viewBox="0 0 24 24" stroke-width="4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M12 4v16m8-8H4"/>
+                                                </svg>
+                                                {{ __('translate.addCourse') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <draggable :list="form.courses" ghost-class="opacity-50" handle=".handle"
+                                               item-key="id" class="space-y-6">
+                                        <template #item="{ element: course, index }">
+                                            <div
+                                                class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                                                <div class="flex items-center justify-between p-4 border-b border-gray-50">
+                                                    <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#10b981] transition-colors">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                             viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2" d="M4 8h16M4 16h16"/>
+                                                        </svg>
+                                                    </div>
+                                                    <button @click="removeElement(index, form.courses)"
+                                                            class="p-2 text-gray-300 hover:text-red-500 transition-colors">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                             viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.name')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <TextInput v-model="course.name"
+                                                                   type="text"
+                                                                   :placeholder="__('translate.name')"/>
+                                                        <InputError :message="form.errors[`courses.${index}.name`]"
+                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.organizator')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <TextInput v-model="course.organizator"
+                                                                   type="text"
+                                                                   :placeholder="__('translate.organizator')"/>
+                                                        <InputError
+                                                            :message="form.errors[`courses.${index}.organizator`]"
+                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.date')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <VueDatePicker v-model="course.date" month-picker
+                                                                       class="shadow-sm"
+                                                                       :locale="lang" auto-apply
+                                                                       :teleport="true"
+                                                        />
+                                                        <InputError :message="form.errors[`courses.${index}.date`]"
+                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </draggable>
+                                </div>
+
+                                <!-- SEKCJA JĘZYKÓW -->
+                                <div class="space-y-8 pt-8 border-t border-gray-100">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                            <div class="p-2.5 bg-amber-50 rounded-2xl text-[#f59e0b]">
                                                 <svg class="w-6 h-6" fill="none"
                                                      stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                                          stroke-width="2"
+                                                          d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
                                                 </svg>
                                             </div>
-                                            {{ __('translate.skills') }}
+                                            {{ __('translate.language') }}
                                         </h3>
-                                        <div
-                                            class="p-8 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
-                                            <multiselect id="tagging" v-model="form.skills" label="name" track-by="code"
-                                                         :options="skillsOptions" :max="10" :multiple="true"
-                                                         :taggable="true" @tag="addSkill"
-                                                         :placeholder="__('translate.tagplaceholder')"
-                                                         class="custom-multiselect">
-                                                <template v-slot:maxElements>
-                                                    {{ __('translate.tagmaxElements', {max: 10}) }}
-                                                </template>
-                                            </multiselect>
-                                            <InputError :message="form.errors.skills"
-                                                        class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
+                                        <div class="flex items-center gap-6">
+                                            <span
+                                                class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
+                                                    __('translate.quantity')
+                                                }}: {{ form.langs.length }}/5</span>
+                                            <button type="button" @click="addLang" v-if="form.langs.length < 5"
+                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#f59e0b] hover:bg-amber-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-amber-500/20 active:scale-95">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                     viewBox="0 0 24 24" stroke-width="4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M12 4v16m8-8H4"/>
+                                                </svg>
+                                                {{ __('translate.addLang') }}
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div v-if="formStep == 3 && form.cv == 1" class="animate-fade-in space-y-10">
-                                <div
-                                    class="p-8 bg-gray-50/50 dark:bg-gray-800/30 rounded-[2.5rem] border border-gray-100 dark:border-gray-700">
-                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                                        <div class="space-y-4">
-                                            <div class="flex items-center gap-3">
-                                                <div
-                                                    class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-xl text-blue-600">
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
-                                                    </svg>
-                                                </div>
-                                                <InputLabel :value="__('translate.language') + ' CV'"
-                                                            class="font-black text-gray-900 dark:text-white uppercase tracking-tight"/>
-                                            </div>
-                                            <p class="text-xs text-gray-500 font-medium">Wybierz język, w którym ma
-                                                zostać wygenerowane Twoje CV.</p>
-                                            <multiselect
-                                                v-model="form.cvLang"
-                                                :options="sortLangs"
-                                                track-by="value"
-                                                label="label"
-                                                :placeholder="__('translate.placeholder')"
-                                                class="custom-multiselect"
-                                            />
-                                        </div>
-
-                                        <div class="space-y-4">
-                                            <div class="flex items-center gap-3">
-                                                <div
-                                                    class="p-2 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl text-indigo-600">
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
-                                                    </svg>
-                                                </div>
-                                                <InputLabel :value="__('translate.cv')"
-                                                            class="font-black text-gray-900 dark:text-white uppercase tracking-tight"/>
-                                            </div>
-                                            <p class="text-xs text-gray-500 font-medium">Wybierz jeden z dostępnych
-                                                szablonów graficznych.</p>
-                                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-                                                <div v-for="template in templatesCvsList" :key="template.id"
-                                                     @click="form.templateCv = template.id"
-                                                     class="relative group cursor-pointer aspect-[3/4] rounded-2xl overflow-hidden border-4 transition-all duration-300"
-                                                     :class="template.id == form.templateCv ? 'border-blue-500 ring-4 ring-blue-500/20 shadow-xl' : 'border-white dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-900 shadow-sm'"
-                                                >
-                                                    <img :src="template.img" alt="cv template"
-                                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                                                    <div
-                                                        class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-4">
-                                                        <span
-                                                            class="text-[10px] font-black text-white uppercase tracking-widest bg-blue-600 px-3 py-1 rounded-full shadow-lg">Wybierz</span>
-                                                    </div>
-                                                    <div v-if="template.id == form.templateCv"
-                                                         class="absolute top-2 right-2 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                                                        <svg class="w-4 h-4 text-white" fill="none"
-                                                             stroke="currentColor" viewBox="0 0 24 24">
+                                    <draggable :list="form.langs" ghost-class="opacity-50" handle=".handle"
+                                               item-key="id" class="space-y-6">
+                                        <template #item="{ element: lang, index }">
+                                            <div
+                                                class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative">
+                                                <div class="flex items-center justify-between p-4 border-b border-gray-50">
+                                                    <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#f59e0b] transition-colors">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                             viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                                  stroke-width="2" d="M4 8h16M4 16h16"/>
                                                         </svg>
                                                     </div>
+                                                    <button @click="removeElement(index, form.langs)"
+                                                            class="p-2 text-gray-300 hover:text-red-500 transition-colors">
+                                                        <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                             viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                    <div class="space-y-2">
+                                                        <InputLabel :value="__('translate.name')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <multiselect v-model="lang.name" :options="sortLangs"
+                                                                     track-by="value" label="label"
+                                                                     :placeholder="__('translate.placeholder')"
+                                                                     class="custom-multiselect"/>
+                                                        <InputError :message="form.errors[`langs.${index}.name`]"
+                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
+                                                    <div v-if="props.langLevels" class="space-y-2">
+                                                        <InputLabel :value="__('translate.levelLang')"
+                                                                    class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
+                                                        <multiselect v-model="lang.level" :options="props.langLevels"
+                                                                     track-by="value" label="name"
+                                                                     :placeholder="__('translate.placeholder')"
+                                                                     class="custom-multiselect"/>
+                                                        <InputError :message="form.errors[`langs.${index}.level`]"
+                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <InputError :message="form.errors.templateCv"
-                                                        class="mt-2 text-xs font-bold"/>
+                                        </template>
+                                    </draggable>
+                                </div>
+
+                                <!-- SEKCJA UMIEJĘTNOŚCI -->
+                                <div class="space-y-8 pt-8 border-t border-gray-100">
+                                    <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
+                                        <div class="p-2.5 bg-pink-50 rounded-2xl text-[#db2777]">
+                                            <svg class="w-6 h-6" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                            </svg>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col items-center gap-6 pt-6">
-                                    <button
-                                        type="button"
-                                        @click.prevent="generatePdf(form.templateCv)"
-                                        v-if="form.cv && formStep == 3 && form.templateCv && form.cvLang"
-                                        class="inline-flex items-center gap-3 px-8 py-3 bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all shadow-lg shadow-blue-500/10 active:scale-95 disabled:opacity-50"
-                                        :disabled="generateCvLoading"
-                                    >
-                                        <svg v-if="generateCvLoading" class="animate-spin h-4 w-4"
-                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                    stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor"
-                                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        <svg v-else class="w-4 h-4" fill="none" stroke="currentColor"
-                                             viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                        </svg>
-                                        {{ __('translate.viewCv') }}
-                                    </button>
-
-                                    <InputError :message="form.errors.application"
-                                                class="text-sm font-bold bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-6 py-2 rounded-full"/>
-
-                                    <PrimaryButton v-if="form.cv && formStep == 3 && form.cvLang"
-                                                   class="w-full sm:w-[300px] !py-5 !rounded-[2rem] !bg-gradient-to-r !from-blue-600 !to-indigo-600 hover:!from-blue-700 hover:!to-indigo-700 !text-sm font-black !uppercase !tracking-[0.2em] shadow-xl shadow-blue-500/30 flex justify-center items-center gap-4 transition-all transform active:scale-[0.98]"
-                                                   :class="{ 'opacity-25 scale-95': form.processing }"
-                                                   :disabled="form.processing || !isReadyToSubmit"
-                                    >
-                                        <template v-if="form.processing">
-                                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                                            </svg>
-                                            <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
-                                        </template>
-                                        <template v-else>
-                                            <span>{{ __('translate.apply') }}</span>
-                                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                 viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                            </svg>
-                                        </template>
-                                    </PrimaryButton>
-                                </div>
-                            </div>
-                            <div v-if="formStep == 2 && form.cv == 2" class="animate-fade-in space-y-8">
-                                <div v-if="props.project.questions.length"
-                                     class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
-                                    <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"
-                                                   :form="form" @submit="submit" @uploadStateChange="(state) => isReadyToSubmit = !state"/>
-                                </div>
-                                <div v-else
-                                     class="p-12 text-center bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
-                                    <div
-                                        class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
-                                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
-                                        {{ __('translate.noQuestionsFound') }}
+                                        {{ __('translate.skills') }}
                                     </h3>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto leading-relaxed">
-                                        {{ __('translate.noQuestionsDescription') }}
-                                    </p>
-                                </div>
-                            </div>
-                            <div v-else-if="formStep == 2 && form.cv == 3" class="animate-fade-in space-y-8">
-                                <div v-if="props.project.questions.length"
-                                     class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
-                                    <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id"
-                                                      :form="form" @submit="submit"/>
-                                </div>
-                                <div v-else
-                                     class="p-12 text-center bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
                                     <div
-                                        class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
-                                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
+                                        class="p-8 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
+                                        <multiselect id="tagging" v-model="form.skills" label="name" track-by="code"
+                                                     :options="skillsOptions" :max="10" :multiple="true"
+                                                     :taggable="true" @tag="addSkill"
+                                                     :placeholder="__('translate.tagplaceholder')"
+                                                     class="custom-multiselect">
+                                            <template v-slot:maxElements>
+                                                {{ __('translate.tagmaxElements', {max: 10}) }}
+                                            </template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.skills"
+                                                    class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
                                     </div>
-                                    <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
-                                        {{ __('translate.noQuestionsFound') }}
-                                    </h3>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto leading-relaxed">
-                                        {{ __('translate.noQuestionsDescription') }}
-                                    </p>
                                 </div>
                             </div>
+                        </div>
+                        <div v-if="formStep == 3 && form.cv == 1" class="animate-fade-in space-y-12">
                             <div
-                                class="flex items-center justify-center pt-8 border-t border-gray-100 dark:border-gray-700 mt-10 gap-6">
+                                class="p-10 bg-gray-50/50 rounded-[3rem] border border-gray-100 shadow-inner">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                    <div class="space-y-6">
+                                        <div class="flex items-center gap-4">
+                                            <div
+                                                class="p-3 bg-blue-50 rounded-2xl text-[#00a0e3]">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                     viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                                                </svg>
+                                            </div>
+                                            <InputLabel :value="__('translate.language') + ' CV'"
+                                                        class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight"/>
+                                        </div>
+                                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest leading-loose">Wybierz język, w którym ma zostać wygenerowane Twoje CV.</p>
+                                        <multiselect
+                                            v-model="form.cvLang"
+                                            :options="sortLangs"
+                                            track-by="value"
+                                            label="label"
+                                            :placeholder="__('translate.placeholder')"
+                                            class="custom-multiselect"
+                                        />
+                                        <InputError :message="form.errors.cvLang" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    </div>
+
+                                    <div class="space-y-6">
+                                        <div class="flex items-center gap-4">
+                                            <div
+                                                class="p-3 bg-indigo-50 rounded-2xl text-[#6366f1]">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                     viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                                                </svg>
+                                            </div>
+                                            <InputLabel :value="__('translate.cv')"
+                                                        class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight"/>
+                                        </div>
+                                        <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest leading-loose">Wybierz jeden z dostępnych szablonów graficznych.</p>
+                                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-2">
+                                            <div v-for="template in templatesCvsList" :key="template.id"
+                                                 @click="form.templateCv = template.id"
+                                                 class="relative group cursor-pointer aspect-[3/4] rounded-3xl overflow-hidden border-4 transition-all duration-300"
+                                                 :class="template.id == form.templateCv ? 'border-[#00a0e3] ring-8 ring-blue-500/10 shadow-2xl scale-105 z-10' : 'border-white hover:border-blue-100 shadow-sm'"
+                                            >
+                                                <img :src="template.img" alt="cv template"
+                                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                                <div
+                                                    class="absolute inset-0 bg-gradient-to-t from-[#0A2C5C]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-6">
+                                                    <span
+                                                        class="text-[10px] font-black text-white uppercase tracking-[0.2em] bg-[#00a0e3] px-4 py-2 rounded-full shadow-lg">Wybierz</span>
+                                                </div>
+                                                <div v-if="template.id == form.templateCv"
+                                                     class="absolute top-3 right-3 w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+                                                    <svg class="w-5 h-5 text-white" fill="none"
+                                                         stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="4" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <InputError :message="form.errors.templateCv"
+                                                    class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-center gap-8 pt-6">
                                 <button
                                     type="button"
-                                    @click="prevStep"
-                                    v-if="formStep > 1"
-                                    class="group inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 rounded-2xl font-black text-xs uppercase tracking-widest hover:border-blue-500 hover:text-blue-600 transition-all active:scale-95"
+                                    @click.prevent="generatePdf(form.templateCv)"
+                                    v-if="form.cv && formStep == 3 && form.templateCv && form.cvLang"
+                                    class="inline-flex items-center gap-3 px-10 py-4 bg-white border border-gray-100 text-[#0A2C5C] rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-50 transition-all shadow-sm hover:-translate-y-0.5 active:scale-95 disabled:opacity-50"
+                                    :disabled="generateCvLoading"
                                 >
-                                    <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none"
-                                         stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                                    <svg v-if="generateCvLoading" class="animate-spin h-4 w-4"
+                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    {{ __('translate.previousStep') }}
+                                    <svg v-else class="w-4 h-4" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                    {{ __('translate.viewCv') }}
                                 </button>
 
-                                <!-- Przycisk Aplikuj widoczny w kroku 2 dla CV Klasycznego (Wgraj plik) lub istniejącego CV -->
-                                <PrimaryButton
-                                    v-if="form.cv == 1 && formStep == 2 && (form.cvStandardType == 1 || form.isSelected)"
-                                    class="w-full sm:w-[300px] !py-4 !rounded-2xl !bg-blue-600 hover:!bg-blue-700 !text-sm font-black !uppercase !tracking-widest shadow-lg shadow-blue-500/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
-                                    :class="{ 'opacity-25': form.processing }"
-                                    :disabled="form.processing || !isReadyToSubmit"
+                                <InputError :message="form.errors.application"
+                                            class="mb-2 text-center text-[10px] font-black uppercase tracking-widest bg-red-50 text-red-600 px-6 py-3 rounded-full border border-red-100"/>
+
+                                <PrimaryButton v-if="form.cv && formStep == 3 && form.cvLang"
+                                               class="w-full sm:w-[350px] !py-5 !rounded-2xl !bg-[#0A2C5C] hover:!bg-blue-800 !text-[10px] font-black !uppercase !tracking-widest shadow-xl shadow-blue-900/20 flex justify-center items-center gap-4 transition-all transform hover:-translate-y-1 active:scale-[0.98]"
+                                               :class="{ 'opacity-50 scale-95': form.processing }"
+                                               :disabled="form.processing || !isReadyToSubmit"
                                 >
                                     <template v-if="form.processing">
-                                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
                                         <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
                                     </template>
                                     <template v-else>
                                         <span>{{ __('translate.apply') }}</span>
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                         </svg>
                                     </template>
                                 </PrimaryButton>
-
-                                <!-- Przycisk Wybierz szablon widoczny w kroku 2 dla CV Klasycznego (Kreator) -->
-                                <PrimaryButton
-                                    type="button"
-                                    @click="nextStep"
-                                    v-if="form.cv == 1 && formStep == 2 && form.cvStandardType == 2 && !form.isSelected"
-                                    class="w-full sm:w-[300px] !py-4 !rounded-2xl !bg-blue-600 hover:!bg-blue-700 !text-sm font-black !uppercase !tracking-widest shadow-lg shadow-blue-500/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
-                                >
-                                    <span>{{ __('translate.chosetemplate') }}</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                                    </svg>
-                                </PrimaryButton>
-
-                                <!-- Przycisk Aplikuj widoczny dla Video/Audio w kroku 2 -->
-                                <PrimaryButton
-                                    v-if="(form.cv == 2 || form.cv == 3) && formStep == 2"
-                                    class="w-full sm:w-[300px] !py-4 !rounded-2xl !bg-blue-600 hover:!bg-blue-700 !text-sm font-black !uppercase !tracking-widest shadow-lg shadow-blue-500/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
-                                    :class="{ 'opacity-25': form.processing }"
-                                    :disabled="form.processing || !isReadyToSubmit"
-                                >
-                                    <template v-if="form.processing">
-                                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                                        </svg>
-                                        <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
-                                    </template>
-                                    <template v-else>
-                                        <span>{{ __('translate.apply') }}</span>
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </template>
-                                </PrimaryButton>
+                        </div>
+                    </div>
+                        <div v-if="formStep == 2 && form.cv == 2" class="animate-fade-in space-y-12">
+                            <div v-if="props.project.questions.length"
+                                 class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"
+                                               :form="form" @submit="submit" @uploadStateChange="(state) => isReadyToSubmit = !state"/>
                             </div>
+                            <div v-else
+                                 class="p-12 text-center bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                <div
+                                    class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
+                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
+                                    {{ __('translate.noQuestionsFound') }}
+                                </h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto leading-relaxed">
+                                    {{ __('translate.noQuestionsDescription') }}
+                                </p>
+                            </div>
+                        </div>
+                        <div v-else-if="formStep == 2 && form.cv == 3" class="animate-fade-in space-y-8">
+                            <div v-if="props.project.questions.length"
+                                 class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id"
+                                                  :form="form" @submit="submit"/>
+                            </div>
+                            <div v-else
+                                 class="p-12 text-center bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                <div
+                                    class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
+                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
+                                    {{ __('translate.noQuestionsFound') }}
+                                </h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto leading-relaxed">
+                                    {{ __('translate.noQuestionsDescription') }}
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center justify-center pt-10 border-t border-gray-50 mt-12 gap-8">
+                            <button
+                                type="button"
+                                @click="prevStep"
+                                v-if="formStep > 1"
+                                class="group inline-flex items-center gap-3 px-10 py-4 bg-white border border-gray-100 text-gray-500 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-50 transition-all hover:-translate-y-0.5 active:scale-95 shadow-sm"
+                            >
+                                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                                </svg>
+                                {{ __('translate.previousStep') }}
+                            </button>
+
+                            <!-- Przycisk Aplikuj widoczny w kroku 2 dla CV Klasycznego (Wgraj plik) lub istniejącego CV -->
+                            <PrimaryButton
+                                v-if="form.cv == 1 && formStep == 2 && (form.cvStandardType == 1 || form.isSelected)"
+                                class="w-full sm:w-[300px] !py-5 !rounded-2xl !bg-[#0A2C5C] hover:!bg-blue-800 !text-[10px] font-black !uppercase !tracking-widest shadow-lg shadow-blue-900/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
+                                :class="{ 'opacity-25': form.processing }"
+                                :disabled="form.processing || !isReadyToSubmit"
+                            >
+                                <template v-if="form.processing">
+                                    <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
+                                </template>
+                                <template v-else>
+                                    <span>{{ __('translate.apply') }}</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </template>
+                            </PrimaryButton>
+
+                            <!-- Przycisk Wybierz szablon widoczny w kroku 2 dla CV Klasycznego (Kreator) -->
+                            <PrimaryButton
+                                type="button"
+                                @click="nextStep"
+                                v-if="form.cv == 1 && formStep == 2 && form.cvStandardType == 2 && !form.isSelected"
+                                class="w-full sm:w-[300px] !py-5 !rounded-2xl !bg-[#0A2C5C] hover:!bg-blue-800 !text-[10px] font-black !uppercase !tracking-widest shadow-lg shadow-blue-900/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
+                            >
+                                <span>{{ __('translate.chosetemplate') }}</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </PrimaryButton>
+
+                            <!-- Przycisk Aplikuj widoczny dla Video/Audio w kroku 2 -->
+                            <PrimaryButton
+                                v-if="(form.cv == 2 || form.cv == 3) && formStep == 2"
+                                class="w-full sm:w-[300px] !py-5 !rounded-2xl !bg-[#0A2C5C] hover:!bg-blue-800 !text-[10px] font-black !uppercase !tracking-widest shadow-lg shadow-blue-900/20 flex justify-center items-center gap-3 transition-all transform active:scale-95"
+                                :class="{ 'opacity-25': form.processing }"
+                                :disabled="form.processing || !isReadyToSubmit"
+                            >
+                                <template v-if="form.processing">
+                                    <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
+                                </template>
+                                <template v-else>
+                                    <span>{{ __('translate.apply') }}</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </template>
+                            </PrimaryButton>
+                        </div>
                     </form>
                 </div>
             </div>

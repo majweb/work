@@ -32,7 +32,7 @@ class FrontUserResource extends JsonResource
             'extra_description' => $this->firm->extra_description,
             'website' => $this->firm->www,
             'count_workers' => $this->firm->count_workers,
-            'video' => Storage::url($this->firm->video),
+            'video' => $this->firm->video ? Storage::url($this->firm->video) : NULL,
             'street' => $this->firm->street,
             'number' => $this->firm->number,
             'country' => $this->firm->country,

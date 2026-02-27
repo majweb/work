@@ -357,223 +357,317 @@ watch(() => props.foundations, () => {
 </script>
 
 <template>
-    <div>
-        <div class="mb-4 grid grid-cols-1 md:grid-cols-3 gap-2">
-            <div>
-                <multiselect
-                    group-values="elements" group-label="group"
-                    :group-select="false"
-                    :selectLabel="__('translate.selectLabel')"
-                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                    :selectedLabel="__('translate.selectedLabel')"
-                    :deselectLabel="__('translate.deselectLabel')"
-                    track-by="name"
-                    :multiple="false"
-                    label="name"
-                    v-model="selectedCountry"
-                    :placeholder="__('translate.Country')"
-                    :options="optionsCountry">
-                    <template #noResult>
-                        <span>{{__('translate.noOptions')}}</span>
-                    </template>
-                    <template #noOptions>
-                        <span>{{__('translate.noResult')}}</span>
-                    </template>
-                </multiselect>
+    <div class="space-y-8">
+        <!-- FILTRY -->
+        <div class="bg-gray-50/50 rounded-[2.5rem] p-6 md:p-8 border border-gray-100 shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') || 'Filtruj' }}</h3>
+                <div class="h-px flex-1 bg-gray-200/50"></div>
             </div>
-            <div>
-                <multiselect
-                    v-model="selectedCategory"
-                    :options="props.categories"
-                    :multiple="false"
-                    track-by="id"
-                    label="label"
-                    :placeholder="__('continents.select_category')"
-                    @input="applyAllFilters"
-                >
-                    <template #noResult>
-                        <span>{{ __('continents.no_category') }}</span>
-                    </template>
-                </multiselect>
-            </div>
-            <div>
-                <TextInput
-                    type="text"
-                    v-model="searchName"
-                    @input="applyAllFilters"
-                    class="p-2 w-full"
-                    :placeholder="__('continents.search_placeholder')"
-                />
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Kraj -->
+                <div class="space-y-2">
+                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-2">{{ __('translate.Country') }}</label>
+                    <multiselect
+                        group-values="elements"
+                        group-label="group"
+                        :group-select="false"
+                        :selectLabel="''"
+                        :selectGroupLabel="''"
+                        :selectedLabel="''"
+                        :deselectLabel="''"
+                        track-by="name"
+                        :multiple="false"
+                        label="name"
+                        v-model="selectedCountry"
+                        :placeholder="__('translate.Country')"
+                        :options="optionsCountry"
+                        class="custom-multiselect"
+                    >
+                        <template #noResult>
+                            <span>{{__('translate.noOptions')}}</span>
+                        </template>
+                        <template #noOptions>
+                            <span>{{__('translate.noResult')}}</span>
+                        </template>
+                    </multiselect>
+                </div>
+
+                <!-- Kategoria -->
+                <div class="space-y-2">
+                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-2">{{ __('continents.select_category') }}</label>
+                    <multiselect
+                        v-model="selectedCategory"
+                        :options="props.categories"
+                        :multiple="false"
+                        track-by="id"
+                        label="label"
+                        :selectLabel="''"
+                        :selectedLabel="''"
+                        :deselectLabel="''"
+                        :placeholder="__('continents.select_category')"
+                        class="custom-multiselect"
+                    >
+                        <template #noResult>
+                            <span>{{ __('continents.no_category') }}</span>
+                        </template>
+                    </multiselect>
+                </div>
+
+                <!-- Nazwa -->
+                <div class="space-y-2">
+                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-2">{{ __('continents.search_placeholder') }}</label>
+                    <TextInput
+                        type="text"
+                        v-model="searchName"
+                        @input="applyAllFilters"
+                        class="w-full !rounded-2xl !bg-white !border-gray-200 focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-3.5 text-xs font-bold tracking-widest uppercase placeholder-gray-300 transition-all shadow-sm"
+                        :placeholder="__('continents.search_placeholder')"
+                    />
+                </div>
             </div>
         </div>
 
-        <div class="w-full grid grid-cols-1 md:grid-cols-4 md:gap-3">
-            <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 text-lg font-semibold text-[#0d2a52]">
-                <button
-                    class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
-                    @click="zoomToContinent('africa')"
-                >
-                    {{ __('continents.africa') }}
-                </button>
-                <button
-                    class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
-                    @click="zoomToContinent('south_america')"
-                >
-                    {{ __('continents.south_america') }}
-                </button>
-                <button
-                    class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
-                    @click="zoomToContinent('north_america')"
-                >
-                    {{ __('continents.north_america') }}
-                </button>
-                <button
-                    class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
-                    @click="zoomToContinent('asia')"
-                >
-                    {{ __('continents.asia') }}
-                </button>
-                <button
-                    class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
-                    @click="zoomToContinent('europe')"
-                >
-                    {{ __('continents.europe') }}
-                </button>
-                <button
-                    class="p-3 border-2 border-work-main rounded-md transition hover:bg-work-main hover:text-white"
-                    @click="zoomToContinent('oceania')"
-                >
-                    {{ __('continents.oceania') }}
-                </button>
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- PRZYCISKI KONTYNENTÓW -->
+            <div class="lg:col-span-1">
+                <div class="flex items-center gap-4 mb-6">
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('translate.foundations') }}</h3>
+                    <div class="h-px flex-1 bg-gray-100"></div>
+                </div>
 
-            <div class="col-span-3">
-                <div id="fundationMap" class="w-full h-full min-h-[400px] overflow-hidden mt-4 md:mt-0"></div>
-            </div>
-
-            <div class="mt-6 md:col-span-4">
-                <div v-if="paginatedFoundations.length"
-                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    <Link
-                        v-for="f in paginatedFoundations"
-                        :key="f.id"
-                        :href="route('front.foundation.single', f.id)"
-                        class="flex flex-col gap-2 border border-work-main-light rounded-xl p-4 shadow-sm hover:shadow-md transition cursor-pointer"
+                <div class="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                    <button
+                        v-for="(coords, key) in continents"
+                        :key="key"
+                        @click="zoomToContinent(key)"
+                        class="group p-4 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-500 text-left relative overflow-hidden"
                     >
-                        <div class="flex items-start gap-3">
-                            <!-- Logo -->
-                            <img
-                                :src="f.logo"
-                                alt=""
-                                class="h-12 object-contain"
-                            />
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-gray-50 rounded-full -mr-6 -mt-6 group-hover:scale-110 transition-transform duration-700"></div>
+                        <div class="relative z-10 flex flex-col gap-1">
+                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest opacity-60 group-hover:text-[#00a0e3] transition-colors">
+                                {{ __('translate.check') }}
+                            </span>
+                            <span class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest">
+                                {{ __('continents.' + key) }}
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
 
-                            <!-- Nazwa + kraj -->
-                            <div>
-                                <h3 class="font-semibold text-gray-800 leading-tight">
-                                    {{ f.name }}
-                                </h3>
-                                <p class="text-sm text-gray-500">
+            <!-- MAPA -->
+            <div class="lg:col-span-3">
+                <div id="fundationMap" class="w-full h-full min-h-[500px] rounded-[2.5rem] overflow-hidden relative group/map">
+                    <!-- Background placeholder for better look during load -->
+                    <div class="absolute inset-0 bg-[#0d2a52] flex items-center justify-center -z-10 animate-pulse">
+                        <div class="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] animate-pulse">MAPBOX</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LISTA FUNDACJI -->
+        <div class="space-y-8 pt-8 border-t border-gray-100">
+            <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-4 flex-1">
+                    <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.foundations') }}</h3>
+                    <div class="h-px flex-1 bg-gray-100"></div>
+                </div>
+                <div class="px-4 py-2 bg-blue-50 rounded-xl">
+                    <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ visibleFoundations.length }} {{ __('translate.fundacji') }}</span>
+                </div>
+            </div>
+
+            <div v-if="paginatedFoundations.length" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                <Link
+                    v-for="f in paginatedFoundations"
+                    :key="f.id"
+                    :href="route('front.foundation.single', f.id)"
+                    class="group bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500 hover:-translate-y-2 p-6 flex flex-col h-full"
+                >
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 group-hover:border-[#00a0e3]/20 transition-colors">
+                            <img :src="f.logo" :alt="f.name" class="w-12 h-12 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <span class="px-2 py-0.5 bg-blue-50 text-blue-500 font-black text-[8px] uppercase tracking-widest rounded-lg border border-blue-100/50 inline-block mb-2">
+                                ID {{ f.id }}
+                            </span>
+                            <h3 class="text-sm font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
+                                {{ f.name }}
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate">
                                     {{ f.address_country.allTranslations[usePage().props.language] }}
-                                </p>
+                                </span>
+                            </div>
+                            <div>
+                                <div class="h-px flex-1 bg-gray-50 mr-4"></div>
+                                <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-[#0A2C5C] group-hover:text-white transition-all shadow-sm">
+                                    <span class="text-lg font-black leading-none">→</span>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Kategoria -->
-                        <p class="text-sm text-gray-600 mt-auto">
-                            {{ f.category }}
-                        </p>
-                    </Link>
+                </Link>
+            </div>
 
+            <div v-else class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
                 </div>
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('continents.no_foundations') }}</p>
+            </div>
 
-
-
-
-                <p v-else class="text-gray-500 text-sm">
-                    {{ __('continents.no_foundations') }}
-                </p>
-
-                <!-- PAGINACJA -->
-                <div
-                    v-if="visibleFoundations.length > pageSize"
-                    class="flex flex-wrap gap-4 mt-4 items-center"
+            <!-- PAGINACJA -->
+            <div v-if="visibleFoundations.length > pageSize" class="flex flex-wrap gap-4 items-center justify-center">
+                <button
+                    class="px-8 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                    :disabled="currentPage === 1"
+                    @click="currentPage--"
                 >
-                    <button
-                        class="px-4 py-2 border rounded disabled:opacity-50"
-                        :disabled="currentPage === 1"
-                        @click="currentPage--"
-                    >
-                        ← {{__('translate.previous')}}
-                    </button>
+                    ← {{__('translate.previous')}}
+                </button>
 
-                    <span class="font-semibold">
+                <div class="bg-[#0A2C5C] px-6 py-4 rounded-2xl shadow-lg shadow-blue-900/20">
+                    <span class="text-[10px] font-black text-white uppercase tracking-widest">
                         {{__('translate.page')}} {{ currentPage }} / {{ totalPages }}
                     </span>
-
-                    <button
-                        class="px-4 py-2 border rounded disabled:opacity-50"
-                        :disabled="currentPage >= totalPages"
-                        @click="currentPage++"
-                    >
-                        {{__('translate.next')}} →
-                    </button>
                 </div>
+
+                <button
+                    class="px-8 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                    :disabled="currentPage >= totalPages"
+                    @click="currentPage++"
+                >
+                    {{__('translate.next')}} →
+                </button>
             </div>
         </div>
     </div>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tags{
-    border:1px solid #0A2E6D;
-}
-.multiselect__tag{
-    background: #0A2E6D !important;
-}
-.multiselect__option--highlight {
-    background: #0A2E6D !important;
-    outline: none;
-    color: white;
-}
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #e5e7eb; /* border-gray-200 */
+        border-radius: 1rem;
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        background: #ffffff;
+        transition: all 0.3s ease;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
 
-.multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #0A2E6D !important;
-    color: white;
-}
+    &:focus-within .multiselect__tags {
+        border-color: #00a0e3;
+        box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1);
+    }
 
-.multiselect__option--selected {
-    background: #00A0E3B2 !important;
-    color: #35495E;
-    font-weight: bold;
-}
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af; /* text-gray-400 */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__option--selected.multiselect__option--highlight {
-    background: #00A0E3B2 !important;
-    color: #fff;
-}
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #0A2C5C;
+    }
 
-.multiselect__option--selected.multiselect__option--highlight:after {
-    background: #00A0E3B2 !important;
-    content: attr(data-deselect);
-    color: white !important;
-}
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #0A2C5C;
 
-.multiselect__option--selected:after {
-    content: attr(data-selected);
-    color: #00A0E3B2;
-    background: transparent !important;
-}
-.multiselect__select{
-    height: 98%;
-    background: rgba(10, 46, 109, 0.14);
-}
-.multiselect__select::before{
-    border-color: #0A2E6D transparent transparent;
-}
-.multiselect--disabled.multiselect .multiselect__select{
-    background: rgba(10, 46, 109, 0.14);
+        &::placeholder {
+            color: #9ca3af;
+        }
+    }
+
+    .multiselect__select {
+        height: 48px;
+        width: 2.5rem;
+    }
+
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C;
+        font-weight: 900;
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .multiselect__option--group {
+        background: #f9fafb !important;
+        color: #9ca3af !important;
+        font-size: 9px !important;
+        font-weight: 900 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        padding: 12px 15px !important;
+    }
+
+    .multiselect__content-wrapper {
+        border: 1px solid #e5e7eb;
+        border-top: none;
+        border-bottom-left-radius: 1.25rem;
+        border-bottom-right-radius: 1.25rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+    }
+
+    .multiselect__content {
+        padding: 4px;
+    }
+
+    .multiselect__option {
+        border-radius: 0.75rem;
+        margin: 2px 0;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+    }
 }
 </style>

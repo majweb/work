@@ -42,126 +42,164 @@ const donated = computed(() =>
 <template>
     <FrontLayout :title="__('info.cennik_title')">
 
-        <div class="py-16 bg-[#0b2a55] text-white">
-            <div class="mx-auto px-6">
+        <div class="py-24 bg-gray-50/50 min-h-screen relative overflow-hidden">
+            <!-- Background Decorations -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-50/20 rounded-full -ml-48 -mb-48 blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
 
                 <!-- ===================== NAGŁÓWEK ===================== -->
-                <div class="text-center mb-16">
-                    <h1 class="text-4xl font-extrabold leading-tight">
+                <div class="text-center mb-24">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100 mb-8 animate-bounce">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.bestOffers') }}</span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-6xl font-black text-[#0A2C5C] leading-tight uppercase tracking-tighter mb-8">
                         {{ __('info.header_big') }}
                     </h1>
 
-                    <p class="my-4 text-lg opacity-90 max-w-2xl mx-auto">
+                    <p class="text-lg text-gray-500 font-medium max-w-3xl mx-auto leading-relaxed mb-12 uppercase tracking-widest text-[11px]">
                         {{ __('info.header_desc_1') }}<br>
                         {{ __('info.header_desc_2') }}
-                        <strong class="text-white font-semibold">
+                        <span class="text-red-500 font-black">
                             {{ __('info.header_desc_bold') }}
-                        </strong>
+                        </span>
                         {{ __('info.header_desc_3') }}<br>
                         {{ __('info.header_desc_4') }}
                     </p>
 
-                    <Link :href="route('front.readMore')" class="mt-6 bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full text-white font-bold">
-                        {{ __('info.read_more') }}
-                    </Link>
+                    <div class="flex justify-center">
+                        <Link :href="route('front.readMore')" class="group relative inline-flex items-center gap-4 px-12 py-5 bg-[#0A2C5C] text-white text-xs font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-1">
+                            {{ __('info.read_more') }}
+                            <span class="text-xl group-hover:translate-x-2 transition-transform">→</span>
+                        </Link>
+                    </div>
                 </div>
 
                 <!-- ===================== LISTA PAKIETÓW ===================== -->
-                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
-
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-8 mb-24">
                     <div
                         v-for="(pack, index) in packages"
                         :key="pack.id"
                         @click="selected = pack"
-                        class="cursor-pointer rounded-xl p-6 text-center transition relative border duration-200"
+                        class="group cursor-pointer rounded-[2.5rem] p-8 text-center transition-all duration-500 relative border flex flex-col items-center justify-between min-h-[320px]"
                         :class="[
                             selected.id === pack.id
-                                ? 'bg-[linear-gradient(45deg,#0B2A55_0%,#0D3874_50%,#0B2A55_100%)] border-[#00aaff] shadow-2xl lg:scale-[1.15] scale-100 z-1'
-                                : 'bg-[#0d3874] border-[#00aaff]',
-
-                            index === 6 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : '',
-                            'hover:scale-[1.04]'
+                                ? 'bg-[#0A2C5C] border-transparent shadow-2xl shadow-blue-900/40 scale-105 lg:scale-110 z-10'
+                                : 'bg-white border-gray-100 shadow-xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-2',
                         ]"
                     >
+                        <!-- Active Badge -->
+                        <div v-if="selected.id === pack.id" class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#00a0e3] text-white text-[8px] font-black uppercase tracking-widest rounded-full shadow-lg">
+                            {{ __('translate.selected') }}
+                        </div>
 
-                        <div class="mb-3">
+                        <div class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110"
+                             :class="selected.id === pack.id ? 'bg-white/10' : 'bg-gray-50'">
                             <img
                                 :src="`/images/price/${pack.points}.svg`"
-                                class="w-[48px] h-[48px] mx-auto"
+                                class="w-12 h-12 object-contain"
+                                :class="selected.id === pack.id ? 'brightness-0 invert' : ''"
                                 :alt="pack.points"
                             />
                         </div>
 
-                        <div
-                            class="text-3xl font-bold"
-                            :class="selected.id === pack.id ? 'glow-white-soft' : ''"
-                        >
-                            {{ pack.points.toLocaleString() }}
-                        </div>
-                        <div class="text-sm opacity-80 mb-4">
-                            {{ __('info.points') }}
-                        </div>
-
-                        <Link :href="route('buy.index')" class="bg-[#00aaff] px-4 py-2 rounded-lg font-semibold text-white">
-                            {{ __('info.buy_now') }}
-                        </Link>
-
-                        <div class="mt-4">
-                            {{ __('info.price') }}: ${{ pack.price }}
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- ===================== PROGRESS + IKONY ===================== -->
-
-                <div class="flex justify-center lg:justify-end w-full">
-                    <div class="text-center lg:text-right w-full lg:max-w-md">
-
-                        <div class="mb-8">
-                            <h3 class="text-2xl sm:text-3xl font-bold mb-4">
-                                {{ __('info.help_title') }}
-                            </h3>
-
-                            <p class="text-base sm:text-lg">
-                                {{ __('info.help_text_1') }}
-                                <span class="text-[#00aaff] font-bold">{{ selected.points.toLocaleString() }} {{ __('info.points2') }}</span>
-                                {{ __('info.help_text_2') }}
-                                <span class="text-[#00aaff] font-bold">${{ selected.price }}</span>,
-                                {{ __('info.help_text_3') }}
-                                <span class="text-[#00aaff] font-bold">${{ donated }}</span>
-                            </p>
+                        <div class="space-y-1 mb-6">
+                            <div class="text-4xl font-black transition-colors duration-300"
+                                 :class="selected.id === pack.id ? 'text-white' : 'text-[#0A2C5C]'">
+                                {{ pack.points.toLocaleString() }}
+                            </div>
+                            <div class="text-[10px] font-black uppercase tracking-[0.2em]"
+                                 :class="selected.id === pack.id ? 'text-blue-200' : 'text-gray-400'">
+                                {{ __('info.points') }}
+                            </div>
                         </div>
 
-                        <!-- PROGRESS BAR -->
-                        <div class="relative w-full max-w-[400px] mx-auto lg:ml-auto lg:mr-0 px-4 sm:px-0">
-                            <div class="relative h-3">
-                                <div class="h-3 w-full border-[#00aaff] border-2 rounded-full"></div>
-
-                                <div class="h-3 bg-[#00aaff] rounded-full absolute top-0 left-0 transition-all duration-500"
-                                     :style="{ width: progressPercentage + '%' }"></div>
-
-                                <div class="w-6 h-6 bg-[#00aaff] border-4 border-[#00aaff] rounded-full
-                                            absolute -top-1.5 transition-all duration-500 -ml-3"
-                                     :style="{ left: progressPercentage + '%' }"></div>
+                        <div class="w-full space-y-4">
+                            <div class="text-xl font-black"
+                                 :class="selected.id === pack.id ? 'text-white' : 'text-[#0A2C5C]'">
+                                ${{ pack.price }}
                             </div>
 
-                            <!-- IKONY POD PROGRESEM -->
-                            <div class="relative mt-8 h-10">
-                                <div v-for="(pack, index) in packages" :key="'ico'+index"
-                                     class="absolute transition"
-                                     :style="{
-                                         left: `${(index / totalSlots) * 100}%`,
-                                         transform: index <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
-                                         opacity: index <= currentIndex ? 1 : 0.25,
-                                         transition: '0.3s'
-                                     }">
+                            <Link :href="route('buy.index')"
+                                  class="block w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all"
+                                  :class="selected.id === pack.id
+                                      ? 'bg-white text-[#0A2C5C] hover:bg-gray-100'
+                                      : 'bg-[#00a0e3] text-white hover:bg-[#008cc6] shadow-lg shadow-blue-400/20'">
+                                {{ __('info.buy_now') }}
+                            </Link>
+                        </div>
+                    </div>
+                </div>
 
-                                    <img
-                                        :src="`/images/price/${pack.points}.svg`"
-                                        :alt="pack.points"
-                                        class="w-[32px] h-[32px] sm:w-[40px] sm:h-[40px] min-w-[32px] sm:min-w-[40px]"
-                                    />
+                <!-- ===================== PROGRESS + POMOC ===================== -->
+                <div class="flex justify-center">
+                    <div class="w-full max-w-6xl bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl shadow-blue-900/5 border border-gray-100 relative overflow-hidden">
+                        <!-- Decoration inside box -->
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+
+                        <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+                            <div class="space-y-6">
+                                <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl">
+                                    <div class="w-2 h-2 rounded-full bg-[#00a0e3] animate-pulse"></div>
+                                    <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ __('translate.impact') }}</span>
+                                </div>
+
+                                <h3 class="text-3xl md:text-4xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight">
+                                    {{ __('info.help_title') }}
+                                </h3>
+
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                                    {{ __('info.help_text_1') }}
+                                    <span class="text-[#00a0e3] font-black">{{ selected.points.toLocaleString() }} {{ __('info.points2') }}</span>
+                                    {{ __('info.help_text_2') }}
+                                    <span class="text-[#00a0e3] font-black">${{ selected.price }}</span>,
+                                    {{ __('info.help_text_3') }}
+                                    <span class="text-red-500 font-black underline decoration-4 decoration-red-100 underline-offset-8">${{ donated }}</span>
+                                </p>
+                            </div>
+
+                            <div class="space-y-12">
+                                <!-- PROGRESS BAR -->
+                                <div class="relative pt-8 px-[20px]">
+                                    <div class="relative h-4 bg-gray-100 rounded-full border border-gray-100 shadow-inner">
+                                        <div class="h-full bg-gradient-to-r from-[#0A2C5C] to-[#00a0e3] rounded-full absolute top-0 left-0 transition-all duration-700 ease-out shadow-lg"
+                                             :style="{ width: progressPercentage + '%' }">
+                                            <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                                        </div>
+
+                                        <!-- Handle -->
+                                        <div class="w-10 h-10 bg-white border-4 border-[#00a0e3] rounded-2xl shadow-xl
+                                                    absolute -top-3 transition-all duration-700 ease-out -ml-5 flex items-center justify-center"
+                                             :style="{ left: progressPercentage + '%' }">
+                                            <div class="w-2 h-2 bg-[#00a0e3] rounded-full animate-ping"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- IKONY POD PROGRESEM -->
+                                    <div class="flex justify-between items-start mt-12">
+                                        <div v-for="(pack, index) in packages" :key="'ico'+index"
+                                             class="flex flex-col items-center transition-all duration-500"
+                                             :style="{
+                                                 opacity: index <= currentIndex ? 1 : 0.2,
+                                             }">
+                                            <div class="p-2 rounded-xl border-2 transition-all duration-500"
+                                                 :class="index === currentIndex
+                                                     ? 'bg-white border-[#00a0e3] shadow-lg scale-125 z-10'
+                                                     : 'bg-gray-50 border-transparent scale-100'">
+                                                <img
+                                                    :src="`/images/price/${pack.points}.svg`"
+                                                    :alt="pack.points"
+                                                    class="w-8 h-8 object-contain"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
