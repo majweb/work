@@ -34,6 +34,7 @@ use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller
 {
@@ -825,5 +826,79 @@ class ProjectController extends Controller
             session()->flash('flash.bannerStyle', 'success');
             return back();
         }
+    }
+
+    public function generatorData(Project $project)
+    {
+        Gate::authorize('update', $project);
+
+        $langs = config('langsShorts');
+        $generatorPath = storage_path('app/public/generator');
+
+        $availableLangs = [];
+        if (File::exists($generatorPath)) {
+            $directories = File::directories($generatorPath);
+            foreach ($directories as $dir) {
+                $langCode = basename($dir);
+                if (in_array($langCode, $langs)) {
+                    $availableLangs[] = $langCode;
+                }
+            }
+        }
+
+        $selectedLang = request('lang') ?? app()->getLocale();
+        $images = [];
+        if ($selectedLang && in_array($selectedLang, $availableLangs)) {
+            $langPath = $generatorPath . '/' . $selectedLang;
+            if (File::exists($langPath)) {
+                $files = File::files($langPath);
+                foreach ($files as $file) {
+                    if (in_array($file->getExtension(), ['png', 'jpg', 'jpeg', 'svg'])) {
+                        $images[] = asset('storage/generator/' . $selectedLang . '/' . $file->getFilename());
+                    }
+                }
+            }
+        }
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'availableLangs' => $availableLangs,
+                'images' => $images,
+                'currentImage' => $project->image_generator,
+                'universalImage' => asset('storage/generator/universal.png'),
+            ]);
+        }
+
+        $backRoute = auth()->user()->hasRole('recruit') ? 'project-recruits.index' : 'projects.index';
+
+        return inertia('Project/Generator', [
+            'project' => $project,
+            'availableLangs' => $availableLangs,
+            'currentImage' => $project->image_generator,
+            'universalImage' => asset('storage/generator/universal.png'),
+            'initialImages' => $images,
+            'initialLang' => $selectedLang,
+            'backRoute' => $backRoute,
+        ]);
+    }
+
+    public function generatorSave(Request $request, Project $project)
+    {
+        Gate::authorize('update', $project);
+
+        $request->validate([
+            'image' => 'nullable|string'
+        ]);
+
+        $project->update([
+            'image_generator' => $request->image
+        ]);
+
+        session()->flash('flash.banner', __('translate.Saved'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        $backRoute = auth()->user()->hasRole('recruit') ? 'project-recruits.index' : 'projects.index';
+
+        return to_route($backRoute);
     }
 }

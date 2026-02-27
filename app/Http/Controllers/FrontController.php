@@ -359,7 +359,7 @@ class FrontController extends Controller
         );
 
         $locale = getLocalBrowserLang();
-        $image = Country::firstWhere('countryCode', $locale)?->active_image_url;
+        $image = $project->image_generator ?: asset('storage/generator/universal.png');
         return inertia()->render('Front/SingleProject', [
             'project' => $project,
             'image' => $image,

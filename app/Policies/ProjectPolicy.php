@@ -13,7 +13,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasRole('firm') || $user->hasRole('recruit');
     }
 
     /**
@@ -21,6 +21,14 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project): bool
     {
+        if ($user->hasRole('firm') && $user->hasRole('recruit')) {
+            return $project->user_id == $user->id;
+        }
+
+        if ($user->hasRole('recruit')) {
+            return $project->recruiter_id == $user->id || (is_array($project->other_recruits) && collect($project->other_recruits)->contains('value', $user->id));
+        }
+
         return $user->hasRole('firm') && $project->user_id == $user->id;
     }
 
@@ -37,6 +45,14 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project): bool
     {
+        if ($user->hasRole('firm') && $user->hasRole('recruit')) {
+            return $project->user_id == $user->id;
+        }
+
+        if ($user->hasRole('recruit')) {
+            return $project->recruiter_id == $user->id || (is_array($project->other_recruits) && collect($project->other_recruits)->contains('value', $user->id));
+        }
+
         return $user->hasRole('firm') && $project->user_id == $user->id;
     }
 
@@ -45,8 +61,15 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project): bool
     {
-        return $user->hasRole('firm') && $project->user_id == $user->id;
+        if ($user->hasRole('firm') && $user->hasRole('recruit')) {
+            return $project->user_id == $user->id;
+        }
 
+        if ($user->hasRole('recruit')) {
+            return $project->recruiter_id == $user->id || (is_array($project->other_recruits) && collect($project->other_recruits)->contains('value', $user->id));
+        }
+
+        return $user->hasRole('firm') && $project->user_id == $user->id;
     }
 
     /**

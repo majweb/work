@@ -20,11 +20,13 @@ const props = defineProps({
     },
 });
 const copied = ref(false);
+const isClient = ref(false);
 
 const headings = ref([]);
 
-// SSR-safe check
-const isClient = typeof window !== 'undefined' && typeof navigator !== 'undefined';
+onMounted(() => {
+    isClient.value = true;
+});
 
 // Funkcja generująca unikalny ID dla nagłówków
 function generateId(text, index) {
@@ -32,7 +34,7 @@ function generateId(text, index) {
 }
 
 function copyLink() {
-    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+    if (!isClient.value) return;
 
     const url = window.location.href; // lub inny link do skopiowania
     if (navigator.clipboard) {
@@ -51,7 +53,7 @@ function copyLink() {
 
 // Spis treści po renderze
 onMounted(async () => {
-    if (!isClient) return;
+    if (!isClient.value) return;
 
     await nextTick();
     const articleContent = document.querySelector('.article-content');
@@ -71,24 +73,24 @@ const shareUrl = ref('');
 const shareText = ref('');
 
 onMounted(() => {
-    if (!isClient) return;
+    if (!isClient.value) return;
     shareUrl.value = window.location.href;
     shareText.value = props.article.title;
 });
 
 function openShare(url) {
-    if (!isClient) return;
+    if (!isClient.value) return;
     window.open(url, '_blank', 'noopener,noreferrer,width=600,height=500');
 }
 
 function scrollToHeading(id) {
-    if (!isClient) return;
+    if (!isClient.value) return;
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 function shareOnInstagram() {
-    if (!isClient) return;
+    if (!isClient.value) return;
     if (navigator.clipboard) navigator.clipboard.writeText('');
     window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer,width=600,height=500');
 }
@@ -173,7 +175,7 @@ function shareOnInstagram() {
                                         </span>
 
                                         <!-- Share Buttons -->
-                                        <div class="flex items-center gap-4">
+                                        <div v-if="isClient" class="flex items-center gap-4">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.share_article') }}</p>
                                             <div class="flex gap-2">
                                                 <button @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">

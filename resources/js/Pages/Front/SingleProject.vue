@@ -79,6 +79,7 @@ onMounted(async () => {
                         <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">{{ __('translate.featured') }}</span>
                     </div>
                 </div>
+                <img :src="image" alt="">
 
                 <!-- MAIN CARD HEADER -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
