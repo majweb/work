@@ -54,7 +54,8 @@ class Project extends Model
         'cv',
         'external_company_id',
         'is_active',
-        'views_count'
+        'views_count',
+        'image_generator'
     ];
 
     protected $casts = [
