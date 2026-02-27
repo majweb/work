@@ -562,11 +562,19 @@ const submit = () => {
 <style lang="scss">
 .custom-multiselect {
     .multiselect__tags {
-        border: 1px solid #f3f4f6; /* border-gray-100 */
-        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
+        border: 1px solid #e5e7eb; /* border-gray-200 */
+        border-radius: 1rem;
         padding: 0.75rem 2.5rem 0.75rem 1.25rem;
-        background: #f9fafb; /* bg-gray-50 */
+        background: #ffffff;
         transition: all 0.3s ease;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    &:focus-within .multiselect__tags {
+        border-color: #00a0e3;
+        box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1);
     }
 
     .multiselect__placeholder {
@@ -587,6 +595,7 @@ const submit = () => {
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        color: #0A2C5C;
     }
 
     .multiselect__input {
@@ -594,10 +603,15 @@ const submit = () => {
         background: transparent;
         font-size: 0.75rem;
         font-weight: 700;
+        color: #0A2C5C;
+
+        &::placeholder {
+            color: #9ca3af;
+        }
     }
 
     .multiselect__select {
-        height: 100%;
+        height: 48px;
         width: 2.5rem;
     }
 
@@ -609,20 +623,52 @@ const submit = () => {
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+
+        &:after {
+            display: none;
+        }
     }
 
     .multiselect__option--selected {
         background: #f3f4f6 !important;
         color: #0A2C5C;
         font-weight: 900;
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .multiselect__option--group {
+        background: #f9fafb !important;
+        color: #9ca3af !important;
+        font-size: 9px !important;
+        font-weight: 900 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        padding: 12px 15px !important;
     }
 
     .multiselect__content-wrapper {
-        border: 1px solid #f3f4f6;
+        border: 1px solid #e5e7eb;
         border-top: none;
-        border-bottom-left-radius: 1rem;
-        border-bottom-right-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-bottom-left-radius: 1.25rem;
+        border-bottom-right-radius: 1.25rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+    }
+
+    .multiselect__content {
+        padding: 4px;
+    }
+
+    .multiselect__option {
+        border-radius: 0.75rem;
+        margin: 2px 0;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
     }
 
     .multiselect__tag {
@@ -641,8 +687,9 @@ const submit = () => {
     .multiselect__tag-icon:hover {
         background: #0088c2 !important;
     }
-    .multiselect__tag-icon{
-        top:-3px !important
+
+    .multiselect__tag-icon {
+        top: -3px !important;
     }
 }
 </style>

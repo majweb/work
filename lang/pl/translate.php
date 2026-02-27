@@ -29,6 +29,8 @@ return [
     'forgottext' => 'Zapomniałeś hasła? Bez problemu. Wystarczy, że podasz nam swój adres e-mail, a my wyślemy Ci link do resetowania hasła, który umożliwi Ci wybranie nowego.',
     'emailresetlink' => 'Link do resetowania hasła e-mail',
     'confirm' => 'Jest to bezpieczny obszar aplikacji. Przed kontynuowaniem potwierdź swoje hasło.',
+    'recognition' => 'Wyróżnienie',
+    'firmDashboardDescription' => 'Zarządzaj swoją firmą i rekrutacjami',
     'confirmbtn' => 'Potwierdź',
     'resetBtn' => 'Zresetuj hasło',
     'access' => 'Potwierdź dostęp do swojego konta, wprowadzając kod uwierzytelniający dostarczony przez aplikację uwierzytelniającą.',

@@ -66,236 +66,284 @@ const getServiceDescription = (type) => {
                 {{ __('translate.buy') }}
             </h2>
         </template>
-                <div class="py-12">
-                    <div class="bg-[#0b2a55] text-white p-6 lg:p-8 md:max-w-[70vw] mx-auto dark:bg-gray-800 rounded-3xl shadow-2xl text-white">
-                        <!-- Sekcja pakietów punktów + 'Zobacz, jak Twoja firma pomaga' (z /price) -->
-                        <div>
-                            <!-- NAGŁÓWEK (jak na /price) -->
-                            <div class="text-center mb-16">
-                                <h1 class="text-4xl font-extrabold leading-tight">
-                                    {{ __('info.header_big') }}
-                                </h1>
+        <div class="py-12 bg-gray-50/50 min-h-screen relative overflow-hidden">
+            <!-- Background Decorations -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-50/20 rounded-full -ml-48 -mb-48 blur-3xl"></div>
 
-                                <p class="my-4 text-lg opacity-90 max-w-2xl mx-auto">
-                                    {{ __('info.header_desc_1') }}<br>
-                                    {{ __('info.header_desc_2') }}
-                                    <strong class="text-white font-semibold">
-                                        {{ __('info.header_desc_bold') }}
-                                    </strong>
-                                    {{ __('info.header_desc_3') }}<br>
-                                    {{ __('info.header_desc_4') }}
-                                </p>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Sekcja pakietów punktów + 'Zobacz, jak Twoja firma pomaga' (z /price) -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 md:p-16 mb-12">
+                    <div>
+                        <!-- NAGŁÓWEK (jak na /price) -->
+                        <div class="text-center mb-24">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100 mb-8 animate-bounce">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                </span>
+                                <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.bestOffers') }}</span>
+                            </div>
 
-                                <Link :href="route('front.readMore')" class="mt-6 inline-block bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full text-white font-bold">
+                            <h1 class="text-4xl md:text-5xl font-black text-[#0A2C5C] leading-tight uppercase tracking-tighter mb-8">
+                                {{ __('info.header_big') }}
+                            </h1>
+
+                            <p class="text-lg text-gray-500 font-medium max-w-3xl mx-auto leading-relaxed mb-12 uppercase tracking-widest text-[11px]">
+                                {{ __('info.header_desc_1') }}<br>
+                                {{ __('info.header_desc_2') }}
+                                <span class="text-red-500 font-black">
+                                    {{ __('info.header_desc_bold') }}
+                                </span>
+                                {{ __('info.header_desc_3') }}<br>
+                                {{ __('info.header_desc_4') }}
+                            </p>
+
+                            <div class="flex justify-center">
+                                <Link :href="route('front.readMore')" class="group relative inline-flex items-center gap-4 px-12 py-5 bg-[#0A2C5C] text-white text-xs font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-1">
                                     {{ __('info.read_more') }}
+                                    <span class="text-xl group-hover:translate-x-2 transition-transform">→</span>
                                 </Link>
                             </div>
+                        </div>
 
-                            <!-- LISTA PAKIETÓW -->
-                            <div v-if="packages.length" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
-                                <div
-                                    v-for="(pack, index) in packages"
-                                    :key="pack.id"
-                                    @click="selected = pack"
-                                    class="cursor-pointer rounded-xl p-6 text-center transition relative border duration-200"
-                                    :class="[
-                                        selected?.id === pack.id
-                                            ? 'bg-[linear-gradient(45deg,#0B2A55_0%,#0D3874_50%,#0B2A55_100%)] border-[#00aaff] shadow-2xl lg:scale-[1.15] scale-100 z-1'
-                                            : 'bg-[#0d3874] border-[#00aaff]',
-                                        index === 6 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : '',
-                                        'hover:scale-[1.04]'
-                                    ]"
-                                >
-                                    <div class="mb-3">
-                                        <img :src="`/images/price/${pack.points}.svg`" :alt="pack.points" class="w-[48px] h-[48px] mx-auto" />
-                                    </div>
+                        <!-- LISTA PAKIETÓW -->
+                        <div v-if="packages.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-8 mb-24">
+                            <div
+                                v-for="(pack, index) in packages"
+                                :key="pack.id"
+                                @click="selected = pack"
+                                class="group cursor-pointer rounded-[2.5rem] p-8 text-center transition-all duration-500 relative border flex flex-col items-center justify-between min-h-[320px]"
+                                :class="[
+                                    selected?.id === pack.id
+                                        ? 'bg-[#0A2C5C] border-transparent shadow-2xl shadow-blue-900/40 scale-105 lg:scale-110 z-10'
+                                        : 'bg-white border-gray-100 shadow-xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-2',
+                                ]"
+                            >
+                                <!-- Active Badge -->
+                                <div v-if="selected?.id === pack.id" class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#00a0e3] text-white text-[8px] font-black uppercase tracking-widest rounded-full shadow-lg">
+                                    {{ __('translate.selected') }}
+                                </div>
 
-                                    <div class="text-3xl font-bold" :class="selected?.id === pack.id ? 'glow-white-soft' : ''">
+                                <div class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110"
+                                     :class="selected?.id === pack.id ? 'bg-white/10' : 'bg-gray-50'">
+                                    <img
+                                        :src="`/images/price/${pack.points}.svg`"
+                                        class="w-12 h-12 object-contain"
+                                        :class="selected?.id === pack.id ? 'brightness-0 invert' : ''"
+                                        :alt="pack.points"
+                                    />
+                                </div>
+
+                                <div class="space-y-1 mb-6">
+                                    <div class="text-3xl font-black transition-colors duration-300"
+                                         :class="selected?.id === pack.id ? 'text-white' : 'text-[#0A2C5C]'">
                                         {{ pack.points.toLocaleString() }}
                                     </div>
-                                    <div class="text-sm opacity-80 mb-4">{{ __('info.points') }}</div>
-
-                                    <!-- Zachowana funkcjonalność dodawania do koszyka -->
-                                    <Link :href="route('buy.store', pack.id)" as="button" preserveScroll
-                                          class="bg-[#00aaff] px-4 py-2 rounded-lg font-semibold text-white hover:bg-[#00bfff]">
-                                        {{ __('translate.addToCart') }}
-                                    </Link>
-
-                                    <div class="mt-4">
-                                        {{ __('info.price') }}: ${{ pack.price }}
+                                    <div class="text-[10px] font-black uppercase tracking-[0.2em]"
+                                         :class="selected?.id === pack.id ? 'text-blue-200' : 'text-gray-400'">
+                                        {{ __('info.points') }}
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- PROGRESS + IKONY + TEKST: Zobacz, jak Twoja firma pomaga -->
-                            <div v-if="selected" class="flex justify-center sm:justify-end w-full">
-                                <div class="text-center sm:text-right w-full">
-                                    <div class="mb-6">
-                                        <h3 class="text-2xl md:text-3xl font-bold mb-2">{{ __('info.help_title') }}</h3>
-                                        <p class="text-base md:text-lg">
-                                            {{ __('info.help_text_1') }}
-                                            <span class="text-[#00aaff] font-bold">{{ selected.points.toLocaleString() }} {{ __('info.points2') }}</span>
-                                            {{ __('info.help_text_2') }}
-                                            <span class="text-[#00aaff] font-bold">${{ selected.price }}</span>,
-                                            {{ __('info.help_text_3') }}
-                                            <span class="text-[#00aaff] font-bold">${{ donated }}</span>
-                                        </p>
+                                <div class="w-full space-y-4">
+                                    <div class="text-xl font-black"
+                                         :class="selected?.id === pack.id ? 'text-white' : 'text-[#0A2C5C]'">
+                                        ${{ pack.price }}
                                     </div>
 
-                                    <!-- Pasek postępu -->
-                                    <div class="relative w-full max-w-[400px] mx-auto sm:ml-auto sm:mr-0">
-                                        <div class="h-3 w-full border-[#00aaff] border-2 rounded-full"></div>
-                                        <div class="h-3 bg-[#00aaff] rounded-full absolute top-0 left-0 transition-all duration-500"
-                                             :style="{ width: progressWidth + '%' }"></div>
-                                        <div class="w-6 h-6 bg-[#00aaff] border-4 border-[#00aaff] rounded-full absolute -top-1.5 transition-all duration-500"
-                                             :style="{ left: `calc(${progressWidth}% - 12px)` }"></div>
-                                    </div>
-
-                                    <!-- Ikony pod paskiem -->
-                                    <div class="relative mt-6 mx-auto sm:ml-auto sm:mr-0 w-full max-w-[400px] h-10">
-                                        <div v-for="(pack, i) in packages" :key="'ico'+i" class="absolute transition"
-                                             :style="{
-                                                 left: `${(i / totalSlots) * 100}%`,
-                                                 transform: i <= currentIndex ? 'translateX(-50%) scale(1.2)' : 'translateX(-50%) scale(1)',
-                                                 opacity: i <= currentIndex ? 1 : 0.25,
-                                                 transition: '0.3s'
-                                             }">
-                                            <img :src="`/images/price/${pack.points}.svg`" :alt="pack.points" class="w-[40px] h-[40px] min-w-[40px]" />
-                                        </div>
-                                    </div>
+                                    <Link :href="route('buy.store', pack.id)" as="button" preserveScroll
+                                          class="block w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg"
+                                          :class="selected?.id === pack.id
+                                              ? 'bg-white text-[#0A2C5C] hover:bg-gray-100'
+                                              : 'bg-[#00a0e3] text-white hover:bg-[#008cc6] shadow-blue-400/20'">
+                                        {{ __('translate.addToCart') }}
+                                    </Link>
                                 </div>
                             </div>
                         </div>
-                        <!-- Sekcja usług dodatkowych -->
-                        <div>
-                            <!-- NAGŁÓWEK SEKCJI (z obrazka) -->
-                            <div class="text-center mb-12 mt-8">
-                                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4 uppercase tracking-tight" v-html="__('translate.exchangePointsForServices')">
-                                </h1>
-                                <p class="my-4 text-lg opacity-90 max-w-2xl mx-auto leading-relaxed">
-                                    {{ __('translate.pointsServicesDesc') }}
-                                </p>
-                                <div class="text-[#00aaff] text-2xl md:text-4xl font-black uppercase mt-8">
-                                    {{ __('translate.youHave') }}: {{ points ? points.toLocaleString() : '0' }} PKT
+
+                        <!-- PROGRESS + IKONY + TEKST: Zobacz, jak Twoja firma pomaga -->
+                        <div v-if="selected" class="grid lg:grid-cols-2 gap-16 items-center">
+                            <div class="space-y-6">
+                                <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl">
+                                    <div class="w-2 h-2 rounded-full bg-[#00a0e3] animate-pulse"></div>
+                                    <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ __('translate.impact') }}</span>
                                 </div>
+
+                                <h3 class="text-3xl md:text-4xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight">
+                                    {{ __('info.help_title') }}
+                                </h3>
+
+                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                                    {{ __('info.help_text_1') }}
+                                    <span class="text-[#00a0e3] font-black">{{ selected.points.toLocaleString() }} {{ __('info.points2') }}</span>
+                                    {{ __('info.help_text_2') }}
+                                    <span class="text-[#00a0e3] font-black">${{ selected.price }}</span>,
+                                    {{ __('info.help_text_3') }}
+                                    <span class="text-red-500 font-black underline decoration-4 decoration-red-100 underline-offset-8">${{ donated }}</span>
+                                </p>
                             </div>
 
-                            <!-- ===================== USŁUGI DODATKOWE ===================== -->
-                            <div class="mx-auto px-6 mt-8">
-                                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-                                    <div
-                                        v-for="(service,index) in additionalServices"
-                                        :key="service.id"
-                                        class="rounded-[2rem] p-6 text-center transition duration-300 hover:scale-[1.04] hover:shadow-2xl flex flex-col justify-between min-h-[320px] text-white border border-[#ffffff33] relative overflow-hidden"
-                                        :class="[
-                                            'bg-[#00aaff]',
-                                            index === 4 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : ''
-                                        ]"
-                                    >
-
-                                        <div class="relative z-10" :class="{ 'flex items-center h-full': service.id === 8 && bannerOptionsVisible[service.id] }">
-                                            <div class="mb-4" v-if="service.id !== 8 || !bannerOptionsVisible[service.id]">
-                                                <img
-                                                    :src="service.icon"
-                                                    class="w-20 h-20 mx-auto"
-                                                    :alt="service.price"
-                                                />
-                                            </div>
-
-                                            <div v-if="service.id === 8 && bannerOptionsVisible[service.id]" class="text-sm font-black px-2 leading-tight relative">
-
-                                                <!-- Dekoracje dla Banera -->
-                                                <template v-if="service.id === 8">
-                                                    <div class="absolute -top-5 -left-6 md:-top-8 md:-left-4 w-12 h-12">
-                                                        <img src="/images/price/linesUp.svg" alt="up">
-                                                    </div>
-                                                    <div class="absolute -bottom-5 -right-5 md:-bottom-7 md:-right-4 w-12 h-12">
-                                                        <img src="/images/price/linesDown.svg" alt="down">
-                                                    </div>
-                                                </template>
-
-                                                {{__('translate.exchangeBanner')}}
-                                            </div>
-                                            <template v-else>
-                                                <div class="text-xl font-black mb-0 uppercase leading-tight tracking-tight">
-                                                    {{ service.name }}
-                                                </div>
-
-                                                <div class="text-xs font-bold opacity-90 uppercase mb-4 tracking-wider">
-                                                    {{ service.description || getServiceDescription(service.service_type || '') }}
-                                                </div>
-                                            </template>
+                            <div class="space-y-12">
+                                <!-- PROGRESS BAR -->
+                                <div class="relative pt-8 px-[20px]">
+                                    <div class="relative h-4 bg-gray-100 rounded-full border border-gray-100 shadow-inner">
+                                        <div class="h-full bg-gradient-to-r from-[#0A2C5C] to-[#00a0e3] rounded-full absolute top-0 left-0 transition-all duration-700 ease-out shadow-lg"
+                                             :style="{ width: progressWidth + '%' }">
+                                            <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
                                         </div>
 
-                                        <div class="relative z-10">
-                                            <template v-if="service.id === 8">
-                                                <template v-if="bannerOptionsVisible[service.id]">
-                                                    <Link
-                                                        preserve-scroll
-                                                        v-if="points && points >= parseInt(service.price)"
-                                                        :href="route('buy.change', { product: service.id, points: service.price })"
-                                                        method="post"
-                                                        as="button"
-                                                        class="w-full bg-[#0b2a55] px-4 py-2 rounded-2xl font-black text-white text-xs hover:bg-[#162a44] transition-all duration-200 uppercase mb-2 shadow-lg"
-                                                    >
-                                                        {{ __('translate.exchangePoints') }}
-                                                    </Link>
-                                                    <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 px-4 py-2 rounded-2xl font-black text-white text-xs hover:bg-red-700 transition-all duration-200 uppercase shadow-lg mb-2">
-                                                        {{__('translate.makeProject')}}
-                                                    </Link>
-                                                    <button
-                                                        @click="toggleBannerOptions(service.id)"
-                                                        class="w-full bg-gray-600/50 px-4 py-2 rounded-2xl font-black text-white text-xs hover:bg-gray-700 transition-all duration-200 uppercase shadow-lg mb-2"
-                                                    >
-                                                        {{ __('translate.cancel') }}
-                                                    </button>
-                                                    <div class="mt-1 text-sm font-black text-white">
-                                                        {{ parseInt(service.price).toLocaleString() }} {{ __('translate.pointsUnit') }}
-                                                    </div>
-                                                </template>
-                                                <template v-else>
-                                                    <button
-                                                        @click="toggleBannerOptions(service.id)"
-                                                        class="w-full bg-[#0b2a55] border-2 border-[#00aaff] px-4 py-2.5 rounded-xl font-extrabold text-white text-sm hover:bg-[#0d3874] transition-all duration-200 uppercase tracking-widest mb-3 shadow-lg"
-                                                    >
-                                                        {{ __('translate.exchangePoints') }}
-                                                    </button>
-                                                    <div class="text-lg font-black tracking-tighter">
-                                                        {{ parseInt(service.price).toLocaleString() }} {{ __('translate.pointsUnit') }}
-                                                    </div>
-                                                </template>
-                                            </template>
-                                            <template v-else>
-                                                <Link
-                                                    preserve-scroll
-                                                    v-if="points && points >= parseInt(service.price)"
-                                                    :href="route('buy.change', { product: service.id, points: service.price })"
-                                                    method="post"
-                                                    as="button"
-                                                    class="w-full bg-[#0b2a55] border-2 border-[#00aaff] px-4 py-2.5 rounded-xl font-extrabold text-white text-sm hover:bg-[#0d3874] transition-all duration-200 uppercase tracking-widest mb-3 shadow-lg"
-                                                >
-                                                    {{ __('translate.exchangePoints') }}
-                                                </Link>
-                                                <div v-else class="w-full bg-gray-500/50 backdrop-blur-sm px-4 py-2.5 rounded-xl font-extrabold text-white text-sm cursor-not-allowed uppercase tracking-widest mb-3 border border-white/20">
-                                                    {{ __('translate.notEnoughPoints') }}
-                                                </div>
+                                        <!-- Handle -->
+                                        <div class="w-10 h-10 bg-white border-4 border-[#00a0e3] rounded-2xl shadow-xl
+                                                    absolute -top-3 transition-all duration-700 ease-out -ml-5 flex items-center justify-center"
+                                             :style="{ left: progressWidth + '%' }">
+                                            <div class="w-2 h-2 bg-[#00a0e3] rounded-full animate-ping"></div>
+                                        </div>
+                                    </div>
 
-                                                <div class="text-lg font-black tracking-tighter">
-                                                    {{ parseInt(service.price).toLocaleString() }} {{ __('translate.pointsUnit') }}
-                                                </div>
-                                            </template>
+                                    <!-- IKONY POD PROGRESEM -->
+                                    <div class="flex justify-between items-start mt-12">
+                                        <div v-for="(pack, index) in packages" :key="'ico'+index"
+                                             class="flex flex-col items-center transition-all duration-500"
+                                             :style="{
+                                                 opacity: index <= currentIndex ? 1 : 0.2,
+                                             }">
+                                            <div class="p-2 rounded-xl border-2 transition-all duration-500"
+                                                 :class="index === currentIndex
+                                                     ? 'bg-white border-[#00a0e3] shadow-lg scale-125 z-10'
+                                                     : 'bg-gray-50 border-transparent scale-100'">
+                                                <img
+                                                    :src="`/images/price/${pack.points}.svg`"
+                                                    :alt="pack.points"
+                                                    class="w-8 h-8 object-contain"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Przycisk przejścia do koszyka -->
-                            <Link v-if="countCart > 0" as="button" :href="route('buy.detail')" :active="route().current('buy.index')"
-                                  class="flex w-[180px] text-center justify-center items-center mx-auto px-6 py-3 bg-red-600 hover:bg-red-700 border-none rounded-full font-bold text-sm text-white uppercase tracking-widest shadow-xl transition-all hover:scale-105 mt-12">
-                                {{ __('translate.cart') }}
-                            </Link>
                         </div>
                     </div>
                 </div>
+
+                <!-- Sekcja usług dodatkowych -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 md:p-16">
+                    <!-- NAGŁÓWEK SEKCJI (z obrazka) -->
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tighter mb-4" v-html="__('translate.exchangePointsForServices')"></h2>
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] max-w-2xl mx-auto leading-relaxed">
+                            {{ __('translate.pointsServicesDesc') }}
+                        </p>
+                        <div class="flex items-center justify-center gap-2 mt-12">
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.youHave') }}:</span>
+                            <span class="text-xl font-black text-[#00a0e3]">{{ points ? points.toLocaleString() : '0' }}</span>
+                            <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest">PKT</span>
+                        </div>
+                    </div>
+
+                    <!-- ===================== USŁUGI DODATKOWE ===================== -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                        <div
+                            v-for="(service, index) in additionalServices"
+                            :key="service.id"
+                            class="group rounded-[2.5rem] p-8 text-center transition-all duration-500 relative border flex flex-col justify-between min-h-[350px] bg-white border-gray-100 shadow-xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-2 overflow-hidden"
+                        >
+                            <!-- Decoration -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-full -mr-16 -mt-16 group-hover:bg-blue-50 transition-colors"></div>
+
+                            <div class="relative z-10">
+                                <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
+                                    <img
+                                        :src="service.icon"
+                                        class="w-12 h-12 object-contain"
+                                        :alt="service.name"
+                                    />
+                                </div>
+
+                                <div v-if="service.id === 8 && bannerOptionsVisible[service.id]" class="text-xs font-black text-[#0A2C5C] uppercase leading-tight tracking-widest mb-4">
+                                    {{__('translate.exchangeBanner')}}
+                                </div>
+                                <template v-else>
+                                    <h4 class="text-lg font-black text-[#0A2C5C] uppercase tracking-tight mb-2">
+                                        {{ service.name }}
+                                    </h4>
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
+                                        {{ service.description || getServiceDescription(service.service_type || '') }}
+                                    </p>
+                                </template>
+                            </div>
+
+                            <div class="relative z-10 w-full mt-6">
+                                <template v-if="service.id === 8">
+                                    <template v-if="bannerOptionsVisible[service.id]">
+                                        <div class="space-y-3">
+                                            <Link
+                                                preserve-scroll
+                                                v-if="points && points >= parseInt(service.price)"
+                                                :href="route('buy.change', { product: service.id, points: service.price })"
+                                                method="post"
+                                                as="button"
+                                                class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg"
+                                            >
+                                                {{ __('translate.exchangePoints') }}
+                                            </Link>
+                                            <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg">
+                                                {{__('translate.makeProject')}}
+                                            </Link>
+                                            <button
+                                                @click="toggleBannerOptions(service.id)"
+                                                class="w-full bg-gray-100 text-gray-400 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-200 transition"
+                                            >
+                                                {{ __('translate.cancel') }}
+                                            </button>
+                                        </div>
+                                    </template>
+                                    <template v-else>
+                                        <button
+                                            @click="toggleBannerOptions(service.id)"
+                                            class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4"
+                                        >
+                                            {{ __('translate.exchangePoints') }}
+                                        </button>
+                                        <div class="text-xl font-black text-[#0A2C5C] tracking-tighter">
+                                            {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template v-else>
+                                    <Link
+                                        preserve-scroll
+                                        v-if="points && points >= parseInt(service.price)"
+                                        :href="route('buy.change', { product: service.id, points: service.price })"
+                                        method="post"
+                                        as="button"
+                                        class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4"
+                                    >
+                                        {{ __('translate.exchangePoints') }}
+                                    </Link>
+                                    <div v-else class="w-full bg-gray-50 text-gray-300 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed mb-4">
+                                        {{ __('translate.notEnoughPoints') }}
+                                    </div>
+
+                                    <div class="text-xl font-black text-[#0A2C5C] tracking-tighter">
+                                        {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Przycisk przejścia do koszyka -->
+                    <div class="flex justify-center mt-16">
+                        <Link v-if="countCart > 0" as="button" :href="route('buy.detail')"
+                              class="group relative inline-flex items-center gap-4 px-12 py-5 bg-red-600 text-white text-xs font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-1">
+                            {{ __('translate.cart') }}
+                            <span class="text-xl group-hover:translate-x-2 transition-transform">→</span>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
     </AppLayout>
 </template>
