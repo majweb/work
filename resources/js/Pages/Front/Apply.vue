@@ -420,14 +420,14 @@ const removeFile = async (source, load) => {
                     <!-- Project Stats Summary -->
                     <div class="mb-12">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Szczegóły Projektu</h3>
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.projectDetails') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                             <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50">
                                 <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                                    ID Projektu
+                                    {{ __('translate.projectID') }}
                                 </dt>
                                 <dd class="text-sm font-black text-[#0A2C5C] flex items-center gap-2">
                                     #{{ project.id }}

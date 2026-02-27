@@ -66,6 +66,7 @@ class ApplicationRecruitFilterService
                 $q->where(function ($query) {
                     $query->whereDoesntHave('cvClassic')
                         ->whereNull('pathCv')
+                        ->whereNotNull('aplication_user_id')
                         ->orWhereHas('cvAudio')
                         ->orWhereHas('cvVideo')
                         ->whereDoesntHave('media', function ($q) {
@@ -258,6 +259,7 @@ class ApplicationRecruitFilterService
             } elseif ($form['has_cv'] === 'no') {
                 $q->where(function ($query) {
                     $query->whereDoesntHave('cvClassic')
+                        ->whereNotNull('aplication_user_id')
                         ->whereNull('pathCv')
                         ->orWhereHas('cvAudio')
                         ->orWhereHas('cvVideo')

@@ -181,22 +181,23 @@ const duplicateProject = (project) => {
 
 <template>
     <AppLayout :title="__('translate.projects')">
-        <template #header>
-            <div class="flex justify-between items-center">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('translate.offerts') }}
-                </h2>
-                <Link
-                    :href="route('project-recruits.create')"
-                    class="inline-flex items-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
-                >
-                    {{ __('translate.create') || 'UTWÓRZ' }}
-                </Link>
-            </div>
-        </template>
-
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                <!-- Header Card -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                            {{ __('translate.offerts') }}
+                        </h2>
+                        <Link
+                            :href="route('project-recruits.create')"
+                            class="inline-flex items-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                        >
+                            {{ __('translate.create') || 'UTWÓRZ' }}
+                        </Link>
+                    </div>
+                </div>
+
                 <!-- FILTRY -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <div class="flex items-center gap-4 mb-8">

@@ -63,6 +63,7 @@ class ApplicationFilterService
                 $q->where(function ($query) {
                     $query->whereDoesntHave('cvClassic')
                         ->whereNull('pathCv')
+                        ->whereNotNull('aplication_user_id')
                         ->orWhereHas('cvAudio')
                         ->orWhereHas('cvVideo')
                         ->whereDoesntHave('media', function ($q) {
@@ -321,6 +322,7 @@ class ApplicationFilterService
                 $q->where(function ($query) {
                     $query->whereDoesntHave('cvClassic')
                         ->whereNull('pathCv')
+                        ->whereNotNull('aplication_user_id')
                         ->orWhereHas('cvAudio')
                         ->orWhereHas('cvVideo')
                         ->whereDoesntHave('media', function ($q) {

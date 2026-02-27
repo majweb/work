@@ -277,13 +277,23 @@ onUnmounted(()=>{
                                         <div class="border-t border-gray-100 py-1">
                                             <DropdownLink :href="route('front')">{{__('translate.frontPage')}}</DropdownLink>
                                             <DropdownLink v-if="hasRole('worker')" :href="route('worker.myCv')">{{__('translate.myCv')}}</DropdownLink>
-                                            <DropdownLink v-if="!hasRole('recruit')" :href="route('worker.aplications')">{{__('translate.aplications')}}</DropdownLink>
-                                            <DropdownLink v-if="hasRole('recruit')" :href="route('project-recruits.index')">{{__('translate.projects')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('recruits.index')">{{__('translate.recruits')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('aplications.index')">{{__('translate.aplications')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('projects.index')">{{__('translate.projects')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('statistics.index')">{{__('translate.statistics')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('invoices.index')">{{__('translate.invoices')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('buy.index')">{{__('translate.buy')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('firm')" :href="route('points.index')">{{__('translate.points')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('worker')" :href="route('worker.aplications')">{{__('translate.aplications')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('recruit') && !hasRole('firm')" :href="route('project-recruits.index')">{{__('translate.projects')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('recruit') && !hasRole('firm')" :href="route('project-aplications-recruits.index')">{{__('translate.aplications')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('recruit') && !hasRole('firm')" :href="route('candidates.index')">{{__('translate.candidates')}}</DropdownLink>
+                                            <DropdownLink v-if="hasRole('recruit') && !hasRole('firm')" :href="route('tags.index')">{{__('translate.tags')}}</DropdownLink>
                                         </div>
 
                                         <div class="border-t border-gray-100 py-1">
                                             <form @submit.prevent="logout">
-                                                <DropdownLink as="button" class="text-red-600 hover:text-red-700 hover:bg-red-50">
+                                                <DropdownLink as="button" class="!text-red-600 hover:!text-red-700 hover:!bg-red-50">
                                                     {{__('translate.logout')}}
                                                 </DropdownLink>
                                             </form>
@@ -295,19 +305,25 @@ onUnmounted(()=>{
                             <!-- Mobile Menu Button -->
                             <div class="flex items-center lg:hidden ms-2">
                                 <button
-                                    class="inline-flex items-center justify-center p-2 rounded-xl text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none transition-all"
+                                    class="relative inline-flex items-center justify-center p-2.5 rounded-2xl text-gray-400 hover:text-[#0A2C5C] hover:bg-blue-50/50 focus:outline-none transition-all duration-300 group"
+                                    :class="{'bg-blue-50/80 text-[#0A2C5C]': showingNavigationDropdown}"
                                     @click="showingNavigationDropdown = ! showingNavigationDropdown"
                                 >
-                                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                        <path
-                                            :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }"
-                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                        <path
-                                            :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"
-                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
+                                    <span class="sr-only">Open main menu</span>
+                                    <div class="relative w-6 h-6 flex items-center justify-center">
+                                        <span
+                                            class="absolute block h-0.5 w-6 bg-current transform transition duration-300 ease-in-out"
+                                            :class="{'rotate-45': showingNavigationDropdown, '-translate-y-2': !showingNavigationDropdown}"
+                                        ></span>
+                                        <span
+                                            class="absolute block h-0.5 w-6 bg-current transform transition duration-300 ease-in-out"
+                                            :class="{'opacity-0': showingNavigationDropdown}"
+                                        ></span>
+                                        <span
+                                            class="absolute block h-0.5 w-6 bg-current transform transition duration-300 ease-in-out"
+                                            :class="{'-rotate-45': showingNavigationDropdown, 'translate-y-2': !showingNavigationDropdown}"
+                                        ></span>
+                                    </div>
                                 </button>
                             </div>
                         </div>
@@ -342,6 +358,7 @@ onUnmounted(()=>{
                                 <ResponsiveNavLink :href="route('statistics.index')" :active="route().current('statistics.index')">{{__('translate.statistics')}}</ResponsiveNavLink>
                                 <ResponsiveNavLink :href="route('invoices.index')" :active="route().current('invoices.index')">{{__('translate.invoices')}}</ResponsiveNavLink>
                                 <ResponsiveNavLink :href="route('buy.index')" :active="route().current('buy.index')">{{__('translate.buy')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('points.index')" :active="route().current('points.index')">{{__('translate.points')}}</ResponsiveNavLink>
                                 <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')">{{__('translate.articles')}}</ResponsiveNavLink>
                             </template>
 
@@ -349,6 +366,13 @@ onUnmounted(()=>{
                                 <ResponsiveNavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">{{__('translate.admin-questions')}}</ResponsiveNavLink>
                                 <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">{{__('translate.aplications')}}</ResponsiveNavLink>
                                 <ResponsiveNavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">{{__('partners.partners')}}</ResponsiveNavLink>
+                            </template>
+
+                            <template v-if="hasRole('recruit') && !hasRole('firm')">
+                                <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">{{__('translate.projects')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')">{{__('translate.aplications')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')">{{__('translate.candidates')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')">{{__('translate.tags')}}</ResponsiveNavLink>
                             </template>
                         </div>
 
