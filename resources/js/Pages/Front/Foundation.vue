@@ -13,6 +13,7 @@ mapboxgl.accessToken = usePage().props.mapboxToken;
 
 const map = ref(null);
 const marker = ref(null);
+const isClient = ref(false);
 
 const mapStyles = {
     streets: "mapbox://styles/mapbox/light-v11",
@@ -20,12 +21,13 @@ const mapStyles = {
 };
 
 onMounted(() => {
+    isClient.value = true;
     initMap();
 });
 
 
 function initMap() {
-    if (!props.foundation.coords) return;
+    if (!isClient.value || !props.foundation.coords) return;
     const [lng, lat] = props.foundation.coords;
     map.value = new mapboxgl.Map({
         container: "foundationMap",
@@ -42,6 +44,7 @@ function initMap() {
     });
 }
 function switchMode(mode) {
+    if (!isClient.value) return;
     const [lng, lat] = props.foundation.coords;
     map.value.setStyle(mapStyles[mode]);
     map.value.once("style.load", () => {
@@ -52,7 +55,7 @@ function switchMode(mode) {
 }
 
 function addMarker() {
-    if (!props.foundation.coords) return;
+    if (!isClient.value || !props.foundation.coords) return;
     const [lng, lat] = props.foundation.coords;
     if (marker.value) {
         marker.value.remove();
@@ -170,7 +173,7 @@ function addMarker() {
                             </div>
 
                             <!-- MAP -->
-                            <div class="relative group">
+                            <div class="relative group" v-if="isClient">
                                 <div id="foundationMap" class="w-full h-64 rounded-[2rem] shadow-inner border border-gray-100 overflow-hidden"></div>
                                 <div class="absolute bottom-4 right-4 flex gap-2">
                                     <button :title="__('translate.map')" class="p-3 rounded-2xl bg-white border border-gray-100 text-[#0A2C5C] hover:bg-gray-50 shadow-lg transition-all hover:-translate-y-1"

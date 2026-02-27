@@ -172,7 +172,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     :modules="[Autoplay]"
                                     :slides-per-view="3"
                                     :space-between="20"
-                                    :loop="true"
+                                    :loop="features.length > 4"
                                     :breakpoints="{
                                         320: { slidesPerView: 1.5, spaceBetween: 15 },
                                         640: { slidesPerView: 2.5, spaceBetween: 20 },

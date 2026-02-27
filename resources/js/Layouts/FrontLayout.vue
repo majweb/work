@@ -8,6 +8,11 @@ import NavLink from "@/Components/NavLink.vue";
 
 import { ref, computed, watch,onMounted  } from "vue";
 
+const isClient = ref(false);
+onMounted(() => {
+    isClient.value = true;
+});
+
 const form = useForm({
     email: '',
 });
@@ -22,9 +27,10 @@ const submitForm = () => {
 };
 import __ from "@/lang.js";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+
 const ogUrl = ref('');
 onMounted(() => {
-    if (typeof window !== 'undefined') {
+    if (isClient.value) {
         ogUrl.value = window.location.href;
     } else {
         ogUrl.value = page.props.pageUrl;
@@ -50,15 +56,17 @@ const mobileMenuOpen = ref(false);
 const toggleMenu = () => mobileMenuOpen.value = !mobileMenuOpen.value;
 const closeMenu = () => mobileMenuOpen.value = false;
 watch(mobileMenuOpen, val => {
-    if (typeof document !== 'undefined') document.body.style.overflow = val ? 'hidden' : '';
+    if (isClient.value) document.body.style.overflow = val ? 'hidden' : '';
 });
 
 // Scroll to top
 const showScrollTop = ref(false);
-const scrollToTop = () => { if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); }
-if (typeof window !== 'undefined') {
-    window.addEventListener('scroll', () => showScrollTop.value = window.scrollY > 400);
-}
+const scrollToTop = () => { if (isClient.value) window.scrollTo({ top: 0, behavior: 'smooth' }); }
+onMounted(() => {
+    if (isClient.value) {
+        window.addEventListener('scroll', () => showScrollTop.value = window.scrollY > 400);
+    }
+});
 
 // Languages
 const changeLang = computed(() => page.props.languages?.filter(el => el.value == page.props.language));

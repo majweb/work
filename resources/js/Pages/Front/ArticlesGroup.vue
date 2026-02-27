@@ -2,10 +2,12 @@
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, Scrollbar } from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/scrollbar';
+import { ref, onMounted } from 'vue';
+
+const isClient = ref(false);
+onMounted(() => {
+    isClient.value = true;
+});
 
 const props = defineProps({
     sections: Array,
@@ -35,7 +37,8 @@ const props = defineProps({
                     </div>
                 </div>
 
-                <div v-for="(section, i) in sections" :key="i" class="mb-16">
+                <div v-if="isClient">
+                    <div v-for="(section, i) in sections" :key="i" class="mb-16">
                     <!-- Sekcja 2-elementowa -->
                     <div v-if="section.length === 2" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <Link
@@ -97,8 +100,8 @@ const props = defineProps({
                                 :modules="[Autoplay, Scrollbar]"
                                 :slides-per-view="1.1"
                                 :space-between="20"
-                                :loop="section.length > 1"
-                                :autoplay="section.length > 1 ? { delay: 3000, disableOnInteraction: false } : false"
+                                :loop="section.length > 2"
+                                :autoplay="section.length > 2 ? { delay: 3000, disableOnInteraction: false } : false"
                                 :scrollbar="{ hide: false }"
                             >
                                 <SwiperSlide v-for="article in section" :key="article.id">
@@ -182,6 +185,7 @@ const props = defineProps({
                                 </div>
                             </Link>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

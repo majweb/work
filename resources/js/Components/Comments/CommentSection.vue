@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import {Link, useForm} from '@inertiajs/vue3';
 import Comment from './Comment.vue';
 import TextareaLimit from "@/Components/TextareaLimit.vue";
 import InputError from "@/Components/InputError.vue";

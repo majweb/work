@@ -204,11 +204,16 @@
 </template>
 
 <script setup>
-import {ref, computed, watch} from 'vue';
+import {ref, computed, watch, onMounted} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 import RecordRTC from 'recordrtc';
+
+const isClient = ref(false);
+onMounted(() => {
+    isClient.value = true;
+});
 
 const props = defineProps({
     questions: Array,
@@ -246,6 +251,7 @@ function toggle() {
 }
 
 const startRecording = async () => {
+    if (!isClient.value) return;
     if (countdownInterval) clearInterval(countdownInterval);
     recordedBlobUrl.value = null;
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -327,6 +333,7 @@ const nextQuestion = () => {
 //     mediaRecorder.value.stop();
 // };
 const stopRecording = () => {
+    if (!isClient.value) return;
     if (countdownInterval) clearInterval(countdownInterval);
     if (!mediaRecorder.value) return;
 

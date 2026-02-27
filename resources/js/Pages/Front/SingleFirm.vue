@@ -17,7 +17,7 @@ mapboxgl.accessToken = usePage().props.mapboxToken;
 
 onMounted(async () => {
     isClient.value = true;
-    if (!props.firm.city || !props.firm.street) return;
+    if (!isClient.value || !props.firm.city || !props.firm.street) return;
 
     await nextTick();
 
@@ -244,7 +244,7 @@ function closeLightbox() {
                         <!-- Right Column: Stats & Map -->
                         <div class="space-y-8">
                             <!-- Mapa -->
-                            <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden h-[300px] relative">
+                            <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden h-[300px] relative" v-if="isClient">
                                 <div id="firmMap" class="w-full h-full"></div>
                             </div>
 

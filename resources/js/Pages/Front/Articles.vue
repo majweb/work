@@ -8,6 +8,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import moment from "moment";
+import { ref, onMounted } from 'vue';
+
+const isClient = ref(false);
+onMounted(() => {
+    isClient.value = true;
+});
 
 const props = defineProps({
     articles: Object,
@@ -25,12 +31,12 @@ const props = defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
 
                 <!-- BANNERS SWIPER -->
-                <div v-if="props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
+                <div v-if="isClient && props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
                     <swiper
                         :modules="[Navigation, Pagination, Autoplay]"
                         :slides-per-view="1"
                         :space-between="30"
-                        :loop="true"
+                        :loop="props.banners?.length > 1"
                         :autoplay="{ delay: 3000, disableOnInteraction: false }"
                         :allowTouchMove="false"
                         navigation
@@ -84,7 +90,7 @@ const props = defineProps({
                 </div>
 
                 <!-- CATEGORIES -->
-                <div v-if="categories" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
+                <div v-if="isClient && categories" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
                     <div class="flex items-center gap-4 mb-8">
                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categories') }}</h3>
                         <div class="h-px flex-1 bg-gray-100"></div>

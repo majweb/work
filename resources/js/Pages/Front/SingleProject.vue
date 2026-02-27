@@ -27,7 +27,8 @@ mapboxgl.accessToken = usePage().props.mapboxToken;
 const map = ref(null);
 
 onMounted(async () => {
-    if (!props.project.cityWork || !props.project.streetWork) return;
+    isClient.value = true;
+    if (!isClient.value || !props.project.cityWork || !props.project.streetWork) return;
 
     // Geocoding - pobierz współrzędne z adresu
     const countryName = props.project.countryWork?.allTranslations?.[usePage().props.language] || props.project.countryWork?.name || props.project.countryWork || '';
@@ -79,8 +80,6 @@ onMounted(async () => {
                         <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">{{ __('translate.featured') }}</span>
                     </div>
                 </div>
-                <img :src="image" alt="">
-
                 <!-- MAIN CARD HEADER -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
                     <!-- Banner -->
@@ -339,7 +338,7 @@ onMounted(async () => {
                             :modules="[Navigation, Pagination, Autoplay]"
                             :slides-per-view="4"
                             :space-between="30"
-                            :loop="true"
+                            :loop="project.offer.length > 4"
                             :autoplay="{ delay: 3000, disableOnInteraction: false }"
                             :allowTouchMove="true"
                             navigation

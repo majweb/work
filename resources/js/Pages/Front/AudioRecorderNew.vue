@@ -219,10 +219,15 @@
 </template>
 
 <script setup>
-import {ref, computed, nextTick} from 'vue';
+import {ref, computed, nextTick, onMounted} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import RecordRTC, { StereoAudioRecorder } from 'recordrtc';
+
+const isClient = ref(false);
+onMounted(() => {
+    isClient.value = true;
+});
 
 const props = defineProps({
     questions: Array,
@@ -255,6 +260,7 @@ function toggle() {
 }
 
 const startRecording = async () => {
+    if (!isClient.value) return;
     if (countdownInterval) clearInterval(countdownInterval);
     recordedBlobUrl.value = null;
     recordedChunks.length = 0;
@@ -316,6 +322,7 @@ const nextQuestion = () => {
 };
 
 const stopRecording = async () => {
+    if (!isClient.value) return;
     if (countdownInterval) clearInterval(countdownInterval);
     if (!mediaRecorder.value) return;
 

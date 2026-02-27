@@ -68,8 +68,8 @@ mapboxgl.accessToken = usePage().props.mapboxToken;
                         <Swiper
                             :modules="[Autoplay]"
                             :space-between="32"
-                            :loop="props.partners.length > 1"
-                            :autoplay="props.partners.length > 1 ? { delay: 3000, disableOnInteraction: false } : false"
+                            :loop="props.partners.length > 6"
+                            :autoplay="props.partners.length > 6 ? { delay: 3000, disableOnInteraction: false } : false"
                             :breakpoints="{
                                 0:   { slidesPerView: 2.3 },
                                 640: { slidesPerView: 3.5 },

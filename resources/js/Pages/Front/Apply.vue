@@ -27,6 +27,7 @@ const formStep = ref(1);
 const isReadyToSubmit = ref(true);
 const generateCvLoading = ref(false);
 const captchaText = ref('');
+const isClient = ref(false);
 
 const isAllAgreementsSelected = computed(() => {
     return props.agreements.length > 0 && form.agreements.length === props.agreements.length;
@@ -79,6 +80,7 @@ const flow = ref(['month', 'year']);
 const isUploadDisabled = ref(false);
 
 onMounted(() => {
+    isClient.value = true;
     loadCaptcha();
 });
 const dateFormatter = (date) => {
@@ -240,7 +242,7 @@ const reloadCaptcha = () => {
 
 const captchaCopied = ref(false);
 const copyCaptcha = () => {
-    if (!captchaText.value) return;
+    if (!isClient.value || !captchaText.value) return;
     navigator.clipboard.writeText(captchaText.value).then(() => {
         captchaCopied.value = true;
         setTimeout(() => {
@@ -314,7 +316,9 @@ const generatePdf = (templateId) => {
         .then(response => {
             generateCvLoading.value = false;
             if (response.data.url) {
-                const pdfWindow = window.open(response.data.url, '_blank');
+                if (isClient.value) {
+                    const pdfWindow = window.open(response.data.url, '_blank');
+                }
                 if (response.data.deleteUrl) {
                     setTimeout(() => {
                         axios.post(route('front.projects.deletePdf'), {file: response.data.deleteUrl})
