@@ -23,20 +23,27 @@ class QuestionAcceptController extends Controller
 
         $query = ProjectQuestion::query();
 
+        // Domyślnie pokazujemy te, które wymagają akceptacji (accepted = null)
+        if (request('all') !== 'true') {
+            $query->whereNull('accepted');
+        }
+
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
+        }, function ($q) {
+            $q->latest();
         });
 
         return inertia()->render('Admin/Questions-Accept/Index', [
-            'projectQuestions' => $query->with(['user:id,name','project:id'])->paginate(5)->withQueryString(),
-            'filters' => request()->only(['field', 'direction'])
+            'projectQuestions' => $query->with(['user:id,name,profile_photo_path','project:id'])->paginate(10)->withQueryString(),
+            'filters' => request()->only(['field', 'direction', 'all'])
         ]);
     }
 
     public function show(ProjectQuestion $projectQuestion)
     {
         Gate::authorize('admin',User::class);
-        $projectQuestion->load(['user:id,name','project:id']);
+        $projectQuestion->load(['user:id,name,profile_photo_path','project:id']);
         return inertia()->render('Admin/Questions-Accept/Show',['projectQuestion'=>$projectQuestion]);
 
     }

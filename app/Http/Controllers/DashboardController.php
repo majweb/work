@@ -3,18 +3,52 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aplication;
+use App\Models\Firm;
+use App\Models\Foundation;
 use App\Models\Invoice;
 use App\Models\Project;
 use App\Models\ProjectQuestion;
+use App\Models\Banner;
+use App\Models\Article;
 use App\Models\User;
+use App\Charts\AdminSparklineChart;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
-    public function __invoke()
+    public function __invoke(AdminSparklineChart $sparklineChart)
     {
         $user = Auth::user();
         $countQuestions = ProjectQuestion::whereNull('accepted')->count();
+        $countBanners = Banner::where('active_admin', 0)->count();
+        $countArticles = Article::where('active_admin', 0)->count();
+
+        // Helper to get stats for periods
+        $getPeriodStats = function($model, $days = 7, $sumColumn = null) {
+            $current = [];
+            $previous = [];
+
+            for ($i = $days - 1; $i >= 0; $i--) {
+                $date = Carbon::today()->subDays($i);
+                $query = $model::whereDate('created_at', $date);
+                $current[] = $sumColumn ? (float) $query->sum($sumColumn) : $query->count();
+
+                $prevDate = Carbon::today()->subDays($i + $days);
+                $prevQuery = $model::whereDate('created_at', $prevDate);
+                $previous[] = $sumColumn ? (float) $prevQuery->sum($sumColumn) : $prevQuery->count();
+            }
+
+            $currentTotal = array_sum($current);
+            $previousTotal = array_sum($previous);
+            $diff = $currentTotal - $previousTotal;
+
+            return [
+                'total' => $currentTotal,
+                'diff' => $diff,
+                'trend' => $diff >= 0 ? 'up' : 'down'
+            ];
+        };
 
         // Dane dla pracownika (worker)
         $lastAplications = Aplication::with('project.user')->where('aplication_user_id',auth()->user()->id)->latest()->first();
@@ -231,11 +265,99 @@ class DashboardController extends Controller
 
         $notifications = $user->notifications()->latest()->take(10)->get();
 
+        $adminData = [];
+        if ($user->hasRole('admin')) {
+            $firmStats = $getPeriodStats(Firm::class);
+            $offerStats = $getPeriodStats(Project::class);
+            $appStats = $getPeriodStats(Aplication::class);
+            $foundationStats = $getPeriodStats(Foundation::class);
+            $salesStats = $getPeriodStats(Invoice::class, 7, 'amount');
+
+            // Dodatkowe zdarzenia/aktywności (przykładowe)
+            $recentActivities = collect();
+
+            // Ostatnie firmy
+            Firm::latest()->take(2)->get()->each(function($f) use ($recentActivities) {
+                $recentActivities->push([
+                    'icon' => 'F',
+                    'title' => 'Nowa firma: ' . $f->name,
+                    'subtitle' => $f->created_at->diffForHumans(),
+                ]);
+            });
+
+            // Ostatnie oferty
+            Project::latest()->take(2)->get()->each(function($p) use ($recentActivities) {
+                $recentActivities->push([
+                    'icon' => 'P',
+                    'title' => 'Nowa oferta: ' . ($p->position['name'] ?? 'Bez nazwy'),
+                    'subtitle' => $p->created_at->diffForHumans(),
+                ]);
+            });
+
+            $adminData = [
+                'countQuestions' => $countQuestions,
+                'countBanners' => $countBanners,
+                'countArticles' => $countArticles,
+                'stats' => [
+                    'newCompanies' => [
+                        'value' => $firmStats['total'],
+                        'diff' => $firmStats['diff'],
+                        'trend' => $firmStats['trend'],
+                    ],
+                    'newOffers' => [
+                        'value' => $offerStats['total'],
+                        'diff' => $offerStats['diff'],
+                        'trend' => $offerStats['trend'],
+                    ],
+                    'newApplications' => [
+                        'value' => $appStats['total'],
+                        'diff' => $appStats['diff'],
+                        'trend' => $appStats['trend'],
+                    ],
+                    'newFoundations' => [
+                        'value' => $foundationStats['total'],
+                        'diff' => $foundationStats['diff'],
+                        'trend' => $foundationStats['trend'],
+                    ],
+                    'sales' => [
+                        'value' => $salesStats['total'],
+                        'diff' => $salesStats['diff'],
+                        'trend' => $salesStats['trend'],
+                    ],
+                ],
+                'alerts' => [],
+                'queue' => [],
+                'events' => $recentActivities->toArray(),
+            ];
+
+            if ($countQuestions > 0) {
+                $adminData['alerts'][] = [
+                    'level' => 'warning',
+                    'text' => 'Masz ' . $countQuestions . ' pytań oczekujących na akceptację.',
+                ];
+            }
+            if ($countBanners > 0) {
+                $adminData['alerts'][] = [
+                    'level' => 'warning',
+                    'text' => 'Masz ' . $countBanners . ' banerów oczekujących na akceptację.',
+                ];
+            }
+            if ($countArticles > 0) {
+                $adminData['alerts'][] = [
+                    'level' => 'warning',
+                    'text' => 'Masz ' . $countArticles . ' artykułów oczekujących na akceptację.',
+                ];
+            }
+        }
+
         return inertia()->render('Dashboard',[
             'chartRecruit' => $user->hasRole('recruit') ? $recruitData : NULL,
             'chartFirm' => $user->hasRole('firm') ? $firmData : NULL,
+            'adminData' => $user->hasRole('admin') ? $adminData : NULL,
             'lastAplications'=>$lastAplications,
             'countQuestions'=>$countQuestions,
+            'countBanners'=>$countBanners,
+            'countArticles'=>$countArticles,
             'otherAplications' => $otherAplications,
             'notifications' => $notifications,
             'packages' => $packages,

@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import AdminSidebar from '@/Components/Dashboard/AdminSidebar.vue';
 import {usePermission} from "@/Composables/usePermission";
 import NotificationBell from "@/Components/NotificationBell.vue";
 import { Dialog, DialogPanel, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
@@ -61,9 +62,10 @@ onUnmounted(()=>{
     <div>
         <Head :title="title" />
         <Banner />
-        <div class="min-h-screen bg-gray-50/50">
+        <div class="min-h-screen bg-gray-50/50" :class="{'pl-72': hasRole('admin')}">
+            <AdminSidebar v-if="hasRole('admin')" />
             <!-- Modern Sticky Header -->
-            <nav class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-gray-100 bg-white shadow-xl shadow-blue-900/5">
+            <nav v-if="!hasRole('admin')" class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-gray-100 bg-white shadow-xl shadow-blue-900/5">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -77,7 +79,7 @@ onUnmounted(()=>{
 
                             <!-- Desktop Navigation Links -->
                             <div class="hidden lg:flex items-center lg:gap-1">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')" v-if="!hasRole('admin')">
                                     {{__('translate.dashboard')}}
                                 </NavLink>
 
@@ -183,21 +185,21 @@ onUnmounted(()=>{
                                     </NavLink>
                                 </template>
 
-                                <!-- Admin Links -->
-                                <template v-if="hasRole('admin')">
-                                    <NavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">
-                                        {{__('translate.admin-questions')}}
-                                    </NavLink>
-                                    <NavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">
-                                        {{__('translate.aplications')}}
-                                    </NavLink>
-                                    <NavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">
-                                        {{__('partners.partners')}}
-                                    </NavLink>
-                                    <NavLink :href="route('admin.foundations.index')" :active="route().current('admin.foundations.index')">
-                                        {{__('foundations.foundations')}}
-                                    </NavLink>
-                                </template>
+<!--                                &lt;!&ndash; Admin Links &ndash;&gt;-->
+<!--                                <template v-if="hasRole('admin')">-->
+<!--                                    <NavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">-->
+<!--                                        {{__('translate.admin-questions')}}-->
+<!--                                    </NavLink>-->
+<!--                                    <NavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">-->
+<!--                                        {{__('translate.aplications')}}-->
+<!--                                    </NavLink>-->
+<!--                                    <NavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">-->
+<!--                                        {{__('partners.partners')}}-->
+<!--                                    </NavLink>-->
+<!--                                    <NavLink :href="route('admin.foundations.index')" :active="route().current('admin.foundations.index')">-->
+<!--                                        {{__('foundations.foundations')}}-->
+<!--                                    </NavLink>-->
+<!--                                </template>-->
                             </div>
                         </div>
 
@@ -362,11 +364,11 @@ onUnmounted(()=>{
                                 <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')">{{__('translate.articles')}}</ResponsiveNavLink>
                             </template>
 
-                            <template v-if="hasRole('admin')">
-                                <ResponsiveNavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">{{__('translate.admin-questions')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">{{__('partners.partners')}}</ResponsiveNavLink>
-                            </template>
+<!--                            <template v-if="hasRole('admin')">-->
+<!--                                <ResponsiveNavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">{{__('translate.admin-questions')}}</ResponsiveNavLink>-->
+<!--                                <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">{{__('translate.aplications')}}</ResponsiveNavLink>-->
+<!--                                <ResponsiveNavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">{{__('partners.partners')}}</ResponsiveNavLink>-->
+<!--                            </template>-->
 
                             <template v-if="hasRole('recruit') && !hasRole('firm')">
                                 <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">{{__('translate.projects')}}</ResponsiveNavLink>

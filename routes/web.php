@@ -267,10 +267,26 @@ Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
         Route::get('questions-accepts/{projectQuestion}',[QuestionAcceptController::class,'show'])->name('questions-accepts.show');
         Route::delete('questions-accepts/{projectQuestion}',[QuestionAcceptController::class,'destroy'])->name('questions-accepts.destroy');
         Route::put('questions-accepts/{projectQuestion}/accept', [QuestionAcceptController::class, 'accept'])->name('questions-accepts.accept');
+//        BANERY
+        Route::get('banners-accepts', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'index'])->name('banners-accepts.index');
+        Route::get('banners-accepts/{banner}', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'show'])->name('banners-accepts.show');
+        Route::delete('banners-accepts/{banner}', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'destroy'])->name('banners-accepts.destroy');
+        Route::put('banners-accepts/{banner}/accept', [\App\Http\Controllers\Admin\BannerAcceptController::class, 'accept'])->name('banners-accepts.accept');
+
+//        ARTYKULY
+        Route::get('articles-accepts', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'index'])->name('articles-accepts.index');
+        Route::get('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'show'])->name('articles-accepts.show');
+        Route::delete('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
+        Route::put('articles-accepts/{article}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');
+
 //        APLIKACJE
         Route::get('aplicationsAdmin',[\App\Http\Controllers\Admin\AplicationController::class,'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])
             ->name('aplicationsA.export');
+//        STATYSTYKI
+        Route::get('statisticsAdmin', [\App\Http\Controllers\Admin\StatisticsController::class, 'index'])->name('statistics.index');
+        Route::get('statisticsAdmin/charts', [\App\Http\Controllers\Admin\StatisticsController::class, 'charts'])->name('statistics.charts');
+        Route::get('statisticsAdmin/card-stats', [\App\Http\Controllers\Admin\StatisticsController::class, 'cardStats'])->name('statistics.card-stats');
 //        PARTNERZY
         Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
         Route::put('partners/{partner}/toggle', [\App\Http\Controllers\Admin\PartnerController::class, 'toggle'])

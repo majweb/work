@@ -17,15 +17,16 @@ class Article extends Model implements HasMedia
 
 
     protected $casts = [
-        'active'=>'boolean',
-        'category'=>'array',
-
+        'active' => 'boolean',
+        'active_admin' => 'boolean',
+        'category' => 'array',
     ];
 
     protected $fillable = [
         'user_id',
         'title',
         'active',
+        'active_admin',
         'content',
         'lang',
         'meta_title',
@@ -34,7 +35,6 @@ class Article extends Model implements HasMedia
         'alt',
         'meta_keywords',
         'category',
-
     ];
 
     public function user(): BelongsTo
@@ -44,7 +44,7 @@ class Article extends Model implements HasMedia
 
     public function scopeActive($query)
     {
-        return $query->where('active',1);
+        return $query->where('active', 1)->where('active_admin', 1);
     }
 
     public function scopeLang($query)

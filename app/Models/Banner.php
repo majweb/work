@@ -16,15 +16,17 @@ class Banner extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $casts = [
-        'active'=>'boolean',
-        'lang'=>'array',
+        'active' => 'boolean',
+        'active_admin' => 'boolean',
+        'lang' => 'array',
     ];
 
     protected $fillable = [
         'user_id',
         'url',
         'lang',
-        'active'
+        'active',
+        'active_admin',
     ];
 
     public function user(): BelongsTo
@@ -47,7 +49,7 @@ class Banner extends Model implements HasMedia
 
     public function scopeActive($query)
     {
-        return $query->where('active',1);
+        return $query->where('active', 1)->where('active_admin', 1);
     }
     public function scopeLang($query)
     {

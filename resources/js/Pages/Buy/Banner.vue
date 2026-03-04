@@ -24,7 +24,7 @@ const page = usePage();
 const firmPoints = computed(() => page?.props?.auth?.user?.firm?.points ?? null);
 
 const form = useForm({
-    active: props.banner?.active,
+    active: props.banner?.active ?? true,
     lang: props.banner?.lang ? props.banner?.lang : [],
     url: props.banner?.url ? props.banner?.url : '',
     photo: (props.banner && props.banner?.media)
@@ -186,9 +186,17 @@ const sortLangs = computed(() => {
                         </div>
                     </div>
 
-                    <div v-if="props.check" class="mb-10 text-[10px] font-black uppercase tracking-widest bg-white/5 py-4 px-8 rounded-2xl inline-block border border-white/5 relative z-10">
-                        {{ __('translate.activeFrom') }} <span class="text-blue-300 mx-2">{{ props.check.start.slice(0, 10) }}</span>
-                        {{ __('translate.activeTo') }} <span class="text-blue-300 mx-2">{{ props.check.end.slice(0, 10) }}</span>
+                    <div v-if="props.check" class="mb-10 flex flex-wrap justify-center items-center gap-4 relative z-10">
+                        <div class="text-[10px] font-black uppercase tracking-widest bg-white/5 py-4 px-8 rounded-2xl border border-white/5">
+                            {{ __('translate.activeFrom') }} <span class="text-blue-300 mx-2">{{ props.check.start.slice(0, 10) }}</span>
+                            {{ __('translate.activeTo') }} <span class="text-blue-300 mx-2">{{ props.check.end.slice(0, 10) }}</span>
+                        </div>
+                        <div v-if="!props.banner?.active" class="text-[10px] font-black uppercase tracking-widest bg-red-500/10 text-red-400 py-4 px-8 rounded-2xl border border-red-500/20">
+                            {{ __('translate.inactiveStatus').toUpperCase() }} (WYŁĄCZONY)
+                        </div>
+                        <div v-if="props.banner?.active && !props.banner?.active_admin" class="text-[10px] font-black uppercase tracking-widest bg-amber-500/10 text-amber-400 py-4 px-8 rounded-2xl border border-amber-500/20">
+                            {{ __('translate.inactiveStatus').toUpperCase() }} (OCZEKUJE NA AKCEPTACJĘ ADMINA)
+                        </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10 max-w-3xl mx-auto">
@@ -278,7 +286,7 @@ const sortLangs = computed(() => {
 
                                     <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 flex items-center justify-between">
                                         <div class="flex items-center gap-4">
-                                            <div class="relative inline-flex items-center cursor-pointer">
+                                            <label class="relative inline-flex items-center cursor-pointer">
                                                 <input
                                                     id="is_active"
                                                     v-model="form.active"
@@ -286,9 +294,9 @@ const sortLangs = computed(() => {
                                                     class="sr-only peer"
                                                 />
                                                 <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a3e0]"></div>
-                                            </div>
-                                            <label for="is_active" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest cursor-pointer">
-                                                {{ __('translate.active') }}
+                                                <span class="ml-4 text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest cursor-pointer">
+                                                    {{ __('translate.active') }}
+                                                </span>
                                             </label>
                                         </div>
                                         <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest italic max-w-[150px] text-right">{{ __('translate.bannerVisibilityInfo') }}</p>

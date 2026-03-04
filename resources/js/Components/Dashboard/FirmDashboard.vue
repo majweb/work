@@ -1,5 +1,6 @@
 <template>
-    <div class="p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <div class="flex items-center justify-between mb-8 px-4">
             <div>
                 <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
@@ -552,6 +553,7 @@
             </div>
         </div>
 
+    </div>
     </div>
 </template>
 

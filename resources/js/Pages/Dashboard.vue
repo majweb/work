@@ -17,11 +17,14 @@ const props = defineProps({
     packages: Array,
     additionalServices: Array,
     countQuestions: Number,
+    countBanners: Number,
+    countArticles: Number,
     recruitsCount: Number,
     projectsCount: Number,
     aplicationCount: Number,
     viewCount: Number,
     certificate: Object,
+    adminData: Object,
 });
 </script>
 
@@ -34,13 +37,17 @@ const props = defineProps({
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-                <AdminDashboard v-if="hasRole('admin')" :countQuestions="countQuestions"/>
+                <AdminDashboard v-if="hasRole('admin')"
+                                :countQuestions="countQuestions"
+                                :countBanners="countBanners"
+                                :countArticles="countArticles"
+                                :stats="adminData?.stats"
+                                :alerts="adminData?.alerts"
+                                :queue="adminData?.queue"
+                                :events="adminData?.events" />
                 <WorkerDashboard v-else-if="hasRole('worker')" :notifications="notifications" :lastAplications="lastAplications" :otherAplications="otherAplications" />
                 <RecruitDashboard v-else-if="hasRole('recruit') && !hasRole('firm')" :applications="otherAplications" :notifications="notifications" :projects="chartRecruit?.projects || []" :chartData="chartRecruit?.data || null" :lastAplications="chartRecruit?.applications" || []/>
                 <FirmDashboard v-else-if="hasRole('firm')" :aplicationCount="aplicationCount" :viewCount="viewCount" :projectsCount="projectsCount" :recruitsCount="recruitsCount" :chartData="chartFirm?.recruits || null"  :chartDataApp="chartFirm?.aplications || null" :chartDataInvoices="chartFirm?.lastInvoices"  :notifications="notifications" :packages="packages" :additionalServices="additionalServices" :certificate="chartFirm?.certificate || null"/>
-            </div>
         </div>
     </AppLayout>
 </template>

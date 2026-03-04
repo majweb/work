@@ -1,5 +1,6 @@
 <template>
-    <div class="min-h-screen">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="min-h-screen">
         <div class="max-w-7xl mx-auto space-y-8">
             <!-- GÓRNA SEKCJA - 2 kolumny -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -372,6 +373,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </template>
 ","search":
