@@ -222,11 +222,16 @@
 import {ref, computed, nextTick, onMounted} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import RecordRTC, { StereoAudioRecorder } from 'recordrtc';
+
+const RecordRTCLazy = ref(null);
+const StereoAudioRecorderLazy = ref(null);
 
 const isClient = ref(false);
-onMounted(() => {
+onMounted(async () => {
     isClient.value = true;
+    const { default: RecordRTCImport, StereoAudioRecorder: StereoAudioRecorderImport } = await import('recordrtc');
+    RecordRTCLazy.value = RecordRTCImport;
+    StereoAudioRecorderLazy.value = StereoAudioRecorderImport;
 });
 
 const props = defineProps({
@@ -276,9 +281,9 @@ const startRecording = async () => {
     if (audio.value) {
         audio.value.srcObject = stream;
 
-        mediaRecorder.value = new RecordRTC(stream, {
+        mediaRecorder.value = new RecordRTCLazy.value(stream, {
             type: 'audio',
-            recorderType: StereoAudioRecorder,
+            recorderType: StereoAudioRecorderLazy.value,
             mimeType: 'audio/wav',
             numberOfAudioChannels: 2, // Stereo dla lepszej barwy (jeśli mikrofon wspiera)
             desiredSampRate: 48000, // 48 kHz (High Fidelity)

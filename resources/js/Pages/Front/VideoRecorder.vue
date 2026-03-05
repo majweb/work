@@ -208,11 +208,14 @@ import {ref, computed, watch, onMounted} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
-import RecordRTC from 'recordrtc';
+
+const RecordRTCLazy = ref(null);
 
 const isClient = ref(false);
-onMounted(() => {
+onMounted(async () => {
     isClient.value = true;
+    const { default: RecordRTCImport } = await import('recordrtc');
+    RecordRTCLazy.value = RecordRTCImport;
 });
 
 const props = defineProps({
@@ -265,7 +268,7 @@ const startRecording = async () => {
     video.value.srcObject = stream;
 
     recordedChunks.length = 0;
-    mediaRecorder.value = new RecordRTC(stream, {
+    mediaRecorder.value = new RecordRTCLazy.value(stream, {
         type: 'video',
         mimeType: 'video/webm',
         bitsPerSecond: 1280000 // 1.28 Mbps dla dobrej jakości
