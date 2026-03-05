@@ -1,6 +1,6 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, nextTick } from "vue";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { usePage } from "@inertiajs/vue3";
@@ -20,14 +20,16 @@ const mapStyles = {
     satellite: "mapbox://styles/mapbox/satellite-streets-v12"
 };
 
-onMounted(() => {
+onMounted(async () => {
     isClient.value = true;
+    await nextTick();
     initMap();
 });
 
 
 function initMap() {
     if (!isClient.value || !props.foundation.coords) return;
+    if (!document.getElementById("foundationMap")) return;
     const [lng, lat] = props.foundation.coords;
     map.value = new mapboxgl.Map({
         container: "foundationMap",
@@ -168,7 +170,7 @@ function addMarker() {
                                 <p class="text-sm font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
                                     {{ props.foundation.address_street }}<br>
                                     {{ props.foundation.address_postcode }} {{ props.foundation.address_city }}<br>
-                                    {{ props.foundation.address_country.allTranslations[usePage().props.language] }}
+                                    {{ props.foundation.address_country?.allTranslations?.[usePage().props.language] }}
                                 </p>
                             </div>
 
