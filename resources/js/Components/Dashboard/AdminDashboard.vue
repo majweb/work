@@ -177,9 +177,9 @@
                                 <div class="h-10 w-10 shrink-0 rounded-xl bg-gray-50 group-hover:bg-[#0A2C5C] transition-all duration-300 grid place-items-center text-[#0A2C5C] group-hover:text-white font-black text-xs shadow-sm border border-gray-100 group-hover:border-[#0A2C5C]">
                                     {{ event.icon || '✓' }}
                                 </div>
-                                <div class="overflow-hidden">
-                                    <p class="font-black text-[#0A2C5C] uppercase text-[10px] tracking-widest truncate transition-transform" v-html="event.title"></p>
-                                    <p class="text-gray-400 text-[8px] font-bold uppercase tracking-widest truncate mt-1" v-if="event.subtitle" v-html="event.subtitle"></p>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-black text-[#0A2C5C] uppercase text-[10px] tracking-widest transition-transform leading-relaxed" v-html="event.title"></p>
+                                    <p class="text-gray-400 text-[8px] font-bold uppercase tracking-widest mt-1" v-if="event.subtitle" v-html="event.subtitle"></p>
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import __ from './lang';
-import VueApexCharts from "vue3-apexcharts";
+// import VueApexCharts from "vue3-apexcharts";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import "filepond/dist/filepond.min.css";
@@ -37,7 +37,7 @@ createInertiaApp({
             .use(ZiggyVue)
             .component('VueDatePicker', VueDatePicker)
             .component('file-pond', FilePond)
-            .use(VueApexCharts)
+            // .use(VueApexCharts)
         app.config.globalProperties.__  = __
         app.mount(el);
     },

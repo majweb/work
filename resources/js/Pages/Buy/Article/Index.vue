@@ -95,7 +95,7 @@ watch(params.value, debounce(function () {
                         <div class="md:w-1/2 flex justify-center">
                             <div class="relative">
                                 <div class="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full"></div>
-                                <img src="/images/icons/firm/certyfikat.svg" alt="Artykuł" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
+                                <img src="/images/icons/firm/artykul.svg" alt="Artykuł" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ watch(params.value, debounce(function () {
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <img src="/images/icons/firm/certyfikat.svg" alt="Co to?" class="h-8">
+                                <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIsArticleService') }}</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose">
@@ -120,7 +120,7 @@ watch(params.value, debounce(function () {
                         </div>
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <img src="/images/icons/firm/certyfikat.svg" alt="Co zawiera" class="h-8">
+                                <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIncludeArticle') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
@@ -148,7 +148,7 @@ watch(params.value, debounce(function () {
                         </div>
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <img src="/images/icons/firm/certyfikat.svg" alt="Jak wykorzystać" class="h-8">
+                                <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.howUseArticle') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">

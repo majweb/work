@@ -11,8 +11,10 @@ use App\Models\ProjectQuestion;
 use App\Models\Banner;
 use App\Models\Article;
 use App\Models\User;
+use App\Notifications\SystemActivityNotification;
 use App\Charts\AdminSparklineChart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -276,23 +278,50 @@ class DashboardController extends Controller
             // Dodatkowe zdarzenia/aktywności (przykładowe)
             $recentActivities = collect();
 
-            // Ostatnie firmy
-            Firm::latest()->take(2)->get()->each(function($f) use ($recentActivities) {
-                $recentActivities->push([
-                    'icon' => 'F',
-                    'title' => 'Nowa firma: ' . $f->name,
-                    'subtitle' => $f->created_at->diffForHumans(),
-                ]);
-            });
+//            // Ostatnie firmy
+//            Firm::latest()->take(2)->get()->each(function($f) use ($recentActivities) {
+//                $recentActivities->push([
+//                    'icon' => 'F',
+//                    'title' => 'Nowa firma: ' . $f->name,
+//                    'subtitle' => $f->created_at->diffForHumans(),
+//                ]);
+//            });
 
-            // Ostatnie oferty
-            Project::latest()->take(2)->get()->each(function($p) use ($recentActivities) {
-                $recentActivities->push([
-                    'icon' => 'P',
-                    'title' => 'Nowa oferta: ' . ($p->position['name'] ?? 'Bez nazwy'),
-                    'subtitle' => $p->created_at->diffForHumans(),
-                ]);
-            });
+//            // Ostatnie oferty
+//            Project::latest()->with('user')->take(2)->get()->each(function($p) use ($recentActivities) {
+//                $recentActivities->push([
+//                    'icon' => 'P',
+//                    'title' => 'Nowa oferta: ' . ($p->position['allTranslations']['title'][app()->getLocale()] ?? $p->position['name'] ?? 'Bez nazwy'),
+//                    'subtitle' => $p->created_at->diffForHumans(),
+//                ]);
+//            });
+
+            // Aktywności systemowe z powiadomień
+            $user->notifications()->where('notifications.type', SystemActivityNotification::class)
+                ->latest()
+                ->take(5)
+                ->get()
+                ->each(function($n) use ($recentActivities) {
+                    $data = $n->data;
+                    $title = '';
+                    $icon = 'U';
+
+                    if ($data['type'] === 'user_registered') {
+                        $roleName = $data['role'] === 'worker' ? 'pracownik' : 'firma';
+                        $title = "Zarejestrowano nowego użytkownika ({$roleName}): " . $data['user_name'];
+                    } elseif ($data['type'] === 'recruit_created') {
+                        $title = "Firma {$data['creator_name']} dodała rekrutera: " . $data['user_name'];
+                        $icon = 'R';
+                    }
+
+                    if ($title) {
+                        $recentActivities->push([
+                            'icon' => $icon,
+                            'title' => $title,
+                            'subtitle' => $n->created_at->diffForHumans(),
+                        ]);
+                    }
+                });
 
             $adminData = [
                 'countQuestions' => $countQuestions,

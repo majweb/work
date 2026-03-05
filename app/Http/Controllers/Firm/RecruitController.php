@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRecruitRequest;
 use App\Http\Resources\PermissionsResource;
 use App\Models\User;
+use App\Notifications\SystemActivityNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -83,6 +85,16 @@ class RecruitController extends Controller
         if (isset($request->userData()['photo'])) {
             $user->updateProfilePhoto($request->userData()['photo']);
         }
+
+        $admins = User::role('admin')->get();
+        Notification::send($admins, new SystemActivityNotification([
+            'type' => 'recruit_created',
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'role' => 'recruit',
+            'creator_id' => auth()->id(),
+            'creator_name' => auth()->user()->name,
+        ]));
 
         session()->flash('flash.banner', __('translate.addedRecruit'));
         session()->flash('flash.bannerStyle', 'success');

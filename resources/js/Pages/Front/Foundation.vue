@@ -165,7 +165,7 @@ function addMarker() {
                         <div class="space-y-6">
                             <div class="flex items-start gap-4">
                                 <div class="w-10 h-10 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100">
-                                    <img src="/images/partners/lokalizacja.svg" class="h-5 opacity-70" />
+                                    <img src="/images/partners/localizations.svg" class="h-5 opacity-70" />
                                 </div>
                                 <p class="text-sm font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
                                     {{ props.foundation.address_street }}<br>
@@ -203,7 +203,7 @@ function addMarker() {
                             <!-- Rok założenia -->
                             <div v-if="props.foundation.year_of_foundation" class="group flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-900/5">
                                 <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-gray-100 shadow-sm group-hover:scale-110 transition-transform">
-                                    <img src="/images/partners/lokalizacja.svg" class="h-6 opacity-70" />
+                                    <img src="/images/partners/year.svg" class="h-6 opacity-70" />
                                 </div>
                                 <div>
                                     <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{__('translate.year_of_foundation')}}</p>
@@ -214,7 +214,7 @@ function addMarker() {
                             <!-- Benefit -->
                             <div class="group flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-900/5">
                                 <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-gray-100 shadow-sm group-hover:scale-110 transition-transform">
-                                    <img src="/images/partners/lokalizacja.svg" class="h-6 opacity-70" />
+                                    <img src="/images/partners/organizations.svg" class="h-6 opacity-70" />
                                 </div>
                                 <div>
                                     <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{__('translate.benefit_organization')}}</p>
@@ -225,7 +225,7 @@ function addMarker() {
                             <!-- Workers -->
                             <div v-if="props.foundation.worker_count" class="group flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-900/5">
                                 <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-gray-100 shadow-sm group-hover:scale-110 transition-transform">
-                                    <img src="/images/partners/lokalizacja.svg" class="h-6 opacity-70" />
+                                    <img src="/images/partners/workers.svg" class="h-6 opacity-70" />
                                 </div>
                                 <div>
                                     <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{__('translate.worker_count')}}</p>

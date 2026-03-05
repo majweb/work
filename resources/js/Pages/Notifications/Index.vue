@@ -18,6 +18,24 @@ const formatNotification = (notification) => {
 
     if (!data) return { title: __('translate.unknownNotification'), message: '' };
 
+    // Jeśli dane zawierają gotowy tytuł (nie klucz tłumaczenia), używamy go bezpośrednio
+    if (data.type === 'user_registered' || data.type === 'recruit_created') {
+        let title = '';
+        if (data.type === 'user_registered') {
+            const roleName = data.role === 'worker' ? 'pracownik' : 'firma';
+            title = `Zarejestrowano nowego użytkownika (${roleName}): ${data.user_name}`;
+        } else if (data.type === 'recruit_created') {
+            title = `Firma ${data.creator_name} dodała rekrutera: ${data.user_name}`;
+        }
+
+        return {
+            title: title,
+            message: '',
+            action: null,
+            actionUrl: null
+        };
+    }
+
     const message = data.message ? __(data.message, { ...data, id: data.aplication || data.id }) : '';
 
     return {
@@ -125,6 +143,7 @@ const markAllAsRead = () => {
                                         </h4>
                                         <div class="mt-2 text-sm leading-relaxed"
                                            :class="[!notification.read_at ? 'text-gray-700 font-medium' : 'text-gray-400']"
+                                           v-if="formatNotification(notification).message"
                                            v-html="formatNotification(notification).message"></div>
 
                                         <div v-if="formatNotification(notification).actionUrl" class="mt-4">

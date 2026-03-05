@@ -4,7 +4,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\Foundation;
 use App\Models\User;
+use App\Notifications\SystemActivityNotification;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -68,11 +70,27 @@ class CreateNewUser implements CreatesNewUsers
             if($user){
                 $user->assignRole('worker');
                 $user->workerDetail()->create();
+
+                $admins = User::role('admin')->get();
+                Notification::send($admins, new SystemActivityNotification([
+                    'type' => 'user_registered',
+                    'user_id' => $user->id,
+                    'user_name' => $user->name,
+                    'role' => 'worker',
+                ]));
             }
         } elseif($input['type'] == 'firm'){
             if($user){
                 $user->assignRole('firm','recruit');
                 $user->firm()->create();
+
+                $admins = User::role('admin')->get();
+                Notification::send($admins, new SystemActivityNotification([
+                    'type' => 'user_registered',
+                    'user_id' => $user->id,
+                    'user_name' => $user->name,
+                    'role' => 'firm',
+                ]));
             }
         }
 

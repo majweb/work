@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, shallowRef } from 'vue';
 import { router } from '@inertiajs/vue3';
 import __ from "@/lang.js";
 import axios from 'axios';
@@ -12,6 +12,7 @@ const props = defineProps({
 });
 
 const isClient = ref(false);
+const VueApexChartsLazy = shallowRef(null);
 const currentPeriod = ref(props.period || 'all');
 const localStats = ref(props.stats);
 const cardPeriods = ref({
@@ -43,8 +44,10 @@ const fetchCharts = async (p) => {
     }
 };
 
-onMounted(() => {
+onMounted(async () => {
     isClient.value = true;
+    const { default: VueApexChartsImport } = await import('vue3-apexcharts');
+    VueApexChartsLazy.value = VueApexChartsImport;
     if (!localCharts.value) {
         fetchCharts(currentPeriod.value);
     }
@@ -244,13 +247,14 @@ const getIcon = (key) => {
                             <h4 class="text-lg font-black text-[#0A2C5C] uppercase tracking-tight">Trend aktywności</h4>
                             <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest mt-1">Liczba nowych treści w czasie</p>
                         </div>
-                        <div v-if="isClient && localCharts" class="min-h-[300px]" :class="{ 'opacity-50': isLoadingCharts }">
-                            <apexchart
+                        <div v-if="isClient && localCharts && VueApexChartsLazy" class="min-h-[300px]" :class="{ 'opacity-50': isLoadingCharts }">
+                            <component
+                                :is="VueApexChartsLazy"
                                 type="line"
                                 height="350"
                                 :options="localCharts.activityTrend.options"
                                 :series="localCharts.activityTrend.series"
-                            ></apexchart>
+                            />
                         </div>
                         <div v-else-if="isLoadingCharts" class="min-h-[300px] flex items-center justify-center">
                             <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A2C5C]"></div>
@@ -263,13 +267,14 @@ const getIcon = (key) => {
                             <h4 class="text-lg font-black text-[#0A2C5C] uppercase tracking-tight">Rozkład zasobów</h4>
                             <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zestawienie sumaryczne</p>
                         </div>
-                        <div v-if="isClient && localCharts" class="min-h-[300px]" :class="{ 'opacity-50': isLoadingCharts }">
-                            <apexchart
+                        <div v-if="isClient && localCharts && VueApexChartsLazy" class="min-h-[300px]" :class="{ 'opacity-50': isLoadingCharts }">
+                            <component
+                                :is="VueApexChartsLazy"
                                 type="bar"
                                 height="350"
                                 :options="localCharts.contentDistribution.options"
                                 :series="localCharts.contentDistribution.series"
-                            ></apexchart>
+                            />
                         </div>
                         <div v-else-if="isLoadingCharts" class="min-h-[300px] flex items-center justify-center">
                             <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A2C5C]"></div>

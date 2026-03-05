@@ -89,7 +89,7 @@ const updateFilter = () => {
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/certyfikat50_50.svg" alt="50/50" class="h-10">
+                            <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-4">{{ __('translate.whatIsCert50') }}</h3>
                         <p class="text-[10px] font-bold text-gray-400 leading-relaxed uppercase tracking-widest">{{ __('translate.whatIsCert50Desc') }}</p>
@@ -97,7 +97,7 @@ const updateFilter = () => {
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/certyfikat50_50.svg" alt="Gift" class="h-10">
+                            <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatContainsCert50') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full" v-html="__('translate.whatContainsCert50List')"></ul>
@@ -105,7 +105,7 @@ const updateFilter = () => {
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/certyfikat50_50.svg" alt="Social" class="h-10">
+                            <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.howUseCert50') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full" v-html="__('translate.howUseCert50List')"></ul>

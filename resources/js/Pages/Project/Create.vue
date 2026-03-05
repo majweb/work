@@ -188,10 +188,8 @@ const toggleCvType = (cv) => {
     const index = form.cv.findIndex(item => item.id === cv.id);
     if (index === -1) {
         form.cv.push(cv);
-        cvSelect.value.push(cv.name);
     } else {
         form.cv.splice(index, 1);
-        cvSelect.value = cvSelect.value.filter(name => name !== cv.name);
     }
 };
 
@@ -199,10 +197,8 @@ const toggleArrayItem = (item, formArray, selectRef) => {
     const index = formArray.findIndex(i => (i.id || i.value) === (item.id || item.value));
     if (index === -1) {
         formArray.push(item);
-        selectRef.value.push(item.name || item.title);
     } else {
         formArray.splice(index, 1);
-        selectRef.value = selectRef.value.filter(name => name !== (item.name || item.title));
     }
 };
 
@@ -560,11 +556,17 @@ onMounted(() => {
                                 <div
                                     v-for="cv in cvs"
                                     :key="cv.id"
-                                    @click="toggleCvType(cv)"
                                     class="border border-gray-100 rounded-[2.5rem] p-8 cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1"
                                     :class="form.cv.some(item => item.id === cv.id) ? 'bg-[#0A2C5C] border-transparent shadow-lg shadow-blue-900/20' : 'bg-gray-50/50'"
                                 >
-                                    <div class="flex flex-col items-center text-center">
+                                    <label class="flex flex-col items-center text-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            :id="'cv'+cv.id"
+                                            v-model="form.cv"
+                                            :value="cv"
+                                            class="sr-only"
+                                        />
                                         <div
                                             class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-all border-2"
                                             :class="form.cv.some(item => item.id === cv.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
@@ -581,7 +583,7 @@ onMounted(() => {
                                                 <svg v-if="form.cv.some(item => item.id === cv.id)" class="w-4 h-4 text-[#0A2C5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
                                             </div>
                                         </div>
-                                    </div>
+                                    </label>
                                 </div>
                             </div>
                             <InputError :message="form.errors.cv" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
@@ -627,9 +629,6 @@ onMounted(() => {
                         <!-- Kategoria z obowiązkami w 2 kolumnach -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/kategoria.svg" :alt="__('translate.altCategory')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -753,9 +752,8 @@ onMounted(() => {
                                             </div>
                                             <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                                                 <div v-for="detail in (form.position?.detailprojects || form.profession?.detailprojects)" :key="detail.id"
-                                                     class="group/item flex items-start gap-4 bg-white/50 rounded-2xl p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer"
-                                                     @click="toggleArrayItem(detail.id, form.detailProjects, { push: () => {}, splice: () => {} })">
-                                                    <label class="group/check flex items-start cursor-pointer flex-1" @click.stop>
+                                                     class="group/item flex items-start gap-4 bg-white/50 rounded-2xl p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer">
+                                                    <label class="group/check flex items-start cursor-pointer flex-1">
                                                         <div class="relative flex items-center justify-center mt-0.5">
                                                             <input
                                                                 type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
@@ -797,9 +795,6 @@ onMounted(() => {
                         <!-- Kraj publikacji i firma zewnętrzna -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/kraj_publikacji.svg" :alt="__('translate.CountryPublish')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.CountryPublish') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -857,9 +852,6 @@ onMounted(() => {
                         <!-- Lokalizacja -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" :alt="__('translate.altLocation')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.locationLabel') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -976,9 +968,8 @@ onMounted(() => {
                             </div>
                             <div v-if="typesOfContract" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div v-for="typeOfContract in typesOfContract" :key="typeOfContract.id"
-                                     class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                     @click="toggleArrayItem(typeOfContract, form.typeOfContract, typesOfContractSelect)">
-                                    <label class="group/check flex items-center cursor-pointer flex-1" @click.stop>
+                                     class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
+                                    <label class="group/check flex items-center cursor-pointer flex-1">
                                         <div class="relative flex items-center justify-center">
                                             <input
                                                 type="checkbox"
@@ -1001,9 +992,6 @@ onMounted(() => {
                         <!-- Wynagrodzenie -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/wynagrodzenie.svg" :alt="__('translate.salary')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.salary') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -1116,9 +1104,8 @@ onMounted(() => {
                             </div>
                             <div v-if="days" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                                 <div v-for="day in days" :key="day.id"
-                                     class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                     @click="toggleArrayItem(day, form.days, daySelect)">
-                                    <label class="group/check flex items-center cursor-pointer flex-1" @click.stop>
+                                     class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
+                                    <label class="group/check flex items-center cursor-pointer flex-1">
                                         <div class="relative flex items-center justify-center">
                                             <input
                                                 type="checkbox"
@@ -1176,9 +1163,8 @@ onMounted(() => {
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div v-for="paySystem in paySystems" :key="paySystem.id"
-                                     class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                     @click="toggleArrayItem(paySystem, form.paySystem, paySystemSelect)">
-                                    <label class="group/check flex items-center cursor-pointer flex-1" @click.stop>
+                                     class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
+                                    <label class="group/check flex items-center cursor-pointer flex-1">
                                         <div class="relative flex items-center justify-center">
                                             <input
                                                 type="checkbox"
@@ -1286,9 +1272,6 @@ onMounted(() => {
                         <!-- Tryb pracy i wymiar -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/organizacja_pracy.svg" :alt="__('translate.altWorkOrganization')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workOrganization') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -1298,9 +1281,8 @@ onMounted(() => {
                                     <InputLabel for="workingMode" :value="__('translate.workingMode')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
                                     <div class="space-y-3">
                                         <div v-for="workingMode in workingModes" :key="workingMode.value"
-                                             class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                             @click="toggleArrayItem(workingMode, form.workingMode, workingModeSelect)">
-                                            <label class="group/check flex items-center cursor-pointer flex-1" @click.stop>
+                                             class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
+                                            <label class="group/check flex items-center cursor-pointer flex-1">
                                                 <div class="relative flex items-center justify-center">
                                                     <input
                                                         type="checkbox"
@@ -1368,9 +1350,6 @@ onMounted(() => {
                         <!-- Oferujemy - graficzne karty z filtrowaniem -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="offers">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/oferujemy.svg" :alt="__('translate.altWeOffer')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.offer') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -1400,14 +1379,20 @@ onMounted(() => {
 
                             <!-- Grid benefitów -->
                             <div v-if="filteredOffers.length > 0" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                                <div
+                                <label
                                     v-for="offer in filteredOffers"
                                     :key="offer.id"
-                                    @click="toggleArrayItem(offer, form.offer, offerSelect)"
-                                    class="border border-gray-100 rounded-[2.5rem] p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1"
+                                    class="border border-gray-100 rounded-[2.5rem] p-6 cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 block"
                                     :class="form.offer.some(item => item.id === offer.id) ? 'bg-[#0A2C5C] border-transparent shadow-lg shadow-blue-900/20' : 'bg-gray-50/50'"
                                 >
                                     <div class="flex flex-col items-center text-center">
+                                        <input
+                                            type="checkbox"
+                                            :id="'offer'+offer.id"
+                                            v-model="form.offer"
+                                            :value="offer"
+                                            class="sr-only"
+                                        />
                                         <div
                                             class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-all border-2"
                                             :class="form.offer.some(item => item.id === offer.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
@@ -1443,7 +1428,7 @@ onMounted(() => {
                                             <svg v-if="form.offer.some(item => item.id === offer.id)" class="w-3.5 h-3.5 text-[#0A2C5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
                                         </div>
                                     </div>
-                                </div>
+                                </label>
                             </div>
                             <div v-else class="text-center py-16 bg-gray-50/50 rounded-[2.5rem] border border-dashed border-gray-200">
                                 <svg class="mx-auto h-16 w-16 text-gray-200 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1459,9 +1444,6 @@ onMounted(() => {
                             <!-- Oczekujemy -->
                             <div v-if="waits" class="mb-12">
                                 <div class="flex items-center gap-4 mb-8">
-                                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                        <img class="w-10 h-10" src="/images/icons/recruit/oczekujemy.svg" :alt="__('translate.altWeExpect')">
-                                    </div>
                                     <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.wait') }}</h2>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
@@ -1492,9 +1474,8 @@ onMounted(() => {
                                 <!-- Grid 4 kolumny -->
                                 <div v-if="filteredWaits.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <div v-for="wait in filteredWaits" :key="wait.id"
-                                         class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                         @click="toggleArrayItem(wait, form.wait, waitSelect)">
-                                        <label class="group/check flex items-center cursor-pointer flex-1" @click.stop>
+                                         class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
+                                        <label class="group/check flex items-center cursor-pointer flex-1">
                                             <div class="relative flex items-center justify-center">
                                                 <input
                                                     type="checkbox"
@@ -1523,9 +1504,6 @@ onMounted(() => {
                             <!-- Mile widziane -->
                             <div v-if="welcomes">
                                 <div class="flex items-center gap-4 mb-8">
-                                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                        <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.altWelcomed')">
-                                    </div>
                                     <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.welcome') }}</h2>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
@@ -1556,9 +1534,8 @@ onMounted(() => {
                                 <!-- Grid 4 kolumny -->
                                 <div v-if="filteredWelcomes.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <div v-for="welcome in filteredWelcomes" :key="welcome.id"
-                                         class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                         @click="toggleArrayItem(welcome, form.welcome, welcomeSelect)">
-                                        <label class="group/check flex items-center cursor-pointer flex-1" @click.stop>
+                                         class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
+                                        <label class="group/check flex items-center cursor-pointer flex-1">
                                             <div class="relative flex items-center justify-center">
                                                 <input
                                                     type="checkbox"
@@ -1588,9 +1565,6 @@ onMounted(() => {
                         <!-- Doświadczenie -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8" v-if="experiences && experiences.length > 0">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.experience')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.experience') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>

@@ -204,12 +204,12 @@
 </template>
 
 <script setup>
-import {ref, computed, watch, onMounted} from 'vue';
+import {ref, computed, watch, onMounted, shallowRef} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 
-const RecordRTCLazy = ref(null);
+const RecordRTCLazy = shallowRef(null);
 
 const isClient = ref(false);
 onMounted(async () => {

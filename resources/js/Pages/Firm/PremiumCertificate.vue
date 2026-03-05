@@ -122,7 +122,7 @@ const generateButtonText = computed(() => {
                             </p>
                         </div>
                         <div class="md:w-1/3 flex justify-end">
-                            <img src="/images/icons/firm/certyfikat.svg" alt="Certyfikat Icon" class="h-32 w-auto">
+                            <img src="/images/icons/firm/certyfikat_premium.svg" alt="Certyfikat Icon" class="h-32 w-auto">
                         </div>
                     </div>
 
@@ -148,18 +148,11 @@ const generateButtonText = computed(() => {
                             >
                                 <!-- Icon Placeholder based on level -->
                                 <div class="mb-4">
-                                    <svg v-if="level == 1" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                    </svg>
-                                    <svg v-if="level == 2" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                                    </svg>
-                                    <svg v-if="level == 3" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                    </svg>
-                                    <svg v-if="level == 4" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.297A2.45 2.45 0 0112 21.042A2.45 2.45 0 0113 19.297V5.882M11 5.882c0-.54.276-1.043.743-1.328l.514-.313c.467-.285.934-.285 1.401 0l.514.313c.467.285.743.788.743 1.328v.53a2 2 0 00.293 1.03l.36.6a2 2 0 001.207.97l.63.21a2 2 0 001.207-.97l.36-.6a2 2 0 00.293-1.03v-.53" />
-                                    </svg>
+                                    <img v-if="level == 1" src="/images/icons/firm/certyfikat-brown.svg" class="h-12 w-12 object-contain" alt="certyfikat brown">
+                                    <img v-else-if="level == 2" src="/images/icons/firm/certyfikat-silver.svg" class="h-12 w-12 object-contain" alt="certyfikat silver">
+                                    <img v-else-if="level == 3" src="/images/icons/firm/certyfikat-gold.svg" class="h-12 w-12 object-contain" alt="certyfikat gold">
+                                    <img v-else-if="level == 4" src="/images/icons/firm/certyfikat-diamond.svg" class="h-12 w-12 object-contain" alt="certyfikat diamond">
+                                    <img v-else src="/images/icons/firm/certyfikat-brown.svg" class="h-12 w-12 object-contain" alt="certyfikat">
                                 </div>
 
                                 <div class="text-2xl font-bold mb-0 leading-none">{{ points.toLocaleString() }}</div>

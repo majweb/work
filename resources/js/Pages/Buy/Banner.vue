@@ -96,7 +96,7 @@ const sortLangs = computed(() => {
                         <div class="md:w-1/2 flex justify-center">
                             <div class="relative">
                                 <div class="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full"></div>
-                                <img src="/images/icons/firm/certyfikat.svg" alt="Banner" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
+                                <img src="/images/icons/firm/baner.svg" alt="Banner" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
                             </div>
                         </div>
                     </div>
@@ -112,9 +112,7 @@ const sortLangs = computed(() => {
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#00a3e0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
+                                <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIsBanner') }}</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose">
@@ -123,9 +121,7 @@ const sortLangs = computed(() => {
                         </div>
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#00a3e0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                                </svg>
+                                <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIncludeBanner') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
@@ -145,9 +141,7 @@ const sortLangs = computed(() => {
                         </div>
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#00a3e0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                </svg>
+                                <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.howUseBanner') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">

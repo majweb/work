@@ -211,7 +211,7 @@ onMounted(() => loadCaptcha())
 
                             <div class="relative z-10 flex flex-col items-center text-center">
                                 <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-6">
-                                    <img src="/images/contact/local.png" alt="local" class="w-10">
+                                    <img src="/images/icons/recruit/lokalizacja.svg" alt="local" class="w-10">
                                 </div>
                                 <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{{ __('translate.our_office') }}</h3>
                                 <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight mb-4">WORK4YOU.GLOBAL LTD</h4>
@@ -227,7 +227,7 @@ onMounted(() => loadCaptcha())
 
                             <div class="relative z-10 flex flex-col items-center text-center">
                                 <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mb-6">
-                                    <img src="/images/contact/contact.png" alt="contact" class="w-10">
+                                    <img src="/images/contact/mail1.svg" alt="contact" class="w-10">
                                 </div>
                                 <h3 class="text-[10px] font-black text-blue-300/50 uppercase tracking-[0.2em] mb-4">{{ __('translate.contact_us') }}</h3>
 
@@ -248,7 +248,7 @@ onMounted(() => loadCaptcha())
 
                             <div class="relative z-10 flex flex-col items-center text-center">
                                 <div class="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mb-6">
-                                    <img src="/images/contact/contact.png" alt="marketing" class="w-10 grayscale opacity-50">
+                                    <img src="/images/contact/mail2.svg" alt="marketing" class="w-10 grayscale opacity-50">
                                 </div>
                                 <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{{ __('translate.advertising') }}</h3>
                                 <a href="mailto:marketing@work4you.global" class="text-sm font-black text-[#0A2C5C] hover:text-[#00a0e3] transition-colors uppercase tracking-widest">

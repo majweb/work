@@ -219,12 +219,12 @@
 </template>
 
 <script setup>
-import {ref, computed, nextTick, onMounted} from 'vue';
+import {ref, computed, nextTick, onMounted, shallowRef} from 'vue';
 import axios from 'axios';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
-const RecordRTCLazy = ref(null);
-const StereoAudioRecorderLazy = ref(null);
+const RecordRTCLazy = shallowRef(null);
+const StereoAudioRecorderLazy = shallowRef(null);
 
 const isClient = ref(false);
 onMounted(async () => {

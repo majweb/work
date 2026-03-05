@@ -1,10 +1,18 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { ref, computed } from 'vue';
-import VueApexCharts from 'vue3-apexcharts';
+import { ref, computed, onMounted, shallowRef } from 'vue';
 import __ from "@/lang.js";
 import CircularProgress from "@/Components/CircularProgress.vue";
 import {Link} from "@inertiajs/vue3";
+
+const VueApexChartsLazy = shallowRef(null);
+const isClient = ref(false);
+
+onMounted(async () => {
+    isClient.value = true;
+    const { default: VueApexChartsImport } = await import('vue3-apexcharts');
+    VueApexChartsLazy.value = VueApexChartsImport;
+});
 
 const props = defineProps({
     applications: {
@@ -228,8 +236,10 @@ const getApplicationProgress = (status) => {
                             <div class="bg-gray-50/50 border border-gray-100 rounded-[2.5rem] p-8 shadow-inner">
                                 <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-8 text-center">{{ __('translate.stats.title') }}</h3>
 
-                                <div class="mb-10 flex justify-center">
-                                    <VueApexCharts
+                                <div class="mb-10 flex justify-center min-h-[240px]">
+                                    <component
+                                        :is="VueApexChartsLazy"
+                                        v-if="isClient && VueApexChartsLazy"
                                         type="donut"
                                         :options="chartOptions"
                                         :series="chartSeries"
