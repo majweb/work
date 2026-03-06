@@ -10,15 +10,16 @@
                         <h2 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.recruiterStatistics') }}</h2>
                     </div>
                     <div class="flex-1 flex items-center justify-center min-h-[300px]">
-                        <apexchart
-                            v-if="chartData"
+                        <component
+                            :is="VueApexChartsLazy"
+                            v-if="chartData && VueApexChartsLazy"
                             width="100%"
                             height="350"
                             type="donut"
                             :options="chartOptions"
                             :series="chartSeries"
                         />
-                        <div v-else class="text-center">
+                        <div v-else-if="!chartData" class="text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
@@ -379,7 +380,7 @@
 ","search":
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, shallowRef, onMounted } from 'vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import __ from '@/lang.js';
 import moment from "moment/moment.js";
@@ -410,6 +411,12 @@ const props = defineProps({
 
 const page = usePage();
 const selectedApplication = ref(null);
+const VueApexChartsLazy = shallowRef(null);
+
+onMounted(async () => {
+    const ApexChartsModule = await import('vue3-apexcharts');
+    VueApexChartsLazy.value = ApexChartsModule.default;
+});
 
 // Obliczenia dla wykresu
 const chartSeries = computed(() => {
