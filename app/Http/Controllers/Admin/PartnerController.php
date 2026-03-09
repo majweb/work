@@ -21,7 +21,7 @@ class PartnerController extends Controller
                 'name'  => $p->name,
                 'link'  => $p->link,
                 'active'=> $p->active,
-                'logo'  => $p->getFirstMediaUrl('partner_logo'),
+                'photo'  => $p->getFirstMediaUrl('partner_logo'),
             ]);
 
         return inertia('Admin/Partners/Index', [
@@ -71,8 +71,15 @@ class PartnerController extends Controller
         // Obsługa zdjęć przesłanych tymczasowo
         if ($request->photo) {
             $photo = $request->photo[0];
-            // Jeśli zdjęcie to URL, pomijamy aktualizację mediów
-            if (!(isset($photo['source']) && str_starts_with($photo['source'], 'http'))) {
+            // Jeśli zdjęcie to URL (string lub tablica z source będącym URL), pomijamy aktualizację mediów
+            $isUrl = false;
+            if (is_string($photo) && str_starts_with($photo, 'http')) {
+                $isUrl = true;
+            } elseif (is_array($photo) && isset($photo['source']) && str_starts_with($photo['source'], 'http')) {
+                $isUrl = true;
+            }
+
+            if (!$isUrl) {
                 // Czyścimy istniejącą kolekcję mediów
                 $partner->clearMediaCollection('partner_logo');
 
@@ -92,7 +99,7 @@ class PartnerController extends Controller
         }
         session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
-        return redirect()->back();
+        return redirect()->route('admin.partners.index');
     }
 
     public function destroy(Partner $partner)

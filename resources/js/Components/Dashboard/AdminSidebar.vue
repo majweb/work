@@ -32,7 +32,15 @@ const menuItems = [
             { name: 'Statystyki', route: 'admin.statistics.index' },
         ]
     },
-    { name: 'Firmy', icon: 'firms', route: 'admin.partners.index' },
+    {
+        name: 'Firmy',
+        icon: 'firms',
+        subItems: [
+            { name: 'Partnerzy', route: 'admin.partners.index' },
+            { name: 'Lista firm', route: 'dashboard' },
+            { name: 'Firmy zewnętrzne', route: 'dashboard' },
+        ]
+    },
     { name: 'Użytkownicy', icon: 'users', route: 'dashboard' },
     { name: 'Rynek pracy', icon: 'jobs', route: 'dashboard' },
     { name: 'Rekrutacja', icon: 'recruitment', route: 'admin.aplicationsA.index' },

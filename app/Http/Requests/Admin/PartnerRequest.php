@@ -40,4 +40,11 @@ class PartnerRequest extends FormRequest
             'link.regex' => 'Link musi zaczynać się od http:// lub https://',
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'photo' => 'logo partnera',
+        ];
+    }
 }
