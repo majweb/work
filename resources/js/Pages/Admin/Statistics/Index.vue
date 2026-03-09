@@ -92,9 +92,10 @@ const changeCardPeriod = async (category, p) => {
 
 const periods = [
     { value: 'all', label: 'Wszystkie' },
-    { value: 'week', label: 'Ostatni tydzień' },
-    { value: 'month', label: 'Ostatni miesiąc' },
-    { value: 'year', label: 'Ostatni rok' },
+    { value: 'week', label: 'Ten tydzień' },
+    { value: 'previous_week', label: 'Poprzedni tydzień' },
+    { value: 'month', label: 'Ten miesiąc' },
+    { value: 'year', label: 'Ten rok' },
 ];
 
 const cards = [

@@ -74,24 +74,42 @@ class StatisticsController extends Controller
         $now = Carbon::now();
         $startOfCurrent = null;
         $startOfPrevious = null;
-        $endOfCurrent = $now->copy()->endOfDay(); // Ensure we include records from the future of today if any
+        $endOfCurrent = $now->copy()->endOfDay();
 
         switch ($period) {
             case 'week':
+                // Bieżący tydzień (Poniedziałek - Dzisiaj)
                 $startOfCurrent = $now->copy()->startOfWeek();
-                $endOfCurrent = $now->copy()->endOfWeek(); // Include everything until the end of this week
+                $endOfCurrent = $now->copy()->endOfDay();
+
+                // Poprzedni tydzień (Poprzedni Poniedziałek - Poprzednia Niedziela)
                 $startOfPrevious = $now->copy()->subWeek()->startOfWeek();
                 $endOfPrevious = $now->copy()->subWeek()->endOfWeek();
                 break;
+            case 'previous_week':
+                // Poprzedni tydzień jako okres bieżący
+                $startOfCurrent = $now->copy()->subWeek()->startOfWeek();
+                $endOfCurrent = $now->copy()->subWeek()->endOfWeek();
+
+                // Tydzień przed poprzednim jako okres porównawczy
+                $startOfPrevious = $now->copy()->subWeeks(2)->startOfWeek();
+                $endOfPrevious = $now->copy()->subWeeks(2)->endOfWeek();
+                break;
             case 'month':
+                // Bieżący miesiąc
                 $startOfCurrent = $now->copy()->startOfMonth();
-                $endOfCurrent = $now->copy()->endOfMonth(); // Include everything until the end of this month
+                $endOfCurrent = $now->copy()->endOfDay();
+
+                // Poprzedni miesiąc
                 $startOfPrevious = $now->copy()->subMonth()->startOfMonth();
                 $endOfPrevious = $now->copy()->subMonth()->endOfMonth();
                 break;
             case 'year':
+                // Bieżący rok
                 $startOfCurrent = $now->copy()->startOfYear();
-                $endOfCurrent = $now->copy()->endOfYear(); // Include everything until the end of this year
+                $endOfCurrent = $now->copy()->endOfDay();
+
+                // Poprzedni rok
                 $startOfPrevious = $now->copy()->subYear()->startOfYear();
                 $endOfPrevious = $now->copy()->subYear()->endOfYear();
                 break;
@@ -112,6 +130,7 @@ class StatisticsController extends Controller
         return [
             'total' => $query->count(),
             'current_period' => $currentCount,
+            'previous_period' => $previousCount,
             'diff' => abs($diff),
             'trend' => $trend
         ];
@@ -125,11 +144,21 @@ class StatisticsController extends Controller
         $appsData = [];
         $projectsData = [];
 
-        $count = $period === 'year' ? 12 : ($period === 'month' ? 30 : 7);
+        $count = match ($period) {
+            'year' => 12,
+            'month' => 30,
+            'previous_week' => 7,
+            default => 7,
+        };
         $format = $period === 'year' ? 'M' : 'd.m';
 
-        for ($i = $count; $i >= 0; $i--) {
-            $date = $period === 'year' ? Carbon::now()->subMonths($i) : Carbon::now()->subDays($i);
+        // Jeśli używamy okna kroczącego w getStats, to tutaj też powinniśmy pokazywać ostatnie X dni/miesięcy
+        for ($i = $count - 1; $i >= 0; $i--) {
+            if ($period === 'previous_week') {
+                $date = Carbon::now()->subWeek()->startOfWeek()->addDays(6 - $i);
+            } else {
+                $date = $period === 'year' ? Carbon::now()->subMonths($i) : Carbon::now()->subDays($i);
+            }
             $labels[] = $date->format($format);
 
             $start = $date->copy()->startOfDay();
@@ -151,7 +180,7 @@ class StatisticsController extends Controller
                     'data' => $appsData
                 ],
                 [
-                    'name' => __('translate.offers') ?? 'Oferty',
+                    'name' => __('translate.projects') ?? 'Oferty',
                     'data' => $projectsData
                 ]
             ])

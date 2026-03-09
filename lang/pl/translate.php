@@ -81,6 +81,8 @@ return [
     'invoiceStatus' => 'Status',
     'notOpened' => 'Nieotwarta',
     'statisticsDescription' => 'Przegląd statystyk i analiz aktywności',
+    'activityTrend' => 'Trend aktywności',
+    'contentDistribution' => 'Rozkład treści',
     'addedRecruit' => 'Dodano rekrutera',
     'addedProject' => 'Dodano ofertę',
     'updatedProject' => 'Zaktualizowano ofertę',
@@ -1552,4 +1554,5 @@ return [
     'candidates_count' => 'Kandydatów',
     'categories_count' => 'Kategorii',
     'worker' => 'Pracownik',
+    'users' => 'Użytkownicy',
 ];
