@@ -298,6 +298,31 @@ Route::middleware([
         Route::put('partners/{partner}/toggle', [\App\Http\Controllers\Admin\PartnerController::class, 'toggle'])
             ->name('partners.toggle');
 
+        //        UŻYTKOWNICY
+        Route::prefix('users')->name('users.')->group(function () {
+            Route::get('workers', [App\Http\Controllers\Admin\WorkerController::class, 'index'])->name('workers.index');
+            Route::get('workers/export', [App\Http\Controllers\Admin\WorkerController::class, 'export'])->name('workers.export');
+            Route::get('workers/{user}/edit', [App\Http\Controllers\Admin\WorkerController::class, 'edit'])->name('workers.edit');
+            Route::put('workers/{user}', [App\Http\Controllers\Admin\WorkerController::class, 'update'])->name('workers.update');
+            Route::post('workers/{user}/block', [App\Http\Controllers\Admin\WorkerController::class, 'toggleBlock'])->name('workers.block');
+            Route::post('workers/{user}/verify-email', [App\Http\Controllers\Admin\WorkerController::class, 'verifyEmail'])->name('workers.verifyEmail');
+
+            Route::get('recruits', [App\Http\Controllers\Admin\RecruitController::class, 'index'])->name('recruits.index');
+            Route::get('recruits/export', [App\Http\Controllers\Admin\RecruitController::class, 'export'])->name('recruits.export');
+            Route::get('recruits/{user}/edit', [App\Http\Controllers\Admin\RecruitController::class, 'edit'])->name('recruits.edit');
+            Route::put('recruits/{user}', [App\Http\Controllers\Admin\RecruitController::class, 'update'])->name('recruits.update');
+            Route::post('recruits/{user}/block', [App\Http\Controllers\Admin\RecruitController::class, 'toggleBlock'])->name('recruits.block');
+            Route::post('recruits/{user}/verify-email', [App\Http\Controllers\Admin\RecruitController::class, 'verifyEmail'])->name('recruits.verifyEmail');
+        });
+
+        // Wsteczna kompatybilność dla paska bocznego (jeśli użyłem admin.workers.index)
+        Route::get('workers', [App\Http\Controllers\Admin\WorkerController::class, 'index'])->name('workers.index');
+        Route::get('workers/export', [App\Http\Controllers\Admin\WorkerController::class, 'export'])->name('workers.export');
+        Route::get('workers/{user}/edit', [App\Http\Controllers\Admin\WorkerController::class, 'edit'])->name('workers.edit');
+        Route::put('workers/{user}', [App\Http\Controllers\Admin\WorkerController::class, 'update'])->name('workers.update');
+        Route::post('workers/{user}/block', [App\Http\Controllers\Admin\WorkerController::class, 'toggleBlock'])->name('workers.block');
+        Route::post('workers/{user}/verify-email', [App\Http\Controllers\Admin\WorkerController::class, 'verifyEmail'])->name('workers.verifyEmail');
+
         //        FUNDACJE
         Route::resource('foundations', FoundationController::class);
         Route::put('foundations/{foundation}/toggle', [FoundationController::class, 'toggle'])

@@ -50,7 +50,7 @@ watch([search, status, country, creditsMin, creditsMax, offersMin, offersMax, da
     updateFilters();
 });
 
-const sort = (field) => {
+const handleSort = (field) => {
     let direction = 'asc';
     let newField = field;
 
@@ -147,7 +147,7 @@ const getStatusLabel = (status) => {
 const getStatusClass = (status) => {
     switch (status) {
         case 'verified': return 'bg-blue-100 text-blue-600 border-blue-200';
-        case 'unverified': return 'bg-slate-700 text-white border-slate-600';
+        case 'unverified': return 'bg-[#2D3E50] text-white border-[#2D3E50]';
         case 'blocked': return 'bg-red-50 text-red-400 border-red-100';
         default: return 'bg-gray-100 text-gray-600 border-gray-200';
     }
@@ -379,7 +379,7 @@ onUnmounted(() => {
                                             class="rounded-lg border-gray-200 text-[#0A2C5C] focus:ring-[#0A2C5C]/10 w-5 h-5"
                                         />
                                     </th>
-                                    <th @click="sort('name')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap">
+                                    <th @click="handleSort('name')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap">
                                         Firma
                                         <span class="inline-block ml-2 transition-all" :class="{ 'rotate-180': props.filters.sort === 'name' && props.filters.direction === 'desc', 'opacity-0 group-hover:opacity-100': props.filters.sort !== 'name' }">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 text-[#0A2C5C]">
@@ -388,7 +388,7 @@ onUnmounted(() => {
                                         </span>
                                     </th>
                                     <th class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Lokalizacja</th>
-                                    <th @click="sort('recruiters_count')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
+                                    <th @click="handleSort('recruiters_count')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
                                         Rekruterzy
                                         <span class="inline-block ml-2 transition-all" :class="{ 'rotate-180': props.filters.sort === 'recruiters_count' && props.filters.direction === 'desc', 'opacity-0 group-hover:opacity-100': props.filters.sort !== 'recruiters_count' }">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 text-[#0A2C5C]">
@@ -396,7 +396,7 @@ onUnmounted(() => {
                                             </svg>
                                         </span>
                                     </th>
-                                    <th @click="sort('offers_count')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
+                                    <th @click="handleSort('offers_count')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
                                         Oferty
                                         <span class="inline-block ml-2 transition-all" :class="{ 'rotate-180': props.filters.sort === 'offers_count' && props.filters.direction === 'desc', 'opacity-0 group-hover:opacity-100': props.filters.sort !== 'offers_count' }">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 text-[#0A2C5C]">
@@ -405,7 +405,7 @@ onUnmounted(() => {
                                         </span>
                                     </th>
                                     <th class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Status</th>
-                                    <th @click="sort('kredyty')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
+                                    <th @click="handleSort('kredyty')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
                                         Kredyty
                                         <span class="inline-block ml-2 transition-all" :class="{ 'rotate-180': props.filters.sort === 'kredyty' && props.filters.direction === 'desc', 'opacity-0 group-hover:opacity-100': props.filters.sort !== 'kredyty' }">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 text-[#0A2C5C]">

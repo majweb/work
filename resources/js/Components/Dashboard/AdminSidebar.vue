@@ -37,11 +37,18 @@ const menuItems = [
         icon: 'firms',
         subItems: [
             { name: 'Partnerzy', route: 'admin.partners.index' },
-            { name: 'Lista firm', route: 'admin.firms.index' },
             { name: 'Firmy zewnętrzne', route: 'admin.external-companies.index' },
         ]
     },
-    { name: 'Użytkownicy', icon: 'users', route: 'dashboard' },
+    {
+        name: 'Użytkownicy',
+        icon: 'users',
+        subItems: [
+            { name: 'Firmy', route: 'admin.firms.index' },
+            { name: 'Pracownicy', route: 'admin.workers.index' },
+            { name: 'Rekruterzy', route: 'admin.users.recruits.index' },
+        ]
+    },
     { name: 'Rynek pracy', icon: 'jobs', route: 'dashboard' },
     { name: 'Rekrutacja', icon: 'recruitment', route: 'admin.aplicationsA.index' },
     { name: 'Finanse', icon: 'finance', route: 'invoices.index' },

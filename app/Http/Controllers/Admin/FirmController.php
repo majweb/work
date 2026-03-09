@@ -117,7 +117,7 @@ class FirmController extends Controller
         $sortField = $request->input('sort');
         $sortDirection = $request->input('direction', 'desc');
 
-        if ($sortField && $sortField !== 'none') {
+        if ($sortField && $sortField !== 'none' && is_string($sortField) && ! str_contains($sortField, 'function')) {
             if ($sortField === 'name') {
                 $query->orderBy('name', $sortDirection);
             } elseif ($sortField === 'kredyty') {
