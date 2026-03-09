@@ -10,6 +10,7 @@ import Info from "@/Components/Info.vue";
 import __ from "@/lang.js";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useProjectHelpers } from '@/Composables/useProjectHelpers';
 
 // Używamy tokena z propsów jeśli jest dostępny, w przeciwnym razie fallback na ten z designu
 mapboxgl.accessToken = usePage().props.mapboxToken;
@@ -74,16 +75,8 @@ const DeleteProject = () => {
     }
 };
 
-const getPositionTitle = computed(() => {
-    const position = props.project.position;
-    if (position?.allTranslations?.title?.[usePage().props.language]) {
-        return position.allTranslations.title[usePage().props.language];
-    }
-    if (props.project.title?.[usePage().props.language]) {
-        return props.project.title[usePage().props.language];
-    }
-    return __('translate.projectWithoutTitle');
-});
+const { getPositionTitle, getInitials } = useProjectHelpers();
+const projectTitle = computed(() => getPositionTitle(props.project));
 
 const hasLocation = computed(() => {
     return props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber;
@@ -147,7 +140,7 @@ onMounted(async () => {
                 <div class="flex items-center justify-between">
                     <div>
                         <h2 class="text-2xl font-black text-gray-900 uppercase tracking-tight leading-tight">
-                            {{ getPositionTitle }}
+                            {{ projectTitle }}
                         </h2>
                         <p class="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1">
                             {{ __('translate.project') }} #{{ props.project.id }}
@@ -223,9 +216,6 @@ onMounted(async () => {
                         <!-- Podstawowe informacje -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/informacje_podstawowe.svg" :alt="__('translate.altBasicInfo')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.basicInfo') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -254,11 +244,6 @@ onMounted(async () => {
                         <!-- Rekruterzy (ZACHOWANA FUNKCJONALNOŚĆ W NOWYM STYLU) -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <div class="w-10 h-10 bg-[#0A2C5C] rounded-xl flex items-center justify-center text-white font-black text-xs">
-                                        {{ props.project.recruit?.name?.charAt(0) }}
-                                    </div>
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.recruiter') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -279,7 +264,7 @@ onMounted(async () => {
                                     <div v-if="!showChangeRecruit" class="flex items-center gap-4">
                                         <div class="w-12 h-12 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
                                              <div class="text-[#0A2C5C] font-black text-sm uppercase">
-                                                 {{ props.project.recruit?.name?.charAt(0) }}
+                                                 {{ getInitials(props.project.recruit?.name) }}
                                              </div>
                                         </div>
                                         <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.recruit?.name }}</p>
@@ -305,7 +290,7 @@ onMounted(async () => {
                                             <template #singleLabel="{ option }">
                                                 <div class="flex items-center gap-2">
                                                     <div class="w-6 h-6 bg-gray-200 rounded-lg flex items-center justify-center text-[10px] text-gray-600 font-black">
-                                                        {{ option.name?.charAt(0) }}
+                                                        {{ getInitials(option.name) }}
                                                     </div>
                                                     <span class="text-[10px] font-black uppercase tracking-widest text-[#0A2C5C]">{{ option.name }}</span>
                                                 </div>
@@ -346,9 +331,6 @@ onMounted(async () => {
                         <!-- Kategoria -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/kategoria.svg" :alt="__('translate.altCategory')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -368,7 +350,7 @@ onMounted(async () => {
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.positionLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.position?.allTranslations?.title[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.position?.allTranslations?.title[lang] ?? __('translate.noPosition') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -376,9 +358,6 @@ onMounted(async () => {
                         <!-- Wynagrodzenie -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/wynagrodzenie.svg" :alt="__('translate.altSalary')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.salarySection') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -421,9 +400,6 @@ onMounted(async () => {
                         <!-- Organizacja pracy -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/organizacja_pracy.svg" :alt="__('translate.altWorkOrganization')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workOrganization') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -489,9 +465,6 @@ onMounted(async () => {
                         <!-- mile widziane -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/mile_widziane.svg" :alt="__('translate.altWelcomed')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.welcomed') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -522,9 +495,6 @@ onMounted(async () => {
                         <!-- oferujemy -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.offer && props.project.offer.length">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/oferujemy.svg" :alt="__('translate.altWeOffer')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.weOffer') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -540,9 +510,6 @@ onMounted(async () => {
                         <!-- oczekujemy -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.wait && props.project.wait.length">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/oczekujemy.svg" :alt="__('translate.altWeExpect')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.weExpect') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
@@ -568,9 +535,6 @@ onMounted(async () => {
                         <!-- Lokalizacja -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" :alt="__('translate.altLocation')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.locationLabel') }}</h2>
                             </div>
 
@@ -604,9 +568,6 @@ onMounted(async () => {
                         <!-- Kraje publikacji -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.country && props.project.country.length">
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/kraj_publikacji.svg" :alt="__('translate.altPublicationCountry')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.publicationCountry') }}</h2>
                             </div>
                             <div class="flex flex-wrap gap-3">
@@ -620,9 +581,6 @@ onMounted(async () => {
                         <!-- Miejsce pracy -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.workingPlace">
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/miejsce_pracy.svg" :alt="__('translate.altWorkplace')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workplaceLabel') }}</h2>
                             </div>
                             <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
@@ -633,9 +591,6 @@ onMounted(async () => {
                         <!-- Firma zewnętrzna -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.externalCompany">
                             <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                    <img class="w-10 h-10" src="/images/icons/recruit/firma_zewnetrzna.svg" :alt="__('translate.altExternalCompany')">
-                                </div>
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.externalCompanyLabel') }}</h2>
                             </div>
                             <div class="flex items-center gap-4">

@@ -108,7 +108,11 @@ class StatisticController extends Controller
                     'maybe' => $total > 0 ? round(($project->maybe_count / $total) * 100) : 0,
                     'no' => $total > 0 ? round(($project->no_count / $total) * 100) : 0,
                 ];
-                $project->position_name = $project->position['allTranslations']['title'][app()->getLocale()] ?? $project->position['name'] ?? __('translate.projectWithoutTitle');
+                $project->position_name = $project->position['allTranslations']['title'][app()->getLocale()]
+                    ?? $project->profession['allTranslations']['title'][app()->getLocale()]
+                    ?? $project->position['name']
+                    ?? $project->profession['name']
+                    ?? __('translate.projectWithoutTitle');
                 return $project;
             });
 

@@ -322,9 +322,22 @@ function closeLightbox() {
 
                         <div class="space-y-4">
                             <div v-for="project in firm.projects" :key="project.id"
-                                 class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
-                                 :class="{ 'ring-2 ring-blue-400 ring-offset-2': project.is_featured }"
+                                 class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6 relative overflow-hidden"
+                                 :class="{ 'ring-2 ring-blue-500 ring-offset-4 bg-blue-50/10 shadow-blue-500/5': project.is_featured }"
                             >
+                                <!-- Featured Badge for List -->
+                                <div v-if="project.is_featured" class="absolute top-0 right-0 overflow-hidden rounded-tr-[2.5rem] group/premium">
+                                    <!-- Background with shimmer -->
+                                    <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 animate-shimmer bg-[length:200%_auto]"></div>
+
+                                    <div class="relative flex items-center gap-1.5 px-4 py-1.5 rounded-bl-2xl border-l border-b border-white/20 shadow-lg shadow-blue-900/20">
+                                        <div class="relative flex items-center justify-center">
+                                            <div class="absolute inset-0 bg-white/40 blur-sm rounded-full animate-ping"></div>
+                                            <img class="relative h-3 w-3 object-contain brightness-0 invert" src="/images/hand.svg" alt="featured">
+                                        </div>
+                                        <span class="text-[8px] font-black text-white uppercase tracking-[0.15em] drop-shadow-sm">{{ __('translate.featured') }}</span>
+                                    </div>
+                                </div>
                                 <Link :href="route('front.projects.single', project)" class="block">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                                         <div class="flex items-center gap-4">
@@ -398,3 +411,13 @@ function closeLightbox() {
         </div>
     </FrontLayout>
 </template>
+<style>
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+    animation: shimmer 5s infinite linear;
+}
+</style>

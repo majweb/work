@@ -2,6 +2,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import {Link, useForm, usePage} from '@inertiajs/vue3';
 import {computed, nextTick, ref, watch} from 'vue';
+import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
 import Multiselect from "vue-multiselect";
@@ -19,6 +20,8 @@ const props = defineProps({
     filters: Object,
     langLevels: Array,
 });
+
+const { getPositionTitle } = useProjectHelpers();
 
 const lang = computed(()=>usePage().props.language);
 const firmLoginPoints = computed(()=>usePage().props.firmLoginPoints);
@@ -407,7 +410,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <div class="min-w-0">
                                     <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight">{{ application.name }} {{ application.surname }}</div>
                                     <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
-                                        {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                        {{ getPositionTitle(application.project) }}
                                     </div>
                                 </div>
                             </div>

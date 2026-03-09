@@ -10,6 +10,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
 import __ from "@/lang.js";
+import { useProjectHelpers } from '@/Composables/useProjectHelpers';
 
 const props = defineProps({
     projects: {
@@ -197,6 +198,7 @@ const duplicateProject = (project) => {
     router.post(route('projects.duplicate', project));
 };
 
+const { getPositionTitle } = useProjectHelpers();
 </script>
 
 <template>
@@ -449,7 +451,7 @@ const duplicateProject = (project) => {
                                 </span>
                                 <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
                                 <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
-                                    {{ project.position }}
+                                    {{ getPositionTitle(project) }}
                                 </h4>
                             </div>
                             <div class="flex items-center gap-2">

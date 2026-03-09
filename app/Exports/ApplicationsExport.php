@@ -69,7 +69,11 @@ class ApplicationsExport implements FromCollection,WithHeadings
                 'ID' => $application->id,
                 __('translate.nameUser') => $application->name,
                 __('translate.surname') => $application->surname,
-                __('translate.position') => $application->project->position['allTranslations']['title'][app()->getLocale()] ?? '-',
+                __('translate.position') => $application->project->position['allTranslations']['title'][app()->getLocale()]
+                    ?? $application->project->profession['allTranslations']['title'][app()->getLocale()]
+                    ?? $application->project->title[app()->getLocale()]
+                    ?? $application->project->title
+                    ?? '-',
                 __('translate.status') => $statusText,
                 __('translate.date') => $application->created_at ? $application->created_at->format('d.m.Y') : '-',
                 __('translate.note') => $application->notes[0]['content'] ?? '-',

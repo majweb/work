@@ -289,8 +289,13 @@ class CandidatesController extends Controller
                 continue;
             }
 
-            // Użycie metody pomocniczej z modelu Project
-            $projectPosition = $application->project->position['allTranslations']['title'][app()->getLocale()];
+            // Pobieranie tytułu (stanowisko > zawód > tytuł projektu)
+            $locale = app()->getLocale();
+            $projectPosition = $application->project->position['allTranslations']['title'][$locale]
+                ?? $application->project->profession['allTranslations']['title'][$locale]
+                ?? $application->project->title[$locale]
+                ?? $application->project->title
+                ?? __('translate.noPosition');
             $formattedProjects->push([
                 'application_id' => $application->id,
                 'project_id' => $application->project->id,

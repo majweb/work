@@ -26,7 +26,7 @@ class StoreProject extends FormRequest
             'categorySub' => ['required', 'array', 'max:100'],
             'profession' => ['required', 'array', 'max:100'],
             'position' => ['nullable', 'array', 'max:100'],
-            'detailProjects' => ['required', 'array', 'min:1'],
+            'detailProjects' => ['required_with:position', 'array'],
             'workingMode' => ['required','array','min:1'],
             'workingMode.*.value' => ['required','exists:App\Models\WorkingMode,id'],
             'workingMode.*.name' => ['required'],

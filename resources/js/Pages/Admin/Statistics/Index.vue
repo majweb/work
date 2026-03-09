@@ -103,28 +103,24 @@ const cards = [
         name: 'Aplikacje',
         icon: 'applications',
         route: 'admin.aplicationsA.index',
-        image: '/images/icons/applications.png' // Adjust based on project structure
     },
     {
         key: 'projects',
         name: 'Oferty',
         icon: 'offers',
         route: 'admin.partners.index', // Adjust if there's a better route
-        image: '/images/icons/offers.png'
     },
     {
         key: 'users',
         name: 'Użytkownicy',
         icon: 'users',
         route: 'dashboard',
-        image: '/images/icons/users.png'
     },
     {
         key: 'foundations',
         name: 'Fundacje',
         icon: 'foundations',
         route: 'admin.foundations.index',
-        image: '/images/icons/foundations.png'
     }
 ];
 
@@ -187,7 +183,6 @@ const getIcon = (key) => {
                                 <!-- Try to use image if exists, else icon -->
                                 <div class="relative">
                                     <div class="absolute inset-0 bg-blue-100 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-all"></div>
-                                    <img :src="card.image" :alt="card.name" class="w-24 h-24 object-contain relative z-10" @error="(e) => e.target.style.display='none'">
                                     <!-- Fallback SVG if image fails -->
                                     <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center text-[#0A2C5C]">
                                         <svg v-if="card.key === 'applications'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">

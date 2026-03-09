@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { computed, ref } from 'vue';
+import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import { Link, router, useForm, usePage } from '@inertiajs/vue3';
 import DialogModal from '@/Components/DialogModal.vue';
 import moment from "moment";
@@ -11,6 +12,8 @@ const props = defineProps({
     otherRecruits: Array,
     candidateQuestions: Array,
 });
+
+const { getPositionTitle } = useProjectHelpers();
 
 // Formularz dla odpowiedzi kandydata
 const answersForm = useForm({
@@ -299,7 +302,7 @@ const dispatchActionSingleRecruit = value => {
                                     </h3>
 
                                     <div class="text-sm font-bold text-gray-400 uppercase tracking-widest">
-                                        {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                        {{ getPositionTitle(application.project) }}
                                     </div>
 
                                 </div>

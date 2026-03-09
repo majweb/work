@@ -1,6 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {Link, usePage} from '@inertiajs/vue3';
+import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import {computed, onMounted, ref} from "vue";
 import {usePermission} from "@/Composables/usePermission.js";
 import moment from "moment";
@@ -17,6 +18,7 @@ const props = defineProps({
     agreements: Array,
 });
 const {hasRole} = usePermission();
+const { getPositionTitle } = useProjectHelpers();
 const user = computed(()=>usePage().props.auth.user);
 const isClient = ref(false);
 onMounted(() => {
@@ -74,20 +76,42 @@ onMounted(async () => {
                         <span class="text-lg leading-none">←</span>
                         {{ __('translate.backToList') }}
                     </Link>
-
-                    <div v-if="project.is_featured" class="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-2xl border border-blue-100 shadow-sm">
-                        <img class="h-6" src="/images/hand.svg" alt="featured">
-                        <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">{{ __('translate.featured') }}</span>
-                    </div>
                 </div>
                 <!-- MAIN CARD HEADER -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden group transition-all duration-500"
+                     :class="project.is_featured ? 'ring-2 ring-blue-500/20' : ''">
                     <!-- Banner -->
-                    <div class="bg-[#0A2C5C] p-10 md:p-16 relative overflow-hidden">
+
+                    <div class="bg-[#0A2C5C] p-10 md:p-16 relative overflow-hidden transition-all duration-500"
+                         :class="project.is_featured ? 'ring-inset ring-1 ring-blue-400/30' : ''">
+                        <div v-if="project.is_featured" class="absolute inset-0 bg-blue-500/5 mix-blend-overlay pointer-events-none"></div>
+                        <div v-if="project.is_featured" class="absolute right-0 top-0 overflow-hidden group">
+                            <!-- Premium Background with shimmer -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 animate-shimmer bg-[length:200%_auto] rounded-bl-[2rem]"></div>
+
+                            <div class="relative flex items-center gap-3 px-8 py-3.5 rounded-bl-[2rem] border-l border-b border-white/20 shadow-2xl shadow-blue-900/20">
+                                <!-- Animated Icon -->
+                                <div class="relative flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-white/40 blur-md rounded-full animate-ping"></div>
+                                    <div class="relative bg-white/20 p-1.5 rounded-xl backdrop-blur-sm border border-white/30">
+                                        <img class="h-5 w-5 object-contain brightness-0 invert" src="/images/hand.svg" alt="featured">
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col">
+                                    <span class="text-[9px] font-black text-blue-100/80 uppercase tracking-[0.3em] leading-none mb-1">{{ __('translate.premium') || 'PREMIUM' }}</span>
+                                    <span class="text-xs font-black text-white uppercase tracking-[0.15em] drop-shadow-md leading-none">{{ __('translate.featured') }}</span>
+                                </div>
+
+                                <!-- Reflection effect -->
+                                <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
+                            </div>
+                        </div>
+
                         <div class="relative z-10">
                             <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Oferta pracy #{{ project.id }}</p>
                             <h1 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
-                                {{ project.position.allTranslations.title[usePage().props.language] }}
+                                {{ getPositionTitle(project) }}
                             </h1>
                         </div>
                         <!-- Decorative element -->
@@ -342,8 +366,8 @@ onMounted(async () => {
                             :autoplay="{ delay: 3000, disableOnInteraction: false }"
                             :allowTouchMove="true"
                             navigation
-                            :pagination="{ clickable: true }"
-                            class="pb-12"
+                            :pagination="{ clickable: true, el: '.swiper-pagination-offers' }"
+                            class="mb-8"
                             :breakpoints="{
                                 320: { slidesPerView: 1, spaceBetween: 20 },
                                 640: { slidesPerView: 2, spaceBetween: 20 },
@@ -366,12 +390,19 @@ onMounted(async () => {
                                 </div>
                             </swiper-slide>
                         </swiper>
+                        <div class="swiper-pagination-offers flex justify-center gap-2 mt-4"></div>
                     </div>
 
                     <!-- BOTTOM ACTIONS -->
-                    <div class="p-12 md:p-20 bg-[#0A2C5C] flex flex-col items-center text-center relative overflow-hidden">
+                    <div class="p-12 md:p-20 flex flex-col items-center text-center relative overflow-hidden transition-all duration-700"
+                         :class="project.is_featured ? 'bg-[#0A2C5C]' : 'bg-[#0A2C5C]'">
                         <!-- Decorative bg -->
-                        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/50 to-[#0A2C5C] z-0"></div>
+                        <div class="absolute top-0 left-0 w-full h-full z-0 transition-opacity duration-700"
+                             :class="project.is_featured ? 'bg-[radial-gradient(circle_at_center,_#1e40af_0%,_#0A2C5C_100%)]' : 'bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/50 to-[#0A2C5C]'"></div>
+
+                        <div v-if="project.is_featured" class="absolute inset-0 z-0 pointer-events-none opacity-30">
+                            <div class="absolute top-0 left-0 w-full h-full bg-[url('/images/pattern.svg')] bg-repeat opacity-10"></div>
+                        </div>
 
                         <div class="relative z-10 space-y-8">
                             <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">{{ __('translate.readyForChallenges') }}</h2>
@@ -402,6 +433,29 @@ onMounted(async () => {
         </div>
     </FrontLayout>
 </template>
+<style>
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+    animation: shimmer 5s infinite linear;
+}
+
+.swiper-pagination-offers .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #0A2C5C;
+    opacity: 0.2;
+    transition: all 0.3s ease;
+}
+.swiper-pagination-offers .swiper-pagination-bullet-active {
+    opacity: 1;
+    width: 25px;
+    border-radius: 5px;
+}
+</style>
 <style scoped>
 /* Lekka animacja wejścia sekcji */
 section, div[role="listitem"] {

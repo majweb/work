@@ -159,12 +159,15 @@ class ProjectController extends Controller implements HasMiddleware
         // Transformacja danych projektów
         $projects->getCollection()->transform(function ($project) {
             $position = is_string($project->position) ? json_decode($project->position, true) : $project->position;
+            $profession = is_string($project->profession) ? json_decode($project->profession, true) : $project->profession;
             $countryWork = is_string($project->countryWork) ? json_decode($project->countryWork, true) : $project->countryWork;
             $currency = is_string($project->currency) ? json_decode($project->currency, true) : $project->currency;
 
+            $positionTitle = $position['allTranslations']['title'][app()->getLocale()] ?? $profession['allTranslations']['title'][app()->getLocale()] ?? $position['name'] ?? $project->title[app()->getLocale()] ?? __('translate.projectWithoutTitle');
+
             return [
                 'id' => $project->id,
-                'position' => $position['allTranslations']['title'][app()->getLocale()] ?? $position['name'] ?? __('translate.projectWithoutTitle'),
+                'position' => $positionTitle,
                 'city' => $project->cityWork ?? '',
                 'country' => $countryWork['allTranslations'][app()->getLocale()] ?? $countryWork['name'] ?? '',
                 'basicSalaryFrom' => $project->basicSalaryFrom ?? null,
@@ -278,10 +281,21 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function store(StoreProject $request)
     {
-        $title=[];
+        $title = [];
+        foreach (config('langsShorts') as $lang) {
+            $posTitle = $request->projectData()['position']['allTranslations']['title'][$lang]
+                ?? $request->projectData()['profession']['allTranslations']['title'][$lang]
+                ?? null;
 
-        foreach (config('langsShorts') as $lang){
-            $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['countryWork']['allTranslations'][$lang]) ? $request->projectData()['countryWork']['allTranslations'][$lang]: null).', '.$request->projectData()['cityWork'].', '.$request->projectData()['basicSalaryFrom'].' '.$request->projectData()['currency']['name'];
+            $countryTitle = $request->projectData()['countryWork']['allTranslations'][$lang]
+                ?? $request->projectData()['countryWork']['name']
+                ?? null;
+
+            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
+                ($countryTitle ? $countryTitle . ', ' : '') .
+                $request->projectData()['cityWork'] . ', ' .
+                $request->projectData()['basicSalaryFrom'] . ' ' .
+                $request->projectData()['currency']['name'];
         }
         $project = Project::create([
             'title' =>  $title,
@@ -483,9 +497,21 @@ class ProjectController extends Controller implements HasMiddleware
     public function update(StoreProject $request, Project $project)
     {
         Gate::authorize('project-recruiter',$project);
-        $title=[];
-        foreach (config('langsShorts') as $lang){
-            $title[$lang] = (isset($request->projectData()['position']['allTranslations']['title'][$lang]) ? $request->projectData()['position']['allTranslations']['title'][$lang] : null).', '.(isset($request->projectData()['countryWork']['allTranslations'][$lang]) ? $request->projectData()['countryWork']['allTranslations'][$lang]: null).', '.$request->projectData()['cityWork'].', '.$request->projectData()['basicSalaryFrom'].' '.$request->projectData()['currency']['name'];
+        $title = [];
+        foreach (config('langsShorts') as $lang) {
+            $posTitle = $request->projectData()['position']['allTranslations']['title'][$lang]
+                ?? $request->projectData()['profession']['allTranslations']['title'][$lang]
+                ?? null;
+
+            $countryTitle = $request->projectData()['countryWork']['allTranslations'][$lang]
+                ?? $request->projectData()['countryWork']['name']
+                ?? null;
+
+            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
+                ($countryTitle ? $countryTitle . ', ' : '') .
+                $request->projectData()['cityWork'] . ', ' .
+                $request->projectData()['basicSalaryFrom'] . ' ' .
+                $request->projectData()['currency']['name'];
         }
         $project->update([
             'title' => $title,
@@ -704,7 +730,7 @@ class ProjectController extends Controller implements HasMiddleware
                     'categorySub' => ['required', 'array', 'max:100'],
                     'profession' => ['required', 'array', 'max:100'],
                     'position' => ['nullable', 'array', 'max:100'],
-                    'detailProjects' => ['required', 'array', 'min:1'],
+                    'detailProjects' => ['required_with:position', 'array'],
 
                     // Kraj publikacji
                     'country' => ['required', 'array', 'min:1'],

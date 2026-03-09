@@ -111,7 +111,7 @@ const setProjectPage = (p) => {
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.statistics') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.statisticsDescription') ?? 'Przegląd statystyk i analiz aktywności' }}</p>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.statisticsDescription') }}</p>
                         </div>
                     </div>
                 </div>

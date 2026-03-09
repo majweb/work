@@ -59,7 +59,11 @@ class WorkerController extends Controller
 
                 return [
                     'id' => $app->id,
-                    'title' => $app->project->position['allTranslations']['title'][app()->getLocale()] ?? '—',
+                    'title' => $app->project->position['allTranslations']['title'][app()->getLocale()]
+                        ?? $app->project->profession['allTranslations']['title'][app()->getLocale()]
+                        ?? $app->project->title[app()->getLocale()]
+                        ?? $app->project->title
+                        ?? __('translate.projectWithoutTitle'),
                     'company' => $app->project->user->name ?? '—',
                     'department' => $app->project->category['allTranslations']['title'][app()->getLocale()] ?? '—',
 
@@ -207,7 +211,11 @@ class WorkerController extends Controller
                 'statusDates' => $aplication->statusDates(),
                 'statusMessages' => $messages,
                 // 🔹 HEADER
-                'title' => $aplication->project->position['allTranslations']['title'][app()->getLocale()] ?? '—',
+                'title' => $aplication->project->position['allTranslations']['title'][app()->getLocale()]
+                    ?? $aplication->project->profession['allTranslations']['title'][app()->getLocale()]
+                    ?? $aplication->project->title[app()->getLocale()]
+                    ?? $aplication->project->title
+                    ?? __('translate.projectWithoutTitle'),
                 'company' => $aplication->project->user->name ?? '—',
                 'category' => $aplication->project->category['allTranslations']['title'][app()->getLocale()] ?? '—',
 

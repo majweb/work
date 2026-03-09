@@ -97,10 +97,20 @@ class DashboardController extends Controller
                 ->get()
                 ->map(function ($project) {
                     $position = is_string($project->position) ? json_decode($project->position, true) : $project->position;
+                    $profession = is_string($project->profession) ? json_decode($project->profession, true) : $project->profession;
                     $countryWork = is_string($project->countryWork) ? json_decode($project->countryWork, true) : $project->countryWork;
+
+                    $posTitle = $position['allTranslations']['title'][app()->getLocale()]
+                        ?? $profession['allTranslations']['title'][app()->getLocale()]
+                        ?? $position['name']
+                        ?? $profession['name']
+                        ?? $project->title[app()->getLocale()]
+                        ?? $project->title
+                        ?? __('translate.projectWithoutTitle');
+
                     return [
                         'id' => $project->id,
-                        'position' => $position['allTranslations']['title'][app()->getLocale()] ?? $position['name'] ?? __('translate.projectWithoutTitle'),
+                        'position' => $posTitle,
                         'city' => $project->cityWork ?? '',
                         'country' => $countryWork['allTranslations'][app()->getLocale()] ?? $countryWork['name'] ?? '',
                         'is_active' => $project->is_active ?? true,
@@ -146,7 +156,11 @@ class DashboardController extends Controller
                             'name' => $userName,
                             'profile_photo_url' => $userPhoto,
                         ],
-                        'position' => $app->project?->position['allTranslations']['title'][app()->getLocale()] ?? __('translate.projectWithoutTitle'),
+                        'position' => $app->project?->position['allTranslations']['title'][app()->getLocale()]
+                            ?? $app->project?->profession['allTranslations']['title'][app()->getLocale()]
+                            ?? $app->project?->title[app()->getLocale()]
+                            ?? $app->project?->title
+                            ?? __('translate.projectWithoutTitle'),
                         'app_id' => $app->id,
                         'status_changed_at' => \Carbon\Carbon::parse($app->status_changed_at ?? $app->created_at)->format('d.m.Y H:i'),
                         'created_at' => $app->created_at->toISOString(),
