@@ -181,7 +181,9 @@ Route::middleware([
     Route::put('candidate-questions/{candidateQuestion}/toggle-active', [CandidateQuestionController::class, 'toggleActive'])->name('candidate-questions.toggle-active')->middleware('role:firm');
 
     // Zarządzanie firmami zewnętrznymi
-    Route::resource('external-companies', App\Http\Controllers\ExternalCompanyController::class)->middleware('role:firm');
+    Route::resource('external-companies', App\Http\Controllers\ExternalCompanyController::class)
+        ->names('external-companies')
+        ->middleware('role:firm');
     Route::resource('tags', App\Http\Controllers\Firm\TagController::class)->middleware('role:firm|recruit');
     Route::middleware(['auth', 'verified', 'role:firm'])->group(function () {
         Route::get('/premium-certificate', [PremiumCertificateController::class, 'show'])
@@ -284,6 +286,14 @@ Route::middleware([
         Route::get('firms/{user}/credits', [App\Http\Controllers\Admin\FirmController::class, 'manageCredits'])->name('firms.manageCredits');
         Route::get('firms/{user}/offers', [App\Http\Controllers\Admin\FirmController::class, 'offers'])->name('firms.offers');
         Route::get('firms/{user}/recruiters', [App\Http\Controllers\Admin\FirmController::class, 'recruiters'])->name('firms.recruiters');
+
+        //        FIRMY ZEWNĘTRZNE
+        Route::get('admin-external-companies', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'index'])->name('external-companies.index');
+        Route::get('admin-external-companies/export', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'export'])->name('external-companies.export');
+        Route::get('admin-external-companies/{externalCompany}', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'show'])->name('external-companies.show');
+        Route::get('admin-external-companies/{externalCompany}/edit', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'edit'])->name('external-companies.edit');
+        Route::put('admin-external-companies/{externalCompany}', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'update'])->name('external-companies.update');
+
         Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
         Route::put('partners/{partner}/toggle', [\App\Http\Controllers\Admin\PartnerController::class, 'toggle'])
             ->name('partners.toggle');

@@ -38,7 +38,7 @@ const menuItems = [
         subItems: [
             { name: 'Partnerzy', route: 'admin.partners.index' },
             { name: 'Lista firm', route: 'admin.firms.index' },
-            { name: 'Firmy zewnętrzne', route: 'dashboard' },
+            { name: 'Firmy zewnętrzne', route: 'admin.external-companies.index' },
         ]
     },
     { name: 'Użytkownicy', icon: 'users', route: 'dashboard' },

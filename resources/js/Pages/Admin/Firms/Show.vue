@@ -56,19 +56,30 @@ const getStatusDotClass = (status) => {
 <template>
     <AppLayout :title="'Podgląd firmy: ' + firm.name">
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="max-w-[80vw] mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
-                <div class="flex items-center justify-between mb-8">
-                    <div class="flex items-center gap-6">
-                        <Link :href="route('admin.firms.index')" class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 text-[#0A2C5C] hover:bg-gray-50 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                <div class="flex items-center justify-between mb-12">
+                    <div class="flex items-center gap-8">
+                        <Link
+                            :href="route('admin.firms.index')"
+                            class="w-14 h-14 bg-white rounded-3xl flex items-center justify-center shadow-xl shadow-blue-900/5 border border-gray-100 text-[#0A2C5C] hover:bg-gray-50 transition-all active:scale-95 group"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 group-hover:-translate-x-1 transition-transform">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                             </svg>
                         </Link>
-                        <h1 class="text-4xl font-black text-[#0A2C5C]">Podgląd firmy</h1>
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-black uppercase tracking-widest">Szczegóły firmy</span>
+                            </div>
+                            <h1 class="text-4xl font-black text-[#0A2C5C] tracking-tight">{{ firm.name }}</h1>
+                        </div>
                     </div>
                     <div class="flex gap-4">
-                        <Link :href="route('admin.firms.edit', firm.id)" class="px-6 py-3 bg-[#0A2C5C] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#0d3671] transition-all shadow-lg shadow-blue-900/10 flex items-center gap-2">
+                        <Link
+                            :href="route('admin.firms.edit', firm.id)"
+                            class="px-8 py-4 bg-[#0A2C5C] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#0d3671] transition-all shadow-xl shadow-blue-900/20 flex items-center gap-3 active:scale-95"
+                        >
                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-blue-400">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                             </svg>
@@ -175,8 +186,11 @@ const getStatusDotClass = (status) => {
                     </div>
 
                     <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-6 flex items-center gap-6 flex-1 max-w-xs">
-                        <Link :href="route('admin.firms.manageCredits', firm.id)" class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center transition-transform hover:scale-105">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 text-blue-500">
+                        <Link
+                            :href="route('admin.firms.manageCredits', firm.id)"
+                            class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center transition-all hover:scale-105 hover:bg-blue-100 group shadow-sm active:scale-95"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 text-blue-500 group-hover:rotate-12 transition-transform">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </Link>
@@ -186,15 +200,19 @@ const getStatusDotClass = (status) => {
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-6 flex items-center gap-6 flex-1 max-w-xs relative">
-                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center cursor-pointer transition-transform hover:scale-105" :class="getStatusClass(firm.status)" @click="showStatusModal = true">
-                             <svg v-if="firm.status === 'verified'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                    <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-6 flex items-center gap-6 flex-1 max-w-xs">
+                        <div
+                            class="w-16 h-16 rounded-2xl flex items-center justify-center cursor-pointer transition-all hover:scale-105 group shadow-sm active:scale-95"
+                            :class="getStatusClass(firm.status)"
+                            @click="showStatusModal = true"
+                        >
+                             <svg v-if="firm.status === 'verified'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 group-hover:rotate-12 transition-transform">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                             </svg>
-                            <svg v-else-if="firm.status === 'blocked'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                            <svg v-else-if="firm.status === 'blocked'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 group-hover:scale-110 transition-transform">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
                             </svg>
-                            <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                            <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 group-hover:rotate-12 transition-transform">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                             </svg>
                         </div>

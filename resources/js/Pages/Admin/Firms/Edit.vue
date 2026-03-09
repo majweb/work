@@ -50,24 +50,32 @@ const submit = () => {
 <template>
     <AppLayout :title="'Edycja firmy: ' + firm.name">
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="max-w-[60vw] mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
-                <div class="flex items-center justify-between mb-8">
-                    <div class="flex items-center gap-6">
-                        <Link :href="route('admin.firms.show', firm.id)" class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 text-[#0A2C5C] hover:bg-gray-50 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                <div class="flex items-center justify-between mb-12">
+                    <div class="flex items-center gap-8">
+                        <Link
+                            :href="route('admin.firms.show', firm.id)"
+                            class="w-14 h-14 bg-white rounded-3xl flex items-center justify-center shadow-xl shadow-blue-900/5 border border-gray-100 text-[#0A2C5C] hover:bg-gray-50 transition-all active:scale-95 group"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 group-hover:-translate-x-1 transition-transform">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                             </svg>
                         </Link>
-                        <h1 class="text-4xl font-black text-[#0A2C5C]">Edycja firmy</h1>
+                        <div>
+                            <div class="flex items-center gap-3 mb-1">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-black uppercase tracking-widest">Zarządzanie kontem</span>
+                            </div>
+                            <h1 class="text-4xl font-black text-[#0A2C5C] tracking-tight">Edycja firmy</h1>
+                        </div>
                     </div>
                 </div>
 
                 <form @submit.prevent="submit" class="grid gap-8">
                     <!-- Basic Info -->
                     <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
-                        <h2 class="text-xl font-black text-[#0A2C5C] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 text-sm">01</span>
+                        <h2 class="text-xl font-black text-[#0A2C5C] mb-6 flex items-center gap-4">
+                            <span class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 text-xs font-black">01</span>
                             Podstawowe informacje
                         </h2>
                         <div class="grid grid-cols-2 gap-6">
@@ -86,8 +94,8 @@ const submit = () => {
 
                     <!-- Company Details -->
                     <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
-                        <h2 class="text-xl font-black text-[#0A2C5C] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 text-sm">02</span>
+                        <h2 class="text-xl font-black text-[#0A2C5C] mb-6 flex items-center gap-4">
+                            <span class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 text-xs font-black">02</span>
                             Dane szczegółowe
                         </h2>
                         <div class="grid grid-cols-3 gap-6 mb-6">
@@ -246,8 +254,8 @@ const submit = () => {
 
                         <!-- Additional Info -->
                     <div class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
-                        <h2 class="text-xl font-black text-[#0A2C5C] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-500 text-sm">03</span>
+                        <h2 class="text-xl font-black text-[#0A2C5C] mb-6 flex items-center gap-4">
+                            <span class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 text-xs font-black">03</span>
                             Informacje dodatkowe
                         </h2>
                         <div class="grid grid-cols-2 gap-6 mb-6">
@@ -270,11 +278,14 @@ const submit = () => {
                     </div>
 
                     <!-- Submit -->
-                    <div class="flex justify-end gap-4">
-                        <Link :href="route('admin.firms.show', firm.id)" class="px-8 py-4 bg-white text-[#0A2C5C] rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-gray-50 transition-all border border-gray-100">
+                    <div class="flex justify-end gap-4 mt-8">
+                        <Link :href="route('admin.firms.show', firm.id)" class="px-8 py-4 bg-white text-[#0A2C5C] rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-gray-50 transition-all border border-gray-100 shadow-sm active:scale-95">
                             Anuluj
                         </Link>
-                        <button type="submit" :disabled="form.processing" class="px-8 py-4 bg-[#0A2C5C] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#0d3671] transition-all shadow-lg shadow-blue-900/10 disabled:opacity-50">
+                        <button type="submit" :disabled="form.processing" class="px-8 py-4 bg-[#0A2C5C] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#0d3671] transition-all shadow-xl shadow-blue-900/20 disabled:opacity-50 active:scale-95 flex items-center gap-2">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-blue-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
                             Zapisz zmiany
                         </button>
                     </div>
