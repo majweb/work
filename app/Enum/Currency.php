@@ -4,7 +4,5 @@ namespace App\Enum;
 
 enum Currency: string
 {
-    case USD  = 'USD';
-    case EUR = 'EUR';
-    case PLN = 'PLN';
+    case USD = 'USD';
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,8 +17,6 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -26,11 +26,10 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto {
         HasProfilePhoto::profilePhotoUrl as getPhotoUrl;
     }
+    use HasRoles;
     use Notifiable;
     use SetsProfilePhotoFromUrl;
     use TwoFactorAuthenticatable;
-    use HasRoles;
-
 
     /**
      * The attributes that are mass assignable.
@@ -40,12 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
         'recruiter_from_firm_id',
         'recruiter_phone',
         'user_blocked',
         'color',
-        'foundation'
+        'foundation',
     ];
 
     /**
@@ -78,6 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+            'user_blocked' => 'datetime',
             'foundation' => 'array',
         ];
     }
@@ -109,7 +110,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function recruits(): HasMany
     {
-        return $this->hasMany(User::class,'recruiter_from_firm_id');
+        return $this->hasMany(User::class, 'recruiter_from_firm_id');
     }
 
     public function articles(): HasMany
@@ -121,9 +122,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class);
     }
+
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class,'recruiter_from_firm_id');
+        return $this->belongsTo(User::class, 'recruiter_from_firm_id');
     }
 
     public function externalCompanies(): HasMany
@@ -138,24 +140,23 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function projectsRecruits(): HasMany
     {
-        return $this->hasMany(Project::class,'recruiter_id');
+        return $this->hasMany(Project::class, 'recruiter_id');
     }
 
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class,'user_id');
+        return $this->hasMany(Project::class, 'user_id');
     }
-
 
     public function applicationsRecruits(): HasMany
     {
-        return $this->hasMany(Aplication::class,'recruiter_id');
+        return $this->hasMany(Aplication::class, 'recruiter_id');
     }
 
     // Scope do sprawdzenia featured
     public function scopeFeatured(Builder $query)
     {
-        $query->whereHas('changeProducts', function ( $q) {
+        $query->whereHas('changeProducts', function ($q) {
             $q->where('product_id', 9)
                 ->whereDate('start', '<=', now())
                 ->whereDate('end', '>=', now());
@@ -164,13 +165,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function myCvs(): HasMany
     {
-        return $this->hasMany(CvClassic::class,'worker_id');
+        return $this->hasMany(CvClassic::class, 'worker_id');
     }
 
     public function invoice(): HasMany
     {
         return $this->hasMany(Invoice::class);
     }
-
-
 }

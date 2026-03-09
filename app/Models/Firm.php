@@ -56,6 +56,12 @@ class Firm extends Model implements HasMedia
         'premium_certificate_path',
         'premium_certificate_level',
         'extra_description',
+        'countryJson',
+        'countryInvoiceJson',
+    ];
+
+    protected $attributes = [
+        'currency' => Currency::USD,
     ];
 
     protected $casts = [
@@ -70,12 +76,12 @@ class Firm extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
-    public function registerMediaConversions(Media $media = null): void
+
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('preview')
             ->performOnCollections('firms_images')
             ->nonQueued();
     }
-
 }

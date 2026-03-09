@@ -10,7 +10,6 @@ import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfile
 import UpdateProfileFirmForm from "@/Pages/Profile/Partials/UpdateProfileFirmForm.vue";
 import {usePermission} from "@/Composables/usePermission.js";
 import UpdateProfileAboutFirmForm from "@/Pages/Profile/Partials/UpdateProfileAboutFirmForm.vue";
-import UpdateBuyForm from "@/Pages/Profile/Partials/UpdateBuyForm.vue";
 import UpdateProfileWorkerForm from "@/Pages/Profile/Partials/UpdateProfileWorkerForm.vue";
 
 defineProps({
@@ -75,12 +74,7 @@ const {hasRole} = usePermission();
                         </div>
                     </div>
                     <!-- Prawa kolumna -->
-                    <div class="space-y-6">
-                        <!-- Buy Form -->
-                        <div v-if="hasRole('firm')">
-                            <UpdateBuyForm :user="$page.props.auth.user"/>
-                        </div>
-
+                    <div class="space-y-6 pt-0">
                         <!-- Worker Form -->
                         <div v-if="hasRole('worker')">
                             <UpdateProfileWorkerForm :user="$page.props.auth.user"/>

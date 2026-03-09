@@ -14,28 +14,34 @@ class FirmController extends Controller
      */
     public function __invoke(FirmUpdateRequest $request)
     {
-        Auth::user()->firm()->update([
-            'nip'=>$request->firmData()['nip'],
-            'description'=>$request->firmData()['description'],
-            'regon'=>$request->firmData()['regon'],
-            'street'=>$request->firmData()['street'],
-            'number'=>$request->firmData()['number'],
-            'city'=>$request->firmData()['city'],
-            'postal'=>$request->firmData()['postal'],
-            'country'=>$request->firmData()['countryJson']['name'],
-            'countryJson'=>$request->firmData()['countryJson'],
-            'contact_phone'=>$request->firmData()['contact_phone'],
-            'invoice_same'=>$request->firmData()['invoice_same'] ? 1 : 0,
-            'name_invoice'=>$request->firmData()['invoice_same'] ? Auth::user()->name : $request->firmData()['name_invoice'],
-            'nip_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['nip'] : $request->firmData()['nip_invoice'],
-            'regon_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['regon'] : $request->firmData()['regon_invoice'],
-            'street_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['street'] : $request->firmData()['street_invoice'],
-            'number_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['number'] : $request->firmData()['number_invoice'],
-            'city_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['city'] : $request->firmData()['city_invoice'],
-            'postal_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['postal'] : $request->firmData()['postal_invoice'],
-            'country_invoice'=>$request->firmData()['invoice_same'] ? $request->firmData()['countryJson']['name'] : $request->firmData()['countryInvoiceJson']['name'],
-            'countryInvoiceJson'=>$request->firmData()['invoice_same'] ? $request->firmData()['countryJson'] : $request->firmData()['countryInvoiceJson'],
-        ]);
+        $firm = Auth::user()->firm;
+        $firmData = $request->firmData();
+
+        $data = [
+            'nip' => $firmData['nip'],
+            'description' => $firmData['description'],
+            'regon' => $firmData['regon'],
+            'street' => $firmData['street'],
+            'number' => $firmData['number'],
+            'city' => $firmData['city'],
+            'postal' => $firmData['postal'],
+            'country' => $firmData['countryJson']['name'],
+            'countryJson' => $firmData['countryJson'],
+            'contact_phone' => $firmData['contact_phone'],
+            'invoice_same' => $firmData['invoice_same'] ? 1 : 0,
+            'name_invoice' => $firmData['invoice_same'] ? Auth::user()->name : $firmData['name_invoice'],
+            'nip_invoice' => $firmData['invoice_same'] ? $firmData['nip'] : $firmData['nip_invoice'],
+            'regon_invoice' => $firmData['invoice_same'] ? $firmData['regon'] : $firmData['regon_invoice'],
+            'street_invoice' => $firmData['invoice_same'] ? $firmData['street'] : $firmData['street_invoice'],
+            'number_invoice' => $firmData['invoice_same'] ? $firmData['number'] : $firmData['number_invoice'],
+            'city_invoice' => $firmData['invoice_same'] ? $firmData['city'] : $firmData['city_invoice'],
+            'postal_invoice' => $firmData['invoice_same'] ? $firmData['postal'] : $firmData['postal_invoice'],
+            'country_invoice' => $firmData['invoice_same'] ? $firmData['countryJson']['name'] : $firmData['countryInvoiceJson']['name'],
+            'countryInvoiceJson' => $firmData['invoice_same'] ? $firmData['countryJson'] : $firmData['countryInvoiceJson'],
+        ];
+
+        $firm->update($data);
+
         session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
 
