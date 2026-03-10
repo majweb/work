@@ -266,6 +266,14 @@ Route::middleware([
         Route::delete('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
         Route::put('articles-accepts/{article}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');
 
+        //        RYNEK PRACY
+        Route::get('job-offers', [\App\Http\Controllers\Admin\JobOfferController::class, 'index'])->name('job-offers.index');
+        Route::post('job-offers/recruiters', [\App\Http\Controllers\Admin\JobOfferController::class, 'getRecruiters'])->name('job-offers.getRecruiters');
+        Route::get('job-offers/cities/{country}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getCities'])->name('job-offers.cities');
+        Route::get('job-offers/getChildsCategory/{parent}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getChildsCategory'])->name('job-offers.getChildsCategory');
+        Route::post('job-offers/{project}/toggle-status', [\App\Http\Controllers\Admin\JobOfferController::class, 'toggleStatus'])->name('job-offers.toggle-status');
+        Route::get('job-offers/export', [\App\Http\Controllers\Admin\JobOfferController::class, 'export'])->name('job-offers.export');
+
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])

@@ -88,7 +88,7 @@ const toggleSelectAll = (e) => {
 const exportCsv = () => {
     const params = pickBy({
         ...props.filters,
-        ids: selectedIds.value.join(','),
+        ids: selectedIds.value.length > 0 ? selectedIds.value.join(',') : null,
     });
     window.location.href = route('admin.firms.export', params);
 };

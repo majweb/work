@@ -49,7 +49,13 @@ const menuItems = [
             { name: 'Rekruterzy', route: 'admin.users.recruits.index' },
         ]
     },
-    { name: 'Rynek pracy', icon: 'jobs', route: 'dashboard' },
+    {
+        name: 'Rynek pracy',
+        icon: 'jobs',
+        subItems: [
+            { name: 'Oferty pracy', route: 'admin.job-offers.index' },
+        ]
+    },
     { name: 'Rekrutacja', icon: 'recruitment', route: 'admin.aplicationsA.index' },
     { name: 'Finanse', icon: 'finance', route: 'invoices.index' },
     { name: 'Fundacje', icon: 'foundations', route: 'admin.foundations.index' },

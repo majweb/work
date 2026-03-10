@@ -45,7 +45,7 @@ const toggleSelect = (id) => {
 const exportCsv = () => {
     const params = {
         ...filters.value,
-        ids: selectedIds.value.length > 0 ? selectedIds.value : null,
+        ids: selectedIds.value.length > 0 ? selectedIds.value.join(',') : null,
     };
 
     const queryString = new URLSearchParams(pickBy(params)).toString();
