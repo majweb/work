@@ -11,7 +11,7 @@ class StoreProject extends FormRequest
      */
     public function authorize(): bool
     {
-        return request()->user()->hasRole('recruit');
+        return request()->user()->hasRole(['recruit', 'admin']);
     }
 
     /**
@@ -35,7 +35,7 @@ class StoreProject extends FormRequest
             'workLoad.value' => ['required','exists:App\Models\WorkLoad,id'],
             'workLoad.name' => ['required'],
             'workLoad.allTranslations' => ['required'],
-            'shiftWork' => ['required','exists:App\Models\ShiftWork,id'],
+            'shiftWork' => ['required','in:1,2'],
             'workNight' => ['required','in:1,2'],
             'payoutMode' => ['required','array'],
             'payoutMode.id' => ['required','exists:App\Models\PayoutMode,id'],
@@ -104,7 +104,8 @@ class StoreProject extends FormRequest
             ],
             'questions.*.content' => 'required_with:questions|string',
             'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
-            'external_company_id' => 'nullable|exists:App\Models\ExternalCompany,id',
+            'externalCompany' => 'nullable',
+            'recruit' => 'nullable',
             'is_active' => 'nullable|boolean',
 
         ];
@@ -118,7 +119,8 @@ class StoreProject extends FormRequest
         ];
     }
 
-    public function projectData(){
+    public function projectData(): array
+    {
         return $this->validated();
     }
 
@@ -130,9 +132,9 @@ class StoreProject extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if (is_array($this->external_company_id) && isset($this->external_company_id['id'])) {
+        if (is_array($this->externalCompany) && isset($this->externalCompany['id'])) {
             $this->merge([
-                'external_company_id' => $this->external_company_id['id']
+                'externalCompany' => $this->externalCompany['id']
             ]);
         }
     }
@@ -173,8 +175,9 @@ class StoreProject extends FormRequest
             'streetWorkNumber' => strtolower(__('translate.Number')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
             'questions' => strtolower(__('translate.questions')),
-            'external_company_id' => strtolower(__('translate.externalCompany')),
-            'is_active' => strtolower(__('translate.projectIsActive')),
+            'externalCompany' => strtolower(__('translate.externalCompany')),
+            'recruit' => 'nullable',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

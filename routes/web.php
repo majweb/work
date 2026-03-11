@@ -268,6 +268,11 @@ Route::middleware([
 
         //        RYNEK PRACY
         Route::get('job-offers', [\App\Http\Controllers\Admin\JobOfferController::class, 'index'])->name('job-offers.index');
+        Route::get('job-offers/{project}', [\App\Http\Controllers\Admin\JobOfferController::class, 'show'])->name('job-offers.show');
+        Route::get('job-offers/{project}/edit', [\App\Http\Controllers\Admin\JobOfferController::class, 'edit'])->name('job-offers.edit');
+        Route::put('job-offers/{project}', [\App\Http\Controllers\Admin\JobOfferController::class, 'update'])->name('job-offers.update');
+        Route::delete('job-offers/{project}', [\App\Http\Controllers\Admin\JobOfferController::class, 'destroy'])->name('job-offers.destroy');
+        Route::post('job-offers/validate-step', [\App\Http\Controllers\Admin\JobOfferController::class, 'validateStep'])->name('job-offers.validate-step');
         Route::post('job-offers/recruiters', [\App\Http\Controllers\Admin\JobOfferController::class, 'getRecruiters'])->name('job-offers.getRecruiters');
         Route::get('job-offers/cities/{country}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getCities'])->name('job-offers.cities');
         Route::get('job-offers/getChildsCategory/{parent}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getChildsCategory'])->name('job-offers.getChildsCategory');
