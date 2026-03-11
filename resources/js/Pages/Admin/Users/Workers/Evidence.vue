@@ -15,6 +15,7 @@ import __ from "@/lang.js";
 import DialogModal from "@/Components/DialogModal.vue";
 
 const props = defineProps({
+    worker: Object,
     candidate: Object,
     countries: Array,
     externalCompanies: Array,
@@ -78,7 +79,7 @@ const exitMode = () => {
 // Zapis / update
 const saveEvidence = () => {
     if (editingEvidenceId.value) {
-        form.put(route('candidates.evidence.update', [props.candidate.id, editingEvidenceId.value]), {
+        form.put(route('admin.users.workers.evidence.update', [props.worker.id, editingEvidenceId.value]), {
             errorBag: 'updateEvidence',
             preserveScroll: true,
             onSuccess: () => {
@@ -87,7 +88,7 @@ const saveEvidence = () => {
             },
         });
     } else {
-        form.post(route('candidates.evidence.store', props.candidate), {
+        form.post(route('admin.users.workers.evidence.store', props.worker.id), {
             errorBag: 'createEvidence',
             preserveScroll: true,
             onSuccess: () => form.reset(),
@@ -126,7 +127,7 @@ const formatDate = (d) => {
 
 const deleteEvidence = () => {
     if (evidenceToDelete.value) {
-        router.delete(route('candidates.evidence.delete', [props.candidate, evidenceToDelete.value.id]), {
+        router.delete(route('admin.users.workers.evidence.delete', [props.worker.id, evidenceToDelete.value.id]), {
             preserveScroll: true,
             onFinish: () => closeDeleteModal()
         });
@@ -139,14 +140,14 @@ const getCandidateInitials = (c) => {
 </script>
 
 <template>
-    <AppLayout :title="__('translate.candidateDetails')">
+    <AppLayout :title="__('translate.workerDetails')">
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('translate.evidence') }}
+                    {{ __('translate.evidence') }} - {{ worker.name }} {{ worker.worker_detail?.surname }}
                 </h2>
                 <Link
-                    :href="route('candidates.index')"
+                    :href="route('admin.users.workers.index')"
                     class="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
                 >
                     <span class="text-lg leading-none">←</span>
@@ -156,7 +157,7 @@ const getCandidateInitials = (c) => {
         </template>
 
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+            <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8 space-y-8">
 
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <!-- Header -->
@@ -173,14 +174,14 @@ const getCandidateInitials = (c) => {
                                 {{ __('translate.evidence') }}
                             </h1>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                {{ __('translate.candidateDetails') }}
+                                {{ worker.name }} {{ worker.worker_detail?.surname }} ({{ worker.email }})
                             </p>
                         </div>
                         <Link
-                            :href="route('candidates.show', candidate.id)"
+                            :href="route('admin.users.workers.edit', worker.id)"
                             class="px-8 py-3 bg-red-50 text-red-600 text-[10px] font-black rounded-xl hover:bg-red-100 transition-all uppercase tracking-widest"
                         >
-                            {{ __('translate.candidateDetails') }}
+                            {{ __('translate.editWorker') }}
                         </Link>
                     </div>
 

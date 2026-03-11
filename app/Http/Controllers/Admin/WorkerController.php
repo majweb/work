@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Exports\WorkersExport;
 use App\Http\Controllers\Controller;
+use App\Exports\WorkersExport;
+use App\Http\Resources\MultiselectWithoutDetailResource;
+use App\Models\CandidateEvidence;
+use App\Models\Category;
+use App\Models\ExternalCompany;
 use App\Models\User;
+use App\Services\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 use Maatwebsite\Excel\Facades\Excel;
@@ -32,7 +37,7 @@ class WorkerController extends Controller
 
     public static function buildQuery(Request $request)
     {
-        $query = User::role('worker')->with('workerDetail');
+        $query = User::role('worker')->with(['workerDetail', 'candidate.tags', 'candidate.evidences']);
 
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
@@ -66,6 +71,118 @@ class WorkerController extends Controller
         }
 
         return $query;
+    }
+
+    public function evidence(User $user): Response
+    {
+        $candidate = $user->candidate;
+
+        if (! $candidate) {
+            abort(404);
+        }
+
+        $candidate->load('media', 'created_by');
+        $optionsPosition = Cache::remember('categoriesWithoutDetail', now()->addDay(), function () {
+            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
+        });
+        $externalCompanies = ExternalCompany::where('user_id', $candidate->created_by_id)->latest()->get();
+        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function () {
+            return (new Helper())->makeCountriesToSelect();
+        });
+        $currencies = Cache::rememberForever('currencies', function () {
+            return config('currencyShorts');
+        });
+
+        $candidate->load(['evidences' => function ($query) {
+            $query->orderBy('date_of_hire', 'desc');
+        }]);
+
+        return Inertia::render('Admin/Users/Workers/Evidence', [
+            'worker' => $user->load('workerDetail'),
+            'candidate' => $candidate,
+            'externalCompanies' => $externalCompanies,
+            'countries' => $countries,
+            'optionsPosition' => $optionsPosition,
+            'currencies' => $currencies,
+        ]);
+    }
+
+    public function evidencesStore(Request $request, User $user): RedirectResponse
+    {
+        $candidate = $user->candidate;
+        if (! $candidate) {
+            abort(404);
+        }
+
+        $validated = $request->validate([
+            'external_company' => 'required|array',
+            'position' => 'required',
+            'salary' => 'required|numeric|min:0|max:99999999.99',
+            'currency' => 'required_with:salary|nullable|array',
+            'date_of_hire' => 'required|date',
+            'country' => 'required',
+            'notes' => 'nullable|string|max:1500',
+        ], [], [
+            'salary' => strtolower(__('translate.salary')),
+            'position' => strtolower(__('translate.position')),
+            'external_company_id' => strtolower(__('translate.externalCompany')),
+            'currency' => strtolower(__('translate.currency')),
+            'date_of_hire' => strtolower(__('translate.date_of_hire')),
+            'country' => strtolower(__('translate.country')),
+            'external_company' => strtolower(__('translate.external_company')),
+        ]);
+
+        $candidate->evidences()->create($validated);
+
+        session()->flash('flash.banner', __('translate.evidencesCreated'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
+    }
+
+    public function evidencesUpdate(Request $request, User $user, CandidateEvidence $evidence): RedirectResponse
+    {
+        $candidate = $user->candidate;
+        if (! $candidate || $evidence->candidate_id !== $candidate->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $validated = $request->validate([
+            'external_company' => 'required|array',
+            'position' => 'required',
+            'salary' => 'required|numeric|min:0|max:99999999.99',
+            'currency' => 'required_with:salary|nullable|array',
+            'date_of_hire' => 'required|date',
+            'country' => 'required',
+            'notes' => 'nullable|string|max:1500',
+        ], [], [
+            'salary' => strtolower(__('translate.salary')),
+            'position' => strtolower(__('translate.position')),
+            'external_company_id' => strtolower(__('translate.externalCompany')),
+            'currency' => strtolower(__('translate.currency')),
+            'date_of_hire' => strtolower(__('translate.date_of_hire')),
+            'country' => strtolower(__('translate.country')),
+        ]);
+
+        $evidence->update($validated);
+        session()->flash('flash.banner', __('translate.evidencesUpdated'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
+    }
+
+    public function evidencesDelete(User $user, CandidateEvidence $evidence): RedirectResponse
+    {
+        $candidate = $user->candidate;
+        if (! $candidate || $evidence->candidate_id !== $candidate->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $evidence->delete();
+        session()->flash('flash.banner', __('translate.evidencesDeleted'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
     }
 
     public function edit(User $user): Response

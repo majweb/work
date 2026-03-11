@@ -1,7 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import {ref, watch, onMounted, onUnmounted, computed} from 'vue';
 import Pagination from '@/Components/Pagination.vue';
 import pickBy from 'lodash/pickBy';
 import DialogModal from '@/Components/DialogModal.vue';
@@ -20,6 +20,38 @@ const filters = ref({
     sort: props.filters.sort || 'created_at',
     direction: props.filters.direction || 'desc',
 });
+
+const locale = computed(() => usePage().props.language || 'pl');
+
+const getTagColor = (id) => {
+    if (!tagColors[id]) {
+        const hue = (id * 137.5) % 360;
+        const saturation = 60 + (id % 20);
+        const lightness = 75 + (id % 15);
+        tagColors[id] = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    }
+    return tagColors[id];
+};
+
+const hexToRgb = (hex) => {
+    if (hex.startsWith('hsl')) return { r: 200, g: 200, b: 200 };
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+};
+
+const getContrastColor = (backgroundColor) => {
+    const rgb = hexToRgb(backgroundColor) || { r: 200, g: 200, b: 200 };
+    const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+    return brightness > 128 ? '#000000' : '#FFFFFF';
+};
+
+const tagColors = {};
 
 const userToBlock = ref(null);
 const userToVerify = ref(null);
@@ -375,6 +407,16 @@ const formatDate = (date) => {
                                         {{ user.worker_detail.contact_phone }}
                                     </span>
                                 </div>
+                                <div v-if="user.candidate?.tags?.length" class="flex flex-wrap gap-1 mt-2">
+                                    <span
+                                        v-for="tag in user.candidate.tags"
+                                        :key="tag.id"
+                                        class="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02]"
+                                        :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
+                                    >
+                                        {{ tag.title?.[locale] || '-' }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                                     </td>
@@ -424,6 +466,20 @@ const formatDate = (date) => {
                                                         </svg>
                                                     </div>
                                                     Edytuj dane
+                                                </Link>
+
+                                                <Link
+                                                    v-if="user.candidate"
+                                                    @click="activeMenuId = null"
+                                                    :href="route('admin.users.workers.evidence', user.id)"
+                                                    class="flex items-center gap-3 px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-600 hover:text-[#0A2C5C] hover:bg-blue-50 transition-colors border-b border-gray-50 group"
+                                                >
+                                                    <div class="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-[#0A2C5C] transition-colors text-blue-500 group-hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 transition-colors">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" />
+                                                        </svg>
+                                                    </div>
+                                                    Historia pracy (Evidence)
                                                 </Link>
 
                                                 <button

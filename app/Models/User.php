@@ -168,6 +168,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(CvClassic::class, 'worker_id');
     }
 
+    public function candidate(): HasOne
+    {
+        return $this->hasOne(Candidate::class, 'email', 'email');
+    }
+
     public function invoice(): HasMany
     {
         return $this->hasMany(Invoice::class);

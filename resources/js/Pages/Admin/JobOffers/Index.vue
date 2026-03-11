@@ -884,6 +884,9 @@ const getTranslation = (value) => {
                                     <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Branża / Lok.</span>
                                 </th>
                                 <th class="p-8">
+                                    <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">CV</span>
+                                </th>
+                                <th class="p-8">
                                     <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Status / Aplikacje</span>
                                 </th>
                                 <th class="p-8 text-center">
@@ -954,6 +957,31 @@ const getTranslation = (value) => {
                                         <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
                                                 {{ getTranslation(offer.countryWork) }}, {{ offer.cityWork }}
                                             </span>
+                                    </div>
+                                </td>
+                                <td class="p-8">
+                                    <div class="flex items-center gap-2">
+                                        <template v-for="cv in offer.cv" :key="cv.id">
+                                            <img
+                                                v-if="cv.id === 1"
+                                                src="/images/icons/cv-classic.svg"
+                                                class="w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
+                                                :title="getTranslation(cv.name)"
+                                            />
+                                            <img
+                                                v-if="cv.id === 2"
+                                                src="/images/icons/cv-video.svg"
+                                                class="w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
+                                                :title="getTranslation(cv.name)"
+                                            />
+                                            <img
+                                                v-if="cv.id === 3"
+                                                src="/images/icons/cv-audio.svg"
+                                                class="w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
+                                                :title="getTranslation(cv.name)"
+                                            />
+                                        </template>
+                                        <span v-if="!offer.cv || offer.cv.length === 0" class="text-xs text-gray-300">-</span>
                                     </div>
                                 </td>
                                 <td class="p-8 text-xs font-bold uppercase tracking-widest">

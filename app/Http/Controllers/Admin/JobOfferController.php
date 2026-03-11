@@ -316,7 +316,7 @@ class JobOfferController extends Controller
         ]);
 
         $project->load([
-            'recruit', 'shiftWork', 'education', 'externalCompany'
+            'recruit', 'shiftWork', 'education', 'externalCompany', 'questions'
         ]);
 
         $companyId = $project->user_id;

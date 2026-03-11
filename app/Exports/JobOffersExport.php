@@ -35,6 +35,7 @@ class JobOffersExport implements FromCollection, WithCustomCsvSettings, WithHead
             'Branża',
             'Lokalizacja',
             'Status',
+            'CV',
             'Liczba aplikacji',
             'Data publikacji',
         ];
@@ -42,6 +43,12 @@ class JobOffersExport implements FromCollection, WithCustomCsvSettings, WithHead
 
     public function map($project): array
     {
+        $cvTypes = collect($project->cv)->map(function ($cv) {
+            // Check if name is already a translated string or needs translation
+            $name = $cv['name'] ?? null;
+            return $this->getTranslation($name);
+        })->filter()->implode(', ');
+
         return [
             $project->id,
             $this->getTranslation($project->title),
@@ -49,7 +56,8 @@ class JobOffersExport implements FromCollection, WithCustomCsvSettings, WithHead
             $this->getTranslation($project->category),
             $this->getTranslation($project->countryWork) . ', ' . $project->cityWork,
             $project->is_active ? 'Aktywna' : 'Nieaktywna',
-            $project->aplications->count(),
+            $cvTypes ?: '-',
+            $project->aplications_count ?? $project->aplications->count(),
             $project->created_at?->format('Y-m-d H:i') ?? '-',
         ];
     }

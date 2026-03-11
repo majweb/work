@@ -268,6 +268,7 @@ Route::middleware([
 
         //        RYNEK PRACY
         Route::get('job-offers', [\App\Http\Controllers\Admin\JobOfferController::class, 'index'])->name('job-offers.index');
+        Route::get('job-offers/export', [\App\Http\Controllers\Admin\JobOfferController::class, 'export'])->name('job-offers.export');
         Route::get('job-offers/{project}', [\App\Http\Controllers\Admin\JobOfferController::class, 'show'])->name('job-offers.show');
         Route::get('job-offers/{project}/edit', [\App\Http\Controllers\Admin\JobOfferController::class, 'edit'])->name('job-offers.edit');
         Route::put('job-offers/{project}', [\App\Http\Controllers\Admin\JobOfferController::class, 'update'])->name('job-offers.update');
@@ -277,7 +278,6 @@ Route::middleware([
         Route::get('job-offers/cities/{country}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getCities'])->name('job-offers.cities');
         Route::get('job-offers/getChildsCategory/{parent}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getChildsCategory'])->name('job-offers.getChildsCategory');
         Route::post('job-offers/{project}/toggle-status', [\App\Http\Controllers\Admin\JobOfferController::class, 'toggleStatus'])->name('job-offers.toggle-status');
-        Route::get('job-offers/export', [\App\Http\Controllers\Admin\JobOfferController::class, 'export'])->name('job-offers.export');
 
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
@@ -319,6 +319,11 @@ Route::middleware([
             Route::put('workers/{user}', [App\Http\Controllers\Admin\WorkerController::class, 'update'])->name('workers.update');
             Route::post('workers/{user}/block', [App\Http\Controllers\Admin\WorkerController::class, 'toggleBlock'])->name('workers.block');
             Route::post('workers/{user}/verify-email', [App\Http\Controllers\Admin\WorkerController::class, 'verifyEmail'])->name('workers.verifyEmail');
+
+            Route::get('workers/{user}/evidence', [App\Http\Controllers\Admin\WorkerController::class, 'evidence'])->name('workers.evidence');
+            Route::post('workers/{user}/evidence', [App\Http\Controllers\Admin\WorkerController::class, 'evidencesStore'])->name('workers.evidence.store');
+            Route::put('workers/{user}/evidence/{evidence}', [App\Http\Controllers\Admin\WorkerController::class, 'evidencesUpdate'])->name('workers.evidence.update');
+            Route::delete('workers/{user}/evidence/{evidence}', [App\Http\Controllers\Admin\WorkerController::class, 'evidencesDelete'])->name('workers.evidence.delete');
 
             Route::get('recruits', [App\Http\Controllers\Admin\RecruitController::class, 'index'])->name('recruits.index');
             Route::get('recruits/export', [App\Http\Controllers\Admin\RecruitController::class, 'export'])->name('recruits.export');

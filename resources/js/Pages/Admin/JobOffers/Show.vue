@@ -24,6 +24,7 @@ const selectedProject = ref(null);
 const confirmCancelProject = ref(false);
 const showChangeRecruit = ref(false);
 const map = ref(null);
+const lang = computed(() => usePage().props.language);
 
 const filteredOtherRecruits = computed(() => {
     return props.otherRecruits.filter(r => r.value !== props.project.recruit?.id);
@@ -62,6 +63,7 @@ const dispatchActionSingleRecruit = value => {
     });
 }
 
+
 const DeleteProject = () => {
     if (selectedProject.value) {
         router.delete(route('admin.job-offers.destroy', selectedProject.value), {
@@ -77,11 +79,19 @@ const DeleteProject = () => {
 const { getPositionTitle, getInitials } = useProjectHelpers();
 const projectTitle = computed(() => getPositionTitle(props.project));
 
+const getTranslation = (value) => {
+    if (!value) return '-';
+    if (typeof value === 'object') {
+        const locale = usePage().props.locale || 'pl';
+        return value[locale] || value['pl'] || Object.values(value)[0] || '-';
+    }
+    return value;
+};
+
 const hasLocation = computed(() => {
     return props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber;
 });
 
-const lang = computed(() => usePage().props.language);
 
 onMounted(async () => {
     if (!hasLocation.value) return;
@@ -234,7 +244,7 @@ onMounted(async () => {
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2 flex items-center gap-4" v-if="props.project.title">
                                     <div>
                                         <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.projectTitleLabel') }}</p>
-                                        <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.title[lang] }}</p>
+                                        <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.title) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -287,19 +297,19 @@ onMounted(async () => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.industryLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.category?.allTranslations?.title[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.category?.allTranslations?.title) }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.subIndustryLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.categorySub?.allTranslations?.title[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.categorySub?.allTranslations?.title) }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.professionLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.profession?.allTranslations?.title[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.profession?.allTranslations?.title) }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.positionLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.position?.allTranslations?.title[lang] ?? __('translate.noPosition') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.position?.allTranslations?.title) ?? __('translate.noPosition') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -324,7 +334,7 @@ onMounted(async () => {
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.payoutModeLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.payoutMode?.allTranslations?.name[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.payoutMode?.allTranslations?.name) }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.bonusSalaryFrom || props.project.bonusSalaryTo">
@@ -339,7 +349,7 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-2">
                                         <span v-for="(pay, index) in props.project.paySystem" :key="index"
                                               class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
-                                           {{ pay.allTranslations?.name[lang] }}
+                                           {{ getTranslation(pay.allTranslations?.name) }}
                                         </span>
                                     </div>
                                 </div>
@@ -359,7 +369,7 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-2">
                                         <span v-for="(working, index) in props.project.workingMode" :key="index"
                                               class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
-                                           {{ working.allTranslations?.title[lang] }}
+                                           {{ getTranslation(working.allTranslations?.title) }}
                                         </span>
                                     </div>
                                 </div>
@@ -369,14 +379,14 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-2">
                                         <span v-for="(type, index) in props.project.typeOfContract" :key="index"
                                               class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
-                                           {{ type.allTranslations?.name[lang] }}
+                                           {{ getTranslation(type.allTranslations?.name) }}
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workScopeLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.workLoad?.allTranslations?.name[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.workLoad?.allTranslations?.name) }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
@@ -394,10 +404,9 @@ onMounted(async () => {
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.shift_work">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.shiftWorkLabel') }}</p>
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                        {{ props.project.shift_work?.name?.[usePage().props.language] }}
+                                        {{ getTranslation(props.project.shift_work?.name) }}
                                     </p>
                                 </div>
-
                             </div>
 
                             <div class="mt-8" v-if="props.project.days && props.project.days.length">
@@ -406,8 +415,69 @@ onMounted(async () => {
                                     <span v-for="(day, index) in props.project.days"
                                           :key="index"
                                           class="px-5 py-2.5 bg-gray-50 rounded-2xl text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest border border-gray-100 shadow-sm">
-                                        {{ day.allTranslations?.name[lang] }}
+                                        {{ getTranslation(day.allTranslations?.name) }}
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CV i Pytania -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center gap-4 mb-8">
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.cv') }} & {{ __('translate.questions') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
+                            </div>
+
+                            <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 mb-8">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{ __('translate.cv') }}</p>
+                                <div class="flex items-center gap-6">
+                                    <template v-for="cv in props.project.cv" :key="cv.id">
+                                        <div class="flex flex-col items-center gap-1 group/cv">
+                                            <img
+                                                v-if="cv.id === 1"
+                                                src="/images/icons/cv-classic.svg"
+                                                class="w-8 h-8 opacity-80 group-hover/cv:opacity-100 transition-opacity"
+                                            />
+                                            <img
+                                                v-if="cv.id === 2"
+                                                src="/images/icons/cv-video.svg"
+                                                class="w-8 h-8 opacity-80 group-hover/cv:opacity-100 transition-opacity"
+                                            />
+                                            <img
+                                                v-if="cv.id === 3"
+                                                src="/images/icons/cv-audio.svg"
+                                                class="w-8 h-8 opacity-80 group-hover/cv:opacity-100 transition-opacity"
+                                            />
+                                            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{{ getTranslation(cv.name) }}</span>
+                                        </div>
+                                    </template>
+                                    <p v-if="!props.project.cv?.length" class="text-sm font-black text-gray-400 uppercase tracking-tight italic">
+                                        -
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div v-if="props.project.questions && props.project.questions.length" class="space-y-4">
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{ __('translate.questions') }}</p>
+                                <div v-for="(question, index) in props.project.questions" :key="index"
+                                     class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 transition-all hover:bg-gray-50">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div class="flex flex-col gap-1">
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.question') }} #{{ index + 1 }}</p>
+                                            <div v-if="props.project.cv?.some(c => c.id === 2 || c.id === 3)" class="flex items-center gap-1">
+                                                <span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[8px] font-black uppercase tracking-widest rounded-md border border-blue-100">
+                                                    {{ props.project.cv?.find(c => c.id === 2) ? __('translate.cv_video') : (props.project.cv?.find(c => c.id === 3) ? __('translate.cv_audio') : '') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div v-if="question.answer_time" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-lg border border-gray-100 shadow-sm">
+                                            <svg class="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            <span class="text-[9px] font-black text-[#0A2C5C] uppercase tracking-widest">{{ question.answer_time }}s</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        {{ getTranslation(question.content) || getTranslation(question.question) }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -422,12 +492,12 @@ onMounted(async () => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.experience">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.experienceInternational') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.experience?.allTranslations?.name[lang] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.experience?.allTranslations?.name) }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.education">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.educationLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.education?.name?.[lang] || props.project.education?.name }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.education?.name) }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2" v-if="props.project.welcome && props.project.welcome.length">
@@ -435,7 +505,7 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-3">
                                         <span v-for="(w, index) in props.project.welcome" :key="index"
                                               class="px-5 py-2.5 bg-white rounded-2xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
-                                          {{ w.allTranslations?.name[lang] }}
+                                          {{ getTranslation(w.allTranslations?.name) }}
                                         </span>
                                     </div>
                                 </div>
@@ -452,7 +522,7 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-3">
                                 <span v-for="(off, index) in props.project.offer" :key="index"
                                       class="px-6 py-3 bg-[#00a0e3] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-400/20 transition-all hover:-translate-y-0.5">
-                                    {{ off.allTranslations?.name[lang] }}
+                                    {{ getTranslation(off.allTranslations?.name) }}
                                 </span>
                             </div>
                         </div>
@@ -467,7 +537,7 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-3">
                                 <span v-for="(w, index) in props.project.wait" :key="index"
                                       class="px-6 py-3 bg-white text-gray-700 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-gray-100 shadow-sm transition-all hover:bg-gray-50">
-                                    {{ w.allTranslations?.name[lang] }}
+                                    {{ getTranslation(w.allTranslations?.name) }}
                                 </span>
                             </div>
                         </div>
@@ -496,7 +566,7 @@ onMounted(async () => {
                                     <div>
                                         <p class="text-sm font-black text-gray-900 uppercase tracking-tight">{{ props.project.cityWork }}</p>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                            {{ props.project.countryWork?.allTranslations?.[lang] || props.project.countryWork?.name || props.project.countryWork }}
+                                            {{ getTranslation(props.project.countryWork?.allTranslations) || props.project.countryWork?.name || props.project.countryWork }}
                                         </p>
                                     </div>
                                 </div>
@@ -523,7 +593,7 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-3">
                                 <span v-for="(country, index) in props.project.country" :key="index"
                                       class="px-4 py-2 bg-gray-50 rounded-xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
-                                    {{ country.allTranslations?.[lang] || country.name }}
+                                    {{ getTranslation(country.allTranslations) || country.name }}
                                 </span>
                             </div>
                         </div>
@@ -534,7 +604,7 @@ onMounted(async () => {
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workplaceLabel') }}</h2>
                             </div>
                             <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                {{ props.project.workingPlace?.allTranslations?.name[lang] }}
+                                {{ getTranslation(props.project.workingPlace?.allTranslations?.name) }}
                             </p>
                         </div>
 
