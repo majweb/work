@@ -286,6 +286,20 @@ Route::middleware([
         Route::put('categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update');
         Route::delete('categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.destroy');
 
+        Route::get('countries', [\App\Http\Controllers\Admin\CountryController::class, 'index'])->name('countries.index');
+        Route::get('countries/create', [\App\Http\Controllers\Admin\CountryController::class, 'create'])->name('countries.create');
+        Route::post('countries', [\App\Http\Controllers\Admin\CountryController::class, 'store'])->name('countries.store');
+        Route::get('countries/{country}/edit', [\App\Http\Controllers\Admin\CountryController::class, 'edit'])->name('countries.edit');
+        Route::put('countries/{country}', [\App\Http\Controllers\Admin\CountryController::class, 'update'])->name('countries.update');
+        Route::delete('countries/{country}', [\App\Http\Controllers\Admin\CountryController::class, 'destroy'])->name('countries.destroy');
+
+        Route::get('languages', [\App\Http\Controllers\Admin\LanguageController::class, 'index'])->name('languages.index');
+        Route::get('languages/create', [\App\Http\Controllers\Admin\LanguageController::class, 'create'])->name('languages.create');
+        Route::post('languages', [\App\Http\Controllers\Admin\LanguageController::class, 'store'])->name('languages.store');
+        Route::get('languages/{language}/edit', [\App\Http\Controllers\Admin\LanguageController::class, 'edit'])->name('languages.edit');
+        Route::put('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'update'])->name('languages.update');
+        Route::delete('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'destroy'])->name('languages.destroy');
+
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])

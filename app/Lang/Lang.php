@@ -4,7 +4,7 @@ namespace App\Lang;
 
 enum Lang: string
 {
-    case AM = 'am';
+case AM = 'am';
     case AR = 'ar';
     case AZ = 'az';
     case BE = 'be';
@@ -68,12 +68,11 @@ enum Lang: string
     case VI = 'vi';
     case ZH = 'zh';
 
-
     public function label(): string
     {
         $array = [
             'ar' => [
-                'ar' => 'البولندية',
+                                                                'ar' => 'البولندية',
                 'pt' => 'البرتغالية',
                 'fr' => 'الفرنسية',
                 'en' => 'الإنجليزية',
@@ -138,7 +137,7 @@ enum Lang: string
                 'pl' => 'البولندية',
             ],
             'pt' => [
-                'ar' => 'Árabe',
+                                                                'ar' => 'Árabe',
                 'pt' => 'Português',
                 'fr' => 'Francês',
                 'en' => 'Inglês',
@@ -203,7 +202,7 @@ enum Lang: string
                 'pl' => 'Polonês',
             ],
             'fr' => [
-                'ar' => 'Arabe',
+                                                                'ar' => 'Arabe',
                 'pt' => 'Portugais',
                 'fr' => 'Français',
                 'en' => 'Anglais',
@@ -268,7 +267,7 @@ enum Lang: string
                 'pl' => 'Polonais',
             ],
             'en' => [
-                'ar' => "Arabic",
+                                                                'ar' => "Arabic",
                 'pt' => "Portuguese",
                 'fr' => "French",
                 'en' => "English",
@@ -330,10 +329,10 @@ enum Lang: string
                 'tr' => "Turkish",
                 'uk' => "Ukrainian",
                 'hu' => "Hungarian",
-                'pl' => "Polish",
+                'pl' => 'Polish',
             ],
             'am' => [
-                'ar' => 'አረብኛ',
+                                                                'ar' => 'አረብኛ',
                 'pt' => 'ፖርቱጋልኛ',
                 'fr' => 'ፈረንሳይኛ',
                 'en' => 'እንግሊዝኛ',
@@ -398,7 +397,7 @@ enum Lang: string
                 'pl' => 'ፖሊሽኛ',
             ],
             'es' => [
-                'ar' => 'Árabe',
+                                                                'ar' => 'Árabe',
                 'pt' => 'Portugués',
                 'fr' => 'Francés',
                 'en' => 'Inglés',
@@ -463,7 +462,7 @@ enum Lang: string
                 'pl' => 'Polaco',
             ],
             'nl' => [
-                'ar' => 'Arabisch',
+                                                                'ar' => 'Arabisch',
                 'pt' => 'Portugees',
                 'fr' => 'Frans',
                 'en' => 'Engels',
@@ -528,7 +527,7 @@ enum Lang: string
                 'pl' => 'Pools',
             ],
             'ps' => [
-                'ar' => 'عربي',
+                                                                'ar' => 'عربي',
                 'pt' => 'پورتګالي',
                 'fr' => 'فرانسوي',
                 'en' => 'انګلیسي',
@@ -593,7 +592,7 @@ enum Lang: string
                 'pl' => 'پولنډي',
             ],
             'hy' => [
-                'ar' => 'Արաբերեն',
+                                                                'ar' => 'Արաբերեն',
                 'pt' => 'Պորտուգալերեն',
                 'fr' => 'Ֆրանսերեն',
                 'en' => 'Անգլերեն',
@@ -658,7 +657,7 @@ enum Lang: string
                 'pl' => 'Լեհերեն',
             ],
             'az' => [
-                'ar' => 'Ərəb',
+                                                                'ar' => 'Ərəb',
                 'pt' => 'Portuqal',
                 'fr' => 'Fransız',
                 'en' => 'İngilis',
@@ -723,7 +722,7 @@ enum Lang: string
                 'pl' => 'Polyak',
             ],
             'bn' => [
-                'ar' => 'আরবি',
+                                                                'ar' => 'আরবি',
                 'pt' => 'পর্তুগিজ',
                 'fr' => 'ফরাসি',
                 'en' => 'ইংরেজি',
@@ -788,7 +787,7 @@ enum Lang: string
                 'pl' => 'পোলিশ',
             ],
             'dz' => [
-                'ar' => 'ཨེ་ར་བི་སི།', // Arabski
+                                                                'ar' => 'ཨེ་ར་བི་སི།', // Arabski
                 'pt' => 'པོར་ཏུ་གེསི།', // Portugalski
                 'fr' => 'ཕྲན་སིས།', // Francuski
                 'en' => 'དབྱིན་ཇི།', // Angielski
@@ -853,7 +852,7 @@ enum Lang: string
                 'pl' => 'ཕོ་ལིསི་ཁ།', // Polski
             ],
             'ms' => [
-                'ar' => 'Bahasa Arab',
+                                                                'ar' => 'Bahasa Arab',
                 'pt' => 'Bahasa Portugis',
                 'fr' => 'Bahasa Perancis',
                 'en' => 'Bahasa Inggeris',
@@ -918,7 +917,7 @@ enum Lang: string
                 'pl' => 'Bahasa Poland',
             ],
             'zh' => [
-                'ar' => '阿拉伯语',
+                                                                'ar' => '阿拉伯语',
                 'pt' => '葡萄牙语',
                 'fr' => '法语',
                 'en' => '英语',
@@ -983,7 +982,7 @@ enum Lang: string
                 'pl' => '波兰语',
             ],
             'ka' => [
-                'ar' => 'არაბული',
+                                                                'ar' => 'არაბული',
                 'pt' => 'პორტუგალიური',
                 'fr' => 'ფრანგული',
                 'en' => 'ინგლისური',
@@ -1048,7 +1047,7 @@ enum Lang: string
                 'pl' => 'პოლონური',
             ],
             'hi' => [
-                'ar' => 'अरबी',
+                                                                'ar' => 'अरबी',
                 'pt' => 'पुर्तगाली',
                 'fr' => 'फ्रेंच',
                 'en' => 'अंग्रेज़ी',
@@ -1113,7 +1112,7 @@ enum Lang: string
                 'pl' => 'पोलिश',
             ],
             'id' => [
-                'ar' => 'Arab',
+                                                                'ar' => 'Arab',
                 'pt' => 'Portugis',
                 'fr' => 'Prancis',
                 'en' => 'Inggris',
@@ -1178,7 +1177,7 @@ enum Lang: string
                 'pl' => 'Polandia',
             ],
             'fa' => [
-                'ar' => 'عربی',
+                                                                'ar' => 'عربی',
                 'pt' => 'پرتغالی',
                 'fr' => 'فرانسوی',
                 'en' => 'انگلیسی',
@@ -1243,7 +1242,7 @@ enum Lang: string
                 'pl' => 'لهستانی',
             ],
             'he' => [
-                'ar' => 'ערבית',
+                                                                'ar' => 'ערבית',
                 'pt' => 'פורטוגזית',
                 'fr' => 'צרפתית',
                 'en' => 'אנגלית',
@@ -1308,7 +1307,7 @@ enum Lang: string
                 'pl' => 'פולנית',
             ],
             'ja' => [
-                'ar' => 'アラビア語',
+                                                                'ar' => 'アラビア語',
                 'pt' => 'ポルトガル語',
                 'fr' => 'フランス語',
                 'en' => '英語',
@@ -1373,7 +1372,7 @@ enum Lang: string
                 'pl' => 'ポーランド語',
             ],
             'km' => [
-                'ar' => 'អារ៉ាប់',
+                                                                'ar' => 'អារ៉ាប់',
                 'pt' => 'ព័រទុយហ្កាល់',
                 'fr' => 'បារាំង',
                 'en' => 'អង់គ្លេស',
@@ -1438,7 +1437,7 @@ enum Lang: string
                 'pl' => 'ប៉ូឡូញ',
             ],
             'ru' => [
-                'ar' => 'Арабский',
+                                                                'ar' => 'Арабский',
                 'pt' => 'Португальский',
                 'fr' => 'Французский',
                 'en' => 'Английский',
@@ -1503,7 +1502,7 @@ enum Lang: string
                 'pl' => 'Польский',
             ],
             'ko' => [
-                'ar' => '아랍어',
+                                                                'ar' => '아랍어',
                 'pt' => '포르투갈어',
                 'fr' => '프랑스어',
                 'en' => '영어',
@@ -1568,7 +1567,7 @@ enum Lang: string
                 'pl' => '폴란드어',
             ],
             'lo' => [
-                'ar' => 'ພາສາອາຣັບ',
+                                                                'ar' => 'ພາສາອາຣັບ',
                 'pt' => 'ພາສາປອກຕູເກສ',
                 'fr' => 'ພາສາຝຣັ່ງ',
                 'en' => 'ພາສາອັງກິດ',
@@ -1633,7 +1632,7 @@ enum Lang: string
                 'pl' => 'ພາສາໂປໂລນດ໌',
             ],
             'dv' => [
-                'ar' => 'އަރަބިއެން',
+                                                                'ar' => 'އަރަބިއެން',
                 'pt' => 'ޕޯޓަގީސް',
                 'fr' => 'ފުރަންސިޔާތު',
                 'en' => 'އިނގްލިސް',
@@ -1698,7 +1697,7 @@ enum Lang: string
                 'pl' => 'ޕޮލިޝް',
             ],
             'my' => [
-                'ar' => 'အာရပ်',
+                                                                'ar' => 'အာရပ်',
                 'pt' => 'ပေါ်တူဂီ',
                 'fr' => 'ပြင်သစ်',
                 'en' => 'အင်္ဂလိပ်',
@@ -1763,7 +1762,7 @@ enum Lang: string
                 'pl' => 'ပိုလန်',
             ],
             'mn' => [
-                'ar' => 'Араб',
+                                                                'ar' => 'Араб',
                 'pt' => 'Португал',
                 'fr' => 'Франц',
                 'en' => 'Англи',
@@ -1828,7 +1827,7 @@ enum Lang: string
                 'pl' => 'Польш',
             ],
             'ne' => [
-                'ar' => 'अरबी',
+                                                                'ar' => 'अरबी',
                 'pt' => 'पोर्चुगाली',
                 'fr' => 'फ्रान्सेली',
                 'en' => 'अंग्रेजी',
@@ -1893,7 +1892,7 @@ enum Lang: string
                 'pl' => 'पोलिश',
             ],
             'si' => [
-                'ar' => 'අරාබි',
+                                                                'ar' => 'අරාබි',
                 'pt' => 'පොර්තුගීසි',
                 'fr' => 'ප්‍රංශ',
                 'en' => 'ඉංග්‍රීසි',
@@ -1958,7 +1957,7 @@ enum Lang: string
                 'pl' => 'පෝලන්ඩ්',
             ],
             'tg' => [
-                'ar' => 'Арабӣ',
+                                                                'ar' => 'Арабӣ',
                 'pt' => 'Португалӣ',
                 'fr' => 'Фаронса',
                 'en' => 'Англисӣ',
@@ -2023,7 +2022,7 @@ enum Lang: string
                 'pl' => 'Лаҳистонӣ',
             ],
             'th' => [
-                'ar' => 'อาหรับ',
+                                                                'ar' => 'อาหรับ',
                 'pt' => 'โปรตุเกส',
                 'fr' => 'ฝรั่งเศส',
                 'en' => 'อังกฤษ',
@@ -2088,7 +2087,7 @@ enum Lang: string
                 'pl' => 'โปแลนด์',
             ],
             'tk' => [
-                'ar' => 'Arapça',
+                                                                'ar' => 'Arapça',
                 'pt' => 'Portugallarça',
                 'fr' => 'Fransuzça',
                 'en' => 'Iňlisçe',
@@ -2153,7 +2152,7 @@ enum Lang: string
                 'pl' => 'Polýakça',
             ],
             'uz' => [
-                'ar' => 'Arabcha',
+                                                                'ar' => 'Arabcha',
                 'pt' => 'Portugalcha',
                 'fr' => 'Fransuzcha',
                 'en' => 'Inglizcha',
@@ -2218,7 +2217,7 @@ enum Lang: string
                 'pl' => 'Polyakcha',
             ],
             'vi' => [
-                'ar' => 'Tiếng Ả Rập',
+                                                                'ar' => 'Tiếng Ả Rập',
                 'pt' => 'Tiếng Bồ Đào Nha',
                 'fr' => 'Tiếng Pháp',
                 'en' => 'Tiếng Anh',
@@ -2283,7 +2282,7 @@ enum Lang: string
                 'pl' => 'Tiếng Ba Lan',
             ],
             'sq' => [
-                'ar' => 'Arabisht',
+                                                                'ar' => 'Arabisht',
                 'pt' => 'Portugeze',
                 'fr' => 'Frëngjisht',
                 'en' => 'Anglisht',
@@ -2348,7 +2347,7 @@ enum Lang: string
                 'pl' => 'Polonisht',
             ],
             'ca' => [
-                'ar' => 'Àrab',
+                                                                'ar' => 'Àrab',
                 'pt' => 'Portuguès',
                 'fr' => 'Francès',
                 'en' => 'Anglès',
@@ -2413,7 +2412,7 @@ enum Lang: string
                 'pl' => 'Polonès',
             ],
             'de' => [
-                'ar' => 'Arabisch',
+                                                                'ar' => 'Arabisch',
                 'pt' => 'Portugiesisch',
                 'fr' => 'Französisch',
                 'en' => 'Englisch',
@@ -2478,7 +2477,7 @@ enum Lang: string
                 'pl' => 'Polnisch',
             ],
             'be' => [
-                'ar' => 'Арабская',
+                                                                'ar' => 'Арабская',
                 'pt' => 'Партугальская',
                 'fr' => 'Французская',
                 'en' => 'Англійская',
@@ -2543,7 +2542,7 @@ enum Lang: string
                 'pl' => 'Польская',
             ],
             'bs' => [
-                'ar' => 'Arapski',
+                                                                'ar' => 'Arapski',
                 'pt' => 'Portugalski',
                 'fr' => 'Francuski',
                 'en' => 'Engleski',
@@ -2608,7 +2607,7 @@ enum Lang: string
                 'pl' => 'Poljski',
             ],
             'bg' => [
-                'ar' => 'Арабски',
+                                                                'ar' => 'Арабски',
                 'pt' => 'Португалски',
                 'fr' => 'Френски',
                 'en' => 'Английски',
@@ -2673,7 +2672,7 @@ enum Lang: string
                 'pl' => 'Полски',
             ],
             'hr' => [
-                'ar' => 'Arapski',
+                                                                'ar' => 'Arapski',
                 'pt' => 'Portugalski',
                 'fr' => 'Francuski',
                 'en' => 'Engleski',
@@ -2738,7 +2737,7 @@ enum Lang: string
                 'pl' => 'Poljski',
             ],
             'el' => [
-                'ar' => 'Αραβικά',
+                                                                'ar' => 'Αραβικά',
                 'pt' => 'Πορτογαλικά',
                 'fr' => 'Γαλλικά',
                 'en' => 'Αγγλικά',
@@ -2803,7 +2802,7 @@ enum Lang: string
                 'pl' => 'Πολωνικά',
             ],
             'me' => [
-                'ar' => 'Арапски',
+                                                                'ar' => 'Арапски',
                 'pt' => 'Португалски',
                 'fr' => 'Француски',
                 'en' => 'Енглески',
@@ -2868,7 +2867,7 @@ enum Lang: string
                 'pl' => 'Пољски',
             ],
             'cs' => [
-                'ar' => 'Arabština',
+                                                                'ar' => 'Arabština',
                 'pt' => 'Portugalština',
                 'fr' => 'Francouzština',
                 'en' => 'Angličtina',
@@ -2933,7 +2932,7 @@ enum Lang: string
                 'pl' => 'Polština',
             ],
             'da' => [
-                'ar' => 'Arabisk',
+                                                                'ar' => 'Arabisk',
                 'pt' => 'Portugisisk',
                 'fr' => 'Fransk',
                 'en' => 'Engelsk',
@@ -2998,7 +2997,7 @@ enum Lang: string
                 'pl' => 'Polsk',
             ],
             'et' => [
-                'ar' => 'Araabia',
+                                                                'ar' => 'Araabia',
                 'pt' => 'Portugali',
                 'fr' => 'Prantsuse',
                 'en' => 'Inglise',
@@ -3063,7 +3062,7 @@ enum Lang: string
                 'pl' => 'Poola',
             ],
             'fi' => [
-                'ar' => 'Arabia',
+                                                                'ar' => 'Arabia',
                 'pt' => 'Portugali',
                 'fr' => 'Ranska',
                 'en' => 'Englanti',
@@ -3128,7 +3127,7 @@ enum Lang: string
                 'pl' => 'Puola',
             ],
             'is' => [
-                'ar' => 'Arabíska',
+                                                                'ar' => 'Arabíska',
                 'pt' => 'Portúgalska',
                 'fr' => 'Franska',
                 'en' => 'Enska',
@@ -3193,7 +3192,7 @@ enum Lang: string
                 'pl' => 'Pólska',
             ],
             'lt' => [
-                'ar' => 'Arabų',
+                                                                'ar' => 'Arabų',
                 'pt' => 'Portugalų',
                 'fr' => 'Prancūzų',
                 'en' => 'Anglų',
@@ -3258,7 +3257,7 @@ enum Lang: string
                 'pl' => 'Lenkų',
             ],
             'lb' => [
-                'ar' => 'Arabesch',
+                                                                'ar' => 'Arabesch',
                 'pt' => 'Portugisesch',
                 'fr' => 'Franséisch',
                 'en' => 'Englesch',
@@ -3323,7 +3322,7 @@ enum Lang: string
                 'pl' => 'Polnesch',
             ],
             'lv' => [
-                'ar' => 'Arābu',
+                                                                'ar' => 'Arābu',
                 'pt' => 'Portugāļu',
                 'fr' => 'Franču',
                 'en' => 'Angļu',
@@ -3388,7 +3387,7 @@ enum Lang: string
                 'pl' => 'Poļu',
             ],
             'mk' => [
-                'ar' => 'Арапски',
+                                                                'ar' => 'Арапски',
                 'pt' => 'Португалски',
                 'fr' => 'Француски',
                 'en' => 'Англиски',
@@ -3453,7 +3452,7 @@ enum Lang: string
                 'pl' => 'Полски',
             ],
             'ro' => [
-                'ar' => 'Arabă',
+                                                                'ar' => 'Arabă',
                 'pt' => 'Portugheză',
                 'fr' => 'Franceză',
                 'en' => 'Engleză',
@@ -3518,7 +3517,7 @@ enum Lang: string
                 'pl' => 'Poloneză',
             ],
             'it' => [
-                'ar' => 'Arabo',
+                                                                'ar' => 'Arabo',
                 'pt' => 'Portoghese',
                 'fr' => 'Francese',
                 'en' => 'Inglese',
@@ -3583,7 +3582,7 @@ enum Lang: string
                 'pl' => 'Polacco',
             ],
             'sr' => [
-                'ar' => 'Арапски',
+                                                                'ar' => 'Арапски',
                 'pt' => 'Португалски',
                 'fr' => 'Француски',
                 'en' => 'Енглески',
@@ -3648,7 +3647,7 @@ enum Lang: string
                 'pl' => 'Пољски',
             ],
             'sk' => [
-                'ar' => 'Arabčina',
+                                                                'ar' => 'Arabčina',
                 'pt' => 'Portugalčina',
                 'fr' => 'Francúzština',
                 'en' => 'Angličtina',
@@ -3713,7 +3712,7 @@ enum Lang: string
                 'pl' => 'Poľština',
             ],
             'sl' => [
-                'ar' => 'Arabščina',
+                                                                'ar' => 'Arabščina',
                 'pt' => 'Portugalščina',
                 'fr' => 'Francoščina',
                 'en' => 'Angleščina',
@@ -3778,7 +3777,7 @@ enum Lang: string
                 'pl' => 'Poljski',
             ],
             'no' => [
-                'ar' => 'Arabisk',
+                                                                'ar' => 'Arabisk',
                 'pt' => 'Portugisisk',
                 'fr' => 'Fransk',
                 'en' => 'Engelsk',
@@ -3843,7 +3842,7 @@ enum Lang: string
                 'pl' => 'Polsk',
             ],
             'sv' => [
-                'ar' => 'Arabiska',
+                                                                'ar' => 'Arabiska',
                 'pt' => 'Portugisiska',
                 'fr' => 'Franska',
                 'en' => 'Engelska',
@@ -3908,7 +3907,7 @@ enum Lang: string
                 'pl' => 'Polska',
             ],
             'tr' => [
-                'ar' => 'Arapça',
+                                                                'ar' => 'Arapça',
                 'pt' => 'Portekizce',
                 'fr' => 'Fransızca',
                 'en' => 'İngilizce',
@@ -3973,7 +3972,7 @@ enum Lang: string
                 'pl' => 'Lehçe',
             ],
             'uk' => [
-                'ar' => 'Арабська',
+                                                                'ar' => 'Арабська',
                 'pt' => 'Португальська',
                 'fr' => 'Французька',
                 'en' => 'Англійська',
@@ -4038,7 +4037,7 @@ enum Lang: string
                 'pl' => 'Польська',
             ],
             'hu' => [
-                'ar' => 'Arab',
+                                                                'ar' => 'Arab',
                 'pt' => 'Portugál',
                 'fr' => 'Francia',
                 'en' => 'Angol',
@@ -4103,7 +4102,7 @@ enum Lang: string
                 'pl' => 'Lengyel',
             ],
             'pl' => [
-                'ar' => 'Arabski',
+                                                                'ar' => 'Arabski',
                 'pt' => 'Portugalski',
                 'fr' => 'Francuski',
                 'en' => 'Angielski',
