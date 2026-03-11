@@ -246,9 +246,7 @@ class ProjectController extends Controller implements HasMiddleware
         $educations = Cache::rememberForever('educations', function() {
             return PayModesResource::collection(Education::all());
         });
-        $currencies = Cache::rememberForever('currencies', function() {
-            return config('currencyShorts');
-        });
+        $currencies = config('currencyShorts');
         $cvs = Cache::rememberForever('cvs', function() {
             return PayModesResource::collection(CvType::all());
         });
@@ -460,9 +458,7 @@ class ProjectController extends Controller implements HasMiddleware
         $educations = Cache::rememberForever('educations', function() {
             return PayModesResource::collection(Education::all());
         });
-        $currencies = Cache::rememberForever('currencies', function() {
-            return config('currencyShorts');
-        });
+        $currencies = config('currencyShorts');
         $cvs = Cache::rememberForever('cvs', function() {
             return PayModesResource::collection(CvType::all());
         });

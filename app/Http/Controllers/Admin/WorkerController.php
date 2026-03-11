@@ -90,9 +90,7 @@ class WorkerController extends Controller
         $countries = Cache::rememberForever('countries_'.app()->getLocale(), function () {
             return (new Helper())->makeCountriesToSelect();
         });
-        $currencies = Cache::rememberForever('currencies', function () {
-            return config('currencyShorts');
-        });
+        $currencies = config('currencyShorts');
 
         $candidate->load(['evidences' => function ($query) {
             $query->orderBy('date_of_hire', 'desc');

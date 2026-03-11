@@ -300,6 +300,13 @@ Route::middleware([
         Route::put('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'update'])->name('languages.update');
         Route::delete('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'destroy'])->name('languages.destroy');
 
+        Route::get('currencies', [\App\Http\Controllers\Admin\CurrencyController::class, 'index'])->name('currencies.index');
+        Route::get('currencies/create', [\App\Http\Controllers\Admin\CurrencyController::class, 'create'])->name('currencies.create');
+        Route::post('currencies', [\App\Http\Controllers\Admin\CurrencyController::class, 'store'])->name('currencies.store');
+        Route::get('currencies/{currency}/edit', [\App\Http\Controllers\Admin\CurrencyController::class, 'edit'])->name('currencies.edit');
+        Route::put('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'update'])->name('currencies.update');
+        Route::delete('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'destroy'])->name('currencies.destroy');
+
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])

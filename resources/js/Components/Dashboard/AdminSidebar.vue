@@ -57,6 +57,7 @@ const menuItems = [
             { name: 'Kategorie stanowisk', route: 'admin.categories.index' },
             { name: 'Kraje', route: 'admin.countries.index' },
             { name: 'Języki', route: 'admin.languages.index' },
+            { name: 'Waluty', route: 'admin.currencies.index' },
         ]
     },
     { name: 'Rekrutacja', icon: 'recruitment', route: 'admin.aplicationsA.index' },
