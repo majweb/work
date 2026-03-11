@@ -34,6 +34,7 @@ class WorkersExport implements FromCollection, WithCustomCsvSettings, WithHeadin
             'Email',
             'Telefon',
             'Status',
+            'Profil kandydata',
             'Data rejestracji',
         ];
     }
@@ -54,6 +55,7 @@ class WorkersExport implements FromCollection, WithCustomCsvSettings, WithHeadin
             $user->email,
             $user->workerDetail?->contact_phone ?? '-',
             $status,
+            $user->candidate ? 'Tak' : 'Nie',
             $user->created_at?->format('Y-m-d H:i') ?? '-',
         ];
     }

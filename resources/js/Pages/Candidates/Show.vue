@@ -21,30 +21,96 @@ const props = defineProps({
 });
 const locale = computed(() => usePage().props.language);
 
-// Dane
+// --- State ---
 const professionCategories = ref(props.categories || []);
 const customTags = ref(props.customTags || []);
 const selectedTags = ref(props.selectedCandidateTags || []);
 const currentCategoryPage = ref(1);
-const categoriesPerPage = 60; // Liczba kategorii na stronę
+const categoriesPerPage = 60;
 const tagColors = {};
 const categorySearchQuery = ref('');
 const customTagSearchQuery = ref('');
 const isSavingTags = ref(false);
 const isSavingCv = ref(false);
 
-// Upewniamy się, że selectedTags jest zawsze tablicą
-if (!Array.isArray(selectedTags.value)) {
-    selectedTags.value = [];
-}
+const form = useForm({
+    tags: []
+});
 
-// Funkcje pomocnicze
+const answersForm = useForm({
+    answers: []
+});
+
+const questionsForm = useForm({ });
+
+const existingFile = [{
+    source: props.candidate?.cv_file?.name,
+    options: {
+        type: 'local',
+        file: {
+            name: props.candidate?.cv_file?.name,
+            size: props.candidate?.cv_file?.size,
+        },
+        metadata: {
+            poster: props.candidate?.cv_file?.url
+        }
+    }
+}];
+
+const cvForm = useForm({
+    cvFile: (props.candidate?.cv_file && existingFile) ? existingFile : []
+});
+
+const totalCategoryPages = computed(() => {
+    return Math.ceil(filteredCategories.value.length / categoriesPerPage);
+});
+
+const filteredCategories = computed(() => {
+    const locale = usePage().props.language || 'pl';
+    return professionCategories.value.filter(category => {
+        if (!category || !category.title) return false;
+        const hasValidTitle = category.title[locale] && category.title[locale].trim() !== '';
+
+        if (categorySearchQuery.value.trim() !== '') {
+            const searchTerm = categorySearchQuery.value.toLowerCase();
+            const localizedTitle = (category.title[locale] || '').toLowerCase();
+            return hasValidTitle && localizedTitle.includes(searchTerm);
+        }
+
+        return hasValidTitle;
+    });
+});
+
+const paginatedCategories = computed(() => {
+    const startIndex = (currentCategoryPage.value - 1) * categoriesPerPage;
+    const endIndex = startIndex + categoriesPerPage;
+    return filteredCategories.value.slice(startIndex, endIndex);
+});
+
+const filteredCustomTags = computed(() => {
+    const tags = Array.isArray(customTags.value) ? customTags.value : [];
+
+    if (customTagSearchQuery.value.trim() === '') {
+        return tags;
+    }
+
+    const searchTerm = customTagSearchQuery.value.toLowerCase();
+    return tags.filter(tag => {
+        return tag.name.toLowerCase().includes(searchTerm);
+    });
+});
+
+// --- Watchers ---
+watch(categorySearchQuery, () => {
+    currentCategoryPage.value = 1;
+});
+
+// --- Helper Functions ---
 const getLocalizedTitle = (title) => {
     if (!title) return '';
     return title[locale] || title['pl'] || (Object.values(title).length > 0 ? Object.values(title)[0] : '');
 };
 
-// Funkcje pomocnicze do projektów
 const getLocalizedProjectTitle = (project) => {
     if (!project.title) return __('translate.projectWithoutTitle');
     return getLocalizedProjectAttribute(project, 'title');
@@ -55,30 +121,18 @@ const getLocalizedProjectAttribute = (project, attributeName) => {
     const attribute = project[attributeName];
 
     if (!attribute) return '';
-
-    // Jeśli to nie jest obiekt/tablica, zwróć wartość bezpośrednio
     if (typeof attribute !== 'object') return attribute;
+    if (Array.isArray(attribute)) return attribute;
 
-    // Pobierz aktualny język z usePage
-
-    // Jeśli to jest tablica obiektów (np. country) spróbuj pobrać nazwę
-    if (Array.isArray(attribute)) {
-        return attribute;
-    }
-
-    // Jeśli to jest obiekt tłumaczeń
     if (attribute[locale]) return attribute[locale];
     if (attribute['pl']) return attribute['pl'];
 
-    // Jeśli nie znaleziono tłumaczenia, zwróć pierwszą dostępną wartość
     const firstKey = Object.keys(attribute)[0];
     return firstKey ? attribute[firstKey] : '';
 };
 
-// Generowanie kolorów dla tagów
 const getTagColor = (id) => {
     if (!tagColors[id]) {
-        // Generowanie pastelowych kolorów
         const hue = (id * 137.5) % 360;
         const saturation = 60 + (id % 20);
         const lightness = 75 + (id % 15);
@@ -87,9 +141,7 @@ const getTagColor = (id) => {
     return tagColors[id];
 };
 
-// Określanie koloru tekstu na podstawie tła
 const getContrastColor = (backgroundColor) => {
-    // Prosty algorytm do określenia ciemności koloru
     const rgb = hexToRgb(backgroundColor) || {r: 200, g: 200, b: 200};
     const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
     return brightness > 128 ? '#000000' : '#FFFFFF';
@@ -104,14 +156,11 @@ const getContrastColorText = (bgColor) => {
     return (r*0.299 + g*0.587 + b*0.114) > 186 ? '#000' : '#fff';
 };
 
-// Konwersja HSL do RGB
 const hexToRgb = (hex) => {
-    // Jeśli to jest format HSL, zwracamy domyślne wartości
     if (hex.startsWith('hsl')) {
         return {r: 200, g: 200, b: 200};
     }
 
-    // Konwersja HEX do RGB
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
 
@@ -123,13 +172,7 @@ const hexToRgb = (hex) => {
     } : null;
 };
 
-const removeFile = async (source, load) => {
-    console.log(source)
-    await router.delete(route('candidate-cv.delete', props.candidate.id), {'source': source});
-    load();
-}
-
-// Obsługa tagów
+// --- CRUD & Actions ---
 const toggleCategoryTag = (category) => {
     const index = selectedTags.value.findIndex(tag =>
         tag.id === category.id && tag.type === 'category'
@@ -170,66 +213,11 @@ const removeTag = (tag) => {
 
     if (index !== -1) {
         selectedTags.value.splice(index, 1);
-        // Po usunięciu ostatniego tagu, zapewniamy że będzie pusta tablica
         if (selectedTags.value.length === 0) {
             selectedTags.value = [];
         }
     }
 };
-
-const form = useForm({
-    tags: []
-});
-
-const answersForm = useForm({
-    answers: []
-});
-
-// Obliczanie całkowitej liczby stron dla kategorii
-const totalCategoryPages = computed(() => {
-    return Math.ceil(filteredCategories.value.length / categoriesPerPage);
-});
-
-// Filtrowanie kategorii posiadających tłumaczenie w aktualnym języku i pasujące do wyszukiwania
-const filteredCategories = computed(() => {
-    const locale = usePage().props.language || 'pl';
-    return professionCategories.value.filter(category => {
-        if (!category || !category.title) return false;
-        const hasValidTitle = category.title[locale] && category.title[locale].trim() !== '';
-
-        // Jeśli jest fraza wyszukiwania, sprawdź czy kategoria ją zawiera
-        if (categorySearchQuery.value.trim() !== '') {
-            const searchTerm = categorySearchQuery.value.toLowerCase();
-            const localizedTitle = (category.title[locale] || '').toLowerCase();
-            return hasValidTitle && localizedTitle.includes(searchTerm);
-        }
-
-        return hasValidTitle;
-    });
-});
-
-// Pobranie paginowanych kategorii
-const paginatedCategories = computed(() => {
-    const startIndex = (currentCategoryPage.value - 1) * categoriesPerPage;
-    const endIndex = startIndex + categoriesPerPage;
-    return filteredCategories.value.slice(startIndex, endIndex);
-});
-
-// Filtrowanie tagów niestandardowych na podstawie wyszukiwania
-const filteredCustomTags = computed(() => {
-    // Upewnij się, że customTags.value jest tablicą
-    const tags = Array.isArray(customTags.value) ? customTags.value : [];
-
-    if (customTagSearchQuery.value.trim() === '') {
-        return tags;
-    }
-
-    const searchTerm = customTagSearchQuery.value.toLowerCase();
-    return tags.filter(tag => {
-        return tag.name.toLowerCase().includes(searchTerm);
-    });
-});
-
 
 const saveTags = () => {
     if (isSavingTags.value) return;
@@ -253,18 +241,73 @@ const saveTags = () => {
     });
 };
 
-// Resetowanie strony przy zmianie zapytania wyszukiwania
-watch(categorySearchQuery, () => {
-    currentCategoryPage.value = 1;
-});
+const removeFile = async (source, load) => {
+    await router.delete(route('candidate-cv.delete', props.candidate.id), {'source': source});
+    load();
+}
 
-// Pobieranie danych
+const deleteFile = (fileId) => {
+    if (confirm(__('translate.confirmDeleteFile'))) {
+        axios.delete(route('candidate-cv.delete', {candidate: props.candidate.id, file: fileId}))
+            .then(() => {
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Błąd podczas usuwania pliku', error);
+            });
+    }
+};
+
+const handleCvUpload = () => {
+    if (isSavingCv.value) return;
+
+    isSavingCv.value = true;
+
+    cvForm.post(route('candidate-cv.save', props.candidate.id), {
+        preserveScroll: true,
+        onFinish: () => {
+            isSavingCv.value = false;
+        }
+    });
+};
+
+const unlockQuestions = () => {
+    questionsForm.post(route('candidate.unlock-questions', props.candidate.id), {
+        preserveScroll: true,
+    });
+};
+
+const saveAnswers = () => {
+    answersForm.post(route('candidate.save-answers', props.candidate.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            initAnswersForm();
+        }
+    });
+};
+
+// --- Initialization ---
+const initAnswersForm = () => {
+    const formattedAnswers = props.candidateQuestions.map(question => {
+        const existingAnswer = question.candidate_answers?.find(
+            answer => answer.candidate_question_id === question.id && answer.candidate_id === props.candidate.id
+        );
+
+        return {
+            question_id: question.id,
+            text_answer: existingAnswer?.text_answer || '',
+            boolean_answer: existingAnswer?.boolean_answer === null ? null : existingAnswer?.boolean_answer,
+        };
+    });
+
+    answersForm.answers = formattedAnswers;
+};
+
 onMounted(async () => {
     if (!professionCategories.value || professionCategories.value.length === 0) {
         try {
             const response = await axios.get(route('categories.index'));
             professionCategories.value = response.data;
-            console.log('Pobrane kategorie:', professionCategories.value);
         } catch (error) {
             console.error('Błąd podczas pobierania kategorii:', error);
         }
@@ -282,12 +325,10 @@ onMounted(async () => {
     if (!selectedTags.value || selectedTags.value.length === 0) {
         try {
             const response = await axios.get(route('candidates.getTags', props.candidate.id));
-            // Przetwarzanie otrzymanych tagów, aby poprawnie obsługiwać dane
             selectedTags.value = response.data.map(tag => {
                 if (tag.type === 'category' && tag.rawTitle) {
                     return {
                         ...tag,
-                        // Zapewniamy, że title jest wyświetlane zgodnie z aktualnym językiem
                         title: getLocalizedTitle(tag.rawTitle)
                     };
                 }
@@ -299,48 +340,9 @@ onMounted(async () => {
     }
 });
 
-// Inicjalizacja formularza odpowiedzi
-const initAnswersForm = () => {
-    const formattedAnswers = props.candidateQuestions.map(question => {
-        // Znajdź odpowiedź na to pytanie jeśli istnieje
-        const existingAnswer = question.candidate_answers?.find(
-            answer => answer.candidate_question_id === question.id && answer.candidate_id === props.candidate.id
-        );
+initAnswersForm();
 
-        return {
-            question_id: question.id,
-            text_answer: existingAnswer?.text_answer || '',
-            boolean_answer: existingAnswer?.boolean_answer === null ? null : existingAnswer?.boolean_answer,
-        };
-    });
-
-    answersForm.answers = formattedAnswers;
-};
-
-// Formularz do odblokowywania pytań
-const questionsForm = useForm({});
-
-
-const existingFile = [{
-    source: props.candidate?.cv_file?.name,
-    options: {
-        type: 'local',
-        file: {
-            name: props.candidate?.cv_file?.name,
-            size: props.candidate?.cv_file?.size,
-        },
-        metadata: {
-            poster: props.candidate?.cv_file?.url
-        }
-    }
-}];
-
-// Formularz do CV
-const cvForm = useForm({
-    cvFile: (props.candidate?.cv_file && existingFile) ? existingFile : []
-});
-
-// Konfiguracja FilePond
+// --- FilePond Configuration ---
 const filepondOptions = {
     labelIdle: __('translate.label-idle'),
     labelFileProcessing: __('translate.labelFileProcessing'),
@@ -370,53 +372,6 @@ const filepondOptions = {
     maxFileSize: '10MB',
     credits: 'false',
 };
-
-// Obsługa przesyłania CV
-const handleCvUpload = () => {
-    if (isSavingCv.value) return;
-
-    isSavingCv.value = true;
-
-    cvForm.post(route('candidate-cv.save', props.candidate.id), {
-        preserveScroll: true,
-        onFinish: () => {
-            isSavingCv.value = false;
-        }
-    });
-};
-// Odblokowuje pytania dla tej aplikacji pobierając punkty
-const unlockQuestions = () => {
-    questionsForm.post(route('candidate.unlock-questions', props.candidate.id), {
-        preserveScroll: true,
-    });
-};
-// Zapisanie odpowiedzi
-const saveAnswers = () => {
-    answersForm.post(route('candidate.save-answers', props.candidate.id), {
-        preserveScroll: true,
-        onSuccess: () => {
-            // Odświeżenie danych
-            initAnswersForm();
-        }
-    });
-};
-
-// Usuwanie pliku CV
-const deleteFile = (fileId) => {
-    if (confirm(__('translate.confirmDeleteFile'))) {
-        axios.delete(route('candidate-cv.delete', {candidate: props.candidate.id, file: fileId}))
-            .then(response => {
-                // Odśwież stronę aby zaktualizować listę plików
-                window.location.reload();
-            })
-            .catch(error => {
-                console.error('Błąd podczas usuwania pliku', error);
-            });
-    }
-};
-
-// Inicjalizacja przy załadowaniu strony
-initAnswersForm();
 </script>
 
 <template>
@@ -450,387 +405,265 @@ initAnswersForm();
                         </div>
                     </div>
                 </section>
+                <!-- Main Content Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    <!-- LEFT COLUMN: Candidate info -->
+                    <!-- Left Column: Profile Card -->
                     <div class="lg:col-span-4 space-y-8">
-                        <div
-                            class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8 flex flex-col items-center text-center">
-                            <div class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-8 w-full">
+                        <section class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8 flex flex-col items-center text-center">
+                            <header class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-8 w-full border-b border-gray-50 pb-4">
                                 {{ __('translate.candidateInfo') }}
-                            </div>
+                            </header>
 
+                            <!-- Avatar -->
                             <div class="relative group">
-                                <div
-                                    class="h-32 w-32 rounded-[2.5rem] bg-blue-50 ring-4 ring-white shadow-lg flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
-                                    <img
-                                        v-if="candidate?.worker_image"
-                                        :src="candidate?.worker_image"
-                                        alt="avatar"
-                                        class="h-full w-full object-cover"
-                                    />
+                                <div class="h-32 w-32 rounded-[2.5rem] bg-blue-50 ring-4 ring-white shadow-lg flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
+                                    <img v-if="candidate?.worker_image" :src="candidate.worker_image" alt="avatar" class="h-full w-full object-cover" />
                                     <div v-else class="text-[#0A2C5C] font-black text-4xl">
                                         {{ (candidate?.name?.[0] ?? 'A') + (candidate?.surname?.[0] ?? 'N') }}
                                     </div>
                                 </div>
-                                <div
-                                    class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white shadow-sm"></div>
+                                <div class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white shadow-sm"></div>
                             </div>
 
+                            <!-- Name -->
                             <div class="mt-6">
                                 <h3 class="text-2xl font-black text-gray-900 uppercase tracking-tight leading-tight">
                                     {{ candidate.name }} {{ candidate.surname }}
                                 </h3>
                             </div>
 
-                            <div class="mt-6 w-full space-y-4">
-                                <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
-                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                                        {{ __('translate.phone') }}</p>
-                                    <p class="text-sm font-black text-gray-700 tracking-widest">
-                                        {{ candidate.phone ?? '—' }}</p>
+                            <!-- Contact Info -->
+                            <div class="mt-6 w-full space-y-3">
+                                <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 flex flex-col items-center">
+                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.phone') }}</span>
+                                    <span class="text-sm font-black text-gray-700 tracking-widest">{{ candidate.phone ?? '—' }}</span>
                                 </div>
-                                <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
-                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                                        {{ __('translate.email') }}</p>
-                                    <p class="text-sm font-black text-gray-700 truncate lowercase">
-                                        {{ candidate.email ?? '—' }}</p>
+                                <div class="bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 flex flex-col items-center">
+                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.email') }}</span>
+                                    <span class="text-sm font-black text-gray-700 truncate lowercase">{{ candidate.email ?? '—' }}</span>
                                 </div>
                             </div>
 
-                            <!-- CV buttons -->
+                            <!-- Primary Actions -->
                             <div class="mt-8 w-full">
-                                <a
-                                    v-if="candidate?.cv_file?.url"
-                                    :href="candidate.cv_file.url"
-                                    target="_blank"
-                                    class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-6 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
-                                >
+                                <a v-if="candidate?.cv_file?.url" :href="candidate.cv_file.url" target="_blank"
+                                   class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-6 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                     </svg>
                                     {{ __('translate.classicCV') ?? 'klasyczne CV' }}
                                 </a>
                             </div>
 
-                            <!-- Recruiter -->
-                            <div v-if="candidate.created_by" class="mt-8 w-full pt-8 border-t border-gray-100">
-                                <div
-                                    class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
-                                    <div
-                                        class="h-12 w-12 rounded-xl overflow-hidden shadow-sm border-2 border-white shrink-0">
-                                        <img
-                                            v-if="candidate?.created_by?.avatar"
-                                            :src="candidate?.created_by?.avatar"
-                                            alt="avatar"
-                                            class="h-full w-full object-cover"
-                                        />
-                                        <div v-else
-                                             class="w-full h-full bg-blue-100 flex items-center justify-center text-[#0A2C5C] font-black">
-                                            {{
-                                                (candidate?.created_by?.name?.[0] ?? 'A') + (candidate?.created_by?.surname?.[0] ?? 'N')
-                                            }}
+                            <!-- Recruiter Info -->
+                            <footer v-if="candidate.created_by" class="mt-8 w-full pt-8 border-t border-gray-100">
+                                <div class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50">
+                                    <div class="h-12 w-12 rounded-xl overflow-hidden shadow-sm border-2 border-white shrink-0">
+                                        <img v-if="candidate.created_by.avatar" :src="candidate.created_by.avatar" alt="recruiter avatar" class="h-full w-full object-cover" />
+                                        <div v-else class="w-full h-full bg-blue-100 flex items-center justify-center text-[#0A2C5C] font-black">
+                                            {{ (candidate.created_by.name?.[0] ?? 'A') + (candidate.created_by.surname?.[0] ?? 'N') }}
                                         </div>
                                     </div>
                                     <div class="text-left min-w-0">
-                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">
-                                            {{ __('translate.createdBy') }}</p>
-                                        <p class="text-sm font-black text-gray-900 truncate uppercase tracking-tight">
-                                            {{ candidate.created_by?.name }}</p>
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">{{ __('translate.createdBy') }}</p>
+                                        <p class="text-sm font-black text-gray-900 truncate uppercase tracking-tight">{{ candidate.created_by.name }}</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </footer>
+                        </section>
                     </div>
 
-                    <!-- RIGHT COLUMN: Projects -->
+                    <!-- Right Column: Projects & Tabs -->
                     <div class="lg:col-span-8 space-y-8">
-                        <!-- Candidate projects -->
-                        <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8">
+                        <!-- Projects Section -->
+                        <section class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8">
                             <div class="flex items-center gap-4 mb-8">
-                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
-                                    {{ __('translate.allCandidateProjects') }}</h3>
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.allCandidateProjects') }}</h3>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <div v-if="candidateProjects && candidateProjects.length"
-                                 class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div
-                                    v-for="project in candidateProjects"
-                                    :key="project.project_id"
-                                    class="group relative bg-gray-50/50 border border-gray-100/50 rounded-3xl p-6 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 hover:bg-white"
-                                >
+                            <div v-if="candidateProjects?.length" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <article v-for="project in candidateProjects" :key="project.project_id"
+                                         class="group relative bg-gray-50/50 border border-gray-100/50 rounded-3xl p-6 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
                                     <div class="flex flex-col h-full">
                                         <div class="flex items-center justify-between mb-4">
-                                            <span
-                                                class="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-white px-2.5 py-1 rounded-lg border border-blue-100/50 shadow-sm">
+                                            <span class="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-white px-2.5 py-1 rounded-lg border border-blue-100/50 shadow-sm">
                                                 ID {{ project.project_id }}
                                             </span>
-                                            <span
-                                                class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                            <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                                                 {{ new Date(project.created_at).toLocaleDateString() }}
                                             </span>
                                         </div>
 
-                                        <Link
-                                            :href="route('projects.show', project.project_id) "
-                                            class="text-lg font-black text-gray-900 truncate group-hover:text-[#0A2C5C] transition-colors uppercase tracking-tight leading-tight mb-2"
-                                        >
+                                        <Link :href="route('projects.show', project.project_id)"
+                                              class="text-lg font-black text-gray-900 truncate group-hover:text-[#0A2C5C] transition-colors uppercase tracking-tight leading-tight mb-2">
                                             {{ project.project_name }}
                                         </Link>
 
                                         <div class="flex flex-wrap gap-2 mb-6">
-                                            <span
-                                                class="text-[10px] font-bold text-gray-400 uppercase tracking-tight bg-white px-2 py-0.5 rounded border border-gray-100">
+                                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-tight bg-white px-2 py-0.5 rounded border border-gray-100">
                                                 {{ project.city }}, {{ project.country }}
                                             </span>
-                                            <span
-                                                class="text-[10px] font-bold text-blue-900 uppercase tracking-tight bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                                            <span class="text-[10px] font-bold text-blue-900 uppercase tracking-tight bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
                                                 {{ project.price }} {{ project.currency }}
                                             </span>
                                         </div>
 
                                         <div class="mt-auto flex items-center justify-between gap-4">
-                                            <div class="flex gap-2">
-                                                <Link
-                                                    v-if="noRole('firm')"
-                                                    :href="route('project-recruits.show', project.project_id)"
-                                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
-                                                >
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2.5"
-                                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                                    </svg>
-                                                </Link>
+                                            <Link :href="noRole('firm') ? route('project-recruits.show', project.project_id) : route('projects.show', project.project_id)"
+                                                  class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                </svg>
+                                            </Link>
 
-                                                <Link
-                                                    v-else
-                                                    :href="route('projects.show', project.project_id)"
-                                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
-                                                >
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2.5"
-                                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                                    </svg>
-                                                </Link>
-                                            </div>
-
-                                            <span
-                                                class="rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-sm"
-                                                :class="{
-                                                    'bg-[#0A2C5C]': project.status === 'yes',
-                                                    'bg-red-600': project.status === 'no',
-                                                    'bg-cyan-500': project.status === 'maybe',
-                                                    'bg-gray-300': !project.status
-                                                }"
-                                            >
-                                                {{
-                                                    project.status
-                                                        ? __(`translate.status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`)
-                                                        : __('translate.statusPending')
-                                                }}
+                                            <span class="rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-sm"
+                                                  :class="{
+                                                      'bg-[#0A2C5C]': project.status === 'yes',
+                                                      'bg-red-600': project.status === 'no',
+                                                      'bg-cyan-500': project.status === 'maybe',
+                                                      'bg-gray-300': !project.status
+                                                  }">
+                                                {{ project.status ? __(`translate.status${project.status.charAt(0).toUpperCase() + project.status.slice(1)}`) : __('translate.statusPending') }}
                                             </span>
                                         </div>
                                     </div>
-                                </div>
+                                </article>
                             </div>
 
-                            <div v-else
-                                 class="py-12 text-center bg-gray-50/50 rounded-[2rem] border border-dashed border-gray-200">
-                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                                    {{ __('translate.noProjectsAvailable') }}</p>
+                            <div v-else class="py-12 text-center bg-gray-50/50 rounded-[2rem] border border-dashed border-gray-200">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.noProjectsAvailable') }}</p>
                             </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
 
-                <!-- BOTTOM SECTION: Questions, CV Upload, Notes, Tags -->
+                <!-- Bottom Sections Grid -->
                 <div class="space-y-8">
-                    <!-- Pytania -->
-                    <div v-if="candidateQuestions && candidateQuestions.length > 0">
-                        <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                    <!-- Questions Section -->
+                    <section v-if="candidateQuestions?.length" class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] whitespace-nowrap">
                                 {{ __('translate.candidateQuestions') || 'Dodatkowe pytania do kandydata' }}
                             </h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
                         <div v-if="candidate.questions_unlocked_at"
-                             class="bg-white rounded-[3rem] border border-gray-100 p-10 shadow-xl shadow-blue-900/5">
+                             class="bg-white rounded-[3rem] border border-gray-100 p-8 md:p-10 shadow-xl shadow-blue-900/5">
                             <p class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-10">
                                 {{ __('translate.candidateQuestionsUnlockedDate') }}
                                 {{ moment(candidate.questions_unlocked_at).format('DD.MM.YYYY HH:mm') }}
                             </p>
 
-                            <div class="space-y-10">
-                                <div v-for="(question, index) in candidateQuestions" :key="question.id"
-                                     class="relative group">
-                                    <div
-                                        class="rounded-[2.5rem] border border-gray-100 bg-gray-50/30 p-8 transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5">
-                                        <h4 class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight mb-6">{{
-                                                question.question
-                                            }}</h4>
+                            <div class="space-y-8">
+                                <article v-for="(question, index) in candidateQuestions" :key="question.id"
+                                         class="rounded-[2.5rem] border border-gray-100 bg-gray-50/30 p-8 transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5">
+                                    <h4 class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight mb-6">{{ question.question }}</h4>
 
-                                        <div v-if="question.answer_type === 'text'">
-                                            <textarea
-                                                v-model="answersForm.answers[index].text_answer"
-                                                class="w-full text-xs rounded-2xl border-gray-100 bg-white/50 focus:bg-white focus:border-[#00a0e3] focus:ring-0 transition-all resize-none text-gray-700 placeholder-gray-400"
-                                                :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
-                                                rows="4"
-                                            ></textarea>
-                                            <p v-if="answersForm.errors[`answers.${index}.text_answer`]"
-                                               class="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tight">
-                                                {{ answersForm.errors[`answers.${index}.text_answer`] }}
-                                            </p>
-                                        </div>
-
-                                        <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
-                                            <div class="flex items-center gap-10">
-                                                <label class="group/label flex items-center cursor-pointer">
-                                                    <div class="relative flex items-center justify-center">
-                                                        <input
-                                                            type="radio"
-                                                            :name="`question-${question.id}`"
-                                                            :value="true"
-                                                            v-model="answersForm.answers[index].boolean_answer"
-                                                            class="peer sr-only"
-                                                        >
-                                                        <div
-                                                            class="h-6 w-6 rounded-full border-2 border-gray-200 bg-white transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px] group-hover/label:border-blue-200"></div>
-                                                    </div>
-                                                    <span
-                                                        class="ml-4 text-xs font-black text-gray-500 uppercase tracking-widest group-hover/label:text-[#0A2C5C] transition-colors">
-                                                       {{ __('translate.yes') || 'tak' }}
-                                                    </span>
-                                                </label>
-
-                                                <label class="group/label flex items-center cursor-pointer">
-                                                    <div class="relative flex items-center justify-center">
-                                                        <input
-                                                            type="radio"
-                                                            :name="`question-${question.id}`"
-                                                            :value="false"
-                                                            v-model="answersForm.answers[index].boolean_answer"
-                                                            class="peer sr-only"
-                                                        >
-                                                        <div
-                                                            class="h-6 w-6 rounded-full border-2 border-gray-200 bg-white transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px] group-hover/label:border-blue-200"></div>
-                                                    </div>
-                                                    <span
-                                                        class="ml-4 text-xs font-black text-gray-500 uppercase tracking-widest group-hover/label:text-[#0A2C5C] transition-colors">
-                                                       {{ __('translate.no') || 'nie' }}
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]"
-                                               class="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tight">
-                                                {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
-                                            </p>
-                                        </div>
+                                    <div v-if="question.answer_type === 'text'">
+                                        <textarea
+                                            v-model="answersForm.answers[index].text_answer"
+                                            class="w-full text-xs rounded-2xl border-gray-100 bg-white/50 focus:bg-white focus:border-[#00a0e3] focus:ring-0 transition-all resize-none text-gray-700 placeholder-gray-400"
+                                            :class="{'border-red-500': answersForm.errors[`answers.${index}.text_answer`]}"
+                                            rows="4"
+                                        ></textarea>
+                                        <p v-if="answersForm.errors[`answers.${index}.text_answer`]" class="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tight">
+                                            {{ answersForm.errors[`answers.${index}.text_answer`] }}
+                                        </p>
                                     </div>
-                                </div>
+
+                                    <div v-else-if="question.answer_type === 'boolean'" class="flex flex-col">
+                                        <div class="flex flex-wrap items-center gap-8">
+                                            <label class="group/label flex items-center cursor-pointer">
+                                                <div class="relative flex items-center justify-center">
+                                                    <input type="radio" :name="`question-${question.id}`" :value="true" v-model="answersForm.answers[index].boolean_answer" class="peer sr-only">
+                                                    <div class="h-6 w-6 rounded-full border-2 border-gray-200 bg-white transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px] group-hover/label:border-blue-200"></div>
+                                                </div>
+                                                <span class="ml-4 text-xs font-black text-gray-500 uppercase tracking-widest group-hover/label:text-[#0A2C5C] transition-colors">
+                                                    {{ __('translate.yes') || 'tak' }}
+                                                </span>
+                                            </label>
+
+                                            <label class="group/label flex items-center cursor-pointer">
+                                                <div class="relative flex items-center justify-center">
+                                                    <input type="radio" :name="`question-${question.id}`" :value="false" v-model="answersForm.answers[index].boolean_answer" class="peer sr-only">
+                                                    <div class="h-6 w-6 rounded-full border-2 border-gray-200 bg-white transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px] group-hover/label:border-blue-200"></div>
+                                                </div>
+                                                <span class="ml-4 text-xs font-black text-gray-500 uppercase tracking-widest group-hover/label:text-[#0A2C5C] transition-colors">
+                                                    {{ __('translate.no') || 'nie' }}
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <p v-if="answersForm.errors[`answers.${index}.boolean_answer`]" class="text-[10px] font-bold text-red-500 mt-2 uppercase tracking-tight">
+                                            {{ answersForm.errors[`answers.${index}.boolean_answer`] }}
+                                        </p>
+                                    </div>
+                                </article>
                             </div>
 
-                            <div class="mt-10 flex items-center justify-end gap-4 border-t border-gray-100 pt-8">
-                                <div v-if="answersForm.errors.answers"
-                                     class="mr-auto flex items-center gap-2 text-[10px] font-black text-red-600 bg-red-50 px-4 py-2 rounded-xl border border-red-100 uppercase tracking-widest">
+                            <footer class="mt-10 flex flex-wrap items-center justify-end gap-4 border-t border-gray-100 pt-8">
+                                <div v-if="answersForm.errors.answers" class="mr-auto flex items-center gap-2 text-[10px] font-black text-red-600 bg-red-50 px-4 py-2 rounded-xl border border-red-100 uppercase tracking-widest">
                                     {{ answersForm.errors.answers }}
                                 </div>
 
-                                <Link :href="route('candidate-questions.create')"
-                                      class="inline-flex items-center px-6 py-4 bg-white text-[#0A2C5C] text-[10px] font-black rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all uppercase tracking-widest"
-                                >
+                                <Link :href="route('candidate-questions.create')" class="inline-flex items-center px-6 py-4 bg-white text-[#0A2C5C] text-[10px] font-black rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all uppercase tracking-widest">
                                     {{ __('translate.addQuestion') || 'DODAJ PYTANIE' }}
                                 </Link>
 
-                                <button
-                                    @click="saveAnswers"
-                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
-                                    :disabled="answersForm.processing"
-                                >
+                                <button @click="saveAnswers" :disabled="answersForm.processing"
+                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                     {{ __('translate.save') || 'ZAPISZ' }}
                                 </button>
-                            </div>
+                            </footer>
                         </div>
 
-                        <div v-else
-                             class="bg-white rounded-[3rem] border border-gray-100 p-16 text-center shadow-xl shadow-blue-900/5">
-                            <div
-                                class="mx-auto w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-8 border border-gray-100 shadow-sm">
-                                <span class="text-4xl text-gray-200">🔒</span>
+                        <div v-else class="bg-white rounded-[3rem] border border-gray-100 p-12 md:p-16 text-center shadow-xl shadow-blue-900/5">
+                            <div class="mx-auto w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-8 border border-gray-100 shadow-sm">
+                                <span class="text-4xl">🔒</span>
                             </div>
-                            <h4 class="text-lg font-black text-gray-900 uppercase tracking-widest mb-4">{{
-                                    __('translate.unlockQuestions')
-                                }}</h4>
-                            <p class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-10 max-w-sm mx-auto">{{
-                                    __('translate.unlockQuestionsInfo')
-                                }}</p>
+                            <h4 class="text-lg font-black text-gray-900 uppercase tracking-widest mb-4">{{ __('translate.unlockQuestions') }}</h4>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-10 max-w-sm mx-auto">{{ __('translate.unlockQuestionsInfo') }}</p>
 
-                            <button
-                                @click="unlockQuestions"
-                                class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
-                                :disabled="questionsForm.processing"
-                            >
+                            <button @click="unlockQuestions" :disabled="questionsForm.processing"
+                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                 {{ __('translate.unlockQuestions') }}
                             </button>
-                            <p class="text-[10px] font-bold text-gray-400 mt-6 uppercase tracking-widest">{{
-                                    __('translate.unlockQuestionsPointsInfo')
-                                }}</p>
+                            <p class="text-[10px] font-bold text-gray-400 mt-6 uppercase tracking-widest">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- CV Upload -->
-                    <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-10 mt-8">
+                    <!-- CV Management Section -->
+                    <section class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8 md:p-10">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
-                                {{ __('translate.candidateCV') }}</h3>
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.candidateCV') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <!-- Wyświetlanie aktualnych plików CV -->
-                        <div v-if="candidate.cv_files && candidate.cv_files.length > 0" class="mb-10">
-                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{
-                                    __('translate.currentCVFiles')
-                                }}</h4>
+                        <!-- Current CV Files -->
+                        <div v-if="candidate.cv_files?.length" class="mb-10">
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">{{ __('translate.currentCVFiles') }}</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div v-for="file in candidate.cv_files" :key="file.id"
                                      class="flex items-center justify-between bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
                                     <div class="flex items-center min-w-0">
-                                        <svg class="h-6 w-6 text-[#0A2C5C] shrink-0 mr-3" fill="none"
-                                             stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        <svg class="h-6 w-6 text-[#0A2C5C] shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                         </svg>
                                         <span class="text-xs font-black text-gray-900 truncate uppercase tracking-tight">{{ file.name }}</span>
                                     </div>
                                     <div class="flex items-center gap-3 shrink-0 ml-4">
-                                        <a :href="file.url" target="_blank"
-                                           class="text-[10px] font-black text-blue-500 hover:text-blue-700 uppercase tracking-widest transition-colors">{{
-                                                __('translate.view')
-                                            }}</a>
-                                        <button @click="deleteFile(file.id)"
-                                                class="text-[10px] font-black text-red-500 hover:text-red-700 uppercase tracking-widest transition-colors">{{
-                                                __('translate.delete')
-                                            }}
-                                        </button>
+                                        <a :href="file.url" target="_blank" class="text-[10px] font-black text-blue-500 hover:text-blue-700 uppercase tracking-widest transition-colors">{{ __('translate.view') }}</a>
+                                        <button @click="deleteFile(file.id)" class="text-[10px] font-black text-red-500 hover:text-red-700 uppercase tracking-widest transition-colors">{{ __('translate.delete') }}</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Dodawanie nowego pliku CV -->
+                        <!-- Upload New CV -->
                         <div class="bg-gray-50/30 rounded-[2.5rem] p-8 border border-gray-100">
-                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{
-                                    __('translate.uploadNewCV')
-                                }}</h4>
+                            <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ __('translate.uploadNewCV') }}</h4>
                             <div class="mb-6">
                                 <file-pond
                                     ref="pond"
@@ -841,94 +674,72 @@ initAnswersForm();
                                     v-bind="filepondOptions"
                                     :server="{
                                         url:'',
-                                        headers: {
-                                            'X-CSRF-TOKEN': usePage().props.csrf_token,
-                                        },
+                                        headers: { 'X-CSRF-TOKEN': usePage().props.csrf_token },
                                         process: {
                                             url: '/temporary/upload',
-                                            onload: (response) => {
-                                                cvForm.cvFile.push(response);
-                                                return response;
-                                            },
-                                            onerror: (response) => {
-                                                serverMessage = JSON.parse(response).error.cv_file[0];
-                                            }
+                                            onload: (response) => { cvForm.cvFile.push(response); return response; },
+                                            onerror: (response) => { serverMessage = JSON.parse(response).error.cv_file[0]; }
                                         },
-                                        revert:{
+                                        revert: {
                                             url: '/temporary/delete',
                                             onload: (response) => {
                                                 if (!response) return;
                                                 const fileIndex = cvForm.cvFile.findIndex(el => el === response);
-                                                if (fileIndex !== -1) {
-                                                    cvForm.cvFile.splice(fileIndex, 1);
-                                                }
+                                                if (fileIndex !== -1) cvForm.cvFile.splice(fileIndex, 1);
                                             }
                                         },
-                                        remove:removeFile
+                                        remove: removeFile
                                     }"
                                 />
-                                <p class="text-[10px] font-bold text-gray-400 mt-4 uppercase tracking-tight">{{ __('translate.allowedFileTypes') }}: PDF,
-                                    DOC, DOCX ({{ __('translate.maxFileSize') }}: 10MB)</p>
+                                <p class="text-[10px] font-bold text-gray-400 mt-4 uppercase tracking-tight">
+                                    {{ __('translate.allowedFileTypes') }}: PDF, DOC, DOCX ({{ __('translate.maxFileSize') }}: 10MB)
+                                </p>
                             </div>
                             <div class="flex justify-end">
-                                <button
-                                    @click="handleCvUpload"
-                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
-                                    :disabled="cvForm.processing || isSavingCv"
-                                >
-                                    <span>
-                                        {{ (cvForm.processing || isSavingCv) ? __('translate.saving') : __('translate.saveCv') }}
-                                    </span>
+                                <button @click="handleCvUpload" :disabled="cvForm.processing || isSavingCv"
+                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
+                                    <span>{{ (cvForm.processing || isSavingCv) ? __('translate.saving') : __('translate.saveCv') }}</span>
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- Notatki -->
-                    <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-10 mt-8">
+                    <!-- Notes Section -->
+                    <section class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8 md:p-10">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
-                                {{ __('translate.notes') }}</h3>
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.notes') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <div v-if="candidate.notes && candidate.notes.length > 0" class="space-y-4 mb-8">
-                            <div v-for="note in candidate.notes" :key="note.id"
-                                 class="bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
-                                <div class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-3">
+                        <div v-if="candidate.notes?.length" class="space-y-4">
+                            <article v-for="note in candidate.notes" :key="note.id" class="bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
+                                <header class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-3">
                                     {{ new Date(note.created_at).toLocaleString() }}
-                                </div>
+                                </header>
                                 <div class="text-sm font-bold text-gray-700 leading-relaxed">{{ note.content }}</div>
-                            </div>
+                            </article>
                         </div>
-                        <div v-else class="flex flex-col items-center justify-center py-12 text-center bg-gray-50/30 rounded-[2.5rem] border border-dashed border-gray-200 mb-8">
-                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                {{ __('translate.noNotesAvailable') }}
-                            </p>
+                        <div v-else class="flex flex-col items-center justify-center py-12 text-center bg-gray-50/30 rounded-[2.5rem] border border-dashed border-gray-200">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noNotesAvailable') }}</p>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- Tagi -->
-                    <div class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-10 mt-8">
+                    <!-- Tags Management Section -->
+                    <section class="bg-white rounded-[3rem] border border-gray-100 shadow-xl shadow-blue-900/5 p-8 md:p-10">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
-                                {{ __('translate.tags') }}</h3>
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.tags') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <div class="grid grid-cols-1 gap-10">
-                            <!-- Sekcja tagów kategorii zawodowych -->
+                        <div class="grid grid-cols-1 gap-12">
+                            <!-- Profession Categories Tags -->
                             <div class="space-y-6">
-                                <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                    {{ __('translate.professionCategories') }}</h4>
+                                <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.professionCategories') }}</h4>
 
                                 <div class="relative">
-                                    <TextInput
-                                        type="text"
-                                        v-model="categorySearchQuery"
-                                        class="w-full text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 transition-all placeholder-gray-400 p-4 pl-12"
-                                        :placeholder="__('translate.searchCategories')"
-                                    />
+                                    <TextInput type="text" v-model="categorySearchQuery"
+                                               class="w-full text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 transition-all placeholder-gray-400 p-4 pl-12"
+                                               :placeholder="__('translate.searchCategories')" />
                                     <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
@@ -948,36 +759,27 @@ initAnswersForm();
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between items-center bg-gray-50/50 p-4 rounded-2xl border border-gray-100" v-if="filteredCategories.length > categoriesPerPage">
-                                    <button
-                                        @click="currentCategoryPage = Math.max(currentCategoryPage - 1, 1)"
-                                        :disabled="currentCategoryPage === 1"
-                                        class="px-4 py-2 bg-white text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest rounded-xl border border-gray-100 shadow-sm disabled:opacity-50 transition-all"
-                                    >
+                                <nav v-if="filteredCategories.length > categoriesPerPage" class="flex justify-between items-center bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
+                                    <button @click="currentCategoryPage = Math.max(currentCategoryPage - 1, 1)" :disabled="currentCategoryPage === 1"
+                                            class="px-4 py-2 bg-white text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest rounded-xl border border-gray-100 shadow-sm disabled:opacity-50 transition-all">
                                         {{ __('translate.previous') }}
                                     </button>
                                     <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest">{{ __('translate.page') }} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
-                                    <button
-                                        @click="currentCategoryPage = Math.min(currentCategoryPage + 1, totalCategoryPages)"
-                                        :disabled="currentCategoryPage === totalCategoryPages"
-                                        class="px-4 py-2 bg-white text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest rounded-xl border border-gray-100 shadow-sm disabled:opacity-50 transition-all"
-                                    >
+                                    <button @click="currentCategoryPage = Math.min(currentCategoryPage + 1, totalCategoryPages)" :disabled="currentCategoryPage === totalCategoryPages"
+                                            class="px-4 py-2 bg-white text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest rounded-xl border border-gray-100 shadow-sm disabled:opacity-50 transition-all">
                                         {{ __('translate.next') }}
                                     </button>
-                                </div>
+                                </nav>
                             </div>
 
-                            <!-- Sekcja tagów firmowych -->
+                            <!-- Custom Tags Section -->
                             <div class="space-y-6">
                                 <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.customTags') }}</h4>
 
                                 <div class="relative">
-                                    <TextInput
-                                        type="text"
-                                        v-model="customTagSearchQuery"
-                                        class="w-full text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 transition-all placeholder-gray-400 p-4 pl-12"
-                                        :placeholder="__('translate.searchCustomTags')"
-                                    />
+                                    <TextInput type="text" v-model="customTagSearchQuery"
+                                               class="w-full text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 transition-all placeholder-gray-400 p-4 pl-12"
+                                               :placeholder="__('translate.searchCustomTags')" />
                                     <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
@@ -999,8 +801,8 @@ initAnswersForm();
                             </div>
                         </div>
 
-                        <!-- Sekcja wybranych tagów -->
-                        <div class="mt-12 pt-10 border-t border-gray-100">
+                        <!-- Selected Tags Overview -->
+                        <footer class="mt-12 pt-10 border-t border-gray-100">
                             <h4 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ __('translate.selectedTags') }}</h4>
                             <div class="bg-gray-50/30 p-8 rounded-[2.5rem] border border-gray-100">
                                 <div class="flex flex-wrap gap-3">
@@ -1017,19 +819,14 @@ initAnswersForm();
                                 </div>
 
                                 <div class="mt-10 flex justify-end">
-                                    <button
-                                        @click="saveTags"
-                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
-                                        :disabled="form.processing || isSavingTags"
-                                    >
-                                        <span>
-                                            {{ (form.processing || isSavingTags) ? __('translate.saving') : __('translate.saveTags') }}
-                                        </span>
+                                    <button @click="saveTags" :disabled="form.processing || isSavingTags"
+                                            class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
+                                        <span>{{ (form.processing || isSavingTags) ? __('translate.saving') : __('translate.saveTags') }}</span>
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </footer>
+                    </section>
                 </div>
                 </div>
         </div>
