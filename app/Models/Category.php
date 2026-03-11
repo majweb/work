@@ -23,6 +23,16 @@ class Category extends Model implements HasMedia
     protected $casts = [
         'title' => 'array',
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
     public function detailprojects()
     {
         return $this->belongsToMany(DetailProject::class,'category_detailproject');

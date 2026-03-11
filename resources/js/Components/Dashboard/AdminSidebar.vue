@@ -54,6 +54,7 @@ const menuItems = [
         icon: 'jobs',
         subItems: [
             { name: 'Oferty pracy', route: 'admin.job-offers.index' },
+            { name: 'Kategorie stanowisk', route: 'admin.categories.index' },
         ]
     },
     { name: 'Rekrutacja', icon: 'recruitment', route: 'admin.aplicationsA.index' },
