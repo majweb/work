@@ -3,6 +3,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import {ref} from 'vue';
 import {Link, router, useForm} from '@inertiajs/vue3';
 import DialogModal from '@/Components/DialogModal.vue';
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import moment from "moment";
 const props = defineProps({
     application: Object
@@ -138,16 +140,12 @@ const resetStatus = (id, status) => {
             </template>
 
             <template #footer>
-                <button
-                    type="button"
-                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                    @click="closeNoteModal"
-                >
+                <SecondaryButton @click="closeNoteModal">
                     {{ __('translate.cancel') }}
-                </button>
+                </SecondaryButton>
                 <button
                     type="button"
-                    class="ml-2 inline-flex justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    class="ml-3 px-8 py-3 bg-green-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-green-700 shadow-lg shadow-green-600/20 transition-all"
                     @click="saveNote"
                 >
                     {{ __('translate.save') }}
@@ -168,20 +166,12 @@ const resetStatus = (id, status) => {
             </template>
 
             <template #footer>
-                <button
-                    type="button"
-                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                    @click="closeDeleteModal"
-                >
+                <SecondaryButton @click="closeDeleteModal">
                     {{ __('translate.cancel') }}
-                </button>
-                <button
-                    type="button"
-                    class="ml-2 inline-flex justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                    @click="deleteNote"
-                >
+                </SecondaryButton>
+                <DangerButton class="ml-3" @click="deleteNote">
                     {{ __('translate.delete') }}
-                </button>
+                </DangerButton>
             </template>
         </DialogModal>
 

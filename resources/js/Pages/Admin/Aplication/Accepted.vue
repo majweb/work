@@ -8,6 +8,9 @@ import Multiselect from "vue-multiselect";
 import InputLabel from "@/Components/InputLabel.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 import __ from "@/lang.js";
 
 const props = defineProps({
@@ -181,16 +184,12 @@ watch(form, debounce(function (value) {
             </template>
 
             <template #footer>
-                <button
-                    type="button"
-                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                    @click="closeNoteModal"
-                >
+                <SecondaryButton @click="closeNoteModal">
                     {{ __('translate.cancel') }}
-                </button>
+                </SecondaryButton>
                 <button
                     type="button"
-                    class="ml-2 inline-flex justify-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-25 transition"
+                    class="ml-3 px-8 py-3 bg-green-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-green-700 shadow-lg shadow-green-600/20 transition-all"
                     @click="saveNote"
                 >
                     {{ __('translate.save') }}
@@ -211,20 +210,12 @@ watch(form, debounce(function (value) {
             </template>
 
             <template #footer>
-                <button
-                    type="button"
-                    class="inline-flex justify-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                    @click="closeDeleteModal"
-                >
+                <SecondaryButton @click="closeDeleteModal">
                     {{ __('translate.cancel') }}
-                </button>
-                <button
-                    type="button"
-                    class="ml-2 inline-flex justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-25 transition"
-                    @click="deleteNote"
-                >
+                </SecondaryButton>
+                <DangerButton class="ml-3" @click="deleteNote">
                     {{ __('translate.delete') }}
-                </button>
+                </DangerButton>
             </template>
         </DialogModal>
 

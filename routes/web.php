@@ -134,8 +134,8 @@ Route::middleware([
     Route::post('applications/export', [AplicationController::class, 'export'])->middleware('role:firm')->name('firm.applications.export');
     Route::put('aplications/{aplication}/status', [AplicationController::class, 'updateStatus'])->middleware('role:firm')->name('firm.applications.update-status');
     Route::post('aplications/{aplication}/notes', [AplicationController::class, 'storeNote'])->middleware('role:firm')->name('firm.applications.store-note');
-    Route::post('applications/{candidate}/save-answers', [AplicationController::class, 'saveAnswers'])->middleware('role:firm')->name('candidate.save-answers');
-    Route::post('applications/{candidate}/unlock-questions', [AplicationController::class, 'unlockQuestions'])->middleware('role:firm')->name('candidate.unlock-questions');
+    Route::post('applications/{candidate}/save-answers', [AplicationController::class, 'saveAnswers'])->middleware('role:firm|admin')->name('candidate.save-answers');
+    Route::post('applications/{candidate}/unlock-questions', [AplicationController::class, 'unlockQuestions'])->middleware('role:firm|admin')->name('candidate.unlock-questions');
     Route::post('firm/applications/{aplication}/create-candidate', [AplicationController::class, 'createCandidate'])->middleware('role:firm')->name('firm.applications.create-candidate');
     Route::put('aplications/notes/{note}', [AplicationController::class, 'updateNote'])->middleware('role:firm')->name('firm.applications.update-note');
     Route::delete('aplications/notes/{note}', [AplicationController::class, 'deleteNote'])->middleware('role:firm')->name('firm.applications.delete-note');
@@ -199,7 +199,7 @@ Route::middleware([
 
     });
     // Trasy dla kandydatów
-    Route::middleware(['role:firm|recruit'])->group(function () {
+    Route::middleware(['role:firm|recruit|admin'])->group(function () {
         Route::get('/candidates', [CandidatesController::class, 'index'])->name('candidates.index');
         Route::get('/candidates/{candidate}', [CandidatesController::class, 'show'])->name('candidates.show');
         Route::get('/candidates/{candidate}/evidence', [CandidatesController::class, 'evidence'])->name('candidates.evidence');

@@ -13,6 +13,7 @@ import TextareaLimit from "@/Components/TextareaLimit.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import __ from "@/lang.js";
 import DialogModal from "@/Components/DialogModal.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
     worker: Object,
@@ -455,35 +456,21 @@ const getCandidateInitials = (c) => {
                     <!-- MODAL -->
                     <DialogModal :show="showDeleteModal" @close="closeDeleteModal" max-width="lg">
                         <template #title>
-                            <div class="text-lg font-black text-gray-900 uppercase tracking-tight">
-                                {{ __('translate.deleteNote') }}
-                            </div>
+                            {{ __('translate.deleteNote') }}
                         </template>
 
                         <template #content>
-                            <div class="mt-4">
-                                <p class="text-sm font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
-                                    {{ __('translate.confirmDeleteNote') }}
-                                </p>
-                            </div>
+                            {{ __('translate.confirmDeleteNote') }}
                         </template>
 
                         <template #footer>
                             <div class="flex gap-3">
-                                <button
-                                    type="button"
-                                    class="px-8 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 transition-all"
-                                    @click="closeDeleteModal"
-                                >
+                                <SecondaryButton @click="closeDeleteModal">
                                     {{ __('translate.cancel') }}
-                                </button>
-                                <button
-                                    type="button"
-                                    class="px-8 py-3 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all"
-                                    @click="deleteEvidence"
-                                >
+                                </SecondaryButton>
+                                <DangerButton @click="deleteEvidence">
                                     {{ __('translate.delete') }}
-                                </button>
+                                </DangerButton>
                             </div>
                         </template>
                     </DialogModal>

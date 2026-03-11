@@ -23,6 +23,30 @@ const filters = ref({
 
 const locale = computed(() => usePage().props.language || 'pl');
 
+const getAllTags = (user) => {
+    if (!user.candidate) return [];
+
+    const categoryTags = (user.candidate.tags || []).map(tag => ({
+        id: 'cat_' + tag.id,
+        title: tag.title?.[locale.value] || '-',
+        color: getTagColor(tag.id + 1000)
+    }));
+
+    const customTags = (user.candidate.custom_tags || user.candidate.customTags || []).map(tag => ({
+        id: 'custom_' + tag.id,
+        title: tag.name,
+        color: tag.color || getTagColor(tag.id + 2000)
+    }));
+
+    // Usuwamy duplikaty (jeśli te same tagi są w obu relacjach przez pomyłkę)
+    const seen = new Set();
+    return [...categoryTags, ...customTags].filter(tag => {
+        const duplicate = seen.has(tag.id);
+        seen.add(tag.id);
+        return !duplicate;
+    });
+};
+
 const getTagColor = (id) => {
     if (!tagColors[id]) {
         const hue = (id * 137.5) % 360;
@@ -205,6 +229,21 @@ const getEmailStatusClass = (user) => {
 const getEmailStatusDotClass = (user) => {
     if (user.email_verified_at) return 'bg-blue-400';
     return 'bg-slate-400';
+};
+
+const getCandidateStatusLabel = (user) => {
+    if (user.candidate) return 'Kandydat';
+    return 'Brak profilu';
+};
+
+const getCandidateStatusClass = (user) => {
+    if (user.candidate) return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+    return 'bg-gray-50 text-gray-400 border-gray-100';
+};
+
+const getCandidateStatusDotClass = (user) => {
+    if (user.candidate) return 'bg-indigo-400';
+    return 'bg-gray-300';
 };
 
 const formatDate = (date) => {
@@ -407,15 +446,23 @@ const formatDate = (date) => {
                                         {{ user.worker_detail.contact_phone }}
                                     </span>
                                 </div>
-                                <div v-if="user.candidate?.tags?.length" class="flex flex-wrap gap-1 mt-2">
-                                    <span
-                                        v-for="tag in user.candidate.tags"
-                                        :key="tag.id"
-                                        class="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02]"
-                                        :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
-                                    >
-                                        {{ tag.title?.[locale] || '-' }}
-                                    </span>
+                                <div v-if="user.candidate" class="flex flex-wrap gap-1 mt-2">
+                                    <template v-if="getAllTags(user).length">
+                                        <span
+                                            v-for="tag in getAllTags(user).slice(0, 3)"
+                                            :key="tag.id"
+                                            class="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02]"
+                                            :style="{ backgroundColor: tag.color, color: getContrastColor(tag.color) }"
+                                        >
+                                            {{ tag.title }}
+                                        </span>
+                                        <span
+                                            v-if="getAllTags(user).length > 3"
+                                            class="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest bg-gray-100 text-gray-400 border border-gray-200"
+                                        >
+                                            +{{ getAllTags(user).length - 3 }}
+                                        </span>
+                                    </template>
                                 </div>
                             </div>
                         </div>
@@ -429,6 +476,10 @@ const formatDate = (date) => {
                                             <span :class="['px-3 py-1 rounded-lg border w-fit flex items-center gap-2', getEmailStatusClass(user)]">
                                                 <span :class="['w-1.5 h-1.5 rounded-full', getEmailStatusDotClass(user)]"></span>
                                                 {{ getEmailStatusLabel(user) }}
+                                            </span>
+                                            <span :class="['px-3 py-1 rounded-lg border w-fit flex items-center gap-2', getCandidateStatusClass(user)]">
+                                                <span :class="['w-1.5 h-1.5 rounded-full', getCandidateStatusDotClass(user)]"></span>
+                                                {{ getCandidateStatusLabel(user) }}
                                             </span>
                                         </div>
                                     </td>
@@ -537,23 +588,15 @@ const formatDate = (date) => {
             </div>
         </div>
 
-        <!-- Block Confirmation Modal -->
         <DialogModal :show="userToBlock !== null" @close="userToBlock = null">
             <template #title>
-                <div class="flex items-center gap-3 text-red-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                    </svg>
-                    Potwierdź akcję
-                </div>
+                Potwierdź akcję
             </template>
 
             <template #content>
-                <p class="text-sm text-gray-600 font-bold">
-                    Czy na pewno chcesz {{ userToBlock.user_blocked ? 'odblokować' : 'zablokować' }} konto użytkownika
-                    <span class="text-[#0A2C5C]">{{ userToBlock.name }} {{ userToBlock.worker_detail?.surname }}</span> ({{ userToBlock.email }})?
-                </p>
-                <p v-if="!userToBlock.user_blocked" class="mt-2 text-xs text-red-500 font-medium">
+                Czy na pewno chcesz {{ userToBlock.user_blocked ? 'odblokować' : 'zablokować' }} konto użytkownika
+                <span class="text-[#0A2C5C]">{{ userToBlock.name }} {{ userToBlock.worker_detail?.surname }}</span> ({{ userToBlock.email }})?
+                <p v-if="!userToBlock.user_blocked" class="mt-2 text-xs text-red-500 font-medium normal-case tracking-normal">
                     Zablokowany użytkownik nie będzie mógł zalogować się do systemu.
                 </p>
             </template>
@@ -572,7 +615,7 @@ const formatDate = (date) => {
                     <button
                         v-else
                         @click="toggleBlock"
-                        class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-black uppercase tracking-widest rounded-xl transition-all active:scale-95"
+                        class="px-8 py-3 bg-green-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-green-700 shadow-lg shadow-green-600/20 transition-all"
                     >
                         Odblokuj konto
                     </button>
@@ -580,22 +623,14 @@ const formatDate = (date) => {
             </template>
         </DialogModal>
 
-        <!-- Verify Email Confirmation Modal -->
         <DialogModal :show="userToVerify !== null" @close="userToVerify = null">
             <template #title>
-                <div class="flex items-center gap-3 text-blue-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                    Weryfikacja adresu email
-                </div>
+                Weryfikacja adresu email
             </template>
 
             <template #content>
-                <p class="text-sm text-gray-600 font-bold">
-                    Czy na pewno chcesz ręcznie zweryfikować adres email użytkownika
-                    <span class="text-[#0A2C5C]">{{ userToVerify.name }} {{ userToVerify.worker_detail?.surname }}</span> ({{ userToVerify.email }})?
-                </p>
+                Czy na pewno chcesz ręcznie zweryfikować adres email użytkownika
+                <span class="text-[#0A2C5C]">{{ userToVerify.name }} {{ userToVerify.worker_detail?.surname }}</span> ({{ userToVerify.email }})?
             </template>
 
             <template #footer>
@@ -605,7 +640,7 @@ const formatDate = (date) => {
                     </SecondaryButton>
                     <button
                         @click="verifyEmail"
-                        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-black uppercase tracking-widest rounded-xl transition-all active:scale-95"
+                        class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all"
                     >
                         Zatwierdź email
                     </button>

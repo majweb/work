@@ -317,8 +317,9 @@ class CandidatesController extends Controller
      */
     public function getTags(Candidate $candidate)
     {
-        // Sprawdzenie czy kandydat należy do zalogowanej firmy
+        // Sprawdzenie czy kandydat należy do zalogowanej firmy (lub jest adminem)
         if (
+            !auth()->user()->hasRole('admin') &&
             !$candidate->applications()
                 ->where(function ($q) {
                     $q->where('user_id', Auth::id())
@@ -380,8 +381,9 @@ class CandidatesController extends Controller
      */
     public function saveTags(Request $request, Candidate $candidate)
     {
-        // Sprawdzenie czy kandydat należy do zalogowanej firmy
+        // Sprawdzenie czy kandydat należy do zalogowanej firmy (lub jest adminem)
         if (
+            !auth()->user()->hasRole('admin') &&
             !$candidate->applications()
                 ->where(function ($q) {
                     $q->where('user_id', Auth::id())
@@ -410,9 +412,12 @@ class CandidatesController extends Controller
             if ($request->has('tags') && is_array($request->tags) && count($request->tags) > 0) {
                 foreach($request->tags as $tag) {
                     if ($tag['type'] === 'custom') {
-                        // Sprawdzenie czy tag należy do zalogowanej firmy
+                        // Sprawdzenie czy tag należy do zalogowanej firmy (lub jest adminem i tag należy do twórcy kandydata)
                         $tagExists = Tag::where('id', $tag['id'])
-                            ->where('user_id', Auth::id())
+                            ->where(function($q) use ($candidate) {
+                                $q->where('user_id', Auth::id())
+                                  ->orWhere('user_id', $candidate->created_by_id);
+                            })
                             ->exists();
 
                         if ($tagExists) {

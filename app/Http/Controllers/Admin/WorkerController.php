@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Exports\WorkersExport;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\CandidateEvidence;
+use App\Models\CandidateQuestion;
 use App\Models\Category;
 use App\Models\ExternalCompany;
 use App\Models\User;
@@ -37,7 +38,7 @@ class WorkerController extends Controller
 
     public static function buildQuery(Request $request)
     {
-        $query = User::role('worker')->with(['workerDetail', 'candidate.tags', 'candidate.evidences']);
+        $query = User::role('worker')->with(['workerDetail', 'candidate.tags', 'candidate.customTags', 'candidate.evidences']);
 
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
@@ -187,8 +188,79 @@ class WorkerController extends Controller
 
     public function edit(User $user): Response
     {
+        $candidate = $user->candidate;
+        $categories = [];
+        $customTags = [];
+        $candidateTags = [];
+        $candidateQuestions = [];
+        $candidateData = null;
+
+        if ($candidate) {
+            $candidate->load('media', 'created_by');
+
+            // Pobieranie kategorii i tagów dla widoku
+            $locale = app()->getLocale();
+            $categories = Category::whereNotNull('parent_id')
+                ->get()
+                ->filter(function ($category) use ($locale) {
+                    $title = json_decode($category, true)['title'];
+
+                    return isset($title[$locale]) && !empty($title[$locale]);
+                })
+                ->values();
+            $customTags = $candidate->created_by ? $candidate->created_by->tags()->orderBy('name')->get() : [];
+
+            // Pobieranie tagów przypisanych do kandydata
+            $candidateTags = $candidate->tags->pluck('id')->toArray();
+
+            // Pobierz tylko aktywne pytania z odpowiedziami kandydata
+            $candidateQuestions = CandidateQuestion::where('is_active', true)
+                ->where('created_by_id', $candidate->created_by_id)
+                ->orderBy('created_at', 'desc')
+                ->with(['answers' => function ($query) use ($candidate) {
+                    $query->where('candidate_id', $candidate->id);
+                }])
+                ->get();
+
+            // Zmień nazwę relacji dla widoku Vue
+            $candidateQuestions->each(function ($question) {
+                $question->candidate_answers = $question->answers;
+                unset($question->answers);
+            });
+
+            $candidateData = [
+                'id' => $candidate->id,
+                'name' => $candidate->name,
+                'surname' => $candidate->surname,
+                'email' => $candidate->email,
+                'worker_image' => $user->profile_photo_url ?? null,
+                'phone' => $candidate->phone,
+                'questions_unlocked_at' => $candidate->questions_unlocked_at,
+                'created_at' => $candidate->created_at,
+                'cv_file' => $candidate->getMedia('candidate_cv_files')->last() ? [
+                    'id' => $candidate->getMedia('candidate_cv_files')->last()->id,
+                    'name' => $candidate->getMedia('candidate_cv_files')->last()->file_name,
+                    'url' => $candidate->getMedia('candidate_cv_files')->last()->getUrl(),
+                    'mime' => $candidate->getMedia('candidate_cv_files')->last()->mime_type,
+                    'size' => $candidate->getMedia('candidate_cv_files')->last()->size,
+                    'created_at' => $candidate->getMedia('candidate_cv_files')->last()->created_at->format('Y-m-d H:i:s'),
+                ] : null,
+                'created_by' => $candidate->created_by ? [
+                    'id' => $candidate->created_by->id,
+                    'color' => $candidate->created_by->color,
+                    'name' => $candidate->created_by->name.''.$candidate->created_by->surname,
+                    'avatar' => $candidate->created_by->profile_photo_url,
+                ] : null,
+            ];
+        }
+
         return Inertia::render('Admin/Users/Workers/Edit', [
             'user' => $user->load('workerDetail'),
+            'candidate' => $candidateData,
+            'categories' => $categories,
+            'customTags' => $customTags,
+            'selectedCandidateTags' => $candidateTags,
+            'candidateQuestions' => $candidateQuestions,
         ]);
     }
 

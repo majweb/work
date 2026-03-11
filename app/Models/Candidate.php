@@ -99,9 +99,17 @@ class Candidate extends Model implements HasMedia
         return $this->hasMany(CandidateEvidence::class, 'candidate_id');;
     }
 
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'candidate_tag', 'candidate_id', 'category_id')
+            ->whereNotNull('category_id')
+            ->withTimestamps();
+    }
+
+    public function customTags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'candidate_tag', 'candidate_id', 'tag_id')
+            ->whereNotNull('tag_id')
             ->withTimestamps();
     }
 
