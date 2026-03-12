@@ -38,9 +38,7 @@ class ApplicationRecruitFilterService
                 });
         } elseif ($status === 'maybe') {
             $query->where(function($q) {
-                $q->where('status', 'maybe')
-                    ->orWhereNull('status')
-                    ->orWhere('status', '');
+                $q->where('status', 'maybe');
             });
         } elseif ($status === null) {
             // Dla widoku głównego, użyj scope 'active'
@@ -186,9 +184,7 @@ class ApplicationRecruitFilterService
         // Liczba aplikacji o statusie 'maybe' lub pustym
         $maybeCount = Aplication::forRecruiterWithOther()
             ->where(function ($q) {
-                $q->where('status', 'maybe')
-                    ->orWhereNull('status')
-                    ->orWhere('status', '');
+                $q->where('status', 'maybe');
             })
             ->count();
 
@@ -236,9 +232,7 @@ class ApplicationRecruitFilterService
                 });
         } elseif ($status === 'maybe') {
             $query->where(function ($q) {
-                $q->where('status', 'maybe')
-                    ->orWhereNull('status')
-                    ->orWhere('status', '');
+                $q->where('status', 'maybe');
             });
         } elseif ($status === null) {
             $query->activeStart();
