@@ -491,7 +491,7 @@ class ApplicationFilterService
         $form = $request->input('form', []);
 
         $query = Aplication::query()
-            ->with(['project.user.firm','cvClassic','openedBy','statusChangedBy','worker.candidate','cvAudio','cvVideo','notes' => function ($q) {
+            ->with(['project.user.firm','project.recruit','cvClassic','openedBy','statusChangedBy','worker.candidate','cvAudio','cvVideo','notes' => function ($q) {
                 $q->latest()->limit(1);
             }]);
 

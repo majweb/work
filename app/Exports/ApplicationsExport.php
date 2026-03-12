@@ -85,7 +85,7 @@ class ApplicationsExport implements FromCollection,WithHeadings
 
             // Firma i Rekruter
             $firmName = $application->project->user->firm->name ?? $application->project->user->name ?? '-';
-            $recruiterName = $application->openedBy->name ?? '-';
+            $recruiterName = $application->project->recruit->name ?? $application->openedBy->name ?? '-';
 
             return [
                 'ID' => $application->id,
@@ -94,7 +94,7 @@ class ApplicationsExport implements FromCollection,WithHeadings
                 __('translate.firm') => $firmName,
                 __('translate.recruiter') => $recruiterName,
                 __('translate.country') => $country,
-                __('translate.city') => $city,
+                __('translate.City') => $city,
                 __('translate.category') => $category,
                 __('translate.categorySub') => $categorySub,
                 __('translate.profession') => $profession,
@@ -120,7 +120,7 @@ class ApplicationsExport implements FromCollection,WithHeadings
             __('translate.firm'),
             __('translate.recruiter'),
             __('translate.country'),
-            __('translate.city'),
+            __('translate.City'),
             __('translate.category'),
             __('translate.categorySub'),
             __('translate.profession'),
