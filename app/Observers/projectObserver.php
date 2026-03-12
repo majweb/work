@@ -16,6 +16,8 @@ class projectObserver
         Cache::forget('typesOfContract');
         Cache::forget('workLoads');
 
+        Cache::forget('categoriesAll_Admin');
+
         // Pobierz kategorię i wyczyść cache dla podkategorii
         $category = is_string($project->category)
             ? json_decode($project->category, true)
