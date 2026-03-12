@@ -26,7 +26,6 @@ const menuItems = [
         icon: 'dashboard',
         subItems: [
             { name: 'Pulpit', route: 'dashboard' },
-            { name: 'Pytania', route: 'admin.questions-accepts.index' },
             { name: 'Banery', route: 'admin.banners-accepts.index' },
             { name: 'Artykuły', route: 'admin.articles-accepts.index' },
             { name: 'Statystyki', route: 'admin.statistics.index' },
@@ -60,7 +59,14 @@ const menuItems = [
             { name: 'Waluty', route: 'admin.currencies.index' },
         ]
     },
-    { name: 'Rekrutacja', icon: 'recruitment', route: 'admin.aplicationsA.index' },
+    {
+        name: 'Rekrutacja',
+        icon: 'recruitment',
+        subItems: [
+            { name: 'Aplikacje', route: 'admin.aplicationsA.index' },
+            { name: 'Pytania', route: 'admin.questions-accepts.index' },
+        ]
+    },
     { name: 'Finanse', icon: 'finance', route: 'invoices.index' },
     { name: 'Fundacje', icon: 'foundations', route: 'admin.foundations.index' },
     { name: 'Marketing', icon: 'marketing', route: 'dashboard' },
