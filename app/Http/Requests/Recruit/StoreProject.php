@@ -104,7 +104,7 @@ class StoreProject extends FormRequest
             ],
             'questions.*.content' => 'required_with:questions|string',
             'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
-            'externalCompany' => 'nullable',
+            'external_company_id' => 'nullable',
             'recruit' => 'nullable',
             'is_active' => 'nullable|boolean',
 
@@ -132,9 +132,9 @@ class StoreProject extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if (is_array($this->externalCompany) && isset($this->externalCompany['id'])) {
+        if (is_array($this->external_company_id) && isset($this->external_company_id['id'])) {
             $this->merge([
-                'externalCompany' => $this->externalCompany['id']
+                'external_company_id' => $this->external_company_id['id']
             ]);
         }
     }
@@ -175,7 +175,7 @@ class StoreProject extends FormRequest
             'streetWorkNumber' => strtolower(__('translate.Number')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
             'questions' => strtolower(__('translate.questions')),
-            'externalCompany' => strtolower(__('translate.externalCompany')),
+            'external_company_id' => strtolower(__('translate.external_company_id')),
             'recruit' => 'nullable',
             'is_active' => 'nullable|boolean',
         ];

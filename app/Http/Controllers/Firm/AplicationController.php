@@ -73,7 +73,6 @@ class AplicationController extends Controller
      */
     public function show(Aplication $aplication)
     {
-
         // Sprawdź, czy firma ma dostęp do tej aplikacji
         if ($aplication->user_id !== auth()->id()) {
             abort(403, 'Brak uprawnień do tej aplikacji');

@@ -465,7 +465,7 @@ class JobOfferController extends Controller
             'education' => $request->projectData()['education'],
             'welcome' => $request->projectData()['welcome'],
             'wait' => $request->projectData()['wait'],
-            'external_company_id' => $request->projectData()['externalCompany'] ?? $project->external_company_id,
+            'external_company_id' => $request->projectData()['external_company_id'] ?? $project->external_company_id,
             'recruiter_id' => $request->projectData()['recruit'] ?? $project->recruiter_id,
             'cv' => $request->projectData()['cv'],
             'is_active' => $request->projectData()['is_active'] ?? true,

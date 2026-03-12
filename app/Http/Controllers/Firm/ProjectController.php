@@ -280,7 +280,6 @@ class ProjectController extends Controller
     public function store(StoreProject $request)
     {
         Gate::authorize('view', [User::class, Project::class]);
-
         $title = [];
         foreach (config('langsShorts') as $lang) {
             $posTitle = $request->projectData()['position']['allTranslations']['title'][$lang]
