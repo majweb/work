@@ -550,7 +550,7 @@ class FrontController extends Controller
                         }
                     }
                 }
-                if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 1){
+                if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 1 && $request->aplicationData()['cv'] == 1){
                     //CV file
                     if(is_array($request->aplicationData()['cvFile']) && count($request->aplicationData()['cvFile']) && $aplication){
                         $temporaryFiles = TemporaryFile::whereIn('folder',$request->aplicationData()['cvFile'])->get();
@@ -564,7 +564,7 @@ class FrontController extends Controller
                         }
                     }
                 }
-                if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 2){
+                if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 2 && $request->aplicationData()['cv'] == 1){
                     //CV generator
                     $cvClassic = CvClassic::firstOrNew(
                         ['worker_id' => auth()->id(), 'project_id' => $project->id]
