@@ -500,11 +500,14 @@ const createCandidate = () => {
                                         </div>
                                         <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{__('translate.cv_video')}}</span>
                                     </div>
-                                    <div v-else class="flex flex-col items-center gap-3" :title="__('translate.cv_classic')">
+                                    <div v-else-if="application.cv_classic" class="flex flex-col items-center gap-3" :title="__('translate.cv_classic')">
                                         <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100">
                                             <img class="w-12 h-12" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
                                         </div>
                                         <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{__('translate.classicCV')}}</span>
+                                    </div>
+                                    <div v-else class="flex flex-col items-center gap-3" :title="__('translate.cv_classic')">
+                                        <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">-</span>
                                     </div>
                                 </div>
 

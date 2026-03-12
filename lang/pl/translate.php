@@ -1438,6 +1438,8 @@ return [
 
 // Export
     'exportToSpreadsheet' => 'Eksportuj do arkusza kalkulacyjnego',
+    'cvType' => 'Typ CV',
+    'candidateCreated' => 'Kandydat utworzony',
 
 // External firms
     'selectExternalFirms' => 'Wybierz firmy zewnętrzne',
