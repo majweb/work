@@ -9,6 +9,7 @@ use App\Models\ApplicationNote;
 use App\Models\LangLevel;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
+use App\Services\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -20,13 +21,16 @@ class AplicationController extends Controller
 {
     protected $filterService;
     protected $statusService;
+    protected $helper;
 
     public function __construct(
         ApplicationFilterService $filterService,
-        ApplicationStatusService $statusService
+        ApplicationStatusService $statusService,
+        Helper $helper
     ) {
         $this->filterService = $filterService;
         $this->statusService = $statusService;
+        $this->helper = $helper;
     }
 
     /**
@@ -41,10 +45,12 @@ class AplicationController extends Controller
         $langLevels = Cache::rememberForever('langLevels', function() {
             return MultiselectWithoutDetailResource::collection(LangLevel::get());
         });
+        $countries = $this->helper->makeCountriesToSelectHasProjects();
 
         return inertia()->render('Admin/Aplication/Index', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
+            'optionsFirms' => $result['optionsFirms'],
             'optionsRecruits' => $result['optionsRecruits'],
             'optionsExternal' => $result['optionsExternal'],
             'filters' => $result['filters'],
@@ -53,6 +59,7 @@ class AplicationController extends Controller
             'noCount' => $result['counters']['noCount'],
             'otherCount' => $result['counters']['otherCount'],
             'langLevels' => $langLevels,
+            'countries' => $countries,
         ]);
     }
 
@@ -121,6 +128,33 @@ class AplicationController extends Controller
         ]);
 
         return $this->flashAndRedirect('translate.noteAdded');
+    }
+
+    public function export(Request $request)
+    {
+        $result = $this->filterService->getFilteredApplicationsExportAdmin($request);
+        $applications = $result['applications'];
+
+        try {
+            return Excel::download(
+                new ApplicationsExport($applications),
+                'aplikacje_' . now()->format('Y-m-d') . '.xlsx',
+                ExcelFormat::XLSX,
+                [
+                    'Content-Disposition' => 'attachment; filename="aplikacje.xlsx"',
+                    'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                ]
+            );
+        } catch (\Exception $e) {
+            \Log::error('Admin Export failed: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function getRecruitsByFirm($firmId)
+    {
+        $recruits = $this->filterService->getRecruitsAdmin($firmId);
+        return response()->json($recruits);
     }
 
     /**
