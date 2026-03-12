@@ -255,8 +255,8 @@ watch(() => usePage().props.sender, (newVal) => {
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.applicationStatus') }}</label>
                             <select v-model="form.status" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
                                 <option value="">{{ __('translate.all') }}</option>
-                                <option value="yes">{{ __('translate.yes') }}</option>
-                                <option value="no">{{ __('translate.no') }}</option>
+                                <option value="yes">{{ __('translate.statusYes') }}</option>
+                                <option value="no">{{ __('translate.statusNo') }}</option>
                                 <option value="maybe">{{ __('translate.statusMaybe') }}</option>
                             </select>
                         </div>
@@ -429,14 +429,14 @@ watch(() => usePage().props.sender, (newVal) => {
                                     @click="updateStatus(application.id,'no')"
                                     class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
                                 >
-                                    {{ __('translate.yes') }}
+                                    {{ __('translate.statusYes') }}
                                 </button>
                                 <button
                                     v-else-if="application.status==='no'"
                                     @click="updateStatus(application.id,'maybe')"
                                     class="w-full px-4 py-3 bg-red-600 text-white text-[10px] font-black rounded-xl hover:bg-red-700 shadow-md shadow-red-600/10 transition-all uppercase tracking-widest"
                                 >
-                                    {{ __('translate.no') }}
+                                    {{ __('translate.statusNo') }}
                                 </button>
                                 <button
                                     v-else
