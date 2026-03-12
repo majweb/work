@@ -139,9 +139,9 @@ const goToPage = (page) => {
                                         :selectGroupLabel="__('translate.selectGroupLabel')"
                                         :selectedLabel="__('translate.selectedLabel')"
                                         :deselectLabel="__('translate.deselectLabel')"
+                                        :placeholder="__('translate.placeholder')"
                                         track-by="value"
                                         label="name"
-                                        :placeholder="__('translate.placeholder')"
                                         v-model="form.category"
                                         :options="optionsCategory"
                                     >
