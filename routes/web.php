@@ -378,6 +378,8 @@ Route::middleware([
         Route::put('aplicationsAdmin/{aplication}/status', [App\Http\Controllers\Admin\AplicationController::class, 'updateStatus'])->name('aplicationsA.update-status');
         Route::post('aplicationsAdmin/{aplication}/notes', [App\Http\Controllers\Admin\AplicationController::class, 'storeNote'])->name('aplicationsA.store-note');
         Route::get('aplicationsAdmin/show/{aplication}', [App\Http\Controllers\Admin\AplicationController::class, 'show'])->name('aplicationsA.show');
+        Route::get('aplicationsAdmin/recruits/{firmId}', [App\Http\Controllers\Admin\AplicationController::class, 'getRecruitsByFirm'])
+            ->name('aplicationsA.recruits');
         Route::put('aplicationsAdmin/notes/{note}', [App\Http\Controllers\Admin\AplicationController::class, 'updateNote'])->name('aplicationsA.update-note');
         Route::delete('aplicationsAdmin/notes/{note}', [App\Http\Controllers\Admin\AplicationController::class, 'deleteNote'])->name('aplicationsA.delete-note');
         Route::get('acceptedApplicationsAdmin', [App\Http\Controllers\Admin\AplicationController::class, 'acceptedApplications'])->name('aplicationsA.acceptedApplications');
