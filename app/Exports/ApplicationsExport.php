@@ -61,25 +61,52 @@ class ApplicationsExport implements FromCollection,WithHeadings
             } elseif ($application->status == 'maybe') {
                 $statusText = __('translate.statusMaybe');
             } else {
-                $statusText = __('translate.read');
+                $statusText = '-';
             }
 
+            // Typ CV
+            $cvType = __('translate.cv_classic');
+            if ($application->cvAudio) {
+                $cvType = __('translate.cv_audio');
+            } elseif ($application->cvVideo) {
+                $cvType = __('translate.cv_video');
+            }
+
+            // Kandydat
+            $hasCandidate = $application->worker && $application->worker->candidate ? __('translate.statusYesLabel') : __('translate.statusNoLabel');
+
+            // Dane projektu
+            $country = $application->project->countryWork['allTranslations']['title'][app()->getLocale()] ?? $application->project->countryWork['name'] ?? '-';
+            $city = $application->project->cityWork ?? '-';
+            $category = $application->project->category['allTranslations']['title'][app()->getLocale()] ?? $application->project->category['name'] ?? '-';
+            $categorySub = $application->project->categorySub['allTranslations']['title'][app()->getLocale()] ?? $application->project->categorySub['name'] ?? '-';
+            $profession = $application->project->profession['allTranslations']['title'][app()->getLocale()] ?? $application->project->profession['name'] ?? '-';
+            $position = $application->project->position['allTranslations']['title'][app()->getLocale()] ?? $application->project->position['name'] ?? '-';
+
+            // Firma i Rekruter
+            $firmName = $application->project->user->firm->name ?? $application->project->user->name ?? '-';
+            $recruiterName = $application->openedBy->name ?? '-';
 
             return [
                 'ID' => $application->id,
                 __('translate.nameUser') => $application->name,
                 __('translate.surname') => $application->surname,
-                __('translate.position') => $application->project->position['allTranslations']['title'][app()->getLocale()]
-                    ?? $application->project->profession['allTranslations']['title'][app()->getLocale()]
-                    ?? $application->project->title[app()->getLocale()]
-                    ?? $application->project->title
-                    ?? '-',
+                __('translate.firm') => $firmName,
+                __('translate.recruiter') => $recruiterName,
+                __('translate.country') => $country,
+                __('translate.city') => $city,
+                __('translate.category') => $category,
+                __('translate.categorySub') => $categorySub,
+                __('translate.profession') => $profession,
+                __('translate.position') => $position,
                 __('translate.status') => $statusText,
                 __('translate.date') => $application->created_at ? $application->created_at->format('d.m.Y') : '-',
                 __('translate.note') => $application->notes[0]['content'] ?? '-',
                 __('translate.language') => $firstLang,
                 __('translate.languageLevel') => $firstLangLevel,
                 __('translate.driveLicense') => $driveLicense,
+                __('translate.cvType') => $cvType,
+                __('translate.candidateCreated') => $hasCandidate,
             ];
         });
     }
@@ -90,6 +117,13 @@ class ApplicationsExport implements FromCollection,WithHeadings
             'ID',
             __('translate.nameUser'),
             __('translate.surname'),
+            __('translate.firm'),
+            __('translate.recruiter'),
+            __('translate.country'),
+            __('translate.city'),
+            __('translate.category'),
+            __('translate.categorySub'),
+            __('translate.profession'),
             __('translate.position'),
             __('translate.status'),
             __('translate.date'),
@@ -97,6 +131,8 @@ class ApplicationsExport implements FromCollection,WithHeadings
             __('translate.language'),
             __('translate.languageLevel'),
             __('translate.driveLicense'),
+            __('translate.cvType'),
+            __('translate.candidateCreated'),
         ];
     }
 }
