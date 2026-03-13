@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import DialogModal from '@/Components/DialogModal.vue';
 import {Link, useForm, usePage} from '@inertiajs/vue3';
 import {computed, nextTick, ref, watch} from 'vue';
 import {router} from '@inertiajs/vue3';
@@ -18,6 +19,10 @@ const props = defineProps({
     langLevels: Array,
     countries: Array,
 });
+
+const lang = computed(()=>usePage().props.language);
+const firmLoginPoints = computed(()=>usePage().props.firmLoginPoints);
+const exportRequiredPoints = computed(()=>usePage().props.exportRequiredPoints);
 
 const form = ref({
     project: props.filters?.project || '',
@@ -38,6 +43,8 @@ const form = ref({
 });
 
 const isExporting = ref(false);
+const showNoPointsModal = ref(false);
+const noPointsMessage = ref('');
 const showAdditionalFilters = ref(false);
 const optionsCities = ref([]);
 const optionsCategoriesFiltered = ref([]);
@@ -162,7 +169,11 @@ const exportToCSV = async () => {
         router.reload({ only: ['firmLoginPoints'] });
     } catch (error) {
         if (error.response?.status === 403) {
-            alert(error.response.data.message || __('translate.noPoints'));
+            noPointsMessage.value = error.response.data.message || __('translate.noPoints');
+            showNoPointsModal.value = true;
+        } else {
+            noPointsMessage.value = __('translate.exportError');
+            showNoPointsModal.value = true;
         }
     } finally {
         isExporting.value = false;
@@ -791,6 +802,34 @@ const submitForm = () => {
             </div>
         </div>
     </AppLayout>
+
+    <DialogModal :show="showNoPointsModal" @close="showNoPointsModal = false">
+        <template #title>
+            <div class="text-xl font-black text-red-600 uppercase tracking-widest text-center w-full">
+                {{ __('translate.noPointsTitle') || __('translate.error') }}
+            </div>
+        </template>
+
+        <template #content>
+            <div class="mt-4 text-center">
+                <p class="text-sm font-bold text-gray-500 uppercase tracking-tight">
+                    {{ noPointsMessage }}
+                </p>
+            </div>
+        </template>
+
+        <template #footer>
+            <div class="flex justify-center w-full">
+                <button
+                    type="button"
+                    class="inline-flex justify-center rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                    @click="showNoPointsModal = false"
+                >
+                    {{ __('translate.ok') || 'OK' }}
+                </button>
+            </div>
+        </template>
+    </DialogModal>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
