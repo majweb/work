@@ -21,6 +21,20 @@ const props = defineProps({
     countries: Array,
 });
 
+const isExporting = ref(false);
+const showAdditionalFilters = ref(false);
+const optionsCities = ref([]);
+const optionsCategoriesFiltered = ref(props.optionsPosition || []);
+const optionsCategorySub = ref([]);
+const optionsProfession = ref([]);
+const optionsPositionLocal = ref([]);
+
+const { getPositionTitle } = useProjectHelpers();
+
+const lang = computed(()=>usePage().props.language);
+const firmLoginPoints = computed(()=>usePage().props.firmLoginPoints);
+const exportRequiredPoints = computed(()=>usePage().props.exportRequiredPoints);
+
 const form = ref({
     project: props.filters?.project || '',
     status: props.filters?.status || '',
@@ -39,20 +53,6 @@ const form = ref({
     date: props.filters?.date || '',
 });
 
-const isExporting = ref(false);
-const showAdditionalFilters = ref(false);
-const optionsCities = ref([]);
-const optionsCategoriesFiltered = ref(props.optionsPosition || []);
-const optionsCategorySub = ref([]);
-const optionsProfession = ref([]);
-const optionsPositionLocal = ref([]);
-
-watch(() => props.optionsPosition, (newVal) => {
-    if (!form.value.country) {
-        optionsCategoriesFiltered.value = newVal || [];
-    }
-}, { immediate: true });
-
 const formSend = useForm({
     externalFirms: [],
     apps: []
@@ -63,7 +63,8 @@ const updateStatus = (id, status) => {
         status
     }, {
         preserveScroll: true,
-        preserveState: true
+        preserveState: true,
+        only: ['applications', 'maybeCount', 'acceptedCount', 'noCount']
     });
 };
 
@@ -99,6 +100,7 @@ const exportToCSV = async () => {
     try {
         const response = await axios.post(route('firm.applications.export'), {
             form: form.value,
+            apps: formSend.apps,
         }, {
             responseType: 'blob',
         });
@@ -147,6 +149,7 @@ watch(form, debounce(function (value) {
 
     router.get(route('aplications.index'), rest, {
         preserveState: true,
+        preserveScroll: true,
         replace: true,
     });
 }, 300), { deep: true });
