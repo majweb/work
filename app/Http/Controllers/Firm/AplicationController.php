@@ -12,9 +12,11 @@ use App\Models\CandidateQuestion;
 use App\Models\CandidateAnswer;
 use App\Models\Candidate;
 use App\Models\LangLevel;
+use App\Models\Country;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
 use App\Services\GetPointsService;
+use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +31,7 @@ class AplicationController extends Controller
     protected $filterService;
     protected $getPointsService;
     protected $statusService;
+    protected $helper;
 
     /**
      * Konstruktor wstrzykujący serwisy
@@ -37,10 +40,12 @@ class AplicationController extends Controller
         ApplicationFilterService $filterService,
         ApplicationStatusService $statusService,
         GetPointsService $getPointsService,
+        Helper $helper
     ) {
         $this->filterService = $filterService;
         $this->statusService = $statusService;
         $this->getPointsService = $getPointsService;
+        $this->helper = $helper;
     }
 
     /**
@@ -52,9 +57,11 @@ class AplicationController extends Controller
     public function index(Request $request)
     {
         $result = $this->filterService->getFilteredApplications($request);
-        $langLevels=  Cache::rememberForever('langLevels', function() {
+        $langLevels = Cache::rememberForever('langLevels', function() {
             return MultiselectWithoutDetailResource::collection(LangLevel::get());
         });
+        $countries = $this->helper->makeCountriesToSelectHasProjects();
+
         return inertia()->render('Firm/Aplication/Index', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
@@ -65,6 +72,7 @@ class AplicationController extends Controller
             'maybeCount' => $result['counters']['maybeCount'],
             'noCount' => $result['counters']['noCount'],
             'langLevels' => $langLevels,
+            'countries' => $countries,
         ]);
     }
 
