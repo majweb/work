@@ -7,6 +7,7 @@ import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
 import Multiselect from "vue-multiselect";
 import Pagination from "@/Components/Pagination.vue";
+import __ from "@/lang.js";
 
 const props = defineProps({
     acceptedCount: Number,
@@ -274,6 +275,24 @@ const changeIds = (e) => {
     }
 }
 
+const isAllSelected = computed(() => {
+    const appsWithCandidate = props.applications.data.filter(app => app.worker?.candidate);
+    return appsWithCandidate.length > 0 && appsWithCandidate.every(app => formSend.apps.includes(app.id));
+});
+
+const toggleSelectAll = () => {
+    const currentIdsWithCandidate = props.applications.data
+        .filter(app => app.worker?.candidate)
+        .map(app => app.id);
+
+    if (isAllSelected.value) {
+        formSend.apps = formSend.apps.filter(id => !currentIdsWithCandidate.includes(id));
+    } else {
+        const newApps = [...new Set([...formSend.apps, ...currentIdsWithCandidate])];
+        formSend.apps = newApps;
+    }
+};
+
 
 const submitForm = () => {
     formSend.post(route('send.external'), {
@@ -519,7 +538,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                 :selectGroupLabel="__('translate.selectGroupLabel')"
                                 :selectedLabel="__('translate.selectedLabel')"
                                 :deselectLabel="__('translate.deselectLabel')"
-                                v-model="form.lang" :options="sortLangs" label="label" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
+                                v-model="form.lang" :options="sortLangs" label="label" track-by="value" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
                         </div>
                         <div class="space-y-2" :class="{ 'opacity-50 pointer-events-none': !form.lang }">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.languageLevel') }}</label>
@@ -591,9 +610,31 @@ watch(() => usePage().props.sender, (newVal) => {
 
                 <!-- Applications List -->
                 <div class="space-y-4 pb-12">
-                    <div class="flex items-center gap-4 mb-6 px-6">
-                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.aplications') }}</h3>
-                        <div class="h-px flex-1 bg-gray-100"></div>
+                    <div class="flex items-center justify-between mb-6 px-6">
+                        <div class="flex items-center gap-4">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.aplications') }}</h3>
+                            <div class="h-px w-24 bg-gray-100"></div>
+                        </div>
+
+                        <div class="flex items-center gap-3 bg-white px-6 py-3 rounded-2xl border border-gray-100 shadow-sm">
+                            <label class="group/check-all flex items-center cursor-pointer">
+                                <div class="relative flex items-center justify-center">
+                                    <input
+                                        type="checkbox"
+                                        :checked="isAllSelected"
+                                        @change="toggleSelectAll"
+                                        class="peer sr-only"
+                                    />
+                                    <div class="h-6 w-6 rounded-lg border-2 border-gray-100 bg-white transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent group-hover/check-all:border-blue-200 flex items-center justify-center">
+                                        <svg v-if="isAllSelected" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                                        <div v-else-if="formSend.apps.length > 0" class="w-2 h-0.5 bg-[#0A2C5C] rounded-full"></div>
+                                    </div>
+                                </div>
+                                <span class="ml-3 text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover/check-all:text-[#0A2C5C] transition-colors">
+                                    {{ __('translate.selectAll') }}
+                                </span>
+                            </label>
+                        </div>
                     </div>
 
                     <div v-if="applications.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
@@ -613,7 +654,7 @@ watch(() => usePage().props.sender, (newVal) => {
                             <!-- Lewa kolumna: Dane podstawowe i status -->
                             <div class="flex items-center gap-6">
                                 <!-- checkbox + ID -->
-                                <div class="shrink-0">
+                                <div v-if="application.worker?.candidate" class="shrink-0">
                                     <label class="group/check flex items-center cursor-pointer">
                                         <div class="relative flex items-center justify-center">
                                             <input
@@ -631,6 +672,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                         <span class="ml-3 text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover/check:text-[#0A2C5C] transition-colors">ID {{ application.id }}</span>
                                     </label>
                                 </div>
+                                <div v-else class="shrink-0 w-6 h-6"></div>
 
                                 <!-- Candidate info -->
                                 <div class="flex items-center gap-4 flex-1 min-w-0">

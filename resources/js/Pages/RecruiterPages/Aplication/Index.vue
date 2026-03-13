@@ -6,9 +6,7 @@ import {router} from '@inertiajs/vue3';
 import { pickBy, debounce } from 'lodash';
 import Multiselect from "vue-multiselect";
 import Pagination from "@/Components/Pagination.vue";
-
-const isExporting = ref(false);
-
+import __ from "@/lang.js";
 const props = defineProps({
     acceptedCount: Number,
     maybeCount: Number,
@@ -18,22 +16,82 @@ const props = defineProps({
     optionsExternal: Object,
     filters: Object,
     langLevels: Array,
+    countries: Array,
 });
-
-const firmLoginPoints = computed(() => usePage().props.firmLoginPoints);
-const exportRequiredPoints = computed(() => usePage().props.exportRequiredPoints);
 
 const form = ref({
     project: props.filters?.project || '',
     status: props.filters?.status || '',
     recruiter: props.filters?.recruiter || '',
-    category: props.filters?.category?.value || '',
+    country: props.filters?.country || '',
+    city: props.filters?.city || '',
+    category: props.filters?.category || '',
+    categorySub: props.filters?.categorySub || '',
+    profession: props.filters?.profession || '',
+    position: props.filters?.position || '',
     has_cv: props.filters?.has_cv || 'all',
     lang: props.filters?.lang || '',
     Langlevel: props.filters?.Langlevel || '',
-    skill: props.filters?.skill || '',
-    date: props.filters?.date || '',
     driveLicense: props.filters?.driveLicense || '',
+    has_candidate: props.filters?.has_candidate || '',
+    date: props.filters?.date || '',
+});
+
+const isExporting = ref(false);
+const showAdditionalFilters = ref(false);
+const optionsCities = ref([]);
+const optionsCategoriesFiltered = ref([]);
+const optionsCategorySub = ref([]);
+const optionsProfession = ref([]);
+const optionsPositionLocal = ref([]);
+
+import { onMounted } from 'vue';
+
+onMounted(async () => {
+    optionsCategoriesFiltered.value = props.optionsPosition;
+
+    if (form.value.country) {
+        const countryCode = form.value.country.countryCode || form.value.country.value || form.value.country;
+        try {
+            const responseCities = await fetch(route("cities.byCountry", countryCode));
+            const citiesData = await responseCities.json();
+            optionsCities.value = citiesData;
+
+            const responseCat = await fetch(route("categories.byCountry", countryCode));
+            const dataCat = await responseCat.json();
+            optionsCategoriesFiltered.value = dataCat;
+        } catch (e) {}
+    }
+
+    if (form.value.category) {
+        try {
+            const response = await fetch(route("category.sub", form.value.category.value || form.value.category));
+            const data = await response.json();
+            optionsCategorySub.value = data;
+        } catch (e) {}
+    }
+
+    if (form.value.categorySub) {
+        try {
+            const response = await fetch(route("category.professions", form.value.categorySub.value || form.value.categorySub));
+            const data = await response.json();
+            optionsProfession.value = data;
+        } catch (e) {}
+    }
+
+    if (form.value.profession) {
+        try {
+            const response = await fetch(route("category.positions", form.value.profession.value || form.value.profession));
+            const data = await response.json();
+            optionsPositionLocal.value = data;
+        } catch (e) {}
+    }
+});
+
+watch(() => props.optionsPosition, (newVal) => {
+    if (!form.value.country) {
+        optionsCategoriesFiltered.value = newVal || [];
+    }
 });
 
 const formSend = useForm({
@@ -44,7 +102,8 @@ const formSend = useForm({
 const updateStatus = (id, status) => {
     router.put(route('project-aplications-recruits.update', id), { status }, {
         preserveScroll: true,
-        preserveState: true
+        preserveState: true,
+        only: ['applications', 'maybeCount', 'acceptedCount', 'noCount']
     });
 };
 
@@ -53,11 +112,17 @@ const resetFilters = () => {
         project: '',
         status: '',
         category: '',
+        categorySub: '',
+        profession: '',
+        position: '',
         recruiter: '',
+        country: '',
+        city: '',
         has_cv: 'all',
         lang: '',
         Langlevel: '',
         driveLicense: '',
+        has_candidate: '',
         date: '',
     };
     router.get(route('project-aplications-recruits.index'), {}, {
@@ -83,7 +148,10 @@ const sortLangs = computed(() => {
 const exportToCSV = async () => {
     isExporting.value = true;
     try {
-        const response = await axios.post(route('recruit.project-aplications-recruits.export'), { form: form.value }, { responseType: 'blob' });
+        const response = await axios.post(route('recruit.project-aplications-recruits.export'), {
+            form: form.value,
+            apps: formSend.apps
+        }, { responseType: 'blob' });
         const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
@@ -103,17 +171,123 @@ const exportToCSV = async () => {
 
 watch(form, debounce(() => {
     let rest = pickBy({
-        ...form.value,
+        project: form.value.project,
+        status: form.value.status,
+        country: form.value.country?.value || form.value.country,
+        city: form.value.city?.value || form.value.city,
         category: form.value.category?.value || form.value.category,
+        categorySub: form.value.categorySub?.value || form.value.categorySub,
+        profession: form.value.profession?.value || form.value.profession,
+        position: form.value.position?.value || form.value.position,
         recruiter: form.value.recruiter?.value || form.value.recruiter,
+        has_cv: form.value.has_cv === 'all' ? null : form.value.has_cv,
         lang: form.value.has_cv === 'yes' ? (form.value.lang?.value || form.value.lang) : undefined,
         Langlevel: form.value.has_cv === 'yes' ? (form.value.Langlevel?.value || form.value.Langlevel) : undefined,
-        experience: form.value.has_cv === 'yes' ? (form.value.experience?.value || form.value.experience) : undefined,
         driveLicense: form.value.has_cv === 'yes' ? form.value.driveLicense : '',
-        date: form.value.date || undefined,
+        has_candidate: form.value.has_candidate,
+        date: form.value.date,
     });
-    router.get(route('project-aplications-recruits.index'), rest, { preserveState: true, preserveScroll: true, replace: true });
+    router.get(route('project-aplications-recruits.index'), rest, {
+        preserveState: true,
+        preserveScroll: true,
+        replace: true,
+    });
 }, 300), { deep: true });
+
+// Kaskadowe pobieranie opcji
+watch(() => form.value.country, async (newCountry) => {
+    if (!newCountry || (!newCountry.countryCode && !newCountry.value)) {
+        optionsCities.value = [];
+        optionsCategoriesFiltered.value = props.optionsPosition || [];
+        form.value.city = null;
+        form.value.category = null;
+        form.value.categorySub = null;
+        form.value.profession = null;
+        form.value.position = null;
+        return;
+    }
+
+    const countryCode = newCountry.countryCode || newCountry.value;
+
+    try {
+        const response = await fetch(route("cities.byCountry", countryCode));
+        const data = await response.json();
+        optionsCities.value = data;
+        form.value.city = null;
+
+        const responseCat = await fetch(route("categories.byCountry", countryCode));
+        const dataCat = await responseCat.json();
+        optionsCategoriesFiltered.value = dataCat;
+        form.value.category = null;
+        form.value.categorySub = null;
+        form.value.profession = null;
+        form.value.position = null;
+    } catch (e) {
+        console.error('Error loading cities or categories', e);
+    }
+});
+
+watch(() => form.value.category, async (newCategory) => {
+    if (!newCategory || !newCategory.value) {
+        optionsCategorySub.value = [];
+        optionsProfession.value = [];
+        optionsPositionLocal.value = [];
+        form.value.categorySub = null;
+        form.value.profession = null;
+        form.value.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("category.sub", newCategory.value));
+        const data = await response.json();
+        optionsCategorySub.value = data;
+        form.value.categorySub = null;
+        form.value.profession = null;
+        form.value.position = null;
+    } catch (e) {
+        console.error('Error loading subcategories', e);
+    }
+});
+
+watch(() => form.value.categorySub, async (newSub) => {
+    if (!newSub || !newSub.value) {
+        optionsProfession.value = [];
+        optionsPositionLocal.value = [];
+        form.value.profession = null;
+        form.value.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("category.professions", newSub.value));
+        const data = await response.json();
+        optionsProfession.value = data;
+        form.value.profession = null;
+        form.value.position = null;
+    } catch (e) {
+        console.error('Error loading professions', e);
+    }
+});
+
+watch(() => form.value.profession, async (newProfession) => {
+    if (!newProfession || !newProfession.value) {
+        optionsPositionLocal.value = [];
+        form.value.position = null;
+        return;
+    }
+
+    try {
+        const response = await fetch(route("category.positions", newProfession.value));
+        const data = await response.json();
+        optionsPositionLocal.value = data;
+        form.value.position = null;
+    } catch (e) {
+        console.error('Error loading positions', e);
+    }
+});
+
+const optionsCountry = computed(() => props.countries);
 
 const showMessage = ref(false);
 watch(() => usePage().props.sender, (newVal) => {
@@ -129,6 +303,24 @@ watch(() => usePage().props.sender, (newVal) => {
 const changeIds = () => {
     if (formSend.apps.length === 0) {
         formSend.externalFirms = [];
+    }
+};
+
+const isAllSelected = computed(() => {
+    const appsWithCandidate = props.applications.data.filter(app => app.worker?.candidate);
+    return appsWithCandidate.length > 0 && appsWithCandidate.every(app => formSend.apps.includes(app.id));
+});
+
+const toggleSelectAll = () => {
+    const currentIdsWithCandidate = props.applications.data
+        .filter(app => app.worker?.candidate)
+        .map(app => app.id);
+
+    if (isAllSelected.value) {
+        formSend.apps = formSend.apps.filter(id => !currentIdsWithCandidate.includes(id));
+    } else {
+        const newApps = [...new Set([...formSend.apps, ...currentIdsWithCandidate])];
+        formSend.apps = newApps;
     }
 };
 
@@ -164,7 +356,7 @@ const submitForm = () => {
                 </div>
             </Transition>
 
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+            <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- Filters Section -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <div class="flex items-center gap-4 mb-8">
@@ -201,23 +393,57 @@ const submitForm = () => {
                         >
                             {{ __('translate.videoAudioCV') }}
                         </button>
+
+                        <button
+                            @click="showAdditionalFilters = !showAdditionalFilters"
+                            class="ml-auto px-6 py-3 text-[10px] font-black uppercase tracking-widest rounded-2xl transition-all border border-gray-100 hover:bg-gray-50 text-gray-500 flex items-center gap-2"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': showAdditionalFilters }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                            {{ showAdditionalFilters ? __('translate.lessFilters') : __('translate.moreFilters') }}
+                        </button>
                     </div>
 
                     <!-- Filters grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.projectID') }}</label>
                             <input v-model="form.project" type="text" :placeholder="__('translate.enterID')" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"/>
                         </div>
                         <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
-                            <multiselect v-model="form.category" :options="props.optionsPosition" label="name"
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.country') }}</label>
+                            <multiselect
+                                v-model="form.country"
+                                :options="optionsCountry"
+                                group-values="elements"
+                                group-label="group"
+                                :group-select="false"
+                                label="name"
+                                track-by="value"
+                                :selectLabel="__('translate.selectLabel')"
+                                :selectGroupLabel="__('translate.selectGroupLabel')"
+                                :selectedLabel="__('translate.selectedLabel')"
+                                :deselectLabel="__('translate.deselectLabel')"
+                                :placeholder="__('translate.selectCountry')"
+                                class="custom-multiselect"
+                            >
+                                <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                            </multiselect>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.City') }}</label>
+                            <multiselect v-model="form.city" :options="optionsCities" label="name"
+                                         track-by="value"
                                          :selectLabel="__('translate.selectLabel')"
                                          :selectGroupLabel="__('translate.selectGroupLabel')"
                                          :selectedLabel="__('translate.selectedLabel')"
                                          :deselectLabel="__('translate.deselectLabel')"
-
-                                         :placeholder="__('translate.selectPosition')" class="custom-multiselect"/>
+                                         :placeholder="__('translate.selectCity')" class="custom-multiselect">
+                                <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                            </multiselect>
                         </div>
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.applicationStatus') }}</label>
@@ -228,9 +454,78 @@ const submitForm = () => {
                                 <option value="maybe">{{ __('translate.statusMaybe') }}</option>
                             </select>
                         </div>
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date') }}</label>
-                            <input v-model="form.date" type="date" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"/>
+                    </div>
+
+                    <div v-if="showAdditionalFilters">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.category') }}</label>
+                                <multiselect v-model="form.category" :options="optionsCategoriesFiltered" label="name"
+                                             track-by="value"
+                                             :selectLabel="__('translate.selectLabel')"
+                                             :selectGroupLabel="__('translate.selectGroupLabel')"
+                                             :selectedLabel="__('translate.selectedLabel')"
+                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :placeholder="__('translate.selectCategory')" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                </multiselect>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.subcategory') }}</label>
+                                <multiselect v-model="form.categorySub" :options="optionsCategorySub" label="name"
+                                             track-by="value"
+                                             :selectLabel="__('translate.selectLabel')"
+                                             :selectGroupLabel="__('translate.selectGroupLabel')"
+                                             :selectedLabel="__('translate.selectedLabel')"
+                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :placeholder="__('translate.selectSubcategory')" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                </multiselect>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.profession') }}</label>
+                                <multiselect v-model="form.profession" :options="optionsProfession" label="name"
+                                             track-by="value"
+                                             :selectLabel="__('translate.selectLabel')"
+                                             :selectGroupLabel="__('translate.selectGroupLabel')"
+                                             :selectedLabel="__('translate.selectedLabel')"
+                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :placeholder="__('translate.selectProfession')" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                </multiselect>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
+                                <multiselect v-model="form.position" :options="optionsPositionLocal" label="name"
+                                             track-by="value"
+                                             :selectLabel="__('translate.selectLabel')"
+                                             :selectGroupLabel="__('translate.selectGroupLabel')"
+                                             :selectedLabel="__('translate.selectedLabel')"
+                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :placeholder="__('translate.selectPosition')" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <!-- Additional filters -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date') }}</label>
+                                <input v-model="form.date" type="date" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.candidateCreated') }}</label>
+                                <select v-model="form.has_candidate" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
+                                    <option value="">{{ __('translate.all') }}</option>
+                                    <option value="yes">{{ __('translate.yes') }}</option>
+                                    <option value="no">{{ __('translate.no') }}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -243,7 +538,7 @@ const submitForm = () => {
                                 :selectGroupLabel="__('translate.selectGroupLabel')"
                                 :selectedLabel="__('translate.selectedLabel')"
                                 :deselectLabel="__('translate.deselectLabel')"
-                                v-model="form.lang" :options="sortLangs" label="label" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
+                                v-model="form.lang" :options="sortLangs" label="label" track-by="value" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
                         </div>
                         <div class="space-y-2" :class="{ 'opacity-50 pointer-events-none': !form.lang }">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.languageLevel') }}</label>
@@ -315,9 +610,31 @@ const submitForm = () => {
 
                 <!-- Applications List -->
                 <div class="space-y-4 pb-12">
-                    <div class="flex items-center gap-4 mb-6 px-6">
-                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.applications') }}</h3>
-                        <div class="h-px flex-1 bg-gray-100"></div>
+                    <div class="flex items-center justify-between mb-6 px-6">
+                        <div class="flex items-center gap-4">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.applications') }}</h3>
+                            <div class="h-px w-24 bg-gray-100"></div>
+                        </div>
+
+                        <div class="flex items-center gap-3 bg-white px-6 py-3 rounded-2xl border border-gray-100 shadow-sm">
+                            <label class="group/check-all flex items-center cursor-pointer">
+                                <div class="relative flex items-center justify-center">
+                                    <input
+                                        type="checkbox"
+                                        :checked="isAllSelected"
+                                        @change="toggleSelectAll"
+                                        class="peer sr-only"
+                                    />
+                                    <div class="h-6 w-6 rounded-lg border-2 border-gray-100 bg-white transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent group-hover/check-all:border-blue-200 flex items-center justify-center">
+                                        <svg v-if="isAllSelected" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                                        <div v-else-if="formSend.apps.length > 0" class="w-2 h-0.5 bg-[#0A2C5C] rounded-full"></div>
+                                    </div>
+                                </div>
+                                <span class="ml-3 text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover/check-all:text-[#0A2C5C] transition-colors">
+                                    {{ __('translate.selectAll') }}
+                                </span>
+                            </label>
+                        </div>
                     </div>
 
                     <div v-if="applications.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
@@ -333,111 +650,135 @@ const submitForm = () => {
                          :style="getBackgroundStyle(application)"
                          class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
                     >
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                            <!-- checkbox + ID -->
-                            <div class="col-span-1 md:col-span-1 flex items-center justify-center md:justify-start">
-                                <label class="group/check flex items-center cursor-pointer">
-                                    <div class="relative flex items-center justify-center">
-                                        <input
-                                            @change="changeIds"
-                                            type="checkbox"
-                                            :id="'app-'+application.id"
-                                            v-model="formSend.apps"
-                                            :value="application.id"
-                                            class="peer sr-only"
-                                        />
-                                        <div class="h-6 w-6 rounded-lg border-2 border-gray-100 bg-white transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent group-hover/check:border-blue-200 flex items-center justify-center">
-                                            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Lewa kolumna: Dane podstawowe i status -->
+                            <div class="flex items-center gap-6">
+                                <!-- checkbox + ID -->
+                                <div v-if="application.worker?.candidate" class="shrink-0">
+                                    <label class="group/check flex items-center cursor-pointer">
+                                        <div class="relative flex items-center justify-center">
+                                            <input
+                                                @change="changeIds"
+                                                type="checkbox"
+                                                :id="'app-'+application.id"
+                                                v-model="formSend.apps"
+                                                :value="application.id"
+                                                class="peer sr-only"
+                                            />
+                                            <div class="h-6 w-6 rounded-lg border-2 border-gray-100 bg-white transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent group-hover/check:border-blue-200 flex items-center justify-center">
+                                                <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+                                            </div>
+                                        </div>
+                                        <span class="ml-3 text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover/check:text-[#0A2C5C] transition-colors">ID {{ application.id }}</span>
+                                    </label>
+                                </div>
+                                <div v-else class="shrink-0 w-6 h-6"></div>
+
+                                <!-- Candidate info -->
+                                <div class="flex items-center gap-4 flex-1 min-w-0">
+                                    <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+                                        <img v-if="application.worker?.profile_photo_url" :src="application.worker?.profile_photo_url" :alt="application.name" class="w-full h-full object-cover"/>
+                                        <div v-else class="text-[#0A2C5C] font-black text-lg">
+                                            {{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}
                                         </div>
                                     </div>
-                                    <span class="ml-3 text-[10px] font-black text-gray-400 uppercase tracking-widest group-hover/check:text-[#0A2C5C] transition-colors">ID {{ application.id }}</span>
-                                </label>
-                            </div>
-
-                            <!-- Candidate info -->
-                            <div class="col-span-1 md:col-span-3 flex items-center gap-4">
-                                <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
-                                    <img v-if="application.worker?.profile_photo_url" :src="application.worker?.profile_photo_url" :alt="application.name" class="w-full h-full object-cover"/>
-                                    <div v-else class="text-[#0A2C5C] font-black text-lg">
-                                        {{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}
-                                    </div>
-                                </div>
-                                <div class="min-w-0">
-                                    <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight">{{ application.name }} {{ application.surname }}</div>
-                                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
-                                        {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Status buttons -->
-                            <div class="col-span-1 md:col-span-2 flex justify-center">
-                                <button
-                                    v-if="application.status==='maybe'"
-                                    @click="updateStatus(application.id,'yes')"
-                                    class="w-full px-4 py-3 bg-cyan-500 text-white text-[10px] font-black rounded-xl hover:bg-cyan-600 shadow-md shadow-cyan-500/10 transition-all uppercase tracking-widest"
-                                >
-                                    {{ __('translate.statusMaybe') }}
-                                </button>
-                                <button
-                                    v-else-if="application.status==='yes'"
-                                    @click="updateStatus(application.id,'no')"
-                                    class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
-                                >
-                                    {{ __('translate.statusYes') }}
-                                </button>
-                                <button
-                                    v-else-if="application.status==='no'"
-                                    @click="updateStatus(application.id,'maybe')"
-                                    class="w-full px-4 py-3 bg-red-600 text-white text-[10px] font-black rounded-xl hover:bg-red-700 shadow-md shadow-red-600/10 transition-all uppercase tracking-widest"
-                                >
-                                    {{ __('translate.statusNo') }}
-                                </button>
-                                <button
-                                    v-else
-                                    @click="updateStatus(application.id,'maybe')"
-                                    class="w-full px-4 py-3 bg-gray-50 text-gray-400 text-[10px] font-black rounded-xl hover:bg-gray-100 border border-gray-100 transition-all uppercase tracking-widest"
-                                >
-                                    ---
-                                </button>
-                            </div>
-
-                            <!-- Date & Note -->
-                            <div class="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-                                <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.date') }}</div>
-                                <div class="text-xs font-bold text-gray-700 uppercase tracking-tight">{{ application.created_at ? new Date(application.created_at).toLocaleDateString('pl-PL') : '' }}</div>
-                            </div>
-
-                            <div class="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-                                <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.note') }}</div>
-                                <div class="text-xs font-bold text-gray-700 uppercase tracking-tight truncate w-full max-w-[200px]" :title="application.notes?.[0]?.content">
-                                    {{ application.notes?.[0]?.content || '—' }}
-                                </div>
-                            </div>
-
-                            <!-- CV Icon & Action -->
-                            <div class="col-span-1 md:col-span-2 flex items-center justify-center md:justify-end gap-6">
-                                <div class="shrink-0 transition-transform group-hover:scale-110">
-                                    <div v-if="application.cv_audio" class="w-20 h-20 flex items-center justify-center" :title="__('translate.cv_audio')">
-                                        <img class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
-                                    </div>
-                                    <div v-else-if="application.cv_video" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_video')">
-                                        <img class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
-                                    </div>
-                                    <div v-else-if="application.cv_classic" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
-                                        <img class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
-                                    </div>
-                                    <div v-else class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
-                                    -
+                                    <div class="min-w-0">
+                                        <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight flex items-center gap-2">
+                                            <span>{{ application.name }} {{ application.surname }}</span>
+                                            <span v-if="application.worker?.candidate" class="px-2 py-0.5 bg-green-500 text-white rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.candidateCreated')">
+                                                {{ __('translate.candidate') }}
+                                            </span>
+                                            <span v-else class="px-2 py-0.5 bg-gray-200 text-gray-500 rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.noCandidate')">
+                                                {{ __('translate.noProfile') }}
+                                            </span>
+                                        </div>
+                                        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
+                                            {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                        </div>
                                     </div>
                                 </div>
 
-                                <Link
-                                    :href="route('project-aplications-recruits.show', application.id)"
-                                    class="px-8 py-3 bg-white text-[#0A2C5C] text-[10px] font-black rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all uppercase tracking-widest"
-                                >
-                                    {{__('translate.check')}}
-                                </Link>
+                                <!-- Status buttons -->
+                                <div class="w-32 flex flex-col items-center justify-center gap-2">
+                                    <button
+                                        v-if="application.status==='maybe'"
+                                        @click="updateStatus(application.id,'yes')"
+                                        class="w-full px-4 py-3 bg-cyan-500 text-white text-[10px] font-black rounded-xl hover:bg-cyan-600 shadow-md shadow-cyan-500/10 transition-all uppercase tracking-widest"
+                                    >
+                                        {{ __('translate.statusMaybe') }}
+                                    </button>
+                                    <button
+                                        v-else-if="application.status==='yes'"
+                                        @click="updateStatus(application.id,'no')"
+                                        class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
+                                    >
+                                        {{ __('translate.statusYes') }}
+                                    </button>
+                                    <button
+                                        v-else-if="application.status==='no'"
+                                        @click="updateStatus(application.id,'maybe')"
+                                        class="w-full px-4 py-3 bg-red-600 text-white text-[10px] font-black rounded-xl hover:bg-red-700 shadow-md shadow-red-600/10 transition-all uppercase tracking-widest"
+                                    >
+                                        {{ __('translate.statusNo') }}
+                                    </button>
+                                    <button
+                                        v-else
+                                        @click="updateStatus(application.id,'maybe')"
+                                        class="w-full px-4 py-3 bg-gray-50 text-gray-400 text-[10px] font-black rounded-xl hover:bg-gray-100 border border-gray-100 transition-all uppercase tracking-widest"
+                                    >
+                                        ---
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Prawa kolumna: Szczegóły, notatka i akcja -->
+                            <div class="flex items-center justify-between gap-6 pl-8 border-l border-gray-50">
+                                <!-- Date & Project Source -->
+                                <div class="flex flex-col gap-3 min-w-[120px]">
+                                    <div class="flex flex-col">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.date') }}</div>
+                                        <div class="text-xs font-bold text-gray-700 uppercase tracking-tight">{{ application.created_at ? new Date(application.created_at).toLocaleDateString('pl-PL') : '' }}</div>
+                                    </div>
+                                    <div class="flex flex-col" v-if="application.project?.user?.firm">
+                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.firm') }}</div>
+                                        <div class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-tight leading-none mb-1">
+                                            {{ application.project?.user?.firm?.name || application.project?.user?.name || 'Brak firmy' }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Note -->
+                                <div class="flex-1 min-w-0 max-w-[150px]">
+                                    <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.note') }}</div>
+                                    <div class="text-[10px] font-bold text-gray-700 uppercase tracking-tight line-clamp-2" :title="application.notes?.[0]?.content">
+                                        {{ application.notes?.[0]?.content || '—' }}
+                                    </div>
+                                </div>
+
+                                <!-- CV Icon & Action -->
+                                <div class="flex items-center gap-6 shrink-0">
+                                    <div class="shrink-0 transition-transform group-hover:scale-110">
+                                        <div v-if="application.cv_audio" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_audio')">
+                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
+                                        </div>
+                                        <div v-else-if="application.cv_video" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_video')">
+                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
+                                        </div>
+                                        <div v-else-if="application.cv_classic" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
+                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
+                                        </div>
+                                        <div v-else class="w-6 h-6 flex items-center justify-center" :title="__('translate.cv_classic')">
+                                            -
+                                        </div>
+                                    </div>
+
+                                    <Link
+                                        :href="route('project-aplications-recruits.show', application.id)"
+                                        class="px-8 py-3 bg-white text-[#0A2C5C] text-[10px] font-black rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all uppercase tracking-widest"
+                                    >
+                                        {{__('translate.check')}}
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

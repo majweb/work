@@ -13,6 +13,7 @@ use App\Services\ApplicationFilterService;
 use App\Services\ApplicationRecruitFilterService;
 use App\Services\ApplicationStatusService;
 use App\Services\GetPointsService;
+use App\Services\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -59,11 +60,13 @@ class AplicationController extends Controller implements HasMiddleware
      */
     public function index(Request $request)
     {
-
         $result = $this->filterService->getFilteredApplications($request);
         $langLevels=  Cache::rememberForever('langLevels', function() {
             return MultiselectWithoutDetailResource::collection(LangLevel::get());
         });
+        $helper = new Helper();
+        $countries = $helper->makeCountriesToSelectHasProjects();
+
         return inertia()->render('RecruiterPages/Aplication/Index', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
@@ -74,6 +77,7 @@ class AplicationController extends Controller implements HasMiddleware
             'maybeCount' => $result['counters']['maybeCount'],
             'noCount' => $result['counters']['noCount'],
             'langLevels' => $langLevels,
+            'countries' => $countries,
         ]);
     }
 

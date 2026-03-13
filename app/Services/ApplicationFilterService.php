@@ -332,6 +332,10 @@ class ApplicationFilterService
                 $q->latest()->limit(1);
             }])->forCurrentRecruiter();
 
+        // Jeśli zaznaczono konkretne aplikacje (np. do eksportu)
+        if ($request->has('apps') && !empty($request->apps)) {
+            $query->whereIn('id', (array)$request->apps);
+        }
 
         // Filtrowanie według statusu
         $this->applyStatusFilter($query, $status);
@@ -413,6 +417,7 @@ class ApplicationFilterService
     public function getFilteredApplicationsExport(Request $request, ?string $status = null): array
     {
         $form = $request->input('form', []);
+        $apps = $request->input('apps', []);
 
         $query = Aplication::query()
             ->with(['project', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
@@ -420,8 +425,8 @@ class ApplicationFilterService
             }])->forCurrentRecruiter();
 
         // Jeśli zaznaczono konkretne aplikacje
-        if (!empty($request->apps)) {
-            $query->whereIn('id', $request->apps);
+        if (!empty($apps)) {
+            $query->whereIn('id', (array)$apps);
         }
 
         // Filtrowanie według statusu
@@ -483,23 +488,14 @@ class ApplicationFilterService
      */
     private function getCategories()
     {
-        return Cache::remember('categoriesAll_Admin', now()->addDay(), function() {
-            $categories = \App\Models\Project::all()
-                ->map(function ($item) {
-                    return is_string($item->category)
-                        ? json_decode($item->category, true)
-                        : $item->category;
-                })
-                ->filter()
-                ->unique('value')
-                ->values()
+        return Cache::remember('categoriesAll_Admin_v2', now()->addDay(), function() {
+            return \App\Models\Category::whereNull('parent_id')
+                ->get()
                 ->map(fn($cat) => [
-                    'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
-                    'value' => $cat['value'],
+                    'name' => $cat->getTranslation('title', app()->getLocale()),
+                    'value' => $cat->id,
                 ])
                 ->toArray();
-
-            return $categories;
         });
     }
 
