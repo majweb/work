@@ -46,6 +46,7 @@ return [
     'forgottext' => 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
     'emailresetlink' => 'Email Password Reset Link',
     'confirm' => 'This is a secure area of the application. Please confirm your password before continuing.',
+    'noAnswers' => 'No candidate answers',
     'confirmbtn' => 'Confirm',
     'resetBtn' => 'Reset Password',
     'access' => 'Please confirm access to your account by entering the authentication code provided by your authenticator application.',

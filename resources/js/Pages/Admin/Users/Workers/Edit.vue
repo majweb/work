@@ -416,6 +416,42 @@ onMounted(async () => {
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Profil kandydata nie został jeszcze odblokowany.</p>
                             </div>
                         </div>
+
+                        <!-- Notatki z aplikacji -->
+                        <div v-if="candidate && candidate.applications && candidate.applications.length > 0" class="mt-12">
+                            <div class="flex items-center gap-4 mb-6">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
+                                    Notatki z aplikacji
+                                </h3>
+                                <div class="h-px flex-1 bg-gray-100"></div>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div v-for="application in candidate.applications" :key="application.id">
+                                    <div v-if="application.notes && application.notes.length > 0"
+                                         class="bg-white rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 p-8 transition-all hover:shadow-blue-900/10">
+                                        <div class="flex items-center justify-between mb-6 border-b border-gray-50 pb-4">
+                                            <div>
+                                                <h4 class="text-xs font-black text-[#0A2C5C] uppercase tracking-tight">{{ application.project_name }}</h4>
+                                                <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">{{ application.created_at }}</p>
+                                            </div>
+                                            <div class="px-3 py-1 bg-blue-50 text-blue-500 rounded-lg text-[9px] font-black uppercase tracking-widest">
+                                                Aplikacja #{{ application.id }}
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-4">
+                                            <div v-for="note in application.notes" :key="note.id" class="bg-gray-50/50 rounded-2xl p-5 border border-gray-100">
+                                                <p class="text-xs font-bold text-gray-700 whitespace-pre-wrap leading-relaxed">{{ note.content }}</p>
+                                                <div class="mt-3 pt-3 border-t border-gray-100 flex justify-end">
+                                                    <span class="text-[8px] font-black text-gray-400 uppercase tracking-widest">{{ moment(note.created_at).format('DD.MM.YYYY HH:mm') }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Right Column: Tags Management -->

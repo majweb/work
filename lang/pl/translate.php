@@ -759,6 +759,7 @@ return [
     'listQuestions' => 'Lista pytań',
     'addNewQuestion' => 'Dodaj nowe pytanie',
     'candidateQuestionsUnlockedDate' => 'Pytania odblokowane dnia:',
+    'noAnswers' => 'Brak odpowiedzi kandydata',
     'textAnswerRequired' => 'Odpowiedź tekstowa jest wymagana.',
     'booleanAnswerRequired' => 'Odpowiedź tak/nie jest wymagana.',
     'textAnswerTooLong' => 'Odpowiedź tekstowa jest zbyt długa. Maksymalna długość to 1000 znaków.',

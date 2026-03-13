@@ -226,6 +226,19 @@ class WorkerController extends Controller
                 unset($question->answers);
             });
 
+            // Pobierz wszystkie aplikacje kandydata wraz z notatkami i projektami
+            $candidateApplications = $candidate->applications()
+                ->with(['notes', 'project'])
+                ->get()
+                ->map(function ($application) {
+                    return [
+                        'id' => $application->id,
+                        'project_name' => $application->project ? $application->project->name : 'N/A',
+                        'notes' => $application->notes,
+                        'created_at' => $application->created_at->format('Y-m-d H:i'),
+                    ];
+                });
+
             $candidateData = [
                 'id' => $candidate->id,
                 'name' => $candidate->name,
@@ -235,6 +248,7 @@ class WorkerController extends Controller
                 'phone' => $candidate->phone,
                 'questions_unlocked_at' => $candidate->questions_unlocked_at,
                 'created_at' => $candidate->created_at,
+                'applications' => $candidateApplications,
                 'cv_file' => $candidate->getMedia('candidate_cv_files')->last() ? [
                     'id' => $candidate->getMedia('candidate_cv_files')->last()->id,
                     'name' => $candidate->getMedia('candidate_cv_files')->last()->file_name,
