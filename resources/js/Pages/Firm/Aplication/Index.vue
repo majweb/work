@@ -21,20 +21,6 @@ const props = defineProps({
     countries: Array,
 });
 
-const isExporting = ref(false);
-const showAdditionalFilters = ref(false);
-const optionsCities = ref([]);
-const optionsCategoriesFiltered = ref(props.optionsPosition || []);
-const optionsCategorySub = ref([]);
-const optionsProfession = ref([]);
-const optionsPositionLocal = ref([]);
-
-const { getPositionTitle } = useProjectHelpers();
-
-const lang = computed(()=>usePage().props.language);
-const firmLoginPoints = computed(()=>usePage().props.firmLoginPoints);
-const exportRequiredPoints = computed(()=>usePage().props.exportRequiredPoints);
-
 const form = ref({
     project: props.filters?.project || '',
     status: props.filters?.status || '',
@@ -52,6 +38,20 @@ const form = ref({
     has_candidate: props.filters?.has_candidate || '',
     date: props.filters?.date || '',
 });
+
+const isExporting = ref(false);
+const showAdditionalFilters = ref(false);
+const optionsCities = ref([]);
+const optionsCategoriesFiltered = ref(props.optionsPosition || []);
+const optionsCategorySub = ref([]);
+const optionsProfession = ref([]);
+const optionsPositionLocal = ref([]);
+
+watch(() => props.optionsPosition, (newVal) => {
+    if (!form.value.country) {
+        optionsCategoriesFiltered.value = newVal || [];
+    }
+}, { immediate: true });
 
 const formSend = useForm({
     externalFirms: [],
@@ -683,9 +683,6 @@ watch(() => usePage().props.sender, (newVal) => {
                                     >
                                         ---
                                     </button>
-                                    <div class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center" v-if="application.status_changed_by">
-                                        {{ application.status_changed_by?.name }}
-                                    </div>
                                 </div>
                             </div>
 
