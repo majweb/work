@@ -20,6 +20,7 @@ class AplicationMakeEvent
     public $auth;
     public $cvType;
     public $sessionId;
+    public $lang;
 
     /**
      * Create a new event instance.
@@ -30,5 +31,6 @@ class AplicationMakeEvent
         $this->auth = $auth;
         $this->cvType = $cvType;
         $this->sessionId = $sessionId;
+        $this->lang = app()->getLocale();
     }
 }

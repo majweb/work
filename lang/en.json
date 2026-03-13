@@ -16,7 +16,16 @@
     "CvSchool": "Education",
     "CvFinish": "completed",
     "CvCourses": "Courses and trainings",
-    "CvContact" : "Contact"
-
+    "CvContact": "Contact",
+    "Mail-guest-subject": "Your application has been sent! Increase your chances of success",
+    "Mail-guest-hello": "Hello,",
+    "Mail-guest-line1": "Thank you for submitting your application for the position via Work4you.global. Your application has been successfully forwarded to the employer.",
+    "Mail-guest-line2": "We noticed that you don't have an account on our portal yet. Why is it worth creating one?",
+    "Mail-guest-point1": "Greater credibility: Users with a full profile are chosen more often by recruiters.",
+    "Mail-guest-point2": "Faster contact: Employers can view your experience directly in the system.",
+    "Mail-guest-point3": "All in one place: You can track the status of your applications and manage documents.",
+    "Mail-guest-footer": "Registration will only take a moment and will bring you significantly closer to getting your dream job.",
+    "Mail-guest-button": "Create an account",
+    "Mail-button-view": "View application"
 }
 

@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\AplicationMakeEvent;
 use App\Jobs\MergeVideoChunksJob;
 use App\Mail\ApplicationMadeMail;
+use App\Mail\GuestApplicationMadeMail;
 use App\Models\CvAudio;
 use App\Models\CvVideo;
 use App\Models\User;
@@ -26,7 +27,7 @@ class AplicationMakeListener implements ShouldQueue
         $auth = $event->auth;
         $cvType = $event->cvType;
         $sessionId = $event->sessionId;
-        $lang = app()->getLocale();
+        $lang = $event->lang;
 
         // Powiązanie CV Audio/Video jeśli sesja istnieje
         if ($sessionId) {
@@ -49,7 +50,8 @@ class AplicationMakeListener implements ShouldQueue
         if($auth){
             $auth->notify((new ApplicationMadeNotification($aplication))->locale($lang));
         } else {
-            Mail::to($aplication->email)->locale($lang)->send(new ApplicationMadeMail($aplication));
+            Log::info('Guest Application Made: ' . $lang);
+            Mail::to($aplication->email)->locale($lang)->send(new GuestApplicationMadeMail($aplication));
         }
 
         // Powiadom rekrutera i użytkownika (logika wspólna)

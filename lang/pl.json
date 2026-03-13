@@ -69,5 +69,14 @@
 
     "Mail-goodluck": "Życzymy powodzenia",
     "Mail-button-view": "Zobacz aplikację",
-    "Mail-thanks": "Pozdrawiamy"
+    "Mail-thanks": "Pozdrawiamy",
+    "Mail-guest-subject": "Twoja aplikacja została wysłana! Zwiększ swoje szanse na sukces",
+    "Mail-guest-hello": "Dzień dobry,",
+    "Mail-guest-line1": "Dziękujemy za przesłanie aplikacji na stanowisko za pośrednictwem Work4you.global. Twoje zgłoszenie zostało pomyślnie przekazane do pracodawcy.",
+    "Mail-guest-line2": "Zauważyliśmy, że nie posiadasz jeszcze konta w naszym portalu. Dlaczego warto je założyć?",
+    "Mail-guest-point1": "Większa wiarygodność: Użytkownicy z pełnym profilem są częściej wybierani przez rekruterów.",
+    "Mail-guest-point2": "Szybszy kontakt: Pracodawcy mogą przeglądać Twoje doświadczenie bezpośrednio w systemie.",
+    "Mail-guest-point3": "Wszystko w jednym miejscu: Możesz śledzić status swoich aplikacji i zarządzać dokumentami.",
+    "Mail-guest-footer": "Rejestracja zajmie Ci tylko chwilę, a znacząco przybliży Cię do zdobycia wymarzonej pracy.",
+    "Mail-guest-button": "Załóż konto"
 }
