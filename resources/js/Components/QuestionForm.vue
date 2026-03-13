@@ -1,10 +1,8 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { usePermission } from '@/Composables/usePermission';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 
 const props = defineProps({
     modelValue: {
@@ -18,6 +16,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['update:modelValue']);
+
+const { hasRole } = usePermission();
 
 const questions = ref(props.modelValue.length ? [...props.modelValue] : []);
 const maxQuestions = 10;
@@ -134,7 +134,7 @@ watch(() => props.modelValue, (newValue) => {
             </div>
         </div>
 
-        <div class="flex flex-col items-center gap-4 mt-8">
+        <div v-if="!hasRole('admin')" class="flex flex-col items-center gap-4 mt-8">
             <button
                 type="button"
                 @click="addQuestion"
