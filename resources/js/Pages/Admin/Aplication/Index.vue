@@ -812,7 +812,7 @@ onMounted(async () => {
                                         <div v-else-if="app.cv_classic" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
                                             <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
                                         </div>
-                                        <div v-else class="w-10 h-10 flex items-center justify-center">
+                                        <div v-else class="w-6 h-6 flex items-center justify-center">
                                             -
                                         </div>
                                     </div>
