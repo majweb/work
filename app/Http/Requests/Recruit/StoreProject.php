@@ -104,6 +104,7 @@ class StoreProject extends FormRequest
             ],
             'questions.*.content' => 'required_with:questions|string',
             'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
+            'questions.*.id' => 'nullable|exists:project_questions,id',
             'external_company_id' => 'nullable',
             'recruit' => 'nullable',
             'is_active' => 'nullable|boolean',

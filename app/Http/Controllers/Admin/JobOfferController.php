@@ -479,21 +479,34 @@ class JobOfferController extends Controller
         }
 
         // Update project questions
-        $project->questions()->delete();
         if (isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
+            $existingQuestionIds = $project->questions()->pluck('id')->toArray();
+            $newQuestionIds = array_filter(array_column($request->projectData()['questions'], 'id'));
+
+            // Delete questions that are not in the request
+            $project->questions()->whereNotIn('id', $newQuestionIds)->delete();
+
             foreach ($request->projectData()['questions'] as $questionData) {
-                $project->questions()->create([
-                    'user_id' => auth()->id(),
-                    'content' => $questionData['content'],
-                    'answer_time' => $questionData['answer_time'],
-                ]);
+                if (isset($questionData['id']) && in_array($questionData['id'], $existingQuestionIds)) {
+                    // Update existing question
+                    $project->questions()->where('id', $questionData['id'])->update([
+                        'content' => $questionData['content'],
+                        'answer_time' => $questionData['answer_time'],
+                    ]);
+                } else {
+                    // Create new question
+                    $project->questions()->create([
+                        'user_id' => auth()->id(),
+                        'content' => $questionData['content'],
+                        'answer_time' => $questionData['answer_time'],
+                    ]);
+                }
             }
+        } else {
+            $project->questions()->delete();
         }
 
         session()->flash('flash.banner', __('translate.updatedProject'));
-        session()->flash('flash.bannerStyle', 'success');
-
-        session()->flash('flash.banner', __('translate.updateProjectSuccess'));;
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->route('admin.job-offers.index');

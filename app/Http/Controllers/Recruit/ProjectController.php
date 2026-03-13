@@ -555,14 +555,29 @@ class ProjectController extends Controller implements HasMiddleware
         }
 
         // Update project questions
-        $project->questions()->delete();
-        if (isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
-            foreach ($request->projectData()['questions'] as $questionData) {
-                $project->questions()->create([
-                    'user_id' => auth()->id(),
-                    'content' => $questionData['content'],
-                    'answer_time' => $questionData['answer_time'],
-                ]);
+        $questionsData = $request->projectData()['questions'] ?? [];
+        $existingQuestionIds = $project->questions()->pluck('id')->toArray();
+        $submittedQuestionIds = array_filter(array_column($questionsData, 'id'));
+
+        // Delete questions that are no longer in the request
+        $project->questions()->whereNotIn('id', $submittedQuestionIds)->delete();
+
+        if (is_array($questionsData)) {
+            foreach ($questionsData as $questionData) {
+                if (isset($questionData['id']) && in_array($questionData['id'], $existingQuestionIds)) {
+                    // Update existing question
+                    $project->questions()->where('id', $questionData['id'])->update([
+                        'content' => $questionData['content'],
+                        'answer_time' => $questionData['answer_time'],
+                    ]);
+                } else {
+                    // Create new question
+                    $project->questions()->create([
+                        'user_id' => auth()->id(),
+                        'content' => $questionData['content'],
+                        'answer_time' => $questionData['answer_time'],
+                    ]);
+                }
             }
         }
 
