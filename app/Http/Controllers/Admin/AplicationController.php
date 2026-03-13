@@ -193,4 +193,18 @@ class AplicationController extends Controller
         return $this->flashAndRedirect('translate.noteDeleted');
     }
 
+    /**
+     * Wyświetla szczegóły aplikacji dla administratora
+     *
+     * @param Aplication $aplication
+     * @return \Inertia\Response
+     */
+    public function show(Aplication $aplication)
+    {
+        $aplication->load(['project.user.firm', 'cvClassic', 'media', 'worker', 'notes', 'openedBy', 'statusChangedBy', 'cvAudio', 'cvVideo', 'candidate']);
+
+        return inertia()->render('Admin/Aplication/Show', [
+            'application' => $aplication,
+        ]);
+    }
 }
