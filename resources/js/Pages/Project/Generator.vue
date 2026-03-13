@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch,computed } from 'vue';
 import { router, Link, usePage } from '@inertiajs/vue3';
+import { useProjectHelpers } from '@/Composables/useProjectHelpers';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Multiselect from "vue-multiselect";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -23,6 +24,8 @@ const selectedImage = ref(props.currentImage);
 const isSaving = ref(false);
 const isLoading = ref(false);
 const translations = ref(props.translate || {});
+
+const { getPositionTitle } = useProjectHelpers();
 
 const previewImage = computed(() => {
     return selectedImage.value || props.universalImage;
@@ -96,7 +99,7 @@ watch(selectedLangOption, (newVal) => {
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
                                 <strong>Id:</strong>{{ project.id }}
                                 <strong class="font-semibold">
-                                {{ project.position.allTranslations.title[usePage().props.language] }}
+                                {{ getPositionTitle(project) }}
                                 </strong>
                             </p>
                         </div>
@@ -342,7 +345,7 @@ watch(selectedLangOption, (newVal) => {
         border-bottom-left-radius: 1.25rem;
         border-bottom-right-radius: 1.25rem;
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        overflow: hidden;
+        overflow-y: auto;
     }
 
     .multiselect__content {
