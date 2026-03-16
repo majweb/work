@@ -483,6 +483,7 @@ return [
     'invoiceAction' => 'ACTION',
     'invoiceSee' => 'SEE',
     'invoiceDownload' => 'DOWNLOAD',
+    'correctionDownload' => 'DOWNLOAD CORRECTION',
     'fullInvoiceList' => 'Full invoice list',
     'choose' => 'I choose',
     'youHave' => 'YOU HAVE',

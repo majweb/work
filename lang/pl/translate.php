@@ -1499,6 +1499,7 @@ return [
     'invoiceAction' => 'AKCJA',
     'invoiceSee' => 'ZOBACZ',
     'invoiceDownload' => 'POBIERZ',
+    'correctionDownload' => 'POBIERZ KOREKTĘ',
     'fullInvoiceList' => 'Pełna lista faktur',
     'choose' => 'Wybieram',
     'notEnoughPoints' => 'Brak punktów',

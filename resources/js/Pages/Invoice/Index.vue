@@ -4,6 +4,7 @@ import Pagination from '@/Components/Pagination.vue';
 import {ref} from "vue";
 import {pickBy} from "lodash";
 import {router} from "@inertiajs/vue3";
+import moment from "moment";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -163,7 +164,7 @@ const search = () => {
                             <div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.invoiceDate') }}</p>
                                 <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">
-                                    {{ invoice.date_invoice }}
+                                    {{ moment(invoice.date_invoice).format('DD.MM.YYYY') }}
                                 </p>
                             </div>
                         </div>
@@ -182,7 +183,7 @@ const search = () => {
                                 :href="route('invoicesCorrectionDownload', correction.id)"
                                 class="flex justify-center items-center w-full bg-amber-500 text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-amber-600 transition shadow-lg shadow-amber-900/10"
                             >
-                                POBIERZ KOREKTĘ {{ correction.number }}
+                                {{ __('translate.correctionDownload') }} {{ correction.number }}
                             </a>
                         </div>
                     </div>
