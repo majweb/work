@@ -21,6 +21,7 @@ use App\Services\Helper;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\PremiumCertificateHistory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -212,12 +213,12 @@ class BuyController extends Controller
         session()->flash('flash.bannerStyle', 'success');
         return back();
     }
-    public function reservedProject()
+    public function reservedProject(\App\Services\PointService $pointService)
     {
         $executed = RateLimiter::attempt(
             'daily-action:' . auth()->id(), // unikalny klucz dla użytkownika
             $perMinute = 1,                 // tylko 1 wykonanie
-            function () {
+            function () use ($pointService) {
                 $cost = config('getPoints.sendReservedProject', 4000);
 
                 // Sprawdź czy firma ma wystarczającą liczbę punktów
@@ -235,8 +236,7 @@ class BuyController extends Controller
                     $admin->notify((new SendRequestBannerAdminNotification(auth()->user()))->locale($lang));
                 });
 
-                $firm->decrement('points', $cost);
-
+                $pointService->decrement($firm->user, $cost, 'sendReservedProject');
 
                 session()->flash('flash.banner',__('translate.sendReservedProject'));
                 session()->flash('flash.bannerStyle', 'success');
@@ -308,9 +308,9 @@ class BuyController extends Controller
         return back();
     }
 
-    public function changeToPoints(Product $product,$points)
+    public function changeToPoints(Product $product, $points, BuyHelper $buyHelper): RedirectResponse
     {
-        (new BuyHelper())->createFromPoints($points,$product);
+        $buyHelper->createFromPoints($points, $product);
         session()->flash('flash.banner', __('translate.exchangeSuccess').'.');
         session()->flash('flash.bannerStyle', 'success');
         return back();
@@ -319,7 +319,7 @@ class BuyController extends Controller
 
 
 
-    public function makeOrder(BuyHelper $buyHelper)
+    public function makeOrder(BuyHelper $buyHelper, \App\Services\PointService $pointService)
     {
         $cartItems = Cart::content();
 
@@ -330,7 +330,7 @@ class BuyController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($buyHelper, $cartItems) {
+            DB::transaction(function () use ($buyHelper, $cartItems, $pointService) {
                 $totalPoints = $cartItems->sum(function ($item) {
                     return $item->options->points ?? 0;
                 });
@@ -346,7 +346,7 @@ class BuyController extends Controller
                     'user_id' => auth()->id(),
                 ]);
 
-                auth()->user()->firm()->increment('points', $transaction->credits);
+                $pointService->increment(auth()->user(), $transaction->credits, 'Purchase: Points');
                 $buyHelper->generateInvoiceAndPdf($cartItems, $amount, Session::get('foundation'));
 
                 Cart::destroy();
@@ -365,7 +365,7 @@ class BuyController extends Controller
         }
     }
 
-    public function webhook(Request $request,BuyHelper $buyHelper)
+    public function webhook(Request $request, BuyHelper $buyHelper, \App\Services\PointService $pointService)
     {
         $webhook = $this->przelewy24->handleWebhook(
             $request->post()
@@ -397,14 +397,7 @@ class BuyController extends Controller
                 if($transaction->status === 'pending'){
                     $transaction->status = 'paid';
                     $transaction->save();
-                    $user->firm()->increment('points', $transaction->credits);
-
-                    // Uwaga: webhook zazwyczaj nie ma dostępu do koszyka (Cart),
-                    // więc generateInvoiceAndPdf może wymagać innej logiki dla webhooka
-                    // lub dane o koszyku powinny być zapisane w transakcji/metadanych.
-                    // Jednak w makeOrder() faktura jest generowana od razu po "opłaceniu" transakcji (paid).
-                    // Jeśli system przejdzie na prawdziwe płatności P24, trzeba będzie to dopracować.
-                    // TODO: Powiązać transakcję z fakturą, jeśli nie została wygenerowana w makeOrder.
+                    $pointService->increment($user, $transaction->credits, 'Purchase: Points (webhook)');
                 }
             }
         } catch (Przelewy24Exception $exception) {

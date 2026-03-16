@@ -15,7 +15,7 @@ class AboutController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(FirmAboutRequest $request)
+    public function __invoke(FirmAboutRequest $request, \App\Services\PointService $pointService)
     {
         $firm = auth()->user()->firm;
 
@@ -44,7 +44,7 @@ class AboutController extends Controller
             $extension = $file->extension();
             $path = $file->storeAs($folder, Str::slug(Auth::user()->name).'-'.time().'-video.'.$extension,'public');
 
-            $firm->decrement('points', $cost);
+            $pointService->decrement($firm->user, $cost, 'AddVideoToProfile');
 
         }
 

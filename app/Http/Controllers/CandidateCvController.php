@@ -99,7 +99,7 @@ class CandidateCvController extends Controller
 
     }
 
-    public function sendExternal(Request $request)
+    public function sendExternal(Request $request, \App\Services\PointService $pointService)
     {
         $externals = $request->externalFirms; // lista firm do powiadomienia
         $aplications = $request->apps;
@@ -131,7 +131,7 @@ class CandidateCvController extends Controller
             ]);
             Mail::to($ext['email'])->locale($lang)->send(new ExternalFirmInvitationMail($ext['email'],$token, $aplications));
             // Odejmujemy punkty
-            $firm->decrement('points', $cost);
+            $pointService->decrement($firm->user, $cost, 'SendToExternalFirm: ' . $ext['email']);
         }
 
         session()->flash('flash.banner', __('translate.sendExternalSuccess'));
@@ -142,7 +142,7 @@ class CandidateCvController extends Controller
         ]);
     }
 
-    public function sendExternalRecruit(Request $request)
+    public function sendExternalRecruit(Request $request, \App\Services\PointService $pointService)
     {
 
         $externals = $request->externalFirms; // lista firm do powiadomienia
@@ -176,7 +176,7 @@ class CandidateCvController extends Controller
             ]);
             Mail::to($ext['email'])->locale($lang)->send(new ExternalFirmInvitationMail($ext['email'],$token, $aplications));
             // Odejmujemy punkty
-            $firm->decrement('points', $cost);
+            $pointService->decrement($firm->user, $cost, 'SendToExternalFirm: ' . $ext['email']);
         }
 
         return back()->with('sender', [

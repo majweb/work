@@ -34,7 +34,7 @@ class ExternalCompanyController extends Controller
     /**
      * Zapisuje nową firmę zewnętrzną.
      */
-    public function store(Request $request)
+    public function store(Request $request, \App\Services\PointService $pointService)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -62,7 +62,7 @@ class ExternalCompanyController extends Controller
         ]);
 
         // Koszt utworzenia kandydata
-        $cost = config('getPoints.CreateExternalFirm', 5);
+        $cost = config('getPoints.CreateExternalFirm', 500);
 
         // Sprawdź czy firma ma wystarczającą liczbę punktów
         $firm = auth()->user()->firm;
@@ -73,7 +73,7 @@ class ExternalCompanyController extends Controller
             return back();
         }
 
-        $firm->decrement('points', $cost);
+        $pointService->decrement($firm->user, $cost, 'CreateExternalFirm: ' . $validated['name']);
 
 
         Auth::user()->externalCompanies()->create($validated);

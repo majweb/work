@@ -307,6 +307,11 @@ Route::middleware([
         Route::put('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'update'])->name('currencies.update');
         Route::delete('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'destroy'])->name('currencies.destroy');
 
+        //        FINANSE
+        Route::get('finance/points', [\App\Http\Controllers\Admin\PointHistoryController::class, 'index'])->name('finance.points.index');
+        Route::get('finance/points/export', [\App\Http\Controllers\Admin\PointHistoryController::class, 'export'])->name('finance.points.export');
+        Route::delete('finance/points/{userId}', [\App\Http\Controllers\Admin\PointHistoryController::class, 'clearHistory'])->name('finance.points.clear');
+
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])

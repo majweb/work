@@ -173,6 +173,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Candidate::class, 'email', 'email');
     }
 
+    public function pointHistories(): HasMany
+    {
+        return $this->hasMany(PointHistory::class);
+    }
+
     public function invoice(): HasMany
     {
         return $this->hasMany(Invoice::class);

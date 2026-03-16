@@ -292,7 +292,7 @@ class FirmController extends Controller
         ]);
     }
 
-    public function updateCredits(Request $request, User $user): RedirectResponse
+    public function updateCredits(Request $request, User $user, \App\Services\PointService $pointService): RedirectResponse
     {
         $request->validate([
             'amount' => ['required', 'integer'],
@@ -310,9 +310,9 @@ class FirmController extends Controller
         }
 
         if ($type === 'add') {
-            $user->firm->increment('points', $amount);
+            $pointService->increment($user, $amount, 'Admin: Manually added credits');
         } else {
-            $user->firm->update(['points' => $amount]);
+            $pointService->set($user, $amount, 'Admin: Manually set credits');
         }
 
         return redirect()->route('admin.firms.show', $user->id)

@@ -80,7 +80,7 @@ class BuyHelper
     {
         try {
             $user = auth()->user();
-            $lastInvoiceFromMonth = (new BuyHelper())->lastInvoiceFromMonth() ?? 0;
+            $lastInvoiceFromMonth = $this->lastInvoiceFromMonth() ?? 0;
             $maskNumber = sprintf("%03d", $lastInvoiceFromMonth + 1);
             $date = Carbon::now();
 
@@ -174,6 +174,10 @@ class BuyHelper
     }
 
 
+    public function __construct(protected PointService $pointService)
+    {
+    }
+
     /**
      * @param $points
      * @param $product
@@ -216,10 +220,11 @@ class BuyHelper
                             'start' => NULL,
                             'end' => NULL,
                             'qty' => 1,
+                            'pdf' => NULL,
                         ]);
                     }
                 }
-                Auth::user()->firm()->decrement('points', $points);
+                $this->pointService->decrement(Auth::user(), $points, 'BuyProduct: ' . ($product->name ?? $product->id));
             } else {
                 session()->flash('flash.banner', 'Brak wystarczajacych punktów');
                 session()->flash('flash.bannerStyle', 'danger');

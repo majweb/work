@@ -7,6 +7,10 @@ use Illuminate\Http\RedirectResponse;
 
 class GetPointsService
 {
+    public function __construct(protected PointService $pointService)
+    {
+    }
+
     public function getPoints(Aplication $aplication)
     {
         // Jeśli punkty już zostały pobrane, nie wykonujemy dalszych operacji
@@ -16,6 +20,7 @@ class GetPointsService
 
         // Określenie liczby punktów na podstawie typu CV
         $points = $this->calculatePoints($aplication);
+        $actionName = $this->getActionName($aplication);
 
         // Sprawdzenie czy użytkownik ma odpowiednią rolę i firmę
         $firm = $this->getFirmForUser($aplication);
@@ -32,7 +37,7 @@ class GetPointsService
         }
 
         // Aktualizacja punktów i znacznika czasu
-        $firm->decrement('points', $points);
+        $this->pointService->decrement($firm->user, $points, $actionName);
         $aplication->update(['points_downloaded_at' => now()]);
 
         return true;
@@ -50,6 +55,20 @@ class GetPointsService
             return config('getPoints.OpenAppWithVideo');
         }
         return 0;
+    }
+
+    private function getActionName(Aplication $aplication): string
+    {
+        if ($aplication->cvClassic) {
+            return 'OpenAppWithPdf';
+        }
+        if ($aplication->cvAudio) {
+            return 'OpenAppWithAudio';
+        }
+        if ($aplication->cvVideo) {
+            return 'OpenAppWithVideo';
+        }
+        return 'OpenAppUnknown';
     }
 
     private function getFirmForUser(Aplication $aplication)
@@ -78,13 +97,19 @@ class GetPointsService
     public function handleExportPoints(): void
     {
         $cost = config('getPoints.ExportAplications');
-        $firm = auth()->user() && auth()->user()->hasRole('firm') ? auth()->user()->firm : (auth()->user() && auth()->user()->hasRole('recruit') ? auth()->user()->user->firm : 0);
+        $user = auth()->user();
+        if (!$user) {
+            abort(403, 'Unauthorized');
+        }
 
-        if ($firm->points >= $cost) {
-            $firm->decrement('points', $cost);
+        $firm = $user->hasRole('firm') ? $user->firm : ($user->hasRole('recruit') ? $user->user->firm : null);
+
+        if ($firm && $firm->points >= $cost) {
+            $this->pointService->decrement($firm->user, $cost, 'ExportAplications');
             return;
         }
 
         // Rzucamy wyjątek lub zwracamy response z błędem
         abort(403, __('translate.noPoints'));
-    }}
+    }
+}

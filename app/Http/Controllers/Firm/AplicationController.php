@@ -28,24 +28,16 @@ use Illuminate\Validation\ValidationException;
 
 class AplicationController extends Controller
 {
-    protected $filterService;
-    protected $getPointsService;
-    protected $statusService;
-    protected $helper;
-
     /**
      * Konstruktor wstrzykujący serwisy
      */
     public function __construct(
-        ApplicationFilterService $filterService,
-        ApplicationStatusService $statusService,
-        GetPointsService $getPointsService,
-        Helper $helper
+        protected ApplicationFilterService $filterService,
+        protected ApplicationStatusService $statusService,
+        protected GetPointsService $getPointsService,
+        protected Helper $helper,
+        protected \App\Services\PointService $pointService
     ) {
-        $this->filterService = $filterService;
-        $this->statusService = $statusService;
-        $this->getPointsService = $getPointsService;
-        $this->helper = $helper;
     }
 
     /**
@@ -367,7 +359,7 @@ class AplicationController extends Controller
         }
 
         // Odejmij punkty z konta firmy
-        $firm->decrement('points', $cost);
+        $this->pointService->decrement($firm->user, $cost, 'UnlockQuestions: ' . ($candidate->email ?? $candidate->id));
 
         // Oznacz pytania jako odblokowane
         $candidate->update([
@@ -496,7 +488,7 @@ class AplicationController extends Controller
 
         try {
             // Odejmij punkty z konta firmy
-            $firm->decrement('points', $cost);
+            $this->pointService->decrement($firm->user, $cost, 'CreateCandidate: ' . $aplication->email);
 
             // Utwórz nowego kandydata
             $candidate = Candidate::create([

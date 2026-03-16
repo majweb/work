@@ -26,23 +26,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AplicationController extends Controller implements HasMiddleware
 {
-
-    protected $filterService;
-    protected $statusService;
-
-    protected $getPointsService;
-
-
     public function __construct(
-        ApplicationRecruitFilterService $filterService,
-        ApplicationStatusService $statusService,
-        GetPointsService $getPointsService,
-
+        protected ApplicationRecruitFilterService $filterService,
+        protected ApplicationStatusService $statusService,
+        protected GetPointsService $getPointsService,
+        protected \App\Services\PointService $pointService
     ) {
-        $this->filterService = $filterService;
-        $this->statusService = $statusService;
-        $this->getPointsService = $getPointsService;
-
     }
 
 
@@ -346,7 +335,7 @@ class AplicationController extends Controller implements HasMiddleware
 
         try {
             // Odejmij punkty z konta firmy
-            $firm->decrement('points', $cost);
+            $this->pointService->decrement($firm->user, $cost, 'CreateCandidate: ' . $aplication->email);
 
             // Utwórz nowego kandydata
             $candidate = Candidate::create([

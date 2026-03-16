@@ -10,16 +10,6 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 
 const { hasRole } = usePermission();
 
-const confirmingLogout = ref(false);
-
-const confirmLogout = () => {
-    confirmingLogout.value = true;
-};
-
-const logout = () => {
-    router.post(route('logout'));
-};
-
 const menuItems = [
     {
         name: 'Dashboard',
@@ -67,13 +57,45 @@ const menuItems = [
             { name: 'Pytania', route: 'admin.questions-accepts.index' },
         ]
     },
-    { name: 'Finanse', icon: 'finance', route: 'invoices.index' },
+    {
+        name: 'Finanse',
+        icon: 'finance',
+        subItems: [
+            { name: 'Faktury', route: 'invoices.index' },
+            { name: 'Kredyty', route: 'admin.finance.points.index' },
+        ]
+    },
     { name: 'Fundacje', icon: 'foundations', route: 'admin.foundations.index' },
     { name: 'Marketing', icon: 'marketing', route: 'dashboard' },
     { name: 'Bezpieczeństwo', icon: 'security', route: 'dashboard' },
     { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },
     { name: 'Ustawienia', icon: 'settings', route: 'profile.show' },
 ];
+
+const confirmingLogout = ref(false);
+const openGroups = ref({});
+
+const toggleGroup = (groupName) => {
+    openGroups.value[groupName] = !openGroups.value[groupName];
+};
+
+// Initialize groups as open if they contain the current route
+menuItems.forEach(item => {
+    if (item.subItems) {
+        const hasActiveSubItem = item.subItems.some(sub => sub.route && route().current(sub.route));
+        if (hasActiveSubItem) {
+            openGroups.value[item.name] = true;
+        }
+    }
+});
+
+const confirmLogout = () => {
+    confirmingLogout.value = true;
+};
+
+const logout = () => {
+    router.post(route('logout'));
+};
 
 const getIcon = (name) => {
     const icons = {
@@ -135,21 +157,46 @@ const getIcon = (name) => {
                     <!-- Main Item -->
                     <template v-if="item.subItems">
                         <div class="mb-4">
-                            <div class="flex items-center gap-3 text-white/20 mb-3 px-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5" v-html="getIcon(item.icon)"></svg>
-                                <span class="text-[10px] font-black uppercase tracking-widest">{{ item.name }}</span>
-                            </div>
-                            <div class="space-y-1 pl-12">
-                                <Link
-                                    v-for="sub in item.subItems"
-                                    :key="sub.name"
-                                    :href="sub.route ? route(sub.route) : '#'"
-                                    class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group"
-                                    :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.route)}"
+                            <div
+                                @click="toggleGroup(item.name)"
+                                class="flex items-center justify-between gap-3 text-white/20 mb-3 px-4 cursor-pointer hover:text-white/60 transition-all group/header"
+                            >
+                                <div class="flex items-center gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5" v-html="getIcon(item.icon)"></svg>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">{{ item.name }}</span>
+                                </div>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="3"
+                                    stroke="currentColor"
+                                    class="w-3 h-3 transition-transform duration-300"
+                                    :class="{'rotate-180': openGroups[item.name]}"
                                 >
-                                    {{ sub.name }}
-                                </Link>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                </svg>
                             </div>
+                            <Transition
+                                enter-active-class="transition duration-200 ease-out"
+                                enter-from-class="transform scale-95 opacity-0 -translate-y-2"
+                                enter-to-class="transform scale-100 opacity-100 translate-y-0"
+                                leave-active-class="transition duration-150 ease-in"
+                                leave-from-class="transform scale-100 opacity-100 translate-y-0"
+                                leave-to-class="transform scale-95 opacity-0 -translate-y-2"
+                            >
+                                <div v-show="openGroups[item.name]" class="space-y-1 pl-12">
+                                    <Link
+                                        v-for="sub in item.subItems"
+                                        :key="sub.name"
+                                        :href="sub.route ? route(sub.route) : '#'"
+                                        class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group"
+                                        :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.route)}"
+                                    >
+                                        {{ sub.name }}
+                                    </Link>
+                                </div>
+                            </Transition>
                         </div>
                     </template>
                     <template v-else>
