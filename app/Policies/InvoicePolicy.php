@@ -12,7 +12,7 @@ class InvoicePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasRole('firm') || $user->hasRole('admin');
     }
 
     /**
@@ -20,6 +20,10 @@ class InvoicePolicy
      */
     public function view(User $user, Invoice $invoice): bool
     {
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
         return $user->hasRole('firm') && $invoice->user_id == $user->id;
     }
 

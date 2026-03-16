@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Firm;
 
-use App\Events\IncreasePointToDiscount;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FirmInvoiceUpdate;
 use App\Models\Invoice;
+use App\Models\InvoiceCorrection;
 use App\Models\User;
-use App\Services\AdminService;
-use App\Services\Helper;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
@@ -21,17 +19,17 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        Gate::authorize('view',[User::class,Invoice::class]);
+        Gate::authorize('view', [User::class, Invoice::class]);
 
         request()->validate([
             'direction' => ['in:asc,desc'],
             'field' => ['in:id,date_invoice'],
-            'amount' => ['nullable','string'],
-            'number' => ['nullable','string'],
-            'date' => ['nullable','date']
+            'amount' => ['nullable', 'string'],
+            'number' => ['nullable', 'string'],
+            'date' => ['nullable', 'date'],
         ]);
 
-        $query = Invoice::query()->where('user_id', auth()->id());
+        $query = Invoice::query()->where('user_id', auth()->id())->with('corrections');
 
         $query->when(request()->filled('amount'), function ($q) {
             $q->where('amount', request()->string('amount'));
@@ -48,7 +46,7 @@ class InvoiceController extends Controller
 
         return inertia()->render('Invoice/Index', [
             'invoices' => $query->paginate(5)->withQueryString(),
-            'filters' => request()->only(['field', 'direction', 'amount', 'number', 'date'])
+            'filters' => request()->only(['field', 'direction', 'amount', 'number', 'date']),
         ]);
     }
 
@@ -57,7 +55,7 @@ class InvoiceController extends Controller
      */
     public function update(FirmInvoiceUpdate $request, Invoice $invoice)
     {
-        Gate::authorize('update',$invoice);
+        Gate::authorize('update', $invoice);
 
         if ($invoice) {
             try {
@@ -78,23 +76,23 @@ class InvoiceController extends Controller
                         'day' => $request->invoiceData()['day'],
                         'month' => $request->invoiceData()['month'],
                         'year' => $request->invoiceData()['year'],
-                        'date_invoice' => $request->invoiceData()['date_invoice']
+                        'date_invoice' => $request->invoiceData()['date_invoice'],
                     ]);
                 }
 
-                $GenNumber = (string)$request->invoiceData()['number'] . '/' . $request->invoiceData()['month'] . '/' . $request->invoiceData()['year'];
-                $GenNumberFile = (string)$request->invoiceData()['number'] . '-' . $request->invoiceData()['month'] . '-' . $request->invoiceData()['year'];
+                $GenNumber = (string) $request->invoiceData()['number'].'/'.$request->invoiceData()['month'].'/'.$request->invoiceData()['year'];
+                $GenNumberFile = (string) $request->invoiceData()['number'].'-'.$request->invoiceData()['month'].'-'.$request->invoiceData()['year'];
                 $maskNumber = null;
 
                 $testInvoice = false;
-                 $pdf = Pdf::loadView('templates.pdf.invoice',
-                        compact('maskNumber', 'date', 'testInvoice','GenNumber')
-                    );
+                $pdf = Pdf::loadView('templates.pdf.invoice',
+                    compact('maskNumber', 'date', 'testInvoice', 'GenNumber')
+                );
 
-
-                $filename = 'firm/' . auth()->id() . '/pdf/invoices/' . $GenNumberFile . '-corections.pdf';
+                $filename = 'firm/'.auth()->id().'/pdf/invoices/'.$GenNumberFile.'-corections.pdf';
                 Storage::disk('invoices')->put($filename, $pdf->output());
                 DB::commit();
+
                 return redirect()->back();
             } catch (\Exception $e) {
                 DB::rollback();
@@ -104,20 +102,34 @@ class InvoiceController extends Controller
     }
 
     /**
-     * @param Invoice $invoice
      * @return void
      */
-    public function downloadPDF(Invoice $invoice){
+    public function downloadPDF(Invoice $invoice)
+    {
 
-        Gate::authorize('view',$invoice);
+        Gate::authorize('view', $invoice);
 
         $existFile = Storage::disk('invoices')->exists($invoice->pdf);
         if ($existFile) {
             $invoice->update([
-                'opened'=> 1
+                'opened' => 1,
             ]);
-            return response()->download(storage_path('app/invoices/' . $invoice->pdf));
-        } else{
+
+            return response()->download(storage_path('app/invoices/'.$invoice->pdf));
+        } else {
+            abort(404);
+        }
+    }
+
+    public function downloadCorrection(InvoiceCorrection $correction)
+    {
+        $invoice = $correction->invoice;
+        Gate::authorize('view', $invoice);
+
+        $existFile = Storage::disk('invoices')->exists($correction->pdf);
+        if ($existFile) {
+            return response()->download(storage_path('app/invoices/'.$correction->pdf));
+        } else {
             abort(404);
         }
     }

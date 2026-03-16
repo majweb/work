@@ -128,8 +128,9 @@ Route::middleware([
     Route::resource('invoices', InvoiceController::class)->middleware('role:firm')->only([
         'index', 'update',
     ]);
-    Route::get('invoicesDownload/{invoice}', [InvoiceController::class, 'downloadPDF'])->middleware('role:firm')->name('invoicesDownload');
-    Route::get('ordersDownload/{order}', [OrderController::class, 'downloadPDF'])->middleware('role:firm')->name('ordersDownload');
+    Route::get('invoicesDownload/{invoice}', [InvoiceController::class, 'downloadPDF'])->middleware('role:firm|admin')->name('invoicesDownload');
+    Route::get('invoicesCorrectionDownload/{correction}', [InvoiceController::class, 'downloadCorrection'])->middleware('role:firm|admin')->name('invoicesCorrectionDownload');
+    Route::get('ordersDownload/{order}', [OrderController::class, 'downloadPDF'])->middleware('role:firm|admin')->name('ordersDownload');
     Route::resource('aplications', AplicationController::class)->middleware('role:firm')->only('index', 'show');
     Route::post('applications/export', [AplicationController::class, 'export'])->middleware('role:firm')->name('firm.applications.export');
     Route::put('aplications/{aplication}/status', [AplicationController::class, 'updateStatus'])->middleware('role:firm')->name('firm.applications.update-status');
@@ -311,6 +312,12 @@ Route::middleware([
         Route::get('finance/points', [\App\Http\Controllers\Admin\PointHistoryController::class, 'index'])->name('finance.points.index');
         Route::get('finance/points/export', [\App\Http\Controllers\Admin\PointHistoryController::class, 'export'])->name('finance.points.export');
         Route::delete('finance/points/{userId}', [\App\Http\Controllers\Admin\PointHistoryController::class, 'clearHistory'])->name('finance.points.clear');
+
+        Route::get('finance/invoices', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('finance.invoices.index');
+        Route::get('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'createCorrection'])->name('finance.invoices.correction.create');
+        Route::post('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'storeCorrection'])->name('finance.invoices.correction.store');
+        Route::get('finance/corrections/{correction}/download', [\App\Http\Controllers\Admin\InvoiceController::class, 'downloadCorrection'])->name('finance.corrections.download');
+        Route::delete('finance/corrections/{correction}', [\App\Http\Controllers\Admin\InvoiceController::class, 'destroyCorrection'])->name('finance.corrections.destroy');
 
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');

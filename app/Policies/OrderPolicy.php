@@ -12,7 +12,7 @@ class OrderPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasRole('firm') || $user->hasRole('admin');
 
     }
 
@@ -21,10 +21,13 @@ class OrderPolicy
      */
     public function view(User $user, Order $order): bool
     {
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
         return $user->hasRole('firm') && $order->user_id == $user->id;
 
     }
-
 
     /**
      * Determine whether the user can update the model.

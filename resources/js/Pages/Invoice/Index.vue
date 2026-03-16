@@ -168,13 +168,21 @@ const search = () => {
                             </div>
                         </div>
 
-                        <div class="w-full mt-auto">
+                        <div class="w-full mt-auto space-y-2">
                             <a
                                 :href="route('invoicesDownload', invoice.id)"
                                 class="flex justify-center items-center w-full bg-[#0A2C5C] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg shadow-blue-900/10"
                                 @click="invoice.opened = true"
                             >
                                 {{ __('translate.invoiceDownload') }}
+                            </a>
+                            <a
+                                v-for="correction in invoice.corrections"
+                                :key="correction.id"
+                                :href="route('invoicesCorrectionDownload', correction.id)"
+                                class="flex justify-center items-center w-full bg-amber-500 text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-amber-600 transition shadow-lg shadow-amber-900/10"
+                            >
+                                POBIERZ KOREKTĘ {{ correction.number }}
                             </a>
                         </div>
                     </div>

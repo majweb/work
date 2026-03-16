@@ -61,7 +61,7 @@ const menuItems = [
         name: 'Finanse',
         icon: 'finance',
         subItems: [
-            { name: 'Faktury', route: 'invoices.index' },
+            { name: 'Faktury', route: 'admin.finance.invoices.index' },
             { name: 'Kredyty', route: 'admin.finance.points.index' },
         ]
     },

@@ -25,6 +25,7 @@ class Invoice extends Model
 
     protected $casts = [
         'opened' => 'boolean',
+        'date_invoice' => 'date',
     ];
 
     public function user(): BelongsTo
@@ -37,5 +38,8 @@ class Invoice extends Model
         return $this->belongsTo(Foundation::class);
     }
 
-
+    public function corrections(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(InvoiceCorrection::class)->latest();
+    }
 }
