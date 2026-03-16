@@ -1,15 +1,15 @@
 <x-mail::message>
-# {{ __('Invoice Correction') }} {{ $correction->number }}
+# {{ __('CorrectionMail-subject') }} {{ $correction->number }}
 
-{{ __('Hello') }},
+{{ __('CorrectionMail-hello') }},
 
-{{ __('A correction for invoice :number has been issued.', ['number' => $correction->invoice->number . '/' . $correction->invoice->month . '/' . $correction->invoice->year]) }}
+{{ __('CorrectionMail-line1', ['number' => $correction->invoice->number . '/' . $correction->invoice->month . '/' . $correction->invoice->year]) }}
 
-{{ __('Reason for correction:') }}
-{{ $correction->reason ?: __('No reason provided') }}
+**{{ __('CorrectionMail-reason') }}**
+{{ $correction->reason ?: __('CorrectionMail-no-reason') }}
 
-{{ __('You can find the correction PDF in the attachment or on your account in the finance section.') }}
+{{ __('CorrectionMail-line2') }}
 
-{{ __('Thanks') }},<br>
+{{ __('CorrectionMail-thanks') }},<br>
 {{ config('app.name') }}
 </x-mail::message>

@@ -26,6 +26,13 @@
     "Mail-guest-point3": "All in one place: You can track the status of your applications and manage documents.",
     "Mail-guest-footer": "Registration will only take a moment and will bring you significantly closer to getting your dream job.",
     "Mail-guest-button": "Create an account",
-    "Mail-button-view": "View application"
+    "Mail-button-view": "View application",
+    "CorrectionMail-subject": "Invoice correction",
+    "CorrectionMail-hello": "Hello",
+    "CorrectionMail-line1": "An invoice correction for invoice :number has been issued.",
+    "CorrectionMail-reason": "Correction reason:",
+    "CorrectionMail-no-reason": "No reason provided",
+    "CorrectionMail-line2": "The PDF correction can be found in the attachment or in your account's finance section.",
+    "CorrectionMail-thanks": "Thank you"
 }
 

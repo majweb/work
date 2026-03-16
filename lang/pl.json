@@ -78,5 +78,12 @@
     "Mail-guest-point2": "Szybszy kontakt: Pracodawcy mogą przeglądać Twoje doświadczenie bezpośrednio w systemie.",
     "Mail-guest-point3": "Wszystko w jednym miejscu: Możesz śledzić status swoich aplikacji i zarządzać dokumentami.",
     "Mail-guest-footer": "Rejestracja zajmie Ci tylko chwilę, a znacząco przybliży Cię do zdobycia wymarzonej pracy.",
-    "Mail-guest-button": "Załóż konto"
+    "Mail-guest-button": "Załóż konto",
+    "CorrectionMail-subject": "Korekta faktury",
+    "CorrectionMail-hello": "Witaj",
+    "CorrectionMail-line1": "Została wystawiona korekta do faktury :number.",
+    "CorrectionMail-reason": "Powód korekty:",
+    "CorrectionMail-no-reason": "Nie podano powodu",
+    "CorrectionMail-line2": "Korektę w formacie PDF znajdziesz w załączniku lub na swoim koncie w sekcji finanse.",
+    "CorrectionMail-thanks": "Dziękujemy"
 }

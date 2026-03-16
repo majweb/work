@@ -4,13 +4,14 @@ namespace App\Mail;
 
 use App\Models\InvoiceCorrection;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class InvoiceCorrectionMail extends Mailable
+class InvoiceCorrectionMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -25,7 +26,7 @@ class InvoiceCorrectionMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('Invoice Correction').' '.$this->correction->number,
+            subject: __('CorrectionMail-subject').' '.$this->correction->number,
         );
     }
 

@@ -111,7 +111,10 @@ class InvoiceController extends Controller
             Storage::disk('invoices')->put($filename, $pdf->output());
 
             // Wysłanie maila
-            \Illuminate\Support\Facades\Mail::to($invoice->user->email)->send(new \App\Mail\InvoiceCorrectionMail($correction));
+            $lang = $invoice->user->firm->countryJson['countryCode'] ?? 'en';
+            \Illuminate\Support\Facades\Mail::to($invoice->user->email)
+                ->locale($lang)
+                ->send(new \App\Mail\InvoiceCorrectionMail($correction));
 
             DB::commit();
 

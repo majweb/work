@@ -2,10 +2,13 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Mail\InvoiceCorrectionMail;
+use App\Models\Firm;
 use App\Models\Invoice;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
@@ -46,9 +49,16 @@ class InvoiceCorrectionTest extends TestCase
 
     public function test_store_correction_redirects_to_invoices_index(): void
     {
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+        Firm::factory()->create([
+            'user_id' => $user->id,
+            'countryJson' => ['countryCode' => 'de'],
+        ]);
+
         $invoice = Invoice::factory()->create([
             'date_invoice' => Carbon::now(),
-            'user_id' => $this->user->id,
+            'user_id' => $user->id,
         ]);
 
         $data = [
@@ -65,15 +75,17 @@ class InvoiceCorrectionTest extends TestCase
             'country_invoice' => 'Country',
         ];
 
-        // Udajemy wysłanie maila i generowanie PDF, bo to może wymagać więcej setupu
-        // Ale sprawdźmy najpierw czy redirect działa
-        \Illuminate\Support\Facades\Mail::fake();
-        \Illuminate\Support\Facades\Storage::fake('invoices');
+        Mail::fake();
+        Storage::fake('invoices');
 
-        $response = $this->post(route('admin.finance.invoices.correction.store', $invoice), $data);
+        $response = $this->actingAs($user)->post(route('admin.finance.invoices.correction.store', $invoice), $data);
 
         $response->assertRedirect(route('admin.finance.invoices.index'));
         $response->assertSessionHas('flash.banner', 'Korekta została wystawiona.');
+
+        Mail::assertQueued(InvoiceCorrectionMail::class, function ($mail) use ($user) {
+            return $mail->hasTo($user->email) && $mail->locale === 'de';
+        });
     }
 
     public function test_validation_uses_polish_attributes(): void
