@@ -1,34 +1,24 @@
 <?php
 
-return [
-    // Koszt pobrania aplikacji z CV PDF
-    'OpenAppWithPdf' => 120,
-
-    // Koszt pobrania aplikacji z CV audio
-    'OpenAppWithAudio' => 180,
-
-    // Koszt pobrania aplikacji z CV wideo
-    'OpenAppWithVideo' => 250,
-
-    // Koszt eksportu aplikacji
-    'ExportAplications' => 150,
-
-    // Koszt odblokowania pytań dla aplikacji
-    'UnlockQuestions' => 250,
-
-    // Koszt utworzenia kandydata
-    'CreateCandidate' => 200,
-
-    // Koszt utworzenia firmy
-    'CreateExternalFirm' => 500,
-
-    // Wysyłka aplikacji do firmy
-    'SendToExternalFirm' => 800,
-
-    // Wysyłka aplikacji do firmy
-    'AddVideoToProfile' => 1500,
-
-    // Wysyłka zapytania o projekt baneru
-    'sendReservedProject' => 4000,
-
-];
+return array (
+  'OpenAppWithPdf' => 120,
+  'OpenAppWithPdf_default' => 120,
+  'OpenAppWithAudio' => 180,
+  'OpenAppWithAudio_default' => 180,
+  'OpenAppWithVideo' => 250,
+  'OpenAppWithVideo_default' => 250,
+  'ExportAplications' => 150,
+  'ExportAplications_default' => 150,
+  'UnlockQuestions' => 250,
+  'UnlockQuestions_default' => 250,
+  'CreateCandidate' => 200,
+  'CreateCandidate_default' => 200,
+  'CreateExternalFirm' => 500,
+  'CreateExternalFirm_default' => 500,
+  'SendToExternalFirm' => 800,
+  'SendToExternalFirm_default' => 800,
+  'AddVideoToProfile' => 1500,
+  'AddVideoToProfile_default' => 1500,
+  'sendReservedProject' => 4000,
+  'sendReservedProject_default' => 4000,
+);

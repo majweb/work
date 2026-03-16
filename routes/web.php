@@ -390,6 +390,13 @@ Route::middleware([
         Route::put('promotion-services/{promotion_service}/toggle', [App\Http\Controllers\Admin\PromotionServiceController::class, 'toggle'])
             ->name('promotion-services.toggle');
 
+        Route::resource('admin-points', App\Http\Controllers\Admin\PointsController::class)
+            ->parameters(['admin-points' => 'point']) // Teraz parametrem będzie {point}
+            ->only(['index', 'edit', 'update']);
+        Route::put('points/operation/{key}', [App\Http\Controllers\Admin\PointsController::class, 'updateOperation'])->name('points.update-operation');
+        Route::put('points/operation/{key}/restore', [App\Http\Controllers\Admin\PointsController::class, 'restoreOperation'])->name('points.restore-operation');
+        Route::put('points/{product}/toggle', [App\Http\Controllers\Admin\PointsController::class, 'toggle'])->name('points.toggle');
+
         Route::get('active-services', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'index'])->name('active-services.index');
         Route::get('active-services/{activeService}/edit', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'edit'])->name('active-services.edit');
         Route::post('active-services/{activeService}', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'update'])->name('active-services.update');

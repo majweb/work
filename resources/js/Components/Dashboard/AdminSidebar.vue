@@ -72,6 +72,7 @@ const menuItems = [
         subItems: [
             { name: 'Usługi promocyjne', route: 'admin.promotion-services.index' },
             { name: 'Aktywne usługi', route: 'admin.active-services.index' },
+            { name: 'Punkty', route: 'admin.admin-points.index' },
         ]
     },
     { name: 'Bezpieczeństwo', icon: 'security', route: 'dashboard' },
