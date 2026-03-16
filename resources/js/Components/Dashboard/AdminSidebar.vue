@@ -66,7 +66,13 @@ const menuItems = [
         ]
     },
     { name: 'Fundacje', icon: 'foundations', route: 'admin.foundations.index' },
-    { name: 'Marketing', icon: 'marketing', route: 'dashboard' },
+    {
+        name: 'Marketing',
+        icon: 'marketing',
+        subItems: [
+            { name: 'Usługi promocyjne', route: 'admin.promotion-services.index' },
+        ]
+    },
     { name: 'Bezpieczeństwo', icon: 'security', route: 'dashboard' },
     { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },
     { name: 'Ustawienia', icon: 'settings', route: 'profile.show' },

@@ -385,6 +385,10 @@ Route::middleware([
         Route::resource('foundations', FoundationController::class);
         Route::put('foundations/{foundation}/toggle', [FoundationController::class, 'toggle'])
             ->name('foundations.toggle');
+
+        Route::resource('promotion-services', App\Http\Controllers\Admin\PromotionServiceController::class)->except(['create', 'store', 'destroy', 'show']);
+        Route::put('promotion-services/{promotion_service}/toggle', [App\Http\Controllers\Admin\PromotionServiceController::class, 'toggle'])
+            ->name('promotion-services.toggle');
         Route::get('foundations/getChildsCategory/{parent}', [FoundationController::class, 'getChildsCategory'])->name('getChildsCategory');
 
         Route::put('aplicationsAdmin/{aplication}/status', [App\Http\Controllers\Admin\AplicationController::class, 'updateStatus'])->name('aplicationsA.update-status');
