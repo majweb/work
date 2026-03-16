@@ -389,6 +389,11 @@ Route::middleware([
         Route::resource('promotion-services', App\Http\Controllers\Admin\PromotionServiceController::class)->except(['create', 'store', 'destroy', 'show']);
         Route::put('promotion-services/{promotion_service}/toggle', [App\Http\Controllers\Admin\PromotionServiceController::class, 'toggle'])
             ->name('promotion-services.toggle');
+
+        Route::get('active-services', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'index'])->name('active-services.index');
+        Route::get('active-services/{activeService}/edit', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'edit'])->name('active-services.edit');
+        Route::post('active-services/{activeService}', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'update'])->name('active-services.update');
+        Route::get('active-services/{activeService}/download', [\App\Http\Controllers\Admin\ActiveServiceController::class, 'downloadPdf'])->name('active-services.download');
         Route::get('foundations/getChildsCategory/{parent}', [FoundationController::class, 'getChildsCategory'])->name('getChildsCategory');
 
         Route::put('aplicationsAdmin/{aplication}/status', [App\Http\Controllers\Admin\AplicationController::class, 'updateStatus'])->name('aplicationsA.update-status');

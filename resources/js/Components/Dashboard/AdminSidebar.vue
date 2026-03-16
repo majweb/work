@@ -71,6 +71,7 @@ const menuItems = [
         icon: 'marketing',
         subItems: [
             { name: 'Usługi promocyjne', route: 'admin.promotion-services.index' },
+            { name: 'Aktywne usługi', route: 'admin.active-services.index' },
         ]
     },
     { name: 'Bezpieczeństwo', icon: 'security', route: 'dashboard' },
