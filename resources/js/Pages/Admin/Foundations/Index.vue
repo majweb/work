@@ -2,10 +2,41 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link, router } from "@inertiajs/vue3";
 import Pagination from "@/Components/Pagination.vue";
+import { ref, nextTick } from "vue";
+import { pickBy } from "lodash";
+import Multiselect from "vue-multiselect";
+import TextInput from "@/Components/TextInput.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
-    foundations: Object
+    foundations: Object,
+    filters: Object,
+    categories: Array,
+    countries: Array
 });
+
+const params = ref({
+    name: props.filters.name || '',
+    category: props.filters.category || null,
+    country: props.filters.country || null,
+});
+
+const search = () => {
+    const data = {
+        name: params.value.name,
+        category: params.value.category ? params.value.category.value : null,
+        country: params.value.country ? params.value.country.countryCode : null,
+    };
+
+    router.get(route('admin.foundations.index'), pickBy(data), {
+        preserveState: true,
+        replace: true,
+    });
+};
+
+const resetFilters = () => {
+    router.get(route('admin.foundations.index'));
+};
 
 const toggleActive = (id) => {
     router.put(route('admin.foundations.toggle', id), {}, { preserveScroll: true });
@@ -15,7 +46,7 @@ const toggleActive = (id) => {
 <template>
     <AppLayout :title="__('foundations.foundations')">
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8">
                 <!-- Header Card -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex items-center justify-between">
@@ -25,10 +56,78 @@ const toggleActive = (id) => {
                         </div>
                         <Link
                             :href="route('admin.foundations.create')"
-                            class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-blue-800 transition duration-200 shadow-lg shadow-blue-900/20"
+                            class="inline-flex items-center px-10 py-4 bg-[#00a0e3] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-blue-400 transition duration-200 shadow-lg shadow-blue-400/20"
                         >
-                            Dodaj fundacje
+                            + DODAJ FUNDACJĘ
                         </Link>
+                    </div>
+
+                    <!-- Filtry -->
+                    <div class="mt-10 pt-10 border-t border-gray-50">
+                        <div class="flex flex-wrap items-center gap-4">
+                            <div class="w-full md:w-80">
+                                <TextInput
+                                    v-model="params.name"
+                                    type="text"
+                                    placeholder="Nazwa"
+                                    class="w-full"
+                                    @keyup.enter="search"
+                                />
+                            </div>
+                            <div class="w-full md:w-80">
+                                <multiselect
+                                    class="custom-multiselect"
+                                    v-model="params.category"
+                                    :options="categories"
+                                    track-by="value"
+                                    label="name"
+                                    placeholder="Wybierz kategorię"
+                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectedLabel="__('translate.selectedLabel')"
+                                    :deselectLabel="__('translate.deselectLabel')"
+                                    @select="() => nextTick(() => search())"
+                                    @remove="() => nextTick(() => search())"
+                                    :internal-search="true"
+                                >
+                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                </multiselect>
+                            </div>
+                            <div class="w-full md:w-80">
+                                <multiselect
+                                    class="custom-multiselect"
+                                    v-model="params.country"
+                                    :options="countries.flatMap(g => g.elements)"
+                                    track-by="countryCode"
+                                    label="name"
+                                    placeholder="Wybierz kraj"
+                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectGroupLabel="__('translate.selectGroupLabel')"
+                                    :selectedLabel="__('translate.selectedLabel')"
+                                    :deselectLabel="__('translate.deselectLabel')"
+                                    @select="() => nextTick(() => search())"
+                                    @remove="() => nextTick(() => search())"
+                                >
+                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                </multiselect>
+                            </div>
+                            <div class="flex gap-2 ml-auto">
+                                <button
+                                    @click="resetFilters"
+                                    class="px-6 py-3 bg-white border border-gray-200 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 transition"
+                                >
+                                    RESETUJ
+                                </button>
+                                <button
+                                    @click="search"
+                                    class="px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-900 transition"
+                                >
+                                    FILTRUJ
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -46,9 +145,10 @@ const toggleActive = (id) => {
                                 <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest">ID</th>
                                 <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest">Logo</th>
                                 <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest">Nazwa</th>
-                                <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest">WWW</th>
-                                <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest text-center">Zamówienia</th>
-                                <th class="px-6 py-4 text-center text-[8px] font-black text-gray-300 uppercase tracking-widest">Aktywny</th>
+                                <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest">Kategoria</th>
+                                <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest text-center">Kraj</th>
+                                <th class="px-6 py-4 text-left text-[8px] font-black text-gray-300 uppercase tracking-widest text-center">Powiązania</th>
+                                <th class="px-6 py-4 text-center text-[8px] font-black text-gray-300 uppercase tracking-widest">Status</th>
                                 <th class="px-6 py-4 text-center text-[8px] font-black text-gray-300 uppercase tracking-widest">Akcje</th>
                             </tr>
                             </thead>
@@ -67,42 +167,47 @@ const toggleActive = (id) => {
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    <a :href="p.link" target="_blank" v-if="p.link" class="text-[10px] font-bold text-blue-500 hover:text-blue-700 transition-colors uppercase tracking-widest">Link</a>
-                                    <span v-else class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Brak</span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="px-3 py-1 bg-gray-50 rounded-lg text-[10px] font-black text-[#0A2C5C] border border-gray-100">{{ p.orders_count }}</span>
+                                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{{ p.category || 'Brak' }}</span>
                                 </td>
 
                                 <td class="px-6 py-4 text-center">
-                                    <button
-                                        @click="toggleActive(p.id)"
-                                        class="px-4 py-2 rounded-xl text-[8px] font-black uppercase tracking-widest transition-all shadow-lg"
-                                        :class="p.active ? 'bg-green-500 text-white shadow-green-900/10' : 'bg-red-500 text-white shadow-red-900/10'"
-                                    >
-                                        {{ p.active ? 'TAK' : 'NIE' }}
-                                    </button>
+                                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{{ p.country || 'Brak' }}</span>
+                                </td>
+
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-3 py-1 bg-gray-50 rounded-lg text-[10px] font-black text-[#0A2C5C] border border-gray-100">{{ p.invoices_count }}</span>
+                                </td>
+
+                                <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center">
+                                        <button
+                                            @click="toggleActive(p.id)"
+                                            class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                            :class="p.active ? 'bg-[#00a0e3]' : 'bg-gray-200'"
+                                        >
+                                            <span
+                                                aria-hidden="true"
+                                                class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                :class="p.active ? 'translate-x-5' : 'translate-x-0'"
+                                            />
+                                        </button>
+                                    </div>
                                 </td>
 
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex gap-2 justify-center">
                                         <Link
                                             :href="route('admin.foundations.edit', p.id)"
-                                            class="p-2 bg-gray-50 rounded-xl text-[#0A2C5C] hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                                            class="px-4 py-2 bg-[#0A2C5C] rounded-lg text-white text-[8px] font-black uppercase tracking-widest hover:bg-blue-900 transition-all shadow-sm"
                                         >
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                            </svg>
+                                            EDYTUJ
                                         </Link>
                                         <button
-                                            :disabled="p.orders_count"
+                                            :disabled="p.invoices_count > 0"
                                             @click="router.delete(route('admin.foundations.destroy', p.id))"
-                                            class="p-2 bg-gray-50 rounded-xl text-red-400 hover:bg-red-500 hover:text-white transition-all shadow-sm"
-                                            :class="{'opacity-50 cursor-not-allowed pointer-events-none' : p.orders_count}"
+                                            class="px-4 py-2 bg-red-600 rounded-lg text-white text-[8px] font-black uppercase tracking-widest hover:bg-red-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                            </svg>
+                                            USUŃ
                                         </button>
                                     </div>
                                 </td>
@@ -119,3 +224,44 @@ const toggleActive = (id) => {
         </div>
     </AppLayout>
 </template>
+
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style lang="scss">
+.custom-multiselect {
+    .multiselect {
+        &__tags {
+            @apply rounded-2xl border-gray-100 bg-gray-50/50 py-3 px-4 min-h-[54px] flex items-center transition-all border-2;
+        }
+        &__placeholder {
+            @apply text-[11px] font-black text-gray-400 uppercase tracking-widest pt-0 mb-0;
+        }
+        &__single {
+            @apply bg-transparent text-[11px] font-black text-[#0A2C5C] uppercase tracking-widest pt-0 mb-0;
+        }
+        &__input {
+            @apply bg-transparent text-[11px] font-black uppercase tracking-widest pt-0 mb-0;
+        }
+        &__select {
+            @apply top-1/2 -translate-y-1/2 h-full flex items-center justify-center right-0;
+            &::before {
+                @apply border-t-gray-400 border-l-transparent border-r-transparent border-b-transparent border-t-[6px] border-x-[5px] relative top-0;
+            }
+        }
+        &__content-wrapper {
+            @apply rounded-2xl mt-2 border-none shadow-xl overflow-hidden;
+        }
+        &__option {
+            @apply text-[10px] font-bold uppercase tracking-wider py-4;
+            &--highlight {
+                @apply bg-[#0A2C5C] text-white;
+                &::after {
+                    @apply bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest px-4;
+                }
+            }
+            &--selected {
+                @apply bg-gray-100 text-[#0A2C5C] font-black;
+            }
+        }
+    }
+}
+</style>

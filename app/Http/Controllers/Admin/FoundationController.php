@@ -20,23 +20,48 @@ use Illuminate\Support\Facades\Storage;
 
 class FoundationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-            $foundations = Foundation::withCount('orders')
-                ->with('media')
-                ->paginate(20)
-                ->through(fn ($p) => [
-                    'id'    => $p->id,
-                    'name'  => $p->name,
-                    'link'  => $p->www,
-                    'active'=> $p->active,
-                    'orders_count'=> $p->orders_count,
-                    'logo'  => $p->getFirstMediaUrl('foundation_logo'),
+        $categories = Cache::rememberForever('categoriesFoundations', function() {
+            return MultiselectWithoutDetailResource::collection(FoundationCategory::whereNull('parent_id')->get());
+        });
+
+        $countries = (new Helper())->makeCountriesToSelect();
+
+        $foundations = Foundation::query()
+            ->withCount('invoice')
+            ->with('media')
+            ->when($request->name, fn($q) => $q->where('name', 'like', "%{$request->name}%"))
+            ->when($request->category, fn($q) => $q->whereJsonContains('category_id->value', (int)$request->category))
+            ->when($request->country, fn($q) => $q->where('country', $request->country))
+            ->paginate(20)
+            ->withQueryString()
+            ->through(fn ($p) => [
+                'id'    => $p->id,
+                'name'  => $p->name,
+                'link'  => $p->www,
+                'active'=> $p->active,
+                'invoices_count'=> $p->invoice_count,
+                'logo'  => $p->getFirstMediaUrl('foundation_logo'),
+                'category' => $p->category_id['name'] ?? null,
+                'country' => $p->address_country['name'] ?? null,
             ]);
 
-        return inertia('Admin/Foundations/Index',
-        [
-            'foundations'=>$foundations
+        $filters = $request->only(['name', 'category', 'country']);
+
+        if ($request->category) {
+            $filters['category'] = $categories->where('value', (int)$request->category)->first();
+        }
+
+        if ($request->country) {
+            $filters['country'] = collect($countries)->flatMap(fn($g) => $g['elements'])->where('countryCode', $request->country)->first();
+        }
+
+        return inertia('Admin/Foundations/Index', [
+            'foundations' => $foundations,
+            'categories' => $categories,
+            'countries' => $countries,
+            'filters' => $filters,
         ]);
     }
 

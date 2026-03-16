@@ -64,9 +64,9 @@ class Foundation extends Model implements HasMedia
         $this->addMediaCollection('foundation_logo');
     }
 
-    public function orders(): HasMany
+    public function invoice(): HasMany
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Invoice::class);
     }
 
     protected static function booted()
