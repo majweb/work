@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import SupportDrawer from '@/Components/SupportDrawer.vue';
 import AdminSidebar from '@/Components/Dashboard/AdminSidebar.vue';
 import {usePermission} from "@/Composables/usePermission";
 import NotificationBell from "@/Components/NotificationBell.vue";
@@ -20,6 +21,7 @@ defineProps({
 const open = ref(false)
 
 const showingNavigationDropdown = ref(false);
+const showSupportDrawer = ref(false);
 const currentUser = computed(() => usePage().props.auth.user);
 
 // Pobranie liczby nieprzeczytanych powiadomień bezpośrednio z Inertia props
@@ -62,6 +64,30 @@ onUnmounted(()=>{
     <div>
         <Head :title="title" />
         <Banner />
+        <SupportDrawer :show="showSupportDrawer" @close="showSupportDrawer = false" />
+
+        <!-- Floating Support Button -->
+        <div
+            v-if="hasRole('firm') || hasRole('worker') || hasRole('firmrecruit')"
+            class="fixed bottom-6 right-6 z-50"
+        >
+            <button
+                @click="showSupportDrawer = true"
+                class="group flex items-center gap-3 px-6 py-4 bg-[#0A2C5C] hover:bg-[#00a0e3] text-white rounded-[2rem] shadow-2xl shadow-blue-900/30 transition-all duration-500 hover:scale-110 active:scale-95 border-4 border-white"
+            >
+                <div class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 transition-transform duration-500 group-hover:rotate-12">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                    </svg>
+                    <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+                    </span>
+                </div>
+                <span class="text-xs font-black uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.support_tickets') }}</span>
+            </button>
+        </div>
+
         <div class="min-h-screen bg-gray-50/50" :class="{'pl-72': hasRole('admin')}">
             <AdminSidebar v-if="hasRole('admin')" />
             <!-- Modern Sticky Header -->

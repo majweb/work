@@ -29,6 +29,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Recruit\AplicationController as AplicationControllerRecruit;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Worker\WorkerController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
@@ -120,6 +121,8 @@ Route::middleware([
         ->name('sync.applications.candidates');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::post('/support/tickets', [SupportController::class, 'store'])
+        ->name('support.tickets.store');
     Route::resource('recruits', RecruitController::class)->middleware('role:firm');
     Route::delete('recruits/{recruit}/photo', [RecruitController::class, 'destroyPhoto'])->name('recruits.photo.destroy')->middleware('role:firm');
     Route::resource('orders', OrderController::class)->middleware('role:firm')->only([

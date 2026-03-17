@@ -377,7 +377,7 @@ class FrontController extends Controller
         $validated = $request->validate([
             'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
-            'message' => 'required|string',
+            'message' => 'required|string|max:500',
             'agree' => 'accepted',
             'captcha' => [
                 'required',

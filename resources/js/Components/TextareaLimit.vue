@@ -23,9 +23,12 @@ onMounted(()=>{
 onBeforeUnmount(()=>autosize.destroy(el.value));
 
 const check = (event) => {
-    if(event.target.value.length <= props.limit){
-        emit('update:modelValue', event.target.value);
+    let value = event.target.value;
+    if (value.length > props.limit) {
+        value = value.substring(0, props.limit);
+        event.target.value = value;
     }
+    emit('update:modelValue', value);
 }
 </script>
 <template>

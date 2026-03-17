@@ -1,7 +1,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3'
 import FrontLayout from '@/Layouts/FrontLayout.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import axios from 'axios'
 import __ from "@/lang.js";
 import Checkbox from "@/Components/Checkbox.vue";
@@ -20,6 +20,14 @@ const form = useForm({
 })
 
 const successMessage = ref('') // komunikat sukcesu
+
+const messageCharsRemaining = computed(() => 500 - form.message.length);
+
+watch(() => form.message, (newValue) => {
+    if (newValue.length > 500) {
+        form.message = newValue.substring(0, 500);
+    }
+});
 
 const submit = () => {
     form.post('/contact', {
@@ -43,8 +51,17 @@ const submit = () => {
 const captchaText = ref('')
 const coloredCaptcha = ref([])
 
-const colorizeCaptcha = (text) =>
-    text.split('').map(letter => ({ letter }))
+const randomColor = () => {
+    const colors = ['#00a0e3', '#e31e24', '#0d2a52'];
+    return colors[Math.floor(Math.random() * colors.length)];
+};
+
+const colorizeCaptcha = (text) => {
+    return text.split('').map(letter => ({
+        letter,
+        color: randomColor()
+    }));
+};
 
 const loadCaptcha = () => {
     axios.get('/generateCaptcha')
@@ -138,8 +155,14 @@ onMounted(() => loadCaptcha())
                                             v-model="form.message"
                                             :placeholder="__('info.message')"
                                             rows="5"
+                                            maxlength="500"
                                             class="w-full rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:ring-4 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-4 px-4 transition-all text-sm font-bold text-gray-600 placeholder:text-gray-300 shadow-sm"
                                         ></textarea>
+                                        <div class="flex justify-end px-4">
+                                            <span class="text-[9px] font-black uppercase tracking-widest" :class="messageCharsRemaining < 50 ? 'text-red-500' : 'text-gray-400'">
+                                                {{ __('translate.chars_remaining') }}: {{ messageCharsRemaining }}
+                                            </span>
+                                        </div>
                                         <InputError :message="form.errors.message" class="ml-2" />
                                     </div>
 
