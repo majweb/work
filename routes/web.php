@@ -311,6 +311,10 @@ Route::middleware([
         Route::put('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'update'])->name('currencies.update');
         Route::delete('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'destroy'])->name('currencies.destroy');
 
+        //        ZGŁOSZENIA
+        Route::get('tickets', [\App\Http\Controllers\Admin\TicketController::class, 'index'])->name('tickets.index');
+        Route::get('tickets/export', [\App\Http\Controllers\Admin\TicketController::class, 'export'])->name('tickets.export');
+
         //        FINANSE
         Route::get('finance/points', [\App\Http\Controllers\Admin\PointHistoryController::class, 'index'])->name('finance.points.index');
         Route::get('finance/points/export', [\App\Http\Controllers\Admin\PointHistoryController::class, 'export'])->name('finance.points.export');

@@ -1494,6 +1494,8 @@ return [
     'exchangePoints' => 'Wymień punkty',
     'makeProject' => 'Przygotuj mi ofertę',
     'firmDashboard' => 'Panel Firmy',
+    'recruitDashboard' => 'Panel Rekrutera',
+    'workerDashboard' => 'Panel Pracownika',
     'recruiterCount' => 'Liczba rekruterów',
     'projectCountStat' => 'Liczba ofert',
     'applicationCountStat' => 'Liczba aplikacji',

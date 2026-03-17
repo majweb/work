@@ -75,7 +75,13 @@ const menuItems = [
             { name: 'Punkty', route: 'admin.admin-points.index' },
         ]
     },
-    { name: 'Bezpieczeństwo', icon: 'security', route: 'dashboard' },
+    {
+        name: 'Bezpieczeństwo',
+        icon: 'security',
+        subItems: [
+            { name: 'Zgłoszenia', route: 'admin.tickets.index' },
+        ]
+    },
     { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },
     { name: 'Ustawienia', icon: 'settings', route: 'profile.show' },
 ];

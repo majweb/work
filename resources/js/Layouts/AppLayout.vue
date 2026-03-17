@@ -68,7 +68,7 @@ onUnmounted(()=>{
 
         <!-- Floating Support Button -->
         <div
-            v-if="hasRole('firm') || hasRole('worker') || hasRole('firmrecruit')"
+            v-if="hasRole('firm') || hasRole('worker') || hasRole('recruit')"
             class="fixed bottom-6 right-6 z-50"
         >
             <button
