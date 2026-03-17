@@ -57,6 +57,7 @@ return [
     'authenticationCode' => 'Use an authentication code',
     'dashboard' => 'Dashboard',
     'agree' => 'I agree to the',
+    'blocked_message' => 'Your submission has been blocked for security reasons.',
     'emailVerifySubject' => 'Verify Email Address',
     'emailVerifyLine' => 'Click the button below to verify your email address.',
     'emailVerifyExtra' => 'If you\'re having trouble clicking the button ":actionText", copy and paste the URL below\n".\'into your web browser',

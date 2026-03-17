@@ -316,6 +316,11 @@ Route::middleware([
         Route::get('tickets/export', [\App\Http\Controllers\Admin\TicketController::class, 'export'])->name('tickets.export');
         Route::post('tickets/{ticket}/mark-as-read', [\App\Http\Controllers\Admin\TicketController::class, 'markAsRead'])->name('tickets.markAsRead');
 
+        //        BEZPIECZEŃSTWO
+        Route::get('security/ip-email-blocks', [\App\Http\Controllers\Admin\IpEmailBlockController::class, 'index'])->name('security.ip-email-blocks.index');
+        Route::post('security/ip-email-blocks', [\App\Http\Controllers\Admin\IpEmailBlockController::class, 'store'])->name('security.ip-email-blocks.store');
+        Route::delete('security/ip-email-blocks/{ipEmailBlock}', [\App\Http\Controllers\Admin\IpEmailBlockController::class, 'destroy'])->name('security.ip-email-blocks.destroy');
+
         //        LOGI
         Route::get('logs', [\App\Http\Controllers\Admin\LogController::class, 'index'])->name('logs.index');
         Route::get('logs/download', [\App\Http\Controllers\Admin\LogController::class, 'download'])->name('logs.download');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
+use App\Models\IpEmailBlock;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,18 @@ class SupportController extends Controller
 
         if ($validated['captcha'] !== session('captcha_text')) {
             return back()->withErrors(['captcha' => __('translate.invalid_captcha')]);
+        }
+
+        // SPRAWDZENIE BLOKAD (IP i Email)
+        $isBlocked = IpEmailBlock::where(function ($query) use ($request) {
+            $query->where('value', $request->ip())->where('type', 'ip')
+                ->orWhere('value', strtolower(Auth::user()->email ?? ''))->where('type', 'email');
+        })->exists();
+
+        if ($isBlocked) {
+            throw ValidationException::withMessages([
+                'captcha' => trans('translate.application_blocked_message'),
+            ]);
         }
 
         // LIMITER: po IP i user_id

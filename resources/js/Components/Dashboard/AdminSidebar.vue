@@ -81,6 +81,7 @@ const menuItems = [
         subItems: [
             { name: 'Zgłoszenia', route: 'admin.tickets.index' },
             { name: 'Logi', route: 'admin.logs.index' },
+            { name: 'Blokada IP i Email', route: 'admin.security.ip-email-blocks.index' },
         ]
     },
     { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },

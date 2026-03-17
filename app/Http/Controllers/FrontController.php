@@ -26,6 +26,7 @@ use App\Models\CvVideo;
 use App\Models\Firm;
 use App\Models\Foundation;
 use App\Models\FoundationCategory;
+use App\Models\IpEmailBlock;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
 use App\Models\Partner;
@@ -390,6 +391,18 @@ class FrontController extends Controller
             ],
         ]);
 
+        // SPRAWDZENIE BLOKAD (IP i Email)
+        $isBlocked = IpEmailBlock::where(function($query) use ($request, $validated) {
+            $query->where('value', $request->ip())->where('type', 'ip')
+                  ->orWhere('value', strtolower($validated['email']))->where('type', 'email');
+        })->exists();
+
+        if ($isBlocked) {
+            throw ValidationException::withMessages([
+                'agree' => trans('translate.blocked_message')
+            ]);
+        }
+
         // LIMITER: po IP i email
         $ipKey = 'contact-form:ip:' . $request->ip();
         $emailKey = 'contact-form:email:' . strtolower($validated['email']);
@@ -512,10 +525,34 @@ class FrontController extends Controller
 
     public function nextStep(AplicationRequest $request, Project $project)
     {
+        // SPRAWDZENIE BLOKAD (IP i Email)
+        $isBlocked = IpEmailBlock::where(function($query) use ($request) {
+            $query->where('value', $request->ip())->where('type', 'ip')
+                  ->orWhere('value', strtolower($request->aplicationData()['email'] ?? ''))->where('type', 'email');
+        })->exists();
+
+        if ($isBlocked) {
+            throw ValidationException::withMessages([
+                'agreements' => trans('translate.application_blocked_message')
+            ]);
+        }
+
         return to_route('front.projects.applyView',$project);
     }
     public function makeAplication(AplicationRequest $request, Project $project)
     {
+        // SPRAWDZENIE BLOKAD (IP i Email)
+        $isBlocked = IpEmailBlock::where(function($query) use ($request) {
+            $query->where('value', $request->ip())->where('type', 'ip')
+                  ->orWhere('value', strtolower($request->aplicationData()['email'] ?? ''))->where('type', 'email');
+        })->exists();
+
+        if ($isBlocked) {
+            throw ValidationException::withMessages([
+                'agreements' => trans('translate.application_blocked_message')
+            ]);
+        }
+
         $user = $request->user();
         $key = 'make-aplication:' .$project->id.'-'. ($user?->id ?? $request->ip());
 

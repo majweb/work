@@ -48,6 +48,8 @@ return [
     'authenticationCode' => 'Użyj kodu uwierzytelniającego',
     'dashboard' => 'Pulpit',
     'agree' => 'Zgadzam się z',
+    'blocked_message' => 'Twoje zgłoszenie zostało zablokowane ze względów bezpieczeństwa.',
+    'application_blocked_message' => 'Twoja aplikacja została zablokowane ze względów bezpieczeństwa.',
     'emailVerifySubject' => 'Zweryfikuj adres e-mail',
     'emailVerifyLine' => 'Kliknij poniższy przycisk, aby zweryfikować swój adres e-mail.',
     'emailVerifyExtra' => 'Jeśli masz problemy z kliknięciem przycisku ":actionText", skopiuj i wklej poniższy adres do swojej przeglądarki internetowej',
