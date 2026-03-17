@@ -77,6 +77,7 @@ class HandleInertiaRequests extends Middleware
             'pageUrl' => env('APP_URL'),
             'pageName' => env('APP_NAME'),
             'unreadNotifications'=>$request->user() ? $request->user()->unreadNotifications()->count() :0,
+            'unreadTicketsCount' => $request->user() && $request->user()->hasRole('admin') ? \App\Models\Ticket::where('is_read', false)->count() : 0,
             'mapsApi' => env('GOOGLE_MAPS_API'),
             'mapboxToken' => config('services.mapbox.token'),
             'currencyFromClient' => fn()=> (request()->user() && request()->user()->hasRole('recruit') && !request()->user()->hasRole('firm'))  ? request()->user()->user->firm->currency : null

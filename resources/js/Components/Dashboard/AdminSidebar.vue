@@ -80,6 +80,7 @@ const menuItems = [
         icon: 'security',
         subItems: [
             { name: 'Zgłoszenia', route: 'admin.tickets.index' },
+            { name: 'Logi', route: 'admin.logs.index' },
         ]
     },
     { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },
@@ -178,6 +179,9 @@ const getIcon = (name) => {
                                 <div class="flex items-center gap-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5" v-html="getIcon(item.icon)"></svg>
                                     <span class="text-[10px] font-black uppercase tracking-widest">{{ item.name }}</span>
+                                    <span v-if="item.name === 'Bezpieczeństwo' && $page.props.unreadTicketsCount > 0" class="ml-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-red-500/50">
+                                        {{ $page.props.unreadTicketsCount }}
+                                    </span>
                                 </div>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -204,10 +208,13 @@ const getIcon = (name) => {
                                         v-for="sub in item.subItems"
                                         :key="sub.name"
                                         :href="sub.route ? route(sub.route) : '#'"
-                                        class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group"
+                                        class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group relative"
                                         :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.route)}"
                                     >
                                         {{ sub.name }}
+                                        <span v-if="sub.route === 'admin.tickets.index' && $page.props.unreadTicketsCount > 0" class="absolute right-4 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-red-500/50">
+                                            {{ $page.props.unreadTicketsCount }}
+                                        </span>
                                     </Link>
                                 </div>
                             </Transition>

@@ -14,9 +14,17 @@ class Ticket extends Model
         'subject',
         'content',
         'type',
+        'is_read',
     ];
 
-    public function user()
+    protected function casts(): array
+    {
+        return [
+            'is_read' => 'boolean',
+        ];
+    }
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }

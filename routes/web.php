@@ -314,6 +314,12 @@ Route::middleware([
         //        ZGŁOSZENIA
         Route::get('tickets', [\App\Http\Controllers\Admin\TicketController::class, 'index'])->name('tickets.index');
         Route::get('tickets/export', [\App\Http\Controllers\Admin\TicketController::class, 'export'])->name('tickets.export');
+        Route::post('tickets/{ticket}/mark-as-read', [\App\Http\Controllers\Admin\TicketController::class, 'markAsRead'])->name('tickets.markAsRead');
+
+        //        LOGI
+        Route::get('logs', [\App\Http\Controllers\Admin\LogController::class, 'index'])->name('logs.index');
+        Route::get('logs/download', [\App\Http\Controllers\Admin\LogController::class, 'download'])->name('logs.download');
+        Route::delete('logs/clear', [\App\Http\Controllers\Admin\LogController::class, 'clear'])->name('logs.clear');
 
         //        FINANSE
         Route::get('finance/points', [\App\Http\Controllers\Admin\PointHistoryController::class, 'index'])->name('finance.points.index');

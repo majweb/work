@@ -16,6 +16,7 @@ const filters = ref({
     subject: props.filters.subject || '',
     type: props.filters.type || '',
     user: props.filters.user || '',
+    is_read: props.filters.is_read || '',
 });
 
 const showingTicket = ref(null);
@@ -25,6 +26,15 @@ const closeModal = () => {
 
 const showTicket = (ticket) => {
     showingTicket.value = ticket;
+    if (!ticket.is_read) {
+        router.post(route('admin.tickets.markAsRead', ticket.id), {}, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => {
+                ticket.is_read = true;
+            }
+        });
+    }
 };
 
 const updateFilters = () => {
@@ -90,7 +100,7 @@ const getTypeClass = (type) => {
 
                 <!-- Filters -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 mb-8">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div class="relative group">
                             <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 block ml-4">Temat</label>
                             <input
@@ -121,6 +131,17 @@ const getTypeClass = (type) => {
                                 <option value="new_feature">Nowa funkcja</option>
                             </select>
                         </div>
+                        <div class="relative group">
+                            <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 block ml-4">Status</label>
+                            <select
+                                v-model="filters.is_read"
+                                class="block w-full px-6 py-4 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all font-medium appearance-none"
+                            >
+                                <option value="">Wszystkie statusy</option>
+                                <option value="no">Nieprzeczytane</option>
+                                <option value="yes">Przeczytane</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -140,17 +161,18 @@ const getTypeClass = (type) => {
                             </thead>
                             <tbody class="divide-y divide-gray-50">
                                 <tr v-for="ticket in tickets.data" :key="ticket.id" class="group hover:bg-blue-50/30 transition-colors cursor-pointer" @click="showTicket(ticket)">
-                                    <td class="p-8">
-                                        <span class="text-sm font-black text-[#0A2C5C]">#{{ ticket.id }}</span>
+                                    <td class="p-8 relative">
+                                        <div v-if="!ticket.is_read" class="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
+                                        <span :class="['text-sm font-black transition-colors', !ticket.is_read ? 'text-blue-600' : 'text-[#0A2C5C]']">#{{ ticket.id }}</span>
                                     </td>
                                     <td class="p-8">
                                         <div class="flex flex-col">
-                                            <span class="text-sm font-black text-[#0A2C5C]">{{ ticket.user?.name }}</span>
+                                            <span :class="['text-sm font-black transition-colors', !ticket.is_read ? 'text-blue-600' : 'text-[#0A2C5C]']">{{ ticket.user?.name }}</span>
                                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ ticket.user?.email }}</span>
                                         </div>
                                     </td>
                                     <td class="p-8">
-                                        <span class="text-sm font-medium text-gray-600 line-clamp-1">{{ ticket.subject }}</span>
+                                        <span :class="['text-sm transition-colors line-clamp-1', !ticket.is_read ? 'text-blue-600 font-black' : 'text-gray-600 font-medium']">{{ ticket.subject }}</span>
                                     </td>
                                     <td class="p-8">
                                         <span :class="['text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl', getTypeClass(ticket.type)]">

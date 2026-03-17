@@ -27,6 +27,9 @@ class TicketsExport implements FromCollection, WithHeadings, WithMapping
                     $q->where('name', 'like', '%' . $user . '%');
                 });
             })
+            ->when($this->filters['is_read'] ?? null, function ($query, $isRead) {
+                $query->where('is_read', $isRead === 'yes');
+            })
             ->get();
     }
 
@@ -38,6 +41,7 @@ class TicketsExport implements FromCollection, WithHeadings, WithMapping
             'Temat',
             'Treść',
             'Typ',
+            'Przeczytane',
             'Data utworzenia',
         ];
     }
@@ -56,7 +60,8 @@ class TicketsExport implements FromCollection, WithHeadings, WithMapping
             $ticket->subject,
             $ticket->content,
             $types[$ticket->type] ?? $ticket->type,
-            $ticket->created_at->toDateTimeString(),
+            $ticket->is_read ? 'Tak' : 'Nie',
+            $ticket->created_at->format('Y-m-d H:i:s'),
         ];
     }
 }
