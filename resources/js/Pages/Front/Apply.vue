@@ -383,9 +383,9 @@ const removeFile = async (source, load) => {
 <template>
     <FrontLayout :title="__('translate.project')">
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-[1300px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <!-- HEADER CARD -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                <div class="relative bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-6">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#00a0e3] shrink-0">
@@ -480,9 +480,10 @@ const removeFile = async (source, load) => {
                                         v-model="form.name"
                                         autofocus
                                         type="text"
-                                        placeholder="Wpisz imię..."
+                                        :placeholder="__('translate.nameUser')"
+                                        class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                     />
-                                    <InputError :message="form.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    <InputError :message="form.errors.name" class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                                 <div class="space-y-2">
                                     <InputLabel for="surname" :value="__('translate.surname')"
@@ -491,9 +492,10 @@ const removeFile = async (source, load) => {
                                         id="surname"
                                         v-model="form.surname"
                                         type="text"
-                                        placeholder="Wpisz nazwisko..."
+                                        :placeholder="__('translate.surname')"
+                                        class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                     />
-                                    <InputError :message="form.errors.surname" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    <InputError :message="form.errors.surname" class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                                 <div class="space-y-2">
                                     <InputLabel for="phone" :value="__('translate.phone')"
@@ -503,8 +505,9 @@ const removeFile = async (source, load) => {
                                         v-model="form.phone"
                                         type="text"
                                         placeholder="+48..."
+                                        class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                     />
-                                    <InputError :message="form.errors.phone" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    <InputError :message="form.errors.phone" class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                                 <div class="space-y-2">
                                     <InputLabel for="email" :value="__('translate.email')"
@@ -513,9 +516,10 @@ const removeFile = async (source, load) => {
                                         id="email"
                                         v-model="form.email"
                                         type="email"
-                                        placeholder="twoj@email.pl..."
+                                        :placeholder="__('translate.email')"
+                                        class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                     />
-                                    <InputError :message="form.errors.email" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                    <InputError :message="form.errors.email" class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2 pt-4">
@@ -592,20 +596,76 @@ const removeFile = async (source, load) => {
                                     <InputError :message="form.errors.files" class="mt-1"/>
                                 </div>
                                 <div class="col-span-6" v-if="project.cv && user">
-                                    <div class="mt-4" v-if="project.cv">
-                                        <InputLabel :value="__('translate.cv')"/>
-                                        <div v-for="cv in project.cv" class="flex items-center mt-1">
-                                            <input
-                                                class="border-gray-300 text-blue-work shadow-sm focus:ring-blue-work mr-2"
-                                                type="radio" :id="'cv-'+cv.id" v-model="form.cv"
-                                                :value="cv.id"/>
-                                            <label
-                                                :for="'cv-'+cv.id">{{ cv.allTranslations.name[usePage().props.language] }}</label>
+                                    <div class="mt-8">
+                                        <div class="flex items-center gap-3 mb-6">
+                                            <div class="p-1.5 bg-blue-50 rounded-lg">
+                                                <svg class="w-4 h-4 text-blue-600"
+                                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                                </svg>
+                                            </div>
+                                            <InputLabel :value="__('translate.cvTypeSelect')"
+                                                        class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                         </div>
-                                        <InputError :message="form.errors.cv" class="mt-2"/>
-                                        <button class="text-xs underline mt-1" v-if="form.cv" @click="form.cv=''">
-                                            {{ __('translate.cvTypeReset') }}
-                                        </button>
+
+                                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                            <div v-for="cv in project.cv" :key="cv.id"
+                                                 @click="form.cv = cv.id"
+                                                 :class="[
+                                                     'relative flex flex-col items-center justify-center p-6 rounded-3xl border-2 cursor-pointer transition-all duration-300 group',
+                                                     form.cv == cv.id
+                                                         ? 'border-[#00a0e3] bg-blue-50/30 ring-4 ring-[#00a0e3]/5 shadow-lg'
+                                                         : 'border-gray-100 bg-gray-50 hover:border-gray-200 hover:bg-white hover:shadow-md'
+                                                 ]"
+                                            >
+                                                <!-- Checkmark icon for active state -->
+                                                <div v-if="form.cv == cv.id"
+                                                     class="absolute top-4 right-4 bg-[#00a0e3] text-white p-1 rounded-full shadow-sm animate-fade-in">
+                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+
+                                                <div class="mb-4 relative">
+                                                    <!-- Icon from assets based on CV type -->
+                                                    <div :class="[
+                                                        'w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300',
+                                                        form.cv == cv.id ? 'bg-[#00a0e3] shadow-inner scale-110' : 'bg-white text-gray-400 group-hover:bg-blue-50 group-hover:text-[#00a0e3]'
+                                                    ]">
+                                                        <img v-if="cv.id == 1" src="/images/icons/cv-classic.svg" alt=""
+                                                             class="w-10 h-10" />
+                                                        <img v-else-if="cv.id == 2" src="/images/icons/cv-video.svg" alt=""
+                                                             class="w-10 h-10" />
+                                                        <img v-else-if="cv.id == 3" src="/images/icons/cv-audio.svg" alt=""
+                                                             class="w-10 h-10" />
+                                                        <svg v-else class="w-10 h-10" :class="form.cv == cv.id ? 'text-white' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+
+                                                <span :class="[
+                                                    'text-xs font-black uppercase tracking-widest text-center transition-colors duration-300',
+                                                    form.cv == cv.id ? 'text-[#00a0e3]' : 'text-gray-500 group-hover:text-gray-900'
+                                                ]">
+                                                    {{ cv.allTranslations.name[usePage().props.language] }}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center justify-between mt-4 px-2">
+                                            <InputError :message="form.errors.cv" class="m-0 text-[10px] font-bold uppercase tracking-widest"/>
+
+                                            <button type="button" class="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors flex items-center gap-1.5"
+                                                    v-if="form.cv" @click="form.cv=''">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                                {{ __('translate.cvTypeReset') }}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-span-6 space-y-4 pt-6">
@@ -1016,13 +1076,13 @@ const removeFile = async (source, load) => {
                                         <InputLabel for="birthday" :value="__('translate.birthdayDate')"
                                                     class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-1"/>
                                         <VueDatePicker model-type="dd-MM-yyyy" format="dd-MM-yyyy"
-                                                       class="shadow-sm"
                                                        :enable-time-picker="false" v-model="form.birthday"
                                                        :locale="lang" auto-apply id="birthday"
                                                        :teleport="true"
+                                                       input-class-name="dp__input_reg"
                                         />
                                         <InputError :message="form.errors.birthday"
-                                                    class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                                    class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                     </div>
                                     <div class="md:col-span-1 space-y-2">
                                         <InputLabel for="city" :value="__('translate.City')"
@@ -1031,9 +1091,10 @@ const removeFile = async (source, load) => {
                                             id="city"
                                             v-model="form.city"
                                             type="text"
-                                            placeholder="np. Warszawa"
+                                            :placeholder="__('translate.City')"
+                                            class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                         />
-                                        <InputError :message="form.errors.city" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                        <InputError :message="form.errors.city" class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                     </div>
                                     <div class="md:col-span-1 space-y-2">
                                         <InputLabel for="postal" :value="__('translate.Postal')"
@@ -1043,9 +1104,10 @@ const removeFile = async (source, load) => {
                                             v-model="form.postal"
                                             type="text"
                                             placeholder="00-000"
+                                            class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                         />
                                         <InputError :message="form.errors.postal"
-                                                    class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                                    class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                     </div>
                                     <div class="md:col-span-1 space-y-2">
                                         <InputLabel for="photo" :value="__('translate.Photo')"
@@ -1190,7 +1252,7 @@ const removeFile = async (source, load) => {
                                             </div>
 
                                             <div
-                                                class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                                class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                                                 <div v-if="optionsPositions" class="space-y-2">
                                                     <InputLabel :value="__('translate.position')"
                                                                 class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
@@ -1200,11 +1262,20 @@ const removeFile = async (source, load) => {
                                                         track-by="value"
                                                         label="name"
                                                         :placeholder="__('translate.placeholder')"
+                                                        :select-label="__('translate.selectLabel')"
+                                                        :select-group-label="__('translate.selectGroupLabel')"
+                                                        :selected-label="__('translate.selectedLabel')"
+                                                        :deselect-label="__('translate.deselectLabel')"
+                                                        :no-options="__('translate.noOptions')"
+                                                        :no-result="__('translate.noResult')"
                                                         class="custom-multiselect"
-                                                    />
+                                                    >
+                                                        <template #noResult><span>{{ __('translate.noResult') }}</span></template>
+                                                        <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                                    </multiselect>
                                                     <InputError
                                                         :message="form.errors[`experiences.${index}.position`]"
-                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                 </div>
 
                                                 <div class="space-y-2">
@@ -1214,23 +1285,24 @@ const removeFile = async (source, load) => {
                                                         v-model="experience.employer"
                                                         type="text"
                                                         :placeholder="__('translate.employer')"
+                                                        class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                                     />
                                                     <InputError
                                                         :message="form.errors[`experiences.${index}.employer`]"
-                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                 </div>
 
                                                 <div class="space-y-2">
                                                     <InputLabel :value="__('translate.experienceStart')"
                                                                 class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                     <VueDatePicker v-model="experience.start" month-picker
-                                                                   class="shadow-sm"
                                                                    :locale="lang" auto-apply
                                                                    :teleport="true"
+                                                                   input-class-name="dp__input_reg"
                                                     />
                                                     <InputError
                                                         :message="form.errors[`experiences.${index}.start`]"
-                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                 </div>
 
                                                 <div class="space-y-2 relative">
@@ -1248,14 +1320,14 @@ const removeFile = async (source, load) => {
                                                         </div>
                                                     </div>
                                                     <VueDatePicker v-model="experience.end" month-picker
-                                                                   class="shadow-sm"
                                                                    :disabled="experience.isCurrent"
                                                                    :locale="lang" auto-apply
                                                                    :teleport="true"
+                                                                   input-class-name="dp__input_reg"
                                                     />
                                                     <InputError
                                                         :message="form.errors[`experiences.${index}.end`]"
-                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                 </div>
 
                                                 <div class="md:col-span-full space-y-2">
@@ -1265,10 +1337,11 @@ const removeFile = async (source, load) => {
                                                         v-model="experience.city"
                                                         type="text"
                                                         :placeholder="__('translate.City')"
+                                                        class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                                     />
                                                     <InputError
                                                         :message="form.errors[`experiences.${index}.city`]"
-                                                        class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                        class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -1280,7 +1353,7 @@ const removeFile = async (source, load) => {
                                 <div class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                            <div class="p-2.5 bg-indigo-50 rounded-2xl text-[#6366f1]">
+                                            <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                                 <svg class="w-6 h-6" fill="none"
                                                      stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -1301,7 +1374,7 @@ const removeFile = async (source, load) => {
                                                 type="button"
                                                 @click="addEducation"
                                                 v-if="form.educations.length < 5"
-                                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#6366f1] hover:bg-indigo-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
+                                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-500/20 active:scale-95"
                                             >
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
                                                      viewBox="0 0 24 24" stroke-width="4">
@@ -1328,7 +1401,7 @@ const removeFile = async (source, load) => {
                                                 <div
                                                     class="flex items-center justify-between p-4 border-b border-gray-50">
                                                     <div
-                                                        class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-indigo-500 transition-colors">
+                                                        class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#00a0e3] transition-colors">
                                                         <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                              viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -1347,17 +1420,18 @@ const removeFile = async (source, load) => {
                                                 </div>
 
                                                 <div
-                                                    class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                                    class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                                                     <div class="space-y-2">
                                                         <InputLabel :value="__('translate.school')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                         <TextInput v-model="education.school"
                                                                    type="text"
                                                                    :placeholder="__('translate.school')"
+                                                                   class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                                         />
                                                         <InputError
                                                             :message="form.errors[`educations.${index}.school`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                            class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
                                                     <div v-if="props.levelEducations" class="space-y-2">
@@ -1367,10 +1441,19 @@ const removeFile = async (source, load) => {
                                                                      :options="props.levelEducations"
                                                                      track-by="value" label="name"
                                                                      :placeholder="__('translate.placeholder')"
-                                                                     class="custom-multiselect"/>
+                                                                     :select-label="__('translate.selectLabel')"
+                                                                     :select-group-label="__('translate.selectGroupLabel')"
+                                                                     :selected-label="__('translate.selectedLabel')"
+                                                                     :deselect-label="__('translate.deselectLabel')"
+                                                                     :no-options="__('translate.noOptions')"
+                                                                     :no-result="__('translate.noResult')"
+                                                                     class="custom-multiselect">
+                                                            <template #noResult><span>{{ __('translate.noResult') }}</span></template>
+                                                            <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                                        </multiselect>
                                                         <InputError
                                                             :message="form.errors[`educations.${index}.level`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                            class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
                                                     <div class="space-y-2">
@@ -1379,10 +1462,11 @@ const removeFile = async (source, load) => {
                                                         <TextInput v-model="education.specialization"
                                                                    type="text"
                                                                    :placeholder="__('translate.specialization')"
+                                                                   class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                                         />
                                                         <InputError
                                                             :message="form.errors[`educations.${index}.specialization`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                            class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
                                                     <div class="space-y-2">
@@ -1390,13 +1474,13 @@ const removeFile = async (source, load) => {
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                         <VueDatePicker v-model="education.finish" model-type="yyyy"
                                                                        year-picker
-                                                                       class="shadow-sm"
                                                                        :locale="lang" auto-apply
                                                                        :teleport="true"
+                                                                       input-class-name="dp__input_reg"
                                                         />
                                                         <InputError
                                                             :message="form.errors[`educations.${index}.finish`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                            class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
 
                                                     <div class="space-y-2 lg:col-span-2">
@@ -1405,10 +1489,11 @@ const removeFile = async (source, load) => {
                                                         <TextInput v-model="education.city"
                                                                    type="text"
                                                                    :placeholder="__('translate.City')"
+                                                                   class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                                         />
                                                         <InputError
                                                             :message="form.errors[`educations.${index}.city`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                            class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1420,7 +1505,7 @@ const removeFile = async (source, load) => {
                                 <div class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                            <div class="p-2.5 bg-emerald-50 rounded-2xl text-[#10b981]">
+                                            <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                           stroke-width="2"
@@ -1435,7 +1520,7 @@ const removeFile = async (source, load) => {
                                                     __('translate.quantity')
                                                 }}: {{ form.courses.length }}/5</span>
                                             <button type="button" @click="addCourse" v-if="form.courses.length < 5"
-                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#10b981] hover:bg-emerald-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-500/20 active:scale-95">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
                                                      viewBox="0 0 24 24" stroke-width="4">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -1451,7 +1536,7 @@ const removeFile = async (source, load) => {
                                             <div
                                                 class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                                                 <div class="flex items-center justify-between p-4 border-b border-gray-50">
-                                                    <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#10b981] transition-colors">
+                                                    <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#00a0e3] transition-colors">
                                                         <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                              viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -1473,30 +1558,34 @@ const removeFile = async (source, load) => {
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                         <TextInput v-model="course.name"
                                                                    type="text"
-                                                                   :placeholder="__('translate.name')"/>
+                                                                   :placeholder="__('translate.name')"
+                                                                   class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
+                                                        />
                                                         <InputError :message="form.errors[`courses.${index}.name`]"
-                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                                    class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                     <div class="space-y-2">
                                                         <InputLabel :value="__('translate.organizator')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                         <TextInput v-model="course.organizator"
                                                                    type="text"
-                                                                   :placeholder="__('translate.organizator')"/>
+                                                                   :placeholder="__('translate.organizator')"
+                                                                   class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
+                                                        />
                                                         <InputError
                                                             :message="form.errors[`courses.${index}.organizator`]"
-                                                            class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                            class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                     <div class="space-y-2">
                                                         <InputLabel :value="__('translate.date')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
                                                         <VueDatePicker v-model="course.date" month-picker
-                                                                       class="shadow-sm"
                                                                        :locale="lang" auto-apply
                                                                        :teleport="true"
+                                                                       input-class-name="dp__input_reg"
                                                         />
                                                         <InputError :message="form.errors[`courses.${index}.date`]"
-                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                                    class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1508,7 +1597,7 @@ const removeFile = async (source, load) => {
                                 <div class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                            <div class="p-2.5 bg-amber-50 rounded-2xl text-[#f59e0b]">
+                                            <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                                 <svg class="w-6 h-6" fill="none"
                                                      stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -1524,7 +1613,7 @@ const removeFile = async (source, load) => {
                                                     __('translate.quantity')
                                                 }}: {{ form.langs.length }}/5</span>
                                             <button type="button" @click="addLang" v-if="form.langs.length < 5"
-                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#f59e0b] hover:bg-amber-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-amber-500/20 active:scale-95">
+                                                    class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-500/20 active:scale-95">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
                                                      viewBox="0 0 24 24" stroke-width="4">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -1540,7 +1629,7 @@ const removeFile = async (source, load) => {
                                             <div
                                                 class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative">
                                                 <div class="flex items-center justify-between p-4 border-b border-gray-50">
-                                                    <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#f59e0b] transition-colors">
+                                                    <div class="handle p-2 cursor-grab active:cursor-grabbing text-gray-300 hover:text-[#00a0e3] transition-colors">
                                                         <svg class="w-6 h-6" fill="none" stroke="currentColor"
                                                              viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -1563,9 +1652,18 @@ const removeFile = async (source, load) => {
                                                         <multiselect v-model="lang.name" :options="sortLangs"
                                                                      track-by="value" label="label"
                                                                      :placeholder="__('translate.placeholder')"
-                                                                     class="custom-multiselect"/>
+                                                                     :select-label="__('translate.selectLabel')"
+                                                                     :select-group-label="__('translate.selectGroupLabel')"
+                                                                     :selected-label="__('translate.selectedLabel')"
+                                                                     :deselect-label="__('translate.deselectLabel')"
+                                                                     :no-options="__('translate.noOptions')"
+                                                                     :no-result="__('translate.noResult')"
+                                                                     class="custom-multiselect">
+                                                            <template #noResult><span>{{ __('translate.noResult') }}</span></template>
+                                                            <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                                        </multiselect>
                                                         <InputError :message="form.errors[`langs.${index}.name`]"
-                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                                    class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                     <div v-if="props.langLevels" class="space-y-2">
                                                         <InputLabel :value="__('translate.levelLang')"
@@ -1573,9 +1671,18 @@ const removeFile = async (source, load) => {
                                                         <multiselect v-model="lang.level" :options="props.langLevels"
                                                                      track-by="value" label="name"
                                                                      :placeholder="__('translate.placeholder')"
-                                                                     class="custom-multiselect"/>
+                                                                     :select-label="__('translate.selectLabel')"
+                                                                     :select-group-label="__('translate.selectGroupLabel')"
+                                                                     :selected-label="__('translate.selectedLabel')"
+                                                                     :deselect-label="__('translate.deselectLabel')"
+                                                                     :no-options="__('translate.noOptions')"
+                                                                     :no-result="__('translate.noResult')"
+                                                                     class="custom-multiselect">
+                                                            <template #noResult><span>{{ __('translate.noResult') }}</span></template>
+                                                            <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                                        </multiselect>
                                                         <InputError :message="form.errors[`langs.${index}.level`]"
-                                                                    class="text-[10px] font-bold uppercase tracking-widest"/>
+                                                                    class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1586,7 +1693,7 @@ const removeFile = async (source, load) => {
                                 <!-- SEKCJA UMIEJĘTNOŚCI -->
                                 <div class="space-y-8 pt-8 border-t border-gray-100">
                                     <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
-                                        <div class="p-2.5 bg-pink-50 rounded-2xl text-[#db2777]">
+                                        <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                             <svg class="w-6 h-6" fill="none"
                                                  stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -1601,13 +1708,22 @@ const removeFile = async (source, load) => {
                                                      :options="skillsOptions" :max="10" :multiple="true"
                                                      :taggable="true" @tag="addSkill"
                                                      :placeholder="__('translate.tagplaceholder')"
+                                                     :tag-placeholder="__('translate.tagPlaceholder')"
+                                                     :select-label="__('translate.tagselectLabel')"
+                                                     :select-group-label="__('translate.selectGroupLabel')"
+                                                     :selected-label="__('translate.tagselectedLabel')"
+                                                     :deselect-label="__('translate.tagdeselectLabel')"
+                                                     :no-options="__('translate.noOptions')"
+                                                     :no-result="__('translate.noResult')"
                                                      class="custom-multiselect">
+                                            <template #noResult><span>{{ __('translate.noResult') }}</span></template>
+                                            <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
                                             <template v-slot:maxElements>
                                                 {{ __('translate.tagmaxElements', {max: 10}) }}
                                             </template>
                                         </multiselect>
                                         <InputError :message="form.errors.skills"
-                                                    class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
+                                                    class="mt-4 ml-2 text-[10px] font-bold uppercase tracking-widest text-center"/>
                                     </div>
                                 </div>
                             </div>
@@ -1637,9 +1753,18 @@ const removeFile = async (source, load) => {
                                             track-by="value"
                                             label="label"
                                             :placeholder="__('translate.placeholder')"
+                                            :select-label="__('translate.selectLabel')"
+                                            :select-group-label="__('translate.selectGroupLabel')"
+                                            :selected-label="__('translate.selectedLabel')"
+                                            :deselect-label="__('translate.deselectLabel')"
+                                            :no-options="__('translate.noOptions')"
+                                            :no-result="__('translate.noResult')"
                                             class="custom-multiselect"
-                                        />
-                                        <InputError :message="form.errors.cvLang" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                                        >
+                                            <template #noResult><span>{{ __('translate.noResult') }}</span></template>
+                                            <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                        </multiselect>
+                                        <InputError :message="form.errors.cvLang" class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                     </div>
 
                                     <div class="space-y-6">
@@ -1681,7 +1806,7 @@ const removeFile = async (source, load) => {
                                             </div>
                                         </div>
                                         <InputError :message="form.errors.templateCv"
-                                                    class="mt-4 text-[10px] font-bold uppercase tracking-widest text-center"/>
+                                                    class="mt-4 ml-2 text-[10px] font-bold uppercase tracking-widest text-center"/>
                                     </div>
                                 </div>
                             </div>
@@ -1898,5 +2023,115 @@ const removeFile = async (source, load) => {
 
 .handle {
     cursor: pointer;
+}
+
+/* Custom Multiselect Styles */
+.custom-multiselect {
+    .multiselect__tags {
+        border-radius: 1rem !important;
+        background-color: #f9fafb !important;
+        border-color: transparent !important;
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        transition: all 0.2s;
+    }
+    .multiselect__input, .multiselect__single {
+        background-color: transparent !important;
+        font-size: 0.875rem !important;
+        font-weight: 700 !important;
+        color: #4b5563 !important;
+        margin-bottom: 0 !important;
+    }
+    .multiselect__placeholder {
+        color: #d1d5db !important;
+        font-size: 0.875rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+    .multiselect__select {
+        height: 100% !important;
+    }
+    .multiselect__content-wrapper {
+        border-radius: 1rem !important;
+        border-color: #f3f4f6 !important;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        margin-top: 0.5rem !important;
+    }
+    .multiselect__option--highlight {
+        background-color: #00a0e3 !important;
+        &:after {
+            background-color: #0088c1 !important;
+        }
+    }
+    .multiselect__tag {
+        background-color: #00a0e3 !important;
+        border-radius: 0.75rem !important;
+        font-weight: 700 !important;
+        padding: 4px 26px 4px 10px !important;
+        .multiselect__tag-icon {
+            background-color: transparent !important;
+            border-radius: 0.5rem !important;
+            &:after {
+                color: white !important;
+            }
+            &:hover {
+                background-color: rgba(0,0,0,0.1) !important;
+            }
+        }
+    }
+    .multiselect__option--selected {
+        font-weight: 900 !important;
+        color: #00a0e3 !important;
+        background-color: #eff6ff !important;
+    }
+    &.multiselect--active {
+        .multiselect__tags {
+            background-color: #ffffff !important;
+            border-color: #00a0e3 !important;
+            box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1) !important;
+        }
+    }
+}
+
+/* Custom DatePicker Styles */
+.dp__main {
+    .dp__input {
+        border-radius: 1rem !important;
+        background-color: #f9fafb !important;
+        border-color: transparent !important;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        font-size: 0.875rem !important;
+        font-weight: 700 !important;
+        color: #4b5563 !important;
+        transition: all 0.2s;
+        &:focus {
+            background-color: #ffffff !important;
+            border-color: #00a0e3 !important;
+            box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1) !important;
+        }
+        &::placeholder {
+            color: #d1d5db !important;
+        }
+        &:disabled {
+            background-color: #f3f4f6 !important;
+            cursor: not-allowed !important;
+            opacity: 0.5 !important;
+        }
+    }
+    .dp__input_icon {
+        color: #9ca3af !important;
+        padding-left: 1rem !important;
+    }
+    .dp__input_reg {
+        padding-left: 3rem !important;
+    }
+}
+.dp__theme_light {
+    --dp-primary-color: #00a0e3;
+    --dp-border-radius: 1rem;
 }
 </style>

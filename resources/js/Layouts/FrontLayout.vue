@@ -2,6 +2,7 @@
 import { Head, Link, router, usePage, useForm } from '@inertiajs/vue3';
 import Multiselect from 'vue-multiselect';
 import Banner from '@/Components/Banner.vue';
+import ConfettiExplosion from "vue-confetti-explosion";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import ApplicationMarkWhite from "@/Components/ApplicationMarkWhite.vue";
 import NavLink from "@/Components/NavLink.vue";
@@ -74,6 +75,16 @@ const lang = ref(changeLang);
 const dispatchAction = (data) => router.post(route('front.language.store', { language: data.value }));
 const resetLang = (data) => router.post(route('front.language.store', { language: data }));
 const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.localeCompare(b.label)));
+
+const showConfetti = ref(false);
+watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
+    if (newVal === __('translate.makeAplicationNotRegister')) {
+        showConfetti.value = true;
+        setTimeout(() => {
+            showConfetti.value = false;
+        }, 3000);
+    }
+}, { immediate: true });
 </script>
 
 <template>
@@ -115,6 +126,15 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
 
 
         <Banner />
+        <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 pointer-events-none z-[300]">
+            <ConfettiExplosion
+                :particleCount="100"
+                :force="0.8"
+                :stageHeight="1000"
+                :stageWidth="1500"
+                :colors="['#00a0e3', '#0A2C5C', '#E11D48', '#60a5fa']"
+            />
+        </div>
 
         <!-- Background only on home page -->
         <div
