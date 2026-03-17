@@ -1,4 +1,5 @@
 <?php
+
 return [
     'failed' => 'Błędny login lub hasło.',
     'onlySocial' => 'Użytkownik nie ustawił hasła, dlatego musi zalogować się przy użyciu dostawcy OAuth.',
@@ -460,7 +461,7 @@ return [
     'noProject' => 'Brak oferty',
     'file' => [
         'singular' => 'plik',
-        'plural' => 'pliki'
+        'plural' => 'pliki',
     ],
     'anyImage' => 'dowolny obraz',
     'anyVideo' => 'dowolne wideo',
@@ -487,7 +488,8 @@ return [
     'deleteAplication' => 'Usunięto apliakcję',
     'recruitment' => 'Rekrutacja',
     'applyViewBlocked' => 'Brak uprawnień do aplikacji na ofertę',
-    'cvTypeReset' => 'Zeruj typ Cv',
+    'cvTypeReset' => 'Zeruj typ CV',
+    'cvTypeSelect' => 'Wybierz typ CV',
     'generateCvVideo' => 'Nagraj Video CV',
     'videoRecording' => 'Nagrywanie Video CV',
     'recording' => 'Nagrywanie',
@@ -552,6 +554,9 @@ return [
     'levelUnique' => 'Język już wystąpił',
     'langsLevelRequired' => 'Poziom języka wymagany',
     'tagdeselectLabel' => 'Dodaj jako umiejętność',
+    'tagselectLabel' => 'Kliknij aby wybrać',
+    'tagselectedLabel' => 'Wybrano',
+    'tagPlaceholder' => 'Naciśnij enter, aby utworzyć',
     'tagplaceholder' => 'Szukaj albo dodaj umiejętność',
     'tagmaxElements' => 'Maksymalnie :max opcji wybranych. Usuń jedną z opcji, aby wybrać inną.',
     'skills' => 'Umiejętności',
@@ -1261,10 +1266,10 @@ return [
     'newAplication' => 'Nowa aplikacja nr.',
     'myData' => 'Moje dane',
     'myCv' => 'Moje Cv',
-    "chooseCvToEdit" => "Wybierz CV, aby edytować dane",
-    "noCvs" => "Nie posiadasz jeszcze żadnego CV",
-    "langKnow" => "Znajomość języków",
-    "updateCv" => "Zaktualizowano Cv",
+    'chooseCvToEdit' => 'Wybierz CV, aby edytować dane',
+    'noCvs' => 'Nie posiadasz jeszcze żadnego CV',
+    'langKnow' => 'Znajomość języków',
+    'updateCv' => 'Zaktualizowano Cv',
     'basic_info' => 'Informacje podstawowe',
     'select_photo' => 'Wybierz nowe zdjęcie',
     'saved_success' => 'Zapisano pomyślnie',
@@ -1321,7 +1326,6 @@ return [
     'Mail-accepted-line' => 'Gratulujemy! Twoja aplikacja została wstępnie zaakceptowana. Czekaj na kontakt.',
     'Mail-rejected-line' => 'Dziękujemy za aplikację. Na tym etapie nie została ona zakwalifikowana.',
 
-
     'application' => 'Aplikacja',
     'applied_from' => 'Aplikowano z',
     'salary_from' => 'Wynagrodzenie od',
@@ -1346,7 +1350,7 @@ return [
     // Dashboard placeholders
     'noApplicationSelected' => 'Nie wybrano aplikacji',
     'selectApplicationToViewDetails' => 'Wybierz aplikację z listy, aby zobaczyć szczegóły',
-    'streetShort'=>'ul.',
+    'streetShort' => 'ul.',
     'labels' => [
         'yes' => 'Zaakceptowane',
         'no' => 'Odrzucone',
@@ -1389,6 +1393,7 @@ return [
     'bonusLabel' => 'premia od - do',
     'incomeTypeLabel' => 'rodzaj dochodu',
     'workOrganization' => 'organizacja pracy',
+    'educationFinish' => 'Rok zakończenia',
     'workModeLabel' => 'tryb pracy',
     'contractTypeLabel' => 'rodzaj umowy',
     'workScopeLabel' => 'wymiar pracy',
@@ -1424,9 +1429,9 @@ return [
 
     // Tłumaczenia dla kroków formularza
     // Project Create Form
-    'stepBasicInfo' => "Podstawowe<br>informacje",
-    'stepEmploymentConditions' => "Warunki<br>zatrudnienia",
-    'stepRequirementsBenefits' => "Wymagania<br>i benefity",
+    'stepBasicInfo' => 'Podstawowe<br>informacje',
+    'stepEmploymentConditions' => 'Warunki<br>zatrudnienia',
+    'stepRequirementsBenefits' => 'Wymagania<br>i benefity',
     'selectAll' => 'Wszystkie',
     'clear' => 'Wyczyść',
     'selectPositionToSeeDetails' => 'Wybierz stanowisko, aby zobaczyć obowiązki',
@@ -1455,7 +1460,7 @@ return [
     'cvTypeDescription' => 'Wybierz typ CV, jaki będą mogli przesyłać kandydaci',
     'cvSentMessage' => 'Wybrane CV zostały wysłane do wybranej przez Ciebie firmy. Będziemy Cię informować o zmianach statusu aplikacji.',
 
-// Filters
+    // Filters
     'classicCV' => 'Klasyczne CV',
     'videoAudioCV' => 'CV wideo/audio',
     'enterID' => 'Wpisz ID',
@@ -1466,7 +1471,7 @@ return [
     'driveLicenseB' => 'Prawo jazdy kat. B',
     'allApplications' => 'Wszystkie aplikacje',
 
-// Export
+    // Export
     'exportToSpreadsheet' => 'Eksportuj do arkusza kalkulacyjnego',
     'cvType' => 'Typ CV',
     'candidateCreated' => 'Kandydat utworzony',
@@ -1474,12 +1479,12 @@ return [
     'noProfile' => 'Brak profilu',
     'candidate' => 'Kandydat',
 
-// External firms
+    // External firms
     'selectExternalFirms' => 'Wybierz firmy zewnętrzne',
     'submitApplications' => 'Prześlij aplikacje',
     'sending' => 'Wysyłanie...',
 
-// Table
+    // Table
     'candidate' => 'Kandydat',
     'viewCV' => 'Zobacz CV',
     'positionPlaceholder' => 'Specjalista ds. marketingu',
@@ -1598,4 +1603,5 @@ return [
     'worker' => 'Pracownik',
     'users' => 'Użytkownicy',
     'chars_remaining' => 'Pozostało znaków',
+    'present' => 'Obecnie',
 ];

@@ -669,9 +669,9 @@ onMounted(() => {
                                             :deselectLabel="__('translate.deselectLabel')"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
+                                            :placeholder="__('translate.placeholder')"
                                             track-by="value"
                                             label="name"
-                                            :placeholder="__('translate.placeholder')"
                                             v-model="form.categorySub" :options="optionsSubCategory"
                                             class="custom-multiselect">
                                             <template #noResult>
