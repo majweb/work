@@ -49,9 +49,9 @@ const getTranslation = (value) => {
     if (!value) return '-';
     if (typeof value === 'object') {
         const locale = usePage().props.locale || 'pl';
-        return value[locale] || value['pl'] || Object.values(value)[0];
+        return value[locale] || value['pl'] || Object.values(value)[0] || '-';
     }
-    return value;
+    return value || '-';
 };
 </script>
 

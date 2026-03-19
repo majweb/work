@@ -283,12 +283,8 @@ Route::middleware([
         Route::get('job-offers/getChildsCategory/{parent}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getChildsCategory'])->name('job-offers.getChildsCategory');
         Route::post('job-offers/{project}/toggle-status', [\App\Http\Controllers\Admin\JobOfferController::class, 'toggleStatus'])->name('job-offers.toggle-status');
 
-        Route::get('categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
-        Route::get('categories/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
-        Route::post('categories', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
-        Route::get('categories/{category}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
-        Route::put('categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update');
-        Route::delete('categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.destroy');
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+        Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class);
 
         Route::get('countries', [\App\Http\Controllers\Admin\CountryController::class, 'index'])->name('countries.index');
         Route::get('countries/create', [\App\Http\Controllers\Admin\CountryController::class, 'create'])->name('countries.create');

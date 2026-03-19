@@ -1,7 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm, usePage, Link } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -9,36 +9,25 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import Multiselect from 'vue-multiselect';
 
 const props = defineProps({
-    allCategories: Array,
+    industry: Object,
+    mainIndustries: Array,
     languages: Array,
 });
 
 const form = useForm({
-    name: '',
-    title: {},
-    parent_id: null,
-    selectedIndustry: null,
-    selectedSubIndustry: null,
-    selectedProfession: null,
+    name: props.industry.name,
+    title: props.languages.reduce((acc, lang) => {
+        acc[lang] = props.industry.title[lang] || '';
+        return acc;
+    }, {}),
+    parent_id: props.industry.parent_id,
+    selectedMainIndustry: null,
 });
 
-// Initialize titles for all languages
-props.languages.forEach(lang => {
-    form.title[lang] = '';
-});
-
-const industries = computed(() => {
-    return props.allCategories.filter(c => c.depth === 0);
-});
-
-const subIndustries = computed(() => {
-    if (!form.selectedIndustry) return [];
-    return props.allCategories.filter(c => c.parent_id === form.selectedIndustry.id);
-});
-
-const professions = computed(() => {
-    if (!form.selectedSubIndustry) return [];
-    return props.allCategories.filter(c => c.parent_id === form.selectedSubIndustry.id);
+onMounted(() => {
+    if (props.industry.parent_id) {
+        form.selectedMainIndustry = props.mainIndustries.find(i => i.id === props.industry.parent_id);
+    }
 });
 
 const activeTab = ref(props.languages[0] || 'pl');
@@ -59,6 +48,7 @@ const goToPrevTab = () => {
 
 const goToNextEmptyTab = () => {
     const currentIndex = sortedLanguages.value.indexOf(activeTab.value);
+    // Szukamy od następnego taba do końca
     for (let i = currentIndex + 1; i < sortedLanguages.value.length; i++) {
         const lang = sortedLanguages.value[i];
         if (!form.title[lang]) {
@@ -66,6 +56,7 @@ const goToNextEmptyTab = () => {
             return;
         }
     }
+    // Jeśli nie znaleziono, szukamy od początku do aktualnego taba
     for (let i = 0; i < currentIndex; i++) {
         const lang = sortedLanguages.value[i];
         if (!form.title[lang]) {
@@ -92,14 +83,6 @@ const hasErrorInTab = (lang) => {
     return !!form.errors['title.' + lang];
 };
 
-const getCategoryLabel = (category) => {
-    if (!category) return '';
-    const title = getTranslation(category.title);
-    const depth = category.depth || 0;
-    const prefix = '— '.repeat(depth);
-    return `${prefix}${title}`;
-};
-
 const getTranslation = (value) => {
     if (!value) return '-';
     if (typeof value === 'object') {
@@ -109,134 +92,99 @@ const getTranslation = (value) => {
     return value;
 };
 
+const getCategoryLabel = (category) => {
+    if (!category) return '';
+    return getTranslation(category.title);
+};
+
 const submit = () => {
-    form.parent_id = form.selectedProfession?.id || form.selectedSubIndustry?.id || form.selectedIndustry?.id || null;
-    form.post(route('admin.categories.store'));
+    form.parent_id = form.selectedMainIndustry ? form.selectedMainIndustry.id : null;
+    form.put(route('admin.industries.update', props.industry.id));
 };
 </script>
 
 <template>
-    <AppLayout title="Dodaj kategorię">
+    <AppLayout title="Edytuj branżę / podbranżę">
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
                 <!-- Header Section -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
                         <div>
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Dodaj nową kategorię</h3>
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Edytuj branżę / podbranżę</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                Utwórz nową branżę, podbranżę, zawód lub stanowisko
-                            </p>
+                                Aktualizuj informacje o branży lub podbranży</p>
                         </div>
+
                         <Link
-                            :href="route('admin.categories.index')"
-                            class="px-8 py-4 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 flex items-center gap-2"
+                            :href="route('admin.industries.index')"
+                            class="px-8 py-4 bg-white border-2 border-gray-100 hover:border-blue-500 hover:text-blue-500 text-gray-400 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 flex items-center gap-2"
                         >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                            </svg>
                             Powrót
                         </Link>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                    <form @submit.prevent="submit" class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                    <form @submit.prevent="submit" class="p-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <!-- Left Column: Basic Info -->
-                            <div class="space-y-6">
-                                <div class="p-8 bg-blue-50/50 rounded-[2rem] border border-blue-100/50 space-y-6">
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                                        <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Wybierz miejsce w hierarchii</p>
-                                    </div>
+                            <div class="space-y-8">
+                                <div>
+                                    <InputLabel for="name" value="Klucz systemowy" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-3 ml-1" />
+                                    <TextInput
+                                        id="name"
+                                        v-model="form.name"
+                                        type="text"
+                                        class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all font-black uppercase tracking-tight"
+                                        placeholder="NP. BUDOWNICTWO"
+                                    />
+                                    <div v-if="form.errors.name" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors.name }}</div>
+                                </div>
 
-                                    <div class="space-y-4">
-                                        <div>
-                                            <InputLabel for="name" value="Klucz systemowy" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
-                                            <TextInput
-                                                id="name"
-                                                v-model="form.name"
-                                                type="text"
-                                                class="block w-full bg-white border-none focus:ring-2 focus:ring-blue-500/20 text-xs font-black uppercase tracking-tight"
-                                                placeholder="Wpisz klucz systemowy"
-                                            />
-                                            <div v-if="form.errors.name" class="text-red-500 text-xs mt-2 font-bold uppercase tracking-widest">{{ form.errors.name }}</div>
-                                        </div>
-
-                                        <div>
-                                            <InputLabel for="industry" value="Branża" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
-                                            <Multiselect
-                                                v-model="form.selectedIndustry"
-                                                :options="industries"
-                                                placeholder="Wybierz branżę"
-                                                track-by="id"
-                                                class="custom-multiselect"
-                                                @select="form.selectedSubIndustry = null; form.selectedProfession = null"
-                                            >
-                                                <template #option="slotProps">
-                                                    <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
-                                                </template>
-                                                <template #singleLabel="slotProps">
-                                                    <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
-                                                </template>
-                                            </Multiselect>
-                                        </div>
-
-                                        <div>
-                                            <InputLabel for="subindustry" value="Podbranża" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
-                                            <Multiselect
-                                                v-model="form.selectedSubIndustry"
-                                                :options="subIndustries"
-                                                :disabled="!form.selectedIndustry"
-                                                placeholder="Wybierz podbranżę"
-                                                track-by="id"
-                                                class="custom-multiselect"
-                                                @select="form.selectedProfession = null"
-                                            >
-                                                <template #option="slotProps">
-                                                    <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
-                                                </template>
-                                                <template #singleLabel="slotProps">
-                                                    <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
-                                                </template>
-                                            </Multiselect>
-                                        </div>
-
-                                        <div>
-                                            <InputLabel for="profession" value="Zawód" class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2" />
-                                            <Multiselect
-                                                v-model="form.selectedProfession"
-                                                :options="professions"
-                                                :disabled="!form.selectedSubIndustry"
-                                                placeholder="Wybierz zawód"
-                                                track-by="id"
-                                                class="custom-multiselect"
-                                            >
-                                                <template #option="slotProps">
-                                                    <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
-                                                </template>
-                                                <template #singleLabel="slotProps">
-                                                    <div class="font-bold">{{ getCategoryLabel(slotProps.option) }}</div>
-                                                </template>
-                                            </Multiselect>
-                                            <div v-if="form.errors.parent_id" class="text-red-500 text-xs mt-2 font-bold uppercase tracking-widest">{{ form.errors.parent_id }}</div>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-[9px] text-blue-400 font-bold uppercase leading-relaxed italic">
-                                        * Pozostaw puste wszystkie pola, aby utworzyć nową branżę.<br>
-                                        * Wybierz tylko branżę, aby utworzyć nową podbranżę.<br>
-                                        * Wybierz branżę i podbranżę, aby utworzyć nowy zawód.<br>
-                                        * Wybierz branżę, podbranżę i zawód, aby utworzyć stanowisko.
+                                <div>
+                                    <InputLabel for="parent_id" value="Branża nadrzędna (opcjonalnie)" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-3 ml-1" />
+                                    <Multiselect
+                                        :placeholder="__('translate.selectCategory')"
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        v-model="form.selectedMainIndustry"
+                                        :options="mainIndustries"
+                                        :label="'title'"
+                                        track-by="id"
+                                        placeholder="Wybierz branżę nadrzędną"
+                                        :custom-label="getCategoryLabel"
+                                        class="custom-multiselect"
+                                    >
+                                        <template #option="slotProps">
+                                            <div class="font-bold text-xs uppercase tracking-widest">{{ getCategoryLabel(slotProps.option) }}</div>
+                                        </template>
+                                        <template #singleLabel="slotProps">
+                                            <div class="font-black text-xs uppercase tracking-tight">{{ getCategoryLabel(slotProps.option) }}</div>
+                                        </template>
+                                        <template #noResult>
+                                            Brak wyników.
+                                        </template>
+                                    </Multiselect>
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-2 ml-1">
+                                        Wybierz branżę tylko jeśli tworzysz podbranżę.
                                     </p>
+                                    <div v-if="form.errors.parent_id" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors.parent_id }}</div>
                                 </div>
                             </div>
 
                             <!-- Right Column: Translations -->
                             <div class="space-y-6">
-                                <div class="flex items-center gap-2 mb-2">
+                                <div class="flex items-center gap-2 mb-2 ml-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-[#0A2C5C]">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C13.287 7.89 12.135 10.107 10.5 12.225c-1.138-1.457-1.99-3.044-2.433-4.708m1.433 4.708L3 21m3-3 3.384-3.571" />
                                     </svg>
-                                    <p class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">Tłumaczenia tytułu</p>
+                                    <p class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">Tłumaczenia nazwy</p>
                                 </div>
 
                                 <!-- Tabs -->
@@ -292,7 +240,7 @@ const submit = () => {
                                     <div class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 space-y-6">
                                         <div>
                                             <div class="flex items-center justify-between mb-3 ml-1">
-                                                <InputLabel :for="'title_' + lang" :value="'Tytuł (' + lang.toUpperCase() + ')'" class="text-[9px] font-bold uppercase text-gray-400 ml-1" />
+                                                <InputLabel :for="'title_' + lang" :value="'Nazwa wyświetlana (' + lang.toUpperCase() + ')'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest" />
                                                 <div class="flex items-center gap-3">
                                                     <button
                                                         type="button"
@@ -311,33 +259,24 @@ const submit = () => {
                                                 :id="'title_' + lang"
                                                 v-model="form.title[lang]"
                                                 type="text"
-                                                class="block w-full bg-white border-none focus:ring-2 focus:ring-blue-500/20 text-xs font-black uppercase tracking-tight px-6 py-4 rounded-2xl"
-                                                :placeholder="'Tytuł w języku ' + lang.toUpperCase()"
+                                                class="w-full px-6 py-4 bg-white border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 transition-all font-medium"
+                                                :placeholder="'Wpisz nazwę w języku ' + lang.toUpperCase()"
                                             />
-                                            <div v-if="form.errors['title.' + lang]" class="text-red-500 text-[9px] font-bold uppercase tracking-widest mt-2 ml-1">{{ form.errors['title.' + lang] }}</div>
+                                            <div v-if="form.errors['title.' + lang]" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors['title.' + lang] }}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Submit Section -->
-                        <div class="pt-8 border-t border-gray-50 flex justify-end gap-4">
-                            <Link :href="route('admin.categories.index')" class="px-10 py-5 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-3xl font-black text-xs uppercase tracking-widest transition-all">
-                                Anuluj
-                            </Link>
+                        <div class="mt-12 pt-10 border-t border-gray-50 flex justify-end">
                             <PrimaryButton
-                                class="px-12 py-5 bg-[#00AEEF] hover:bg-[#0096ce] text-white rounded-3xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-xl shadow-blue-200 active:scale-95"
+                                class="px-12 py-5 bg-[#00AEEF] hover:bg-[#0096ce] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-blue-200 disabled:opacity-50"
+                                :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
                             >
-                                <span v-if="form.processing" class="flex items-center gap-2">
-                                    <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    Przetwarzanie...
-                                </span>
-                                <span v-else>Zapisz kategorię</span>
+                                <span v-if="!form.processing">Zaktualizuj branżę</span>
+                                <span v-else>Przetwarzanie...</span>
                             </PrimaryButton>
                         </div>
                     </form>
@@ -352,7 +291,7 @@ const submit = () => {
 .custom-multiselect {
     .multiselect {
         &__tags {
-            @apply rounded-2xl border-none bg-white py-3 px-5 min-h-[56px] flex items-center transition-all shadow-sm;
+            @apply rounded-2xl border-none bg-gray-50 py-3 px-6 min-h-[56px] flex items-center transition-all shadow-sm;
         }
         &__placeholder { @apply text-sm text-gray-400 pt-0 mb-0 font-bold uppercase tracking-widest text-[10px]; }
         &__single { @apply bg-transparent text-sm text-[#0A2C5C] pt-0 mb-0 font-black uppercase tracking-tight text-xs; }
@@ -365,6 +304,7 @@ const submit = () => {
         }
     }
 }
+
 .animate-in {
     animation: animate-in 0.3s ease-out;
 }
