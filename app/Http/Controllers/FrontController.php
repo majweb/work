@@ -31,6 +31,7 @@ use App\Models\Project;
 use App\Models\TemporaryFile;
 use App\Models\User;
 use App\Services\Helper;
+use App\Services\SearchStatisticService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -162,8 +163,10 @@ class FrontController extends Controller
         ]);
     }
 
-    public function projects()
+    public function projects(SearchStatisticService $searchStatisticService)
     {
+        $searchStatisticService->log(request()->all());
+
         $query = Project::with('user.changeProducts')->featured()->active();
 
         // Filtrowanie po kraju
