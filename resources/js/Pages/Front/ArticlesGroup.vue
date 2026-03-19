@@ -18,7 +18,7 @@ const props = defineProps({
 
 <template>
         <FrontLayout
-            :title="categoryName"
+            :title="props.page.title + ' - ' + categoryName"
             :image="props.page.image"
             :keywords="props.page.keywords"
             :description="props.page.description"
