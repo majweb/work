@@ -445,6 +445,9 @@ Route::middleware([
         Route::get('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'edit'])->name('general.edit');
         Route::put('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'update'])->name('general.update');
 
+        // Statystyki wyszukiwarki
+        Route::get('search-statistics', [\App\Http\Controllers\Admin\SearchStatisticsController::class, 'index'])->name('search-statistics.index');
+
         // Newsletter
         Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
         Route::get('newsletter/export', [NewsletterController::class, 'export'])->name('newsletter.export');

@@ -9,6 +9,8 @@ class SearchStatistic extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'country',
         'city',
