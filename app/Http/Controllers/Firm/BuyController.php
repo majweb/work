@@ -120,7 +120,7 @@ class BuyController extends Controller
         ]);
     }
 
-    public function banners()
+    public function banners(DictionaryService $dictionaryService)
     {
         $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 8])->isCurrent()->first();
 
@@ -131,9 +131,7 @@ class BuyController extends Controller
             return redirect()->route('dashboard');
         }
         $banner = Banner::where('user_id', auth()->id())->with('media')->first();
-        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function () {
-            return (new Helper)->makeCountriesToSelect();
-        });
+        $countries = $dictionaryService->getCountries(app()->getLocale());
         $product = Product::find(8);
 
         return inertia()->render('Buy/Banner', compact('banner', 'countries', 'product', 'check'));

@@ -11,6 +11,7 @@ use App\Models\Article;
 
 use App\Models\Category;
 use App\Models\ChangeProduct;
+use App\Services\DictionaryService;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\TemporaryFile;
@@ -63,12 +64,9 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(DictionaryService $dictionaryService)
     {
         Gate::authorize('create', User::class);
-        $category = Cache::rememberForever('category', function() {
-            return MultiselectResource::collection(Category::isRoot()->get());
-        });
         $articleProduct = auth()->user()->changeProducts()->where('product_id', 10)->first();
 
         if ($articleProduct) {
@@ -79,7 +77,7 @@ class ArticleController extends Controller
             return $this->errorArticle();
         }
         return inertia()->render('Buy/Article/Create',[
-            'categories' =>$category,
+            'categories' => $dictionaryService->getCategories(),
         ]);
     }
 
@@ -140,7 +138,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit(Article $article, DictionaryService $dictionaryService)
     {
         Gate::authorize('update',auth()->user());
 
@@ -153,10 +151,10 @@ class ArticleController extends Controller
                 ->orderBy('show', 'asc');
         }]);
 
-        $category = Cache::rememberForever('category', function() {
-            return MultiselectResource::collection(Category::isRoot()->get());
-        });
-        return inertia()->render('Buy/Article/Edit',['article'=>new FrontArticleResource($article),'categories'=>$category]);
+        return inertia()->render('Buy/Article/Edit',[
+            'article' => new FrontArticleResource($article),
+            'categories' => $dictionaryService->getCategories()
+        ]);
     }
 
     public function toggleCommentVisibility($commentId)

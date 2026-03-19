@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Services\DictionaryService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -68,7 +69,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, DictionaryService $dictionaryService): RedirectResponse
     {
         $languages = config('langsShorts');
         $titleRules = [];
@@ -90,6 +91,8 @@ class CategoryController extends Controller
             'title' => $validated['title'],
             'parent_id' => $validated['parent_id'],
         ]);
+
+        $dictionaryService->clearCategories();
 
         return redirect()->route('admin.categories.index')->with('success', 'Kategoria została dodana.');
     }
@@ -125,7 +128,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(Request $request, Category $category, DictionaryService $dictionaryService): RedirectResponse
     {
         $languages = config('langsShorts');
         $titleRules = [];
@@ -145,12 +148,16 @@ class CategoryController extends Controller
             'parent_id' => $validated['parent_id'],
         ]);
 
+        $dictionaryService->clearCategories();
+
         return redirect()->route('admin.categories.index')->with('success', 'Kategoria została zaktualizowana.');
     }
 
-    public function destroy(Category $category): RedirectResponse
+    public function destroy(Category $category, DictionaryService $dictionaryService): RedirectResponse
     {
         $category->delete();
+
+        $dictionaryService->clearCategories();
 
         return back()->with('success', 'Kategoria została usunięta.');
     }

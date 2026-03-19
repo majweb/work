@@ -7,6 +7,7 @@ use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\ApplicationNote;
 use App\Models\LangLevel;
+use App\Services\DictionaryService;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
 use App\Services\Helper;
@@ -39,12 +40,9 @@ class AplicationController extends Controller
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, DictionaryService $dictionaryService)
     {
         $result = $this->filterService->getFilteredApplicationsAdmin($request);
-        $langLevels = Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
         $countries = $this->helper->makeCountriesToSelectHasProjects();
 
         return inertia()->render('Admin/Aplication/Index', [
@@ -58,7 +56,7 @@ class AplicationController extends Controller
             'maybeCount' => $result['counters']['maybeCount'],
             'noCount' => $result['counters']['noCount'],
             'otherCount' => $result['counters']['otherCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
             'countries' => $countries,
         ]);
     }

@@ -30,6 +30,7 @@ use App\Models\Partner;
 use App\Models\Project;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use App\Services\DictionaryService;
 use App\Services\Helper;
 use App\Services\SearchStatisticService;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -163,7 +164,7 @@ class FrontController extends Controller
         ]);
     }
 
-    public function projects(SearchStatisticService $searchStatisticService)
+    public function projects(SearchStatisticService $searchStatisticService, DictionaryService $dictionaryService)
     {
         $searchStatisticService->log(request()->all());
 
@@ -225,29 +226,10 @@ class FrontController extends Controller
         $countries = (new Helper)->makeCountriesToSelectHasProjects();
 
         // Pobierz opcje z pamięci podręcznej lub z bazy danych
-        $workingModes = Cache::rememberForever('workingModes', function () {
-            return MultiselectWithoutDetailResource::collection(
-                \App\Models\WorkingMode::all()
-            );
-        });
-
-        $experiences = Cache::rememberForever('experiences', function () {
-            return MultiselectWithoutDetailResource::collection(
-                \App\Models\Experience::all()
-            );
-        });
-
-        $typesOfContract = Cache::rememberForever('typesOfContract', function () {
-            return MultiselectWithoutDetailResource::collection(
-                \App\Models\TypeOfContract::all()
-            );
-        });
-
-        $workLoads = Cache::rememberForever('workLoads', function () {
-            return MultiselectWithoutDetailResource::collection(
-                \App\Models\WorkLoad::all()
-            );
-        });
+        $workingModes = $dictionaryService->getWorkingModesForSelect();
+        $experiences = $dictionaryService->getExperiencesForSelect();
+        $typesOfContract = $dictionaryService->getTypesOfContractForSelect();
+        $workLoads = $dictionaryService->getWorkLoadsForSelect();
 
         $countryId = request('country');
         $cityValue = request('city');
@@ -508,7 +490,7 @@ class FrontController extends Controller
         ]);
     }
 
-    public function applyView(Project $project)
+    public function applyView(DictionaryService $dictionaryService, Project $project)
     {
         if (auth()->check() && ! auth()->user()->hasRole('worker')) {
             session()->flash('flash.banner', __('translate.applyViewBlocked'));
@@ -533,12 +515,6 @@ class FrontController extends Controller
             }
         }
         $agreements = Agreement::where('type', 'Apply without register')->get(['description', 'id']);
-        $levelEducations = Cache::rememberForever('levelEducations', function () {
-            return MultiselectWithoutDetailResource::collection(LevelEducation::get());
-        });
-        $langLevels = Cache::rememberForever('langLevels', function () {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
         $professionCv = $project->categorySub['value'];
 
         if (auth()->check() && auth()->user()->hasRole('worker')) {
@@ -550,8 +526,8 @@ class FrontController extends Controller
         return inertia()->render('Front/Apply', [
             'project' => $project,
             'agreements' => $agreements,
-            'levelEducations' => $levelEducations,
-            'langLevels' => $langLevels,
+            'levelEducations' => $dictionaryService->getLevelEducations(),
+            'langLevels' => $dictionaryService->getLangLevels(),
             'professionCv' => $existsCv ?? null,
         ]);
     }
@@ -733,11 +709,9 @@ class FrontController extends Controller
         return response()->json(['captchaText' => $captchaText]);
     }
 
-    public function getChildsCategoryWitoutDetail()
+    public function getChildsCategoryWitoutDetail(DictionaryService $dictionaryService)
     {
-        return Cache::rememberForever('categoriesWithoutDetail', function () {
-            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
-        });
+        return $dictionaryService->getCategoriesWithoutDetail();
     }
 
     public function getCategorySub($categoryId)

@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\CvClassic;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
+use App\Services\DictionaryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use function Termwind\render;
@@ -91,7 +92,7 @@ class WorkerController extends Controller
         ]);
     }
 
-    public function myCv()
+    public function myCv(DictionaryService $dictionaryService)
     {
         $groupedCvs = auth()->user()
             ->myCvs()
@@ -102,19 +103,12 @@ class WorkerController extends Controller
 
         $positions =  Category::getCachedWithoutPositionsWithoutDetail();
 
-        $levelEducations=  Cache::rememberForever('levelEducations', function() {
-            return MultiselectWithoutDetailResource::collection(LevelEducation::get());
-        });
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
-
         return inertia()->render('Worker/MyCv',
         [
             'myCvs' => $groupedCvs->map(fn ($cvs) => $cvs->first())->values(),
             'positions' => $positions,
-            'levelEducations' => $levelEducations,
-            'langLevels' => $langLevels,
+            'levelEducations' => $dictionaryService->getLevelEducations(),
+            'langLevels' => $dictionaryService->getLangLevels(),
         ]);
     }
 

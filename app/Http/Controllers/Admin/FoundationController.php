@@ -12,6 +12,7 @@ use App\Models\Foundation;
 use App\Models\FoundationCategory;
 use App\Models\Partner;
 use App\Models\TemporaryFile;
+use App\Services\DictionaryService;
 use App\Services\GeocodeService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
@@ -20,13 +21,11 @@ use Illuminate\Support\Facades\Storage;
 
 class FoundationController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, DictionaryService $dictionaryService)
     {
-        $categories = Cache::rememberForever('categoriesFoundations', function() {
-            return MultiselectWithoutDetailResource::collection(FoundationCategory::whereNull('parent_id')->get());
-        });
+        $categories = $dictionaryService->getFoundationCategories();
 
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = $dictionaryService->getCountries(app()->getLocale());
 
         $foundations = Foundation::query()
             ->withCount('invoice')
@@ -65,13 +64,11 @@ class FoundationController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(DictionaryService $dictionaryService)
     {
-        $categories = Cache::rememberForever('categoriesFoundations', function() {
-            return MultiselectWithoutDetailResource::collection(FoundationCategory::whereNull('parent_id')->get());
-        });
+        $categories = $dictionaryService->getFoundationCategories();
 
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = $dictionaryService->getCountries(app()->getLocale());
 
         return inertia('Admin/Foundations/Create',
         [
@@ -94,7 +91,7 @@ class FoundationController extends Controller
     }
 
 
-    public function store(StoreFoundationRequest $request)
+    public function store(StoreFoundationRequest $request, DictionaryService $dictionaryService)
     {
         // Walidacja
         $data = $request->validated();
@@ -170,18 +167,25 @@ class FoundationController extends Controller
         }
         session()->flash('flash.banner', 'Fundacja została dodana pomyślnie.');
         session()->flash('flash.bannerStyle', 'success');
+
+        $dictionaryService->clearFoundationCategories();
+
         return redirect()->route('admin.foundations.index');
     }
 
 
-    public function destroy(Foundation $foundation)
+    public function destroy(Foundation $foundation, DictionaryService $dictionaryService)
     {
         if($foundation->orders->count() <= 0)
         {
             $foundation->delete();
             $foundation->clearMediaCollection('foundation_logo');
+
+            $dictionaryService->clearFoundationCategories();
+
             session()->flash('flash.banner', 'Fundacja usunięto');
             session()->flash('flash.bannerStyle', 'success');
+
             return redirect()->route('admin.foundations.index');
         } else {
             session()->flash('flash.banner', 'Istnieje zamówienie z przypisaną fundacją.');
@@ -190,12 +194,11 @@ class FoundationController extends Controller
         }
     }
 
-    public function edit(Foundation $foundation)
+    public function edit(Foundation $foundation, DictionaryService $dictionaryService)
     {
-        $categories = Cache::rememberForever('categoriesFoundations', function() {
-            return MultiselectWithoutDetailResource::collection(FoundationCategory::whereNull('parent_id')->get());
-        });
-        $countries = (new Helper())->makeCountriesToSelect();
+        $categories = $dictionaryService->getFoundationCategories();
+
+        $countries = $dictionaryService->getCountries(app()->getLocale());
 
         return inertia('Admin/Foundations/Edit', [
             'categories' => $categories,
@@ -245,7 +248,7 @@ class FoundationController extends Controller
     }
 
 
-    public function update(StoreFoundationRequest $request, Foundation $foundation)
+    public function update(StoreFoundationRequest $request, Foundation $foundation, DictionaryService $dictionaryService)
     {
         $foundation->update($request->validated());
         // Obsługa zdjęć przesłanych tymczasowo
@@ -293,6 +296,9 @@ class FoundationController extends Controller
         }
         session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
+
+        $dictionaryService->clearFoundationCategories();
+
         return redirect()->back();
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Aplication;
 use App\Models\ApplicationNote;
 use App\Models\Candidate;
 use App\Models\LangLevel;
+use App\Services\DictionaryService;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationRecruitFilterService;
 use App\Services\ApplicationStatusService;
@@ -47,12 +48,10 @@ class AplicationController extends Controller implements HasMiddleware
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, DictionaryService $dictionaryService)
     {
         $result = $this->filterService->getFilteredApplications($request);
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
+        $langLevels = $dictionaryService->getLangLevels();
         $helper = new Helper();
         $countries = $helper->makeCountriesToSelectHasProjects();
 
@@ -145,12 +144,10 @@ class AplicationController extends Controller implements HasMiddleware
         return inertia()->render('RecruiterPages/Aplication/recruitmentView', ['aplication' => $aplication]);
     }
 
-    public function acceptedApplications(Request $request)
+    public function acceptedApplications(Request $request, DictionaryService $dictionaryService)
     {
         $result = $this->filterService->getFilteredApplications($request, 'yes');
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
+
         // Załaduj relację notatek dla aplikacji
         $applications = $result['applications'];
         foreach ($applications as $application) {
@@ -165,7 +162,7 @@ class AplicationController extends Controller implements HasMiddleware
             'maybeCount' => $result['counters']['maybeCount'],
             'optionsExternal' => $result['optionsExternal'],
             'noCount' => $result['counters']['noCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
         ]);
     }
 
@@ -175,12 +172,10 @@ class AplicationController extends Controller implements HasMiddleware
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function maybeApplications(Request $request)
+    public function maybeApplications(Request $request, DictionaryService $dictionaryService)
     {
         $result = $this->filterService->getFilteredApplications($request, 'maybe');
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
+
         return inertia()->render('RecruiterPages/Aplication/Maybe', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
@@ -189,7 +184,7 @@ class AplicationController extends Controller implements HasMiddleware
             'acceptedCount' => $result['counters']['acceptedCount'],
             'optionsExternal' => $result['optionsExternal'],
             'noCount' => $result['counters']['noCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
         ]);
     }
 
@@ -199,12 +194,10 @@ class AplicationController extends Controller implements HasMiddleware
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function noApplications(Request $request)
+    public function noApplications(Request $request, DictionaryService $dictionaryService)
     {
         $result = $this->filterService->getFilteredApplications($request, 'no');
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
+
         return inertia()->render('RecruiterPages/Aplication/No', [
             'applications' => $result['applications'],
             'optionsPosition' => $result['optionsPosition'],
@@ -213,7 +206,7 @@ class AplicationController extends Controller implements HasMiddleware
             'acceptedCount' => $result['counters']['acceptedCount'],
             'optionsExternal' => $result['optionsExternal'],
             'maybeCount' => $result['counters']['maybeCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
         ]);
     }
 

@@ -74,7 +74,7 @@ class WorkerController extends Controller
         return $query;
     }
 
-    public function evidence(User $user): Response
+    public function evidence(User $user, DictionaryService $dictionaryService): Response
     {
         $candidate = $user->candidate;
 
@@ -83,13 +83,9 @@ class WorkerController extends Controller
         }
 
         $candidate->load('media', 'created_by');
-        $optionsPosition = Cache::remember('categoriesWithoutDetail', now()->addDay(), function () {
-            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
-        });
+        $optionsPosition = $dictionaryService->getCategoriesWithoutDetail();
         $externalCompanies = ExternalCompany::where('user_id', $candidate->created_by_id)->latest()->get();
-        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function () {
-            return (new Helper())->makeCountriesToSelect();
-        });
+        $countries = $dictionaryService->getCountries(app()->getLocale());
         $currencies = config('currencyShorts');
 
         $candidate->load(['evidences' => function ($query) {

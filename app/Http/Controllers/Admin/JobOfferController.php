@@ -29,6 +29,7 @@ use App\Models\Welcome;
 use App\Models\WorkingMode;
 use App\Models\WorkingPlace;
 use App\Models\WorkLoad;
+use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -335,83 +336,19 @@ class JobOfferController extends Controller
         ]);
     }
 
-    public function edit(Project $project): Response
+    public function edit(Project $project, DictionaryService $dictionaryService): Response
     {
         $externalCompanies = ExternalCompany::where('user_id', $project->user_id)->latest()->get();
         $project->load('detailprojects', 'questions');
-        $category = Cache::rememberForever('category', function () {
-            return MultiselectResource::collection(Category::isRoot()->get());
-        });
-        $workingModes = Cache::rememberForever('workingModes', function () {
-            return WorkingModesResource::collection(WorkingMode::all());
-        });
         $countries = (new Helper())->makeCountriesToSelect();
-
-        $workingPlaces = Cache::rememberForever('workingPlaces', function () {
-            return MultiselectResource::collection(WorkingPlace::all());
-        });
-        $typesOfContract = Cache::rememberForever('typeOfContract', function () {
-            return TypeOfContractResource::collection(TypeOfContract::all());
-        });
-        $workLoads = Cache::rememberForever('workLoads', function () {
-            return WorkLoadResource::collection(WorkLoad::all());
-        });
-
-        $payoutModes = Cache::rememberForever('payoutModes', function () {
-            return PayModesResource::collection(PayoutMode::all());
-        });
-
-        $paySystems = Cache::rememberForever('paySystems', function () {
-            return PayModesResource::collection(PaySystem::all());
-        });
-
-        $days = Cache::rememberForever('days', function () {
-            return PayModesResource::collection(Day::all());
-        });
-        $shiftWorks = Cache::rememberForever('shiftWorks', function () {
-            return PayModesResource::collection(ShiftWork::all());
-        });
-        $offers = Cache::rememberForever('offers', function () {
-            return PayModesResource::collection(Offer::all());
-        });
-        $waits = Cache::rememberForever('waits', function () {
-            return PayModesResource::collection(Wait::all());
-        });
-        $experiences = Cache::rememberForever('experiences', function () {
-            return WorkLoadResource::collection(Experience::all());
-        });
-        $welcomes = Cache::rememberForever('welcomes', function () {
-            return PayModesResource::collection(Welcome::all());
-        });
-        $educations = Cache::rememberForever('educations', function () {
-            return PayModesResource::collection(Education::all());
-        });
         $currencies = config('currencyShorts');
-        $cvs = Cache::rememberForever('cvs', function () {
-            return PayModesResource::collection(CvType::all());
-        });
 
-        return Inertia::render('Admin/JobOffers/Edit', [
-            'categories' => $category,
+        return Inertia::render('Admin/JobOffers/Edit', array_merge($dictionaryService->getAllProjectDictionaries(), [
+            'project' => $project,
             'currencies' => $currencies,
             'countries' => $countries,
-            'workingModes' => $workingModes,
-            'workingPlaces' => $workingPlaces,
-            'typesOfContract' => $typesOfContract,
-            'workLoads' => $workLoads,
-            'payoutModes' => $payoutModes,
-            'paySystems' => $paySystems,
-            'days' => $days,
-            'shiftWorks' => $shiftWorks,
-            'offers' => $offers,
-            'waits' => $waits,
-            'experiences' => $experiences,
-            'welcomes' => $welcomes,
-            'educations' => $educations,
-            'project' => $project,
-            'cvs' => $cvs,
             'externalCompanies' => $externalCompanies,
-        ]);
+        ]));
     }
 
     public function update(StoreProject $request, Project $project): RedirectResponse

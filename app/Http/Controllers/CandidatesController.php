@@ -455,20 +455,16 @@ class CandidatesController extends Controller
         }
     }
 
-    public function evidence(Candidate $candidate)
+    public function evidence(Candidate $candidate, \App\Services\DictionaryService $dictionaryService)
     {
         // Sprawdzenie czy kandydat ma aplikację w firmie zalogowanego użytkownika
         if (!$candidate->where('created_by_id', Auth::id())) {
             abort(403);
         }
         $candidate->load('media','created_by');
-        $optionsPosition = Cache::remember('categoriesWithoutDetail', now()->addDay(), function() {
-            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
-        });
+        $optionsPosition = $dictionaryService->getCategoriesWithoutDetail();
         $externalCompanies = ExternalCompany::where('user_id',auth()->user()->id)->latest()->get();
-        $countries = Cache::rememberForever('countries_'.app()->getLocale(), function() {
-            return (new Helper())->makeCountriesToSelect();
-        });
+        $countries = $dictionaryService->getCountries(app()->getLocale());
         $currencies = config('currencyShorts');
 
         $candidate->load(['evidences' => function($query) {

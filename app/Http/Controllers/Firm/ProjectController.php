@@ -30,6 +30,7 @@ use App\Models\Welcome;
 use App\Models\WorkingMode;
 use App\Models\WorkingPlace;
 use App\Models\WorkLoad;
+use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -196,82 +197,18 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(DictionaryService $dictionaryService)
     {
         Gate::authorize('view', [User::class, Project::class]);
         $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
-        $category = Cache::rememberForever('category', function () {
-            return MultiselectResource::collection(Category::isRoot()->get());
-        });
-        $workingModes = Cache::rememberForever('workingModes', function () {
-            return WorkingModesResource::collection(WorkingMode::all());
-        });
         $countries = (new Helper())->makeCountriesToSelect();
-
-        $workingPlaces = Cache::rememberForever('workingPlaces', function () {
-            return MultiselectResource::collection(WorkingPlace::all());
-        });
-        $typesOfContract = Cache::rememberForever('typeOfContract', function () {
-            return TypeOfContractResource::collection(TypeOfContract::all());
-        });
-        $workLoads = Cache::rememberForever('workLoads', function () {
-            return WorkLoadResource::collection(WorkLoad::all());
-        });
-
-        $payoutModes = Cache::rememberForever('payoutModes', function () {
-            return PayModesResource::collection(PayoutMode::all());
-        });
-
-        $paySystems = Cache::rememberForever('paySystems', function () {
-            return PayModesResource::collection(PaySystem::all());
-        });
-
-        $days = Cache::rememberForever('days', function () {
-            return PayModesResource::collection(Day::all());
-        });
-        $shiftWorks = Cache::rememberForever('shiftWorks', function () {
-            return PayModesResource::collection(ShiftWork::all());
-        });
-        $offers = Cache::rememberForever('offers', function () {
-            return PayModesResource::collection(Offer::all());
-        });
-        $waits = Cache::rememberForever('waits', function () {
-            return PayModesResource::collection(Wait::all());
-        });
-        $experiences = Cache::rememberForever('experiences', function () {
-            return WorkLoadResource::collection(Experience::all());
-        });
-        $welcomes = Cache::rememberForever('welcomes', function () {
-            return PayModesResource::collection(Welcome::all());
-        });
-        $educations = Cache::rememberForever('educations', function () {
-            return PayModesResource::collection(Education::all());
-        });
         $currencies = config('currencyShorts');
-        $cvs = Cache::rememberForever('cvs', function () {
-            return PayModesResource::collection(CvType::all());
-        });
 
-        return inertia()->render('Project/Create', [
-            'categories' => $category,
+        return inertia()->render('Project/Create', array_merge($dictionaryService->getAllProjectDictionaries(), [
             'countries' => $countries,
-            'workingModes' => $workingModes,
-            'workingPlaces' => $workingPlaces,
-            'typesOfContract' => $typesOfContract,
-            'workLoads' => $workLoads,
             'currencies' => $currencies,
-            'payoutModes' => $payoutModes,
-            'paySystems' => $paySystems,
-            'days' => $days,
-            'shiftWorks' => $shiftWorks,
-            'offers' => $offers,
-            'waits' => $waits,
-            'experiences' => $experiences,
-            'welcomes' => $welcomes,
-            'educations' => $educations,
-            'cvs' => $cvs,
             'externalCompanies' => $externalCompanies,
-        ]);
+        ]));
     }
 
     /**
@@ -396,86 +333,38 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(DictionaryService $dictionaryService, Project $project)
     {
         Gate::authorize('update',$project);
         $externalCompanies = ExternalCompany::where('user_id',auth()->user()->id)->latest()->get();
         $project->load('detailprojects','questions');
-        $category = Cache::rememberForever('category', function() {
-            return MultiselectResource::collection(Category::isRoot()->get());
-        });
-        $workingModes = Cache::rememberForever('workingModes', function() {
-            return WorkingModesResource::collection(WorkingMode::all());
-        });
+        $dictionaries = $dictionaryService->getAllProjectDictionaries();
+
         $countries = (new Helper())->makeCountriesToSelect();
-
-        $workingPlaces = Cache::rememberForever('workingPlaces', function() {
-            return MultiselectResource::collection(WorkingPlace::all());
-        });
-        $typesOfContract = Cache::rememberForever('typeOfContract', function() {
-            return TypeOfContractResource::collection(TypeOfContract::all());
-        });
-        $workLoads = Cache::rememberForever('workLoads', function() {
-            return WorkLoadResource::collection(WorkLoad::all());
-        });
-
-        $payoutModes = Cache::rememberForever('payoutModes', function() {
-            return PayModesResource::collection(PayoutMode::all());
-        });
-
-        $paySystems = Cache::rememberForever('paySystems', function() {
-            return PayModesResource::collection(PaySystem::all());
-        });
-
-        $days = Cache::rememberForever('days', function() {
-            return PayModesResource::collection(Day::all());
-        });
-        $shiftWorks = Cache::rememberForever('shiftWorks', function() {
-            return PayModesResource::collection(ShiftWork::all());
-        });
-        $offers = Cache::rememberForever('offers', function() {
-            return PayModesResource::collection(Offer::all());
-        });
-        $waits = Cache::rememberForever('waits', function() {
-            return PayModesResource::collection(Wait::all());
-        });
-        $experiences = Cache::rememberForever('experiences', function() {
-            return WorkLoadResource::collection(Experience::all());
-        });
-        $welcomes = Cache::rememberForever('welcomes', function() {
-            return PayModesResource::collection(Welcome::all());
-        });
-        $educations = Cache::rememberForever('educations', function() {
-            return PayModesResource::collection(Education::all());
-        });
         $currencies = config('currencyShorts');
-        $cvs = Cache::rememberForever('cvs', function() {
-            return PayModesResource::collection(CvType::all());
-        });
 
         return inertia()->render('Project/Edit',
             [
-                'categories' =>$category,
+                'categories' =>$dictionaries['categories'],
                 'currencies' =>$currencies,
                 'countries' =>$countries,
-                'workingModes' =>$workingModes,
-                'workingPlaces' =>$workingPlaces,
-                'typesOfContract' =>$typesOfContract,
-                'workLoads' =>$workLoads,
-                'payoutModes' =>$payoutModes,
-                'paySystems' =>$paySystems,
-                'days' =>$days,
-                'shiftWorks' =>$shiftWorks,
-                'offers' =>$offers,
-                'waits' =>$waits,
-                'experiences' =>$experiences,
-                'welcomes' =>$welcomes,
-                'educations' =>$educations,
+                'workingModes' =>$dictionaries['workingModes'],
+                'workingPlaces' =>$dictionaries['workingPlaces'],
+                'typesOfContract' =>$dictionaries['typesOfContract'],
+                'workLoads' =>$dictionaries['workLoads'],
+                'payoutModes' =>$dictionaries['payoutModes'],
+                'paySystems' =>$dictionaries['paySystems'],
+                'days' =>$dictionaries['days'],
+                'shiftWorks' =>$dictionaries['shiftWorks'],
+                'offers' =>$dictionaries['offers'],
+                'waits' =>$dictionaries['waits'],
+                'experiences' =>$dictionaries['experiences'],
+                'welcomes' =>$dictionaries['welcomes'],
+                'educations' =>$dictionaries['educations'],
                 'project' =>$project,
-                'cvs' =>$cvs,
+                'cvs' =>$dictionaries['cvs'],
                 'externalCompanies' =>$externalCompanies,
             ]);
-
     }
 
     /**

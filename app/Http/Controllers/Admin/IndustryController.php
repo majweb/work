@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Services\DictionaryService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -56,7 +57,7 @@ class IndustryController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, DictionaryService $dictionaryService): RedirectResponse
     {
         $languages = config('langsShorts');
         $titleRules = [];
@@ -83,7 +84,9 @@ class IndustryController extends Controller
             'parent_id' => $validated['parent_id'],
         ]);
 
-        return redirect()->route('admin.industries.index')->with('success', 'Branża/podbranża została dodana.');
+        $dictionaryService->clearCategories();
+
+        return redirect()->route('admin.industries.index')->with('flash.banner', 'Branża/podbranża została dodana.');
     }
 
     public function edit(int $id): Response
@@ -111,7 +114,7 @@ class IndustryController extends Controller
         ]);
     }
 
-    public function update(Request $request, int $id): RedirectResponse
+    public function update(Request $request, int $id, DictionaryService $dictionaryService): RedirectResponse
     {
         $industry = Category::findOrFail($id);
         $languages = config('langsShorts');
@@ -139,14 +142,18 @@ class IndustryController extends Controller
             'parent_id' => $validated['parent_id'],
         ]);
 
-        return redirect()->route('admin.industries.index')->with('success', 'Branża/podbranża została zaktualizowana.');
+        $dictionaryService->clearCategories();
+
+        return redirect()->route('admin.industries.index')->with('flash.banner', 'Branża/podbranża została zaktualizowana.');
     }
 
-    public function destroy(int $id): RedirectResponse
+    public function destroy(int $id, DictionaryService $dictionaryService): RedirectResponse
     {
         $industry = Category::findOrFail($id);
         $industry->delete();
 
-        return back()->with('success', 'Branża/podbranża została usunięta.');
+        $dictionaryService->clearCategories();
+
+        return back()->with('flash.banner', 'Branża/podbranża została usunięta.');
     }
 }

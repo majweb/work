@@ -13,6 +13,7 @@ use App\Models\CandidateAnswer;
 use App\Models\Candidate;
 use App\Models\LangLevel;
 use App\Models\Country;
+use App\Services\DictionaryService;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
 use App\Services\GetPointsService;
@@ -46,12 +47,10 @@ class AplicationController extends Controller
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, DictionaryService $dictionaryService)
     {
         $result = $this->filterService->getFilteredApplications($request);
-        $langLevels = Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
+        $langLevels = $dictionaryService->getLangLevels();
         $countries = $this->helper->makeCountriesToSelectHasProjects();
 
         return inertia()->render('Firm/Aplication/Index', [
@@ -159,12 +158,8 @@ class AplicationController extends Controller
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function acceptedApplications(Request $request)
+    public function acceptedApplications(Request $request, DictionaryService $dictionaryService)
     {
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
-
         $result = $this->filterService->getFilteredApplications($request, 'yes');
 
         // Załaduj relację notatek dla aplikacji
@@ -182,7 +177,7 @@ class AplicationController extends Controller
             'otherCount' => $result['counters']['otherCount'],
             'maybeCount' => $result['counters']['maybeCount'],
             'noCount' => $result['counters']['noCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
         ]);
     }
 
@@ -192,11 +187,8 @@ class AplicationController extends Controller
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function maybeApplications(Request $request)
+    public function maybeApplications(Request $request, DictionaryService $dictionaryService)
     {
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
         $result = $this->filterService->getFilteredApplications($request, 'maybe');
 
 
@@ -209,7 +201,7 @@ class AplicationController extends Controller
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'noCount' => $result['counters']['noCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
 
         ]);
     }
@@ -220,11 +212,8 @@ class AplicationController extends Controller
      * @param Request $request
      * @return \Inertia\Response
      */
-    public function noApplications(Request $request)
+    public function noApplications(Request $request, DictionaryService $dictionaryService)
     {
-        $langLevels=  Cache::rememberForever('langLevels', function() {
-            return MultiselectWithoutDetailResource::collection(LangLevel::get());
-        });
         $result = $this->filterService->getFilteredApplications($request, 'no');
 
         return inertia()->render('Firm/Aplication/No', [
@@ -236,7 +225,7 @@ class AplicationController extends Controller
             'otherCount' => $result['counters']['otherCount'],
             'acceptedCount' => $result['counters']['acceptedCount'],
             'maybeCount' => $result['counters']['maybeCount'],
-            'langLevels' => $langLevels,
+            'langLevels' => $dictionaryService->getLangLevels(),
 
         ]);
     }
