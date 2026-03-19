@@ -210,7 +210,7 @@ class ProjectController extends Controller implements HasMiddleware
         $workingPlaces = Cache::rememberForever('workingPlaces', function() {
             return MultiselectResource::collection(WorkingPlace::all());
         });
-        $typesOfContract = Cache::rememberForever('typeOfContract', function() {
+        $typesOfContract = Cache::rememberForever('typesOfContract', function() {
             return TypeOfContractResource::collection(TypeOfContract::all());
         });
         $workLoads = Cache::rememberForever('workLoads', function() {

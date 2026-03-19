@@ -10,7 +10,6 @@ class projectObserver
     private function clearCategoriesCache(Project $project): void
     {
         // Czyść cache dla kraju
-        Cache::forget('countriesWithProject');
         Cache::forget('workingModes');
         Cache::forget('experiences');
         Cache::forget('typesOfContract');

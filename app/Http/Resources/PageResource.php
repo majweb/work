@@ -20,8 +20,7 @@ class PageResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->getTranslation('title', $locale),
-            'image' => $this->image ? Storage::url($this->getTranslation('image', $locale)) : null,
-            'keywords' => $this->getTranslation('keywords', $locale),
+            'image' => $this->image ? asset(Storage::url($this->getTranslation('image', $locale))) : null,            'keywords' => $this->getTranslation('keywords', $locale),
             'description' => $this->getTranslation('description', $locale),
         ];
     }
