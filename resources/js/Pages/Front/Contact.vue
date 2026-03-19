@@ -75,10 +75,24 @@ const loadCaptcha = () => {
 const reloadCaptcha = () => loadCaptcha()
 
 onMounted(() => loadCaptcha())
+
+
+const props = defineProps({
+    page: Object,
+});
+
+
 </script>
 
 <template>
-    <FrontLayout :title="__('translate.contact_us')">
+    <FrontLayout
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.contact')"
+        type="website"
+    >
         <div class="py-12 bg-gray-50/50 min-h-screen relative overflow-hidden">
             <!-- Background Decoration -->
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl"></div>

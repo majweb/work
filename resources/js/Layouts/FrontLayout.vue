@@ -6,12 +6,29 @@ import ConfettiExplosion from "vue-confetti-explosion";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import ApplicationMarkWhite from "@/Components/ApplicationMarkWhite.vue";
 import NavLink from "@/Components/NavLink.vue";
+import { ref, computed, watch, onMounted } from "vue";
+import __ from "@/lang.js";
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
-import { ref, computed, watch,onMounted  } from "vue";
+const props = defineProps({
+    title: String,
+    type: String,
+    description: String,
+    keywords: String,
+    image: String,
+    author: String,
+    imageUrl: String,
+});
+
+const page = usePage();
+const auth = page.props.auth ?? null;
 
 const isClient = ref(false);
+const ogUrl = ref(page.props.ziggy?.location || page.props.pageUrl || '');
+
 onMounted(() => {
     isClient.value = true;
+    ogUrl.value = window.location.href;
 });
 
 const form = useForm({
@@ -26,52 +43,36 @@ const submitForm = () => {
         },
     });
 };
-import __ from "@/lang.js";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-
-const ogUrl = ref('');
-onMounted(() => {
-    if (isClient.value) {
-        ogUrl.value = window.location.href;
-    } else {
-        ogUrl.value = page.props.pageUrl;
-    }
-});
-const props = defineProps({
-    title: String,
-    description: String,
-    keywords: String,
-    image: String,
-    publishedAt: String,
-    modifiedAt: String,
-    type: String,
-    author: String,
-    imageUrl: String,
-});
-
-const page = usePage();
-const auth = page.props.auth ?? null;
 
 // Mobile menu
 const mobileMenuOpen = ref(false);
 const toggleMenu = () => mobileMenuOpen.value = !mobileMenuOpen.value;
 const closeMenu = () => mobileMenuOpen.value = false;
 watch(mobileMenuOpen, val => {
-    if (isClient.value) document.body.style.overflow = val ? 'hidden' : '';
+    if (isClient.value) {
+        document.body.style.overflow = val ? 'hidden' : '';
+    }
 });
 
 // Scroll to top
 const showScrollTop = ref(false);
-const scrollToTop = () => { if (isClient.value) window.scrollTo({ top: 0, behavior: 'smooth' }); }
-onMounted(() => {
-    if (isClient.value) {
-        window.addEventListener('scroll', () => showScrollTop.value = window.scrollY > 400);
+const scrollToTop = () => {
+    if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+}
+onMounted(() => {
+    window.addEventListener('scroll', () => {
+        showScrollTop.value = window.scrollY > 400;
+    });
 });
 
 // Languages
-const changeLang = computed(() => page.props.languages?.filter(el => el.value == page.props.language));
-const lang = ref(changeLang);
+const changeLang = computed(() => page.props.languages?.find(el => el.value == page.props.language));
+const lang = ref(changeLang.value);
+watch(changeLang, (newVal) => {
+    lang.value = newVal;
+});
 const dispatchAction = (data) => router.post(route('front.language.store', { language: data.value }));
 const resetLang = (data) => router.post(route('front.language.store', { language: data }));
 const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.localeCompare(b.label)));
@@ -88,11 +89,10 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
 </script>
 
 <template>
-    <div class="flex flex-col min-h-screen bg-gray-50/50 dark:bg-gray-900 font-sans">
-        <Head>
+    <Head>
             <!-- Title -->
             <title v-if="props.title">{{ props.title }}</title>
-            <title v-else>{{ page.props.pageName || 'Work' }}</title>
+            <title v-else>{{ page.props.pageName || 'Work4you.global' }}</title>
 
             <!-- Meta description & keywords -->
             <meta name="description" :content="props.description || __('translate.meta_description_default')" />
@@ -102,29 +102,26 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
             <link v-if="ogUrl" rel="canonical" :href="ogUrl" />
 
             <!-- Open Graph -->
-            <meta property="og:locale" :content="page.props.language || 'pl'" />
-            <meta v-if="props.type" property="og:type" :content="props.type" />
+            <meta property="og:locale" :content="page.props.currentCountry || 'pl'" />
+            <meta property="og:type" :content="props.type || 'website'" />
             <meta v-if="props.title" property="og:title" :content="props.title" />
             <meta v-if="props.description" property="og:description" :content="props.description" />
             <meta v-if="ogUrl" property="og:url" :content="ogUrl" />
             <meta v-if="ogUrl" property="og:site_name" :content="ogUrl" />
-            <meta v-if="props.publishedAt" property="article:published_time" :content="props.publishedAt" />
-            <meta v-if="props.modifiedAt" property="article:modified_time" :content="props.modifiedAt" />
             <meta property="og:image" :content="props.image || '/default-image.png'" />
-            <meta property="og:image:width" content="1724" />
-            <meta property="og:image:height" content="1149" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
             <meta property="og:image:type" content="image/jpeg" />
 
             <!-- Author -->
-            <meta v-if="props.author" name="author" :content="props.author" />
+            <meta name="author" :content="props.author || 'Work4you.global'" />
 
             <!-- Twitter -->
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:label1" :content="__('translate.written_by')" />
-            <meta v-if="props.author" name="twitter:data1" :content="props.author" />
+            <meta name="twitter:data1" content="Work4you.global" />
         </Head>
-
-
+    <div class="flex flex-col min-h-screen bg-gray-50/50 dark:bg-gray-900 font-sans">
         <Banner />
         <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 pointer-events-none z-[300]">
             <ConfettiExplosion
@@ -135,10 +132,9 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                 :colors="['#00a0e3', '#0A2C5C', '#E11D48', '#60a5fa']"
             />
         </div>
-
-        <!-- Background only on home page -->
+        <!-- Background only on home page and pages with imageUrl -->
         <div
-            v-if="route().current('front')"
+            v-if="props.imageUrl"
             class="absolute inset-0 bg-no-repeat"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>

@@ -52,10 +52,16 @@ return [
     'linkedin-openid' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => env('LINKEDIN_REDIRECT_URL')
+        'redirect' => env('LINKEDIN_REDIRECT_URL'),
     ],
-    'mapbox'=>[
+    'mapbox' => [
         'token' => env('MAPBOX_TOKEN'),
-    ]
+    ],
+
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
 
 ];

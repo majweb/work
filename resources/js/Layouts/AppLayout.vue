@@ -435,7 +435,7 @@ onUnmounted(()=>{
             <button
                 v-if="countCart > 0"
                 @click="open = true"
-                class="fixed right-4 bottom-4 flex items-center justify-center w-14 h-14 bg-blue-500 text-white rounded-full shadow-lg animate-pulse transition-transform hover:scale-110"
+                class="fixed right-8 md:ight-4 bottom-24 z-10 md:right-10 md:bottom-24 flex items-center justify-center w-14 h-14 bg-blue-500 text-white rounded-full shadow-lg animate-pulse transition-transform hover:scale-110"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"

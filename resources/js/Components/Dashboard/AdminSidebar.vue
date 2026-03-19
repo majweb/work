@@ -85,7 +85,17 @@ const menuItems = [
         ]
     },
     { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },
-    { name: 'Ustawienia', icon: 'settings', route: 'profile.show' },
+    {
+        name: 'Ustawienia',
+        icon: 'settings',
+        subItems: [
+            { name: 'Główne', route: 'admin.general.edit' },
+            { name: 'Newsletter', route: 'admin.newsletter.index' },
+            { name: 'Integracje', route: 'admin.integrations.edit' },
+            { name: 'CMS', route: 'admin.cms.index' },
+            { name: 'Profil admina', route: 'profile.show' },
+        ]
+    },
 ];
 
 const confirmingLogout = ref(false);

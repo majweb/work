@@ -1,5 +1,18 @@
+<script setup>
+import FrontLayout from "@/Layouts/FrontLayout.vue";
+const props = defineProps({
+    page: Object
+});
+</script>
 <template>
-    <FrontLayout :title="__('info.about_title')">
+    <FrontLayout
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.readMore')"
+        type="website"
+    >
         <div class="py-24 bg-gray-50/50 min-h-screen relative overflow-hidden">
             <!-- Background Decorations -->
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl animate-pulse"></div>
@@ -118,8 +131,3 @@
         </div>
     </FrontLayout>
 </template>
-
-<script setup>
-import FrontLayout from "@/Layouts/FrontLayout.vue";
-import { Link } from "@inertiajs/vue3";
-</script>

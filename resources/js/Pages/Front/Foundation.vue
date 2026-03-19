@@ -6,7 +6,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { usePage } from "@inertiajs/vue3";
 
 const props = defineProps({
-    foundation: Object
+    foundation: Object,
+    page: Object
+
 });
 
 mapboxgl.accessToken = usePage().props.mapboxToken;
@@ -70,7 +72,14 @@ function addMarker() {
 </script>
 
 <template>
-    <FrontLayout :title="props.foundation.name">
+        <FrontLayout
+            :title="props.page.title + ' - ' + props.foundation.name"
+            :image="props.page.image"
+            :keywords="props.page.keywords"
+            :description="props.page.description"
+            :url="route('front.foundation.single',foundation?.id)"
+            type="website"
+        >
         <!-- BANER + LOGO -->
         <section class="bg-gray-50/50 py-12 px-4 min-h-[40vh]">
             <div class="max-w-6xl mx-auto">

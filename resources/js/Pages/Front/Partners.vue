@@ -18,12 +18,20 @@ const props = defineProps({
     foundations:Array,
     countries:Array,
     foundationsCount:Number,
+    page: Object
 });
 const foundations = computed(() => props.foundations);
 mapboxgl.accessToken = usePage().props.mapboxToken;
 </script>
 <template>
-    <FrontLayout :title="__('partners.about_title')">
+    <FrontLayout
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.partners')"
+        type="website"
+    >
         <div class="py-12 bg-gray-50/50 min-h-screen relative overflow-hidden">
             <!-- Background Decoration -->
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl transition-transform duration-1000"></div>

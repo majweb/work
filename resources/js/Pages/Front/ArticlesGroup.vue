@@ -12,11 +12,19 @@ onMounted(() => {
 const props = defineProps({
     sections: Array,
     categoryName: String,
+    page: Object
 });
 </script>
 
 <template>
-    <FrontLayout :title="categoryName">
+        <FrontLayout
+            :title="categoryName"
+            :image="props.page.image"
+            :keywords="props.page.keywords"
+            :description="props.page.description"
+            :url="route('front.articles.group', categoryName)"
+            type="website"
+        >
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->

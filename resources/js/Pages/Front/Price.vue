@@ -7,7 +7,8 @@ const props = defineProps({
     products: {
         type: Array,
         required: true
-    }
+    },
+    page: Object,
 });
 
 const packages = ref(
@@ -40,7 +41,14 @@ const donated = computed(() =>
 </script>
 
 <template>
-    <FrontLayout :title="__('info.cennik_title')">
+    <FrontLayout
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.price')"
+        type="website"
+    >
 
         <div class="py-24 bg-gray-50/50 min-h-screen relative overflow-hidden">
             <!-- Background Decorations -->

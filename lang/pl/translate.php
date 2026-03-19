@@ -1459,6 +1459,7 @@ return [
     'errorGeocodingAddress' => 'Błąd geocodowania adresu:',
     'cvTypeDescription' => 'Wybierz typ CV, jaki będą mogli przesyłać kandydaci',
     'cvSentMessage' => 'Wybrane CV zostały wysłane do wybranej przez Ciebie firmy. Będziemy Cię informować o zmianach statusu aplikacji.',
+    'stripeProductName' => 'Zakup punktów i wsparcie fundacji',
 
     // Filters
     'classicCV' => 'Klasyczne CV',

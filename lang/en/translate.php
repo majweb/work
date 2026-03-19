@@ -561,6 +561,7 @@ return [
     'invoiceGenerated' => 'Invoice generated',
     'paymentReceived' => 'Payment received',
     'questionApproved' => 'Question approved',
+    'stripeProductName' => 'Purchase of points and foundation support',
 
     // Notification messages
     'newNotification' => 'New notification',

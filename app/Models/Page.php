@@ -11,7 +11,7 @@ class Page extends Model
     use HasFactory;
     use HasTranslations;
 
-    public array $translatable = ['title','image','description','keywords'];
+    public array $translatable = ['title', 'image', 'description', 'keywords'];
 
     protected $fillable = [
         'title',
@@ -26,5 +26,4 @@ class Page extends Model
         'description' => 'array',
         'keywords' => 'array',
     ];
-
 }

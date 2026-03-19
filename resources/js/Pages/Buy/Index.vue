@@ -74,7 +74,7 @@ const getServiceDescription = (type) => {
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl animate-pulse"></div>
             <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-50/20 rounded-full -ml-48 -mb-48 blur-3xl"></div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <!-- Sekcja pakietów punktów + 'Zobacz, jak Twoja firma pomaga' (z /price) -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 md:p-16 mb-12">
                     <div>

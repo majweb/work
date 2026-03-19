@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia; // to jest instancja, nie fasada
 
 Route::mediaLibrary();
-
+Route::post('/stripe/webhook', [BuyController::class, 'stripeWebhook'])->name('buy.stripe.webhook');
 Route::post('/upload-image', function (Request $request) { // <- instancja!
     $request->validate([
         'image' => 'required|image|max:5120',
@@ -82,16 +82,15 @@ Route::get('/categories/{countryCode}', CategoryControllerInvoke::class)
     ->name('categories.byCountry');
 
 Route::get('/', function () {
-    $page = Page::whereId(1)->first();
-    $imageUrl = Country::getRandomImageFromBrowserLocale();
+    $page = Page::findOrFail(1);
     $countries = (new Helper)->makeCountriesToSelectHasProjects();
-
+    $imageUrl = Country::getRandomImageFromBrowserLocale();
     return Inertia::render('Welcome', [
         'page' => new PageResource($page),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'imageUrl' => $imageUrl,
         'countries' => $countries,
+        'imageUrl' => $imageUrl,
     ]);
 })->name('front');
 
@@ -174,6 +173,7 @@ Route::middleware([
     Route::post('/buyIncrementCart/{product}/{qty}', [BuyController::class, 'detailIncrementCart'])->name('buy.detailIncrementCart')->middleware('role:firm');
     Route::post('/buyDecrementCart/{product}/{qty}', [BuyController::class, 'detailDecrementCart'])->name('buy.detailDecrementCart')->middleware('role:firm');
     Route::post('/makeOrder', [BuyController::class, 'makeOrder'])->name('buy.order')->middleware('role:firm');
+    Route::post('/stripe-checkout', [BuyController::class, 'stripeCheckout'])->name('buy.stripe-checkout')->middleware('role:firm');
     Route::post('/addFoundation', [BuyController::class, 'addFoundation'])->name('buy.addFoundation')->middleware('role:firm');
     Route::get('/paymentView', [BuyController::class, 'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView', [BuyController::class, 'successView'])->name('buy.successView')->middleware('role:firm');
@@ -431,6 +431,23 @@ Route::middleware([
         Route::get('acceptedApplicationsAdmin', [App\Http\Controllers\Admin\AplicationController::class, 'acceptedApplications'])->name('aplicationsA.acceptedApplications');
         Route::get('maybeApplicationsAdmin', [App\Http\Controllers\Admin\AplicationController::class, 'maybeApplications'])->name('aplicationsA.maybeApplications');
         Route::get('noApplicationsAdmin', [App\Http\Controllers\Admin\AplicationController::class, 'noApplications'])->name('aplicationsA.noApplications');
+
+        // CMS (Strony publiczne)
+        Route::get('cms', [\App\Http\Controllers\Admin\PageController::class, 'index'])->name('cms.index');
+        Route::get('cms/{page}/edit', [\App\Http\Controllers\Admin\PageController::class, 'edit'])->name('cms.edit');
+        Route::put('cms/{page}', [\App\Http\Controllers\Admin\PageController::class, 'update'])->name('cms.update');
+
+        // Integracje
+        Route::get('integrations', [\App\Http\Controllers\Admin\IntegrationController::class, 'edit'])->name('integrations.edit');
+        Route::put('integrations', [\App\Http\Controllers\Admin\IntegrationController::class, 'update'])->name('integrations.update');
+
+        // Ustawienia Główne
+        Route::get('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'edit'])->name('general.edit');
+        Route::put('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'update'])->name('general.update');
+
+        // Newsletter
+        Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+        Route::get('newsletter/export', [NewsletterController::class, 'export'])->name('newsletter.export');
     });
     Route::middleware(['role:worker'])->name('worker.')->prefix('worker')->group(function () {
         Route::get('aplications', [WorkerController::class, 'aplications'])->name('aplications');

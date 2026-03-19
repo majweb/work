@@ -20,6 +20,7 @@ const props = defineProps({
     countryFront: Object,
     categoryFront: Object,
     cityFront: Object,
+    page: Object,
 });
 
 const page = usePage();
@@ -208,7 +209,14 @@ const submit = () => {
 
 </script>
 <template>
-    <FrontLayout :title="__('translate.projects')">
+    <FrontLayout
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.projects')"
+        type="website"
+    >
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- Formularz wyszukiwania -->

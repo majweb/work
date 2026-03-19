@@ -16,6 +16,7 @@ const props = defineProps({
     project: Object,
     image: String,
     agreements: Array,
+    page: Object
 });
 const {hasRole} = usePermission();
 const { getPositionTitle } = useProjectHelpers();
@@ -67,7 +68,14 @@ onMounted(async () => {
 });
 </script>
 <template>
-    <FrontLayout :title="__('translate.project')" :image="image" keywords="asdsadas" description="asdsadasdsasas">
+    <FrontLayout
+        :title="project.title[usePage().props.currentCountry] || getPositionTitle(project)"
+        :image="image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.projects.single',project)"
+        type="website"
+    >
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- TOP BAR -->

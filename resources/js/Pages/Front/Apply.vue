@@ -20,7 +20,7 @@ const props = defineProps({
     professionCv: Object,
     agreements: Array,
     levelEducations: Array,
-    langLevels: Array,
+    langLevels: Array
 });
 const optionsPositions = ref([]);
 const formStep = ref(1);
@@ -381,7 +381,7 @@ const removeFile = async (source, load) => {
 // Funkcje do obsługi nagrywania wideo
 </script>
 <template>
-    <FrontLayout :title="__('translate.project')">
+    <FrontLayout :title="__('translate.aplications')" type="website">
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-[1300px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <!-- HEADER CARD -->

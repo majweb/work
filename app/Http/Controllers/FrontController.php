@@ -8,27 +8,24 @@ use App\Http\Resources\BannerResource;
 use App\Http\Resources\CategoryWithArticlesResource;
 use App\Http\Resources\FrontArticleResource;
 use App\Http\Resources\FrontUserResource;
-use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectResourceCountry;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\NewestArticleArticlesPageResource;
+use App\Http\Resources\PageResource;
 use App\Mail\ContactFormMarkdownMail;
 use App\Models\Agreement;
 use App\Models\Aplication;
-use App\Models\Banner;
-use App\Models\Candidate;
 use App\Models\Article;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Country;
-use App\Models\CvAudio;
 use App\Models\CvClassic;
-use App\Models\CvVideo;
-use App\Models\Firm;
 use App\Models\Foundation;
 use App\Models\FoundationCategory;
 use App\Models\IpEmailBlock;
 use App\Models\LangLevel;
 use App\Models\LevelEducation;
+use App\Models\Page;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\TemporaryFile;
@@ -38,15 +35,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Config;
-
 
 class FrontController extends Controller
 {
@@ -86,36 +82,41 @@ class FrontController extends Controller
         $recentArticles = Article::active()->lang()->latest()->get();
 
         $grouped = $recentArticles
-            ->map(function($article, $index) {
+            ->map(function ($article, $index) {
                 $article->index = $index; // dodajemy index do artykułu
                 $article->category = collect($article->category ?? []);
+
                 return $article;
             })
-            ->flatMap(function($article) {
+            ->flatMap(function ($article) {
                 $categories = $article->category;
                 if (isset($categories['value'])) {
                     $categories = [$categories];
                 }
 
-                return collect($categories)->map(fn($cat) => [
+                return collect($categories)->map(fn ($cat) => [
                     'value' => $cat['value'],
                     'name' => $cat['name'],
                     'article' => $article,
                 ]);
             })
             ->groupBy('value')
-            ->map(fn($items) => [
+            ->map(fn ($items) => [
                 'name' => $items->first()['name'],
                 'value' => $items->first()['value'],
                 'articles' => $items->pluck('article')->take(3),
             ])
             ->values();
 
+        $page = Page::findOrFail(4);
+
+
         return inertia()->render('Front/Articles', [
             'banners' => $banners,
             'newest' => $newest,
             'categories' => $categories,
             'most3Articles' => $most3Articles,
+            'page' => $page ? new PageResource($page) : null,
             'grouped' => CategoryWithArticlesResource::collection($grouped),
         ]);
     }
@@ -123,18 +124,18 @@ class FrontController extends Controller
     public function groupArticles($category)
     {
         $articles = Article::active()
-        ->with('user:id,name')
-        ->lang()
-        ->whereJsonContains('category', ['value' => (int) $category])
-        ->latest()
-        ->limit(10)
-        ->get();
+            ->with('user:id,name')
+            ->lang()
+            ->whereJsonContains('category', ['value' => (int) $category])
+            ->latest()
+            ->limit(10)
+            ->get();
 
         // Pobranie nazwy kategorii z pierwszego artykułu (jeśli istnieje)
         $categoryName = optional($articles->first())->category['name'] ?? 'Nieznana kategoria';
 
         // Podział na sekcje 2,3,2,3...
-        $sectionPattern = [2,3]; // wzór sekcji
+        $sectionPattern = [2, 3]; // wzór sekcji
         $sections = [];
         $index = 0;
 
@@ -146,14 +147,17 @@ class FrontController extends Controller
                     $sections[] = NewestArticleArticlesPageResource::collection($section);
                 }
                 $index += $count;
-                if ($index >= $articles->count()) break;
+                if ($index >= $articles->count()) {
+                    break;
+                }
             }
         }
-
+        $page = Page::findOrFail(4);
 
         return inertia()->render('Front/ArticlesGroup', [
             'category' => $category,
             'categoryName' => $categoryName,
+            'page' => $page ? new PageResource($page) : null,
             'sections' => $sections, // każda sekcja już ma Resource
         ]);
     }
@@ -164,58 +168,58 @@ class FrontController extends Controller
 
         // Filtrowanie po kraju
         if (request('country')) {
-            $query->whereJsonContains('country', ['value'=>(int) request('country')]);
+            $query->whereJsonContains('country', ['value' => (int) request('country')]);
         }
 
         // Filtrowanie po mieście
         if (request('city')) {
-            $query->where('cityWork', 'like', '%' . request('city') . '%');
+            $query->where('cityWork', 'like', '%'.request('city').'%');
         }
 
         // Filtrowanie po kategorii
         if (request('category')) {
             $categoryValue = (int) request('category');
-            $query->whereJsonContains('category', ['value'=>$categoryValue]);
+            $query->whereJsonContains('category', ['value' => $categoryValue]);
         }
 
         // Filtrowanie po podkategorii
         if (request('categorySub')) {
             $categorySubValue = (int) request('categorySub');
-            $query->whereJsonContains('categorySub', ['value'=>$categorySubValue]);
+            $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
         }
 
         // Filtrowanie po zawodzie
         if (request('profession')) {
             $professionValue = (int) request('profession');
-            $query->whereJsonContains('profession', ['value'=>$professionValue]);
+            $query->whereJsonContains('profession', ['value' => $professionValue]);
         }
 
         // Filtrowanie po trybie pracy
         if (request('workingMode')) {
             $workingModeId = (int) request('workingMode');
-            $query->whereJsonContains('workingMode', ['value'=>$workingModeId]);
+            $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
         }
 
         if (request('experience')) {
             $experienceId = (int) request('experience');
-            $query->whereJsonContains('experience', ['id'=>$experienceId]);
+            $query->whereJsonContains('experience', ['id' => $experienceId]);
         }
 
         // Filtrowanie po typie umowy
         if (request('typeOfContract')) {
             $typeOfContractId = (int) request('typeOfContract');
-            $query->whereJsonContains('typeOfContract', ['id'=>$typeOfContractId]);
+            $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
         }
 
         // Filtrowanie po wymiarze pracy
         if (request('workLoad')) {
             $workLoadId = (int) request('workLoad');
-            $query->whereJsonContains('workLoad', ['value'=>$workLoadId]);
+            $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
         }
 
         $projects = $query->paginate(5)->withQueryString();
 
-        $countries = (new Helper())->makeCountriesToSelectHasProjects();
+        $countries = (new Helper)->makeCountriesToSelectHasProjects();
 
         // Pobierz opcje z pamięci podręcznej lub z bazy danych
         $workingModes = Cache::rememberForever('workingModes', function () {
@@ -244,9 +248,9 @@ class FrontController extends Controller
 
         $countryId = request('country');
         $cityValue = request('city');
-        $country = NULL;
+        $country = null;
         if (request('country')) {
-            $country = Country::where('id',request('country'))->first();
+            $country = Country::where('id', request('country'))->first();
         }
         $cityFront = null;
 
@@ -258,10 +262,13 @@ class FrontController extends Controller
             ];
         }
 
-        $category = NULL;
+        $category = null;
         if (request('category')) {
-            $category = Category::where('id',request('category'))->first();
+            $category = Category::where('id', request('category'))->first();
         }
+
+        $page = Page::findOrFail(12);
+
 
         return inertia()->render('Front/Projects', [
             'projects' => $projects,
@@ -273,6 +280,7 @@ class FrontController extends Controller
             'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
             'categoryFront' => $category ? new MultiselectResourceCountry($category) : null,
             'cityFront' => $cityFront,
+            'page' => $page ? new PageResource($page) : null,
         ]);
     }
 
@@ -302,7 +310,7 @@ class FrontController extends Controller
             ->where('id', '!=', $article->id)
             ->latest()
             ->get()
-            ->map(fn($a) => new NewestArticleArticlesPageResource($a));
+            ->map(fn ($a) => new NewestArticleArticlesPageResource($a));
 
         $sections = [];
         $catIndex = 0;
@@ -310,7 +318,7 @@ class FrontController extends Controller
 
         while ($catIndex < $categories->count() || $artIndex < $recentArticles->count()) {
             $sectionCategories = $categories->slice($catIndex, 4)->values();
-            $sectionArticles   = $recentArticles->slice($artIndex, 3)->values();
+            $sectionArticles = $recentArticles->slice($artIndex, 3)->values();
 
             $sections[] = [
                 'categories' => $sectionCategories,
@@ -331,24 +339,29 @@ class FrontController extends Controller
             'allOtherArticles' => $allOtherArticles,
         ]);
     }
+
     public function SingleFirm(User $user)
     {
-        $user->load('firm','projects.user.firm.media');
+        $user->load('firm', 'projects.user.firm.media');
+        $page = Page::where('id', 17)->first(); // Załóżmy ID dla Privacy
+
+
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
+            'page' => $page ? new PageResource($page) : null,
         ]);
     }
 
     public function SingleProject(Project $project, Request $request)
     {
         $project = Project::query()
-            ->with(['user','education','detailprojects'])
+            ->with(['user', 'education', 'detailprojects'])
             ->featured()
             ->active() // <<--- dodane filtrowanie tylko aktywnych
             ->findOrFail($project->id);
 
         // Zliczanie odwiedzin - 1 inkrementacja na IP na 24h
-        $key = 'project-view:' . $project->id . ':' . $request->ip();
+        $key = 'project-view:'.$project->id.':'.$request->ip();
 
         $executed = RateLimiter::attempt(
             $key,
@@ -359,17 +372,22 @@ class FrontController extends Controller
             $decaySeconds = 60 * 60 * 24 // 24 godziny
         );
 
-        $locale = getLocalBrowserLang();
         $image = $project->image_generator ?: asset('storage/generator/universal.png');
+        $page = Page::where('id', 8)->first(); // Załóżmy ID dla Privacy
+
         return inertia()->render('Front/SingleProject', [
             'project' => $project,
             'image' => $image,
+            'page' => $page ? new PageResource($page) : null,
         ]);
     }
 
     public function Contact()
     {
-        return inertia()->render('Front/Contact');
+        $page = Page::where('id', 5)->first(); // Załóżmy ID dla Privacy
+        return inertia()->render('Front/Contact', [
+            'page' => $page ? new PageResource($page) : null,
+        ]);
     }
 
     public function ContactSend(Request $request)
@@ -384,35 +402,35 @@ class FrontController extends Controller
                 'required',
                 function ($attribute, $value, $fail) {
                     $captcha = session('captcha_text', '');
-                    if (!hash_equals($captcha, $value)) {
+                    if (! hash_equals($captcha, $value)) {
                         $fail('Niepoprawny kod CAPTCHA.');
                     }
-                }
+                },
             ],
         ]);
 
         // SPRAWDZENIE BLOKAD (IP i Email)
-        $isBlocked = IpEmailBlock::where(function($query) use ($request, $validated) {
+        $isBlocked = IpEmailBlock::where(function ($query) use ($request, $validated) {
             $query->where('value', $request->ip())->where('type', 'ip')
-                  ->orWhere('value', strtolower($validated['email']))->where('type', 'email');
+                ->orWhere('value', strtolower($validated['email']))->where('type', 'email');
         })->exists();
 
         if ($isBlocked) {
             throw ValidationException::withMessages([
-                'agree' => trans('translate.blocked_message')
+                'agree' => trans('translate.blocked_message'),
             ]);
         }
 
         // LIMITER: po IP i email
-        $ipKey = 'contact-form:ip:' . $request->ip();
-        $emailKey = 'contact-form:email:' . strtolower($validated['email']);
+        $ipKey = 'contact-form:ip:'.$request->ip();
+        $emailKey = 'contact-form:email:'.strtolower($validated['email']);
 
         if (RateLimiter::tooManyAttempts($ipKey, 1) || RateLimiter::tooManyAttempts($emailKey, 1)) {
             $secondsIp = RateLimiter::availableIn($ipKey);
             $secondsEmail = RateLimiter::availableIn($emailKey);
             $seconds = max($secondsIp, $secondsEmail);
             throw ValidationException::withMessages([
-                'captcha' => "Możesz wysłać tylko 1 wiadomość na godzinę. Spróbuj ponownie za {$seconds} sekund."
+                'captcha' => "Możesz wysłać tylko 1 wiadomość na godzinę. Spróbuj ponownie za {$seconds} sekund.",
             ]);
         }
 
@@ -425,36 +443,47 @@ class FrontController extends Controller
 
         // Dopiero po pomyślnym wysłaniu resetujemy CAPTCHA
         session()->forget('captcha_text');
+
         return back();
     }
+
     public function Privacy()
     {
-        return inertia()->render('Front/Privacy');
+        $page = Page::where('id', 3)->first(); // Załóżmy ID dla Privacy
+
+        return inertia()->render('Front/Privacy', [
+            'page' => $page ? new PageResource($page) : null,
+        ]);
     }
+
     public function Price()
     {
+
         $products = \App\Models\Product::where('product_type', 'Points')
             ->where('active', true)
             ->orderBy('points', 'asc')
             ->get();
-
+        $page = Page::findOrFail(11);
         return inertia('Front/Price', [
-            'products' => $products
+            'products' => $products,
+            'page' => $page ? new PageResource($page) : null,
         ]);
     }
 
-
-
     public function Terms()
     {
-        return inertia()->render('Front/Terms');
+        $page = Page::where('id', 2)->first(); // Załóżmy ID dla Terms
+
+        return inertia()->render('Front/Terms', [
+            'page' => $page ? new PageResource($page) : null,
+        ]);
     }
 
     public function Firms()
     {
-        $query = User::role('firm')->with(['firm' => function($query) {
+        $query = User::role('firm')->with(['firm' => function ($query) {
             $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
-                           'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points','countryJson');
+                'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
         }]);
         $features = User::featured()->with('firm')->get();
         // Filtrowanie po kraju
@@ -466,25 +495,27 @@ class FrontController extends Controller
         }
         $firms = $query->paginate(10)->withQueryString();
 
-        $countries = (new Helper())->makeCountriesToSelect();
-
+        $countries = (new Helper)->makeCountriesToSelect();
+        $page = Page::findOrFail(7);
         return inertia()->render('Front/Firms', [
             'firms' => $firms,
             'countries' => $countries,
             'features' => $features,
+            'page' => $page ? new PageResource($page) : null,
         ]);
     }
 
     public function applyView(Project $project)
     {
-        if(auth()->check() && !auth()->user()->hasRole('worker')){
+        if (auth()->check() && ! auth()->user()->hasRole('worker')) {
             session()->flash('flash.banner', __('translate.applyViewBlocked'));
             session()->flash('flash.bannerStyle', 'danger');
-            return to_route('front.projects.single',$project);
+
+            return to_route('front.projects.single', $project);
         }
 
-        if(auth()->check() && auth()->user()->hasRole('worker')){
-            $project->load(['questions' => function($query) {
+        if (auth()->check() && auth()->user()->hasRole('worker')) {
+            $project->load(['questions' => function ($query) {
                 $query->whereNotNull('accepted');
             }]);
             if (CvClassic::where('worker_id', auth()->id())->where('project_id', $project->id)->exists()) {
@@ -492,94 +523,94 @@ class FrontController extends Controller
                     'cvClassics' => function ($query) use ($project) {
                         $query->where('worker_id', auth()->id())
                             ->where('project_id', $project->id);
-                    },'cvClassics.media' => function ($query) {
+                    }, 'cvClassics.media' => function ($query) {
                         $query->where('collection_name', 'aplications_cvClassic_photo');
                     },
                 ]);
             }
         }
-        $agreements = Agreement::where('type','Apply without register')->get(['description','id']);
-        $levelEducations=  Cache::rememberForever('levelEducations', function() {
+        $agreements = Agreement::where('type', 'Apply without register')->get(['description', 'id']);
+        $levelEducations = Cache::rememberForever('levelEducations', function () {
             return MultiselectWithoutDetailResource::collection(LevelEducation::get());
         });
-        $langLevels=  Cache::rememberForever('langLevels', function() {
+        $langLevels = Cache::rememberForever('langLevels', function () {
             return MultiselectWithoutDetailResource::collection(LangLevel::get());
         });
         $professionCv = $project->categorySub['value'];
 
-        if(auth()->check() && auth()->user()->hasRole('worker')) {
-            $existsCv = Aplication::where('aplication_user_id',auth()->id())->whereNotNull('pathCv')->whereHas('project', function ($query) use ($project, $professionCv) {
+        if (auth()->check() && auth()->user()->hasRole('worker')) {
+            $existsCv = Aplication::where('aplication_user_id', auth()->id())->whereNotNull('pathCv')->whereHas('project', function ($query) use ($professionCv) {
                 $query->whereJsonContains('categorySub->value', $professionCv);
             })->first();
         }
-
 
         return inertia()->render('Front/Apply', [
             'project' => $project,
             'agreements' => $agreements,
             'levelEducations' => $levelEducations,
             'langLevels' => $langLevels,
-            'professionCv' => $existsCv ?? NULL,
+            'professionCv' => $existsCv ?? null,
         ]);
     }
 
     public function nextStep(AplicationRequest $request, Project $project)
     {
         // SPRAWDZENIE BLOKAD (IP i Email)
-        $isBlocked = IpEmailBlock::where(function($query) use ($request) {
+        $isBlocked = IpEmailBlock::where(function ($query) use ($request) {
             $query->where('value', $request->ip())->where('type', 'ip')
-                  ->orWhere('value', strtolower($request->aplicationData()['email'] ?? ''))->where('type', 'email');
+                ->orWhere('value', strtolower($request->aplicationData()['email'] ?? ''))->where('type', 'email');
         })->exists();
 
         if ($isBlocked) {
             throw ValidationException::withMessages([
-                'agreements' => trans('translate.application_blocked_message')
+                'agreements' => trans('translate.application_blocked_message'),
             ]);
         }
 
-        return to_route('front.projects.applyView',$project);
+        return to_route('front.projects.applyView', $project);
     }
+
     public function makeAplication(AplicationRequest $request, Project $project)
     {
         // SPRAWDZENIE BLOKAD (IP i Email)
-        $isBlocked = IpEmailBlock::where(function($query) use ($request) {
+        $isBlocked = IpEmailBlock::where(function ($query) use ($request) {
             $query->where('value', $request->ip())->where('type', 'ip')
-                  ->orWhere('value', strtolower($request->aplicationData()['email'] ?? ''))->where('type', 'email');
+                ->orWhere('value', strtolower($request->aplicationData()['email'] ?? ''))->where('type', 'email');
         })->exists();
 
         if ($isBlocked) {
             throw ValidationException::withMessages([
-                'agreements' => trans('translate.application_blocked_message')
+                'agreements' => trans('translate.application_blocked_message'),
             ]);
         }
 
         $user = $request->user();
-        $key = 'make-aplication:' .$project->id.'-'. ($user?->id ?? $request->ip());
+        $key = 'make-aplication:'.$project->id.'-'.($user?->id ?? $request->ip());
 
         $executed = RateLimiter::attempt(
             $key,
             $maxAttempts = 1,
-            function () use ($request,$project) {
-                if(isset($request->aplicationData()['isSelected'])){
-                    $pathExist = Aplication::where('id',$request->aplicationData()['isSelected'])->pluck('pathCv')->first();
+            function () use ($request, $project) {
+                if (isset($request->aplicationData()['isSelected'])) {
+                    $pathExist = Aplication::where('id', $request->aplicationData()['isSelected'])->pluck('pathCv')->first();
                 }
 
                 $aplication = Aplication::create([
-                    'user_id'=>$project->user_id,
-                    'recruiter_id'=>$project->recruiter_id,
-                    'project_id'=>$project->id,
-                    'pathCv'=>$pathExist ?? NULL,
-                    'name'=>$request->aplicationData()['name'],
-                    'surname'=>$request->aplicationData()['surname'],
-                    'phone'=>$request->aplicationData()['phone'],
-                    'email'=>$request->aplicationData()['email'],
-                    'aplication_user_id'=>auth()->check() && auth()->user()->hasRole('worker') ? auth()->user()->id : NULL,
+                    'user_id' => $project->user_id,
+                    'recruiter_id' => $project->recruiter_id,
+                    'project_id' => $project->id,
+                    'pathCv' => $pathExist ?? null,
+                    'name' => $request->aplicationData()['name'],
+                    'surname' => $request->aplicationData()['surname'],
+                    'phone' => $request->aplicationData()['phone'],
+                    'email' => $request->aplicationData()['email'],
+                    'aplication_user_id' => auth()->check() && auth()->user()->hasRole('worker') ? auth()->user()->id : null,
                 ]);
 
-                if(is_array($request->aplicationData()['files']) && count($request->aplicationData()['files']) && $aplication){
-                    $temporaryFiles = TemporaryFile::whereIn('folder',$request->aplicationData()['files'])->get();
-                    if($temporaryFiles->count()){
-                        foreach ($temporaryFiles as $file){
+                if (is_array($request->aplicationData()['files']) && count($request->aplicationData()['files']) && $aplication) {
+                    $temporaryFiles = TemporaryFile::whereIn('folder', $request->aplicationData()['files'])->get();
+                    if ($temporaryFiles->count()) {
+                        foreach ($temporaryFiles as $file) {
                             $aplication->addMedia(storage_path('app/public/temps/'.$file->folder.'/'.$file->filename))
                                 ->toMediaCollection('aplications_media');
                             rmdir(storage_path('app/public/temps/'.$file->folder));
@@ -587,12 +618,12 @@ class FrontController extends Controller
                         }
                     }
                 }
-                if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 1 && $request->aplicationData()['cv'] == 1){
+                if (isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 1 && $request->aplicationData()['cv'] == 1) {
                     //CV file
-                    if(is_array($request->aplicationData()['cvFile']) && count($request->aplicationData()['cvFile']) && $aplication){
-                        $temporaryFiles = TemporaryFile::whereIn('folder',$request->aplicationData()['cvFile'])->get();
-                        if($temporaryFiles->count()){
-                            foreach ($temporaryFiles as $file){
+                    if (is_array($request->aplicationData()['cvFile']) && count($request->aplicationData()['cvFile']) && $aplication) {
+                        $temporaryFiles = TemporaryFile::whereIn('folder', $request->aplicationData()['cvFile'])->get();
+                        if ($temporaryFiles->count()) {
+                            foreach ($temporaryFiles as $file) {
                                 $aplication->addMedia(storage_path('app/public/temps/'.$file->folder.'/'.$file->filename))
                                     ->toMediaCollection('aplications_cvFile');
                                 rmdir(storage_path('app/public/temps/'.$file->folder));
@@ -601,30 +632,30 @@ class FrontController extends Controller
                         }
                     }
                 }
-                if(isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 2 && $request->aplicationData()['cv'] == 1){
+                if (isset($request->aplicationData()['cvStandardType']) && $request->aplicationData()['cvStandardType'] == 2 && $request->aplicationData()['cv'] == 1) {
                     //CV generator
                     $cvClassic = CvClassic::firstOrNew(
                         ['worker_id' => auth()->id(), 'project_id' => $project->id]
                     );
                     $cvClassic->fill([
-                        'aplication_id'=>$aplication->id,
-                        'birthday'=>$request->aplicationData()['birthday'],
-                        'city'=>$request->aplicationData()['city'],
-                        'postal'=>$request->aplicationData()['postal'],
-                        'cvStandardType'=>$request->aplicationData()['cvStandardType'],
-                        'experiences'=>$request->aplicationData()['experiences'],
-                        'educations'=>$request->aplicationData()['educations'],
-                        'courses'=>$request->aplicationData()['courses'],
-                        'langs'=>$request->aplicationData()['langs'],
-                        'skills'=>$request->aplicationData()['skills'],
+                        'aplication_id' => $aplication->id,
+                        'birthday' => $request->aplicationData()['birthday'],
+                        'city' => $request->aplicationData()['city'],
+                        'postal' => $request->aplicationData()['postal'],
+                        'cvStandardType' => $request->aplicationData()['cvStandardType'],
+                        'experiences' => $request->aplicationData()['experiences'],
+                        'educations' => $request->aplicationData()['educations'],
+                        'courses' => $request->aplicationData()['courses'],
+                        'langs' => $request->aplicationData()['langs'],
+                        'skills' => $request->aplicationData()['skills'],
                     ]);
                     $cvClassic->save();
-                    if(isset($request->aplicationData()['photo']) && is_array($request->aplicationData()['photo']) && count($request->aplicationData()['photo']) && $cvClassic){
-                        $array = array_filter($request->aplicationData()['photo'], fn($item) => !(is_array($item) && array_key_exists('source', $item)));
+                    if (isset($request->aplicationData()['photo']) && is_array($request->aplicationData()['photo']) && count($request->aplicationData()['photo']) && $cvClassic) {
+                        $array = array_filter($request->aplicationData()['photo'], fn ($item) => ! (is_array($item) && array_key_exists('source', $item)));
                         $array = array_values($array);
-                        $temporaryFiles = TemporaryFile::whereIn('folder',$array)->get();
-                        if($temporaryFiles->count()){
-                            foreach ($temporaryFiles as $file){
+                        $temporaryFiles = TemporaryFile::whereIn('folder', $array)->get();
+                        if ($temporaryFiles->count()) {
+                            foreach ($temporaryFiles as $file) {
                                 $cvClassic->addMedia(storage_path('app/public/temps/'.$file->folder.'/'.$file->filename))
                                     ->toMediaCollection('aplications_cvClassic_photo');
                                 rmdir(storage_path('app/public/temps/'.$file->folder));
@@ -632,25 +663,25 @@ class FrontController extends Controller
                             }
                         }
                     }
-                    if($request->aplicationData()['templateCv'] && $request->aplicationData()['cv'] == 1 && !$request->aplicationData()['isSelected']){
+                    if ($request->aplicationData()['templateCv'] && $request->aplicationData()['cv'] == 1 && ! $request->aplicationData()['isSelected']) {
                         $previousLocale = App::getLocale();
                         $this->changeLangToGenerate(request()->get('cvLang'));
 
                         $viewName = "cvTemplates.{$request->aplicationData()['templateCv']}";
-                        if (!View::exists($viewName)) {
-                            abort(404, "Szablon PDF nie istnieje.");
+                        if (! View::exists($viewName)) {
+                            abort(404, 'Szablon PDF nie istnieje.');
                         }
                         $media = $cvClassic->getFirstMedia('aplications_cvClassic_photo');
                         $imageUrl = $media
                             ? $media->getPath()
                             : public_path('storage/cv/'.$request->aplicationData()['templateCv'].'/custom-avatar.png');
 
-                        $pdf = Pdf::loadView($viewName, ['data' => request()->all(),'image'=>$imageUrl]);
-                        $fileName = 'cv_' . time() . '.pdf';
-                        $filePath = 'pdf/' . $fileName;
+                        $pdf = Pdf::loadView($viewName, ['data' => request()->all(), 'image' => $imageUrl]);
+                        $fileName = 'cv_'.time().'.pdf';
+                        $filePath = 'pdf/'.$fileName;
                         Storage::disk('public')->put($filePath, $pdf->output());
                         $aplication->update([
-                            'pathCv'=>isset($filePath) ? Storage::url($filePath) : NULL,
+                            'pathCv' => isset($filePath) ? Storage::url($filePath) : null,
                         ]);
                         App::setLocale($previousLocale);
 
@@ -673,7 +704,8 @@ class FrontController extends Controller
         }
         session()->flash('flash.banner', __('translate.makeAplicationNotRegister'));
         session()->flash('flash.bannerStyle', 'success');
-        return to_route('front.projects.single',$project);
+
+        return to_route('front.projects.single', $project);
     }
 
     private function changeLangToGenerate($cvLang)
@@ -694,19 +726,20 @@ class FrontController extends Controller
     {
         $captchaText = Str::random(6);
         session(['captcha_text' => $captchaText]);
+
         return response()->json(['captchaText' => $captchaText]);
     }
 
     public function getChildsCategoryWitoutDetail()
     {
-        return Cache::rememberForever('categoriesWithoutDetail', function() {
+        return Cache::rememberForever('categoriesWithoutDetail', function () {
             return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
         });
     }
 
     public function getCategorySub($categoryId)
     {
-        return Cache::remember('category_sub_'.$categoryId, 3600, function() use ($categoryId) {
+        return Cache::remember('category_sub_'.$categoryId, 3600, function () use ($categoryId) {
             $categorySubs = Project::all()
                 ->map(function ($item) {
                     return [
@@ -718,12 +751,12 @@ class FrontController extends Controller
                             : $item->category,
                     ];
                 })
-                ->filter(fn($item) => isset($item['category']['value']) && $item['category']['value'] == $categoryId)
+                ->filter(fn ($item) => isset($item['category']['value']) && $item['category']['value'] == $categoryId)
                 ->pluck('categorySub')
                 ->filter()
                 ->unique('value')
                 ->values()
-                ->map(fn($cat) => [
+                ->map(fn ($cat) => [
                     'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
                     'value' => $cat['value'],
                     'allTranslations' => $cat['allTranslations']['title'],
@@ -736,7 +769,7 @@ class FrontController extends Controller
 
     public function getProfessions($categorySubId)
     {
-        return Cache::remember('professions_'.$categorySubId, 3600, function() use ($categorySubId) {
+        return Cache::remember('professions_'.$categorySubId, 3600, function () use ($categorySubId) {
             $professions = Project::all()
                 ->map(function ($item) {
                     return [
@@ -748,12 +781,12 @@ class FrontController extends Controller
                             : $item->categorySub,
                     ];
                 })
-                ->filter(fn($item) => isset($item['categorySub']['value']) && $item['categorySub']['value'] == $categorySubId)
+                ->filter(fn ($item) => isset($item['categorySub']['value']) && $item['categorySub']['value'] == $categorySubId)
                 ->pluck('profession')
                 ->filter()
                 ->unique('value')
                 ->values()
-                ->map(fn($prof) => [
+                ->map(fn ($prof) => [
                     'name' => $prof['allTranslations']['title'][app()->getLocale()] ?? $prof['name'],
                     'value' => $prof['value'],
                     'allTranslations' => $prof['allTranslations']['title'],
@@ -766,7 +799,7 @@ class FrontController extends Controller
 
     public function getPositions($professionId)
     {
-        return Cache::remember('positions_'.$professionId, 3600, function() use ($professionId) {
+        return Cache::remember('positions_'.$professionId, 3600, function () use ($professionId) {
             $positions = Project::all()
                 ->map(function ($item) {
                     return [
@@ -778,12 +811,12 @@ class FrontController extends Controller
                             : $item->profession,
                     ];
                 })
-                ->filter(fn($item) => isset($item['profession']['value']) && $item['profession']['value'] == $professionId)
+                ->filter(fn ($item) => isset($item['profession']['value']) && $item['profession']['value'] == $professionId)
                 ->pluck('position')
                 ->filter()
                 ->unique('value')
                 ->values()
-                ->map(fn($pos) => [
+                ->map(fn ($pos) => [
                     'name' => $pos['allTranslations']['title'][app()->getLocale()] ?? $pos['name'],
                     'value' => $pos['value'],
                     'allTranslations' => $pos['allTranslations']['title'],
@@ -799,24 +832,25 @@ class FrontController extends Controller
         $previousLocale = App::getLocale();
         $this->changeLangToGenerate(request()->get('cvLang'));
         $viewName = "cvTemplates.{$templateId}";
-        if (!View::exists($viewName)) {
-            abort(404, "Szablon PDF nie istnieje.");
+        if (! View::exists($viewName)) {
+            abort(404, 'Szablon PDF nie istnieje.');
         }
-        $cvClassic = CvClassic::where('worker_id',auth()->user()->id)->first();
-        if($cvClassic){
+        $cvClassic = CvClassic::where('worker_id', auth()->user()->id)->first();
+        if ($cvClassic) {
             $media = $cvClassic->getFirstMedia('aplications_cvClassic_photo');
             $imageUrl = $media
                 ? $media->getPath()
                 : public_path('storage/cv/'.$templateId.'/custom-avatar.png');
         } else {
-                $imageUrl = public_path('storage/cv/'.$templateId.'/custom-avatar.png');
+            $imageUrl = public_path('storage/cv/'.$templateId.'/custom-avatar.png');
         }
-        $pdf = Pdf::loadView($viewName, ['data' => request()->all(),'image'=>$imageUrl]);
-        $fileName = 'cv_' . time() . '.pdf';
-        $filePath = 'pdfGenerateTemporary/' . $fileName;
+        $pdf = Pdf::loadView($viewName, ['data' => request()->all(), 'image' => $imageUrl]);
+        $fileName = 'cv_'.time().'.pdf';
+        $filePath = 'pdfGenerateTemporary/'.$fileName;
         Storage::disk('public')->put($filePath, $pdf->output());
         $url = Storage::url($filePath); // Generuje URL publiczny
         App::setLocale($previousLocale);
+
         return response()->json([
             'message' => 'Plik PDF został zapisany!',
             'url' => $url, // Zwróć URL do pliku
@@ -828,7 +862,7 @@ class FrontController extends Controller
     public function deletePdf()
     {
         $filePath = request()->get('file');
-        if($filePath){
+        if ($filePath) {
             if (Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);
             }
@@ -839,12 +873,24 @@ class FrontController extends Controller
 
     public function aboutView()
     {
-        return inertia()->render('Front/About');
+        $page = Page::findOrFail(14);
+        return inertia()->render('Front/About',
+        [
+            'page' => $page ? new PageResource($page) : null,
+        ]
+        );
     }
 
     public function ReadMore()
     {
-        return inertia()->render('Front/ReadMore');
+        $page = Page::where('id', 13)->first(); // Załóżmy ID dla Privacy
+
+
+        return inertia()->render('Front/ReadMore',
+        [
+            'page' => $page ? new PageResource($page) : null,
+        ]
+        );
     }
 
     public function Partners()
@@ -854,10 +900,10 @@ class FrontController extends Controller
             ->get()
             ->map(function ($partner) {
                 return [
-                    'id'    => $partner->id,
-                    'name'  => $partner->name,
-                    'link'  => $partner->link,
-                    'logo'  => $partner->getFirstMediaUrl('partner_logo'),  // ⬅️ logo
+                    'id' => $partner->id,
+                    'name' => $partner->name,
+                    'link' => $partner->link,
+                    'logo' => $partner->getFirstMediaUrl('partner_logo'),  // ⬅️ logo
                 ];
             });
         $categories = FoundationCategory::query()
@@ -866,11 +912,10 @@ class FrontController extends Controller
             ->get()
             ->map(function ($cat) {
                 return [
-                    'id'    => $cat->id,
+                    'id' => $cat->id,
                     'label' => $cat->getTranslation('name', app()->getLocale()),
                 ];
             });
-
 
         $foundations = Foundation::where('active', true)
             ->orderBy('id')
@@ -882,16 +927,21 @@ class FrontController extends Controller
                     'country' => $f->country,
                     'category' => $f->category?->allTranslations['name'][app()->getLocale()] ?? null,
                     'categoryId' => $f->category_id['value'] ?? null,
-                    'logo'  => $f->getFirstMediaUrl('foundation_logo'),  // ⬅️ logo
+                    'logo' => $f->getFirstMediaUrl('foundation_logo'),  // ⬅️ logo
                     'address_country' => $f->address_country,
                     'coords' => [$f->longitude, $f->latitude],  // [lng, lat]
                 ];
             });
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = (new Helper)->makeCountriesToSelect();
         $foundationsCount = Foundation::where('active', true)->count();
+
+        $page = Page::findOrFail(10);
+
+
         return inertia()->render('Front/Partners', [
             'partners' => $partners,
             'categories' => $categories,
+            'page' => $page ? new PageResource($page) : null,
             'foundations' => $foundations,
             'countries' => $countries,
             'foundationsCount' => $foundationsCount,
@@ -916,15 +966,12 @@ class FrontController extends Controller
             'address_city' => $foundation->address_city,
             'address_postcode' => $foundation->address_postcode,
 
-
             // socials
             'facebook_url' => $foundation->facebook_url,
             'instagram_url' => $foundation->instagram_url,
             'linkedin_url' => $foundation->linkedin_url,
             'x_url' => $foundation->x_url,
             'tiktok_url' => $foundation->tiktok_url,
-
-
 
             // centrum mapy
             'coords' => [
@@ -945,8 +992,11 @@ class FrontController extends Controller
             'banner' => $foundation->getFirstMediaUrl('foundation_banner') ?? null,
         ];
 
+        $page = Page::findOrFail(15);
+
         return inertia()->render('Front/Foundation', [
-            'foundation' => $data
+            'foundation' => $data,
+            'page' => $page ? new PageResource($page) : null,
         ]);
     }
 }

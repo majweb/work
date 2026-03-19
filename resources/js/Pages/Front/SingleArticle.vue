@@ -98,14 +98,13 @@ function shareOnInstagram() {
 
 <template>
     <FrontLayout
-        :title="article.title || __('translate.article')"
-        :description="article.title || ''"
-        :keywords="__('translate.meta_keywords_default')"
+        :title="article.meta_title || __('translate.article')"
+        :description="article.meta_description || ''"
+        :keywords="article.meta_keywords"
+        :image="article.photo_fb"
+        :url="route('front.articles.single', article.id)"
         type="article"
-        :publishedAt="moment(article.created_at).format('YYYY-MM-DD')"
-        :modifiedAt="moment(article.created_at).format('YYYY-MM-DD')"
         :author="article.user?.name"
-        image="https://via.placeholder.com/1200x630.png?text=Article+Image"
     >
         <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

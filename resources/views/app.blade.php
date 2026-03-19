@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', getLocalBrowserLang()) }}">
     <head>
+        @if(isset($page['props']['integrations']['gtm_head']) && $page['props']['integrations']['gtm_head']['active'])
+            {!! $page['props']['integrations']['gtm_head']['value'] !!}
+        @endif
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title inertia>{{ config('app.name', 'Work') }}</title>
+{{--        <title inertia>{{ config('app.name', 'Work') }}</title>--}}
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net" />
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -28,5 +31,8 @@
         @mediaLibraryStyles
         @mediaLibraryScripts
         <script defer src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API')}}&libraries=places"></script>
+        @if(isset($page['props']['integrations']['gtm_body']) && $page['props']['integrations']['gtm_body']['active'])
+            {!! $page['props']['integrations']['gtm_body']['value'] !!}
+        @endif
     </body>
 </html>

@@ -75,12 +75,13 @@ class DatabaseSeeder extends Seeder
             DetailProjectGastro2Seeder::class,
             DetailProjectUsluga2Seeder::class,
             DetailProjectRolnictwo2Seeder::class,
-//             Detale
+            //             Detale
 
             AdminSeeder::class,
             CategoryImageSeeder::class,
-            FoundationCategorySeeder::class
-            ]);
+            FoundationCategorySeeder::class,
+            IntegrationSeeder::class,
+        ]);
 
     }
 }

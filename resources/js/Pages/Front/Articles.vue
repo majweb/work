@@ -22,11 +22,19 @@ const props = defineProps({
     categories: Object,
     most3Articles: Array,
     grouped: Array,
+    page: Object,
 });
 
 </script>
 <template>
-    <FrontLayout :title="__('translate.articles')">
+    <FrontLayout
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.articles')"
+        type="website"
+    >
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
 

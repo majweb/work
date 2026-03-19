@@ -68,15 +68,17 @@ const submit = () => {
 
 <template>
     <FrontLayout
-        :title="page.title"
-        :image="page.image"
-        :keywords="page.keywords"
-        :description="page.description"
-        :imageUrl="imageUrl"
+        :title="props.page.title"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :imageUrl="props.imageUrl"
+        :url="route('front')"
+        type="website"
     >
         <div class="relative min-h-screen pt-32 pb-24 overflow-hidden">
             <!-- Background Graphic -->
-            <div class="absolute inset-0 bg-[url('/images/hero-bg.svg')] bg-no-repeat bg-cover bg-center opacity-[0.03]"></div>
+            <div class="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-[0.03]"></div>
 
             <div class="max-w-9xl mx-auto px-4 relative z-10">
                 <!-- Search Form Card -->

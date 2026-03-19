@@ -8,7 +8,8 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const props = defineProps({
-    firm: Object
+    firm: Object,
+    page: Object
 });
 
 const isClient = ref(false);
@@ -70,7 +71,14 @@ function closeLightbox() {
 </script>
 
 <template>
-    <FrontLayout :title="__('translate.firm')">
+    <FrontLayout
+        :title="props.page.title + ' - ' + firm?.name"
+        :image="props.page.image"
+        :keywords="props.page.keywords"
+        :description="props.page.description"
+        :url="route('front.firms.single',firm)"
+        type="website"
+    >
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- TOP BAR -->
