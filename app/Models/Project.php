@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use App\Casts\TimeCast;
-use App\Models\Candidate;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 
 class Project extends Model
 {
@@ -55,47 +52,49 @@ class Project extends Model
         'external_company_id',
         'is_active',
         'views_count',
-        'image_generator'
+        'image_generator',
+        'lat',
+        'lng',
     ];
 
     protected $casts = [
-        'is_active'=>'boolean',
-        'title'=>'array',
-        'category'=>'array',
-        'currency'=>'array',
-        'countryWork'=>'array',
-        'categorySub'=>'array',
-        'payoutMode'=>'array',
-        'profession'=>'array',
-        'workLoad'=>'array',
-        'position'=>'array',
-        'workingMode'=>'array',
-        'typeOfContract'=>'array',
-        'days'=>'array',
-        'paySystem'=>'array',
-        'country'=>'array',
-        'workingPlace'=>'array',
-        'offer'=>'array',
-        'wait'=>'array',
-        'experience'=>'array',
-        'detailProjects'=>'array',
-        'welcome'=>'array',
-        'cv'=>'array',
-        'other_recruits'=>'array',
+        'is_active' => 'boolean',
+        'title' => 'array',
+        'category' => 'array',
+        'currency' => 'array',
+        'countryWork' => 'array',
+        'categorySub' => 'array',
+        'payoutMode' => 'array',
+        'profession' => 'array',
+        'workLoad' => 'array',
+        'position' => 'array',
+        'workingMode' => 'array',
+        'typeOfContract' => 'array',
+        'days' => 'array',
+        'paySystem' => 'array',
+        'country' => 'array',
+        'workingPlace' => 'array',
+        'offer' => 'array',
+        'wait' => 'array',
+        'experience' => 'array',
+        'detailProjects' => 'array',
+        'welcome' => 'array',
+        'cv' => 'array',
+        'other_recruits' => 'array',
         'basicSalaryFrom' => 'float',
         'basicSalaryTo' => 'float',
         'bonusSalaryFrom' => 'float',
         'bonusSalaryTo' => 'float',
-        'hoursFrom'=>TimeCast::class,
-        'hoursTo'=>TimeCast::class,
+        'lat' => 'float',
+        'lng' => 'float',
+        'hoursFrom' => TimeCast::class,
+        'hoursTo' => TimeCast::class,
     ];
 
     protected $attributes = [
         'other_recruits' => '[]',
         'cv' => '[]',
     ];
-
-
 
     public function user(): BelongsTo
     {
@@ -106,18 +105,22 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'recruiter_id');
     }
+
     public function shiftWork(): BelongsTo
     {
-        return $this->belongsTo(ShiftWork::class,'shiftWork');
+        return $this->belongsTo(ShiftWork::class, 'shiftWork');
     }
+
     public function education(): BelongsTo
     {
-        return $this->belongsTo(Education::class,'education');
+        return $this->belongsTo(Education::class, 'education');
     }
+
     public function detailprojects()
     {
-        return $this->belongsToMany(DetailProject::class,'detailproject_project');
+        return $this->belongsToMany(DetailProject::class, 'detailproject_project');
     }
+
     public function aplications(): HasMany
     {
         return $this->hasMany(Aplication::class);
@@ -160,17 +163,16 @@ class Project extends Model
     /**
      * Bezpieczna metoda dostępu do tłumaczeń pól
      *
-     * @param string $field Nazwa pola
-     * @param string|null $locale Kod języka (null dla aktualnego języka)
-     * @param string $default Wartość domyślna
-     * @return string
+     * @param  string  $field  Nazwa pola
+     * @param  string|null  $locale  Kod języka (null dla aktualnego języka)
+     * @param  string  $default  Wartość domyślna
      */
     public function getTranslatedAttribute(string $field, ?string $locale = null, string $default = 'Brak nazwy'): string
     {
         $locale = $locale ?? app()->getLocale();
         $value = $this->getAttribute($field);
 
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return $value ?: $default;
         }
 
@@ -179,7 +181,8 @@ class Project extends Model
         }
 
         $firstKey = array_key_first($value);
-        return ($firstKey !== null && !empty($value[$firstKey])) ? $value[$firstKey] : $default;
+
+        return ($firstKey !== null && ! empty($value[$firstKey])) ? $value[$firstKey] : $default;
     }
 
     public function scopeFeatured(Builder $query)
@@ -193,8 +196,8 @@ class Project extends Model
         }]);
     }
 
-        public function scopeActive(Builder $query)
-        {
-            return $query->where('is_active', true);
-        }
+    public function scopeActive(Builder $query)
+    {
+        return $query->where('is_active', true);
+    }
 }

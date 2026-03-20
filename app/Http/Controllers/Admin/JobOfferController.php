@@ -378,6 +378,8 @@ class JobOfferController extends Controller
             'position' => $request->projectData()['position'],
             'countryWork' => $request->projectData()['countryWork'],
             'cityWork' => $request->projectData()['cityWork'],
+            'lat' => $request->projectData()['lat'] ?? $project->lat,
+            'lng' => $request->projectData()['lng'] ?? $project->lng,
             'streetWork' => $request->projectData()['streetWork'],
             'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
             'postalWork' => $request->projectData()['postalWork'],
@@ -492,6 +494,8 @@ class JobOfferController extends Controller
                     'streetWorkNumber' => ['required', 'string', 'max:100'],
                     'postalWork' => ['required', 'string', 'max:100'],
                     'cityWork' => ['required', 'string', 'max:100'],
+                    'lat' => ['nullable', 'numeric'],
+                    'lng' => ['nullable', 'numeric'],
 
                     // Wykształcenie
                     'education' => ['nullable','exists:App\Models\Education,id'],

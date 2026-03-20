@@ -158,6 +158,8 @@ const form = useForm({
     streetWorkNumber: '',
     postalWork: '',
     cityWork: '',
+    lat: '',
+    lng: '',
     cv: [],
     questions: [],
     external_company_id: '',
@@ -394,6 +396,12 @@ const fillAddressFromGeocoder = (place) => {
     const postcodeContext = context.find(c => c.id.startsWith('postcode.'));
     if (postcodeContext) {
         form.postalWork = postcodeContext.text;
+    }
+
+    // Współrzędne
+    if (place.center) {
+        form.lng = place.center[0];
+        form.lat = place.center[1];
     }
 
     // Jeśli nie ma kodu pocztowego w context, spróbuj wyciągnąć z place_name

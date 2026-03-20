@@ -9,6 +9,16 @@ class projectObserver
 {
     private function clearCategoriesCache(Project $project): void
     {
+        // Czyścimy cache współrzędnych dla miasta tego projektu
+        if ($project->cityWork) {
+            Cache::forget('city_coords_'.md5($project->cityWork));
+        }
+
+        // Jeśli miasto zostało zmienione, czyścimy też stare miasto
+        if ($project->wasChanged('cityWork')) {
+            Cache::forget('city_coords_'.md5($project->getOriginal('cityWork')));
+        }
+
         // Czyść cache dla kraju
         Cache::forget('workingModes');
         Cache::forget('experiences');

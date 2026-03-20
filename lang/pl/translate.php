@@ -361,6 +361,8 @@ return [
     'placeholder' => 'Wybierz opcję',
     'placeholderCountry' => 'Wybierz kraj',
     'placeholderCity' => 'Wybierz miasto',
+    'distance' => 'Odległość (km)',
+    'placeholderDistance' => 'Wybierz odległość',
     'placeholderCategory' => 'Wybierz branżę',
     'noOptions' => 'Lista jest pusta',
     'noResult' => 'Nie znaleziono żadnych elementów',

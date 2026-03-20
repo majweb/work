@@ -162,6 +162,8 @@ const form = useForm({
     streetWorkNumber: props.project.streetWorkNumber,
     postalWork: props.project.postalWork,
     cityWork: props.project.cityWork,
+    lat: props.project.lat,
+    lng: props.project.lng,
     cv: props.project.cv ?? [],
     questions: props.project.questions ?? [],
     external_company_id: props.externalCompanies.find(
@@ -420,6 +422,12 @@ const fillAddressFromGeocoder = (place) => {
         if (postcodeMatch) {
             form.postalWork = postcodeMatch[0];
         }
+    }
+
+    // Dodaj współrzędne
+    if (place.center) {
+        form.lng = place.center[0];
+        form.lat = place.center[1];
     }
 };
 

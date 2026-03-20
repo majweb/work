@@ -21,6 +21,8 @@ const props = defineProps({
     categoryFront: Object,
     cityFront: Object,
     page: Object,
+    distanceOptions: Array,
+    distanceFront: Object,
 });
 
 const page = usePage();
@@ -45,6 +47,23 @@ const form = useForm({
     experience: undefined,
     typeOfContract: undefined,
     workLoad: undefined,
+    distance: props.distanceFront ?? undefined,
+    lat: props.cityFront?.lat ?? undefined,
+    lng: props.cityFront?.lng ?? undefined,
+});
+
+watch(() => props.cityFront, (newCity) => {
+    if (newCity) {
+        form.city = newCity;
+        form.lat = newCity.lat;
+        form.lng = newCity.lng;
+    }
+}, { deep: true });
+
+watch(() => props.distanceFront, (newDistance) => {
+    if (newDistance) {
+        form.distance = newDistance;
+    }
 });
 
 onMounted(async () => {
@@ -91,6 +110,7 @@ watch(() => form.country, async (newCountry) => {
         form.categorySub = null;
         form.profession = null;
         form.position = null;
+        form.distance = null;
         return;
     }
 
@@ -173,12 +193,24 @@ watch(() => form.profession, async (newProfession) => {
     }
 });
 
+// Obsługa zmiany miasta
+watch(() => form.city, (newCity) => {
+    if (!newCity) {
+        form.distance = null;
+        form.lat = null;
+        form.lng = null;
+    } else {
+        form.lat = newCity.lat;
+        form.lng = newCity.lng;
+    }
+});
+
 const toggleFilters = () => {
     showFilters.value = !showFilters.value;
 };
 
 const isFilterActive = computed(() => {
-    return Object.values(form).some(value => value !== undefined && value !== null);
+    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.workingMode || form.experience || form.typeOfContract || form.workLoad || (form.distance && form.distance.value));
 });
 
 
@@ -186,26 +218,35 @@ import { pickBy } from 'lodash';
 
 const submit = () => {
     const transformedData = {
-        country: form.country?.value || null,
-        city: form.city?.value || null,
-        category: form.category?.value || null,
-        categorySub: form.categorySub?.value || null,
-        profession: form.profession?.value || null,
-        position: form.position?.value || null,
-        workingMode: form.workingMode?.value || null,
-        experience: form.experience?.value || null,
-        typeOfContract: form.typeOfContract?.value || null,
-        workLoad: form.workLoad?.value || null
+        country: form.country?.value ?? null,
+        city: form.city?.value ?? null,
+        category: form.category?.value ?? null,
+        categorySub: form.categorySub?.value ?? null,
+        profession: form.profession?.value ?? null,
+        position: form.position?.value ?? null,
+        workingMode: form.workingMode?.value ?? null,
+        experience: form.experience?.value ?? null,
+        typeOfContract: form.typeOfContract?.value ?? null,
+        workLoad: form.workLoad?.value ?? null,
+        distance: (form.distance?.value !== undefined && form.distance?.value !== null) ? form.distance.value : null,
     };
 
-    const filteredData = pickBy(transformedData);
+    const filteredData = pickBy(transformedData, (value) => value !== null && value !== undefined && value !== '');
 
     router.get(route('front.projects'),filteredData, {
         preserveState: true,
         replace: true,
         preserveScroll: true,
+        onStart: () => {
+            isSearching.value = true;
+        },
+        onFinish: () => {
+            isSearching.value = false;
+        },
     });
 };
+
+const isSearching = ref(false);
 
 </script>
 <template>
@@ -237,9 +278,16 @@ const submit = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                                    class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                    :disabled="isSearching"
                                 >
-                                    {{ __('translate.search') }}
+                                    <template v-if="isSearching">
+                                        <div class="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                        {{ __('translate.searching') }}
+                                    </template>
+                                    <template v-else>
+                                        {{ __('translate.search') }}
+                                    </template>
                                 </button>
                                 <Link v-if="isFilterActive"
                                       :href="route('front.projects')"
@@ -250,7 +298,7 @@ const submit = () => {
                         </div>
 
                         <!-- Panel filtrów -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6" :class="{'lg:grid-cols-4': form.city}">
                             <!-- Select Country -->
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
@@ -298,6 +346,38 @@ const submit = () => {
                                 </multiselect>
                                 <InputError :message="form.errors.city" class="mt-2"/>
                             </div>
+
+                            <!-- Select Distance -->
+                            <transition
+                                enter-active-class="transition-all duration-500 ease-out"
+                                enter-from-class="transform scale-90 opacity-0 -translate-x-4"
+                                enter-to-class="transform scale-100 opacity-100 translate-x-0"
+                                leave-active-class="transition-all duration-300 ease-in"
+                                leave-from-class="transform scale-100 opacity-100 translate-x-0"
+                                leave-to-class="transform scale-90 opacity-0 -translate-x-4"
+                            >
+                                <div v-if="form.city" class="space-y-2">
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.distance') }}</label>
+                                    <multiselect
+                                        v-model="form.distance"
+                                        :options="props.distanceOptions"
+                                        :disabled="!form.city"
+                                        track-by="value"
+                                        label="name"
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :placeholder="__('translate.placeholderDistance')"
+                                        class="custom-multiselect"
+                                    >
+                                        <template #noResult>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                    </multiselect>
+                                    <InputError :message="form.errors.distance" class="mt-2"/>
+                                </div>
+                            </transition>
 
                             <!-- Select Category -->
                             <div class="space-y-2">
@@ -487,7 +567,15 @@ const submit = () => {
                     </form>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-4 relative">
+                    <!-- Overlay loading spinner -->
+                    <div v-if="isSearching" class="absolute inset-0 z-50 flex items-center justify-center bg-white/50 backdrop-blur-[2px] rounded-[3rem]">
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="w-12 h-12 border-4 border-[#0A2C5C] border-t-transparent rounded-full animate-spin"></div>
+                            <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest animate-pulse">{{ __('translate.searching') }}</span>
+                        </div>
+                    </div>
+
                     <div v-if="props.projects.total" class="space-y-4">
                         <div v-for="(project) in props.projects.data" :key="project.id"
                              class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6 relative overflow-hidden"

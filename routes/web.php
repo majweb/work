@@ -33,6 +33,7 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Worker\WorkerController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
+use App\Services\DictionaryService;
 use App\Models\Country;
 use App\Models\Page;
 use App\Services\Helper;
@@ -81,7 +82,7 @@ Route::get('/cities/{countryCode}', LocationController::class)
 Route::get('/categories/{countryCode}', CategoryControllerInvoke::class)
     ->name('categories.byCountry');
 
-Route::get('/', function () {
+Route::get('/', function (DictionaryService $dictionaryService) {
     $page = Page::findOrFail(1);
     $countries = (new Helper)->makeCountriesToSelectHasProjects();
     $imageUrl = Country::getRandomImageFromBrowserLocale();
@@ -91,6 +92,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'countries' => $countries,
         'imageUrl' => $imageUrl,
+        'distanceOptions' => $dictionaryService->getDistanceOptions(),
     ]);
 })->name('front');
 

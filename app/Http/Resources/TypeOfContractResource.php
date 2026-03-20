@@ -15,7 +15,7 @@ class TypeOfContractResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'=>$this->id,
+            'id'=>$this->id ?? $this->value,
             'name'=>$this->name,
             'allTranslations'=>$this->getTranslations()
         ];

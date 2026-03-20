@@ -5,37 +5,17 @@ namespace App\Http\Controllers\Firm;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
-use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\OtherRecruitsResource;
-use App\Http\Resources\PayModesResource;
-use App\Http\Resources\TypeOfContractResource;
-use App\Http\Resources\WorkingModesResource;
-use App\Http\Resources\WorkLoadResource;
 use App\Models\Aplication;
 use App\Models\Category;
-use App\Models\CvType;
-use App\Models\Day;
-use App\Models\Education;
-use App\Models\Experience;
 use App\Models\ExternalCompany;
-use App\Models\Offer;
-use App\Models\PayoutMode;
-use App\Models\PaySystem;
 use App\Models\Project;
-use App\Models\ShiftWork;
-use App\Models\TypeOfContract;
 use App\Models\User;
-use App\Models\Wait;
-use App\Models\Welcome;
-use App\Models\WorkingMode;
-use App\Models\WorkingPlace;
-use App\Models\WorkLoad;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class ProjectController extends Controller
 {
@@ -57,24 +37,24 @@ class ProjectController extends Controller
             'category' => ['nullable', 'integer'],
             'categorySub' => ['nullable', 'integer'],
             'profession' => ['nullable', 'integer'],
-            'positionSelect' => ['nullable', 'integer']
+            'positionSelect' => ['nullable', 'integer'],
         ]);
         $query = Project::query()
             ->with('recruit')
             ->withCount([
                 'aplications',
-                'aplications as yes_count' => function($q) {
+                'aplications as yes_count' => function ($q) {
                     $q->where('status', 'yes');
                 },
-                'aplications as no_count' => function($q) {
+                'aplications as no_count' => function ($q) {
                     $q->where('status', 'no');
                 },
-                'aplications as maybe_count' => function($q) {
+                'aplications as maybe_count' => function ($q) {
                     $q->where('status', 'maybe');
                 },
-                'aplications as new_count' => function($q) {
+                'aplications as new_count' => function ($q) {
                     $q->whereNull('status');
-                }
+                },
             ])
             ->where('user_id', auth()->user()->id);
 
@@ -100,8 +80,8 @@ class ProjectController extends Controller
         // Nowe filtry
         $query->when(request()->filled('position'), function ($q) {
             $position = request('position');
-            $q->where(function($query) use ($position) {
-                $query->whereRaw('LOWER(JSON_EXTRACT(position, "$.name")) LIKE ?', ['%' . strtolower($position) . '%']);
+            $q->where(function ($query) use ($position) {
+                $query->whereRaw('LOWER(JSON_EXTRACT(position, "$.name")) LIKE ?', ['%'.strtolower($position).'%']);
             });
         });
 
@@ -111,7 +91,7 @@ class ProjectController extends Controller
 
         $query->when(request()->filled('city'), function ($q) {
             $city = request('city');
-            $q->where('cityWork', 'like', '%' . $city . '%');
+            $q->where('cityWork', 'like', '%'.$city.'%');
         });
 
         $query->when(request()->filled('date'), function ($q) {
@@ -148,7 +128,7 @@ class ProjectController extends Controller
         // Statystyki ogólne dla nagłówka
         $stats = [
             'total_projects' => Project::where('user_id', auth()->id())->count(),
-            'total_aplications' => Aplication::whereHas('project', function($q) {
+            'total_aplications' => Aplication::whereHas('project', function ($q) {
                 $q->where('user_id', auth()->id());
             })->count(),
             'active_projects' => Project::where('user_id', auth()->id())->where('is_active', true)->count(),
@@ -190,7 +170,7 @@ class ProjectController extends Controller
             'projects' => $projects,
             'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect']),
             'categories' => $categories,
-            'stats' => $stats
+            'stats' => $stats,
         ]);
     }
 
@@ -201,7 +181,7 @@ class ProjectController extends Controller
     {
         Gate::authorize('view', [User::class, Project::class]);
         $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
 
         return inertia()->render('Project/Create', array_merge($dictionaryService->getAllProjectDictionaries(), [
@@ -227,10 +207,10 @@ class ProjectController extends Controller
                 ?? $request->projectData()['countryWork']['name']
                 ?? null;
 
-            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
-                ($countryTitle ? $countryTitle . ', ' : '') .
-                $request->projectData()['cityWork'] . ', ' .
-                $request->projectData()['basicSalaryFrom'] . ' ' .
+            $title[$lang] = ($posTitle ? $posTitle.', ' : '').
+                ($countryTitle ? $countryTitle.', ' : '').
+                $request->projectData()['cityWork'].', '.
+                $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'];
         }
         $project = Project::create([
@@ -266,6 +246,8 @@ class ProjectController extends Controller
             'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
+            'lat' => $request->projectData()['lat'],
+            'lng' => $request->projectData()['lng'],
             'user_id' => auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
@@ -301,18 +283,18 @@ class ProjectController extends Controller
         Gate::authorize('view', $project);
         $project->loadCount([
             'aplications',
-            'aplications as yes_count' => function($q) {
+            'aplications as yes_count' => function ($q) {
                 $q->where('status', 'yes');
             },
-            'aplications as no_count' => function($q) {
+            'aplications as no_count' => function ($q) {
                 $q->where('status', 'no');
             },
-            'aplications as maybe_count' => function($q) {
+            'aplications as maybe_count' => function ($q) {
                 $q->where('status', 'maybe');
             },
-            'aplications as new_count' => function($q) {
+            'aplications as new_count' => function ($q) {
                 $q->whereNull('status');
-            }
+            },
         ]);
         $project->load(['recruit:id,name', 'shiftWork:id,name', 'education:id,name', 'externalCompany:id,name,abbreviation']);
 
@@ -320,7 +302,7 @@ class ProjectController extends Controller
         $recruits = $project->user->recruits()->whereNull('user_blocked')->get();
 
         // Dodaj samego właściciela firmy (Marcina) do listy, jeśli go tam nie ma
-        if (!$recruits->contains('id', $project->user_id)) {
+        if (! $recruits->contains('id', $project->user_id)) {
             $recruits->push($project->user);
         }
 
@@ -335,35 +317,35 @@ class ProjectController extends Controller
      */
     public function edit(DictionaryService $dictionaryService, Project $project)
     {
-        Gate::authorize('update',$project);
-        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->id)->latest()->get();
-        $project->load('detailprojects','questions');
+        Gate::authorize('update', $project);
+        $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
+        $project->load('detailprojects', 'questions');
         $dictionaries = $dictionaryService->getAllProjectDictionaries();
 
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
 
         return inertia()->render('Project/Edit',
             [
-                'categories' =>$dictionaries['categories'],
-                'currencies' =>$currencies,
-                'countries' =>$countries,
-                'workingModes' =>$dictionaries['workingModes'],
-                'workingPlaces' =>$dictionaries['workingPlaces'],
-                'typesOfContract' =>$dictionaries['typesOfContract'],
-                'workLoads' =>$dictionaries['workLoads'],
-                'payoutModes' =>$dictionaries['payoutModes'],
-                'paySystems' =>$dictionaries['paySystems'],
-                'days' =>$dictionaries['days'],
-                'shiftWorks' =>$dictionaries['shiftWorks'],
-                'offers' =>$dictionaries['offers'],
-                'waits' =>$dictionaries['waits'],
-                'experiences' =>$dictionaries['experiences'],
-                'welcomes' =>$dictionaries['welcomes'],
-                'educations' =>$dictionaries['educations'],
-                'project' =>$project,
-                'cvs' =>$dictionaries['cvs'],
-                'externalCompanies' =>$externalCompanies,
+                'categories' => $dictionaries['categories'],
+                'currencies' => $currencies,
+                'countries' => $countries,
+                'workingModes' => $dictionaries['workingModes'],
+                'workingPlaces' => $dictionaries['workingPlaces'],
+                'typesOfContract' => $dictionaries['typesOfContract'],
+                'workLoads' => $dictionaries['workLoads'],
+                'payoutModes' => $dictionaries['payoutModes'],
+                'paySystems' => $dictionaries['paySystems'],
+                'days' => $dictionaries['days'],
+                'shiftWorks' => $dictionaries['shiftWorks'],
+                'offers' => $dictionaries['offers'],
+                'waits' => $dictionaries['waits'],
+                'experiences' => $dictionaries['experiences'],
+                'welcomes' => $dictionaries['welcomes'],
+                'educations' => $dictionaries['educations'],
+                'project' => $project,
+                'cvs' => $dictionaries['cvs'],
+                'externalCompanies' => $externalCompanies,
             ]);
     }
 
@@ -372,7 +354,7 @@ class ProjectController extends Controller
      */
     public function update(StoreProject $request, Project $project)
     {
-        Gate::authorize('update',$project);
+        Gate::authorize('update', $project);
 
         $title = [];
         foreach (config('langsShorts') as $lang) {
@@ -384,10 +366,10 @@ class ProjectController extends Controller
                 ?? $request->projectData()['countryWork']['name']
                 ?? null;
 
-            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
-                ($countryTitle ? $countryTitle . ', ' : '') .
-                $request->projectData()['cityWork'] . ', ' .
-                $request->projectData()['basicSalaryFrom'] . ' ' .
+            $title[$lang] = ($posTitle ? $posTitle.', ' : '').
+                ($countryTitle ? $countryTitle.', ' : '').
+                $request->projectData()['cityWork'].', '.
+                $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'];
         }
         $project->update([
@@ -423,6 +405,8 @@ class ProjectController extends Controller
             'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
+            'lat' => $request->projectData()['lat'],
+            'lng' => $request->projectData()['lng'],
             'user_id' => auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
@@ -430,7 +414,7 @@ class ProjectController extends Controller
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
-        if($project && count($request->projectData()['detailProjects'])){
+        if ($project && count($request->projectData()['detailProjects'])) {
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
 
@@ -466,12 +450,11 @@ class ProjectController extends Controller
 
         return to_route('projects.index');
 
-
     }
 
     public function getChildsCategory($parent)
     {
-        return MultiselectResource::collection(Category::where('parent_id',$parent)->with('detailprojects')->get());
+        return MultiselectResource::collection(Category::where('parent_id', $parent)->with('detailprojects')->get());
     }
 
     public function validateStep(Request $request)
@@ -481,7 +464,7 @@ class ProjectController extends Controller
         // Przygotowanie danych przed walidacją (tak jak w StoreProject)
         if (is_array($request->external_company_id) && isset($request->external_company_id['id'])) {
             $request->merge([
-                'external_company_id' => $request->external_company_id['id']
+                'external_company_id' => $request->external_company_id['id'],
             ]);
         }
 
@@ -493,7 +476,7 @@ class ProjectController extends Controller
                 $rules = [
                     // CV
                     'cv' => ['required', 'array', 'min:1'],
-                    'cv.*.id' => ['required','exists:App\Models\CvType,id'],
+                    'cv.*.id' => ['required', 'exists:App\Models\CvType,id'],
                     'cv.*.name' => ['required'],
                     'cv.*.allTranslations' => ['required'],
 
@@ -515,7 +498,7 @@ class ProjectController extends Controller
                     'cityWork' => ['required', 'string', 'max:100'],
 
                     // Wykształcenie
-                    'education' => ['nullable','exists:App\Models\Education,id'],
+                    'education' => ['nullable', 'exists:App\Models\Education,id'],
 
                     // Pytania (walidacja warunkowa)
                     'questions' => [
@@ -526,7 +509,7 @@ class ProjectController extends Controller
                             if (($cvTypes->contains(2) || $cvTypes->contains(3)) && empty($value)) {
                                 $fail(__('translate.questions_required'));
                             }
-                        }
+                        },
                     ],
                     'questions.*.content' => 'required_with:questions|string',
                     'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
@@ -541,81 +524,81 @@ class ProjectController extends Controller
                 $rules = [
                     // Rodzaj umowy
                     'typeOfContract' => ['required', 'array', 'min:1'],
-                    'typeOfContract.*.id' => ['required','exists:App\Models\TypeOfContract,id'],
+                    'typeOfContract.*.id' => ['required', 'exists:App\Models\TypeOfContract,id'],
                     'typeOfContract.*.name' => ['required'],
                     'typeOfContract.*.allTranslations' => ['required'],
 
                     // Wynagrodzenie
                     'currency' => ['required'],
-                    'basicSalaryFrom' => ['required', 'numeric','between:1,99999.99'],
-                    'basicSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:basicSalaryFrom'],
-                    'bonusSalaryFrom' => ['required', 'numeric','between:1,99999.99'],
-                    'bonusSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:bonusSalaryFrom'],
+                    'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
+                    'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 
                     // Tryb wypłaty
-                    'payoutMode' => ['required','array'],
-                    'payoutMode.id' => ['required','exists:App\Models\PayoutMode,id'],
+                    'payoutMode' => ['required', 'array'],
+                    'payoutMode.id' => ['required', 'exists:App\Models\PayoutMode,id'],
                     'payoutMode.name' => ['required'],
                     'payoutMode.allTranslations' => ['required'],
 
                     // Dni pracy
                     'days' => ['required', 'array', 'min:1'],
-                    'days.*.id' => ['required','exists:App\Models\Day,id'],
+                    'days.*.id' => ['required', 'exists:App\Models\Day,id'],
                     'days.*.name' => ['required'],
                     'days.*.allTranslations' => ['required'],
 
                     // Godziny pracy
-                    'hoursFrom' => ['required', 'date_format:H:i','before:hoursTo'],
-                    'hoursTo' => ['required', 'date_format:H:i','after:hoursFrom'],
+                    'hoursFrom' => ['required', 'date_format:H:i', 'before:hoursTo'],
+                    'hoursTo' => ['required', 'date_format:H:i', 'after:hoursFrom'],
 
                     // System wynagrodzeń
                     'paySystem' => ['required', 'array', 'min:1'],
-                    'paySystem.*.id' => ['required','exists:App\Models\PaySystem,id'],
+                    'paySystem.*.id' => ['required', 'exists:App\Models\PaySystem,id'],
                     'paySystem.*.name' => ['required'],
                     'paySystem.*.allTranslations' => ['required'],
 
                     // Praca nocna i zmianowa
-                    'workNight' => ['required','in:1,2'],
-                    'shiftWork' => ['required','exists:App\Models\ShiftWork,id'],
+                    'workNight' => ['required', 'in:1,2'],
+                    'shiftWork' => ['required', 'exists:App\Models\ShiftWork,id'],
                 ];
                 break;
 
             case 3:
                 $rules = [
                     // Tryb i wymiar pracy
-                    'workingMode' => ['required','array','min:1'],
-                    'workingMode.*.value' => ['required','exists:App\Models\WorkingMode,id'],
+                    'workingMode' => ['required', 'array', 'min:1'],
+                    'workingMode.*.id' => ['required', 'exists:App\Models\WorkingMode,id'],
                     'workingMode.*.name' => ['required'],
                     'workingMode.*.allTranslations' => ['required'],
 
-                    'workLoad' => ['required','array'],
-                    'workLoad.value' => ['required','exists:App\Models\WorkLoad,id'],
+                    'workLoad' => ['required', 'array'],
+                    'workLoad.id' => ['required', 'exists:App\Models\WorkLoad,id'],
                     'workLoad.name' => ['required'],
                     'workLoad.allTranslations' => ['required'],
 
                     'workingPlace' => ['required', 'array', 'min:1'],
-                    'workingPlace.value' => ['required','exists:App\Models\WorkingPlace,id'],
+                    'workingPlace.id' => ['required', 'exists:App\Models\WorkingPlace,id'],
                     'workingPlace.name' => ['required'],
                     'workingPlace.allTranslations' => ['required'],
 
                     // Oferujemy, Oczekujemy, Mile widziane
                     'offer' => ['required', 'array', 'min:1'],
-                    'offer.*.id' => ['required','exists:App\Models\Offer,id'],
+                    'offer.*.id' => ['required', 'exists:App\Models\Offer,id'],
                     'offer.*.name' => ['required'],
                     'offer.*.allTranslations' => ['required'],
 
                     'wait' => ['required', 'array', 'min:1'],
-                    'wait.*.id' => ['required','exists:App\Models\Wait,id'],
+                    'wait.*.id' => ['required', 'exists:App\Models\Wait,id'],
                     'wait.*.name' => ['required'],
                     'wait.*.allTranslations' => ['required'],
 
                     'experience' => ['required', 'array', 'min:1'],
-                    'experience.value' => ['required','exists:App\Models\Experience,id'],
+                    'experience.value' => ['required', 'exists:App\Models\Experience,id'],
                     'experience.name' => ['required'],
                     'experience.allTranslations' => ['required'],
 
                     'welcome' => ['required', 'array', 'min:1'],
-                    'welcome.*.id' => ['required','exists:App\Models\Welcome,id'],
+                    'welcome.*.id' => ['required', 'exists:App\Models\Welcome,id'],
                     'welcome.*.name' => ['required'],
                     'welcome.*.allTranslations' => ['required'],
                 ];
@@ -670,13 +653,13 @@ class ProjectController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'valid' => false,
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
         return response()->json([
             'valid' => true,
-            'message' => 'Walidacja przeszła pomyślnie'
+            'message' => 'Walidacja przeszła pomyślnie',
         ]);
     }
 
@@ -697,57 +680,61 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        Gate::authorize('delete',$project);
+        Gate::authorize('delete', $project);
         $project->delete();
         session()->flash('flash.banner', __('translate.deleteProject'));
         session()->flash('flash.bannerStyle', 'success');
+
         return to_route('projects.index');
     }
 
     public function addMoreRecruits(Project $project)
     {
 
-        Gate::authorize('update',$project);
+        Gate::authorize('update', $project);
         $project->update([
-            'other_recruits'=>request()->others
+            'other_recruits' => request()->others,
         ]);
         session()->flash('flash.banner', __('translate.otherRecruitsChange'));
         session()->flash('flash.bannerStyle', 'success');
+
         return back();
     }
 
     public function changeRecruit(Project $project)
     {
-        Gate::authorize('update',$project);
-        if(isset(request()->recruit['value'])){
+        Gate::authorize('update', $project);
+        if (isset(request()->recruit['value'])) {
 
             $array1 = $project->other_recruits;
             $array2 = request()->recruit;
 
             $array1 = array_values(array_filter($array1, function ($item) use ($array2) {
-                return $item["value"] !== $array2["value"];
+                return $item['value'] !== $array2['value'];
             }));
 
-
             $project->update([
-                'recruiter_id'=>request()->recruit['value'],
-                'other_recruits'=>$array1,
+                'recruiter_id' => request()->recruit['value'],
+                'other_recruits' => $array1,
             ]);
 
             session()->flash('flash.banner', __('translate.otherRecruitsChangeMain'));
             session()->flash('flash.bannerStyle', 'success');
+
             return back();
         }
     }
+
     public function changeRecruitApp(Aplication $aplication)
     {
-        if(isset(request()->recruit['value'])){
+        if (isset(request()->recruit['value'])) {
             $aplication->update([
-                'opened_by_user_id'=>request()->recruit['value'],
-                'opened_at'=>now(),
+                'opened_by_user_id' => request()->recruit['value'],
+                'opened_at' => now(),
             ]);
             session()->flash('flash.banner', __('translate.otherRecruitsChangeMain'));
             session()->flash('flash.bannerStyle', 'success');
+
             return back();
         }
     }
@@ -773,12 +760,12 @@ class ProjectController extends Controller
         $selectedLang = request('lang') ?? app()->getLocale();
         $images = [];
         if ($selectedLang && in_array($selectedLang, $availableLangs)) {
-            $langPath = $generatorPath . '/' . $selectedLang;
+            $langPath = $generatorPath.'/'.$selectedLang;
             if (File::exists($langPath)) {
                 $files = File::files($langPath);
                 foreach ($files as $file) {
                     if (in_array($file->getExtension(), ['png', 'jpg', 'jpeg', 'svg'])) {
-                        $images[] = asset('storage/generator/' . $selectedLang . '/' . $file->getFilename());
+                        $images[] = asset('storage/generator/'.$selectedLang.'/'.$file->getFilename());
                     }
                 }
             }
@@ -811,11 +798,11 @@ class ProjectController extends Controller
         Gate::authorize('update', $project);
 
         $request->validate([
-            'image' => 'nullable|string'
+            'image' => 'nullable|string',
         ]);
 
         $project->update([
-            'image_generator' => $request->image
+            'image_generator' => $request->image,
         ]);
 
         session()->flash('flash.banner', __('translate.Saved'));

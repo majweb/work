@@ -12,31 +12,31 @@ class LocationController extends Controller
      */
     public function __invoke($countryCode)
     {
+        $projects = Project::whereNotNull('lat')
+            ->whereNotNull('lng')
+            ->get();
 
-        $cities = Project::all()
-            ->map(function ($item) {
-                // dekodujemy JSON z kolumny countryWork
-                $countryData = is_string($item->countryWork)
-                    ? json_decode($item->countryWork, true)
-                    : $item->countryWork;
+        $cities = $projects->groupBy('cityWork')
+            ->map(function ($group, $cityName) use ($countryCode) {
+                $first = $group->first();
+                $countryData = is_string($first->countryWork)
+                    ? json_decode($first->countryWork, true)
+                    : $first->countryWork;
+
+                if (($countryData['countryCode'] ?? null) !== $countryCode) {
+                    return null;
+                }
 
                 return [
-                    'countryCode' => $countryData['countryCode'] ?? null,
-                    'cityWork' => $item->cityWork,
+                    'name' => $cityName,
+                    'value' => $cityName,
+                    'lat' => $group->avg('lat'),
+                    'lng' => $group->avg('lng'),
                 ];
             })
-            ->filter(function ($item) use ($countryCode) {
-                return $item['countryCode'] === $countryCode;
-            })
-            ->pluck('cityWork')
             ->filter()
-            ->unique()
             ->values();
 
-        $data = $cities->map(fn($city) => [
-            'name' => $city,
-            'value' => $city,
-        ])->toArray(); // 👈 bardzo ważne
-        return response()->json($data);
+        return response()->json($cities);
     }
 }

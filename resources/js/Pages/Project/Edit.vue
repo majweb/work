@@ -162,6 +162,8 @@ const form = useForm({
     streetWorkNumber: props.project.streetWorkNumber,
     postalWork: props.project.postalWork,
     cityWork: props.project.cityWork,
+    lat: props.project.lat,
+    lng: props.project.lng,
     cv: props.project.cv ?? [],
     questions: props.project.questions ?? [],
     external_company_id: props.externalCompanies.find(
@@ -411,6 +413,12 @@ const fillAddressFromGeocoder = (place) => {
     const postcodeContext = context.find(c => c.id.startsWith('postcode.'));
     if (postcodeContext) {
         form.postalWork = postcodeContext.text;
+    }
+
+    // Współrzędne
+    if (place.center) {
+        form.lng = place.center[0];
+        form.lat = place.center[1];
     }
 
     // Jeśli nie ma kodu pocztowego w context, spróbuj wyciągnąć z place_name

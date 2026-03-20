@@ -112,6 +112,18 @@ class DictionaryService
         });
     }
 
+    public function getDistanceOptions(): array
+    {
+        return [
+            ['name' => '0 km', 'value' => 0],
+            ['name' => '15 km', 'value' => 15],
+            ['name' => '30 km', 'value' => 30],
+            ['name' => '50 km', 'value' => 50],
+            ['name' => '75 km', 'value' => 75],
+            ['name' => '100 km', 'value' => 100],
+        ];
+    }
+
     public function getWorkingModesForSelect(): mixed
     {
         return Cache::rememberForever('workingModes', function () {

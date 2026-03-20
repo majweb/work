@@ -5,38 +5,17 @@ namespace App\Http\Controllers\Recruit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
-use App\Http\Resources\MultiselectWithoutDetailResource;
-use App\Http\Resources\PayModesResource;
-use App\Http\Resources\TypeOfContractResource;
-use App\Http\Resources\WorkingModesResource;
-use App\Http\Resources\WorkLoadResource;
 use App\Models\Category;
-use App\Models\CvType;
-use App\Models\Day;
-use App\Models\Education;
-use App\Models\Experience;
 use App\Models\ExternalCompany;
-use App\Models\Offer;
-use App\Models\PayoutMode;
-use App\Models\PaySystem;
 use App\Models\Project;
-use App\Models\ShiftWork;
-use App\Models\Title;
-use App\Models\TypeOfContract;
-use App\Models\Wait;
-use App\Models\Welcome;
-use App\Models\WorkingMode;
-use App\Models\WorkingPlace;
-use App\Models\WorkLoad;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller implements HasMiddleware
 {
@@ -44,11 +23,12 @@ class ProjectController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('role:recruit'),
-//            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
-//            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
+            //            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
+            //            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
 
         ];
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -66,26 +46,26 @@ class ProjectController extends Controller implements HasMiddleware
             'category' => ['nullable', 'integer'],
             'categorySub' => ['nullable', 'integer'],
             'profession' => ['nullable', 'integer'],
-            'positionSelect' => ['nullable', 'integer']
+            'positionSelect' => ['nullable', 'integer'],
         ]);
 
         $query = Project::query()
             ->withCount([
                 'aplications',
-                'aplications as yes_count' => function($q) {
+                'aplications as yes_count' => function ($q) {
                     $q->where('status', 'yes');
                 },
-                'aplications as no_count' => function($q) {
+                'aplications as no_count' => function ($q) {
                     $q->where('status', 'no');
                 },
-                'aplications as maybe_count' => function($q) {
+                'aplications as maybe_count' => function ($q) {
                     $q->where('status', 'maybe');
                 },
-                'aplications as new_count' => function($q) {
+                'aplications as new_count' => function ($q) {
                     $q->whereNull('status');
-                }
+                },
             ])
-            ->where(function($q) {
+            ->where(function ($q) {
                 $q->where('recruiter_id', auth()->user()->id)
                     ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id]);
             });
@@ -112,8 +92,8 @@ class ProjectController extends Controller implements HasMiddleware
         // Nowe filtry
         $query->when(request()->filled('position'), function ($q) {
             $position = request('position');
-            $q->where(function($query) use ($position) {
-                $query->whereRaw('LOWER(JSON_EXTRACT(position, "$.name")) LIKE ?', ['%' . strtolower($position) . '%']);
+            $q->where(function ($query) use ($position) {
+                $query->whereRaw('LOWER(JSON_EXTRACT(position, "$.name")) LIKE ?', ['%'.strtolower($position).'%']);
             });
         });
 
@@ -123,7 +103,7 @@ class ProjectController extends Controller implements HasMiddleware
 
         $query->when(request()->filled('city'), function ($q) {
             $city = request('city');
-            $q->where('cityWork', 'like', '%' . $city . '%');
+            $q->where('cityWork', 'like', '%'.$city.'%');
         });
 
         $query->when(request()->filled('date'), function ($q) {
@@ -190,7 +170,7 @@ class ProjectController extends Controller implements HasMiddleware
         return inertia()->render('RecruiterPages/Project/Index', [
             'projects' => $projects,
             'categories' => $categories,
-            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect'])
+            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect']),
         ]);
     }
 
@@ -199,14 +179,14 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function create(DictionaryService $dictionaryService)
     {
-        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->recruiter_from_firm_id)->latest()->get();
-        $countries = (new Helper())->makeCountriesToSelect();
+        $externalCompanies = ExternalCompany::where('user_id', auth()->user()->recruiter_from_firm_id)->latest()->get();
+        $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
 
         return inertia()->render('RecruiterPages/Project/Create', array_merge($dictionaryService->getAllProjectDictionaries(), [
-            'countries' =>$countries,
-            'currencies' =>$currencies,
-            'externalCompanies' =>$externalCompanies,
+            'countries' => $countries,
+            'currencies' => $currencies,
+            'externalCompanies' => $externalCompanies,
         ]));
     }
 
@@ -225,14 +205,14 @@ class ProjectController extends Controller implements HasMiddleware
                 ?? $request->projectData()['countryWork']['name']
                 ?? null;
 
-            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
-                ($countryTitle ? $countryTitle . ', ' : '') .
-                $request->projectData()['cityWork'] . ', ' .
-                $request->projectData()['basicSalaryFrom'] . ' ' .
+            $title[$lang] = ($posTitle ? $posTitle.', ' : '').
+                ($countryTitle ? $countryTitle.', ' : '').
+                $request->projectData()['cityWork'].', '.
+                $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'];
         }
         $project = Project::create([
-            'title' =>  $title,
+            'title' => $title,
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
@@ -264,6 +244,8 @@ class ProjectController extends Controller implements HasMiddleware
             'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
+            'lat' => $request->projectData()['lat'] ?? null,
+            'lng' => $request->projectData()['lng'] ?? null,
             'user_id' => auth()->user()->recruiter_from_firm_id || auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
@@ -271,13 +253,13 @@ class ProjectController extends Controller implements HasMiddleware
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
-        if($project && count($request->projectData()['detailProjects'])){
+        if ($project && count($request->projectData()['detailProjects'])) {
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
 
         // Zapisywanie pytań projektu
-        if(isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
-            foreach($request->projectData()['questions'] as $questionData) {
+        if (isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
+            foreach ($request->projectData()['questions'] as $questionData) {
                 $project->questions()->create([
                     'user_id' => auth()->id(),
                     'content' => $questionData['content'],
@@ -288,9 +270,9 @@ class ProjectController extends Controller implements HasMiddleware
         session()->flash('flash.banner', __('translate.addedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
-        if($request->user()->hasRole('firm')){
+        if ($request->user()->hasRole('firm')) {
             return to_route('projects.index');
-        } elseif ($request->user()->hasRole('recruit')){
+        } elseif ($request->user()->hasRole('recruit')) {
             return to_route('project-recruits.index');
         }
 
@@ -299,43 +281,43 @@ class ProjectController extends Controller implements HasMiddleware
     /**
      * Display the specified resource.
      */
-        public function show(Project $project)
+    public function show(Project $project)
     {
 
-        Gate::authorize('project-recruiter',$project);
+        Gate::authorize('project-recruiter', $project);
 
         $project->loadCount([
             'aplications',
-            'aplications as yes_count' => function($q) {
+            'aplications as yes_count' => function ($q) {
                 $q->where('status', 'yes');
             },
-            'aplications as no_count' => function($q) {
+            'aplications as no_count' => function ($q) {
                 $q->where('status', 'no');
             },
-            'aplications as maybe_count' => function($q) {
+            'aplications as maybe_count' => function ($q) {
                 $q->where('status', 'maybe');
             },
-            'aplications as new_count' => function($q) {
+            'aplications as new_count' => function ($q) {
                 $q->whereNull('status');
-            }
+            },
         ]);
 
-        $project->load(['recruit:id,name','shiftWork:id,name','education:id,name','externalCompany:id,name,abbreviation']);
+        $project->load(['recruit:id,name', 'shiftWork:id,name', 'education:id,name', 'externalCompany:id,name,abbreviation']);
         // Pobierz other_recruits z JSON
         $otherRecruits = [];
         if ($project->other_recruits && is_array($project->other_recruits)) {
             $recruiterIds = array_column($project->other_recruits, 'value');
-            if (!empty($recruiterIds)) {
+            if (! empty($recruiterIds)) {
                 $otherRecruits = \App\Models\User::whereIn('id', $recruiterIds)->get(['id', 'name']);
             }
         }
 
         $locale = app()->getLocale();
 
-        return inertia()->render('RecruiterPages/Project/Show',[
-            'project'=>$project,
-            'otherRecruits'=>$otherRecruits,
-            'locale'=>$locale
+        return inertia()->render('RecruiterPages/Project/Show', [
+            'project' => $project,
+            'otherRecruits' => $otherRecruits,
+            'locale' => $locale,
         ]);
     }
 
@@ -344,35 +326,35 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function edit(DictionaryService $dictionaryService, Project $project)
     {
-        Gate::authorize('project-recruiter',$project);
-        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->recruiter_from_firm_id)->latest()->get();
-        $project->load('detailprojects','questions');
+        Gate::authorize('project-recruiter', $project);
+        $externalCompanies = ExternalCompany::where('user_id', auth()->user()->recruiter_from_firm_id)->latest()->get();
+        $project->load('detailprojects', 'questions');
         $dictionaries = $dictionaryService->getAllProjectDictionaries();
 
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
 
         return inertia()->render('RecruiterPages/Project/Edit',
             [
-                'categories' =>$dictionaries['categories'],
-                'currencies' =>$currencies,
-                'countries' =>$countries,
-                'workingModes' =>$dictionaries['workingModes'],
-                'workingPlaces' =>$dictionaries['workingPlaces'],
-                'typesOfContract' =>$dictionaries['typesOfContract'],
-                'workLoads' =>$dictionaries['workLoads'],
-                'payoutModes' =>$dictionaries['payoutModes'],
-                'paySystems' =>$dictionaries['paySystems'],
-                'days' =>$dictionaries['days'],
-                'shiftWorks' =>$dictionaries['shiftWorks'],
-                'offers' =>$dictionaries['offers'],
-                'waits' =>$dictionaries['waits'],
-                'experiences' =>$dictionaries['experiences'],
-                'welcomes' =>$dictionaries['welcomes'],
-                'educations' =>$dictionaries['educations'],
-                'project' =>$project,
-                'cvs' =>$dictionaries['cvs'],
-                'externalCompanies' =>$externalCompanies,
+                'categories' => $dictionaries['categories'],
+                'currencies' => $currencies,
+                'countries' => $countries,
+                'workingModes' => $dictionaries['workingModes'],
+                'workingPlaces' => $dictionaries['workingPlaces'],
+                'typesOfContract' => $dictionaries['typesOfContract'],
+                'workLoads' => $dictionaries['workLoads'],
+                'payoutModes' => $dictionaries['payoutModes'],
+                'paySystems' => $dictionaries['paySystems'],
+                'days' => $dictionaries['days'],
+                'shiftWorks' => $dictionaries['shiftWorks'],
+                'offers' => $dictionaries['offers'],
+                'waits' => $dictionaries['waits'],
+                'experiences' => $dictionaries['experiences'],
+                'welcomes' => $dictionaries['welcomes'],
+                'educations' => $dictionaries['educations'],
+                'project' => $project,
+                'cvs' => $dictionaries['cvs'],
+                'externalCompanies' => $externalCompanies,
             ]);
     }
 
@@ -381,7 +363,7 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function update(StoreProject $request, Project $project)
     {
-        Gate::authorize('project-recruiter',$project);
+        Gate::authorize('project-recruiter', $project);
         $title = [];
         foreach (config('langsShorts') as $lang) {
             $posTitle = $request->projectData()['position']['allTranslations']['title'][$lang]
@@ -392,10 +374,10 @@ class ProjectController extends Controller implements HasMiddleware
                 ?? $request->projectData()['countryWork']['name']
                 ?? null;
 
-            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
-                ($countryTitle ? $countryTitle . ', ' : '') .
-                $request->projectData()['cityWork'] . ', ' .
-                $request->projectData()['basicSalaryFrom'] . ' ' .
+            $title[$lang] = ($posTitle ? $posTitle.', ' : '').
+                ($countryTitle ? $countryTitle.', ' : '').
+                $request->projectData()['cityWork'].', '.
+                $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'];
         }
         $project->update([
@@ -431,15 +413,16 @@ class ProjectController extends Controller implements HasMiddleware
             'streetWorkNumber' => $request->projectData()['streetWorkNumber'],
             'postalWork' => $request->projectData()['postalWork'],
             'cityWork' => $request->projectData()['cityWork'],
+            'lat' => $request->projectData()['lat'],
+            'lng' => $request->projectData()['lng'],
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
-
         ]);
 
-        if($project && count($request->projectData()['detailProjects'])){
+        if ($project && count($request->projectData()['detailProjects'])) {
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
 
@@ -475,7 +458,6 @@ class ProjectController extends Controller implements HasMiddleware
 
         return to_route('project-recruits.index');
 
-
     }
 
     /**
@@ -483,16 +465,17 @@ class ProjectController extends Controller implements HasMiddleware
      */
     public function destroy(Project $project)
     {
-        Gate::authorize('project-recruiter',$project);
+        Gate::authorize('project-recruiter', $project);
         $project->delete();
         session()->flash('flash.banner', __('translate.deleteProject'));
         session()->flash('flash.bannerStyle', 'success');
+
         return to_route('project-recruits.index');
     }
 
     public function getChildsCategory($parent)
     {
-        return MultiselectResource::collection(Category::where('parent_id',$parent)->with('detailprojects')->get());
+        return MultiselectResource::collection(Category::where('parent_id', $parent)->with('detailprojects')->get());
     }
 
     public function duplicate(Project $project)
@@ -500,15 +483,15 @@ class ProjectController extends Controller implements HasMiddleware
         $newProject = $project->replicate();
         $newProject->save();
 
-
         session()->flash('flash.banner', __('translate.projectDuplicated'));
         session()->flash('flash.bannerStyle', 'success');
+
         return to_route('project-recruits.index');
     }
 
     public function getCategorySubForRecruit($categoryId)
     {
-        return Cache::remember('recruit_category_sub_'.$categoryId, 3600, function() use ($categoryId) {
+        return Cache::remember('recruit_category_sub_'.$categoryId, 3600, function () use ($categoryId) {
             $categorySubs = Project::where('recruiter_id', auth()->user()->id)
                 ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
                 ->get()
@@ -522,12 +505,12 @@ class ProjectController extends Controller implements HasMiddleware
                             : $item->category,
                     ];
                 })
-                ->filter(fn($item) => isset($item['category']['value']) && $item['category']['value'] == $categoryId)
+                ->filter(fn ($item) => isset($item['category']['value']) && $item['category']['value'] == $categoryId)
                 ->pluck('categorySub')
                 ->filter()
                 ->unique('value')
                 ->values()
-                ->map(fn($cat) => [
+                ->map(fn ($cat) => [
                     'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
                     'value' => $cat['value'],
                     'allTranslations' => $cat['allTranslations']['title'],
@@ -540,7 +523,7 @@ class ProjectController extends Controller implements HasMiddleware
 
     public function getProfessionsForRecruit($categorySubId)
     {
-        return Cache::remember('recruit_professions_'.$categorySubId, 3600, function() use ($categorySubId) {
+        return Cache::remember('recruit_professions_'.$categorySubId, 3600, function () use ($categorySubId) {
             $professions = Project::where('recruiter_id', auth()->user()->id)
                 ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
                 ->get()
@@ -554,12 +537,12 @@ class ProjectController extends Controller implements HasMiddleware
                             : $item->categorySub,
                     ];
                 })
-                ->filter(fn($item) => isset($item['categorySub']['value']) && $item['categorySub']['value'] == $categorySubId)
+                ->filter(fn ($item) => isset($item['categorySub']['value']) && $item['categorySub']['value'] == $categorySubId)
                 ->pluck('profession')
                 ->filter()
                 ->unique('value')
                 ->values()
-                ->map(fn($prof) => [
+                ->map(fn ($prof) => [
                     'name' => $prof['allTranslations']['title'][app()->getLocale()] ?? $prof['name'],
                     'value' => $prof['value'],
                     'allTranslations' => $prof['allTranslations']['title'],
@@ -572,7 +555,7 @@ class ProjectController extends Controller implements HasMiddleware
 
     public function getPositionsForRecruit($professionId)
     {
-        return Cache::remember('recruit_positions_'.$professionId, 3600, function() use ($professionId) {
+        return Cache::remember('recruit_positions_'.$professionId, 3600, function () use ($professionId) {
             $positions = Project::where('recruiter_id', auth()->user()->id)
                 ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
                 ->get()
@@ -586,12 +569,12 @@ class ProjectController extends Controller implements HasMiddleware
                             : $item->profession,
                     ];
                 })
-                ->filter(fn($item) => isset($item['profession']['value']) && $item['profession']['value'] == $professionId)
+                ->filter(fn ($item) => isset($item['profession']['value']) && $item['profession']['value'] == $professionId)
                 ->pluck('position')
                 ->filter()
                 ->unique('value')
                 ->values()
-                ->map(fn($pos) => [
+                ->map(fn ($pos) => [
                     'name' => $pos['allTranslations']['title'][app()->getLocale()] ?? $pos['name'],
                     'value' => $pos['value'],
                     'allTranslations' => $pos['allTranslations']['title'],
@@ -609,7 +592,7 @@ class ProjectController extends Controller implements HasMiddleware
         // Przygotowanie danych przed walidacją (tak jak w StoreProject)
         if (is_array($request->external_company_id) && isset($request->external_company_id['id'])) {
             $request->merge([
-                'external_company_id' => $request->external_company_id['id']
+                'external_company_id' => $request->external_company_id['id'],
             ]);
         }
 
@@ -621,7 +604,7 @@ class ProjectController extends Controller implements HasMiddleware
                 $rules = [
                     // CV
                     'cv' => ['required', 'array', 'min:1'],
-                    'cv.*.id' => ['required','exists:App\Models\CvType,id'],
+                    'cv.*.id' => ['required', 'exists:App\Models\CvType,id'],
                     'cv.*.name' => ['required'],
                     'cv.*.allTranslations' => ['required'],
 
@@ -641,9 +624,11 @@ class ProjectController extends Controller implements HasMiddleware
                     'streetWorkNumber' => ['required', 'string', 'max:100'],
                     'postalWork' => ['required', 'string', 'max:100'],
                     'cityWork' => ['required', 'string', 'max:100'],
+                    'lat' => ['nullable', 'numeric'],
+                    'lng' => ['nullable', 'numeric'],
 
                     // Wykształcenie
-                    'education' => ['nullable','exists:App\Models\Education,id'],
+                    'education' => ['nullable', 'exists:App\Models\Education,id'],
 
                     // Pytania (walidacja warunkowa)
                     'questions' => [
@@ -654,7 +639,7 @@ class ProjectController extends Controller implements HasMiddleware
                             if (($cvTypes->contains(2) || $cvTypes->contains(3)) && empty($value)) {
                                 $fail(__('translate.questions_required'));
                             }
-                        }
+                        },
                     ],
                     'questions.*.content' => 'required_with:questions|string',
                     'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
@@ -669,81 +654,81 @@ class ProjectController extends Controller implements HasMiddleware
                 $rules = [
                     // Rodzaj umowy
                     'typeOfContract' => ['required', 'array', 'min:1'],
-                    'typeOfContract.*.id' => ['required','exists:App\Models\TypeOfContract,id'],
+                    'typeOfContract.*.id' => ['required', 'exists:App\Models\TypeOfContract,id'],
                     'typeOfContract.*.name' => ['required'],
                     'typeOfContract.*.allTranslations' => ['required'],
 
                     // Wynagrodzenie
                     'currency' => ['required'],
-                    'basicSalaryFrom' => ['required', 'numeric','between:1,99999.99'],
-                    'basicSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:basicSalaryFrom'],
-                    'bonusSalaryFrom' => ['required', 'numeric','between:1,99999.99'],
-                    'bonusSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:bonusSalaryFrom'],
+                    'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
+                    'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 
                     // Tryb wypłaty
-                    'payoutMode' => ['required','array'],
-                    'payoutMode.id' => ['required','exists:App\Models\PayoutMode,id'],
+                    'payoutMode' => ['required', 'array'],
+                    'payoutMode.id' => ['required', 'exists:App\Models\PayoutMode,id'],
                     'payoutMode.name' => ['required'],
                     'payoutMode.allTranslations' => ['required'],
 
                     // Dni pracy
                     'days' => ['required', 'array', 'min:1'],
-                    'days.*.id' => ['required','exists:App\Models\Day,id'],
+                    'days.*.id' => ['required', 'exists:App\Models\Day,id'],
                     'days.*.name' => ['required'],
                     'days.*.allTranslations' => ['required'],
 
                     // Godziny pracy
-                    'hoursFrom' => ['required', 'date_format:H:i','before:hoursTo'],
-                    'hoursTo' => ['required', 'date_format:H:i','after:hoursFrom'],
+                    'hoursFrom' => ['required', 'date_format:H:i', 'before:hoursTo'],
+                    'hoursTo' => ['required', 'date_format:H:i', 'after:hoursFrom'],
 
                     // System wynagrodzeń
                     'paySystem' => ['required', 'array', 'min:1'],
-                    'paySystem.*.id' => ['required','exists:App\Models\PaySystem,id'],
+                    'paySystem.*.id' => ['required', 'exists:App\Models\PaySystem,id'],
                     'paySystem.*.name' => ['required'],
                     'paySystem.*.allTranslations' => ['required'],
 
                     // Praca nocna i zmianowa
-                    'workNight' => ['required','in:1,2'],
-                    'shiftWork' => ['required','exists:App\Models\ShiftWork,id'],
+                    'workNight' => ['required', 'in:1,2'],
+                    'shiftWork' => ['required', 'exists:App\Models\ShiftWork,id'],
                 ];
                 break;
 
             case 3:
                 $rules = [
                     // Tryb i wymiar pracy
-                    'workingMode' => ['required','array','min:1'],
-                    'workingMode.*.value' => ['required','exists:App\Models\WorkingMode,id'],
+                    'workingMode' => ['required', 'array', 'min:1'],
+                    'workingMode.*.id' => ['required', 'exists:App\Models\WorkingMode,id'],
                     'workingMode.*.name' => ['required'],
                     'workingMode.*.allTranslations' => ['required'],
 
-                    'workLoad' => ['required','array'],
-                    'workLoad.value' => ['required','exists:App\Models\WorkLoad,id'],
+                    'workLoad' => ['required', 'array'],
+                    'workLoad.id' => ['required', 'exists:App\Models\WorkLoad,id'],
                     'workLoad.name' => ['required'],
                     'workLoad.allTranslations' => ['required'],
 
                     'workingPlace' => ['required', 'array', 'min:1'],
-                    'workingPlace.value' => ['required','exists:App\Models\WorkingPlace,id'],
+                    'workingPlace.id' => ['required', 'exists:App\Models\WorkingPlace,id'],
                     'workingPlace.name' => ['required'],
                     'workingPlace.allTranslations' => ['required'],
 
                     // Oferujemy, Oczekujemy, Mile widziane
                     'offer' => ['required', 'array', 'min:1'],
-                    'offer.*.id' => ['required','exists:App\Models\Offer,id'],
+                    'offer.*.id' => ['required', 'exists:App\Models\Offer,id'],
                     'offer.*.name' => ['required'],
                     'offer.*.allTranslations' => ['required'],
 
                     'wait' => ['required', 'array', 'min:1'],
-                    'wait.*.id' => ['required','exists:App\Models\Wait,id'],
+                    'wait.*.id' => ['required', 'exists:App\Models\Wait,id'],
                     'wait.*.name' => ['required'],
                     'wait.*.allTranslations' => ['required'],
 
                     'experience' => ['required', 'array', 'min:1'],
-                    'experience.value' => ['required','exists:App\Models\Experience,id'],
+                    'experience.value' => ['required', 'exists:App\Models\Experience,id'],
                     'experience.name' => ['required'],
                     'experience.allTranslations' => ['required'],
 
                     'welcome' => ['required', 'array', 'min:1'],
-                    'welcome.*.id' => ['required','exists:App\Models\Welcome,id'],
+                    'welcome.*.id' => ['required', 'exists:App\Models\Welcome,id'],
                     'welcome.*.name' => ['required'],
                     'welcome.*.allTranslations' => ['required'],
                 ];
@@ -798,14 +783,13 @@ class ProjectController extends Controller implements HasMiddleware
         if ($validator->fails()) {
             return response()->json([
                 'valid' => false,
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
         return response()->json([
             'valid' => true,
-            'message' => 'Walidacja przeszła pomyślnie'
+            'message' => 'Walidacja przeszła pomyślnie',
         ]);
     }
-
 }

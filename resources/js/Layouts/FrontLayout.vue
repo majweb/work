@@ -18,6 +18,7 @@ const props = defineProps({
     image: String,
     author: String,
     imageUrl: String,
+    url: String,
 });
 
 const page = usePage();
@@ -99,15 +100,15 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
             <meta name="keywords" :content="props.keywords || __('translate.meta_keywords_default')" />
 
             <!-- Canonical -->
-            <link v-if="ogUrl" rel="canonical" :href="ogUrl" />
+            <link v-if="props.url || ogUrl" rel="canonical" :href="props.url || ogUrl" />
 
             <!-- Open Graph -->
             <meta property="og:locale" :content="page.props.currentCountry || 'pl'" />
             <meta property="og:type" :content="props.type || 'website'" />
             <meta v-if="props.title" property="og:title" :content="props.title" />
             <meta v-if="props.description" property="og:description" :content="props.description" />
-            <meta v-if="ogUrl" property="og:url" :content="ogUrl" />
-            <meta v-if="ogUrl" property="og:site_name" :content="ogUrl" />
+            <meta v-if="props.url || ogUrl" property="og:url" :content="props.url || ogUrl" />
+            <meta v-if="props.url || ogUrl" property="og:site_name" :content="props.url || ogUrl" />
             <meta property="og:image" :content="props.image || '/default-image.png'" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />

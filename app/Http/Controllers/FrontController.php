@@ -23,8 +23,6 @@ use App\Models\CvClassic;
 use App\Models\Foundation;
 use App\Models\FoundationCategory;
 use App\Models\IpEmailBlock;
-use App\Models\LangLevel;
-use App\Models\LevelEducation;
 use App\Models\Page;
 use App\Models\Partner;
 use App\Models\Project;
@@ -112,7 +110,6 @@ class FrontController extends Controller
 
         $page = Page::findOrFail(4);
 
-
         return inertia()->render('Front/Articles', [
             'banners' => $banners,
             'newest' => $newest,
@@ -170,58 +167,98 @@ class FrontController extends Controller
 
         $query = Project::with('user.changeProducts')->featured()->active();
 
-        // Filtrowanie po kraju
-        if (request('country')) {
-            $query->whereJsonContains('country', ['value' => (int) request('country')]);
-        }
+        $lat = request('lat');
+        $lng = request('lng');
 
-        // Filtrowanie po mieście
-        if (request('city')) {
-            $query->where('cityWork', 'like', '%'.request('city').'%');
-        }
+        $cacheKey = 'projects_list_'.md5(json_encode(request()->all()).'_'.app()->getLocale());
 
-        // Filtrowanie po kategorii
-        if (request('category')) {
-            $categoryValue = (int) request('category');
-            $query->whereJsonContains('category', ['value' => $categoryValue]);
-        }
+        $projects = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($query, &$lat, &$lng) {
+            // Filtrowanie po promieniu (Haversine)
+            $distance = (int) request('distance');
 
-        // Filtrowanie po podkategorii
-        if (request('categorySub')) {
-            $categorySubValue = (int) request('categorySub');
-            $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
-        }
+            if (! $lat && ! $lng && request('city') && $distance > 0) {
+                $cityName = request('city');
+                $cityCoords = Cache::remember('city_coords_'.md5($cityName), now()->addDay(), function () use ($cityName) {
+                    return Project::where('cityWork', $cityName)
+                        ->whereNotNull('lat')
+                        ->whereNotNull('lng')
+                        ->selectRaw('AVG(lat) as lat, AVG(lng) as lng')
+                        ->first();
+                });
 
-        // Filtrowanie po zawodzie
-        if (request('profession')) {
-            $professionValue = (int) request('profession');
-            $query->whereJsonContains('profession', ['value' => $professionValue]);
-        }
+                if ($cityCoords && $cityCoords->lat) {
+                    $lat = $cityCoords->lat;
+                    $lng = $cityCoords->lng;
+                }
+            }
 
-        // Filtrowanie po trybie pracy
-        if (request('workingMode')) {
-            $workingModeId = (int) request('workingMode');
-            $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
-        }
+            if ($lat && $lng && $distance > 0) {
+                $lat = (float) $lat;
+                $lng = (float) $lng;
 
-        if (request('experience')) {
-            $experienceId = (int) request('experience');
-            $query->whereJsonContains('experience', ['id' => $experienceId]);
-        }
+                $query->select('*')
+                    ->selectRaw(
+                        '(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance',
+                        [$lat, $lng, $lat]
+                    )
+                    ->having('distance', '<=', $distance)
+                    ->orderBy('distance');
+            }
 
-        // Filtrowanie po typie umowy
-        if (request('typeOfContract')) {
-            $typeOfContractId = (int) request('typeOfContract');
-            $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
-        }
+            // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
+            if (! ($lat && $lng && $distance > 0)) {
+                if (request('country')) {
+                    $query->whereJsonContains('country', ['value' => (int) request('country')]);
+                }
 
-        // Filtrowanie po wymiarze pracy
-        if (request('workLoad')) {
-            $workLoadId = (int) request('workLoad');
-            $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
-        }
+                if (request('city')) {
+                    $query->where('cityWork', 'like', '%'.request('city').'%');
+                }
+            }
 
-        $projects = $query->paginate(5)->withQueryString();
+            // Filtrowanie po kategorii
+            if (request('category')) {
+                $categoryValue = (int) request('category');
+                $query->whereJsonContains('category', ['value' => $categoryValue]);
+            }
+
+            // Filtrowanie po podkategorii
+            if (request('categorySub')) {
+                $categorySubValue = (int) request('categorySub');
+                $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
+            }
+
+            // Filtrowanie po zawodzie
+            if (request('profession')) {
+                $professionValue = (int) request('profession');
+                $query->whereJsonContains('profession', ['value' => $professionValue]);
+            }
+
+            // Filtrowanie po trybie pracy
+            if (request('workingMode')) {
+                $workingModeId = (int) request('workingMode');
+                $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
+            }
+
+            if (request('experience')) {
+                $experienceId = (int) request('experience');
+                $query->whereJsonContains('experience', ['id' => $experienceId]);
+            }
+
+            // Filtrowanie po typie umowy
+            if (request('typeOfContract')) {
+                $typeOfContractId = (int) request('typeOfContract');
+                $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
+            }
+
+            // Filtrowanie po wymiarze pracy
+            if (request('workLoad')) {
+                $workLoadId = (int) request('workLoad');
+                $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
+            }
+
+            return $query->paginate(5)->withQueryString();
+        });
 
         $countries = (new Helper)->makeCountriesToSelectHasProjects();
 
@@ -230,6 +267,15 @@ class FrontController extends Controller
         $experiences = $dictionaryService->getExperiencesForSelect();
         $typesOfContract = $dictionaryService->getTypesOfContractForSelect();
         $workLoads = $dictionaryService->getWorkLoadsForSelect();
+        $distanceOptions = $dictionaryService->getDistanceOptions();
+
+        $distanceFront = null;
+        if (request()->has('distance') && request('distance') !== null && request('distance') !== '') {
+            $distanceValue = request('distance');
+            $distanceFront = collect($distanceOptions)->first(function ($option) use ($distanceValue) {
+                return $option['value'] == $distanceValue;
+            });
+        }
 
         $countryId = request('country');
         $cityValue = request('city');
@@ -244,6 +290,15 @@ class FrontController extends Controller
                 'name' => $cityValue,
                 'value' => $cityValue,
                 'countryCode' => $country->countryCode,
+                'lat' => $lat ? (float) $lat : null,
+                'lng' => $lng ? (float) $lng : null,
+            ];
+        } elseif ($cityValue) {
+            $cityFront = [
+                'name' => $cityValue,
+                'value' => $cityValue,
+                'lat' => $lat ? (float) $lat : null,
+                'lng' => $lng ? (float) $lng : null,
             ];
         }
 
@@ -254,7 +309,6 @@ class FrontController extends Controller
 
         $page = Page::findOrFail(12);
 
-
         return inertia()->render('Front/Projects', [
             'projects' => $projects,
             'countries' => $countries,
@@ -262,9 +316,11 @@ class FrontController extends Controller
             'experiences' => $experiences,
             'typesOfContract' => $typesOfContract,
             'workLoads' => $workLoads,
+            'distanceOptions' => $distanceOptions,
             'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
-            'categoryFront' => $category ? new MultiselectResourceCountry($category) : null,
+            'categoryFront' => $category ? new MultiselectWithoutDetailResource($category) : null,
             'cityFront' => $cityFront,
+            'distanceFront' => $distanceFront,
             'page' => $page ? new PageResource($page) : null,
         ]);
     }
@@ -330,7 +386,6 @@ class FrontController extends Controller
         $user->load('firm', 'projects.user.firm.media');
         $page = Page::where('id', 17)->first(); // Załóżmy ID dla Privacy
 
-
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
             'page' => $page ? new PageResource($page) : null,
@@ -370,6 +425,7 @@ class FrontController extends Controller
     public function Contact()
     {
         $page = Page::where('id', 5)->first(); // Załóżmy ID dla Privacy
+
         return inertia()->render('Front/Contact', [
             'page' => $page ? new PageResource($page) : null,
         ]);
@@ -449,6 +505,7 @@ class FrontController extends Controller
             ->orderBy('points', 'asc')
             ->get();
         $page = Page::findOrFail(11);
+
         return inertia('Front/Price', [
             'products' => $products,
             'page' => $page ? new PageResource($page) : null,
@@ -482,6 +539,7 @@ class FrontController extends Controller
 
         $countries = (new Helper)->makeCountriesToSelect();
         $page = Page::findOrFail(7);
+
         return inertia()->render('Front/Firms', [
             'firms' => $firms,
             'countries' => $countries,
@@ -851,10 +909,11 @@ class FrontController extends Controller
     public function aboutView()
     {
         $page = Page::findOrFail(14);
+
         return inertia()->render('Front/About',
-        [
-            'page' => $page ? new PageResource($page) : null,
-        ]
+            [
+                'page' => $page ? new PageResource($page) : null,
+            ]
         );
     }
 
@@ -862,11 +921,10 @@ class FrontController extends Controller
     {
         $page = Page::where('id', 13)->first(); // Załóżmy ID dla Privacy
 
-
         return inertia()->render('Front/ReadMore',
-        [
-            'page' => $page ? new PageResource($page) : null,
-        ]
+            [
+                'page' => $page ? new PageResource($page) : null,
+            ]
         );
     }
 
@@ -913,7 +971,6 @@ class FrontController extends Controller
         $foundationsCount = Foundation::where('active', true)->count();
 
         $page = Page::findOrFail(10);
-
 
         return inertia()->render('Front/Partners', [
             'partners' => $partners,
