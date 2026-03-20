@@ -1,14 +1,38 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import { onMounted, ref, nextTick } from "vue";
+import { onMounted, ref, nextTick, computed } from "vue";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { usePage } from "@inertiajs/vue3";
+import { usePage, Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     foundation: Object,
     page: Object
 
+});
+
+const pageUrl = computed(() => usePage().props.pageUrl);
+
+const foundationSchema = computed(() => {
+    // Funkcja do usuwania tagów HTML z opisu
+    const stripHtml = (html) => {
+        if (!html) return "";
+        return html.replace(/<[^>]*>?/gm, "").replace(/\s+/g, " ").trim();
+    };
+
+    return JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": props.foundation.name,
+        "url": pageUrl.value + '/foundation/' + props.foundation.id,
+        "logo": props.foundation.logo,
+        "description": stripHtml(props.foundation.description),
+        "parentOrganization": {
+            "@type": "Organization",
+            "name": "WORK4YOU.GLOBAL",
+            "url": pageUrl.value
+        }
+    });
 });
 
 mapboxgl.accessToken = usePage().props.mapboxToken;
@@ -80,6 +104,11 @@ function addMarker() {
             :url="route('front.foundation.single',foundation?.id)"
             type="website"
         >
+        <template #head>
+            <component :is="'script'" type="application/ld+json">
+                {{ foundationSchema }}
+            </component>
+        </template>
         <!-- BANER + LOGO -->
         <section class="bg-gray-50/50 py-12 px-4 min-h-[40vh]">
             <div class="max-w-6xl mx-auto">

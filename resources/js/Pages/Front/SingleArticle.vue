@@ -1,7 +1,7 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
-import {Link} from '@inertiajs/vue3';
-import {ref, onMounted, nextTick} from 'vue';
+import {Link, usePage} from '@inertiajs/vue3';
+import {ref, onMounted, nextTick, computed} from 'vue';
 import moment from "moment";
 import CommentSection from "@/Components/Comments/CommentSection.vue";
 import {usePermission} from "@/Composables/usePermission.js";
@@ -94,6 +94,35 @@ function shareOnInstagram() {
     if (navigator.clipboard) navigator.clipboard.writeText('');
     window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer,width=600,height=500');
 }
+
+const articleSchema = computed(() => {
+    return JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": props.article.title,
+        "description": props.article.meta_description || props.article.short_description,
+        "image": props.article.photo?.original_url || props.article.photo_fb,
+        "author": {
+            "@type": "Organization",
+            "name": "WORK4YOU.GLOBAL",
+            "url": usePage().props.pageUrl + '/aboutus'
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "WORK4YOU.GLOBAL",
+            "logo": {
+                "@type": "ImageObject",
+                "url": usePage().props.pageUrl + '/images/logo.png'
+            }
+        },
+        "datePublished": props.article.created_at,
+        "dateModified": props.article.updated_at || props.article.created_at,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": usePage().props.pageUrl + '/articles/' + props.article.id
+        }
+    });
+});
 </script>
 
 <template>
@@ -106,6 +135,11 @@ function shareOnInstagram() {
         type="article"
         :author="article.user?.name"
     >
+        <template #head>
+            <component :is="'script'" type="application/ld+json">
+                {{ articleSchema }}
+            </component>
+        </template>
         <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 

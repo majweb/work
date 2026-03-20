@@ -121,6 +121,8 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:label1" :content="__('translate.written_by')" />
             <meta name="twitter:data1" content="Work4you.global" />
+
+            <slot name="head" />
         </Head>
     <div class="flex flex-col min-h-screen bg-gray-50/50 dark:bg-gray-900 font-sans">
         <Banner />

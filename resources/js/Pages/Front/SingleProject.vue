@@ -4,7 +4,6 @@ import {Link, usePage} from '@inertiajs/vue3';
 import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import {computed, onMounted, ref} from "vue";
 import {usePermission} from "@/Composables/usePermission.js";
-import moment from "moment";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import {Navigation, Pagination, Autoplay} from 'swiper/modules';
@@ -12,6 +11,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import moment from "moment";
+
 const props = defineProps({
     project: Object,
     image: String,
@@ -22,6 +23,89 @@ const {hasRole} = usePermission();
 const { getPositionTitle } = useProjectHelpers();
 const user = computed(()=>usePage().props.auth.user);
 const isClient = ref(false);
+
+
+const jobSchema = computed(() => {
+    // Schema.org oczekuje wartości: FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM, OTHER
+    const mapEmploymentType = (types) => {
+        // Schema.org akceptuje: FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM, OTHER
+        if (!types || !Array.isArray(types) || types.length === 0) {
+            return "FULL_TIME";
+        }
+
+        // Pobieramy nazwę pierwszego typu umowy i zamieniamy na małe litery dla łatwiejszego porównania
+        const typeName = (types[0]?.name || "").toLowerCase();
+
+        if (typeName.includes("o pracę")) {
+            return "FULL_TIME";
+        }
+
+        if (typeName.includes("zlecenie") || typeName.includes("b2b") || typeName.includes("dzieło")) {
+            return "CONTRACTOR";
+        }
+
+        if (typeName.includes("staż") || typeName.includes("praktyka")) {
+            return "INTERN";
+        }
+
+        // Domyślna wartość, jeśli żaden z powyższych nie pasuje
+        return "FULL_TIME";
+    };
+
+    const currentLang = usePage().props.language || 'pl';
+    const title = props.project.title?.[currentLang] || props.project.title?.pl || props.project.title || getPositionTitle(props.project);
+    const description = props.project.offer?.[currentLang] || props.project.offer?.pl || props.project.offer || "";
+
+    const datePosted = new Date(props.project.created_at);
+    const validThrough = new Date(datePosted.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+    const schema = {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": title,
+        "description": description,
+        "identifier": {
+            "@type": "PropertyValue",
+            "name": "Praca",
+            "value": props.project.id
+        },
+        "datePosted": datePosted.toISOString(),
+        "validThrough": validThrough.toISOString(),
+        "employmentType": mapEmploymentType(props.project.typeOfContract),
+        "hiringOrganization": {
+            "@type": "Organization",
+            "name": props.project.user?.firm?.name || "Firma",
+            "sameAs": props.project.user?.firm?.www || null,
+            "logo": props.project.user?.profile_photo_url || null
+        },
+        "jobLocation": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": (props.project.streetWork || '') + ' ' + (props.project.streetWorkNumber || ''),
+                "addressLocality": props.project.cityWork,
+                "postalCode": props.project.postalWork,
+                "addressCountry": props.project.countryWork?.code || props.project.countryWork?.countryCode || "PL"
+            }
+        }
+    };
+
+    if (props.project.basicSalaryFrom) {
+        schema.baseSalary = {
+            "@type": "MonetaryAmount",
+            "currency": props.project.currency?.value || props.project.currency || "PLN",
+            "value": {
+                "@type": "QuantitativeValue",
+                "minValue": props.project.basicSalaryFrom,
+                "maxValue": props.project.basicSalaryTo || props.project.basicSalaryFrom,
+                "unitText": "MONTH"
+            }
+        };
+    }
+
+    return JSON.stringify(schema);
+});
+
 onMounted(() => {
     isClient.value = true;
 });
@@ -76,6 +160,11 @@ onMounted(async () => {
         :url="route('front.projects.single',project)"
         type="website"
     >
+        <template #head>
+            <component :is="'script'" type="application/ld+json">
+                {{ jobSchema }}
+            </component>
+        </template>
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- TOP BAR -->

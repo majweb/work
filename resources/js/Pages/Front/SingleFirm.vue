@@ -12,6 +12,27 @@ const props = defineProps({
     page: Object
 });
 
+const firmSchema = computed(() => {
+    const pageUrl = usePage().props.pageUrl || '';
+    return JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": props.firm.name,
+        "url": pageUrl + '/firms/' + props.firm.id,
+        "logo": props.firm.logo,
+        "description": props.firm.description?.replace(/<[^>]*>?/gm, '').substring(0, 200),
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": props.firm.city,
+            "addressCountry": props.firm.countryJson['countryCode']
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": props.firm.phone?.[0]?.phone || null,
+            "contactType": "customer service"
+        }
+    });
+});
 const isClient = ref(false);
 const map = ref(null);
 mapboxgl.accessToken = usePage().props.mapboxToken;
@@ -79,6 +100,11 @@ function closeLightbox() {
         :url="route('front.firms.single',firm)"
         type="website"
     >
+        <template #head>
+            <component :is="'script'" type="application/ld+json">
+                {{ firmSchema }}
+            </component>
+        </template>
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- TOP BAR -->

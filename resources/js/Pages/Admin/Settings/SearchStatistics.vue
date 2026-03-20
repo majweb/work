@@ -2,13 +2,10 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 import { Head, router } from '@inertiajs/vue3';
-import { ref, onMounted, shallowRef, watch, computed } from 'vue';
+import { ref, onMounted, shallowRef, watch } from 'vue';
 import pickBy from 'lodash/pickBy';
 import throttle from 'lodash/throttle';
 import moment from 'moment';
-import 'moment/dist/locale/pl';
-
-moment.locale('pl');
 
 const props = defineProps({
     statistics: Object,
