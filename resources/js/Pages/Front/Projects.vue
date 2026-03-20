@@ -314,11 +314,16 @@ const isSearching = ref(false);
                                     :selectGroupLabel="__('translate.selectGroupLabel')"
                                     :selectedLabel="__('translate.selectedLabel')"
                                     :deselectLabel="__('translate.deselectLabel')"
+                                    :noOptions="__('translate.noOptions')"
+                                    :noResult="__('translate.noResult')"
                                     :placeholder="__('translate.placeholderCountry')"
                                     class="custom-multiselect"
                                 >
                                     <template #noResult>
                                         <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
                                     </template>
                                 </multiselect>
                                 <InputError :message="form.errors.country" class="mt-2"/>
@@ -337,11 +342,16 @@ const isSearching = ref(false);
                                     :selectGroupLabel="__('translate.selectGroupLabel')"
                                     :selectedLabel="__('translate.selectedLabel')"
                                     :deselectLabel="__('translate.deselectLabel')"
+                                    :noOptions="__('translate.noOptions')"
+                                    :noResult="__('translate.noResult')"
                                     :placeholder="__('translate.placeholderCity')"
                                     class="custom-multiselect"
                                 >
                                     <template #noResult>
                                         <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
                                     </template>
                                 </multiselect>
                                 <InputError :message="form.errors.city" class="mt-2"/>
@@ -368,11 +378,16 @@ const isSearching = ref(false);
                                         :selectGroupLabel="__('translate.selectGroupLabel')"
                                         :selectedLabel="__('translate.selectedLabel')"
                                         :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
                                         :placeholder="__('translate.placeholderDistance')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
                                             <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noResult')}}</span>
                                         </template>
                                     </multiselect>
                                     <InputError :message="form.errors.distance" class="mt-2"/>
@@ -397,6 +412,9 @@ const isSearching = ref(false);
                                 >
                                     <template #noResult>
                                         <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
                                     </template>
                                 </multiselect>
                                 <InputError :message="form.errors.category" class="mt-2"/>
