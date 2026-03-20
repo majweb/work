@@ -91,6 +91,7 @@ const menuItems = [
         icon: 'settings',
         subItems: [
             { name: 'Główne', route: 'admin.general.edit' },
+            { name: 'Zgody', route: 'admin.agreements.index' },
             { name: 'Statystyki wyszukiwarki', route: 'admin.search-statistics.index' },
             { name: 'Newsletter', route: 'admin.newsletter.index' },
             { name: 'Integracje', route: 'admin.integrations.edit' },

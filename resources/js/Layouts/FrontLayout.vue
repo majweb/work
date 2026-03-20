@@ -80,7 +80,7 @@ const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.loc
 
 const showConfetti = ref(false);
 watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
-    if (newVal === __('translate.makeAplicationNotRegister')) {
+    if (newVal === __('translate.makeAplication')) {
         showConfetti.value = true;
         setTimeout(() => {
             showConfetti.value = false;

@@ -572,7 +572,7 @@ class FrontController extends Controller
                 ]);
             }
         }
-        $agreements = Agreement::where('type', 'Apply without register')->get(['description', 'id']);
+        $agreements = Agreement::where('type', 'app_not_logged_in')->get(['description', 'id']);
         $professionCv = $project->categorySub['value'];
 
         if (auth()->check() && auth()->user()->hasRole('worker')) {
@@ -739,7 +739,7 @@ class FrontController extends Controller
                 'application' => [__('CvRate')],
             ]);
         }
-        session()->flash('flash.banner', __('translate.makeAplicationNotRegister'));
+        session()->flash('flash.banner', __('translate.makeAplication'));
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('front.projects.single', $project);

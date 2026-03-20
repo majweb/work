@@ -12,12 +12,13 @@ class Agreement extends Model
     use HasTranslations;
 
 
-    protected $fillable = ['description', 'type'];
+    protected $fillable = ['description', 'type', 'is_active'];
 
     public array $translatable = ['description'];
 
     protected $casts = [
         'description' => 'array',
+        'is_active' => 'boolean',
     ];
 
 

@@ -287,6 +287,7 @@ Route::middleware([
 
         Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class);
+        Route::resource('agreements', \App\Http\Controllers\Admin\AgreementController::class);
 
         Route::get('countries', [\App\Http\Controllers\Admin\CountryController::class, 'index'])->name('countries.index');
         Route::get('countries/create', [\App\Http\Controllers\Admin\CountryController::class, 'create'])->name('countries.create');

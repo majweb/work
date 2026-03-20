@@ -440,7 +440,7 @@ const updateStatus = async (id, status) => {
                                         <div class="rounded-2xl bg-gray-50/50 p-5 border border-gray-100/50 transition-all hover:bg-white hover:shadow-md group/item">
                                             <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 group-hover/item:text-blue-500 transition-colors">{{ __('translate.aplicationsType') }}</div>
                                             <div class="text-sm font-black text-gray-900 uppercase tracking-tight">
-                                                {{ application.aplication_user_id ? __('translate.aplicationsWorker') : __('translate.makeAplicationNotRegister') }}
+                                                {{ application.aplication_user_id ? __('translate.aplicationsWorker') : __('translate.makeAplication') }}
                                             </div>
                                         </div>
 

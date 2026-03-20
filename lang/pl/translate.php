@@ -483,7 +483,7 @@ return [
     'agreements' => 'Zgody',
     'agreementsRequired' => 'Zaznacz wszystkie zgody',
     'agreementsSize' => 'Wszystkie zgody muszą być zaznaczone',
-    'makeAplicationNotRegister' => 'Aplikowano bez rejestracji',
+    'makeAplication' => 'Aplikowano na ofertę',
     'youLoginAs' => 'Jesteś zalogowany jako',
     'aplicationsType' => 'Typ aplikacji',
     'aplicationsWorker' => 'Aplikacja pracownika',
