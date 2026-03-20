@@ -6,6 +6,9 @@ import ConfettiExplosion from "vue-confetti-explosion";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import ApplicationMarkWhite from "@/Components/ApplicationMarkWhite.vue";
 import NavLink from "@/Components/NavLink.vue";
+import Checkbox from "@/Components/Checkbox.vue";
+import DialogModal from "@/Components/DialogModal.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { ref, computed, watch, onMounted } from "vue";
 import __ from "@/lang.js";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
@@ -34,19 +37,36 @@ onMounted(() => {
 
 const form = useForm({
     email: '',
+    agreements: [],
 });
+
+const newsletterAgreements = computed(() => page.props.newsletterAgreements || []);
 
 const submitForm = () => {
     form.post(route('newsletter.store'), {
         preserveScroll: true,
         onSuccess: () => {
-            form.reset('email');
+            form.reset('email', 'agreements');
         },
     });
 };
 
+const isAllNewsletterAgreementsSelected = computed(() => {
+    return newsletterAgreements.value.length > 0 &&
+        form.agreements.length === newsletterAgreements.value.length;
+});
+
+const toggleAllNewsletterAgreements = () => {
+    if (isAllNewsletterAgreementsSelected.value) {
+        form.agreements = [];
+    } else {
+        form.agreements = newsletterAgreements.value.map(a => a.id);
+    }
+};
+
 // Mobile menu
 const mobileMenuOpen = ref(false);
+const showNewsletterAgreements = ref(false);
 const toggleMenu = () => mobileMenuOpen.value = !mobileMenuOpen.value;
 const closeMenu = () => mobileMenuOpen.value = false;
 watch(mobileMenuOpen, val => {
@@ -391,9 +411,6 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                         class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl focus:bg-white focus:ring-0 focus:border-blue-200 transition-all text-sm font-bold placeholder-gray-400"
                                         :class="{'border-red-500': form.errors.email}"
                                     >
-                                    <div v-if="form.errors.email" class="absolute -bottom-6 left-2 text-[10px] font-black text-red-500 uppercase">
-                                        {{ form.errors.email }}
-                                    </div>
                                 </div>
                                 <button
                                     type="submit"
@@ -403,6 +420,53 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                     {{ __('translate.footer.subscribe') }}
                                 </button>
                             </div>
+                            <div v-if="form.errors.email" class="text-[10px] font-black text-red-500 uppercase mt-1">
+                                {{ form.errors.email }}
+                            </div>
+                            <div v-if="newsletterAgreements.length > 0 && form.errors.agreements" class="text-[10px] font-black text-red-500 uppercase mt-1">
+                                {{ form.errors.agreements }}
+                            </div>
+
+                            <div v-if="newsletterAgreements.length > 0" class="mt-2 space-y-3">
+                                <div class="flex items-center gap-3 group">
+                                    <div class="cursor-pointer" @click="toggleAllNewsletterAgreements">
+                                        <Checkbox
+                                            :checked="isAllNewsletterAgreementsSelected"
+                                        />
+                                    </div>
+                                    <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 flex-wrap">
+                                        <span class="cursor-pointer" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
+                                        <button
+                                            type="button"
+                                            class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                            @click.stop="showNewsletterAgreements = true"
+                                        >
+                                            {{ __('translate.newsletter_agreements') }}
+                                        </button>
+
+                                        <DialogModal :show="showNewsletterAgreements" @close="showNewsletterAgreements = false">
+                                            <template #title>
+                                                {{ __('translate.newsletter_agreements') }}
+                                            </template>
+                                            <template #content>
+                                                <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4">
+                                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
+                                                        <p class="text-gray-600 leading-relaxed font-medium">
+                                                            {{ agreement.description[page.props.language] || agreement.description['pl'] }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            <template #footer>
+                                                <SecondaryButton @click="showNewsletterAgreements = false">
+                                                    {{ __('translate.close') }}
+                                                </SecondaryButton>
+                                            </template>
+                                        </DialogModal>
+                                    </div>
+                                </div>
+                            </div>
+
                             <p class="mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center sm:text-left">
                                 {{ __('translate.footer.privacy_notice') }}
                             </p>

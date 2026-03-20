@@ -117,6 +117,7 @@ class FrontController extends Controller
             'most3Articles' => $most3Articles,
             'page' => $page ? new PageResource($page) : null,
             'grouped' => CategoryWithArticlesResource::collection($grouped),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -158,6 +159,7 @@ class FrontController extends Controller
             'categoryName' => $categoryName,
             'page' => $page ? new PageResource($page) : null,
             'sections' => $sections, // każda sekcja już ma Resource
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -322,6 +324,7 @@ class FrontController extends Controller
             'cityFront' => $cityFront,
             'distanceFront' => $distanceFront,
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -378,6 +381,7 @@ class FrontController extends Controller
             'article' => new FrontArticleResource($article),
             'sidebarSections' => $sections,
             'allOtherArticles' => $allOtherArticles,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -389,6 +393,7 @@ class FrontController extends Controller
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -419,15 +424,19 @@ class FrontController extends Controller
             'project' => $project,
             'image' => $image,
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
     public function Contact()
     {
         $page = Page::where('id', 5)->first(); // Załóżmy ID dla Privacy
+        $supportAgreements = \App\Models\Agreement::where('type', 'contact_form')->where('is_active', true)->get(['id', 'description']);
 
         return inertia()->render('Front/Contact', [
             'page' => $page ? new PageResource($page) : null,
+            'supportAgreements' => $supportAgreements,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -438,7 +447,16 @@ class FrontController extends Controller
             'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string|max:500',
-            'agree' => 'accepted',
+            'agreements' => [
+                $request->has('agreements') ? 'array' : 'nullable',
+                function ($attribute, $value, $fail) {
+                    $activeCount = \App\Models\Agreement::where('type', 'contact_form')->where('is_active', true)->count();
+                    $valueCount = is_array($value) ? count($value) : 0;
+                    if ($valueCount !== $activeCount) {
+                        $fail(trans('translate.agreements_required_all'));
+                    }
+                },
+            ],
             'captcha' => [
                 'required',
                 function ($attribute, $value, $fail) {
@@ -448,6 +466,12 @@ class FrontController extends Controller
                     }
                 },
             ],
+        ], [], [
+            'agreements' => 'zgody',
+            'captcha' => 'kod CAPTCHA',
+            'email' => 'adres e-mail',
+            'subject' => 'temat',
+            'message' => 'wiadomość',
         ]);
 
         // SPRAWDZENIE BLOKAD (IP i Email)
@@ -458,7 +482,7 @@ class FrontController extends Controller
 
         if ($isBlocked) {
             throw ValidationException::withMessages([
-                'agree' => trans('translate.blocked_message'),
+                'agreements' => trans('translate.blocked_message'),
             ]);
         }
 
@@ -494,6 +518,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Privacy', [
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -509,6 +534,7 @@ class FrontController extends Controller
         return inertia('Front/Price', [
             'products' => $products,
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -518,6 +544,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Terms', [
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -545,6 +572,7 @@ class FrontController extends Controller
             'countries' => $countries,
             'features' => $features,
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -572,7 +600,11 @@ class FrontController extends Controller
                 ]);
             }
         }
-        $agreements = Agreement::where('type', 'app_not_logged_in')->get(['description', 'id']);
+        if (auth()->check() && auth()->user()->hasRole('worker')) {
+            $agreements = Agreement::where('type', 'app_logged_in')->where('is_active', true)->get(['description', 'id']);
+        } else {
+            $agreements = Agreement::where('type', 'app_not_logged_in')->where('is_active', true)->get(['description', 'id']);
+        }
         $professionCv = $project->categorySub['value'];
 
         if (auth()->check() && auth()->user()->hasRole('worker')) {
@@ -587,6 +619,7 @@ class FrontController extends Controller
             'levelEducations' => $dictionaryService->getLevelEducations(),
             'langLevels' => $dictionaryService->getLangLevels(),
             'professionCv' => $existsCv ?? null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -913,6 +946,7 @@ class FrontController extends Controller
         return inertia()->render('Front/About',
             [
                 'page' => $page ? new PageResource($page) : null,
+                'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
             ]
         );
     }
@@ -924,6 +958,7 @@ class FrontController extends Controller
         return inertia()->render('Front/ReadMore',
             [
                 'page' => $page ? new PageResource($page) : null,
+                'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
             ]
         );
     }
@@ -979,6 +1014,7 @@ class FrontController extends Controller
             'foundations' => $foundations,
             'countries' => $countries,
             'foundationsCount' => $foundationsCount,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 
@@ -1031,6 +1067,7 @@ class FrontController extends Controller
         return inertia()->render('Front/Foundation', [
             'foundation' => $data,
             'page' => $page ? new PageResource($page) : null,
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
     }
 }

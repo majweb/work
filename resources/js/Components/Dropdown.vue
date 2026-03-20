@@ -44,6 +44,10 @@ const alignmentClasses = computed(() => {
         return 'ltr:origin-top-right rtl:origin-top-left end-0';
     }
 
+    if (props.align === 'top-right') {
+        return 'ltr:origin-top-left rtl:origin-top-right start-full -top-4';
+    }
+
     return 'origin-top';
 });
 </script>
@@ -67,9 +71,8 @@ const alignmentClasses = computed(() => {
         >
             <div
                 v-show="open"
-                class="absolute z-50 mt-4 rounded-[2rem] shadow-2xl shadow-blue-900/10 border border-gray-100"
-                :class="[widthClass, alignmentClasses]"
-                style="display: none;"
+                class="absolute z-50 rounded-[2rem] shadow-2xl shadow-blue-900/10 border border-gray-100"
+                :class="[widthClass, alignmentClasses, props.align === 'top-right' ? '' : 'mt-4']"
                 @click.stop="open = false"
             >
                 <div class="rounded-[2rem] overflow-hidden" :class="contentClasses">

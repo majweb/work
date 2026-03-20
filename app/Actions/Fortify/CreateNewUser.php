@@ -23,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        $redirectData =   Session::pull('foundation_to_register');
+        $redirectData = Session::pull('foundation_to_register');
         $foundationData = null;
         if ($redirectData) {
             // Wyciągamy ID z formatu --123--
@@ -35,15 +35,11 @@ class CreateNewUser implements CreatesNewUsers
                     if ($foundation) {
                         $foundationData = [
                             'name' => $foundation->name,
-                            'value' => $foundation->id
+                            'value' => $foundation->id,
                         ];
                     }
                 }
             }
-
-
-
-
 
         }
         Validator::make($input, [
@@ -52,22 +48,35 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ],[],[
-            'name'=>strtolower(__('translate.name')),
-            'email'=>strtolower(__('translate.email')),
-            'password'=>strtolower(__('translate.password')),
-            'terms'=>strtolower(__('translate.terms'))
+            'agreements' => [
+                isset($input['agreements']) ? 'array' : 'nullable',
+                function ($attribute, $value, $fail) use ($input) {
+                    $type = ($input['type'] ?? 'firm') === 'worker' ? 'worker_registration' : 'firm_registration';
+                    $count = \App\Models\Agreement::where('type', $type)->where('is_active', true)->count();
+                    $valueCount = is_array($value) ? count($value) : 0;
+
+                    if ($valueCount !== $count) {
+                        $fail(__('translate.agreements_required_all'));
+                    }
+                },
+            ],
+        ], [], [
+            'name' => strtolower(__('translate.name')),
+            'email' => strtolower(__('translate.email')),
+            'password' => strtolower(__('translate.password')),
+            'terms' => strtolower(__('translate.terms')),
+            'agreements' => strtolower(__('translate.agreements')),
         ])->validate();
 
-        $user =  User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'foundation' => $foundationData, // ⬅️ tutaj zapis JSON
         ]);
 
-        if($input['type'] == 'worker'){
-            if($user){
+        if ($input['type'] == 'worker') {
+            if ($user) {
                 $user->assignRole('worker');
                 $user->workerDetail()->create();
 
@@ -79,9 +88,9 @@ class CreateNewUser implements CreatesNewUsers
                     'role' => 'worker',
                 ]));
             }
-        } elseif($input['type'] == 'firm'){
-            if($user){
-                $user->assignRole('firm','recruit');
+        } elseif ($input['type'] == 'firm') {
+            if ($user) {
+                $user->assignRole('firm', 'recruit');
                 $user->firm()->create();
 
                 $admins = User::role('admin')->get();

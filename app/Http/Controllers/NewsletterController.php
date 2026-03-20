@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Newsletter;
 use App\Exports\NewslettersExport;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rule;
@@ -20,7 +20,7 @@ class NewsletterController extends Controller
         $query = Newsletter::query();
 
         if ($request->filled('search')) {
-            $query->where('email', 'like', '%' . $request->search . '%');
+            $query->where('email', 'like', '%'.$request->search.'%');
         }
 
         if ($request->filled('country_code')) {
@@ -50,7 +50,7 @@ class NewsletterController extends Controller
         $query = Newsletter::query();
 
         if ($request->filled('search')) {
-            $query->where('email', 'like', '%' . $request->search . '%');
+            $query->where('email', 'like', '%'.$request->search.'%');
         }
 
         if ($request->filled('country_code')) {
@@ -70,13 +70,17 @@ class NewsletterController extends Controller
 
     public function store(Request $request)
     {
+        $agreementsCount = \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->count();
         $request->validate([
             'email' => ['required', 'email', Rule::unique('newsletters', 'email')],
+            'agreements' => [$agreementsCount > 0 ? 'required' : 'nullable', 'array', 'size:'.$agreementsCount],
         ], [
-            'email.unique' => __('footer.email_already_subscribed')
+            'email.unique' => __('footer.email_already_subscribed'),
+            'agreements.required' => __('translate.agreements_required'),
+            'agreements.size' => __('translate.agreements_required_all'),
         ]);
 
-        $key = 'newsletter:' . $request->ip();
+        $key = 'newsletter:'.$request->ip();
 
         if (RateLimiter::remaining($key, 2)) {
             RateLimiter::hit($key, 60 * 24); // 24 godziny
@@ -90,7 +94,7 @@ class NewsletterController extends Controller
 
         Newsletter::create([
             'email' => $request->email,
-            'country_code' => $locale
+            'country_code' => $locale,
         ]);
 
         return back()->with([

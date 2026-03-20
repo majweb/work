@@ -26,6 +26,17 @@ class StoreTicketRequest extends FormRequest
             'subject' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string', 'max:500'],
             'captcha' => ['required', 'string'],
+            'agreements' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    $count = \App\Models\Agreement::where('type', 'tickets')->where('is_active', true)->count();
+                    $valueCount = is_array($value) ? count($value) : 0;
+
+                    if ($count > 0 && $valueCount !== $count) {
+                        $fail(__('translate.agreements_required_all'));
+                    }
+                },
+            ],
         ];
     }
 
@@ -41,6 +52,7 @@ class StoreTicketRequest extends FormRequest
             'subject' => strtolower(__('translate.support_subject')),
             'content' => strtolower(__('translate.support_content')),
             'captcha' => strtolower(__('translate.rewrite_code')),
+            'agreements' => strtolower(__('translate.agreements')),
         ];
     }
 }

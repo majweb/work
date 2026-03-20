@@ -5,7 +5,12 @@ import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import Socialstream from '@/Components/Socialstream.vue'
 import TextInput from '@/Components/TextInput.vue'
-import { computed } from "vue"
+import Dropdown from '@/Components/Dropdown.vue'
+import DialogModal from '@/Components/DialogModal.vue'
+import SecondaryButton from '@/Components/SecondaryButton.vue'
+import SpinnerAction from '@/Components/SpinnerAction.vue'
+import { computed, ref } from "vue"
+import { usePage } from "@inertiajs/vue3"
 import __ from "@/lang.js";
 
 const form = useForm({
@@ -15,7 +20,26 @@ const form = useForm({
     type: 'firm',
     password_confirmation: '',
     terms: false,
+    agreements: [],
 })
+
+const showAgreementsModal = ref(false);
+
+const agreements = computed(() => {
+    return usePage().props.registrationAgreements[form.type] || [];
+});
+
+const isAllAgreementsSelected = computed(() => {
+    return agreements.value.length > 0 && form.agreements.length === agreements.value.length;
+});
+
+const toggleAllAgreements = () => {
+    if (isAllAgreementsSelected.value) {
+        form.agreements = [];
+    } else {
+        form.agreements = agreements.value.map(a => a.id);
+    }
+};
 
 const headerText = computed(() => {
     if (form.type === 'worker') {
@@ -166,6 +190,48 @@ const submit = () => {
                         </div>
                     </div>
 
+                    <!-- Agreements -->
+                    <div v-if="agreements.length > 0" class="space-y-4 border-t border-gray-100 pt-6 ml-2">
+                        <div class="flex items-center gap-3 group">
+                            <div class="cursor-pointer" @click="toggleAllAgreements">
+                                <Checkbox
+                                    :checked="isAllAgreementsSelected"
+                                />
+                            </div>
+                            <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 flex-wrap">
+                                <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
+                                <button
+                                    type="button"
+                                    class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                    @click.stop="showAgreementsModal = true"
+                                >
+                                    {{ __('translate.agreements') }}
+                                </button>
+
+                                <DialogModal :show="showAgreementsModal" @close="showAgreementsModal = false">
+                                    <template #title>
+                                        {{ __('translate.agreements') }}
+                                    </template>
+                                    <template #content>
+                                        <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4 text-left">
+                                            <div v-for="agreement in agreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
+                                                <p class="text-gray-600 leading-relaxed font-medium normal-case">
+                                                    {{ agreement.description[usePage().props.language] || agreement.description['pl'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template #footer>
+                                        <SecondaryButton @click="showAgreementsModal = false">
+                                            {{ __('translate.close') }}
+                                        </SecondaryButton>
+                                    </template>
+                                </DialogModal>
+                            </div>
+                        </div>
+                        <InputError :message="form.errors.agreements" />
+                    </div>
+
                     <!-- TERMS -->
                     <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="space-y-2 ml-2">
                         <label class="flex items-center group cursor-pointer select-none">
@@ -189,8 +255,9 @@ const submit = () => {
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="w-full py-5 bg-[#0A2C5C] text-white text-xs font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                            class="w-full py-5 bg-[#0A2C5C] text-white text-xs font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2"
                         >
+                            <SpinnerAction v-if="form.processing" />
                             {{ __('translate.register') }}
                         </button>
                     </div>

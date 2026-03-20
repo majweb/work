@@ -7,6 +7,9 @@ import __ from "@/lang.js";
 import Checkbox from "@/Components/Checkbox.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
+import DialogModal from "@/Components/DialogModal.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import SpinnerAction from "@/Components/SpinnerAction.vue";
 
 /* ---------------------------
    FORMULARZ
@@ -16,8 +19,27 @@ const form = useForm({
     subject: '',
     message: '',
     captcha: '',
-    agree: false,
+    agreements: [],
 })
+
+const props = defineProps({
+    page: Object,
+    supportAgreements:Array
+});
+
+const agreementsModalVisible = ref(false);
+
+const toggleAllAgreements = () => {
+    if (form.agreements.length === props.supportAgreements.length) {
+        form.agreements = [];
+    } else {
+        form.agreements = props.supportAgreements.map(a => a.id);
+    }
+}
+
+const isAllAgreementsChecked = computed(() => {
+    return props.supportAgreements.length > 0 && form.agreements.length === props.supportAgreements.length;
+});
 
 const successMessage = ref('') // komunikat sukcesu
 
@@ -75,11 +97,6 @@ const loadCaptcha = () => {
 const reloadCaptcha = () => loadCaptcha()
 
 onMounted(() => loadCaptcha())
-
-
-const props = defineProps({
-    page: Object,
-});
 
 
 </script>
@@ -214,26 +231,56 @@ const props = defineProps({
                                     </div>
 
                                     <!-- AGREE -->
-                                    <div class="space-y-4">
-                                        <label class="flex items-center group cursor-pointer select-none">
-                                            <div class="relative mt-1">
-                                                <Checkbox v-model:checked="form.agree" name="agree" class="sr-only" />
-                                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#00a0e3] border-[#00a0e3]': form.agree}"></div>
-                                                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="{'translate-x-5': form.agree, 'shadow-blue-900/20': form.agree}"></div>
+                                    <div v-if="props.supportAgreements && props.supportAgreements.length > 0" class="space-y-4">
+                                        <div class="flex items-center gap-3">
+                                            <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
+                                                <Checkbox :checked="isAllAgreementsChecked" name="agree" class="sr-only" />
+                                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#00a0e3] border-[#00a0e3]': isAllAgreementsChecked}"></div>
+                                                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="{'translate-x-5': isAllAgreementsChecked, 'shadow-blue-900/20': isAllAgreementsChecked}"></div>
                                             </div>
-                                            <span class="ml-5 text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="form.agree ? 'text-[#00a0e3]' : 'text-gray-400'">
-                                                {{ __('info.agree') }}
-                                            </span>
-                                        </label>
-                                        <InputError :message="form.errors.agree" />
+                                            <div class="text-[10px] font-black uppercase tracking-widest leading-relaxed">
+                                                <span @click="toggleAllAgreements" class="cursor-pointer transition-colors duration-300" :class="isAllAgreementsChecked ? 'text-[#00a0e3]' : 'text-gray-400'">
+                                                    {{ __('translate.agree_to') }}
+                                                </span>
+                                                <button type="button" @click.stop="agreementsModalVisible = true" class="text-[#00a0e3] hover:underline ml-1">
+                                                    {{ __('translate.agreements') }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <InputError :message="form.errors.agreements" />
                                     </div>
+
+                                    <!-- DialogModal for Agreements -->
+                                    <DialogModal :show="agreementsModalVisible" @close="agreementsModalVisible = false">
+                                        <template #title>
+                                            <span class="uppercase font-black text-[#0A2C5C] tracking-widest">{{ __('translate.agreements') }}</span>
+                                        </template>
+
+                                        <template #content>
+                                            <div class="space-y-6 max-h-96 overflow-y-auto pr-2 custom-scrollbar">
+                                                <div v-for="(agreement, index) in props.supportAgreements" :key="agreement.id" class="text-sm text-gray-600 leading-relaxed">
+                                                    <div class="font-bold text-[#0A2C5C] mb-2 uppercase text-[10px] tracking-widest">#{{ index + 1 }}</div>
+                                                    <div class="normal-case" v-html="agreement.description[$page.props.language] || agreement.description['pl']"></div>
+                                                    <div v-if="index < props.supportAgreements.length - 1" class="my-6 border-b border-gray-100"></div>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                        <template #footer>
+                                            <SecondaryButton @click="agreementsModalVisible = false">
+                                                {{ __('translate.close') }}
+                                            </SecondaryButton>
+                                        </template>
+                                    </DialogModal>
 
                                     <!-- SUBMIT -->
                                     <button type="submit"
                                             :disabled="form.processing"
                                             class="inline-flex items-center justify-center gap-4 bg-[#0A2C5C] hover:bg-[#1a4a8e] text-white font-black px-12 py-5 rounded-2xl transition-all hover:gap-6 uppercase tracking-widest text-xs shadow-xl shadow-blue-900/20 w-full md:w-auto disabled:opacity-50 group/btn">
-                                        {{ __('translate.send_message') }}
-                                        <span class="text-xl leading-none group-hover/btn:translate-x-2 transition-transform">→</span>
+                                        <SpinnerAction :process="form.processing">
+                                            {{ __('translate.send_message') }}
+                                        </SpinnerAction>
+                                        <span v-if="!form.processing" class="text-xl leading-none group-hover/btn:translate-x-2 transition-transform">→</span>
                                     </button>
                                 </form>
                             </div>

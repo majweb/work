@@ -81,6 +81,7 @@ class DatabaseSeeder extends Seeder
             CategoryImageSeeder::class,
             FoundationCategorySeeder::class,
             IntegrationSeeder::class,
+            AgreementSeeder::class
         ]);
 
     }

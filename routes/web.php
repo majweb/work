@@ -33,9 +33,9 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Worker\WorkerController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
-use App\Services\DictionaryService;
 use App\Models\Country;
 use App\Models\Page;
+use App\Services\DictionaryService;
 use App\Services\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -86,6 +86,7 @@ Route::get('/', function (DictionaryService $dictionaryService) {
     $page = Page::findOrFail(1);
     $countries = (new Helper)->makeCountriesToSelectHasProjects();
     $imageUrl = Country::getRandomImageFromBrowserLocale();
+
     return Inertia::render('Welcome', [
         'page' => new PageResource($page),
         'canLogin' => Route::has('login'),
@@ -93,6 +94,7 @@ Route::get('/', function (DictionaryService $dictionaryService) {
         'countries' => $countries,
         'imageUrl' => $imageUrl,
         'distanceOptions' => $dictionaryService->getDistanceOptions(),
+        'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
     ]);
 })->name('front');
 

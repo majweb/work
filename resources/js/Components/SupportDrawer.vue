@@ -5,6 +5,10 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import axios from 'axios';
 import __ from "@/lang.js";
 import InputError from "@/Components/InputError.vue";
+import Checkbox from "@/Components/Checkbox.vue";
+import Dropdown from "@/Components/Dropdown.vue";
+import DialogModal from "@/Components/DialogModal.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
     show: Boolean,
@@ -12,16 +16,34 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
+const page = usePage();
 const captchaText = ref('');
 const coloredCaptcha = ref([]);
 const successMessage = ref('');
+const showAgreementsModal = ref(false);
 
 const form = useForm({
     type: 'question',
     subject: '',
     content: '',
     captcha: '',
+    agreements: [],
 });
+
+const supportAgreements = computed(() => page.props.supportAgreements || []);
+
+const isAllAgreementsSelected = computed(() => {
+    return supportAgreements.value.length > 0 &&
+        form.agreements.length === supportAgreements.value.length;
+});
+
+const toggleAllAgreements = () => {
+    if (isAllAgreementsSelected.value) {
+        form.agreements = [];
+    } else {
+        form.agreements = supportAgreements.value.map(a => a.id);
+    }
+};
 
 const randomColor = () => {
     const colors = ['#00a0e3', '#e31e24', '#0d2a52'];
@@ -236,6 +258,48 @@ const submit = () => {
                                                     </span>
                                                 </div>
                                                 <InputError :message="form.errors.content" />
+                                            </div>
+
+                                            <!-- Agreements -->
+                                           <div v-if="supportAgreements.length > 0" class="space-y-4 border-t border-gray-100 pt-6 ml-2">
+                                               <div class="flex items-center gap-3 group">
+                                                   <div class="cursor-pointer" @click="toggleAllAgreements">
+                                                       <Checkbox
+                                                           :checked="isAllAgreementsSelected"
+                                                       />
+                                                   </div>
+                                                   <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 flex-wrap">
+                                                       <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
+                                                       <button
+                                                           type="button"
+                                                           class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                                           @click.stop="showAgreementsModal = true"
+                                                       >
+                                                           {{ __('translate.agreements') }}
+                                                       </button>
+
+                                                        <DialogModal :show="showAgreementsModal" @close="showAgreementsModal = false">
+                                                            <template #title>
+                                                                {{ __('translate.agreements') }}
+                                                            </template>
+                                                            <template #content>
+                                                                <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4 text-left">
+                                                                    <div v-for="agreement in supportAgreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
+                                                                        <p class="text-gray-600 leading-relaxed font-medium normal-case">
+                                                                            {{ agreement.description[page.props.language] || agreement.description['pl'] }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </template>
+                                                            <template #footer>
+                                                                <SecondaryButton @click="showAgreementsModal = false">
+                                                                    {{ __('translate.close') }}
+                                                                </SecondaryButton>
+                                                            </template>
+                                                        </DialogModal>
+                                                    </div>
+                                                </div>
+                                                <InputError :message="form.errors.agreements" />
                                             </div>
 
                                             <!-- CAPTCHA -->

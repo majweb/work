@@ -6,6 +6,9 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import Dropdown from "@/Components/Dropdown.vue";
+import DialogModal from "@/Components/DialogModal.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import {usePermission} from "@/Composables/usePermission.js";
 import draggable from 'vuedraggable/src/vuedraggable'
 import Multiselect from 'vue-multiselect'
@@ -26,6 +29,7 @@ const optionsPositions = ref([]);
 const formStep = ref(1);
 const isReadyToSubmit = ref(true);
 const generateCvLoading = ref(false);
+const showAgreementsModal = ref(false);
 const captchaText = ref('');
 const isClient = ref(false);
 
@@ -753,7 +757,7 @@ const removeFile = async (source, load) => {
                                         <InputError :message="form.errors.captcha" class="mt-3 text-[10px] font-bold uppercase tracking-widest ml-1"/>
                                     </div>
                                 </div>
-                                <div class="col-span-6 pt-8">
+                                <div v-if="props.agreements && props.agreements.length > 0" class="col-span-6 pt-8">
                                     <div
                                         class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 shadow-inner">
                                         <InputLabel for="agreements" :value="__('translate.agreements')"
@@ -762,39 +766,49 @@ const removeFile = async (source, load) => {
                                             {{ __('translate.agreements') }}
                                         </InputLabel>
 
-                                        <div class="mb-4 flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm group">
-                                            <div class="flex items-center h-6">
-                                                <input
-                                                    class="w-5 h-5 rounded-md border-gray-200 text-[#00a0e3] shadow-sm focus:ring-[#00a0e3] focus:ring-offset-0 transition-all cursor-pointer"
-                                                    type="checkbox"
+                                        <div class="mb-4 flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm group">
+                                            <div class="flex items-center h-6 cursor-pointer" @click="toggleAllAgreements">
+                                                <Checkbox
                                                     id="select_all_agreements"
                                                     :checked="isAllAgreementsSelected"
-                                                    @change="toggleAllAgreements"
-                                                >
+                                                />
                                             </div>
-                                            <label for="select_all_agreements"
-                                                   class="text-xs font-black text-gray-500 cursor-pointer group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest">
-                                                {{ __('translate.selectAll') }}
-                                            </label>
-                                        </div>
+                                            <div class="text-xs font-black text-gray-500 group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest flex items-center gap-1.5 flex-wrap">
+                                                <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
+                                                <button
+                                                    type="button"
+                                                    class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                                    @click.stop="showAgreementsModal = true"
+                                                >
+                                                    {{ __('translate.agreements') }}
+                                                </button>
 
-                                        <div class="grid gap-4">
-                                            <div v-for="agreement in agreements" :key="agreement.id"
-                                                 class="group relative flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm">
-                                                <div class="flex items-center h-6">
-                                                    <input
-                                                        class="w-5 h-5 rounded-md border-gray-200 text-[#00a0e3] shadow-sm focus:ring-[#00a0e3] focus:ring-offset-0 transition-all"
-                                                        type="checkbox" :id="agreement.id" v-model="form.agreements"
-                                                        :value="agreement.id" name="agreement">
-                                                </div>
-                                                <label :for="agreement.id"
-                                                       class="text-xs font-bold text-gray-500 cursor-pointer group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest">
-                                                    {{ agreement.description[usePage().props.language] }}
-                                                </label>
+                                                <DialogModal :show="showAgreementsModal" @close="showAgreementsModal = false">
+                                                    <template #title>
+                                                        {{ __('translate.agreements') }}
+                                                    </template>
+                                                    <template #content>
+                                                        <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4">
+                                                            <div v-for="agreement in agreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0 text-left">
+                                                                <p class="text-gray-600 leading-relaxed font-medium normal-case">
+                                                                    {{ agreement.description[usePage().props.language] || agreement.description['pl'] }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <template #footer>
+                                                        <SecondaryButton @click="showAgreementsModal = false">
+                                                            {{ __('translate.close') }}
+                                                        </SecondaryButton>
+                                                    </template>
+                                                </DialogModal>
                                             </div>
                                         </div>
                                         <InputError :message="form.errors.agreements" class="mt-4 text-[10px] font-bold uppercase tracking-widest ml-1"/>
                                     </div>
+                                </div>
+                                <div v-else-if="form.errors.agreements" class="col-span-6 pt-2 px-8">
+                                    <InputError :message="form.errors.agreements" class="text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
 
                                 <div
