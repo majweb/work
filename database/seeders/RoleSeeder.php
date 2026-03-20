@@ -22,6 +22,7 @@ class RoleSeeder extends Seeder
         $recruit = Role::create(['name' => 'recruit']);
         Role::create(['name' => 'worker']);
         Role::create(['name' => 'admin']);
+        Role::create(['name' => 'admin-sub']);
 
         $p1 = Permission::create([
             'name' => 'adding projects', 'trans' => json_encode([

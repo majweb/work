@@ -332,7 +332,7 @@ Route::middleware([
         Route::get('finance/points/export', [\App\Http\Controllers\Admin\PointHistoryController::class, 'export'])->name('finance.points.export');
         Route::delete('finance/points/{userId}', [\App\Http\Controllers\Admin\PointHistoryController::class, 'clearHistory'])->name('finance.points.clear');
 
-        Route::get('finance/invoices', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('finance.invoices.index');
+        Route::get('finance/invoices', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('finance.invoices.index')->middleware(['can:super-admin-only']);
         Route::get('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'createCorrection'])->name('finance.invoices.correction.create');
         Route::post('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'storeCorrection'])->name('finance.invoices.correction.store');
         Route::get('finance/corrections/{correction}/download', [\App\Http\Controllers\Admin\InvoiceController::class, 'downloadCorrection'])->name('finance.corrections.download');
@@ -390,6 +390,11 @@ Route::middleware([
             Route::put('recruits/{user}', [App\Http\Controllers\Admin\RecruitController::class, 'update'])->name('recruits.update');
             Route::post('recruits/{user}/block', [App\Http\Controllers\Admin\RecruitController::class, 'toggleBlock'])->name('recruits.block');
             Route::post('recruits/{user}/verify-email', [App\Http\Controllers\Admin\RecruitController::class, 'verifyEmail'])->name('recruits.verifyEmail');
+
+            Route::get('admins', [\App\Http\Controllers\Admin\AdminsController::class, 'index'])->name('admins.index')->middleware(['can:super-admin-only']);
+            Route::post('admins', [\App\Http\Controllers\Admin\AdminsController::class, 'store'])->name('admins.store')->middleware(['can:super-admin-only']);
+            Route::post('admins/{user}/toggle-subadmin', [\App\Http\Controllers\Admin\AdminsController::class, 'toggleSubAdmin'])->name('admins.toggle-subadmin')->middleware(['can:super-admin-only']);
+            Route::delete('admins/{user}', [\App\Http\Controllers\Admin\AdminsController::class, 'destroy'])->name('admins.destroy')->middleware(['can:super-admin-only']);
         });
 
         // Wsteczna kompatybilność dla paska bocznego (jeśli użyłem admin.workers.index)

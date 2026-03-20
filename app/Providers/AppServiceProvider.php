@@ -42,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('super-admin-only', function (User $user) {
+            return $user->hasRole('admin') && !$user->hasRole('admin-sub');
+        });
+
         //        observer
         Project::observe(ProjectObserver::class);
 

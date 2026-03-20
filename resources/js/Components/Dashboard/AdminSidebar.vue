@@ -85,7 +85,7 @@ const menuItems = [
             { name: 'Blokada IP i Email', route: 'admin.security.ip-email-blocks.index' },
         ]
     },
-    { name: 'Administratorzy', icon: 'admins', route: 'dashboard' },
+    { name: 'Administratorzy', icon: 'admins', route: 'admin.users.admins.index', can: 'super-admin-only' },
     {
         name: 'Ustawienia',
         icon: 'settings',
@@ -183,8 +183,9 @@ const getIcon = (name) => {
             <!-- Navigation -->
             <nav class="space-y-6 flex-1">
                 <div v-for="item in menuItems" :key="item.name">
-                    <!-- Main Item -->
-                    <template v-if="item.subItems">
+                    <template v-if="!item.can || (item.can === 'super-admin-only' && $page.props.roles && $page.props.roles.includes('admin') && !$page.props.roles.includes('admin-sub'))">
+                        <!-- Main Item -->
+                        <template v-if="item.subItems">
                         <div class="mb-4">
                             <div
                                 @click="toggleGroup(item.name)"
@@ -245,6 +246,7 @@ const getIcon = (name) => {
                             <div v-if="item.route && route().current(item.route)" class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-blue-400 rounded-r-full shadow-lg shadow-blue-400/50"></div>
                         </Link>
                     </template>
+                </template>
                 </div>
             </nav>
 

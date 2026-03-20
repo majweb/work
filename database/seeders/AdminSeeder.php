@@ -14,8 +14,6 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::where('name', 'admin')->first();
-
         // Stwórz użytkownika admina
 
         $admin = User::firstOrCreate(
@@ -27,5 +25,15 @@ class AdminSeeder extends Seeder
             ]
         );
         $admin->assignRole('admin');
+
+        $adminSub = User::firstOrCreate(
+            ['email' => 'sub@admin.com'],
+            [
+                'name' => 'SubAdministrator',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'), // zmień hasło na bezpieczne
+            ]
+        );
+        $adminSub->assignRole('admin-sub');
     }
 }
