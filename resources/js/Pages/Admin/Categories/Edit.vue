@@ -313,7 +313,10 @@ const submit = () => {
     }
 }
 .animate-in {
-    animation: animate-in 0.3s ease-out;
+    animation-name: animate-in;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
 }
 
 @keyframes animate-in {

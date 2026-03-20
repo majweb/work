@@ -243,18 +243,18 @@ const deleteCurrency = () => {
 }
 
 .fade-in {
+    animation-name: fadeIn;
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
     }
-    animation-name: fadeIn;
 }
 
 .zoom-in {
+    animation-name: zoomIn;
     @keyframes zoomIn {
         from { transform: scale(0.95); }
         to { transform: scale(1); }
     }
-    animation-name: zoomIn;
 }
 </style>

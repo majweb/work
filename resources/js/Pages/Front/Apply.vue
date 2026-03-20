@@ -1989,11 +1989,17 @@ const removeFile = async (source, load) => {
 <style lang="scss">
 
 .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
 }
 
 .animate-slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
 }
 
 @keyframes fadeIn {
