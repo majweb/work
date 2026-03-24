@@ -139,6 +139,7 @@ onMounted(async () => {
         console.error('Error loading map:', error);
     }
 });
+
 </script>
 
 <template>

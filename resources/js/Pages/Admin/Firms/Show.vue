@@ -2,11 +2,14 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link, router } from "@inertiajs/vue3";
 import { ref } from 'vue';
+import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
+import moment from "moment";
 
 const props = defineProps({
     firm: Object,
 });
 
+const { getPositionTitle } = useProjectHelpers();
 const showStatusModal = ref(false);
 
 const changeStatus = (newStatus) => {
@@ -321,7 +324,7 @@ const getStatusDotClass = (status) => {
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center justify-between mb-8">
                                 <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Ostatnie oferty pracy</h3>
-                                <Link :href="route('admin.firms.offers', firm.id)" class="text-[10px] font-black text-blue-500 uppercase tracking-widest hover:underline">Zobacz wszystkie</Link>
+                                <Link :href="route('admin.job-offers.index', { search: firm.name })" class="text-[10px] font-black text-blue-500 uppercase tracking-widest hover:underline">Zobacz wszystkie</Link>
                             </div>
                             <div class="space-y-4">
                                 <div v-for="project in firm.recent_projects" :key="project.id" class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
@@ -330,11 +333,11 @@ const getStatusDotClass = (status) => {
                                             {{ project.id }}
                                         </div>
                                         <div>
-                                            <div class="text-sm font-black text-[#0A2C5C]">{{ project.name }}</div>
-                                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ project.created_at_human || project.created_at }}</div>
+                                            <div class="text-sm font-black text-[#0A2C5C]">{{ getPositionTitle(project) }}</div>
+                                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ moment(project.created_at).format('DD.MM.YYYY') }}</div>
                                         </div>
                                     </div>
-                                    <Link :href="'#'" class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-[#0A2C5C] hover:bg-blue-500 hover:text-white transition-all shadow-sm">
+                                    <Link :href="route('admin.job-offers.show', project.id)" class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-[#0A2C5C] hover:bg-blue-500 hover:text-white transition-all shadow-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                                         </svg>
