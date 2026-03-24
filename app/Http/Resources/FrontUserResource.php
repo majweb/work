@@ -16,7 +16,7 @@ class FrontUserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'logo' => $this->profilePhotoUrl,
+            'profile_photo_url' => $this->profilePhotoUrl,
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
@@ -44,6 +44,7 @@ class FrontUserResource extends JsonResource
             'social_instagram' => $this->firm->social_instagram,
             'social_linkedin' => $this->firm->social_linkedin,
             'social_tiktok' => $this->firm->social_tiktok,
+            'is_featured' => $this->whenHas('is_featured_count', fn() => $this->is_featured_count > 0, $this->is_featured ?? false),
             'points' => $this->firm->points,
             'currency' => $this->firm->currency,
             'projects' => $this->whenLoaded('projects'),

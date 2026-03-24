@@ -596,22 +596,28 @@ const isSearching = ref(false);
 
                     <div v-if="props.projects.total" class="space-y-4">
                         <div v-for="(project) in props.projects.data" :key="project.id"
-                             class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6 relative overflow-hidden"
-                             :class="{ 'ring-2 ring-blue-500 ring-offset-4 bg-blue-50/10 shadow-blue-500/5': project.is_featured }"
+                             class="group bg-white rounded-[2.5rem] border transition-all duration-300 hover:-translate-y-1 p-6 relative overflow-hidden"
+                             :class="{
+                                 'border-[#0A2C5C]/50 ring-2 ring-[#0A2C5C]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#0A2C5C]/10': project.is_featured,
+                                 'border-gray-200 shadow-sm hover:shadow-xl hover:shadow-blue-900/5': !project.is_featured
+                             }"
                         >
-                            <!-- Featured Badge for List -->
-                            <div v-if="project.is_featured" class="absolute top-0 right-0 overflow-hidden rounded-tr-[2.5rem] group/premium">
-                                <!-- Background with shimmer -->
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 animate-shimmer bg-[length:200%_auto]"></div>
+                            <!-- Featured Indicator (Blue) -->
+                            <div v-if="project.is_featured" class="absolute top-0 right-0 h-24 w-24 overflow-hidden pointer-events-none z-0">
+                                <div class="absolute top-0 right-0 w-[150%] h-8 bg-gradient-to-r from-[#0A2C5C] via-blue-900 to-[#0A2C5C] rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-[#0A2C5C]/20 animate-shimmer bg-[length:200%_auto]">
+                                    <svg class="absolute w-4 h-4 text-white/80 drop-shadow-sm top-2 left-10 z-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                    </svg>
 
-                                <div class="relative flex items-center gap-1.5 px-4 py-1.5 rounded-bl-2xl border-l border-b border-white/20 shadow-lg shadow-blue-900/20">
-                                    <div class="relative flex items-center justify-center">
-                                        <div class="absolute inset-0 bg-white/40 blur-sm rounded-full animate-ping"></div>
-                                        <img class="relative h-3 w-3 object-contain brightness-0 invert" src="/images/hand.svg" alt="featured">
-                                    </div>
-                                    <span class="text-[8px] font-black text-white uppercase tracking-[0.15em] drop-shadow-sm">{{ __('translate.featured') }}</span>
+
+                                </div>
+                                <div class="absolute top-[2.4rem] right-[2rem] flex items-center justify-center w-8 h-8 rotate-45">
+                                    <div class="absolute inset-0 bg-[#0A2C5C]/20 blur-md rounded-full animate-pulse"></div>
                                 </div>
                             </div>
+
+                            <!-- Left Accent Bar for Featured -->
+                            <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#0A2C5C] via-blue-900 to-[#0A2C5C] rounded-r-full shadow-[2px_0_10px_rgba(10,44,92,0.3)]"></div>
                             <Link :href="route('front.projects.single', project)" class="block">
                                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                                     <div class="flex items-center gap-4">
@@ -623,18 +629,21 @@ const isSearching = ref(false);
                                             {{ getPositionTitle(project) }}
                                         </h4>
                                     </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                            {{ moment(project.created_at).format('DD.MM.YYYY') }}
-                                        </span>
-                                    </div>
+                                        <div class="flex flex-col items-end gap-1 relative z-1">
+                                            <div class="flex items-center gap-2">
+                                                <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                                                    {{ moment(project.created_at).format('DD.MM.YYYY') }}
+                                                </span>
+                                            </div>
+                                        </div>
                                 </div>
 
                                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                     <div class="flex items-start gap-4">
                                         <div
                                             class="w-20 h-20 rounded-[1.5rem] bg-gray-50 shrink-0 shadow-inner border border-gray-100"
+                                            :class="{ 'ring-2 ring-[#0A2C5C]/50 shadow-lg shadow-[#0A2C5C]/10': project.is_featured }"
                                             :style="{
                                                 backgroundImage: `url('${project.user?.profile_photo_url || '/default-company-logo.png'}')`,
                                                 backgroundPosition: 'center',

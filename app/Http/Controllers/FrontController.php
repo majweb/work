@@ -388,6 +388,11 @@ class FrontController extends Controller
     public function SingleFirm(User $user)
     {
         $user->load('firm', 'projects.user.firm.media');
+        $user->loadCount(['changeProducts as is_featured_count' => function ($query) {
+            $query->where('product_id', 9)
+                ->whereDate('start', '<=', now())
+                ->whereDate('end', '>=', now());
+        }]);
         $page = Page::where('id', 17)->first(); // Załóżmy ID dla Privacy
 
         return inertia()->render('Front/SingleFirm', [
@@ -401,9 +406,14 @@ class FrontController extends Controller
     {
         $project = Project::query()
             ->with(['user', 'education', 'detailprojects'])
-            ->featured()
             ->active() // <<--- dodane filtrowanie tylko aktywnych
             ->findOrFail($project->id);
+
+        $project->is_featured = $project->user->changeProducts()
+            ->where('product_id', 9)
+            ->whereDate('start', '<=', now())
+            ->whereDate('end', '>=', now())
+            ->exists();
 
         // Zliczanie odwiedzin - 1 inkrementacja na IP na 24h
         $key = 'project-view:'.$project->id.':'.$request->ip();
@@ -555,8 +565,12 @@ class FrontController extends Controller
         $query = User::role('firm')->with(['firm' => function ($query) {
             $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
                 'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
+        }])->withCount(['changeProducts as is_featured_count' => function ($query) {
+            $query->where('product_id', 9)
+                ->whereDate('start', '<=', now())
+                ->whereDate('end', '>=', now());
         }]);
-        $features = User::featured()->with('firm')->get();
+
         // Filtrowanie po kraju
         if (request('country')) {
             $countryId = request('country');
@@ -564,7 +578,30 @@ class FrontController extends Controller
                 $q->whereJsonContains('countryJson', ['value' => (int) $countryId]);
             });
         }
+
         $firms = $query->paginate(10)->withQueryString();
+
+        // Używamy Resource dla danych w paginacji
+        $firms->setCollection(
+            $firms->getCollection()->map(function ($user) {
+                return (new FrontUserResource($user))->resolve();
+            })
+        );
+
+        $featuresRaw = User::featured()->with(['firm' => function ($query) {
+            $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
+                'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
+        }])->get();
+
+        $featuresRaw->loadCount(['changeProducts as is_featured_count' => function ($query) {
+            $query->where('product_id', 9)
+                ->whereDate('start', '<=', now())
+                ->whereDate('end', '>=', now());
+        }]);
+
+        $features = $featuresRaw->map(function ($user) {
+            return (new FrontUserResource($user))->resolve();
+        });
 
         $countries = (new Helper)->makeCountriesToSelect();
         $page = Page::findOrFail(7);
