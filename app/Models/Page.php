@@ -11,19 +11,17 @@ class Page extends Model
     use HasFactory;
     use HasTranslations;
 
-    public array $translatable = ['title', 'image', 'description', 'keywords'];
+    public array $translatable = ['title', 'image', 'description', 'keywords', 'content'];
 
     protected $fillable = [
         'title',
         'image',
         'description',
         'keywords',
+        'content',
     ];
 
     protected $casts = [
-        'title' => 'array',
-        'image' => 'array',
-        'description' => 'array',
-        'keywords' => 'array',
+        'content' => 'array',
     ];
 }

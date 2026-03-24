@@ -125,7 +125,8 @@ export default {
             ],
             content: props.modelValue || '',
             onUpdate({ editor: ed }) {
-                emit('update:modelValue', ed.getHTML())
+                const html = ed.isEmpty ? '' : ed.getHTML()
+                emit('update:modelValue', html)
                 updateActiveMarks(ed)
             },
             onSelectionUpdate({ editor: ed }) {

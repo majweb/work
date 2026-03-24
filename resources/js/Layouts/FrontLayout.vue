@@ -475,10 +475,8 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
 
                     <div class="flex flex-col lg:flex-row justify-between items-center gap-8 pt-8 border-t border-gray-50">
                         <div class="flex flex-wrap justify-center gap-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('login')">{{ __('translate.footer.privacy_policy') }}</Link>
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('login')">{{ __('translate.footer.terms') }}</Link>
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('login')">{{ __('translate.footer.cookies') }}</Link>
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('login')">{{ __('translate.footer.gdpr') }}</Link>
+                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('front.privacy')">{{ __('translate.footer.privacy_policy') }}</Link>
+                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('front.terms')">{{ __('translate.footer.terms') }}</Link>
                         </div>
                         <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">
                             {{ __('translate.footer.copyright') }}

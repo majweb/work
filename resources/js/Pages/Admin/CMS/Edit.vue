@@ -4,23 +4,70 @@ import { useForm, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TipTap from '@/Components/TipTap.vue';
 
 const props = defineProps({
     page: Object,
-    languages: Array,
+    seoLanguages: Array,
+    contentLanguages: Array,
 });
 
-const languages = props.languages || [];
+const seoLanguages = props.seoLanguages || [];
+const contentLanguages = props.contentLanguages || [];
 
 const form = useForm({
     _method: 'PUT',
-    title: props.page.title,
-    description: props.page.description,
-    keywords: props.page.keywords,
+    title: props.page.title || {},
+    description: props.page.description || {},
+    keywords: props.page.keywords || {},
+    content: props.page.content || {},
     image_file: {},
 });
 
-const activeLang = ref('pl');
+const activeSeoLang = ref('pl');
+if (seoLanguages.length > 0 && !seoLanguages.includes('pl')) {
+    activeSeoLang.value = seoLanguages[0];
+}
+const activeContentLang = ref('pl');
+
+const hasSeoError = (lang) => {
+    return Object.keys(form.errors).some(key =>
+        (key.startsWith('title.' + lang) ||
+         key.startsWith('description.' + lang) ||
+         key.startsWith('keywords.' + lang) ||
+         key.startsWith('image_file.' + lang))
+    );
+};
+
+const hasContentError = (lang) => {
+    return !!form.errors['content.' + lang];
+};
+
+const goToNextError = () => {
+    // Check SEO errors first
+    for (const lang of seoLanguages) {
+        if (hasSeoError(lang)) {
+            activeSeoLang.value = lang;
+            // Scroll to the first SEO field if needed
+            return;
+        }
+    }
+
+    // Then check Content errors
+    if (props.page.id == 2 || props.page.id == 3) {
+        for (const lang of contentLanguages) {
+            if (hasContentError(lang)) {
+                activeContentLang.value = lang;
+                // Scroll to content section
+                const contentSection = document.querySelector('.content-section');
+                if (contentSection) {
+                    contentSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                return;
+            }
+        }
+    }
+};
 
 const previewUrls = ref({});
 
@@ -47,6 +94,9 @@ const removeFile = (lang) => {
 const submit = () => {
     form.post(route('admin.cms.update', props.page.id), {
         forceFormData: true,
+        onError: () => {
+            goToNextError();
+        }
     });
 };
 </script>
@@ -80,19 +130,27 @@ const submit = () => {
                 <!-- Language Tabs -->
                 <div class="flex flex-wrap gap-2 mb-8 ml-4">
                     <button
-                        v-for="lang in languages"
+                        v-for="lang in seoLanguages"
                         :key="lang"
-                        @click="activeLang = lang"
-                        class="px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-sm"
-                        :class="activeLang === lang ? 'bg-[#0A2C5C] text-white shadow-blue-200' : 'bg-white text-gray-400 hover:bg-gray-50'"
+                        type="button"
+                        @click="activeSeoLang = lang"
+                        class="px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-sm relative"
+                        :class="[
+                            activeSeoLang === lang ? 'bg-[#0A2C5C] text-white shadow-blue-200' : 'bg-white text-gray-400 hover:bg-gray-50',
+                            hasSeoError(lang) ? 'border-2 border-red-500' : ''
+                        ]"
                     >
                         {{ lang }}
+                        <span v-if="hasSeoError(lang)" class="absolute -top-1 -right-1 flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span>
                     </button>
                 </div>
 
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <form @submit.prevent="submit" class="space-y-8">
-                        <div v-for="lang in languages" :key="lang" v-show="activeLang === lang" class="space-y-8">
+                        <div v-for="lang in seoLanguages" :key="lang" v-show="activeSeoLang === lang" class="space-y-8">
                             <!-- Image Upload & URL (SEO & Tło) -->
                             <div v-if="page.id !== 9 && page.id !== 8 && page.id !== 16" class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start border-b border-gray-50 pb-8">
                                 <div>
@@ -244,8 +302,56 @@ const submit = () => {
                             </div>
                         </div>
 
+                        <!-- SEKCJA CONTENT (Tylko dla Regulaminu i Polityki) -->
+                        <div v-if="page.id == 2 || page.id == 3" class="mt-16 pt-16 border-t border-gray-100 content-section">
+                            <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight mb-6">Treść strony (langsShorts)</h4>
+
+                            <InputError :message="form.errors.content" class="mb-4" />
+
+                            <!-- Przyciski języków dla pola Treść -->
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <button
+                                    v-for="lang in contentLanguages"
+                                    :key="lang"
+                                    type="button"
+                                    @click="activeContentLang = lang"
+                                    class="px-4 py-2 rounded-xl font-bold text-[10px] uppercase transition-all shadow-sm relative"
+                                    :class="[
+                                        activeContentLang === lang ? 'bg-blue-500 text-white shadow-blue-200' : 'bg-gray-100 text-gray-400 hover:bg-gray-200',
+                                        hasContentError(lang) ? 'border-2 border-red-500' : ''
+                                    ]"
+                                >
+                                    {{ lang }}
+                                    <span v-if="hasContentError(lang)" class="absolute -top-1 -right-1 flex h-3 w-3">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                    </span>
+                                </button>
+                            </div>
+
+                            <!-- Edytor TipTap dla aktywnego języka treści -->
+                            <div v-for="lang in contentLanguages" :key="lang" v-show="activeContentLang === lang">
+                                <label class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-4 block">
+                                    Treść strony ({{ lang }})
+                                </label>
+                                <TipTap v-model="form.content[lang]" />
+                                <InputError :message="form.errors['content.' + lang]" class="mt-2" />
+                            </div>
+                        </div>
+
                         <!-- Footer -->
                         <div class="flex items-center justify-end gap-4 pt-10 border-t border-gray-50">
+                            <button
+                                v-if="Object.keys(form.errors).length > 0"
+                                type="button"
+                                @click="goToNextError"
+                                class="mr-auto px-6 py-4 bg-red-50 text-red-500 hover:bg-red-100 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm border border-red-100"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                </svg>
+                                Napraw błędy
+                            </button>
                             <Link
                                 :href="route('admin.cms.index')"
                                 class="px-8 py-4 bg-gray-50 text-gray-400 hover:text-gray-600 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all"

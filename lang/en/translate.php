@@ -573,4 +573,9 @@ return [
     'unread' => 'Unread',
     'of' => 'of',
     'present' => 'Present',
+    'documentation' => 'Documentation',
+    'lastUpdate' => 'Last update',
+    'docGeneratedInfo' => 'Document generated for informational purposes.',
+    'privacyPolicyTitle' => 'Privacy Policy',
+    'termsTitle' => 'Terms and Conditions',
 ];
