@@ -42,7 +42,6 @@ class PageController extends Controller
                 $images[$l] = $imageValue;
             }
         }
-
         return Inertia::render('Admin/CMS/Edit', [
             'page' => [
                 'id' => $page->id,
