@@ -66,6 +66,56 @@ const updateProfileFirm = () => {
 const removeElement = (index, array) => {
     array.splice(index, 1);
 }
+
+const getNipPlaceholder = (countryCode) => {
+    if (!countryCode) return '---';
+    const code = countryCode.toLowerCase();
+
+    const pureDigital9 = ['eg', 'gn', 'gw', 'mz', 'rw', 'lr', 'co', 'jm', 'ge', 'il', 'np', 'lk', 'sy', 'tj', 'uz', 'by', 'rs', 'fj'];
+    const pureDigital10 = ['ao', 'bi', 'et', 'ly', 'mg', 'sd', 'tg', 'ug', 'zm', 'ht', 'cr', 'af', 'az', 'iq', 'qa', 'kw', 'tr'];
+
+    if (pureDigital9.includes(code)) return '123456789';
+    if (pureDigital10.includes(code)) return '1234567890';
+
+    if (['gm', 'ar', 'pe', 'cu'].includes(code)) return '12345678901';
+    if (['bd', 'la', 'mm', 'ua', 'kz'].includes(code)) return '123456789012';
+    if (['bj', 'cg', 'md', 'ba'].includes(code)) return '1234567890123';
+    if (['sv', 'hn', 'kg'].includes(code)) return '12345678901234';
+    if (['dz', 'sa', 'bh', 'ae', 'id'].includes(code)) return '123456789012345';
+
+    if (code === 'bw') return 'C1234567';
+    if (code === 'cd') return 'A1234567';
+    if (code === 'cm') return 'M123456789012A';
+    if (code === 'ke') return 'P123456789L';
+    if (code === 've') return 'J123456789';
+    if (code === 'my') return 'C12345678';
+    if (code === 'al') return 'J12345678A';
+    if (code === 'ad') return 'U1234567A';
+    if (['bf', 'td', 'ga', 'cf', 'ci'].includes(code)) return '12345678A';
+    if (code === 'ne') return '12345/R';
+    if (code === 'sn') return '1234567ABC';
+    if (code === 'in') return 'ABCDE1234F';
+
+    const euPrefix = ['at', 'be', 'bg', 'hr', 'cz', 'dk', 'ee', 'fi', 'gr', 'de', 'lt', 'lu', 'mt', 'pl', 'pt', 'ro', 'sk', 'si', 'hu', 'gb'];
+    if (euPrefix.includes(code)) {
+        const prefix = (code === 'gr' ? 'EL' : code).toUpperCase();
+        return `${prefix}12345678`;
+    }
+
+    if (code === 'fr') return 'FRXX123456789';
+    if (code === 'nl') return 'NL123456789B01';
+    if (code === 'ch') return 'CHE-123.456.789 MWST';
+    if (code === 'se') return 'SE123456789012';
+    if (code === 'it') return 'IT12345678901';
+
+    if (['is', 'li', 'sm', 'nr'].includes(code)) return '12345';
+    if (['bz', 'gd', 'kn', 'tv'].includes(code)) return '123456';
+    if (['er', 'km', 'ls', 'ag', 'bs', 'dm'].includes(code)) return '1234567';
+    if (['ma', 'mr', 'mu', 'sr', 'am', 'me'].includes(code)) return '12345678';
+    if (code === 'au') return '123456789';
+
+    return '12345678';
+}
 </script>
 
 <template>
@@ -88,6 +138,9 @@ const removeElement = (index, array) => {
                             type="text"
                             class="mt-1 block w-full"
                         />
+                        <p v-if="form.countryJson" class="text-[10px] text-gray-400 mt-1 uppercase">
+                            {{ __('translate.suggested_format') }}: {{ getNipPlaceholder(form.countryJson.countryCode) }}
+                        </p>
                         <InputError :message="form.errors.nip" class="mt-2"/>
                     </div>
                     <!-- REGON -->
@@ -96,7 +149,7 @@ const removeElement = (index, array) => {
                         <TextInput
                             id="regon"
                             v-model="form.regon"
-                            type="number"
+                            type="text"
                             class="mt-1 block w-full"
                         />
                         <InputError :message="form.errors.regon" class="mt-2"/>
@@ -272,6 +325,9 @@ const removeElement = (index, array) => {
                                     type="text"
                                     class="mt-1 block w-full"
                                 />
+                                <p v-if="form.countryInvoiceJson || form.countryJson" class="text-[10px] text-gray-400 mt-1 uppercase">
+                                    {{ __('translate.suggested_format') }}: {{ getNipPlaceholder(form.countryInvoiceJson?.countryCode || form.countryJson?.countryCode) }}
+                                </p>
                                 <InputError :message="form.errors.nip_invoice" class="mt-2"/>
                             </div>
                             <!-- REGON-INVOICE -->

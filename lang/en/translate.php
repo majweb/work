@@ -582,8 +582,11 @@ return [
     'footer' => [
         'downloadTermsPdf' => 'Download Terms in PDF format',
         'downloadPrivacyPdf' => 'Download Privacy Policy in PDF format',
+        'invalid_nip_format' => 'Invalid NIP/VAT format for the selected country.',
+        'suggested_format' => 'Suggested format',
         'rights' => 'All rights reserved.',
         'docGeneratedInfo' => 'Document generated for informational purposes.',
     ],
     'downloadPrivacyPdf' => 'Download Privacy Policy in PDF format',
+    'suggested_format' => 'Suggested format',
 ];

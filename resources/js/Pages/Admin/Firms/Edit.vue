@@ -45,6 +45,55 @@ const form = useForm({
 const submit = () => {
     form.put(route('admin.firms.update', props.firm.id));
 };
+
+const getNipPlaceholder = (countryCode) => {
+    if (!countryCode) return '---';
+    const code = countryCode.toLowerCase();
+
+    const pureDigital9 = ['eg', 'gn', 'gw', 'mz', 'rw', 'lr', 'co', 'jm', 'ge', 'il', 'np', 'lk', 'sy', 'tj', 'uz', 'by', 'rs', 'fj'];
+    const pureDigital10 = ['ao', 'bi', 'et', 'ly', 'mg', 'sd', 'tg', 'ug', 'zm', 'ht', 'cr', 'af', 'az', 'iq', 'qa', 'kw', 'tr'];
+    if (pureDigital9.includes(code)) return '123456789';
+    if (pureDigital10.includes(code)) return '1234567890';
+
+    if (['gm', 'ar', 'pe', 'cu'].includes(code)) return '12345678901';
+    if (['bd', 'la', 'mm', 'ua', 'kz'].includes(code)) return '123456789012';
+    if (['bj', 'cg', 'md', 'ba'].includes(code)) return '1234567890123';
+    if (['sv', 'hn', 'kg'].includes(code)) return '12345678901234';
+    if (['dz', 'sa', 'bh', 'ae', 'id'].includes(code)) return '123456789012345';
+
+    if (code === 'bw') return 'C1234567';
+    if (code === 'cd') return 'A1234567';
+    if (code === 'cm') return 'M123456789012A';
+    if (code === 'ke') return 'P123456789L';
+    if (code === 've') return 'J123456789';
+    if (code === 'my') return 'C12345678';
+    if (code === 'al') return 'J12345678A';
+    if (code === 'ad') return 'U1234567A';
+    if (['bf', 'td', 'ga', 'cf', 'ci'].includes(code)) return '12345678A';
+    if (code === 'ne') return '12345/R';
+    if (code === 'sn') return '1234567ABC';
+    if (code === 'in') return 'ABCDE1234F';
+
+    const euPrefix = ['at', 'be', 'bg', 'hr', 'cz', 'dk', 'ee', 'fi', 'gr', 'de', 'lt', 'lu', 'mt', 'pl', 'pt', 'ro', 'sk', 'si', 'hu', 'gb'];
+    if (euPrefix.includes(code)) {
+        const prefix = (code === 'gr' ? 'EL' : code).toUpperCase();
+        return `${prefix}12345678`;
+    }
+
+    if (code === 'fr') return 'FRXX123456789';
+    if (code === 'nl') return 'NL123456789B01';
+    if (code === 'ch') return 'CHE-123.456.789 MWST';
+    if (code === 'se') return 'SE123456789012';
+    if (code === 'it') return 'IT12345678901';
+
+    if (['is', 'li', 'sm', 'nr'].includes(code)) return '12345';
+    if (['bz', 'gd', 'kn', 'tv'].includes(code)) return '123456';
+    if (['er', 'km', 'ls', 'ag', 'bs', 'dm'].includes(code)) return '1234567';
+    if (['ma', 'mr', 'mu', 'sr', 'am', 'me'].includes(code)) return '12345678';
+    if (code === 'au') return '123456789';
+
+    return '12345678';
+};
 </script>
 
 <template>
@@ -101,7 +150,10 @@ const submit = () => {
                         <div class="grid grid-cols-3 gap-6 mb-6">
                             <div>
                                 <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">NIP</label>
-                                <input v-model="form.details.nip" type="text" class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-bold text-[#0A2C5C]" />
+                                <input v-model="form.details.nip" type="text" :placeholder="getNipPlaceholder(form.details.countryJson?.countryCode)" class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-bold text-[#0A2C5C]" />
+                                <div v-if="form.details.countryJson" class="text-[10px] text-gray-400 mt-1 ml-1">
+                                    Format: {{ getNipPlaceholder(form.details.countryJson.countryCode) }}
+                                </div>
                                 <div v-if="form.errors['details.nip']" class="text-red-500 text-xs mt-1 ml-1">{{ form.errors['details.nip'] }}</div>
                             </div>
                             <div>
@@ -192,7 +244,10 @@ const submit = () => {
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">NIP (Faktura)</label>
-                                    <input v-model="form.details.nip_invoice" type="text" class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-bold text-[#0A2C5C]" />
+                                    <input v-model="form.details.nip_invoice" type="text" :placeholder="getNipPlaceholder(form.details.countryInvoiceJson?.countryCode || form.details.countryJson?.countryCode)" class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-bold text-[#0A2C5C]" />
+                                    <div v-if="form.details.countryInvoiceJson || form.details.countryJson" class="text-[10px] text-gray-400 mt-1 ml-1">
+                                        Format: {{ getNipPlaceholder(form.details.countryInvoiceJson?.countryCode || form.details.countryJson?.countryCode) }}
+                                    </div>
                                     <div v-if="form.errors['details.nip_invoice']" class="text-red-500 text-xs mt-1 ml-1">{{ form.errors['details.nip_invoice'] }}</div>
                                 </div>
                             </div>
@@ -235,7 +290,7 @@ const submit = () => {
                                         :selectGroupLabel="__('translate.selectGroupLabel')"
                                         :selectedLabel="__('translate.selectedLabel')"
                                         :deselectLabel="__('translate.deselectLabel')"
-                                        track-by="name"
+                                        track-by="countryCode"
                                         :multiple="false"
                                         label="name"
                                         :placeholder="__('translate.placeholder')"
