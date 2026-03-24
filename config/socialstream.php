@@ -10,7 +10,7 @@ return [
     'providers' => [
         Providers::github(label: 'Github'),
         Providers::google(label: 'Google'),
-        Providers::facebook(label: 'Facebook'),
+//        Providers::facebook(label: 'Facebook'),
         Providers::linkedinOpenId(label: 'Linkedin'),
     ],
     'features' => [

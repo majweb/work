@@ -158,14 +158,14 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         <!-- Background only on home page and pages with imageUrl -->
         <div
             v-if="props.imageUrl"
-            class="absolute inset-0 bg-no-repeat"
+            class="fixed inset-0 bg-no-repeat"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>
 
         <!-- Header -->
         <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
             <header class="flex items-center h-20 justify-between mt-4 bg-white/80 backdrop-blur-md rounded-[2rem] px-6 md:px-10 border border-gray-100 shadow-xl shadow-blue-900/5">
-                <Link :href="route('dashboard')" class="flex items-center shrink-0">
+                <Link :href="route('front')" class="flex items-center shrink-0">
                     <img v-if="route().current('front')" src="/images/logo-horizontal.svg" class="h-10 md:h-12 w-auto" :alt="__('translate.logo')" />
                     <ApplicationMark v-else class="h-10 md:h-12 w-auto" />
                 </Link>

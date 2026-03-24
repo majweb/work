@@ -97,11 +97,6 @@ const submit = () => {
 
             <!-- REGISTRATION CARD -->
             <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/10 border border-white p-8 md:p-12 relative z-10 overflow-hidden">
-                <!-- Grafik dekoracyjny wewnątrz karty -->
-                <div class="absolute -bottom-6 -right-6 w-48 h-48 opacity-40 pointer-events-none rotate-12 transition-all duration-700">
-                    <img :src="form.type === 'worker' ? '/images/auth/register_work.svg' : '/images/auth/register_firm.svg'" class="w-full h-full" />
-                </div>
-
                 <form @submit.prevent="submit" class="space-y-6 relative z-10">
                     <!-- TYPE -->
                     <div class="space-y-4">

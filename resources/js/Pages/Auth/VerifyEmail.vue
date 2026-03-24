@@ -40,11 +40,6 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
             <!-- CARD -->
             <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/10 border border-white p-8 md:p-12 relative overflow-hidden">
-                <!-- Grafik dekoracyjny wewnątrz karty -->
-                <div class="absolute -bottom-6 -right-6 w-48 h-48 opacity-40 pointer-events-none rotate-12">
-                    <img src="/images/auth/log_work.svg" class="w-full h-full" />
-                </div>
-
                 <!-- LOGO -->
                 <div class="flex justify-center mb-8 relative z-10">
                     <img src="/images/logo-horizontal.svg" class="w-48" alt="logo" />

@@ -78,11 +78,6 @@ const submit = () => {
 
             <!-- LOGIN CARD -->
             <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/10 border border-white p-8 md:p-12 relative z-10 overflow-hidden">
-                <!-- Grafik dekoracyjny wewnątrz karty -->
-                <div class="absolute -bottom-6 -right-6 w-48 h-48 opacity-40 pointer-events-none rotate-12 transition-all duration-700">
-                    <img :src="form.type === 'worker' ? '/images/auth/log_work.svg' : '/images/auth/log_firm.svg'" class="w-full h-full" />
-                </div>
-
                 <div v-if="status" class="mb-8 p-4 bg-green-50 border border-green-100 rounded-2xl font-bold text-xs text-green-600 uppercase tracking-widest text-center">
                     {{ status }}
                 </div>
