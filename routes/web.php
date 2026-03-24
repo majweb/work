@@ -287,30 +287,32 @@ Route::middleware([
         Route::get('job-offers/getChildsCategory/{parent}', [\App\Http\Controllers\Admin\JobOfferController::class, 'getChildsCategory'])->name('job-offers.getChildsCategory');
         Route::post('job-offers/{project}/toggle-status', [\App\Http\Controllers\Admin\JobOfferController::class, 'toggleStatus'])->name('job-offers.toggle-status');
 
-        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
-        Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class);
-        Route::resource('agreements', \App\Http\Controllers\Admin\AgreementController::class);
+        Route::middleware(['can:super-admin-only'])->group(function () {
+            Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+            Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class);
+            Route::resource('agreements', \App\Http\Controllers\Admin\AgreementController::class);
 
-        Route::get('countries', [\App\Http\Controllers\Admin\CountryController::class, 'index'])->name('countries.index');
-        Route::get('countries/create', [\App\Http\Controllers\Admin\CountryController::class, 'create'])->name('countries.create');
-        Route::post('countries', [\App\Http\Controllers\Admin\CountryController::class, 'store'])->name('countries.store');
-        Route::get('countries/{country}/edit', [\App\Http\Controllers\Admin\CountryController::class, 'edit'])->name('countries.edit');
-        Route::put('countries/{country}', [\App\Http\Controllers\Admin\CountryController::class, 'update'])->name('countries.update');
-        Route::delete('countries/{country}', [\App\Http\Controllers\Admin\CountryController::class, 'destroy'])->name('countries.destroy');
+            Route::get('countries', [\App\Http\Controllers\Admin\CountryController::class, 'index'])->name('countries.index');
+            Route::get('countries/create', [\App\Http\Controllers\Admin\CountryController::class, 'create'])->name('countries.create');
+            Route::post('countries', [\App\Http\Controllers\Admin\CountryController::class, 'store'])->name('countries.store');
+            Route::get('countries/{country}/edit', [\App\Http\Controllers\Admin\CountryController::class, 'edit'])->name('countries.edit');
+            Route::put('countries/{country}', [\App\Http\Controllers\Admin\CountryController::class, 'update'])->name('countries.update');
+            Route::delete('countries/{country}', [\App\Http\Controllers\Admin\CountryController::class, 'destroy'])->name('countries.destroy');
 
-        Route::get('languages', [\App\Http\Controllers\Admin\LanguageController::class, 'index'])->name('languages.index');
-        Route::get('languages/create', [\App\Http\Controllers\Admin\LanguageController::class, 'create'])->name('languages.create');
-        Route::post('languages', [\App\Http\Controllers\Admin\LanguageController::class, 'store'])->name('languages.store');
-        Route::get('languages/{language}/edit', [\App\Http\Controllers\Admin\LanguageController::class, 'edit'])->name('languages.edit');
-        Route::put('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'update'])->name('languages.update');
-        Route::delete('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'destroy'])->name('languages.destroy');
+            Route::get('languages', [\App\Http\Controllers\Admin\LanguageController::class, 'index'])->name('languages.index');
+            Route::get('languages/create', [\App\Http\Controllers\Admin\LanguageController::class, 'create'])->name('languages.create');
+            Route::post('languages', [\App\Http\Controllers\Admin\LanguageController::class, 'store'])->name('languages.store');
+            Route::get('languages/{language}/edit', [\App\Http\Controllers\Admin\LanguageController::class, 'edit'])->name('languages.edit');
+            Route::put('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'update'])->name('languages.update');
+            Route::delete('languages/{language}', [\App\Http\Controllers\Admin\LanguageController::class, 'destroy'])->name('languages.destroy');
 
-        Route::get('currencies', [\App\Http\Controllers\Admin\CurrencyController::class, 'index'])->name('currencies.index');
-        Route::get('currencies/create', [\App\Http\Controllers\Admin\CurrencyController::class, 'create'])->name('currencies.create');
-        Route::post('currencies', [\App\Http\Controllers\Admin\CurrencyController::class, 'store'])->name('currencies.store');
-        Route::get('currencies/{currency}/edit', [\App\Http\Controllers\Admin\CurrencyController::class, 'edit'])->name('currencies.edit');
-        Route::put('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'update'])->name('currencies.update');
-        Route::delete('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'destroy'])->name('currencies.destroy');
+            Route::get('currencies', [\App\Http\Controllers\Admin\CurrencyController::class, 'index'])->name('currencies.index');
+            Route::get('currencies/create', [\App\Http\Controllers\Admin\CurrencyController::class, 'create'])->name('currencies.create');
+            Route::post('currencies', [\App\Http\Controllers\Admin\CurrencyController::class, 'store'])->name('currencies.store');
+            Route::get('currencies/{currency}/edit', [\App\Http\Controllers\Admin\CurrencyController::class, 'edit'])->name('currencies.edit');
+            Route::put('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'update'])->name('currencies.update');
+            Route::delete('currencies/{currency}', [\App\Http\Controllers\Admin\CurrencyController::class, 'destroy'])->name('currencies.destroy');
+        });
 
         //        ZGŁOSZENIA
         Route::get('tickets', [\App\Http\Controllers\Admin\TicketController::class, 'index'])->name('tickets.index');
@@ -328,15 +330,17 @@ Route::middleware([
         Route::delete('logs/clear', [\App\Http\Controllers\Admin\LogController::class, 'clear'])->name('logs.clear');
 
         //        FINANSE
-        Route::get('finance/points', [\App\Http\Controllers\Admin\PointHistoryController::class, 'index'])->name('finance.points.index');
-        Route::get('finance/points/export', [\App\Http\Controllers\Admin\PointHistoryController::class, 'export'])->name('finance.points.export');
-        Route::delete('finance/points/{userId}', [\App\Http\Controllers\Admin\PointHistoryController::class, 'clearHistory'])->name('finance.points.clear');
+        Route::middleware(['can:super-admin-only'])->group(function () {
+            Route::get('finance/points', [\App\Http\Controllers\Admin\PointHistoryController::class, 'index'])->name('finance.points.index');
+            Route::get('finance/points/export', [\App\Http\Controllers\Admin\PointHistoryController::class, 'export'])->name('finance.points.export');
+            Route::delete('finance/points/{userId}', [\App\Http\Controllers\Admin\PointHistoryController::class, 'clearHistory'])->name('finance.points.clear');
 
-        Route::get('finance/invoices', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('finance.invoices.index')->middleware(['can:super-admin-only']);
-        Route::get('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'createCorrection'])->name('finance.invoices.correction.create');
-        Route::post('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'storeCorrection'])->name('finance.invoices.correction.store');
-        Route::get('finance/corrections/{correction}/download', [\App\Http\Controllers\Admin\InvoiceController::class, 'downloadCorrection'])->name('finance.corrections.download');
-        Route::delete('finance/corrections/{correction}', [\App\Http\Controllers\Admin\InvoiceController::class, 'destroyCorrection'])->name('finance.corrections.destroy');
+            Route::get('finance/invoices', [\App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('finance.invoices.index');
+            Route::get('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'createCorrection'])->name('finance.invoices.correction.create');
+            Route::post('finance/invoices/{invoice}/correction', [\App\Http\Controllers\Admin\InvoiceController::class, 'storeCorrection'])->name('finance.invoices.correction.store');
+            Route::get('finance/corrections/{correction}/download', [\App\Http\Controllers\Admin\InvoiceController::class, 'downloadCorrection'])->name('finance.corrections.download');
+            Route::delete('finance/corrections/{correction}', [\App\Http\Controllers\Admin\InvoiceController::class, 'destroyCorrection'])->name('finance.corrections.destroy');
+        });
 
         //        APLIKACJE
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
@@ -406,9 +410,11 @@ Route::middleware([
         Route::post('workers/{user}/verify-email', [App\Http\Controllers\Admin\WorkerController::class, 'verifyEmail'])->name('workers.verifyEmail');
 
         //        FUNDACJE
-        Route::resource('foundations', FoundationController::class);
-        Route::put('foundations/{foundation}/toggle', [FoundationController::class, 'toggle'])
-            ->name('foundations.toggle');
+        Route::middleware(['can:super-admin-only'])->group(function () {
+            Route::resource('foundations', FoundationController::class);
+            Route::put('foundations/{foundation}/toggle', [FoundationController::class, 'toggle'])
+                ->name('foundations.toggle');
+        });
 
         Route::resource('promotion-services', App\Http\Controllers\Admin\PromotionServiceController::class)->except(['create', 'store', 'destroy', 'show']);
         Route::put('promotion-services/{promotion_service}/toggle', [App\Http\Controllers\Admin\PromotionServiceController::class, 'toggle'])
@@ -444,19 +450,21 @@ Route::middleware([
         Route::put('cms/{page}', [\App\Http\Controllers\Admin\PageController::class, 'update'])->name('cms.update');
 
         // Integracje
-        Route::get('integrations', [\App\Http\Controllers\Admin\IntegrationController::class, 'edit'])->name('integrations.edit');
-        Route::put('integrations', [\App\Http\Controllers\Admin\IntegrationController::class, 'update'])->name('integrations.update');
+        Route::middleware(['can:super-admin-only'])->group(function () {
+            Route::get('integrations', [\App\Http\Controllers\Admin\IntegrationController::class, 'edit'])->name('integrations.edit');
+            Route::put('integrations', [\App\Http\Controllers\Admin\IntegrationController::class, 'update'])->name('integrations.update');
 
-        // Ustawienia Główne
-        Route::get('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'edit'])->name('general.edit');
-        Route::put('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'update'])->name('general.update');
+            // Ustawienia Główne
+            Route::get('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'edit'])->name('general.edit');
+            Route::put('general-settings', [\App\Http\Controllers\Admin\GeneralSettingsController::class, 'update'])->name('general.update');
 
-        // Statystyki wyszukiwarki
-        Route::get('search-statistics', [\App\Http\Controllers\Admin\SearchStatisticsController::class, 'index'])->name('search-statistics.index');
+            // Statystyki wyszukiwarki
+            Route::get('search-statistics', [\App\Http\Controllers\Admin\SearchStatisticsController::class, 'index'])->name('search-statistics.index');
 
-        // Newsletter
-        Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
-        Route::get('newsletter/export', [NewsletterController::class, 'export'])->name('newsletter.export');
+            // Newsletter
+            Route::get('newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+            Route::get('newsletter/export', [NewsletterController::class, 'export'])->name('newsletter.export');
+        });
     });
     Route::middleware(['role:worker'])->name('worker.')->prefix('worker')->group(function () {
         Route::get('aplications', [WorkerController::class, 'aplications'])->name('aplications');

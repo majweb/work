@@ -43,11 +43,11 @@ const menuItems = [
         icon: 'jobs',
         subItems: [
             { name: 'Oferty pracy', route: 'admin.job-offers.index' },
-            { name: 'Branże / podbranże', route: 'admin.industries.index' },
-            { name: 'Kategorie stanowisk', route: 'admin.categories.index' },
-            { name: 'Kraje', route: 'admin.countries.index' },
-            { name: 'Języki', route: 'admin.languages.index' },
-            { name: 'Waluty', route: 'admin.currencies.index' },
+            { name: 'Branże / podbranże', route: 'admin.industries.index',can: 'super-admin-only' },
+            { name: 'Kategorie stanowisk', route: 'admin.categories.index',can: 'super-admin-only' },
+            { name: 'Kraje', route: 'admin.countries.index',can: 'super-admin-only' },
+            { name: 'Języki', route: 'admin.languages.index',can: 'super-admin-only' },
+            { name: 'Waluty', route: 'admin.currencies.index', can: 'super-admin-only' },
         ]
     },
     {
@@ -64,9 +64,10 @@ const menuItems = [
         subItems: [
             { name: 'Faktury', route: 'admin.finance.invoices.index' },
             { name: 'Kredyty', route: 'admin.finance.points.index' },
-        ]
+        ],
+        can: 'super-admin-only'
     },
-    { name: 'Fundacje', icon: 'foundations', route: 'admin.foundations.index' },
+    { name: 'Fundacje', icon: 'foundations', route: 'admin.foundations.index',can: 'super-admin-only' },
     {
         name: 'Marketing',
         icon: 'marketing',
@@ -83,7 +84,7 @@ const menuItems = [
             { name: 'Zgłoszenia', route: 'admin.tickets.index' },
             { name: 'Logi', route: 'admin.logs.index' },
             { name: 'Blokada IP i Email', route: 'admin.security.ip-email-blocks.index' },
-        ]
+        ],
     },
     { name: 'Administratorzy', icon: 'admins', route: 'admin.users.admins.index', can: 'super-admin-only' },
     {
@@ -97,7 +98,8 @@ const menuItems = [
             { name: 'Integracje', route: 'admin.integrations.edit' },
             { name: 'CMS', route: 'admin.cms.index' },
             { name: 'Profil admina', route: 'profile.show' },
-        ]
+        ],
+        can: 'super-admin-only'
     },
 ];
 
@@ -219,18 +221,21 @@ const getIcon = (name) => {
                                 leave-to-class="transform scale-95 opacity-0 -translate-y-2"
                             >
                                 <div v-show="openGroups[item.name]" class="space-y-1 pl-12">
-                                    <Link
-                                        v-for="sub in item.subItems"
-                                        :key="sub.name"
-                                        :href="sub.route ? route(sub.route) : '#'"
-                                        class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group relative"
-                                        :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.route)}"
-                                    >
-                                        {{ sub.name }}
-                                        <span v-if="sub.route === 'admin.tickets.index' && $page.props.unreadTicketsCount > 0" class="absolute right-4 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-red-500/50">
+                                    <template v-for="sub in item.subItems" :key="sub.name">
+                                        <Link
+                                            v-if="!sub.can || (sub.can === 'super-admin-only' && $page.props.roles && $page.props.roles.includes('admin') && !$page.props.roles.includes('admin-sub'))"
+                                            :href="sub.route ? route(sub.route) : '#'"
+                                            class="block py-2 text-[10px] font-black text-white/40 hover:text-white transition-all uppercase tracking-widest group relative"
+                                            :class="{'text-white border-r-4 border-blue-400 -mr-10 pr-10 bg-gradient-to-l from-blue-400/10 to-transparent': sub.route && route().current(sub.route)}"
+                                        >
+                                            {{ sub.name }}
+                                            <span v-if="sub.route === 'admin.tickets.index' && $page.props.unreadTicketsCount > 0" class="absolute right-4 top-1/2 -translate-y-1/2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-red-500/50">
                                             {{ $page.props.unreadTicketsCount }}
                                         </span>
-                                    </Link>
+                                        </Link>
+                                    </template>
+
+
                                 </div>
                             </Transition>
                         </div>
