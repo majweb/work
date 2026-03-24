@@ -578,4 +578,12 @@ return [
     'docGeneratedInfo' => 'Document generated for informational purposes.',
     'privacyPolicyTitle' => 'Privacy Policy',
     'termsTitle' => 'Terms and Conditions',
+    'downloadTermsPdf' => 'Download Terms in PDF format',
+    'footer' => [
+        'downloadTermsPdf' => 'Download Terms in PDF format',
+        'downloadPrivacyPdf' => 'Download Privacy Policy in PDF format',
+        'rights' => 'All rights reserved.',
+        'docGeneratedInfo' => 'Document generated for informational purposes.',
+    ],
+    'downloadPrivacyPdf' => 'Download Privacy Policy in PDF format',
 ];

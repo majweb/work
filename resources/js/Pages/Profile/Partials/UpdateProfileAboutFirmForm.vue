@@ -71,7 +71,7 @@ const updateProfileFirm = () => {
         <!-- Form -->
         <form @submit.prevent="updateProfileFirm">
             <div class="px-6 py-6">
-                <div class="grid grid-cols-6 gap-6">
+                <div class="grid grid-cols-4 gap-6">
             <!-- WWW -->
             <div class="col-span-6 sm:col-span-4">
                 <InputLabel for="www" :value="__('translate.www')"/>
@@ -86,7 +86,7 @@ const updateProfileFirm = () => {
             </div>
             <div class="col-span-6">
                 <h3 class="text-lg mb-3 font-bold">{{ __('translate.opinions') }}</h3>
-                <div class="grid grid-cols-6 gap-6">
+                <div class="grid grid-cols-4 gap-6">
                     <!-- opinion_google -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="opinion_google" :value="__('translate.opinion_google')"/>
@@ -126,11 +126,10 @@ const updateProfileFirm = () => {
                         <InputError :message="form.errors.opinion_facebook" class="mt-2"/>
                     </div>
                 </div>
-
             </div>
             <div class="col-span-6">
                 <h3 class="text-lg mb-3 font-bold">{{ __('translate.socials') }}</h3>
-                <div class="grid grid-cols-6 gap-6">
+                <div class="grid grid-cols-4 gap-6">
                     <!-- social_facebook -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="social_facebook" :value="__('translate.social_facebook')"/>
