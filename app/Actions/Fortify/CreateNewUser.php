@@ -28,9 +28,9 @@ class CreateNewUser implements CreatesNewUsers
         if ($redirectData) {
             // Wyciągamy ID z formatu --123--
             if (preg_match('/-(\d+)-/', $redirectData, $matches)) {
-                $foundationId = $matches[1] ?? null;
+                $foundationId = (int) ($matches[1] ?? 0);
 
-                if ($foundationId) {
+                if ($foundationId > 0) {
                     $foundation = Foundation::find($foundationId);
                     if ($foundation) {
                         $foundationData = [

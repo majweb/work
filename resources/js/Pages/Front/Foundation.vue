@@ -40,6 +40,28 @@ mapboxgl.accessToken = usePage().props.mapboxToken;
 const map = ref(null);
 const marker = ref(null);
 const isClient = ref(false);
+const copied = ref(false);
+
+const affiliationLink = computed(() => {
+    const origin = usePage().props.pageUrl || (typeof window !== "undefined" ? window.location.origin : "");
+    return `${origin}/register?foundation=-${props.foundation.id}-`;
+});
+
+function copyToClipboard() {
+    if (!isClient.value) return;
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(affiliationLink.value)
+            .then(() => {
+                copied.value = true;
+                setTimeout(() => {
+                    copied.value = false;
+                }, 2000);
+            })
+            .catch(err => {
+                console.error('Błąd przy kopiowaniu do schowka:', err);
+            });
+    }
+}
 
 const mapStyles = {
     streets: "mapbox://styles/mapbox/light-v11",
@@ -144,7 +166,7 @@ function addMarker() {
                 <!-- BUTTONS -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 mb-8">
                     <div class="flex items-center gap-4 mb-8">
-                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.contact') ?? 'KONTAKT' }}</h3>
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.contact') }}</h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
 
@@ -155,7 +177,7 @@ function addMarker() {
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
-                            {{ __('translate.phone') ?? 'TELEFON' }}
+                            {{ __('translate.phone') }}
                         </a>
                         <a v-if="props.foundation.email"
                            :href="`mailto:${props.foundation.email}`"
@@ -163,7 +185,7 @@ function addMarker() {
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            {{ __('translate.email') ?? 'E-MAIL' }}
+                            {{ __('translate.email') }}
                         </a>
                         <a v-if="props.foundation.www"
                            :href="props.foundation.www"
@@ -185,7 +207,7 @@ function addMarker() {
                 <!-- DESCRIPTION CARD -->
                 <div class="lg:col-span-2 bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <div class="flex items-center gap-4 mb-8">
-                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.description') ?? 'OPIS' }}</h3>
+                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.OPIS') }}</h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
                     <div class="prose prose-blue max-w-none text-gray-600 font-medium leading-relaxed" v-html="props.foundation.description"></div>
@@ -196,7 +218,7 @@ function addMarker() {
                     <!-- ADDRESS CARD -->
                     <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.location') ?? 'LOKALIZACJA' }}</h3>
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.location') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
@@ -229,11 +251,10 @@ function addMarker() {
                             </div>
                         </div>
                     </div>
-
                     <!-- STATS CARD -->
                     <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.details') ?? 'SZCZEGÓŁY' }}</h3>
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.SZCZEGÓŁY') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
@@ -295,6 +316,62 @@ function addMarker() {
                                    class="w-10 h-10 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center transition hover:scale-110 hover:shadow-md">
                                     <img src="/images/icons/tik_tok.svg" class="h-5 w-5" alt="tik_tok">
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- AFFILIATION LINK SECTION -->
+            <div class="max-w-6xl mx-auto mt-4 bg-[#0A2C5C] rounded-[3rem] shadow-2xl shadow-blue-900/20 border border-white/10 p-10 mb-8 relative overflow-hidden group">
+                <!-- Background decoration -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full -mr-32 -mt-32 blur-3xl transition-transform duration-700 group-hover:scale-110"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-indigo-500/5 rounded-full -ml-24 -mb-24 blur-2xl"></div>
+
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-400/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-[10px] font-black text-white uppercase tracking-[0.2em]">{{ __('translate.support_foundation') }}</h3>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-4 leading-tight">
+                                {{ __('translate.foundation_support_info') }}
+                            </h2>
+                            <p class="text-blue-200/90 font-medium text-md max-w-2xl">
+                                {{ __('translate.foundation_affiliation_desc') }}
+                            </p>
+                        </div>
+
+                        <div class="w-full md:w-auto shrink-0" v-if="isClient">
+                            <div class="relative flex flex-col items-center">
+                                <button @click="copyToClipboard" class="group/copy flex items-center gap-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl p-2 pr-6 transition-all duration-300 hover:-translate-y-1">
+                                    <div class="bg-white text-[#0A2C5C] px-4 py-3 rounded-xl text-xs font-black tracking-widest uppercase shadow-lg">
+                                        {{ __('translate.copy_link') }}
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white/40 group-hover/copy:text-white/90 transition-all group-hover/copy:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                        </svg>
+                                    </div>
+                                </button>
+
+                                <!-- Success Feedback -->
+                                <transition
+                                    enter-active-class="transition duration-300 ease-out"
+                                    enter-from-class="opacity-0 translate-y-4"
+                                    enter-to-class="opacity-100 translate-y-0"
+                                    leave-active-class="transition duration-200 ease-in"
+                                    leave-from-class="opacity-100 translate-y-0"
+                                    leave-to-class="opacity-0 -translate-y-2"
+                                >
+                                    <div v-if="copied" class="absolute -top-12 bg-green-500 text-white text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-xl shadow-2xl shadow-green-900/40 flex items-center gap-2">
+                                        {{ __('translate.copied') }}
+                                    </div>
+                                </transition>
                             </div>
                         </div>
                     </div>

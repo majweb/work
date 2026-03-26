@@ -408,7 +408,7 @@
                                 {{ invoice.number }}/{{ invoice.month }}/{{ invoice.year }}
                             </td>
                             <td class="py-6 px-6 text-center text-gray-500 text-[10px] border-y border-gray-50 group-hover:border-blue-100 group-hover:bg-blue-50/10 transition-colors font-bold uppercase tracking-widest">
-                                {{ invoice.date_invoice }}
+                                {{ moment(invoice.date_invoice).format('DD.MM.YYYY') }}
                             </td>
                             <td class="py-6 px-6 text-center text-[#0A2C5C] font-black text-sm border-y border-gray-50 group-hover:border-blue-100 group-hover:bg-blue-50/10 transition-colors">
                                 ${{ parseFloat(invoice.amount).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
