@@ -107,7 +107,7 @@ onMounted(() => {
                             :href="route('register')"
                             class="px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all transform hover:-translate-y-1 active:scale-95 shadow-xl"
                             :class="isScrolled
-                                ? 'bg-[#E11D48] text-white shadow-rose-900/20 hover:bg-rose-700'
+                                ? 'bg-[#E11D48] text-white shadow-red-work-900/20 hover:bg-rose-700'
                                 : 'bg-white text-[#0A2C5C] hover:bg-gray-100'"
                         >
                             Załóż darmowe konto
@@ -332,6 +332,72 @@ onMounted(() => {
                     <Link :href="route('register')" class="inline-block px-10 py-6 bg-[#E11D48] hover:bg-rose-700 text-white font-black uppercase tracking-[0.2em] rounded-[1.5rem] shadow-2xl shadow-rose-900/40 transition-all transform hover:-translate-y-2 active:scale-95 text-base md:text-lg">
                         Zarejestruj firmę za darmo
                     </Link>
+                </div>
+            </section>
+
+            <!-- Kto skorzysta najbardziej? -->
+            <section class="py-24 bg-white relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] mb-12 tracking-tight">Kto skorzysta najbardziej?</h2>
+
+                    <div class="bg-[#0A2C5C] rounded-[2.5rem] p-10 md:p-16 shadow-2xl">
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-4 items-start">
+                            <!-- Agencje -->
+                            <div class="flex flex-col items-center group">
+                                <div class="relative mb-6">
+                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                                    <img src="/images/landing/icons/agencje.png" alt="Agencje" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
+                                </div>
+                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
+                                    Agencje rekrutacyjne i rekruterzy
+                                </p>
+                            </div>
+
+                            <!-- Firmy z dużą liczbą -->
+                            <div class="flex flex-col items-center group">
+                                <div class="relative mb-6">
+                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                                    <img src="/images/landing/icons/firmy.png" alt="Firmy" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
+                                </div>
+                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
+                                    Firmy z dużą liczbą rekrutacji
+                                </p>
+                            </div>
+
+                            <!-- Pracodawcy chcący obniżyć koszty -->
+                            <div class="flex flex-col items-center group">
+                                <div class="relative mb-6">
+                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                                    <img src="/images/landing/icons/pracodawcy.png" alt="Pracodawcy" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
+                                </div>
+                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
+                                    Pracodawcy chcący obniżyć koszty
+                                </p>
+                            </div>
+
+                            <!-- Firmy działające międzynarodowo -->
+                            <div class="flex flex-col items-center group">
+                                <div class="relative mb-6">
+                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                                    <img src="/images/landing/icons/firmy (2).png" alt="Firmy międzynarodowe" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
+                                </div>
+                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
+                                    Firmy działające międzynarodowo
+                                </p>
+                            </div>
+
+                            <!-- Każdy, kto szuka pracownika -->
+                            <div class="col-span-2 md:col-span-1 flex flex-col items-center group">
+                                <div class="relative mb-6">
+                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                                    <img src="/images/landing/icons/kazdy_kto_szuka.png" alt="Każdy" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
+                                </div>
+                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
+                                    Każdy, kto szuka pracownika
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
