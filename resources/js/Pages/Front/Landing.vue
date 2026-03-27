@@ -1,47 +1,45 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
-import { ref, onMounted } from "vue";
+import { usePage, Head, Link } from "@inertiajs/vue3";
+import { ref, onMounted, computed } from "vue";
+
+const { props: pageProps } = usePage();
+import __ from "@/lang.js";
 
 const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
 });
 
-const faqs = ref([
-    {
-        question: "Czy dodawanie ofert jest naprawdę darmowe?",
-        answer: "Tak — nie płacisz za publikację, niezależnie od liczby ogłoszeń.",
-        isOpen: false
-    },
-    {
-        question: "Czy muszę kupować kredyty na start?",
-        answer: "Nie — otrzymujesz 50 000 kredytów po rejestracji.",
-        isOpen: false
-    },
-    {
-        question: "Kiedy zaczynam płacić?",
-        answer: "Dopiero gdy zechcesz dokupić kredyty.",
-        isOpen: false
-    },
-    {
-        question: "Czy mogę zrezygnować w dowolnym momencie?",
-        answer: "Tak — nie ma umów ani zobowiązań.",
-        isOpen: false
-    }
-]);
+const faqs = ref([]);
 
 const toggleFaq = (index) => {
     faqs.value[index].isOpen = !faqs.value[index].isOpen;
 };
+
+const benefitsList = computed(() => {
+    const list = __("landingi.credits.benefits_list");
+    if (Array.isArray(list)) {
+        return list;
+    }
+
+    // Fallback for flattened translations
+    const items = [];
+    let i = 0;
+    while (__(`landingi.credits.benefits_list.${i}`) !== `landingi.credits.benefits_list.${i}`) {
+        items.push(__(`landingi.credits.benefits_list.${i}`));
+        i++;
+    }
+    return items;
+});
 
 const mobileMenuOpen = ref(false);
 const isScrolled = ref(false);
 const isMobile = ref(false);
 
 const navLinks = [
-    { name: "Jak to działa", href: "#jak-to-dziala" },
-    { name: "Korzyści", href: "#korzysci" },
-    { name: "FAQ", href: "#faq" },
+    { name: __("landingi.nav.how_it_works"), href: "#jak-to-dziala" },
+    { name: __("landingi.nav.benefits"), href: "#korzysci" },
+    { name: __("landingi.nav.faq"), href: "#faq" },
 ];
 
 const scrollTo = (href) => {
@@ -58,6 +56,24 @@ const scrollTo = (href) => {
 onMounted(() => {
     isMobile.value = window.innerWidth < 768;
 
+    const faqQuestions = __("landingi.faq_section.questions");
+    if (Array.isArray(faqQuestions)) {
+        faqs.value = faqQuestions.map(f => ({ ...f, isOpen: false }));
+    } else {
+        // Fallback for flattened translations or missing array
+        const questions = [];
+        let i = 0;
+        while (__(`landingi.faq_section.questions.${i}.question`) !== `landingi.faq_section.questions.${i}.question`) {
+            questions.push({
+                question: __(`landingi.faq_section.questions.${i}.question`),
+                answer: __(`landingi.faq_section.questions.${i}.answer`),
+                isOpen: false
+            });
+            i++;
+        }
+        faqs.value = questions;
+    }
+
     window.addEventListener('scroll', () => {
         isScrolled.value = window.scrollY > 50;
     });
@@ -69,8 +85,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <Head title="Work4you.global - Dodawaj oferty pracy za darmo">
-        <meta name="description" content="Dodawaj nieograniczoną liczbę ofert pracy i zbieraj aplikacje kandydatów za darmo. Otrzymaj 50 000 kredytów na start!" />
+    <Head :title="__('landingi.meta.title')">
+        <meta name="description" :content="__('landingi.meta.description')" />
     </Head>
 
     <div class="min-h-screen bg-white font-sans selection:bg-red-work-100 selection:text-red-work-100">
@@ -117,7 +133,7 @@ onMounted(() => {
                                 ? 'bg-red-work text-white shadow-red-work-100 hover:bg-red-work'
                                 : 'bg-white text-[#0A2C5C] hover:bg-gray-100'"
                         >
-                            Załóż darmowe konto
+                            {{ __("landingi.nav.register_free") }}
                         </Link>
                     </div>
 
@@ -159,7 +175,7 @@ onMounted(() => {
                             :href="route('register')"
                             class="w-full text-center px-8 py-4 bg-red-work text-white rounded-xl font-black uppercase tracking-widest text-sm shadow-xl shadow-red-work active:scale-95 transition-transform"
                         >
-                            Załóż darmowe konto
+                            {{ __("landingi.nav.register_free") }}
                         </Link>
                     </div>
                 </div>
@@ -172,15 +188,11 @@ onMounted(() => {
                 <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-40" id="top">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div class="z-10 text-center lg:text-left">
-                            <h1 class="text-4xl md:text-5xl font-black leading-[1.1] mb-8">
-                                Dodawaj nieograniczoną liczbę ofert pracy <br class="hidden lg:block"/> i zbieraj aplikacje kandydatów za darmo.
-                            </h1>
-                            <p class="text-xl md:text-3xl text-blue-100 mb-10 font-medium leading-relaxed">
-                                Bez abonamentu. Bez opłat za publikację. <br class="hidden md:block"/> Na start otrzymujesz 50 000 kredytów do wykorzystania.
-                            </p>
+                            <h1 class="text-4xl md:text-5xl font-black leading-[1.1] mb-8" v-html="__('landingi.hero.title')"></h1>
+                            <p class="text-xl md:text-3xl text-blue-100 mb-10 font-medium leading-relaxed" v-html="__('landingi.hero.subtitle')"></p>
                             <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
                                 <Link :href="route('register')" class="px-10 py-6 bg-red-work hover:bg-red-work-100 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-red-work-100 transition-all text-center transform hover:-translate-y-1 text-base md:text-sm">
-                                    Załóż darmowe konto i dodaj pierwszą ofertę
+                                    {{ __("landingi.hero.cta") }}
                                 </Link>
                             </div>
 
@@ -191,9 +203,7 @@ onMounted(() => {
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </div>
-                                <p class="text-blue-100 text-sm md:text-base font-bold leading-tight max-w-sm">
-                                    Idealne dla agencji rekrutacyjnych i <br class="hidden sm:block" /> firm zatrudniających na dużą skalę.
-                                </p>
+                                <p class="text-blue-100 text-sm md:text-base font-bold leading-tight max-w-sm" v-html="__('landingi.hero.target')"></p>
                             </div>
                         </div>
                         <div class="relative group">
@@ -215,7 +225,7 @@ onMounted(() => {
             <section id="jak-to-dziala" class="py-32 bg-white scroll-mt-20">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-24">
-                        <h2 class="text-lg md:text-xl font-black uppercase tracking-[0.4em] text-[#0A2C5C] mb-8">Prosty model: Publikujesz za darmo i zbierasz kandydatów</h2>
+                        <h2 class="text-lg md:text-xl font-black uppercase tracking-[0.4em] text-[#0A2C5C] mb-8">{{ __("landingi.model.title") }}</h2>
                         <div class="w-32 h-2 bg-red-work mx-auto rounded-full"></div>
                     </div>
 
@@ -223,34 +233,34 @@ onMounted(() => {
                         <!-- Krok 1 -->
                         <div class="bg-blue-50/50 p-12 rounded-[4rem] border border-blue-100/50 text-center flex flex-col items-center transition-all hover:shadow-2xl hover:shadow-blue-900/5 group">
                             <span class="text-6xl font-black text-[#0A2C5C] mb-8 opacity-20 group-hover:opacity-100 transition-opacity">1</span>
-                            <h3 class="text-2xl md:text-2xl font-black text-[#0A2C5C] mb-8">Dodajesz dowolną liczbę ofert</h3>
+                            <h3 class="text-2xl md:text-2xl font-black text-[#0A2C5C] mb-8">{{ __("landingi.model.step1.title") }}</h3>
                             <div class="p-6 bg-white rounded-3xl shadow-sm mb-8 group-hover:scale-110 transition-transform relative">
                                 <div class="absolute inset-0 bg-blue-400 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                                 <img class="relative h-40 h-40" src="/images/landing/icons/bez_limitow.png" alt="landing-icon">
                             </div>
-                            <p class="text-gray-600 font-bold uppercase text-sm tracking-widest">Bez limitów i bez kosztów</p>
+                            <p class="text-gray-600 font-bold uppercase text-sm tracking-widest">{{ __("landingi.model.step1.desc") }}</p>
                         </div>
 
                         <!-- Krok 2 -->
                         <div class="bg-blue-50/50 p-12 rounded-[4rem] border border-blue-100/50 text-center flex flex-col items-center transition-all hover:shadow-2xl hover:shadow-blue-900/5 group">
                             <span class="text-6xl font-black text-[#0A2C5C] mb-8 opacity-20 group-hover:opacity-100 transition-opacity">2</span>
-                            <h3 class="text-2xl md:text-2xl font-black text-[#0A2C5C] mb-8">Otrzymujesz aplikacje kandydatów</h3>
+                            <h3 class="text-2xl md:text-2xl font-black text-[#0A2C5C] mb-8">{{ __("landingi.model.step2.title") }}</h3>
                             <div class="p-6 bg-white rounded-3xl shadow-sm mb-8 group-hover:scale-110 transition-transform relative">
                                 <div class="absolute inset-0 bg-blue-400 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                                 <img class="relative h-40 h-40" src="/images/landing/icons/aplikacje_kandydatow.png" alt="landing-icon">
                             </div>
-                            <p class="text-gray-600 font-bold uppercase text-sm tracking-widest">Zbierasz kandydatów za darmo</p>
+                            <p class="text-gray-600 font-bold uppercase text-sm tracking-widest">{{ __("landingi.model.step2.desc") }}</p>
                         </div>
 
                         <!-- Krok 3 -->
                         <div class="bg-blue-50/50 p-12 rounded-[4rem] border border-blue-100/50 text-center flex flex-col items-center transition-all hover:shadow-2xl hover:shadow-blue-900/5 group">
                             <span class="text-6xl font-black text-[#0A2C5C] mb-8 opacity-20 group-hover:opacity-100 transition-opacity">3</span>
-                            <h3 class="text-2xl md:text-2xl font-black text-[#0A2C5C] mb-8">Wykorzystujesz kredyty tylko gdy chcesz</h3>
+                            <h3 class="text-2xl md:text-2xl font-black text-[#0A2C5C] mb-8">{{ __("landingi.model.step3.title") }}</h3>
                             <div class="p-6 bg-white rounded-3xl shadow-sm mb-8 group-hover:scale-110 transition-transform relative">
                                 <div class="absolute inset-0 bg-blue-400 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
                                 <img class="relative h-40 h-40" src="/images/landing/icons/wykorzystujesz_kredyty.png" alt="landing-icon">
                             </div>
-                            <p class="text-gray-600 font-bold uppercase text-sm tracking-widest">np. na dostęp do CV lub promocję</p>
+                            <p class="text-gray-600 font-bold uppercase text-sm tracking-widest">{{ __("landingi.model.step3.desc") }}</p>
                         </div>
                     </div>
                 </div>
@@ -263,18 +273,18 @@ onMounted(() => {
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 p-10 md:p-24 items-center">
                             <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
                                 <div class="inline-flex flex-col items-center p-8 bg-white rounded-[3rem] text-[#0A2C5C] mb-10 shadow-2xl shadow-blue-900/40 transform -rotate-3 hover:rotate-0 transition-transform duration-500 relative">
-                                    <img src="/images/landing/icons/50000.png" alt="50 000 kredytów" class="h-32 md:h-48 mb-6 absolute -bottom-20 -right-20" />
+                                    <img src="/images/landing/icons/50000.png" alt="50 000 punktów" class="h-32 md:h-48 mb-6 absolute -bottom-20 -right-20" />
                                     <span class="text-6xl md:text-8xl font-black tracking-tight">50 000</span>
-                                    <span class="text-2xl font-black tracking-[0.2em] uppercase">Kredytów</span>
-                                    <span class="mt-4 px-6 py-2 bg-red-work text-white text-sm font-black rounded-full uppercase tracking-widest">na start!</span>
+                                    <span class="text-2xl font-black tracking-[0.2em] uppercase">{{ __("landingi.credits.amount_label") }}</span>
+                                    <span class="mt-4 px-6 py-2 bg-red-work text-white text-sm font-black rounded-full uppercase tracking-widest">{{ __("landingi.credits.badge") }}</span>
                                 </div>
                             </div>
                             <div>
                                 <h3 class="text-2xl md:text-3xl font-black mb-8 leading-tight">
-                                    Po rejestracji otrzymujesz pakiet startowy do pełnego przetestowania platformy:
+                                    {{ __("landingi.credits.test_platform") }}
                                 </h3>
                                 <ul class="space-y-6">
-                                    <li v-for="(benefit, i) in ['Odczyt CV kandydatów (klasyczne, audio, wideo)', 'Promocję ofert pracy na górze listy', 'Wyróżnienie firmy w katalogu pracodawców', 'Dostęp do zaawansowanych filtrów rekrutacyjnych']" :key="i" class="flex items-center gap-4 text-blue-100 text-lg group">
+                                    <li v-for="(benefit, i) in benefitsList" :key="i" class="flex items-center gap-4 text-blue-100 text-lg group">
                                         <div class="shrink-0 w-4 h-4 bg-red-work rounded-full group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(225,29,72,0.5)]"></div>
                                         {{ benefit }}
                                     </li>
@@ -284,24 +294,20 @@ onMounted(() => {
                     </div>
 
                     <div class="mt-24 text-center">
-                        <h3 class="text-2xl md:text-4xl font-black mb-16 tracking-tight">W końcu rekrutujesz bez kosztów na start...</h3>
+                        <h3 class="text-2xl md:text-4xl font-black mb-16 tracking-tight">{{ __("landingi.credits.no_start_costs") }}</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-                            <div v-for="(item, i) in [
-                                {title: 'Publikujesz ogłoszenia za darmo', icon: '/images/landing/icons/publikacje.png'},
-                                {title: 'Bez umów i abonamentów', icon: '/images/landing/icons/bez_umow.png'},
-                                {title: 'Korzystasz na własnych zasadach', icon: '/images/landing/icons/korzystasz.png'},
-                                {title: 'CV klasyczne, audio, wideo', icon: '/images/landing/icons/cv_klasyczne.png'},
-                                {title: 'Ogłoszenia we wszystkich językach', icon: '/images/landing/icons/ogloszenia.png'}
-                            ]" :key="i" class="bg-white p-10 rounded-[3rem] flex flex-col items-center justify-center text-center gap-8 transition-all hover:-translate-y-3 hover:shadow-3xl hover:shadow-blue-900/40 group">
+                            <div v-for="(item, key) in {
+                                free_ads: {icon: '/images/landing/icons/publikacje.png'},
+                                no_contracts: {icon: '/images/landing/icons/bez_umow.png'},
+                                own_rules: {icon: '/images/landing/icons/korzystasz.png'},
+                                cv_types: {icon: '/images/landing/icons/cv_klasyczne.png'},
+                                all_languages: {icon: '/images/landing/icons/ogloszenia.png'}
+                            }" :key="key" class="bg-white p-10 rounded-[3rem] flex flex-col items-center justify-center text-center gap-8 transition-all hover:-translate-y-3 hover:shadow-3xl hover:shadow-blue-900/40 group">
                                 <div class="relative">
                                     <div class="absolute inset-0 bg-blue-400 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
-<!--                                    <svg class="relative w-12 h-12 text-blue-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">-->
-<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="item.icon" />-->
-<!--                                    </svg>-->
                                     <img class="relative h-40 h-40 group-hover:scale-110 transition-transform" :src="item.icon" alt="landing-icon">
-
                                 </div>
-                                <span class="text-[#0A2C5C] text-sm font-black uppercase tracking-widest leading-tight">{{ item.title }}</span>
+                                <span class="text-[#0A2C5C] text-sm font-black uppercase tracking-widest leading-tight">{{ __("landingi.credits.items." + key) }}</span>
                             </div>
                         </div>
                     </div>
@@ -313,12 +319,12 @@ onMounted(() => {
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div class="text-center lg:text-left relative z-10">
-                            <span class="inline-block px-6 py-3 bg-red-work-50 text-red-work text-sm font-black uppercase tracking-widest rounded-full mb-8">Razem zmieniamy świat:</span>
+                            <span class="inline-block px-6 py-3 bg-red-work-50 text-red-work text-sm font-black uppercase tracking-widest rounded-full mb-8">{{ __("landingi.foundation.badge") }}</span>
                             <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-red-work mb-8 leading-[1.1] tracking-tight">
-                                50% kwoty każdego zakupu zasila wybraną przez Ciebie fundację.
+                                {{ __("landingi.foundation.title") }}
                             </h2>
                             <p class="text-xl md:text-2xl text-gray-500 font-black leading-relaxed">
-                                Rekrutujesz. I jednocześnie wspierasz potrzebujących.
+                                {{ __("landingi.foundation.subtitle") }}
                             </p>
                         </div>
                     </div>
@@ -333,74 +339,32 @@ onMounted(() => {
             <section class="py-24 bg-[#0A2C5C] text-white relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-500/5 -skew-x-12 translate-x-1/2"></div>
                 <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-                    <h2 class="text-3xl md:text-5xl font-black mb-10 leading-tight">
-                        Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-red-work">50 000 kredytów</span>!
-                    </h2>
+                    <h2 class="text-3xl md:text-5xl font-black mb-10 leading-tight" v-html="__('landingi.cta.title')"></h2>
                     <Link :href="route('register')" class="inline-block px-10 py-6 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-[0.2em] rounded-[1.5rem] shadow-2xl shadow-red-work-100/40 transition-all transform hover:-translate-y-2 active:scale-95 text-base md:text-lg">
-                        Zarejestruj firmę za darmo
+                        {{ __("landingi.cta.button") }}
                     </Link>
                 </div>
             </section>
 
-            <!-- Kto skorzysta najbardziej? -->
             <section class="py-24 bg-white relative overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] mb-12 tracking-tight">Kto skorzysta najbardziej?</h2>
+                    <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] mb-12 tracking-tight">{{ __("landingi.who_is_it_for.title") }}</h2>
 
                     <div class="bg-[#0A2C5C] rounded-[2.5rem] p-10 md:p-16 shadow-2xl">
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-4 items-start">
-                            <!-- Agencje -->
-                            <div class="flex flex-col items-center group">
+                            <div v-for="(item, key) in {
+                                agencies: {icon: '/images/landing/icons/agencje.png'},
+                                high_volume: {icon: '/images/landing/icons/firmy.png'},
+                                cost_conscious: {icon: '/images/landing/icons/pracodawcy.png'},
+                                international: {icon: '/images/landing/icons/firmy (2).png'},
+                                everyone: {icon: '/images/landing/icons/kazdy_kto_szuka.png'}
+                            }" :key="key" :class="['flex flex-col items-center group', key === 'everyone' ? 'col-span-2 md:col-span-1' : '']">
                                 <div class="relative mb-6">
                                     <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                                    <img src="/images/landing/icons/agencje.png" alt="Agencje" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
+                                    <img :src="item.icon" :alt="key" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
                                 </div>
                                 <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
-                                    Agencje rekrutacyjne i rekruterzy
-                                </p>
-                            </div>
-
-                            <!-- Firmy z dużą liczbą -->
-                            <div class="flex flex-col items-center group">
-                                <div class="relative mb-6">
-                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                                    <img src="/images/landing/icons/firmy.png" alt="Firmy" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
-                                </div>
-                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
-                                    Firmy z dużą liczbą rekrutacji
-                                </p>
-                            </div>
-
-                            <!-- Pracodawcy chcący obniżyć koszty -->
-                            <div class="flex flex-col items-center group">
-                                <div class="relative mb-6">
-                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                                    <img src="/images/landing/icons/pracodawcy.png" alt="Pracodawcy" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
-                                </div>
-                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
-                                    Pracodawcy chcący obniżyć koszty
-                                </p>
-                            </div>
-
-                            <!-- Firmy działające międzynarodowo -->
-                            <div class="flex flex-col items-center group">
-                                <div class="relative mb-6">
-                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                                    <img src="/images/landing/icons/firmy (2).png" alt="Firmy międzynarodowe" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
-                                </div>
-                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
-                                    Firmy działające międzynarodowo
-                                </p>
-                            </div>
-
-                            <!-- Każdy, kto szuka pracownika -->
-                            <div class="col-span-2 md:col-span-1 flex flex-col items-center group">
-                                <div class="relative mb-6">
-                                    <div class="absolute inset-0 bg-blue-400 blur-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                                    <img src="/images/landing/icons/kazdy_kto_szuka.png" alt="Każdy" class="h-24 md:h-32 w-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-110" />
-                                </div>
-                                <p class="text-white font-black uppercase text-[10px] md:text-xs tracking-widest leading-tight text-center max-w-[120px]">
-                                    Każdy, kto szuka pracownika
+                                    {{ __("landingi.who_is_it_for.groups." + key) }}
                                 </p>
                             </div>
                         </div>
@@ -408,12 +372,11 @@ onMounted(() => {
                 </div>
             </section>
 
-            <!-- FAQ -->
             <section id="faq" class="py-32 bg-[#0A2C5C] relative overflow-hidden scroll-mt-20">
                 <div class="max-w-4xl mx-auto px-4 relative z-10">
                     <div class="text-center mb-20">
-                        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-widest uppercase">FAQ</h2>
-                        <p class="text-blue-100 font-bold uppercase tracking-widest text-xs">Najczęściej zadawane pytania</p>
+                        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-widest uppercase">{{ __("landingi.faq_section.title") }}</h2>
+                        <p class="text-blue-100 font-bold uppercase tracking-widest text-xs">{{ __("landingi.faq_section.subtitle") }}</p>
                     </div>
                     <div class="space-y-6">
                         <div v-for="(faq, index) in faqs" :key="index" class="group bg-blue-50/5 border border-white/10 rounded-[2.5rem] overflow-hidden backdrop-blur-md transition-all hover:bg-blue-50/10">
@@ -442,18 +405,17 @@ onMounted(() => {
                 </div>
             </section>
 
-            <!-- Footer -->
             <footer class="bg-white pt-32 pb-16">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
                         <div class="col-span-1 lg:col-span-2">
                             <img src="/images/logo-horizontal.svg" class="h-12 w-auto mb-8" alt="Work4you.global" />
                             <p class="text-gray-500 text-lg max-w-md leading-relaxed">
-                                Pierwsza platforma rekrutacyjna, która oddaje głos pracodawcom i kandydatom, jednocześnie realnie wspierając fundacje.
+                                {{ __("landingi.footer.description") }}
                             </p>
                         </div>
                         <div>
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#0A2C5C] mb-8">Nawigacja</h4>
+                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#0A2C5C] mb-8">{{ __("landingi.footer.nav") }}</h4>
                             <ul class="space-y-4">
                                 <li v-for="link in navLinks" :key="link.name">
                                     <a
@@ -467,17 +429,17 @@ onMounted(() => {
                             </ul>
                         </div>
                         <div>
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#0A2C5C] mb-8">Prawne</h4>
+                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#0A2C5C] mb-8">{{ __("landingi.footer.legal") }}</h4>
                             <ul class="space-y-4">
-                                <li><Link :href="route('front.privacy')" class="text-gray-400 hover:text-[#0A2C5C] font-black uppercase text-[10px] tracking-widest transition-colors">Polityka Prywatności</Link></li>
-                                <li><Link :href="route('front.terms')" class="text-gray-400 hover:text-[#0A2C5C] font-black uppercase text-[10px] tracking-widest transition-colors">Regulamin</Link></li>
+                                <li><Link :href="route('front.privacy')" class="text-gray-400 hover:text-[#0A2C5C] font-black uppercase text-[10px] tracking-widest transition-colors">{{ __("landingi.footer.privacy") }}</Link></li>
+                                <li><Link :href="route('front.terms')" class="text-gray-400 hover:text-[#0A2C5C] font-black uppercase text-[10px] tracking-widest transition-colors">{{ __("landingi.footer.terms") }}</Link></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="pt-8 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6">
                         <p class="text-[10px] font-black text-gray-300 uppercase tracking-widest">
-                            &copy; {{ new Date().getFullYear() }} Work4you.global. Wszelkie prawa zastrzeżone.
+                            &copy; {{ new Date().getFullYear() }} Work4you.global. {{ __("landingi.footer.rights") }}
                         </p>
                         <div class="flex gap-8">
                             <a href="#" class="text-gray-300 hover:text-[#0A2C5C] transition-colors">
