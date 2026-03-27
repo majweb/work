@@ -36,6 +36,7 @@ const toggleFaq = (index) => {
 
 const mobileMenuOpen = ref(false);
 const isScrolled = ref(false);
+const isMobile = ref(false);
 
 const navLinks = [
     { name: "Jak to działa", href: "#jak-to-dziala" },
@@ -55,8 +56,14 @@ const scrollTo = (href) => {
 };
 
 onMounted(() => {
+    isMobile.value = window.innerWidth < 768;
+
     window.addEventListener('scroll', () => {
         isScrolled.value = window.scrollY > 50;
+    });
+
+    window.addEventListener('resize', () => {
+        isMobile.value = window.innerWidth < 768;
     });
 });
 </script>
@@ -66,7 +73,7 @@ onMounted(() => {
         <meta name="description" content="Dodawaj nieograniczoną liczbę ofert pracy i zbieraj aplikacje kandydatów za darmo. Otrzymaj 50 000 kredytów na start!" />
     </Head>
 
-    <div class="min-h-screen bg-white font-sans selection:bg-rose-100 selection:text-rose-900">
+    <div class="min-h-screen bg-white font-sans selection:bg-red-work-100 selection:text-red-work-100">
         <!-- Navigation -->
         <nav
             class="fixed top-0 left-0 right-0 z-[100] transition-all duration-300"
@@ -81,7 +88,7 @@ onMounted(() => {
                     <div class="flex items-center">
                         <Link href="/" class="shrink-0 transition-transform hover:scale-105 active:scale-95">
                             <img
-                                :src="isScrolled ? '/images/newLogoWhite.png' : '/images/newLogoDark.png'"
+                                :src="(isScrolled || isMobile) ? '/images/newLogoWhite.png' : '/images/newLogoDark.png'"
                                 class="h-8 md:h-10 w-auto"
                                 alt="Work4you.global"
                             />
@@ -96,7 +103,7 @@ onMounted(() => {
                             :href="link.href"
                             @click.prevent="scrollTo(link.href)"
                             class="text-sm font-black uppercase tracking-widest transition-colors"
-                            :class="isScrolled ? 'text-[#0A2C5C] hover:text-rose-600' : 'text-white hover:text-rose-400'"
+                            :class="isScrolled ? 'text-[#0A2C5C] hover:text-red-work' : 'text-white hover:text-red-work-100'"
                         >
                             {{ link.name }}
                         </a>
@@ -107,7 +114,7 @@ onMounted(() => {
                             :href="route('register')"
                             class="px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all transform hover:-translate-y-1 active:scale-95 shadow-xl"
                             :class="isScrolled
-                                ? 'bg-[#E11D48] text-white shadow-red-work-900/20 hover:bg-rose-700'
+                                ? 'bg-red-work text-white shadow-red-work-100 hover:bg-red-work'
                                 : 'bg-white text-[#0A2C5C] hover:bg-gray-100'"
                         >
                             Załóż darmowe konto
@@ -118,7 +125,7 @@ onMounted(() => {
                     <button
                         @click="mobileMenuOpen = !mobileMenuOpen"
                         class="md:hidden p-2 rounded-xl transition-colors"
-                        :class="isScrolled ? 'text-[#0A2C5C] hover:bg-gray-100' : 'text-white hover:bg-white/10'"
+                        :class="(isScrolled || isMobile) ? 'text-[#0A2C5C] hover:bg-gray-100' : 'text-white hover:bg-white/10'"
                     >
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -144,13 +151,13 @@ onMounted(() => {
                             :key="link.name"
                             :href="link.href"
                             @click.prevent="scrollTo(link.href)"
-                            class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest hover:text-rose-600 transition-colors"
+                            class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest hover:text-red-work transition-colors"
                         >
                             {{ link.name }}
                         </a>
                         <Link
                             :href="route('register')"
-                            class="w-full text-center px-8 py-4 bg-[#E11D48] text-white rounded-xl font-black uppercase tracking-widest text-sm shadow-xl shadow-rose-900/20 active:scale-95 transition-transform"
+                            class="w-full text-center px-8 py-4 bg-red-work text-white rounded-xl font-black uppercase tracking-widest text-sm shadow-xl shadow-red-work active:scale-95 transition-transform"
                         >
                             Załóż darmowe konto
                         </Link>
@@ -172,7 +179,7 @@ onMounted(() => {
                                 Bez abonamentu. Bez opłat za publikację. <br class="hidden md:block"/> Na start otrzymujesz 50 000 kredytów do wykorzystania.
                             </p>
                             <div class="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
-                                <Link :href="route('register')" class="px-10 py-6 bg-[#E11D48] hover:bg-rose-700 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-rose-900/40 transition-all text-center transform hover:-translate-y-1 text-base md:text-lg">
+                                <Link :href="route('register')" class="px-10 py-6 bg-red-work hover:bg-red-work-100 text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-red-work-100 transition-all text-center transform hover:-translate-y-1 text-base md:text-sm">
                                     Załóż darmowe konto i dodaj pierwszą ofertę
                                 </Link>
                             </div>
@@ -191,14 +198,14 @@ onMounted(() => {
                         </div>
                         <div class="relative group">
                             <div class="absolute inset-0 rounded-[3rem] transition-all"></div>
-                            <img src="/images/landing/hero-recruiter.png" alt="Recruiter" class="relative z-10 max-w-4xl transform hover:scale-105 transition-all duration-500" />
+                            <img src="/images/landing/hero-recruiter.png" alt="Recruiter" class="relative z-10 md:max-w-4xl transform hover:scale-105 transition-all duration-500" />
                         </div>
                     </div>
                 </section>
 
                 <!-- Wave Effect -->
                 <div class="absolute bottom-0 left-0 w-full overflow-hiddesn leading-[0]">
-                    <svg class="relative block w-[calc(100%+1.3px)] h-[30px] md:h-[59px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <svg class="relative block w-[calc(100%+1.3px)] h-[25px] md:h-[59px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.21,103.6,115,100.2,164.11,87.31,218.33,73.1,273.4,65.35,321.39,56.44Z" class="fill-white"></path>
                     </svg>
                 </div>
@@ -209,7 +216,7 @@ onMounted(() => {
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-24">
                         <h2 class="text-lg md:text-xl font-black uppercase tracking-[0.4em] text-[#0A2C5C] mb-8">Prosty model: Publikujesz za darmo i zbierasz kandydatów</h2>
-                        <div class="w-32 h-2 bg-[#E11D48] mx-auto rounded-full"></div>
+                        <div class="w-32 h-2 bg-red-work mx-auto rounded-full"></div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
@@ -251,7 +258,7 @@ onMounted(() => {
 
             <!-- Kredyty na Start -->
             <section id="korzysci" class="py-32 bg-[#0A2C5C] text-white overflow-hidden relative scroll-mt-20">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 relative z-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="bg-white/5 border border-white/10 rounded-[4rem] overflow-hidden backdrop-blur-md shadow-2xl">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 p-10 md:p-24 items-center">
                             <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -259,7 +266,7 @@ onMounted(() => {
                                     <img src="/images/landing/icons/50000.png" alt="50 000 kredytów" class="h-32 md:h-48 mb-6 absolute -bottom-20 -right-20" />
                                     <span class="text-6xl md:text-8xl font-black tracking-tight">50 000</span>
                                     <span class="text-2xl font-black tracking-[0.2em] uppercase">Kredytów</span>
-                                    <span class="mt-4 px-6 py-2 bg-[#E11D48] text-white text-sm font-black rounded-full uppercase tracking-widest">na start!</span>
+                                    <span class="mt-4 px-6 py-2 bg-red-work text-white text-sm font-black rounded-full uppercase tracking-widest">na start!</span>
                                 </div>
                             </div>
                             <div>
@@ -268,7 +275,7 @@ onMounted(() => {
                                 </h3>
                                 <ul class="space-y-6">
                                     <li v-for="(benefit, i) in ['Odczyt CV kandydatów (klasyczne, audio, wideo)', 'Promocję ofert pracy na górze listy', 'Wyróżnienie firmy w katalogu pracodawców', 'Dostęp do zaawansowanych filtrów rekrutacyjnych']" :key="i" class="flex items-center gap-4 text-blue-100 text-lg group">
-                                        <div class="shrink-0 w-4 h-4 bg-[#E11D48] rounded-full group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(225,29,72,0.5)]"></div>
+                                        <div class="shrink-0 w-4 h-4 bg-red-work rounded-full group-hover:scale-150 transition-transform shadow-[0_0_15px_rgba(225,29,72,0.5)]"></div>
                                         {{ benefit }}
                                     </li>
                                 </ul>
@@ -306,8 +313,8 @@ onMounted(() => {
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div class="text-center lg:text-left relative z-10">
-                            <span class="inline-block px-6 py-3 bg-rose-50 text-[#E11D48] text-sm font-black uppercase tracking-widest rounded-full mb-8">Razem zmieniamy świat:</span>
-                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-[#E11D48] mb-8 leading-[1.1] tracking-tight">
+                            <span class="inline-block px-6 py-3 bg-red-work-50 text-red-work text-sm font-black uppercase tracking-widest rounded-full mb-8">Razem zmieniamy świat:</span>
+                            <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-red-work mb-8 leading-[1.1] tracking-tight">
                                 50% kwoty każdego zakupu zasila wybraną przez Ciebie fundację.
                             </h2>
                             <p class="text-xl md:text-2xl text-gray-500 font-black leading-relaxed">
@@ -316,9 +323,9 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-                <div class="absolute bottom-0 right-0 group">
-                    <div class="absolute inset-0 bg-rose-100 rounded-full blur-[120px] scale-90 opacity-40 group-hover:opacity-60 transition-opacity"></div>
-                    <img src="/images/landing/heart-foundation.png" alt="Help others" class="relative z-10 w-full max-w-4xl drop-shadow-[0_45px_45px_rgba(225,29,72,0.2)]" />
+                <div class="absolute bottom-0 -right-[300px] md:right-0 group pointer-events-none">
+                    <div class="absolute inset-0 bg-red-work-100 rounded-full blur-[120px] scale-90 opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                    <img src="/images/landing/heart-foundation.png" alt="Help others" class="relative z-10 w-[50%] md:w-full md:max-w-4xl drop-shadow-[0_45px_45px_rgba(254,226,226,0.2)]" />
                 </div>
             </section>
 
@@ -327,9 +334,9 @@ onMounted(() => {
                 <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-500/5 -skew-x-12 translate-x-1/2"></div>
                 <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
                     <h2 class="text-3xl md:text-5xl font-black mb-10 leading-tight">
-                        Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-[#E11D48]">50 000 kredytów</span>!
+                        Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-red-work">50 000 kredytów</span>!
                     </h2>
-                    <Link :href="route('register')" class="inline-block px-10 py-6 bg-[#E11D48] hover:bg-rose-700 text-white font-black uppercase tracking-[0.2em] rounded-[1.5rem] shadow-2xl shadow-rose-900/40 transition-all transform hover:-translate-y-2 active:scale-95 text-base md:text-lg">
+                    <Link :href="route('register')" class="inline-block px-10 py-6 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-[0.2em] rounded-[1.5rem] shadow-2xl shadow-red-work-100/40 transition-all transform hover:-translate-y-2 active:scale-95 text-base md:text-lg">
                         Zarejestruj firmę za darmo
                     </Link>
                 </div>
@@ -403,7 +410,7 @@ onMounted(() => {
 
             <!-- FAQ -->
             <section id="faq" class="py-32 bg-[#0A2C5C] relative overflow-hidden scroll-mt-20">
-                <div class="max-w-4xl mx-auto px-4 relative z-10 mt-10">
+                <div class="max-w-4xl mx-auto px-4 relative z-10">
                     <div class="text-center mb-20">
                         <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-widest uppercase">FAQ</h2>
                         <p class="text-blue-100 font-bold uppercase tracking-widest text-xs">Najczęściej zadawane pytania</p>
@@ -415,8 +422,8 @@ onMounted(() => {
                                 class="w-full flex items-center justify-between p-8 text-left transition-colors"
                             >
                                 <span class="text-lg md:text-xl font-black text-white pr-8">{{ faq.question }}</span>
-                                <div class="shrink-0 p-2 bg-white/5 rounded-full transition-transform duration-300" :class="{'rotate-180 bg-rose-500/20': faq.isOpen}">
-                                    <svg class="w-6 h-6 text-blue-400" :class="{'text-rose-400': faq.isOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="shrink-0 p-2 bg-white/5 rounded-full transition-transform duration-300" :class="{'rotate-180 bg-red-work/20': faq.isOpen}">
+                                    <svg class="w-6 h-6 text-blue-400" :class="{'text-red-work': faq.isOpen}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </div>
