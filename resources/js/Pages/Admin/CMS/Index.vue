@@ -63,7 +63,7 @@ const getTranslation = (value) => {
                         <input
                             v-model="filters.search"
                             type="text"
-                            placeholder="Szukaj strony po tytule..."
+                            placeholder="Szukaj strony po nazwie lub tytule..."
                             class="block w-full pl-14 pr-12 py-4 border-none bg-gray-50 rounded-2xl focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all text-sm font-medium placeholder:text-gray-400 shadow-inner"
                         >
                     </div>
@@ -76,6 +76,7 @@ const getTranslation = (value) => {
                             <thead>
                                 <tr class="border-b border-gray-50">
                                     <th class="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">ID</th>
+                                    <th class="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Nazwa strony</th>
                                     <th class="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Tytuł (SEO)</th>
                                     <th class="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Opis (SEO)</th>
                                     <th class="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right">Akcje</th>
@@ -88,7 +89,12 @@ const getTranslation = (value) => {
                                     </td>
                                     <td class="px-8 py-6">
                                         <div class="flex flex-col">
-                                            <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(page.title) }}</span>
+                                            <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ page.name || '-' }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-6">
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-black text-gray-400 uppercase tracking-tight">{{ getTranslation(page.title) }}</span>
                                         </div>
                                     </td>
                                     <td class="px-8 py-6">
@@ -110,7 +116,7 @@ const getTranslation = (value) => {
                                     </td>
                                 </tr>
                                 <tr v-if="pages.data.length === 0">
-                                    <td colspan="4" class="px-8 py-20 text-center">
+                                    <td colspan="5" class="px-8 py-20 text-center">
                                         <div class="flex flex-col items-center">
                                             <div class="p-6 bg-gray-50 rounded-[2rem] mb-4">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-gray-300">

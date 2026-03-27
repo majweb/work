@@ -14,6 +14,7 @@ class Page extends Model
     public array $translatable = ['title', 'image', 'description', 'keywords', 'content'];
 
     protected $fillable = [
+        'name',
         'title',
         'image',
         'description',

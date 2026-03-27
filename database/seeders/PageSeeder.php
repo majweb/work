@@ -25,6 +25,7 @@ class PageSeeder extends Seeder
         $pages = [
             [
                 'id' => 1,
+                'name' => 'Strona główna',
                 'title' => json_encode([
                     'af' => 'Home Page',
                     'am' => 'መነሻ ገጽ',
@@ -508,6 +509,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'name' => 'Regulamin',
                 'title' => json_encode([
                     'af' => 'Terms and Conditions',
                     'am' => 'የመጠቀም ደንብ',
@@ -1056,6 +1058,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'name' => 'Polityka prywatności',
                 'title' => json_encode([
                     'af' => 'Privacy Policy',
                     'am' => 'የግል ደህንነት ፖሊሲ',
@@ -1604,6 +1607,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 4,
+                'name' => 'Polityka cookies',
                 'title' => json_encode([
                     'am' => 'ርዕሶች',
                     'ar' => 'مقالات',
@@ -1809,6 +1813,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 5,
+                'name' => 'O nas',
                 'title' => json_encode([
                     'am' => 'አገናኝ',
                     'ar' => 'اتصال',
@@ -2279,6 +2284,7 @@ class PageSeeder extends Seeder
 //            ],
             [
                 'id' => 7,
+                'name' => 'Kontakt',
                 'title' => json_encode([
                     'am' => 'ኩባንያዎች',
                     'ar' => 'شركات',
@@ -2484,6 +2490,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 8,
+                'name' => 'Pojedyncza oferta',
                 'title' => json_encode([
                     'am' => 'አንድ አቅርቦት',
                     'ar' => 'عرض فردي',
@@ -2686,6 +2693,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 9,
+                'name' => 'Pojedynczy artykuł',
                 'title' => json_encode([
                     'am' => 'አንድ ጽሑፍ',
                     'ar' => 'مقالة فردية',
@@ -2760,6 +2768,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 10,
+                'name' => 'Dla firm',
                 'title' => json_encode([
                     'am' => 'አባላት',
                     'ar' => 'الشركاء',
@@ -2965,6 +2974,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 11,
+                'name' => 'Dla kandydatów',
                 'title' => json_encode([
                     'am' => 'ዋጋ አሰጣጥ',
                     'ar' => 'التسعير',
@@ -3169,6 +3179,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 12,
+                'name' => 'Jak to działa',
                 'title' => json_encode([
                     'am' => 'ፕሮጀክቶች',
                     'ar' => 'المشاريع',
@@ -3374,6 +3385,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 13,
+                'name' => 'FAQ',
                 'title' => json_encode([
                     'am' => 'ተጨማሪ ንባብ',
                     'ar' => 'اقرأ المزيد',
@@ -3579,6 +3591,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 14,
+                'name' => 'Cennik',
                 'title' => json_encode([
                     'am' => 'ስለ እኛ',
                     'ar' => 'معلومات عنا',
@@ -3784,6 +3797,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 15,
+                'name' => 'Pomoc',
                 'title' => json_encode([
                     'am' => 'አንድ መሰረታዊ ድርጅት',
                     'ar' => 'مؤسسة واحدة',
@@ -3989,6 +4003,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 16,
+                'name' => 'Lista artykułów',
                 'title' => json_encode([
                     'am' => 'የጽሑፍ ቡድን',
                     'ar' => 'مجموعة المقالات',
@@ -4063,6 +4078,7 @@ class PageSeeder extends Seeder
             ],
             [
                 'id' => 17,
+                'name' => 'Informacje w stopce',
                 'title' => json_encode([
                     'am' => 'አንድ ኩባንያ',
                     'ar' => 'شركة واحدة',

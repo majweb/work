@@ -16,7 +16,8 @@ class PageController extends Controller
     {
         $pages = Page::query()
             ->when($request->search, function ($query, $search) {
-                $query->where('title', 'like', "%{$search}%");
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('name', 'like', "%{$search}%");
             })
             ->orderBy('id', 'asc')
             ->paginate(20)
@@ -45,6 +46,7 @@ class PageController extends Controller
         return Inertia::render('Admin/CMS/Edit', [
             'page' => [
                 'id' => $page->id,
+                'name' => $page->name,
                 'title' => $page->getTranslations('title'),
                 'description' => $page->getTranslations('description'),
                 'keywords' => $page->getTranslations('keywords'),

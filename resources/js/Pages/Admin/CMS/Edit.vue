@@ -118,7 +118,12 @@ const submit = () => {
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                                     </svg>
                                 </Link>
-                                <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">Edytuj SEO strony</h3>
+                                <div class="flex flex-col">
+                                    <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        <span v-if="page.name" class="text-blue-600">{{ page.name }}</span>
+                                        <span v-else>Edytuj SEO strony</span>
+                                    </h3>
+                                </div>
                             </div>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 ml-16">
                                 Zarządzanie informacjami meta i tagami dla wybranej strony
