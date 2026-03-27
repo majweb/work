@@ -255,7 +255,8 @@ onMounted(() => {
                     <div class="bg-white/5 border border-white/10 rounded-[4rem] overflow-hidden backdrop-blur-md shadow-2xl">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 p-10 md:p-24 items-center">
                             <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
-                                <div class="inline-flex flex-col items-center p-8 bg-white rounded-[3rem] text-[#0A2C5C] mb-10 shadow-2xl shadow-blue-900/40 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                                <div class="inline-flex flex-col items-center p-8 bg-white rounded-[3rem] text-[#0A2C5C] mb-10 shadow-2xl shadow-blue-900/40 transform -rotate-3 hover:rotate-0 transition-transform duration-500 relative">
+                                    <img src="/images/landing/icons/50000.png" alt="50 000 kredytów" class="h-32 md:h-48 mb-6 absolute -bottom-20 -right-20" />
                                     <span class="text-6xl md:text-8xl font-black tracking-tight">50 000</span>
                                     <span class="text-2xl font-black tracking-[0.2em] uppercase">Kredytów</span>
                                     <span class="mt-4 px-6 py-2 bg-[#E11D48] text-white text-sm font-black rounded-full uppercase tracking-widest">na start!</span>
@@ -279,17 +280,19 @@ onMounted(() => {
                         <h3 class="text-2xl md:text-4xl font-black mb-16 tracking-tight">W końcu rekrutujesz bez kosztów na start...</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
                             <div v-for="(item, i) in [
-                                {title: 'Publikujesz ogłoszenia za darmo', icon: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A2.401 2.401 0 013 11.4c0-1.132.77-2.122 1.864-2.396 1.094-.274 2.231.114 2.872 1.036m0 5.292a2.401 2.401 0 01-2.872 1.036c-1.094-.274-1.864-1.264-1.864-2.396 0-1.132.77-2.122 1.864-2.396.473-.119.954-.155 1.428-.112m3.111 2.76l-.111-.111m0 0a2.39 2.39 0 01-.444-1.246c0-.393.1-.762.274-1.082m.17.212a2.39 2.39 0 01-.274-1.082c0-.393.1-.762.274-1.082m0 0l.111-.111'},
-                                {title: 'Bez umów i abonamentów', icon: 'M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636'},
-                                {title: 'Korzystasz na własnych zasadach', icon: 'M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5'},
-                                {title: 'CV klasyczne, audio, wideo', icon: 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'},
-                                {title: 'Ogłoszenia we wszystkich językach', icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'}
+                                {title: 'Publikujesz ogłoszenia za darmo', icon: '/images/landing/icons/publikacje.png'},
+                                {title: 'Bez umów i abonamentów', icon: '/images/landing/icons/bez_umow.png'},
+                                {title: 'Korzystasz na własnych zasadach', icon: '/images/landing/icons/korzystasz.png'},
+                                {title: 'CV klasyczne, audio, wideo', icon: '/images/landing/icons/cv_klasyczne.png'},
+                                {title: 'Ogłoszenia we wszystkich językach', icon: '/images/landing/icons/ogloszenia.png'}
                             ]" :key="i" class="bg-white p-10 rounded-[3rem] flex flex-col items-center justify-center text-center gap-8 transition-all hover:-translate-y-3 hover:shadow-3xl hover:shadow-blue-900/40 group">
                                 <div class="relative">
                                     <div class="absolute inset-0 bg-blue-400 blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                                    <svg class="relative w-12 h-12 text-blue-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="item.icon" />
-                                    </svg>
+<!--                                    <svg class="relative w-12 h-12 text-blue-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">-->
+<!--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" :d="item.icon" />-->
+<!--                                    </svg>-->
+                                    <img class="relative h-40 h-40 group-hover:scale-110 transition-transform" :src="item.icon" alt="landing-icon">
+
                                 </div>
                                 <span class="text-[#0A2C5C] text-sm font-black uppercase tracking-widest leading-tight">{{ item.title }}</span>
                             </div>
