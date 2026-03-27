@@ -39,6 +39,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -1107,6 +1108,14 @@ class FrontController extends Controller
             'foundation' => $data,
             'page' => $page ? new PageResource($page) : null,
             'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+        ]);
+    }
+
+    public function Landing(): \Inertia\Response
+    {
+        return inertia()->render('Front/Landing', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
         ]);
     }
 }

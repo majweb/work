@@ -82,6 +82,8 @@ Route::get('/cities/{countryCode}', LocationController::class)
 Route::get('/categories/{countryCode}', CategoryControllerInvoke::class)
     ->name('categories.byCountry');
 
+Route::get('/landing', [FrontController::class, 'Landing'])->name('landing');
+
 Route::get('/', function (DictionaryService $dictionaryService) {
     $page = Page::findOrFail(1);
     $countries = (new Helper)->makeCountriesToSelectHasProjects();
