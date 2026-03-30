@@ -95,13 +95,15 @@ class CreateNewUser implements CreatesNewUsers
                 $user->firm()->create();
 
                 if (config('services.crm.url') && config('services.crm.key')) {
-                    Http::withHeaders([
+                    \Log::info('CRM URL: '.config('services.crm.url'));
+                    $dd = Http::withHeaders([
                         'X-API-KEY' => config('services.crm.key'),
                     ])->post(config('services.crm.url').'/portal/sync', [
                         'name' => $user->name,
                         'email' => $user->email,
                         'type' => 'firm',
                     ]);
+                    dd($dd);
                 }
 
                 $admins = User::role('admin')->get();
