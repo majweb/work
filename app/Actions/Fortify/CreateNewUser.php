@@ -6,6 +6,7 @@ use App\Models\Foundation;
 use App\Models\User;
 use App\Notifications\SystemActivityNotification;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -92,6 +93,17 @@ class CreateNewUser implements CreatesNewUsers
             if ($user) {
                 $user->assignRole('firm', 'recruit');
                 $user->firm()->create();
+
+                if (config('services.crm.url') && config('services.crm.key')) {
+                    Http::withHeaders([
+                        'X-API-KEY' => config('services.crm.key'),
+                    ])->post(config('services.crm.url').'/portal/sync', [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'portal_id' => $user->id,
+                        'type' => 'firm',
+                    ]);
+                }
 
                 $admins = User::role('admin')->get();
                 Notification::send($admins, new SystemActivityNotification([
