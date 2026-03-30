@@ -1118,4 +1118,12 @@ class FrontController extends Controller
             'canRegister' => Route::has('register'),
         ]);
     }
+
+    public function Sold(): \Inertia\Response
+    {
+        return inertia()->render('Front/Sold', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+        ]);
+    }
 }

@@ -37,6 +37,7 @@ Route::name('front.')->group(function () {
     Route::get('partners',[FrontController::class,'Partners'])->name('partners');
     Route::get('foundation/{foundation}',[FrontController::class,'Foundation'])->name('foundation.single');
     Route::get('terms',[FrontController::class,'Terms'])->name('terms');
+    Route::get('sold',[FrontController::class,'Sold'])->name('sold');
     Route::get('firms',[FrontController::class,'Firms'])->name('firms');
     Route::get('firms/{user}',[FrontController::class,'SingleFirm'])->name('firms.single');
 });

@@ -63,5 +63,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'webhook' => env('STRIPE_WEBHOOK_SECRET'),
     ],
+    'crm' => [
+        'url' => env('CRM_API_URL'),
+        'key' => env('CRM_API_KEY'),
+    ],
 
 ];
