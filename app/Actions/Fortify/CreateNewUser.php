@@ -100,7 +100,6 @@ class CreateNewUser implements CreatesNewUsers
                     ])->post(config('services.crm.url').'/portal/sync', [
                         'name' => $user->name,
                         'email' => $user->email,
-                        'portal_id' => $user->id,
                         'type' => 'firm',
                     ]);
                 }
