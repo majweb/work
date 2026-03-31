@@ -96,7 +96,11 @@ class CreateNewUser implements CreatesNewUsers
                 $user->firm()->create();
 
                 if (config('services.crm.url') && config('services.crm.key')) {
-                    app(CrmService::class)->syncUser($user);
+                    try {
+                        app(CrmService::class)->syncUser($user);
+                    } catch (\Exception $e) {
+                        \Log::error('CRM Sync Error: ' . $e->getMessage());
+                    }
                 }
 
                 $admins = User::role('admin')->get();
