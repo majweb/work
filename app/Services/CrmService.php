@@ -28,6 +28,7 @@ class CrmService
             'name' => $user->name,
             'email' => $user->email,
             'type' => 'firm',
+            'map_work_crm' => now()->format('Y-m-d H:i:s'),
         ]));
     }
 
