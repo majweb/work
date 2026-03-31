@@ -44,7 +44,11 @@ class FirmController extends Controller
         $firm->update($data);
 
         if (config('services.crm.url') && config('services.crm.key')) {
-            app(CrmService::class)->syncUser(Auth::user(), $data);
+            try {
+                app(CrmService::class)->syncUser(Auth::user(), $data);
+            } catch (\Exception $e) {
+                \Log::error('CRM Sync Error: ' . $e->getMessage());
+            }
         }
 
         session()->flash('flash.banner', __('translate.dataUpdated'));

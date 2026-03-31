@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Firm;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FirmAboutRequest;
 use App\Models\TemporaryFile;
+use App\Services\CrmService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -77,7 +78,7 @@ class AboutController extends Controller
                 $temporaryFile->delete();
             }
         }
-        Auth::user()->firm()->update([
+        $updateData = [
             'www'=>$request->aboutData()['www'],
             'opinion_google'=>$request->aboutData()['opinion_google'],
             'opinion_trust'=>$request->aboutData()['opinion_trust'],
@@ -92,7 +93,17 @@ class AboutController extends Controller
             'annual_turnover'=>$request->aboutData()['annual_turnover'],
             'extra_description'=>$request->aboutData()['extra_description'],
             'video'=>$request->video && isset($path) ? $path : Auth::user()->firm->video
-        ]);
+        ];
+        Auth::user()->firm()->update($updateData);
+
+        if (config('services.crm.url') && config('services.crm.key')) {
+            try {
+                app(CrmService::class)->syncUser(Auth::user(), $updateData);
+            } catch (\Exception $e) {
+                \Log::error('CRM Sync Error: ' . $e->getMessage());
+            }
+        }
+
         session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->back();
