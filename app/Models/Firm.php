@@ -53,6 +53,7 @@ class Firm extends Model implements HasMedia
         'video',
         'points',
         'currency',
+        'description',
         'premium_certificate_path',
         'premium_certificate_level',
         'extra_description',
