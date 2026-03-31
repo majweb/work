@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FirmUpdateRequest;
+use App\Services\CrmService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,10 +43,16 @@ class FirmController extends Controller
 
         $firm->update($data);
 
+        if (config('services.crm.url') && config('services.crm.key')) {
+            app(CrmService::class)->syncUser(Auth::user(), $data);
+        }
+
         session()->flash('flash.banner', __('translate.dataUpdated'));
         session()->flash('flash.bannerStyle', 'success');
 
         return redirect()->back();
+
+
 
     }
 }

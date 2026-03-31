@@ -19,16 +19,16 @@ class CrmService
     }
 
     /**
-     * Synchronizuje użytkownika z systemem CRM.
+     * Synchronizuje użytkownika (firmę) z systemem CRM.
      */
-    public function syncUser(User $user): \Illuminate\Http\Client\Response
+    public function syncUser(User $user, array $data = []): \Illuminate\Http\Client\Response
     {
-        return $this->client()->post('/portal/sync', [
+        return $this->client()->post('/portal/sync', array_merge($data, [
+            'work_user_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'work_user_id' => $user->id,
             'type' => 'firm',
-        ]);
+        ]));
     }
 
     /**
