@@ -87,15 +87,42 @@ class FirmUpdateRequest extends FormRequest
         ];
     }
 
+    public function attributes(): array
+    {
+        return [
+            'nip' => strtolower(__('translate.nip')),
+            'regon' => strtolower(__('translate.regon')),
+            'description' => strtolower(__('translate.description')),
+            'street' => strtolower(__('translate.Street')),
+            'number' => strtolower(__('translate.Number')),
+            'city' => strtolower(__('translate.City')),
+            'postal' => strtolower(__('translate.Postal')),
+            'countryJson' => strtolower(__('translate.Country')),
+            'contact_phone' => strtolower(__('translate.phone')),
+            'contact_phone.*.phone' => strtolower(__('translate.phone')),
+            'contact_phone.*.desc' => strtolower(__('translate.description')),
+            'invoice_same' => strtolower(__('translate.invoiceData')),
+            'name_invoice' => strtolower(__('translate.name')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'nip_invoice' => strtolower(__('translate.nip')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'regon_invoice' => strtolower(__('translate.regon')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'street_invoice' => strtolower(__('translate.Street')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'number_invoice' => strtolower(__('translate.number')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'city_invoice' => strtolower(__('translate.City')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'postal_invoice' => strtolower(__('translate.Postal')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'country_invoice' => strtolower(__('translate.Country')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'countryInvoiceJson' => strtolower(__('translate.Country')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+        ];
+    }
+
     public function firmData()
     {
         return $this->validated();
     }
 
-    protected function getNipValidationRule(?string $countryCode): string|object
+    protected function getNipValidationRule(?string $countryCode): array|string|object
     {
         if (! $countryCode) {
-            return 'string|max:30';
+            return ['string', 'max:30'];
         }
 
         $code = strtolower($countryCode);
@@ -208,7 +235,7 @@ class FirmUpdateRequest extends FormRequest
             return 'regex:/^\d{8,9}$/'; // Australia TFN - 8/9
         }
 
-        return 'string|max:30';
+        return ['string', 'max:30'];
     }
 
     public function messages(): array

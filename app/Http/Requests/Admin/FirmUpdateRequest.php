@@ -97,10 +97,10 @@ class FirmUpdateRequest extends FormRequest
         ];
     }
 
-    protected function getNipValidationRule(?string $countryCode): string|object
+    protected function getNipValidationRule(?string $countryCode): array|string|object
     {
         if (! $countryCode) {
-            return 'string|max:30';
+            return ['string', 'max:30'];
         }
 
         $code = strtolower($countryCode);
@@ -213,7 +213,7 @@ class FirmUpdateRequest extends FormRequest
             return 'regex:/^\d{8,9}$/'; // Australia TFN - 8/9
         }
 
-        return 'string|max:30';
+        return ['string', 'max:30'];
     }
 
     public function getNipPlaceholder(?string $countryCode): string
@@ -344,7 +344,7 @@ class FirmUpdateRequest extends FormRequest
             'details.regon' => strtolower(__('translate.regon')),
             'details.description' => strtolower(__('translate.description')),
             'details.street' => strtolower(__('translate.Street')),
-            'details.number' => strtolower(__('translate.Number')),
+            'details.number' => strtolower(__('translate.number')),
             'details.city' => strtolower(__('translate.City')),
             'details.postal' => strtolower(__('translate.Postal')),
             'details.countryJson' => strtolower(__('translate.Country')),
@@ -352,14 +352,14 @@ class FirmUpdateRequest extends FormRequest
             'details.count_workers' => strtolower(__('translate.count_workers')),
             'details.annual_turnover' => strtolower(__('translate.annual_turnover')),
             'details.extra_description' => strtolower(__('translate.extra_description')),
-            'details.name_invoice' => strtolower(__('translate.name')),
-            'details.nip_invoice' => strtolower(__('translate.nip')),
-            'details.regon_invoice' => strtolower(__('translate.regon')),
-            'details.street_invoice' => strtolower(__('translate.Street')),
-            'details.number_invoice' => strtolower(__('translate.Number')),
-            'details.city_invoice' => strtolower(__('translate.City')),
-            'details.postal_invoice' => strtolower(__('translate.Postal')),
-            'details.countryInvoiceJson' => strtolower(__('translate.Country')),
+            'details.name_invoice' => strtolower(__('translate.name')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.nip_invoice' => strtolower(__('translate.nip')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.regon_invoice' => strtolower(__('translate.regon')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.street_invoice' => strtolower(__('translate.Street')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.number_invoice' => strtolower(__('translate.number')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.city_invoice' => strtolower(__('translate.City')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.postal_invoice' => strtolower(__('translate.Postal')) . ' (' . strtolower(__('translate.Invoice')) . ')',
+            'details.countryInvoiceJson' => strtolower(__('translate.Country')) . ' (' . strtolower(__('translate.Invoice')) . ')',
         ];
     }
 }
