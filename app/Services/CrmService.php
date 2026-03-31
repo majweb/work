@@ -23,12 +23,15 @@ class CrmService
      */
     public function syncUser(User $user, array $data = []): \Illuminate\Http\Client\Response
     {
+        if (!array_key_exists('map_work_crm', $data) || $data['map_work_crm'] === null) {
+            $data['map_work_crm'] = now()->format('Y-m-d H:i:s');
+        }
+
         return $this->client()->post('/portal/sync', array_merge($data, [
             'work_user_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
             'type' => 'firm',
-            'map_work_crm' => now()->format('Y-m-d H:i:s'),
         ]));
     }
 
