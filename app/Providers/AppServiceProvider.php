@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -42,6 +43,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Http::macro('crm', function () {
+            return Http::withHeaders([
+                'X-API-KEY' => config('services.crm.key'),
+            ])->baseUrl(config('services.crm.url'));
+        });
+
         Gate::define('super-admin-only', function (User $user) {
             return $user->hasRole('admin') && !$user->hasRole('admin-sub');
         });

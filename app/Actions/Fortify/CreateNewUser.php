@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Foundation;
 use App\Models\User;
+use App\Services\CrmService;
 use App\Notifications\SystemActivityNotification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
@@ -95,13 +96,7 @@ class CreateNewUser implements CreatesNewUsers
                 $user->firm()->create();
 
                 if (config('services.crm.url') && config('services.crm.key')) {
-                    Http::withHeaders([
-                        'X-API-KEY' => config('services.crm.key'),
-                    ])->post(config('services.crm.url').'/portal/sync', [
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'type' => 'firm',
-                    ]);
+                    app(CrmService::class)->syncUser($user);
                 }
 
                 $admins = User::role('admin')->get();
