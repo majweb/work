@@ -104,8 +104,6 @@ const submit = () => {
     >
         <div class="relative min-h-screen pt-32 pb-24 overflow-hidden">
             <!-- Background Graphic -->
-            <div class="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-[0.03]"></div>
-
             <div class="max-w-9xl mx-auto px-4 relative z-10">
                 <!-- Search Form Card -->
                 <div class="max-w-6xl mx-auto">
