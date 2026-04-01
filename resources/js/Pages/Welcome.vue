@@ -102,7 +102,7 @@ const submit = () => {
         :url="route('front')"
         type="website"
     >
-        <div class="relative md:min-h-dvh pt-10 md:pt-32 pb-24">
+        <div class="relative min-h-screen pt-10 md:pt-32 pb-24">
             <!-- Background Graphic -->
             <div class="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-[0.03]"></div>
 
