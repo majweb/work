@@ -109,7 +109,7 @@ const submit = () => {
             <div class="max-w-9xl mx-auto px-4 relative z-10">
                 <!-- Search Form Card -->
                 <div class="max-w-6xl mx-auto">
-                    <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 p-8 md:p-12 relative group">
+                    <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-gray-100 p-6 md:p-12 relative group">
                         <form @submit.prevent="submit" class="relative z-10">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" :class="{'md:grid-cols-4': form.city}">
                                 <!-- Select Country -->

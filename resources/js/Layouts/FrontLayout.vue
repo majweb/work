@@ -157,7 +157,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         </div>
         <div
             v-if="props.imageUrl"
-            class="absolute inset-0 bg-no-repeat"
+            class="absolute inset-0 bg-no-repeat py-20"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>
 
@@ -315,7 +315,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         </button>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10 mt-[-100px]" >
+        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10" >
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->
