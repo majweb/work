@@ -157,7 +157,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         </div>
         <div
             v-if="props.imageUrl"
-            class="absolute inset-0 bg-no-repeat z-[-1]"
+            class="absolute inset-0 bg-no-repeat"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>
 
