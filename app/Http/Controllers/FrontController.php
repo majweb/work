@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
+use App\Http\Requests\StoreFoundationRequest;
 use App\Http\Resources\BannerResource;
 use App\Http\Resources\CategoryWithArticlesResource;
 use App\Http\Resources\FrontArticleResource;
 use App\Http\Resources\FrontUserResource;
+use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectResourceCountry;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\NewestArticleArticlesPageResource;
@@ -1003,7 +1005,7 @@ class FrontController extends Controller
         );
     }
 
-    public function Partners()
+    public function Partners(DictionaryService $dictionaryService)
     {
         $partners = Partner::where('active', true)
             ->orderBy('id')
@@ -1047,12 +1049,20 @@ class FrontController extends Controller
 
         $page = Page::findOrFail(10);
 
+
+        $categoriesToSend = $dictionaryService->getFoundationCategories();
+        $countriesToSend = $dictionaryService->getCountries(app()->getLocale());
+
+
+
         return inertia()->render('Front/Partners', [
             'partners' => $partners,
             'categories' => $categories,
             'page' => $page ? new PageResource($page) : null,
             'foundations' => $foundations,
             'countries' => $countries,
+            'categoriesToSend' => $categoriesToSend,
+            'countriesToSend' => $countriesToSend,
             'foundationsCount' => $foundationsCount,
             'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
         ]);
@@ -1125,5 +1135,86 @@ class FrontController extends Controller
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
+    }
+
+    public function getChildsCategory($parent): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        return MultiselectResource::collection(FoundationCategory::where('parent_id', $parent)->get());
+    }
+
+    public function storeFoundation(StoreFoundationRequest $request, DictionaryService $dictionaryService): \Illuminate\Http\RedirectResponse
+    {
+        $ipKey = 'store-foundation:ip:'.$request->ip();
+
+        if (RateLimiter::tooManyAttempts($ipKey, 1)) {
+            $seconds = RateLimiter::availableIn($ipKey);
+            session()->flash('flash.banner', trans('translate.foundation_rate_limit'));
+            session()->flash('flash.bannerStyle', 'danger');
+            throw ValidationException::withMessages([
+                'name' => trans('translate.foundation_rate_limit'),
+            ]);
+        }
+
+        RateLimiter::hit($ipKey, 3600);
+
+        $data = $request->validated();
+
+        $foundation = Foundation::create([
+            'name' => $data['name'],
+            'www' => $data['www'] ?? null,
+            'facebook_url' => $data['facebook_url'] ?? null,
+            'instagram_url' => $data['instagram_url'] ?? null,
+            'linkedin_url' => $data['linkedin_url'] ?? null,
+            'x_url' => $data['x_url'] ?? null,
+            'tiktok_url' => $data['tiktok_url'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'email' => $data['email'] ?? null,
+            'description' => $data['description'] ?? null,
+
+            'address_street' => $data['address_street'] ?? null,
+            'address_city' => $data['address_city'] ?? null,
+            'address_country' => $data['address_country'] ?? null,
+            'address_postcode' => $data['address_postcode'] ?? null,
+            'country' => $data['country'] ?? null,
+
+            'category_id' => $data['category_id'] ?? null,
+            'subcategory_id' => $data['subcategory_id'] ?? null,
+
+            'year_of_foundation' => $data['year_of_foundation'] ?? null,
+            'worker_count' => $data['worker_count'] ?? null,
+            'benefit_organization' => $data['benefit_organization'] ?? false,
+
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude'],
+
+            'iban' => $data['iban'],
+            'swift' => $data['swift'],
+            'krs' => $data['krs'],
+
+            'active' => false, // Zawsze nieaktywna przy zgłoszeniu przez front
+        ]);
+
+        if ($request->photo) {
+            $folders = $request->photo;
+            $temporaryFiles = TemporaryFile::whereIn('folder', $folders)->get();
+            foreach ($temporaryFiles as $file) {
+                $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))->toMediaCollection('foundation_logo');
+                Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
+                $file->delete();
+            }
+        }
+        if ($request->banner) {
+            $folders = $request->banner;
+            $temporaryFiles = TemporaryFile::whereIn('folder', $folders)->get();
+            foreach ($temporaryFiles as $file) {
+                $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))->toMediaCollection('foundation_banner');
+                Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
+                $file->delete();
+            }
+        }
+
+        $dictionaryService->clearFoundationCategories();
+
+        return back()->with('flash.banner', __('translate.success_foundation_report'));
     }
 }

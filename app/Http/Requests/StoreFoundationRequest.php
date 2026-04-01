@@ -94,35 +94,35 @@ class StoreFoundationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'www.regex' => 'Link musi zaczynać się od http:// lub https://',
-            'facebook_url.regex' => 'Link Facebook musi zaczynać się od http:// lub https://',
-            'instagram_url.regex' => 'Link Instagram musi zaczynać się od http:// lub https://',
-            'linkedin_url.regex' => 'Link LinkedIn musi zaczynać się od http:// lub https://',
-            'x_url.regex' => 'Link X (Twitter) musi zaczynać się od http:// lub https://',
-            'tiktok_url.regex' => 'Link TikTok musi zaczynać się od http:// lub https://',
+            'www.regex' => __('translate.validation.www_regex'),
+            'facebook_url.regex' => __('translate.validation.facebook_url_regex'),
+            'instagram_url.regex' => __('translate.validation.instagram_url_regex'),
+            'linkedin_url.regex' => __('translate.validation.linkedin_url_regex'),
+            'x_url.regex' => __('translate.validation.x_url_regex'),
+            'tiktok_url.regex' => __('translate.validation.tiktok_url_regex'),
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'category_id' =>'kategoria',
-            'subcategory_id' =>'podkategoria',
-            'year_of_foundation' =>'rok załozenia',
-            'worker_count' =>'ilość pracowników',
-            'annual_turnover' =>'roczne obroty',
-            'address_street' =>'ulica automplete',
-            'address_city' =>'miasto automplete',
-            'address_country' =>'kraj automplete',
-            'address_postcode' =>'kod pocztowy autocmplete',
-            'phone' =>'telefon',
-            'description' =>'opis',
-            'photo' =>'logo',
-            'facebook_url' =>'Facebook URL',
-            'instagram_url' =>'Instagram URL',
-            'linkedin_url' =>'LinkedIn URL',
-            'x_url' =>'X (Twitter) URL',
-            'tiktok_url' =>'TikTok URL',
+            'category_id' => __('translate.validation.attributes.category_id'),
+            'subcategory_id' => __('translate.validation.attributes.subcategory_id'),
+            'year_of_foundation' => __('translate.validation.attributes.year_of_foundation'),
+            'worker_count' => __('translate.validation.attributes.worker_count'),
+            'annual_turnover' => __('translate.validation.attributes.annual_turnover'),
+            'address_street' => __('translate.validation.attributes.address_street'),
+            'address_city' => __('translate.validation.attributes.address_city'),
+            'address_country' => __('translate.validation.attributes.address_country'),
+            'address_postcode' => __('translate.validation.attributes.address_postcode'),
+            'phone' => __('translate.validation.attributes.phone'),
+            'description' => __('translate.validation.attributes.description'),
+            'photo' => __('translate.validation.attributes.photo'),
+            'facebook_url' => __('translate.validation.attributes.facebook_url'),
+            'instagram_url' => __('translate.validation.attributes.instagram_url'),
+            'linkedin_url' => __('translate.validation.attributes.linkedin_url'),
+            'x_url' => __('translate.validation.attributes.x_url'),
+            'tiktok_url' => __('translate.validation.attributes.tiktok_url'),
         ];
     }
 }

@@ -26,6 +26,8 @@ Route::name('front.')->group(function () {
     Route::get('generateCaptcha', [FrontController::class, 'generateCaptcha'])->name('generateCaptcha');
     Route::post('verify-captcha', [FrontController::class, 'verifyCaptcha']);
     Route::get('getChildsCategoryWitoutDetail',[FrontController::class,'getChildsCategoryWitoutDetail'])->name('getChildsCategoryWitoutDetail');
+    Route::get('getChildsCategory/{parent}', [FrontController::class, 'getChildsCategory'])->name('getChildsCategory');
+    Route::post('foundation', [FrontController::class, 'storeFoundation'])->name('foundation.store');
     Route::post('uploadVideo', [VideoController::class, 'upload'])->name('video.upload');
     Route::post('uploadAudio', [AudioUploadController::class, 'upload'])->name('audio.upload');
     Route::get('contact',[FrontController::class,'Contact'])->name('contact');
