@@ -144,7 +144,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
 
             <slot name="head" />
         </Head>
-    <div class="flex flex-col min-h-screen bg-gray-50/50 dark:bg-gray-900 font-sans">
+    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900 font-sans">
         <Banner />
         <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 pointer-events-none z-[300]">
             <ConfettiExplosion
@@ -158,7 +158,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         <!-- Background only on home page and pages with imageUrl -->
         <div
             v-if="props.imageUrl"
-            class="fixed inset-0 bg-no-repeat"
+            class="absolute inset-0 bg-no-repeat"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>
 
@@ -316,7 +316,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         </button>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10">
+        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10" style="top:-100px;">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->
