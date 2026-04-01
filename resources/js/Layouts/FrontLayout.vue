@@ -158,7 +158,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         <!-- Background only on home page and pages with imageUrl -->
         <div
             v-if="props.imageUrl"
-            class="absolute inset-0 bg-no-repeat"
+            class="absolute inset-0 bg-no-repeat z-0"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>
 
