@@ -162,7 +162,6 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         backgroundImage: `url(${props.imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
     }"
         ></div>
 
