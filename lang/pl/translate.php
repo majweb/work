@@ -1286,6 +1286,7 @@ return [
         ],
     ],
     'addFoundation' => 'Dodaj fundację',
+    'registerFoundation' => 'Zarejestruj fundację',
     'editFoundation' => 'Edytuj fundację',
     'foundationName' => 'Nazwa fundacji',
     'categoryI' => 'Kategoria',
