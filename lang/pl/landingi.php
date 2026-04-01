@@ -204,4 +204,95 @@ return [
             ],
         ],
     ],
+    'charity' => [
+        'nav' => [
+            'how_it_works' => 'Jak to działa?',
+            'benefits' => 'Korzyści',
+            'faq' => 'FAQ',
+            'register_foundation' => 'Zarejestruj fundację',
+        ],
+        'hero' => [
+            'title' => 'Zamień procesy rekrutacyjne w <br class="hidden lg:block"/> realne wsparcie dla Twojej Fundacji.',
+            'subtitle' => 'Dołącz do Ambasadorów portalu. Każda rekrutacja to realne wsparcie dla Twoich podopiecznych. Bez kosztów i zbędnych formalności.',
+            'cta' => 'Zarejestruj fundację',
+        ],
+        'how_it_works' => [
+            'title' => 'JAK TO DZIAŁA?',
+            'steps' => [
+                'step1' => [
+                    'title' => 'Zakładasz profil',
+                    'desc' => 'Tworzysz wizytówkę swojej organizacji, która jest widoczna dla pracodawców na portalu, budując rozpoznawalność Twojej misji.',
+                ],
+                'step2' => [
+                    'title' => 'Jesteś Ambasadorem',
+                    'desc' => 'Działasz jako ambasador portalu, zapraszając firmy do odpowiedzialnej rekrutacji. Każde ich doładowanie to 50% kwoty dla Twojej fundacji.',
+                ],
+                'step3' => [
+                    'title' => 'Otrzymujesz środki',
+                    'desc' => 'Pracodawcy sami wybierają Twoją fundację jako cel wsparcia lub trafiają do Ciebie przez unikalny link, który im udostępniasz.',
+                ],
+            ],
+        ],
+        'benefits' => [
+            'title' => 'DLACZEGO WARTO ZOSTAĆ NASZYM AMBASADOREM?',
+            'items' => [
+                'new_source' => [
+                    'title' => 'Nowe źródło finansowania',
+                    'desc' => 'Docierasz do firm, które chcą pomagać, ale szukają prostego, przejrzystego i w pełni zautomatyzowanego sposobu na realizację swoich strategii CSR.',
+                ],
+                'free_promo' => [
+                    'title' => 'Darmowa promocja',
+                    'desc' => 'Twoja fundacja jest widoczna dla każdego pracodawcy korzystającego z portalu, dzięki czemu budujesz rozpoznawalność wśród globalnego biznesu.',
+                ],
+                'ready_tools' => [
+                    'title' => 'Gotowe narzędzia',
+                    'desc' => 'Otrzymujesz materiały, które możesz dowolnie udostępniać. Ty polecasz skuteczne narzędzie do rekrutacji, a firmy, które szukają pracowników, wspierają Twój cel.',
+                ],
+                'business_relations' => [
+                    'title' => 'Budowanie relacji z biznesem',
+                    'desc' => 'Stajesz się partnerem dla firm. Pracodawcy otrzymują certyfikat potwierdzający wsparcie Twojej misji, co zacieśnia waszą współpracę.',
+                ],
+            ],
+        ],
+        'business_card' => [
+            'title' => 'Twoja wizytówka – Twoje okno na świat biznesu',
+            'items' => [
+                'describe' => 'Opisz dokładnie, czym zajmuje się Twoja fundacja i na co obecnie potrzebuje środków.',
+                'link' => 'Dodaj link do swojej strony www i dane kontaktowe, aby każda firma mogła bliżej poznać Twoje działania.',
+                'visible' => 'Jesteś widoczny na liście wyboru przy każdym zakupie punktów oraz w naszej sekcji „Partnerzy”.',
+            ],
+            'cta' => 'Zarejestruj swoją fundację teraz',
+        ],
+        'faq' => [
+            'title' => 'FAQ',
+            'questions' => [
+                [
+                    'question' => 'Ile kosztuje rejestracja?',
+                    'answer' => 'Nic. Rejestracja i utrzymanie profilu fundacji są całkowicie darmowe.',
+                ],
+                [
+                    'question' => 'Kiedy otrzymujemy środki?',
+                    'answer' => 'Środki trafiają na rachunek fundacji już w ciągu 2-7 dni roboczych po każdej wpłacie dokonanej przez wspierającego Cię pracodawcę.',
+                ],
+                [
+                    'question' => 'Czy musimy promować portal?',
+                    'answer' => 'Nie jest to wymóg, ale bycie Ambasadorem się opłaca. Każda firma rekrutująca z Twojego polecenia to gwarantowane 50% wartości ich doładowań dla Twojej organizacji.',
+                ],
+                [
+                    'question' => 'Jakie dokumenty są potrzebne?',
+                    'answer' => 'Wystarczy numer KRS i podstawowe dane statutowe, które zweryfikujemy podczas zakładania konta.',
+                ],
+            ],
+        ],
+        'bottom_cta' => [
+            'title' => 'Dołącz do grona Fundacji Partnerskich',
+            'subtitle' => 'Zarejestruj się za darmo, stwórz wizytówkę swojej organizacji i zacznij otrzymywać wsparcie od odpowiedzialnych pracodawców.',
+            'cta' => 'Zarejestruj fundację',
+        ],
+        'footer_features' => [
+            'free_reg' => 'darmowa rejestracja',
+            'simple_csr' => 'prosty CSR dla biznesu',
+            'constant_support' => 'stałe źródło wsparcia',
+        ],
+    ],
 ];

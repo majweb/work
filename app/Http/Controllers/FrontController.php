@@ -1137,6 +1137,14 @@ class FrontController extends Controller
         ]);
     }
 
+    public function Charity(): \Inertia\Response
+    {
+        return inertia()->render('Front/Charity', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+        ]);
+    }
+
     public function getChildsCategory($parent): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         return MultiselectResource::collection(FoundationCategory::where('parent_id', $parent)->get());
