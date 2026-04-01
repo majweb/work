@@ -160,7 +160,7 @@ onMounted(() => {
                         <p class="text-lg md:text-xl text-gray-600 mb-10 font-medium leading-relaxed" v-html="__('landingi.sold.hero.subtitle')"></p>
 
                         <div class="flex flex-col items-center lg:items-start gap-6">
-                            <Link :href="route('buy.index')" class="px-12 py-5 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-widest rounded-xl shadow-2xl shadow-red-work-100 transition-all transform hover:-translate-y-1">
+                            <Link :href="route('front.price')" class="px-12 py-5 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-widest rounded-xl shadow-2xl shadow-red-work-100 transition-all transform hover:-translate-y-1">
                                 {{ __("landingi.sold.hero.cta") }}
                             </Link>
 
@@ -243,7 +243,7 @@ onMounted(() => {
                                 </div>
                             </div>
 
-                            <Link :href="route('buy.index')" class="mt-12 inline-block px-10 py-5 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-widest rounded-xl shadow-2xl shadow-red-work-100 transition-all">
+                            <Link :href="route('front.price')" class="mt-12 inline-block px-10 py-5 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-widest rounded-xl shadow-2xl shadow-red-work-100 transition-all">
                                 {{ __("landingi.sold.foundation.cta") }}
                             </Link>
                         </div>
@@ -301,7 +301,7 @@ onMounted(() => {
                     <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __("landingi.sold.bottom_cta.title") }}</h2>
                     <p class="text-xl font-medium text-gray-500 mb-12">{{ __("landingi.sold.bottom_cta.subtitle") }}</p>
 
-                    <Link :href="route('buy.index')" class="inline-block px-12 py-6 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-widest rounded-xl shadow-2xl shadow-red-work-100 transition-all transform hover:-translate-y-1 mb-16">
+                    <Link :href="route('front.price')" class="inline-block px-12 py-6 bg-red-work hover:bg-red-work-700 text-white font-black uppercase tracking-widest rounded-xl shadow-2xl shadow-red-work-100 transition-all transform hover:-translate-y-1 mb-16">
                         {{ __("landingi.sold.bottom_cta.button") }}
                     </Link>
 
