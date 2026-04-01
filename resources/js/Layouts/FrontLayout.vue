@@ -144,7 +144,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
 
             <slot name="head" />
         </Head>
-    <div class="flex flex-col min-h-dvh dark:bg-gray-900 font-sans">
+    <div class="flex flex-col dark:bg-gray-900 font-sans">
         <Banner />
         <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 pointer-events-none z-[300]">
             <ConfettiExplosion
@@ -157,7 +157,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         </div>
         <div
             v-if="props.imageUrl"
-            class="fixed inset-0 bg-no-repeat z-[-1]"
+            class="absolute inset-0 bg-no-repeat z-[-1]"
             :style="{ backgroundImage: `url(${props.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         ></div>
 
