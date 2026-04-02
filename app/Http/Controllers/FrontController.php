@@ -175,95 +175,89 @@ class FrontController extends Controller
         $lat = request('lat');
         $lng = request('lng');
 
-        $cacheKey = 'projects_list_'.md5(json_encode(request()->all()).'_'.app()->getLocale());
+        // Filtrowanie po promieniu (Haversine)
+        $distance = (int) request('distance');
 
-        $projects = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($query, &$lat, &$lng) {
-            // Filtrowanie po promieniu (Haversine)
-            $distance = (int) request('distance');
+        if (! $lat && ! $lng && request('city') && $distance > 0) {
+            $cityName = request('city');
+            $cityCoords = Project::where('cityWork', $cityName)
+                ->whereNotNull('lat')
+                ->whereNotNull('lng')
+                ->selectRaw('AVG(lat) as lat, AVG(lng) as lng')
+                ->first();
 
-            if (! $lat && ! $lng && request('city') && $distance > 0) {
-                $cityName = request('city');
-                $cityCoords = Cache::remember('city_coords_'.md5($cityName), now()->addDay(), function () use ($cityName) {
-                    return Project::where('cityWork', $cityName)
-                        ->whereNotNull('lat')
-                        ->whereNotNull('lng')
-                        ->selectRaw('AVG(lat) as lat, AVG(lng) as lng')
-                        ->first();
-                });
+            if ($cityCoords && $cityCoords->lat) {
+                $lat = $cityCoords->lat;
+                $lng = $cityCoords->lng;
+            }
+        }
 
-                if ($cityCoords && $cityCoords->lat) {
-                    $lat = $cityCoords->lat;
-                    $lng = $cityCoords->lng;
-                }
+        if ($lat && $lng && $distance > 0) {
+            $lat = (float) $lat;
+            $lng = (float) $lng;
+
+            $query->select('*')
+                ->selectRaw(
+                    '(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance',
+                    [$lat, $lng, $lat]
+                )
+                ->having('distance', '<=', $distance)
+                ->orderBy('distance');
+        }
+
+        // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
+        if (! ($lat && $lng && $distance > 0)) {
+            if (request('country')) {
+                $query->whereJsonContains('country', ['value' => (int) request('country')]);
             }
 
-            if ($lat && $lng && $distance > 0) {
-                $lat = (float) $lat;
-                $lng = (float) $lng;
-
-                $query->select('*')
-                    ->selectRaw(
-                        '(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance',
-                        [$lat, $lng, $lat]
-                    )
-                    ->having('distance', '<=', $distance)
-                    ->orderBy('distance');
+            if (request('city')) {
+                $query->where('cityWork', 'like', '%'.request('city').'%');
             }
+        }
 
-            // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
-            if (! ($lat && $lng && $distance > 0)) {
-                if (request('country')) {
-                    $query->whereJsonContains('country', ['value' => (int) request('country')]);
-                }
+        // Filtrowanie po kategorii
+        if (request('category')) {
+            $categoryValue = (int) request('category');
+            $query->whereJsonContains('category', ['value' => $categoryValue]);
+        }
 
-                if (request('city')) {
-                    $query->where('cityWork', 'like', '%'.request('city').'%');
-                }
-            }
+        // Filtrowanie po podkategorii
+        if (request('categorySub')) {
+            $categorySubValue = (int) request('categorySub');
+            $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
+        }
 
-            // Filtrowanie po kategorii
-            if (request('category')) {
-                $categoryValue = (int) request('category');
-                $query->whereJsonContains('category', ['value' => $categoryValue]);
-            }
+        // Filtrowanie po zawodzie
+        if (request('profession')) {
+            $professionValue = (int) request('profession');
+            $query->whereJsonContains('profession', ['value' => $professionValue]);
+        }
 
-            // Filtrowanie po podkategorii
-            if (request('categorySub')) {
-                $categorySubValue = (int) request('categorySub');
-                $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
-            }
+        // Filtrowanie po trybie pracy
+        if (request('workingMode')) {
+            $workingModeId = (int) request('workingMode');
+            $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
+        }
 
-            // Filtrowanie po zawodzie
-            if (request('profession')) {
-                $professionValue = (int) request('profession');
-                $query->whereJsonContains('profession', ['value' => $professionValue]);
-            }
+        if (request('experience')) {
+            $experienceId = (int) request('experience');
+            $query->whereJsonContains('experience', ['id' => $experienceId]);
+        }
 
-            // Filtrowanie po trybie pracy
-            if (request('workingMode')) {
-                $workingModeId = (int) request('workingMode');
-                $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
-            }
+        // Filtrowanie po typie umowy
+        if (request('typeOfContract')) {
+            $typeOfContractId = (int) request('typeOfContract');
+            $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
+        }
 
-            if (request('experience')) {
-                $experienceId = (int) request('experience');
-                $query->whereJsonContains('experience', ['id' => $experienceId]);
-            }
+        // Filtrowanie po wymiarze pracy
+        if (request('workLoad')) {
+            $workLoadId = (int) request('workLoad');
+            $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
+        }
 
-            // Filtrowanie po typie umowy
-            if (request('typeOfContract')) {
-                $typeOfContractId = (int) request('typeOfContract');
-                $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
-            }
-
-            // Filtrowanie po wymiarze pracy
-            if (request('workLoad')) {
-                $workLoadId = (int) request('workLoad');
-                $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
-            }
-
-            return $query->paginate(5)->withQueryString();
-        });
+        $projects = $query->paginate(5)->withQueryString();
 
         $countries = (new Helper)->makeCountriesToSelectHasProjects();
 

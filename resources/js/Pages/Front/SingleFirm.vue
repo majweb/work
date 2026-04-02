@@ -154,6 +154,9 @@ function closeLightbox() {
                                      :style="{ backgroundImage: `url(${firm.profile_photo_url || firm.logo})` }">
                                 </div>
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
+                                <div v-if="firm.is_featured" class="absolute -top-[100px] md:-top-[120px] -right-20 z-40 transform hover:scale-110 transition-transform duration-300">
+                                    <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-20 h-20 drop-shadow-2xl" />
+                                </div>
                             </div>
                             <div>
                                 <h2 class="text-2xl font-black text-gray-900 uppercase tracking-tight">{{ firm.name }}</h2>
@@ -407,8 +410,13 @@ function closeLightbox() {
 
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                         <div class="flex items-center gap-4">
-                                            <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100/50 shadow-sm group-hover:bg-white transition-colors">
-                                                <img class="w-10 h-10" :src="`/images/icons/${project.category?.id || 'oferty'}.svg`" :alt="project.category?.name" />
+                                            <div class="relative shrink-0">
+                                                <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm group-hover:bg-white transition-colors relative z-10">
+                                                    <img class="w-10 h-10" :src="`/images/icons/${project.category?.id || 'oferty'}.svg`" :alt="project.category?.name" />
+                                                </div>
+                                                <div v-if="project.is_featured" class="absolute -top-6 -right-6 z-20 transform hover:scale-110 transition-transform duration-300">
+                                                    <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-10 h-10 drop-shadow-lg" />
+                                                </div>
                                             </div>
                                             <div>
                                                 <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">{{ project.category?.allTranslations.title[usePage().props.language] }}</p>

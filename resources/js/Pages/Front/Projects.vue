@@ -641,16 +641,21 @@ const isSearching = ref(false);
 
                                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                     <div class="flex items-start gap-4">
-                                        <div
-                                            class="w-20 h-20 rounded-[1.5rem] bg-gray-50 shrink-0 shadow-inner border border-gray-100"
-                                            :class="{ 'ring-2 ring-[#0A2C5C]/50 shadow-lg shadow-[#0A2C5C]/10': project.is_featured }"
-                                            :style="{
-                                                backgroundImage: `url('${project.user?.profile_photo_url || '/default-company-logo.png'}')`,
-                                                backgroundPosition: 'center',
-                                                backgroundRepeat: 'no-repeat',
-                                                backgroundSize: 'cover'
-                                            }"
-                                        ></div>
+                                        <div class="relative shrink-0">
+                                            <div
+                                                class="w-20 h-20 rounded-[1.5rem] bg-gray-50 shadow-inner border border-gray-100 relative z-10"
+                                                :class="{ 'ring-2 ring-[#0A2C5C]/50 shadow-lg shadow-[#0A2C5C]/10': project.is_featured }"
+                                                :style="{
+                                                    backgroundImage: `url('${project.user?.profile_photo_url || '/default-company-logo.png'}')`,
+                                                    backgroundPosition: 'center',
+                                                    backgroundRepeat: 'no-repeat',
+                                                    backgroundSize: 'cover'
+                                                }"
+                                            ></div>
+                                            <div v-if="project.is_featured" class="absolute -top-6 -right-6 z-20 transform hover:scale-110 transition-transform duration-300">
+                                                <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-12 h-12 drop-shadow-lg" />
+                                            </div>
+                                        </div>
                                         <div>
                                             <p class="text-xs font-black text-gray-700 uppercase tracking-widest mb-1">{{ project.user?.name }}</p>
                                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">

@@ -217,9 +217,13 @@ onMounted(async () => {
                                     :class="{ 'ring-4 ring-[#0A2C5C]/50 shadow-2xl shadow-[#0A2C5C]/20': project.is_featured }"
                                 />
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
+                                <div v-if="project.is_featured" class="absolute -top-[100px] md:-top-[120px] -right-20 z-40 transform hover:scale-110 transition-transform duration-300">
+                                    <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-20 h-20 drop-shadow-2xl" />
                             </div>
-                            <div>
-                                <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight">{{ project.user?.name }}</h2>
+                            <div class="relative">
+                                <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight flex items-center gap-2">
+                                    {{ project.user?.name }}
+                                </h2>
                                 <div class="flex items-center justify-center md:justify-start gap-3 mt-1">
                                     <div class="flex items-center gap-1.5">
                                         <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
