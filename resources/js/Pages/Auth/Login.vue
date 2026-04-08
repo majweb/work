@@ -155,9 +155,9 @@ const submit = () => {
 
                     <!-- REMEMBER -->
                     <div class="flex items-center ml-2">
-                        <label class="flex items-center group cursor-pointer select-none">
+                        <label class="flex items-center group cursor-pointer select-none" for="remember">
                             <div class="relative">
-                                <Checkbox v-model:checked="form.remember" name="remember" class="sr-only" />
+                                <Checkbox id="remember" v-model:checked="form.remember" name="remember" class="sr-only" />
                                 <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#00a0e3] border-[#00a0e3]': form.remember}"></div>
                                 <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="{'translate-x-5': form.remember, 'shadow-blue-900/20': form.remember}"></div>
                             </div>

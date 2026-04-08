@@ -24,10 +24,32 @@ class StoreAgreementRequest extends FormRequest
         $rules = [
             'type' => 'required|string',
             'is_active' => 'required|boolean',
+            'parent_id' => 'nullable|exists:agreements,id',
         ];
 
-        foreach (config('langsShorts') as $lang) {
+        $langs = config('langsShorts');
+        $hasAnyHelpText = false;
+
+        // Sprawdzamy, czy przesłano help_text i czy zawiera jakiekolwiek niepuste wartości
+        if ($this->has('help_text') && is_array($this->input('help_text'))) {
+            foreach ($this->input('help_text') as $value) {
+                if (!is_null($value) && trim((string)$value) !== '') {
+                    $hasAnyHelpText = true;
+                    break;
+                }
+            }
+        }
+
+        foreach ($langs as $lang) {
             $rules['description.' . $lang] = 'required|string';
+
+            if ($this->filled('parent_id')) {
+                $rules['help_text.' . $lang] = 'nullable';
+            } else {
+                // Jeśli jakikolwiek help_text jest wypełniony, wszystkie stają się wymagane.
+                // Jeśli wszystkie są puste, wszystkie są nullable.
+                $rules['help_text.' . $lang] = ($hasAnyHelpText ? 'required|string' : 'nullable');
+            }
         }
 
         return $rules;
@@ -43,10 +65,12 @@ class StoreAgreementRequest extends FormRequest
         $attributes = [
             'type' => 'typ formularza',
             'is_active' => 'status aktywności',
+            'parent_id' => 'zgoda nadrzędna',
         ];
 
         foreach (config('langsShorts') as $lang) {
             $attributes['description.' . $lang] = 'treść zgody (' . strtoupper($lang) . ')';
+            $attributes['help_text.' . $lang] = 'tekst pomocniczy (' . strtoupper($lang) . ')';
         }
 
         return $attributes;

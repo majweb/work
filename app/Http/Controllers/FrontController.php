@@ -637,9 +637,17 @@ class FrontController extends Controller
             }
         }
         if (auth()->check() && auth()->user()->hasRole('worker')) {
-            $agreements = Agreement::where('type', 'app_logged_in')->where('is_active', true)->get(['description', 'id']);
+            $agreements = Agreement::where('type', 'app_logged_in')
+                ->where('is_active', true)
+                ->whereNull('parent_id')
+                ->with('children')
+                ->get();
         } else {
-            $agreements = Agreement::where('type', 'app_not_logged_in')->where('is_active', true)->get(['description', 'id']);
+            $agreements = Agreement::where('type', 'app_not_logged_in')
+                ->where('is_active', true)
+                ->whereNull('parent_id')
+                ->with('children')
+                ->get();
         }
         $professionCv = $project->categorySub['value'];
 

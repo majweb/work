@@ -82,10 +82,10 @@ class HandleInertiaRequests extends Middleware
             'currencyFromClient' => fn () => (request()->user() && request()->user()->hasRole('recruit') && ! request()->user()->hasRole('firm')) ? request()->user()->user->firm->currency : null,
             'integrations' => fn () => \App\Models\Integration::all()->keyBy('name'),
             'registrationAgreements' => fn () => [
-                'firm' => \App\Models\Agreement::where('type', 'firm_registration')->where('is_active', true)->get(['id', 'description']),
-                'worker' => \App\Models\Agreement::where('type', 'worker_registration')->where('is_active', true)->get(['id', 'description']),
+                'firm' => \App\Models\Agreement::where('type', 'firm_registration')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'description', 'help_text']),
+                'worker' => \App\Models\Agreement::where('type', 'worker_registration')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'description', 'help_text']),
             ],
-            'supportAgreements' => fn () => \App\Models\Agreement::where('type', 'tickets')->where('is_active', true)->get(['id', 'description']),
+            'supportAgreements' => fn () => \App\Models\Agreement::where('type', 'tickets')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'description', 'help_text']),
         ]);
     }
 }

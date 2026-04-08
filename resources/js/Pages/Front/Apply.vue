@@ -34,15 +34,47 @@ const captchaText = ref('');
 const isClient = ref(false);
 
 const isAllAgreementsSelected = computed(() => {
-    return props.agreements.length > 0 && form.agreements.length === props.agreements.length;
+    const allAgreementIds = [];
+    props.agreements.forEach(agreement => {
+        allAgreementIds.push(agreement.id);
+        if (agreement.children) {
+            agreement.children.forEach(child => {
+                allAgreementIds.push(child.id);
+            });
+        }
+    });
+
+    return allAgreementIds.length > 0 && form.agreements.length === allAgreementIds.length;
 });
 
 const toggleAllAgreements = () => {
     if (isAllAgreementsSelected.value) {
         form.agreements = [];
     } else {
-        form.agreements = props.agreements.map(agreement => agreement.id);
+        const allAgreementIds = [];
+        props.agreements.forEach(agreement => {
+            allAgreementIds.push(agreement.id);
+            if (agreement.children) {
+                agreement.children.forEach(child => {
+                    allAgreementIds.push(child.id);
+                });
+            }
+        });
+        form.agreements = allAgreementIds;
     }
+};
+
+const toggleAgreement = (agreement, checked) => {
+    if (!agreement.children) return;
+
+    agreement.children.forEach(child => {
+        const index = form.agreements.indexOf(child.id);
+        if (checked && index === -1) {
+            form.agreements.push(child.id);
+        } else if (!checked && index !== -1) {
+            form.agreements.splice(index, 1);
+        }
+    });
 };
 
 const coloredCaptcha = ref([]);
@@ -767,13 +799,12 @@ const removeFile = async (source, load) => {
                                         </InputLabel>
 
                                         <div class="mb-4 flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm group">
-                                            <div class="flex items-center h-6 cursor-pointer" @click="toggleAllAgreements">
-                                                <Checkbox
-                                                    id="select_all_agreements"
-                                                    :checked="isAllAgreementsSelected"
-                                                />
-                                            </div>
                                             <div class="text-xs font-black text-gray-500 group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest flex items-center gap-1.5 flex-wrap">
+                                                <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
+                                                    <Checkbox :checked="isAllAgreementsSelected" name="agree" class="sr-only" />
+                                                    <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200"></div>
+                                                    <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
+                                                </div>
                                                 <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
                                                 <button
                                                     type="button"
@@ -785,14 +816,51 @@ const removeFile = async (source, load) => {
 
                                                 <DialogModal :show="showAgreementsModal" @close="showAgreementsModal = false">
                                                     <template #title>
-                                                        {{ __('translate.agreements') }}
+                                                        <span class="uppercase font-black text-[#0A2C5C] tracking-widest">{{ __('translate.agreements') }}</span>
                                                     </template>
                                                     <template #content>
-                                                        <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4">
-                                                            <div v-for="agreement in agreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0 text-left">
-                                                                <p class="text-gray-600 leading-relaxed font-medium normal-case">
-                                                                    {{ agreement.description[usePage().props.language] || agreement.description['pl'] }}
-                                                                </p>
+                                                        <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+                                                            <div v-if="form.errors.agreements" class="mb-4 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3">
+                                                                <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                                                                <InputError :message="form.errors.agreements" class="!mt-0" />
+                                                            </div>
+
+                                                            <div v-for="(agreement, index) in props.agreements" :key="agreement.id" class="group/item">
+                                                                <div class="flex items-start gap-4 p-4 rounded-3xl transition-all duration-300 hover:bg-gray-50 border border-transparent hover:border-gray-100">
+                                                                    <div class="pt-0.5">
+                                                                        <Checkbox
+                                                                            v-model:checked="form.agreements"
+                                                                            :value="agreement.id"
+                                                                            :id="'agreement-' + agreement.id"
+                                                                            @change="(checked) => toggleAgreement(agreement, checked)"
+                                                                            class="w-5 h-5 !rounded-lg !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                                        />
+                                                                    </div>
+                                                                    <div class="flex-1 space-y-3">
+                                                                        <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="agreement.description[lang] || agreement.description['pl']"></label>
+                                                                        <!-- Dzieci (zagnieżdżone) -->
+                                                                        <div v-if="agreement.children && agreement.children.length > 0" class="ml-6 mt-4 space-y-4 border-l-2 border-gray-100 pl-4">
+                                                                            <div v-for="child in agreement.children" :key="child.id" class="group/child flex items-start gap-3">
+                                                                                <div class="pt-0.5">
+                                                                                    <Checkbox
+                                                                                        v-model:checked="form.agreements"
+                                                                                        :value="child.id"
+                                                                                        :id="'agreement-' + child.id"
+                                                                                        class="w-4 h-4 !rounded-md !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                                                    />
+                                                                                </div>
+                                                                                <label :for="'agreement-' + child.id" class="text-xs text-gray-500 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="child.description[lang] || child.description['pl']"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Help Text (Optional) -->
+                                                                        <div v-if="agreement.help_text && (agreement.help_text[lang] || agreement.help_text['pl'])"
+                                                                             class="mt-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50 text-[11px] font-medium text-gray-500 italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                        >
+                                                                            <div v-html="agreement.help_text[lang] || agreement.help_text['pl']"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div v-if="index < props.agreements.length - 1" class="my-4 mx-8 border-b border-gray-50"></div>
                                                             </div>
                                                         </div>
                                                     </template>

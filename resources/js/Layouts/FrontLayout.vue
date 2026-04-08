@@ -320,7 +320,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         </button>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10 mt-[-100px]" >
+        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10" :class="{'mt-[-100px]': route().current('front')}">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->
@@ -454,7 +454,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                             </template>
                                             <template #content>
                                                 <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4">
-                                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
+                                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0 normal-case">
                                                         <p class="text-gray-600 leading-relaxed font-medium">
                                                             {{ agreement.description[page.props.language] || agreement.description['pl'] }}
                                                         </p>

@@ -53,6 +53,7 @@ watch(() => form.message, (newValue) => {
 
 const submit = () => {
     form.post('/contact', {
+        preserveScroll: true,
         onSuccess: () => {
             form.reset()
             successMessage.value = __('translate.contact_success')
@@ -235,8 +236,8 @@ onMounted(() => loadCaptcha())
                                         <div class="flex items-center gap-3">
                                             <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
                                                 <Checkbox :checked="isAllAgreementsChecked" name="agree" class="sr-only" />
-                                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#00a0e3] border-[#00a0e3]': isAllAgreementsChecked}"></div>
-                                                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="{'translate-x-5': isAllAgreementsChecked, 'shadow-blue-900/20': isAllAgreementsChecked}"></div>
+                                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsChecked}"></div>
+                                                <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsChecked ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                                             </div>
                                             <div class="text-[10px] font-black uppercase tracking-widest leading-relaxed">
                                                 <span @click="toggleAllAgreements" class="cursor-pointer transition-colors duration-300" :class="isAllAgreementsChecked ? 'text-[#00a0e3]' : 'text-gray-400'">
@@ -257,11 +258,34 @@ onMounted(() => loadCaptcha())
                                         </template>
 
                                         <template #content>
-                                            <div class="space-y-6 max-h-96 overflow-y-auto pr-2 custom-scrollbar">
-                                                <div v-for="(agreement, index) in props.supportAgreements" :key="agreement.id" class="text-sm text-gray-600 leading-relaxed">
-                                                    <div class="font-bold text-[#0A2C5C] mb-2 uppercase text-[10px] tracking-widest">#{{ index + 1 }}</div>
-                                                    <div class="normal-case" v-html="agreement.description[$page.props.language] || agreement.description['pl']"></div>
-                                                    <div v-if="index < props.supportAgreements.length - 1" class="my-6 border-b border-gray-100"></div>
+                                            <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+                                                <div v-if="form.errors.agreements" class="mb-4 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3">
+                                                    <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                                                    <InputError :message="form.errors.agreements" class="!mt-0" />
+                                                </div>
+
+                                                <div v-for="(agreement, index) in props.supportAgreements" :key="agreement.id" class="group/item">
+                                                    <div class="flex items-start gap-4 p-4 rounded-3xl transition-all duration-300 hover:bg-gray-50 border border-transparent hover:border-gray-100">
+                                                        <div>
+                                                            <Checkbox
+                                                                v-model:checked="form.agreements"
+                                                                :value="agreement.id"
+                                                                :id="'agreement-' + agreement.id"
+                                                                class="w-5 h-5 !rounded-lg !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                            />
+                                                        </div>
+                                                        <div class="flex-1 space-y-3">
+                                                            <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 leading-relaxed normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="agreement.description[$page.props.language] || agreement.description['pl']"></label>
+
+                                                            <!-- Help Text (Optional) -->
+                                                            <div v-if="agreement.help_text && agreement.help_text[$page.props.language]"
+                                                                 class="mt-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50 text-[11px] font-medium text-gray-500 italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                            >
+                                                                <div v-html="agreement.help_text[$page.props.language]"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div v-if="index < props.supportAgreements.length - 1" class="my-4 mx-8 border-b border-gray-50"></div>
                                                 </div>
                                             </div>
                                         </template>

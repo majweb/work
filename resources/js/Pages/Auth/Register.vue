@@ -29,15 +29,46 @@ const agreements = computed(() => {
     return usePage().props.registrationAgreements[form.type] || [];
 });
 
+const getAllAgreementIds = (agreementsList) => {
+    let ids = [];
+    agreementsList.forEach(agreement => {
+        ids.push(agreement.id);
+        if (agreement.children && agreement.children.length > 0) {
+            ids = [...ids, ...getAllAgreementIds(agreement.children)];
+        }
+    });
+    return ids;
+};
+
 const isAllAgreementsSelected = computed(() => {
-    return agreements.value.length > 0 && form.agreements.length === agreements.value.length;
+    const allIds = getAllAgreementIds(agreements.value);
+    return allIds.length > 0 && allIds.every(id => form.agreements.includes(id));
 });
 
 const toggleAllAgreements = () => {
     if (isAllAgreementsSelected.value) {
         form.agreements = [];
     } else {
-        form.agreements = agreements.value.map(a => a.id);
+        form.agreements = getAllAgreementIds(agreements.value);
+    }
+};
+
+const toggleAgreement = (agreement, checked) => {
+    if (checked) {
+        if (!form.agreements.includes(agreement.id)) {
+            form.agreements.push(agreement.id);
+        }
+        if (agreement.children) {
+            agreement.children.forEach(child => toggleAgreement(child, true));
+        }
+    } else {
+        const index = form.agreements.indexOf(agreement.id);
+        if (index > -1) {
+            form.agreements.splice(index, 1);
+        }
+        if (agreement.children) {
+            agreement.children.forEach(child => toggleAgreement(child, false));
+        }
     }
 };
 
@@ -208,12 +239,45 @@ const submit = () => {
                                         {{ __('translate.agreements') }}
                                     </template>
                                     <template #content>
-                                        <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4 text-left">
-                                            <div v-for="agreement in agreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
-                                                <p class="text-gray-600 leading-relaxed font-medium normal-case">
-                                                    {{ agreement.description[usePage().props.language] || agreement.description['pl'] }}
-                                                </p>
-                                            </div>
+                                        <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 text-left">
+                                                <div v-for="agreement in agreements" :key="agreement.id" class="space-y-4">
+                                                    <div class="flex items-start gap-3">
+                                                        <Checkbox
+                                                            :id="'reg-agreement-' + agreement.id"
+                                                            :checked="form.agreements.includes(agreement.id)"
+                                                            @update:checked="(val) => toggleAgreement(agreement, val)"
+                                                            class="mt-1"
+                                                        />
+                                                        <div class="flex-grow">
+                                                            <label :for="'reg-agreement-' + agreement.id" class="text-gray-700 leading-relaxed font-bold text-sm normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="agreement.description[usePage().props.language] || agreement.description['pl']"></label>
+                                                            <div v-if="agreement.help_text && (agreement.help_text[usePage().props.language] || agreement.help_text['pl'])"
+                                                                 class="mt-2 text-[10px] text-gray-500 font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
+                                                                <div v-html="agreement.help_text[usePage().props.language] || agreement.help_text['pl']"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Children -->
+                                                    <div v-if="agreement.children && agreement.children.length > 0" class="ml-8 space-y-4 border-l-2 border-blue-50 pl-6">
+                                                        <div v-for="child in agreement.children" :key="child.id">
+                                                            <div class="flex items-start gap-3">
+                                                                <Checkbox
+                                                                    :id="'reg-agreement-' + child.id"
+                                                                    :checked="form.agreements.includes(child.id)"
+                                                                    @update:checked="(val) => toggleAgreement(child, val)"
+                                                                    class="mt-1"
+                                                                />
+                                                                <div class="flex-grow">
+                                                                    <label :for="'reg-agreement-' + child.id" class="text-gray-600 leading-relaxed font-medium text-xs normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="child.description[usePage().props.language] || child.description['pl']"></label>
+                                                                    <div v-if="child.help_text && (child.help_text[usePage().props.language] || child.help_text['pl'])"
+                                                                         class="mt-1 text-[10px] text-gray-500 italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
+                                                                        <div v-html="child.help_text[usePage().props.language] || child.help_text['pl']"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                     </template>
                                     <template #footer>
@@ -232,8 +296,8 @@ const submit = () => {
                         <label class="flex items-center group cursor-pointer select-none">
                             <div class="relative mt-1">
                                 <Checkbox id="terms" v-model:checked="form.terms" class="sr-only" />
-                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#00a0e3] border-[#00a0e3]': form.terms}"></div>
-                                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="{'translate-x-5': form.terms, 'shadow-blue-900/20': form.terms}"></div>
+                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': form.terms}"></div>
+                                <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="form.terms ? 'translate-x-5 bg-blue-50' : 'bg-white'"></div>
                             </div>
                             <div class="ml-5 text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="form.terms ? 'text-[#00a0e3]' : 'text-gray-400'">
                                 {{ __('translate.agree') }}

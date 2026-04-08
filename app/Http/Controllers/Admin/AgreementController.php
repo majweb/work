@@ -18,7 +18,7 @@ class AgreementController extends Controller
     public function index(): Response
     {
         return Inertia::render('Admin/Agreements/Index', [
-            'agreements' => Agreement::latest()->get(),
+            'agreements' => Agreement::with('parent')->orderBy('id', 'asc')->get(),
             'langs' => config('langsShorts'),
             'types' => [
                 'newsletter',
@@ -39,6 +39,7 @@ class AgreementController extends Controller
     {
         return Inertia::render('Admin/Agreements/Create', [
             'langs' => config('langsShorts'),
+            'agreements' => Agreement::whereNull('parent_id')->get(['id', 'description', 'type']),
             'types' => [
                 'newsletter',
                 'contact_form',
@@ -56,7 +57,9 @@ class AgreementController extends Controller
      */
     public function store(StoreAgreementRequest $request): RedirectResponse
     {
-        Agreement::create($request->validated());
+        $data = $request->validated();
+
+        Agreement::create($data);
 
         return redirect()->route('admin.agreements.index')->with('flash.banner', 'Zgoda została utworzona.');
     }
@@ -68,6 +71,9 @@ class AgreementController extends Controller
     {
         return Inertia::render('Admin/Agreements/Edit', [
             'agreement' => $agreement,
+            'agreements' => Agreement::whereNull('parent_id')
+                ->where('id', '!=', $agreement->id)
+                ->get(['id', 'description', 'type']),
             'langs' => config('langsShorts'),
             'types' => [
                 'newsletter',
@@ -86,7 +92,9 @@ class AgreementController extends Controller
      */
     public function update(UpdateAgreementRequest $request, Agreement $agreement): RedirectResponse
     {
-        $agreement->update($request->validated());
+        $data = $request->validated();
+
+        $agreement->update($data);
 
         return redirect()->route('admin.agreements.index')->with('flash.banner', 'Zgoda została zaktualizowana.');
     }

@@ -9,14 +9,20 @@ import TextInput from '@/Components/TextInput.vue';
 
 const props = defineProps({
     agreement: Object,
+    agreements: Array,
     langs: Array,
     types: Array,
 });
 
 const form = useForm({
     type: props.agreement.type,
+    parent_id: props.agreement.parent_id,
     description: props.langs.reduce((acc, lang) => {
         acc[lang] = props.agreement.description[lang] || '';
+        return acc;
+    }, {}),
+    help_text: props.langs.reduce((acc, lang) => {
+        acc[lang] = (props.agreement.help_text && props.agreement.help_text[lang]) || '';
         return acc;
     }, {}),
     is_active: !!props.agreement.is_active,
@@ -72,8 +78,12 @@ const goToNextEmptyTab = () => {
 };
 
 const hasErrorInTab = (lang) => {
-    return !!form.errors['description.' + lang];
+    return !!(form.errors['description.' + lang] || form.errors['help_text.' + lang]);
 };
+
+const isHelpTextStarted = computed(() => {
+    return Object.values(form.help_text).some(text => text && text.trim() !== '');
+});
 
 const typeLabels = {
     'newsletter': 'Newsletter',
@@ -136,6 +146,21 @@ const submit = () => {
                                     <div v-if="form.errors.type" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors.type }}</div>
                                 </div>
 
+                                <div>
+                                    <InputLabel for="parent_id" value="Zgoda nadrzędna" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-3 ml-1" />
+                                    <select
+                                        id="parent_id"
+                                        v-model="form.parent_id"
+                                        class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all font-black uppercase tracking-tight"
+                                    >
+                                        <option :value="null">Brak (zgoda główna)</option>
+                                        <option v-for="parent in agreements" :key="parent.id" :value="parent.id">
+                                            #{{ parent.id }} - {{ parent.description['pl'] || parent.description[langs[0]] }} ({{ typeLabels[parent.type] || parent.type }})
+                                        </option>
+                                    </select>
+                                    <div v-if="form.errors.parent_id" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors.parent_id }}</div>
+                                </div>
+
                                 <div class="pt-4">
                                     <label class="flex items-center cursor-pointer group ml-1">
                                         <div class="relative">
@@ -178,7 +203,7 @@ const submit = () => {
                                             <span class="flex items-center gap-2">
                                                 {{ lang }}
                                                 <div v-if="hasErrorInTab(lang)" class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
-                                                <div v-else-if="!form.description[lang]" class="w-1 h-1 bg-red-400 rounded-full"></div>
+                                                <div v-else-if="!form.description[lang] || (isHelpTextStarted && !form.help_text[lang])" class="w-1 h-1 bg-red-400 rounded-full"></div>
                                             </span>
                                         </button>
                                     </div>
@@ -232,11 +257,25 @@ const submit = () => {
                                             <textarea
                                                 :id="'description_' + lang"
                                                 v-model="form.description[lang]"
-                                                rows="6"
+                                                rows="4"
                                                 class="w-full px-6 py-4 bg-white border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 transition-all font-medium leading-relaxed"
                                                 :placeholder="'Wpisz treść zgody w języku ' + lang.toUpperCase()"
                                             ></textarea>
                                             <div v-if="form.errors['description.' + lang]" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors['description.' + lang] }}</div>
+                                        </div>
+
+                                        <div v-if="!form.parent_id">
+                                            <div class="flex items-center justify-between mb-3 ml-1">
+                                                <InputLabel :for="'help_text_' + lang" :value="'Tekst pomocniczy (' + lang.toUpperCase() + ')'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest" />
+                                            </div>
+                                            <textarea
+                                                :id="'help_text_' + lang"
+                                                v-model="form.help_text[lang]"
+                                                rows="4"
+                                                class="w-full px-6 py-4 bg-white border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 transition-all font-medium leading-relaxed"
+                                                :placeholder="'Wpisz tekst pomocniczy w języku ' + lang.toUpperCase()"
+                                            ></textarea>
+                                            <div v-if="form.errors['help_text.' + lang]" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors['help_text.' + lang] }}</div>
                                         </div>
                                     </div>
                                 </div>
