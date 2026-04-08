@@ -15,7 +15,6 @@ class CvTypeSeeder extends Seeder
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-
         DB::table('cv_types')->truncate();
         $cv_types = [
             [
