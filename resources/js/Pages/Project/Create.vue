@@ -1858,4 +1858,14 @@ onMounted(() => {
         top:-3px !important
     }
 }
+.custom-multiselect .multiselect__content-wrapper {
+    max-height: 300px !important; /* Musi być zgodne z :max-height */
+    overflow-y: auto !important;
+    border: 1px solid #f3f4f6;
+    border-top: none;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 50 !important;
+}
 </style>

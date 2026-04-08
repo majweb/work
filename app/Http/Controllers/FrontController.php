@@ -843,7 +843,7 @@ class FrontController extends Controller
 
     public function getCategorySub($categoryId)
     {
-        return Cache::remember('category_sub_'.$categoryId, 3600, function () use ($categoryId) {
+        return Cache::remember('category_sub_'.$categoryId.'_'.app()->getLocale(), 3600, function () use ($categoryId) {
             $categorySubs = Project::all()
                 ->map(function ($item) {
                     return [
@@ -873,7 +873,7 @@ class FrontController extends Controller
 
     public function getProfessions($categorySubId)
     {
-        return Cache::remember('professions_'.$categorySubId, 3600, function () use ($categorySubId) {
+        return Cache::remember('professions_'.$categorySubId.'_'.app()->getLocale(), 3600, function () use ($categorySubId) {
             $professions = Project::all()
                 ->map(function ($item) {
                     return [
@@ -903,7 +903,7 @@ class FrontController extends Controller
 
     public function getPositions($professionId)
     {
-        return Cache::remember('positions_'.$professionId, 3600, function () use ($professionId) {
+        return Cache::remember('positions_'.$professionId.'_'.app()->getLocale(), 3600, function () use ($professionId) {
             $positions = Project::all()
                 ->map(function ($item) {
                     return [

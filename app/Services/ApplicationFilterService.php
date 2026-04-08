@@ -488,7 +488,7 @@ class ApplicationFilterService
      */
     private function getCategories()
     {
-        return Cache::remember('categoriesAll_Admin_v2', now()->addDay(), function() {
+        return Cache::remember('categoriesAll_Admin_v2_'.app()->getLocale(), now()->addDay(), function() {
             return \App\Models\Category::whereNull('parent_id')
                 ->get()
                 ->map(fn($cat) => [

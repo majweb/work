@@ -491,7 +491,7 @@ class ProjectController extends Controller implements HasMiddleware
 
     public function getCategorySubForRecruit($categoryId)
     {
-        return Cache::remember('recruit_category_sub_'.$categoryId, 3600, function () use ($categoryId) {
+        return Cache::remember('recruit_category_sub_'.$categoryId.'_'.app()->getLocale(), 3600, function () use ($categoryId) {
             $categorySubs = Project::where('recruiter_id', auth()->user()->id)
                 ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
                 ->get()
@@ -523,7 +523,7 @@ class ProjectController extends Controller implements HasMiddleware
 
     public function getProfessionsForRecruit($categorySubId)
     {
-        return Cache::remember('recruit_professions_'.$categorySubId, 3600, function () use ($categorySubId) {
+        return Cache::remember('recruit_professions_'.$categorySubId.'_'.app()->getLocale(), 3600, function () use ($categorySubId) {
             $professions = Project::where('recruiter_id', auth()->user()->id)
                 ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
                 ->get()
@@ -555,7 +555,7 @@ class ProjectController extends Controller implements HasMiddleware
 
     public function getPositionsForRecruit($professionId)
     {
-        return Cache::remember('recruit_positions_'.$professionId, 3600, function () use ($professionId) {
+        return Cache::remember('recruit_positions_'.$professionId.'_'.app()->getLocale(), 3600, function () use ($professionId) {
             $positions = Project::where('recruiter_id', auth()->user()->id)
                 ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
                 ->get()

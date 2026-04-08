@@ -28,86 +28,91 @@ use Illuminate\Support\Facades\Cache;
 
 class DictionaryService
 {
+    private function getCacheKey(string $key): string
+    {
+        return $key . '_' . app()->getLocale();
+    }
+
     public function getCategories(): mixed
     {
-        return Cache::rememberForever('category', function () {
+        return Cache::rememberForever($this->getCacheKey('category'), function () {
             return MultiselectResource::collection(Category::isRoot()->get());
         });
     }
 
     public function getWorkingModes(): mixed
     {
-        return Cache::rememberForever('workingModes', function () {
+        return Cache::rememberForever($this->getCacheKey('workingModes'), function () {
             return WorkingModesResource::collection(WorkingMode::all());
         });
     }
 
     public function getWorkingPlaces(): mixed
     {
-        return Cache::rememberForever('workingPlaces', function () {
+        return Cache::rememberForever($this->getCacheKey('workingPlaces'), function () {
             return MultiselectResource::collection(WorkingPlace::all());
         });
     }
 
     public function getTypesOfContract(): mixed
     {
-        return Cache::rememberForever('typesOfContract', function () {
+        return Cache::rememberForever($this->getCacheKey('typesOfContract'), function () {
             return TypeOfContractResource::collection(TypeOfContract::all());
         });
     }
 
     public function getWorkLoads(): mixed
     {
-        return Cache::rememberForever('workLoads', function () {
+        return Cache::rememberForever($this->getCacheKey('workLoads'), function () {
             return WorkLoadResource::collection(WorkLoad::all());
         });
     }
 
     public function getPayoutModes(): mixed
     {
-        return Cache::rememberForever('payoutModes', function () {
+        return Cache::rememberForever($this->getCacheKey('payoutModes'), function () {
             return PayModesResource::collection(PayoutMode::all());
         });
     }
 
     public function getPaySystems(): mixed
     {
-        return Cache::rememberForever('paySystems', function () {
+        return Cache::rememberForever($this->getCacheKey('paySystems'), function () {
             return PayModesResource::collection(PaySystem::all());
         });
     }
 
     public function getDays(): mixed
     {
-        return Cache::rememberForever('days', function () {
+        return Cache::rememberForever($this->getCacheKey('days'), function () {
             return PayModesResource::collection(Day::all());
         });
     }
 
     public function getShiftWorks(): mixed
     {
-        return Cache::rememberForever('shiftWorks', function () {
+        return Cache::rememberForever($this->getCacheKey('shiftWorks'), function () {
             return PayModesResource::collection(ShiftWork::all());
         });
     }
 
     public function getOffers(): mixed
     {
-        return Cache::rememberForever('offers', function () {
+        return Cache::rememberForever($this->getCacheKey('offers'), function () {
             return PayModesResource::collection(Offer::all());
         });
     }
 
     public function getWaits(): mixed
     {
-        return Cache::rememberForever('waits', function () {
+        return Cache::rememberForever($this->getCacheKey('waits'), function () {
             return PayModesResource::collection(Wait::all());
         });
     }
 
     public function getExperiences(): mixed
     {
-        return Cache::rememberForever('experiences', function () {
+        return Cache::rememberForever($this->getCacheKey('experiences'), function () {
             return WorkLoadResource::collection(Experience::all());
         });
     }
@@ -126,63 +131,63 @@ class DictionaryService
 
     public function getWorkingModesForSelect(): mixed
     {
-        return Cache::rememberForever('workingModes', function () {
+        return Cache::rememberForever($this->getCacheKey('workingModes'), function () {
             return MultiselectWithoutDetailResource::collection(WorkingMode::all());
         });
     }
 
     public function getExperiencesForSelect(): mixed
     {
-        return Cache::rememberForever('experiences', function () {
+        return Cache::rememberForever($this->getCacheKey('experiences'), function () {
             return MultiselectWithoutDetailResource::collection(Experience::all());
         });
     }
 
     public function getTypesOfContractForSelect(): mixed
     {
-        return Cache::rememberForever('typesOfContract', function () {
+        return Cache::rememberForever($this->getCacheKey('typesOfContract'), function () {
             return MultiselectWithoutDetailResource::collection(TypeOfContract::all());
         });
     }
 
     public function getWorkLoadsForSelect(): mixed
     {
-        return Cache::rememberForever('workLoads', function () {
+        return Cache::rememberForever($this->getCacheKey('workLoads'), function () {
             return MultiselectWithoutDetailResource::collection(WorkLoad::all());
         });
     }
 
     public function getWelcomes(): mixed
     {
-        return Cache::rememberForever('welcomes', function () {
+        return Cache::rememberForever($this->getCacheKey('welcomes'), function () {
             return PayModesResource::collection(Welcome::all());
         });
     }
 
     public function getEducations(): mixed
     {
-        return Cache::rememberForever('educations', function () {
+        return Cache::rememberForever($this->getCacheKey('educations'), function () {
             return PayModesResource::collection(Education::all());
         });
     }
 
     public function getCvs(): mixed
     {
-        return Cache::rememberForever('cvs', function () {
+        return Cache::rememberForever($this->getCacheKey('cvs'), function () {
             return PayModesResource::collection(CvType::all());
         });
     }
 
     public function getLangLevels(): mixed
     {
-        return Cache::rememberForever('langLevels', function () {
+        return Cache::rememberForever($this->getCacheKey('langLevels'), function () {
             return MultiselectWithoutDetailResource::collection(LangLevel::all());
         });
     }
 
     public function getFoundationCategories(): mixed
     {
-        return Cache::rememberForever('categoriesFoundations', function () {
+        return Cache::rememberForever($this->getCacheKey('categoriesFoundations'), function () {
             return MultiselectWithoutDetailResource::collection(\App\Models\FoundationCategory::whereNull('parent_id')->get());
         });
     }
@@ -196,14 +201,14 @@ class DictionaryService
 
     public function getCategoriesWithoutDetail(): mixed
     {
-        return Cache::rememberForever('categoriesWithoutDetail', function () {
+        return Cache::rememberForever($this->getCacheKey('categoriesWithoutDetail'), function () {
             return MultiselectWithoutDetailResource::collection(\App\Models\Category::whereNotNull('parent_id')->get());
         });
     }
 
     public function getCategoriesWithArticles(): mixed
     {
-        return Cache::rememberForever('categoriesWithArticles', function () {
+        return Cache::rememberForever($this->getCacheKey('categoriesWithArticles'), function () {
             return \App\Http\Resources\CategoryWithArticlesResource::collection(
                 \App\Models\Category::active()->lang()->isRoot()->get()
             );
@@ -212,7 +217,7 @@ class DictionaryService
 
     public function getLevelEducations(): mixed
     {
-        return Cache::rememberForever('levelEducations', function () {
+        return Cache::rememberForever($this->getCacheKey('levelEducations'), function () {
             return MultiselectWithoutDetailResource::collection(\App\Models\LevelEducation::all());
         });
     }
@@ -238,54 +243,63 @@ class DictionaryService
         ];
     }
 
+    private function forgetAllLocales(string $key): void
+    {
+        foreach (config('langsShorts', []) as $locale) {
+            Cache::forget($key . '_' . $locale);
+        }
+    }
+
     public function clearLangLevels(): void
     {
-        Cache::forget('langLevels');
+        $this->forgetAllLocales('langLevels');
     }
 
     public function clearLevelEducations(): void
     {
-        Cache::forget('levelEducations');
+        $this->forgetAllLocales('levelEducations');
     }
 
     public function clearCategories(): void
     {
-        Cache::forget('category');
-        Cache::forget('categoriesWithoutDetail');
-        Cache::forget('categoriesWithArticles');
+        $this->forgetAllLocales('category');
+        $this->forgetAllLocales('categoriesWithoutDetail');
+        $this->forgetAllLocales('categoriesWithArticles');
         // If there are other category-related caches (like from Model methods), they should be cleared too.
-        Cache::forget('categories_without_detail');
-        Cache::forget('categories_without_positions_without_detail');
+        $this->forgetAllLocales('categories_without_detail');
+        $this->forgetAllLocales('categories_without_positions_without_detail');
+        $this->forgetAllLocales('categoriesPositionsWithoutDetail');
     }
 
     public function clearFoundationCategories(): void
     {
-        Cache::forget('categoriesFoundations');
+        $this->forgetAllLocales('categoriesFoundations');
     }
 
     public function clearAll(): void
     {
-        Cache::forget('category');
-        Cache::forget('workingModes');
-        Cache::forget('workingPlaces');
-        Cache::forget('typesOfContract');
-        Cache::forget('workLoads');
-        Cache::forget('payoutModes');
-        Cache::forget('paySystems');
-        Cache::forget('days');
-        Cache::forget('shiftWorks');
-        Cache::forget('offers');
-        Cache::forget('waits');
-        Cache::forget('experiences');
-        Cache::forget('welcomes');
-        Cache::forget('educations');
-        Cache::forget('cvs');
-        Cache::forget('langLevels');
-        Cache::forget('levelEducations');
-        Cache::forget('categoriesFoundations');
-        Cache::forget('categoriesWithoutDetail');
-        Cache::forget('categoriesWithArticles');
-        Cache::forget('categories_without_detail');
-        Cache::forget('categories_without_positions_without_detail');
+        $this->forgetAllLocales('category');
+        $this->forgetAllLocales('workingModes');
+        $this->forgetAllLocales('workingPlaces');
+        $this->forgetAllLocales('typesOfContract');
+        $this->forgetAllLocales('workLoads');
+        $this->forgetAllLocales('payoutModes');
+        $this->forgetAllLocales('paySystems');
+        $this->forgetAllLocales('days');
+        $this->forgetAllLocales('shiftWorks');
+        $this->forgetAllLocales('offers');
+        $this->forgetAllLocales('waits');
+        $this->forgetAllLocales('experiences');
+        $this->forgetAllLocales('welcomes');
+        $this->forgetAllLocales('educations');
+        $this->forgetAllLocales('cvs');
+        $this->forgetAllLocales('langLevels');
+        $this->forgetAllLocales('levelEducations');
+        $this->forgetAllLocales('categoriesFoundations');
+        $this->forgetAllLocales('categoriesWithoutDetail');
+        $this->forgetAllLocales('categoriesWithArticles');
+        $this->forgetAllLocales('categories_without_detail');
+        $this->forgetAllLocales('categories_without_positions_without_detail');
+        $this->forgetAllLocales('categoriesPositionsWithoutDetail');
     }
 }
