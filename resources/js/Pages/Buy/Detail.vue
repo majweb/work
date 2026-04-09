@@ -18,6 +18,7 @@ const foundation = ref(props.existoundation ? {
 } : null);
 
 const clicked = ref(false);
+const agreeToService = ref(false);
 const formRef = ref(null);
 
 // Jeśli istnieje fundacja z sesji, wywołujemy dispatchAction od razu
@@ -183,42 +184,33 @@ const stripeCheckout = () => {
                                         </div>
 
                                         <div class="space-y-3 mt-8">
-                                            <div v-if="countCart > 0 && foundation" class="space-y-3">
-                                                <form ref="formRef" @submit.prevent="submitForm" :action="route('buy.order')" method="post">
-                                                    <input type="hidden" name="_token" :value="csrf_token"/>
-                                                    <button :disabled="clicked"
-                                                            class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#0b2a55] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#0d3874] active:scale-[0.98] disabled:opacity-50"
-                                                            type="submit">
-                                                        <span v-if="clicked" class="flex items-center gap-2">
-                                                            <svg aria-hidden="true" role="status" class="inline w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-                                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-                                                            </svg>
-                                                            <span>P24 / BLIK</span>
-                                                        </span>
-                                                        <template v-else>
-                                                            <span class="relative z-10">{{__('translate.pay')}} P24 / BLIK</span>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                                            </svg>
-                                                            <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500 group-hover:translate-x-full"></div>
-                                                        </template>
-                                                    </button>
-                                                </form>
+                                            <div v-if="countCart > 0" class="space-y-4">
+                                                <div v-if="foundation" class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 transition-all animate-in fade-in slide-in-from-top-2 duration-300">
+                                                    <div class="flex items-center h-5 pt-1">
+                                                        <input id="agreePointsPackage"
+                                                               type="checkbox"
+                                                               v-model="agreeToService"
+                                                               class="h-5 w-5 rounded-lg border-gray-300 text-[#0b2a55] focus:ring-[#0b2a55] transition-all cursor-pointer" />
+                                                    </div>
+                                                    <label for="agreePointsPackage" class="text-[11px] font-bold text-gray-500 leading-relaxed cursor-pointer select-none">
+                                                        {{ __('translate.agreePointsPackage') }}
+                                                    </label>
+                                                </div>
 
-                                                <button :disabled="clicked"
+                                                <button v-if="agreeToService && foundation"
+                                                        :disabled="clicked || !foundation || !agreeToService"
                                                         @click="stripeCheckout"
-                                                        class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#635bff] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#5851e0] active:scale-[0.98] disabled:opacity-50"
+                                                        class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#0b2a55] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#0d3874] active:scale-[0.98] disabled:opacity-50"
                                                         type="button">
                                                     <span v-if="clicked" class="flex items-center gap-2">
                                                         <svg aria-hidden="true" role="status" class="inline w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                                                             <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
                                                         </svg>
-                                                        <span>Stripe / Card</span>
+                                                        <span>Stripe</span>
                                                     </span>
                                                     <template v-else>
-                                                        <span class="relative z-10">{{__('translate.pay')}} Stripe / Card</span>
+                                                        <span class="relative z-10">{{__('translate.stripe')}}</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                                         </svg>
@@ -226,12 +218,6 @@ const stripeCheckout = () => {
                                                     </template>
                                                 </button>
                                             </div>
-
-                                            <Link v-if="!foundation"
-                                                  :href="route('buy.index')"
-                                                  class="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#0b2a55] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#0d3874] opacity-50 cursor-default">
-                                                {{__('translate.pay')}}
-                                            </Link>
 
                                             <Link :href="route('buy.index')"
                                                   class="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-gray-100 bg-white px-6 py-3.5 text-center text-xs font-black uppercase tracking-widest text-gray-400 transition-all hover:border-[#00aaff] hover:text-[#00aaff]">
@@ -308,7 +294,6 @@ const stripeCheckout = () => {
     border-radius: 1rem !important;
     padding: 10px 40px 0 12px !important;
     min-height: 48px !important;
-    background: #f9fafb !important;
 }
 .multiselect__placeholder {
     color: #9ca3af !important;
@@ -322,6 +307,15 @@ const stripeCheckout = () => {
     font-weight: 700 !important;
     color: #0b2a55 !important;
     font-size: 0.875rem !important;
+    display: block !important;
+    width: 100% !important;
+}
+.multiselect__input {
+    background: transparent !important;
+    color: #0b2a55 !important;
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    padding-top: 4px !important;
 }
 .multiselect__content-wrapper {
     border: 1px solid #f3f4f6 !important;
@@ -338,13 +332,13 @@ const stripeCheckout = () => {
 .multiselect__option--highlight {
     background: #0b2a55 !important;
     outline: none;
-    color: white;
+    color: #ffffff !important;
 }
 
 .multiselect__option--highlight:after {
     content: attr(data-select);
     background: #0b2a55 !important;
-    color: white;
+    color: #ffffff !important;
 }
 
 .multiselect__option--selected {
@@ -355,6 +349,11 @@ const stripeCheckout = () => {
 
 .multiselect__option--selected.multiselect__option--highlight {
     background: #0b2a55 !important;
-    color: #fff;
+    color: #ffffff !important;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+    background: #0b2a55 !important;
+    color: #ffffff !important;
 }
 </style>

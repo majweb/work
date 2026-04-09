@@ -283,7 +283,6 @@ onMounted(() => loadCaptcha())
                                                                    :class="{'text-red-700 font-bold': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
                                                             >
                                                                 <span v-html="agreement.description[$page.props.language] || agreement.description['pl']"></span>
-                                                                <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
                                                             </label>
 
                                                             <!-- Help Text (Optional) -->

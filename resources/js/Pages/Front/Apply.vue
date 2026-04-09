@@ -894,7 +894,6 @@ const removeFile = async (source, load) => {
                                                                         <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
                                                                                :class="{'text-red-600': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}">
                                                                             <span v-html="formatAgreementText(agreement.description[lang] || agreement.description['pl'])"></span>
-                                                                            <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
                                                                         </label>
                                                                         <!-- Dzieci (zagnieżdżone) -->
                                                                         <div v-if="agreement.children && agreement.children.length > 0" class="ml-6 mt-4 space-y-4 border-l-2 border-gray-100 pl-4">
@@ -911,7 +910,6 @@ const removeFile = async (source, load) => {
                                                                                 <label :for="'agreement-' + child.id" class="text-xs text-gray-500 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
                                                                                        :class="{'text-red-600': form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())}">
                                                                                     <span v-html="formatAgreementText(child.description[lang] || child.description['pl'])"></span>
-                                                                                    <span v-if="child.is_required" class="text-red-500 ml-1">*</span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
