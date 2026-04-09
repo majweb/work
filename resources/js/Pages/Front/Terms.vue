@@ -66,6 +66,29 @@ const props = defineProps({
                             </a>
                         </div>
                     </div>
+
+                    <!-- PDF Downloads -->
+                    <div class="mt-12 pt-12 border-t border-gray-100 dark:border-gray-700">
+                        <h3 class="text-sm font-black text-[#0A2C5C] dark:text-white uppercase tracking-widest mb-6">
+                            {{ __('translate.footer.downloadTermsCandidatePdf') }}
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <a
+                                v-for="lang in langs"
+                                :key="lang"
+                                :href="`/storage/terms/${lang}-terms-c.pdf`"
+                                target="_blank"
+                                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 dark:bg-gray-700/50 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-xl transition-all group border border-transparent hover:border-blue-100 dark:hover:border-blue-800"
+                            >
+                                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                                <span class="text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                                    {{ lang }}
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Footer Note -->
