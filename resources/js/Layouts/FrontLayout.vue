@@ -4,14 +4,13 @@ import Multiselect from 'vue-multiselect';
 import Banner from '@/Components/Banner.vue';
 import ConfettiExplosion from "vue-confetti-explosion";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
-import ApplicationMarkWhite from "@/Components/ApplicationMarkWhite.vue";
 import NavLink from "@/Components/NavLink.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { ref, computed, watch, onMounted } from "vue";
 import __ from "@/lang.js";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import CookieConsent from '@/Components/CookieConsent.vue';
 
 const props = defineProps({
     title: String,
@@ -522,6 +521,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                 </div>
             </div>
         </footer>
+        <CookieConsent />
     </div>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>

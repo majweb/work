@@ -1662,5 +1662,9 @@ return [
     'select_all' => 'Zaznacz wszystko',
     'suggested_format' => 'Sugerowany format',
     'foundation_rate_limit' => 'Możesz wysłać tylko jedno zgłoszenie fundacji na godzinę. Spróbuj ponownie później.',
-    'agreeCookie'=>'Serwis work4you.global korzysta z plików cookies w celu poprawy komfortu korzystania przez użytkowników oraz do przechowywania lub uzyskiwania dostępu do informacji na urządzeniu użytkownika. W przeglądarce użytkownika przechowywane są wyłącznie te pliki cookies, które są niezbędne do działania podstawowych funkcji serwisu. Serwis wykorzystuje również inne pliki cookies, które pomagają w analizie sposobu korzystania z serwisu przez użytkowników. Pliki te są przechowywane w przeglądarce użytkownika wyłącznie za jego zgodą, która może zostać wycofana w dowolnym momencie. Brak zgody lub jej wycofanie może niekorzystnie wpłynąć na niektóre cechy i funkcje. Więcej na ten temat w <a href="/privacy">Polityce Prywatności</a>.'
+    'agreeCookie'=>'Serwis work4you.global korzysta z plików cookies w celu poprawy komfortu korzystania przez użytkowników oraz do przechowywania lub uzyskiwania dostępu do informacji na urządzeniu użytkownika. W przeglądarce użytkownika przechowywane są wyłącznie te pliki cookies, które są niezbędne do działania podstawowych funkcji serwisu. Serwis wykorzystuje również inne pliki cookies, które pomagają w analizie sposobu korzystania z serwisu przez użytkowników. Pliki te są przechowywane w przeglądarce użytkownika wyłącznie za jego zgodą, która może zostać wycofana w dowolnym momencie. Brak zgody lub jej wycofanie może niekorzystnie wpłynąć na niektóre cechy i funkcje. Więcej na ten temat w <a href="/privacy">Polityce Prywatności</a>.',
+    'customize' => 'Dostosuj',
+    'back' => 'Powrót',
+    'reject_all' => 'Odrzuć wszystko',
+    'only_essential' => 'Tylko niezbędne',
 ];
