@@ -1504,6 +1504,7 @@ class AgreementSeeder extends Seeder
         DB::table('agreements')->insert([
             'type' => $type,
             'is_active' => 1,
+            'is_required'=>1,
             'parent_id' => null,
             'description' => json_encode([
                 'pl' => 'Akceptuję <a href="/terms">Regulamin dla Kandydata</a> i <a href="/privacy">Politykę Prywatności</a>.*',
@@ -1656,6 +1657,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Zgadzam się na przetwarzanie moich danych osobowych przez firmę --firm-- w celu udziału w procesie rekrutacyjnym.*',
                 'en' => 'I agree to the processing of my personal data by the company --firm-- for the purpose of participating in the recruitment process.*',
@@ -2533,6 +2535,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Akceptuję <a href="/terms">Regulamin dla Kandydata</a> i <a href="/privacy">Politykę Prywatności</a>.*',
                 'en' => 'I accept the <a href="/terms">Candidate Terms and Conditions</a> and the <a href="/privacy">Privacy Policy</a>.*',
@@ -2684,6 +2687,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Zgadzam się na przetwarzanie moich danych osobowych przez firmę --firm-- w celu udziału w procesie rekrutacyjnym.*',
                 'en' => 'I agree to the processing of my personal data by the company --firm-- for the purpose of participating in the recruitment process.*',
@@ -3560,6 +3564,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Chcę otrzymywać na mój adres e-mail informacje o aktualnościach, w tym o najnowszych ofertach pracy, o nowych usługach dostępnych w serwisie, o promocjach i konkursach, informacje handlowe i inne treści marketingowe, a także mieć dostęp do branżowych artykułów, porad i innych treści m.in. o tematyce lifestylowej (także z użyciem systemów do automatycznej wysyłki e-maili). W tym celu zgadzam się na przetwarzanie przez Work 4 You Global podanych przez mnie danych osobowych. Wiem, że zgodę mogę wycofać w dowolnym momencie.*',
                 'en' => 'I want to receive news to my e-mail address, including the latest job offers, new services available on the website, promotions and contests, commercial information and other marketing content, as well as have access to industry articles, tips and other content, including lifestyle topics (also using automated e-mail dispatch systems). For this purpose, I consent to the processing of my personal data provided to Work 4 You Global. I know that I can withdraw my consent at any time.*',
@@ -3701,6 +3706,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => "Akceptuję <a href='/privacy'>Politykę Prywatności.*</a>",
                 'en' => 'I accept the Privacy Policy.*',
@@ -3775,6 +3781,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Zgadzam się na przetwarzanie przez Work 4 You Global podanych danych osobowych w celu kontaktu, analizy potrzeb i udzielenia odpowiedzi na zapytanie. Wiem, że zgodę mogę wycofać w dowolnym momencie.*',
                 'en' => 'I consent to the processing of my provided personal data by Work 4 You Global for the purpose of contact, analysis of needs, and responding to the inquiry. I know that I can withdraw my consent at any time.*',
@@ -3918,6 +3925,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => "Akceptuję <a href='/privacy'>Politykę Prywatności.*</a>",
                 'en' => 'I accept the Privacy Policy.*',
@@ -3991,6 +3999,7 @@ class AgreementSeeder extends Seeder
         DB::table('agreements')->insert([
             'type' => $type,
             'is_active' => 1,
+            'is_required'=>1,
             'parent_id' => null,
             'description' => json_encode([
                 'pl' => 'Zgadzam się na przetwarzanie przez Work 4 You Global podanych danych osobowych w celu kontaktu, analizy potrzeb i udzielenia odpowiedzi na zapytanie. Wiem, że zgodę mogę wycofać w dowolnym momencie.*',
@@ -4136,6 +4145,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Akceptuję <a href="/terms">Regulamin dla firmy</a> i <a href="/privacy">Politykę Prywatności</a>.*',
                 'en' => 'I accept the <a href="/terms">Terms and Conditions for Employers</a> and the <a href="/privacy">Privacy Policy</a>.*',
@@ -4210,6 +4220,7 @@ class AgreementSeeder extends Seeder
             'type' => $type,
             'is_active' => 1,
             'parent_id' => null,
+            'is_required'=>1,
             'description' => json_encode([
                 'pl' => 'Chcę założyć Konto Pracodawcy i korzystać usług serwisu <a href="/">work4you.global</a>.*',
                 'en' => 'I want to create an Employer Account and use the services of <a href="/">work4you.global</a>.*',
@@ -4351,6 +4362,7 @@ class AgreementSeeder extends Seeder
         DB::table('agreements')->insert([
             'type' => $type,
             'is_active' => 1,
+            'is_required'=>1,
             'parent_id' => null,
             'description' => json_encode([
                 'pl' => 'Akceptuję <a href="/terms">Regulamin dla Kandydata</a> i <a href="/privacy">Politykę Prywatności</a>.*',
@@ -4425,6 +4437,7 @@ class AgreementSeeder extends Seeder
         DB::table('agreements')->insert([
             'type' => $type,
             'is_active' => 1,
+            'is_required'=>1,
             'parent_id' => null,
             'description' => json_encode([
                 'pl' => 'Chcę założyć Konto Kandydata i korzystać usług serwisu <a href="/">work4you.global</a>.*',

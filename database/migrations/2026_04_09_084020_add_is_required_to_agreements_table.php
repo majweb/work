@@ -14,15 +14,6 @@ return new class extends Migration
         Schema::table('agreements', function (Blueprint $table) {
             $table->boolean('is_required')->default(false)->after('is_active');
         });
-
-        // Ustawienie is_required dla zgód z gwiazdką w opisie PL
-        \App\Models\Agreement::all()->each(function ($agreement) {
-            $plDescription = $agreement->getTranslation('description', 'pl');
-            if (str_contains($plDescription, '*')) {
-                $agreement->is_required = true;
-                $agreement->save();
-            }
-        });
     }
 
     /**
