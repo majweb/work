@@ -91,7 +91,7 @@ const stripeCheckout = () => {
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg">
                     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
                         <div class="mx-auto max-w-screen-xl px-4">
                             <div class="mt-6 sm:mt-8 flex flex-col lg:flex-row items-start gap-6 xl:gap-8">
