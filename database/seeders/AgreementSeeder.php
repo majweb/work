@@ -4356,7 +4356,6 @@ class AgreementSeeder extends Seeder
         ]);
         //        Register firm
         //        Register worker
-
         $type = 'worker_registration';
 
         DB::table('agreements')->insert([
