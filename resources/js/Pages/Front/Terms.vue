@@ -43,7 +43,6 @@ const props = defineProps({
                     <div class="prose prose-blue dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed">
                         <section class="mb-10" v-html="props.page.content"></section>
                     </div>
-
                     <!-- PDF Downloads -->
                     <div class="mt-12 pt-12 border-t border-gray-100 dark:border-gray-700">
                         <h3 class="text-sm font-black text-[#0A2C5C] dark:text-white uppercase tracking-widest mb-6">
@@ -66,7 +65,6 @@ const props = defineProps({
                             </a>
                         </div>
                     </div>
-
                     <!-- PDF Downloads -->
                     <div class="mt-12 pt-12 border-t border-gray-100 dark:border-gray-700">
                         <h3 class="text-sm font-black text-[#0A2C5C] dark:text-white uppercase tracking-widest mb-6">
