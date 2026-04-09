@@ -93,7 +93,8 @@ const typeLabels = {
     'app_not_logged_in': 'Aplikacja (niezalogowany)',
     'tickets': 'Zgłoszenia',
     'firm_registration': 'Rejestracja firmy',
-    'worker_registration': 'Rejestracja pracownika'
+    'worker_registration': 'Rejestracja pracownika',
+    'cookie': 'Ciasteczka'
 };
 
 const submit = () => {

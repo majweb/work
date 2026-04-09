@@ -27,7 +27,8 @@ class AgreementController extends Controller
                 'app_not_logged_in',
                 'tickets',
                 'firm_registration',
-                'worker_registration'
+                'worker_registration',
+                'cookie'
             ]
         ]);
     }
@@ -47,7 +48,8 @@ class AgreementController extends Controller
                 'app_not_logged_in',
                 'tickets',
                 'firm_registration',
-                'worker_registration'
+                'worker_registration',
+                'cookie'
             ]
         ]);
     }
@@ -82,7 +84,8 @@ class AgreementController extends Controller
                 'app_not_logged_in',
                 'tickets',
                 'firm_registration',
-                'worker_registration'
+                'worker_registration',
+                'cookie'
             ]
         ]);
     }
