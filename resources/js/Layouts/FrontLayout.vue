@@ -52,16 +52,29 @@ const submitForm = () => {
 };
 
 const isAllNewsletterAgreementsSelected = computed(() => {
-    return newsletterAgreements.value.length > 0 &&
-        form.agreements.length === newsletterAgreements.value.length;
+    const requiredAgreements = newsletterAgreements.value.filter(a => a.is_required);
+    if (requiredAgreements.length === 0) {
+        return newsletterAgreements.value.length > 0 && form.agreements.length === newsletterAgreements.value.length;
+    }
+    return requiredAgreements.every(a => form.agreements.includes(a.id.toString()) || form.agreements.includes(a.id));
 });
 
 const toggleAllNewsletterAgreements = () => {
     if (isAllNewsletterAgreementsSelected.value) {
         form.agreements = [];
     } else {
-        form.agreements = newsletterAgreements.value.map(a => a.id);
+        const requiredAgreements = newsletterAgreements.value.filter(a => a.is_required);
+        if (requiredAgreements.length === 0) {
+            form.agreements = newsletterAgreements.value.map(a => a.id.toString());
+        } else {
+            form.agreements = requiredAgreements.map(a => a.id.toString());
+        }
     }
+};
+
+const isAgreementRequired = (id) => {
+    const agreement = newsletterAgreements.value.find(a => a.id === id);
+    return agreement ? !!agreement.is_required : false;
 };
 
 // Mobile menu
@@ -431,14 +444,14 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                 {{ form.errors.agreements }}
                             </div>
 
-                            <div v-if="newsletterAgreements.length > 0" class="mt-2 space-y-3">
+                            <div v-if="newsletterAgreements.length > 0" class="mt-4 space-y-4 border-t border-gray-50 pt-6">
                                 <div class="flex items-center gap-3 group">
-                                    <div class="cursor-pointer" @click="toggleAllNewsletterAgreements">
-                                        <Checkbox
-                                            :checked="isAllNewsletterAgreementsSelected"
-                                        />
+                                    <div @click="toggleAllNewsletterAgreements" class="relative mt-1 cursor-pointer">
+                                        <Checkbox :checked="isAllNewsletterAgreementsSelected" class="sr-only" />
+                                        <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllNewsletterAgreementsSelected}"></div>
+                                        <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllNewsletterAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                                     </div>
-                                    <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 flex-wrap">
+                                    <div class="text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllNewsletterAgreementsSelected ? 'text-[#00a0e3]' : 'text-gray-500'">
                                         <span class="cursor-pointer" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
                                         <button
                                             type="button"
@@ -453,11 +466,31 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                                 {{ __('translate.newsletter_agreements') }}
                                             </template>
                                             <template #content>
-                                                <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4">
-                                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0 normal-case">
-                                                        <p class="text-gray-600 leading-relaxed font-medium">
-                                                            {{ agreement.description[page.props.language] || agreement.description['pl'] }}
-                                                        </p>
+                                                <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 text-left">
+                                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="space-y-4">
+                                                        <div class="flex items-start gap-3">
+                                                            <Checkbox
+                                                                :id="'newsletter-agreement-' + agreement.id"
+                                                                v-model:checked="form.agreements"
+                                                                :value="agreement.id.toString()"
+                                                                class="w-5 h-5 !rounded-lg !text-[#00a0e3] mt-1"
+                                                                :class="[
+                                                                    form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())
+                                                                    ? '!border-red-500 !ring-red-500/20'
+                                                                    : '!border-gray-300 focus:!ring-[#00a0e3]/20'
+                                                                ]"
+                                                            />
+                                                            <div class="flex-grow">
+                                                                <label :for="'newsletter-agreement-' + agreement.id"
+                                                                       class="text-gray-700 leading-relaxed font-bold text-sm normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                       :class="{'text-red-600': form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())}"
+                                                                       v-html="agreement.description[page.props.language] || agreement.description['pl']"></label>
+                                                                <div v-if="agreement.help_text && (agreement.help_text[page.props.language] || agreement.help_text['pl'])"
+                                                                     class="mt-2 text-[10px] text-gray-500 font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
+                                                                    <div v-html="agreement.help_text[page.props.language] || agreement.help_text['pl']"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </template>

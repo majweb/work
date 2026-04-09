@@ -467,8 +467,9 @@
                         </div>
                         <div class="flex justify-center bg-gray-50/30 rounded-[3rem] p-8 border border-gray-50/50 relative overflow-hidden group">
                             <div class="absolute inset-0 bg-blue-50/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <apexchart
-                                v-if="chartData"
+                            <component
+                                :is="VueApexChartsLazy"
+                                v-if="chartData && VueApexChartsLazy"
                                 width="320"
                                 height="320"
                                 type="donut"
@@ -491,8 +492,9 @@
                         </div>
                         <div class="flex justify-center bg-gray-50/30 rounded-[3rem] p-8 border border-gray-50/50 relative overflow-hidden group">
                             <div class="absolute inset-0 bg-blue-50/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <apexchart
-                                v-if="chartDataApp"
+                            <component
+                                :is="VueApexChartsLazy"
+                                v-if="chartDataApp && VueApexChartsLazy"
                                 width="320"
                                 height="320"
                                 type="donut"
@@ -560,7 +562,7 @@
 <script setup>
 import {Link, router, usePage, useForm} from "@inertiajs/vue3";
 import __ from "@/lang.js";
-import {computed, ref, reactive} from "vue";
+import {computed, ref, reactive, shallowRef, onMounted} from "vue";
 import moment from "moment/moment.js";
 
 const props = defineProps({
@@ -607,6 +609,13 @@ const selected = ref(packagesRef.value[Math.floor(packagesRef.value.length / 2)]
 const bannerOptionsVisible = reactive({});
 const lastInvoices = computed(() => {
     return props.chartDataInvoices || [];
+});
+
+const VueApexChartsLazy = shallowRef(null);
+
+onMounted(async () => {
+    const ApexChartsModule = await import('vue3-apexcharts');
+    VueApexChartsLazy.value = ApexChartsModule.default;
 });
 
 // Ustawienie locale dla moment.js

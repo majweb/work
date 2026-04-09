@@ -28,12 +28,20 @@ class StoreTicketRequest extends FormRequest
             'captcha' => ['required', 'string'],
             'agreements' => [
                 'nullable',
+                'array',
                 function ($attribute, $value, $fail) {
-                    $count = \App\Models\Agreement::where('type', 'tickets')->where('is_active', true)->count();
-                    $valueCount = is_array($value) ? count($value) : 0;
+                    $requiredIds = \App\Models\Agreement::where('type', 'tickets')
+                        ->where('is_active', true)
+                        ->where('is_required', true)
+                        ->pluck('id')
+                        ->toArray();
 
-                    if ($count > 0 && $valueCount !== $count) {
-                        $fail(__('translate.agreements_required_all'));
+                    foreach ($requiredIds as $id) {
+                        if (! is_array($value) || ! in_array($id, $value)) {
+                            $fail(__('translate.agreements_required_all'));
+
+                            return;
+                        }
                     }
                 },
             ],

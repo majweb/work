@@ -120,7 +120,7 @@ class FrontController extends Controller
             'most3Articles' => $most3Articles,
             'page' => $page ? new PageResource($page) : null,
             'grouped' => CategoryWithArticlesResource::collection($grouped),
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -162,7 +162,7 @@ class FrontController extends Controller
             'categoryName' => $categoryName,
             'page' => $page ? new PageResource($page) : null,
             'sections' => $sections, // każda sekcja już ma Resource
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -321,7 +321,7 @@ class FrontController extends Controller
             'cityFront' => $cityFront,
             'distanceFront' => $distanceFront,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -378,7 +378,7 @@ class FrontController extends Controller
             'article' => new FrontArticleResource($article),
             'sidebarSections' => $sections,
             'allOtherArticles' => $allOtherArticles,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -395,7 +395,7 @@ class FrontController extends Controller
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -431,19 +431,23 @@ class FrontController extends Controller
             'project' => $project,
             'image' => $image,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
     public function Contact()
     {
         $page = Page::where('id', 5)->first(); // Załóżmy ID dla Privacy
-        $supportAgreements = \App\Models\Agreement::where('type', 'contact_form')->where('is_active', true)->get(['id', 'description']);
+        $supportAgreements = \App\Models\Agreement::where('type', 'contact_form')
+            ->where('is_active', true)
+            ->whereNull('parent_id')
+            ->with('children')
+            ->get(['id', 'description', 'help_text', 'is_required']);
 
         return inertia()->render('Front/Contact', [
             'page' => $page ? new PageResource($page) : null,
             'supportAgreements' => $supportAgreements,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -455,12 +459,21 @@ class FrontController extends Controller
             'subject' => 'required|string|max:255',
             'message' => 'required|string|max:500',
             'agreements' => [
-                $request->has('agreements') ? 'array' : 'nullable',
+                'nullable',
+                'array',
                 function ($attribute, $value, $fail) {
-                    $activeCount = \App\Models\Agreement::where('type', 'contact_form')->where('is_active', true)->count();
-                    $valueCount = is_array($value) ? count($value) : 0;
-                    if ($valueCount !== $activeCount) {
-                        $fail(trans('translate.agreements_required_all'));
+                    $requiredIds = \App\Models\Agreement::where('type', 'contact_form')
+                        ->where('is_active', true)
+                        ->where('is_required', true)
+                        ->pluck('id')
+                        ->toArray();
+
+                    foreach ($requiredIds as $id) {
+                        if (! is_array($value) || ! in_array($id, $value)) {
+                            $fail(trans('translate.agreements_required_all'));
+
+                            return;
+                        }
                     }
                 },
             ],
@@ -526,7 +539,7 @@ class FrontController extends Controller
         return inertia()->render('Front/Privacy', [
             'page' => $page ? new PageResource($page) : null,
             'langs' => config('langsShorts'),
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -542,7 +555,7 @@ class FrontController extends Controller
         return inertia('Front/Price', [
             'products' => $products,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -553,7 +566,7 @@ class FrontController extends Controller
         return inertia()->render('Front/Terms', [
             'page' => $page ? new PageResource($page) : null,
             'langs' => config('langsShorts'),
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -608,7 +621,7 @@ class FrontController extends Controller
             'countries' => $countries,
             'features' => $features,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -640,16 +653,23 @@ class FrontController extends Controller
             $agreements = Agreement::where('type', 'app_logged_in')
                 ->where('is_active', true)
                 ->whereNull('parent_id')
-                ->with('children')
-                ->get();
+                ->with(['children' => function ($query) {
+                    $query->select('id', 'description', 'parent_id', 'is_required', 'help_text');
+                }])
+                ->get(['id', 'description', 'is_required', 'help_text']);
         } else {
             $agreements = Agreement::where('type', 'app_not_logged_in')
                 ->where('is_active', true)
                 ->whereNull('parent_id')
-                ->with('children')
-                ->get();
+                ->with(['children' => function ($query) {
+                    $query->select('id', 'description', 'parent_id', 'is_required', 'help_text');
+                }])
+                ->get(['id', 'description', 'is_required', 'help_text']);
         }
         $professionCv = $project->categorySub['value'];
+
+        // Załaduj dane firmy powiązaną z projektem do propsów Inertia
+        $project->load(['externalCompany', 'user.firm', 'recruit']);
 
         if (auth()->check() && auth()->user()->hasRole('worker')) {
             $existsCv = Aplication::where('aplication_user_id', auth()->id())->whereNotNull('pathCv')->whereHas('project', function ($query) use ($professionCv) {
@@ -663,7 +683,7 @@ class FrontController extends Controller
             'levelEducations' => $dictionaryService->getLevelEducations(),
             'langLevels' => $dictionaryService->getLangLevels(),
             'professionCv' => $existsCv ?? null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -1051,11 +1071,8 @@ class FrontController extends Controller
 
         $page = Page::findOrFail(10);
 
-
         $categoriesToSend = $dictionaryService->getFoundationCategories();
         $countriesToSend = $dictionaryService->getCountries(app()->getLocale());
-
-
 
         return inertia()->render('Front/Partners', [
             'partners' => $partners,
@@ -1066,7 +1083,7 @@ class FrontController extends Controller
             'categoriesToSend' => $categoriesToSend,
             'countriesToSend' => $countriesToSend,
             'foundationsCount' => $foundationsCount,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -1119,7 +1136,7 @@ class FrontController extends Controller
         return inertia()->render('Front/Foundation', [
             'foundation' => $data,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
 
@@ -1208,8 +1225,8 @@ class FrontController extends Controller
             $folders = $request->photo;
             $temporaryFiles = TemporaryFile::whereIn('folder', $folders)->get();
             foreach ($temporaryFiles as $file) {
-                $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))->toMediaCollection('foundation_logo');
-                Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
+                $foundation->addMedia(storage_path('app/public/temps/'.$file->folder.'/'.$file->filename))->toMediaCollection('foundation_logo');
+                Storage::disk('public')->deleteDirectory('temps/'.$file->folder);
                 $file->delete();
             }
         }
@@ -1217,8 +1234,8 @@ class FrontController extends Controller
             $folders = $request->banner;
             $temporaryFiles = TemporaryFile::whereIn('folder', $folders)->get();
             foreach ($temporaryFiles as $file) {
-                $foundation->addMedia(storage_path('app/public/temps/' . $file->folder . '/' . $file->filename))->toMediaCollection('foundation_banner');
-                Storage::disk('public')->deleteDirectory('temps/' . $file->folder);
+                $foundation->addMedia(storage_path('app/public/temps/'.$file->folder.'/'.$file->filename))->toMediaCollection('foundation_banner');
+                Storage::disk('public')->deleteDirectory('temps/'.$file->folder);
                 $file->delete();
             }
         }

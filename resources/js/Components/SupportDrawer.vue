@@ -20,8 +20,6 @@ const page = usePage();
 const captchaText = ref('');
 const coloredCaptcha = ref([]);
 const successMessage = ref('');
-const showAgreementsModal = ref(false);
-
 const form = useForm({
     type: 'question',
     subject: '',
@@ -32,16 +30,23 @@ const form = useForm({
 
 const supportAgreements = computed(() => page.props.supportAgreements || []);
 
-const isAllAgreementsSelected = computed(() => {
-    return supportAgreements.value.length > 0 &&
-        form.agreements.length === supportAgreements.value.length;
+const agreementsModalVisible = ref(false);
+
+const isAllAgreementsChecked = computed(() => {
+    const requiredAgreements = supportAgreements.value.filter(agreement => agreement.is_required);
+    if (requiredAgreements.length === 0) return false;
+
+    const requiredIds = requiredAgreements.map(agreement => agreement.id.toString());
+    return requiredIds.every(id => form.agreements.includes(id));
 });
 
 const toggleAllAgreements = () => {
-    if (isAllAgreementsSelected.value) {
+    if (isAllAgreementsChecked.value) {
         form.agreements = [];
     } else {
-        form.agreements = supportAgreements.value.map(a => a.id);
+        form.agreements = supportAgreements.value
+            .filter(agreement => agreement.is_required)
+            .map(agreement => agreement.id.toString());
     }
 };
 
@@ -261,46 +266,73 @@ const submit = () => {
                                             </div>
 
                                             <!-- Agreements -->
-                                           <div v-if="supportAgreements.length > 0" class="space-y-4 border-t border-gray-100 pt-6 ml-2">
-                                               <div class="flex items-center gap-3 group">
-                                                   <div class="cursor-pointer" @click="toggleAllAgreements">
-                                                       <Checkbox
-                                                           :checked="isAllAgreementsSelected"
-                                                       />
-                                                   </div>
-                                                   <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1.5 flex-wrap">
-                                                       <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
-                                                       <button
-                                                           type="button"
-                                                           class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
-                                                           @click.stop="showAgreementsModal = true"
-                                                       >
-                                                           {{ __('translate.agreements') }}
-                                                       </button>
-
-                                                        <DialogModal :show="showAgreementsModal" @close="showAgreementsModal = false">
-                                                            <template #title>
-                                                                {{ __('translate.agreements') }}
-                                                            </template>
-                                                            <template #content>
-                                                                <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-4 text-left">
-                                                                    <div v-for="agreement in supportAgreements" :key="agreement.id" class="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
-                                                                        <p class="text-gray-600 leading-relaxed font-medium normal-case">
-                                                                            {{ agreement.description[page.props.language] || agreement.description['pl'] }}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </template>
-                                                            <template #footer>
-                                                                <SecondaryButton @click="showAgreementsModal = false">
-                                                                    {{ __('translate.close') }}
-                                                                </SecondaryButton>
-                                                            </template>
-                                                        </DialogModal>
+                                            <div v-if="supportAgreements && supportAgreements.length > 0" class="space-y-4">
+                                                <div class="flex items-center gap-3">
+                                                    <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
+                                                        <Checkbox :checked="isAllAgreementsChecked" name="agree" class="sr-only" />
+                                                        <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsChecked}"></div>
+                                                        <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsChecked ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
+                                                    </div>
+                                                    <div class="text-[10px] font-black uppercase tracking-widest leading-relaxed">
+                                                        <span @click="toggleAllAgreements" class="cursor-pointer transition-colors duration-300" :class="isAllAgreementsChecked ? 'text-[#00a0e3]' : 'text-gray-400'">
+                                                            {{ __('translate.agree_to') }}
+                                                        </span>
+                                                        <button type="button" @click.stop="agreementsModalVisible = true" class="text-[#00a0e3] hover:underline ml-1">
+                                                            {{ __('translate.agreements') }}
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <InputError :message="form.errors.agreements" />
                                             </div>
+
+                                            <!-- DialogModal for Agreements -->
+                                            <DialogModal :show="agreementsModalVisible" @close="agreementsModalVisible = false">
+                                                <template #title>
+                                                    <span class="uppercase font-black text-[#0A2C5C] tracking-widest">{{ __('translate.agreements') }}</span>
+                                                </template>
+
+                                                <template #content>
+                                                    <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+                                                        <div v-for="(agreement, index) in supportAgreements" :key="agreement.id" class="group/item">
+                                                            <div class="flex items-start gap-4 p-4 rounded-3xl transition-all duration-300 hover:bg-gray-50 border border-transparent hover:border-gray-100"
+                                                                 :class="{'bg-red-50/50 border-red-100': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
+                                                            >
+                                                                <div>
+                                                                    <Checkbox
+                                                                        v-model:checked="form.agreements"
+                                                                        :value="agreement.id.toString()"
+                                                                        :id="'agreement-' + agreement.id"
+                                                                        class="w-5 h-5 !rounded-lg !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                                        :class="{'!border-red-500': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
+                                                                    />
+                                                                </div>
+                                                                <div class="flex-1 space-y-3">
+                                                                    <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 text-left leading-relaxed normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                           :class="{'text-red-700 font-bold': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
+                                                                    >
+                                                                        <span v-html="agreement.description[page.props.language] || agreement.description['pl']"></span>
+                                                                        <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
+                                                                    </label>
+
+                                                                    <!-- Help Text (Optional) -->
+                                                                    <div v-if="agreement.help_text && agreement.help_text[page.props.language]"
+                                                                         class="mt-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50 text-[11px] font-medium text-gray-500 italic leading-relaxed text-left [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                    >
+                                                                        <div v-html="agreement.help_text[page.props.language]"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div v-if="index < supportAgreements.length - 1" class="my-4 mx-8 border-b border-gray-50"></div>
+                                                        </div>
+                                                    </div>
+                                                </template>
+
+                                                <template #footer>
+                                                    <SecondaryButton @click="agreementsModalVisible = false">
+                                                        {{ __('translate.close') }}
+                                                    </SecondaryButton>
+                                                </template>
+                                            </DialogModal>
 
                                             <!-- CAPTCHA -->
                                             <div class="bg-gray-50 rounded-3xl p-4 border border-gray-100">

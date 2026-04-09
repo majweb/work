@@ -37,15 +37,22 @@ class AplicationRequest extends FormRequest
             'agreements' => [
                 $this->has('agreements') ? 'array' : 'nullable',
                 function ($attribute, $value, $fail) {
-                    if (auth()->check() && auth()->user()->hasRole('worker')) {
-                        $count = \App\Models\Agreement::where('type', 'app_logged_in')->where('is_active', true)->count();
-                    } else {
-                        $count = \App\Models\Agreement::where('type', 'app_not_logged_in')->where('is_active', true)->count();
-                    }
+                    $type = (auth()->check() && auth()->user()->hasRole('worker')) ? 'app_logged_in' : 'app_not_logged_in';
+                    $requiredIds = \App\Models\Agreement::where('type', $type)
+                        ->where('is_active', true)
+                        ->where('is_required', true)
+                        ->pluck('id')
+                        ->map(fn ($id) => (string) $id)
+                        ->toArray();
 
-                    $valueCount = is_array($value) ? count($value) : 0;
-                    if ($valueCount !== $count) {
-                        $fail(__('translate.agreements_required_all'));
+                    $value = is_array($value) ? array_map('strval', $value) : [];
+
+                    foreach ($requiredIds as $id) {
+                        if (! in_array($id, $value)) {
+                            $fail(__('translate.agreements_required_all'));
+
+                            return;
+                        }
                     }
                 },
             ],
@@ -166,91 +173,91 @@ class AplicationRequest extends FormRequest
                     }
                 }],
             'experiences.*.start' => [
-                    function ($attribute, $value, $fail) {
-                        $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
-                        if ($isCvAndStep2) {
-                            if (empty($value)) {
-                                return $fail(__('translate.experiencesDateRequired'));
-                            }
-                            if (! isset($value['year'], $value['month']) || ! is_numeric($value['year']) || ! is_numeric($value['month'])) {
-                                return $fail(__('translate.invalidDateFormat'));
-                            }
+                function ($attribute, $value, $fail) {
+                    $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                    if ($isCvAndStep2) {
+                        if (empty($value)) {
+                            return $fail(__('translate.experiencesDateRequired'));
                         }
-                    }, 'array',
-                ],
+                        if (! isset($value['year'], $value['month']) || ! is_numeric($value['year']) || ! is_numeric($value['month'])) {
+                            return $fail(__('translate.invalidDateFormat'));
+                        }
+                    }
+                }, 'array',
+            ],
             'experiences.*.isCurrent' => [
-                    'boolean',
+                'boolean',
             ],
             'experiences.*.end' => [
-                    function ($attribute, $value, $fail) {
-                        $index = explode('.', $attribute)[1];  // Uzyskujemy numer indeksu z nazwy atrybutu
-                        $isCurrent = request()->input("experiences.$index.isCurrent");
+                function ($attribute, $value, $fail) {
+                    $index = explode('.', $attribute)[1];  // Uzyskujemy numer indeksu z nazwy atrybutu
+                    $isCurrent = request()->input("experiences.$index.isCurrent");
 
-                        // Sprawdzamy, czy spełnione są warunki dla `cv` i `step`
-                        $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                    // Sprawdzamy, czy spełnione są warunki dla `cv` i `step`
+                    $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
 
-                        if ($isCvAndStep2) {
-                            if ($isCurrent == true) {
-                                return;
-                            }
-                            if (empty($value)) {
-                                return $fail(__('translate.experiencesDateRequired'));
-                            }
-
-                            //
-                            if (! isset($value['year'], $value['month']) || ! is_numeric($value['year']) || ! is_numeric($value['month'])) {
-                                return $fail(__('translate.invalidDateFormat'));
-                            }
-
-                            $startDate = request()->input("experiences.$index.start");
-                            if (! isset($startDate['year'], $startDate['month']) || ! is_numeric($startDate['year']) || ! is_numeric($startDate['month'])) {
-                                return $fail(__('translate.invalidDateFormat'));
-                            }
-                            $startFormatted = sprintf('%04d-%02d', $startDate['year'], $startDate['month'] + 1);
-                            $endFormatted = sprintf('%04d-%02d', $value['year'], $value['month'] + 1);
-
-                            if (! preg_match('/^\d{4}-\d{2}$/', $endFormatted)) {
-                                return $fail(__('translate.invalidDateFormat'));
-                            }
-
-                            if ($endFormatted < $startFormatted) {
-                                return $fail(__('translate.dateAfterStartRequired'));
-                            }
-                            //
+                    if ($isCvAndStep2) {
+                        if ($isCurrent == true) {
+                            return;
                         }
-                    }],
+                        if (empty($value)) {
+                            return $fail(__('translate.experiencesDateRequired'));
+                        }
+
+                        //
+                        if (! isset($value['year'], $value['month']) || ! is_numeric($value['year']) || ! is_numeric($value['month'])) {
+                            return $fail(__('translate.invalidDateFormat'));
+                        }
+
+                        $startDate = request()->input("experiences.$index.start");
+                        if (! isset($startDate['year'], $startDate['month']) || ! is_numeric($startDate['year']) || ! is_numeric($startDate['month'])) {
+                            return $fail(__('translate.invalidDateFormat'));
+                        }
+                        $startFormatted = sprintf('%04d-%02d', $startDate['year'], $startDate['month'] + 1);
+                        $endFormatted = sprintf('%04d-%02d', $value['year'], $value['month'] + 1);
+
+                        if (! preg_match('/^\d{4}-\d{2}$/', $endFormatted)) {
+                            return $fail(__('translate.invalidDateFormat'));
+                        }
+
+                        if ($endFormatted < $startFormatted) {
+                            return $fail(__('translate.dateAfterStartRequired'));
+                        }
+                        //
+                    }
+                }],
             'experiences.*.city' => ['max:100',
-                    function ($attribute, $value, $fail) {
-                        $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
-                        if ($isCvAndStep2) {
-                            if (empty($value)) {
-                                return $fail(__('translate.inertiaCityRequired'));
-                            }
-                            if (! preg_match('/^[\pL\s\']+$/u', $value)) {
-                                return $fail(__('translate.inertiaCityLetters'));
-                            }
+                function ($attribute, $value, $fail) {
+                    $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                    if ($isCvAndStep2) {
+                        if (empty($value)) {
+                            return $fail(__('translate.inertiaCityRequired'));
                         }
-                    },
+                        if (! preg_match('/^[\pL\s\']+$/u', $value)) {
+                            return $fail(__('translate.inertiaCityLetters'));
+                        }
+                    }
+                },
             ],
             'educations' => [
-                    function ($attribute, $value, $fail) {
-                        $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                function ($attribute, $value, $fail) {
+                    $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
+                    if ($isCvAndStep2) {
+                        if (empty($value)) {
+                            return $fail(__('translate.educationsRequired'));
+                        }
                         if ($isCvAndStep2) {
-                            if (empty($value)) {
-                                return $fail(__('translate.educationsRequired'));
-                            }
-                            if ($isCvAndStep2) {
-                                if (! is_array($value) || count($value) < 1) {
-                                    $fail(__('translate.educationsRequired'));
-                                }
+                            if (! is_array($value) || count($value) < 1) {
+                                $fail(__('translate.educationsRequired'));
                             }
                         }
-                    },
-                    'array', 'between:1,5' => function ($attribute, $val, $fail) {
-                        if (count($val) > 5) {
-                            $fail(__('translate.toMuchElements'));
-                        }
-                    }],
+                    }
+                },
+                'array', 'between:1,5' => function ($attribute, $val, $fail) {
+                    if (count($val) > 5) {
+                        $fail(__('translate.toMuchElements'));
+                    }
+                }],
             'educations.*.school' => [function ($attribute, $value, $fail) {
                 $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                 if ($isCvAndStep2) {

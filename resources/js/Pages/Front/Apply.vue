@@ -18,6 +18,52 @@ import VideoRecorder from "@/Pages/Front/VideoRecorder.vue";
 import AudioRecorderNew from "@/Pages/Front/AudioRecorderNew.vue";
 import __ from '@/lang.js';
 
+// Utils: podstawienie danych firmy w miejsce wskaźników --firm--, --city--, --street--
+const companyName = computed(() => {
+    const p = props?.project ?? {};
+    // Priorytet dla użytkownika (user_id -> user.name) wg wytycznych
+    return (
+        p.user?.name ||
+        p.recruit?.name ||
+        p.external_company?.name ||
+        ''
+    );
+});
+
+const companyCity = computed(() => {
+    return props?.project?.user?.firm?.city || '';
+});
+
+const companyStreet = computed(() => {
+    const firm = props?.project?.user?.firm;
+    if (!firm) return '';
+    const street = firm.street || '';
+    const number = firm.number || '';
+    return `${street} ${number}`.trim();
+});
+
+function escapeHtml(str) {
+    if (typeof str !== 'string') { return ''; }
+    return str
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+}
+
+function formatAgreementText(text) {
+    if (!text || typeof text !== 'string') { return text ?? ''; }
+    const name = companyName.value || '';
+    const city = companyCity.value || '';
+    const street = companyStreet.value || '';
+
+    return text
+        .replaceAll('--firm--', '<strong class="font-semibold">' + escapeHtml(name) + '</strong>')
+        .replaceAll('--city--', '<strong class="font-semibold">' + escapeHtml(city) + '</strong>')
+        .replaceAll('--street--', '<strong class="font-semibold">' + escapeHtml(street) + '</strong>');
+}
+
 const props = defineProps({
     project: Object,
     professionCv: Object,
@@ -34,33 +80,43 @@ const captchaText = ref('');
 const isClient = ref(false);
 
 const isAllAgreementsSelected = computed(() => {
-    const allAgreementIds = [];
+    const requiredAgreementIds = [];
     props.agreements.forEach(agreement => {
-        allAgreementIds.push(agreement.id);
+        if (agreement.is_required) {
+            requiredAgreementIds.push(agreement.id.toString());
+        }
         if (agreement.children) {
             agreement.children.forEach(child => {
-                allAgreementIds.push(child.id);
+                if (child.is_required) {
+                    requiredAgreementIds.push(child.id.toString());
+                }
             });
         }
     });
 
-    return allAgreementIds.length > 0 && form.agreements.length === allAgreementIds.length;
+    if (requiredAgreementIds.length === 0) return true;
+
+    return requiredAgreementIds.every(id => form.agreements.includes(id));
 });
 
 const toggleAllAgreements = () => {
     if (isAllAgreementsSelected.value) {
         form.agreements = [];
     } else {
-        const allAgreementIds = [];
+        const requiredAgreementIds = [];
         props.agreements.forEach(agreement => {
-            allAgreementIds.push(agreement.id);
+            if (agreement.is_required) {
+                requiredAgreementIds.push(agreement.id.toString());
+            }
             if (agreement.children) {
                 agreement.children.forEach(child => {
-                    allAgreementIds.push(child.id);
+                    if (child.is_required) {
+                        requiredAgreementIds.push(child.id.toString());
+                    }
                 });
             }
         });
-        form.agreements = allAgreementIds;
+        form.agreements = requiredAgreementIds;
     }
 };
 
@@ -68,9 +124,10 @@ const toggleAgreement = (agreement, checked) => {
     if (!agreement.children) return;
 
     agreement.children.forEach(child => {
-        const index = form.agreements.indexOf(child.id);
+        const childId = child.id.toString();
+        const index = form.agreements.indexOf(childId);
         if (checked && index === -1) {
-            form.agreements.push(child.id);
+            form.agreements.push(childId);
         } else if (!checked && index !== -1) {
             form.agreements.splice(index, 1);
         }
@@ -820,43 +877,49 @@ const removeFile = async (source, load) => {
                                                     </template>
                                                     <template #content>
                                                         <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
-                                                            <div v-if="form.errors.agreements" class="mb-4 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3">
-                                                                <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                                                                <InputError :message="form.errors.agreements" class="!mt-0" />
-                                                            </div>
-
-                                                            <div v-for="(agreement, index) in props.agreements" :key="agreement.id" class="group/item">
-                                                                <div class="flex items-start gap-4 p-4 rounded-3xl transition-all duration-300 hover:bg-gray-50 border border-transparent hover:border-gray-100">
+                                                            <div v-for="(agreement, index) in props.agreements" :key="agreement.id" class="group/item !mt-0 !pt-0">
+                                                                <div class="flex items-start gap-4 p-4 rounded-3xl transition-all duration-300 hover:bg-gray-50 border border-transparent hover:border-gray-100"
+                                                                     :class="{'bg-red-50/50 border-red-100': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}">
                                                                     <div class="pt-0.5">
                                                                         <Checkbox
                                                                             v-model:checked="form.agreements"
-                                                                            :value="agreement.id"
+                                                                            :value="agreement.id.toString()"
                                                                             :id="'agreement-' + agreement.id"
                                                                             @change="(checked) => toggleAgreement(agreement, checked)"
                                                                             class="w-5 h-5 !rounded-lg !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                                            :class="{'!border-red-500 !ring-red-500': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}"
                                                                         />
                                                                     </div>
                                                                     <div class="flex-1 space-y-3">
-                                                                        <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="agreement.description[lang] || agreement.description['pl']"></label>
+                                                                        <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                               :class="{'text-red-600': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}">
+                                                                            <span v-html="formatAgreementText(agreement.description[lang] || agreement.description['pl'])"></span>
+                                                                            <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
+                                                                        </label>
                                                                         <!-- Dzieci (zagnieżdżone) -->
                                                                         <div v-if="agreement.children && agreement.children.length > 0" class="ml-6 mt-4 space-y-4 border-l-2 border-gray-100 pl-4">
                                                                             <div v-for="child in agreement.children" :key="child.id" class="group/child flex items-start gap-3">
                                                                                 <div class="pt-0.5">
                                                                                     <Checkbox
                                                                                         v-model:checked="form.agreements"
-                                                                                        :value="child.id"
+                                                                                        :value="child.id.toString()"
                                                                                         :id="'agreement-' + child.id"
                                                                                         class="w-4 h-4 !rounded-md !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                                                        :class="{'!border-red-500 !ring-red-500': form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())}"
                                                                                     />
                                                                                 </div>
-                                                                                <label :for="'agreement-' + child.id" class="text-xs text-gray-500 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors" v-html="child.description[lang] || child.description['pl']"></label>
+                                                                                <label :for="'agreement-' + child.id" class="text-xs text-gray-500 leading-relaxed font-medium normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                                       :class="{'text-red-600': form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())}">
+                                                                                    <span v-html="formatAgreementText(child.description[lang] || child.description['pl'])"></span>
+                                                                                    <span v-if="child.is_required" class="text-red-500 ml-1">*</span>
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                         <!-- Help Text (Optional) -->
                                                                         <div v-if="agreement.help_text && (agreement.help_text[lang] || agreement.help_text['pl'])"
                                                                              class="mt-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50 text-[11px] font-medium text-gray-500 italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
                                                                         >
-                                                                            <div v-html="agreement.help_text[lang] || agreement.help_text['pl']"></div>
+                                                                            <div v-html="formatAgreementText(agreement.help_text[lang] || agreement.help_text['pl'])"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>

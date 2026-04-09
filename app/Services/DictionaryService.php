@@ -202,10 +202,11 @@ class DictionaryService
     public function getCategoriesWithoutDetail(): mixed
     {
         return Cache::rememberForever($this->getCacheKey('categoriesWithoutDetail'), function () {
-            return MultiselectWithoutDetailResource::collection(\App\Models\Category::whereNotNull('parent_id')->get());
+            return MultiselectWithoutDetailResource::collection(
+                \App\Models\Category::whereNotNull('parent_id')->get()
+            )->resolve(); // <--- Dodano resolve()
         });
     }
-
     public function getCategoriesWithArticles(): mixed
     {
         return Cache::rememberForever($this->getCacheKey('categoriesWithArticles'), function () {

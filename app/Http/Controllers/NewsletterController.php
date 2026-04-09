@@ -70,14 +70,18 @@ class NewsletterController extends Controller
 
     public function store(Request $request)
     {
-        $agreementsCount = \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->count();
+        $requiredAgreementsCount = \App\Models\Agreement::where('type', 'newsletter')
+            ->where('is_active', true)
+            ->where('is_required', true)
+            ->count();
+
         $request->validate([
             'email' => ['required', 'email', Rule::unique('newsletters', 'email')],
-            'agreements' => [$agreementsCount > 0 ? 'required' : 'nullable', 'array', 'size:'.$agreementsCount],
+            'agreements' => [$requiredAgreementsCount > 0 ? 'required' : 'nullable', 'array', 'min:'.$requiredAgreementsCount],
         ], [
             'email.unique' => __('footer.email_already_subscribed'),
             'agreements.required' => __('translate.agreements_required'),
-            'agreements.size' => __('translate.agreements_required_all'),
+            'agreements.min' => __('translate.agreements_required_all'),
         ]);
 
         $key = 'newsletter:'.$request->ip();

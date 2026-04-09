@@ -96,7 +96,7 @@ Route::get('/', function (DictionaryService $dictionaryService) {
         'countries' => $countries,
         'imageUrl' => $imageUrl,
         'distanceOptions' => $dictionaryService->getDistanceOptions(),
-        'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
+        'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
     ]);
 })->name('front');
 

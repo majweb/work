@@ -25,6 +25,7 @@ const form = useForm({
         return acc;
     }, {}),
     is_active: true,
+    is_required: false,
 });
 
 const activeTab = ref(props.langs[0] || 'pl');
@@ -160,7 +161,7 @@ const submit = () => {
                                     <div v-if="form.errors.parent_id" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors.parent_id }}</div>
                                 </div>
 
-                                <div class="pt-4">
+                                <div class="pt-4 flex flex-col gap-6">
                                     <label class="flex items-center cursor-pointer group ml-1">
                                         <div class="relative">
                                             <input type="checkbox" v-model="form.is_active" class="sr-only">
@@ -170,6 +171,18 @@ const submit = () => {
                                         <div class="ml-4">
                                             <span class="text-[10px] font-black uppercase tracking-widest transition-colors" :class="form.is_active ? 'text-[#00AEEF]' : 'text-[#0A2C5C]'">Status: {{ form.is_active ? 'Aktywna' : 'Nieaktywna' }}</span>
                                             <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tight">Decyduje o widoczności zgody w formularzu</p>
+                                        </div>
+                                    </label>
+
+                                    <label class="flex items-center cursor-pointer group ml-1">
+                                        <div class="relative">
+                                            <input type="checkbox" v-model="form.is_required" class="sr-only">
+                                            <div class="w-14 h-8 bg-gray-100 rounded-full transition-colors group-hover:bg-gray-300" :class="{'!bg-red-500': form.is_required}"></div>
+                                            <div class="absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform shadow-sm" :class="{'translate-x-6': form.is_required}"></div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <span class="text-[10px] font-black uppercase tracking-widest transition-colors" :class="form.is_required ? 'text-red-500' : 'text-[#0A2C5C]'">Wymagana: {{ form.is_required ? 'Tak' : 'Nie' }}</span>
+                                            <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tight">Decyduje czy zaznaczenie zgody jest obowiązkowe</p>
                                         </div>
                                     </label>
                                 </div>

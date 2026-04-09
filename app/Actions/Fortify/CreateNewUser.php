@@ -4,10 +4,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\Foundation;
 use App\Models\User;
-use App\Services\CrmService;
 use App\Notifications\SystemActivityNotification;
+use App\Services\CrmService;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -54,11 +53,19 @@ class CreateNewUser implements CreatesNewUsers
                 isset($input['agreements']) ? 'array' : 'nullable',
                 function ($attribute, $value, $fail) use ($input) {
                     $type = ($input['type'] ?? 'firm') === 'worker' ? 'worker_registration' : 'firm_registration';
-                    $count = \App\Models\Agreement::where('type', $type)->where('is_active', true)->count();
-                    $valueCount = is_array($value) ? count($value) : 0;
+                    $requiredAgreements = \App\Models\Agreement::where('type', $type)
+                        ->where('is_active', true)
+                        ->where('is_required', true)
+                        ->pluck('id')
+                        ->toArray();
 
-                    if ($valueCount !== $count) {
-                        $fail(__('translate.agreements_required_all'));
+                    $providedAgreements = is_array($value) ? $value : [];
+
+                    foreach ($requiredAgreements as $requiredId) {
+                        if (! in_array($requiredId, $providedAgreements)) {
+                            $fail(__('translate.agreements_required_all'));
+                            break;
+                        }
                     }
                 },
             ],
@@ -99,7 +106,7 @@ class CreateNewUser implements CreatesNewUsers
                     try {
                         app(CrmService::class)->syncUser($user);
                     } catch (\Exception $e) {
-                        \Log::error('CRM Sync Error: ' . $e->getMessage());
+                        \Log::error('CRM Sync Error: '.$e->getMessage());
                     }
                 }
 
