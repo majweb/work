@@ -4714,7 +4714,6 @@ class AgreementSeeder extends Seeder
             'updated_at' => $now,
         ]);
 
-
         $children4 = [];
         $children4[] =
             [
