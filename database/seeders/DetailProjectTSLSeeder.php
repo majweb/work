@@ -22389,7 +22389,7 @@ class DetailProjectTSLSeeder extends Seeder
             ],
         ];
 
-        DB::table('detail_projects')->insert(array_merge(
+        DB::table('detail_projects')->upsert(array_merge(
             $KIEROWNIK_DZIAŁU_LOGISTYKI,
             $KIEROWNIK_DZIAŁU_TRANSPORTU,
             $KIEROWNIK_DZIAŁU_ZAKUPÓW,
@@ -22444,7 +22444,10 @@ class DetailProjectTSLSeeder extends Seeder
             $NAWIGATOR_LOTNICZY,
             $PILOT
 
-        ));
+        ),
+                                ['id'], // Kolumna identyfikująca unikalność (klucz główny)
+            ['name', 'updated_at'] // K
+            );
         Category::whereId('1587')->first()->detailprojects()->attach(collect($KIEROWNIK_DZIAŁU_LOGISTYKI)->pluck('id')->toArray());
         Category::whereId('1588')->first()->detailprojects()->attach(collect($KIEROWNIK_DZIAŁU_TRANSPORTU)->pluck('id')->toArray());
         Category::whereId('1589')->first()->detailprojects()->attach(collect($KIEROWNIK_DZIAŁU_ZAKUPÓW)->pluck('id')->toArray());

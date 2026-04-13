@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             DetailProjectinformatyczna2Seeder::class,
             DetailProjectMechanicy2Seeder::class,
             DetailProjectTSL2Seeder::class,
-            DetailProjectProdukcja2Seeder::class,
+            DetailProjectProdukcja2Seederold::class,
             DetailProjectProdukcja3Seeder::class,
             DetailProjectProdukcja4Seeder::class,
             DetailProjectSpozywcza2Seeder::class,

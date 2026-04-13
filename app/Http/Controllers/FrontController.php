@@ -570,6 +570,16 @@ class FrontController extends Controller
         ]);
     }
 
+    public function Owner()
+    {
+        $page = Page::where('id', 18)->first(); // Załóżmy ID dla Terms
+
+        return inertia()->render('Front/Owner', [
+            'page' => $page ? new PageResource($page) : null,
+            'langs' => config('langsShorts'),
+        ]);
+    }
+
     public function Firms()
     {
         $query = User::role('firm')->with(['firm' => function ($query) {
