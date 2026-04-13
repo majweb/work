@@ -54,7 +54,7 @@ const goToNextError = () => {
     }
 
     // Then check Content errors
-    if (props.page.id == 2 || props.page.id == 3) {
+    if (props.page.id == 2 || props.page.id == 3 || props.page.id == 18) {
         for (const lang of contentLanguages) {
             if (hasContentError(lang)) {
                 activeContentLang.value = lang;
@@ -307,8 +307,8 @@ const submit = () => {
                             </div>
                         </div>
 
-                        <!-- SEKCJA CONTENT (Tylko dla Regulaminu i Polityki) -->
-                        <div v-if="page.id == 2 || page.id == 3" class="mt-16 pt-16 border-t border-gray-100 content-section">
+                        <!-- SEKCJA CONTENT (Tylko dla Regulaminu, Polityki i Własności intelektualnej) -->
+                        <div v-if="page.id == 2 || page.id == 3 || page.id == 18" class="mt-16 pt-16 border-t border-gray-100 content-section">
                             <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight mb-6">Treść strony (langsShorts)</h4>
 
                             <InputError :message="form.errors.content" class="mb-4" />

@@ -580,6 +580,9 @@ return [
     'termsTitle' => 'Terms and Conditions',
     'downloadTermsPdf' => 'Download Terms in PDF format',
     'footer' => [
+        'privacy_policy' => 'PRIVACY POLICY',
+        'owner' => 'INTELLECTUAL PROPERTY',
+        'terms' => 'TERMS',
         'downloadTermsPdf' => 'Download Terms in PDF format',
         'downloadPrivacyPdf' => 'Download Privacy Policy in PDF format',
         'invalid_nip_format' => 'Invalid NIP/VAT format for the selected country.',

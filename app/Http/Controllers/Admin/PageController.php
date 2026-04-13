@@ -43,6 +43,13 @@ class PageController extends Controller
                 $images[$l] = $imageValue;
             }
         }
+        $contentTranslations = $page->getTranslations('content');
+        foreach ($contentLanguages as $l) {
+            if (!isset($contentTranslations[$l])) {
+                $contentTranslations[$l] = '';
+            }
+        }
+
         return Inertia::render('Admin/CMS/Edit', [
             'page' => [
                 'id' => $page->id,
@@ -52,7 +59,7 @@ class PageController extends Controller
                 'keywords' => $page->getTranslations('keywords'),
                 'image' => $page->getTranslations('image'),
                 'imageUrl' => $images,
-                'content' => $page->getTranslations('content'),
+                'content' => $contentTranslations,
             ],
             'seoLanguages' => $seoLanguages,
             'contentLanguages' => $contentLanguages,
@@ -85,10 +92,11 @@ class PageController extends Controller
             }
         }
 
-        if (in_array($page->id, [2, 3])) {
+        if (in_array($page->id, [2, 3, 18])) {
             $rules['content'] = 'required|array';
             foreach ($contentLanguages as $l) {
-                $rules["content.{$l}"] = 'required|string';
+                // TipTap może wysyłać pusty string dla pustego pola
+                $rules["content.{$l}"] = 'present|string';
             }
         }
 
@@ -114,7 +122,7 @@ class PageController extends Controller
             $attributes["image_file.{$l}"] = "Obrazek ({$l})";
         }
 
-        if (in_array($page->id, [2, 3])) {
+        if (in_array($page->id, [2, 3, 18])) {
             foreach ($contentLanguages as $l) {
                 $attributes["content.{$l}"] = "Treść strony ({$l})";
             }
@@ -153,8 +161,8 @@ class PageController extends Controller
             }
         }
 
-        // Zapisywanie treści (content) dla stron 2 i 3 (langsShorts)
-        if (in_array($page->id, [2, 3])) {
+        // Zapisywanie treści (content) dla stron 2, 3 i 18 (langsShorts)
+        if (in_array($page->id, [2, 3, 18])) {
             foreach ($contentLanguages as $l) {
                 $page->setTranslation('content', $l, $request->input("content.{$l}"));
             }
