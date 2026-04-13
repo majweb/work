@@ -213,7 +213,14 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                             :selectedLabel="''"
                             :deselectLabel="''"
                             class="custom-multiselect"
-                        ></Multiselect>
+                        >
+                            <template #noResult>
+                                <span>{{__('translate.noOptions')}}</span>
+                            </template>
+                            <template #noOptions>
+                                <span>{{__('translate.noResult')}}</span>
+                            </template>
+                        </Multiselect>
                     </div>
                     <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:underline underline-offset-4">{{ page.props.currentCountry }}</button>
 

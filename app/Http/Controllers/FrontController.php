@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\AplicationMakeEvent;
 use App\Http\Requests\AplicationRequest;
+use App\Http\Requests\ReportIllegalContentRequest;
 use App\Http\Requests\StoreFoundationRequest;
 use App\Http\Resources\BannerResource;
 use App\Http\Resources\CategoryWithArticlesResource;
@@ -15,6 +16,7 @@ use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\NewestArticleArticlesPageResource;
 use App\Http\Resources\PageResource;
 use App\Mail\ContactFormMarkdownMail;
+use App\Mail\ReportIllegalContentMail;
 use App\Models\Agreement;
 use App\Models\Aplication;
 use App\Models\Article;
@@ -578,6 +580,29 @@ class FrontController extends Controller
             'page' => $page ? new PageResource($page) : null,
             'langs' => config('langsShorts'),
         ]);
+    }
+
+    public function OwnerSend(ReportIllegalContentRequest $request)
+    {
+        $validated = $request->validated();
+
+        // LIMITER
+        $ipKey = 'report-illegal-content:ip:'.$request->ip();
+        if (RateLimiter::tooManyAttempts($ipKey, 3)) {
+            session()->flash('flash.banner', __('translate.validation.rate_limit'));
+            session()->flash('flash.bannerStyle', 'danger');
+            throw ValidationException::withMessages([
+                'email' => __('translate.validation.rate_limit'),
+            ]);
+        }
+        RateLimiter::hit($ipKey, 3600);
+
+        Mail::to('dsa@work4you.global')->send(new ReportIllegalContentMail($validated));
+
+        session()->flash('flash.banner', __('illegalForm.success_message'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
     }
 
     public function Firms()
