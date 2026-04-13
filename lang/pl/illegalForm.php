@@ -2,6 +2,7 @@
 
 return [
     'title' => 'Zgłoszenie nielegalnych treści',
+    'form_header' => 'Własność Intelektualna | WORK4YOU.GLOBAL',
     'scope_label' => 'Wybierz zakres zgłoszenia z listy poniżej*',
     'scope_options' => [
         'illegal' => 'nielegalne treści/ treści niezgodne z regulaminem serwisu',
@@ -11,7 +12,6 @@ return [
     'signaling_entity_label' => 'Czy dokonuje Pan/Pani zgłoszenia jako podmiot sygnalizujący, tj. podmiot, posiadający w wyznaczonych dziedzinach wiedzę ekspercką i kompetencje służące do wykrywania, identyfikowania i zgłaszania nielegalnych treści (status podmiotu sygnalizującego jest nadawany przez koordynatora ds. usług cyfrowych)?*',
     'signaling_entity_yes' => 'TAK',
     'signaling_entity_no' => 'NIE',
-    'contact_info_note' => 'W celu poinformowania Pani/Pana o rozpatrzeniu zgłoszenia potrzebujemy poniższych danych kontaktowych.',
     'email_label' => 'adres e-mail*',
     'email_placeholder' => 'Twój adres e-mail',
     'name_label' => 'imię i nazwisko*',

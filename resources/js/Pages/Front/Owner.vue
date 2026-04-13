@@ -58,9 +58,8 @@ const submit = () => {
                         </span>
                         <span class="text-[10px] font-black text-[#0A2C5C] dark:text-blue-400 uppercase tracking-[0.2em]">{{ __('translate.footer.documentation') }}</span>
                     </div>
-
                     <h1 class="text-4xl md:text-5xl font-black text-[#0A2C5C] dark:text-white leading-tight uppercase tracking-tighter mb-8">
-                        {{ props.page.title }}
+                        {{ __('illegalForm.form_header') }}
                     </h1>
                 </div>
 
@@ -69,6 +68,10 @@ const submit = () => {
                     <div class="prose prose-blue dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed mb-12">
                         <section class="mb-10 animate-fadeIn" v-html="props.page.content"></section>
                     </div>
+
+                    <h2 class="text-center text-2xl font-black text-[#0A2C5C] dark:text-white uppercase tracking-tighter mb-8">
+                        {{ __('illegalForm.submit_button') }}
+                    </h2>
 
                     <form @submit.prevent="submit" class="space-y-10 w-full">
                         <!-- Zakres zgłoszenia -->
@@ -155,7 +158,6 @@ const submit = () => {
                             <textarea id="details" v-model="form.details" rows="5" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all" :placeholder="__('illegalForm.details_placeholder')"></textarea>
                             <InputError :message="form.errors.details" class="mt-2" />
                         </div>
-
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.legal_provision_label') }}</label>
                             <TextInput id="legal_provision" v-model="form.legal_provision" type="text" class="mt-1 block w-full" :placeholder="__('illegalForm.legal_provision_placeholder')" />

@@ -39,8 +39,8 @@ Route::name('front.')->group(function () {
     Route::get('partners',[FrontController::class,'Partners'])->name('partners');
     Route::get('foundation/{foundation}',[FrontController::class,'Foundation'])->name('foundation.single');
     Route::get('terms',[FrontController::class,'Terms'])->name('terms');
-    Route::get('owner',[FrontController::class,'Owner'])->name('owner');
-    Route::post('owner', [FrontController::class, 'OwnerSend'])->name('owner.post');
+    Route::get('report-illegal-content',[FrontController::class,'Owner'])->name('owner');
+    Route::post('report-illegal-content', [FrontController::class, 'OwnerSend'])->name('owner.post');
     Route::get('sold',[FrontController::class,'Sold'])->name('sold');
     Route::get('charity',[FrontController::class,'Charity'])->name('charity');
     Route::get('firms',[FrontController::class,'Firms'])->name('firms');
