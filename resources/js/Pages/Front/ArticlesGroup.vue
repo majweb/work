@@ -3,7 +3,12 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import { ref, onMounted } from 'vue';
-
+import {Autoplay, Scrollbar} from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 const isClient = ref(false);
 onMounted(() => {
     isClient.value = true;
@@ -22,7 +27,7 @@ const props = defineProps({
             :image="props.page.image"
             :keywords="props.page.keywords"
             :description="props.page.description"
-            :url="route('front.articles.group', categoryName)"
+            :url="route('front.groupArticles', categoryName)"
             type="website"
         >
         <div class="py-12 bg-gray-50/50 min-h-screen">

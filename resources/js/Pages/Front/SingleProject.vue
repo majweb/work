@@ -493,11 +493,6 @@ onMounted(async () => {
                         <!-- Decorative bg -->
                         <div class="absolute top-0 left-0 w-full h-full z-0 transition-opacity duration-700"
                              :class="project.is_featured ? 'bg-[radial-gradient(circle_at_center,_#1e40af_0%,_#0A2C5C_100%)]' : 'bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/50 to-[#0A2C5C]'"></div>
-
-                        <div v-if="project.is_featured" class="absolute inset-0 z-0 pointer-events-none opacity-30">
-                            <div class="absolute top-0 left-0 w-full h-full bg-[url('/images/pattern.svg')] bg-repeat opacity-10"></div>
-                        </div>
-
                         <div class="relative z-10 space-y-8">
                             <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">{{ __('translate.readyForChallenges') }}</h2>
                             <p class="text-blue-200 uppercase text-xs font-bold tracking-[0.2em]">{{ __('translate.applyNowJoinTeam') }} {{ project.user?.name }}</p>
