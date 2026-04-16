@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
+        $this->call(class: [
             RoleSeeder::class,
             ProductSeeder::class,
             PageSeeder::class,
@@ -37,7 +37,8 @@ class DatabaseSeeder extends Seeder
             LangLevelSeeder::class,
 
             // Detale
-            DetailProjectHandelSeeder::class,
+            DetailProjectHandelPart1Seeder::class,
+            DetailProjectHandelPart2Seeder::class,
             DetailProjectAdministacjaSeeder::class,
             DetailProjectAdministacja2Seeder::class,
             DetailProjectAdministacja3Seeder::class,
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
             DetailProjectOchronaiBezpieczenstwoSeeder::class,
             DetailProjectKulturaSeeder::class,
             DetailProjectEdukacjaSeeder::class,
+            DetailProjectEdukacjaPart2Seeder::class,
             DetailProjectLekarzeSeeder::class,
             DetailProjectbiologicznochemicznogeograficznaSeeder::class,
             DetailProjectbudowlanaSeeder::class,
@@ -56,7 +58,9 @@ class DatabaseSeeder extends Seeder
             DetailProjectSpozywczaSeeder::class,
             DetailProjectRolnictwoSeeder::class,
             DetailProjectGastroSeeder::class,
+            DetailProjectGastro2Seeder::class,
             DetailProjectUslugaSeeder::class,
+            DetailProjectFinansowaPrawnaSeeder::class,
             DetailProjectFinansowaPrawna2Seeder::class,
             DetailProjectOchronaiBezpieczenstwo2Seeder::class,
             DetailProjectKultura2Seeder::class,
@@ -72,7 +76,6 @@ class DatabaseSeeder extends Seeder
             DetailProjectProdukcja3Seeder::class,
             DetailProjectProdukcja4Seeder::class,
             DetailProjectSpozywcza2Seeder::class,
-            DetailProjectGastro2Seeder::class,
             DetailProjectUsluga2Seeder::class,
             DetailProjectRolnictwo2Seeder::class,
             //             Detale
