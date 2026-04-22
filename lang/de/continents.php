@@ -1,15 +1,14 @@
 <?php
-
 return [
-    'africa' => 'Afryka',
-    'south_america' => 'Ameryka Pd. i Śr.',
-    'north_america' => 'Ameryka Płn.',
-    'asia' => 'Azja',
+    'africa' => 'Afrika',
+    'south_america' => 'Süd- und Mittelamerika',
+    'north_america' => 'Nordamerika',
+    'asia' => 'Asien',
     'europe' => 'Europa',
-    'oceania' => 'Australia i Oceania',
-    'no_foundations' => 'Brak fundacji w wybranym regionie.',
-    'search_placeholder' => 'Fundacja',
-    'all_categories' => 'Wszystkie kategorie',
-    'select_category' => 'Kategoria',
-    'no_category' => 'Brak kategorii',
+    'oceania' => 'Australien und Ozeanien',
+    'no_foundations' => 'Keine Stiftungen in der ausgewählten Region.',
+    'search_placeholder' => 'Stiftung',
+    'all_categories' => 'Alle Kategorien',
+    'select_category' => 'Kategorie',
+    'no_category' => 'Keine Kategorie',
 ];

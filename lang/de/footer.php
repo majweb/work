@@ -1,43 +1,42 @@
 <?php
-
 return [
     // Nagłówki sekcji
-    'for_candidates' => 'Dla kandydatów',
-    'for_companies' => 'Dla firm',
-    'about_us' => 'O nas',
-    'stay_in_touch' => 'Bądźmy w kontakcie',
+    'for_candidates' => 'Für Bewerber',
+    'for_companies' => 'Für Unternehmen',
+    'about_us' => 'Über uns',
+    'stay_in_touch' => 'Bleiben wir in Kontakt',
 
     // Sekcja "Dla kandydatów"
-    'browse_offers' => 'Przeglądaj oferty',
-    'articles_and_guides' => 'Artykuły i poradniki',
-    'login' => 'Logowanie',
-    'register' => 'Rejestracja',
+    'browse_offers' => 'Angebote durchsuchen',
+    'articles_and_guides' => 'Artikel und Leitfäden',
+    'login' => 'Anmelden',
+    'register' => 'Registrieren',
 
     // Sekcja "Dla firm"
-    'add_offer' => 'Dodaj ofertę',
-    'pricing' => 'Cennik',
+    'add_offer' => 'Angebot hinzufügen',
+    'pricing' => 'Preise',
 
     // Sekcja "O nas"
-    'companies' => 'Firmy',
-    'about' => 'O nas',
+    'companies' => 'Unternehmen',
+    'about' => 'Über uns',
     'contact' => 'Kontakt',
-    'partners' => 'Partnerzy',
+    'partners' => 'Partner',
 
     // Sekcja "Bądźmy w kontakcie"
-    'newsletter_text' => 'Otrzymaj stały dostęp do interesujących Cię treści, artykułów i ofert.',
-    'email_placeholder' => 'ty@przykład.pl',
-    'subscribe' => 'ZAPISZ',
-    'privacy_notice' => 'Szanujemy Twoją prywatność. Możesz zrezygnować z newslettera w każdym momencie.',
+    'newsletter_text' => 'Erhalten Sie ständigen Zugriff auf interessante Inhalte, Artikel und Angebote.',
+    'email_placeholder' => 'du@beispiel.de',
+    'subscribe' => 'ABONNIEREN',
+    'privacy_notice' => 'Wir respektieren Ihre Privatsphäre. Sie können den Newsletter jederzeit abbestellen.',
 
     // Stopka dolna
-    'privacy_policy' => 'Polityka prywatności',
-    'terms' => 'Regulamin',
+    'privacy_policy' => 'Datenschutzerklärung',
+    'terms' => 'AGB',
     'cookies' => 'Cookies',
-    'gdpr' => 'RODO / GDPR',
-    'copyright' => '©WORK4YOU.GLOBAL. Wszystkie prawa zastrzeżone.',
+    'gdpr' => 'DSGVO / GDPR',
+    'copyright' => '©WORK4YOU.GLOBAL. Alle Rechte vorbehalten.',
 
     // Newsletter messages
-    'email_already_subscribed' => 'Ten adres email jest już zapisany do newslettera.',
-    'newsletter_success' => 'Dziękujemy za zapisanie się do newslettera!',
-    'too_many_attempts' => 'Przekroczono limit zapisów do newslettera z tego adresu IP. Spróbuj ponownie jutro.',
+    'email_already_subscribed' => 'Diese E-Mail-Adresse ist bereits für den Newsletter angemeldet.',
+    'newsletter_success' => 'Vielen Dank für Ihre Anmeldung zum Newsletter!',
+    'too_many_attempts' => 'Das Limit für Newsletter-Anmeldungen von dieser IP-Adresse wurde überschritten. Bitte versuchen Sie es morgen erneut.',
 ];

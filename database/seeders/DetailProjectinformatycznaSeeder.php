@@ -16514,7 +16514,6 @@ class DetailProjectinformatycznaSeeder extends Seeder
                         "nl" => "Animaties testen en optimaliseren voor prestaties",
                         "ps" => "د انیمیشنونو ازموینه او د فعالیت لپاره اصلاح کول",
                         "hy" => "Тестировать и оптимизировать анимации для повышения производительности", // replacing with Russian alternative in Latin script; however, we'll produce the proper translation:
-                        "hy" => "Փորձարկել եւ օպտիմալացնել անիմացիաները օգտագործողականության համար",
                         "az" => "Performans üçün animasiyaların test edilməsi və optimallaşdırılması",
                         "bn" => "কার্যক্ষমতার জন্য অ্যানিমেশন পরীক্ষা ও অপ্টিমাইজ করা",
                         "dz" => "རྩོམ་འབྱོར་དང་ལས་འབྱོར་ཀྱི་ལག་བྱེད་མཐུན་ཚུལ།",

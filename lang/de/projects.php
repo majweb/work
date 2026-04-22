@@ -1,9 +1,9 @@
 <?php
 return [
-    'work' => 'praca',
-    'agreement' => 'umowa',
-    'time' => 'wymiar pracy',
-    'description' => 'OPIS STANOWISKA',
-    'hiden' => 'Aby aplikować na oferty należy najpierw się zalogować jako pracownik.',
-    'hidenWhich' => 'Aplikujesz jako:',
+    'work' => 'Arbeit',
+    'agreement' => 'Vertrag',
+    'time' => 'Arbeitszeit',
+    'description' => 'STELLENBESCHREIBUNG',
+    'hiden' => 'Um sich auf Stellenangebote zu bewerben, müssen Sie sich zuerst als Arbeitnehmer anmelden.',
+    'hidenWhich' => 'Sie bewerben sich als:',
 ];

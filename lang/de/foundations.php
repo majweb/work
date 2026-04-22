@@ -1,5 +1,4 @@
 <?php
-
 return [
-    'foundations' => 'Fundacje',
+    'foundations' => 'Stiftungen',
 ];

@@ -2,36 +2,36 @@
 
 return [
 
-    'about_title' => 'O nas',
-    'partners_title' => 'Nasi Partnerzy',
+    'about_title' => 'Über uns',
+    'partners_title' => 'Unsere Partner',
     'partners_text' =>
-        'Work4You.Global współpracuje z zaufanymi
-        partnerami z całego świata – firmami, instytucjami
-        i organizacjami, które wspierają rozwój rynku
-        pracy oraz ideę odpowiedzialnego biznesu. Dzięki
-        tym partnerstwom',
-    'partners_strong' => 'łączymy nowoczesne
-        technologie rekrutacyjne z realnym wpływem
-        społecznym, ',
-    'partners_text2' => 'tworząc przestrzeń, w której zyskują
-        zarówno pracodawcy, jak i kandydaci.',
-    'partners_subtitle' => 'Poznaj naszych partnerów',
+        'Work4You.Global arbeitet mit vertrauenswürdigen
+        Partnern aus der ganzen Welt zusammen – Unternehmen, Institutionen
+        und Organisationen, die die Entwicklung des Arbeitsmarktes
+        und die Idee des verantwortungsvollen Geschäfts unterstützen. Dank
+        dieser Partnerschaften',
+    'partners_strong' => 'verbinden wir moderne
+        Rekrutierungstechnologien mit realem sozialem
+        Einfluss, ',
+    'partners_text2' => 'und schaffen einen Raum, in dem sowohl
+        Arbeitgeber als auch Bewerber gewinnen.',
+    'partners_subtitle' => 'Lernen Sie unsere Partner kennen',
     'partners_slider_placeholder' =>
-        'Miejsce na slider partnerów',
-    'foundations_title' => 'Fundacje',
+        'Platz für Partner-Slider',
+    'foundations_title' => 'Stiftungen',
     'foundations_text' =>
-        'Współpracujemy z fundacjami i organizacjami
-charytatywnymi na całym świecie, wspierając
-różnorodne inicjatywy społeczne, edukacyjne i
-humanitarne. Każda firma, która kupuje punkty w
-naszym systemie, automatycznie',
-    'foundations_strong' =>'przekazuje 50%
-wartości zakupu na wybraną fundację.',
-    'foundations_text2' =>'Dzięki
-temu każda rekrutacja i kampania realizowana na
-portalu ma realny, pozytywny wpływ na innych.
-Firmy mogą wyszukać fundację według kraju,
-poznać jej cel działania i samodzielnie zdecydować,
-komu chcą pomóc.',
-    'partners'=>'Partnerzy'
+        'Wir arbeiten mit Stiftungen und wohltätigen
+        Organisationen auf der ganzen Welt zusammen und unterstützen
+        vielfältige soziale, pädagogische und
+        humanitäre Initiativen. Jedes Unternehmen, das Punkte in
+        unserem System kauft, spendet automatisch',
+    'foundations_strong' => '50 %
+        des Kaufwertes an eine gewählte Stiftung.',
+    'foundations_text2' => 'Dadurch
+        hat jede Rekrutierung und Kampagne, die auf dem
+        Portal durchgeführt wird, einen realen, positiven Einfluss auf andere.
+        Unternehmen können Stiftungen nach Land suchen,
+        deren Ziele kennenlernen und selbst entscheiden,
+        wem sie helfen möchten.',
+    'partners' => 'Partner'
 ];
