@@ -102,6 +102,10 @@ class CreateNewUser implements CreatesNewUsers
                 $user->assignRole('firm', 'recruit');
                 $user->firm()->create();
 
+                if (config('premium.welcome_points') > 0) {
+                    app(\App\Services\PointService::class)->increment($user, config('premium.welcome_points'), 'Rejestracja - bonus startowy');
+                }
+
                 if (config('services.crm.url') && config('services.crm.key')) {
                     try {
                         app(CrmService::class)->syncUser($user);

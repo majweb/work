@@ -57,4 +57,14 @@ return [
         3 => '#ddc890', // Złoty (Gold)
         4 => '#c8bdbc'  // Diamentowy (Diamond)
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Bonus powitalny dla nowych firm
+    |--------------------------------------------------------------------------
+    |
+    | Określa liczbę punktów przyznawanych nowo zarejestrowanej firmie.
+    |
+    */
+    'welcome_points' => 50000,
 ];
