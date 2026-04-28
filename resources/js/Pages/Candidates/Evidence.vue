@@ -185,6 +185,30 @@ const getCandidateInitials = (c) => {
                         </Link>
                     </div>
 
+                    <div v-if="externalCompanies.length === 0" class="bg-amber-50 border-l-4 border-amber-400 p-6 mb-10 rounded-r-3xl shadow-sm">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-0.5">
+                                <svg class="h-5 w-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-amber-800 font-black uppercase tracking-wider">
+                                    {{ __('translate.noExternalCompaniesFound') }}
+                                </p>
+                                <p class="text-xs text-amber-700 mt-1 font-bold">
+                                    {{ __('translate.mustAddExternalCompanyBeforeEvidence') }}
+                                </p>
+                                <div class="mt-4">
+                                    <Link :href="route('external-companies.create')" class="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 text-[10px] font-black rounded-xl hover:bg-amber-200 transition-all uppercase tracking-widest shadow-sm">
+                                        {{ __('translate.addExternalCompany') }}
+                                        <svg class="ml-2 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- FORM -->
 
@@ -266,7 +290,6 @@ const getCandidateInitials = (c) => {
                                             />
                                             <InputError :message="form.errors.country" class="mt-2" />
                                         </div>
-
                                         <div v-if="externalCompanies && externalCompanies.length > 0">
                                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.externalCompany') }}</label>
                                             <multiselect
@@ -334,7 +357,7 @@ const getCandidateInitials = (c) => {
                                 </button>
 
                                 <button
-                                    :disabled="form.processing"
+                                    :disabled="form.processing || externalCompanies.length === 0"
                                     type="submit"
                                     class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                                 >

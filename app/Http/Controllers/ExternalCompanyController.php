@@ -16,7 +16,7 @@ class ExternalCompanyController extends Controller
      */
     public function index()
     {
-        $externalCompanies = auth()->user()->externalCompanies()->orderBy('name')->get();
+        $externalCompanies = ExternalCompany::where("user_id", auth()->user()->recruiter_from_firm_id ?? auth()->id())->orderBy('name')->get();
 
         return Inertia::render('ExternalCompany/Index', [
             'externalCompanies' => $externalCompanies,
@@ -45,7 +45,7 @@ class ExternalCompanyController extends Controller
                 'uppercase',
                 Rule::unique('external_companies', 'abbreviation')
                     ->where(function ($query) {
-                        $query->where('user_id', Auth::id());
+                        $query->where('user_id', (auth()->user()->recruiter_from_firm_id ?? auth()->id()));
                     }),
             ],
             'email' => [
@@ -53,7 +53,7 @@ class ExternalCompanyController extends Controller
                 'string',
                 Rule::unique('external_companies', 'email')
                     ->where(function ($query) {
-                        $query->where('user_id', Auth::id());
+                        $query->where('user_id', (auth()->user()->recruiter_from_firm_id ?? auth()->id()));
                     }),
             ],
             'note' => 'nullable|string|max:1000',
@@ -76,7 +76,8 @@ class ExternalCompanyController extends Controller
         $pointService->decrement($firm->user, $cost, 'CreateExternalFirm: ' . $validated['name']);
 
 
-        Auth::user()->externalCompanies()->create($validated);
+        \Illuminate\Support\Facades\Cache::forget("user_" . (auth()->user()->recruiter_from_firm_id ?? auth()->id()) . "_external_companies");
+        $data = array_merge($validated, ["user_id" => (auth()->user()->recruiter_from_firm_id ?? auth()->id())]); ExternalCompany::create($data);
 
         return redirect()->route('external-companies.index')
             ->with('flash.banner', __('translate.addedExternalCompany'));
@@ -110,14 +111,14 @@ class ExternalCompanyController extends Controller
                 'uppercase',
                 Rule::unique('external_companies', 'abbreviation')
                     ->ignore($externalCompany->id) // pomija aktualny rekord
-                    ->where(fn ($query) => $query->where('user_id', Auth::id()))
+                    ->where(fn ($query) => $query->where('user_id', (auth()->user()->recruiter_from_firm_id ?? auth()->id())))
             ],
             'email' => [
                 'required',
                 'string',
                 Rule::unique('external_companies', 'email')
                     ->ignore($externalCompany->id) // pomija aktualny rekord
-                    ->where(fn ($query) => $query->where('user_id', Auth::id()))
+                    ->where(fn ($query) => $query->where('user_id', (auth()->user()->recruiter_from_firm_id ?? auth()->id())))
             ],
             'note' => 'nullable|string|max:1000',
         ], [], [
@@ -125,6 +126,7 @@ class ExternalCompanyController extends Controller
         ]);
 
 
+        \Illuminate\Support\Facades\Cache::forget("user_" . (auth()->user()->recruiter_from_firm_id ?? auth()->id()) . "_external_companies");
         $externalCompany->update($validated);
 
         return redirect()->route('external-companies.index')
@@ -137,6 +139,7 @@ class ExternalCompanyController extends Controller
     public function destroy(ExternalCompany $externalCompany)
     {
         Gate::authorize('delete', $externalCompany);
+        \Illuminate\Support\Facades\Cache::forget("user_" . (auth()->user()->recruiter_from_firm_id ?? auth()->id()) . "_external_companies");
 
         $externalCompany->delete();
 

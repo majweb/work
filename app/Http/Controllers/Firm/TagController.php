@@ -51,6 +51,7 @@ class TagController extends Controller
 
 
         Auth::user()->tags()->create($validated);
+        \Illuminate\Support\Facades\Cache::forget("user_" . Auth::id() . "_custom_tags");
 
         return redirect()->route('tags.index')
             ->with('flash.banner', __('translate.addedTag'));
@@ -92,6 +93,7 @@ class TagController extends Controller
         ]);
 
         $tag->update($validated);
+        \Illuminate\Support\Facades\Cache::forget("user_" . Auth::id() . "_custom_tags");
 
         return redirect()->route('tags.index')
             ->with('flash.banner', __('translate.updatedTag'));
@@ -105,6 +107,7 @@ class TagController extends Controller
         Gate::authorize('delete', $tag);
 
         $tag->delete();
+        \Illuminate\Support\Facades\Cache::forget("user_" . Auth::id() . "_custom_tags");
 
         return redirect()->route('tags.index')
             ->with('flash.banner', __('translate.deleteTag'));

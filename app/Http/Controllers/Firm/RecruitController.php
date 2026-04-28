@@ -81,6 +81,7 @@ class RecruitController extends Controller
             'password' => Hash::make($request->userData()['password']),
         ]);
         $user->assignRole('recruit');
+        \Illuminate\Support\Facades\Cache::forget("user_" . auth()->id() . "_recruits");
 
         if (isset($request->userData()['photo'])) {
             $user->updateProfilePhoto($request->userData()['photo']);
@@ -134,6 +135,7 @@ class RecruitController extends Controller
             'color' => $request->userData()['color'],
             'password' => !is_null($request->userData()['password']) ? Hash::make($request->userData()['password']) : $recruit->password,
         ]);
+        \Illuminate\Support\Facades\Cache::forget("user_" . auth()->id() . "_recruits");
 
         if (isset($request->userData()['photo'])) {
             $recruit->updateProfilePhoto($request->userData()['photo']);
@@ -151,6 +153,7 @@ class RecruitController extends Controller
     {
         Gate::authorize('delete',$recruit);
         $recruit->delete();
+        \Illuminate\Support\Facades\Cache::forget("user_" . auth()->id() . "_recruits");
         session()->flash('flash.banner', __('translate.deleteRecruit'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('recruits.index');

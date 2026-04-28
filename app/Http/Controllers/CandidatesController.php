@@ -123,20 +123,40 @@ class CandidatesController extends Controller
         }
 
 
-        // Pobieramy kandydatów z ich projektami
-        $candidates = $query->with('projects','created_by:id,color','tags','userByEmail')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
-        // Pobieranie unikalnych projektów dla filtra
-        $projectIds = Aplication::where(function ($q) {
+        // Pobieramy kandydatów z ich projektami z Eager Loading i ograniczonymi kolumnami
+        $candidates = $query->with([
+            'projects:projects.id,projects.title',
+            'created_by:users.id,users.color,users.name',
+            'tags:categories.id,categories.title',
+            'userByEmail:users.id,users.email,users.profile_photo_path'
+        ])
+        ->select('candidates.id', 'candidates.name', 'candidates.surname', 'candidates.email', 'candidates.phone', 'candidates.created_at', 'candidates.created_by_id')
+        ->orderBy('candidates.created_at', 'desc')
+        ->paginate(10)
+        ->withQueryString();
+
+        // Pobieranie projektów dla filtra - zoptymalizowane do jednego zapytania
+        $projects = Project::whereHas('aplications', function ($q) {
             $q->where('user_id', Auth::id())
                 ->orWhere('recruiter_id', Auth::id());
         })
-            ->distinct()
-            ->pluck('project_id');
+        ->select('projects.id', 'projects.title')
+        ->get();
 
-        $projects = Project::whereIn('id', $projectIds)->get();
-        $optionsRecruits = auth()->user()->recruits()->get()->map(function ($item) {
-        return ['name' => $item['name'], 'value' => $item['id']];
+        $userId = auth()->id();
+
+        // Cache dla rekruterów (60 min)
+        $optionsRecruits = Cache::remember("user_{$userId}_recruits", 3600, function () {
+            return auth()->user()->recruits()->get()->map(function ($item) {
+                return ['name' => $item['name'], 'value' => $item['id']];
+            });
         });
+
+        // Cache dla tagów użytkownika (60 min)
+        $customTags = Cache::remember("user_{$userId}_custom_tags", 3600, function () {
+            return auth()->user()->tags()->orderBy('name')->get();
+        });
+
         $optionsPosition = $dictionaryService->getCategoriesWithoutDetail();
 
         return Inertia::render('Candidates/Index', [
@@ -167,7 +187,7 @@ class CandidatesController extends Controller
         ) {
             abort(403);
         }
-        $candidate->load('media','created_by');
+        $candidate->load('media', 'created_by', 'userByEmail:id,email,profile_photo_path');
         // Pobieranie wszystkich projektów, na które aplikował kandydat
         $candidateProjects = $candidate->projects->map(function($project) {
                 return [
@@ -194,7 +214,10 @@ class CandidatesController extends Controller
 
         // Pobieranie kategorii i tagów dla widoku
         $categories = $dictionaryService->getCategoriesForCandidates();
-        $customTags = Auth::user()->tags()->orderBy('name')->get();
+        $userId = auth()->id();
+        $customTags = Cache::remember("user_{$userId}_custom_tags", 3600, function () {
+            return auth()->user()->tags()->orderBy('name')->get();
+        });
 
         // Pobieranie tagów przypisanych do kandydata
         $candidateTags = [];
@@ -224,7 +247,7 @@ class CandidatesController extends Controller
             'name' => $candidate->name,
             'surname' => $candidate->surname,
             'email' => $candidate->email,
-            'worker_image'=> User::where('email',$candidate->email)->first()->profile_photo_url ?? null,
+            'worker_image' => $candidate->userByEmail->profile_photo_url ?? null,
             'phone' => $candidate->phone,
             'questions_unlocked_at' => $candidate->questions_unlocked_at,
             'created_at' => $candidate->created_at,
@@ -445,19 +468,16 @@ class CandidatesController extends Controller
     public function evidence(Candidate $candidate, \App\Services\DictionaryService $dictionaryService)
     {
         // Sprawdzenie czy kandydat ma aplikację w firmie zalogowanego użytkownika
-        if (!$candidate->where('created_by_id', Auth::id())) {
+        if ($candidate->created_by_id !== Auth::id()) {
             abort(403);
         }
         $candidate->load('media','created_by');
         $optionsPosition = $dictionaryService->getCategoriesWithoutDetail();
-        $externalCompanies = ExternalCompany::where('user_id',auth()->user()->id)->latest()->get();
+        $ownerId = auth()->user()->recruiter_from_firm_id ?? auth()->id();
+        $externalCompanies = Cache::remember("user_{$ownerId}_external_companies", 3600, function () use ($ownerId) { return ExternalCompany::where("user_id", $ownerId)->latest()->get(); });
         $countries = $dictionaryService->getCountries(app()->getLocale());
         $currencies = config('currencyShorts');
-
-        $candidate->load(['evidences' => function($query) {
-            $query->orderBy('date_of_hire', 'desc'); // 'desc' dla malejąco
-        }]);
-
+        $candidate->load(['evidences' => function($query) { $query->select('id', 'candidate_id', 'external_company', 'position', 'salary', 'currency', 'date_of_hire', 'country', 'notes', 'created_at')->orderBy('date_of_hire', 'desc'); }]);
         return Inertia::render('Candidates/Evidence', [
             'candidate' => $candidate,
             'externalCompanies' =>$externalCompanies,
@@ -486,7 +506,6 @@ class CandidatesController extends Controller
             'country'=>strtolower(__('translate.country')),
             'external_company'=>strtolower(__('translate.external_company')),
         ]);
-
 
         $candidate->evidences()->create($validated);
 

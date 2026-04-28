@@ -15,7 +15,7 @@ class ExternalCompanyPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasAnyRole(['firm', 'recruit']);
     }
 
     /**
@@ -23,7 +23,7 @@ class ExternalCompanyPolicy
      */
     public function view(User $user, ExternalCompany $externalCompany): bool
     {
-        return $user->hasRole('firm') && $user->id === $externalCompany->user_id;
+        return $user->hasAnyRole(['firm', 'recruit']) && ($user->recruiter_from_firm_id ?? $user->id) === $externalCompany->user_id;
     }
 
     /**
@@ -31,7 +31,7 @@ class ExternalCompanyPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('firm');
+        return $user->hasAnyRole(['firm', 'recruit']);
     }
 
     /**
@@ -39,7 +39,7 @@ class ExternalCompanyPolicy
      */
     public function update(User $user, ExternalCompany $externalCompany): bool
     {
-        return $user->hasRole('firm') && $user->id === $externalCompany->user_id;
+        return $user->hasAnyRole(['firm', 'recruit']) && ($user->recruiter_from_firm_id ?? $user->id) === $externalCompany->user_id;
     }
 
     /**
@@ -47,6 +47,6 @@ class ExternalCompanyPolicy
      */
     public function delete(User $user, ExternalCompany $externalCompany): bool
     {
-        return $user->hasRole('firm') && $user->id === $externalCompany->user_id;
+        return $user->hasAnyRole(['firm', 'recruit']) && ($user->recruiter_from_firm_id ?? $user->id) === $externalCompany->user_id;
     }
 }

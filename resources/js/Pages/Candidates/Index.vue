@@ -361,7 +361,7 @@ watch(selectedTags, (newTags) => {
                                 >
                                     <option value="">{{ __('translate.allProjects') }}</option>
                                     <option v-for="project in projects" :key="project.id" :value="project.id">
-                                        {{ project.id }}
+                                        {{ getLocalizedTitle(project.title) }}
                                     </option>
                                 </select>
                             </div>

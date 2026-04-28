@@ -912,6 +912,9 @@ return [
     'evidencesUpdated' => 'የአመልካች መዝገብ ዘምኗል',
     'note' => 'ማስታወሻ',
     'evidencesDeleted' => 'የአመልካች መዝገብ ተሰርዟል',
+    'noExternalCompaniesFound' => 'ምንም ውጫዊ ኩባንያዎች አልተገኙም',
+    'mustAddExternalCompanyBeforeEvidence' => 'የአመልካች መዝገብ ከመጨመርዎ በፊት ቢያንስ አንድ ውጫዊ ኩባንያ ማከል አለብዎት።',
+    'addExternalCompany' => 'ውጫዊ ኩባንያ ያክሉ',
     'thanksForResponse' => 'ስለ ምላሽዎ እናመሰግናለን፡ :decision ለማመልከቻ #:application',
     'subtotal' => 'ንዑስ ድምር',
     'collapse' => 'አሳንስ (Collapse)',
@@ -1660,5 +1663,5 @@ return [
     'reject_all' => 'አስፈላጊ ካልሆነ በስተቀር ሁሉንም ውድቅ አድርግ',
     'only_essential' => 'አስፈላጊ ኩኪዎች ብቻ',
     'sickPeople'=>'ሴ/ወ/ሌላ',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
 ];
