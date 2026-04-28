@@ -724,11 +724,6 @@ const isSearching = ref(false);
         align-items: center;
     }
 
-    &:focus-within .multiselect__tags {
-        border-color: #00a0e3;
-        box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1);
-    }
-
     .multiselect__placeholder {
         margin-bottom: 0;
         padding-top: 0;
