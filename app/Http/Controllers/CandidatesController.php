@@ -12,6 +12,7 @@ use App\Models\Project;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
+use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,16 +46,11 @@ class CandidatesController extends Controller
     /**
      * Wyświetla listę kandydatów zalogowanej firmy.
      */
-    public function index(Request $request)
+    public function index(Request $request,DictionaryService $dictionaryService)
     {
-        $locale = app()->getLocale();
-        $categories = Category::whereNotNull('parent_id')
-            ->get()
-            ->filter(function($category) use ($locale) {
-                $title = json_decode($category,true)['title'];
-                return isset($title[$locale]) && !empty($title[$locale]);
-            })
-            ->values();
+        $categories = $dictionaryService->getCategoriesForCandidates();
+
+
         $customTags = Auth::user()->tags()->orderBy('name')->get();
 
         // Pobieramy kandydatów, którzy aplikowali na projekty zalogowanej firmy
@@ -141,9 +137,7 @@ class CandidatesController extends Controller
         $optionsRecruits = auth()->user()->recruits()->get()->map(function ($item) {
         return ['name' => $item['name'], 'value' => $item['id']];
         });
-        $optionsPosition = Cache::remember('categoriesWithoutDetail', now()->addDay(), function() {
-            return MultiselectWithoutDetailResource::collection(Category::whereNotNull('parent_id')->get());
-        });
+        $optionsPosition = $dictionaryService->getCategoriesWithoutDetail();
 
         return Inertia::render('Candidates/Index', [
             'candidates' => $candidates,
@@ -159,7 +153,7 @@ class CandidatesController extends Controller
     /**
      * Wyświetla szczegóły kandydata.
      */
-    public function show(Candidate $candidate)
+    public function show(Candidate $candidate, DictionaryService $dictionaryService)
     {
 
         // Sprawdzenie czy kandydat ma aplikację w firmie zalogowanego użytkownika
@@ -199,14 +193,7 @@ class CandidatesController extends Controller
             ->first();
 
         // Pobieranie kategorii i tagów dla widoku
-        $locale = app()->getLocale();
-        $categories = Category::whereNotNull('parent_id')
-            ->get()
-            ->filter(function($category) use ($locale) {
-                $title = json_decode($category,true)['title'];
-                return isset($title[$locale]) && !empty($title[$locale]);
-            })
-            ->values();
+        $categories = $dictionaryService->getCategoriesForCandidates();
         $customTags = Auth::user()->tags()->orderBy('name')->get();
 
         // Pobieranie tagów przypisanych do kandydata

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\CategoryTagResource;
 use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\PayModesResource;
@@ -204,7 +205,23 @@ class DictionaryService
         return Cache::rememberForever($this->getCacheKey('categoriesWithoutDetail'), function () {
             return MultiselectWithoutDetailResource::collection(
                 \App\Models\Category::whereNotNull('parent_id')->get()
-            )->resolve(); // <--- Dodano resolve()
+            )->resolve();
+        });
+    }
+
+    public function getCategoriesForCandidates(): mixed
+    {
+        $locale = app()->getLocale();
+        return Cache::rememberForever($this->getCacheKey('categoriesForCandidates'), function () use ($locale) {
+            return CategoryTagResource::collection(
+                \App\Models\Category::whereNotNull('parent_id')
+                    ->get()
+                    ->filter(function ($category) use ($locale) {
+                        // Sprawdzamy czy kategoria ma wpisany tytuł w obecnym języku
+                        $translation = $category->getTranslation('title', $locale, false);
+                        return !empty($translation);
+                    })
+            )->resolve();
         });
     }
     public function getCategoriesWithArticles(): mixed
@@ -266,6 +283,7 @@ class DictionaryService
         $this->forgetAllLocales('category');
         $this->forgetAllLocales('categoriesWithoutDetail');
         $this->forgetAllLocales('categoriesWithArticles');
+        $this->forgetAllLocales('categoriesForCandidates');
         // If there are other category-related caches (like from Model methods), they should be cleared too.
         $this->forgetAllLocales('categories_without_detail');
         $this->forgetAllLocales('categories_without_positions_without_detail');
@@ -299,6 +317,7 @@ class DictionaryService
         $this->forgetAllLocales('categoriesFoundations');
         $this->forgetAllLocales('categoriesWithoutDetail');
         $this->forgetAllLocales('categoriesWithArticles');
+        $this->forgetAllLocales('categoriesForCandidates');
         $this->forgetAllLocales('categories_without_detail');
         $this->forgetAllLocales('categories_without_positions_without_detail');
         $this->forgetAllLocales('categoriesPositionsWithoutDetail');

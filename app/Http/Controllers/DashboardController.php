@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\AdminSparklineChart;
 use App\Models\Aplication;
+use App\Models\Article;
+use App\Models\Banner;
 use App\Models\Firm;
 use App\Models\Foundation;
 use App\Models\Invoice;
 use App\Models\Project;
 use App\Models\ProjectQuestion;
-use App\Models\Banner;
-use App\Models\Article;
 use App\Models\User;
 use App\Notifications\SystemActivityNotification;
-use App\Charts\AdminSparklineChart;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -27,7 +26,7 @@ class DashboardController extends Controller
         $countArticles = Article::where('active_admin', 0)->count();
 
         // Helper to get stats for periods
-        $getPeriodStats = function($model, $days = 7, $sumColumn = null) {
+        $getPeriodStats = function ($model, $days = 7, $sumColumn = null) {
             $current = [];
             $previous = [];
 
@@ -48,12 +47,12 @@ class DashboardController extends Controller
             return [
                 'total' => $currentTotal,
                 'diff' => $diff,
-                'trend' => $diff >= 0 ? 'up' : 'down'
+                'trend' => $diff >= 0 ? 'up' : 'down',
             ];
         };
 
         // Dane dla pracownika (worker)
-        $lastAplications = Aplication::with('project.user')->where('aplication_user_id',auth()->user()->id)->latest()->first();
+        $lastAplications = Aplication::with('project.user')->where('aplication_user_id', auth()->user()->id)->latest()->first();
         $otherAplications = Aplication::with('project.user')
             ->where('aplication_user_id', auth()->user()->id)
             ->when($lastAplications, function ($query) use ($lastAplications) {
@@ -90,7 +89,7 @@ class DashboardController extends Controller
                     },
                     'aplications as new_count' => function ($query) {
                         $query->whereNull('status');
-                    }
+                    },
                 ])
                 ->latest()
                 ->take(5)
@@ -126,7 +125,7 @@ class DashboardController extends Controller
                 });
 
             // Pobierz ostatnie aplikacje dla projektów rekrutera
-            $recruitApplications = Aplication::with(['user','worker', 'project'])
+            $recruitApplications = Aplication::with(['user', 'worker', 'project'])
                 ->whereHas('project', function ($query) use ($user) {
                     $query->where('recruiter_id', $user->id)
                         ->orWhereJsonContains('other_recruits', $user->id);
@@ -137,16 +136,16 @@ class DashboardController extends Controller
                 ->map(function ($app) {
                     $userName = $app->worker && $app->worker->exists
                         ? $app->worker->name
-                        : trim($app->name . ' ' . $app->surname);
+                        : trim($app->name.' '.$app->surname);
                     $userPhoto = $app->worker?->profile_photo_url;
 
-                    if (!$userPhoto) {
+                    if (! $userPhoto) {
                         $initials = trim(collect(explode(' ', $userName))
                             ->map(fn ($segment) => mb_substr($segment, 0, 1))
                             ->join(' ')
                         );
 
-                        $userPhoto = 'https://ui-avatars.com/api/?name=' . urlencode($initials) . '&color=7F9CF5&background=EBF4FF';
+                        $userPhoto = 'https://ui-avatars.com/api/?name='.urlencode($initials).'&color=7F9CF5&background=EBF4FF';
                     }
 
                     return [
@@ -168,61 +167,56 @@ class DashboardController extends Controller
                 });
 
             // Statystyki aplikacji dla wykresu
-            $totalYes = Aplication::whereHas('project', function ($query) use ($user) {
+            $stats = Aplication::whereHas('project', function ($query) use ($user) {
                 $query->where('recruiter_id', $user->id)
                     ->orWhereJsonContains('other_recruits', $user->id);
-            })->where('status', 'yes')->count();
-
-            $totalNo = Aplication::whereHas('project', function ($query) use ($user) {
-                $query->where('recruiter_id', $user->id)
-                    ->orWhereJsonContains('other_recruits', $user->id);
-            })->where('status', 'no')->count();
-
-            $totalMaybe = Aplication::whereHas('project', function ($query) use ($user) {
-                $query->where('recruiter_id', $user->id)
-                    ->orWhereJsonContains('other_recruits', $user->id);
-            })->where('status', 'maybe')->count();
-
-            $totalNew = Aplication::whereHas('project', function ($query) use ($user) {
-                $query->where('recruiter_id', $user->id)
-                    ->orWhereJsonContains('other_recruits', $user->id);
-            })->whereNull('status')->count();
+            })
+                ->selectRaw("
+                    COUNT(CASE WHEN status = 'yes' THEN 1 END) as total_yes,
+                    COUNT(CASE WHEN status = 'no' THEN 1 END) as total_no,
+                    COUNT(CASE WHEN status = 'maybe' THEN 1 END) as total_maybe,
+                    COUNT(CASE WHEN status IS NULL THEN 1 END) as total_new
+                ")
+                ->first();
 
             $recruitData = [
                 'applications' => $recruitApplications,
                 'projects' => $projects,
                 'data' => [
-                    'yes' => $totalYes,
-                    'no' => $totalNo,
-                    'maybe' => $totalMaybe,
-                    'new' => $totalNew,
+                    'yes' => $stats->total_yes ?? 0,
+                    'no' => $stats->total_no ?? 0,
+                    'maybe' => $stats->total_maybe ?? 0,
+                    'new' => $stats->total_new ?? 0,
                 ],
             ];
         }
         if ($user->hasRole('firm')) {
 
-            $recruits = User::where('recruiter_from_firm_id',auth()->id())->orWhere('id', auth()->id())->get();
+            $recruits = User::where('recruiter_from_firm_id', auth()->id())->orWhere('id', auth()->id())->get();
             $activeRecruits = $recruits->whereNull('user_blocked')->count();
             $noRecruits = $recruits->whereNotNull('user_blocked', false)->count();
             $projects = Project::where('user_id', $user->id)
                 ->orWhereJsonContains('other_recruits', $user->id)->get();
-            $aplicationCount=Aplication::query()
+            $aplicationCount = Aplication::query()
                 ->forCurrentRecruiter()->count();
 
             $projectsCount = $projects->count();
             $viewCount = $projects->sum('views_count');
 
-            $baseQuery = Aplication::where(function ($q) use ($user) {
+            $firmStats = Aplication::where(function ($q) use ($user) {
                 $q->whereHas('project', function ($query) use ($user) {
                     $query->where('recruiter_id', $user->id)
                         ->orWhereJsonContains('other_recruits', $user->id);
                 })
                     ->orWhere('user_id', auth()->id());
-            });
-            $totalYes = (clone $baseQuery)->where('status', 'yes')->count();
-            $totalNo = (clone $baseQuery)->where('status', 'no')->count();
-            $totalMaybe = (clone $baseQuery)->where('status', 'maybe')->count();
-            $totalNew = (clone $baseQuery)->whereNull('status')->count();
+            })
+                ->selectRaw("
+                    COUNT(CASE WHEN status = 'yes' THEN 1 END) as total_yes,
+                    COUNT(CASE WHEN status = 'no' THEN 1 END) as total_no,
+                    COUNT(CASE WHEN status = 'maybe' THEN 1 END) as total_maybe,
+                    COUNT(CASE WHEN status IS NULL THEN 1 END) as total_new
+                ")
+                ->first();
 
             $allProducts = \App\Models\Product::where('active', true)
                 ->orderBy('points', 'asc')
@@ -251,17 +245,17 @@ class DashboardController extends Controller
                     'product_type' => $product->product_type->value,
                     'service_type' => $product->getTranslation('type', 'en'),
                     'description' => $product->description ?? null,
-                    'icon' => asset('images/price/' . $product->id.'-points.svg'),
+                    'icon' => asset('images/price/'.$product->id.'-points.svg'),
                 ];
             })->sortBy('price')->values();
             $lastInvoices = Invoice::where('user_id', auth()->id())->latest()->take(3)->get();
             $firm = auth()->user()->firm;
             $firmData = [
                 'aplications' => [
-                    'yes' => $totalYes,
-                    'no' => $totalNo,
-                    'maybe' => $totalMaybe,
-                    'new' => $totalNew,
+                    'yes' => $firmStats->total_yes ?? 0,
+                    'no' => $firmStats->total_no ?? 0,
+                    'maybe' => $firmStats->total_maybe ?? 0,
+                    'new' => $firmStats->total_new ?? 0,
                 ],
                 'recruits' => [
                     'active' => $activeRecruits,
@@ -275,7 +269,7 @@ class DashboardController extends Controller
                     'levelNames' => collect(config('premium.level_names'))->mapWithKeys(function ($translationKey, $level) {
                         return [$level => __($translationKey)];
                     })->all(),
-                ]
+                ],
             ];
         }
 
@@ -292,39 +286,39 @@ class DashboardController extends Controller
             // Dodatkowe zdarzenia/aktywności (przykładowe)
             $recentActivities = collect();
 
-//            // Ostatnie firmy
-//            Firm::latest()->take(2)->get()->each(function($f) use ($recentActivities) {
-//                $recentActivities->push([
-//                    'icon' => 'F',
-//                    'title' => 'Nowa firma: ' . $f->name,
-//                    'subtitle' => $f->created_at->diffForHumans(),
-//                ]);
-//            });
+            //            // Ostatnie firmy
+            //            Firm::latest()->take(2)->get()->each(function($f) use ($recentActivities) {
+            //                $recentActivities->push([
+            //                    'icon' => 'F',
+            //                    'title' => 'Nowa firma: ' . $f->name,
+            //                    'subtitle' => $f->created_at->diffForHumans(),
+            //                ]);
+            //            });
 
-//            // Ostatnie oferty
-//            Project::latest()->with('user')->take(2)->get()->each(function($p) use ($recentActivities) {
-//                $recentActivities->push([
-//                    'icon' => 'P',
-//                    'title' => 'Nowa oferta: ' . ($p->position['allTranslations']['title'][app()->getLocale()] ?? $p->position['name'] ?? 'Bez nazwy'),
-//                    'subtitle' => $p->created_at->diffForHumans(),
-//                ]);
-//            });
+            //            // Ostatnie oferty
+            //            Project::latest()->with('user')->take(2)->get()->each(function($p) use ($recentActivities) {
+            //                $recentActivities->push([
+            //                    'icon' => 'P',
+            //                    'title' => 'Nowa oferta: ' . ($p->position['allTranslations']['title'][app()->getLocale()] ?? $p->position['name'] ?? 'Bez nazwy'),
+            //                    'subtitle' => $p->created_at->diffForHumans(),
+            //                ]);
+            //            });
 
             // Aktywności systemowe z powiadomień
             $user->notifications()->where('notifications.type', SystemActivityNotification::class)
                 ->latest()
                 ->take(5)
                 ->get()
-                ->each(function($n) use ($recentActivities) {
+                ->each(function ($n) use ($recentActivities) {
                     $data = $n->data;
                     $title = '';
                     $icon = 'U';
 
                     if ($data['type'] === 'user_registered') {
                         $roleName = $data['role'] === 'worker' ? 'pracownik' : 'firma';
-                        $title = "Zarejestrowano nowego użytkownika ({$roleName}): " . $data['user_name'];
+                        $title = "Zarejestrowano nowego użytkownika ({$roleName}): ".$data['user_name'];
                     } elseif ($data['type'] === 'recruit_created') {
-                        $title = "Firma {$data['creator_name']} dodała rekrutera: " . $data['user_name'];
+                        $title = "Firma {$data['creator_name']} dodała rekrutera: ".$data['user_name'];
                         $icon = 'R';
                     }
 
@@ -376,31 +370,31 @@ class DashboardController extends Controller
             if ($countQuestions > 0) {
                 $adminData['alerts'][] = [
                     'level' => 'warning',
-                    'text' => 'Masz ' . $countQuestions . ' pytań oczekujących na akceptację.',
+                    'text' => 'Masz '.$countQuestions.' pytań oczekujących na akceptację.',
                 ];
             }
             if ($countBanners > 0) {
                 $adminData['alerts'][] = [
                     'level' => 'warning',
-                    'text' => 'Masz ' . $countBanners . ' banerów oczekujących na akceptację.',
+                    'text' => 'Masz '.$countBanners.' banerów oczekujących na akceptację.',
                 ];
             }
             if ($countArticles > 0) {
                 $adminData['alerts'][] = [
                     'level' => 'warning',
-                    'text' => 'Masz ' . $countArticles . ' artykułów oczekujących na akceptację.',
+                    'text' => 'Masz '.$countArticles.' artykułów oczekujących na akceptację.',
                 ];
             }
         }
 
-        return inertia()->render('Dashboard',[
-            'chartRecruit' => $user->hasRole('recruit') ? $recruitData : NULL,
-            'chartFirm' => $user->hasRole('firm') ? $firmData : NULL,
-            'adminData' => $user->hasRole('admin') ? $adminData : NULL,
-            'lastAplications'=>$lastAplications,
-            'countQuestions'=>$countQuestions,
-            'countBanners'=>$countBanners,
-            'countArticles'=>$countArticles,
+        return inertia()->render('Dashboard', [
+            'chartRecruit' => $user->hasRole('recruit') ? $recruitData : null,
+            'chartFirm' => $user->hasRole('firm') ? $firmData : null,
+            'adminData' => $user->hasRole('admin') ? $adminData : null,
+            'lastAplications' => $lastAplications,
+            'countQuestions' => $countQuestions,
+            'countBanners' => $countBanners,
+            'countArticles' => $countArticles,
             'otherAplications' => $otherAplications,
             'notifications' => $notifications,
             'packages' => $packages,
@@ -411,5 +405,4 @@ class DashboardController extends Controller
             'viewCount' => $viewCount,
         ]);
     }
-
 }
