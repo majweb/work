@@ -258,7 +258,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                    </div>
                                     <h3 class="font-black text-[#0A2C5C] uppercase tracking-tight text-lg mb-2 group-hover:text-blue-500 transition-colors">{{ firm.name }}</h3>
                                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest" v-if="firm.countryJson">
-                                        {{ firm.countryJson?.allTranslations?.[usePage().props.language] }}
+                                        {{ firm.countryJson?.allTranslations?.[usePage().props.language] || firm.countryJson?.name }}
                                     </p>
                                 </Link>
                             </div>

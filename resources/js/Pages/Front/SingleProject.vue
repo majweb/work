@@ -217,11 +217,11 @@ onMounted(async () => {
                                     :class="{ 'ring-4 ring-[#0A2C5C]/50 shadow-2xl shadow-[#0A2C5C]/20': project.is_featured }"
                                 />
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
-                                <div v-if="project.is_featured" class="absolute -top-[100px] md:-top-[120px] -right-20 z-40 transform hover:scale-110 transition-transform duration-300">
+                                <div v-if="project.is_featured" class="absolute -bottom-10 md:-bottom-10 -left-10 z-40 transform hover:scale-110 transition-transform duration-300">
                                     <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-20 h-20 drop-shadow-2xl" />
                                 </div>
                             </div>
-                            <div class="relative">
+                            <div class="relative pt-5 md:pt-0">
                                 <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight flex items-center gap-2">
                                     {{ project.user?.name }}
                                 </h2>

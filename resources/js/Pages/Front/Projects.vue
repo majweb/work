@@ -629,7 +629,7 @@ const isSearching = ref(false);
                                             {{ getPositionTitle(project) }}
                                         </h4>
                                     </div>
-                                        <div class="flex flex-col items-end gap-1 relative z-1">
+                                        <div class="flex flex-col items-end gap-1 relative z-1" :class="{'-left-10' : project.is_featured}">
                                             <div class="flex items-center gap-2">
                                                 <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -652,7 +652,7 @@ const isSearching = ref(false);
                                                     backgroundSize: 'cover'
                                                 }"
                                             ></div>
-                                            <div v-if="project.is_featured" class="absolute -top-6 -right-6 z-20 transform hover:scale-110 transition-transform duration-300">
+                                            <div v-if="project.is_featured" class="absolute -bottom-6 -left-5 z-20 transform hover:scale-110 transition-transform duration-300">
                                                 <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-12 h-12 drop-shadow-lg" />
                                             </div>
                                         </div>

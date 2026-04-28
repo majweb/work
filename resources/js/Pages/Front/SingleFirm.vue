@@ -24,7 +24,7 @@ const firmSchema = computed(() => {
         "address": {
             "@type": "PostalAddress",
             "addressLocality": props.firm.city,
-            "addressCountry": props.firm.countryJson['countryCode']
+            "addressCountry": props.firm.countryJson?.countryCode || null
         },
         "contactPoint": {
             "@type": "ContactPoint",
@@ -154,7 +154,7 @@ function closeLightbox() {
                                      :style="{ backgroundImage: `url(${firm.profile_photo_url || firm.logo})` }">
                                 </div>
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
-                                <div v-if="firm.is_featured" class="absolute -top-[100px] md:-top-[120px] -right-20 z-40 transform hover:scale-110 transition-transform duration-300">
+                                <div v-if="firm.is_featured" class="absolute -bottom-10 md:-bottom-10 -left-10 z-40 transform hover:scale-110 transition-transform duration-300">
                                     <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-20 h-20 drop-shadow-2xl" />
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ function closeLightbox() {
                                 <div class="flex items-center justify-center md:justify-start gap-3 mt-1">
                                     <div class="flex items-center gap-1.5 text-gray-400">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                                        <span class="text-[10px] font-bold uppercase tracking-widest">{{ firm.city }}, {{ firm.countryJson?.allTranslations[usePage().props.language] }}</span>
+                                        <span class="text-[10px] font-bold uppercase tracking-widest">{{ firm.city }}, {{ firm.countryJson?.allTranslations?.[usePage().props.language] }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -295,12 +295,12 @@ function closeLightbox() {
                         <!-- Right Column: Stats & Map -->
                         <div class="space-y-8">
                             <!-- Mapa -->
-                            <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden h-[300px] relative" v-if="isClient">
+                            <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden h-[300px] relative" v-if="isClient && props.firm.city && props.firm.street">
                                 <div id="firmMap" class="w-full h-full"></div>
                             </div>
 
                             <!-- Adres -->
-                            <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
+                            <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="firm.city || firm.street">
                                 <div class="flex items-center gap-4 mb-6">
                                     <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
                                         <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" alt="icon">
@@ -308,18 +308,18 @@ function closeLightbox() {
                                     <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.address') }}</h2>
                                 </div>
                                 <div class="space-y-6">
-                                    <div class="flex items-start gap-4">
+                                    <div class="flex items-start gap-4" v-if="firm.city">
                                         <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
                                             <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
                                         </div>
                                         <div>
                                             <p class="text-sm font-black text-gray-900 uppercase tracking-tight">{{ firm.city }}</p>
                                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                                {{ firm.countryJson?.allTranslations[usePage().props.language] }}
+                                                {{ firm.countryJson?.allTranslations?.[usePage().props.language] }}
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="flex items-start gap-4">
+                                    <div class="flex items-start gap-4" v-if="props.firm.street && props.firm.number">
                                         <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center shrink-0">
                                             <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                                         </div>
