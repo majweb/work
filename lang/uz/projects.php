@@ -1,0 +1,1 @@
+<?phpreturn [    'work' => 'ish',    'agreement' => 'shartnoma',    'time' => 'ish vaqti',    'description' => 'LAVOZIM TA’RIFI',    'hiden' => 'Takliflarga ariza berish uchun avval xodim sifatida tizimga kirishingiz kerak.',    'hidenWhich' => 'Siz quyidagicha ariza berayapsiz:',];

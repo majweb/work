@@ -1,194 +1,1 @@
-<?php
-
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
-    "accepted"=>"Pole :attribute musi zostać zaakceptowane.",
-    "accepted_if"=>"Pole :attribute musi zostać zaakceptowane gdy :other ma wartość :value.",
-    "active_url"=>"Pole :attribute jest nieprawidłowym adresem URL.",
-    "after"=>"Pole :attribute musi być datą późniejszą od :date.",
-    "after_or_equal"=>"Pole :attribute musi być datą nie wcześniejszą niż :date.",
-    "alpha"=>"Pole :attribute może zawierać jedynie litery.",
-    "alpha_dash"=>"Pole :attribute może zawierać jedynie litery, cyfry i myślniki.",
-    "alpha_num"=>"Pole :attribute może zawierać jedynie litery i cyfry.",
-    "array"=>"Pole :attribute musi być tablicą.",
-    "ascii"=>"Pole :attribute może zawierać tylko jednobajtowe znaki alfanumeryczne i symbole.",
-    "attached"=>"Pole :attribute jest już dołączone.",
-    "before"=>"Pole :attribute musi być datą wcześniejszą od :date.",
-    "before_or_equal"=>"Pole :attribute musi być datą nie późniejszą niż :date.",
-    "between.array"=>"Pole :attribute musi składać się z :min - :max elementów.",
-    "between.file"=>"Pole :attribute musi zawierać się w granicach :min - :max kilobajtów.",
-    "between.numeric"=>"Pole :attribute musi zawierać się w granicach :min - :max.",
-    "between.string"=>"Pole :attribute musi zawierać się w granicach :min - :max znaków.",
-    "boolean"=>"Pole :attribute musi mieć wartość logiczną prawda albo fałsz.",
-    "can"=>"Pole :attribute zawiera nieautoryzowaną wartość.",
-    "confirmed"=>"Potwierdzenie pola :attribute nie zgadza się.",
-    "contains"=>"Pole :attribute nie zawiera wymaganego elementu.",
-    "current_password"=>"Hasło jest nieprawidłowe.",
-    "date"=>"Pole :attribute nie jest prawidłową datą.",
-    "date_equals"=>"Pole :attribute musi być datą równą :date.",
-    "date_format"=>"Pole :attribute nie jest w formacie :format.",
-    "decimal"=>"Pole :attribute musi mieć :decimal miejsc po przecinku.",
-    "declined"=>"Pole :attribute musi zostać odrzucone.",
-    "declined_if"=>"Pole :attribute musi zostać odrzucone, gdy :other ma wartość :value.",
-    "different"=>"Pole :attribute oraz :other muszą się różnić.",
-    "digits"=>"Pole :attribute musi składać się z :digits cyfr.",
-    "digits_between"=>"Pole :attribute musi mieć od :min do :max cyfr.",
-    "dimensions"=>"Pole :attribute ma niepoprawne wymiary.",
-    "distinct"=>"Pole :attribute ma zduplikowane wartości.",
-    "doesnt_end_with"=>"Pole :attribute nie może kończyć się jednym z następujących wartości: :values.",
-    "doesnt_start_with"=> "Pole :attribute nie może zaczynać się od jednego z następujących wartości: :values.",
-    "email"=> "Pole :attribute nie jest poprawnym adresem e-mail.",
-    "ends_with"=>"Pole :attribute musi kończyć się jedną z następujących wartości: :values.",
-    "enum"=> "Pole :attribute ma niepoprawną wartość.",
-    "exists"=> "Zaznaczone pole :attribute jest nieprawidłowe.",
-    "extensions"=> "Pole :attribute musi mieć jedno z następujących rozszerzeń: :values.",
-    "failed"=>"Błędny login lub hasło.",
-    "file"=>"Pole :attribute musi być plikiem.",
-    "filled"=>"Pole :attribute musi być wypełnione.",
-    "gt.array"=>"Pole :attribute musi mieć więcej niż :value elementów.",
-    "gt.file"=>"Pole :attribute musi być większe niż :value kilobajtów.",
-    "gt.numeric"=>"Pole :attribute musi być większe niż :value.",
-    "gt.string"=>"Pole :attribute musi być dłuższe niż :value znaków.",
-    "gte.array"=>"Pole :attribute musi mieć :value lub więcej elementów.",
-    "gte.file"=>"Pole :attribute musi być większe lub równe :value kilobajtów.",
-    "gte.numeric"=>"Pole :attribute musi być większe lub równe :value.",
-    "gte.string"=>"Pole :attribute musi być dłuższe lub równe :value znaków.",
-    "hex_color"=>"Pole :attribute musi mieć podany prawidłowy kolor w formacie szesnastkowym.",
-    "image"=>"Pole :attribute musi być obrazkiem.",
-    "in"=>"Zaznaczony element :attribute jest nieprawidłowy.",
-    "in_array"=>"Pole :attribute nie znajduje się w :other.",
-    "integer"=>"Pole :attribute musi być liczbą całkowitą.",
-    "ip"=>"Pole :attribute musi być prawidłowym adresem IP.",
-    "ipv4"=>"Pole :attribute musi być prawidłowym adresem IPv4.",
-    "ipv6"=>"Pole :attribute musi być prawidłowym adresem IPv6.",
-    "json"=>"Pole :attribute musi być poprawnym ciągiem znaków JSON.",
-    "list"=>"Pole :attribute musi być listą.",
-    "lowercase"=>":Attribute musi być pisany małymi literami.",
-    "lt.array"=>"Pole :attribute musi mieć mniej niż :value elementów.",
-    "lt.file"=>"Pole :attribute musi być mniejsze niż :value kilobajtów.",
-    "lt.numeric"=>"Pole :attribute musi być mniejsze niż :value.",
-    "lt.string"=>"Pole :attribute musi być krótsze niż :value znaków.",
-    "lte.array"=>"Pole :attribute musi mieć :value lub mniej elementów.",
-    "lte.file"=>"Pole :attribute musi być mniejsze lub równe :value kilobajtów.",
-    "lte.numeric"=>"Pole :attribute musi być mniejsze lub równe :value.",
-    "lte.string"=>"Pole :attribute musi być krótsze lub równe :value znaków.",
-    "mac_address"=>"Pole :attribute musi być prawidłowym adresem MAC.",
-    "max.array"=>"Pole :attribute nie może mieć więcej niż :max elementów.",
-    "max.file"=>"Pole :attribute nie może być większe niż :max kilobajtów.",
-    "max.numeric"=>"Pole :attribute nie może być większe niż :max.",
-    "max.string"=>"Pole :attribute nie może być dłuższe niż :max znaków.",
-    "max_digits"=>"Pole :attribute nie może mieć więcej niż :max cyfr.",
-    "mimes"=>"Pole :attribute musi być plikiem typu :values.",
-    "mimetypes"=>"Pole :attribute musi być plikiem typu :values.",
-    "min.array"=>"Pole :attribute musi mieć przynajmniej :min elementów.",
-    "min.file"=>"Pole :attribute musi mieć przynajmniej :min kilobajtów.",
-    "min.numeric"=>"Pole :attribute musi być nie mniejsze od :min.",
-    "min.string"=>"Pole :attribute musi mieć przynajmniej :min znaków.",
-    "min_digits"=>"Pole :attribute musi mieć co najmniej :min cyfr.",
-    "missing"=>"Musi brakować pola :attribute.",
-    "missing_if"=>"Jeśli :other to :value, musi brakować pola :attribute.",
-    "missing_unless"=>"Musi brakować pola :attribute, chyba że :other to :value.",
-    "missing_with"=>"Jeśli występuje wartość :values, musi brakować pola :attribute.",
-    "missing_with_all"=>"Jeśli występuje :values, musi brakować pola :attribute.",
-    "multiple_of"=>"Pole :attribute musi być wielokrotnością wartości :value",
-    "next"=>"Następna &raquo;",
-    "not_in"=>"Zaznaczony :attribute jest nieprawidłowy.",
-    "not_regex"=>"Format pola :attribute jest nieprawidłowy.",
-    "numeric"=>"Pole :attribute musi być liczbą.",
-    "password"=>"Hasło jest nieprawidłowe.",
-    "password.letters"=>"Pole :attribute musi zawierać przynajmniej jedną literę.",
-    "password.mixed"=>"Pole :attribute musi zawierać przynajmniej jedną wielką i jedną małą literę.",
-    "password.numbers"=>"Pole :attribute musi zawierać przynajmniej jedną liczbę.",
-    "password.symbols"=>"Pole :attribute musi zawierać przynajmniej jeden symbol.",
-    "password.uncompromised"=>"Podany :attribute pojawił się w wycieku danych. Proszę wybrać inną wartość :attribute.",
-    "present"=>"Pole :attribute musi być obecne.",
-    "present_if"=>"Pole :attribute musi być obecne jeżeli :other ma wartość :value.",
-    "present_unless"=>"Pole :attribute musi być obecne, chyba że :other ma wartość :value.",
-    "present_with"=>"Pole :attribute musi być obecne kiedy :values jest podany/a..",
-    "present_with_all"=>"Pole :attribute musi być obecne kiedy :values są podane.",
-    "previous"=>"&laquo; Poprzednia",
-    "prohibited"=>"Pole :attribute jest zabronione.",
-    "prohibited_if"=>"Pole :attribute jest zabronione, gdy :other to :value.",
-    "prohibited_unless"=>"Pole :attribute jest zabronione, chyba że :other jest w :values.",
-    "prohibits"=>"Pole :attribute wyklucza obecność :other.",
-    "regex"=>"Format pola :attribute jest nieprawidłowy.",
-    "relatable"=>"Pole :attribute nie może być powiązane z tym zasobem.",
-    "required"=>"Pole :attribute jest wymagane.",
-    "required_array_keys"=>"Pole :attribute musi zawierać wartości: :values.",
-    "required_if"=>"Pole :attribute jest wymagane gdy :other ma wartość :value.",
-    "required_if_accepted"=>"To pole jest wymagane gdy :other jest zaakceptowane.",
-    "required_if_declined"=>"Pole :attribute jest wymagane gdy :other jest odrzucone.",
-    "required_unless"=>"Pole :attribute jest wymagane jeżeli :other nie znajduje się w :values.",
-    "required_with"=>"Pole :attribute jest wymagane gdy wartość :values jest obecna.",
-    "required_with_all"=>"Pole :attribute jest wymagane gdy wszystkie wartości :values są obecne.",
-    "required_without"=>"Pole :attribute jest wymagane gdy wartość :values nie jest obecna.",
-    "required_without_all"=>"Pole :attribute jest wymagane gdy żadne z wartości :values nie są obecne.",
-    "reset"=>"Hasło zostało zresetowane!",
-    "same"=>"Pole :attribute i :other muszą być takie same.",
-    "sent"=>"Przypomnienie hasła zostało wysłane!",
-    "size.array"=>"Pole :attribute musi zawierać :size elementów.",
-    "size.file"=>"Pole :attribute musi mieć :size kilobajtów.",
-    "size.numeric"=>"Pole :attribute musi mieć :size.",
-    "size.string"=>"Pole :attribute musi mieć :size znaków.",
-    "starts_with"=>"Pole :attribute musi zaczynać się jedną z następujących wartości: :values.",
-    "string"=>"Pole :attribute musi być ciągiem znaków.",
-    "throttle"=>"Za dużo nieudanych prób logowania. Proszę spróbować za :seconds sekund.",
-    "throttled"=>"Proszę zaczekać zanim spróbujesz ponownie.",
-    "timezone"=>"Pole :attribute musi być prawidłową strefą czasową.",
-    "token"=>"Token resetowania hasła jest nieprawidłowy.",
-    "ulid"=>"Pole :attribute musi być prawidłowym identyfikatorem ULID.",
-    "unique"=>"Taki :attribute już występuje.",
-    "uploaded"=>"Nie udało się wgrać pliku :attribute.",
-    "uppercase"=>":Attribute musi być pisany wielkimi literami.",
-    "url"=>"Format pola :attribute jest nieprawidłowy.",
-    "user"=>"Nie znaleziono użytkownika z takim adresem e-mail.",
-    "uuid"=>"Pole :attribute musi być poprawnym identyfikatorem UUID.",
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
-
-    'custom' => [
-        'sections.*.fields.title' => [
-            'required' => 'Tytuł sekcji wymagany',
-            'max' => 'Tytuł sekcji musi zawierać maksymalnie 100 znaków',
-            'distinct' => 'Tytuł sekcji już istnieje',
-        ],
-        'sections.*.fields.description' => [
-            'required' => 'Treść sekcji wymagany',
-            'max' => 'Tytuł sekcji musi zawierać maksymalnie 2000 znaków',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Attributes
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used to swap our attribute placeholder
-    | with something more reader friendly such as "E-Mail Address" instead
-    | of "email". This simply helps us make our message more expressive.
-    |
-    */
-
-    'attributes' => [],
-
-];
+<?phpreturn [    /*    |--------------------------------------------------------------------------    | Validation Language Lines    |--------------------------------------------------------------------------    |    | The following language lines contain the default error messages used by    | the validator class. Some of these rules have multiple versions such    | as the size rules. Feel free to tweak each of these messages here.    |    */    "accepted"=>"Майдони :attribute бояд қабул карда шавад.",    "accepted_if"=>"Майдони :attribute бояд қабул карда шавад, агар :other арзиши :value дошта бошад.",    "active_url"=>"Майдони :attribute як суроғаи ғайримиҷозии URL мебошад.",    "after"=>"Майдони :attribute бояд санаи баъд аз :date бошад.",    "after_or_equal"=>"Майдони :attribute бояд санае бошад, ки аз :date баробар ё дертар аст.",    "alpha"=>"Майдони :attribute метавонад танҳо ҳарфҳоро дар бар гирад.",    "alpha_dash"=>"Майдони :attribute метавонад танҳо ҳарфҳо, рақамҳо ва тироро дар бар гирад.",    "alpha_num"=>"Майдони :attribute метавонад танҳо ҳарфҳо ва рақамҳоро дар бар гирад.",    "array"=>"Майдони :attribute бояд массив бошад.",    "ascii"=>"Майдони :attribute метавонад танҳо рамзҳои алифбо-рақамии якбайта ва аломатҳоро дар бар гирад.",    "attached"=>"Майдони :attribute аллакай замима карда шудааст.",    "before"=>"Майдони :attribute бояд санаи пеш аз :date бошад.",    "before_or_equal"=>"Майдони :attribute бояд санае бошад, ки аз :date баробар ё пештар аст.",    "between.array"=>"Майдони :attribute бояд аз :min то :max элементҳо дошта бошад.",    "between.file"=>"Майдони :attribute бояд дар байни :min ва :max килобайт бошад.",    "between.numeric"=>"Майдони :attribute бояд дар байни :min ва :max бошад.",    "between.string"=>"Майдони :attribute бояд дар байни :min ва :max аломат дошта бошад.",    "boolean"=>"Майдони :attribute бояд арзиши мантиқӣ (дуруст ё нодуруст) дошта бошад.",    "can"=>"Майдони :attribute арзиши ғайримуҷазро дар бар мегирад.",    "confirmed"=>"Тасдиқи майдони :attribute мувофиқат намекунад.",    "contains"=>"Майдони :attribute элементи заруриро дар бар намегирад.",    "current_password"=>"Рамзи убур нодуруст аст.",    "date"=>"Майдони :attribute санаи дуруст нест.",    "date_equals"=>"Майдони :attribute бояд санаи ба :date баробар бошад.",    "date_format"=>"Майдони :attribute ба формати :format мувофиқат намекунад.",    "decimal"=>"Майдони :attribute бояд :decimal рақами даҳӣ дошта бошад.",    "declined"=>"Майдони :attribute бояд рад карда шавад.",    "declined_if"=>"Майдони :attribute бояд рад карда шавад, агар :other арзиши :value дошта бошад.",    "different"=>"Майдонҳои :attribute ва :other бояд фарқ кунанд.",    "digits"=>"Майдони :attribute бояд :digits рақам дошта бошад.",    "digits_between"=>"Майдони :attribute бояд аз :min то :max рақам дошта бошад.",    "dimensions"=>"Майдони :attribute андозаҳои нодуруст дорад.",    "distinct"=>"Майдони :attribute арзишҳои такрорӣ дорад.",    "doesnt_end_with"=>"Майдони :attribute набояд бо яке аз арзишҳои зерин тамом шавад: :values.",    "doesnt_start_with"=> "Майдони :attribute набояд бо яке аз арзишҳои зерин оғоз шавад: :values.",    "email"=> "Майдони :attribute як суроғаи дурусти электронӣ нест.",    "ends_with"=>"Майдони :attribute бояд бо яке аз арзишҳои зерин тамом шавад: :values.",    "enum"=> "Майдони :attribute арзиши нодуруст дорад.",    "exists"=> "Майдони :attribute интихобшуда нодуруст аст.",    "extensions"=> "Майдони :attribute бояд яке аз пайвастагиҳои зеринро дошта бошад: :values.",    "failed"=>"Номи корбарӣ ё рамзи убур нодуруст аст.",    "file"=>"Майдони :attribute бояд файл бошад.",    "filled"=>"Майдони :attribute бояд пур карда шавад.",    "gt.array"=>"Майдони :attribute бояд бештар аз :value элемент дошта бошад.",    "gt.file"=>"Майдони :attribute бояд калонтар аз :value килобайт бошад.",    "gt.numeric"=>"Майдони :attribute бояд аз :value калонтар бошад.",    "gt.string"=>"Майдони :attribute бояд дарозтар аз :value аломат бошад.",    "gte.array"=>"Майдони :attribute бояд :value ё бештар элемент дошта бошад.",    "gte.file"=>"Майдони :attribute бояд калонтар ё баробар ба :value килобайт бошад.",    "gte.numeric"=>"Майдони :attribute бояд калонтар ё баробар ба :value бошад.",    "gte.string"=>"Майдони :attribute бояд дарозтар ё баробар ба :value аломат бошад.",    "hex_color"=>"Майдони :attribute бояд ранги дурусти шонздаҳӣ дошта бошад.",    "image"=>"Майдони :attribute бояд тасвир бошад.",    "in"=>"Элементи :attribute интихобшуда нодуруст аст.",    "in_array"=>"Майдони :attribute дар :other вуҷуд надорад.",    "integer"=>"Майдони :attribute бояд адади бутун бошад.",    "ip"=>"Майдони :attribute бояд суроғаи дурусти IP бошад.",    "ipv4"=>"Майдони :attribute бояд суроғаи дурусти IPv4 бошад.",    "ipv6"=>"Майдони :attribute бояд суроғаи дурусти IPv6 бошад.",    "json"=>"Майдони :attribute бояд сатри дурусти JSON бошад.",    "list"=>"Майдони :attribute бояд рӯйхат бошад.",    "lowercase"=>":Attribute бояд бо ҳарфҳои хурд навишта шавад.",    "lt.array"=>"Майдони :attribute бояд камтар аз :value элемент дошта бошад.",    "lt.file"=>"Майдони :attribute бояд хурдтар аз :value килобайт бошад.",    "lt.numeric"=>"Майдони :attribute бояд аз :value хурдтар бошад.",    "lt.string"=>"Майдони :attribute бояд кӯтоҳтар аз :value аломат бошад.",    "lte.array"=>"Майдони :attribute бояд :value ё камтар элемент дошта бошад.",    "lte.file"=>"Майдони :attribute бояд хурдтар ё баробар ба :value килобайт бошад.",    "lte.numeric"=>"Майдони :attribute бояд хурдтар ё баробар ба :value бошад.",    "lte.string"=>"Майдони :attribute бояд кӯтоҳтар ё баробар ба :value аломат бошад.",    "mac_address"=>"Майдони :attribute бояд суроғаи дурусти MAC бошад.",    "max.array"=>"Майдони :attribute набояд зиёда аз :max элемент дошта бошад.",    "max.file"=>"Майдони :attribute набояд калонтар аз :max килобайт бошад.",    "max.numeric"=>"Майдони :attribute набояд аз :max калонтар бошад.",    "max.string"=>"Майдони :attribute набояд дарозтар аз :max аломат бошад.",    "max_digits"=>"Майдони :attribute набояд зиёда аз :max рақам дошта бошад.",    "mimes"=>"Майдони :attribute бояд файли намуди :values бошад.",    "mimetypes"=>"Майдони :attribute бояд файли намуди :values бошад.",    "min.array"=>"Майдони :attribute бояд ҳадди ақал :min элемент дошта бошад.",    "min.file"=>"Майдони :attribute бояд ҳадди ақал :min килобайт бошад.",    "min.numeric"=>"Майдони :attribute набояд аз :min хурдтар бошад.",    "min.string"=>"Майдони :attribute бояд ҳадди ақал :min аломат дошта бошад.",    "min_digits"=>"Майдони :attribute бояд ҳадди ақал :min рақам дошта бошад.",    "missing"=>"Майдони :attribute бояд вуҷуд надошта бошад.",    "missing_if"=>"Агар :other :value бошад, майдони :attribute бояд вуҷуд надошта бошад.",    "missing_unless"=>"Майдони :attribute бояд вуҷуд надошта бошад, агар :other :value набошад.",    "missing_with"=>"Агар :values вуҷуд дошта бошад, майдони :attribute бояд вуҷуд надошта бошад.",    "missing_with_all"=>"Агар :values вуҷуд дошта бошад, майдони :attribute бояд вуҷуд надошта бошад.",    "multiple_of"=>"Майдони :attribute бояд зарби :value бошад.",    "next"=>"Ба пеш &raquo;",    "not_in"=>":attribute интихобшуда нодуруст аст.",    "not_regex"=>"Формати майдони :attribute нодуруст аст.",    "numeric"=>"Майдони :attribute бояд рақам бошад.",    "password"=>"Рамзи убур нодуруст аст.",    "password.letters"=>"Майдони :attribute бояд ҳадди ақал як ҳарф дошта бошад.",    "password.mixed"=>"Майдони :attribute бояд ҳадди ақал як ҳарфи калон ва як ҳарфи хурд дошта бошад.",    "password.numbers"=>"Майдони :attribute бояд ҳадди ақал як рақам дошта бошад.",    "password.symbols"=>"Майдони :attribute бояд ҳадди ақал як аломат дошта бошад.",    "password.uncompromised"=>":attribute додашуда дар ихроҷи маълумот пайдо шудааст. Лутфан арзиши дигар барои :attribute интихоб кунед.",    "present"=>"Майдони :attribute бояд мавҷуд бошад.",    "present_if"=>"Майдони :attribute бояд мавҷуд бошад, агар :other арзиши :value дошта бошад.",    "present_unless"=>"Майдони :attribute бояд мавҷуд бошад, агар :other арзиши :value надошта бошад.",    "present_with"=>"Майдони :attribute бояд мавҷуд бошад, вақте ки :values дода шудааст.",    "present_with_all"=>"Майдони :attribute бояд мавҷуд бошад, вақте ки :values дода шудаанд.",    "previous"=>"&laquo; Ба қафо",    "prohibited"=>"Майдони :attribute манъ аст.",    "prohibited_if"=>"Майдони :attribute манъ аст, агар :other :value бошад.",    "prohibited_unless"=>"Майдони :attribute манъ аст, агар :other дар :values набошад.",    "prohibits"=>"Майдони :attribute мавҷудияти :other-ро истисно мекунад.",    "regex"=>"Формати майдони :attribute нодуруст аст.",    "relatable"=>"Майдони :attribute наметавонад бо ин захира алоқаманд бошад.",    "required"=>"Майдони :attribute ҳатмист.",    "required_array_keys"=>"Майдони :attribute бояд арзишҳои :values-ро дар бар гирад.",    "required_if"=>"Майдони :attribute ҳатмист, вақте ки :other арзиши :value дорад.",    "required_if_accepted"=>"Ин майдон ҳатмист, вақте ки :other қабул карда мешавад.",    "required_if_declined"=>"Майдони :attribute ҳатмист, вақте ки :other рад карда мешавад.",    "required_unless"=>"Майдони :attribute ҳатмист, агар :other дар :values набошад.",    "required_with"=>"Майдони :attribute ҳатмист, вақте ки арзиши :values мавҷуд аст.",    "required_with_all"=>"Майдони :attribute ҳатмист, вақте ки ҳамаи арзишҳои :values мавҷуданд.",    "required_without"=>"Майдони :attribute ҳатмист, вақте ки арзиши :values мавҷуд нест.",    "required_without_all"=>"Майдони :attribute ҳатмист, вақте ки ҳеҷ як арзиши :values мавҷуд нест.",    "reset"=>"Рамзи убур бомуваффақият барқарор карда шуд!",    "same"=>"Майдонҳои :attribute ва :other бояд якхела бошанд.",    "sent"=>"Ёдгории рамзи убур фиристода шуд!",    "size.array"=>"Майдони :attribute бояд :size элемент дошта бошад.",    "size.file"=>"Майдони :attribute бояд :size килобайт дошта бошад.",    "size.numeric"=>"Майдони :attribute бояд :size бошад.",    "size.string"=>"Майдони :attribute бояд :size аломат дошта бошад.",    "starts_with"=>"Майдони :attribute бояд бо яке аз арзишҳои зерин оғоз шавад: :values.",    "string"=>"Майдони :attribute бояд сатр бошад.",    "throttle"=>"Тазоди беш аз ҳадди иҷозати номуваффақ ба система. Лутфан баъд аз :seconds сония дубора кӯшиш кунед.",    "throttled"=>"Лутфан, пеш аз дубора кӯшиш кардан интизор шавед.",    "timezone"=>"Майдони :attribute бояд минтақаи дурусти вақт бошад.",    "token"=>"Токени барқарорсозии рамзи убур нодуруст аст.",    "ulid"=>"Майдони :attribute бояд як мушаххаскунандаи дурусти ULID бошад.",    "unique"=>"Чунин :attribute аллакай мавҷуд аст.",    "uploaded"=>"Боргирии файли :attribute номуваффақ буд.",    "uppercase"=>":Attribute бояд бо ҳарфҳои калон навишта шавад.",    "url"=>"Формати майдони :attribute нодуруст аст.",    "user"=>"Корбаре бо чунин суроғаи электронӣ пайдо нашуд.",    "uuid"=>"Майдони :attribute бояд як мушаххаскунандаи дурусти UUID бошад.",    'total_upload_size_too_high' => 'Ҳаҷми умумии иҷозатдодашуда ҳадди аксар :max аст',    'total_upload_size_too_low' => 'Ҳаҷми умумии иҷозатдодашуда ҳадди ақал :min аст',    'file_too_big' => 'Ин файл хеле калон аст. Ҳадди аксари иҷозатдодашуда :max',    'file_too_small' => 'Ин файл хеле хурд аст. Он бояд ҳадди ақал :min бошад',    'incorrect_dimensions' => [        'width' => 'Паҳнои тасвир бояд :width пиксел бошад',        'height' => 'Баландии тасвир бояд :height пиксел бошад',        'both' => 'Андозаҳои тасвир бояд :width x :height пиксел бошанд',    ],    'width_not_between' => 'Паҳнои тасвир бояд дар байни :min ва :max пиксел бошад',    'height_not_between' => 'Баландии тасвир бояд дар байни :min ва :max пиксел бошад',    'max_items' => 'Шумо метавонед ҳадди аксар :max элемент боргирӣ кунед',    'min_items' => 'Шумо бояд ҳадди ақал :min элемент боргирӣ кунед',    'extension' => 'Файл бояд намуди :extensions бошад',    'mime' => 'Файл бояд намуди mime :mimes дошта бошад',    'type' => 'Шумо бояд файли намуди :values-ро боргирӣ кунед',    /*    |--------------------------------------------------------------------------    | Custom Validation Language Lines    |--------------------------------------------------------------------------    |    | Here you may specify custom validation messages for attributes using the    | convention "attribute.rule" to name the lines. This makes it quick to    | specify a specific custom language line for a given attribute rule.    |    */    'custom' => [        'sections.*.fields.title' => [            'required' => 'Унвони бахш ҳатмист',            'max' => 'Унвони бахш бояд ҳадди аксар 100 аломат дошта бошад',            'distinct' => 'Унвони бахш аллакай мавҷуд аст',        ],        'sections.*.fields.description' => [            'required' => 'Мазмуни бахш ҳатмист',            'max' => 'Мазмуни бахш бояд ҳадди аксар 2000 аломат дошта бошад',        ],        'experiences.*.employer' => [            'max' => 'Номи корфармо бояд ҳадди аксар 100 аломат дошта бошад',        ],        'experiences.*.city' => [            'max' => 'Номи шаҳр бояд ҳадди аксар 100 аломат дошта бошад',        ],        'educations.*.school' => [            'max' => 'Номи мактаб бояд ҳадди аксар 100 аломат дошта бошад',        ],        'educations.*.city' => [            'max' => 'Номи шаҳр бояд ҳадди аксар 100 аломат дошта бошад',        ],        'educations.*.specialization' => [            'max' => 'Номи ихтисос бояд ҳадди аксар 100 аломат дошта бошад',        ],    ],    /*    |--------------------------------------------------------------------------    | Custom Validation Attributes    |--------------------------------------------------------------------------    |    | The following language lines are used to swap our attribute placeholder    | with something more reader friendly such as "E-Mail Address" instead    | of "email". This simply helps us make our message more expressive.    |    */    'attributes' => [        'email'    => 'суроғаи почтаи электронӣ',        'password' => 'рамзи убур',        'name'     => 'ном',        'message'     => 'паём',        'agree'     => 'розӣ',        'captcha'     => 'рамз',        'subject'     => 'мавзӯъ',    ],];

@@ -1,0 +1,1 @@
+<?phpreturn [    'work' => 'iş',    'agreement' => 'şertnama',    'time' => 'iş wagtynyň mukdary',    'description' => 'WEZIPÄNIŇ BEÝANY',    'hiden' => 'Tekliplere ýüz tutmak üçin ilki bilen işçi hökmünde ulgama girmeli.',    'hidenWhich' => 'Siz şu hökmünde ýüz tutýarsyňyz:',];

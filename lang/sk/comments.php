@@ -1,0 +1,22 @@
+<?php
+return [
+    'content_required' => 'Obsah komentára je povinný.',
+    'content_min' => 'Komentár musí mať aspoň :min znakov.',
+    'content_max' => 'Komentár nemôže mať viac ako :max znakov.',
+    'article_required' => 'Článok je povinný.',
+    'article_exists' => 'Vybraný článok neexistuje.',
+    'parent_exists' => 'Komentár, na ktorý odpovedáte, neexistuje.',
+    'notyComment' => 'Máte komentár k článku č.: ',
+    'publishComment' => 'Spravujte publikovanie a viditeľnosť článku ',
+    'anonim' => 'Anonym',
+    'see' => 'Viditeľný',
+    'hide' => 'Skrytý',
+    'response' => 'Odpoveď',
+    'WriteResponse' => 'Napísať odpoveď...',
+    'WriteComment' => 'Napísať komentár...',
+    'comments' => 'Komentáre',
+    'main' => 'hlavné,',
+    'responses' => 'odpovede)',
+    'add' => 'Pridať komentár',
+    'addLogin' => 'Prihláste sa, aby ste mohli pridať komentár',
+];

@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Heslo bylo úspěšně resetováno.',
+    'sent' => 'Odkaz pro obnovení hesla byl odeslán.',
+    'throttled' => 'Před dalším pokusem prosím chvíli počkejte.',
+    'token' => 'Token pro obnovení hesla je neplatný.',
+    'user' => 'Uživatel s touto e-mailovou adresou nebyl nalezen.',
 
 ];

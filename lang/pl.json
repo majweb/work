@@ -85,8 +85,5 @@
     "CorrectionMail-reason": "Powód korekty:",
     "CorrectionMail-no-reason": "Nie podano powodu",
     "CorrectionMail-line2": "Korektę w formacie PDF znajdziesz w załączniku lub na swoim koncie w sekcji finanse.",
-    "CorrectionMail-thanks": "Dziękujemy",
-    "scope_options.illegal": "nielegalne treści/ treści niezgodne z regulaminem serwisu",
-    "scope_options.copyright": "prawo autorskie/prawo własności przemysłowej",
-    "scope_options.other": "inne"
+    "CorrectionMail-thanks": "Dziękujemy"
 }

@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Fjalëkalimi u rivendos.',
+    'sent' => 'Linku për rivendosjen e fjalëkalimit u dërgua.',
+    'throttled' => 'Ju lutemi prisni përpara se të provoni përsëri.',
+    'token' => 'Token-i për rivendosjen e fjalëkalimit është i pavlefshëm.',
+    'user' => 'Nuk u gjet asnjë përdorues me këtë adresë emaili.',
 
 ];

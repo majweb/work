@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -13,10 +14,11 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'ඔබගේ මුරපදය යළි සකසා ඇත!.',
+    'sent' => 'මුරපද සිහිකැඳවීම යවා ඇත!.',
+    'throttled' => 'නැවත උත්සාහ කිරීමට පෙර කරුණාකර රැඳී සිටින්න.',
+    'token' => 'මුරපද යළි සැකසීමේ ටෝකනය වලංගු නොවේ.',
+    'user' => "එම විද්‍යුත් තැපැල් ලිපිනය සහිත පරිශීලකයෙකු සොයාගත නොහැක.",
 
 ];
+

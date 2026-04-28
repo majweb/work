@@ -1,0 +1,62 @@
+<?php
+
+return [
+    'certificates' => [
+        'levels' => [
+            'none' => 'Nincs tanúsítvány',
+            'bronze' => 'Bronz',
+            'silver' => 'Ezüst',
+            'gold' => 'Arany',
+            'diamond' => 'Gyémánt'
+        ],
+        'points' => 'pont',
+        'premium_certificate' => 'Prémium Tanúsítvány',
+        'progress' => 'Tanúsítás előrehaladása:',
+        'current_level' => 'Jelenlegi szint',
+        'requirements' => 'A tanúsítványok követelményei',
+        'certification_progress' => 'Tanúsítás előrehaladása',
+        'collected_points' => 'Összegyűjtött pontok',
+        'target' => 'Cél',
+        'max_level_reached' => 'Elérted a maximális szintet',
+        'points_to_next_level' => ':points pont hiányzik a következő szinthez',
+        'current_certificate' => 'A jelenlegi tanúsítványod',
+        'you_have_certificate' => 'Rendelkezel tanúsítvánnyal a következő szinten:',
+        'download_certificate' => 'Tanúsítvány letöltése',
+        'generate_new' => 'Új tanúsítvány generálása',
+        'no_points' => 'Nincs elegendő pontod egyetlen tanúsítvány szinthez sem.',
+        'collect_more' => 'Gyűjts több pontot a tanúsítvány generálásához.',
+        'generate' => ':level tanúsítvány generálása',
+        'generating' => 'Generálás...',
+        'generated' => 'Generálva:',
+        'no_history' => 'Nincs tanúsítvány előzmény',
+        'slogan' => 'A te tetteid. Valós hatás. Közös jó.',
+        'description_1' => 'A Prémium Tanúsítvány egy ingyenes szolgáltatás, amely a WORK4YOU.GLOBAL pontcsomagjait használó cégek számára érhető el. Minden megvásárolt csomag pontokat generál, amelyek összeadódnak, és lehetővé teszik olyan tanúsítványok megszerzését, amelyek megerősítik a cég platformon való elkötelezettségének szintjét.',
+        'description_2' => 'A tanúsítványok a következő küszöbértékek elérése után kerülnek odaítélésre: 40 000, 60 000, 100 000 és 160 000 pont. A kiválasztott tanúsítvány generálása után a felhalmozott pontok nullázódnak, és a gyűjtési folyamat elölről kezdődik. Minden tanúsítványtípus többször is generálható a szükséges küszöbérték újbóli elérése után.',
+        'description_3' => 'A Prémium Tanúsítvány tartalmazza a jótékonysági célokra átutalt teljes összegre vonatkozó információt is, amely az adott cég WORK4YOU.GLOBAL-lal való együttműködés keretében végzett tevékenysége és elkötelezettsége révén jött létre. A tanúsítvány felhasználható marketingkommunikációban, employer brandingben és CSR-ben, mint a cég valós társadalmi hatásának egyértelmű megerősítése.',
+        'types' => 'Tanúsítványok típusai',
+        'select' => 'KIVÁLASZTÁS',
+        'you_have_points' => 'RENDELKEZEL: :points PONT',
+        'pdf' => [
+            'title' => 'Tanúsítvány',
+            'level' => ':level SZINT',
+            'confirmation' => 'Ez a tanúsítvány megerősíti, hogy a(z)',
+            'donated' => 'átutalt $:amount összeget',
+            'description' => 'jótékonysági célokra. E kezdeményezés révén valós mértékben hozzájárult a társadalmilag jelentős tevékenységek támogatásához, érzékenységről, felelősségvállalásról és magas etikai normákról téve tanúbizonyságot üzleti tevékenysége során.',
+            'date' => 'Dátum: :date',
+        ],
+    ],
+    'history_link' => 'Prémium Tanúsítványok lista',
+    'history_certyficate' => 'Tanúsítványok előzményei',
+    'history_from' => 'Ettől:',
+    'history_to' => 'Eddig:',
+    'history_clear_filters' => 'Szűrők törlése',
+    'history_sum' => 'Összeg:',
+    'history_level' => 'Szint',
+    'history_cost' => 'Összeg',
+    'history_date' => 'Generálás dátuma',
+
+    // Fordítások a szűrő komponenshez a Prémium modulban
+    'filter_title' => 'Szűrés',
+    'filter_apply' => 'Szűrés',
+];
+

@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Şifrə uğurla sıfırlandı.',
+    'sent' => 'Şifrə sıfırlama linki göndərildi.',
+    'throttled' => 'Zəhmət olmasa, yenidən cəhd etməzdən əvvəl gözləyin.',
+    'token' => 'Şifrə sıfırlama tokeni etibarsızdır.',
+    'user' => 'Bu e-poçt ünvanı ilə istifadəçi tapılmadı.',
 
 ];

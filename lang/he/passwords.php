@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'הסיסמה אופסה בהצלחה!',
+    'sent' => 'קישור לאיפוס הסיסמה נשלח!',
+    'throttled' => 'אנא המתן לפני שתנסה שוב.',
+    'token' => 'טוקן איפוס הסיסמה אינו תקין.',
+    'user' => "לא נמצא משתמש עם כתובת אימייל זו.",
 
 ];

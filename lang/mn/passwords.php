@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Нууц үг амжилттай шинэчлэгдлээ!',
+    'sent' => 'Нууц үг сэргээх холбоос илгээгдлээ!',
+    'throttled' => 'Дахин оролдохын өмнө түр хүлээнэ үү.',
+    'token' => 'Нууц үг шинэчлэх токен буруу байна.',
+    'user' => "Ийм имэйл хаягтай хэрэглэгч олдсонгүй.",
 
 ];

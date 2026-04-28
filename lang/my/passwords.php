@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'စကားဝှက်ကို ပြန်လည်သတ်မှတ်ပြီးပါပြီ။',
+    'sent' => 'စကားဝှက် ပြန်လည်သတ်မှတ်ရန် လင့်ခ်ကို ပို့ပြီးပါပြီ။',
+    'throttled' => 'ထပ်မံကြိုးစားမီ ခဏစောင့်ပါ။',
+    'token' => 'စကားဝှက် ပြန်လည်သတ်မှတ်ရန် token မမှန်ကန်ပါ။',
+    'user' => 'ဤအီးမေးလ်ဖြင့် အသုံးပြုသူကို မတွေ့ပါ။',
 
 ];

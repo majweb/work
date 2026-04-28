@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'previous' => '&laquo; Poprzednia',
-    'next' => 'Następna &raquo;',
+    'previous' => '&laquo; ယခင်',
+    'next' => 'နောက်တစ်ခု &raquo;',
 
 ];

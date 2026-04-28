@@ -13,10 +13,11 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'A jelszó visszaállítása megtörtént!.',
+    'sent' => 'Jelszó-emlékeztető elküldve!.',
+    'throttled' => 'Kérjük, várj, mielőtt újra próbálkoznál.',
+    'token' => 'A jelszó visszaállításához tartozó token érvénytelen.',
+    'user' => "Nem található felhasználó a megadott e-mail címmel.",
 
 ];
+

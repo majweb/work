@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Adgangskoden er blevet nulstillet.',
+    'sent' => 'Link til nulstilling af adgangskode er blevet sendt.',
+    'throttled' => 'Vent venligst, før du prøver igen.',
+    'token' => 'Token til nulstilling af adgangskode er ugyldigt.',
+    'user' => 'Der blev ikke fundet nogen bruger med denne e-mailadresse.',
 
 ];

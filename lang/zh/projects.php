@@ -1,0 +1,1 @@
+<?phpreturn [    'work' => '工作',    'agreement' => '合同',    'time' => '工作时间',    'description' => '职位描述',    'hiden' => '要申请职位，您必须先以员工身份登录。',    'hidenWhich' => '您正在以以下身份申请：',];

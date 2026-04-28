@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Kata sandi telah berhasil direset!',
+    'sent' => 'Tautan reset kata sandi telah dikirim!',
+    'throttled' => 'Silakan tunggu sebelum mencoba lagi.',
+    'token' => 'Token reset kata sandi tidak valid.',
+    'user' => "Tidak ditemukan pengguna dengan alamat email tersebut.",
 
 ];

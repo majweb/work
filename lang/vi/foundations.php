@@ -1,0 +1,1 @@
+<?php return ['foundations' => 'Quỹ từ thiện',];

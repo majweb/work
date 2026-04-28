@@ -1,0 +1,1 @@
+<?phpreturn [    'work' => 'arbete',    'agreement' => 'avtal',    'time' => 'arbetstid',    'description' => 'BEFATTNINGSBESKRIVNING',    'hiden' => 'För att ansöka om erbjudanden måste du först logga in som anställd.',    'hidenWhich' => 'Du ansöker som:',];

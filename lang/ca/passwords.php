@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'La contrasenya s’ha restablert correctament.',
+    'sent' => 'S’ha enviat l’enllaç per restablir la contrasenya.',
+    'throttled' => 'Si us plau, espera abans de tornar-ho a provar.',
+    'token' => 'El token de restabliment de la contrasenya no és vàlid.',
+    'user' => "No s’ha trobat cap usuari amb aquesta adreça electrònica.",
 
 ];

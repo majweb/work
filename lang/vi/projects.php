@@ -1,0 +1,1 @@
+<?phpreturn [    'work' => 'việc làm',    'agreement' => 'hợp đồng',    'time' => 'khối lượng công việc',    'description' => 'MÔ TẢ VỊ TRÍ',    'hiden' => 'Để ứng tuyển vào các tin tuyển dụng, trước tiên bạn cần đăng nhập với tư cách là nhân viên.',    'hidenWhich' => 'Bạn đang ứng tuyển với tư cách:',];

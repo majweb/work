@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -13,10 +14,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Şifreniz sıfırlandı!.',
+    'sent' => 'Şifre hatırlatma e-postası gönderildi!.',
+    'throttled' => 'Tekrar denemeden önce lütfen bekleyin.',
+    'token' => 'Şifre sıfırlama jetonu geçersiz.',
+    'user' => "Bu e-posta adresine sahip bir kullanıcı bulunamadı.",
 
 ];

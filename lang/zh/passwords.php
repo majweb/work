@@ -1,22 +1,1 @@
-<?php
-
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | outcome such as failure due to an invalid password / reset token.
-    |
-    */
-
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
-
-];
+<?phpreturn [    /*    |--------------------------------------------------------------------------    | Password Reset Language Lines    |--------------------------------------------------------------------------    |    | The following language lines are the default lines which match reasons    | that are given by the password broker for a password update attempt    | outcome such as failure due to an invalid password / reset token.    |    */    'reset' => '密码已重置！',    'sent' => '密码重置链接已发送！',    'throttled' => '请稍候再试。',    'token' => '密码重置令牌无效。',    'user' => "未找到使用该电子邮箱的用户。",];

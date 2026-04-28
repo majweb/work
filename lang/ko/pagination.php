@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'previous' => '&laquo; Poprzednia',
-    'next' => 'Następna &raquo;',
+    'previous' => '&laquo; 이전',
+    'next' => '다음 &raquo;',
 
 ];

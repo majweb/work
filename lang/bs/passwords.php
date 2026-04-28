@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Lozinka je uspješno resetovana.',
+    'sent' => 'Poslan je email za reset lozinke.',
+    'throttled' => 'Molimo sačekajte prije nego pokušate ponovo.',
+    'token' => 'Token za reset lozinke nije važeći.',
+    'user' => 'Korisnik s ovom email adresom nije pronađen.',
 
 ];

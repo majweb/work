@@ -13,10 +13,11 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'La password è stata reimpostata!',
+    'sent' => 'Il link per reimpostare la password è stato inviato!',
+    'throttled' => 'Attendi prima di riprovare.',
+    'token' => 'Il token di reimpostazione della password non è valido.',
+    'user' => "Nessun utente trovato con questo indirizzo e-mail.",
 
 ];
+

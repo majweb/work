@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Parool on lähtestatud!',
+    'sent' => 'Parooli lähtestamise link on saadetud!',
+    'throttled' => 'Palun oodake enne uuesti proovimist.',
+    'token' => 'Parooli lähtestamise token on kehtetu.',
+    'user' => 'Sellise e-posti aadressiga kasutajat ei leitud.',
 
 ];

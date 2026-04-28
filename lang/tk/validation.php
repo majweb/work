@@ -1,194 +1,1 @@
-<?php
-
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
-    "accepted"=>"Pole :attribute musi zostać zaakceptowane.",
-    "accepted_if"=>"Pole :attribute musi zostać zaakceptowane gdy :other ma wartość :value.",
-    "active_url"=>"Pole :attribute jest nieprawidłowym adresem URL.",
-    "after"=>"Pole :attribute musi być datą późniejszą od :date.",
-    "after_or_equal"=>"Pole :attribute musi być datą nie wcześniejszą niż :date.",
-    "alpha"=>"Pole :attribute może zawierać jedynie litery.",
-    "alpha_dash"=>"Pole :attribute może zawierać jedynie litery, cyfry i myślniki.",
-    "alpha_num"=>"Pole :attribute może zawierać jedynie litery i cyfry.",
-    "array"=>"Pole :attribute musi być tablicą.",
-    "ascii"=>"Pole :attribute może zawierać tylko jednobajtowe znaki alfanumeryczne i symbole.",
-    "attached"=>"Pole :attribute jest już dołączone.",
-    "before"=>"Pole :attribute musi być datą wcześniejszą od :date.",
-    "before_or_equal"=>"Pole :attribute musi być datą nie późniejszą niż :date.",
-    "between.array"=>"Pole :attribute musi składać się z :min - :max elementów.",
-    "between.file"=>"Pole :attribute musi zawierać się w granicach :min - :max kilobajtów.",
-    "between.numeric"=>"Pole :attribute musi zawierać się w granicach :min - :max.",
-    "between.string"=>"Pole :attribute musi zawierać się w granicach :min - :max znaków.",
-    "boolean"=>"Pole :attribute musi mieć wartość logiczną prawda albo fałsz.",
-    "can"=>"Pole :attribute zawiera nieautoryzowaną wartość.",
-    "confirmed"=>"Potwierdzenie pola :attribute nie zgadza się.",
-    "contains"=>"Pole :attribute nie zawiera wymaganego elementu.",
-    "current_password"=>"Hasło jest nieprawidłowe.",
-    "date"=>"Pole :attribute nie jest prawidłową datą.",
-    "date_equals"=>"Pole :attribute musi być datą równą :date.",
-    "date_format"=>"Pole :attribute nie jest w formacie :format.",
-    "decimal"=>"Pole :attribute musi mieć :decimal miejsc po przecinku.",
-    "declined"=>"Pole :attribute musi zostać odrzucone.",
-    "declined_if"=>"Pole :attribute musi zostać odrzucone, gdy :other ma wartość :value.",
-    "different"=>"Pole :attribute oraz :other muszą się różnić.",
-    "digits"=>"Pole :attribute musi składać się z :digits cyfr.",
-    "digits_between"=>"Pole :attribute musi mieć od :min do :max cyfr.",
-    "dimensions"=>"Pole :attribute ma niepoprawne wymiary.",
-    "distinct"=>"Pole :attribute ma zduplikowane wartości.",
-    "doesnt_end_with"=>"Pole :attribute nie może kończyć się jednym z następujących wartości: :values.",
-    "doesnt_start_with"=> "Pole :attribute nie może zaczynać się od jednego z następujących wartości: :values.",
-    "email"=> "Pole :attribute nie jest poprawnym adresem e-mail.",
-    "ends_with"=>"Pole :attribute musi kończyć się jedną z następujących wartości: :values.",
-    "enum"=> "Pole :attribute ma niepoprawną wartość.",
-    "exists"=> "Zaznaczone pole :attribute jest nieprawidłowe.",
-    "extensions"=> "Pole :attribute musi mieć jedno z następujących rozszerzeń: :values.",
-    "failed"=>"Błędny login lub hasło.",
-    "file"=>"Pole :attribute musi być plikiem.",
-    "filled"=>"Pole :attribute musi być wypełnione.",
-    "gt.array"=>"Pole :attribute musi mieć więcej niż :value elementów.",
-    "gt.file"=>"Pole :attribute musi być większe niż :value kilobajtów.",
-    "gt.numeric"=>"Pole :attribute musi być większe niż :value.",
-    "gt.string"=>"Pole :attribute musi być dłuższe niż :value znaków.",
-    "gte.array"=>"Pole :attribute musi mieć :value lub więcej elementów.",
-    "gte.file"=>"Pole :attribute musi być większe lub równe :value kilobajtów.",
-    "gte.numeric"=>"Pole :attribute musi być większe lub równe :value.",
-    "gte.string"=>"Pole :attribute musi być dłuższe lub równe :value znaków.",
-    "hex_color"=>"Pole :attribute musi mieć podany prawidłowy kolor w formacie szesnastkowym.",
-    "image"=>"Pole :attribute musi być obrazkiem.",
-    "in"=>"Zaznaczony element :attribute jest nieprawidłowy.",
-    "in_array"=>"Pole :attribute nie znajduje się w :other.",
-    "integer"=>"Pole :attribute musi być liczbą całkowitą.",
-    "ip"=>"Pole :attribute musi być prawidłowym adresem IP.",
-    "ipv4"=>"Pole :attribute musi być prawidłowym adresem IPv4.",
-    "ipv6"=>"Pole :attribute musi być prawidłowym adresem IPv6.",
-    "json"=>"Pole :attribute musi być poprawnym ciągiem znaków JSON.",
-    "list"=>"Pole :attribute musi być listą.",
-    "lowercase"=>":Attribute musi być pisany małymi literami.",
-    "lt.array"=>"Pole :attribute musi mieć mniej niż :value elementów.",
-    "lt.file"=>"Pole :attribute musi być mniejsze niż :value kilobajtów.",
-    "lt.numeric"=>"Pole :attribute musi być mniejsze niż :value.",
-    "lt.string"=>"Pole :attribute musi być krótsze niż :value znaków.",
-    "lte.array"=>"Pole :attribute musi mieć :value lub mniej elementów.",
-    "lte.file"=>"Pole :attribute musi być mniejsze lub równe :value kilobajtów.",
-    "lte.numeric"=>"Pole :attribute musi być mniejsze lub równe :value.",
-    "lte.string"=>"Pole :attribute musi być krótsze lub równe :value znaków.",
-    "mac_address"=>"Pole :attribute musi być prawidłowym adresem MAC.",
-    "max.array"=>"Pole :attribute nie może mieć więcej niż :max elementów.",
-    "max.file"=>"Pole :attribute nie może być większe niż :max kilobajtów.",
-    "max.numeric"=>"Pole :attribute nie może być większe niż :max.",
-    "max.string"=>"Pole :attribute nie może być dłuższe niż :max znaków.",
-    "max_digits"=>"Pole :attribute nie może mieć więcej niż :max cyfr.",
-    "mimes"=>"Pole :attribute musi być plikiem typu :values.",
-    "mimetypes"=>"Pole :attribute musi być plikiem typu :values.",
-    "min.array"=>"Pole :attribute musi mieć przynajmniej :min elementów.",
-    "min.file"=>"Pole :attribute musi mieć przynajmniej :min kilobajtów.",
-    "min.numeric"=>"Pole :attribute musi być nie mniejsze od :min.",
-    "min.string"=>"Pole :attribute musi mieć przynajmniej :min znaków.",
-    "min_digits"=>"Pole :attribute musi mieć co najmniej :min cyfr.",
-    "missing"=>"Musi brakować pola :attribute.",
-    "missing_if"=>"Jeśli :other to :value, musi brakować pola :attribute.",
-    "missing_unless"=>"Musi brakować pola :attribute, chyba że :other to :value.",
-    "missing_with"=>"Jeśli występuje wartość :values, musi brakować pola :attribute.",
-    "missing_with_all"=>"Jeśli występuje :values, musi brakować pola :attribute.",
-    "multiple_of"=>"Pole :attribute musi być wielokrotnością wartości :value",
-    "next"=>"Następna &raquo;",
-    "not_in"=>"Zaznaczony :attribute jest nieprawidłowy.",
-    "not_regex"=>"Format pola :attribute jest nieprawidłowy.",
-    "numeric"=>"Pole :attribute musi być liczbą.",
-    "password"=>"Hasło jest nieprawidłowe.",
-    "password.letters"=>"Pole :attribute musi zawierać przynajmniej jedną literę.",
-    "password.mixed"=>"Pole :attribute musi zawierać przynajmniej jedną wielką i jedną małą literę.",
-    "password.numbers"=>"Pole :attribute musi zawierać przynajmniej jedną liczbę.",
-    "password.symbols"=>"Pole :attribute musi zawierać przynajmniej jeden symbol.",
-    "password.uncompromised"=>"Podany :attribute pojawił się w wycieku danych. Proszę wybrać inną wartość :attribute.",
-    "present"=>"Pole :attribute musi być obecne.",
-    "present_if"=>"Pole :attribute musi być obecne jeżeli :other ma wartość :value.",
-    "present_unless"=>"Pole :attribute musi być obecne, chyba że :other ma wartość :value.",
-    "present_with"=>"Pole :attribute musi być obecne kiedy :values jest podany/a..",
-    "present_with_all"=>"Pole :attribute musi być obecne kiedy :values są podane.",
-    "previous"=>"&laquo; Poprzednia",
-    "prohibited"=>"Pole :attribute jest zabronione.",
-    "prohibited_if"=>"Pole :attribute jest zabronione, gdy :other to :value.",
-    "prohibited_unless"=>"Pole :attribute jest zabronione, chyba że :other jest w :values.",
-    "prohibits"=>"Pole :attribute wyklucza obecność :other.",
-    "regex"=>"Format pola :attribute jest nieprawidłowy.",
-    "relatable"=>"Pole :attribute nie może być powiązane z tym zasobem.",
-    "required"=>"Pole :attribute jest wymagane.",
-    "required_array_keys"=>"Pole :attribute musi zawierać wartości: :values.",
-    "required_if"=>"Pole :attribute jest wymagane gdy :other ma wartość :value.",
-    "required_if_accepted"=>"To pole jest wymagane gdy :other jest zaakceptowane.",
-    "required_if_declined"=>"Pole :attribute jest wymagane gdy :other jest odrzucone.",
-    "required_unless"=>"Pole :attribute jest wymagane jeżeli :other nie znajduje się w :values.",
-    "required_with"=>"Pole :attribute jest wymagane gdy wartość :values jest obecna.",
-    "required_with_all"=>"Pole :attribute jest wymagane gdy wszystkie wartości :values są obecne.",
-    "required_without"=>"Pole :attribute jest wymagane gdy wartość :values nie jest obecna.",
-    "required_without_all"=>"Pole :attribute jest wymagane gdy żadne z wartości :values nie są obecne.",
-    "reset"=>"Hasło zostało zresetowane!",
-    "same"=>"Pole :attribute i :other muszą być takie same.",
-    "sent"=>"Przypomnienie hasła zostało wysłane!",
-    "size.array"=>"Pole :attribute musi zawierać :size elementów.",
-    "size.file"=>"Pole :attribute musi mieć :size kilobajtów.",
-    "size.numeric"=>"Pole :attribute musi mieć :size.",
-    "size.string"=>"Pole :attribute musi mieć :size znaków.",
-    "starts_with"=>"Pole :attribute musi zaczynać się jedną z następujących wartości: :values.",
-    "string"=>"Pole :attribute musi być ciągiem znaków.",
-    "throttle"=>"Za dużo nieudanych prób logowania. Proszę spróbować za :seconds sekund.",
-    "throttled"=>"Proszę zaczekać zanim spróbujesz ponownie.",
-    "timezone"=>"Pole :attribute musi być prawidłową strefą czasową.",
-    "token"=>"Token resetowania hasła jest nieprawidłowy.",
-    "ulid"=>"Pole :attribute musi być prawidłowym identyfikatorem ULID.",
-    "unique"=>"Taki :attribute już występuje.",
-    "uploaded"=>"Nie udało się wgrać pliku :attribute.",
-    "uppercase"=>":Attribute musi być pisany wielkimi literami.",
-    "url"=>"Format pola :attribute jest nieprawidłowy.",
-    "user"=>"Nie znaleziono użytkownika z takim adresem e-mail.",
-    "uuid"=>"Pole :attribute musi być poprawnym identyfikatorem UUID.",
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
-
-    'custom' => [
-        'sections.*.fields.title' => [
-            'required' => 'Tytuł sekcji wymagany',
-            'max' => 'Tytuł sekcji musi zawierać maksymalnie 100 znaków',
-            'distinct' => 'Tytuł sekcji już istnieje',
-        ],
-        'sections.*.fields.description' => [
-            'required' => 'Treść sekcji wymagany',
-            'max' => 'Tytuł sekcji musi zawierać maksymalnie 2000 znaków',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Attributes
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used to swap our attribute placeholder
-    | with something more reader friendly such as "E-Mail Address" instead
-    | of "email". This simply helps us make our message more expressive.
-    |
-    */
-
-    'attributes' => [],
-
-];
+<?phpreturn [    /*    |--------------------------------------------------------------------------    | Validation Language Lines    |--------------------------------------------------------------------------    |    | The following language lines contain the default error messages used by    | the validator class. Some of these rules have multiple versions such    | as the size rules. Feel free to tweak each of these messages here.    |    */    "accepted"=>":attribute meýdany kabul edilmelidir.",    "accepted_if"=>":attribute meýdany, :other :value bolanda kabul edilmelidir.",    "active_url"=>":attribute meýdany nädogry URL salgysydyr.",    "after"=>":attribute meýdany :date-dan soňky sene bolmalydyr.",    "after_or_equal"=>":attribute meýdany :date-den has irki bolmadyk sene bolmalydyr.",    "alpha"=>":attribute meýdany diňe harplary öz içine alyp biler.",    "alpha_dash"=>":attribute meýdany diňe harplary, sanlary we defisleri öz içine alyp biler.",    "alpha_num"=>":attribute meýdany diňe harplary we sanlary öz içine alyp biler.",    "array"=>":attribute meýdany ýygym bolmalydyr.",    "ascii"=>":attribute meýdany diňe bir baýtly harp-san we nyşanlary öz içine alyp biler.",    "attached"=>":attribute meýdany eýýäm birikdirilen.",    "before"=>":attribute meýdany :date-dan öňki sene bolmalydyr.",    "before_or_equal"=>":attribute meýdany :date-den has giç bolmadyk sene bolmalydyr.",    "between.array"=>":attribute meýdany :min - :max aralygynda elementden ybarat bolmalydyr.",    "between.file"=>":attribute meýdany :min - :max kilobaýt aralygynda bolmalydyr.",    "between.numeric"=>":attribute meýdany :min - :max aralygynda bolmalydyr.",    "between.string"=>":attribute meýdany :min - :max aralygynda harpdan ybarat bolmalydyr.",    "boolean"=>":attribute meýdany mantyk (dogry ýa-da ýalňyş) baha eýe bolmalydyr.",    "can"=>":attribute meýdany ygtyýarsyz bahany öz içine alýar.",    "confirmed"=>":attribute meýdanynyň tassyklanmasy gabat gelmeýär.",    "contains"=>":attribute meýdany zerur elementi öz içine almaýar.",    "current_password"=>"Parol nädogry.",    "date"=>":attribute meýdany dogry sene däldir.",    "date_equals"=>":attribute meýdany :date-a deň sene bolmalydyr.",    "date_format"=>":attribute meýdany :format formatyna laýyk gelmeýär.",    "decimal"=>":attribute meýdanynda :decimal onluk belgi bolmalydyr.",    "declined"=>":attribute meýdany ret edilmelidir.",    "declined_if"=>":attribute meýdany, :other :value bolanda ret edilmelidir.",    "different"=>":attribute we :other meýdanlary bir-birinden tapawutly bolmalydyr.",    "digits"=>":attribute meýdany :digits sanly bolmalydyr.",    "digits_between"=>":attribute meýdany :min bilen :max aralygynda sanly bolmalydyr.",    "dimensions"=>":attribute meýdanynyň ölçegleri nädogry.",    "distinct"=>":attribute meýdanynda gaýtalanýan bahalar bar.",    "doesnt_end_with"=>":attribute meýdany aşakdaky bahalaryň biri bilen gutarýan bolmaly däl: :values.",    "doesnt_start_with"=> ":attribute meýdany aşakdaky bahalaryň biri bilen başlanýan bolmaly däl: :values.",    "email"=> ":attribute meýdany dogry e-poçta salgysy däldir.",    "ends_with"=>":attribute meýdany aşakdaky bahalaryň biri bilen gutarmalydyr: :values.",    "enum"=> ":attribute meýdany nädogry baha eýedir.",    "exists"=> "Saýlanan :attribute meýdany nädogrudyr.",    "extensions"=> ":attribute meýdany aşakdaky giňeltmeleriň birine eýe bolmalydyr: :values.",    "failed"=>"Nädogry ulanyjy ady ýa-da parol.",    "file"=>":attribute meýdany faýl bolmalydyr.",    "filled"=>":attribute meýdany doldurylmalydyr.",    "gt.array"=>":attribute meýdany :value-dan köp elementden ybarat bolmalydyr.",    "gt.file"=>":attribute meýdany :value kilobaýtdan uly bolmalydyr.",    "gt.numeric"=>":attribute meýdany :value-dan uly bolmalydyr.",    "gt.string"=>":attribute meýdany :value harpdan uzyn bolmalydyr.",    "gte.array"=>":attribute meýdany :value ýa-da ondan köp elementden ybarat bolmalydyr.",    "gte.file"=>":attribute meýdany :value kilobaýta deň ýa-da ondan uly bolmalydyr.",    "gte.numeric"=>":attribute meýdany :value-a deň ýa-da ondan uly bolmalydyr.",    "gte.string"=>":attribute meýdany :value harpa deň ýa-da ondan uzyn bolmalydyr.",    "hex_color"=>":attribute meýdany dogry altyluk formatdaky reňk bolmalydyr.",    "image"=>":attribute meýdany surat bolmalydyr.",    "in"=>"Saýlanan :attribute elementi nädogrudyr.",    "in_array"=>":attribute meýdany :other-da ýokdur.",    "integer"=>":attribute meýdany tutuş san bolmalydyr.",    "ip"=>":attribute meýdany dogry IP salgy bolmalydyr.",    "ipv4"=>":attribute meýdany dogry IPv4 salgy bolmalydyr.",    "ipv6"=>":attribute meýdany dogry IPv6 salgy bolmalydyr.",    "json"=>":attribute meýdany dogry JSON setiri bolmalydyr.",    "list"=>":attribute meýdany sanaw bolmalydyr.",    "lowercase"=>":Attribute kiçi harplar bilen ýazylmalydyr.",    "lt.array"=>":attribute meýdany :value-dan az elementden ybarat bolmalydyr.",    "lt.file"=>":attribute meýdany :value kilobaýtdan kiçi bolmalydyr.",    "lt.numeric"=>":attribute meýdany :value-dan kiçi bolmalydyr.",    "lt.string"=>":attribute meýdany :value harpdan gysga bolmalydyr.",    "lte.array"=>":attribute meýdany :value ýa-da ondan az elementden ybarat bolmalydyr.",    "lte.file"=>":attribute meýdany :value kilobaýta deň ýa-da ondan kiçi bolmalydyr.",    "lte.numeric"=>":attribute meýdany :value-a deň ýa-da ondan kiçi bolmalydyr.",    "lte.string"=>":attribute meýdany :value harpa deň ýa-da ondan gysga bolmalydyr.",    "mac_address"=>":attribute meýdany dogry MAC salgy bolmalydyr.",    "max.array"=>":attribute meýdany :max-den köp elementden ybarat bolmaly däl.",    "max.file"=>":attribute meýdany :max kilobaýtdan uly bolmaly däl.",    "max.numeric"=>":attribute meýdany :max-dan uly bolmaly däl.",    "max.string"=>":attribute meýdany :max harpdan uzyn bolmaly däl.",    "max_digits"=>":attribute meýdany :max-dan köp sanly bolmaly däl.",    "mimes"=>":attribute meýdany :values görnüşindäki faýl bolmalydyr.",    "mimetypes"=>":attribute meýdany :values görnüşindäki faýl bolmalydyr.",    "min.array"=>":attribute meýdany azyndan :min elementden ybarat bolmalydyr.",    "min.file"=>":attribute meýdany azyndan :min kilobaýt bolmalydyr.",    "min.numeric"=>":attribute meýdany :min-den kiçi bolmaly däl.",    "min.string"=>":attribute meýdany azyndan :min harpdan ybarat bolmalydyr.",    "min_digits"=>":attribute meýdany azyndan :min sanly bolmalydyr.",    "missing"=>":attribute meýdany ýok bolmalydyr.",    "missing_if"=>":other :value bolanda, :attribute meýdany ýok bolmalydyr.",    "missing_unless"=>":other :value bolmasa, :attribute meýdany ýok bolmalydyr.",    "missing_with"=>":values bahasy bar bolanda, :attribute meýdany ýok bolmalydyr.",    "missing_with_all"=>":values bar bolanda, :attribute meýdany ýok bolmalydyr.",    "multiple_of"=>":attribute meýdany :value-e köpeldiji bolmalydyr.",    "next"=>"Indiki &raquo;",    "not_in"=>"Saýlanan :attribute nädogrudyr.",    "not_regex"=>":attribute meýdanynyň formaty nädogrudyr.",    "numeric"=>":attribute meýdany san bolmalydyr.",    "password"=>"Parol nädogry.",    "password.letters"=>":attribute meýdany azyndan bir harp öz içine almalydyr.",    "password.mixed"=>":attribute meýdany azyndan bir uly we bir kiçi harp öz içine almalydyr.",    "password.numbers"=>":attribute meýdany azyndan bir san öz içine almalydyr.",    "password.symbols"=>":attribute meýdany azyndan bir nyşan öz içine almalydyr.",    "password.uncompromised"=>"Berlen :attribute maglumat syzdyrylyşynda peýda boldy. :attribute üçin başga baha saýlaň.",    "present"=>":attribute meýdany bar bolmalydyr.",    "present_if"=>":other :value bahasyna eýe bolanda, :attribute meýdany bar bolmalydyr.",    "present_unless"=>":other :value bahasyna eýe bolmasa, :attribute meýdany bar bolmalydyr.",    "present_with"=>":values berilende, :attribute meýdany bar bolmalydyr.",    "present_with_all"=>":values berilende, :attribute meýdany bar bolmalydyr.",    "previous"=>"&laquo; Öňki",    "prohibited"=>":attribute meýdany gadagandyr.",    "prohibited_if"=>":other :value bolanda, :attribute meýdany gadagandyr.",    "prohibited_unless"=>":other :values-da bolmasa, :attribute meýdany gadagandyr.",    "prohibits"=>":attribute meýdany :other-iň bolmagyny ýatyrýar.",    "regex"=>":attribute meýdanynyň formaty nädogrudyr.",    "relatable"=>":attribute meýdany bu çeşme bilen baglanyşykly bolup bilmez.",    "required"=>":attribute meýdany hökmandyr.",    "required_array_keys"=>":attribute meýdany aşakdaky bahalary öz içine almalydyr: :values.",    "required_if"=>":other :value bahasyna eýe bolanda, :attribute meýdany hökmandyr.",    "required_if_accepted"=>":other kabul edilende, bu meýdan hökmandyr.",    "required_if_declined"=>":other ret edilende, :attribute meýdany hökmandyr.",    "required_unless"=>":other :values-da bolmasa, :attribute meýdany hökmandyr.",    "required_with"=>":values bahasy bar bolanda, :attribute meýdany hökmandyr.",    "required_with_all"=>":values bahalarynyň hemmesi bar bolanda, :attribute meýdany hökmandyr.",    "required_without"=>":values bahasy ýok bolanda, :attribute meýdany hökmandyr.",    "required_without_all"=>":values bahalarynyň hiç biri ýok bolanda, :attribute meýdany hökmandyr.",    "reset"=>"Parol täzelendi!",    "same"=>":attribute we :other meýdanlary birmeňzeş bolmalydyr.",    "sent"=>"Parol ýatlatmasy iberildi!",    "size.array"=>":attribute meýdany :size elementden ybarat bolmalydyr.",    "size.file"=>":attribute meýdany :size kilobaýt bolmalydyr.",    "size.numeric"=>":attribute meýdany :size bolmalydyr.",    "size.string"=>":attribute meýdany :size harpdan ybarat bolmalydyr.",    "starts_with"=>":attribute meýdany aşakdaky bahalaryň biri bilen başlanmalydyr: :values.",    "string"=>":attribute meýdany setir bolmalydyr.",    "throttle"=>"Giriş synanyşyklary gaty köp. :seconds sekuntdan soň gaýtadan synanyşyň.",    "throttled"=>"Gaýtadan synanyşmazdan ozal garaşyň.",    "timezone"=>":attribute meýdany dogry wagt guşagy bolmalydyr.",    "token"=>"Paroly täzeleme belgisi nädogry.",    "ulid"=>":attribute meýdany dogry ULID kesgitleýjisi bolmalydyr.",    "unique"=>"Bu :attribute eýýäm bar.",    "uploaded"=>":attribute faýly ýüklemek başartmady.",    "uppercase"=>":Attribute uly harplar bilen ýazylmalydyr.",    "url"=>":attribute meýdanynyň formaty nädogrudyr.",    "user"=>"Bu e-poçta adresi bilen ulanyjy tapylmady.",    "uuid"=>":attribute meýdany dogry UUID kesgitleýjisi bolmalydyr.",    'total_upload_size_too_high' => 'Jeminde iň uly rugsat edilen göwrüm :max',    'total_upload_size_too_low' => 'Jeminde iň az rugsat edilen göwrüm :min',    'file_too_big' => 'Bu faýl gaty uly. Iň uly rugsat edilen göwrüm :max',    'file_too_small' => 'Bu faýl gaty kiçi. Iň azyndan :min bolmalydyr',    'incorrect_dimensions' => [        'width' => 'Suratyň ini :width piksel bolmalydyr',        'height' => 'Suratyň boýy :height piksel bolmalydyr',        'both' => 'Suratyň ölçegleri :width x :height piksel bolmalydyr',    ],    'width_not_between' => 'Suratyň ini :min bilen :max piksel aralygynda bolmalydyr',    'height_not_between' => 'Suratyň boýy :min bilen :max piksel aralygynda bolmalydyr',    'max_items' => 'Diňe :max element ýükläp bilersiňiz',    'min_items' => 'Azyndan :min element ýüklemeli',    'extension' => 'Faýl :extensions görnüşinde bolmalydyr',    'mime' => 'Faýl :mimes mime görnüşine eýe bolmalydyr',    'type' => ':values görnüşindäki faýly ýüklemeli',    /*    |--------------------------------------------------------------------------    | Custom Validation Language Lines    |--------------------------------------------------------------------------    |    | Here you may specify custom validation messages for attributes using the    | convention "attribute.rule" to name the lines. This makes it quick to    | specify a specific custom language line for a given attribute rule.    |    */    'custom' => [        'sections.*.fields.title' => [            'required' => 'Bölümiň ady hökmandyr',            'max' => 'Bölümiň ady iň köp 100 harpdan ybarat bolmalydyr',            'distinct' => 'Bölümiň ady eýýäm bar',        ],        'sections.*.fields.description' => [            'required' => 'Bölümiň mazmuny hökmandyr',            'max' => 'Bölümiň mazmuny iň köp 2000 harpdan ybarat bolmalydyr',        ],        'experiences.*.employer' => [            'max' => 'Iş berijiniň ady iň köp 100 harpdan ybarat bolmalydyr',        ],        'experiences.*.city' => [            'max' => 'Şäheriň ady iň köp 100 harpdan ybarat bolmalydyr',        ],        'educations.*.school' => [            'max' => 'Mekdep ady iň köp 100 harpdan ybarat bolmalydyr',        ],        'educations.*.city' => [            'max' => 'Şäheriň ady iň köp 100 harpdan ybarat bolmalydyr',        ],        'educations.*.specialization' => [            'max' => 'Hünäriň ady iň köp 100 harpdan ybarat bolmalydyr',        ],    ],    /*    |--------------------------------------------------------------------------    | Custom Validation Attributes    |--------------------------------------------------------------------------    |    | The following language lines are used to swap our attribute placeholder    | with something more reader friendly such as "E-Mail Address" instead    | of "email". This simply helps us make our message more expressive.    |    */    'attributes' => [        'email'    => 'e-poçta salgysy',        'password' => 'parol',        'name'     => 'ady',        'message'     => 'habar',        'agree'     => 'razylyk',        'captcha'     => 'kod',        'subject'     => 'tema',    ],];

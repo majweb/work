@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Пароль быў паспяхова скінуты.',
+    'sent' => 'Ліст для аднаўлення пароля быў адпраўлены.',
+    'throttled' => 'Калі ласка, пачакайце перад наступнай спробай.',
+    'token' => 'Токен для скіду пароля несапраўдны.',
+    'user' => 'Карыстальнік з такім адрасам электроннай пошты не знойдзены.',
 
 ];

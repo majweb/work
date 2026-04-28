@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'პაროლი აღდგენილია!',
+    'sent' => 'პაროლის აღდგენის ბმული გაგზავნილია!',
+    'throttled' => 'გთხოვთ დაელოდოთ, სანამ ხელახლა სცდით.',
+    'token' => 'პაროლის აღდგენის ტოკენი არასწორია.',
+    'user' => "ამ ელფოსტის მისამართით მომხმარებელი ვერ მოიძებნა.",
 
 ];

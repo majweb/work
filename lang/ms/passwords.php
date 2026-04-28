@@ -2,21 +2,10 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | outcome such as failure due to an invalid password / reset token.
-    |
-    */
-
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Kata laluan telah berjaya ditetapkan semula!',
+    'sent' => 'Pautan penetapan semula kata laluan telah dihantar!',
+    'throttled' => 'Sila tunggu sebelum mencuba lagi.',
+    'token' => 'Token penetapan semula kata laluan tidak sah.',
+    'user' => "Tiada pengguna ditemui dengan alamat e-mel tersebut.",
 
 ];

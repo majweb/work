@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -13,10 +14,11 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Vaše geslo je bilo ponastavljeno!.',
+    'sent' => 'Opomnik za geslo je bil poslan!.',
+    'throttled' => 'Prosimo, počakajte, preden poskusite znova.',
+    'token' => 'Žeton za ponastavitev gesla ni veljaven.',
+    'user' => "Ne moremo najti uporabnika s tem e-poštnim naslovom.",
 
 ];
+

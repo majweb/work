@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -13,7 +14,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Poprzednia',
-    'next' => 'Następna &raquo;',
+    'previous' => '&laquo; Prejšnja',
+    'next' => 'Naslednja &raquo;',
 
 ];
+

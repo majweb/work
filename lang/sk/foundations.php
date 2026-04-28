@@ -1,0 +1,2 @@
+<?php return ['foundations' => 'Fundacje',];
+

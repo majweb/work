@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'پټنوم په بریالیتوب سره بدل شو.',
+    'sent' => 'د پټنوم د بیا تنظیمولو لینک واستول شو.',
+    'throttled' => 'مهرباني وکړئ مخکې له دې چې بیا هڅه وکړئ لږ انتظار وکړئ.',
+    'token' => 'د پټنوم د بیا تنظیم ټوکن ناسم دی.',
+    'user' => "د دې برېښنالیک سره کاروونکی ونه موندل شو.",
 
 ];

@@ -6,17 +6,12 @@ return [
     |--------------------------------------------------------------------------
     | Password Reset Language Lines
     |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | outcome such as failure due to an invalid password / reset token.
-    |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'Գաղտնաբառը վերականգնվել է!',
+    'sent' => 'Գաղտնաբառի վերականգնման հղումը ուղարկվել է!',
+    'throttled' => 'Խնդրում ենք սպասել նախքան կրկին փորձելը։',
+    'token' => 'Գաղտնաբառի վերականգնման նշանը անվավեր է։',
+    'user' => 'Այս էլ․ փոստի հասցեով օգտատեր չի գտնվել։',
 
 ];

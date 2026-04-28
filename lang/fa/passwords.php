@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Hasło zostało zresetowane!.',
-    'sent' => 'Przypomnienie hasła zostało wysłane!.',
-    'throttled' => 'Proszę zaczekać zanim spróbujesz ponownie.',
-    'token' => 'Token resetowania hasła jest nieprawidłowy.',
-    'user' => "Nie znaleziono użytkownika z takim adresem e-mail.",
+    'reset' => 'رمز عبور با موفقیت بازنشانی شد!',
+    'sent' => 'لینک بازیابی رمز عبور ارسال شد!',
+    'throttled' => 'لطفاً قبل از تلاش مجدد کمی صبر کنید.',
+    'token' => 'توکن بازنشانی رمز عبور نامعتبر است.',
+    'user' => "کاربری با این آدرس ایمیل یافت نشد.",
 
 ];

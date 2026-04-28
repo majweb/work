@@ -1,194 +1,1 @@
-<?php
-
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
-    "accepted"=>"Pole :attribute musi zostać zaakceptowane.",
-    "accepted_if"=>"Pole :attribute musi zostać zaakceptowane gdy :other ma wartość :value.",
-    "active_url"=>"Pole :attribute jest nieprawidłowym adresem URL.",
-    "after"=>"Pole :attribute musi być datą późniejszą od :date.",
-    "after_or_equal"=>"Pole :attribute musi być datą nie wcześniejszą niż :date.",
-    "alpha"=>"Pole :attribute może zawierać jedynie litery.",
-    "alpha_dash"=>"Pole :attribute może zawierać jedynie litery, cyfry i myślniki.",
-    "alpha_num"=>"Pole :attribute może zawierać jedynie litery i cyfry.",
-    "array"=>"Pole :attribute musi być tablicą.",
-    "ascii"=>"Pole :attribute może zawierać tylko jednobajtowe znaki alfanumeryczne i symbole.",
-    "attached"=>"Pole :attribute jest już dołączone.",
-    "before"=>"Pole :attribute musi być datą wcześniejszą od :date.",
-    "before_or_equal"=>"Pole :attribute musi być datą nie późniejszą niż :date.",
-    "between.array"=>"Pole :attribute musi składać się z :min - :max elementów.",
-    "between.file"=>"Pole :attribute musi zawierać się w granicach :min - :max kilobajtów.",
-    "between.numeric"=>"Pole :attribute musi zawierać się w granicach :min - :max.",
-    "between.string"=>"Pole :attribute musi zawierać się w granicach :min - :max znaków.",
-    "boolean"=>"Pole :attribute musi mieć wartość logiczną prawda albo fałsz.",
-    "can"=>"Pole :attribute zawiera nieautoryzowaną wartość.",
-    "confirmed"=>"Potwierdzenie pola :attribute nie zgadza się.",
-    "contains"=>"Pole :attribute nie zawiera wymaganego elementu.",
-    "current_password"=>"Hasło jest nieprawidłowe.",
-    "date"=>"Pole :attribute nie jest prawidłową datą.",
-    "date_equals"=>"Pole :attribute musi być datą równą :date.",
-    "date_format"=>"Pole :attribute nie jest w formacie :format.",
-    "decimal"=>"Pole :attribute musi mieć :decimal miejsc po przecinku.",
-    "declined"=>"Pole :attribute musi zostać odrzucone.",
-    "declined_if"=>"Pole :attribute musi zostać odrzucone, gdy :other ma wartość :value.",
-    "different"=>"Pole :attribute oraz :other muszą się różnić.",
-    "digits"=>"Pole :attribute musi składać się z :digits cyfr.",
-    "digits_between"=>"Pole :attribute musi mieć od :min do :max cyfr.",
-    "dimensions"=>"Pole :attribute ma niepoprawne wymiary.",
-    "distinct"=>"Pole :attribute ma zduplikowane wartości.",
-    "doesnt_end_with"=>"Pole :attribute nie może kończyć się jednym z następujących wartości: :values.",
-    "doesnt_start_with"=> "Pole :attribute nie może zaczynać się od jednego z następujących wartości: :values.",
-    "email"=> "Pole :attribute nie jest poprawnym adresem e-mail.",
-    "ends_with"=>"Pole :attribute musi kończyć się jedną z następujących wartości: :values.",
-    "enum"=> "Pole :attribute ma niepoprawną wartość.",
-    "exists"=> "Zaznaczone pole :attribute jest nieprawidłowe.",
-    "extensions"=> "Pole :attribute musi mieć jedno z następujących rozszerzeń: :values.",
-    "failed"=>"Błędny login lub hasło.",
-    "file"=>"Pole :attribute musi być plikiem.",
-    "filled"=>"Pole :attribute musi być wypełnione.",
-    "gt.array"=>"Pole :attribute musi mieć więcej niż :value elementów.",
-    "gt.file"=>"Pole :attribute musi być większe niż :value kilobajtów.",
-    "gt.numeric"=>"Pole :attribute musi być większe niż :value.",
-    "gt.string"=>"Pole :attribute musi być dłuższe niż :value znaków.",
-    "gte.array"=>"Pole :attribute musi mieć :value lub więcej elementów.",
-    "gte.file"=>"Pole :attribute musi być większe lub równe :value kilobajtów.",
-    "gte.numeric"=>"Pole :attribute musi być większe lub równe :value.",
-    "gte.string"=>"Pole :attribute musi być dłuższe lub równe :value znaków.",
-    "hex_color"=>"Pole :attribute musi mieć podany prawidłowy kolor w formacie szesnastkowym.",
-    "image"=>"Pole :attribute musi być obrazkiem.",
-    "in"=>"Zaznaczony element :attribute jest nieprawidłowy.",
-    "in_array"=>"Pole :attribute nie znajduje się w :other.",
-    "integer"=>"Pole :attribute musi być liczbą całkowitą.",
-    "ip"=>"Pole :attribute musi być prawidłowym adresem IP.",
-    "ipv4"=>"Pole :attribute musi być prawidłowym adresem IPv4.",
-    "ipv6"=>"Pole :attribute musi być prawidłowym adresem IPv6.",
-    "json"=>"Pole :attribute musi być poprawnym ciągiem znaków JSON.",
-    "list"=>"Pole :attribute musi być listą.",
-    "lowercase"=>":Attribute musi być pisany małymi literami.",
-    "lt.array"=>"Pole :attribute musi mieć mniej niż :value elementów.",
-    "lt.file"=>"Pole :attribute musi być mniejsze niż :value kilobajtów.",
-    "lt.numeric"=>"Pole :attribute musi być mniejsze niż :value.",
-    "lt.string"=>"Pole :attribute musi być krótsze niż :value znaków.",
-    "lte.array"=>"Pole :attribute musi mieć :value lub mniej elementów.",
-    "lte.file"=>"Pole :attribute musi być mniejsze lub równe :value kilobajtów.",
-    "lte.numeric"=>"Pole :attribute musi być mniejsze lub równe :value.",
-    "lte.string"=>"Pole :attribute musi być krótsze lub równe :value znaków.",
-    "mac_address"=>"Pole :attribute musi być prawidłowym adresem MAC.",
-    "max.array"=>"Pole :attribute nie może mieć więcej niż :max elementów.",
-    "max.file"=>"Pole :attribute nie może być większe niż :max kilobajtów.",
-    "max.numeric"=>"Pole :attribute nie może być większe niż :max.",
-    "max.string"=>"Pole :attribute nie może być dłuższe niż :max znaków.",
-    "max_digits"=>"Pole :attribute nie może mieć więcej niż :max cyfr.",
-    "mimes"=>"Pole :attribute musi być plikiem typu :values.",
-    "mimetypes"=>"Pole :attribute musi być plikiem typu :values.",
-    "min.array"=>"Pole :attribute musi mieć przynajmniej :min elementów.",
-    "min.file"=>"Pole :attribute musi mieć przynajmniej :min kilobajtów.",
-    "min.numeric"=>"Pole :attribute musi być nie mniejsze od :min.",
-    "min.string"=>"Pole :attribute musi mieć przynajmniej :min znaków.",
-    "min_digits"=>"Pole :attribute musi mieć co najmniej :min cyfr.",
-    "missing"=>"Musi brakować pola :attribute.",
-    "missing_if"=>"Jeśli :other to :value, musi brakować pola :attribute.",
-    "missing_unless"=>"Musi brakować pola :attribute, chyba że :other to :value.",
-    "missing_with"=>"Jeśli występuje wartość :values, musi brakować pola :attribute.",
-    "missing_with_all"=>"Jeśli występuje :values, musi brakować pola :attribute.",
-    "multiple_of"=>"Pole :attribute musi być wielokrotnością wartości :value",
-    "next"=>"Następna &raquo;",
-    "not_in"=>"Zaznaczony :attribute jest nieprawidłowy.",
-    "not_regex"=>"Format pola :attribute jest nieprawidłowy.",
-    "numeric"=>"Pole :attribute musi być liczbą.",
-    "password"=>"Hasło jest nieprawidłowe.",
-    "password.letters"=>"Pole :attribute musi zawierać przynajmniej jedną literę.",
-    "password.mixed"=>"Pole :attribute musi zawierać przynajmniej jedną wielką i jedną małą literę.",
-    "password.numbers"=>"Pole :attribute musi zawierać przynajmniej jedną liczbę.",
-    "password.symbols"=>"Pole :attribute musi zawierać przynajmniej jeden symbol.",
-    "password.uncompromised"=>"Podany :attribute pojawił się w wycieku danych. Proszę wybrać inną wartość :attribute.",
-    "present"=>"Pole :attribute musi być obecne.",
-    "present_if"=>"Pole :attribute musi być obecne jeżeli :other ma wartość :value.",
-    "present_unless"=>"Pole :attribute musi być obecne, chyba że :other ma wartość :value.",
-    "present_with"=>"Pole :attribute musi być obecne kiedy :values jest podany/a..",
-    "present_with_all"=>"Pole :attribute musi być obecne kiedy :values są podane.",
-    "previous"=>"&laquo; Poprzednia",
-    "prohibited"=>"Pole :attribute jest zabronione.",
-    "prohibited_if"=>"Pole :attribute jest zabronione, gdy :other to :value.",
-    "prohibited_unless"=>"Pole :attribute jest zabronione, chyba że :other jest w :values.",
-    "prohibits"=>"Pole :attribute wyklucza obecność :other.",
-    "regex"=>"Format pola :attribute jest nieprawidłowy.",
-    "relatable"=>"Pole :attribute nie może być powiązane z tym zasobem.",
-    "required"=>"Pole :attribute jest wymagane.",
-    "required_array_keys"=>"Pole :attribute musi zawierać wartości: :values.",
-    "required_if"=>"Pole :attribute jest wymagane gdy :other ma wartość :value.",
-    "required_if_accepted"=>"To pole jest wymagane gdy :other jest zaakceptowane.",
-    "required_if_declined"=>"Pole :attribute jest wymagane gdy :other jest odrzucone.",
-    "required_unless"=>"Pole :attribute jest wymagane jeżeli :other nie znajduje się w :values.",
-    "required_with"=>"Pole :attribute jest wymagane gdy wartość :values jest obecna.",
-    "required_with_all"=>"Pole :attribute jest wymagane gdy wszystkie wartości :values są obecne.",
-    "required_without"=>"Pole :attribute jest wymagane gdy wartość :values nie jest obecna.",
-    "required_without_all"=>"Pole :attribute jest wymagane gdy żadne z wartości :values nie są obecne.",
-    "reset"=>"Hasło zostało zresetowane!",
-    "same"=>"Pole :attribute i :other muszą być takie same.",
-    "sent"=>"Przypomnienie hasła zostało wysłane!",
-    "size.array"=>"Pole :attribute musi zawierać :size elementów.",
-    "size.file"=>"Pole :attribute musi mieć :size kilobajtów.",
-    "size.numeric"=>"Pole :attribute musi mieć :size.",
-    "size.string"=>"Pole :attribute musi mieć :size znaków.",
-    "starts_with"=>"Pole :attribute musi zaczynać się jedną z następujących wartości: :values.",
-    "string"=>"Pole :attribute musi być ciągiem znaków.",
-    "throttle"=>"Za dużo nieudanych prób logowania. Proszę spróbować za :seconds sekund.",
-    "throttled"=>"Proszę zaczekać zanim spróbujesz ponownie.",
-    "timezone"=>"Pole :attribute musi być prawidłową strefą czasową.",
-    "token"=>"Token resetowania hasła jest nieprawidłowy.",
-    "ulid"=>"Pole :attribute musi być prawidłowym identyfikatorem ULID.",
-    "unique"=>"Taki :attribute już występuje.",
-    "uploaded"=>"Nie udało się wgrać pliku :attribute.",
-    "uppercase"=>":Attribute musi być pisany wielkimi literami.",
-    "url"=>"Format pola :attribute jest nieprawidłowy.",
-    "user"=>"Nie znaleziono użytkownika z takim adresem e-mail.",
-    "uuid"=>"Pole :attribute musi być poprawnym identyfikatorem UUID.",
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
-
-    'custom' => [
-        'sections.*.fields.title' => [
-            'required' => 'Tytuł sekcji wymagany',
-            'max' => 'Tytuł sekcji musi zawierać maksymalnie 100 znaków',
-            'distinct' => 'Tytuł sekcji już istnieje',
-        ],
-        'sections.*.fields.description' => [
-            'required' => 'Treść sekcji wymagany',
-            'max' => 'Tytuł sekcji musi zawierać maksymalnie 2000 znaków',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Attributes
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used to swap our attribute placeholder
-    | with something more reader friendly such as "E-Mail Address" instead
-    | of "email". This simply helps us make our message more expressive.
-    |
-    */
-
-    'attributes' => [],
-
-];
+<?phpreturn [    /*    |--------------------------------------------------------------------------    | Validation Language Lines    |--------------------------------------------------------------------------    |    | The following language lines contain the default error messages used by    | the validator class. Some of these rules have multiple versions such    | as the size rules. Feel free to tweak each of these messages here.    |    */    "accepted" => "Trường :attribute phải được chấp nhận.",    "accepted_if" => "Trường :attribute phải được chấp nhận khi :other có giá trị :value.",    "active_url" => "Trường :attribute không phải là URL hợp lệ.",    "after" => "Trường :attribute phải là ngày sau :date.",    "after_or_equal" => "Trường :attribute phải là ngày sau hoặc bằng :date.",    "alpha" => "Trường :attribute chỉ có thể chứa chữ cái.",    "alpha_dash" => "Trường :attribute chỉ có thể chứa chữ cái, số và dấu gạch ngang.",    "alpha_num" => "Trường :attribute chỉ có thể chứa chữ cái và số.",    "array" => "Trường :attribute phải là mảng.",    "ascii" => "Trường :attribute chỉ có thể chứa ký tự alphanumeric một byte và ký hiệu.",    "attached" => "Trường :attribute đã được đính kèm.",    "before" => "Trường :attribute phải là ngày trước :date.",    "before_or_equal" => "Trường :attribute phải là ngày trước hoặc bằng :date.",    "between.array" => "Trường :attribute phải có từ :min - :max phần tử.",    "between.file" => "Trường :attribute phải nằm trong khoảng :min - :max kilobyte.",    "between.numeric" => "Trường :attribute phải nằm trong khoảng :min - :max.",    "between.string" => "Trường :attribute phải có từ :min - :max ký tự.",    "boolean" => "Trường :attribute phải là đúng hoặc sai.",    "can" => "Trường :attribute chứa giá trị không được phép.",    "confirmed" => "Xác nhận của trường :attribute không khớp.",    "contains" => "Trường :attribute không chứa phần tử bắt buộc.",    "current_password" => "Mật khẩu không chính xác.",    "date" => "Trường :attribute không phải là ngày hợp lệ.",    "date_equals" => "Trường :attribute phải là ngày bằng :date.",    "date_format" => "Trường :attribute không đúng định dạng :format.",    "decimal" => "Trường :attribute phải có :decimal chữ số thập phân.",    "declined" => "Trường :attribute phải bị từ chối.",    "declined_if" => "Trường :attribute phải bị từ chối khi :other có giá trị :value.",    "different" => "Trường :attribute và :other phải khác nhau.",    "digits" => "Trường :attribute phải gồm :digits chữ số.",    "digits_between" => "Trường :attribute phải có từ :min đến :max chữ số.",    "dimensions" => "Trường :attribute có kích thước không hợp lệ.",    "distinct" => "Trường :attribute có các giá trị trùng lặp.",    "doesnt_end_with" => "Trường :attribute không thể kết thúc bằng một trong các giá trị sau: :values.",    "doesnt_start_with" => "Trường :attribute không thể bắt đầu bằng một trong các giá trị sau: :values.",    "email" => "Trường :attribute không phải là địa chỉ email hợp lệ.",    "ends_with" => "Trường :attribute phải kết thúc bằng một trong các giá trị sau: :values.",    "enum" => "Trường :attribute có giá trị không hợp lệ.",    "exists" => "Trường :attribute đã chọn không hợp lệ.",    "extensions" => "Trường :attribute phải có một trong các phần mở rộng sau: :values.",    "failed" => "Đăng nhập hoặc mật khẩu không đúng.",    "file" => "Trường :attribute phải là tệp.",    "filled" => "Trường :attribute phải được điền.",    "gt.array" => "Trường :attribute phải có nhiều hơn :value phần tử.",    "gt.file" => "Trường :attribute phải lớn hơn :value kilobyte.",    "gt.numeric" => "Trường :attribute phải lớn hơn :value.",    "gt.string" => "Trường :attribute phải dài hơn :value ký tự.",    "gte.array" => "Trường :attribute phải có :value hoặc nhiều phần tử hơn.",    "gte.file" => "Trường :attribute phải lớn hơn hoặc bằng :value kilobyte.",    "gte.numeric" => "Trường :attribute phải lớn hơn hoặc bằng :value.",    "gte.string" => "Trường :attribute phải dài hơn hoặc bằng :value ký tự.",    "hex_color" => "Trường :attribute phải là màu hex hợp lệ.",    "image" => "Trường :attribute phải là ảnh.",    "in" => "Trường :attribute đã chọn không hợp lệ.",    "in_array" => "Trường :attribute không tồn tại trong :other.",    "integer" => "Trường :attribute phải là số nguyên.",    "ip" => "Trường :attribute phải là địa chỉ IP hợp lệ.",    "ipv4" => "Trường :attribute phải là địa chỉ IPv4 hợp lệ.",    "ipv6" => "Trường :attribute phải là địa chỉ IPv6 hợp lệ.",    "json" => "Trường :attribute phải là chuỗi JSON hợp lệ.",    "list" => "Trường :attribute phải là danh sách.",    "lowercase" => "Trường :attribute phải được viết bằng chữ thường.",    "lt.array" => "Trường :attribute phải có ít hơn :value phần tử.",    "lt.file" => "Trường :attribute phải nhỏ hơn :value kilobyte.",    "lt.numeric" => "Trường :attribute phải nhỏ hơn :value.",    "lt.string" => "Trường :attribute phải ngắn hơn :value ký tự.",    "lte.array" => "Trường :attribute phải có :value hoặc ít phần tử hơn.",    "lte.file" => "Trường :attribute phải nhỏ hơn hoặc bằng :value kilobyte.",    "lte.numeric" => "Trường :attribute phải nhỏ hơn hoặc bằng :value.",    "lte.string" => "Trường :attribute phải ngắn hơn hoặc bằng :value ký tự.",    "mac_address" => "Trường :attribute phải là địa chỉ MAC hợp lệ.",    "max.array" => "Trường :attribute không thể có nhiều hơn :max phần tử.",    "max.file" => "Trường :attribute không thể lớn hơn :max kilobyte.",    "max.numeric" => "Trường :attribute không thể lớn hơn :max.",    "max.string" => "Trường :attribute không thể dài hơn :max ký tự.",    "max_digits" => "Trường :attribute không thể có nhiều hơn :max chữ số.",    "mimes" => "Trường :attribute phải là tệp loại :values.",    "mimetypes" => "Trường :attribute phải là tệp loại :values.",    "min.array" => "Trường :attribute phải có ít nhất :min phần tử.",    "min.file" => "Trường :attribute phải có ít nhất :min kilobyte.",    "min.numeric" => "Trường :attribute phải không nhỏ hơn :min.",    "min.string" => "Trường :attribute phải có ít nhất :min ký tự.",    "min_digits" => "Trường :attribute phải có ít nhất :min chữ số.",    "missing" => "Trường :attribute phải bị thiếu.",    "missing_if" => "Nếu :other là :value, trường :attribute phải bị thiếu.",    "missing_unless" => "Trường :attribute phải bị thiếu, trừ khi :other là :value.",    "missing_with" => "Nếu giá trị :values có mặt, trường :attribute phải bị thiếu.",    "missing_with_all" => "Nếu :values có mặt, trường :attribute phải bị thiếu.",    "multiple_of" => "Trường :attribute phải là bội số của :value",    "next" => "Tiếp theo &raquo;",    "not_in" => "Trường :attribute đã chọn không hợp lệ.",    "not_regex" => "Định dạng của trường :attribute không hợp lệ.",    "numeric" => "Trường :attribute phải là số.",    "password" => "Mật khẩu không chính xác.",    "password.letters" => "Trường :attribute phải chứa ít nhất một chữ cái.",    "password.mixed" => "Trường :attribute phải chứa ít nhất một chữ cái viết hoa và một chữ cái viết thường.",    "password.numbers" => "Trường :attribute phải chứa ít nhất một số.",    "password.symbols" => "Trường :attribute phải chứa ít nhất một ký hiệu.",    "password.uncompromised" => "Giá trị :attribute đã xuất hiện trong một vụ rò rỉ dữ liệu. Vui lòng chọn một giá trị :attribute khác.",    "present" => "Trường :attribute phải có mặt.",    "present_if" => "Trường :attribute phải có mặt nếu :other có giá trị :value.",    "present_unless" => "Trường :attribute phải có mặt, trừ khi :other có giá trị :value.",    "present_with" => "Trường :attribute phải có mặt khi :values được cung cấp.",    "present_with_all" => "Trường :attribute phải có mặt khi :values được cung cấp.",    "previous" => "&laquo; Trước",    "prohibited" => "Trường :attribute bị cấm.",    "prohibited_if" => "Trường :attribute bị cấm khi :other là :value.",    "prohibited_unless" => "Trường :attribute bị cấm, trừ khi :other nằm trong :values.",    "prohibits" => "Trường :attribute loại trừ sự có mặt của :other.",    "regex" => "Định dạng của trường :attribute không hợp lệ.",    "relatable" => "Trường :attribute không thể liên kết với tài nguyên này.",    "required" => "Trường :attribute là bắt buộc.",    "required_array_keys" => "Trường :attribute phải chứa các giá trị: :values.",    "required_if" => "Trường :attribute là bắt buộc khi :other có giá trị :value.",    "required_if_accepted" => "Trường :attribute là bắt buộc khi :other được chấp nhận.",    "required_if_declined" => "Trường :attribute là bắt buộc khi :other bị từ chối.",    "required_unless" => "Trường :attribute là bắt buộc trừ khi :other nằm trong :values.",    "required_with" => "Trường :attribute là bắt buộc khi giá trị :values có mặt.",    "required_with_all" => "Trường :attribute là bắt buộc khi tất cả :values có mặt.",    "required_without" => "Trường :attribute là bắt buộc khi giá trị :values không có mặt.",    "required_without_all" => "Trường :attribute là bắt buộc khi không có giá trị nào của :values có mặt.",    "reset" => "Mật khẩu đã được đặt lại!",    "same" => "Trường :attribute và :other phải giống nhau.",    "sent" => "Đã gửi email khôi phục mật khẩu!",    "size.array" => "Trường :attribute phải chứa :size phần tử.",    "size.file" => "Trường :attribute phải có dung lượng :size kilobyte.",    "size.numeric" => "Trường :attribute phải có giá trị :size.",    "size.string" => "Trường :attribute phải có :size ký tự.",    "starts_with" => "Trường :attribute phải bắt đầu bằng một trong các giá trị sau: :values.",    "string" => "Trường :attribute phải là chuỗi.",    "throttle" => "Quá nhiều lần đăng nhập thất bại. Vui lòng thử lại sau :seconds giây.",    "throttled" => "Vui lòng đợi trước khi thử lại.",    "timezone" => "Trường :attribute phải là múi giờ hợp lệ.",    "token" => "Mã đặt lại mật khẩu không hợp lệ.",    "ulid" => "Trường :attribute phải là ULID hợp lệ.",    "unique" => "Giá trị :attribute đã tồn tại.",    "uploaded" => "Không thể tải lên tệp :attribute.",    "uppercase" => "Trường :attribute phải được viết bằng chữ in hoa.",    "url" => "Định dạng của trường :attribute không hợp lệ.",    "user" => "Không tìm thấy người dùng với địa chỉ email này.",    "uuid" => "Trường :attribute phải là UUID hợp lệ.",    'total_upload_size_too_high' => 'Tổng kích thước tối đa cho phép là :max',    'total_upload_size_too_low' => 'Tổng kích thước tối thiểu cho phép là :min',    'file_too_big' => 'Tệp này quá lớn. Kích thước tối đa cho phép :max',    'file_too_small' => 'Tệp này quá nhỏ. Kích thước tối thiểu phải là :min',    'incorrect_dimensions' => [        'width' => 'Chiều rộng ảnh phải là :width pixel',        'height' => 'Chiều cao ảnh phải là :height pixel',        'both' => 'Kích thước ảnh phải là :width x :height pixel',    ],    'width_not_between' => 'Chiều rộng ảnh phải nằm giữa :min và :max pixel',    'height_not_between' => 'Chiều cao ảnh phải nằm giữa :min và :max pixel',    'max_items' => 'Bạn chỉ có thể tải lên :max mục',    'min_items' => 'Bạn phải tải lên ít nhất :min mục',    'extension' => 'Tệp phải có loại :extensions',    'mime' => 'Tệp phải có loại MIME :mimes',    'type' => 'Bạn phải tải lên tệp loại :values',    /*    |--------------------------------------------------------------------------    | Custom Validation Language Lines    |--------------------------------------------------------------------------    |    | Here you may specify custom validation messages for attributes using the    | convention "attribute.rule" to name the lines. This makes it quick to    | specify a specific custom language line for a given attribute rule.    |    */    'custom' => [        'sections.*.fields.title' => [            'required' => 'Tiêu đề phần là bắt buộc',            'max' => 'Tiêu đề phần chỉ được chứa tối đa 100 ký tự',            'distinct' => 'Tiêu đề phần đã tồn tại',        ],        'sections.*.fields.description' => [            'required' => 'Nội dung phần là bắt buộc',            'max' => 'Tiêu đề phần chỉ được chứa tối đa 2000 ký tự',        ],        'experiences.*.employer' => [            'max' => 'Tên người sử dụng lao động chỉ được chứa tối đa 100 ký tự',        ],        'experiences.*.city' => [            'max' => 'Tên thành phố chỉ được chứa tối đa 100 ký tự',        ],        'educations.*.school' => [            'max' => 'Tên trường học chỉ được chứa tối đa 100 ký tự',        ],        'educations.*.city' => [            'max' => 'Tên thành phố chỉ được chứa tối đa 100 ký tự',        ],        'educations.*.specialization' => [            'max' => 'Tên chuyên ngành chỉ được chứa tối đa 100 ký tự',        ],    ],    /*    |--------------------------------------------------------------------------    | Custom Validation Attributes    |--------------------------------------------------------------------------    |    | The following language lines are used to swap our attribute placeholder    | with something more reader friendly such as "E-Mail Address" instead    | of "email". This simply helps us make our message more expressive.    |    */    'attributes' => [        'email'    => 'địa chỉ email',        'password' => 'mật khẩu',        'name'     => 'tên',        'message'     => 'tin nhắn',        'agree'     => 'sự đồng ý',        'captcha'     => 'mã',        'subject'     => 'chủ đề',    ],];

@@ -1,0 +1,22 @@
+<?php
+return [
+    'content_required' => 'Yorum içeriği gereklidir.',
+    'content_min' => 'Yorum en az :min karakter olmalıdır.',
+    'content_max' => 'Yorum en fazla :max karakter olabilir.',
+    'article_required' => 'Makale gereklidir.',
+    'article_exists' => 'Seçilen makale mevcut değil.',
+    'parent_exists' => 'Yanıt verdiğiniz yorum mevcut değil.',
+    'notyComment' => ':no numaralı makaleye yorumunuz var: ',
+    'publishComment' => 'Makalenin yayınlanmasını ve görünürlüğünü yönetin ',
+    'anonim' => 'Anonim',
+    'see' => 'Görünür',
+    'hide' => 'Gizli',
+    'response' => 'Yanıtla',
+    'WriteResponse' => 'Bir yanıt yazın...',
+    'WriteComment' => 'Bir yorum yazın...',
+    'comments' => 'Yorumlar',
+    'main' => 'ana,',
+    'responses' => 'yanıt(lar)',
+    'add' => 'Yorum ekle',
+    'addLogin' => 'Yorum eklemek için giriş yapın',
+];

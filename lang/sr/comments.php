@@ -1,0 +1,22 @@
+<?php
+return [
+    'content_required' => 'Sadržaj komentara je obavezan.',
+    'content_min' => 'Komentar mora imati najmanje :min znakova.',
+    'content_max' => 'Komentar ne može imati više od :max znakova.',
+    'article_required' => 'Članak je obavezan.',
+    'article_exists' => 'Izabrani članak ne postoji.',
+    'parent_exists' => 'Komentar na koji odgovarate ne postoji.',
+    'notyComment' => 'Imate komentar na članak broj: ',
+    'publishComment' => 'Upravljajte objavljivanjem i vidljivošću članka ',
+    'anonim' => 'Anonimno',
+    'see' => 'Vidljiv',
+    'hide' => 'Sakriven',
+    'response' => 'Odgovor',
+    'WriteResponse' => 'Napišite odgovor...',
+    'WriteComment' => 'Napišite komentar...',
+    'comments' => 'Komentari',
+    'main' => 'glavni,',
+    'responses' => 'odgovori)',
+    'add' => 'Dodaj komentar',
+    'addLogin' => 'Prijavite se da biste dodali komentar',
+];
