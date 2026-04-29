@@ -17,7 +17,7 @@ const form = useForm({
     name: '',
     email: '',
     password: '',
-    type: 'firm',
+    type: (typeof window !== 'undefined') ? new URLSearchParams(window.location.search).get('type') || 'firm' : 'firm',
     password_confirmation: '',
     terms: false,
     agreements: [],

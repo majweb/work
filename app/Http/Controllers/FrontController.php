@@ -540,7 +540,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Privacy', [
             'page' => $page ? new PageResource($page) : null,
-            'langs' => config('langsShorts'),
+            'langs' => ['pl','en'] ?? config('langsShorts'),
             'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }
@@ -567,7 +567,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Terms', [
             'page' => $page ? new PageResource($page) : null,
-            'langs' => config('langsShorts'),
+            'langs' => ['pl','en'] ?? config('langsShorts'),
             'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'is_required']),
         ]);
     }

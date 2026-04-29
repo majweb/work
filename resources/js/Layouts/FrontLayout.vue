@@ -21,6 +21,10 @@ const props = defineProps({
     author: String,
     imageUrl: String,
     url: String,
+    allowedLangs: {
+        type: Array,
+        default: () => ['pl', 'en']
+    },
 });
 
 const page = usePage();
@@ -108,7 +112,15 @@ watch(changeLang, (newVal) => {
 });
 const dispatchAction = (data) => router.post(route('front.language.store', { language: data.value }));
 const resetLang = (data) => router.post(route('front.language.store', { language: data }));
-const sortLangs = computed(() => page.props.languages?.sort((a,b) => a.label.localeCompare(b.label)));
+const sortLangs = computed(() => {
+    let langs = page.props.languages || [];
+
+    if (props.allowedLangs && props.allowedLangs.length > 0) {
+        langs = langs.filter(l => props.allowedLangs.includes(l.value));
+    }
+
+    return [...langs].sort((a, b) => a.label.localeCompare(b.label));
+});
 
 const showConfetti = ref(false);
 watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
@@ -197,6 +209,9 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                     <NavLink :href="route('front.firms')" :active="route().current('front.firms')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-gray-500 hover:!text-[#0A2C5C] !transition-colors">
                         {{__('translate.firms')}}
                     </NavLink>
+                    <NavLink :href="route('front.partners')" :active="route().current('front.partners')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-gray-500 hover:!text-[#0A2C5C] !transition-colors">
+                        {{__('translate.partners')}}
+                    </NavLink>
                 </nav>
 
                 <!-- Language selector and auth -->
@@ -212,7 +227,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                             :selectLabel="''"
                             :selectedLabel="''"
                             :deselectLabel="''"
-                            class="custom-multiselect"
+                            class="custom-multiselect languages-multiselect uppercase"
                         >
                             <template #noResult>
                                 <span>{{__('translate.noOptions')}}</span>
@@ -292,7 +307,9 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                         <Link :href="route('front.firms')" @click="closeMenu" class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest py-4 border-b border-gray-50 hover:text-blue-500 transition-colors">
                             {{__('translate.firms')}}
                         </Link>
-
+                        <Link :href="route('front.partners')" @click="closeMenu" class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest py-4 border-b border-gray-50 hover:text-blue-500 transition-colors">
+                            {{__('translate.partners')}}
+                        </Link>
                         <div class="pt-8 space-y-6">
                             <div class="custom-multiselect">
                                 <Multiselect
@@ -367,10 +384,10 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                     <li v-for="link in [
                                         { route: 'front.projects', label: 'browse_offers' },
                                         { route: 'front.articles', label: 'articles_and_guides' },
-                                        { route: 'login', label: 'login' },
-                                        { route: 'register', label: 'register' }
+                                        { route: 'login', label: 'login', params: { type: 'worker' } },
+                                        { route: 'register', label: 'register', params: { type: 'worker' } }
                                     ]" :key="link.route">
-                                        <Link :href="route(link.route)" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
+                                        <Link :href="route(link.route, link.params || {})" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
                                             {{ __('translate.footer.' + link.label) }}
                                         </Link>
                                     </li>
@@ -386,10 +403,10 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                     <li v-for="link in [
                                         { route: 'project-recruits.create', label: 'add_offer' },
                                         { route: 'front.price', label: 'pricing' },
-                                        { route: 'login', label: 'login' },
-                                        { route: 'register', label: 'register' }
+                                        { route: 'login', label: 'login', params: { type: 'firm' } },
+                                        { route: 'register', label: 'register', params: { type: 'firm' } }
                                     ]" :key="link.route">
-                                        <Link :href="route(link.route)" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
+                                        <Link :href="route(link.route, link.params || {})" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
                                             {{ __('translate.footer.' + link.label) }}
                                         </Link>
                                     </li>
@@ -618,6 +635,20 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
     }
     .multiselect__tag-icon{
         top:-3px !important
+    }
+}
+.languages-multiselect{
+    .multiselect__single,
+    .multiselect__input,
+    .multiselect__option,
+    .multiselect__option--highlight {
+        font-size: 0.65rem !important;
+        text-transform: uppercase !important;
+    }
+
+    .multiselect__tag {
+        font-size: 8px !important;
+        text-transform: uppercase !important;
     }
 }
 </style>

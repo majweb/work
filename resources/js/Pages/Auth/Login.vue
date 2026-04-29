@@ -17,7 +17,7 @@ const form = useForm({
     email: '',
     password: '',
     remember: false,
-    type: 'firm'
+    type: (typeof window !== 'undefined') ? new URLSearchParams(window.location.search).get('type') || 'firm' : 'firm'
 })
 const headerText = computed(() => {
     if (form.type === 'worker') {

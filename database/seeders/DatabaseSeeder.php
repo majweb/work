@@ -85,6 +85,7 @@ class DatabaseSeeder extends Seeder
 
             AdminSeeder::class,
             CategoryImageSeeder::class,
+            CountryImagesSeeder::class,
             FoundationCategorySeeder::class,
             IntegrationSeeder::class,
             AgreementSeeder::class
