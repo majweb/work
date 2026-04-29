@@ -147,8 +147,12 @@ const form = useForm({
     payoutMode: props.project.payoutMode,
     workNight: props.project.workNight,
     workingMode: props.project.workingMode ?? [],
-    typeOfContract: props.project.typeOfContract ?? [],
-    paySystem: props.project.paySystem ?? [],
+    typeOfContract: props.typesOfContract.filter(type =>
+        props.project.typeOfContract.some(pType => (pType.id || pType.value) === type.id)
+    ) ?? [],
+    paySystem: props.paySystems.filter(system =>
+        props.project.paySystem?.some(pSystem => (pSystem.id || pSystem.value) === system.id)
+    ) ?? [],
     workingPlace: props.project.workingPlace ?? [],
     country: props.project.country ?? [],
     days: props.project.days ?? [],

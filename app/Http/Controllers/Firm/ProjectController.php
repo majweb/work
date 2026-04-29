@@ -268,7 +268,7 @@ class ProjectController extends Controller
             }
         }
 
-        session()->flash('flash.banner', __('translate.createdProject'));
+        session()->flash('flash.banner', __('translate.addedProject'));
         session()->flash('flash.bannerStyle', 'success');
 
         return to_route('projects.index');
