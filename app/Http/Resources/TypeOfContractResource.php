@@ -14,8 +14,11 @@ class TypeOfContractResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $id = $this->id ?? $this->value;
+
         return [
-            'id'=>$this->id ?? $this->value,
+            'id' => $id,
+            'value' => $id, // Dodanie 'value' naprawi problem w komponentach typu select/multiselect
             'name'=>$this->name,
             'allTranslations'=>$this->getTranslations()
         ];

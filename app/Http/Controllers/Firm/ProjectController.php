@@ -183,7 +183,6 @@ class ProjectController extends Controller
         $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
         $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
-
         return inertia()->render('Project/Create', array_merge($dictionaryService->getAllProjectDictionaries(), [
             'countries' => $countries,
             'currencies' => $currencies,
