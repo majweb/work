@@ -76,30 +76,7 @@ class DashboardController extends Controller
             // Pobierz projekty rekrutera
             $projects = \App\Models\Project::where('recruiter_id', $user->id)
                 ->orWhereJsonContains('other_recruits', $user->id)
-                ->select([
-                    'id',
-                    'title',
-                    'position',
-                    'profession',
-                    'views_count',
-                    'user_id',
-                    'created_at'
-                ]) // Dodano ograniczenie kolumn
-                ->withCount([
-                    'aplications',
-                    'aplications as yes_count' => function ($query) {
-                        $query->where('status', 'yes');
-                    },
-                    'aplications as no_count' => function ($query) {
-                        $query->where('status', 'no');
-                    },
-                    'aplications as maybe_count' => function ($query) {
-                        $query->where('status', 'maybe');
-                    },
-                    'aplications as new_count' => function ($query) {
-                        $query->whereNull('status');
-                    },
-                ])
+
                 ->latest()
                 ->take(5)
                 ->get()
