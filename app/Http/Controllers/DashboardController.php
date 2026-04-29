@@ -21,6 +21,7 @@ class DashboardController extends Controller
     public function __invoke(AdminSparklineChart $sparklineChart)
     {
         $user = Auth::user();
+        dd($user->roles->pluck('name')->toArray());
         $countQuestions = ProjectQuestion::whereNull('accepted')->count();
         $countBanners = Banner::where('active_admin', 0)->count();
         $countArticles = Article::where('active_admin', 0)->count();
