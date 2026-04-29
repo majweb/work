@@ -168,7 +168,7 @@ onMounted(() => loadCaptcha())
                                                 :placeholder="__('translate.email')"
                                                 id="email"
                                                 v-model="form.email"
-                                                type="email"
+                                                type="text"
                                                 class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                             />
                                             <InputError :message="form.errors.email" class="ml-2" />

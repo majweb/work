@@ -1199,7 +1199,7 @@ return [
     'od' => 'od',
     'do' => 'do',
     'ikona_org' => 'ikona organizacji',
-    'org_prac' => 'Organizacja pracy:',
+    'org_prac' => 'Organizacja pracy',
     'godz_prac' => 'Godziny pracy:',
     'prac_zm' => 'Praca zmianowa:',
     'prac_noc' => 'Praca nocna:',

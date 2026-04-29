@@ -186,7 +186,7 @@ onMounted(async () => {
                         <div v-if="project.is_featured" class="absolute top-0 right-0 h-32 w-32 overflow-hidden pointer-events-none z-20">
                             <div class="absolute top-0 right-0 w-[150%] h-10 bg-gradient-to-r from-[#2386BC] via-[#3aa2d9] to-[#2386BC] rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-900/40 animate-shimmer bg-[length:200%_auto] border-b border-white/10">
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-[#0A2C5C] drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 text-white drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                                     </svg>
                                 </div>
@@ -343,17 +343,17 @@ onMounted(async () => {
                                     <h2 class="text-xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __('translate.platnosc') }}</h2>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
-                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.tryb_wyplaty') }}</p>
-                                            <p class="font-bold text-gray-700">{{ project.payoutMode.allTranslations.name[usePage().props.language] }}</p>
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.tryb_wyplaty') }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ project.payoutMode.allTranslations.name[usePage().props.language] }}</p>
                                         </div>
                                         <div class="space-y-1">
-                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.premia') }}</p>
-                                            <p class="font-bold text-gray-700">{{ __('translate.od') }} {{ project.bonusSalaryFrom }}{{ project.currency?.name }} {{ __('translate.do') }} {{ project.bonusSalaryTo }}{{ project.currency?.name }}</p>
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.premia') }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.bonusSalaryFrom }}{{ project.currency?.name }} {{ __('translate.do') }} {{ project.bonusSalaryTo }}{{ project.currency?.name }}</p>
                                         </div>
                                         <div class="md:col-span-2 pt-4 border-t border-gray-50">
-                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{{ __('translate.system_wynagr') }}</p>
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose mb-3">{{ __('translate.system_wynagr') }}</p>
                                             <div class="flex flex-wrap gap-2">
-                                                <span v-for="paySystem in project.paySystem" class="px-4 py-2 bg-gray-50 rounded-xl text-xs font-black text-[#0A2C5C] uppercase tracking-widest border border-gray-100">
+                                                <span v-for="paySystem in project.paySystem" class="px-4 py-2 bg-gray-50 rounded-xl text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.3em] leading-loose border border-gray-100">
                                                     {{ paySystem.allTranslations.name[usePage().props.language] }}
                                                 </span>
                                             </div>
@@ -372,20 +372,20 @@ onMounted(async () => {
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.godziny') || 'Godziny' }}</p>
-                                            <p class="font-bold text-gray-700">{{ __('translate.od') }} {{ project.hoursFrom }} {{ __('translate.do') }} {{ project.hoursTo }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.hoursFrom }} {{ __('translate.do') }} {{ project.hoursTo }}</p>
                                         </div>
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.prac_zm') }}</p>
-                                            <p class="font-bold uppercase text-xs" :class="project.shiftWork == 1 ? 'text-green-600' : 'text-gray-400'">{{ project.shiftWork == 1 ? __('translate.yes') : __('translate.no') }}</p>
+                                            <p class="font-black uppercase text-xs" :class="project.shiftWork == 1 ? 'text-green-600' : 'text-gray-400'">{{ project.shiftWork == 1 ? __('translate.yes') : __('translate.no') }}</p>
                                         </div>
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.prac_noc') }}</p>
-                                            <p class="font-bold uppercase text-xs" :class="project.workNight == 1 ? 'text-green-600' : 'text-gray-400'">{{ project.workNight == 1 ? __('translate.yes') : __('translate.no') }}</p>
+                                            <p class="font-black uppercase text-xs" :class="project.workNight == 1 ? 'text-green-600' : 'text-gray-400'">{{ project.workNight == 1 ? __('translate.yes') : __('translate.no') }}</p>
                                         </div>
                                         <div class="md:col-span-2 lg:col-span-3 pt-4 border-t border-gray-50">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{{ __('translate.dni_tyg') }}</p>
                                             <div class="flex flex-wrap gap-2">
-                                                <span v-for="(day, index) in project.days" :key="index" class="px-4 py-2 bg-blue-50 rounded-xl text-xs font-black text-[#0A2C5C] uppercase tracking-widest border border-blue-100 shadow-sm">
+                                                <span v-for="(day, index) in project.days" :key="index" class="px-4 py-2 bg-blue-50 rounded-xl text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest border border-blue-100 shadow-sm">
                                                     {{ day.allTranslations.name[usePage().props.language] }}
                                                 </span>
                                             </div>
@@ -428,12 +428,12 @@ onMounted(async () => {
                                             </div>
                                             <div>
                                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                                    <span class="w-1 h-1 bg-green-400 rounded-full"></span>
+                                                    <span class="w-1 h-1 bg-[#2386BC] rounded-full"></span>
                                                     {{ __('translate.welcome') }}
                                                 </p>
                                                 <ul class="space-y-2">
                                                     <li v-for="el in project.welcome" class="text-xs font-bold text-gray-600 uppercase tracking-widest flex items-center gap-2">
-                                                        <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                                        <svg class="w-3 h-3 text-[#2386BC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                                                         {{ el.allTranslations.name[usePage().props.language] }}
                                                     </li>
                                                 </ul>
