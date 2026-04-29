@@ -91,8 +91,8 @@ const stripeCheckout = () => {
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg">
-                    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+                <div class="bg-white shadow-xl sm:rounded-lg">
+                    <section class="bg-white py-8 antialiased md:py-16">
                         <div class="mx-auto max-w-screen-xl px-4">
                             <div class="mt-6 sm:mt-8 flex flex-col lg:flex-row items-start gap-6 xl:gap-8">
                                 <div class="w-full lg:flex-1">
@@ -104,7 +104,7 @@ const stripeCheckout = () => {
                                             </div>
                                         </div>
                                     <div class="space-y-6" v-else>
-                                        <div v-for="cartItem in props.cartItems" :key="cartItem.rowId" class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 dark:border-gray-700 dark:bg-gray-800">
+                                        <div v-for="cartItem in props.cartItems" :key="cartItem.rowId" class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300">
                                             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                 <!-- Miniatura produktu -->
                                                 <div class="shrink-0 flex items-center justify-center w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 p-2 overflow-hidden">
@@ -116,7 +116,7 @@ const stripeCheckout = () => {
 
                                                 <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                                                     <div>
-                                                        <h3 class="text-lg font-black text-[#0b2a55] dark:text-white leading-tight uppercase tracking-tight">
+                                                        <h3 class="text-lg font-black text-[#0b2a55] leading-tight uppercase tracking-tight">
                                                             {{cartItem.name}}
                                                         </h3>
                                                         <p class="text-sm font-bold text-[#00aaff] mt-1">
@@ -141,7 +141,7 @@ const stripeCheckout = () => {
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                                             </svg>
                                                         </button>
-                                                        <input type="text" readonly class="w-12 shrink-0 border-0 bg-transparent text-center text-sm font-black text-[#0b2a55] focus:outline-none focus:ring-0 dark:text-white" :value="cartItem.qty" />
+                                                        <input type="text" readonly class="w-12 shrink-0 border-0 bg-transparent text-center text-sm font-black text-[#0b2a55] focus:outline-none focus:ring-0" :value="cartItem.qty" />
                                                         <button type="button" @click="increment(cartItem.rowId,cartItem.qty)" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#0b2a55] shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-100">
                                                             <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
@@ -150,7 +150,7 @@ const stripeCheckout = () => {
                                                     </div>
                                                     <div class="text-end md:w-32">
                                                         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.subtotal') }}</p>
-                                                        <p class="text-2xl font-black text-[#0b2a55] dark:text-white tracking-tighter">
+                                                        <p class="text-2xl font-black text-[#0b2a55] tracking-tighter">
                                                             <span class="text-sm font-bold text-[#00aaff] mr-0.5">{{ currency }}</span>{{cartItem.subtotal}}
                                                         </p>
                                                     </div>
@@ -161,23 +161,23 @@ const stripeCheckout = () => {
                                 </div>
 
                                 <div class="w-full lg:w-80 xl:w-96 sticky top-8">
-                                    <div class="space-y-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-xl dark:border-gray-700 dark:bg-gray-800 sm:p-8">
+                                    <div class="space-y-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-xl sm:p-8">
                                         <div class="flex items-center gap-3 mb-2">
                                             <div class="p-2 bg-[#0b2a55]/5 rounded-xl">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#0b2a55]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                                 </svg>
                                             </div>
-                                            <p class="text-xl font-black text-[#0b2a55] dark:text-white uppercase tracking-tight">{{__('translate.summary')}}</p>
+                                            <p class="text-xl font-black text-[#0b2a55] uppercase tracking-tight">{{__('translate.summary')}}</p>
                                         </div>
 
                                         <div class="space-y-4 pt-4 border-t border-gray-100">
                                             <div class="flex items-center justify-between">
                                                 <div class="space-y-1">
                                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('translate.summary') }}</p>
-                                                    <p class="text-base font-bold text-[#0b2a55] dark:text-white uppercase leading-none">{{ __('translate.subtotal') }}</p>
+                                                    <p class="text-base font-bold text-[#0b2a55] uppercase leading-none">{{ __('translate.subtotal') }}</p>
                                                 </div>
-                                                <p class="text-3xl font-black text-[#0b2a55] dark:text-white tracking-tighter">
+                                                <p class="text-3xl font-black text-[#0b2a55] tracking-tighter">
                                                     <span class="text-lg font-bold text-[#00aaff] mr-0.5">{{ currency }}</span>{{countCart > 0 ? props.total : '0'}}
                                                 </p>
                                             </div>

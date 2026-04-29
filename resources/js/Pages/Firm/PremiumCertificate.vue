@@ -102,7 +102,7 @@ const generateButtonText = computed(() => {
 <template>
     <AppLayout title="Certyfikat Premium">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Certyfikat Premium
             </h2>
         </template>

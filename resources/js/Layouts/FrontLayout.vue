@@ -156,7 +156,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
 
             <slot name="head" />
         </Head>
-    <div class="flex flex-col dark:bg-gray-900 font-sans relative">
+    <div class="flex flex-col font-sans relative">
         <Banner />
         <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 pointer-events-none z-[300]">
             <ConfettiExplosion

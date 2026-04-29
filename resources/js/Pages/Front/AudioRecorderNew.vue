@@ -1,22 +1,22 @@
 <template>
     <div class="max-w-4xl mx-auto">
         <!-- Modern Instruction Header -->
-        <div class="mb-10 bg-white dark:bg-gray-800 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+        <div class="mb-10 bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
             <button
                 type="button"
                 @click="toggle"
-                class="w-full flex items-center justify-between p-6 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group"
+                class="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors group"
             >
                 <div class="flex items-center gap-4">
-                    <div class="p-2.5 bg-amber-50 dark:bg-amber-900/30 rounded-2xl text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                    <div class="p-2.5 bg-amber-50 rounded-2xl text-amber-600 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
                         </svg>
                     </div>
-                    <span class="text-lg font-black text-gray-900 dark:text-white uppercase tracking-tight">{{ __('translate.instructionAudio') }}</span>
+                    <span class="text-lg font-black text-gray-900 uppercase tracking-tight">{{ __('translate.instructionAudio') }}</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span class="text-[10px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="text-[10px] font-black text-amber-600 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
                         {{ open ? __('translate.collapse') : __('translate.expand') }}
                     </span>
                     <div class="relative">
@@ -43,20 +43,20 @@
                 @before-leave="animating = true"
                 @after-leave="animating = false"
             >
-                <div v-show="open" class="border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/30 p-8">
+                <div v-show="open" class="border-t border-gray-100 bg-gray-50/30/30 p-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div v-for="(step, sIdx) in 4" :key="sIdx" class="space-y-3">
                             <div class="flex items-center gap-3">
                                 <span class="flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-[10px] font-black">{{ sIdx + 1 }}</span>
-                                <h4 class="font-black text-gray-900 dark:text-white uppercase tracking-wider text-xs">
+                                <h4 class="font-black text-gray-900 uppercase tracking-wider text-xs">
                                     {{ __('translate.audio_cv.steps.' + ['start', 'questions', 'recording', 'finish'][sIdx] + '.title') }}
                                 </h4>
                             </div>
                             <ul class="space-y-2 ml-9">
-                                <li v-if="sIdx === 0" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{{ __('translate.audio_cv.steps.start.step_3') }}</li>
-                                <li v-if="sIdx === 1" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{{ __('translate.audio_cv.steps.questions.step_2') }}</li>
-                                <li v-if="sIdx === 2" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{{ __('translate.audio_cv.steps.recording.stop') }}</li>
-                                <li v-if="sIdx === 3" class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{{ __('translate.audio_cv.steps.finish.apply') }}</li>
+                                <li v-if="sIdx === 0" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.audio_cv.steps.start.step_3') }}</li>
+                                <li v-if="sIdx === 1" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.audio_cv.steps.questions.step_2') }}</li>
+                                <li v-if="sIdx === 2" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.audio_cv.steps.recording.stop') }}</li>
+                                <li v-if="sIdx === 3" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.audio_cv.steps.finish.apply') }}</li>
                             </ul>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
 
         <!-- Audio Core UI -->
         <div class="relative group">
-            <div class="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900 shadow-2xl border-4 border-white dark:border-gray-800 p-12 flex flex-col items-center justify-center min-h-[300px] transition-all duration-500 group-hover:shadow-amber-500/10">
+            <div class="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900 shadow-2xl border-4 border-white p-12 flex flex-col items-center justify-center min-h-[300px] transition-all duration-500 group-hover:shadow-amber-500/10">
 
                 <!-- Waveform Visualizer Placeholder/Animation -->
                 <div v-if="recording" class="flex items-center gap-1.5 h-12 mb-8">
@@ -173,7 +173,7 @@
                     v-if="recordedBlobUrl && !uploading"
                     type="button"
                     @click="startRecording"
-                    class="group flex items-center gap-3 px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-xl active:scale-95"
+                    class="group flex items-center gap-3 px-8 py-4 bg-gray-900 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-xl active:scale-95"
                 >
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -188,12 +188,12 @@
                 enter-from-class="opacity-0 scale-95"
                 enter-to-class="opacity-100 scale-100"
             >
-                <div v-if="uploading" class="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-[2rem] border border-gray-100 dark:border-gray-700 shadow-xl text-center">
+                <div v-if="uploading" class="w-full max-w-md bg-white p-6 rounded-[2rem] border border-gray-100 shadow-xl text-center">
                     <div class="flex items-center justify-between mb-4">
-                        <span class="text-xs font-black text-gray-900 dark:text-white uppercase tracking-widest">{{ __('translate.uploadingAudio') }}</span>
+                        <span class="text-xs font-black text-gray-900 uppercase tracking-widest">{{ __('translate.uploadingAudio') }}</span>
                         <span class="text-sm font-black text-amber-600 tabular-nums">{{ uploadProgress.toFixed(0) }}%</span>
                     </div>
-                    <div class="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div class="h-3 w-full bg-gray-100 rounded-full overflow-hidden">
                         <div class="h-full bg-amber-600 rounded-full transition-all duration-300" :style="{ width: uploadProgress + '%' }"></div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                 enter-to-class="opacity-100 translate-y-0"
             >
                 <div v-if="uploadSuccess" class="flex flex-col items-center gap-6">
-                    <div class="flex items-center gap-3 px-6 py-3 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-2xl border border-green-100 dark:border-green-800/30">
+                    <div class="flex items-center gap-3 px-6 py-3 bg-green-50 text-green-600 rounded-2xl border border-green-100">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                         </svg>
@@ -394,7 +394,7 @@ async function uploadInChunks(blob) {
 }
 
 progress {
-    @apply h-3 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden;
+    @apply h-3 w-full bg-gray-100 rounded-full overflow-hidden;
 }
 progress::-webkit-progress-bar { @apply bg-transparent; }
 progress::-webkit-progress-value { @apply bg-amber-600 rounded-full transition-all duration-300; }

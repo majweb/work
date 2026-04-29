@@ -1063,16 +1063,16 @@ const removeFile = async (source, load) => {
                             </div>
 
                             <div v-if="professionCv"
-                                 class="p-6 bg-blue-50/30 dark:bg-blue-900/10 rounded-3xl border border-blue-100/50 dark:border-blue-800/30">
+                                 class="p-6 bg-blue-50/30 rounded-3xl border border-blue-100/50">
                                 <InputLabel for="cvcvFile" :value="__('translate.fileCv')"
-                                            class="mb-4 font-black text-blue-900 dark:text-blue-400 uppercase tracking-widest text-[10px]"/>
+                                            class="mb-4 font-black text-blue-900 uppercase tracking-widest text-[10px]"/>
                                 <div class="relative group">
                                     <div
                                         class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[1.5rem] blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
                                     <label
                                         :class="[
-                                            'relative flex items-center gap-6 cursor-pointer bg-white dark:bg-gray-800 border-2 rounded-[1.5rem] p-5 transition-all duration-300 select-none shadow-sm',
-                                            form.isSelected ? 'border-blue-500 shadow-blue-100 dark:shadow-none' : 'border-white dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-900'
+                                            'relative flex items-center gap-6 cursor-pointer bg-white border-2 rounded-[1.5rem] p-5 transition-all duration-300 select-none shadow-sm',
+                                            form.isSelected ? 'border-blue-500 shadow-blue-100' : 'border-white hover:border-blue-200'
                                         ]"
                                     >
                                         <input
@@ -1084,7 +1084,7 @@ const removeFile = async (source, load) => {
                                         />
 
                                         <div
-                                            class="flex items-center justify-center w-16 h-16 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-110 transition-transform duration-500">
+                                            class="flex items-center justify-center w-16 h-16 bg-red-50 text-red-600 rounded-2xl group-hover:scale-110 transition-transform duration-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -1095,7 +1095,7 @@ const removeFile = async (source, load) => {
 
                                         <div class="flex-1">
                                             <span
-                                                class="block text-lg font-black text-gray-900 dark:text-white uppercase tracking-tight">{{
+                                                class="block text-lg font-black text-gray-900 uppercase tracking-tight">{{
                                                     __('translate.yourCv')
                                                 }}</span>
                                             <div class="flex items-center gap-3 mt-1">
@@ -1108,7 +1108,7 @@ const removeFile = async (source, load) => {
                                                     :href="professionCv.pathCv"
                                                     target="_blank"
                                                     download
-                                                    class="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
+                                                    class="text-xs font-black text-blue-600 uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
                                                     @click.stop
                                                 >
                                                     {{ __('translate.getPdf') }}
@@ -1118,7 +1118,7 @@ const removeFile = async (source, load) => {
 
                                         <div
                                             class="w-8 h-8 rounded-full border-2 transition-all flex items-center justify-center"
-                                            :class="form.isSelected ? 'bg-blue-600 border-blue-600 scale-110 shadow-lg shadow-blue-500/40' : 'bg-gray-50 border-gray-100 dark:bg-gray-700 dark:border-gray-600'">
+                                            :class="form.isSelected ? 'bg-blue-600 border-blue-600 scale-110 shadow-lg shadow-blue-500/40' : 'bg-gray-50 border-gray-100'">
                                             <svg v-if="form.isSelected" class="w-5 h-5 text-white" fill="none"
                                                  stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -1131,11 +1131,11 @@ const removeFile = async (source, load) => {
 
                             <div v-if="form.cvStandardType == 1 && !form.isSelected" class="animate-slide-up">
                                 <div
-                                    class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                    class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                     <InputLabel for="cvcvFile" :value="__('translate.fileCv')"
-                                                class="mb-4 font-black text-gray-800 dark:text-gray-200 uppercase tracking-widest text-[10px]"/>
+                                                class="mb-4 font-black text-gray-800 uppercase tracking-widest text-[10px]"/>
                                     <div
-                                        class="rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 p-1">
+                                        class="rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 p-1">
                                         <file-pond
                                             name="cvFile"
                                             ref="uploadCv"
@@ -2005,46 +2005,46 @@ const removeFile = async (source, load) => {
                     </div>
                         <div v-if="formStep == 2 && form.cv == 2" class="animate-fade-in space-y-12">
                             <div v-if="props.project.questions.length"
-                                 class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                 class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"
                                                :form="form" @submit="submit" @uploadStateChange="(state) => isReadyToSubmit = !state"/>
                             </div>
                             <div v-else
-                                 class="p-12 text-center bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                 class="p-12 text-center bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <div
-                                    class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
+                                    class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 text-blue-600 mb-6 shadow-sm">
                                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
-                                <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
+                                <h3 class="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">
                                     {{ __('translate.noQuestionsFound') }}
                                 </h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto leading-relaxed">
+                                <p class="text-sm text-gray-500 max-w-sm mx-auto leading-relaxed">
                                     {{ __('translate.noQuestionsDescription') }}
                                 </p>
                             </div>
                         </div>
                         <div v-else-if="formStep == 2 && form.cv == 3" class="animate-fade-in space-y-8">
                             <div v-if="props.project.questions.length"
-                                 class="p-6 bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                 class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id"
                                                   :form="form" @submit="submit"/>
                             </div>
                             <div v-else
-                                 class="p-12 text-center bg-gray-50/50 dark:bg-gray-800/30 rounded-3xl border border-gray-100 dark:border-gray-700">
+                                 class="p-12 text-center bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <div
-                                    class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 mb-6 shadow-sm">
+                                    class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 text-blue-600 mb-6 shadow-sm">
                                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
-                                <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-2 uppercase tracking-tight">
+                                <h3 class="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">
                                     {{ __('translate.noQuestionsFound') }}
                                 </h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto leading-relaxed">
+                                <p class="text-sm text-gray-500 max-w-sm mx-auto leading-relaxed">
                                     {{ __('translate.noQuestionsDescription') }}
                                 </p>
                             </div>

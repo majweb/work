@@ -44,21 +44,21 @@ watch(params.value, debounce(function (value) {
 <template>
     <AppLayout :title="__('translate.orders')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{__('translate.orders')}}
             </h2>
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
 
                         <h2 class="text-sm font-semibold text-indigo-300">{{__('translate.filters')}}</h2>
                         <button class="text-sm font-semibold mb-2 text-indigo-400 underline" @click="resetFilters" v-if="(params.payment_type && params.payment_type != 'all') || (params.paid_date && params.paid_date != 'paid-all')">{{ __('translate.clearFilters') }}</button>
                         <div class="col-span-6 flex mb-3 items-center">
                             <div class="flex mt-1 flex flex-col mr-2">
                                 <InputLabel :value="__('translate.payType')" class="text-sm"/>
-                                <select v-model="params.payment_type" id="small" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                <select v-model="params.payment_type" id="small" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 >
                                     <option value="all" id="all">{{__('translate.all')}}</option>
                                     <option value="P24"  id="P24">P24</option>
@@ -67,7 +67,7 @@ watch(params.value, debounce(function (value) {
                             </div>
                             <div class="flex mt-1 flex flex-col">
                                 <InputLabel :value="__('translate.payStatus')" class="text-sm"/>
-                                <select v-model="params.paid_date" id="small" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                <select v-model="params.paid_date" id="small" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 >
                                     <option value="paid-all" id="paid-all">{{__('translate.all')}}</option>
                                     <option value="pay"  id="pay">{{__('translate.paid')}}</option>

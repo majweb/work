@@ -6,7 +6,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from "@/Components/DangerButton.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import {computed, ref} from "vue";
+import {ref} from "vue";
 
 const props = defineProps({
     aplication: Object
@@ -55,28 +55,28 @@ const DeleteAplication = () => {
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                         {{__('translate.recruitment')}}:
                         <ul class="p-4">
                             <li class="text-md mb-1">
-                                <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.aplication')}}:</span>
+                                <span class="text-gray-500 md:text-md mr-2">{{__('translate.aplication')}}:</span>
                                 <span class="text-md font-semibold">{{props.aplication.id}}</span>
                             </li>
                         </ul>
 
                         <div class="flex justify-center items-center gap-5">
-                            <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CV</h5>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Podstawowe</p>
+                            <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">CV</h5>
+                                <p class="mb-3 font-normal text-gray-700">Podstawowe</p>
                             </Link>
-                            <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CV</h5>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Podstawowe</p>
+                            <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">CV</h5>
+                                <p class="mb-3 font-normal text-gray-700">Podstawowe</p>
                             </Link>
-                            <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CV</h5>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Podstawowe</p>
+                            <Link :href="route('project-aplications-recruits.recruitmentView',aplication)" class="w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">CV</h5>
+                                <p class="mb-3 font-normal text-gray-700">Podstawowe</p>
                             </Link>
                         </div>
                     </div>

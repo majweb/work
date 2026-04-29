@@ -19,7 +19,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="text-gray-900 dark:text-gray-100">
+    <div class="text-gray-900">
         <BitbucketIcon v-if="provider.id === 'bitbucket'" :class="classes"/>
         <img alt="facebook" src="/images/icons/facebook.svg" v-if="provider.id === 'facebook'" :class="classes"/>
         <img alt="github" src="/images/icons/github.svg" v-if="provider.id === 'github'" :class="classes"/>

@@ -65,7 +65,7 @@ const generateUrl = computed(() => {
         </template>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                         <div class="col-span-6 mt-3" v-if="props.project.cityWork && props.project.streetWork && props.project.streetWorkNumber">
                             <iframe
@@ -80,37 +80,37 @@ const generateUrl = computed(() => {
                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3">
                                 <ul class="p-4">
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">Id:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">Id:</span>
                                         <span class="text-md font-semibold">{{props.project.id}}</span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.category')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.category')}}:</span>
                                         <span class="text-md font-semibold">{{props.project.category?.allTranslations.title[usePage().props.language]}}</span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.subcategory')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.subcategory')}}:</span>
                                         <span class="text-md font-semibold">{{props.project.categorySub?.allTranslations.title[usePage().props.language]}}</span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.recruit')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.recruit')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.recruit?.name}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.profession')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.profession')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.profession?.allTranslations.title[usePage().props.language]}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.position')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.position')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.position?.allTranslations.title[usePage().props.language]}}
                                         </span>
                                     </li>
                                     <li class="flex items-center text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.workingMode')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.workingMode')}}:</span>
                                         <div class="text-md font-semibold">
                                         <span v-for="working in props.project.workingMode">
                                             {{working.allTranslations.title[usePage().props.language]}}
@@ -118,7 +118,7 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="flex items-center text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.CountryPublish')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.CountryPublish')}}:</span>
                                         <div class="text-md font-semibold flex justify-center">
                                             <div v-for="(county,index) in props.project.country">
                                                 {{county.allTranslations[usePage().props.language]}}<span v-if="index !== props.project.country.length - 1">,</span>
@@ -126,19 +126,19 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.workingPlace')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.workingPlace')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.workingPlace?.allTranslations.name[usePage().props.language]}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1" v-if="props.project.external_company">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.externalCompany')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.externalCompany')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.external_company?.name}} ({{props.project.external_company?.abbreviation}})
                                         </span>
                                     </li>
                                     <li class="flex text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.typesOfContract')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.typesOfContract')}}:</span>
                                         <div class="flex items-center flex-wrap text-md font-semibold">
                                             <div v-for="(type,index) in props.project.typeOfContract">
                                                 {{type.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.typeOfContract.length - 1">,</span>
@@ -146,7 +146,7 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.workLoads')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.workLoads')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.workLoad?.allTranslations.name[usePage().props.language]}}
                                         </span>
@@ -154,25 +154,25 @@ const generateUrl = computed(() => {
                                 </ul>
                                 <ul class="p-4">
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.basicSalaryFrom')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.basicSalaryFrom')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.basicSalaryFrom}} {{props.project.currency.name}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.basicSalaryTo')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.basicSalaryTo')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.basicSalaryTo}} {{props.project.currency.name}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.payoutModes')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.payoutModes')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.payoutMode?.allTranslations.name[usePage().props.language]}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.typesOfContract')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.typesOfContract')}}:</span>
                                         <div class="flex items-center flex-wrap text-md font-semibold">
                                             <div v-for="(pay,index) in props.project.paySystem">
                                                 {{pay.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.paySystem.length - 1">,</span>
@@ -180,43 +180,43 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.bonusSalaryFrom')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.bonusSalaryFrom')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.bonusSalaryFrom}} {{props.project.currency.name}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.bonusSalaryTo')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.bonusSalaryTo')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.bonusSalaryTo}} {{props.project.currency.name}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.shiftWorks')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.shiftWorks')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.shiftWork?.name[usePage().props.language]}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.hoursFrom')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.hoursFrom')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.hoursFrom}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.hoursTo')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.hoursTo')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.hoursTo}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.workNight')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.workNight')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.workNight == 2 ? __('translate.no') : __('translate.yes')}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.day')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.day')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
                                             <div v-for="(day,index) in props.project.days">
                                                 {{day.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.days.length - 1">,</span>
@@ -226,7 +226,7 @@ const generateUrl = computed(() => {
                                 </ul>
                                 <ul class="p-4">
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.offer')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.offer')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
                                             <div v-for="(off,index) in props.project.offer">
                                                 {{off.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.offer.length - 1">,</span>
@@ -234,7 +234,7 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.wait')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.wait')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
                                             <div v-for="(w,index) in props.project.wait">
                                                 {{w.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.wait.length - 1">,</span>
@@ -242,13 +242,13 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.experience')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.experience')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
                                            {{props.project.experience.allTranslations.name[usePage().props.language]}}
                                         </div>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.welcome')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.welcome')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
                                             <div v-for="(we,index) in props.project.welcome">
                                                 {{we.allTranslations.name[usePage().props.language]}}<span v-if="index !== props.project.welcome.length - 1">,</span>
@@ -256,13 +256,13 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.education')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.education')}}:</span>
                                         <span class="text-md font-semibold">
                                             {{props.project.education?.name[usePage().props.language]}}
                                         </span>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.adress')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.adress')}}:</span>
                                         <span class="text-md font-semibold flex flex-wrap">
                                             {{props.project.countryWork?.allTranslations[usePage().props.language]}},
                                             {{props.project.streetWork}},
@@ -272,7 +272,7 @@ const generateUrl = computed(() => {
                                         </span>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.othersRecruits')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.othersRecruits')}}:</span>
                                         <div class="text-md font-semibold flex flex-wrap">
                                             <div v-for="(other,index) in props.project.other_recruits">
                                                 {{other.name}}<span v-if="index !== props.project.other_recruits.length - 1">,</span>
@@ -280,7 +280,7 @@ const generateUrl = computed(() => {
                                         </div>
                                     </li>
                                     <li class="text-md mb-1 flex flex-wrap items-center">
-                                        <span class="text-gray-500 md:text-md dark:text-gray-400 mr-2">{{__('translate.title')}}:</span>
+                                        <span class="text-gray-500 md:text-md mr-2">{{__('translate.title')}}:</span>
                                         <span class="text-md font-semibold">{{props.project.title[usePage().props.language]}}</span>
                                     </li>
                                 </ul>

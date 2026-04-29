@@ -15,14 +15,14 @@ onMounted(() => {
 <template>
     <AppLayout :title="__('translate.buy')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('translate.congratulations') }}
             </h2>
         </template>
 
         <div class="py-12 min-h-[80vh] flex items-center justify-center bg-gray-50/50">
             <div class="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="relative bg-white dark:bg-gray-800 overflow-hidden shadow-2xl rounded-[3rem] border border-gray-100">
+                <div class="relative bg-white overflow-hidden shadow-2xl rounded-[3rem] border border-gray-100">
                     <!-- Confetti Layer -->
                     <div class="absolute inset-0 pointer-events-none flex justify-center">
                         <ConfettiExplosion
@@ -50,21 +50,21 @@ onMounted(() => {
 
                         <!-- Treść główna -->
                         <div class="space-y-4 max-w-lg mx-auto">
-                            <h1 class="text-4xl font-black text-[#0b2a55] dark:text-white uppercase tracking-tight">
+                            <h1 class="text-4xl font-black text-[#0b2a55] uppercase tracking-tight">
                                 {{ __('translate.orderPay') }}
                             </h1>
-                            <p class="text-lg text-gray-500 dark:text-gray-400 font-medium">
+                            <p class="text-lg text-gray-500 font-medium">
                                 {{ __('translate.congratulations') }}! {{ __('translate.transactionSuccess') }}
                             </p>
                         </div>
 
                         <!-- Box z punktami -->
                         <div class="mt-10 mb-12">
-                            <div class="inline-flex flex-col items-center bg-gray-50 dark:bg-gray-900/50 px-12 py-8 rounded-[2rem] border border-gray-100 dark:border-gray-700 shadow-inner">
+                            <div class="inline-flex flex-col items-center bg-gray-50 px-12 py-8 rounded-[2rem] border border-gray-100 shadow-inner">
                                 <span class="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{{ __('translate.give') }}</span>
                                 <div class="flex items-baseline gap-2">
                                     <span class="text-6xl font-black text-[#00aaff] tracking-tighter">{{ points?.toLocaleString() || '0' }}</span>
-                                    <span class="text-xl font-black text-[#0b2a55] dark:text-white uppercase">{{ __('translate.pkt') }}</span>
+                                    <span class="text-xl font-black text-[#0b2a55] uppercase">{{ __('translate.pkt') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ onMounted(() => {
                             </Link>
 
                             <Link :href="route('invoices.index')"
-                                  class="flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl border-2 border-gray-100 bg-white px-8 py-4 text-center text-sm font-black uppercase tracking-widest text-gray-500 transition-all hover:border-[#00aaff] hover:text-[#00aaff] dark:bg-gray-800 dark:border-gray-700">
+                                  class="flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl border-2 border-gray-100 bg-white px-8 py-4 text-center text-sm font-black uppercase tracking-widest text-gray-500 transition-all hover:border-[#00aaff] hover:text-[#00aaff]">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
