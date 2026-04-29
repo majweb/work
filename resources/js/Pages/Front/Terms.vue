@@ -64,12 +64,12 @@ const currentPdfSuffix = computed(() => {
 
                 <!-- Content Card -->
                 <div class="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 p-8 md:p-12 border border-gray-100">
-                    <div class="prose prose-blue max-w-none text-gray-600 leading-relaxed">
+                    <div class="prose prose-blue max-w-none text-gray-600 leading-relaxed text-center">
                         <section class="mb-10 animate-fadeIn" v-html="props.page.content"></section>
                     </div>
 
                     <!-- Dynamic PDF Downloads -->
-                    <div class="mt-12 pt-12 border-t border-gray-100">
+                    <div class="mt-12 pt-12 border-t border-gray-100 flex flex-col items-center justify-center">
                         <h3 class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest mb-6">
                             {{ __('translate.footer.downloadTermsPdf') }} ({{ activeTab === 'general' ? 'Firma' : 'Kandydat' }})
                         </h3>

@@ -449,7 +449,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                         type="email"
                                         v-model="form.email"
                                         :placeholder="__('translate.footer.email_placeholder')"
-                                        class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl focus:bg-white focus:ring-0 focus:border-blue-200 transition-all text-sm font-bold placeholder-gray-400"
+                                        class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl focus:bg-white focus:ring-0 focus:border-blue-200 transition-all text-xs font-bold placeholder-gray-400"
                                         :class="{'border-red-500': form.errors.email}"
                                     >
                                 </div>
@@ -479,7 +479,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                         <span class="cursor-pointer" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
                                         <button
                                             type="button"
-                                            class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                            class="uppercase text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
                                             @click.stop="showNewsletterAgreements = true"
                                         >
                                             {{ __('translate.newsletter_agreements') }}
