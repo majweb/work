@@ -137,7 +137,7 @@ function addMarker() {
                 <!-- HEADER CARD -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8 overflow-hidden relative">
                     <!-- BANER -->
-                    <div class="w-full h-64 md:h-80 -m-10 mb-0 overflow-hidden relative">
+                    <div class="h-64 md:h-80 -mx-10 -mt-10 mb-0 overflow-hidden relative w-[calc(100%+5rem)]">
                         <img
                             :src="props.foundation.banner ?? '/img/default-banner.jpg'"
                             class="w-full h-full object-cover"

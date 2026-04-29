@@ -181,7 +181,7 @@ onMounted(() => loadCaptcha())
                                                 id="subject"
                                                 v-model="form.subject"
                                                 type="text"
-                                                class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
+                                                class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all !text-[#0A2C5C]"
                                             />
                                             <InputError :message="form.errors.subject" class="ml-2" />
                                         </div>
@@ -194,7 +194,7 @@ onMounted(() => loadCaptcha())
                                             :placeholder="__('info.message')"
                                             rows="5"
                                             maxlength="500"
-                                            class="w-full rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:ring-4 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-4 px-4 transition-all text-sm font-bold text-gray-600 placeholder:text-gray-300 shadow-sm"
+                                            class="w-full rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:ring-4 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-4 px-4 transition-all text-sm font-bold text-[#0A2C5C] placeholder:text-gray-300 shadow-sm"
                                         ></textarea>
                                         <div class="flex justify-end px-4">
                                             <span class="text-[9px] font-black uppercase tracking-widest" :class="messageCharsRemaining < 50 ? 'text-red-500' : 'text-gray-400'">

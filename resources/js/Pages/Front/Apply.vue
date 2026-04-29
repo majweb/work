@@ -608,7 +608,7 @@ const removeFile = async (source, load) => {
                                     <TextInput
                                         id="email"
                                         v-model="form.email"
-                                        type="email"
+                                        type="text"
                                         :placeholder="__('translate.email')"
                                         class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                     />
@@ -2116,7 +2116,7 @@ const removeFile = async (source, load) => {
                                     <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
                                 </template>
                                 <template v-else>
-                                    <span>{{ __('translate.apply') }}</span>
+                                    <span>{{ __('translate.apply') }}sssss</span>
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
@@ -2174,77 +2174,6 @@ const removeFile = async (source, load) => {
     cursor: pointer;
 }
 
-/* Custom Multiselect Styles */
-.custom-multiselect {
-    .multiselect__tags {
-        border-radius: 1rem !important;
-        background-color: #f9fafb !important;
-        border-color: transparent !important;
-        padding-top: 0.75rem !important;
-        padding-bottom: 0.75rem !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        transition: all 0.2s;
-    }
-    .multiselect__input, .multiselect__single {
-        background-color: transparent !important;
-        font-size: 0.875rem !important;
-        font-weight: 700 !important;
-        color: #4b5563 !important;
-        margin-bottom: 0 !important;
-    }
-    .multiselect__placeholder {
-        color: #d1d5db !important;
-        font-size: 0.875rem !important;
-        font-weight: 700 !important;
-        margin-bottom: 0 !important;
-        padding-top: 0 !important;
-    }
-    .multiselect__select {
-        height: 100% !important;
-    }
-    .multiselect__content-wrapper {
-        border-radius: 1rem !important;
-        border-color: #f3f4f6 !important;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-        margin-top: 0.5rem !important;
-    }
-    .multiselect__option--highlight {
-        background-color: #00a0e3 !important;
-        &:after {
-            background-color: #0088c1 !important;
-        }
-    }
-    .multiselect__tag {
-        background-color: #00a0e3 !important;
-        border-radius: 0.75rem !important;
-        font-weight: 700 !important;
-        padding: 4px 26px 4px 10px !important;
-        .multiselect__tag-icon {
-            background-color: transparent !important;
-            border-radius: 0.5rem !important;
-            &:after {
-                color: white !important;
-            }
-            &:hover {
-                background-color: rgba(0,0,0,0.1) !important;
-            }
-        }
-    }
-    .multiselect__option--selected {
-        font-weight: 900 !important;
-        color: #00a0e3 !important;
-        background-color: #eff6ff !important;
-    }
-    &.multiselect--active {
-        .multiselect__tags {
-            background-color: #ffffff !important;
-            border-color: #00a0e3 !important;
-            box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1) !important;
-        }
-    }
-}
-
 /* Custom DatePicker Styles */
 .dp__main {
     .dp__input {
@@ -2255,7 +2184,7 @@ const removeFile = async (source, load) => {
         padding-bottom: 1rem !important;
         font-size: 0.875rem !important;
         font-weight: 700 !important;
-        color: #4b5563 !important;
+        color: #0A2C5C !important;
         transition: all 0.2s;
         &:focus {
             background-color: #ffffff !important;

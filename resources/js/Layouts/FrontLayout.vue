@@ -449,7 +449,7 @@ const socialLinks = [
                                         type="email"
                                         v-model="form.email"
                                         :placeholder="__('translate.footer.email_placeholder')"
-                                        class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl focus:bg-white focus:ring-0 focus:border-blue-200 transition-all text-xs font-bold placeholder-gray-400"
+                                        class="w-full px-6 py-4 bg-gray-50 border-gray-100 rounded-2xl focus:bg-white focus:ring-0 focus:border-blue-200 transition-all text-xs font-bold placeholder-gray-400 text-[#0A2C5C]"
                                         :class="{'border-red-500': form.errors.email}"
                                     >
                                 </div>
@@ -579,6 +579,11 @@ const socialLinks = [
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+    }
+
+    .multiselect__input,
+    .multiselect__single {
+        color: #0A2C5C !important;
     }
 
     .multiselect__input {

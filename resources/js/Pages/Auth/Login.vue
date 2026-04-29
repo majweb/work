@@ -125,7 +125,7 @@ const submit = () => {
                             v-model="form.email"
                             type="email"
                             :placeholder="__('translate.email')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C]"
                         />
                         <InputError :message="form.errors.email" />
                     </div>
@@ -147,7 +147,7 @@ const submit = () => {
                             v-model="form.password"
                             type="password"
                             :placeholder="__('translate.password')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C]"
                             autocomplete="current-password"
                         />
                         <InputError :message="form.errors.password" />

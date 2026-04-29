@@ -302,7 +302,7 @@ const isSearching = ref(false);
                             <!-- Select Country -->
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
-                                <multiselect
+                                <Multiselect
                                     v-model="form.country"
                                     :options="props.countries"
                                     group-values="elements"
@@ -310,50 +310,49 @@ const isSearching = ref(false);
                                     :group-select="false"
                                     track-by="value"
                                     label="name"
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     :noOptions="__('translate.noOptions')"
                                     :noResult="__('translate.noResult')"
                                     :placeholder="__('translate.placeholderCountry')"
                                     class="custom-multiselect"
                                 >
                                     <template #noResult>
-                                        <span>{{__('translate.noOptions')}}</span>
-                                    </template>
-                                    <template #noOptions>
                                         <span>{{__('translate.noResult')}}</span>
                                     </template>
-                                </multiselect>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                </Multiselect>
                                 <InputError :message="form.errors.country" class="mt-2"/>
                             </div>
 
                             <!-- Select City -->
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCity') }}</label>
-                                <multiselect
+                                <Multiselect
                                     v-model="form.city"
                                     :options="optionsCities"
                                     :disabled="!form.country"
                                     track-by="value"
                                     label="name"
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :deselectLabel="''"
+                                    :selectedLabel="''"
                                     :noOptions="__('translate.noOptions')"
                                     :noResult="__('translate.noResult')"
                                     :placeholder="__('translate.placeholderCity')"
                                     class="custom-multiselect"
                                 >
                                     <template #noResult>
-                                        <span>{{__('translate.noOptions')}}</span>
-                                    </template>
-                                    <template #noOptions>
                                         <span>{{__('translate.noResult')}}</span>
                                     </template>
-                                </multiselect>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                </Multiselect>
                                 <InputError :message="form.errors.city" class="mt-2"/>
                             </div>
 
@@ -368,28 +367,27 @@ const isSearching = ref(false);
                             >
                                 <div v-if="form.city" class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.distance') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.distance"
                                         :options="props.distanceOptions"
                                         :disabled="!form.city"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :noOptions="__('translate.noOptions')"
                                         :noResult="__('translate.noResult')"
                                         :placeholder="__('translate.placeholderDistance')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
-                                            <span>{{__('translate.noOptions')}}</span>
-                                        </template>
-                                        <template #noOptions>
                                             <span>{{__('translate.noResult')}}</span>
                                         </template>
-                                    </multiselect>
+                                        <template #noOptions>
+                                            <span>{{__('translate.noOptions')}}</span>
+                                        </template>
+                                    </Multiselect>
                                     <InputError :message="form.errors.distance" class="mt-2"/>
                                 </div>
                             </transition>
@@ -397,26 +395,25 @@ const isSearching = ref(false);
                             <!-- Select Category -->
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategory') }}</label>
-                                <multiselect
+                                <Multiselect
                                     v-model="form.category"
                                     :options="optionsCategories"
                                     :disabled="!form.country"
                                     track-by="value"
                                     label="name"
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :deselectLabel="''"
+                                    :selectedLabel="''"
                                     :placeholder="__('translate.placeholderCategory')"
                                     class="custom-multiselect"
                                 >
                                     <template #noResult>
-                                        <span>{{__('translate.noOptions')}}</span>
-                                    </template>
-                                    <template #noOptions>
                                         <span>{{__('translate.noResult')}}</span>
                                     </template>
-                                </multiselect>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                </Multiselect>
                                 <InputError :message="form.errors.category" class="mt-2"/>
                             </div>
                         </div>
@@ -426,91 +423,99 @@ const isSearching = ref(false);
                                 <!-- Select CategorySub -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategorySub') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.categorySub"
                                         :options="optionsCategorySub"
                                         :disabled="!form.category"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderCategorySub')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.categorySub" class="mt-2"/>
                                 </div>
 
                                 <!-- Select Profession -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderProfession') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.profession"
                                         :options="optionsProfession"
                                         :disabled="!form.categorySub"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderProfession')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.profession" class="mt-2"/>
                                 </div>
 
                                 <!-- Select Position -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderPosition') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.position"
                                         :options="optionsPosition"
                                         :disabled="!form.profession"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderPosition')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.position" class="mt-2"/>
                                 </div>
 
                                 <!-- Select Working Mode -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderWorkingMode') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.workingMode"
                                         :options="props.workingModes"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderWorkingMode')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.workingMode" class="mt-2"/>
                                 </div>
                             </div>
@@ -518,66 +523,72 @@ const isSearching = ref(false);
                                 <!-- Select Experience -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderExperience') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.experience"
                                         :options="props.experiences"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderExperience')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.experience" class="mt-2"/>
                                 </div>
 
                                 <!-- Select Type of Contract -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderTypeOfContract') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.typeOfContract"
                                         :options="props.typesOfContract"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderTypeOfContract')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.typeOfContract" class="mt-2"/>
                                 </div>
 
                                 <!-- Select Work Load -->
                                 <div class="space-y-2 lg:col-span-3">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderWorkLoad') }}</label>
-                                    <multiselect
+                                    <Multiselect
                                         v-model="form.workLoad"
                                         :options="props.workLoads"
                                         track-by="value"
                                         label="name"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :deselectLabel="''"
+                                        :selectedLabel="''"
                                         :placeholder="__('translate.placeholderWorkLoad')"
                                         class="custom-multiselect"
                                     >
                                         <template #noResult>
+                                            <span>{{__('translate.noResult')}}</span>
+                                        </template>
+                                        <template #noOptions>
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
-                                    </multiselect>
+                                    </Multiselect>
                                     <InputError :message="form.errors.workLoad" class="mt-2"/>
                                 </div>
                             </div>
@@ -702,141 +713,3 @@ const isSearching = ref(false);
     </FrontLayout>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
-<style lang="scss">
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
-.animate-shimmer {
-    animation: shimmer 5s infinite linear;
-}
-
-.custom-multiselect {
-    .multiselect__tags {
-        border: 1px solid #e5e7eb; /* border-gray-200 */
-        border-radius: 1rem;
-        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
-        background: #ffffff;
-        transition: all 0.3s ease;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-    }
-
-    .multiselect__placeholder {
-        margin-bottom: 0;
-        padding-top: 0;
-        color: #9ca3af; /* text-gray-400 */
-        font-size: 0.75rem; /* text-xs */
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
-
-    .multiselect__single {
-        margin-bottom: 0;
-        padding-left: 0;
-        font-size: 0.75rem;
-        background: transparent;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #0A2C5C;
-    }
-
-    .multiselect__input {
-        margin-bottom: 0;
-        background: transparent;
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #0A2C5C;
-
-        &::placeholder {
-            color: #9ca3af;
-        }
-    }
-
-    .multiselect__select {
-        height: 48px;
-        width: 2.5rem;
-    }
-
-    .multiselect__option--highlight {
-        background: #0A2C5C !important;
-        outline: none;
-        color: white;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-
-        &:after {
-            display: none;
-        }
-    }
-
-    .multiselect__option--selected {
-        background: #f3f4f6 !important;
-        color: #0A2C5C;
-        font-weight: 900;
-
-        &:after {
-            display: none;
-        }
-    }
-
-    .multiselect__option--group {
-        background: #f9fafb !important;
-        color: #9ca3af !important;
-        font-size: 9px !important;
-        font-weight: 900 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        padding: 12px 15px !important;
-    }
-
-    .multiselect__content-wrapper {
-        border: 1px solid #e5e7eb;
-        border-top: none;
-        border-bottom-left-radius: 1.25rem;
-        border-bottom-right-radius: 1.25rem;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        overflow: hidden;
-    }
-
-    .multiselect__content {
-        padding: 4px;
-    }
-
-    .multiselect__option {
-        border-radius: 0.75rem;
-        margin: 2px 0;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        padding: 8px 12px;
-    }
-
-    .multiselect__tag {
-        background: #00a0e3 !important;
-        border-radius: 0.75rem;
-        font-size: 10px;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
-
-    .multiselect__tag-icon:after {
-        color: white !important;
-    }
-
-    .multiselect__tag-icon:hover {
-        background: #0088c2 !important;
-    }
-
-    .multiselect__tag-icon {
-        top: -3px !important;
-    }
-}
-</style>
