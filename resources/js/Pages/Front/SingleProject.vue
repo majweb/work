@@ -176,7 +176,7 @@ onMounted(async () => {
                 </div>
                 <!-- MAIN CARD HEADER -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border transition-all duration-500 overflow-hidden group"
-                     :class="project.is_featured ? 'border-[#0A2C5C]/50 ring-2 ring-[#0A2C5C]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#0A2C5C]/10' : 'border-gray-100'">
+                     :class="project.is_featured ? 'border-[#2386BC]/50 ring-2 ring-[#2386BC]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#2386BC]/10' : 'border-gray-100'">
                     <!-- Banner -->
 
                     <div class="bg-[#0A2C5C] p-10 md:p-16 relative overflow-hidden transition-all duration-500">
@@ -184,7 +184,7 @@ onMounted(async () => {
 
                         <!-- Featured Ribbon -->
                         <div v-if="project.is_featured" class="absolute top-0 right-0 h-32 w-32 overflow-hidden pointer-events-none z-20">
-                            <div class="absolute top-0 right-0 w-[150%] h-10 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-900/40 animate-shimmer bg-[length:200%_auto] border-b border-white/10">
+                            <div class="absolute top-0 right-0 w-[150%] h-10 bg-gradient-to-r from-[#2386BC] via-[#3aa2d9] to-[#2386BC] rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-900/40 animate-shimmer bg-[length:200%_auto] border-b border-white/10">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <svg class="w-6 h-6 text-[#0A2C5C] drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
@@ -194,7 +194,7 @@ onMounted(async () => {
                         </div>
 
                         <!-- Left Accent Bar for Featured -->
-                        <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-blue-600 via-blue-400 to-blue-600 shadow-[2px_0_15px_rgba(37,99,235,0.3)] z-20"></div>
+                        <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#2386BC] via-[#3aa2d9] to-[#2386BC] shadow-[2px_0_15px_rgba(35,134,188,0.3)] z-20"></div>
 
                         <div class="relative z-10">
                             <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Oferta pracy #{{ project.id }}</p>
@@ -214,7 +214,7 @@ onMounted(async () => {
                                     :src="project.user?.profile_photo_url"
                                     alt="Logo"
                                     class="w-24 h-24 rounded-[2rem] border-4 border-white shadow-xl object-cover -mt-20 md:-mt-24 relative z-20"
-                                    :class="{ 'ring-4 ring-[#0A2C5C]/50 shadow-2xl shadow-[#0A2C5C]/20': project.is_featured }"
+                                    :class="{ 'ring-4 ring-[#2386BC]/50 shadow-2xl shadow-[#2386BC]/20': project.is_featured }"
                                 />
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
                                 <div v-if="project.is_featured" class="absolute -bottom-10 md:-bottom-10 -left-10 z-40 transform hover:scale-110 transition-transform duration-300">
