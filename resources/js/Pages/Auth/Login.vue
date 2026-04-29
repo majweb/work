@@ -58,14 +58,14 @@ const submit = () => {
         <div class="w-full max-w-xl relative">
             <!-- HEADER TEXT -->
             <div class="text-center mb-10 relative z-10">
-                <Link href="/" class="inline-block mb-6">
+                <Link href="/" class="inline-block">
                     <img src="/images/logo-horizontal.svg" class="h-10 w-auto mx-auto" alt="logo">
                 </Link>
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6 absolute">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                    <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">{{ __('translate.login') }}</span>
+                <div class="mx-auto w-2/4 flex justify-center items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse flex-shrink-0"></span>
+                    <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] leading-loose">{{ __('translate.login') }}</span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] leading-tight uppercase tracking-tighter">
+                <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] leading-loose uppercase tracking-tighter">
                     {{ headerText.line1 }} {{ headerText.line2 }}<br />
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
                         {{ headerText.line3 }}
@@ -88,19 +88,6 @@ const submit = () => {
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('translate.type') }}</label>
                         <div class="grid grid-cols-2 gap-4">
                             <label class="relative flex flex-col items-center justify-center p-4 border-2 rounded-2xl cursor-pointer transition-all duration-300"
-                                   :class="form.type === 'firm' ? 'border-[#00a0e3] bg-blue-50/30' : 'border-gray-100 bg-gray-50 hover:bg-gray-100'">
-                                <input type="radio" v-model="form.type" value="firm" class="sr-only" />
-                                <span class="text-[10px] font-black uppercase tracking-widest text-center"
-                                      :class="form.type === 'firm' ? 'text-[#0A2C5C]' : 'text-gray-400'">
-                                    {{ __('translate.firmrecruit') }}
-                                </span>
-                                <div v-if="form.type === 'firm'" class="absolute -top-2 -right-2 bg-[#00a0e3] text-white rounded-full p-1 shadow-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </label>
-                            <label class="relative flex flex-col items-center justify-center p-4 border-2 rounded-2xl cursor-pointer transition-all duration-300"
                                    :class="form.type === 'worker' ? 'border-[#00a0e3] bg-blue-50/30' : 'border-gray-100 bg-gray-50 hover:bg-gray-100'">
                                 <input type="radio" v-model="form.type" value="worker" class="sr-only" />
                                 <span class="text-[10px] font-black uppercase tracking-widest text-center"
@@ -108,6 +95,19 @@ const submit = () => {
                                     {{ __('translate.worker') }}
                                 </span>
                                 <div v-if="form.type === 'worker'" class="absolute -top-2 -right-2 bg-[#00a0e3] text-white rounded-full p-1 shadow-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+                            <label class="relative flex flex-col items-center justify-center p-4 border-2 rounded-2xl cursor-pointer transition-all duration-300"
+                                   :class="form.type === 'firm' ? 'border-[#00a0e3] bg-blue-50/30' : 'border-gray-100 bg-gray-50 hover:bg-gray-100'">
+                                <input type="radio" v-model="form.type" value="firm" class="sr-only" />
+                                <span class="text-[10px] font-black uppercase tracking-widest text-center"
+                                      :class="form.type === 'firm' ? 'text-[#0A2C5C]' : 'text-gray-400'">
+                                    {{ __('translate.firmrecruit') }}
+                                </span>
+                                <div v-if="form.type === 'firm'" class="absolute -top-2 -right-2 bg-[#00a0e3] text-white rounded-full p-1 shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                     </svg>

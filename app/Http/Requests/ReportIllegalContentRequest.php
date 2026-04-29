@@ -28,7 +28,7 @@ class ReportIllegalContentRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'company_name' => ['nullable', 'string', 'max:255'],
             'links' => ['required', 'string'],
-            'details' => ['required', 'string'],
+            'details' => ['required', 'string','max:500'],
             'legal_provision' => ['nullable', 'string'],
             'additional_info' => ['nullable', 'string'],
             'declaration' => ['required', 'accepted'],

@@ -131,6 +131,14 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
         }, 3000);
     }
 }, { immediate: true });
+
+const socialLinks = [
+    { name: 'facebook', url: 'https://www.facebook.com/work4you.global' },
+    { name: 'instagram', url: 'https://www.instagram.com/work4you.global/' },
+    { name: 'tik_tok', url: 'https://www.tiktok.com/@work4you.global' },
+    { name: 'linkedin', url: 'https://www.linkedin.com/company/work-4-you-global/' },
+    { name: 'x', url: 'https://x.com/Work4YouGlobal' },
+];
 </script>
 
 <template>
@@ -367,8 +375,8 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                             {{ __('translate.footer.description') }}
                         </p>
                         <div class="flex items-center justify-center lg:justify-start gap-3">
-                            <a v-for="social in ['facebook', 'instagram', 'linkedin', 'x', 'tik_tok']" :key="social" href="#" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                <img :src="`/images/icons/${social}.svg`" :alt="social" class="h-5 w-5 opacity-70" />
+                            <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
+                                <img :src="`/images/icons/${social.name}.svg`" :alt="social.name" class="h-5 w-5 opacity-70" />
                             </a>
                         </div>
                     </div>
@@ -455,7 +463,7 @@ watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
                                 </div>
                                 <button
                                     type="submit"
-                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-[0.3em] leading-loose rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                                     :disabled="form.processing"
                                 >
                                     {{ __('translate.footer.subscribe') }}

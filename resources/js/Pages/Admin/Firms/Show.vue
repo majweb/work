@@ -252,13 +252,13 @@ const getStatusDotClass = (status) => {
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-blue-500">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                                             </svg>
-                                            <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Email zatwierdzony</span>
+                                            <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] leading-loose">Email zatwierdzony</span>
                                         </div>
                                         <button v-else @click="verifyEmail" class="bg-red-50 px-4 py-2 rounded-xl flex items-center gap-2 border border-red-100 shadow-sm hover:bg-red-100 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-red-500">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
                                             </svg>
-                                            <span class="text-[10px] font-black text-red-600 uppercase tracking-widest">Zatwierdź email</span>
+                                            <span class="text-[10px] font-black text-red-600 uppercase tracking-[0.3em] leading-loose">Zatwierdź email</span>
                                         </button>
                                         <div v-if="firm.details?.www" class="bg-gray-50 px-4 py-2 rounded-xl flex items-center gap-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-blue-500">
@@ -385,7 +385,7 @@ const getStatusDotClass = (status) => {
                                     </svg>
                                     Zarządzaj kredytami
                                 </Link>
-                                <button v-if="!firm.email_verified_at" @click="verifyEmail" class="w-full px-6 py-4 bg-gray-50 rounded-2xl text-[10px] font-black text-red-600 uppercase tracking-widest hover:bg-red-50 transition-all flex items-center gap-3">
+                                <button v-if="!firm.email_verified_at" @click="verifyEmail" class="w-full px-6 py-4 bg-gray-50 rounded-2xl text-[10px] font-black text-red-600 uppercase tracking-[0.3em] leading-loose hover:bg-red-50 transition-all flex items-center gap-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-red-500">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                                     </svg>

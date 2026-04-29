@@ -123,11 +123,6 @@ const submit = () => {
                             </div>
                             <InputError :message="form.errors.signaling_entity" class="mt-2" />
                         </div>
-
-                        <div class="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2">
-                            {{ __('illegalForm.contact_info_note') }}
-                        </div>
-
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.email_label') }}</label>
