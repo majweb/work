@@ -93,6 +93,16 @@ class StatisticController extends Controller
         // 3. Projects Table (Statystyki szczegółowe)
         $projects = \App\Models\Project::where('user_id', $user->id)
             ->with(['recruit:id,name,profile_photo_path'])
+            ->select([
+                'id',
+                'title',
+                'position',
+                'profession',
+                'views_count',
+                'user_id',
+                'recruiter_id', // Dodano recruiter_id, aby relacja poniżej zadziałała
+                'created_at'
+            ])
             ->withCount([
                 'aplications',
                 'aplications as yes_count' => fn($q) => $q->where('status', 'yes'),
