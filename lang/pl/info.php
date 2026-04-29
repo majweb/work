@@ -42,7 +42,7 @@ return [
     'points_section1' => 'Na start decydujesz, ile punktów chcesz kupić. System oferuje różne pakiety – od mniejszych, idealnych na testy, po duże pakiety z korzystniejszą ceną jednostkową. Im więcej punktów kupujesz, tym mniej płacisz za każdy z nich. Dzięki temu możesz dopasować zakup do swoich realnych potrzeb rekrutacyjnych i marketingowych.',
     'points_section2' => 'Każda firma kupująca punkty ma możliwość wybrania fundacji lub organizacji charytatywnej, na rzecz której przekażemy połowę wartości zakupu. To unikalne rozwiązanie, które łączy rozwój Twojego biznesu z realną pomocą innym. 50% wartości każdego pakietu trafia bezpośrednio na wybrany cel dobroczynny — Ty decydujesz, komu pomagasz.',
     'points_section3' => 'Po dokonaniu płatności punkty automatycznie pojawiają się na Twoim koncie firmowym. Nie mają terminu ważności, więc możesz z nich korzystać bez ograniczeń czasowych. Sam wybierasz, kiedy i na co je przeznaczysz — na rekrutację, promocję firmy lub działania wizerunkowe. System jest w pełni zautomatyzowany – punkty naliczają się natychmiast, a Ty możesz zacząć działać od razu po zakupie.',
-    'points_section4' => 'Punkty to wewnętrzna waluta portalu – używasz ich, aby aktywować konkretne działania rekrutacyjne lub marketingowe.np.:',
+    'points_section4' => 'Punkty to wewnętrzna waluta portalu – używasz ich, aby aktywować konkretne działania rekrutacyjne lub marketingowe np.:',
     'list_cv' => 'Odczytanie CV klasycznego, audio lub video',
     'list_candidate' => 'Dodanie kandydata do bazy',
     'list_article' => 'Publikacja artykułu lub baneru reklamowego',

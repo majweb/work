@@ -21,10 +21,6 @@ const props = defineProps({
     author: String,
     imageUrl: String,
     url: String,
-    allowedLangs: {
-        type: Array,
-        default: () => ['pl', 'en']
-    },
 });
 
 const page = usePage();
@@ -114,10 +110,6 @@ const dispatchAction = (data) => router.post(route('front.language.store', { lan
 const resetLang = (data) => router.post(route('front.language.store', { language: data }));
 const sortLangs = computed(() => {
     let langs = page.props.languages || [];
-
-    if (props.allowedLangs && props.allowedLangs.length > 0) {
-        langs = langs.filter(l => props.allowedLangs.includes(l.value));
-    }
 
     return [...langs].sort((a, b) => a.label.localeCompare(b.label));
 });
@@ -224,7 +216,7 @@ const socialLinks = [
 
                 <!-- Language selector and auth -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <div class="w-48 custom-multiselect">
+                    <div class="custom-multiselect w-48">
                         <Multiselect
                             v-model="lang"
                             :options="sortLangs"
@@ -235,7 +227,7 @@ const socialLinks = [
                             :selectLabel="''"
                             :selectedLabel="''"
                             :deselectLabel="''"
-                            class="custom-multiselect languages-multiselect uppercase"
+                            class="languages-multiselect"
                         >
                             <template #noResult>
                                 <span>{{__('translate.noOptions')}}</span>

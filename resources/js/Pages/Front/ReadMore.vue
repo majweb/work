@@ -47,7 +47,7 @@ const props = defineProps({
                                 </div>
                             </div>
                             <div class="md:col-span-8">
-                                <p class="text-lg font-bold text-gray-600 leading-relaxed uppercase tracking-wide text-[13px]">
+                                <p class="text-lg font-bold text-[#0A2C5C] leading-relaxed uppercase tracking-wide text-[13px]">
                                     {{ __('info.points_section1') }}
                                 </p>
                             </div>
@@ -60,7 +60,7 @@ const props = defineProps({
 
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
                             <div class="md:col-span-8 order-2 md:order-1">
-                                <p class="text-lg font-bold text-gray-600 leading-relaxed uppercase tracking-wide text-[13px]">
+                                <p class="text-lg font-bold text-[#0A2C5C] leading-relaxed uppercase tracking-wide text-[13px]">
                                     {{ __('info.points_section2') }}
                                 </p>
                             </div>
@@ -83,7 +83,7 @@ const props = defineProps({
                                 </div>
                             </div>
                             <div class="md:col-span-8">
-                                <p class="text-lg font-bold text-gray-600 leading-relaxed uppercase tracking-wide text-[13px]">
+                                <p class="text-lg font-bold text-[#0A2C5C] leading-relaxed uppercase tracking-wide text-[13px]">
                                     {{ __('info.points_section3') }}
                                 </p>
                             </div>
