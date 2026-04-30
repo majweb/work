@@ -379,7 +379,7 @@ const socialLinks = [
                         </p>
                         <div class="flex items-center justify-center lg:justify-start gap-3">
                             <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                <img :src="`/images/icons/${social.name}.svg`" :alt="social.name" class="h-5 w-5 opacity-70" />
+                                <img :src="`/images/icons/${social.name}.png`" :alt="social.name" class="h-5 w-5 opacity-70" />
                             </a>
                         </div>
                     </div>
