@@ -117,16 +117,16 @@ function closeLightbox() {
 
                 <!-- HEADER CARD -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border transition-all duration-500 overflow-hidden group relative"
-                     :class="firm.is_featured ? 'border-[#0A2C5C]/50 ring-2 ring-[#0A2C5C]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#0A2C5C]/10' : 'border-gray-100'">
+                     :class="firm.is_featured ? 'border-[#329CD1]/50 ring-2 ring-[#329CD1]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#329CD1]/10' : 'border-gray-100'">
                     <!-- Banner / Hero -->
                     <div class="bg-[#0A2C5C] h-48 relative overflow-hidden flex items-center justify-center transition-all duration-500">
                         <div v-if="firm.is_featured" class="absolute inset-0 bg-blue-500/5 mix-blend-overlay pointer-events-none"></div>
 
                         <!-- Featured Ribbon -->
                         <div v-if="firm.is_featured" class="absolute top-0 right-0 h-32 w-32 overflow-hidden pointer-events-none z-20">
-                            <div class="absolute top-0 right-0 w-[150%] h-10 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-900/40 animate-shimmer bg-[length:200%_auto] border-b border-white/10">
+                            <div class="absolute top-0 right-0 w-[150%] h-10 bg-[#329CD1] border-b border-[#329CD1]/50 rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-900/40 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_auto] flex items-center justify-center">
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-[#0A2C5C] drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 text-white drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                                     </svg>
                                 </div>
@@ -134,7 +134,7 @@ function closeLightbox() {
                         </div>
 
                         <!-- Left Accent Bar -->
-                        <div v-if="firm.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-blue-600 via-blue-400 to-blue-600 shadow-[2px_0_15px_rgba(37,99,235,0.3)] z-20"></div>
+                        <div v-if="firm.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-[#329CD1] shadow-[2px_0_15px_rgba(50,156,209,0.3)] z-20"></div>
 
                         <div class="absolute inset-0 opacity-10">
                             <div class="absolute top-0 right-0 w-64 h-64 bg-blue-400 rounded-full -mr-32 -mt-32 blur-3xl"></div>
@@ -150,7 +150,7 @@ function closeLightbox() {
                         <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
                             <div class="relative">
                                 <div class="w-32 h-32 rounded-[2.5rem] bg-white p-2 border-4 border-white shadow-2xl -mt-20 md:-mt-24 relative z-20 overflow-hidden bg-center bg-no-repeat bg-contain"
-                                     :class="{ 'ring-4 ring-[#0A2C5C]/50 shadow-2xl shadow-[#0A2C5C]/20': firm.is_featured }"
+                                     :class="{ 'ring-4 ring-[#329CD1]/50 shadow-2xl shadow-[#329CD1]/20': firm.is_featured }"
                                      :style="{ backgroundImage: `url(${firm.profile_photo_url || firm.logo})` }">
                                 </div>
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
@@ -474,6 +474,6 @@ function closeLightbox() {
 }
 
 .animate-shimmer {
-    animation: shimmer 5s infinite linear;
+    animation: shimmer 3s infinite linear;
 }
 </style>

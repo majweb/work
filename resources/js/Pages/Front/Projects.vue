@@ -268,30 +268,32 @@ const isSearching = ref(false);
                                 <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
-                            <div class="flex gap-3 items-center ml-4">
-                                <button
-                                    type="button"
-                                    @click="toggleFilters"
-                                    class="px-6 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
-                                >
-                                    {{ __('translate.filters') }}
-                                </button>
-                                <button
-                                    type="submit"
-                                    class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5 flex items-center gap-2"
-                                    :disabled="isSearching"
-                                >
-                                    <template v-if="isSearching">
-                                        <div class="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                        {{ __('translate.searching') }}
-                                    </template>
-                                    <template v-else>
-                                        {{ __('translate.search') }}
-                                    </template>
-                                </button>
+                            <div class="flex flex-col sm:flex-row gap-3 items-center ml-4">
+                                <div class="flex gap-3 items-center">
+                                    <button
+                                        type="button"
+                                        @click="toggleFilters"
+                                        class="px-6 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                                    >
+                                        {{ __('translate.filters') }}
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                        :disabled="isSearching"
+                                    >
+                                        <template v-if="isSearching">
+                                            <div class="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                            {{ __('translate.searching') }}
+                                        </template>
+                                        <template v-else>
+                                            {{ __('translate.search') }}
+                                        </template>
+                                    </button>
+                                </div>
                                 <Link v-if="isFilterActive"
                                       :href="route('front.projects')"
-                                      class="text-[10px] font-black text-red-500 hover:underline uppercase tracking-widest ml-2">
+                                      class="text-[10px] font-black text-red-500 hover:underline uppercase tracking-widest sm:ml-2">
                                     {{__('translate.resetFilters')}}
                                 </Link>
                             </div>
@@ -609,26 +611,21 @@ const isSearching = ref(false);
                         <div v-for="(project) in props.projects.data" :key="project.id"
                              class="group bg-white rounded-[2.5rem] border transition-all duration-300 hover:-translate-y-1 p-6 relative overflow-hidden"
                              :class="{
-                                 'border-[#0A2C5C]/50 ring-2 ring-[#0A2C5C]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#0A2C5C]/10': project.is_featured,
+                                 'border-[#329CD1]/50 ring-2 ring-[#329CD1]/20 bg-gradient-to-br from-blue-50/10 to-transparent shadow-xl shadow-[#329CD1]/10': project.is_featured,
                                  'border-gray-200 shadow-sm hover:shadow-xl hover:shadow-blue-900/5': !project.is_featured
                              }"
                         >
                             <!-- Featured Indicator (Blue) -->
                             <div v-if="project.is_featured" class="absolute top-0 right-0 h-24 w-24 overflow-hidden pointer-events-none z-0">
-                                <div class="absolute top-0 right-0 w-[150%] h-8 bg-gradient-to-r from-[#0A2C5C] via-blue-900 to-[#0A2C5C] rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-[#0A2C5C]/20 animate-shimmer bg-[length:200%_auto]">
-                                    <svg class="absolute w-4 h-4 text-white/80 drop-shadow-sm top-2 left-10 z-1" fill="currentColor" viewBox="0 0 24 24">
+                                <div class="absolute top-0 right-0 w-[150%] h-8 bg-[#329CD1] border-b border-[#329CD1]/50 rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-400/20 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_auto] flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white drop-shadow-sm animate-pulse" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                                     </svg>
-
-
-                                </div>
-                                <div class="absolute top-[2.4rem] right-[2rem] flex items-center justify-center w-8 h-8 rotate-45">
-                                    <div class="absolute inset-0 bg-[#0A2C5C]/20 blur-md rounded-full animate-pulse"></div>
                                 </div>
                             </div>
 
                             <!-- Left Accent Bar for Featured -->
-                            <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#0A2C5C] via-blue-900 to-[#0A2C5C] rounded-r-full shadow-[2px_0_10px_rgba(10,44,92,0.3)]"></div>
+                            <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#329CD1] rounded-r-full shadow-[2px_0_10px_rgba(50,156,209,0.3)]"></div>
                             <Link :href="route('front.projects.single', project)" class="block">
                                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                                     <div class="flex items-center gap-4">
@@ -655,7 +652,7 @@ const isSearching = ref(false);
                                         <div class="relative shrink-0">
                                             <div
                                                 class="w-20 h-20 rounded-[1.5rem] bg-gray-50 shadow-inner border border-gray-100 relative z-10"
-                                                :class="{ 'ring-2 ring-[#0A2C5C]/50 shadow-lg shadow-[#0A2C5C]/10': project.is_featured }"
+                                                :class="{ 'ring-2 ring-[#329CD1]/50 shadow-lg shadow-[#329CD1]/10': project.is_featured }"
                                                 :style="{
                                                     backgroundImage: `url('${project.user?.profile_photo_url || '/default-company-logo.png'}')`,
                                                     backgroundPosition: 'center',
@@ -690,7 +687,8 @@ const isSearching = ref(false);
                                                 {{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency || 'zł' }}
                                             </p>
                                         </div>
-                                        <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-[#0A2C5C] group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20">
+                                        <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20"
+                                             :class="project.is_featured ? 'group-hover:bg-[#329CD1]' : 'group-hover:bg-[#0A2C5C]'">
                                             <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                                         </div>
                                     </div>
@@ -713,3 +711,12 @@ const isSearching = ref(false);
     </FrontLayout>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style>
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+    animation: shimmer 3s infinite linear;
+}
+</style>

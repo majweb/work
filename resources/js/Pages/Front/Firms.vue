@@ -192,20 +192,18 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                         <Link :href="route('front.firms.single', c.id)" class="block group relative overflow-hidden rounded-[2.5rem]">
                                             <!-- Featured Ribbon -->
                                             <div v-if="c.is_featured" class="absolute top-0 right-0 h-20 w-20 overflow-hidden pointer-events-none z-20">
-                                                <div class="absolute top-0 right-0 w-[150%] h-8 bg-gradient-to-r from-[#0A2C5C] via-blue-900 to-[#0A2C5C] rotate-45 translate-x-[30%] translate-y-[30%] shadow-lg shadow-[#0A2C5C]/40 animate-shimmer bg-[length:200%_auto] border-b border-white/10">
-                                                    <div class="absolute inset-0 flex items-center justify-center">
-                                                        <svg class="w-4 h-4 text-white/80 drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                                                            <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-                                                        </svg>
-                                                    </div>
+                                                <div class="absolute top-0 right-0 w-[150%] h-8 bg-[#329CD1] border-b border-[#329CD1]/50 rotate-45 translate-x-[30%] translate-y-[30%] shadow-lg shadow-blue-400/20 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_auto] flex items-center justify-center">
+                                                    <svg class="w-4 h-4 text-white drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                    </svg>
                                                 </div>
                                             </div>
 
                                             <!-- Left Accent Bar -->
-                                            <div v-if="c.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#0A2C5C] via-blue-900 to-[#0A2C5C] shadow-[2px_0_15px_rgba(10,44,92,0.3)] z-20"></div>
+                                            <div v-if="c.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-[#329CD1] shadow-[2px_0_15px_rgba(50,156,209,0.3)] z-20"></div>
 
-                                            <div class="bg-gray-50/50 border-2 rounded-[2.5rem] p-6 h-48 flex flex-col justify-between transition-all hover:bg-white hover:border-[#0A2C5C] hover:shadow-xl hover:shadow-blue-900/5"
-                                                 :class="c.is_featured ? 'border-[#0A2C5C]/30 bg-gradient-to-br from-blue-50/10 to-transparent shadow-lg shadow-[#0A2C5C]/5' : 'border-dashed border-blue-200'">
+                                            <div class="bg-gray-50/50 border-2 rounded-[2.5rem] p-6 h-48 flex flex-col justify-between transition-all hover:bg-white hover:border-[#329CD1] hover:shadow-xl hover:shadow-blue-900/5"
+                                                 :class="c.is_featured ? 'border-[#329CD1]/30 bg-gradient-to-br from-blue-50/10 to-transparent shadow-lg shadow-[#329CD1]/5' : 'border-dashed border-blue-200'">
                                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden border border-gray-50 bg-center bg-no-repeat bg-contain"
                                                      :style="{ backgroundImage: `url(${c.profile_photo_url || c.logo})` }">
                                                 </div>
@@ -236,24 +234,22 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     v-for="firm in props.firms.data"
                                     :key="firm.id"
                                     class="group relative overflow-hidden bg-white rounded-[2.5rem] border shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-8 flex flex-col items-center text-center"
-                                    :class="firm.is_featured ? 'border-blue-400/50 ring-2 ring-blue-400/10 bg-gradient-to-br from-blue-50/20 to-transparent' : 'border-gray-100'"
+                                    :class="firm.is_featured ? 'border-[#329CD1]/50 ring-2 ring-[#329CD1]/10 bg-gradient-to-br from-blue-50/20 to-transparent' : 'border-gray-100'"
                                 >
                                     <!-- Featured Ribbon -->
                                     <div v-if="firm.is_featured" class="absolute top-0 right-0 h-20 w-20 overflow-hidden pointer-events-none z-20">
-                                        <div class="absolute top-0 right-0 w-[150%] h-8 bg-gradient-to-r from-[#0A2C5C] via-blue-900 to-[#0A2C5C] rotate-45 translate-x-[30%] translate-y-[30%] shadow-lg shadow-[#0A2C5C]/40 animate-shimmer bg-[length:200%_auto] border-b border-white/10">
-                                            <div class="absolute inset-0 flex items-center justify-center">
-                                                <svg class="w-4 h-4 text-white/80 drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-                                                </svg>
-                                            </div>
+                                        <div class="absolute top-0 right-0 w-[150%] h-8 bg-[#329CD1] border-b border-[#329CD1]/50 rotate-45 translate-x-[30%] translate-y-[30%] shadow-lg shadow-blue-400/20 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_auto] flex items-center justify-center">
+                                            <svg class="w-4 h-4 text-white drop-shadow-md animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                            </svg>
                                         </div>
                                     </div>
 
                                     <!-- Left Accent Bar -->
-                                    <div v-if="firm.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#0A2C5C] via-blue-900 to-[#0A2C5C] shadow-[2px_0_15px_rgba(10,44,92,0.3)] z-20"></div>
+                                    <div v-if="firm.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-[#329CD1] shadow-[2px_0_15px_rgba(50,156,209,0.3)] z-20"></div>
 
                                     <div class="w-20 h-20 bg-gray-50 rounded-[1.5rem] flex items-center justify-center shadow-inner mb-6 group-hover:bg-white transition-colors border border-transparent group-hover:border-gray-100 relative z-10 bg-center bg-no-repeat bg-contain"
-                                        :class="firm.is_featured ? 'ring-4 ring-[#0A2C5C]/20 shadow-lg shadow-[#0A2C5C]/10' : ''"
+                                        :class="firm.is_featured ? 'ring-4 ring-[#329CD1]/20 shadow-lg shadow-[#329CD1]/10' : ''"
                                         :style="{ backgroundImage: `url(${firm.profile_photo_url || firm.logo})` }">
                                    </div>
                                     <h3 class="font-black text-[#0A2C5C] uppercase tracking-tight text-lg mb-2 group-hover:text-blue-500 transition-colors">{{ firm.name }}</h3>
@@ -285,7 +281,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
 }
 
 .animate-shimmer {
-    animation: shimmer 5s infinite linear;
+    animation: shimmer 3s infinite linear;
 }
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
