@@ -17,7 +17,7 @@ import moment from "moment";
 import VideoRecorder from "@/Pages/Front/VideoRecorder.vue";
 import AudioRecorderNew from "@/Pages/Front/AudioRecorderNew.vue";
 import __ from '@/lang.js';
-
+const today = new Date();
 // Utils: podstawienie danych firmy w miejsce wskaźników --firm--, --city--, --street--
 const companyName = computed(() => {
     const p = props?.project ?? {};
@@ -1222,6 +1222,7 @@ const removeFile = async (source, load) => {
                                                        :enable-time-picker="false" v-model="form.birthday"
                                                        :locale="lang" auto-apply id="birthday"
                                                        :teleport="true"
+                                                       :max-date="today"
                                                        input-class-name="dp__input_reg"
                                         />
                                         <InputError :message="form.errors.birthday"
@@ -1441,6 +1442,7 @@ const removeFile = async (source, load) => {
                                                     <VueDatePicker v-model="experience.start" month-picker
                                                                    :locale="lang" auto-apply
                                                                    :teleport="true"
+                                                                   :max-date="today"
                                                                    input-class-name="dp__input_reg"
                                                     />
                                                     <InputError
@@ -1466,6 +1468,7 @@ const removeFile = async (source, load) => {
                                                                    :disabled="experience.isCurrent"
                                                                    :locale="lang" auto-apply
                                                                    :teleport="true"
+                                                                   :max-date="today"
                                                                    input-class-name="dp__input_reg"
                                                     />
                                                     <InputError
@@ -1619,6 +1622,7 @@ const removeFile = async (source, load) => {
                                                                        year-picker
                                                                        :locale="lang" auto-apply
                                                                        :teleport="true"
+                                                                       :max-date="today"
                                                                        input-class-name="dp__input_reg"
                                                         />
                                                         <InputError
@@ -1725,6 +1729,7 @@ const removeFile = async (source, load) => {
                                                         <VueDatePicker v-model="course.date" month-picker
                                                                        :locale="lang" auto-apply
                                                                        :teleport="true"
+                                                                       :max-date="today"
                                                                        input-class-name="dp__input_reg"
                                                         />
                                                         <InputError :message="form.errors[`courses.${index}.date`]"
