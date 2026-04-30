@@ -1003,13 +1003,32 @@ class FrontController extends Controller
             abort(404, 'Szablon PDF nie istnieje.');
         }
         $cvClassic = CvClassic::where('worker_id', auth()->user()->id)->first();
-        if ($cvClassic) {
-            $media = $cvClassic->getFirstMedia('aplications_cvClassic_photo');
-            $imageUrl = $media
-                ? $media->getPath()
-                : public_path('storage/cv/'.$templateId.'/custom-avatar.png');
-        } else {
-            $imageUrl = public_path('storage/cv/'.$templateId.'/custom-avatar.png');
+        $imageUrl = null;
+
+        if (request()->has('photo') && !empty(request()->get('photo'))) {
+            $photoData = request()->get('photo');
+            $folder = is_array($photoData) ? ($photoData[0] ?? null) : $photoData;
+
+            if ($folder) {
+                $temporaryFile = TemporaryFile::where('folder', $folder)->first();
+                if ($temporaryFile) {
+                    $path = public_path('storage/temps/'.$folder.'/'.$temporaryFile->filename);
+                    if (file_exists($path)) {
+                        $imageUrl = $path;
+                    }
+                }
+            }
+        }
+
+        if (! $imageUrl) {
+            if ($cvClassic) {
+                $media = $cvClassic->getFirstMedia('aplications_cvClassic_photo');
+                $imageUrl = $media
+                    ? $media->getPath()
+                    : public_path('storage/cv/'.$templateId.'/custom-avatar.png');
+            } else {
+                $imageUrl = public_path('storage/cv/'.$templateId.'/custom-avatar.png');
+            }
         }
         $pdf = Pdf::loadView($viewName, ['data' => request()->all(), 'image' => $imageUrl]);
         $fileName = 'cv_'.time().'.pdf';

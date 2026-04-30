@@ -628,7 +628,7 @@ const removeFile = async (source, load) => {
                                 {{ __('translate.form_error') }}
                             </span>
                         </div>
-                        <div v-if="formStep == 1" class="space-y-12 animate-fade-in">
+                        <div v-show="formStep == 1" class="space-y-12 animate-fade-in">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="space-y-2">
                                     <InputLabel for="name" :value="__('translate.nameUser')"
@@ -1038,7 +1038,7 @@ const removeFile = async (source, load) => {
                                 </div>
                             </div>
                         </div>
-                        <div v-if="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-12">
+                        <div v-show="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-12">
                             <div
                                 class="p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
                                 <InputLabel value="Jak chcesz dostarczyć CV?"
@@ -1946,7 +1946,7 @@ const removeFile = async (source, load) => {
                                 </div>
                             </div>
                         </div>
-                        <div v-if="formStep == 3 && form.cv == 1" class="animate-fade-in space-y-12">
+                        <div v-show="formStep == 3 && form.cv == 1" class="animate-fade-in space-y-12">
                             <div
                                 class="p-10 bg-gray-50/50 rounded-[3rem] border border-gray-100 shadow-inner">
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -2078,7 +2078,7 @@ const removeFile = async (source, load) => {
                                 </PrimaryButton>
                         </div>
                     </div>
-                        <div v-if="formStep == 2 && form.cv == 2" class="animate-fade-in space-y-12">
+                        <div v-show="formStep == 2 && form.cv == 2" class="animate-fade-in space-y-12">
                             <div v-if="props.project.questions.length"
                                  class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"
@@ -2101,7 +2101,7 @@ const removeFile = async (source, load) => {
                                 </p>
                             </div>
                         </div>
-                        <div v-else-if="formStep == 2 && form.cv == 3" class="animate-fade-in space-y-8">
+                        <div v-show="formStep == 2 && form.cv == 3" class="animate-fade-in space-y-8">
                             <div v-if="props.project.questions.length"
                                  class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id"
@@ -2191,7 +2191,7 @@ const removeFile = async (source, load) => {
                                     <span>{{ __('translate.sending') || 'Wysyłanie...' }}</span>
                                 </template>
                                 <template v-else>
-                                    <span>{{ __('translate.apply') }}sssss</span>
+                                    <span>{{ __('translate.apply') }}</span>
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
