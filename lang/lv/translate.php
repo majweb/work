@@ -1668,4 +1668,10 @@ return [
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'Vai jums jau ir konts?',
     'noAccount' => 'Vai jums vēl nav konta?',
+    'form_error' => 'Veidlapā ir kļūdas. Lūdzu, pārbaudiet atzīmētos laukus.',
+    'experience_error' => 'Lūdzu, aizpildiet trūkstošo informāciju pieredzes sadaļā.',
+    'education_error' => 'Lūdzu, aizpildiet trūkstošo informāciju izglītības sadaļā.',
+    'course_error' => 'Lūdzu, aizpildiet trūkstošo informāciju kursu sadaļā.',
+    'lang_error' => 'Lūdzu, aizpildiet trūkstošo informāciju valodu sadaļā.',
+
 ];

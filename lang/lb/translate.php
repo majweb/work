@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Hues du schonn e Kont?',
     'noAccount' => 'Hues du nach kee Kont?',
+    'form_error' => 'De Formulaire enthält Feeler. Kontrolléiert w.e.g. déi markéiert Felder.',
+    'experience_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Erfahrung aus.',
+    'education_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Bildung aus.',
+    'course_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Coursen aus.',
+    'lang_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Sproochen aus.',
 ];

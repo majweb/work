@@ -1625,8 +1625,11 @@ return [
     'stripe'=>'Stripe',
     'brutto' => 'মোট',
     'netto' => 'নিট',
-    'brutto' => 'Bruto',
-    'netto' => 'Neto',
     'alreadyhaveanaccount' => 'Već imate nalog?',
     'noAccount' => 'Još nemate nalog?',
+    'form_error' => 'ফর্মে ত্রুটি রয়েছে। অনুগ্রহ করে চিহ্নিত ক্ষেত্রগুলো পরীক্ষা করুন।',
+    'experience_error' => 'অনুগ্রহ করে অভিজ্ঞতা বিভাগে অনুপস্থিত তথ্য পূরণ করুন।',
+    'education_error' => 'অনুগ্রহ করে শিক্ষা বিভাগে অনুপস্থিত তথ্য পূরণ করুন।',
+    'course_error' => 'অনুগ্রহ করে কোর্স বিভাগে অনুপস্থিত তথ্য পূরণ করুন।',
+    'lang_error' => 'অনুগ্রহ করে ভাষা বিভাগে অনুপস্থিত তথ্য পূরণ করুন।',
 ];

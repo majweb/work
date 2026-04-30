@@ -1666,8 +1666,11 @@ return [
     'stripe'=>'Stripe Sikker Betaling',
     'brutto' => 'Brutto',
     'netto' => 'Netto',
-    'brutto' => 'Brutto',
-    'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Hast du bereits ein Konto?',
     'noAccount' => 'Hast du noch kein Konto?',
+    'form_error' => 'Formularen indeholder fejl. Kontroller venligst de markerede felter.',
+    'experience_error' => 'Udfyld venligst de manglende oplysninger i erfaringssektionen.',
+    'education_error' => 'Udfyld venligst de manglende oplysninger i uddannelsessektionen.',
+    'course_error' => 'Udfyld venligst de manglende oplysninger i kursussektionen.',
+    'lang_error' => 'Udfyld venligst de manglende oplysninger i sprogsektionen.',
 ];

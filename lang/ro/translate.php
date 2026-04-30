@@ -1655,4 +1655,9 @@ return [
     'netto' => 'Net',
     'alreadyhaveanaccount' => 'Aveți deja un cont?',
     'noAccount' => 'Nu aveți încă un cont?',
+    'form_error' => 'Formularul conține erori. Vă rugăm să verificați câmpurile marcate.',
+    'experience_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea experiență.',
+    'education_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea educație.',
+    'course_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea cursuri.',
+    'lang_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea limbi.',
 ];

@@ -1669,5 +1669,9 @@ return [
     'netto' => 'Net',
     'alreadyhaveanaccount' => 'Ja tens un compte?',
     'noAccount' => 'Encara no tens un compte?',
-
+    'form_error' => 'El formulari conté errors. Si us plau, comprova els camps marcats.',
+    'experience_error' => 'Si us plau, completa la informació que falta a la secció d’experiència.',
+    'education_error' => 'Si us plau, completa la informació que falta a la secció d’educació.',
+    'course_error' => 'Si us plau, completa la informació que falta a la secció de cursos.',
+    'lang_error' => 'Si us plau, completa la informació que falta a la secció d’idiomes.',
 ];

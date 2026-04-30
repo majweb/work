@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Har du allerede en konto?',
     'noAccount' => 'Har du ikke en konto ennå?',
+    'form_error' => 'Skjemaet inneholder feil. Vennligst kontroller de markerte feltene.',
+    'experience_error' => 'Vennligst fyll ut manglende informasjon i erfaringsseksjonen.',
+    'education_error' => 'Vennligst fyll ut manglende informasjon i utdanningsseksjonen.',
+    'course_error' => 'Vennligst fyll ut manglende informasjon i kursseksjonen.',
+    'lang_error' => 'Vennligst fyll ut manglende informasjon i språkseksjonen.',
 ];

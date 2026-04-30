@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Net',
     'alreadyhaveanaccount' => 'Zaten bir hesabınız var mı?',
     'noAccount' => 'Henüz bir hesabınız yok mu?',
+    'form_error' => 'Formada ýalňyşlyklar bar. Bellenen meýdanlary barlaň.',
+    'experience_error' => 'Tejribe bölüminde ýetmeýän maglumatlary dolduryň.',
+    'education_error' => 'Bilim bölüminde ýetmeýän maglumatlary dolduryň.',
+    'course_error' => 'Kurslar bölüminde ýetmeýän maglumatlary dolduryň.',
+    'lang_error' => 'Diller bölüminde ýetmeýän maglumatlary dolduryň.',
 ];

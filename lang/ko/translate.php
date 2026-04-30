@@ -1668,4 +1668,9 @@ return [
     'netto' => '순액',
     'alreadyhaveanaccount' => '이미 계정이 있으신가요?',
     'noAccount' => '아직 계정이 없으신가요?',
+    'form_error' => '양식에 오류가 있습니다. 표시된 항목을 확인해 주세요.',
+    'experience_error' => '경력 섹션의 누락된 정보를 입력해 주세요.',
+    'education_error' => '학력 섹션의 누락된 정보를 입력해 주세요.',
+    'course_error' => '강좌 섹션의 누락된 정보를 입력해 주세요.',
+    'lang_error' => '언어 섹션의 누락된 정보를 입력해 주세요.',
 ];

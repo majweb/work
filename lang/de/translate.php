@@ -1747,6 +1747,13 @@ return [
     'only_essential' => 'Nur notwendige',
     'sickPeople'=>'m/w/d',
     'stripe'=>'Stripe',
+    'brutto' => 'Brutto',
+    'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Hast du bereits ein Konto?',
     'noAccount' => 'Hast du noch kein Konto?',
+    'form_error' => 'Das Formular enthält Fehler. Bitte überprüfen Sie die markierten Felder.',
+    'experience_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Berufserfahrung.',
+    'education_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Bildung.',
+    'course_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Kurse.',
+    'lang_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Sprachen.',
 ];

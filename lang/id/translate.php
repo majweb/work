@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Bersih',
     'alreadyhaveanaccount' => 'Sudah punya akun?',
     'noAccount' => 'Belum punya akun?',
+    'form_error' => 'Formulir mengandung kesalahan. Harap periksa kolom yang ditandai.',
+    'experience_error' => 'Harap lengkapi informasi yang belum diisi pada bagian pengalaman.',
+    'education_error' => 'Harap lengkapi informasi yang belum diisi pada bagian pendidikan.',
+    'course_error' => 'Harap lengkapi informasi yang belum diisi pada bagian kursus.',
+    'lang_error' => 'Harap lengkapi informasi yang belum diisi pada bagian bahasa.',
 ];

@@ -79,8 +79,36 @@ const showAgreementsModal = ref(false);
 const captchaText = ref('');
 const isClient = ref(false);
 
+const hasError = (field) => {
+    return Object.keys(form.errors).some(key => key.startsWith(field));
+};
+
 const scrollToError = () => {
     setTimeout(() => {
+        const sections = [
+            { id: 'section-experiences', errorKey: 'experiences' },
+            { id: 'section-educations', errorKey: 'educations' },
+            { id: 'section-courses', errorKey: 'courses' },
+            { id: 'section-langs', errorKey: 'langs' }
+        ];
+
+        for (const section of sections) {
+            if (hasError(section.errorKey)) {
+                const element = document.getElementById(section.id);
+                if (element) {
+                    const offset = 100; // Offset for fixed headers
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                    return;
+                }
+            }
+        }
+
         const errors = Array.from(document.querySelectorAll(".text-red-600"));
         const firstVisibleError = errors.find(el => {
             const style = window.getComputedStyle(el);
@@ -88,14 +116,21 @@ const scrollToError = () => {
         });
 
         if (firstVisibleError) {
-            firstVisibleError.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-                inline: "nearest"
+            const offset = 100;
+            const elementPosition = firstVisibleError.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
             });
         }
-    }, 300);
+    }, 500);
 };
+
+const hasErrors = computed(() => {
+    return Object.keys(form.errors).length > 0;
+});
 
 const isAllAgreementsSelected = computed(() => {
     const requiredAgreementIds = [];
@@ -583,6 +618,16 @@ const removeFile = async (source, load) => {
                         </div>
                     </div>
                     <form @submit.prevent="submit">
+                        <div v-if="hasErrors" class="mb-8 p-4 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-4 animate-bounce">
+                            <div class="p-2 bg-red-100 rounded-xl text-red-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <span class="text-sm font-black text-red-600 uppercase tracking-widest">
+                                {{ __('translate.form_error') }}
+                            </span>
+                        </div>
                         <div v-if="formStep == 1" class="space-y-12 animate-fade-in">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="space-y-2">
@@ -1348,7 +1393,7 @@ const removeFile = async (source, load) => {
                                 </div>
 
                             <!-- SEKCJA DOŚWIADCZENIA -->
-                            <div class="space-y-8">
+                            <div id="section-experiences" class="space-y-8">
                                 <div class="flex items-center justify-between">
                                     <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                         <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
@@ -1387,7 +1432,7 @@ const removeFile = async (source, load) => {
                                     {{ __('translate.limitComplete') }}
                                 </div>
 
-                                <InputError :message="form.errors.experiences" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
+                                <InputError :message="hasError('experiences') ? __('translate.experience_error') : null" class="text-center font-black text-[10px] uppercase tracking-widest text-red-600 mb-4"/>
 
                                 <draggable :list="form.experiences" ghost-class="opacity-50" handle=".handle"
                                            item-key="id" class="space-y-6">
@@ -1516,7 +1561,7 @@ const removeFile = async (source, load) => {
                             </div>
 
                                 <!-- SEKCJA WYKSZTAŁCENIA -->
-                                <div class="space-y-8 pt-8 border-t border-gray-100">
+                                <div id="section-educations" class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                             <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
@@ -1557,7 +1602,7 @@ const removeFile = async (source, load) => {
                                         {{ __('translate.limitComplete') }}
                                     </div>
 
-                                    <InputError :message="form.errors.educations" class="text-center font-black text-[10px] uppercase tracking-widest text-red-500"/>
+                                    <InputError :message="hasError('educations') ? __('translate.education_error') : null" class="text-center font-black text-[10px] uppercase tracking-widest text-red-600 mb-4"/>
 
                                     <draggable :list="form.educations" ghost-class="opacity-50" handle=".handle"
                                                item-key="id" class="space-y-6">
@@ -1669,7 +1714,7 @@ const removeFile = async (source, load) => {
                                 </div>
 
                                 <!-- SEKCJA KURSÓW -->
-                                <div class="space-y-8 pt-8 border-t border-gray-100">
+                                <div id="section-courses" class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                             <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
@@ -1697,6 +1742,9 @@ const removeFile = async (source, load) => {
                                             </button>
                                         </div>
                                     </div>
+
+                                    <InputError :message="hasError('courses') ? __('translate.course_error') : null" class="text-center font-black text-[10px] uppercase tracking-widest text-red-600 mb-4"/>
+
                                     <draggable :list="form.courses" ghost-class="opacity-50" handle=".handle"
                                                item-key="id" class="space-y-6">
                                         <template #item="{ element: course, index }">
@@ -1761,7 +1809,7 @@ const removeFile = async (source, load) => {
                                     </draggable>
                                 </div>
                                 <!-- SEKCJA JĘZYKÓW -->
-                                <div class="space-y-8 pt-8 border-t border-gray-100">
+                                <div id="section-langs" class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                             <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
@@ -1790,6 +1838,9 @@ const removeFile = async (source, load) => {
                                             </button>
                                         </div>
                                     </div>
+
+                                    <InputError :message="hasError('langs') ? __('translate.lang_error') : null" class="text-center font-black text-[10px] uppercase tracking-widest text-red-600 mb-4"/>
+
                                     <draggable :list="form.langs" ghost-class="opacity-50" handle=".handle"
                                                item-key="id" class="space-y-6">
                                         <template #item="{ element: lang, index }">

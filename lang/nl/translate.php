@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Heb je al een account?',
     'noAccount' => 'Heb je nog geen account?',
+    'form_error' => 'Het formulier bevat fouten. Controleer de gemarkeerde velden.',
+    'experience_error' => 'Vul de ontbrekende informatie in bij het onderdeel ervaring.',
+    'education_error' => 'Vul de ontbrekende informatie in bij het onderdeel opleiding.',
+    'course_error' => 'Vul de ontbrekende informatie in bij het onderdeel cursussen.',
+    'lang_error' => 'Vul de ontbrekende informatie in bij het onderdeel talen.',
 ];

@@ -1627,4 +1627,9 @@ return [
     'netto' => 'Xalis',
     'alreadyhaveanaccount' => 'Artıq hesabınız var?',
     'noAccount' => 'Hələ hesabınız yoxdur?',
+    'form_error' => 'Formada səhvlər var. Zəhmət olmasa qeyd olunmuş sahələri yoxlayın.',
+    'experience_error' => 'Zəhmət olmasa təcrübə bölməsində çatışmayan məlumatları tamamlayın.',
+    'education_error' => 'Zəhmət olmasa təhsil bölməsində çatışmayan məlumatları tamamlayın.',
+    'course_error' => 'Zəhmət olmasa kurslar bölməsində çatışmayan məlumatları tamamlayın.',
+    'lang_error' => 'Zəhmət olmasa dillər bölməsində çatışmayan məlumatları tamamlayın.',
 ];

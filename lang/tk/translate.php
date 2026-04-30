@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Arassa (Netto)',
     'alreadyhaveanaccount' => 'Sizde eýýäm hasap barmy?',
     'noAccount' => 'Sizde entek hasap ýokmy?',
+    'form_error' => 'Formada ýalňyşlyklar bar. Bellenen meýdanlary barlaň.',
+    'experience_error' => 'Tejribe bölüminde ýetmeýän maglumatlary dolduryň.',
+    'education_error' => 'Bilim bölüminde ýetmeýän maglumatlary dolduryň.',
+    'course_error' => 'Kurslar bölüminde ýetmeýän maglumatlary dolduryň.',
+    'lang_error' => 'Diller bölüminde ýetmeýän maglumatlary dolduryň.',
 ];

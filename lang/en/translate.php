@@ -1627,4 +1627,9 @@ return [
     'netto' => 'Net',
     'alreadyhaveanaccount' => 'Already have an account?',
     'noAccount' => "Don't have an account yet?",
+    'form_error' => 'The form contains errors. Please check the highlighted fields.',
+    'experience_error' => 'Please complete the missing information in the experience section.',
+    'education_error' => 'Please complete the missing information in the education section.',
+    'course_error' => 'Please complete the missing information in the courses section.',
+    'lang_error' => 'Please complete the missing information in the languages section.',
 ];

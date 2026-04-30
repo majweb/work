@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'Onko sinulla jo tili?',
     'noAccount' => 'Eikö sinulla ole vielä tiliä?',
+    'form_error' => 'Lomake sisältää virheitä. Tarkista korostetut kentät.',
+    'experience_error' => 'Täytä puuttuvat tiedot työkokemus-osiossa.',
+    'education_error' => 'Täytä puuttuvat tiedot koulutus-osiossa.',
+    'course_error' => 'Täytä puuttuvat tiedot kurssit-osiossa.',
+    'lang_error' => 'Täytä puuttuvat tiedot kielet-osiossa.',
 ];

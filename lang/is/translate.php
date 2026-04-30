@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Nettó',
     'alreadyhaveanaccount' => 'Ertu þegar með aðgang?',
     'noAccount' => 'Ertu ekki enn með aðgang?',
+    'form_error' => 'Eyðublaðið inniheldur villur. Vinsamlegast athugaðu merktu reitina.',
+    'experience_error' => 'Vinsamlegast fylltu út vantar upplýsingar í reynsluhlutanum.',
+    'education_error' => 'Vinsamlegast fylltu út vantar upplýsingar í menntunarhlutanum.',
+    'course_error' => 'Vinsamlegast fylltu út vantar upplýsingar í námskeiðahlutanum.',
+    'lang_error' => 'Vinsamlegast fylltu út vantar upplýsingar í tungumálahlutanum.',
 ];

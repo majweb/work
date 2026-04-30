@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'Ar jau turite paskyrą?',
     'noAccount' => 'Dar neturite paskyros?',
+    'form_error' => 'Formoje yra klaidų. Prašome patikrinti pažymėtus laukus.',
+    'experience_error' => 'Prašome užpildyti trūkstamą informaciją patirties skiltyje.',
+    'education_error' => 'Prašome užpildyti trūkstamą informaciją išsilavinimo skiltyje.',
+    'course_error' => 'Prašome užpildyti trūkstamą informaciją kursų skiltyje.',
+    'lang_error' => 'Prašome užpildyti trūkstamą informaciją kalbų skiltyje.',
 ];

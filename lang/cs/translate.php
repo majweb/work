@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Čisté',
     'alreadyhaveanaccount' => 'Už máte účet?',
     'noAccount' => 'Ještě nemáte účet?',
+    'form_error' => 'Formulář obsahuje chyby. Zkontrolujte prosím označená pole.',
+    'experience_error' => 'Doplňte prosím chybějící údaje v sekci zkušenosti.',
+    'education_error' => 'Doplňte prosím chybějící údaje v sekci vzdělání.',
+    'course_error' => 'Doplňte prosím chybějící údaje v sekci kurzy.',
+    'lang_error' => 'Doplňte prosím chybějící údaje v sekci jazyky.',
 ];

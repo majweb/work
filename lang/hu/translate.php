@@ -1669,5 +1669,10 @@ return [
     'netto' => 'Nettó',
     'alreadyhaveanaccount' => 'Már van fiókod?',
     'noAccount' => 'Még nincs fiókod?',
+    'form_error' => 'Az űrlap hibákat tartalmaz. Kérjük, ellenőrizze a megjelölt mezőket.',
+    'experience_error' => 'Kérjük, töltse ki a hiányzó adatokat a tapasztalat szekcióban.',
+    'education_error' => 'Kérjük, töltse ki a hiányzó adatokat az oktatás szekcióban.',
+    'course_error' => 'Kérjük, töltse ki a hiányzó adatokat a kurzusok szekcióban.',
+    'lang_error' => 'Kérjük, töltse ki a hiányzó adatokat a nyelvek szekcióban.',
 ];
 

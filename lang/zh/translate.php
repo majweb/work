@@ -1677,5 +1677,10 @@ return [
     'netto' => '净额',
     'alreadyhaveanaccount' => '已有账户？',
     'noAccount' => '还没有账户？',
+    'form_error' => '表单存在错误。请检查标记的字段。',
+    'experience_error' => '请填写经验部分缺失的信息。',
+    'education_error' => '请填写教育部分缺失的信息。',
+    'course_error' => '请填写课程部分缺失的信息。',
+    'lang_error' => '请填写语言部分缺失的信息。',
 
 ];

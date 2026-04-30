@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'Već imate nalog?',
     'noAccount' => 'Još nemate nalog?',
+    'form_error' => 'Obrazac sadrži greške. Molimo provjerite označena polja.',
+    'experience_error' => 'Molimo popunite nedostajuće informacije u odjeljku iskustva.',
+    'education_error' => 'Molimo popunite nedostajuće informacije u odjeljku obrazovanja.',
+    'course_error' => 'Molimo popunite nedostajuće informacije u odjeljku kurseva.',
+    'lang_error' => 'Molimo popunite nedostajuće informacije u odjeljku jezika.',
 ];

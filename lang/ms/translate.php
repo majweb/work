@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Bersih',
     'alreadyhaveanaccount' => 'Sudah mempunyai akaun?',
     'noAccount' => 'Belum mempunyai akaun?',
+    'form_error' => 'Borang mengandungi ralat. Sila semak medan yang ditandakan.',
+    'experience_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian pengalaman.',
+    'education_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian pendidikan.',
+    'course_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian kursus.',
+    'lang_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian bahasa.',
 ];

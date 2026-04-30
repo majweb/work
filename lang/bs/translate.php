@@ -1666,4 +1666,9 @@ return [
     'stripe'=>'Stripe Secure Payment',
     'alreadyhaveanaccount' => 'Već imate nalog?',
     'noAccount' => 'Još nemate nalog?',
+    'form_error' => 'Forma sadrži greške. Molimo provjerite označena polja.',
+    'experience_error' => 'Molimo unesite nedostajuće podatke u sekciji iskustva.',
+    'education_error' => 'Molimo unesite nedostajuće podatke u sekciji obrazovanja.',
+    'course_error' => 'Molimo unesite nedostajuće podatke u sekciji kurseva.',
+    'lang_error' => 'Molimo unesite nedostajuće podatke u sekciji jezika.',
 ];

@@ -1669,5 +1669,10 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Hai già un account?',
     'noAccount' => 'Non hai ancora un account?',
+    'form_error' => 'Il modulo contiene errori. Controlla i campi evidenziati.',
+    'experience_error' => 'Completa le informazioni mancanti nella sezione esperienza.',
+    'education_error' => 'Completa le informazioni mancanti nella sezione istruzione.',
+    'course_error' => 'Completa le informazioni mancanti nella sezione corsi.',
+    'lang_error' => 'Completa le informazioni mancanti nella sezione lingue.',
 ];
 

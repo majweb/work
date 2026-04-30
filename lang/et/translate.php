@@ -1668,5 +1668,10 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Kas sul on juba konto?',
     'noAccount' => 'Sul pole veel kontot?',
+    'form_error' => 'Vorm sisaldab vigu. Palun kontrollige märgitud välju.',
+    'experience_error' => 'Palun täitke puuduolev teave kogemuse jaotises.',
+    'education_error' => 'Palun täitke puuduolev teave hariduse jaotises.',
+    'course_error' => 'Palun täitke puuduolev teave kursuste jaotises.',
+    'lang_error' => 'Palun täitke puuduolev teave keelte jaotises.',
 ];
 

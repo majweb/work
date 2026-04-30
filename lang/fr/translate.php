@@ -1669,4 +1669,9 @@ return [
     'netto' => 'Net',
     'alreadyhaveanaccount' => 'Vous avez déjà un compte ?',
     'noAccount' => "Vous n'avez pas encore de compte ?",
+    'form_error' => 'Le formulaire contient des erreurs. Veuillez vérifier les champs indiqués.',
+    'experience_error' => 'Veuillez compléter les informations manquantes dans la section expérience.',
+    'education_error' => 'Veuillez compléter les informations manquantes dans la section formation.',
+    'course_error' => 'Veuillez compléter les informations manquantes dans la section cours.',
+    'lang_error' => 'Veuillez compléter les informations manquantes dans la section langues.',
 ];

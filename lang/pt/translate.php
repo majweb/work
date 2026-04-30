@@ -1668,4 +1668,9 @@ return [
     'netto' => 'Líquido',
     'alreadyhaveanaccount' => 'Já tem uma conta?',
     'noAccount' => 'Ainda não tem uma conta?',
+    'form_error' => 'O formulário contém erros. Por favor, verifique os campos assinalados.',
+    'experience_error' => 'Por favor, preencha as informações em falta na secção de experiência.',
+    'education_error' => 'Por favor, preencha as informações em falta na secção de educação.',
+    'course_error' => 'Por favor, preencha as informações em falta na secção de cursos.',
+    'lang_error' => 'Por favor, preencha as informações em falta na secção de línguas.',
 ];

@@ -594,6 +594,11 @@ return [
     'chosetemplate' => 'Wybierz szablon',
     'toMuchElements' => 'Za dużo elementów',
     'limitComplete' => 'Limit osiagnięty',
+    'form_error' => 'Formularz zawiera błędy. Sprawdź zaznaczone pola.',
+    'experience_error' => 'Uzupełnij brakujące dane w sekcji doświadczenie',
+    'education_error' => 'Uzupełnij brakujące dane w sekcji wykształcenie',
+    'course_error' => 'Uzupełnij brakujące dane w sekcji kursy',
+    'lang_error' => 'Uzupełnij brakujące dane w sekcji języki',
     'inertiatemplateCvRequired' => 'Wybierz szablon CV',
     'generateCv' => 'Generuj CV',
     'viewCv' => 'Podgląd CV',
@@ -1669,4 +1674,5 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Masz już konto?',
     'noAccount' => 'Nie masz jeszcze konta?',
+
 ];

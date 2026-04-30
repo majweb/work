@@ -1626,4 +1626,9 @@ return [
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'A keni tashmë një llogari?',
     'noAccount' => 'Nuk keni ende një llogari?',
+    'form_error' => 'Formulari përmban gabime. Ju lutemi kontrolloni fushat e shënuara.',
+    'experience_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e përvojës.',
+    'education_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e arsimit.',
+    'course_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e kurseve.',
+    'lang_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e gjuhëve.',
 ];
