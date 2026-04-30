@@ -391,11 +391,13 @@ function closeLightbox() {
                                 </div>
                                 <Link :href="route('front.projects.single', project)" class="block">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                                        <div class="flex items-center gap-4">
-                                            <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[10px] uppercase tracking-widest rounded-lg border border-blue-100/50">
-                                                ID {{ project.id }}
-                                            </span>
-                                            <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
+                                        <div class="flex flex-col md:flex-row md:items-center gap-4">
+                                            <div class="flex items-center gap-4">
+                                                <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[10px] uppercase tracking-widest rounded-lg border border-blue-100/50">
+                                                    ID {{ project.id }}
+                                                </span>
+                                                <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
+                                            </div>
                                             <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
                                                 {{ project.position?.allTranslations.title[usePage().props.language] }}
                                             </h4>
