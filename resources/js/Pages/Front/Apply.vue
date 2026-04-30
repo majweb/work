@@ -79,6 +79,25 @@ const showAgreementsModal = ref(false);
 const captchaText = ref('');
 const isClient = ref(false);
 
+const scrollToError = () => {
+    setTimeout(() => {
+        // Szukamy wszystkich elementów z błędami, które są widoczne
+        const errors = Array.from(document.querySelectorAll('.text-red-600'));
+        const firstVisibleError = errors.find(el => {
+            // Sprawdzamy czy element lub jego rodzic (InputError) nie jest ukryty przez v-show (display: none)
+            return el.offsetParent !== null;
+        });
+
+        if (firstVisibleError) {
+            firstVisibleError.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest'
+            });
+        }
+    }, 250); // Zwiększony timeout, aby dać Vue więcej czasu na update DOM i animacje
+};
+
 const isAllAgreementsSelected = computed(() => {
     const requiredAgreementIds = [];
     props.agreements.forEach(agreement => {
@@ -302,7 +321,6 @@ const submit = () => {
             date: normalizeDate(course.date)
         })),
     })).post(route('front.aplicationNoLogin.store', props.project), {
-        errorBag: 'AplicationNonLogin',
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
@@ -312,6 +330,7 @@ const submit = () => {
                 form.setError('captcha', errors.throttle);
             }
             loadCaptcha();
+            scrollToError();
         }
     });
 }
@@ -368,7 +387,6 @@ const colorizeCaptcha = (captcha) => {
 
 const nextStep = () => {
     form.post(route('front.projects.next.step', props.project), {
-        errorBag: 'AplicationNonLogin',
         preserveScroll: true,
         onSuccess: async () => {
             formStep.value++;
@@ -378,6 +396,9 @@ const nextStep = () => {
                 optionsPositions.value = response.data;
             }
         },
+        onError: () => {
+            scrollToError();
+        }
     });
 }
 
@@ -1406,10 +1427,10 @@ const removeFile = async (source, load) => {
                                                         track-by="value"
                                                         label="name"
                                                         :placeholder="__('translate.placeholder')"
-                                                        :select-label="__('translate.selectLabel')"
-                                                        :select-group-label="__('translate.selectGroupLabel')"
-                                                        :selected-label="__('translate.selectedLabel')"
-                                                        :deselect-label="__('translate.deselectLabel')"
+                                                   wy     select-label=""
+                                                        select-group-label=""
+                                                        selected-label=""
+                                                        deselect-label=""
                                                         :no-options="__('translate.noOptions')"
                                                         :no-result="__('translate.noResult')"
                                                         class="custom-multiselect"
@@ -1587,10 +1608,10 @@ const removeFile = async (source, load) => {
                                                                      :options="props.levelEducations"
                                                                      track-by="value" label="name"
                                                                      :placeholder="__('translate.placeholder')"
-                                                                     :select-label="__('translate.selectLabel')"
-                                                                     :select-group-label="__('translate.selectGroupLabel')"
-                                                                     :selected-label="__('translate.selectedLabel')"
-                                                                     :deselect-label="__('translate.deselectLabel')"
+                                                                     select-label=""
+                                                                     select-group-label=""
+                                                                     selected-label=""
+                                                                     deselect-label=""
                                                                      :no-options="__('translate.noOptions')"
                                                                      :no-result="__('translate.noResult')"
                                                                      class="custom-multiselect">
@@ -1732,6 +1753,7 @@ const removeFile = async (source, load) => {
                                                                        :max-date="today"
                                                                        input-class-name="dp__input_reg"
                                                         />
+                                                        {{form.errors}}
                                                         <InputError :message="form.errors[`courses.${index}.date`]"
                                                                     class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
@@ -1800,10 +1822,10 @@ const removeFile = async (source, load) => {
                                                         <multiselect v-model="lang.name" :options="sortLangs"
                                                                      track-by="value" label="label"
                                                                      :placeholder="__('translate.placeholder')"
-                                                                     :select-label="__('translate.selectLabel')"
-                                                                     :select-group-label="__('translate.selectGroupLabel')"
-                                                                     :selected-label="__('translate.selectedLabel')"
-                                                                     :deselect-label="__('translate.deselectLabel')"
+                                                                     select-label=""
+                                                                     select-group-label=""
+                                                                     selected-label=""
+                                                                     deselect-label=""
                                                                      :no-options="__('translate.noOptions')"
                                                                      :no-result="__('translate.noResult')"
                                                                      class="custom-multiselect">
@@ -1819,10 +1841,10 @@ const removeFile = async (source, load) => {
                                                         <multiselect v-model="lang.level" :options="props.langLevels"
                                                                      track-by="value" label="name"
                                                                      :placeholder="__('translate.placeholder')"
-                                                                     :select-label="__('translate.selectLabel')"
-                                                                     :select-group-label="__('translate.selectGroupLabel')"
-                                                                     :selected-label="__('translate.selectedLabel')"
-                                                                     :deselect-label="__('translate.deselectLabel')"
+                                                                     select-label=""
+                                                                     select-group-label=""
+                                                                     selected-label=""
+                                                                     deselect-label=""
                                                                      :no-options="__('translate.noOptions')"
                                                                      :no-result="__('translate.noResult')"
                                                                      class="custom-multiselect">
@@ -1856,11 +1878,11 @@ const removeFile = async (source, load) => {
                                                      :options="skillsOptions" :max="10" :multiple="true"
                                                      :taggable="true" @tag="addSkill"
                                                      :placeholder="__('translate.tagplaceholder')"
-                                                     :tag-placeholder="__('translate.tagPlaceholder')"
-                                                     :select-label="__('translate.tagselectLabel')"
-                                                     :select-group-label="__('translate.selectGroupLabel')"
-                                                     :selected-label="__('translate.tagselectedLabel')"
-                                                     :deselect-label="__('translate.tagdeselectLabel')"
+                                                     :tag-placeholder="''"
+                                                     select-label=""
+                                                     select-group-label=""
+                                                     selected-label=""
+                                                     deselect-label=""
                                                      :no-options="__('translate.noOptions')"
                                                      :no-result="__('translate.noResult')"
                                                      class="custom-multiselect">
@@ -1901,10 +1923,10 @@ const removeFile = async (source, load) => {
                                             track-by="value"
                                             label="label"
                                             :placeholder="__('translate.placeholder')"
-                                            :select-label="__('translate.selectLabel')"
-                                            :select-group-label="__('translate.selectGroupLabel')"
-                                            :selected-label="__('translate.selectedLabel')"
-                                            :deselect-label="__('translate.deselectLabel')"
+                                            select-label=""
+                                            select-group-label=""
+                                            selected-label=""
+                                            deselect-label=""
                                             :no-options="__('translate.noOptions')"
                                             :no-result="__('translate.noResult')"
                                             class="custom-multiselect"
