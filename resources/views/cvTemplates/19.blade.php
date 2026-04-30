@@ -82,12 +82,11 @@
         }
 
         .birth-date {
-            position: absolute;
-            top: -5px;
-            right: 25px;
             font-size: 20px;
             font-weight: bold;
             color: #666;
+            margin-bottom: 5px; /* Dodajemy odstęp od imienia */
+            display: block;
         }
 
         .left-column {

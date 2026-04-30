@@ -81,21 +81,20 @@ const isClient = ref(false);
 
 const scrollToError = () => {
     setTimeout(() => {
-        // Szukamy wszystkich elementów z błędami, które są widoczne
-        const errors = Array.from(document.querySelectorAll('.text-red-600'));
+        const errors = Array.from(document.querySelectorAll(".text-red-600"));
         const firstVisibleError = errors.find(el => {
-            // Sprawdzamy czy element lub jego rodzic (InputError) nie jest ukryty przez v-show (display: none)
-            return el.offsetParent !== null;
+            const style = window.getComputedStyle(el);
+            return style.display !== "none" && style.visibility !== "hidden" && el.getBoundingClientRect().height > 0;
         });
 
         if (firstVisibleError) {
             firstVisibleError.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'nearest'
+                behavior: "smooth",
+                block: "center",
+                inline: "nearest"
             });
         }
-    }, 250); // Zwiększony timeout, aby dać Vue więcej czasu na update DOM i animacje
+    }, 300);
 };
 
 const isAllAgreementsSelected = computed(() => {
@@ -1753,7 +1752,6 @@ const removeFile = async (source, load) => {
                                                                        :max-date="today"
                                                                        input-class-name="dp__input_reg"
                                                         />
-                                                        {{form.errors}}
                                                         <InputError :message="form.errors[`courses.${index}.date`]"
                                                                     class="mt-2 ml-2 text-[10px] font-bold uppercase tracking-widest"/>
                                                     </div>
@@ -1762,7 +1760,6 @@ const removeFile = async (source, load) => {
                                         </template>
                                     </draggable>
                                 </div>
-
                                 <!-- SEKCJA JĘZYKÓW -->
                                 <div class="space-y-8 pt-8 border-t border-gray-100">
                                     <div class="flex items-center justify-between">

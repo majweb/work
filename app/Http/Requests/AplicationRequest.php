@@ -323,17 +323,14 @@ class AplicationRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                     if ($isCvAndStep2) {
-                        if (empty($value)) {
-                            return $fail(__('translate.coursesRequired'));
-                        }
                         if ($isCvAndStep2) {
-                            if (! is_array($value) || count($value) < 1) {
+                            if (! is_array($value)) {
                                 $fail(__('translate.coursesRequired'));
                             }
                         }
                     }
                 },
-                'array', 'between:1,5' => function ($attribute, $val, $fail) {
+                'array', 'between:0,5' => function ($attribute, $val, $fail) {
                     if (count($val) > 5) {
                         $fail(__('translate.toMuchElements'));
                     }
@@ -379,17 +376,14 @@ class AplicationRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $isCvAndStep2 = request()->cv == 1 && request()->step == 2 && request()->cvStandardType == 2;
                     if ($isCvAndStep2) {
-                        if (empty($value)) {
-                            return $fail(__('translate.langsRequired'));
-                        }
                         if ($isCvAndStep2) {
-                            if (! is_array($value) || count($value) < 1) {
+                            if (! is_array($value)) {
                                 $fail(__('translate.langsRequired'));
                             }
                         }
                     }
                 },
-                'array', 'between:1,5' => function ($attribute, $val, $fail) {
+                'array', 'between:0,5' => function ($attribute, $val, $fail) {
                     if (count($val) > 5) {
                         $fail(__('translate.toMuchElements'));
                     }
