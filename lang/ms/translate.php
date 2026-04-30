@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Tolak Semua Kecuali Yang Penting',
     'only_essential' => 'Hanya Kuki Penting',
     'sickPeople'=>'P/L/Lain-lain',
-    'stripe'=>'Pembayaran Selamat Stripe'
+    'stripe'=>'Pembayaran Selamat Stripe',
+    'brutto' => 'Kasar',
+    'netto' => 'Bersih',
+    'alreadyhaveanaccount' => 'Sudah mempunyai akaun?',
+    'noAccount' => 'Belum mempunyai akaun?',
 ];

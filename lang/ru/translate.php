@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Отклонить всё, кроме необходимого',
     'only_essential' => 'Только необходимые файлы cookie',
     'sickPeople'=>'Ж/М/Другое',
-    'stripe'=>'Безопасная оплата Stripe'
+    'stripe'=>'Безопасная оплата Stripe',
+    'brutto' => 'Брутто',
+    'netto' => 'Нетто',
+    'alreadyhaveanaccount' => 'У вас уже есть аккаунт?',
+    'noAccount' => 'У вас ещё нет аккаунта?',
 ];

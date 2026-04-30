@@ -1622,5 +1622,9 @@ return [
     'reject_all' => 'Reject all',
     'only_essential' => 'Necessary only',
     'sickPeople' => 'f/m/n',
-    'stripe' => 'Stripe'
+    'stripe' => 'Stripe',
+    'brutto' => 'Gross',
+    'netto' => 'Net',
+    'alreadyhaveanaccount' => 'Already have an account?',
+    'noAccount' => "Don't have an account yet?",
 ];

@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'បដិសេធទាំងអស់លើកលែងតែចាំបាច់',
     'only_essential' => 'មានតែខូគីចាំបាច់ប៉ុណ្ណោះ',
     'sickPeople'=>'ស្រី/ប្រុស/ផ្សេងៗ',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'សរុប',
+    'netto' => 'សុទ្ធ',
+    'alreadyhaveanaccount' => 'អ្នកមានគណនីរួចហើយមែនទេ?',
+    'noAccount' => 'អ្នកមិនទាន់មានគណនីមែនទេ?',
 ];

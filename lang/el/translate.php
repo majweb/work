@@ -1664,5 +1664,9 @@ return [
     'reject_all' => 'Απόρριψη όλων',
     'only_essential' => 'Μόνο τα απαραίτητα',
     'sickPeople'=>'Γ/Α/Άλλο',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Μικτό',
+    'netto' => 'Καθαρό',
+    'alreadyhaveanaccount' => 'Έχετε ήδη λογαριασμό;',
+    'noAccount' => 'Δεν έχετε ακόμη λογαριασμό;',
 ];

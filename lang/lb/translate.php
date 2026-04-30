@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Alles ofleenen (ausser onbedéngt néideg)',
     'only_essential' => 'Nëmmen noutwendeg Cookien',
     'sickPeople'=>'W/M/Aneres',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Brutto',
+    'netto' => 'Netto',
+    'alreadyhaveanaccount' => 'Hues du schonn e Kont?',
+    'noAccount' => 'Hues du nach kee Kont?',
 ];

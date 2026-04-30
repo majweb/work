@@ -1622,5 +1622,11 @@ return [
     'reject_all' => 'Адхіліць усё',
     'only_essential' => 'Толькі неабходныя',
     'sickPeople'=>'ж/м/н',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Валавая',
+    'netto' => 'Чыстая',
+    'brutto' => 'Брутно',
+    'netto' => 'Нетно',
+    'alreadyhaveanaccount' => 'Вече имате акаунт?',
+    'noAccount' => 'Все още нямате акаунт?',
 ];

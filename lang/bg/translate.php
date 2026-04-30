@@ -1664,5 +1664,7 @@ return [
     'reject_all' => 'Отхвърли всички',
     'only_essential' => 'Само необходимите',
     'sickPeople'=>'ж/м/н',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'alreadyhaveanaccount' => 'Вече имате акаунт?',
+    'noAccount' => 'Все още нямате акаунт?',
 ];

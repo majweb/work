@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Zavrni vse, razen nujnega',
     'only_essential' => 'Samo nujni piškotki',
     'sickPeople'=>'Ž/M/Drugo',
-    'stripe'=>'Stripe varno plačilo'
+    'stripe'=>'Stripe varno plačilo',
+    'brutto' => 'Bruto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => 'Že imate račun?',
+    'noAccount' => 'Še nimate računa?',
 ];

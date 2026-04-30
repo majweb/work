@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Hylkää kaikki paitsi välttämättömät',
     'only_essential' => 'Vain välttämättömät evästeet',
     'sickPeople'=>'N/M/Muu',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Brutto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => 'Onko sinulla jo tili?',
+    'noAccount' => 'Eikö sinulla ole vielä tiliä?',
 ];

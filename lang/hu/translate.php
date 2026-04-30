@@ -1664,6 +1664,10 @@ return [
     'reject_all' => 'Mindet elutasít',
     'only_essential' => 'Csak a szükségesek',
     'sickPeople' => 'k/n/m',
-    'stripe' => 'Stripe'
+    'stripe' => 'Stripe',
+    'brutto' => 'Bruttó',
+    'netto' => 'Nettó',
+    'alreadyhaveanaccount' => 'Már van fiókod?',
+    'noAccount' => 'Még nincs fiókod?',
 ];
 

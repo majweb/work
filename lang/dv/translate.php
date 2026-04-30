@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'އެސެންޝަލް ފިޔަވައި ހުރިހާ އެއްޗެއް ރިޖެކްޓްކުރައްވާ',
     'only_essential' => 'ހަމައެކަނި އެސެންޝަލް ކުކީސް',
     'sickPeople'=>'އ/ފ/އެހެނިހެން',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'ޖުމްލަ',
+    'netto' => 'ނެޓޯ',
+    'alreadyhaveanaccount' => 'ކަލޭގެ އެކައުންޓް އިނީތަ؟',
+    'noAccount' => 'އަދި އެކައުންޓް ނެތްތަ؟',
 ];

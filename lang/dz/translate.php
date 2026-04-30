@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'ཆ་མཉམ་ཕྱིར་བཏོན་འབད།',
     'only_essential' => 'ཉེར་མཁོ་རྐྱངམ་ཅིག',
     'sickPeople'=>'ཨམ / ཕོ / མ་གསལ་',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'བསྡོམས་ཡོངས',
+    'netto' => 'གཙང་མ',
+    'alreadyhaveanaccount' => 'ཁྱེད་ལ་རྩིས་ཐོ་ཡོད་དམ?',
+    'noAccount' => 'ད་ལྟ་རྩིས་ཐོ་མེད་དམ?',
 ];

@@ -1622,5 +1622,9 @@ return [
     'reject_all' => 'Hamısını rədd et',
     'only_essential' => 'Yalnız zəruri olanlar',
     'sickPeople'=>'q/k/n',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Ümumi',
+    'netto' => 'Xalis',
+    'alreadyhaveanaccount' => 'Artıq hesabınız var?',
+    'noAccount' => 'Hələ hesabınız yoxdur?',
 ];

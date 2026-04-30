@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'رفض كل شيء ما عدا الأساسي',
     'only_essential' => 'ملفات تعريف الارتباط الأساسية فقط',
     'sickPeople'=>'أنثى/ذكر/أخرى',
-    'stripe'=>'الدفع الآمن عبر Stripe'
+    'stripe'=>'الدفع الآمن عبر Stripe',
+    'brutto' => 'الإجمالي',
+    'netto' => 'الصافي',
+    'alreadyhaveanaccount' => 'هل لديك حساب بالفعل؟',
+    'noAccount' => 'ليس لديك حساب بعد؟',
 ];

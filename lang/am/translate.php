@@ -1664,4 +1664,8 @@ return [
     'only_essential' => 'አስፈላጊ ኩኪዎች ብቻ',
     'sickPeople'=>'ሴ/ወ/ሌላ',
     'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Համախառն',
+    'netto' => 'Զուտ',
+    'alreadyhaveanaccount' => 'Արդեն ունե՞ք հաշիվ։',
+    'noAccount' => 'Դեռ հաշիվ չունե՞ք։',
 ];

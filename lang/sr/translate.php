@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Odbij sve osim neophodnog',
     'only_essential' => 'Samo neophodni kolačići',
     'sickPeople'=>'Ž/M/Drugo',
-    'stripe'=>'Stripe Sigurno Plaćanje'
+    'stripe'=>'Stripe Sigurno Plaćanje',
+    'brutto' => 'Бруто',
+    'netto' => 'Нето',
+    'alreadyhaveanaccount' => 'Већ имате налог?',
+    'noAccount' => 'Још увек немате налог?',
 ];

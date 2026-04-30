@@ -1664,6 +1664,10 @@ return [
     'reject_all' => 'Одбиј ги сите',
     'only_essential' => 'Само неопходните',
     'sickPeople'=>'Ж/М/Н',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Бруто',
+    'netto' => 'Нето',
+    'alreadyhaveanaccount' => 'Веќе имате сметка?',
+    'noAccount' => 'Сè уште немате сметка?',
 ];
 

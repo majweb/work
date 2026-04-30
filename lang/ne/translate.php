@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'आवश्यक बाहेक सबै अस्वीकार गर्नुहोस्',
     'only_essential' => 'आवश्यक कुकीहरू मात्र',
     'sickPeople'=>'महिला/पुरुष/अन्य',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'कुल (ब्रुटो)',
+    'netto' => 'शुद्ध',
+    'alreadyhaveanaccount' => 'के तपाईंसँग पहिले नै खाता छ?',
+    'noAccount' => 'के तपाईंसँग अझै खाता छैन?',
 ];

@@ -1622,5 +1622,11 @@ return [
     'reject_all' => 'সব প্রত্যাখ্যান করুন',
     'only_essential' => 'শুধু প্রয়োজনীয়গুলো',
     'sickPeople'=>'মহিলা/পুরুষ/অন্যান্য',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'মোট',
+    'netto' => 'নিট',
+    'brutto' => 'Bruto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => 'Već imate nalog?',
+    'noAccount' => 'Još nemate nalog?',
 ];

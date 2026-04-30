@@ -1663,5 +1663,7 @@ return [
     'reject_all' => 'Odbijam sve što nije nužno',
     'only_essential' => 'Samo esencijalni kolačići za rad',
     'sickPeople'=>'ž/m/o',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'alreadyhaveanaccount' => 'Već imate nalog?',
+    'noAccount' => 'Još nemate nalog?',
 ];

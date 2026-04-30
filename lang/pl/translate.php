@@ -1665,6 +1665,8 @@ return [
     'only_essential' => 'Tylko niezbędne',
     'sickPeople'=>'k/m/n',
     'stripe'=>'Stripe',
-    'alreadyhaveanaccount'=>'Masz już konto?',
-    'noAccount'=>'Nie masz jeszcze konta?'
+    'brutto' => 'Brutto',
+    'netto' => 'Netto',
+    'alreadyhaveanaccount' => 'Masz już konto?',
+    'noAccount' => 'Nie masz jeszcze konta?',
 ];

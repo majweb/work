@@ -1650,5 +1650,9 @@ return [
     'reject_all' => 'Respingeți totul, cu excepția celor esențiale',
     'only_essential' => 'Doar cookie-uri esențiale',
     'sickPeople' => 'F/B/Altele',
-    'stripe' => 'Plată securizată Stripe'
+    'stripe' => 'Plată securizată Stripe',
+    'brutto' => 'Brut',
+    'netto' => 'Net',
+    'alreadyhaveanaccount' => 'Aveți deja un cont?',
+    'noAccount' => 'Nu aveți încă un cont?',
 ];

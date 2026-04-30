@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Rejeitar Tudo Exceto o Essencial',
     'only_essential' => 'Apenas Cookies Essenciais',
     'sickPeople'=>'M/H/Outro',
-    'stripe'=>'Pagamento Seguro Stripe'
+    'stripe'=>'Pagamento Seguro Stripe',
+    'brutto' => 'Bruto',
+    'netto' => 'Líquido',
+    'alreadyhaveanaccount' => 'Já tem uma conta?',
+    'noAccount' => 'Ainda não tem uma conta?',
 ];

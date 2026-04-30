@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Odmítnout vše kromě nezbytných',
     'only_essential' => 'Pouze nezbytné cookies',
     'sickPeople'=>'ž/m/j',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Brutto',
+    'netto' => 'Čisté',
+    'alreadyhaveanaccount' => 'Už máte účet?',
+    'noAccount' => 'Ještě nemáte účet?',
 ];

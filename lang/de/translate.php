@@ -1746,5 +1746,7 @@ return [
     'reject_all' => 'Alle ablehnen',
     'only_essential' => 'Nur notwendige',
     'sickPeople'=>'m/w/d',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'alreadyhaveanaccount' => 'Hast du bereits ein Konto?',
+    'noAccount' => 'Hast du noch kein Konto?',
 ];

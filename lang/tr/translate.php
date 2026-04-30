@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Temel Olanlar Dışında Tümünü Reddet',
     'only_essential' => 'Sadece Gerekli Çerezler',
     'sickPeople'=>'K/E/Diğer',
-    'stripe'=>'Stripe Güvenli Ödeme'
+    'stripe'=>'Stripe Güvenli Ödeme',
+    'brutto' => 'Brüt',
+    'netto' => 'Net',
+    'alreadyhaveanaccount' => 'Zaten bir hesabınız var mı?',
+    'noAccount' => 'Henüz bir hesabınız yok mu?',
 ];

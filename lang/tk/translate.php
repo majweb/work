@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Zerur bolanlardan başga ählisini ret et',
     'only_essential' => 'Diňe zerur kukiler',
     'sickPeople'=>'A/E/Beýleki',
-    'stripe'=>'Stripe Howpsuz Tölegi'
+    'stripe'=>'Stripe Howpsuz Tölegi',
+    'brutto' => 'Jemi (Brutto)',
+    'netto' => 'Arassa (Netto)',
+    'alreadyhaveanaccount' => 'Sizde eýýäm hasap barmy?',
+    'noAccount' => 'Sizde entek hasap ýokmy?',
 ];

@@ -1663,5 +1663,11 @@ return [
     'reject_all' => 'Afvis alle (undtagen nødvendige)',
     'only_essential' => 'Kun nødvendige',
     'sickPeople'=>'K/M/D',
-    'stripe'=>'Stripe Sikker Betaling'
+    'stripe'=>'Stripe Sikker Betaling',
+    'brutto' => 'Brutto',
+    'netto' => 'Netto',
+    'brutto' => 'Brutto',
+    'netto' => 'Netto',
+    'alreadyhaveanaccount' => 'Hast du bereits ein Konto?',
+    'noAccount' => 'Hast du noch kein Konto?',
 ];

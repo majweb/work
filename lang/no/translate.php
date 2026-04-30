@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Avvis alt unntatt nødvendige',
     'only_essential' => 'Kun nødvendige informasjonskapsler',
     'sickPeople'=>'K/M/Annet',
-    'stripe'=>'Stripe Sikker Betaling'
+    'stripe'=>'Stripe Sikker Betaling',
+    'brutto' => 'Brutto',
+    'netto' => 'Netto',
+    'alreadyhaveanaccount' => 'Har du allerede en konto?',
+    'noAccount' => 'Har du ikke en konto ennå?',
 ];

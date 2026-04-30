@@ -1664,5 +1664,9 @@ return [
     'reject_all' => 'အားလုံးကို ငြင်းပယ်မည်',
     'only_essential' => 'လိုအပ်သည်များကိုသာ',
     'sickPeople'=>'ကျား/မ/မသတ်မှတ်',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'စုစုပေါင်း',
+    'netto' => 'သန့်ရှင်းငွေ',
+    'alreadyhaveanaccount' => 'သင့်တွင် အကောင့်ရှိပြီးသားလား?',
+    'noAccount' => 'သင့်တွင် အကောင့်မရှိသေးဘူးလား?',
 ];

@@ -1664,5 +1664,10 @@ return [
     'reject_all' => 'Rebutja-ho tot',
     'only_essential' => 'Només les essencials',
     'sickPeople'=>'D/H/A',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Brut',
+    'netto' => 'Net',
+    'alreadyhaveanaccount' => 'Ja tens un compte?',
+    'noAccount' => 'Encara no tens un compte?',
+
 ];

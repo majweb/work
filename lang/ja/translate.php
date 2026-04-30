@@ -1663,5 +1663,9 @@ return [
     'reject_all' => '必須以外すべて拒否',
     'only_essential' => '必須のCookieのみ',
     'sickPeople'=>'女/男/他',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => '総額',
+    'netto' => '正味',
+    'alreadyhaveanaccount' => 'すでにアカウントをお持ちですか？',
+    'noAccount' => 'まだアカウントをお持ちではありませんか？',
 ];

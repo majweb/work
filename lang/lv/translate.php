@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Noraidīt visu, izņemot nepieciešamo',
     'only_essential' => 'Tikai nepieciešamās sīkdatnes',
     'sickPeople'=>'S/V/Cits',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Bruto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => 'Vai jums jau ir konts?',
+    'noAccount' => 'Vai jums vēl nav konta?',
 ];

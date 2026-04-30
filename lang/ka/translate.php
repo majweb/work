@@ -1664,5 +1664,9 @@ return [
     'reject_all' => 'ყველას უარყოფა',
     'only_essential' => 'მხოლოდ აუცილებელი',
     'sickPeople'=>'ქ/მ/სხვა',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'მთლიანი',
+    'netto' => 'წმინდა',
+    'alreadyhaveanaccount' => 'უკვე გაქვთ ანგარიში?',
+    'noAccount' => 'ჯერ არ გაქვთ ანგარიში?',
 ];

@@ -1663,5 +1663,9 @@ return [
     'reject_all' => '필수 항목을 제외하고 모두 거부',
     'only_essential' => '필수 쿠키만 허용',
     'sickPeople'=>'여/남/기타',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => '총액',
+    'netto' => '순액',
+    'alreadyhaveanaccount' => '이미 계정이 있으신가요?',
+    'noAccount' => '아직 계정이 없으신가요?',
 ];

@@ -1672,5 +1672,10 @@ return [
     'reject_all' => '拒绝除基本项外的所有内容',
     'only_essential' => '仅限基本 Cookie',
     'sickPeople'=>'女/男/其他',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => '总额',
+    'netto' => '净额',
+    'alreadyhaveanaccount' => '已有账户？',
+    'noAccount' => '还没有账户？',
+
 ];

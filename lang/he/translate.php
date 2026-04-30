@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'דחה הכל',
     'only_essential' => 'הכרחיים בלבד',
     'sickPeople'=>'נ/ז/אחר',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'ברוטו',
+    'netto' => 'נטו',
+    'alreadyhaveanaccount' => 'כבר יש לך חשבון?',
+    'noAccount' => 'אין לך עדיין חשבון?',
 ];

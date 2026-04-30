@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'له اړین څخه پرته نور ټول رد کړئ',
     'only_essential' => 'یوازې اړین کوکیز',
     'sickPeople'=>'ښ/ن/نور',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'ټول (ناخالص)',
+    'netto' => 'خالص',
+    'alreadyhaveanaccount' => 'ایا تاسو مخکې له مخکې حساب لرئ؟',
+    'noAccount' => 'ایا تاسو لا تر اوسه حساب نه لرئ؟',
 ];

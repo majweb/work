@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Зайлшгүй шаардлагатайгаас бусдыг бүгдийг нь татгалзах',
     'only_essential' => 'Зөвхөн зайлшгүй шаардлагатай күүки',
     'sickPeople'=>'Эм/Эр/Бусад',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Нийт',
+    'netto' => 'Цэвэр',
+    'alreadyhaveanaccount' => 'Та аль хэдийн бүртгэлтэй юу?',
+    'noAccount' => 'Танд бүртгэл байхгүй юу?',
 ];

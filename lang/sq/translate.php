@@ -1621,5 +1621,9 @@ return [
     'reject_all' => 'Refuzo të gjitha',
     'only_essential' => 'Vetëm të nevojshmet',
     'sickPeople' => 'f/m/n',
-    'stripe' => 'Stripe'
+    'stripe' => 'Stripe',
+    'brutto' => 'Bruto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => 'A keni tashmë një llogari?',
+    'noAccount' => 'Nuk keni ende një llogari?',
 ];

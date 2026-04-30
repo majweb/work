@@ -1664,5 +1664,9 @@ return [
     'reject_all' => 'सभी अस्वीकार करें',
     'only_essential' => 'केवल आवश्यक',
     'sickPeople'=>'महिला/पुरुष/अन्य',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'सकल',
+    'netto' => 'शुद्ध',
+    'alreadyhaveanaccount' => 'क्या आपके पास पहले से खाता है?',
+    'noAccount' => 'क्या आपके पास अभी तक खाता नहीं है?',
 ];

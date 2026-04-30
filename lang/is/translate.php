@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Hafna öllu nema nauðsynlegu',
     'only_essential' => 'Aðeins nauðsynlegar vafrakökur',
     'sickPeople'=>'K/K/A',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Brúttó',
+    'netto' => 'Nettó',
+    'alreadyhaveanaccount' => 'Ertu þegar með aðgang?',
+    'noAccount' => 'Ertu ekki enn með aðgang?',
 ];

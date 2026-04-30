@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'رد کردن همه موارد به جز موارد ضروری',
     'only_essential' => 'فقط کوکی‌های ضروری',
     'sickPeople'=>'زن/مرد/سایر',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'ناخالص',
+    'netto' => 'خالص',
+    'alreadyhaveanaccount' => 'آیا قبلاً حساب دارید؟',
+    'noAccount' => 'هنوز حساب کاربری ندارید؟',
 ];

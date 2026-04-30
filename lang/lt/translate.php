@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Atmesti viską',
     'only_essential' => 'Tik būtini',
     'sickPeople'=>'Moteris/Vyras/Kita',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Bruto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => 'Ar jau turite paskyrą?',
+    'noAccount' => 'Dar neturite paskyros?',
 ];

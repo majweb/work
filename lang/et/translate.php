@@ -1663,6 +1663,10 @@ return [
     'reject_all' => 'Lükka kõik peale hädavajalike tagasi',
     'only_essential' => 'Ainult hädavajalikud küpsised',
     'sickPeople'=>'N/M/Muu',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Bruto',
+    'netto' => 'Netto',
+    'alreadyhaveanaccount' => 'Kas sul on juba konto?',
+    'noAccount' => 'Sul pole veel kontot?',
 ];
 

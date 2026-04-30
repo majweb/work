@@ -1663,5 +1663,9 @@ return [
     'reject_all' => 'Մերժել բոլորը, բացի անհրաժեշտներից',
     'only_essential' => 'Միայն էական թխուկներ',
     'sickPeople'=>'Իգական/Արական/Այլ',
-    'stripe'=>'Stripe Secure Payment'
+    'stripe'=>'Stripe Secure Payment',
+    'brutto' => 'Համախառն',
+    'netto' => 'Զուտ',
+    'alreadyhaveanaccount' => 'Արդեն ունե՞ք հաշիվ։',
+    'noAccount' => 'Դեռ հաշիվ չունե՞ք։',
 ];

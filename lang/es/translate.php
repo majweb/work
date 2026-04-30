@@ -1664,5 +1664,9 @@ return [
     'reject_all' => 'Rechazar todo',
     'only_essential' => 'Solo las estrictamente necesarias',
     'sickPeople'=>'M/H/O',
-    'stripe'=>'Stripe'
+    'stripe'=>'Stripe',
+    'brutto' => 'Bruto',
+    'netto' => 'Neto',
+    'alreadyhaveanaccount' => '¿Ya tienes una cuenta?',
+    'noAccount' => '¿Aún no tienes una cuenta?',
 ];
