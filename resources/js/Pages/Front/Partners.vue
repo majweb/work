@@ -242,9 +242,8 @@ const submit = () => {
                             </div>
                         </div>
                     </div>
-
                     <!-- SLIDER -->
-                    <div v-if="props.partners.length > 1" class="mt-20 pt-12 border-t border-gray-50">
+                    <div v-if="props.partners.length >= 1" class="mt-20 pt-12 border-t border-gray-50">
                         <div class="flex items-center gap-4 mb-8">
                             <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('partners.partners_subtitle') }}</h3>
                             <div class="h-px flex-1 bg-gray-50"></div>

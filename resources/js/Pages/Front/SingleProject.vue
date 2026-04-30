@@ -196,7 +196,7 @@ onMounted(async () => {
 
                         <div class="relative z-10">
                             <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Oferta pracy #{{ project.id }}</p>
-                            <h1 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
+                            <h1 class="text-2xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
                                 {{ getPositionTitle(project) }}
                             </h1>
                         </div>
@@ -207,7 +207,7 @@ onMounted(async () => {
                     <!-- Company Info Bar -->
                     <div class="p-8 md:px-16 flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-50">
                         <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-                            <div class="relative">
+                            <div class="relative top-5 md:top-0">
                                 <img
                                     :src="project.user?.profile_photo_url"
                                     alt="Logo"
@@ -236,7 +236,7 @@ onMounted(async () => {
 
                         <div class="flex flex-wrap justify-center gap-4">
                             <Link v-if="!user"
-                                  class="px-8 py-4 bg-white border border-gray-100 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                                  class="px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#0A2C5C]/90 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5"
                                   :href="route('login',{ projectToRedirect: project.id })">
                                 {{ __('translate.login') }}
                             </Link>

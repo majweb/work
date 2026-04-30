@@ -319,7 +319,18 @@ const socialLinks = [
                                     track-by="value"
                                     @select="dispatchAction"
                                     :placeholder="__('translate.placeholder')"
-                                ></Multiselect>
+                                    :selectLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
+                                    class="languages-multiselect"
+                                >
+                                    <template #noResult>
+                                        <span>{{__('translate.noOptions')}}</span>
+                                    </template>
+                                    <template #noOptions>
+                                        <span>{{__('translate.noResult')}}</span>
+                                    </template>
+                                </Multiselect>
                             </div>
                             <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="w-full text-center text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:underline underline-offset-4">{{ page.props.currentCountry }}</button>
 
@@ -330,7 +341,7 @@ const socialLinks = [
                             </div>
                             <template v-else>
                                 <div class="flex flex-col gap-3">
-                                    <Link :href="route('login')" @click="closeMenu" class="w-full text-center px-8 py-4 bg-white border border-gray-100 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-2xl shadow-sm">
+                                    <Link :href="route('login')" @click="closeMenu" class="w-full text-center px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-blue-900/20">
                                         {{__('translate.login')}}
                                     </Link>
                                     <Link v-if="page.props.canRegister" :href="route('register')" @click="closeMenu" class="w-full text-center px-8 py-4 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-red-900/20">
