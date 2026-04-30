@@ -200,7 +200,7 @@ const submit = () => {
                 <!-- FOOTER -->
                 <div class="mt-10 flex-wrap flex flex-col md:flex-row items-center justify-center gap-2">
                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                        Nie masz jeszcze konta?
+                        {{__('translate.noAccount')}}
                     </p>
                     <Link
                         :href="route('register')"

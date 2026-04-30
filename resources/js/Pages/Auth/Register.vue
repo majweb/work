@@ -363,19 +363,20 @@ const submit = () => {
                         :providers="$page.props.socialstream.providers"
                     />
                 </div>
-
                 <!-- FOOTER -->
-                <div class="mt-10 text-center border-t border-gray-50 pt-8">
+                <div class="mt-10 flex-wrap flex flex-col md:flex-row items-center justify-center gap-2">
                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                        Masz już konto?
-                        <Link
-                            :href="route('login')"
-                            class="ml-2 text-blue-500 hover:text-blue-600 transition-colors underline underline-offset-4 decoration-2"
-                        >
-                            {{ __('translate.already') }}
-                        </Link>
+                        {{__('translate.alreadyhaveanaccount')}}
                     </p>
+                    <Link
+                        :href="route('login')"
+                        class="text-[10px] uppercase tracking-widest ml-2 text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2"
+                    >
+                        {{ __('translate.already') }}
+                    </Link>
                 </div>
+
+
             </div>
         </div>
     </div>

@@ -268,7 +268,7 @@ const isSearching = ref(false);
                                 <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
-                            <div class="flex flex-col sm:flex-row gap-3 items-center ml-4">
+                            <div class="flex flex-col sm:flex-row gap-3 items-end md:items-center ml-4">
                                 <div class="flex gap-3 items-center">
                                     <button
                                         type="button"
@@ -628,12 +628,14 @@ const isSearching = ref(false);
                             <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-1.5 bg-[#329CD1] rounded-r-full shadow-[2px_0_10px_rgba(50,156,209,0.3)]"></div>
                             <Link :href="route('front.projects.single', project)" class="block">
                                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                                    <div class="flex items-center gap-4">
-                                        <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[10px] uppercase tracking-widest rounded-lg border border-blue-100/50">
-                                            ID {{ project.id }}
-                                        </span>
-                                        <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
-                                        <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
+                                    <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                                        <div class="flex items-center gap-4">
+                                            <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[10px] uppercase tracking-widest rounded-lg border border-blue-100/50">
+                                                ID {{ project.id }}
+                                            </span>
+                                            <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
+                                        </div>
+                                        <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight group-hover:text-[#0A2C5C] transition-colors">
                                             {{ getPositionTitle(project) }}
                                         </h4>
                                     </div>
