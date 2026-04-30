@@ -15,6 +15,7 @@ class MultiselectWithoutDetailResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->title ?? $this->name,
             'value' => $this->id,
             'allTranslations'=>$this->getTranslations()

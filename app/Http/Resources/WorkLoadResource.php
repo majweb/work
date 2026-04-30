@@ -15,9 +15,10 @@ class WorkLoadResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'value'=>$this->id,
-            'name'=>$this->name,
-            'allTranslations'=>$this->getTranslations()
+            'id' => $this->id,
+            'value' => $this->id,
+            'name' => $this->name,
+            'allTranslations' => $this->getTranslations()
         ];
     }
 }

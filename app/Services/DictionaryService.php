@@ -132,28 +132,28 @@ class DictionaryService
 
     public function getWorkingModesForSelect(): mixed
     {
-        return Cache::rememberForever($this->getCacheKey('workingModes'), function () {
+        return Cache::rememberForever($this->getCacheKey('select_workingModes'), function () {
             return MultiselectWithoutDetailResource::collection(WorkingMode::all());
         });
     }
 
     public function getExperiencesForSelect(): mixed
     {
-        return Cache::rememberForever($this->getCacheKey('experiences'), function () {
+        return Cache::rememberForever($this->getCacheKey('select_experiences'), function () {
             return MultiselectWithoutDetailResource::collection(Experience::all());
         });
     }
 
     public function getTypesOfContractForSelect(): mixed
     {
-        return Cache::rememberForever($this->getCacheKey('typesOfContract'), function () {
+        return Cache::rememberForever($this->getCacheKey('select_typesOfContract'), function () {
             return MultiselectWithoutDetailResource::collection(TypeOfContract::all());
         });
     }
 
     public function getWorkLoadsForSelect(): mixed
     {
-        return Cache::rememberForever($this->getCacheKey('workLoads'), function () {
+        return Cache::rememberForever($this->getCacheKey('select_workLoads'), function () {
             return MultiselectWithoutDetailResource::collection(WorkLoad::all());
         });
     }
