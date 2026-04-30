@@ -198,16 +198,16 @@ const submit = () => {
                 </div>
 
                 <!-- FOOTER -->
-                <div class="mt-10 text-center">
+                <div class="mt-10 flex-wrap flex flex-col md:flex-row items-center justify-center gap-2">
                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
                         Nie masz jeszcze konta?
-                        <Link
-                            :href="route('register')"
-                            class="ml-2 text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2"
-                        >
-                            {{ __('translate.createAccount') }}
-                        </Link>
                     </p>
+                    <Link
+                        :href="route('register')"
+                        class="text-[10px] uppercase tracking-widest ml-2 text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2"
+                    >
+                        {{ __('translate.createAccount') }}
+                    </Link>
                 </div>
             </div>
         </div>

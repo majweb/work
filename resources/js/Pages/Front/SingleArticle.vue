@@ -202,13 +202,13 @@ const articleSchema = computed(() => {
                                     <div class="article-content rich-text" v-html="article.content"></div>
 
                                     <!-- Footer Info -->
-                                    <div class="mt-12 pt-8 border-t border-gray-50 flex flex-wrap items-center justify-between gap-6">
+                                    <div class="mt-12 pt-8 border-t border-gray-50 flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between gap-6">
                                         <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">
                                             {{ __('translate.published_at') }}: {{ moment(article.created_at).format('DD.MM.YYYY HH:mm') }}
                                         </span>
 
                                         <!-- Share Buttons -->
-                                        <div v-if="isClient" class="flex items-center gap-4">
+                                        <div v-if="isClient" class="flex flex-col sm:flex-row justify-center items-center gap-4">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.share_article') }}</p>
                                             <div class="flex gap-2">
                                                 <button @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">

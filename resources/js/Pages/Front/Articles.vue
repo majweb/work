@@ -138,7 +138,7 @@ const props = defineProps({
                         >
                             <div class="relative h-64 overflow-hidden bg-gray-50">
                                 <div
-                                    class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform scale-110 duration-700 group-hover:scale-125"
+                                    class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform scale-125 md:scale-110 duration-700 group-hover:scale-125"
                                     :style="`background-image: url(${article.image});`"
                                 ></div>
                             </div>
@@ -179,7 +179,7 @@ const props = defineProps({
                         >
                             <div class="relative h-64 overflow-hidden bg-gray-50">
                                 <div
-                                    class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform scale-110 duration-700 group-hover:scale-125"
+                                    class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform scale-125 md:scale-110 duration-700 group-hover:scale-125"
                                     :style="`background-image: url(${article.image});`"
                                 ></div>
                             </div>
