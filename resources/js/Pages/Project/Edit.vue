@@ -1869,6 +1869,12 @@ onMounted(async () => {
         transition: all 0.3s ease;
     }
 
+    &.multiselect--active {
+        .multiselect__tags {
+            border-color: transparent;
+        }
+    }
+
     .multiselect__placeholder {
         margin-bottom: 0;
         padding-top: 0;

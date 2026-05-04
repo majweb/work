@@ -1870,6 +1870,12 @@ onMounted(async () => {
         transition: all 0.3s ease;
     }
 
+    &.multiselect--active {
+        .multiselect__tags {
+            border-color: transparent;
+        }
+    }
+
     .multiselect__placeholder {
         margin-bottom: 0;
         padding-top: 0;
@@ -1970,6 +1976,7 @@ onMounted(async () => {
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         z-index: 50 !important;
     }
+
 }
 .custom-multiselect .multiselect__content-wrapper {
     max-height: 300px !important; /* Musi być zgodne z :max-height */

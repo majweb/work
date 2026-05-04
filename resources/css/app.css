@@ -49,6 +49,19 @@
     transition: all 0.3s ease;
 }
 
+.multiselect:focus,
+.multiselect--active,
+.multiselect__input:focus,
+.multiselect__single:focus,
+.multiselect__tags:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.custom-multiselect .multiselect--active .multiselect__tags {
+    border-color: transparent !important;
+}
+
 .custom-multiselect .multiselect__placeholder {
     margin-bottom: 0;
     padding-top: 0;
