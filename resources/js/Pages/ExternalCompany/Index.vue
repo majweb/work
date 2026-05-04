@@ -77,7 +77,7 @@ const deleteCompany = () => {
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.note') }}</p>
-                                <p class="text-[10px] font-bold text-gray-400 leading-relaxed line-clamp-3" :title="company.note">
+                                <p class="text-[10px] font-bold text-gray-400 leading-relaxed line-clamp-3 uppercase" :title="company.note">
                                     {{ company.note }}
                                 </p>
                             </div>

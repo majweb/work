@@ -106,7 +106,7 @@ const deleteQuestion = () => {
                             <button @click="toggleActive(question.id)"
                                 class="px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition-all duration-200 shadow-sm shrink-0"
                                 :class="question.is_active
-                                    ? 'bg-[#e7f9f3] text-[#24c18f] hover:bg-[#d4f4e9]'
+                                    ? 'bg-blue-50 text-[#0A2C5C] hover:bg-blue-100'
                                     : 'bg-red-50 text-red-500 hover:bg-red-100'"
                             >
                                 {{ question.is_active ? __('translate.active') : __('translate.inactive') }}

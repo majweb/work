@@ -1680,5 +1680,6 @@ return [
     'video_cost_info' => 'DODANIE VIDEO DO PROFILU KOSZTUJE :points PUNKTÓW.',
 
 
-    'chooseCvToEditClick' =>'Wybierz jeden ze swoich życiorysów z listy po lewej stronie, aby rozpocząć edycję.'
+    'chooseCvToEditClick' =>'Wybierz jeden ze swoich życiorysów z listy po lewej stronie, aby rozpocząć edycję.',
+    'enterNameTag' => 'Wpisz nazwę'
 ];

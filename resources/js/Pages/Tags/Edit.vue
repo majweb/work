@@ -56,7 +56,7 @@ const getContrastColor = (bgColor) => {
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <h2 class="font-black text-3xl text-gray-900 leading-tight">
+                        <h2 class="uppercase font-black text-3xl text-[#0A2C5C] leading-tight">
                             {{ __('translate.editTag') }}
                         </h2>
                         <p class="mt-4 text-gray-400 max-w-2xl text-[10px] font-bold uppercase tracking-widest leading-relaxed">
@@ -75,7 +75,7 @@ const getContrastColor = (bgColor) => {
                                         v-model="form.name"
                                         type="text"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-300 font-bold tracking-widest uppercase"
-                                        :placeholder="__('translate.enterName')"
+                                        :placeholder="__('translate.enterNameTag')"
                                         autofocus
                                     />
                                     <InputError :message="form.errors.name" class="mt-2" />

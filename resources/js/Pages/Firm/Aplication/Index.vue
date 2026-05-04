@@ -862,93 +862,70 @@ watch(() => usePage().props.sender, (newVal) => {
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tags {
-    border: 1px solid #f3f4f6 !important; /* gray-100 */
-    border-radius: 1rem !important; /* rounded-2xl */
-    padding: 1rem 2.5rem 1rem 1.25rem !important;
-    background: #f9fafb !important; /* gray-50 */
-    min-height: 58px !important;
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap !important;
-}
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        background: #f9fafb; /* bg-gray-50 */
+        transition: all 0.3s ease;
+    }
 
-.multiselect__placeholder {
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    color: #9ca3af !important; /* text-gray-400 */
-    font-size: 0.75rem !important; /* text-xs */
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-}
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af; /* text-gray-400 */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__single {
-    margin-bottom: 0 !important;
-    padding-left: 0 !important;
-    font-size: 0.75rem !important;
-    background: transparent !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    color: #374151 !important;
-}
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__input {
-    margin-bottom: 0 !important;
-    background: transparent !important;
-    font-size: 0.75rem !important;
-    font-weight: 700 !important;
-}
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
 
-.multiselect__select {
-    height: 58px !important;
-    width: 2.5rem !important;
-}
+    .multiselect__select {
+        height: 100%;
+        width: 2.5rem;
+    }
 
-.multiselect__option--highlight {
-    background: #0A2C5C !important;
-    outline: none;
-    color: white !important;
-}
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__option--highlight:after {
-    background: #0A2C5C !important;
-}
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C;
+        font-weight: 900;
+    }
 
-.multiselect__option--selected {
-    background: #f3f4f6 !important;
-    color: #0A2C5C !important;
-    font-weight: 900 !important;
-    text-transform: uppercase !important;
-    font-size: 10px !important;
-    letter-spacing: 0.1em !important;
-}
-
-.multiselect__tag {
-    background: #0A2C5C !important;
-    border-radius: 0.5rem !important;
-    padding: 6px 26px 6px 10px !important;
-    font-size: 10px !important;
-    font-weight: 900 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-}
-
-.multiselect__tag-icon:after {
-    color: white !important;
-}
-
-.multiselect__tag-icon:hover {
-    background: #1e3a8a !important;
-}
-
-.multiselect__content-wrapper {
-    border: 1px solid #f3f4f6 !important;
-    border-top: none !important;
-    border-bottom-left-radius: 1rem !important;
-    border-bottom-right-radius: 1rem !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6;
+        border-top: none;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
