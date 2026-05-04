@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'پروفایل شرکت را تکمیل کنید',
     'completeProfileDescription' => 'پروفایل شرکت شما کامل نیست. برای استفاده کامل از پلتفرم، اطلاعات ناقص را تکمیل کنید.',
     'completeProfileLink' => 'رفتن به پروفایل',
+    'video_cost_info' => 'افزودن ویدئو به پروفایل :points امتیاز هزینه دارد.',
 ];

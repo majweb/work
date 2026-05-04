@@ -1677,5 +1677,6 @@ return [
     'completeProfileTitle' => 'Пополнете го профилот на компанијата',
     'completeProfileDescription' => 'Профилот на вашата компанија не е целосен. Пополнете ги недостасувачките информации за целосно користење на платформата.',
     'completeProfileLink' => 'Оди на профил',
+    'video_cost_info' => 'Dodavanje videa u profil košta :points bodova.',
 ];
 

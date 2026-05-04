@@ -1677,5 +1677,5 @@ return [
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Masz już konto?',
     'noAccount' => 'Nie masz jeszcze konta?',
-
+    'video_cost_info' => 'DODANIE VIDEO DO PROFILU KOSZTUJE :points PUNKTÓW.',
 ];

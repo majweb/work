@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => '회사 프로필을 완성하세요',
     'completeProfileDescription' => '회사 프로필이 완전하지 않습니다. 플랫폼을 완전히 사용하려면 누락된 정보를 입력하세요.',
     'completeProfileLink' => '프로필로 이동',
+    'video_cost_info' => '프로필에 동영상을 추가하려면 :points 포인트가 필요합니다.',
 ];

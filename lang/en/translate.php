@@ -211,6 +211,7 @@ return [
     'count_workers' => 'Number of employees',
     'annual_turnover' => 'Annual turnover',
     'video' => 'Video',
+    'video_cost_info' => 'ADDING A VIDEO TO THE PROFILE COSTS :points POINTS.',
     'rest' => 'Other',
     'restDescription' => 'Other description',
     'opinions' => 'Reviews',
@@ -1635,4 +1636,5 @@ return [
     'completeProfileTitle' => 'Complete your company profile',
     'completeProfileDescription' => 'Your company profile is incomplete. Fill in the missing information to fully use the platform.',
     'completeProfileLink' => 'Go to profile',
+    'video_cost_info' => 'Η προσθήκη βίντεο στο προφίλ κοστίζει :points πόντους.',
 ];

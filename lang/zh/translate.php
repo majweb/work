@@ -1685,5 +1685,6 @@ return [
     'completeProfileTitle' => '完善公司资料',
     'completeProfileDescription' => '您的公司资料尚未完整。请填写缺失的信息以充分使用平台。',
     'completeProfileLink' => '前往资料',
+    'video_cost_info' => '在个人资料中添加视频需要 :points 积分。',
 
 ];

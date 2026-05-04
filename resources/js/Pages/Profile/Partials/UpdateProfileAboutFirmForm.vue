@@ -13,6 +13,7 @@ const props = defineProps({
 });
 const uploaderVideoKey = ref(0)
 const serverMessage = ref('');
+const videoInput = ref(null);
 
 const form = useForm({
     _method: 'PUT',
@@ -50,9 +51,11 @@ const updateProfileFirm = () => {
     form.post(route('firm.update.about.form'), {
         errorBag: 'updateProfileFirm',
         preserveScroll: true,
+        forceFormData: true,
         onSuccess: () => {
             if(form.video){
-            uploaderVideoKey.value++
+                uploaderVideoKey.value++
+                form.video = null
             }
         }
 
@@ -320,21 +323,64 @@ const updateProfileFirm = () => {
 
 
                     <!-- video -->
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6">
                         <InputLabel for="video" :value="__('translate.video')"/>
-                        <input
-                            @input="form.video = $event.target.files[0]"
-                            id="video"
-                            type="file"
-                            class="mt-1 block w-full"
-                        />
-                        <div v-if="form.progress && form.progress.percentage != 100" class="text-sm mt-2">
-                        {{__('translate.loadingMovie')}} {{form.progress.percentage}}%
-                        <progress v-if="form.progress" :value="form.progress.percentage" max="100" class="mt-2">
-                            {{ form.progress.percentage }}%
-                        </progress>
+                        <p class="text-[10px] font-black text-[#0A2C5C] uppercase mb-1">
+                            {{ __('translate.video_cost_info', { points: usePage().props.getPoints.AddVideoToProfile }) }}
+                        </p>
+
+                        <div class="mt-2">
+                            <input
+                                id="video"
+                                ref="videoInput"
+                                type="file"
+                                class="hidden"
+                                accept="video/*"
+                                @change="e => form.video = e.target.files[0]"
+                            />
+
+                            <div
+                                @click="videoInput.click()"
+                                class="relative border-2 border-dashed border-gray-300 rounded-2xl p-8 transition-all hover:border-[#00a0e3] hover:bg-blue-50/50 cursor-pointer group flex flex-col items-center justify-center gap-3"
+                                :class="{'border-[#00a0e3] bg-blue-50/50': form.video}"
+                            >
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500 text-gray-500 group-hover:text-[#00a0e3]">
+                                    <svg v-if="!form.video" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                    </svg>
+                                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-[#00a0e3]">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </div>
+
+                                <div class="text-center">
+                                    <p class="text-sm font-bold text-gray-700 uppercase tracking-wider" v-html="form.video ? form.video.name : __('translate.label-idle')">
+                                    </p>
+                                    <p v-if="!form.video" class="text-xs text-gray-500 mt-1 uppercase">
+                                        {{ __('translate.labelMaxFileSize').replace('{filesize}', '50MB') }} (MP4, AVI, OGG)
+                                    </p>
+                                    <p v-else class="text-xs text-[#00a0e3] mt-1 font-bold uppercase">
+                                        {{ (form.video.size / (1024 * 1024)).toFixed(2) }} MB - GOTOWE DO ZAPISU
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div v-if="form.progress && form.progress.percentage != 100" class="mt-4">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-black text-[#0A2C5C] uppercase">{{__('translate.loadingMovie')}}</span>
+                                    <span class="text-xs font-black text-[#0A2C5C]">{{form.progress.percentage}}%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                                    <div
+                                        class="bg-[#00a0e3] h-full transition-all duration-300"
+                                        :style="`width: ${form.progress.percentage}%`"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <InputError :message="form.errors.video" class="mt-2"/>
                         </div>
-                        <InputError :message="form.errors.video" class="mt-2"/>
                     </div>
                 </div>
                 <div class="my-4">

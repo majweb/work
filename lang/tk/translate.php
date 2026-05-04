@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Kompaniýanyň profilini dolduryň',
     'completeProfileDescription' => 'Siziň kompaniýa profiliňiz doly däl. Platformany doly ulanmak üçin ýetmezçilik edýän maglumatlary dolduryň.',
     'completeProfileLink' => 'Profile geçiň',
+    'video_cost_info' => 'Profile wideo goşmak :points bal talap edýär.',
 ];

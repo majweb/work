@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Voltooi het bedrijfsprofiel',
     'completeProfileDescription' => 'Je bedrijfsprofiel is niet volledig. Vul de ontbrekende gegevens in om het platform volledig te kunnen gebruiken.',
     'completeProfileLink' => 'Ga naar profiel',
+    'video_cost_info' => 'Het toevoegen van een video aan het profiel kost :points punten.',
 ];

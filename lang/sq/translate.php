@@ -1634,4 +1634,5 @@ return [
     'completeProfileTitle' => 'Plotësoni profilin e kompanisë',
     'completeProfileDescription' => 'Profili i kompanisë suaj nuk është i plotë. Plotësoni informacionet që mungojnë për të përdorur plotësisht platformën.',
     'completeProfileLink' => 'Shko te profili',
+    'video_cost_info' => 'Shtimi i një videoje në profil kushton :points pikë.',
 ];

@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Doplňte profil společnosti',
     'completeProfileDescription' => 'Váš profil společnosti není kompletní. Doplňte chybějící údaje, abyste mohli platformu plně využívat.',
     'completeProfileLink' => 'Přejít na profil',
+    'video_cost_info' => 'Přidání videa do profilu stojí :points bodů.',
 ];

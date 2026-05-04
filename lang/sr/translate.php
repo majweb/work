@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Dovršite profil kompanije',
     'completeProfileDescription' => 'Profil vaše kompanije nije potpun. Popunite nedostajuće informacije kako biste u potpunosti koristili platformu.',
     'completeProfileLink' => 'Idi na profil',
+    'video_cost_info' => 'Dodavanje videa u profil košta :points bodova.',
 ];

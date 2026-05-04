@@ -1677,4 +1677,5 @@ return [
     'completeProfileTitle' => 'Completa el perfil de l’empresa',
     'completeProfileDescription' => 'El perfil de la vostra empresa no està complet. Ompliu les dades que falten per aprofitar al màxim la plataforma.',
     'completeProfileLink' => 'Anar al perfil',
+    'video_cost_info' => 'Afegir un vídeo al perfil costa :points punts.',
 ];

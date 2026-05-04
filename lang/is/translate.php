@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Fylltu út fyrirtækjaprófíl',
     'completeProfileDescription' => 'Fyrirtækjaprófíllinn þinn er ekki fullbúinn. Vinsamlegast fylltu út vantar upplýsingar til að nýta vettvanginn til fulls.',
     'completeProfileLink' => 'Fara á prófíl',
+    'video_cost_info' => 'Að bæta við myndbandi á prófíl kostar :points stig.',
 ];

@@ -53,6 +53,7 @@ class HandleInertiaRequests extends Middleware
             'roles' => fn () => request()->user() ? request()->user()->getRoleNames() : null,
             'firmLoginPoints' => fn () => request()->user() && request()->user()->hasRole('firm') ? request()->user()->firm->points : (request()->user() && request()->user()->hasRole('recruit') ? request()->user()->user->firm->points : null),
             'exportRequiredPoints' => fn () => config('getPoints.ExportAplications'),
+            'getPoints' => fn () => config('getPoints'),
             //            'permissionsRecruit' => fn () => request()->user() && request()->user()->hasRole('firm') ? Role::findByName('recruit','web')->permissions()->pluck('name'): NULL,
             'language' => app()->getLocale(),
             'currentCountry' => getLocalBrowserLang(),

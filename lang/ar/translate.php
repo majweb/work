@@ -1676,5 +1676,5 @@ return [
     'completeProfileTitle' => 'أكمل ملف الشركة',
     'completeProfileDescription' => 'ملف شركتك غير مكتمل. يرجى إكمال البيانات الناقصة للاستفادة الكاملة من المنصة.',
     'completeProfileLink' => 'الانتقال إلى الملف الشخصي',
-
+    'video_cost_info' => 'إضافة فيديو إلى الملف الشخصي تكلف :points نقاط.',
 ];

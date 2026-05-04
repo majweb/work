@@ -1676,5 +1676,5 @@ return [
     'completeProfileTitle' => 'Aizpildiet uzņēmuma profilu',
     'completeProfileDescription' => 'Jūsu uzņēmuma profils nav pilnīgs. Aizpildiet trūkstošo informāciju, lai pilnībā izmantotu platformu.',
     'completeProfileLink' => 'Doties uz profilu',
-
+    'video_cost_info' => 'Video pievienošana profilam maksā :points punktus.',
 ];

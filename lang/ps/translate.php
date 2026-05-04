@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'د شرکت پروفایل بشپړ کړئ',
     'completeProfileDescription' => 'ستاسو د شرکت پروفایل بشپړ نه دی. د پلاتفورم د بشپړ کارولو لپاره مهرباني وکړئ پاتې معلومات ډک کړئ.',
     'completeProfileLink' => 'پروفایل ته لاړ شئ',
+    'video_cost_info' => 'پروفایل ته د ویډیو اضافه کول :points ټکي لګښت لري.',
 ];

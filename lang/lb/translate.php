@@ -1676,4 +1676,4 @@ return [
     'completeProfileTitle' => 'Fëllt de Firmeprofil aus',
     'completeProfileDescription' => 'Äre Firmeprofil ass net komplett. Fëllt déi fehlend Informatioun aus, fir d’Plattform voll ze benotzen.',
     'completeProfileLink' => 'Gitt op de Profil',
-];
+    'video_cost_info' => 'E Video op de Profil derbäizesetzen kascht :points Punkten.',];

@@ -1676,6 +1676,6 @@ return [
     'completeProfileTitle' => 'Täiendage ettevõtte profiili',
     'completeProfileDescription' => 'Teie ettevõtte profiil ei ole täielik. Täitke puuduvad andmed, et platvormi täielikult kasutada.',
     'completeProfileLink' => 'Mine profiilile',
-
+    'video_cost_info' => 'Video lisamine profiilile maksab :points punkti.',
 ];
 

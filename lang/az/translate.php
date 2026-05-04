@@ -1635,4 +1635,5 @@ return [
     'completeProfileTitle' => 'Şirkət profilini tamamlayın',
     'completeProfileDescription' => 'Şirkət profiliniz tam deyil. Platformadan tam istifadə etmək üçün çatışmayan məlumatları tamamlayın.',
     'completeProfileLink' => 'Profilə keçin',
+    'video_cost_info' => 'Profilə video əlavə etmək :points bal tələb edir.',
 ];

@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => '会社プロフィールを完成させてください',
     'completeProfileDescription' => '会社プロフィールが未完成です。プラットフォームを最大限に活用するために、不足している情報を入力してください。',
     'completeProfileLink' => 'プロフィールへ移動',
+    'video_cost_info' => 'プロフィールに動画を追加するには :points ポイントが必要です。',
 ];

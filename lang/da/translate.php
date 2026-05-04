@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Udfyld virksomhedsprofilen',
     'completeProfileDescription' => 'Din virksomhedsprofil er ikke komplet. Udfyld de manglende oplysninger for at få fuldt udbytte af platformen.',
     'completeProfileLink' => 'Gå til profil',
+    'video_cost_info' => 'Tilføjelse af video til profilen koster :points point.',
 ];

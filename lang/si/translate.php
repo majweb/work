@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'සමාගමේ පැතිකඩ සම්පූර්ණ කරන්න',
     'completeProfileDescription' => 'ඔබගේ සමාගමේ පැතිකඩ සම්පූර්ණ නොවේ. වේදිකාව සම්පූර්ණයෙන් භාවිතා කිරීමට අවශ්‍ය තොරතුරු පුරවන්න.',
     'completeProfileLink' => 'පැතිකඩට යන්න',
+    'video_cost_info' => 'පැතිකඩට වීඩියෝ එකක් එකතු කිරීම :points ලකුණු වැය වේ.',
 ];

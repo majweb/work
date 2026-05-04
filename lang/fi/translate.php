@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Täydennä yrityksen profiili',
     'completeProfileDescription' => 'Yritysprofiilisi ei ole täydellinen. Täytä puuttuvat tiedot, jotta voit käyttää alustaa täysimääräisesti.',
     'completeProfileLink' => 'Siirry profiiliin',
+    'video_cost_info' => 'Videon lisääminen profiiliin maksaa :points pistettä.',
 ];

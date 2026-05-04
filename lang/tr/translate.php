@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Şirket profilini tamamlayın',
     'completeProfileDescription' => 'Şirket profiliniz eksik. Platformayı tam olarak kullanabilmek için eksik bilgileri doldurun.',
     'completeProfileLink' => 'Profile git',
+    'video_cost_info' => 'Profile video eklemek :points puan gerektirir.',
 ];

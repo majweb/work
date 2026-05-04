@@ -1677,5 +1677,6 @@ return [
     'completeProfileTitle' => 'Töltse ki a vállalati profilt',
     'completeProfileDescription' => 'A vállalati profilja nem teljes. Kérjük, töltse ki a hiányzó adatokat a platform teljes használatához.',
     'completeProfileLink' => 'Ugrás a profilhoz',
+    'video_cost_info' => 'A videó profilhoz adása :points pontba kerül.',
 ];
 

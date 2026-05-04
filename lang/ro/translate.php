@@ -1663,4 +1663,5 @@ return [
     'completeProfileTitle' => 'Completați profilul companiei',
     'completeProfileDescription' => 'Profilul companiei dvs. nu este complet. Completați informațiile lipsă pentru a utiliza pe deplin platforma.',
     'completeProfileLink' => 'Mergi la profil',
+    'video_cost_info' => 'Adăugarea unui videoclip la profil costă :points puncte.',
 ];

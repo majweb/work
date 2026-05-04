@@ -1677,5 +1677,6 @@ return [
     'completeProfileTitle' => 'Completa il profilo aziendale',
     'completeProfileDescription' => 'Il profilo della tua azienda non è completo. Compila le informazioni mancanti per utilizzare appieno la piattaforma.',
     'completeProfileLink' => 'Vai al profilo',
+    'video_cost_info' => 'Að bæta við myndbandi á prófíl kostar :points stig.',
 ];
 

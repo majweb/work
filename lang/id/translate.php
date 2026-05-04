@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Lengkapi profil perusahaan',
     'completeProfileDescription' => 'Profil perusahaan Anda belum lengkap. Lengkapi informasi yang masih kurang agar dapat menggunakan platform secara penuh.',
     'completeProfileLink' => 'Buka profil',
+    'video_cost_info' => 'Պրոֆիլին տեսանյութ ավելացնելը արժե :points միավոր։',
 ];

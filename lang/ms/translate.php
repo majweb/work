@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Lengkapkan profil syarikat',
     'completeProfileDescription' => 'Profil syarikat anda tidak lengkap. Sila lengkapkan maklumat yang diperlukan untuk menggunakan platform sepenuhnya.',
     'completeProfileLink' => 'Pergi ke profil',
+    'video_cost_info' => 'Menambah video ke profil memerlukan :points mata.',
 ];

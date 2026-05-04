@@ -78,23 +78,13 @@ class AboutController extends Controller
                 $temporaryFile->delete();
             }
         }
-        $updateData = [
-            'www'=>$request->aboutData()['www'],
-            'opinion_google'=>$request->aboutData()['opinion_google'],
-            'opinion_trust'=>$request->aboutData()['opinion_trust'],
-            'opinion_facebook'=>$request->aboutData()['opinion_facebook'],
-            'social_facebook'=>$request->aboutData()['social_facebook'],
-            'social_google'=>$request->aboutData()['social_google'],
-            'social_x'=>$request->aboutData()['social_x'],
-            'social_instagram'=>$request->aboutData()['social_instagram'],
-            'social_linkedin'=>$request->aboutData()['social_linkedin'],
-            'social_tiktok'=>$request->aboutData()['social_tiktok'],
-            'count_workers'=>$request->aboutData()['count_workers'],
-            'annual_turnover'=>$request->aboutData()['annual_turnover'],
-            'extra_description'=>$request->aboutData()['extra_description'],
-            'video'=>$request->video && isset($path) ? $path : Auth::user()->firm->video
-        ];
-        Auth::user()->firm()->update($updateData);
+        $updateData = $request->aboutData();
+
+        if ($request->hasFile('video') && isset($path)) {
+            $updateData['video'] = $path;
+        }
+
+        Auth::user()->firm->update($updateData);
 
         if (config('services.crm.url') && config('services.crm.key')) {
             try {

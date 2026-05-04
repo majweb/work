@@ -41,7 +41,11 @@ class FirmAboutRequest extends FormRequest
     }
 
     public function aboutData(){
-        return $this->validated();
+        $data = $this->validated();
+        if (!$this->hasFile('video')) {
+            unset($data['video']);
+        }
+        return $data;
     }
     public function attributes(): array
     {

@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'השלימו את פרופיל החברה',
     'completeProfileDescription' => 'פרופיל החברה שלכם אינו מלא. יש למלא את המידע החסר כדי להשתמש בפלטפורמה במלואה.',
     'completeProfileLink' => 'מעבר לפרופיל',
+    'video_cost_info' => 'הוספת סרטון לפרופיל עולה :points נקודות.',
 ];

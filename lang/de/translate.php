@@ -1759,4 +1759,5 @@ return [
     'completeProfileTitle' => 'Unternehmensprofil vervollständigen',
     'completeProfileDescription' => 'Ihr Unternehmensprofil ist unvollständig. Bitte ergänzen Sie die fehlenden Angaben, um die Plattform vollständig nutzen zu können.',
     'completeProfileLink' => 'Zum Profil gehen',
+    'video_cost_info' => 'Das Hinzufügen eines Videos zum Profil kostet :points Punkte.',
 ];

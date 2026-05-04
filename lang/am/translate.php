@@ -1676,4 +1676,5 @@ return [
     'completeProfileTitle' => 'Լրացրեք ընկերության պրոֆիլը',
     'completeProfileDescription' => 'Ձեր ընկերության պրոֆիլը ամբողջական չէ։ Լրացրեք բաց թողնված տվյալները՝ հարթակից լիարժեք օգտվելու համար։',
     'completeProfileLink' => 'Անցնել պրոֆիլին',
+    'video_cost_info' => 'ቪዲዮ ወደ ፕሮፋይል ማከል ፡ :points ነጥቦች ያስከፍላል።',
 ];
