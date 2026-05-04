@@ -51,7 +51,11 @@ const isLoading = ref(false);
 const params = ref({
     field: props.filters.field,
     direction: props.filters.direction,
-    recruiter: props.filters.recruiter ?? 'all',
+    recruiter: props.filters.recruiter
+        ? (Array.isArray(props.recruiters)
+            ? props.recruiters.find(r => r.id == props.filters.recruiter)
+            : Object.values(props.recruiters).find(r => r.id == props.filters.recruiter))
+        : null,
     is_active: props.filters.is_active ?? 'all',
     position: props.filters.position ?? '',
     id: props.filters.id ?? '',
@@ -128,7 +132,7 @@ const applyFilters = () => {
         ...pickBy({
             field: params.value.field,
             direction: params.value.direction,
-            recruiter: params.value.recruiter !== 'all' ? params.value.recruiter : null,
+            recruiter: params.value.recruiter?.id || null,
             is_active: params.value.is_active !== 'all' ? params.value.is_active : null,
             position: params.value.position,
             id: params.value.id,
@@ -157,7 +161,7 @@ const resetFilters = () => {
     params.value = {
         field: null,
         direction: null,
-        recruiter: 'all',
+        recruiter: null,
         is_active: 'all',
         position: '',
         id: '',
@@ -299,10 +303,21 @@ const { getPositionTitle } = useProjectHelpers();
                         <!-- Rekruter -->
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.recruiter') }}</label>
-                            <select v-model="params.recruiter" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
-                                <option value="all">{{ __('translate.all') }}</option>
-                                <option v-for="recruit in recruiters" :key="recruit.id" :value="recruit.id">{{ recruit.name }}</option>
-                            </select>
+                            <multiselect
+                                v-model="params.recruiter"
+                                :options="props.recruiters"
+                                track-by="id"
+                                label="name"
+                                :selectLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
+                                :placeholder="__('translate.recruiter')"
+                                class="custom-multiselect"
+                            >
+                                <template #noResult>
+                                    <span>{{__('translate.noOptions')}}</span>
+                                </template>
+                            </multiselect>
                         </div>
 
                         <!-- Data -->
