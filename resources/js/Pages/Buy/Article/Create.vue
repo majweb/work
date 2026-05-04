@@ -92,7 +92,7 @@ const createArticle = () => {
                                     <InputLabel for="lang" :value="__('translate.language')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
                                     <select v-model="form.lang" name="lang" id="lang" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest">
                                         <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value">
-                                            {{ language.value }}
+                                            {{ language.value.toUpperCase() }}
                                         </option>
                                     </select>
                                     <InputError :message="form.errors.lang" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />

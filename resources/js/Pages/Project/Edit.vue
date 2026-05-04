@@ -1004,10 +1004,10 @@ onMounted(async () => {
                             <!-- Mapbox Geocoder (Autocomplete) -->
                             <div v-if="form.countryWork" class="mt-10">
                                 <div class="mb-8">
-                                    <InputLabel :value="__('translate.searchAddress')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <InputLabel :value="__('translate.searchAddress')" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-4" />
                                     <div
                                         ref="geocoderContainer"
-                                        class="mapbox-geocoder-container rounded-2xl border border-gray-100 bg-gray-50 shadow-sm focus-within:shadow-md transition-all"
+                                        class="mapbox-geocoder-container rounded-2xl border border-gray-100 bg-gray-50 shadow-sm focus-within:shadow-md transition-all text-[#0A2C5C]"
                                     ></div>
                                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-3">
                                         {{ __('translate.searchAddressDescription') }}
@@ -1781,12 +1781,23 @@ onMounted(async () => {
 
         .mapboxgl-ctrl-geocoder--input {
             padding: 0.75rem 3rem 0.75rem 2.75rem !important;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             height: 3rem !important;
             line-height: 1.5rem !important;
             border: none !important;
             background-color: transparent !important;
             width: 100% !important;
+            color: #0A2C5C !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+
+            &::placeholder {
+                color: #0A2C5C !important;
+                text-transform: uppercase !important;
+                opacity: 1 !important;
+                letter-spacing: 0.05em !important;
+                font-size: 0.75rem;
+            }
 
             &:focus {
                 outline: none !important;
@@ -1829,10 +1840,20 @@ onMounted(async () => {
 
     .mapboxgl-ctrl-geocoder--suggestion {
         padding: 0.75rem 1rem;
+        color: #0A2C5C !important;
+        font-weight: 700;
 
         &:hover {
             background-color: #f3f4f6;
         }
+    }
+
+    .mapboxgl-ctrl-geocoder--no-results {
+        padding: 0.75rem 1rem;
+        color: #0A2C5C !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
     }
 
     .mapboxgl-ctrl-geocoder--powered-by {

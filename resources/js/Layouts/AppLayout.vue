@@ -62,6 +62,10 @@ onMounted(() => {
         .notification((notification)=>{
             // Odświeżenie strony aby zaktualizować licznik powiadomień
             router.reload({ only: ['unreadNotifications'] });
+        })
+        .listen('.points.updated', () => {
+            // Odświeżenie liczby punktów firmy
+            router.reload({ only: ['firmLoginPoints'] });
         });
 });
 onUnmounted(()=>{

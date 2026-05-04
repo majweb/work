@@ -52,7 +52,7 @@ const updateFilter = () => {
                     <!-- Header section with certificate image and description -->
                     <div class="flex flex-col md:flex-row gap-12 items-center">
                         <div class="md:w-1/2">
-                            <p class="text-gray-500 font-bold leading-relaxed">
+                            <p class="text-gray-500 font-bold leading-relaxed uppercase">
                                 {{ __('translate.cert50HeaderDesc') }}
                             </p>
                         </div>
@@ -100,7 +100,7 @@ const updateFilter = () => {
                             <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatContainsCert50') }}</h3>
-                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full" v-html="__('translate.whatContainsCert50List')"></ul>
+                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list" v-html="__('translate.whatContainsCert50List')"></ul>
                     </div>
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
@@ -108,7 +108,7 @@ const updateFilter = () => {
                             <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.howUseCert50') }}</h3>
-                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full" v-html="__('translate.howUseCert50List')"></ul>
+                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list" v-html="__('translate.howUseCert50List')"></ul>
                     </div>
                 </div>
 
@@ -172,3 +172,23 @@ const updateFilter = () => {
         </div>
     </AppLayout>
 </template>
+
+<style lang="scss" scoped>
+.custom-list {
+    :deep(li) {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        &::before {
+            content: '';
+            width: 0.375rem;
+            height: 0.375rem;
+            border-radius: 9999px;
+            background-color: #00a3e0;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+    }
+}
+</style>

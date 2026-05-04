@@ -119,6 +119,75 @@ const goToPage = (page) => {
 
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <form @submit.prevent="updateArticle" class="space-y-12">
+                        <!-- Komentarze Section -->
+                        <div v-if="props.article.comments?.length" class="mb-16 space-y-10">
+                            <div class="flex items-center gap-4">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Komentarze</h3>
+                                <div class="h-px flex-1 bg-gray-100"></div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm flex flex-col h-full hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300">
+                                    <div class="flex justify-between items-start mb-6">
+                                        <div>
+                                            <p class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-1">{{ comment.user?.name || __('comments.anonim') }}</p>
+                                            <p class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(comment.created_at).toLocaleString() }}</p>
+                                        </div>
+                                        <button @click="toggleCommentVisibility(comment)" type="button"
+                                                class="px-4 py-2 text-[8px] font-black text-white rounded-full transition uppercase tracking-widest shadow-sm"
+                                                :class="comment.show ? 'bg-green-500 hover:bg-green-600 shadow-green-900/10' : 'bg-[#e31e24] hover:bg-[#c1191f] shadow-red-900/10'">
+                                            {{ comment.show ? __('comments.see') : __('comments.hide') }}
+                                        </button>
+                                    </div>
+
+                                    <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 flex-grow mb-6 italic text-gray-500 text-sm">
+                                        "{{ comment.content }}"
+                                    </div>
+
+                                    <!-- Odpowiedzi -->
+                                    <div v-if="comment.replies?.length" class="mt-4 space-y-4 bg-blue-50/30 p-6 rounded-2xl border-l-4 border-[#00a3e0]">
+                                        <div v-for="reply in comment.replies" :key="reply.id" class="border-b last:border-0 border-blue-100/50 pb-4 last:pb-0">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <div>
+                                                    <p class="text-[10px] font-black text-[#00a3e0] uppercase tracking-widest mb-0.5">{{ reply.user?.name || __('comments.anonim') }}</p>
+                                                    <p class="text-[8px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(reply.created_at).toLocaleString() }}</p>
+                                                </div>
+                                                <button type="button" @click="toggleCommentVisibility(reply)"
+                                                        class="px-3 py-1 text-[7px] font-black text-white rounded-full transition uppercase tracking-widest"
+                                                        :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
+                                                    {{ reply.show ? __('comments.see') : __('comments.hide') }}
+                                                </button>
+                                            </div>
+                                            <p class="text-xs text-gray-600 italic"> {{ reply.content }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PAGINACJA KOMENTARZY -->
+                            <div class="flex justify-center items-center gap-3 mt-12" v-if="totalPages > 1">
+                                <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
+                                        class="p-4 border border-gray-100 rounded-2xl bg-white hover:bg-gray-50 disabled:opacity-25 transition shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+
+                                <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
+                                        class="w-12 h-12 border border-gray-100 rounded-2xl text-[10px] font-black uppercase tracking-widest transition flex items-center justify-center shadow-sm"
+                                        :class="page === currentPage ? 'bg-[#0A2C5C] text-white shadow-blue-900/20 shadow-lg' : 'bg-white text-[#0A2C5C] hover:bg-gray-50'">
+                                    {{ page }}
+                                </button>
+
+                                <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
+                                        class="p-4 border border-gray-100 rounded-2xl bg-white hover:bg-gray-50 disabled:opacity-25 transition shadow-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Sekcja podstawowa -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div class="space-y-8">
@@ -126,7 +195,7 @@ const goToPage = (page) => {
                                     <InputLabel for="lang" :value="__('translate.language')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
                                     <select v-model="form.lang" name="lang" id="lang" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest">
                                         <option :value="language.value" v-for="language in usePage().props.languages" :key="language.value">
-                                            {{ language.value }}
+                                            {{ language.value.toUpperCase() }}
                                         </option>
                                     </select>
                                     <InputError :message="form.errors.lang" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
@@ -307,75 +376,6 @@ const goToPage = (page) => {
                             >
                                 <spinner-action :process="form.processing">{{ __('translate.update') }}</spinner-action>
                             </button>
-                        </div>
-
-                        <!-- Komentarze Section -->
-                        <div v-if="props.article.comments?.length" class="mt-16 space-y-10">
-                            <div class="flex items-center gap-4">
-                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Komentarze</h3>
-                                <div class="h-px flex-1 bg-gray-100"></div>
-                            </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm flex flex-col h-full hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300">
-                                    <div class="flex justify-between items-start mb-6">
-                                        <div>
-                                            <p class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-1">{{ comment.user?.name || __('comments.anonim') }}</p>
-                                            <p class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(comment.created_at).toLocaleString() }}</p>
-                                        </div>
-                                        <button @click="toggleCommentVisibility(comment)" type="button"
-                                                class="px-4 py-2 text-[8px] font-black text-white rounded-full transition uppercase tracking-widest shadow-sm"
-                                                :class="comment.show ? 'bg-green-500 hover:bg-green-600 shadow-green-900/10' : 'bg-[#e31e24] hover:bg-[#c1191f] shadow-red-900/10'">
-                                            {{ comment.show ? __('comments.see') : __('comments.hide') }}
-                                        </button>
-                                    </div>
-
-                                    <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 flex-grow mb-6 italic text-gray-500 text-sm">
-                                        "{{ comment.content }}"
-                                    </div>
-
-                                    <!-- Odpowiedzi -->
-                                    <div v-if="comment.replies?.length" class="mt-4 space-y-4 bg-blue-50/30 p-6 rounded-2xl border-l-4 border-[#00a3e0]">
-                                        <div v-for="reply in comment.replies" :key="reply.id" class="border-b last:border-0 border-blue-100/50 pb-4 last:pb-0">
-                                            <div class="flex justify-between items-start mb-2">
-                                                <div>
-                                                    <p class="text-[10px] font-black text-[#00a3e0] uppercase tracking-widest mb-0.5">{{ reply.user?.name || __('comments.anonim') }}</p>
-                                                    <p class="text-[8px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(reply.created_at).toLocaleString() }}</p>
-                                                </div>
-                                                <button type="button" @click="toggleCommentVisibility(reply)"
-                                                        class="px-3 py-1 text-[7px] font-black text-white rounded-full transition uppercase tracking-widest"
-                                                        :class="reply.show ? 'bg-green-500 hover:bg-green-600' : 'bg-[#e31e24] hover:bg-[#c1191f]'">
-                                                    {{ reply.show ? __('comments.see') : __('comments.hide') }}
-                                                </button>
-                                            </div>
-                                            <p class="text-xs text-gray-600 italic"> {{ reply.content }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- PAGINACJA KOMENTARZY -->
-                            <div class="flex justify-center items-center gap-3 mt-12" v-if="totalPages > 1">
-                                <button type="button" @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
-                                        class="p-4 border border-gray-100 rounded-2xl bg-white hover:bg-gray-50 disabled:opacity-25 transition shadow-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-
-                                <button type="button" v-for="page in totalPages" :key="page" @click="goToPage(page)"
-                                        class="w-12 h-12 border border-gray-100 rounded-2xl text-[10px] font-black uppercase tracking-widest transition flex items-center justify-center shadow-sm"
-                                        :class="page === currentPage ? 'bg-[#0A2C5C] text-white shadow-blue-900/20 shadow-lg' : 'bg-white text-[#0A2C5C] hover:bg-gray-50'">
-                                    {{ page }}
-                                </button>
-
-                                <button type="button" @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
-                                        class="p-4 border border-gray-100 rounded-2xl bg-white hover:bg-gray-50 disabled:opacity-25 transition shadow-sm">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
                     </form>
                 </div>

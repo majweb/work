@@ -73,7 +73,7 @@ const search = () => {
                             <TextInput
                                 v-model="params.amount"
                                 type="text"
-                                :placeholder="__('translate.invoiceAmount')"
+                                :placeholder="__('translate.invoiceAmount').toUpperCase()"
                                 @keyup.enter="search"
                             />
                         </div>
@@ -82,7 +82,7 @@ const search = () => {
                             <TextInput
                                 v-model="params.number"
                                 type="text"
-                                :placeholder="__('translate.invoiceNumber')"
+                                :placeholder="__('translate.invoiceNumber').toUpperCase()"
                                 @keyup.enter="search"
                             />
                         </div>

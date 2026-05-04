@@ -1681,5 +1681,7 @@ return [
 
 
     'chooseCvToEditClick' =>'Wybierz jeden ze swoich życiorysów z listy po lewej stronie, aby rozpocząć edycję.',
-    'enterNameTag' => 'Wpisz nazwę'
+    'enterNameTag' => 'Wpisz nazwę',
+    'editArticleDescription' => 'Popraw swój artykuł',
+    'createArticleDescription' => 'Dodaj swój artykuł',
 ];

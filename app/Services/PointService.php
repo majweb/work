@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\PointsUpdated;
 use App\Models\PointHistory;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,8 @@ class PointService
                 'points' => $points,
                 'balance_after' => $firm->points,
             ]);
+
+            PointsUpdated::dispatch($user);
         });
     }
 
@@ -55,6 +58,8 @@ class PointService
                 'points' => $points,
                 'balance_after' => $firm->points,
             ]);
+
+            PointsUpdated::dispatch($user);
         });
     }
     /**
@@ -79,6 +84,8 @@ class PointService
                 'points' => $points,
                 'balance_after' => $firm->points,
             ]);
+
+            PointsUpdated::dispatch($user);
         });
     }
 }
