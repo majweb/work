@@ -42,7 +42,7 @@ class RecruitController extends Controller
             $q->orderBy(request('field'), request('direction'));
         });
 
-        $users = $query->paginate(5)->withQueryString();
+        $users = $query->paginate(4)->withQueryString();
 
         $users->getCollection()->transform(function ($user) {
             $user->quality = $user->applications_count > 0

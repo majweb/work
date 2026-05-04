@@ -70,9 +70,21 @@ const validateStep = async (step) => {
 
             // Scroll do pierwszego błędu
             setTimeout(() => {
-                const firstError = document.querySelector('.text-red-600');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const errors = Array.from(document.querySelectorAll(".text-red-600"));
+                const firstVisibleError = errors.find(el => {
+                    const style = window.getComputedStyle(el);
+                    return style.display !== "none" && style.visibility !== "hidden" && el.getBoundingClientRect().height > 0;
+                });
+
+                if (firstVisibleError) {
+                    const offset = 100;
+                    const elementPosition = firstVisibleError.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
                 }
             }, 100);
 
@@ -293,6 +305,26 @@ const updateProject = () => {
         onSuccess: () => {
             // form.reset();
         },
+        onError: () => {
+            setTimeout(() => {
+                const errors = Array.from(document.querySelectorAll(".text-red-600"));
+                const firstVisibleError = errors.find(el => {
+                    const style = window.getComputedStyle(el);
+                    return style.display !== "none" && style.visibility !== "hidden" && el.getBoundingClientRect().height > 0;
+                });
+
+                if (firstVisibleError) {
+                    const offset = 100;
+                    const elementPosition = firstVisibleError.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            }, 100);
+        }
     });
 };
 
@@ -1208,7 +1240,7 @@ onMounted(async () => {
                                     </label>
                                 </div>
                             </div>
-                            <InputError :message="form.errors.days" class="mt-2"/>
+                            <InputError :message="form.errors.days" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                         </div>
 
                         <!-- Godziny pracy -->
@@ -1919,6 +1951,7 @@ onMounted(async () => {
     .multiselect__tag-icon {
         background: #00a0e3 !important;
         border-radius: 8px;
+        top: -3px !important;
 
         &:after {
             color: white !important;
@@ -1935,9 +1968,7 @@ onMounted(async () => {
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-    .multiselect__tag-icon{
-        top:-3px !important
+        z-index: 50 !important;
     }
 }
 .custom-multiselect .multiselect__content-wrapper {

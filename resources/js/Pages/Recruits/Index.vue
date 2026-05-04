@@ -150,7 +150,7 @@ const getInitials = (name) => {
                     </div>
                 </div>
 
-                <div class="mt-12 flex justify-center" v-if="users.total > 5">
+                <div class="mt-12 flex justify-center" v-if="users.total > 4">
                     <Pagination :links="users.links" />
                 </div>
             </div>
