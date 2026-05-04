@@ -59,7 +59,7 @@ const alignmentClasses = computed(() => {
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
-        <div v-show="open" class="fixed inset-0 z-40" @click="open = false" />
+        <div v-show="open" class="fixed inset-0 z-[90]" @click="open = false" />
 
         <transition
             enter-active-class="transition ease-out duration-300"
@@ -71,7 +71,7 @@ const alignmentClasses = computed(() => {
         >
             <div
                 v-show="open"
-                class="absolute z-50 rounded-[2rem] shadow-2xl shadow-blue-900/10 border border-gray-100"
+                class="absolute z-[100] rounded-[2rem] shadow-2xl shadow-blue-900/10 border border-gray-100"
                 :class="[widthClass, alignmentClasses, props.align === 'top-right' ? '' : 'mt-4']"
                 @click.stop="open = false"
             >

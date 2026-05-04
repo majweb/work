@@ -246,7 +246,7 @@ class ProjectController extends Controller implements HasMiddleware
             'cityWork' => $request->projectData()['cityWork'],
             'lat' => $request->projectData()['lat'] ?? null,
             'lng' => $request->projectData()['lng'] ?? null,
-            'user_id' => auth()->user()->recruiter_from_firm_id || auth()->user()->id,
+            'user_id' => auth()->user()->recruiter_from_firm_id ?? auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
             'external_company_id' => $request->projectData()['external_company_id'],

@@ -2079,7 +2079,7 @@ const removeFile = async (source, load) => {
                         </div>
                     </div>
                         <div v-show="formStep == 2 && form.cv == 2" class="animate-fade-in space-y-12">
-                            <div v-if="props.project.questions.length"
+                            <div v-if="props.project.questions?.length"
                                  class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <VideoRecorder :questions="props.project.questions" :projectId="props.project.id"
                                                :form="form" @submit="submit" @uploadStateChange="(state) => isReadyToSubmit = !state"/>
@@ -2102,7 +2102,7 @@ const removeFile = async (source, load) => {
                             </div>
                         </div>
                         <div v-show="formStep == 2 && form.cv == 3" class="animate-fade-in space-y-8">
-                            <div v-if="props.project.questions.length"
+                            <div v-if="props.project.questions?.length"
                                  class="p-6 bg-gray-50/50 rounded-3xl border border-gray-100">
                                 <AudioRecorderNew :questions="props.project.questions" :projectId="props.project.id"
                                                   :form="form" @submit="submit"/>

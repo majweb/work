@@ -77,43 +77,43 @@ const markAsRead = (id) => {
 </script>
 <template>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            <div class="flex items-center justify-between mb-8 px-4">
+        <div class="p-4 sm:p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 px-2 sm:px-4 gap-4">
                 <div>
-                    <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                    <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
                         {{ __('translate.workerDashboard') || 'Pulpit Pracownika' }}
                     </h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                    <p class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
                         {{ __('translate.manageYourApplications') }}
                     </p>
                 </div>
             </div>
 
-            <div class="space-y-12">
+            <div class="space-y-8 sm:space-y-12">
                 <!-- APLIKACJE -->
-                <section class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden relative">
+                <section class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden relative">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50/30 rounded-full -mr-32 -mt-32 blur-3xl opacity-50"></div>
-                    <div class="p-10 relative z-10">
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+                    <div class="p-6 sm:p-10 relative z-10">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 sm:mb-12">
                             <div>
-                                <h2 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.aplications') }}</h2>
+                                <h2 class="text-lg sm:text-xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.aplications') }}</h2>
                             </div>
                             <Link :href="route('worker.aplications')"
-                                  class="group flex items-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100">
+                                  class="w-full sm:w-auto group flex items-center justify-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100">
                                 {{ __('translate.details') }}
                                 <span class="text-lg group-hover:translate-x-1 transition-transform">→</span>
                             </Link>
                         </div>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                             <!-- Status aplikacji -->
                             <div class="lg:col-span-5 flex flex-col">
-                                <div class="flex items-center gap-4 mb-8">
+                                <div class="flex items-center gap-4 mb-6 sm:mb-8">
                                     <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('translate.applicationStatus') }}</h3>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
 
-                                <div class="flex flex-col sm:flex-row gap-10 items-center bg-gray-50/50 p-10 rounded-[2.5rem] border border-gray-100/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:bg-white group relative overflow-hidden">
+                                <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 items-center bg-gray-50/50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border border-gray-100/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:bg-white group relative overflow-hidden">
                                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/20 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-blue-100/30 transition-colors"></div>
                                     <CircularProgress
                                         :value="applicationProgress.value"
@@ -130,7 +130,7 @@ const markAsRead = (id) => {
                                             }"></div>
                                             <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ createdFromNow }}</p>
                                         </div>
-                                        <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-2 truncate group-hover:text-[#00a0e3] transition-colors">
+                                        <h4 class="text-sm sm:text-lg md:text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-2 group-hover:text-[#00a0e3] transition-colors">
                                             {{ props.lastAplications.project?.position?.allTranslations['title'][usePage().props.language] }}
                                         </h4>
                                         <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ props.lastAplications.project?.user?.name }}</p>
@@ -146,30 +146,30 @@ const markAsRead = (id) => {
 
                             <!-- Ostatnie aplikacje -->
                             <div class="lg:col-span-7">
-                                <div class="flex items-center gap-4 mb-8">
+                                <div class="flex items-center gap-4 mb-6 sm:mb-8">
                                     <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('translate.lastAplications') }}</h3>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
 
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" v-if="otherAplications.length">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" v-if="otherAplications.length">
                                     <div v-for="other in otherAplications" :key="other.id"
-                                         class="flex items-center gap-5 p-5 rounded-[2.5rem] bg-gray-50/50 hover:bg-white transition-all duration-500 group border border-transparent hover:border-gray-100 hover:shadow-2xl hover:shadow-blue-900/10">
+                                         class="flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-[2rem] sm:rounded-[2.5rem] bg-gray-50/50 hover:bg-white transition-all duration-500 group border border-transparent hover:border-gray-100 hover:shadow-2xl hover:shadow-blue-900/10">
                                         <div class="relative shrink-0">
                                             <img :src="other.project?.user?.profile_photo_url"
-                                                 class="w-16 h-16 rounded-[1.5rem] object-cover border-4 border-white shadow-lg group-hover:scale-110 transition-all duration-500"
+                                                 class="w-12 h-12 sm:w-16 sm:h-16 rounded-[1.2rem] sm:rounded-[1.5rem] object-cover border-2 sm:border-4 border-white shadow-lg group-hover:scale-110 transition-all duration-500"
                                             />
-                                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-50">
-                                                <div class="w-2.5 h-2.5 bg-[#00a0e3] rounded-full animate-pulse"></div>
+                                            <div class="absolute -bottom-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-50">
+                                                <div class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-[#00a0e3] rounded-full animate-pulse"></div>
                                             </div>
                                         </div>
                                         <div class="min-w-0 flex-1">
                                             <p class="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1.5">
                                                 {{ moment(other.created_at).format('DD-MM-YYYY') }}
                                             </p>
-                                            <h4 class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight truncate group-hover:text-[#00a0e3] transition-colors leading-tight mb-1">
+                                            <h4 class="text-xs sm:text-sm font-black text-[#0A2C5C] uppercase tracking-tight group-hover:text-[#00a0e3] transition-colors leading-tight mb-1">
                                                 {{ other.project?.position?.allTranslations['title'][usePage().props.language] }}
                                             </h4>
-                                            <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate">{{ other.project?.user?.name }}</p>
+                                            <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ other.project?.user?.name }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -187,17 +187,17 @@ const markAsRead = (id) => {
                 </section>
 
                 <!-- DOLNA SEKCJA -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 pb-12">
                     <!-- MOJE DANE -->
-                    <section class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 flex flex-col relative overflow-hidden group">
+                    <section class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 flex flex-col relative overflow-hidden group">
                         <div class="absolute bottom-0 right-0 w-48 h-48 bg-gray-50 rounded-full -mr-24 -mb-24 blur-3xl group-hover:bg-blue-50/50 transition-colors"></div>
-                        <div class="flex justify-between items-center mb-12 relative z-10">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 sm:mb-12 relative z-10">
                             <div>
-                                <h2 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.myData') }}</h2>
+                                <h2 class="text-lg sm:text-xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.myData') }}</h2>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.keepYourProfileUpdated') }}</p>
                             </div>
                             <Link :href="route('profile.show')"
-                                  class="group/edit flex items-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100">
+                                  class="w-full sm:w-auto group/edit flex items-center justify-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transition-transform group-hover/edit:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                 </svg>
@@ -205,22 +205,22 @@ const markAsRead = (id) => {
                             </Link>
                         </div>
 
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-12 bg-gray-50/50 p-10 rounded-[2.5rem] border border-gray-50/50 relative z-10 hover:bg-white transition-all duration-500 hover:shadow-xl hover:shadow-blue-900/5">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 sm:gap-12 bg-gray-50/50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border border-gray-50/50 relative z-10 hover:bg-white transition-all duration-500 hover:shadow-xl hover:shadow-blue-900/5">
                             <div class="relative group/avatar">
-                                <div class="w-40 h-40 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white group-hover/avatar:scale-105 transition-transform duration-500">
+                                <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white group-hover/avatar:scale-105 transition-transform duration-500">
                                     <img :src="auth.user?.profile_photo_url" class="w-full h-full object-cover" />
                                 </div>
-                                <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white shadow-lg shadow-green-200"></div>
+                                <div class="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-green-500 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 sm:border-4 border-white shadow-lg shadow-green-200"></div>
                             </div>
 
-                            <div class="flex-1 space-y-8 w-full">
-                                <div class="grid grid-cols-1 gap-6">
-                                    <div class="flex flex-col">
+                            <div class="flex-1 space-y-6 sm:space-y-8 w-full">
+                                <div class="grid grid-cols-1 gap-4 sm:gap-6">
+                                    <div class="flex flex-col text-center sm:text-left">
                                         <span class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{{ __('translate.nameUser') }} & {{ __('translate.surname') }}</span>
-                                        <p class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ auth.user?.name }} {{ auth.user?.worker_detail?.surname }}</p>
+                                        <p class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ auth.user?.name }} {{ auth.user?.worker_detail?.surname }}</p>
                                     </div>
                                     <div class="h-px bg-gradient-to-r from-gray-100 to-transparent w-full"></div>
-                                    <div class="grid grid-cols-1 sm:grid-cols-1 gap-8">
+                                    <div class="grid grid-cols-1 gap-4 sm:gap-8 text-center sm:text-left">
                                         <div class="flex flex-col">
                                             <span class="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{{ __('translate.phone') }}</span>
                                             <p class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest">{{ auth.user?.worker_detail?.contact_phone || '—' }}</p>
@@ -236,11 +236,11 @@ const markAsRead = (id) => {
                     </section>
 
                     <!-- POWIADOMIENIA -->
-                    <section class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 flex flex-col relative overflow-hidden">
+                    <section class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 flex flex-col relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/30 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                        <div class="flex items-center justify-between mb-12 relative z-10">
+                        <div class="flex items-center justify-between mb-8 sm:mb-12 relative z-10">
                             <div>
-                                <h2 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.notifications') }}</h2>
+                                <h2 class="text-lg sm:text-xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.notifications') }}</h2>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.stayInformedAboutYourUpdates') }}</p>
                             </div>
                             <Link preserveScroll v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button"
@@ -250,9 +250,9 @@ const markAsRead = (id) => {
                         </div>
 
                         <div class="flex-1 overflow-hidden relative z-10">
-                            <ul class="space-y-4 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar">
+                            <ul class="space-y-4 max-h-[400px] sm:max-h-[450px] overflow-y-auto pr-2 custom-scrollbar">
                                 <li v-for="notification in notifications" :key="notification.id"
-                                    class="group relative flex items-start gap-4 p-5 rounded-[2rem] transition-all duration-300 border border-transparent"
+                                    class="group relative flex items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-[1.5rem] sm:rounded-[2rem] transition-all duration-300 border border-transparent"
                                     :class="[!notification.read_at ? 'bg-blue-50/50 border-blue-100 shadow-lg shadow-blue-900/5 hover:bg-white' : 'hover:bg-gray-50 hover:border-gray-100']"
                                 >
                                     <div class="mt-1.5 shrink-0">

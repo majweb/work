@@ -26,6 +26,16 @@ const currentUser = computed(() => usePage().props.auth.user);
 
 // Pobranie liczby nieprzeczytanych powiadomień bezpośrednio z Inertia props
 const notifications = computed(() => usePage().props.unreadNotifications || 0);
+const removeFromCart = id => {
+    router.delete(route('buy.detailRemoveFromCart', id), { preserveScroll: true })
+}
+
+const increment = (id, qty) => {
+    router.post(route('buy.detailIncrementCart', [id, qty]), null, { preserveScroll: true });
+}
+const decrement = (id, qty) => {
+    router.post(route('buy.detailDecrementCart', [id, qty]), null, { preserveScroll: true });
+}
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
         team_id: team.id,
@@ -98,7 +108,7 @@ onUnmounted(()=>{
                         <div class="flex items-center gap-8">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center transition-transform hover:scale-105">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('front')">
                                     <ApplicationMark class="block h-10 w-auto" />
                                 </Link>
                             </div>
@@ -119,6 +129,9 @@ onUnmounted(()=>{
                                     </NavLink>
                                     <NavLink :href="route('profile.show')" :active="route().current('profile.show')">
                                         {{__('translate.Profile')}}
+                                    </NavLink>
+                                    <NavLink :href="route('front.projects')" :active="route().current('front.projects')">
+                                        {{__('translate.projects')}}
                                     </NavLink>
                                 </template>
 
@@ -271,7 +284,18 @@ onUnmounted(()=>{
                             </div>
 
                             <!-- Notification Bell -->
-                                <div class="flex items-center">
+                                <div class="flex items-center gap-4">
+                                    <div v-if="hasRole('firm')" class="flex items-center px-3 py-1.5 bg-blue-50 rounded-xl border border-blue-100 shadow-sm group hover:bg-blue-100 transition-colors duration-200">
+                                        <div class="p-1 bg-[#0A2C5C] rounded-lg mr-2 group-hover:scale-110 transition-transform text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+                                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="text-[8px] font-black text-[#0A2C5C] uppercase tracking-widest leading-none">{{ __('translate.points') }}</span>
+                                            <span class="text-xs font-black text-blue-900 leading-none mt-0.5">{{ $page.props.firmLoginPoints || 0 }}</span>
+                                        </div>
+                                    </div>
                                     <notification-bell :count="notifications" />
                                 </div>
 
@@ -377,6 +401,7 @@ onUnmounted(()=>{
                             <template v-if="hasRole('worker')">
                                 <ResponsiveNavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')">{{__('translate.myCv')}}</ResponsiveNavLink>
                                 <ResponsiveNavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')">{{__('translate.aplications')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</ResponsiveNavLink>
                             </template>
 
                             <template v-if="hasRole('firm')">
@@ -513,23 +538,37 @@ onUnmounted(()=>{
                                                             </div>
 
                                                             <div class="ml-4 flex flex-1 flex-col">
-                                                                <div>
-                                                                    <div class="flex justify-between items-start">
+                                                                <div class="flex justify-between items-start">
+                                                                    <div class="flex-1">
                                                                         <h3 class="text-base font-bold text-gray-900 leading-tight">
                                                                             {{ item.name }}
                                                                         </h3>
-                                                                        <p class="ml-4 text-sm font-black text-[#0b2a55] bg-gray-100 px-2 py-1 rounded-lg">
-                                                                            ${{ item.price }}
-                                                                        </p>
+                                                                        <div class="flex items-center justify-between mt-2">
+                                                                            <p class="text-sm font-black text-[#0b2a55]">
+                                                                                ${{ item.price }}
+                                                                            </p>
+                                                                            <div class="flex items-center bg-gray-50 p-1 rounded-xl border border-gray-100">
+                                                                                <button @click="decrement(item.rowId, item.qty)" class="p-1 text-gray-500 hover:text-[#0b2a55] transition-colors">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                                                                    </svg>
+                                                                                </button>
+                                                                                <span class="px-3 text-sm font-black text-[#0b2a55]">{{ item.qty }}</span>
+                                                                                <button @click="increment(item.rowId, item.qty)" class="p-1 text-gray-500 hover:text-[#0b2a55] transition-colors">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="flex items-center gap-2 mt-1">
-                                                                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                                                                            {{ __('translate.quantity') }}:
-                                                                        </span>
-                                                                        <span class="text-sm font-black text-gray-600">{{ item.qty }}</span>
-                                                                    </div>
+                                                                    <button @click="removeFromCart(item.rowId)" class="ml-4 text-gray-400 hover:text-red-500 transition-colors">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                                        </svg>
+                                                                    </button>
                                                                 </div>
-                                                                <div class="flex flex-1 items-end justify-end">
+                                                                <div class="flex items-end justify-end mt-2">
                                                                     <div class="text-sm font-black text-[#00aaff]">
                                                                         <span class="text-[10px] text-gray-400 uppercase mr-1">{{ __('translate.subtotal') }}</span>
                                                                         ${{ item.subtotal }}

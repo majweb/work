@@ -117,7 +117,6 @@ class AplicationController extends Controller
         if ($aplication->user_id !== auth()->id()) {
             return $this->flashAndRedirect('translate.applyViewBlocked', 'danger');
         }
-
         $request->validate([
             'status' => 'required|in:yes,no,maybe,""'
         ]);

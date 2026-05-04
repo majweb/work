@@ -669,10 +669,11 @@ class FrontController extends Controller
             return to_route('front.projects.single', $project);
         }
 
+        $project->load(['questions' => function ($query) {
+            $query->whereNotNull('accepted');
+        }]);
+
         if (auth()->check() && auth()->user()->hasRole('worker')) {
-            $project->load(['questions' => function ($query) {
-                $query->whereNotNull('accepted');
-            }]);
             if (CvClassic::where('worker_id', auth()->id())->where('project_id', $project->id)->exists()) {
                 $project->load([
                     'cvClassics' => function ($query) use ($project) {
