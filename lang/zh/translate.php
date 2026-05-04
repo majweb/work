@@ -1682,5 +1682,8 @@ return [
     'education_error' => '请填写教育部分缺失的信息。',
     'course_error' => '请填写课程部分缺失的信息。',
     'lang_error' => '请填写语言部分缺失的信息。',
+    'completeProfileTitle' => '完善公司资料',
+    'completeProfileDescription' => '您的公司资料尚未完整。请填写缺失的信息以充分使用平台。',
+    'completeProfileLink' => '前往资料',
 
 ];

@@ -420,7 +420,7 @@ const submitForm = () => {
                     <!-- Filters grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                         <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.projectID') }}</label>
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.projectID') }}</label>
                             <input v-model="form.project" type="text" :placeholder="__('translate.enterID')" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"/>
                         </div>
                         <div class="space-y-2">
@@ -433,10 +433,10 @@ const submitForm = () => {
                                 :group-select="false"
                                 label="name"
                                 track-by="value"
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 :placeholder="__('translate.selectCountry')"
                                 class="custom-multiselect"
                             >
@@ -448,17 +448,17 @@ const submitForm = () => {
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.City') }}</label>
                             <multiselect v-model="form.city" :options="optionsCities" label="name"
                                          track-by="value"
-                                         :selectLabel="__('translate.selectLabel')"
-                                         :selectGroupLabel="__('translate.selectGroupLabel')"
-                                         :selectedLabel="__('translate.selectedLabel')"
-                                         :deselectLabel="__('translate.deselectLabel')"
+                                         :selectLabel="''"
+                                         :selectGroupLabel="''"
+                                         :selectedLabel="''"
+                                         :deselectLabel="''"
                                          :placeholder="__('translate.selectCity')" class="custom-multiselect">
                                 <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                 <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
                             </multiselect>
                         </div>
                         <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.applicationStatus') }}</label>
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.applicationStatus') }}</label>
                             <select v-model="form.status" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
                                 <option value="">{{ __('translate.all') }}</option>
                                 <option value="yes">{{ __('translate.statusYes') }}</option>
@@ -474,10 +474,10 @@ const submitForm = () => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.category') }}</label>
                                 <multiselect v-model="form.category" :options="optionsCategoriesFiltered" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectCategory')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -487,10 +487,10 @@ const submitForm = () => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.subcategory') }}</label>
                                 <multiselect v-model="form.categorySub" :options="optionsCategorySub" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectSubcategory')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -500,10 +500,10 @@ const submitForm = () => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.profession') }}</label>
                                 <multiselect v-model="form.profession" :options="optionsProfession" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectProfession')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -513,10 +513,10 @@ const submitForm = () => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
                                 <multiselect v-model="form.position" :options="optionsPositionLocal" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectPosition')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -546,20 +546,26 @@ const submitForm = () => {
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.language') }}</label>
                             <multiselect
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
-                                v-model="form.lang" :options="sortLangs" label="label" track-by="value" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
+                                v-model="form.lang" :options="sortLangs" label="label" track-by="value" :placeholder="__('translate.selectLanguage')" class="custom-multiselect">
+                                <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                            </multiselect>
                         </div>
                         <div class="space-y-2" :class="{ 'opacity-50 pointer-events-none': !form.lang }">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.languageLevel') }}</label>
                             <multiselect
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
-                                v-model="form.Langlevel" :options="props.langLevels" label="name" :placeholder="__('translate.selectLevel')" :disabled="!form.lang" class="custom-multiselect"/>
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
+                                v-model="form.Langlevel" :options="props.langLevels" label="name" :placeholder="__('translate.selectLevel')" :disabled="!form.lang" class="custom-multiselect">
+                                <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                            </multiselect>
                         </div>
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.driveLicenseB') }}</label>
@@ -604,10 +610,10 @@ const submitForm = () => {
                         <div class="flex-1 w-full">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.selectExternalFirms') }}</label>
                             <multiselect
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 v-model="formSend.externalFirms" :options="props.optionsExternal" label="name" :placeholder="__('translate.selectExternalFirms')" class="custom-multiselect" :multiple="true"/>
                         </div>
                         <button @click="submitForm" :disabled="formSend.processing || !formSend.externalFirms.length" class="w-full md:w-auto px-10 py-4 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-700 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-600/20">
@@ -862,95 +868,71 @@ const submitForm = () => {
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
-.multiselect__tags {
-    border: 1px solid #f3f4f6 !important; /* gray-100 */
-    border-radius: 1rem !important; /* rounded-2xl */
-    padding: 1rem 2.5rem 1rem 1.25rem !important;
-    background: #f9fafb !important; /* gray-50 */
-    min-height: 58px !important;
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap !important;
-}
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        background: #f9fafb; /* bg-gray-50 */
+        transition: all 0.3s ease;
+    }
 
-.multiselect__placeholder {
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    color: #9ca3af !important; /* text-gray-400 */
-    font-size: 0.75rem !important; /* text-xs */
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-}
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af; /* text-gray-400 */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__single {
-    margin-bottom: 0 !important;
-    padding-left: 0 !important;
-    font-size: 0.75rem !important;
-    background: transparent !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    color: #374151 !important;
-}
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__input {
-    margin-bottom: 0 !important;
-    background: transparent !important;
-    font-size: 0.75rem !important;
-    font-weight: 700 !important;
-}
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
 
-.multiselect__select {
-    height: 58px !important;
-    width: 2.5rem !important;
-}
+    .multiselect__select {
+        height: 100%;
+        width: 2.5rem;
+    }
 
-.multiselect__option--highlight {
-    background: #0A2C5C !important;
-    outline: none;
-    color: white !important;
-}
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-.multiselect__option--highlight:after {
-    background: #0A2C5C !important;
-}
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C;
+        font-weight: 900;
+    }
 
-.multiselect__option--selected {
-    background: #f3f4f6 !important;
-    color: #0A2C5C !important;
-    font-weight: 900 !important;
-    text-transform: uppercase !important;
-    font-size: 10px !important;
-    letter-spacing: 0.1em !important;
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6;
+        border-top: none;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 }
-
-.multiselect__tag {
-    background: #0A2C5C !important;
-    border-radius: 0.5rem !important;
-    padding: 6px 26px 6px 10px !important;
-    font-size: 10px !important;
-    font-weight: 900 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-}
-
-.multiselect__tag-icon:after {
-    color: white !important;
-}
-
-.multiselect__tag-icon:hover {
-    background: #1e3a8a !important;
-}
-
-.multiselect__content-wrapper {
-    border: 1px solid #f3f4f6 !important;
-    border-top: none !important;
-    border-bottom-left-radius: 1rem !important;
-    border-bottom-right-radius: 1rem !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
-}
-
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
 }

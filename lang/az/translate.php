@@ -1632,4 +1632,7 @@ return [
     'education_error' => 'Zəhmət olmasa təhsil bölməsində çatışmayan məlumatları tamamlayın.',
     'course_error' => 'Zəhmət olmasa kurslar bölməsində çatışmayan məlumatları tamamlayın.',
     'lang_error' => 'Zəhmət olmasa dillər bölməsində çatışmayan məlumatları tamamlayın.',
+    'completeProfileTitle' => 'Şirkət profilini tamamlayın',
+    'completeProfileDescription' => 'Şirkət profiliniz tam deyil. Platformadan tam istifadə etmək üçün çatışmayan məlumatları tamamlayın.',
+    'completeProfileLink' => 'Profilə keçin',
 ];

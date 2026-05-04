@@ -125,6 +125,7 @@ const applyFilters = () => {
     isLoading.value = true;
     router.get(route('project-recruits.index'), filtered, {
         preserveState: true,
+        preserveScroll:true,
         replace: true,
         onFinish: () => {
             isLoading.value = false;
@@ -239,9 +240,9 @@ const { getPositionTitle } = useProjectHelpers();
                                 :options="props.categories"
                                 track-by="value"
                                 label="name"
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 :placeholder="__('translate.placeholderCategory')"
                                 class="custom-multiselect"
                             >
@@ -260,9 +261,9 @@ const { getPositionTitle } = useProjectHelpers();
                                 :disabled="!params.category"
                                 track-by="value"
                                 label="name"
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 :placeholder="__('translate.placeholderCategorySub')"
                                 class="custom-multiselect"
                             >
@@ -281,9 +282,9 @@ const { getPositionTitle } = useProjectHelpers();
                                 :disabled="!params.categorySub"
                                 track-by="value"
                                 label="name"
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 :placeholder="__('translate.placeholderProfession')"
                                 class="custom-multiselect"
                             >
@@ -302,9 +303,9 @@ const { getPositionTitle } = useProjectHelpers();
                                 :disabled="!params.profession"
                                 track-by="value"
                                 label="name"
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 :placeholder="__('translate.placeholderPosition')"
                                 class="custom-multiselect"
                             >
@@ -620,5 +621,4 @@ const { getPositionTitle } = useProjectHelpers();
         border-bottom-right-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
-}
-</style>
+}</style>

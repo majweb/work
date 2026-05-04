@@ -1674,4 +1674,7 @@ return [
     'education_error' => 'Por favor, completa la información faltante en la sección de educación.',
     'course_error' => 'Por favor, completa la información faltante en la sección de cursos.',
     'lang_error' => 'Por favor, completa la información faltante en la sección de idiomas.',
+    'completeProfileTitle' => 'Completa el perfil de la empresa',
+    'completeProfileDescription' => 'El perfil de tu empresa no está completo. Rellena la información que falta para aprovechar al máximo la plataforma.',
+    'completeProfileLink' => 'Ir al perfil',
 ];

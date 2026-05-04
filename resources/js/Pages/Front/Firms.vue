@@ -173,7 +173,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                     <div class="mb-16" v-if="features && features.length">
                         <div class="flex flex-col md:flex-row items-center justify-between mb-10 gap-8">
                             <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none order-1">
-                                {{__('translate.check')}} <span class="text-blue-500">{{__('translate.favorite_firms')}}</span>
+                                {{__('translate.check')}} <span class="text-[#329CD1]">{{__('translate.favorite_firms')}}</span>
                             </h2>
                             <div class="w-full lg:max-w-4xl">
                                 <Swiper

@@ -415,10 +415,10 @@ watch(() => usePage().props.sender, (newVal) => {
                                 :group-select="false"
                                 label="name"
                                 track-by="value"
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 :placeholder="__('translate.selectCountry')"
                                 class="custom-multiselect"
                             >
@@ -430,10 +430,10 @@ watch(() => usePage().props.sender, (newVal) => {
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.City') }}</label>
                             <multiselect v-model="form.city" :options="optionsCities" label="name"
                                          track-by="value"
-                                         :selectLabel="__('translate.selectLabel')"
-                                         :selectGroupLabel="__('translate.selectGroupLabel')"
-                                         :selectedLabel="__('translate.selectedLabel')"
-                                         :deselectLabel="__('translate.deselectLabel')"
+                                         :selectLabel="''"
+                                         :selectGroupLabel="''"
+                                         :selectedLabel="''"
+                                         :deselectLabel="''"
                                          :placeholder="__('translate.selectCity')" class="custom-multiselect">
                                 <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                 <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -456,10 +456,10 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.category') }}</label>
                                 <multiselect v-model="form.category" :options="optionsCategoriesFiltered" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectCategory')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -469,10 +469,10 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.subcategory') }}</label>
                                 <multiselect v-model="form.categorySub" :options="optionsCategorySub" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectSubcategory')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -482,10 +482,10 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.profession') }}</label>
                                 <multiselect v-model="form.profession" :options="optionsProfession" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectProfession')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -495,10 +495,10 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
                                 <multiselect v-model="form.position" :options="optionsPositionLocal" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.selectPosition')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -512,10 +512,10 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.recruiter') }}</label>
                                 <multiselect v-model="form.recruiter" :options="props.optionsRecruits" label="name"
                                              track-by="value"
-                                             :selectLabel="__('translate.selectLabel')"
-                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                             :selectedLabel="__('translate.selectedLabel')"
-                                             :deselectLabel="__('translate.deselectLabel')"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
                                              :placeholder="__('translate.searchRecruiter')" class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
@@ -541,19 +541,19 @@ watch(() => usePage().props.sender, (newVal) => {
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.language') }}</label>
                             <multiselect
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 v-model="form.lang" :options="sortLangs" label="label" track-by="value" :placeholder="__('translate.selectLanguage')" class="custom-multiselect"/>
                         </div>
                         <div class="space-y-2" :class="{ 'opacity-50 pointer-events-none': !form.lang }">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.languageLevel') }}</label>
                             <multiselect
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 v-model="form.Langlevel" :options="props.langLevels" label="name" :placeholder="__('translate.selectLevel')" :disabled="!form.lang" class="custom-multiselect"/>
                         </div>
                         <div class="space-y-2">
@@ -599,10 +599,10 @@ watch(() => usePage().props.sender, (newVal) => {
                         <div class="flex-1 w-full">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.selectExternalFirms') }}</label>
                             <multiselect
-                                :selectLabel="__('translate.selectLabel')"
-                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectLabel="''"
+                                :selectGroupLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                                 v-model="formSend.externalFirms" :options="props.optionsExternal" label="name" :placeholder="__('translate.selectExternalFirms')" class="custom-multiselect" :multiple="true"/>
                         </div>
                         <button @click="submitForm" :disabled="formSend.processing || !formSend.externalFirms.length" class="w-full lg:w-auto px-10 py-4 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-700 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-600/20">

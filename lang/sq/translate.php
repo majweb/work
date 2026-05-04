@@ -1631,4 +1631,7 @@ return [
     'education_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e arsimit.',
     'course_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e kurseve.',
     'lang_error' => 'Ju lutemi plotësoni informacionin që mungon në seksionin e gjuhëve.',
+    'completeProfileTitle' => 'Plotësoni profilin e kompanisë',
+    'completeProfileDescription' => 'Profili i kompanisë suaj nuk është i plotë. Plotësoni informacionet që mungojnë për të përdorur plotësisht platformën.',
+    'completeProfileLink' => 'Shko te profili',
 ];

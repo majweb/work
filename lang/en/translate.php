@@ -1632,4 +1632,7 @@ return [
     'education_error' => 'Please complete the missing information in the education section.',
     'course_error' => 'Please complete the missing information in the courses section.',
     'lang_error' => 'Please complete the missing information in the languages section.',
+    'completeProfileTitle' => 'Complete your company profile',
+    'completeProfileDescription' => 'Your company profile is incomplete. Fill in the missing information to fully use the platform.',
+    'completeProfileLink' => 'Go to profile',
 ];

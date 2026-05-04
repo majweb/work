@@ -259,7 +259,13 @@ class DashboardController extends Controller
             })->sortBy('price')->values();
             $lastInvoices = Invoice::where('user_id', auth()->id())->latest()->take(3)->get();
             $firm = auth()->user()->firm;
+            $profileIncomplete = false;
+            if ($firm) {
+                $profileIncomplete = empty($firm->nip) || empty($firm->city) || empty($firm->street);
+            }
+
             $firmData = [
+                'profile_incomplete' => $profileIncomplete,
                 'aplications' => [
                     'yes' => $firmStats->total_yes ?? 0,
                     'no' => $firmStats->total_no ?? 0,

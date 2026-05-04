@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian pendidikan.',
     'course_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian kursus.',
     'lang_error' => 'Sila lengkapkan maklumat yang hilang dalam bahagian bahasa.',
+    'completeProfileTitle' => 'Lengkapkan profil syarikat',
+    'completeProfileDescription' => 'Profil syarikat anda tidak lengkap. Sila lengkapkan maklumat yang diperlukan untuk menggunakan platform sepenuhnya.',
+    'completeProfileLink' => 'Pergi ke profil',
 ];

@@ -1673,5 +1673,9 @@ return [
     'education_error' => 'Palun täitke puuduolev teave hariduse jaotises.',
     'course_error' => 'Palun täitke puuduolev teave kursuste jaotises.',
     'lang_error' => 'Palun täitke puuduolev teave keelte jaotises.',
+    'completeProfileTitle' => 'Täiendage ettevõtte profiili',
+    'completeProfileDescription' => 'Teie ettevõtte profiil ei ole täielik. Täitke puuduvad andmed, et platvormi täielikult kasutada.',
+    'completeProfileLink' => 'Mine profiilile',
+
 ];
 

@@ -755,10 +755,10 @@ onMounted(async () => {
                                     <div>
                                         <InputLabel :value="__('translate.category')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                         <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="value"
                                             label="name"
                                             :placeholder="__('translate.placeholder')"
@@ -778,10 +778,10 @@ onMounted(async () => {
                                         <InputLabel :value="__('translate.subcategory')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                         <multiselect
                                             :disabled="!form.category"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"
@@ -803,10 +803,10 @@ onMounted(async () => {
                                         <InputLabel :value="__('translate.profession')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                         <multiselect
                                             :disabled="!form.categorySub"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"
@@ -828,10 +828,10 @@ onMounted(async () => {
                                         <InputLabel :value="__('translate.position')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                         <multiselect
                                             :disabled="!form.profession"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"

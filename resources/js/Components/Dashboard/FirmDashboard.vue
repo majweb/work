@@ -12,6 +12,34 @@
             </div>
         </div>
 
+        <!-- Powiadomienie o niekompletnym profilu -->
+        <div v-if="firmData?.profile_incomplete" class="mb-8 px-4">
+            <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 p-6 rounded-[2rem] shadow-xl shadow-red-900/5 flex flex-col sm:flex-row items-center justify-between gap-6 transition-all duration-500 hover:shadow-red-900/10 border border-red-100">
+                <div class="flex items-center gap-6 text-center sm:text-left">
+                    <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-sm shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-black text-[#0A2C5C] uppercase tracking-tight mb-1">
+                            {{ __('translate.completeProfileTitle') }}
+                        </h4>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
+                            {{ __('translate.completeProfileDescription') }}
+                        </p>
+                    </div>
+                </div>
+                <Link
+                    :href="route('profile.show')"
+                    class="group flex items-center gap-3 px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl hover:bg-[#00a0e3] transition-all duration-500 uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:scale-105 active:scale-95 whitespace-nowrap"
+                >
+                    {{ __('translate.completeProfileLink') }}
+                    <span class="text-lg group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <!-- KAFEL 1 -->
             <Link :href="route('recruits.index')" class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500 hover:-translate-y-2 p-10 text-center cursor-pointer relative overflow-hidden flex flex-col items-center justify-center min-h-[180px]">
@@ -597,6 +625,10 @@ const props = defineProps({
     certificate: {
         type: Object,
         default: null
+    },
+    firmData: {
+        type: Object,
+        default: () => ({})
     },
     recruitsCount: Number,
     projectsCount: Number,

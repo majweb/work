@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Bildung aus.',
     'course_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Coursen aus.',
     'lang_error' => 'Fëllt w.e.g. déi feelend Informatioun am Beräich Sproochen aus.',
+    'completeProfileTitle' => 'Fëllt de Firmeprofil aus',
+    'completeProfileDescription' => 'Äre Firmeprofil ass net komplett. Fëllt déi fehlend Informatioun aus, fir d’Plattform voll ze benotzen.',
+    'completeProfileLink' => 'Gitt op de Profil',
 ];

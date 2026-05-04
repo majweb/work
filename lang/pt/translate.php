@@ -1673,4 +1673,8 @@ return [
     'education_error' => 'Por favor, preencha as informações em falta na secção de educação.',
     'course_error' => 'Por favor, preencha as informações em falta na secção de cursos.',
     'lang_error' => 'Por favor, preencha as informações em falta na secção de línguas.',
+    'completeProfileTitle' => 'Complete o perfil da empresa',
+    'completeProfileDescription' => 'O perfil da sua empresa não está completo. Preencha as informações em falta para utilizar totalmente a plataforma.',
+    'completeProfileLink' => 'Ir para o perfil',
+
 ];

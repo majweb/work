@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Vinsamlegast fylltu út vantar upplýsingar í menntunarhlutanum.',
     'course_error' => 'Vinsamlegast fylltu út vantar upplýsingar í námskeiðahlutanum.',
     'lang_error' => 'Vinsamlegast fylltu út vantar upplýsingar í tungumálahlutanum.',
+    'completeProfileTitle' => 'Fylltu út fyrirtækjaprófíl',
+    'completeProfileDescription' => 'Fyrirtækjaprófíllinn þinn er ekki fullbúinn. Vinsamlegast fylltu út vantar upplýsingar til að nýta vettvanginn til fulls.',
+    'completeProfileLink' => 'Fara á prófíl',
 ];

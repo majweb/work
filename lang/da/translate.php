@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Udfyld venligst de manglende oplysninger i uddannelsessektionen.',
     'course_error' => 'Udfyld venligst de manglende oplysninger i kursussektionen.',
     'lang_error' => 'Udfyld venligst de manglende oplysninger i sprogsektionen.',
+    'completeProfileTitle' => 'Udfyld virksomhedsprofilen',
+    'completeProfileDescription' => 'Din virksomhedsprofil er ikke komplet. Udfyld de manglende oplysninger for at få fuldt udbytte af platformen.',
+    'completeProfileLink' => 'Gå til profil',
 ];

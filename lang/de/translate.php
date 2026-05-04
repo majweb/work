@@ -1756,4 +1756,7 @@ return [
     'education_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Bildung.',
     'course_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Kurse.',
     'lang_error' => 'Bitte vervollständigen Sie die fehlenden Angaben im Abschnitt Sprachen.',
+    'completeProfileTitle' => 'Unternehmensprofil vervollständigen',
+    'completeProfileDescription' => 'Ihr Unternehmensprofil ist unvollständig. Bitte ergänzen Sie die fehlenden Angaben, um die Plattform vollständig nutzen zu können.',
+    'completeProfileLink' => 'Zum Profil gehen',
 ];

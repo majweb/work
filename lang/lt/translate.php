@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Prašome užpildyti trūkstamą informaciją išsilavinimo skiltyje.',
     'course_error' => 'Prašome užpildyti trūkstamą informaciją kursų skiltyje.',
     'lang_error' => 'Prašome užpildyti trūkstamą informaciją kalbų skiltyje.',
+    'completeProfileTitle' => 'Užpildykite įmonės profilį',
+    'completeProfileDescription' => 'Jūsų įmonės profilis nėra pilnas. Užpildykite trūkstamą informaciją, kad galėtumėte pilnai naudotis platforma.',
+    'completeProfileLink' => 'Eiti į profilį',
 ];

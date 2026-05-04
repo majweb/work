@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Молимо попуните недостајуће податке у одељку образовања.',
     'course_error' => 'Молимо попуните недостајуће податке у одељку курсева.',
     'lang_error' => 'Молимо попуните недостајуће податке у одељку језика.',
+    'completeProfileTitle' => 'Dovršite profil kompanije',
+    'completeProfileDescription' => 'Profil vaše kompanije nije potpun. Popunite nedostajuće informacije kako biste u potpunosti koristili platformu.',
+    'completeProfileLink' => 'Idi na profil',
 ];

@@ -1674,4 +1674,7 @@ return [
     'education_error' => 'Si us plau, completa la informació que falta a la secció d’educació.',
     'course_error' => 'Si us plau, completa la informació que falta a la secció de cursos.',
     'lang_error' => 'Si us plau, completa la informació que falta a la secció d’idiomes.',
+    'completeProfileTitle' => 'Completa el perfil de l’empresa',
+    'completeProfileDescription' => 'El perfil de la vostra empresa no està complet. Ompliu les dades que falten per aprofitar al màxim la plataforma.',
+    'completeProfileLink' => 'Anar al perfil',
 ];

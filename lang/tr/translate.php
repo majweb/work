@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Bilim bölüminde ýetmeýän maglumatlary dolduryň.',
     'course_error' => 'Kurslar bölüminde ýetmeýän maglumatlary dolduryň.',
     'lang_error' => 'Diller bölüminde ýetmeýän maglumatlary dolduryň.',
+    'completeProfileTitle' => 'Şirket profilini tamamlayın',
+    'completeProfileDescription' => 'Şirket profiliniz eksik. Platformayı tam olarak kullanabilmek için eksik bilgileri doldurun.',
+    'completeProfileLink' => 'Profile git',
 ];

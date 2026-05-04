@@ -1673,5 +1673,8 @@ return [
     'education_error' => 'Lūdzu, aizpildiet trūkstošo informāciju izglītības sadaļā.',
     'course_error' => 'Lūdzu, aizpildiet trūkstošo informāciju kursu sadaļā.',
     'lang_error' => 'Lūdzu, aizpildiet trūkstošo informāciju valodu sadaļā.',
+    'completeProfileTitle' => 'Aizpildiet uzņēmuma profilu',
+    'completeProfileDescription' => 'Jūsu uzņēmuma profils nav pilnīgs. Aizpildiet trūkstošo informāciju, lai pilnībā izmantotu platformu.',
+    'completeProfileLink' => 'Doties uz profilu',
 
 ];

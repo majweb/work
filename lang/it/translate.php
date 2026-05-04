@@ -1674,5 +1674,8 @@ return [
     'education_error' => 'Completa le informazioni mancanti nella sezione istruzione.',
     'course_error' => 'Completa le informazioni mancanti nella sezione corsi.',
     'lang_error' => 'Completa le informazioni mancanti nella sezione lingue.',
+    'completeProfileTitle' => 'Completa il profilo aziendale',
+    'completeProfileDescription' => 'Il profilo della tua azienda non è completo. Compila le informazioni mancanti per utilizzare appieno la piattaforma.',
+    'completeProfileLink' => 'Vai al profilo',
 ];
 

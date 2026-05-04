@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Vul de ontbrekende informatie in bij het onderdeel opleiding.',
     'course_error' => 'Vul de ontbrekende informatie in bij het onderdeel cursussen.',
     'lang_error' => 'Vul de ontbrekende informatie in bij het onderdeel talen.',
+    'completeProfileTitle' => 'Voltooi het bedrijfsprofiel',
+    'completeProfileDescription' => 'Je bedrijfsprofiel is niet volledig. Vul de ontbrekende gegevens in om het platform volledig te kunnen gebruiken.',
+    'completeProfileLink' => 'Ga naar profiel',
 ];

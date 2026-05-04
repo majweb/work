@@ -1674,5 +1674,8 @@ return [
     'education_error' => 'Kérjük, töltse ki a hiányzó adatokat az oktatás szekcióban.',
     'course_error' => 'Kérjük, töltse ki a hiányzó adatokat a kurzusok szekcióban.',
     'lang_error' => 'Kérjük, töltse ki a hiányzó adatokat a nyelvek szekcióban.',
+    'completeProfileTitle' => 'Töltse ki a vállalati profilt',
+    'completeProfileDescription' => 'A vállalati profilja nem teljes. Kérjük, töltse ki a hiányzó adatokat a platform teljes használatához.',
+    'completeProfileLink' => 'Ugrás a profilhoz',
 ];
 

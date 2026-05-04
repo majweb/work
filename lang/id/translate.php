@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Harap lengkapi informasi yang belum diisi pada bagian pendidikan.',
     'course_error' => 'Harap lengkapi informasi yang belum diisi pada bagian kursus.',
     'lang_error' => 'Harap lengkapi informasi yang belum diisi pada bagian bahasa.',
+    'completeProfileTitle' => 'Lengkapi profil perusahaan',
+    'completeProfileDescription' => 'Profil perusahaan Anda belum lengkap. Lengkapi informasi yang masih kurang agar dapat menggunakan platform secara penuh.',
+    'completeProfileLink' => 'Buka profil',
 ];

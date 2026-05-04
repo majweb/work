@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Täytä puuttuvat tiedot koulutus-osiossa.',
     'course_error' => 'Täytä puuttuvat tiedot kurssit-osiossa.',
     'lang_error' => 'Täytä puuttuvat tiedot kielet-osiossa.',
+    'completeProfileTitle' => 'Täydennä yrityksen profiili',
+    'completeProfileDescription' => 'Yritysprofiilisi ei ole täydellinen. Täytä puuttuvat tiedot, jotta voit käyttää alustaa täysimääräisesti.',
+    'completeProfileLink' => 'Siirry profiiliin',
 ];

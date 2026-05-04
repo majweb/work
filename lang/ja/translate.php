@@ -1673,4 +1673,7 @@ return [
     'education_error' => '学歴セクションの不足している情報を入力してください。',
     'course_error' => 'コースセクションの不足している情報を入力してください。',
     'lang_error' => '言語セクションの不足している情報を入力してください。',
+    'completeProfileTitle' => '会社プロフィールを完成させてください',
+    'completeProfileDescription' => '会社プロフィールが未完成です。プラットフォームを最大限に活用するために、不足している情報を入力してください。',
+    'completeProfileLink' => 'プロフィールへ移動',
 ];

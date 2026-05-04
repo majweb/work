@@ -1660,4 +1660,7 @@ return [
     'education_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea educație.',
     'course_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea cursuri.',
     'lang_error' => 'Vă rugăm să completați informațiile lipsă din secțiunea limbi.',
+    'completeProfileTitle' => 'Completați profilul companiei',
+    'completeProfileDescription' => 'Profilul companiei dvs. nu este complet. Completați informațiile lipsă pentru a utiliza pe deplin platforma.',
+    'completeProfileLink' => 'Mergi la profil',
 ];

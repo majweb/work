@@ -1673,4 +1673,7 @@ return [
     'education_error' => 'Doplňte prosím chybějící údaje v sekci vzdělání.',
     'course_error' => 'Doplňte prosím chybějící údaje v sekci kurzy.',
     'lang_error' => 'Doplňte prosím chybějící údaje v sekci jazyky.',
+    'completeProfileTitle' => 'Doplňte profil společnosti',
+    'completeProfileDescription' => 'Váš profil společnosti není kompletní. Doplňte chybějící údaje, abyste mohli platformu plně využívat.',
+    'completeProfileLink' => 'Přejít na profil',
 ];
