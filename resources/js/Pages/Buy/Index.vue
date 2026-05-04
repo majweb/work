@@ -291,7 +291,7 @@ const getServiceDescription = (type) => {
                                             >
                                                 {{ __('translate.exchangePoints') }}
                                             </Link>
-                                            <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg">
+                                            <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg px-2">
                                                 {{__('translate.makeProject')}}
                                             </Link>
                                             <button

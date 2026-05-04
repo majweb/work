@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DialogModal from '@/Components/DialogModal.vue';
+import Dropdown from '@/Components/Dropdown.vue';
 import {Link, useForm, usePage} from '@inertiajs/vue3';
 import {computed, nextTick, ref, watch} from 'vue';
 import {router} from '@inertiajs/vue3';
@@ -709,36 +710,64 @@ const submitForm = () => {
                                     </div>
                                 </div>
 
-                                <!-- Status buttons -->
-                                <div class="w-32 flex flex-col items-center justify-center gap-2">
-                                    <button
-                                        v-if="application.status==='maybe'"
-                                        @click="updateStatus(application.id,'yes')"
-                                        class="w-full px-4 py-3 bg-cyan-500 text-white text-[10px] font-black rounded-xl hover:bg-cyan-600 shadow-md shadow-cyan-500/10 transition-all uppercase tracking-widest"
-                                    >
-                                        {{ __('translate.statusMaybe') }}
-                                    </button>
-                                    <button
-                                        v-else-if="application.status==='yes'"
-                                        @click="updateStatus(application.id,'no')"
-                                        class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
-                                    >
-                                        {{ __('translate.statusYes') }}
-                                    </button>
-                                    <button
-                                        v-else-if="application.status==='no'"
-                                        @click="updateStatus(application.id,'maybe')"
-                                        class="w-full px-4 py-3 bg-red-600 text-white text-[10px] font-black rounded-xl hover:bg-red-700 shadow-md shadow-red-600/10 transition-all uppercase tracking-widest"
-                                    >
-                                        {{ __('translate.statusNo') }}
-                                    </button>
-                                    <button
-                                        v-else
-                                        @click="updateStatus(application.id,'maybe')"
-                                        class="w-full px-4 py-3 bg-gray-50 text-gray-400 text-[10px] font-black rounded-xl hover:bg-gray-100 border border-gray-100 transition-all uppercase tracking-widest"
-                                    >
-                                        ---
-                                    </button>
+                                <!-- Status selector -->
+                                <div class="w-32 lg:w-48 shrink-0">
+                                    <Dropdown align="right" width="48" :contentClasses="['py-2', 'bg-white']">
+                                        <template #trigger>
+                                            <button
+                                                type="button"
+                                                :class="{
+                                                    'bg-cyan-500 text-white shadow-cyan-900/10': application.status === 'maybe',
+                                                    'bg-[#0A2C5C] text-white shadow-blue-900/10': application.status === 'yes',
+                                                    'bg-red-600 text-white shadow-red-900/10': application.status === 'no',
+                                                    'bg-gray-50 text-gray-400 border border-gray-100': !application.status
+                                                }"
+                                                class="w-full px-4 py-3 text-[10px] font-black rounded-xl shadow-lg transition-all uppercase tracking-widest flex items-center justify-between group/status"
+                                            >
+                                                <span class="flex-1 text-center">
+                                                    {{
+                                                        application.status === 'yes' ? __('translate.statusYes') :
+                                                        application.status === 'no' ? __('translate.statusNo') :
+                                                        application.status === 'maybe' ? (__('translate.statusMaybe') || __('translate.maybe')) :
+                                                        '---'
+                                                    }}
+                                                </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-50 group-hover/status:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+                                        </template>
+
+                                        <template #content>
+                                            <button
+                                                @click="updateStatus(application.id, '')"
+                                                class="block w-full px-5 py-3 text-start text-[10px] font-black uppercase tracking-widest text-gray-400 hover:bg-gray-50 transition-colors"
+                                            >
+                                                ---
+                                            </button>
+                                            <button
+                                                @click="updateStatus(application.id, 'yes')"
+                                                class="block w-full px-5 py-3 text-start text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:bg-blue-50 transition-colors flex items-center justify-between"
+                                            >
+                                                <span>{{ __('translate.statusYes') }}</span>
+                                                <div v-if="application.status === 'yes'" class="w-1.5 h-1.5 rounded-full bg-[#0A2C5C]"></div>
+                                            </button>
+                                            <button
+                                                @click="updateStatus(application.id, 'maybe')"
+                                                class="block w-full px-5 py-3 text-start text-[10px] font-black uppercase tracking-widest text-cyan-600 hover:bg-cyan-50 transition-colors flex items-center justify-between"
+                                            >
+                                                <span>{{ __('translate.statusMaybe') || __('translate.maybe') }}</span>
+                                                <div v-if="application.status === 'maybe'" class="w-1.5 h-1.5 rounded-full bg-cyan-600"></div>
+                                            </button>
+                                            <button
+                                                @click="updateStatus(application.id, 'no')"
+                                                class="block w-full px-5 py-3 text-start text-[10px] font-black uppercase tracking-widest text-red-600 hover:bg-red-50 transition-colors flex items-center justify-between"
+                                            >
+                                                <span>{{ __('translate.statusNo') }}</span>
+                                                <div v-if="application.status === 'no'" class="w-1.5 h-1.5 rounded-full bg-red-600"></div>
+                                            </button>
+                                        </template>
+                                    </Dropdown>
                                 </div>
                             </div>
 
