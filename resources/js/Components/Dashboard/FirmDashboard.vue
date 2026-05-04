@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <div class="flex items-center justify-between mb-8 px-4">
             <div>
@@ -241,7 +241,7 @@
                                     >
                                         {{ __('translate.exchangePoints') }}
                                     </button>
-                                    <div class="text-xl font-black text-[#0A2C5C] tracking-tighter">
+                                    <div class="text-xl font-black text-[#0A2C5C]">
                                         {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
                                     </div>
                                 </template>
@@ -261,7 +261,7 @@
                                     {{ __('translate.notEnoughPoints') }}
                                 </div>
 
-                                <div class="text-xl font-black text-[#0A2C5C] tracking-tighter">
+                                <div class="text-xl font-black text-[#0A2C5C]">
                                     {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
                                 </div>
                             </template>
@@ -302,22 +302,15 @@
                         {{ __('translate.selected') }}
                     </div>
 
-                    <div class="flex flex-col items-center relative z-10">
-                        <div class="w-16 h-16 mb-6 rounded-3xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
-                             :class="form.selectedLevel === level ? 'bg-white/10' : 'bg-gray-50'">
-                            <svg v-if="level === 1" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" :class="form.selectedLevel === level ? 'text-white' : 'text-[#00a0e3]'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                            </svg>
-                            <svg v-else-if="level === 2" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" :class="form.selectedLevel === level ? 'text-white' : 'text-[#00a0e3]'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.243 17.657l.707.707M7.757 6.343l.707.707M8 12a4 4 0 118 0 4 4 0 01-8 0z" />
-                            </svg>
-                            <svg v-else-if="level === 3" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" :class="form.selectedLevel === level ? 'text-white' : 'text-[#00a0e3]'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" :class="form.selectedLevel === level ? 'text-white' : 'text-[#00a0e3]'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.167a2.405 2.405 0 011.411-2.923l2.147-1.107a1.775 1.775 0 011.412 0l2.147 1.107a2.405 2.405 0 011.411 2.923l-2.147 6.167a1.76 1.76 0 01-3.417-.592V5.882z" />
-                            </svg>
-                        </div>
+                        <div class="flex flex-col items-center relative z-10">
+                            <div class="w-16 h-16 mb-6 rounded-3xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                                 :class="form.selectedLevel === level ? 'bg-white/10' : 'bg-gray-50'">
+                                <img v-if="level == 1" src="/images/icons/firm/certyfikat-brown.svg" class="h-10 w-10 object-contain" alt="certyfikat brown">
+                                <img v-else-if="level == 2" src="/images/icons/firm/certyfikat-silver.svg" class="h-10 w-10 object-contain" alt="certyfikat silver">
+                                <img v-else-if="level == 3" src="/images/icons/firm/certyfikat-gold.svg" class="h-10 w-10 object-contain" alt="certyfikat gold">
+                                <img v-else-if="level == 4" src="/images/icons/firm/certyfikat-diamond.svg" class="h-10 w-10 object-contain" alt="certyfikat diamond">
+                                <img v-else src="/images/icons/firm/certyfikat-brown.svg" class="h-10 w-10 object-contain" alt="certyfikat">
+                            </div>
                         <div class="text-3xl font-black leading-none mb-1 transition-colors" :class="form.selectedLevel === level ? 'text-white' : 'text-[#0A2C5C]'">
                             {{ certificate.levelPoints[level].toLocaleString() }}
                         </div>
@@ -387,7 +380,7 @@
 
             <div class="text-center">
                 <h4 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tighter">
-                    {{ __('translate.youHave') || 'POSIADASZ' }}: <span class="text-[#00a0e3]">{{ certificate.collectedPoints.toLocaleString() }}</span> PKT
+                    {{ __('translate.youHave') || 'POSIADASZ' }} <span class="text-[#00a0e3]">{{ certificate.collectedPoints.toLocaleString() }}</span> PKT
                 </h4>
             </div>
         </div>
@@ -488,7 +481,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                     <div class="flex flex-col">
                         <div class="mb-8 flex items-center justify-between">
-                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest flex items-center gap-2">
                                 <div class="w-2 h-2 rounded-full bg-[#0A2C5C]"></div>
                                 {{ __('translate.recruits') }}
                             </h3>
@@ -513,7 +506,7 @@
 
                     <div class="flex flex-col">
                         <div class="mb-8 flex items-center justify-between">
-                            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest flex items-center gap-2">
                                 <div class="w-2 h-2 rounded-full bg-[#00a0e3]"></div>
                                 {{ __('translate.applications') }}
                             </h3>
@@ -568,7 +561,7 @@
                                 ></button>
                                 <span v-else class="text-xs font-bold text-gray-400 uppercase tracking-tight leading-snug" v-html="formatNotification(notification).message"></span>
                                 <p v-if="notification.created_at" class="mt-2 text-[8px] font-black text-gray-300 uppercase tracking-widest">
-                                    {{ moment(notification.created_at).fromNow() }}
+                                    {{ moment(notification.created_at).format('DD.MM.YYYY') }}
                                 </p>
                             </div>
                         </li>
@@ -777,8 +770,8 @@ const chartOptions = computed(() => ({
         type: 'donut',
     },
     labels: [
-        __('translate.activeRecruits'),      // Aktywni - rekruterzy
-        __('translate.notActiveRecruits'),       // Nieaktywni - rekruterzy
+        __('translate.activeRecruits').toUpperCase(),      // Aktywni - rekruterzy
+        __('translate.notActiveRecruits').toUpperCase(),       // Nieaktywni - rekruterzy
     ],
     colors: ['#0A2C5C', '#e31e24'],
     legend: {
@@ -800,7 +793,7 @@ const chartOptions = computed(() => ({
                         show: true,
                         label: __('translate.total'),
                         fontSize: '16px',
-                        fontWeight: 600
+                        fontWeight: 600,
                     }
                 }
             }
@@ -812,10 +805,10 @@ const chartOptionsApp = computed(() => ({
         type: 'donut',
     },
     labels: [
-        __('translate.labels.yes'),      // Zaakceptowane - status yes
-        __('translate.labels.no'),       // Odrzucone - status no
-        __('translate.labels.maybe'),    // Rozpatrywane - status maybe
-        __('translate.labels.sent')      // Wysłane - status NULL
+        __('translate.labels.yes').toUpperCase(),      // Zaakceptowane - status yes
+        __('translate.labels.no').toUpperCase(),       // Odrzucone - status no
+        __('translate.labels.maybe').toUpperCase(),    // Rozpatrywane - status maybe
+        __('translate.labels.sent').toUpperCase()      // Wysłane - status NULL
     ],
     colors: ['#0A2C5C', '#e31e24', '#00a0e3', '#9ca3af'],
     legend: {

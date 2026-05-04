@@ -25,7 +25,7 @@ const {hasRole} = usePermission();
 <template>
     <AppLayout :title="__('translate.Profile')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-[#0A2C5C] leading-tight">
                 {{ __('translate.Profile') }}
             </h2>
         </template>
@@ -36,8 +36,8 @@ const {hasRole} = usePermission();
                 <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-8">
                         <div class="flex justify-between items-center">
-                            <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.Profile') }}</h2>
+                            <div class="uppercase">
+                                <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.Profile') }}</h2>
                                 <p class="text-sm text-gray-500 mt-1">Zarządzaj swoimi danymi osobowymi, ustawieniami konta i bezpieczeństwem</p>
                             </div>
                         </div>

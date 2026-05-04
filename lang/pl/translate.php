@@ -1678,4 +1678,7 @@ return [
     'alreadyhaveanaccount' => 'Masz już konto?',
     'noAccount' => 'Nie masz jeszcze konta?',
     'video_cost_info' => 'DODANIE VIDEO DO PROFILU KOSZTUJE :points PUNKTÓW.',
+
+
+    'chooseCvToEditClick' =>'Wybierz jeden ze swoich życiorysów z listy po lewej stronie, aby rozpocząć edycję.'
 ];

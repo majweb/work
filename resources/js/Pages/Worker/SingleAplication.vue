@@ -163,7 +163,7 @@ const isActiveStep = (stepKey) => {
 <template>
     <AppLayout :title="__('translate.dashboard')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-[#0A2C5C] leading-tight">
                 {{ __('translate.application') }}
             </h2>
         </template>
@@ -191,7 +191,7 @@ const isActiveStep = (stepKey) => {
                                         <p class="text-xs font-bold text-[#0A2C5C] uppercase">{{ applicationTypeLabel }}</p>
                                     </div>
                                 </div>
-                                <h3 class="text-2xl md:text-3xl font-black text-slate-800 uppercase tracking-tight leading-none mb-3">{{ application.title }}</h3>
+                                <h3 class="text-2xl md:text-3xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none mb-3">{{ application.title }}</h3>
                                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
                                     <p class="text-sm text-slate-600 font-bold flex items-center gap-2">
                                         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-7h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
@@ -224,7 +224,7 @@ const isActiveStep = (stepKey) => {
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.salary') }}</p>
                                 <div class="flex flex-col">
-                                    <span class="text-sm font-black text-blue-900">{{ application.basicSalaryFrom }} - {{ application.basicSalaryTo }} {{ application.currency?.value }}</span>
+                                    <span class="text-sm font-black text-[#0A2C5C]">{{ application.basicSalaryFrom }} - {{ application.basicSalaryTo }} {{ application.currency?.value }}</span>
                                     <span class="text-[10px] font-bold text-slate-500 uppercase">{{ __('translate.monthly') }}</span>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@ const isActiveStep = (stepKey) => {
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.work_mode') }}</p>
                                 <div class="flex flex-wrap gap-1">
-                                    <span class="text-sm font-black text-blue-900 uppercase tracking-tight" v-for="mode in application.workingMode">{{ mode.allTranslations.title[usePage().props.language] }}</span>
+                                    <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight" v-for="mode in application.workingMode">{{ mode.allTranslations.title[usePage().props.language] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +249,7 @@ const isActiveStep = (stepKey) => {
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.contract') }}</p>
                                 <div class="flex flex-wrap gap-1">
-                                    <span class="text-sm font-black text-blue-900 uppercase tracking-tight" v-for="type in application.typeOfContract">{{ type.allTranslations.name[usePage().props.language] }}</span>
+                                    <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight" v-for="type in application.typeOfContract">{{ type.allTranslations.name[usePage().props.language] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -260,7 +260,7 @@ const isActiveStep = (stepKey) => {
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.work_time') }}</p>
-                                <span class="text-sm font-black text-blue-900 uppercase tracking-tight">{{ application?.workLoad.allTranslations.name[usePage().props.language] }}</span>
+                                <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ application?.workLoad.allTranslations.name[usePage().props.language] }}</span>
                             </div>
                         </div>
 
@@ -331,7 +331,7 @@ const isActiveStep = (stepKey) => {
                                       :class="getStatusTextColor(item.key)">
                                     {{ application.statusDates[item.key] }}
                                 </span>
-                                <p class="text-sm text-slate-700 leading-relaxed font-medium">{{ item.message }}</p>
+                                <p class="text-sm text-[#0A2C5C] leading-relaxed font-medium uppercase">{{ item.message }}</p>
                             </div>
                         </div>
                     </div>

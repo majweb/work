@@ -2,10 +2,16 @@
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import __ from '@/lang.js';
+import moment from 'moment/moment.js';
+import 'moment/dist/locale/pl';
+import 'moment/dist/locale/zh-cn';
 
 const props = defineProps({
     notifications: Object
 });
+
+// Ustawienie locale dla moment.js
+moment.locale(usePage().props.language);
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -94,8 +100,8 @@ const markAllAsRead = () => {
                 <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-8">
                         <div class="flex justify-between items-center">
-                            <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.notifications') }}</h2>
+                            <div class="uppercase">
+                                <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.notifications') }}</h2>
                                 <p class="text-sm text-gray-500 mt-1">{{ __('translate.stayInformedAboutYourUpdates') }}</p>
                             </div>
 
@@ -121,7 +127,7 @@ const markAllAsRead = () => {
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('translate.noNotificationsYet') }}</h3>
+                        <h3 class="text-xl font-bold text-[#0A2C5C] mb-2">{{ __('translate.noNotificationsYet') }}</h3>
                     </div>
 
                     <div v-else class="space-y-4">
@@ -136,9 +142,9 @@ const markAllAsRead = () => {
 
                             <div class="flex-1 min-w-0">
                                 <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                                    <div class="flex-1">
+                                    <div class="flex-1 uppercase">
                                         <h4 class="text-lg font-bold leading-snug transition-colors"
-                                            :class="[!notification.read_at ? 'text-gray-900' : 'text-gray-500']">
+                                            :class="[!notification.read_at ? 'text-[#0A2C5C]' : 'text-gray-500']">
                                             {{ formatNotification(notification).title }}
                                         </h4>
                                         <div class="mt-2 text-sm leading-relaxed"
@@ -156,7 +162,9 @@ const markAllAsRead = () => {
                                     </div>
 
                                     <div class="flex flex-col items-end gap-3 shrink-0">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 px-2 py-1 rounded-md">{{ formatDate(notification.created_at) }}</span>
+                                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 px-2 py-1 rounded-md">
+                                            {{ moment(notification.created_at).fromNow() }}
+                                        </span>
 
                                         <div v-if="!notification.read_at" class="flex gap-2">
                                             <button @click="markAsRead(notification.id)"

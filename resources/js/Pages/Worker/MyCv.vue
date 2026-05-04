@@ -233,7 +233,7 @@ const submit = () => {
 <template>
     <AppLayout :title="__('translate.dashboard')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-[#0A2C5C] leading-tight">
                 {{ __('translate.myCv') }}
             </h2>
         </template>
@@ -244,8 +244,8 @@ const submit = () => {
                     <div class="p-8">
                         <div class="flex justify-between items-center">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.myCv') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">Zarządzaj swoimi życiorysami i dbaj o ich profesjonalny wygląd</p>
+                                <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.myCv') }}</h2>
+                                <p class="text-sm text-gray-500 mt-1 uppercase">Zarządzaj swoimi życiorysami i dbaj o ich profesjonalny wygląd</p>
                             </div>
                         </div>
                     </div>
@@ -266,8 +266,8 @@ const submit = () => {
                                     : 'bg-white border-gray-100 hover:border-blue-100 hover:bg-blue-50/30 shadow-sm'"
                             >
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="text-sm font-bold truncate transition-colors"
-                                        :class="selectedCv?.id === cv.id ? 'text-white' : 'text-gray-900'">
+                                    <h4 class="text-sm font-bold truncate transition-colors uppercase"
+                                        :class="selectedCv?.id === cv.id ? 'text-white' : 'text-[#0A2C5C]'">
                                         CV {{ cv.project.category.allTranslations.title[usePage().props.language] }}
                                     </h4>
                                     <p class="text-[10px] font-bold uppercase tracking-tight mt-1"
@@ -295,7 +295,7 @@ const submit = () => {
                                 <div class="p-8">
                                     <div class="flex justify-between items-center mb-8">
                                         <div>
-                                            <h3 class="text-xl font-bold text-gray-900">{{ __('translate.basic_info') }}</h3>
+                                            <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.basic_info') }}</h3>
                                             <p class="text-xs text-gray-500 mt-1">Uzupełnij swoje dane kontaktowe</p>
                                         </div>
                                     </div>
@@ -370,7 +370,7 @@ const submit = () => {
                                     <form @submit.prevent="submit">
                                         <div class="flex justify-between items-center mb-8">
                                             <div>
-                                                <h3 class="text-xl font-bold text-gray-900">{{ __('translate.experience') }}</h3>
+                                                <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.experience') }}</h3>
                                                 <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.experiences.length }}/5</p>
                                             </div>
                                             <PrimaryButton
@@ -502,7 +502,7 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-gray-900">{{ __('translate.education') }}</h3>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.education') }}</h3>
                                                     <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.educations.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
@@ -589,7 +589,7 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-gray-900">{{ __('translate.courses') }}</h3>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.courses') }}</h3>
                                                     <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.courses.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
@@ -662,7 +662,7 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-gray-900">{{ __('translate.langKnow') }}</h3>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.langKnow') }}</h3>
                                                     <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.langs.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
@@ -746,7 +746,7 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-gray-900">{{ __('translate.skills') }}</h3>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.skills') }}</h3>
                                                     <p class="text-xs text-gray-500 mt-1">Podaj swoje mocne strony</p>
                                                 </div>
                                             </div>
@@ -796,14 +796,14 @@ const submit = () => {
                         </div>
 
                         <!-- PLACEHOLDER BRAKU WYBORU -->
-                        <div v-else class="flex flex-col items-center justify-center h-[600px] bg-white rounded-3xl border border-dashed border-gray-200 p-12 text-center">
+                        <div v-else class="flex flex-col items-center justify-center h-[600px] bg-white rounded-3xl border border-dashed border-gray-200 p-12 text-center uppercase">
                             <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('translate.chooseCvToEdit') }}</h3>
-                            <p class="text-gray-400 max-w-xs mx-auto">Wybierz jeden ze swoich życiorysów z listy po lewej stronie, aby rozpocząć edycję.</p>
+                            <h3 class="text-xl font-bold text-[#0A2C5C] mb-2">{{ __('translate.chooseCvToEdit') }}</h3>
+                            <p class="text-gray-400 max-w-xs mx-auto">{{ __('translate.chooseCvToEditClick') }} </p>
                         </div>
                     </div>
                 </div>

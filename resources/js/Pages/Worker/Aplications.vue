@@ -142,7 +142,7 @@ const getApplicationProgress = (status) => {
 <template>
     <AppLayout :title="__('translate.dashboard')">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-[#0A2C5C] leading-tight">
                 {{ __('translate.aplications') }}
             </h2>
         </template>
@@ -153,8 +153,8 @@ const getApplicationProgress = (status) => {
                 <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-8">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.aplications') }}</h2>
+                            <div class="uppercase">
+                                <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.aplications') }}</h2>
                                 <p class="text-sm text-gray-500 mt-1">{{ __('translate.manageYourApplications') }}</p>
                             </div>
 
@@ -254,7 +254,7 @@ const getApplicationProgress = (status) => {
                                             <div class="w-2.5 h-2.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
                                             <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.yes') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.yes }}</span>
+                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.yes }}</span>
                                     </div>
 
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
@@ -262,7 +262,7 @@ const getApplicationProgress = (status) => {
                                             <div class="w-2.5 h-2.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
                                             <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.no') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.no }}</span>
+                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.no }}</span>
                                     </div>
 
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
@@ -270,7 +270,7 @@ const getApplicationProgress = (status) => {
                                             <div class="w-2.5 h-2.5 rounded-full bg-gray-300 shadow-sm shadow-gray-200"></div>
                                             <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.sent') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.sent }}</span>
+                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.sent }}</span>
                                     </div>
 
                                     <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
@@ -278,7 +278,7 @@ const getApplicationProgress = (status) => {
                                             <div class="w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
                                             <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.maybe') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-gray-900">{{ stats.maybe }}</span>
+                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.maybe }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +313,7 @@ const getApplicationProgress = (status) => {
                                                     <span class="w-1 h-1 bg-gray-200 rounded-full"></span>
                                                     <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">{{ application.company }}</span>
                                                 </div>
-                                                <h4 class="text-lg font-black text-gray-900 truncate leading-tight group-hover:text-[#0A2C5C] transition-colors">{{ application.title }}</h4>
+                                                <h4 class="text-lg font-black text-[#0A2C5C] truncate leading-tight group-hover:text-[#0A2C5C] transition-colors">{{ application.title }}</h4>
                                                 <p class="text-sm font-bold text-gray-400 mt-1 uppercase tracking-tight">{{ application.department }}</p>
                                             </div>
                                         </div>
@@ -345,8 +345,8 @@ const getApplicationProgress = (status) => {
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                         </svg>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('translate.empty.title') }}</h3>
-                                    <p class="text-sm text-gray-400 max-w-xs mx-auto">{{ __('translate.empty.description') }}</p>
+                                    <h3 class="text-xl font-bold text-[#0A2C5C] mb-2 uppercase">{{ __('translate.empty.title') }}</h3>
+                                    <p class="text-sm text-gray-400 max-w-xs mx-auto uppercase">{{ __('translate.empty.description') }}</p>
                                 </div>
                             </div>
                         </div>

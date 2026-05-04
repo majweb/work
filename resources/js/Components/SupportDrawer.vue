@@ -241,7 +241,7 @@ const submit = () => {
                                                 <input
                                                     v-model="form.subject"
                                                     type="text"
-                                                    class="w-full bg-gray-50 border-0 rounded-[2rem] px-5 py-3 text-sm font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all"
+                                                    class="w-full bg-gray-50 border-0 rounded-[2rem] px-5 py-3 text-xs font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all"
                                                     :placeholder="__('translate.support_subject')"
                                                 />
                                                 <InputError :message="form.errors.subject" />
@@ -254,7 +254,7 @@ const submit = () => {
                                                     v-model="form.content"
                                                     rows="5"
                                                     maxlength="500"
-                                                    class="w-full bg-gray-50 border-0 rounded-[2.5rem] px-5 py-3 text-sm font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all resize-none"
+                                                    class="w-full bg-gray-50 border-0 rounded-[2.5rem] px-5 py-3 text-xs font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all resize-none"
                                                     :placeholder="__('translate.support_content')"
                                                 ></textarea>
                                                 <div class="flex justify-end px-4">
