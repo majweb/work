@@ -230,11 +230,11 @@ const submit = () => {
                                 <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsSelected}"></div>
                                 <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                             </div>
-                            <div class="text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllAgreementsSelected ? 'text-[#00a0e3]' : 'text-gray-500'">
-                                <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
+                            <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllAgreementsSelected ? 'text-[#0A2C5C]' : 'text-gray-500'">
+                                <span class="cursor-pointer uppercase" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
                                 <button
                                     type="button"
-                                    class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                    class="text-[#0A2C5C] font-black uppercase hover:underline cursor-pointer decoration-2 underline-offset-4"
                                     @click.stop="showAgreementsModal = true"
                                 >
                                     {{ __('translate.agreements') }}
@@ -323,8 +323,8 @@ const submit = () => {
                                 <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': form.terms}"></div>
                                 <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="form.terms ? 'translate-x-5 bg-blue-50' : 'bg-white'"></div>
                             </div>
-                            <div class="ml-5 text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="form.terms ? 'text-[#00a0e3]' : 'text-gray-400'">
-                                {{ __('translate.agree') }}
+                            <div class="ml-5 text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="form.terms ? 'text-[#0A2C5C]' : 'text-gray-400'">
+                                <span class="uppercase">{{ __('translate.agree') }}</span>
                                 <a :href="route('terms.show')" target="_blank" class="text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-red-500/30 hover:decoration-red-600">{{ __('translate.terms') }}</a>
                                 {{ __('translate.and') }}
                                 <a :href="route('policy.show')" target="_blank" class="text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-red-500/30 hover:decoration-red-600">{{ __('translate.policy') }}</a>

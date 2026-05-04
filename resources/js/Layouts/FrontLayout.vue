@@ -216,7 +216,7 @@ const socialLinks = [
 
                 <!-- Language selector and auth -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <div class="custom-multiselect w-48">
+                    <div class="custom-multiselect w-40">
                         <Multiselect
                             v-model="lang"
                             :options="sortLangs"
@@ -486,11 +486,11 @@ const socialLinks = [
                                         <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllNewsletterAgreementsSelected}"></div>
                                         <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllNewsletterAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                                     </div>
-                                    <div class="text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllNewsletterAgreementsSelected ? 'text-[#00a0e3]' : 'text-gray-500'">
-                                        <span class="cursor-pointer" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
+                                    <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllNewsletterAgreementsSelected ? 'text-[#0A2C5C]' : 'text-gray-500'">
+                                        <span class="cursor-pointer uppercase" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
                                         <button
                                             type="button"
-                                            class="uppercase text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                            class="uppercase text-[#0A2C5C] font-black hover:underline cursor-pointer decoration-2 underline-offset-4"
                                             @click.stop="showNewsletterAgreements = true"
                                         >
                                             {{ __('translate.newsletter_agreements') }}
@@ -566,30 +566,35 @@ const socialLinks = [
 .custom-multiselect {
     .multiselect__tags {
         border: 1px solid #f3f4f6; /* border-gray-100 */
-        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
-        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        border-radius: 0.75rem; /* rounded-xl (12px) */
+        padding: 8px 30px 8px 16px; /* Adjusted to match py-3 (approx 12px) but multiselect needs inner padding adjustment */
         background: #f9fafb; /* bg-gray-50 */
         transition: all 0.3s ease;
+        min-height: 40px; /* To match button height roughly */
+        display: flex;
+        align-items: center;
     }
 
     .multiselect__placeholder {
         margin-bottom: 0;
         padding-top: 0;
         color: #9ca3af; /* text-gray-400 */
-        font-size: 0.75rem; /* text-xs */
-        font-weight: 700;
+        font-size: 10px; /* text-[10px] */
+        font-weight: 900; /* font-black */
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        line-height: 24px;
     }
 
     .multiselect__single {
         margin-bottom: 0;
         padding-left: 0;
-        font-size: 0.75rem;
+        font-size: 10px; /* text-[10px] */
         background: transparent;
-        font-weight: 700;
+        font-weight: 900; /* font-black */
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        line-height: 24px;
     }
 
     .multiselect__input,
@@ -600,21 +605,22 @@ const socialLinks = [
     .multiselect__input {
         margin-bottom: 0;
         background: transparent;
-        font-size: 0.75rem;
-        font-weight: 700;
+        font-size: 10px;
+        font-weight: 900;
+        line-height: 24px;
     }
 
     .multiselect__select {
-        height: 100%;
-        width: 2.5rem;
+        height: 40px;
+        width: 30px;
     }
 
     .multiselect__option--highlight {
         background: #0A2C5C !important;
         outline: none;
         color: white;
-        font-size: 0.75rem;
-        font-weight: 700;
+        font-size: 10px;
+        font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 0.1em;
     }
@@ -628,15 +634,16 @@ const socialLinks = [
     .multiselect__content-wrapper {
         border: 1px solid #f3f4f6;
         border-top: none;
-        border-bottom-left-radius: 1rem;
-        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 50 !important;
     }
 
     .multiselect__tag {
         background: #00a0e3 !important;
-        border-radius: 0.75rem;
-        font-size: 10px;
+        border-radius: 0.5rem;
+        font-size: 9px;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -658,8 +665,29 @@ const socialLinks = [
     .multiselect__input,
     .multiselect__option,
     .multiselect__option--highlight {
-        font-size: 0.65rem !important;
+        font-size: 10px !important;
         text-transform: uppercase !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    .multiselect__tags {
+        padding: 0 30px 0 16px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .multiselect__placeholder {
+        line-height: 38px !important; /* height - borders */
+    }
+
+    .multiselect__single {
+        line-height: 38px !important;
+    }
+
+    .multiselect__input {
+        line-height: 38px !important;
+        padding: 0 !important;
     }
 
     .multiselect__tag {

@@ -273,11 +273,11 @@ const submit = () => {
                                                         <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsChecked}"></div>
                                                         <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsChecked ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                                                     </div>
-                                                    <div class="text-[10px] font-black uppercase tracking-widest leading-relaxed">
-                                                        <span @click="toggleAllAgreements" class="cursor-pointer transition-colors duration-300" :class="isAllAgreementsChecked ? 'text-[#00a0e3]' : 'text-gray-400'">
+                                                    <div class="text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="isAllAgreementsChecked ? 'text-[#0A2C5C]' : 'text-gray-400'">
+                                                        <span @click="toggleAllAgreements" class="cursor-pointer uppercase">
                                                             {{ __('translate.agree_to') }}
                                                         </span>
-                                                        <button type="button" @click.stop="agreementsModalVisible = true" class="text-[#00a0e3] hover:underline ml-1">
+                                                        <button type="button" @click.stop="agreementsModalVisible = true" class="text-[#0A2C5C] font-black uppercase hover:underline ml-1">
                                                             {{ __('translate.agreements') }}
                                                         </button>
                                                     </div>

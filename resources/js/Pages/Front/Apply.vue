@@ -921,16 +921,16 @@ const removeFile = async (source, load) => {
                                         </InputLabel>
 
                                         <div class="mb-4 flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm group">
-                                            <div class="text-xs font-black text-gray-500 group-hover:text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest flex items-center gap-1.5 flex-wrap">
+                                            <div class="text-xs font-black text-[#0A2C5C] transition-colors pt-0.5 leading-relaxed uppercase tracking-widest flex items-center gap-1.5 flex-wrap">
                                                 <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
                                                     <Checkbox :checked="isAllAgreementsSelected" name="agree" class="sr-only" />
-                                                    <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200"></div>
+                                                    <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsSelected}"></div>
                                                     <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                                                 </div>
-                                                <span class="cursor-pointer" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
+                                                <span class="cursor-pointer uppercase" :class="isAllAgreementsSelected ? 'text-[#0A2C5C]' : 'text-gray-400'" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
                                                 <button
                                                     type="button"
-                                                    class="text-[#00AEEF] hover:underline cursor-pointer decoration-2 underline-offset-4"
+                                                    class="text-[#0A2C5C] font-black uppercase hover:underline cursor-pointer decoration-2 underline-offset-4"
                                                     @click.stop="showAgreementsModal = true"
                                                 >
                                                     {{ __('translate.agreements') }}
