@@ -172,7 +172,7 @@ class FrontController extends Controller
     {
         $searchStatisticService->log(request()->all());
 
-        $query = Project::with('user.changeProducts')->featured()->active();
+        $query = Project::with('user.changeProducts')->featured()->active()->newest();
 
         $lat = request('lat');
         $lng = request('lng');

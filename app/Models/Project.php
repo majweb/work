@@ -200,4 +200,9 @@ class Project extends Model
     {
         return $query->where('is_active', true);
     }
+
+    public function scopeNewest(Builder $query)
+    {
+        return $query->latest();
+    }
 }
