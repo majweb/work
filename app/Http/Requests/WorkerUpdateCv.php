@@ -51,7 +51,7 @@ class WorkerUpdateCv extends FormRequest
                         if (empty($value)) {
                             return $fail(__('translate.experiencesPositionRequired'));
                         }
-                }],
+                },'nullable','array'],
             'experiences.*.start'=>[
                 function ($attribute, $value, $fail) {
                         if (empty($value)) {
@@ -86,8 +86,8 @@ class WorkerUpdateCv extends FormRequest
                         if (!isset($startDate['year'], $startDate['month']) || !is_numeric($startDate['year']) || !is_numeric($startDate['month'])) {
                             return $fail(__('translate.invalidDateFormat'));
                         }
-                        $startFormatted = sprintf('%04d-%02d', $startDate['year'], $startDate['month'] + 1);
-                        $endFormatted = sprintf('%04d-%02d', $value['year'], $value['month'] + 1);
+                        $startFormatted = sprintf('%04d-%02d', $startDate['year'], $startDate['month']);
+                        $endFormatted = sprintf('%04d-%02d', $value['year'], $value['month']);
 
                         if (!preg_match('/^\d{4}-\d{2}$/', $endFormatted)) {
                             return $fail(__('translate.invalidDateFormat'));
@@ -139,7 +139,7 @@ class WorkerUpdateCv extends FormRequest
                             return $fail(__('translate.educationsSchoolLevelRequired'));
                         }
 
-                }],
+                },'array'],
             'educations.*.specialization' => ['max:100',
                 function ($attribute, $value, $fail) {
                         if (empty($value)) {
@@ -157,7 +157,7 @@ class WorkerUpdateCv extends FormRequest
                             return $fail(__('translate.experiencesDateRequired'));
                         }
 
-                        if (!is_int($value)) {
+                        if (!is_numeric($value)) {
                             return $fail(__('translate.invalidYearFormat'));
                         }
                 },
@@ -240,19 +240,23 @@ class WorkerUpdateCv extends FormRequest
                         return $fail(__('translate.langsNameRequired'));
                     }
                     $index = explode('.', $attribute)[1];
-                    $names = collect(request()->input('langs'))->pluck('name.value');  // zakładając, że name ma 'value'
-                    $currentName = $names[$index];
+                    $langs = request()->input('langs');
+                    $currentName = isset($langs[$index]['name']['value']) ? $langs[$index]['name']['value'] : null;
+
+                    if (!$currentName) return;
+
+                    $names = collect($langs)->pluck('name.value');
                     if ($names->filter(function ($item) use ($currentName) {
                             return $item == $currentName;
                         })->count() > 1) {
                         return $fail(__('translate.levelUnique')); // komunikat o błędzie
                     }
-            }],
+            },'array'],
             'langs.*.level'=>[function ($attribute, $value, $fail) {
                     if (empty($value)) {
                         return $fail(__('translate.langsLevelRequired'));
                     }
-            }],
+            },'array'],
             'skills' => ['nullable'],
         ];
     }

@@ -278,11 +278,10 @@ onMounted(async () => {
                                             track-by="value"
                                             label="name"
                                             @update:modelValue="dispatchActionSingleRecruit"
-                                            :placeholder="__('translate.placeholder')"
-                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectLabel="''"
                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                         >
@@ -313,10 +312,10 @@ onMounted(async () => {
                                             track-by="value"
                                             label="name"
                                             @update:modelValue="dispatchAction"
-                                            :selectLabel="__('translate.selectLabel')"
+                                            :selectLabel="''"
                                             :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             :placeholder="__('translate.placeholder')"
@@ -366,7 +365,7 @@ onMounted(async () => {
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salaryLabel') }}</p>
                                     <div class="flex items-baseline gap-2">
-                                        <span class="text-2xl font-black text-[#0A2C5C] tracking-tight">
+                                        <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
                                             {{ props.project.basicSalaryFrom }} - {{ props.project.basicSalaryTo }}
                                         </span>
                                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ props.project.currency?.name }}</span>

@@ -57,21 +57,6 @@ const {hasRole} = usePermission();
                         <div v-if="hasRole('firm')">
                             <UpdateProfileAboutFirmForm :user="$page.props.auth.user"/>
                         </div>
-
-                        <!-- Password Form -->
-                        <div v-if="$page.props.jetstream.canUpdatePassword && $page.props.socialstream.hasPassword">
-                            <UpdatePasswordForm/>
-                        </div>
-
-                        <!-- Set Password -->
-                        <div v-else>
-                            <SetPasswordForm/>
-                        </div>
-
-                        <!-- Two Factor Authentication -->
-                        <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication && $page.props.socialstream.hasPassword">
-                            <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication"/>
-                        </div>
                     </div>
                     <!-- Prawa kolumna -->
                     <div class="space-y-6 pt-0">
@@ -98,11 +83,28 @@ const {hasRole} = usePermission();
 
 
 
+
+                        <!-- Password Form -->
+                        <div v-if="$page.props.jetstream.canUpdatePassword && $page.props.socialstream.hasPassword">
+                            <UpdatePasswordForm/>
+                        </div>
+
+                        <!-- Set Password -->
+                        <div v-else>
+                            <SetPasswordForm/>
+                        </div>
+
+                        <!-- Two Factor Authentication -->
+                        <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication && $page.props.socialstream.hasPassword">
+                            <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication"/>
+                        </div>
+
+                        <!-- Delete User -->
+                        <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword">
+                            <DeleteUserForm/>
+                        </div>
+
                     </div>
-                </div>
-                <!-- Delete User -->
-                <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword" class="pb-12">
-                    <DeleteUserForm/>
                 </div>
             </div>
         </div>

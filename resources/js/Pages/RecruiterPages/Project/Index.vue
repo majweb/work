@@ -189,7 +189,7 @@ const { getPositionTitle } = useProjectHelpers();
                 <!-- Header Card -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <div class="flex justify-between items-center">
-                        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
                             {{ __('translate.offerts') }}
                         </h2>
                         <Link

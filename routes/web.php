@@ -472,6 +472,7 @@ Route::middleware([
         Route::get('aplications', [WorkerController::class, 'aplications'])->name('aplications');
         Route::get('mycv', [WorkerController::class, 'myCv'])->name('myCv');
         Route::put('myCvUpdateCv/{selectedCv}', [WorkerController::class, 'myCvUpdateCv'])->name('myCvUpdateCv');
+        Route::put('myCvUpdateBasic/{selectedCv}', [WorkerController::class, 'updateBasicInformation'])->name('myCvUpdateBasic');
         Route::get('aplication/{aplication}', [WorkerController::class, 'singleAplication'])->name('singleAplication');
     });
 });

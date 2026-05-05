@@ -645,8 +645,8 @@ class ProjectController extends Controller
             'questions' => strtolower(__('translate.questions')),
             'external_company_id' => strtolower(__('translate.externalCompany')),
             'is_active' => strtolower(__('translate.projectIsActive')),
-            'cv' => 'typ CV',
-            'currency' => 'waluta',
+            'cv' => strtolower(__('translate.cvType')),
+            'currency' => strtolower(__('translate.currency')),
         ]);
 
         if ($validator->fails()) {

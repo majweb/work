@@ -10,6 +10,7 @@ import Checkbox from "@/Components/Checkbox.vue";
 import InputError from "@/Components/InputError.vue";
 import draggable from 'vuedraggable/src/vuedraggable'
 import Multiselect from 'vue-multiselect';
+import SpinnerAction from "@/Components/SpinnerAction.vue";
 
 const page = usePage()
 const user = page.props.auth.user
@@ -26,6 +27,7 @@ const props = defineProps({
    STAN WYBRANEGO CV
 ========================= */
 const selectedCv = ref(null)
+const isLoadingCv = ref(false)
 
 /* =========================
    FORM
@@ -51,8 +53,8 @@ const normalizeDate = (dateObj) => {
     }
     if (typeof dateObj === 'object' && dateObj.year !== undefined && dateObj.month !== undefined) {
         return {
-            year: dateObj.year,
-            month: dateObj.month + 1
+            year: parseInt(dateObj.year),
+            month: parseInt(dateObj.month) + 1
         };
     }
     return null;
@@ -61,26 +63,39 @@ const normalizeDate = (dateObj) => {
    WYBÓR CV + ŁADOWANIE DANYCH
 ========================= */
 const selectCv = (cv) => {
+    isLoadingCv.value = true;
     selectedCv.value = cv;
     console.log(cv)
     // 🔥 ŁADOWANIE DANYCH DO FORMULARZA
+    form.name = user.name
+    form.surname = user.worker_detail?.surname ?? ""
+    form.contact_phone = user.worker_detail?.contact_phone ?? ""
+    form.email = user.email
     form.birthdate = cv?.birthday ?? ""
     form.city = cv?.city ?? ""
     form.zip = cv?.postal ?? ""
     formCv.experiences = cv?.experiences ? cv?.experiences.map(exp => ({
         ...exp,
-        start: exp.start ? { month: exp.start.month - 1, year: exp.start.year } : null,
-        end: exp.end ? { month: exp.end.month - 1, year: exp.end.year } : null,
+        start: exp.start ? { month: parseInt(exp.start.month) - 1, year: parseInt(exp.start.year) } : null,
+        end: exp.end ? { month: parseInt(exp.end.month) - 1, year: parseInt(exp.end.year) } : null,
     })) : []
-    formCv.educations = cv?.educations ? cv?.educations : []
+    formCv.educations = cv?.educations ? cv?.educations.map(edu => ({
+        ...edu,
+        finish: edu.finish ? parseInt(edu.finish) : null
+    })) : []
 
     formCv.courses = cv?.courses ? cv?.courses.map(course => ({
         ...course,
-        date: course.date ? { month: course.date.month - 1, year: course.date.year } : null,
+        date: course.date ? { month: parseInt(course.date.month) - 1, year: parseInt(course.date.year) } : null,
     })) : []
 
     formCv.langs = cv?.langs ? cv?.langs : []
     formCv.skills = cv?.skills ? cv?.skills : []
+
+    // Symulacja ładowania dla UX
+    setTimeout(() => {
+        isLoadingCv.value = false;
+    }, 300);
 }
 const sortLangs = computed(() => {
     const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
@@ -121,7 +136,7 @@ const updateProfileInformation = () => {
         form.photo = photoInput.value.files[0]
     }
 
-    form.post(route("user-profile-information.update"), {
+    form.post(route("worker.myCvUpdateBasic", selectedCv.value), {
         preserveScroll: true,
         onSuccess: () => clearPhotoFileInput(),
     })
@@ -288,7 +303,12 @@ const submit = () => {
                     </div>
 
                     <!-- PRAWA KOLUMNA: EDYCJA CV -->
-                    <div class="flex-1 w-full min-w-0">
+                    <div class="flex-1 w-full min-w-0 relative">
+                        <!-- Loader dla Multiselect / Ładowania CV -->
+                        <div v-if="isLoadingCv" class="absolute inset-0 bg-white/50 backdrop-blur-[1px] z-50 flex items-center justify-center rounded-3xl">
+                             <SpinnerAction :show="true" class="!w-12 !h-12 text-[#0A2C5C]" />
+                        </div>
+
                         <div v-if="selectedCv" class="space-y-8">
                             <!-- INFORMACJE PODSTAWOWE -->
                             <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
@@ -357,6 +377,7 @@ const submit = () => {
                                                 {{ __('translate.saved_success') }}
                                             </ActionMessage>
                                             <PrimaryButton :disabled="form.processing" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all" :class="{ 'opacity-25': form.processing }">
+                                                <SpinnerAction :show="form.processing" />
                                                 {{ __('translate.save') }}
                                             </PrimaryButton>
                                         </div>
@@ -366,7 +387,7 @@ const submit = () => {
 
                             <!-- DOŚWIADCZENIE -->
                             <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                                <div class="p-8">
+                                <div class="p-4 md:p-8">
                                     <form @submit.prevent="submit">
                                         <div class="flex justify-between items-center mb-8">
                                             <div>
@@ -377,9 +398,9 @@ const submit = () => {
                                                 type="button"
                                                 v-if="formCv.experiences.length < 5"
                                                 @click="addExperience"
-                                                class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl"
+                                                class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
                                             >
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                 </svg>
                                                 {{ __('translate.addExperience') }}
@@ -400,8 +421,8 @@ const submit = () => {
                                             class="space-y-6"
                                         >
                                             <template #item="{ element: experience, index }">
-                                                <div class="relative p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                    <div class="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                                <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                    <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
                                                         <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
                                                             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                                                 <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -409,17 +430,18 @@ const submit = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pl-4 md:pl-10">
+                                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
                                                         <!-- POSITION -->
                                                         <div class="flex flex-col gap-1">
                                                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.position') }}</span>
                                                             <multiselect
-                                                                :selectLabel="__('translate.selectLabel')"
-                                                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                                :selectedLabel="__('translate.selectedLabel')"
-                                                                :deselectLabel="__('translate.deselectLabel')"
+                                                                :selectLabel="''"
+                                                                :selectGroupLabel="''"
+                                                                :selectedLabel="''"
+                                                                :deselectLabel="''"
                                                                 :noOptions="__('translate.noOptions')"
                                                                 :noResult="__('translate.noResult')"
+                                                                :loading="isLoadingCv"
                                                                 track-by="value"
                                                                 label="name"
                                                                 :placeholder="__('translate.position')"
@@ -488,7 +510,7 @@ const submit = () => {
                                                     <button
                                                         type="button"
                                                         @click="removeElement(index)"
-                                                        class="absolute top-4 right-4 p-2 text-gray-300 hover:text-red-500 transition-colors opacity-0 group-hover/item:opacity-100"
+                                                        class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100"
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -509,9 +531,9 @@ const submit = () => {
                                                     type="button"
                                                     v-if="formCv.educations.length < 5"
                                                     @click="addEducation"
-                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl"
+                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
                                                     {{ __('translate.addEducation') }}
@@ -526,8 +548,8 @@ const submit = () => {
 
                                             <draggable :list="formCv.educations" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
                                                 <template #item="{ element: education, index }">
-                                                    <div class="relative p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                        <div class="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                                    <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                        <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
                                                             <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
                                                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                                                     <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -535,7 +557,7 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pl-4 md:pl-10">
+                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
                                                             <div class="flex flex-col gap-1 lg:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.school') }}</span>
                                                                 <TextInput v-model="education.school" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.school')"/>
@@ -544,12 +566,13 @@ const submit = () => {
                                                             <div class="flex flex-col gap-1 lg:col-span-2" v-if="props.levelEducations">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.levelEducation') }}</span>
                                                                 <multiselect
-                                                                    :selectLabel="__('translate.selectLabel')"
-                                                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                                    :selectedLabel="__('translate.selectedLabel')"
-                                                                    :deselectLabel="__('translate.deselectLabel')"
+                                                                    :selectLabel="''"
+                                                                    :selectGroupLabel="''"
+                                                                    :selectedLabel="''"
+                                                                    :deselectLabel="''"
                                                                     :noOptions="__('translate.noOptions')"
                                                                     :noResult="__('translate.noResult')"
+                                                                    :loading="isLoadingCv"
                                                                     track-by="value"
                                                                     label="name"
                                                                     :placeholder="__('translate.levelEducation')"
@@ -575,7 +598,7 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" @click="removeElementArray(index,formCv.educations)" class="absolute top-4 right-4 p-2 text-gray-300 hover:text-red-500 transition-colors opacity-0 group-hover/item:opacity-100">
+                                                        <button type="button" @click="removeElementArray(index,formCv.educations)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
@@ -596,9 +619,9 @@ const submit = () => {
                                                     type="button"
                                                     v-if="formCv.courses.length < 5"
                                                     @click="addCourse"
-                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl"
+                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
                                                     {{ __('translate.addCourse') }}
@@ -613,8 +636,8 @@ const submit = () => {
 
                                             <draggable :list="formCv.courses" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
                                                 <template #item="{ element: course, index }">
-                                                    <div class="relative p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                        <div class="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                                    <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                        <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
                                                             <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
                                                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                                                     <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -622,7 +645,7 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pl-4 md:pl-10">
+                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
                                                             <div class="flex flex-col gap-1 lg:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.name') }}</span>
                                                                 <TextInput v-model="course.name" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.name')"/>
@@ -648,7 +671,7 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" @click="removeElementArray(index,formCv.courses)" class="absolute top-4 right-4 p-2 text-gray-300 hover:text-red-500 transition-colors opacity-0 group-hover/item:opacity-100">
+                                                        <button type="button" @click="removeElementArray(index,formCv.courses)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
@@ -669,9 +692,9 @@ const submit = () => {
                                                     type="button"
                                                     v-if="formCv.langs.length < 5"
                                                     @click="addLang"
-                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl"
+                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
                                                     {{ __('translate.addLang') }}
@@ -686,8 +709,8 @@ const submit = () => {
 
                                             <draggable :list="formCv.langs" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
                                                 <template #item="{ element: lang, index }">
-                                                    <div class="relative p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                        <div class="absolute left-4 top-1/2 -translate-y-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                                    <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                        <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
                                                             <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
                                                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                                                     <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -695,15 +718,16 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pl-4 md:pl-10">
+                                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
                                                             <div class="flex flex-col gap-1">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.name') }}</span>
                                                                 <multiselect
-                                                                    :selectLabel="__('translate.selectLabel')"
-                                                                    :selectedLabel="__('translate.selectedLabel')"
-                                                                    :deselectLabel="__('translate.deselectLabel')"
+                                                                    :selectLabel="''"
+                                                                    :selectedLabel="''"
+                                                                    :deselectLabel="''"
                                                                     :noOptions="__('translate.noOptions')"
                                                                     :noResult="__('translate.noResult')"
+                                                                    :loading="isLoadingCv"
                                                                     track-by="value"
                                                                     v-model="lang.name"
                                                                     label="label"
@@ -716,12 +740,13 @@ const submit = () => {
                                                             <div class="flex flex-col gap-1" v-if="props.langLevels">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.levelLang') }}</span>
                                                                 <multiselect
-                                                                    :selectLabel="__('translate.selectLabel')"
-                                                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                                    :selectedLabel="__('translate.selectedLabel')"
-                                                                    :deselectLabel="__('translate.deselectLabel')"
+                                                                    :selectLabel="''"
+                                                                    :selectGroupLabel="''"
+                                                                    :selectedLabel="''"
+                                                                    :deselectLabel="''"
                                                                     :noOptions="__('translate.noOptions')"
                                                                     :noResult="__('translate.noResult')"
+                                                                    :loading="isLoadingCv"
                                                                     track-by="value"
                                                                     label="name"
                                                                     :placeholder="__('translate.levelLang')"
@@ -732,7 +757,7 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" @click="removeElementArray(index,formCv.langs)" class="absolute top-4 right-4 p-2 text-gray-300 hover:text-red-500 transition-colors opacity-0 group-hover/item:opacity-100">
+                                                        <button type="button" @click="removeElementArray(index,formCv.langs)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
@@ -762,14 +787,15 @@ const submit = () => {
                                                     :multiple="true"
                                                     :taggable="true"
                                                     @tag="addSkill"
-                                                    :selectLabel="__('translate.selectLabel')"
-                                                    :selectedLabel="__('translate.selectedLabel')"
-                                                    :deselectLabel="__('translate.deselectLabel')"
+                                                    :selectLabel="''"
+                                                    :selectedLabel="''"
+                                                    :deselectLabel="''"
                                                     :noOptions="__('translate.noOptions')"
                                                     :tag-placeholder="__('translate.tagdeselectLabel')"
                                                     :placeholder="__('translate.skills')"
                                                     :noResult="__('translate.noResult')"
                                                     :max-elements="true"
+                                                    :loading="isLoadingCv"
                                                     class="custom-multiselect"
                                                 >
                                                     <template v-slot:maxElements>
@@ -785,8 +811,9 @@ const submit = () => {
 
                                         <div class="flex justify-end mt-12 pt-8 border-t border-gray-100">
                                             <PrimaryButton class="rounded-2xl px-12 py-4 bg-[#0A2C5C] hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 active:translate-y-0"
-                                                           :class="{ 'opacity-25': form.processing }"
-                                                           :disabled="form.processing">
+                                                           :class="{ 'opacity-25': formCv.processing }"
+                                                           :disabled="formCv.processing">
+                                                <SpinnerAction :show="formCv.processing" />
                                                 {{ __('translate.save') }}
                                             </PrimaryButton>
                                         </div>
@@ -869,9 +896,9 @@ const submit = () => {
     }
 
     &.multiselect--active .multiselect__tags {
-        background-color: #ffffff;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        //background-color: #ffffff;
+        //border-color: #3b82f6;
+        //box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
     }
 
     .multiselect__tag {

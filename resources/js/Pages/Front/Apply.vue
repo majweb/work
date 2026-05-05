@@ -591,7 +591,7 @@ const removeFile = async (source, load) => {
                                 <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                     {{ __('translate.aplicationsType') }}
                                 </dt>
-                                <dd class="text-sm font-black text-[#0A2C5C] truncate uppercase">
+                                <dd class="text-sm font-black text-[#0A2C5C] uppercase">
                                     {{
                                         user && hasRole('worker') ? __('translate.aplicationsWorker') : __('translate.applyWithoutLogin')
                                     }}
@@ -599,7 +599,7 @@ const removeFile = async (source, load) => {
                             </div>
                             <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50">
                                 <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                                    Wymagane CV
+                                    {{ __('translate.cvRequired') }}
                                 </dt>
                                 <dd class="text-sm font-black text-[#0A2C5C] uppercase">
                                     {{
@@ -609,7 +609,7 @@ const removeFile = async (source, load) => {
                             </div>
                             <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50" v-if="project.category.parent">
                                 <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
-                                    Główna kategoria
+                                    {{ __('translate.mainCategory') }}
                                 </dt>
                                 <dd class="text-sm font-black text-[#0A2C5C] truncate uppercase">
                                     {{ project.category.parent.title }}
@@ -1040,23 +1040,23 @@ const removeFile = async (source, load) => {
                         </div>
                         <div v-show="formStep == 2 && form.cv == 1" class="animate-fade-in space-y-12">
                             <div
-                                class="p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
-                                <InputLabel value="Jak chcesz dostarczyć CV?"
+                                class="p-6 md:p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
+                                <InputLabel :value="__('translate.howDeliverCv')"
                                             class="mb-8 font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
                                     <span class="w-1.5 h-1.5 bg-[#00a0e3] rounded-full animate-pulse"></span>
-                                    Wybierz metodę
+                                    {{ __('translate.selectMethod') }}
                                 </InputLabel>
 
-                                <ul class="grid w-full gap-8 md:grid-cols-2">
+                                <ul class="grid w-full gap-4 md:gap-8 grid-cols-1 md:grid-cols-2">
                                     <li>
                                         <input checked name="type" v-model="form.cvStandardType" type="radio"
                                                id="firm" value="1" class="hidden peer"/>
                                         <label for="firm"
-                                               class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
-                                            <div class="flex items-center gap-6">
+                                               class="inline-flex items-center justify-between w-full p-6 md:p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
+                                            <div class="flex items-center gap-4 md:gap-6">
                                                 <div
-                                                    class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
-                                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
+                                                    class="p-3 md:p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
+                                                    <svg class="w-6 h-6 md:w-8 md:h-8" xmlns="http://www.w3.org/2000/svg"
                                                          fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2"
@@ -1064,19 +1064,19 @@ const removeFile = async (source, load) => {
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <div class="w-full text-xl font-black uppercase tracking-tight">
-                                                        Wgraj plik
+                                                    <div class="w-full text-lg md:text-xl font-black uppercase tracking-tight">
+                                                        {{ __('translate.uploadFile') }}
                                                     </div>
                                                     <div
-                                                        class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
+                                                        class="w-full text-[8px] md:text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
                                                         PDF, DOC, DOCX
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
                                                 <div
-                                                    class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
-                                                    <svg class="w-5 h-5 text-white" fill="none"
+                                                    class="w-6 h-6 md:w-8 md:h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
+                                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-white" fill="none"
                                                          stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -1089,11 +1089,11 @@ const removeFile = async (source, load) => {
                                         <input name="type" v-model="form.cvStandardType" type="radio" id="client"
                                                value="2" class="hidden peer"/>
                                         <label for="client"
-                                               class="inline-flex items-center justify-between w-full p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
+                                               class="inline-flex items-center justify-between w-full p-6 md:p-8 text-gray-500 bg-white border-2 border-gray-100 rounded-[2rem] cursor-pointer peer-checked:border-[#00a0e3] peer-checked:bg-blue-50/30 peer-checked:text-[#0A2C5C] hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md group">
                                             <div class="flex items-center gap-4">
                                                 <div
-                                                    class="p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
-                                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
+                                                    class="p-3 md:p-4 bg-gray-50 rounded-2xl group-peer-checked:bg-blue-100 transition-colors">
+                                                    <svg class="w-6 h-6 md:w-8 md:h-8" xmlns="http://www.w3.org/2000/svg"
                                                          fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2"
@@ -1101,19 +1101,19 @@ const removeFile = async (source, load) => {
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <div class="w-full text-xl font-black uppercase tracking-tight">
-                                                        Kreator CV
+                                                    <div class="w-full text-lg md:text-xl font-black uppercase tracking-tight">
+                                                        {{ __('translate.cvGenerator') }}
                                                     </div>
                                                     <div
-                                                        class="w-full text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
-                                                        Wypełnij formularz
+                                                        class="w-full text-[8px] md:text-[10px] font-bold opacity-60 uppercase tracking-[0.2em] mt-1">
+                                                        {{ __('translate.fillForm') }}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="opacity-0 peer-checked:opacity-100 transition-opacity">
                                                 <div
-                                                    class="w-8 h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
-                                                    <svg class="w-5 h-5 text-white" fill="none"
+                                                    class="w-6 h-6 md:w-8 md:h-8 bg-[#00a0e3] rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40">
+                                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-white" fill="none"
                                                          stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="3" d="M5 13l4 4L19 7"/>
@@ -1273,7 +1273,7 @@ const removeFile = async (source, load) => {
                             <div v-else-if="form.cvStandardType == 2 && !form.isSelected"
                                  class="space-y-12">
                                 <div
-                                    class="grid grid-cols-1 md:grid-cols-4 gap-8 p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
+                                    class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 p-4 md:p-10 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
                                     <div class="col-span-full mb-4">
                                         <div class="flex items-center gap-4">
                                             <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Informacje o Tobie</h3>
@@ -1394,7 +1394,7 @@ const removeFile = async (source, load) => {
 
                             <!-- SEKCJA DOŚWIADCZENIA -->
                             <div id="section-experiences" class="space-y-8">
-                                <div class="flex items-center justify-between">
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                     <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                         <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                             <svg class="w-6 h-6" fill="none"
@@ -1406,7 +1406,7 @@ const removeFile = async (source, load) => {
                                         </div>
                                         {{ __('translate.experience') }}
                                     </h3>
-                                    <div class="flex items-center gap-6">
+                                    <div class="flex items-center justify-between w-full sm:w-auto gap-6">
                                         <span
                                             class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                 __('translate.quantity')
@@ -1461,7 +1461,7 @@ const removeFile = async (source, load) => {
                                             </div>
 
                                             <div
-                                                class="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                                                class="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                                                 <div v-if="optionsPositions" class="space-y-2">
                                                     <InputLabel :value="__('translate.position')"
                                                                 class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>
@@ -1562,7 +1562,7 @@ const removeFile = async (source, load) => {
 
                                 <!-- SEKCJA WYKSZTAŁCENIA -->
                                 <div id="section-educations" class="space-y-8 pt-8 border-t border-gray-100">
-                                    <div class="flex items-center justify-between">
+                                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                             <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                                 <svg class="w-6 h-6" fill="none"
@@ -1576,7 +1576,7 @@ const removeFile = async (source, load) => {
                                             </div>
                                             {{ __('translate.education') }}
                                         </h3>
-                                        <div class="flex items-center gap-6">
+                                        <div class="flex items-center justify-between w-full sm:w-auto gap-6">
                                             <span
                                                 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                     __('translate.quantity')
@@ -1715,7 +1715,7 @@ const removeFile = async (source, load) => {
 
                                 <!-- SEKCJA KURSÓW -->
                                 <div id="section-courses" class="space-y-8 pt-8 border-t border-gray-100">
-                                    <div class="flex items-center justify-between">
+                                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                             <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1726,7 +1726,7 @@ const removeFile = async (source, load) => {
                                             </div>
                                             {{ __('translate.courses') }}
                                         </h3>
-                                        <div class="flex items-center gap-6">
+                                        <div class="flex items-center justify-between w-full sm:w-auto gap-6">
                                             <span
                                                 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                     __('translate.quantity')
@@ -1810,7 +1810,7 @@ const removeFile = async (source, load) => {
                                 </div>
                                 <!-- SEKCJA JĘZYKÓW -->
                                 <div id="section-langs" class="space-y-8 pt-8 border-t border-gray-100">
-                                    <div class="flex items-center justify-between">
+                                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                         <h3 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-4">
                                             <div class="p-2.5 bg-blue-50 rounded-2xl text-[#00a0e3]">
                                                 <svg class="w-6 h-6" fill="none"
@@ -1822,7 +1822,7 @@ const removeFile = async (source, load) => {
                                             </div>
                                             {{ __('translate.language') }}
                                         </h3>
-                                        <div class="flex items-center gap-6">
+                                        <div class="flex items-center justify-between w-full sm:w-auto gap-6">
                                             <span
                                                 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                     __('translate.quantity')
@@ -1863,7 +1863,7 @@ const removeFile = async (source, load) => {
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                <div class="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                                                     <div class="space-y-2">
                                                         <InputLabel :value="__('translate.name')"
                                                                     class="font-black text-[10px] text-gray-400 uppercase tracking-widest ml-1"/>

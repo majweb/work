@@ -258,7 +258,7 @@ onMounted(async () => {
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salaryLabel') }}</p>
                                     <div class="flex items-baseline gap-2">
-                                        <span class="text-2xl font-black text-[#0A2C5C] tracking-tight">
+                                        <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
                                             {{ props.project.basicSalaryFrom }} - {{ props.project.basicSalaryTo }}
                                         </span>
                                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ props.project.currency?.name }}</span>

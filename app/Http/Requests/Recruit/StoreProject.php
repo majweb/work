@@ -169,6 +169,7 @@ class StoreProject extends FormRequest
             'workingMode' => strtolower(__('translate.workingMode')),
             'education' => strtolower(__('translate.education')),
             'countryWork' => strtolower(__('translate.Country')),
+            'currency' => strtolower(__('translate.currency')),
             'streetWork' => strtolower(__('translate.Street')),
             'postalWork' => strtolower(__('translate.Postal')),
             'cityWork' => strtolower(__('translate.City')),

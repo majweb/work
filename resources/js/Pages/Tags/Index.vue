@@ -101,7 +101,7 @@ const getContrastColor = (bgColor) => {
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                     <div class="flex items-center justify-between mb-10">
                         <div>
-                            <h3 class="text-2xl font-black text-gray-900 uppercase tracking-tight">{{ __('translate.listTag') }}</h3>
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.listTag') }}</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj dostępnymi tagami</p>
                         </div>
                         <Link :href="route('tags.create')">

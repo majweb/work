@@ -94,7 +94,10 @@ class WorkerController extends Controller
 
     public function myCv(DictionaryService $dictionaryService)
     {
-        $groupedCvs = auth()->user()
+        $user = auth()->user();
+        $user->load('workerDetail');
+
+        $groupedCvs = $user
             ->myCvs()
             ->with(['project'])
             ->orderByDesc('created_at')
@@ -126,6 +129,50 @@ class WorkerController extends Controller
         session()->flash('flash.banner', __('translate.updateCv'));
         session()->flash('flash.bannerStyle', 'success');
         return to_route('worker.myCv');
+    }
+
+    public function updateBasicInformation(Request $request, CvClassic $selectedCv)
+    {
+        $user = auth()->user();
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'contact_phone' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'zip' => ['required', 'string', 'max:255'],
+            'photo' => ['nullable', 'image', 'max:1024'],
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $user->updateProfilePhoto($request->file('photo'));
+        }
+
+        $user->forceFill([
+            'name' => $request->name,
+            'email' => $request->email,
+        ])->save();
+
+        $user->workerDetail()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'surname' => $request->surname,
+                'contact_phone' => $request->contact_phone,
+            ]
+        );
+
+        $selectedCv->update([
+            'birthday' => $request->birthdate,
+            'city' => $request->city,
+            'postal' => $request->zip,
+        ]);
+
+        session()->flash('flash.banner', __('translate.dataUpdated'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->back();
     }
 
     public function singleAplication(Aplication $aplication)

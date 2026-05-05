@@ -49,13 +49,7 @@ const getContrastColor = (bgColor) => {
                             <span class="text-lg leading-none">←</span>
                             {{ __('translate.goBack') }}
                         </Link>
-
-                        <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.createTag') }}</h3>
-                            <div class="h-px flex-1 bg-gray-100"></div>
-                        </div>
-
-                        <h2 class="uppercase font-black text-3xl text-[#0A2C5C] leading-tight">
+                        <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
                             {{ __('translate.createTag') }}
                         </h2>
                         <p class="mt-4 text-gray-400 max-w-2xl text-[10px] font-bold uppercase tracking-widest leading-relaxed">
