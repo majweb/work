@@ -272,13 +272,13 @@
         </div>
 
         <!-- ===================== CERTYFIKATY ===================== -->
-        <div v-if="certificate" class="mt-8 bg-white rounded-[3rem] p-10 shadow-xl shadow-blue-900/5 border border-gray-100 mb-12">
-            <div class="text-center mb-16">
+        <div v-if="certificate" class="mt-8 bg-white rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-10 shadow-xl shadow-blue-900/5 border border-gray-100 mb-12">
+            <div class="text-center mb-10 sm:mb-16">
                 <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-full mb-6">
                     <div class="w-2 h-2 rounded-full bg-[#00a0e3] animate-pulse"></div>
                     <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em]">{{ __('translate.recognition') || 'Wyróżnienie' }}</span>
                 </div>
-                <h2 class="text-4xl font-black text-[#0A2C5C] uppercase tracking-tighter">
+                <h2 class="text-2xl sm:text-4xl font-black text-[#0A2C5C] uppercase tracking-tighter">
                     {{ __('premium.certificates.premium_certificate') || 'Certyfikat Premium' }}
                 </h2>
             </div>
@@ -339,14 +339,14 @@
             </div>
 
             <!-- Pasek postępu (Styl z Price.vue) -->
-            <div class="max-w-4xl mx-auto mt-12 mb-20 px-4">
-                <div class="flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl w-fit mx-auto mb-10">
+            <div class="max-w-4xl mx-auto mt-8 sm:mt-12 mb-16 sm:mb-20 px-2 sm:px-4">
+                <div class="flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl w-fit mx-auto mb-8 sm:mb-10">
                     <div class="w-2 h-2 rounded-full bg-[#00a0e3] animate-pulse"></div>
                     <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ __('premium.certificates.progress') || 'Postęp certyfikacji' }}</span>
                 </div>
 
-                <div class="relative pt-8 px-[20px]">
-                    <div class="relative h-4 bg-gray-100 rounded-full border border-gray-100 shadow-inner">
+                <div class="relative pt-8 sm:pt-10 pb-16 sm:pb-12 px-2 sm:px-[20px]">
+                    <div class="relative h-3 sm:h-4 bg-gray-100 rounded-full border border-gray-100 shadow-inner">
                         <div class="h-full bg-gradient-to-r from-[#0A2C5C] to-[#00a0e3] rounded-full absolute top-0 left-0 transition-all duration-1000 ease-out shadow-lg"
                              :style="{ width: progressPercentage + '%' }">
                             <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
@@ -359,20 +359,22 @@
                             class="absolute top-1/2 -translate-y-1/2 flex flex-col items-center"
                             :style="{ left: getLevelPosition(level) + '%' }"
                         >
-                            <div class="w-3 h-3 rounded-full shadow-md border-2 border-white transition-colors duration-500"
+                            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shadow-md border-2 border-white transition-colors duration-500"
                                  :class="progressPercentage >= getLevelPosition(level) ? 'bg-[#00a0e3]' : 'bg-gray-200'"></div>
 
-                            <div class="absolute top-6 flex flex-col items-center whitespace-nowrap">
-                                <span class="text-[10px] font-black text-[#0A2C5C]">{{ certificate.levelPoints[level].toLocaleString() }}</span>
-                                <span class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">{{ certificate.levelNames[level].replace('CERTYFIKAT ', '') }}</span>
+                            <div class="absolute top-5 sm:top-6 flex flex-col items-center">
+                                <span class="text-[9px] sm:text-[10px] font-black text-[#0A2C5C]">{{ certificate.levelPoints[level].toLocaleString() }}</span>
+                                <span class="text-[7px] sm:text-[8px] font-bold text-gray-400 uppercase tracking-widest text-center leading-none mt-1 sm:mt-0 max-w-[60px] sm:max-w-none">
+                                    {{ certificate.levelNames[level].replace('CERTYFIKAT ', '') }}
+                                </span>
                             </div>
                         </div>
 
                         <!-- Current Progress Handle -->
-                        <div class="w-10 h-10 bg-white border-4 border-[#00a0e3] rounded-2xl shadow-xl
-                                    absolute -top-3 transition-all duration-1000 ease-out -ml-5 flex items-center justify-center"
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-white border-[3px] sm:border-4 border-[#00a0e3] rounded-2xl shadow-xl
+                                    absolute -top-2.5 sm:-top-3 transition-all duration-1000 ease-out -ml-4 sm:-ml-5 flex items-center justify-center z-20"
                              :style="{ left: progressPercentage + '%' }">
-                            <div class="w-2 h-2 bg-[#00a0e3] rounded-full animate-ping"></div>
+                            <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#00a0e3] rounded-full animate-ping"></div>
                         </div>
                     </div>
                 </div>
