@@ -220,7 +220,7 @@ onMounted(async () => {
                                 </div>
                             </div>
                             <div class="relative pt-5 md:pt-0">
-                                <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight flex items-center gap-2">
+                                <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight flex items-center justify-center md:justify-start gap-2 mt-4 md:mt-0">
                                     {{ project.user?.name }}
                                 </h2>
                                 <div class="flex items-center justify-center md:justify-start gap-3 mt-1">
@@ -317,7 +317,7 @@ onMounted(async () => {
                             </div>
                             <ul class="space-y-4">
                                 <li v-for="detailproject in project.detailprojects" class="flex items-start gap-4 group">
-                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#00a0e3] group-hover:scale-150 transition-transform"></div>
+                                    <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#00a0e3] group-hover:scale-150 transition-transform flex-shrink-0"></div>
                                     <p class="text-gray-600 font-medium leading-relaxed">{{ detailproject.name[usePage().props.language] }}</p>
                                 </li>
                             </ul>
@@ -418,9 +418,9 @@ onMounted(async () => {
                                                     {{ __('translate.wait') }}
                                                 </p>
                                                 <ul class="space-y-2">
-                                                    <li v-for="el in project.wait" class="text-xs font-bold text-gray-600 uppercase tracking-widest flex items-center gap-2">
-                                                        <svg class="w-3 h-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                                                        {{ el.allTranslations.name[usePage().props.language] }}
+                                                    <li v-for="el in project.wait" class="text-xs font-bold text-gray-600 uppercase tracking-widest flex items-start gap-2">
+                                                        <svg class="w-3 h-3 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                                        <span>{{ el.allTranslations.name[usePage().props.language] }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -430,9 +430,9 @@ onMounted(async () => {
                                                     {{ __('translate.welcome') }}
                                                 </p>
                                                 <ul class="space-y-2">
-                                                    <li v-for="el in project.welcome" class="text-xs font-bold text-gray-600 uppercase tracking-widest flex items-center gap-2">
-                                                        <svg class="w-3 h-3 text-[#2386BC]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                                                        {{ el.allTranslations.name[usePage().props.language] }}
+                                                    <li v-for="el in project.welcome" class="text-xs font-bold text-gray-600 uppercase tracking-widest flex items-start gap-2">
+                                                        <svg class="w-3 h-3 text-[#2386BC] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                                        <span>{{ el.allTranslations.name[usePage().props.language] }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
