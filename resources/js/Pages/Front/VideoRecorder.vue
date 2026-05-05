@@ -43,20 +43,20 @@
                 @before-leave="animating = true"
                 @after-leave="animating = false"
             >
-                <div v-show="open" class="border-t border-gray-100 bg-gray-50/30 p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div v-for="(step, sIdx) in 4" :key="sIdx" class="space-y-3">
+                <div v-show="open" class="border-t border-gray-100 bg-gray-50/30 p-4 md:p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div v-for="(step, sIdx) in 4" :key="sIdx" class="space-y-2 md:space-y-3">
                             <div class="flex items-center gap-3">
-                                <span class="flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-black">{{ sIdx + 1 }}</span>
-                                <h4 class="font-black text-gray-900 uppercase tracking-wider text-xs">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-black shrink-0">{{ sIdx + 1 }}</span>
+                                <h4 class="font-black text-gray-900 uppercase tracking-wider text-[10px] md:text-xs">
                                     {{ __('translate.video_cv.steps.' + ['start', 'questions', 'recording', 'finish'][sIdx] + '.title') }}
                                 </h4>
                             </div>
-                            <ul class="space-y-2 ml-9">
-                                <li v-if="sIdx === 0" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.start.step_3') }}</li>
-                                <li v-if="sIdx === 1" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.questions.step_2') }}</li>
-                                <li v-if="sIdx === 2" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.recording.stop') }}</li>
-                                <li v-if="sIdx === 3" class="text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.finish.apply') }}</li>
+                            <ul class="space-y-1 md:space-y-2 ml-9">
+                                <li v-if="sIdx === 0" class="text-xs md:text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.start.step_3') }}</li>
+                                <li v-if="sIdx === 1" class="text-xs md:text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.questions.step_2') }}</li>
+                                <li v-if="sIdx === 2" class="text-xs md:text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.recording.stop') }}</li>
+                                <li v-if="sIdx === 3" class="text-xs md:text-sm text-gray-600 leading-relaxed">{{ __('translate.video_cv.steps.finish.apply') }}</li>
                             </ul>
                         </div>
                     </div>
@@ -67,26 +67,26 @@
         <!-- Video Recorder Core UI -->
         <div class="relative group">
             <!-- Glassmorphism Container -->
-            <div class="relative rounded-[2.5rem] overflow-hidden bg-black shadow-2xl border-4 border-white transition-all duration-500 group-hover:shadow-blue-500/10 aspect-video">
+            <div class="relative rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-black shadow-2xl border-2 md:border-4 border-white transition-all duration-500 group-hover:shadow-blue-500/10 aspect-[3/4] md:aspect-video">
                 <video v-if="recordedBlobUrl" :src="recordedBlobUrl" controls class="w-full h-full object-cover"></video>
-                <video v-else ref="video" autoplay muted class="w-full h-full object-cover"></video>
+                <video v-else ref="video" autoplay muted playsinline class="w-full h-full object-cover"></video>
 
                 <!-- Recording Status Overlay -->
-                <div v-if="recording" class="absolute top-6 left-6 flex items-center gap-3 bg-black/40 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10">
-                    <span class="relative flex h-3 w-3">
+                <div v-if="recording" class="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2 md:gap-3 bg-black/40 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-xl md:rounded-2xl border border-white/10 z-20">
+                    <span class="relative flex h-2 w-2 md:h-3 md:w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-red-500"></span>
                     </span>
-                    <span class="text-[10px] font-black text-white uppercase tracking-widest">{{ __('translate.recording') }}</span>
+                    <span class="text-[8px] md:text-[10px] font-black text-white uppercase tracking-widest">{{ __('translate.recording') }}</span>
                 </div>
 
                 <!-- Timer Overlay -->
-                <div v-if="recording" class="absolute top-6 right-6 bg-black/40 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div v-if="recording" class="absolute top-4 right-4 md:top-6 md:right-6 bg-black/40 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-xl md:rounded-2xl border border-white/10 z-20">
+                    <div class="flex items-center gap-1.5 md:gap-2">
+                        <svg class="w-3 h-3 md:w-4 md:h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span class="text-lg font-black text-white tabular-nums">{{ timer }}s</span>
+                        <span class="text-sm md:text-lg font-black text-white tabular-nums">{{ timer }}s</span>
                     </div>
                 </div>
 
@@ -99,20 +99,20 @@
                     leave-from-class="opacity-100 translate-y-0"
                     leave-to-class="opacity-0 translate-y-4"
                 >
-                    <div v-if="currentQuestion && recording" class="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl rounded-[2rem] p-8 border border-white/20 shadow-2xl">
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div v-if="currentQuestion && recording" class="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-black/60 md:bg-white/10 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 border border-white/20 shadow-2xl z-20">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
                             <div class="flex-1 text-center md:text-left">
-                                <span class="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-2 block">Pytanie {{ currentIndex + 1 }} z {{ questions.length }}</span>
-                                <h3 class="text-xl md:text-2xl font-black text-white leading-tight uppercase tracking-tight">{{ currentQuestion.content }}</h3>
+                                <span class="text-[8px] md:text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-1 md:mb-2 block">Pytanie {{ currentIndex + 1 }} z {{ questions.length }}</span>
+                                <h3 class="text-base md:text-2xl font-black text-white leading-tight uppercase tracking-tight">{{ currentQuestion.content }}</h3>
                             </div>
                             <button
                                 type="button"
-                                class="shrink-0 group/btn flex items-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-blue-600/20 active:scale-95"
+                                class="w-full md:w-auto shrink-0 group/btn flex items-center justify-center gap-2 md:gap-3 px-5 py-2.5 md:px-6 md:py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl md:rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all shadow-xl shadow-blue-600/20 active:scale-95"
                                 @click="nextQuestion"
                                 :disabled="uploading"
                             >
                                 {{ __('translate.nextQuestion') }}
-                                <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-3 h-3 md:w-4 md:h-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                                 </svg>
                             </button>
@@ -138,15 +138,15 @@
         </div>
 
         <!-- Action Controls -->
-        <div class="mt-10 flex flex-col items-center gap-6">
-            <div class="flex items-center gap-4">
+        <div class="mt-6 md:mt-10 flex flex-col items-center gap-4 md:gap-6">
+            <div class="flex items-center gap-3 md:gap-4 w-full justify-center">
                 <button
                     v-if="recording"
                     type="button"
-                    class="group flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-xl shadow-red-600/20 active:scale-95"
+                    class="group flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-xl shadow-red-600/20 active:scale-95 w-full md:w-auto"
                     @click="stopRecording"
                 >
-                    <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 md:w-5 md:h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
                         <rect x="6" y="6" width="12" height="12" rx="2" />
                     </svg>
                     {{ __('translate.stopRecording') }}
@@ -156,9 +156,9 @@
                     v-if="recordedBlobUrl && !uploading"
                     type="button"
                     @click="startRecording"
-                    class="group flex items-center gap-3 px-8 py-4 bg-gray-900 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-xl active:scale-95"
+                    class="group flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-gray-900 text-white rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-xl active:scale-95 w-full md:w-auto"
                 >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                     </svg>
                     Nagraj ponownie

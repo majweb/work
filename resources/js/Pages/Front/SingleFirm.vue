@@ -170,28 +170,30 @@ function closeLightbox() {
                         </div>
 
                         <!-- Social Media -->
-                        <div class="flex flex-wrap justify-center gap-2" v-if="props.firm?.website || props.firm?.social_facebook || props.firm?.social_google || props.firm?.social_x || props.firm?.social_instagram || props.firm?.social_linkedin || props.firm?.social_tiktok">
-                            <a v-if="props.firm.website" :href="props.firm.website" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/link.svg" alt="website" class="w-5 h-5">
-                            </a>
-                            <a v-if="props.firm.social_facebook" :href="props.firm.social_facebook" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/facebook.svg" alt="facebook" class="w-5 h-5">
-                            </a>
-                            <a v-if="props.firm.social_google" :href="props.firm.social_google" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/google.svg" alt="google" class="w-5 h-5">
-                            </a>
-                            <a v-if="props.firm.social_x" :href="props.firm.social_x" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/x.svg" alt="x" class="w-5 h-5">
-                            </a>
-                            <a v-if="props.firm.social_instagram" :href="props.firm.social_instagram" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/instagram.svg" alt="instagram" class="w-5 h-5">
-                            </a>
-                            <a v-if="props.firm.social_linkedin" :href="props.firm.social_linkedin" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/linkedin.svg" alt="linkedin" class="w-5 h-5">
-                            </a>
-                            <a v-if="props.firm.social_tiktok" :href="props.firm.social_tiktok" target="_blank" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm">
-                                <img src="/images/icons/tik_tok.svg" alt="tik_tok" class="w-5 h-5">
-                            </a>
+                        <div class="flex flex-col gap-3 w-full md:w-auto" v-if="props.firm?.website || props.firm?.social_facebook || props.firm?.social_google || props.firm?.social_x || props.firm?.social_instagram || props.firm?.social_linkedin || props.firm?.social_tiktok">
+                            <div class="flex flex-wrap justify-center gap-3">
+                                <a v-if="props.firm.website" :href="props.firm.website" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/link.svg" alt="website" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                                <a v-if="props.firm.social_facebook" :href="props.firm.social_facebook" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/facebook.svg" alt="facebook" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                                <a v-if="props.firm.social_google" :href="props.firm.social_google" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/google.svg" alt="google" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                                <a v-if="props.firm.social_x" :href="props.firm.social_x" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/x.svg" alt="x" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                                <a v-if="props.firm.social_instagram" :href="props.firm.social_instagram" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/instagram.svg" alt="instagram" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                                <a v-if="props.firm.social_linkedin" :href="props.firm.social_linkedin" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/linkedin.svg" alt="linkedin" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                                <a v-if="props.firm.social_tiktok" :href="props.firm.social_tiktok" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
+                                    <img src="/images/icons/tik_tok.svg" alt="tik_tok" class="w-6 h-6 md:w-5 md:h-5">
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -200,21 +202,21 @@ function closeLightbox() {
                         <!-- Left Column: Info & Description -->
                         <div class="lg:col-span-2 space-y-12">
                             <!-- Kontakt bar -->
-                            <div class="flex flex-wrap gap-4">
+                            <div class="flex flex-col sm:flex-row flex-wrap gap-4 w-full justify-center sm:justify-start">
                                 <a
                                     v-for="(p, i) in firm.phone"
                                     :key="i"
                                     :href="`tel:${p.phone}`"
-                                    class="flex items-center gap-3 px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20"
+                                    class="flex items-center justify-center sm:justify-start gap-3 px-8 py-5 bg-[#0A2C5C] text-white text-[11px] font-black uppercase tracking-widest rounded-[2rem] hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 w-full sm:w-auto"
                                 >
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                    <svg class="w-6 h-6 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                     {{ p.phone }}
                                 </a>
                                 <a
                                     :href="`mailto:${firm.email}`"
-                                    class="flex items-center gap-3 px-8 py-4 bg-white border border-gray-100 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all"
+                                    class="flex items-center justify-center sm:justify-start gap-3 px-8 py-5 bg-white border border-gray-100 text-[#0A2C5C] text-[11px] font-black uppercase tracking-widest rounded-[2rem] hover:bg-gray-50 shadow-sm transition-all w-full sm:w-auto"
                                 >
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    <svg class="w-6 h-6 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                     {{ firm.email }}
                                 </a>
                             </div>

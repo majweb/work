@@ -1688,4 +1688,5 @@ return [
     'change_status' => 'Zmień status',
     'updated' => 'Zaktualizowano',
     'internalNote' => 'Notatka wewnętrzna',
+    'invalidDateFormat' => 'Zły format daty',
 ];
