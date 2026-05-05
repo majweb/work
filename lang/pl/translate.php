@@ -1354,7 +1354,7 @@ return [
         'subscribe' => 'ZAPISZ SIĘ',
         'privacy_notice' => 'ZAPISUJĄC SIĘ, AKCEPTUJESZ NASZĄ POLITYKĘ PRYWATNOŚCI.',
         'privacy_policy' => 'POLITYKA PRYWATNOŚCI',
-        'owner' => 'WŁASNOŚĆ INTELEKTUALNA',
+        'owner' => 'KONTAKT/INFORMACJE PRAWNE',
         'terms' => 'REGULAMIN',
         'cookies' => 'COOKIES',
         'gdpr' => 'RODO',
@@ -1684,4 +1684,8 @@ return [
     'enterNameTag' => 'Wpisz nazwę',
     'editArticleDescription' => 'Popraw swój artykuł',
     'createArticleDescription' => 'Dodaj swój artykuł',
+    'applying_for' => 'Aplikuje na stanowisko',
+    'change_status' => 'Zmień status',
+    'updated' => 'Zaktualizowano',
+    'internalNote' => 'Notatka wewnętrzna',
 ];

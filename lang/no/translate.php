@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'JEG VIL ABONNERE',
         'privacy_notice' => 'VED Å KLIKKE PÅ KNAPPEN AKSEPTERER DU VÅR PERSONVERNERKLÆRING.',
         'privacy_policy' => 'PERSONVERNERKLÆRING',
-        'owner' => 'BESKYTTELSE AV IMMATERIELLE RETTIGHETER',
+        'owner' => 'KONTAKT / JURIDISK INFORMASJON',
         'terms' => 'VILKÅR FOR BRUK AV PORTALEN',
         'cookies' => 'INFORMASJONSKAPSLER (COOKIES)',
         'gdpr' => 'GDPR OG DATABESKYTTELSE',

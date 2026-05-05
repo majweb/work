@@ -1324,7 +1324,7 @@ return [
         'subscribe' => 'REGJISTROHU',
         'privacy_notice' => 'DUKE U REGJISTRUAR, JU PRANONI POLITIKËN TONË TË PRIVATËSISË.',
         'privacy_policy' => 'POLITIKA E PRIVATËSISË',
-        'owner' => 'PRONËSIA INTELEKTUALE',
+        'owner' => 'KONTAKT / INFORMACION LIGJOR',
         'terms' => 'RREGULLORJA',
         'cookies' => 'COOKIES',
         'gdpr' => 'GDPR',

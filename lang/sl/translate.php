@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'ŽELIM SE NAROČITI',
         'privacy_notice' => 'S KLIKOM NA GUMB SPREJEMATE NAŠ PRAVILNIK O ZASEBNOSTI.',
         'privacy_policy' => 'PRAVILNIK O ZASEBNOSTI',
-        'owner' => 'ZAŠČITA INTELEKTUALNE LASTNINE',
+        'owner' => 'KONTAKT / PRAVNE INFORMACIJE',
         'terms' => 'POGOJI UPORABE PORTALA',
         'cookies' => 'POLITIKA PIŠKOTKOV (COOKIES)',
         'gdpr' => 'GDPR IN VARSTVO PODATKOV',

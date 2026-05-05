@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'ÉG VIL SKRÁ MIG',
         'privacy_notice' => 'MEÐ ÞVÍ AÐ SMELLA Á HNAPPINN SAMÞYKKIR ÞÚ PERSÓNUVERNDARSTEFNU OKKAR.',
         'privacy_policy' => 'PERSÓNUVERNDARSTEFNA',
-        'owner' => 'VERND HUGVERKARÉTTINDA',
+        'owner' => 'SAMBAND / LÖGFRÆÐILEGAR UPPLÝSINGAR',
         'terms' => 'NOTKUNARSKILMÁLAR',
         'cookies' => 'VAFRAKÖKUSTEFNA (COOKIES)',
         'gdpr' => 'GDPR OG GAGNAVERND',

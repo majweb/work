@@ -89,7 +89,7 @@ const sortLangs = computed(() => {
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight mb-2">{{ __('translate.banner').toUpperCase() }}</h3>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ __('translate.bannerSlogan') }}</p>
                             <div class="h-px w-20 bg-gray-100 mb-6"></div>
-                            <p class="text-sm font-bold text-gray-500 leading-relaxed">
+                            <p class="text-sm font-bold text-gray-500 leading-relaxed uppercase">
                                 {{ __('translate.bannerDescription') }}
                             </p>
                         </div>
@@ -216,10 +216,18 @@ const sortLangs = computed(() => {
 
                         <div class="flex-1">
                             <button
+                                v-if="props.check"
                                 @click="showForm = !showForm"
                                 class="w-full bg-[#00a3e0] hover:bg-[#008cc2] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-blue-400/20 hover:-translate-y-1 active:translate-y-0"
                             >
                                 {{ props.banner ? __('translate.update') : __('translate.addNewBanner') }}
+                            </button>
+                            <button
+                                v-else
+                                disabled
+                                class="w-full bg-gray-400 text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl cursor-not-allowed border border-gray-300 opacity-50"
+                            >
+                                {{ __('translate.addNewBanner') }}
                             </button>
                         </div>
                     </div>

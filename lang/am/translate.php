@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'መመዝገብ እፈልጋለሁ',
         'privacy_notice' => 'አዝራሩን (Button) ጠቅ በማድረግ፣ በግላዊነት ፖሊሲያችን ተስማምተዋል።',
         'privacy_policy' => 'የግላዊነት ፖሊሲ',
-        'owner' => 'የአእምሯዊ ንብረት ጥበቃ',
+        'owner' => 'የእውቂያ / የሕግ መረጃ',
         'terms' => 'የመድረኩ (Portal) የአጠቃቀም ውሎች',
         'cookies' => 'የኩኪ (COOKIES) ፖሊሲ',
         'gdpr' => 'GDPR እና የመረጃ ጥበቃ',

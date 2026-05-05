@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'VĒLOS ABONĒT',
         'privacy_notice' => 'NOKLIŠĶINOT UZ POGAS, JŪS PIEKRĪTAT MŪSU PRIVĀTUMA POLITIKAI.',
         'privacy_policy' => 'PRIVĀTUMA POLITIKA',
-        'owner' => 'INTELEKTUĀLĀ ĪPAŠUMA AIZSARDZĪBA',
+        'owner' => 'KONTAKTI / JURIDISKĀ INFORMĀCIJA',
         'terms' => 'PORTĀLA LIETOŠANAS NOTEIKUMI',
         'cookies' => 'SĪKDATŅU (COOKIES) POLITIKA',
         'gdpr' => 'VDAR (GDPR) UN DATU AIZSARDZĪBA',

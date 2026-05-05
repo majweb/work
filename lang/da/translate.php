@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'TILMELD',
         'privacy_notice' => 'VED AT TILMELDE DIG ACCEPTERER DU VORES PRIVATLIVSPOLITIK.',
         'privacy_policy' => 'PRIVATLIVSPOLITIK',
-        'owner' => 'INTELLEKTUELLE EJENDOMSRETTIGHEDER',
+        'owner' => 'KONTAKT / JURIDISK INFORMATION',
         'terms' => 'HANDELSBETINGELSER',
         'cookies' => 'COOKIES',
         'gdpr' => 'GDPR OG DATABESKYTTELSE',

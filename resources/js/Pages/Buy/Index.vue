@@ -239,7 +239,7 @@ const getServiceDescription = (type) => {
                             {{ __('translate.pointsServicesDesc') }}
                         </p>
                         <div class="flex items-center justify-center gap-2 mt-12">
-                            <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.youHave') }}:</span>
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.youHave') }}</span>
                             <span class="text-xl font-black text-[#00a0e3]">{{ points ? points.toLocaleString() : '0' }}</span>
                             <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest">PKT</span>
                         </div>

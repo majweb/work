@@ -1325,7 +1325,7 @@ return [
         'subscribe' => 'ABUNƏ OLUN',
         'privacy_notice' => 'ABUNƏ OLMAQLA MƏXFİLİK SİYASƏTİMİZİ QƏBUL EDİRSİNİZ.',
         'privacy_policy' => 'MƏXFİLİK SİYASƏTİ',
-        'owner' => 'ƏQLİ MÜLKİYYƏT',
+        'owner' => 'ƏLAQƏ / HÜQUQİ MƏLUMAT',
         'terms' => 'QAYDALAR',
         'cookies' => 'KUKİLƏR',
         'gdpr' => 'GDPR',

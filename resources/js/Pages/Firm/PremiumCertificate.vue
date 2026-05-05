@@ -2,6 +2,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import {computed} from 'vue';
 import {useForm, usePage} from "@inertiajs/vue3";
+import __ from "@/lang.js";
 
 const props = defineProps({
     collectedPoints: Number,
@@ -109,29 +110,39 @@ const generateButtonText = computed(() => {
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <!-- Wybór i generowanie certyfikatu -->
-                <div class="mt-8 bg-[#0d2a52] p-8 rounded-3xl shadow-2xl text-white">
-                    <!-- Header -->
-                    <div class="flex flex-col md:flex-row justify-between items-start mb-8 border-b border-white/10 pb-8">
-                        <div class="md:w-2/3">
-                            <h2 class="text-4xl font-bold uppercase mb-2 tracking-wider">
-                                {{ __('premium.certificates.premium_certificate') }}
-                            </h2>
-                            <p class="text-xl font-medium leading-tight max-w-md">
-                                {{ __('premium.certificates.slogan') }}
-                            </p>
-                        </div>
-                        <div class="md:w-1/3 flex justify-end">
-                            <img src="/images/icons/firm/certyfikat_premium.svg" alt="Certyfikat Icon" class="h-32 w-auto">
-                        </div>
-                    </div>
 
-                    <!-- Description -->
-                    <div class="space-y-6 text-sm leading-relaxed mb-12 max-w-5xl">
-                        <p>{{ __('premium.certificates.description_1') }}</p>
-                        <p>{{ __('premium.certificates.description_2') }}</p>
-                        <p>{{ __('premium.certificates.description_3') }}</p>
+                <div class="bg-[#0d2a52] text-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-2xl font-black text-white uppercase tracking-tight">{{ __('premium.certificates.premium_certificate') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('premium.certificates.slogan') }}</p>
+                        </div>
                     </div>
+                </div>
+
+                    <!-- Wybór i generowanie certyfikatu -->
+                <div class="mt-8 mb-8 bg-[#0d2a52] text-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row gap-12 items-center">
+                        <div class="md:w-1/2">
+                            <!-- Description -->
+                            <div class="uppercase space-y-6 text-sm leading-relaxed max-w-5xl text-white">
+                                <p>{{ __('premium.certificates.description_1') }}</p>
+                                <p>{{ __('premium.certificates.description_2') }}</p>
+                                <p>{{ __('premium.certificates.description_3') }}</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center">
+                            <div class="relative group">
+                                <div class="absolute inset-0 bg-blue-100 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                                <img src="/images/icons/firm/certyfikat_premium.svg" alt="Certyfikat Icon" class="relative max-w-sm h-auto transform transition-transform duration-500 hover:scale-105">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#0d2a52] p-8 rounded-3xl shadow-2xl text-white">
+
 
                     <!-- Rodzaje certyfikatów -->
                     <div class="mb-16">
@@ -248,8 +259,8 @@ const generateButtonText = computed(() => {
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold">{{ __('premium.certificates.current_certificate') }}</h4>
-                                <p class="text-blue-200">
+                                <h4 class="text-lg font-bold uppercase">{{ __('premium.certificates.current_certificate') }}</h4>
+                                <p class="text-blue-200 uppercase">
                                     {{ __('premium.certificates.you_have_certificate') }}: <span class="font-black">{{ levelNames[currentLevel] }}</span>
                                 </p>
                             </div>

@@ -125,12 +125,6 @@ class BuyController extends Controller
     {
         $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 8])->isCurrent()->first();
 
-        if (! $check) {
-            session()->flash('flash.banner', __('translate.forbidden'));
-            session()->flash('flash.bannerStyle', 'danger');
-
-            return redirect()->route('dashboard');
-        }
         $banner = Banner::where('user_id', auth()->id())->with('media')->first();
         $countries = $dictionaryService->getCountries(app()->getLocale());
         $product = Product::find(8);
@@ -140,6 +134,15 @@ class BuyController extends Controller
 
     public function bannersStore(Request $request)
     {
+        $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 8])->isCurrent()->first();
+
+        if (! $check) {
+            session()->flash('flash.banner', __('translate.forbidden'));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return redirect()->back();
+        }
+
         $validated = $request->validate([
             'lang' => ['required', 'array', 'min:1'],
             'url' => ['required', 'string', 'url'],

@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'BERLANGGANAN',
         'privacy_notice' => 'DENGAN MENDAFTAR, ANDA MENYETUJUI KEBIJAKAN PRIVASI KAMI.',
         'privacy_policy' => 'KEBIJAKAN PRIVASI',
-        'owner' => 'HAK KEKAYAAN INTELEKTUAL',
+        'owner' => 'KONTAK / INFORMASI HUKUM',
         'terms' => 'SYARAT & KETENTUAN',
         'cookies' => 'KEBIJAKAN COOKIES',
         'gdpr' => 'GDPR & DATA',

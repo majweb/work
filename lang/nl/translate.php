@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'IK WIL ME ABONNEREN',
         'privacy_notice' => 'DOOR OP DE KNOP TE KLIKKEN, ACCEPTEER JE ONS PRIVACYBELEID.',
         'privacy_policy' => 'PRIVACYBELEID',
-        'owner' => 'INTELLECTUEEL EIGENDOM',
+        'owner' => 'CONTACT / JURIDISCHE INFORMATIE',
         'terms' => 'GEBRUIKSVOORWAARDEN PORTAAL',
         'cookies' => 'COOKIEBELEID',
         'gdpr' => 'AVG EN GEGEVENSBESCHERMING',

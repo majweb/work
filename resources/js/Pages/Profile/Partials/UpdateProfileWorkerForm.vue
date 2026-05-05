@@ -28,7 +28,7 @@ const updateProfileWorker = () => {
 <template>
     <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
         <!-- Header -->
-        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main uppercase">
             {{ __('translate.myData') }}
         </h3>
 

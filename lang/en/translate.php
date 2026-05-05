@@ -1326,7 +1326,7 @@ return [
         'subscribe' => 'SUBSCRIBE',
         'privacy_notice' => 'BY SUBSCRIBING, YOU ACCEPT OUR PRIVACY POLICY.',
         'privacy_policy' => 'PRIVACY POLICY',
-        'owner' => 'INTELLECTUAL PROPERTY',
+        'owner' => 'CONTACT / LEGAL INFORMATION',
         'terms' => 'TERMS',
         'cookies' => 'COOKIES',
         'gdpr' => 'GDPR',

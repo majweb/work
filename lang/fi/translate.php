@@ -1346,7 +1346,7 @@ return [
     'subscribe' => 'HALUAN TILATA',
     'privacy_notice' => 'NAPSAUTTAMALLA PAINIKETTA HYVÄKSYT TIETOSUOJASELOSTEEMME.',
     'privacy_policy' => 'TIETOSUOJASELOSTE',
-    'owner' => 'IMMATERIAALIOIKEUKSIEN SUOJA',
+    'owner' => 'YHTEYSTIEDOT / OIKEUDELLISET TIEDOT',
     'terms' => 'PORTAALIN KÄYTTÖEHDOT',
     'cookies' => 'EVÄSTEKÄYTÄNNÖT (COOKIES)',
     'gdpr' => 'GDPR JA TIETOSUOJA',

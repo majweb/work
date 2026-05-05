@@ -107,27 +107,27 @@ const setProjectPage = (p) => {
         <div class="py-12 bg-gray-50/50 min-h-screen">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <!-- HEADER CARD -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 mb-8">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.statistics') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.statisticsDescription') }}</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.statistics') }}</h3>
+                            <p class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.statisticsDescription') }}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tabs -->
-                <div class="flex gap-2 mb-8 bg-gray-100/50 p-2 rounded-[2rem] w-fit border border-gray-100 shadow-sm">
+                <div class="flex flex-wrap gap-2 mb-8 bg-gray-100/50 p-2 rounded-[1.5rem] sm:rounded-[2rem] w-full sm:w-fit border border-gray-100 shadow-sm">
                     <button
                         @click="setTab('general')"
-                        class="px-8 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all"
+                        class="flex-1 sm:flex-none px-4 sm:px-8 py-3 rounded-xl sm:rounded-2xl font-black text-[9px] sm:text-[10px] uppercase tracking-widest transition-all text-center"
                         :class="activeTab === 'general' ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20' : 'text-gray-400 hover:text-gray-600'"
                     >
                         {{ __('translate.statistics') }} {{ __('translate.general') }}
                     </button>
                     <button
                         @click="setTab('detailed')"
-                        class="px-8 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all"
+                        class="flex-1 sm:flex-none px-4 sm:px-8 py-3 rounded-xl sm:rounded-2xl font-black text-[9px] sm:text-[10px] uppercase tracking-widest transition-all text-center"
                         :class="activeTab === 'detailed' ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20' : 'text-gray-400 hover:text-gray-600'"
                     >
                         {{ __('translate.statistics') }} {{ __('translate.detailed') }}
@@ -182,44 +182,50 @@ const setProjectPage = (p) => {
 
                     <!-- Pie Charts -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white p-10 rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100">
-                            <h3 class="text-center font-black text-[#0A2C5C] text-xl mb-2 uppercase tracking-tight">{{ __('translate.industryInterest') }}</h3>
-                            <p class="text-center text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">{{ __('translate.visits') }}</p>
-                            <component
-                                :is="VueApexChartsLazy"
-                                v-if="isClient && props.charts.visitsByIndustry?.series?.length && VueApexChartsLazy"
-                                type="pie"
-                                height="350"
-                                :options="props.charts.visitsByIndustry.options"
-                                :series="props.charts.visitsByIndustry.series"
-                            />
-                            <div v-else class="h-[350px] flex flex-col items-center justify-center">
-                                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                                    <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                    </svg>
+                        <div class="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                            <h3 class="text-center font-black text-[#0A2C5C] text-lg sm:text-xl mb-2 uppercase tracking-tight">{{ __('translate.industryInterest') }}</h3>
+                            <p class="text-center text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">{{ __('translate.visits') }}</p>
+                            <div class="w-full">
+                                <component
+                                    :is="VueApexChartsLazy"
+                                    v-if="isClient && props.charts.visitsByIndustry?.series?.length && VueApexChartsLazy"
+                                    type="pie"
+                                    height="350"
+                                    width="100%"
+                                    :options="props.charts.visitsByIndustry.options"
+                                    :series="props.charts.visitsByIndustry.series"
+                                />
+                                <div v-else class="h-[350px] flex flex-col items-center justify-center">
+                                    <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                                        <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.NoData') }}</p>
                                 </div>
-                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.NoData') }}</p>
                             </div>
                         </div>
-                        <div class="bg-white p-10 rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100">
-                            <h3 class="text-center font-black text-[#0A2C5C] text-xl mb-2 uppercase tracking-tight">{{ __('translate.industryInterest') }}</h3>
-                            <p class="text-center text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">{{ __('translate.applications') }}</p>
-                            <component
-                                :is="VueApexChartsLazy"
-                                v-if="isClient && props.charts.appsByIndustry?.series?.length && VueApexChartsLazy"
-                                type="pie"
-                                height="350"
-                                :options="props.charts.appsByIndustry.options"
-                                :series="props.charts.appsByIndustry.series"
-                            />
-                            <div v-else class="h-[350px] flex flex-col items-center justify-center">
-                                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                                    <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                    </svg>
+                        <div class="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                            <h3 class="text-center font-black text-[#0A2C5C] text-lg sm:text-xl mb-2 uppercase tracking-tight">{{ __('translate.industryInterest') }}</h3>
+                            <p class="text-center text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-8">{{ __('translate.applications') }}</p>
+                            <div class="w-full">
+                                <component
+                                    :is="VueApexChartsLazy"
+                                    v-if="isClient && props.charts.appsByIndustry?.series?.length && VueApexChartsLazy"
+                                    type="pie"
+                                    height="350"
+                                    width="100%"
+                                    :options="props.charts.appsByIndustry.options"
+                                    :series="props.charts.appsByIndustry.series"
+                                />
+                                <div v-else class="h-[350px] flex flex-col items-center justify-center">
+                                    <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                                        <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.NoData') }}</p>
                                 </div>
-                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.NoData') }}</p>
                             </div>
                         </div>
                     </div>
@@ -290,15 +296,15 @@ const setProjectPage = (p) => {
 
                     <!-- Recruiters Table -->
                     <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.recruits') }}</h3>
-                            <div class="flex gap-4">
-                                <input v-model="recruiterSearch" @input="setRecruiterPage(1)" type="text" :placeholder="__('translate.searchRecruiter')" class="px-5 py-3 text-[10px] font-bold uppercase tracking-widest rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-300">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.recruits') }}</h3>
+                            <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+                                <input v-model="recruiterSearch" @input="setRecruiterPage(1)" type="text" :placeholder="__('translate.searchRecruiter')" class="flex-1 px-5 py-3 text-[10px] font-bold uppercase tracking-widest rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-300 min-w-[200px]">
                                 <button @click="recruiterSearch = ''; setRecruiterPage(1)" class="px-6 py-3 text-[10px] font-black text-gray-400 uppercase tracking-widest hover:text-gray-600 transition-colors bg-white rounded-2xl border border-gray-100 shadow-sm">{{ __('translate.resetFilter') }}</button>
                             </div>
                         </div>
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-1">
-                            <div class="overflow-x-auto rounded-[2.8rem]">
+                        <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-1">
+                            <div class="overflow-x-auto rounded-[1.8rem] sm:rounded-[2.8rem]">
                                 <table class="w-full text-left border-collapse">
                                     <thead>
                                         <tr class="bg-gray-50/50">
@@ -373,15 +379,15 @@ const setProjectPage = (p) => {
 
                     <!-- Projects Table -->
                     <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
-                            <div class="flex gap-4">
-                                <input v-model="projectSearch" @input="setProjectPage(1)" type="text" :placeholder="__('translate.searchProject')" class="px-5 py-3 text-[10px] font-bold uppercase tracking-widest rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-300">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
+                            <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+                                <input v-model="projectSearch" @input="setProjectPage(1)" type="text" :placeholder="__('translate.searchProject')" class="flex-1 px-5 py-3 text-[10px] font-bold uppercase tracking-widest rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-300 min-w-[200px]">
                                 <button @click="projectSearch = ''; setProjectPage(1)" class="px-6 py-3 text-[10px] font-black text-gray-400 uppercase tracking-widest hover:text-gray-600 transition-colors bg-white rounded-2xl border border-gray-100 shadow-sm">{{ __('translate.resetFilter') }}</button>
                             </div>
                         </div>
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-1">
-                            <div class="overflow-x-auto rounded-[2.8rem]">
+                        <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-1">
+                            <div class="overflow-x-auto rounded-[1.8rem] sm:rounded-[2.8rem]">
                                 <table class="w-full text-left border-collapse">
                                     <thead>
                                         <tr class="bg-gray-50/50">
@@ -487,23 +493,26 @@ const setProjectPage = (p) => {
                                 </button>
                             </div>
                         </div>
-                        <div class="bg-white p-10 rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100">
-                            <component
-                                :is="VueApexChartsLazy"
-                                v-if="isClient && props.charts.industryTrends?.series?.length && VueApexChartsLazy"
-                                :key="`trends-${currentTrendPeriod}-${JSON.stringify(props.charts.industryTrends.options.xaxis.categories)}`"
-                                type="line"
-                                height="400"
-                                :options="props.charts.industryTrends.options"
-                                :series="props.charts.industryTrends.series"
-                            />
-                            <div v-else class="h-[400px] flex flex-col items-center justify-center">
-                                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                                    <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16" />
-                                    </svg>
+                        <div class="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                            <div class="w-full">
+                                <component
+                                    :is="VueApexChartsLazy"
+                                    v-if="isClient && props.charts.industryTrends?.series?.length && VueApexChartsLazy"
+                                    :key="`trends-${currentTrendPeriod}-${JSON.stringify(props.charts.industryTrends.options.xaxis.categories)}`"
+                                    type="line"
+                                    height="400"
+                                    width="100%"
+                                    :options="props.charts.industryTrends.options"
+                                    :series="props.charts.industryTrends.series"
+                                />
+                                <div v-else class="h-[400px] flex flex-col items-center justify-center">
+                                    <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                                        <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16" />
+                                        </svg>
+                                    </div>
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.NoData') }}</p>
                                 </div>
-                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.NoData') }}</p>
                             </div>
                         </div>
                     </div>

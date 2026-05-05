@@ -1333,7 +1333,7 @@ return [
         'subscribe' => 'VREAU SĂ MĂ ABONEZ',
         'privacy_notice' => 'FĂCÂND CLIC PE BUTON, ACCEPTAȚI POLITICA NOASTRĂ DE CONFIDENȚIALITATE.',
         'privacy_policy' => 'POLITICA DE CONFIDENȚIALITATE',
-        'owner' => 'PROTECȚIA PROPRIETĂȚII INTELECTUALE',
+        'owner' => 'CONTACT / INFORMAȚII LEGALE',
         'terms' => 'CONDIȚII DE UTILIZARE A PORTALULUI',
         'cookies' => 'POLITICA PRIVIND COOKIE-URILE',
         'gdpr' => 'GDPR ȘI PROTECȚIA DATELOR',

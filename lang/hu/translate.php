@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'FELIRATKOZÁS',
         'privacy_notice' => 'FELIRATKOZÁSSAL ELFOGADJA AZ ADATVÉDELMI NYILATKOZATUNKAT.',
         'privacy_policy' => 'ADATVÉDELMI NYILATKOZAT',
-        'owner' => 'SZELLEMI TULAJDON',
+        'owner' => 'KAPCSOLAT / JOGI INFORMÁCIÓK',
         'terms' => 'ÁLTALÁNOS SZERZŐDÉSI FELTÉTELEK',
         'cookies' => 'SÜTIK',
         'gdpr' => 'GDPR',

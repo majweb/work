@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'PRENUMERUOTI',
         'privacy_notice' => 'PRENUMERUODAMI SUTINKATE SU MŪSŲ PRIVATUMO POLITIKA.',
         'privacy_policy' => 'PRIVATUMO POLITIKA',
-        'owner' => 'INTELEKTINĖ NUOSAVYBĖ',
+        'owner' => 'KONTAKTAI / TEISINĖ INFORMACIJA',
         'terms' => 'TAISYKLĖS IR SĄLYGOS',
         'cookies' => 'SLAPUKAI (COOKIES)',
         'gdpr' => 'BDAR / GDPR',

@@ -10,6 +10,7 @@ import DangerButton from "@/Components/DangerButton.vue";
 import InputHelper from "@/Components/InputHelper.vue";
 import TextareaLimit from "@/Components/TextareaLimit.vue";
 import Multiselect from "vue-multiselect";
+import SpinnerAction from "@/Components/SpinnerAction.vue";
 import {ref} from "vue";
 import __ from "@/lang.js";
 
@@ -119,16 +120,16 @@ const getNipPlaceholder = (countryCode) => {
 </script>
 
 <template>
-    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+    <div class="bg-white shadow-lg rounded-3xl">
         <!-- Header -->
-        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main uppercase">
             {{ __('translate.Firm') }}
         </h3>
 
         <!-- Form -->
         <form @submit.prevent="updateProfileFirm">
             <div class="px-6 py-6">
-                <div class="grid grid-cols-6 gap-6">
+                <div class="grid grid-cols-6 gap-6 mb-2">
                     <!-- NIP -->
                     <div class="col-span-6 sm:col-span-2">
                         <InputLabel for="nip" :value="__('translate.nip')"/>
@@ -171,7 +172,7 @@ const getNipPlaceholder = (countryCode) => {
                         <TextInput
                             id="number"
                             v-model="form.number"
-                            type="number"
+                            type="text"
                             class="mt-1 block w-full"
                         />
                         <InputError :message="form.errors.number" class="mt-2"/>
@@ -204,15 +205,16 @@ const getNipPlaceholder = (countryCode) => {
                         <multiselect
                             group-values="elements" group-label="group"
                             :group-select="false"
-                            :selectLabel="__('translate.selectLabel')"
-                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                            :selectedLabel="__('translate.selectedLabel')"
-                            :deselectLabel="__('translate.deselectLabel')"
+                            :selectLabel="''"
+                            :selectGroupLabel="''"
+                            :selectedLabel="''"
+                            :deselectLabel="''"
                             track-by="name"
                             :multiple="false"
                             label="name"
                             :placeholder="__('translate.placeholder')"
-                            v-model="form.countryJson" :options="optionsCountry">
+                            v-model="form.countryJson" :options="optionsCountry"
+                            class="custom-multiselect">
                             <template #noResult>
                                 <span>{{ __('translate.noOptions') }}</span>
                             </template>
@@ -387,19 +389,20 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- COUNTRY-INVOICE -->
                             <div class="col-span-6 sm:col-span-3">
-                                <InputLabel :value="__('translate.Country')"/>
+                                <InputLabel class="mb-1" :value="__('translate.Country')"/>
                                 <multiselect
                                     group-values="elements" group-label="group"
                                     :group-select="false"
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     track-by="name"
                                     :multiple="false"
                                     label="name"
                                     :placeholder="__('translate.placeholder')"
-                                    v-model="form.countryInvoiceJson" :options="optionsCountry">
+                                    v-model="form.countryInvoiceJson" :options="optionsCountry"
+                                    class="custom-multiselect">
                                     <template #noResult>
                                         <span>{{ __('translate.noOptions') }}</span>
                                     </template>
@@ -420,7 +423,7 @@ const getNipPlaceholder = (countryCode) => {
                     </ActionMessage>
 
                     <PrimaryButton :disabled="form.processing" class="rounded-xl px-8 shadow-md hover:shadow-lg transition-all" :class="{ 'opacity-25': form.processing }">
-                        {{ __('translate.Save') }}
+                        <spinner-action :process="form.processing">{{ __('translate.Save') }}</spinner-action>
                     </PrimaryButton>
                 </div>
             </div>
@@ -429,43 +432,131 @@ const getNipPlaceholder = (countryCode) => {
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
+.custom-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        border-radius: 1rem; /* rounded-2xl approximation for multiselect */
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+        background: #f9fafb; /* bg-gray-50 */
+        transition: all 0.3s ease;
+    }
 
-.multiselect__tag {
-    background: #00a0e3 !important;
+    &.multiselect--active {
+        .multiselect__tags {
+            border-color: transparent;
+        }
+    }
+
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af; /* text-gray-400 */
+        font-size: 0.75rem; /* text-xs */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    .multiselect__select {
+        height: 100%;
+        width: 2.5rem;
+    }
+
+    .multiselect__option--highlight {
+        background: #0A2C5C !important;
+        outline: none;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+
+        &:after {
+            background: #0A2C5C !important;
+            color: white !important;
+        }
+    }
+
+    .multiselect__option--selected {
+        background: #f3f4f6 !important;
+        color: #0A2C5C;
+        font-weight: 900;
+
+        &:after {
+            background: transparent !important;
+            color: #9ca3af !important;
+        }
+
+        &.multiselect__option--highlight {
+            background: #0A2C5C !important;
+            color: white !important;
+
+            &:after {
+                background: #0A2C5C !important;
+                color: white !important;
+            }
+        }
+    }
+
+    .multiselect__tag {
+        background: #00a0e3 !important;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 4px 26px 4px 10px;
+        border-radius: 8px;
+    }
+
+    .multiselect__tag-icon {
+        background: #00a0e3 !important;
+        border-radius: 8px;
+        top: -3px !important;
+
+        &:after {
+            color: white !important;
+        }
+
+        &:hover {
+            background: #0088c1 !important;
+        }
+    }
+
+    .multiselect__content-wrapper {
+        border: 1px solid #f3f4f6;
+        border-top: none;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 50 !important;
+    }
+
 }
-
-.multiselect__option--highlight {
-    background: #00a0e3 !important;
-    outline: none;
-    color: white;
-}
-
-.multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #00a0e3 !important;
-    color: white;
-}
-
-.multiselect__option--selected {
-    background: #00A0E3B2 !important;
-    color: #35495E;
-    font-weight: bold;
-}
-
-.multiselect__option--selected.multiselect__option--highlight {
-    background: #00A0E3B2 !important;
-    color: #fff;
-}
-
-.multiselect__option--selected.multiselect__option--highlight:after {
-    background: #00A0E3B2 !important;
-    content: attr(data-deselect);
-    color: white !important;
-}
-
-.multiselect__option--selected:after {
-    content: attr(data-selected);
-    color: #00A0E3B2;
-    background: transparent !important;
+.custom-multiselect .multiselect__content-wrapper {
+    max-height: 300px !important; /* Musi być zgodne z :max-height */
+    overflow-y: auto !important;
+    border: 1px solid #f3f4f6;
+    border-top: none;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 50 !important;
 }
 </style>

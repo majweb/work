@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'CHCEM SA PRIHLÁSIŤ',
         'privacy_notice' => 'KLIKNUTÍM NA TLAČIDLO SÚHLASÍTE S NAŠIMI ZÁSADAMI OCHRANY OSOBNÝCH ÚDAJOV.',
         'privacy_policy' => 'ZÁSADY OCHRANY OSOBNÝCH ÚDAJOV',
-        'owner' => 'OCHRANA DUŠEVNÉHO VLASTNÍCTVA',
+        'owner' => 'KONTAKT / PRÁVNE INFORMÁCIE',
         'terms' => 'PODMIENKY POUŽÍVANIA PORTÁLU',
         'cookies' => 'ZÁSADY POUŽÍVANIA SÚBOROV COOKIES',
         'gdpr' => 'GDPR A OCHRANA ÚDAJOV',

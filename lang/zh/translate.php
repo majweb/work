@@ -1354,7 +1354,7 @@ return [
         'subscribe' => '我想要订阅',
         'privacy_notice' => '点击按钮，即表示您接受我们的隐私政策。',
         'privacy_policy' => '隐私政策',
-        'owner' => '知识产权保护',
+        'owner' => '联系 / 法律信息',
         'terms' => '门户使用条款',
         'cookies' => 'Cookie 政策',
         'gdpr' => '数据保护与隐私 (GDPR)',

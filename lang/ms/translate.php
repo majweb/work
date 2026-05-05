@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'SAYA INGIN MELANGGAN',
         'privacy_notice' => 'DENGAN MENGEKLIK BUTANG INI, ANDA MENERIMA DASAR PRIVASI KAMI.',
         'privacy_policy' => 'DASAR PRIVASI',
-        'owner' => 'PERLINDUNGAN HARTA INTELEK',
+        'owner' => 'HUBUNGI / MAKLUMAT UNDANG-UNDANG',
         'terms' => 'TERMA PENGGUNAAN PORTAL',
         'cookies' => 'DASAR KUKI (COOKIES)',
         'gdpr' => 'GDPR DAN PERLINDUNGAN DATA',

@@ -1346,7 +1346,7 @@ return [
         'subscribe' => '登録する',
         'privacy_notice' => 'ボタンをクリックすることにより、プライバシーポリシーに同意したものとみなされます。',
         'privacy_policy' => 'プライバシーポリシー',
-        'owner' => '知的財産権の保護',
+        'owner' => 'お問い合わせ / 法的情報',
         'terms' => '利用規約',
         'cookies' => 'Cookie（クッキー）ポリシー',
         'gdpr' => 'GDPRとデータ保護',

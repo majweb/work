@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'SOOVIN LIITUDA',
         'privacy_notice' => 'KLÕPSATES NUPULE NÕUSTUD MEIE PRIVAATSUSPOLIITIKAGA.',
         'privacy_policy' => 'PRIVAATSUSPOLIITIKA',
-        'owner' => 'INTELLEKTUAALOMANDI KAITSE',
+        'owner' => 'KONTAKT / ÕIGUSLIK TEAVE',
         'terms' => 'PORTAALI KASUTUSTINGIMUSED',
         'cookies' => 'KÜPSISTE KASUTAMISE PÕHIMÕTTED',
         'gdpr' => 'GDPR JA ANDMEKAITSE',

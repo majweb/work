@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'SUBSCRIU-T\'HI',
         'privacy_notice' => 'EN SUBSCRIURE-T\'HI, ACCEPTES LA NOSTRA POLÍTICA DE PRIVACITAT.',
         'privacy_policy' => 'POLÍTICA DE PRIVACITAT',
-        'owner' => 'PROPIETAT INTEL·LECTUAL',
+        'owner' => 'CONTACTE / INFORMACIÓ LEGAL',
         'terms' => 'CONDICIONS D\'ÚS',
         'cookies' => 'COOKIES',
         'gdpr' => 'RGPD',

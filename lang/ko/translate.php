@@ -1346,7 +1346,7 @@ return [
         'subscribe' => '구독하기',
         'privacy_notice' => '구독 버튼을 클릭하면 개인정보 처리방침에 동의하는 것으로 간주됩니다.',
         'privacy_policy' => '개인정보 처리방침',
-        'owner' => '지적재산권 보호',
+        'owner' => '연락처 / 법적 정보',
         'terms' => '포털 이용 약관',
         'cookies' => '쿠키(Cookies) 정책',
         'gdpr' => '개인정보 보호 및 GDPR',

@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'ABUNA ÝAZYLMAK ISLEÝÄRIN',
         'privacy_notice' => 'DÜWMÄ BASMAK BILEN, SIZ GIZLINLIK SYÝASATYMYZY KABUL EDÝÄRSIŇIZ.',
         'privacy_policy' => 'GIZLINLIK SYÝASATY',
-        'owner' => 'INTELLEKTUAL EÝEÇILIGI GORAMAK',
+        'owner' => 'HABARLAŞMA / HUKUKY MAGLUMATLAR',
         'terms' => 'PORTALDAN PEÝDALANMAK ŞERTLERI',
         'cookies' => 'KUKI (COOKIES) SYÝASATY',
         'gdpr' => 'GDPR WE MAGLUMAT GORAGY',

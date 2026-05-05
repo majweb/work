@@ -1346,7 +1346,7 @@ return [
     'subscribe' => 'ECH WËLL ABONNÉIEREN',
     'privacy_notice' => 'WANN DIR OP DE KNÄPPCHEN KLICKT, AKZEPTÉIERT DIR EIS DATESCHUTZERKLÄRUNG.',
     'privacy_policy' => 'DATESCHUTZERKLÄRUNG',
-    'owner' => 'SCHUTZ VUM GEESCHTEGEN EEGENUM',
+    'owner' => 'KONTAKT / LEGAL INFORMATIOUNEN',
     'terms' => 'NOTZUNGSBEDINGUNGE VUM PORTAL',
     'cookies' => 'COOKIE-POLITIK',
     'gdpr' => 'RGPD AN DATESCHUTZ',

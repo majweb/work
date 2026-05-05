@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'ŽELIM DA SE PRETPLATIM',
         'privacy_notice' => 'KLIKOM NA DUGME PRIHVATATE NAŠU POLITIKU PRIVATNOSTI.',
         'privacy_policy' => 'POLITIKA PRIVATNOSTI',
-        'owner' => 'ZAŠTITA INTELEKTUALNE SVOJINE',
+        'owner' => 'KONTAKT / PRAVNE INFORMACIJE',
         'terms' => 'USLOVI KORIŠĆENJA PORTALA',
         'cookies' => 'POLITIKA KOLAČIĆA (COOKIES)',
         'gdpr' => 'GDPR I ZAŠTITA PODATAKA',

@@ -1346,7 +1346,7 @@ return [
         'subscribe' => 'ABONE OLMAK İSTİYORUM',
         'privacy_notice' => 'BUTONA TIKLAYARAK GİZLİLİK POLİTİKAMIZI KABUL ETMİŞ OLURSUNUZ.',
         'privacy_policy' => 'GİZLİLİK POLİTİKASI',
-        'owner' => 'FİKRİ MÜLKİYET KORUMASI',
+        'owner' => 'İLETİŞİM / HUKUKİ BİLGİLER',
         'terms' => 'PORTAL KULLANIM ŞARTLARI',
         'cookies' => 'ÇEREZ (COOKIES) POLİTİKASI',
         'gdpr' => 'KVKK VE VERİ KORUMA',

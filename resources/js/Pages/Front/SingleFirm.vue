@@ -414,7 +414,7 @@ function closeLightbox() {
                                         <div class="flex items-center gap-4">
                                             <div class="relative shrink-0">
                                                 <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm group-hover:bg-white transition-colors relative z-10">
-                                                    <img class="w-10 h-10" :src="`/images/icons/${project.category?.id || 'oferty'}.svg`" :alt="project.category?.name" />
+                                                    <img class="w-10 h-10" :src="`/images/icons/oferty.svg`" :alt="project.category?.name" />
                                                 </div>
                                                 <div v-if="project.is_featured" class="absolute -top-6 -right-6 z-20 transform hover:scale-110 transition-transform duration-300">
                                                     <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-10 h-10 drop-shadow-lg" />
@@ -430,9 +430,9 @@ function closeLightbox() {
                                         </div>
 
                                         <div class="text-right flex flex-col items-end gap-2">
-                                            <div class="px-6 py-3 bg-green-50 rounded-2xl border border-green-100/50">
-                                                <p class="text-[8px] font-black text-green-600/50 uppercase tracking-widest leading-none mb-1 text-center">{{ __('translate.salary') }}</p>
-                                                <p class="text-xl font-black text-green-600 tracking-tight leading-none">
+                                            <div class="px-6 py-3 bg-blue-50 rounded-2xl border border-blue-100/50">
+                                                <p class="text-[8px] font-black text-blue-600/50 uppercase tracking-widest leading-none mb-1 text-center">{{ __('translate.salary') }}</p>
+                                                <p class="text-xl font-black text-blue-600 tracking-tight leading-none">
                                                     {{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency || 'zł' }}
                                                 </p>
                                             </div>

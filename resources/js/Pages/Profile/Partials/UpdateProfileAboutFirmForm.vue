@@ -67,7 +67,7 @@ const updateProfileFirm = () => {
 <template>
     <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
         <!-- Header -->
-        <h3 class="px-6 py-4 text-xl text-center font-semibold text-work-main">
+        <h3 class="uppercase px-6 py-4 text-xl text-center font-semibold text-work-main">
             {{ __('translate.rest') }}
         </h3>
 

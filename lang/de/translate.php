@@ -1429,7 +1429,7 @@ return [
         'subscribe' => 'ABONNIEREN',
         'privacy_notice' => 'MIT DER ANMELDUNG AKZEPTIEREN SIE UNSERE DATENSCHUTZERKLÄRUNG.',
         'privacy_policy' => 'DATENSCHUTZERKLÄRUNG',
-        'owner' => 'GEISTIGES EIGENTUM',
+        'owner' => 'KONTAKT / RECHTLICHE INFORMATIONEN',
         'terms' => 'AGB',
         'cookies' => 'COOKIES',
         'gdpr' => 'DSGVO',
