@@ -6,7 +6,7 @@ defineProps({
 <template>
     <div v-show="message">
         <div class="col-span-6">
-            <div class="py-2 rounded-lg bg-indigo-50 my-2" role="alert">
+            <div class="py-2 rounded-lg bg-blue-50 my-2" role="alert">
                 <p class="text-sm text-gray-600 flex items-center font-semibold justify-center">
                     {{ message }}
                 </p>

@@ -237,7 +237,7 @@ const submit = () => {
                 {{ __('translate.myCv') }}
             </h2>
         </template>
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- HEADER -->
                 <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
@@ -268,11 +268,11 @@ const submit = () => {
                                 <div class="flex-1 min-w-0">
                                     <h4 class="text-sm font-bold truncate transition-colors uppercase"
                                         :class="selectedCv?.id === cv.id ? 'text-white' : 'text-[#0A2C5C]'">
-                                        CV {{ cv.project.category.allTranslations.title[usePage().props.language] }}
+                                        CV {{ cv.project?.category?.allTranslations?.title?.[usePage().props.language] || cv.project?.category?.name || '---' }}
                                     </h4>
                                     <p class="text-[10px] font-bold uppercase tracking-tight mt-1"
                                        :class="selectedCv?.id === cv.id ? 'text-blue-200' : 'text-gray-400'">
-                                        {{ cv.project.position.allTranslations.title[usePage().props.language] }}
+                                        {{ cv.project?.position?.allTranslations?.title?.[usePage().props.language] || cv.project?.position?.name || '---' }}
                                     </p>
                                 </div>
                                 <div v-if="selectedCv?.id === cv.id" class="shrink-0">

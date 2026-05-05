@@ -845,7 +845,7 @@ const removeFile = async (source, load) => {
                                         <div class="flex flex-col sm:flex-row items-center gap-6">
                                             <div class="relative group">
                                                 <div
-                                                    class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition"></div>
+                                                    class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition"></div>
                                                 <p class="relative bg-white rounded-xl p-3 px-6 text-center shadow-sm border border-gray-100 flex items-center justify-center min-w-[120px]">
                                                 <span
                                                     v-for="(item, index) in coloredCaptcha"
@@ -1133,7 +1133,7 @@ const removeFile = async (source, load) => {
                                             class="mb-4 font-black text-blue-900 uppercase tracking-widest text-[10px]"/>
                                 <div class="relative group">
                                     <div
-                                        class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[1.5rem] blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
+                                        class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-[1.5rem] blur opacity-10 group-hover:opacity-20 transition duration-500"></div>
                                     <label
                                         :class="[
                                             'relative flex items-center gap-6 cursor-pointer bg-white border-2 rounded-[1.5rem] p-5 transition-all duration-300 select-none shadow-sm',

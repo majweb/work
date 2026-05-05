@@ -22,6 +22,11 @@ const open = ref(false)
 
 const showingNavigationDropdown = ref(false);
 const showSupportDrawer = ref(false);
+
+const showingAplicationsDropdown = ref(false);
+const showingServicesDropdown = ref(false);
+const showingBuyDropdown = ref(false);
+
 const currentUser = computed(() => usePage().props.auth.user);
 
 // Pobranie liczby nieprzeczytanych powiadomień bezpośrednio z Inertia props
@@ -309,7 +314,7 @@ onUnmounted(()=>{
                             <div class="relative flex items-center ms-2">
                                 <Dropdown align="right" width="56">
                                     <template #trigger>
-                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm p-0.5 border-2 border-transparent rounded-full hover:border-indigo-200 transition-all focus:outline-none">
+                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm p-0.5 border-2 border-transparent rounded-full hover:border-blue-200 transition-all focus:outline-none">
                                             <img class="h-9 w-9 rounded-full object-cover shadow-sm" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                                         </button>
                                         <button v-else class="flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#0A2C5C] hover:bg-gray-50 rounded-xl transition-all">
@@ -399,26 +404,77 @@ onUnmounted(()=>{
                 >
                     <div v-show="showingNavigationDropdown" class="lg:hidden border-t border-gray-100 bg-white">
                         <div class="pt-2 pb-6 space-y-1">
-                            <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">{{__('translate.dashboard')}}</ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')" class="uppercase">{{__('translate.dashboard')}}</ResponsiveNavLink>
 
                             <!-- Responsive Role Specific Links (Compact) -->
                             <div class="px-4 py-2 border-l-4 border-transparent text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-50/50">Menu</div>
 
                             <template v-if="hasRole('worker')">
-                                <ResponsiveNavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')">{{__('translate.myCv')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('front.projects')" :active="route().current('front.projects')">{{__('translate.projects')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')" class="uppercase">{{__('translate.myCv')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')" class="uppercase">{{__('translate.aplications')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')" class="uppercase">{{__('translate.Profile')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('front.projects')" :active="route().current('front.projects')" class="uppercase">{{__('translate.projects')}}</ResponsiveNavLink>
                             </template>
 
                             <template v-if="hasRole('firm')">
-                                <ResponsiveNavLink :href="route('recruits.index')" :active="route().current('recruits.index')">{{__('translate.recruits')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('aplications.index')" :active="route().current('aplications.index')">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')">{{__('translate.projects')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('statistics.index')" :active="route().current('statistics.index')">{{__('translate.statistics')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('invoices.index')" :active="route().current('invoices.index')">{{__('translate.invoices')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('buy.index')" :active="route().current('buy.index')">{{__('translate.buy')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('points.index')" :active="route().current('points.index')">{{__('translate.points')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')">{{__('translate.articles')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('recruits.index')" :active="route().current('recruits.index')" class="uppercase">{{__('translate.recruits')}}</ResponsiveNavLink>
+
+                                <div>
+                                    <button
+                                        @click="showingAplicationsDropdown = !showingAplicationsDropdown"
+                                        class="flex items-center justify-between w-full px-4 py-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50/30 hover:text-[#0A2C5C] transition-colors"
+                                    >
+                                        {{__('translate.aplications')}}
+                                        <svg :class="{'rotate-180': showingAplicationsDropdown}" class="ms-1.5 h-3 w-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                    <div v-show="showingAplicationsDropdown" class="space-y-1">
+                                        <ResponsiveNavLink :href="route('aplications.index')" :active="route().current('aplications.index')" class="uppercase pl-8">{{__('translate.aplications')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('candidate-questions.index')" :active="route().current('candidate-questions.index')" class="uppercase pl-8">{{__('translate.listQuestions')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('external-companies.index')" :active="route().current('external-companies.index')" class="uppercase pl-8">{{__('translate.externalCompanies')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')" class="uppercase pl-8">{{__('translate.tags')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')" class="uppercase pl-8">{{__('translate.candidates')}}</ResponsiveNavLink>
+                                    </div>
+                                </div>
+
+                                <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')" class="uppercase">{{__('translate.projects')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('statistics.index')" :active="route().current('statistics.index')" class="uppercase">{{__('translate.statistics')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('invoices.index')" :active="route().current('invoices.index')" class="uppercase">{{__('translate.invoices')}}</ResponsiveNavLink>
+
+                                <div>
+                                    <button
+                                        @click="showingServicesDropdown = !showingServicesDropdown"
+                                        class="flex items-center justify-between w-full px-4 py-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50/30 hover:text-[#0A2C5C] transition-colors"
+                                    >
+                                        {{__('translate.services')}}
+                                        <svg :class="{'rotate-180': showingServicesDropdown}" class="ms-1.5 h-3 w-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                    <div v-show="showingServicesDropdown" class="space-y-1">
+                                        <ResponsiveNavLink :href="route('firm.p50')" :active="route().current('firm.p50')" class="uppercase pl-8">{{__('translate.p50')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')" class="uppercase pl-8">{{__('translate.articles')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('firm.banners')" :active="route().current('firm.banners')" class="uppercase pl-8">{{__('translate.banners')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('firm.premium-certificate.show')" :active="route().current('firm.premium-certificate.show')" class="uppercase pl-8">{{__('translate.premium_certificate')}}</ResponsiveNavLink>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button
+                                        @click="showingBuyDropdown = !showingBuyDropdown"
+                                        class="flex items-center justify-between w-full px-4 py-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50/30 hover:text-[#0A2C5C] transition-colors"
+                                    >
+                                        {{__('translate.buy')}}
+                                        <svg :class="{'rotate-180': showingBuyDropdown}" class="ms-1.5 h-3 w-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                    <div v-show="showingBuyDropdown" class="space-y-1">
+                                        <ResponsiveNavLink :href="route('buy.index')" :active="route().current('buy.index')" class="uppercase pl-8">{{__('translate.buy')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('points.index')" :active="route().current('points.index')" class="uppercase pl-8">{{__('translate.points')}}</ResponsiveNavLink>
+                                    </div>
+                                </div>
                             </template>
 
 <!--                            <template v-if="hasRole('admin')">-->
@@ -428,10 +484,10 @@ onUnmounted(()=>{
 <!--                            </template>-->
 
                             <template v-if="hasRole('recruit') && !hasRole('firm')">
-                                <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">{{__('translate.projects')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')">{{__('translate.candidates')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')">{{__('translate.tags')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')" class="uppercase">{{__('translate.projects')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')" class="uppercase">{{__('translate.aplications')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')" class="uppercase">{{__('translate.candidates')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')" class="uppercase">{{__('translate.tags')}}</ResponsiveNavLink>
                             </template>
                         </div>
 
@@ -448,9 +504,9 @@ onUnmounted(()=>{
                             </div>
 
                             <div class="space-y-1">
-                                <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">{{__('translate.Profile')}}</ResponsiveNavLink>
+                                <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')" class="uppercase">{{__('translate.Profile')}}</ResponsiveNavLink>
                                 <form method="POST" @submit.prevent="logout">
-                                    <ResponsiveNavLink as="button" class="text-red-600">{{__('translate.logout')}}</ResponsiveNavLink>
+                                    <ResponsiveNavLink as="button" class="text-red-600 uppercase">{{__('translate.logout')}}</ResponsiveNavLink>
                                 </form>
                             </div>
                         </div>

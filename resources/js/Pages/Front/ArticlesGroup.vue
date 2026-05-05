@@ -35,7 +35,7 @@ const props = defineProps({
                 <!-- Header -->
                 <div class="bg-[#0A2C5C] rounded-[3rem] p-8 md:p-12 mb-12 shadow-2xl shadow-blue-900/20 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-indigo-500/10 rounded-full -ml-24 -mb-24 blur-2xl"></div>
+                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 rounded-full -ml-24 -mb-24 blur-2xl"></div>
 
                     <div class="relative z-10">
                         <div class="flex items-center gap-4 mb-4">
