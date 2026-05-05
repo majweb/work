@@ -199,19 +199,19 @@
                             <div v-if="service.id === 8 && bannerOptionsVisible[service.id]" class="text-xs font-black text-[#0A2C5C] uppercase leading-tight tracking-widest mb-4">
                                 {{__('translate.exchangeBanner')}}
                             </div>
-                            <template v-else>
+                            <div v-else>
                                 <h4 class="text-lg font-black text-[#0A2C5C] uppercase tracking-tight mb-2">
                                     {{ service.name }}
                                 </h4>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
                                     {{ service.description || getServiceDescription(service.service_type || '') }}
                                 </p>
-                            </template>
+                            </div>
                         </div>
 
                         <div class="relative z-10 w-full mt-6">
-                            <template v-if="service.id === 8">
-                                <template v-if="bannerOptionsVisible[service.id]">
+                            <div v-if="service.id === 8">
+                                <div v-if="bannerOptionsVisible[service.id]">
                                     <div class="space-y-3">
                                         <Link
                                             preserve-scroll
@@ -233,8 +233,8 @@
                                             {{ __('translate.cancel') }}
                                         </button>
                                     </div>
-                                </template>
-                                <template v-else>
+                                </div>
+                                <div v-else>
                                     <button
                                         @click="toggleBannerOptions(service.id)"
                                         class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4"
@@ -244,9 +244,9 @@
                                     <div class="text-xl font-black text-[#0A2C5C]">
                                         {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
                                     </div>
-                                </template>
-                            </template>
-                            <template v-else>
+                                </div>
+                            </div>
+                            <div v-else>
                                 <Link
                                     preserve-scroll
                                     v-if="points && points >= parseInt(service.price)"
@@ -264,7 +264,7 @@
                                 <div class="text-xl font-black text-[#0A2C5C]">
                                     {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
                                 </div>
-                            </template>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -469,7 +469,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12 pb-12">
             <!-- STATYSTYKI -->
-            <div class="lg:col-span-8 bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-12">
+            <div class="lg:col-span-8 bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-12">
                 <div class="flex items-center justify-between mb-12">
                     <div>
                         <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.recruiterStatistics') }}</h2>
@@ -488,18 +488,18 @@
                                 {{ __('translate.recruits') }}
                             </h3>
                         </div>
-                        <div class="flex justify-center bg-gray-50/30 rounded-[3rem] p-8 border border-gray-50/50 relative overflow-hidden group">
+                        <div class="flex justify-center bg-gray-50/30 rounded-[2rem] sm:rounded-[3rem] p-2 sm:p-8 border border-gray-50/50 relative overflow-hidden group">
                             <div class="absolute inset-0 bg-blue-50/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <component
-                                :is="VueApexChartsLazy"
-                                v-if="chartData && VueApexChartsLazy"
-                                width="320"
-                                height="320"
-                                type="donut"
-                                :options="chartOptions"
-                                :series="chartSeries"
-                                class="relative z-10"
-                            />
+                            <div v-if="chartData && VueApexChartsLazy" class="w-full max-w-full sm:max-w-[320px] mx-auto relative z-10 overflow-hidden">
+                                <component
+                                    :is="VueApexChartsLazy"
+                                    width="100%"
+                                    height="320"
+                                    type="donut"
+                                    :options="chartOptions"
+                                    :series="chartSeries"
+                                />
+                            </div>
                             <div v-else class="h-[320px] flex items-center justify-center text-center text-gray-300 text-[10px] font-black uppercase tracking-widest relative z-10">
                                 {{ __('translate.NoData') }}
                             </div>
@@ -513,18 +513,18 @@
                                 {{ __('translate.applications') }}
                             </h3>
                         </div>
-                        <div class="flex justify-center bg-gray-50/30 rounded-[3rem] p-8 border border-gray-50/50 relative overflow-hidden group">
+                        <div class="flex justify-center bg-gray-50/30 rounded-[2rem] sm:rounded-[3rem] p-2 sm:p-8 border border-gray-50/50 relative overflow-hidden group">
                             <div class="absolute inset-0 bg-blue-50/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <component
-                                :is="VueApexChartsLazy"
-                                v-if="chartDataApp && VueApexChartsLazy"
-                                width="320"
-                                height="320"
-                                type="donut"
-                                :options="chartOptionsApp"
-                                :series="chartSeriesApp"
-                                class="relative z-10"
-                            />
+                            <div v-if="chartDataApp && VueApexChartsLazy" class="w-full max-w-full sm:max-w-[320px] mx-auto relative z-10 overflow-hidden">
+                                <component
+                                    :is="VueApexChartsLazy"
+                                    width="100%"
+                                    height="320"
+                                    type="donut"
+                                    :options="chartOptionsApp"
+                                    :series="chartSeriesApp"
+                                />
+                            </div>
                             <div v-else class="h-[320px] flex items-center justify-center text-center text-gray-300 text-[10px] font-black uppercase tracking-widest relative z-10">
                                 {{ __('translate.NoData') }}
                             </div>
@@ -534,34 +534,39 @@
             </div>
 
             <!-- POWIADOMIENIA -->
-            <div class="lg:col-span-4 bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-12 flex flex-col">
-                <div class="flex items-center justify-between mb-10">
-                    <div>
-                        <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{__('translate.notifications')}}</h2>
-                    </div>
-                    <Link preserveScroll v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-[10px] font-black text-red-500 hover:text-red-600 uppercase tracking-widest transition-colors">
+            <div class="lg:col-span-4 bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-12 flex flex-col">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+                    <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{__('translate.notifications')}}</h2>
+                    <Link
+                        preserveScroll
+                        v-if="usePage().props.unreadNotifications"
+                        :href="route('notifications.markAllAsRead')"
+                        method="post"
+                        as="button"
+                        class="px-4 py-2 bg-red-50 text-[10px] font-black text-red-500 hover:bg-red-500 hover:text-white rounded-xl uppercase tracking-widest transition-all duration-300"
+                    >
                         {{ __('translate.markAllAsRead') }}
                     </Link>
                 </div>
 
-                <div class="flex-1 custom-scrollbar overflow-y-auto max-h-[500px] pr-2">
-                    <ul class="space-y-4">
+                <div class="flex-1 custom-scrollbar overflow-y-auto max-h-[500px] pr-1">
+                    <ul class="space-y-3">
                         <li
                             v-if="notifications.length"
                             v-for="notification in notifications"
                             :key="notification.id"
-                            class="group relative flex items-start gap-4 p-6 rounded-[2rem] transition-all duration-300 border border-gray-50 hover:bg-gray-50 hover:border-blue-100 hover:shadow-lg hover:shadow-blue-900/5"
+                            class="group relative flex items-start gap-3 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] transition-all duration-300 border border-gray-50 hover:bg-gray-50 hover:border-blue-100 hover:shadow-lg hover:shadow-blue-900/5"
                         >
-                            <div class="shrink-0 mt-1 w-2.5 h-2.5 rounded-full transition-all duration-300" :class="notification.read_at ? 'bg-gray-200' : 'bg-[#00a0e3] shadow-[0_0_12px_rgba(0,160,227,0.5)] group-hover:scale-125'"></div>
+                            <div class="shrink-0 mt-1.5 w-2 h-2 rounded-full transition-all duration-300" :class="notification.read_at ? 'bg-gray-200' : 'bg-[#00a0e3] shadow-[0_0_12px_rgba(0,160,227,0.5)] group-hover:scale-125'"></div>
 
                             <div class="flex-1 min-w-0">
                                 <button
                                     v-if="!notification.read_at"
-                                    class="text-left text-xs font-black text-[#0A2C5C] uppercase tracking-tight leading-snug group-hover:text-[#00a0e3] transition-colors"
+                                    class="text-left text-[11px] sm:text-xs font-black text-[#0A2C5C] uppercase tracking-tight leading-snug group-hover:text-[#00a0e3] transition-colors"
                                     v-html="formatNotification(notification).message"
                                     @click="markAsRead(notification.id)"
                                 ></button>
-                                <span v-else class="text-xs font-bold text-gray-400 uppercase tracking-tight leading-snug" v-html="formatNotification(notification).message"></span>
+                                <span v-else class="text-[11px] sm:text-xs font-bold text-gray-400 uppercase tracking-tight leading-snug" v-html="formatNotification(notification).message"></span>
                                 <p v-if="notification.created_at" class="mt-2 text-[8px] font-black text-gray-300 uppercase tracking-widest">
                                     {{ moment(notification.created_at).format('DD.MM.YYYY') }}
                                 </p>
@@ -777,7 +782,13 @@ const chartOptions = computed(() => ({
     ],
     colors: ['#0A2C5C', '#e31e24'],
     legend: {
-        position: 'bottom'
+        position: 'bottom',
+        fontSize: '10px',
+        offsetY: 0,
+        itemMargin: {
+            horizontal: 5,
+            vertical: 5
+        }
     },
     dataLabels: {
         enabled: true,
@@ -791,10 +802,18 @@ const chartOptions = computed(() => ({
                 size: '65%',
                 labels: {
                     show: true,
+                    name: {
+                        show: true,
+                        fontSize: '12px',
+                    },
+                    value: {
+                        show: true,
+                        fontSize: '14px',
+                    },
                     total: {
                         show: true,
                         label: __('translate.total'),
-                        fontSize: '16px',
+                        fontSize: '14px',
                         fontWeight: 600,
                     }
                 }
@@ -814,7 +833,13 @@ const chartOptionsApp = computed(() => ({
     ],
     colors: ['#0A2C5C', '#e31e24', '#00a0e3', '#9ca3af'],
     legend: {
-        position: 'bottom'
+        position: 'bottom',
+        fontSize: '10px',
+        offsetY: 0,
+        itemMargin: {
+            horizontal: 5,
+            vertical: 5
+        }
     },
     dataLabels: {
         enabled: true,
@@ -828,10 +853,18 @@ const chartOptionsApp = computed(() => ({
                 size: '65%',
                 labels: {
                     show: true,
+                    name: {
+                        show: true,
+                        fontSize: '12px',
+                    },
+                    value: {
+                        show: true,
+                        fontSize: '14px',
+                    },
                     total: {
                         show: true,
                         label: __('translate.total'),
-                        fontSize: '16px',
+                        fontSize: '14px',
                         fontWeight: 600
                     }
                 }
