@@ -44,7 +44,7 @@
     </div>
 </template>
 <script>
-import {onMounted, onUnmounted, ref, watch} from "vue";
+import {ref} from "vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 export default {
@@ -73,60 +73,6 @@ export default {
     },
     setup(props, context) {
         const streetRef = ref();
-        let autocomplete;
-        const autocompleteFunc = () => {
-            autocomplete = new google.maps.places.Autocomplete(streetRef.value, {
-                types: ["address"],
-                componentRestrictions: {country: props.code},
-                fields: ["address_components"]
-            });
-            google.maps.event.addListener(autocomplete, "place_changed", () => {
-                const mapping = {
-                    street_number: "update:streetNumber",
-                    route: "update:street",
-                    locality: "update:city",
-                    postal_code: "update:postcode",
-                }
-                for(const type in mapping) {
-                    context.emit(mapping[type], "");
-                }
-
-                let place = {
-                    address_components: [],
-                    ...autocomplete.getPlace()
-                }
-
-                place.address_components.forEach((component) => {
-                    component.types.forEach((type) => {
-                        if(mapping.hasOwnProperty(type)){
-                            context.emit(mapping[type], component.long_name);
-                        }
-                    });
-                });
-            });
-        }
-
-        watch(() => props.code, async () => {
-            if(autocomplete){
-                let options  = {
-                    types: ["address"],
-                    componentRestrictions: {country: props.code},
-                    fields: ["address_components"]
-                }
-                autocomplete.setOptions(options);
-            }
-        });
-
-        onMounted(() => {
-            autocompleteFunc();
-        });
-
-        onUnmounted(() => {
-            if(autocomplete) {
-                google.maps.event.clearInstanceListeners(autocomplete);
-            }
-        });
-
         return {streetRef};
     }
 };
