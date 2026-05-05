@@ -3,8 +3,6 @@ import { Link, useForm, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import __ from '@/lang.js';
 import moment from "moment";
-import 'moment/dist/locale/pl';
-import 'moment/dist/locale/zh-cn';
 
 const props = defineProps({
     notifications: Object
