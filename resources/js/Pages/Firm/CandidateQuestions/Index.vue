@@ -45,7 +45,7 @@ const deleteQuestion = () => {
 
 <template>
     <AppLayout :title="__('translate.candidateQuestions')">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <!-- Modal potwierdzenia usunięcia pytania -->
             <DialogModal :show="showDeleteModal" @close="closeDeleteModal">
                 <template #title>

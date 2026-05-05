@@ -260,7 +260,7 @@ watch(selectedTags, (newTags) => {
             </h2>
         </template>
 
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div
                 v-if="loading"
                 class="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90"

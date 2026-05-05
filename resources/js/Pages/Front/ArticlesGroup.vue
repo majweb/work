@@ -30,7 +30,7 @@ const props = defineProps({
             :url="route('front.groupArticles', categoryName)"
             type="website"
         >
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
                 <div class="bg-[#0A2C5C] rounded-[3rem] p-8 md:p-12 mb-12 shadow-2xl shadow-blue-900/20 relative overflow-hidden">

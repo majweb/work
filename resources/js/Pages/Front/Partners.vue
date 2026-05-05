@@ -209,7 +209,7 @@ const submit = () => {
         :url="route('front.partners')"
         type="website"
     >
-        <div class="py-12 bg-gray-50/50 min-h-screen relative overflow-hidden">
+        <div class="py-12 bg-gray-50/50 min-h-screen relative overflow-hidden px-2 sm:px-0">
             <!-- Background Decoration -->
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl transition-transform duration-1000"></div>
             <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-50/30 rounded-full -ml-48 -mb-48 blur-3xl transition-transform duration-1000"></div>

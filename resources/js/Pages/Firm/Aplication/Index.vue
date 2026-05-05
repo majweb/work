@@ -333,7 +333,7 @@ watch(() => usePage().props.sender, (newVal) => {
             </div>
         </template>
 
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <Transition
                 enter-active-class="transition-opacity duration-500"
                 enter-from-class="opacity-0"

@@ -29,7 +29,7 @@ const submit = () => {
 
 <template>
     <AppLayout title="Wystaw korektę">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
                 <!-- Header -->
                 <div class="mb-8 flex items-center gap-6">

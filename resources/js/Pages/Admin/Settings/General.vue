@@ -26,7 +26,7 @@ const submit = () => {
 
 <template>
     <AppLayout title="Ustawienia Główne">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <!-- Header Section -->
                 <div v-if="form.is_maintenance" class="mb-8 bg-red-50 border border-red-200 rounded-2xl p-6 flex items-center gap-4">

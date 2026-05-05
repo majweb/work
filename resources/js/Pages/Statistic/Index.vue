@@ -104,7 +104,7 @@ const setProjectPage = (p) => {
 
 <template>
     <AppLayout :title="__('translate.statistics')">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <!-- HEADER CARD -->
                 <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 mb-8">

@@ -18,7 +18,7 @@ const submit = () => {
 
 <template>
     <AppLayout :title="'Edycja rekrutera: ' + user.name">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
                 <div class="flex items-center justify-between mb-12 border-b border-gray-100 pb-8">

@@ -144,7 +144,7 @@ onMounted(async () => {
 
 <template>
     <AppLayout :title="__('translate.project') + ' #' + props.project.id">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- Nagłówek z linkiem wstecz -->
                 <div class="flex items-center justify-between">

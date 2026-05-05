@@ -24,7 +24,7 @@ const submit = () => {
 
 <template>
     <AppLayout title="Edytuj firmę zewnętrzną">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8">
 
                 <div class="mb-8 flex items-center px-4">

@@ -98,7 +98,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
         :url="route('front.projects')"
         type="website"
     >
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- Formularz wyszukiwania -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">

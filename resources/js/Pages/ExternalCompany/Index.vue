@@ -36,7 +36,7 @@ const deleteCompany = () => {
 
 <template>
     <AppLayout :title="__('translate.externalCompanies')">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex items-center justify-between">

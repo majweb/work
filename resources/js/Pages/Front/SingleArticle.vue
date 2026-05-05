@@ -140,7 +140,7 @@ const articleSchema = computed(() => {
                 {{ articleSchema }}
             </component>
         </template>
-        <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans">
+        <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <!-- BACK BUTTON -->

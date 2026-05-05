@@ -530,7 +530,7 @@ const removeFile = async (source, load) => {
 </script>
 <template>
     <FrontLayout :title="__('translate.aplications')" type="website">
-        <div class="py-12 bg-gray-50/50 min-h-screen">
+        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-[1300px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <!-- HEADER CARD -->
                 <div class="relative bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
