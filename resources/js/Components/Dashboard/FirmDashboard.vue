@@ -584,7 +584,7 @@
 import {Link, router, usePage, useForm} from "@inertiajs/vue3";
 import __ from "@/lang.js";
 import {computed, ref, reactive, shallowRef, onMounted} from "vue";
-import moment from "moment/moment.js";
+import moment from "moment";
 
 const props = defineProps({
     notifications: {

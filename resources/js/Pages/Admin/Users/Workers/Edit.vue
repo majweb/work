@@ -4,7 +4,7 @@ import {Link, router, useForm, usePage} from "@inertiajs/vue3";
 import __ from '@/lang.js';
 import {ref, onMounted, computed, watch} from 'vue';
 import axios from 'axios';
-import moment from "moment/moment.js";
+import moment from "moment";
 import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({

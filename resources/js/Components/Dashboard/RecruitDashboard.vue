@@ -388,9 +388,7 @@
 import { computed, ref, shallowRef, onMounted } from 'vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import __ from '@/lang.js';
-import moment from "moment/moment.js";
-import 'moment/dist/locale/pl';
-import 'moment/dist/locale/zh-cn';
+import moment from "moment";
 
 const props = defineProps({
     applications: {
