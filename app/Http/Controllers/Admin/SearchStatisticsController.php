@@ -123,11 +123,11 @@ class SearchStatisticsController extends Controller
 
         if ($stat->country) {
             // W FrontController filtrowanie po kraju:
-            // $query->whereJsonContains('country', ['value' => (int) request('country')]);
+            // $query->whereJsonContains('countryWork', ['value' => (int) request('country')]);
             // Ale my mamy nazwę. Więc musimy znaleźć ID kraju po nazwie.
             $country = \App\Models\Country::where('name->pl', $stat->country)->first();
             if ($country) {
-                $query->whereJsonContains('country', ['value' => $country->id]);
+                $query->whereJsonContains('countryWork', ['value' => $country->id]);
             } else {
                 return 0;
             }

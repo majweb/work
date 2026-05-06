@@ -1663,7 +1663,7 @@ return [
     'reject_all' => 'Alles afwijzen behalve essentieel',
     'only_essential' => 'Alleen essentiële cookies',
     'sickPeople'=>'V/M/Anders',
-    'stripe'=>'Stripe Secure Payment',
+    'stripe' => 'Betalen / Betaling',
     'brutto' => 'Bruto',
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Heb je al een account?',

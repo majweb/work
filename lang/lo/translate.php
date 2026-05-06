@@ -1663,7 +1663,7 @@ return [
     'reject_all' => 'បដិសេធទាំងអស់លើកលែងតែចាំបាច់',
     'only_essential' => 'មានតែខូគីចាំបាច់ប៉ុណ្ណោះ',
     'sickPeople'=>'ស្រី/ប្រុស/ផ្សេងៗ',
-    'stripe'=>'Stripe Secure Payment',
+    'stripe' => 'ຈ່າຍ / ການຈ່າຍ',
     'brutto' => 'ລວມທັງໝົດ',
     'netto' => 'ສຸດທິ',
     'alreadyhaveanaccount' => 'ທ່ານມີບັນຊີແລ້ວບໍ?',

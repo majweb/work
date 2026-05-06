@@ -4,37 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
-use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\OtherRecruitsResource;
-use App\Http\Resources\PayModesResource;
-use App\Http\Resources\TypeOfContractResource;
-use App\Http\Resources\WorkingModesResource;
-use App\Http\Resources\WorkLoadResource;
 use App\Models\Category;
-use App\Models\CvType;
-use App\Models\Day;
-use App\Models\Education;
-use App\Models\Experience;
 use App\Models\ExternalCompany;
-use App\Models\Offer;
-use App\Models\PayoutMode;
-use App\Models\PaySystem;
 use App\Models\Project;
-use App\Models\ShiftWork;
-use App\Models\TypeOfContract;
 use App\Models\User;
-use App\Models\Wait;
-use App\Models\Welcome;
-use App\Models\WorkingMode;
-use App\Models\WorkingPlace;
-use App\Models\WorkLoad;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -166,7 +146,7 @@ class JobOfferController extends Controller
         }
 
         if ($request->filled('country')) {
-            $query->whereJsonContains('country', ['value' => (int) $request->country]);
+            $query->whereJsonContains('countryWork', ['value' => (int) $request->country]);
         }
 
         if ($request->filled('city')) {
@@ -283,7 +263,7 @@ class JobOfferController extends Controller
 
     public function toggleStatus(Project $project): RedirectResponse
     {
-        $project->update(['is_active' => !$project->is_active]);
+        $project->update(['is_active' => ! $project->is_active]);
 
         $message = $project->is_active ? 'Oferta została aktywowana.' : 'Oferta została dezaktywowana.';
 
@@ -313,11 +293,11 @@ class JobOfferController extends Controller
             },
             'aplications as new_count' => function ($q) {
                 $q->whereNull('status');
-            }
+            },
         ]);
 
         $project->load([
-            'recruit', 'shiftWork', 'education', 'externalCompany', 'questions'
+            'recruit', 'shiftWork', 'education', 'externalCompany', 'questions',
         ]);
 
         $companyId = $project->user_id;
@@ -332,7 +312,7 @@ class JobOfferController extends Controller
         return Inertia::render('Admin/JobOffers/Show', [
             'project' => $project,
             'locale' => $locale,
-            'otherRecruits' => $otherRecruits
+            'otherRecruits' => $otherRecruits,
         ]);
     }
 
@@ -340,7 +320,7 @@ class JobOfferController extends Controller
     {
         $externalCompanies = ExternalCompany::where('user_id', $project->user_id)->latest()->get();
         $project->load('detailprojects', 'questions');
-        $countries = (new Helper())->makeCountriesToSelect();
+        $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
 
         return Inertia::render('Admin/JobOffers/Edit', array_merge($dictionaryService->getAllProjectDictionaries(), [
@@ -363,10 +343,10 @@ class JobOfferController extends Controller
                 ?? $request->projectData()['countryWork']['name']
                 ?? null;
 
-            $title[$lang] = ($posTitle ? $posTitle . ', ' : '') .
-                ($countryTitle ? $countryTitle . ', ' : '') .
-                $request->projectData()['cityWork'] . ', ' .
-                $request->projectData()['basicSalaryFrom'] . ' ' .
+            $title[$lang] = ($posTitle ? $posTitle.', ' : '').
+                ($countryTitle ? $countryTitle.', ' : '').
+                $request->projectData()['cityWork'].', '.
+                $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'];
         }
 
@@ -412,8 +392,7 @@ class JobOfferController extends Controller
             'user_id' => $project->user_id,
         ]);
 
-
-        if($project && count($request->projectData()['detailProjects'])){
+        if ($project && count($request->projectData()['detailProjects'])) {
             $project->detailprojects()->sync($request->projectData()['detailProjects']);
         }
 
@@ -458,13 +437,13 @@ class JobOfferController extends Controller
         // Przygotowanie danych przed walidacją (tak jak w StoreProject)
         if (is_array($request->externalCompany) && isset($request->externalCompany['id'])) {
             $request->merge([
-                'externalCompany' => $request->externalCompany['id']
+                'externalCompany' => $request->externalCompany['id'],
             ]);
         }
 
         if (is_array($request->recruit) && isset($request->recruit['value'])) {
             $request->merge([
-                'recruit' => $request->recruit['value']
+                'recruit' => $request->recruit['value'],
             ]);
         }
 
@@ -476,7 +455,7 @@ class JobOfferController extends Controller
                 $rules = [
                     // CV
                     'cv' => ['required', 'array', 'min:1'],
-                    'cv.*.id' => ['required','exists:App\Models\CvType,id'],
+                    'cv.*.id' => ['required', 'exists:App\Models\CvType,id'],
 
                     // Kategorie
                     'category' => ['required', 'array', 'max:100'],
@@ -498,7 +477,7 @@ class JobOfferController extends Controller
                     'lng' => ['nullable', 'numeric'],
 
                     // Wykształcenie
-                    'education' => ['nullable','exists:App\Models\Education,id'],
+                    'education' => ['nullable', 'exists:App\Models\Education,id'],
 
                     // Pytania (walidacja warunkowa)
                     'questions' => [
@@ -509,7 +488,7 @@ class JobOfferController extends Controller
                             if (($cvTypes->contains(2) || $cvTypes->contains(3)) && empty($value)) {
                                 $fail(__('translate.questions_required'));
                             }
-                        }
+                        },
                     ],
                     'questions.*.content' => 'required_with:questions|string',
                     'questions.*.answer_time' => 'required_with:questions|integer|in:15,30,45,60',
@@ -523,52 +502,52 @@ class JobOfferController extends Controller
                 $rules = [
                     // Rodzaj umowy
                     'typeOfContract' => ['required', 'array', 'min:1'],
-                    'typeOfContract.*.id' => ['required','exists:App\Models\TypeOfContract,id'],
+                    'typeOfContract.*.id' => ['required', 'exists:App\Models\TypeOfContract,id'],
 
                     // Wynagrodzenie
                     'currency' => ['required'],
-                    'basicSalaryFrom' => ['required', 'numeric','between:1,99999.99'],
-                    'basicSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:basicSalaryFrom'],
-                    'bonusSalaryFrom' => ['required', 'numeric','between:1,99999.99'],
-                    'bonusSalaryTo' => ['nullable', 'numeric','between:1,99999.99','gt:bonusSalaryFrom'],
+                    'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
+                    'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 
                     // Tryb wypłaty
-                    'payoutMode' => ['required','array'],
-                    'payoutMode.id' => ['required','exists:App\Models\PayoutMode,id'],
+                    'payoutMode' => ['required', 'array'],
+                    'payoutMode.id' => ['required', 'exists:App\Models\PayoutMode,id'],
 
                     // Dni pracy
                     'days' => ['required', 'array', 'min:1'],
-                    'days.*.id' => ['required','exists:App\Models\Day,id'],
+                    'days.*.id' => ['required', 'exists:App\Models\Day,id'],
 
                     // Godziny pracy
-                    'hoursFrom' => ['required', 'date_format:H:i','before:hoursTo'],
-                    'hoursTo' => ['required', 'date_format:H:i','after:hoursFrom'],
+                    'hoursFrom' => ['required', 'date_format:H:i', 'before:hoursTo'],
+                    'hoursTo' => ['required', 'date_format:H:i', 'after:hoursFrom'],
 
                     // System wynagrodzeń
                     'paySystem' => ['required', 'array', 'min:1'],
-                    'paySystem.*.id' => ['required','exists:App\Models\PaySystem,id'],
+                    'paySystem.*.id' => ['required', 'exists:App\Models\PaySystem,id'],
 
                     // Praca nocna i zmianowa
-                    'workNight' => ['required','in:1,2'],
-                    'shiftWork' => ['required','in:1,2'],
+                    'workNight' => ['required', 'in:1,2'],
+                    'shiftWork' => ['required', 'in:1,2'],
                 ];
                 break;
 
             case 3:
                 $rules = [
                     // Tryb i wymiar pracy
-                    'workingMode' => ['required','array','min:1'],
-                    'workingMode.*.id' => ['required','exists:App\Models\WorkingMode,id'],
-                    'workLoad' => ['required','array'],
-                    'workLoad.id' => ['required','exists:App\Models\WorkLoad,id'],
+                    'workingMode' => ['required', 'array', 'min:1'],
+                    'workingMode.*.id' => ['required', 'exists:App\Models\WorkingMode,id'],
+                    'workLoad' => ['required', 'array'],
+                    'workLoad.id' => ['required', 'exists:App\Models\WorkLoad,id'],
 
                     // Miejsce pracy
-                    'workingPlace' => ['required','array','min:1'],
-                    'workingPlace.*.id' => ['required','exists:App\Models\WorkingPlace,id'],
+                    'workingPlace' => ['required', 'array', 'min:1'],
+                    'workingPlace.*.id' => ['required', 'exists:App\Models\WorkingPlace,id'],
 
                     // Doświadczenie
-                    'experience' => ['required','array'],
-                    'experience.id' => ['required','exists:App\Models\Experience,id'],
+                    'experience' => ['required', 'array'],
+                    'experience.id' => ['required', 'exists:App\Models\Experience,id'],
 
                     // Benefity (Oczekujemy, Mile widziane, Oferujemy)
                     'offer' => ['nullable', 'array'],

@@ -200,16 +200,16 @@ const socialLinks = [
 
                 <!-- Desktop nav -->
                 <nav class="hidden lg:flex items-center space-x-1">
-                    <NavLink :href="route('front.articles')" :active="route().current('front.articles')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-gray-500 hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.articles')" :active="route().current('front.articles')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
                         {{__('translate.articles')}}
                     </NavLink>
-                    <NavLink :href="route('front.projects')" :active="route().current('front.projects')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-gray-500 hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.projects')" :active="route().current('front.projects')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
                         {{__('translate.projects')}}
                     </NavLink>
-                    <NavLink :href="route('front.firms')" :active="route().current('front.firms')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-gray-500 hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.firms')" :active="route().current('front.firms')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
                         {{__('translate.firms')}}
                     </NavLink>
-                    <NavLink :href="route('front.partners')" :active="route().current('front.partners')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-gray-500 hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.partners')" :active="route().current('front.partners')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
                         {{__('translate.partners')}}
                     </NavLink>
                 </nav>
@@ -374,7 +374,7 @@ const socialLinks = [
                     <!-- Brand & Socials -->
                     <div class="lg:col-span-4 space-y-8 text-center lg:text-left">
                         <img src="/images/logo-horizontal.svg" class="h-12 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
-                        <p class="text-sm text-gray-500 font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
+                        <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
                             {{ __('translate.footer.description') }}
                         </p>
                         <div class="flex items-center justify-center lg:justify-start gap-3">
@@ -451,7 +451,7 @@ const socialLinks = [
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
                         <div class="space-y-4">
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.footer.stay_in_touch') }}</h3>
-                            <p class="text-sm text-gray-500 font-medium leading-relaxed">{{ __('translate.footer.newsletter_text') }}</p>
+                            <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed">{{ __('translate.footer.newsletter_text') }}</p>
                         </div>
                         <form @submit.prevent="submitForm" class="relative group">
                             <div class="flex flex-col sm:flex-row gap-4">
@@ -486,7 +486,7 @@ const socialLinks = [
                                         <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllNewsletterAgreementsSelected}"></div>
                                         <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllNewsletterAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                                     </div>
-                                    <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllNewsletterAgreementsSelected ? 'text-[#0A2C5C]' : 'text-gray-500'">
+                                    <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllNewsletterAgreementsSelected ? 'text-[#0A2C5C]' : 'text-[#0A2C5C]'">
                                         <span class="cursor-pointer uppercase" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
                                         <button
                                             type="button"
@@ -521,7 +521,7 @@ const socialLinks = [
                                                                        :class="{'text-red-600': form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())}"
                                                                        v-html="agreement.description[page.props.language] || agreement.description['pl']"></label>
                                                                 <div v-if="agreement.help_text && (agreement.help_text[page.props.language] || agreement.help_text['pl'])"
-                                                                     class="mt-2 text-[10px] text-gray-500 font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
+                                                                     class="mt-2 text-[10px] text-[#0A2C5C] font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
                                                                     <div v-html="agreement.help_text[page.props.language] || agreement.help_text['pl']"></div>
                                                                 </div>
                                                             </div>

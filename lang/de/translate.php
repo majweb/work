@@ -696,7 +696,7 @@ return [
     'New' => 'Vielleicht',
     'No' => 'Papierkorb',
 
-// Notizen
+    // Notizen
     'noteCannotBeEmpty' => 'Notiz darf nicht leer sein',
     'noteTooLong' => 'Notiz ist zu lang (maximal 500 Zeichen)',
     'confirmDeleteNote' => 'Möchten Sie diese Notiz wirklich löschen?',
@@ -931,7 +931,7 @@ return [
     'paymentReceived' => 'Zahlung erhalten',
     'questionApproved' => 'Frage genehmigt',
 
-// Powiadomienia
+    // Powiadomienia
     'newNotification' => 'Neue Benachrichtigung',
     'newComment' => 'Neuer Kommentar',
     'commentNotificationMessage' => 'Benutzer :user_name hat einen Kommentar zu Ihrem Artikel #:id hinzugefügt',
@@ -1147,7 +1147,7 @@ return [
     'social_media_promo' => 'Social-Media-Promotion',
     'cert50_50' => '50/50 Zertifikat',
 
-// CV descriptions
+    // CV descriptions
     'cv_classic_desc' => 'Klassische Datei (PDF, Word etc.)',
     'cv_classic_target' => 'Grunddaten des Kandidaten',
     'cv_classic_detail' => 'Nur erste Öffnung wird gezählt.',
@@ -1740,13 +1740,13 @@ return [
     'newsletter_agreements' => 'Newsletter-Zustimmungen',
     'select_all' => 'Alles auswählen',
     'foundation_rate_limit' => 'Sie können nur eine Stiftungsmeldung pro Stunde senden. Bitte versuchen Sie es später erneut.',
-    'agreeCookie'=>'Der Dienst work4you.global verwendet Cookies, um den Nutzungskomfort zu verbessern sowie Informationen auf dem Gerät des Nutzers zu speichern oder darauf zuzugreifen. Im Browser des Nutzers werden nur die Cookies gespeichert, die für das Funktionieren der Grundfunktionen des Dienstes notwendig sind. Der Dienst verwendet auch andere Cookies, die bei der Analyse der Nutzung des Dienstes helfen. Diese Dateien werden im Browser des Nutzers nur mit dessen Zustimmung gespeichert, die jederzeit widerrufen werden kann. Das Fehlen der Zustimmung oder deren Widerruf kann bestimmte Merkmale und Funktionen beeinträchtigen. Mehr dazu in der <a href="/privacy">Datenschutzerklärung</a>.',
+    'agreeCookie' => 'Der Dienst work4you.global verwendet Cookies, um den Nutzungskomfort zu verbessern sowie Informationen auf dem Gerät des Nutzers zu speichern oder darauf zuzugreifen. Im Browser des Nutzers werden nur die Cookies gespeichert, die für das Funktionieren der Grundfunktionen des Dienstes notwendig sind. Der Dienst verwendet auch andere Cookies, die bei der Analyse der Nutzung des Dienstes helfen. Diese Dateien werden im Browser des Nutzers nur mit dessen Zustimmung gespeichert, die jederzeit widerrufen werden kann. Das Fehlen der Zustimmung oder deren Widerruf kann bestimmte Merkmale und Funktionen beeinträchtigen. Mehr dazu in der <a href="/privacy">Datenschutzerklärung</a>.',
     'agreePointsPackage' => 'Ich möchte das Punktepaket sofort nutzen und stimme daher dem Beginn der Dienstleistung vor Ablauf der 14-tägigen Widerrufsfrist zu. Ich akzeptiere, dass ich nach vollständiger Erbringung der Leistung durch Work 4 You Global mein Widerrufsrecht verliere.',
     'customize' => 'Anpassen',
     'reject_all' => 'Alle ablehnen',
     'only_essential' => 'Nur notwendige',
-    'sickPeople'=>'m/w/d',
-    'stripe'=>'Stripe',
+    'sickPeople' => 'm/w/d',
+    'stripe' => 'Zahlen / Zahlung',
     'brutto' => 'Brutto',
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Hast du bereits ein Konto?',

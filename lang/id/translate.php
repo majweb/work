@@ -1663,7 +1663,7 @@ return [
     'reject_all' => 'Tolak Semua',
     'only_essential' => 'Hanya yang Esensial',
     'sickPeople'=>'P/W/L',
-    'stripe'=>'Pembayaran Aman Stripe',
+    'stripe' => 'Bayar / Pembayaran',
     'brutto' => 'Bruto',
     'netto' => 'Bersih',
     'alreadyhaveanaccount' => 'Sudah punya akun?',

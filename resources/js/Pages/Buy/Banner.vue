@@ -89,7 +89,7 @@ const sortLangs = computed(() => {
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight mb-2">{{ __('translate.banner').toUpperCase() }}</h3>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ __('translate.bannerSlogan') }}</p>
                             <div class="h-px w-20 bg-gray-100 mb-6"></div>
-                            <p class="text-sm font-bold text-gray-500 leading-relaxed uppercase">
+                            <p class="text-sm font-bold text-[#0A2C5C] leading-relaxed uppercase">
                                 {{ __('translate.bannerDescription') }}
                             </p>
                         </div>

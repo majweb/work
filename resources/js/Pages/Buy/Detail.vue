@@ -192,7 +192,7 @@ const stripeCheckout = () => {
                                                                v-model="agreeToService"
                                                                class="h-5 w-5 rounded-lg border-gray-300 text-[#0b2a55] focus:ring-[#0b2a55] transition-all cursor-pointer" />
                                                     </div>
-                                                    <label for="agreePointsPackage" class="text-[11px] font-bold text-gray-500 leading-relaxed cursor-pointer select-none">
+                                                    <label for="agreePointsPackage" class="text-[11px] font-bold text-[#0A2C5C] leading-relaxed cursor-pointer select-none">
                                                         {{ __('translate.agreePointsPackage') }}
                                                     </label>
                                                 </div>

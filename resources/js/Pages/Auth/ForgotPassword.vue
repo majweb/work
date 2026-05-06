@@ -51,7 +51,7 @@ const submit = () => {
                 </div>
 
                 <!-- DESCRIPTION -->
-                <div class="mb-8 text-center text-gray-500 text-xs font-bold tracking-widest uppercase leading-loose relative z-10">
+                <div class="mb-8 text-center text-[#0A2C5C] text-xs font-bold tracking-widest uppercase leading-loose relative z-10">
                     {{ __('translate.forgottext') }}
                 </div>
 

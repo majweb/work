@@ -85,7 +85,7 @@ watch(params.value, debounce(function () {
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex flex-col md:flex-row gap-12 items-center">
                         <div class="md:w-1/2">
-                            <p class="text-gray-500 font-bold leading-relaxed uppercase">
+                            <p class="text-[#0A2C5C] font-bold leading-relaxed uppercase">
                                 {{ __('translate.articleDescription') }}
                             </p>
                         </div>
@@ -272,7 +272,7 @@ watch(params.value, debounce(function () {
                             <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 mb-8 flex-grow">
                                 <div>
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.date') }}</p>
-                                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">
+                                    <p class="text-xs font-bold text-[#0A2C5C] uppercase tracking-widest">
                                         {{ (article.created_at || '').slice(0, 10) }}
                                     </p>
                                 </div>

@@ -108,7 +108,7 @@ const goToPage = (page) => {
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.editArticle') }}</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.editArticleDescription') }}</p>
                         </div>
-                        <Link :href="route('articles.index')" class="bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest px-8 py-4 rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                        <Link :href="route('articles.index')" class="bg-white border border-gray-100 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest px-8 py-4 rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
                             </svg>
@@ -140,7 +140,7 @@ const goToPage = (page) => {
                                         </button>
                                     </div>
 
-                                    <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 flex-grow mb-6 italic text-gray-500 text-sm">
+                                    <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100/50 flex-grow mb-6 italic text-[#0A2C5C] text-sm">
                                         "{{ comment.content }}"
                                     </div>
 

@@ -1663,7 +1663,7 @@ return [
     'reject_all' => 'Zavrni vse, razen nujnega',
     'only_essential' => 'Samo nujni piškotki',
     'sickPeople'=>'Ž/M/Drugo',
-    'stripe'=>'Stripe varno plačilo',
+    'stripe' => 'Plačaj / Plačilo',
     'brutto' => 'Bruto',
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'Že imate račun?',

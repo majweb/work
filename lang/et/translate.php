@@ -1657,13 +1657,13 @@ return [
     'select_all' => 'Nõustun korraga kõigega',
     'suggested_format' => 'Soovitatud andmesisestuse formaat',
     'foundation_rate_limit' => 'Rämpsposti kontroll: Saad uut sihtasutust teavitada maksimaalselt kord tunnis.',
-    'agreeCookie'=>'Portaalis work4you.global kasutame küpsiseid (cookies), et pakkuda sulle kiireimat kasutajakogemust ja kohandada sisu nutikalt sinu vajadustega. Kasutame hädavajalikke küpsiseid veebilehe stabiilseks toimimiseks, samas kui muid täiustatud (analüütilisi ja turunduslikke) tehnoloogiaid kasutame ainult sinu otsesel nõusolekul. Oma nõusoleku saad igal ajal üksikasjalikult seadistada või täielikult tagasi võtta. Teatud funktsioonide blokeerimine võib rakenduse tööd veidi aeglustada. Kõiki tehnilisi detaile saad lugeda meie <a href="/privacy">Privaatsuspoliitikast</a>.',
+    'agreeCookie' => 'Portaalis work4you.global kasutame küpsiseid (cookies), et pakkuda sulle kiireimat kasutajakogemust ja kohandada sisu nutikalt sinu vajadustega. Kasutame hädavajalikke küpsiseid veebilehe stabiilseks toimimiseks, samas kui muid täiustatud (analüütilisi ja turunduslikke) tehnoloogiaid kasutame ainult sinu otsesel nõusolekul. Oma nõusoleku saad igal ajal üksikasjalikult seadistada või täielikult tagasi võtta. Teatud funktsioonide blokeerimine võib rakenduse tööd veidi aeglustada. Kõiki tehnilisi detaile saad lugeda meie <a href="/privacy">Privaatsuspoliitikast</a>.',
     'agreePointsPackage' => 'Soovin aktiveerida oma Premium Punktide paketi koheselt. Sellega nõustun selgesõnaliselt teenuse osutamise algusega ja olen teadlik, et pärast digitaalse teenuse täielikku tarnimist platvormi Work 4 You Global poolt kaotan oma seadusjärgse õiguse lepingust taganeda 14 päeva jooksul.',
     'customize' => 'Muuda minu eelistusi',
     'reject_all' => 'Lükka kõik peale hädavajalike tagasi',
     'only_essential' => 'Ainult hädavajalikud küpsised',
-    'sickPeople'=>'N/M/Muu',
-    'stripe'=>'Stripe Secure Payment',
+    'sickPeople' => 'N/M/Muu',
+    'stripe' => 'Maksa / Makse',
     'brutto' => 'Bruto',
     'netto' => 'Netto',
     'alreadyhaveanaccount' => 'Kas sul on juba konto?',
@@ -1678,4 +1678,3 @@ return [
     'completeProfileLink' => 'Mine profiilile',
     'video_cost_info' => 'Video lisamine profiilile maksab :points punkti.',
 ];
-

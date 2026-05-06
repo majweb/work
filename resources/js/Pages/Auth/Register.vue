@@ -230,7 +230,7 @@ const submit = () => {
                                 <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsSelected}"></div>
                                 <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
                             </div>
-                            <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllAgreementsSelected ? 'text-[#0A2C5C]' : 'text-gray-500'">
+                            <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllAgreementsSelected ? 'text-[#0A2C5C]' : 'text-[#0A2C5C]'">
                                 <span class="cursor-pointer uppercase" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
                                 <button
                                     type="button"
@@ -266,7 +266,7 @@ const submit = () => {
                                                                    :class="{'text-red-600': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}"
                                                                    v-html="agreement.description[usePage().props.language] || agreement.description['pl']"></label>
                                                             <div v-if="agreement.help_text && (agreement.help_text[usePage().props.language] || agreement.help_text['pl'])"
-                                                                 class="mt-2 text-[10px] text-gray-500 font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
+                                                                 class="mt-2 text-[10px] text-[#0A2C5C] font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
                                                                 <div v-html="agreement.help_text[usePage().props.language] || agreement.help_text['pl']"></div>
                                                             </div>
                                                         </div>
@@ -294,7 +294,7 @@ const submit = () => {
                                                                            :class="{'text-red-600': form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())}"
                                                                            v-html="child.description[usePage().props.language] || child.description['pl']"></label>
                                                                     <div v-if="child.help_text && (child.help_text[usePage().props.language] || child.help_text['pl'])"
-                                                                         class="mt-1 text-[10px] text-gray-500 italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
+                                                                         class="mt-1 text-[10px] text-[#0A2C5C] italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
                                                                         <div v-html="child.help_text[usePage().props.language] || child.help_text['pl']"></div>
                                                                     </div>
                                                                 </div>

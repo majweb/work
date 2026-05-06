@@ -1663,7 +1663,7 @@ return [
     'reject_all' => 'Rejeitar Tudo Exceto o Essencial',
     'only_essential' => 'Apenas Cookies Essenciais',
     'sickPeople'=>'M/H/Outro',
-    'stripe'=>'Pagamento Seguro Stripe',
+    'stripe' => 'Pagar / Pagamento',
     'brutto' => 'Bruto',
     'netto' => 'Líquido',
     'alreadyhaveanaccount' => 'Já tem uma conta?',

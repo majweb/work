@@ -53,7 +53,7 @@
                                     </td>
                                     <td class="px-6 py-4 bg-gray-50/50 border-y border-gray-100 group-hover:bg-white transition-all">
                                         <div class="flex items-center gap-2">
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">Oferta: {{ projectQuestion.project.id }}</span>
+                                            <span class="text-xs font-bold text-[#0A2C5C] uppercase tracking-tight">Oferta: {{ projectQuestion.project.id }}</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 bg-gray-50/50 border-y border-gray-100 group-hover:bg-white transition-all">
@@ -69,7 +69,7 @@
                                         <span v-if="projectQuestion.accepted" class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-green-100 text-[8px] font-black text-green-700 uppercase tracking-widest">
                                             TAK
                                         </span>
-                                        <span v-else class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gray-200 text-[8px] font-black text-gray-500 uppercase tracking-widest">
+                                        <span v-else class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gray-200 text-[8px] font-black text-[#0A2C5C] uppercase tracking-widest">
                                             NIE
                                         </span>
                                     </td>

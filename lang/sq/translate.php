@@ -1,4 +1,5 @@
 <?php
+
 return [
     'failed' => 'Identifikimi ose fjalëkalimi është i pasaktë.',
     'onlySocial' => 'Përdoruesi nuk ka vendosur një fjalëkalim, prandaj duhet të identifikohet përmes ofruesit OAuth.',
@@ -1621,7 +1622,7 @@ return [
     'reject_all' => 'Refuzo të gjitha',
     'only_essential' => 'Vetëm të nevojshmet',
     'sickPeople' => 'f/m/n',
-    'stripe' => 'Stripe',
+    'stripe' => 'Paguaj / Pagesë',
     'brutto' => 'Bruto',
     'netto' => 'Neto',
     'alreadyhaveanaccount' => 'A keni tashmë një llogari?',
