@@ -51,6 +51,7 @@
         "filepond-plugin-image-preview": "^4.6.12",
         "filepond-plugin-image-resize": "^2.0.10",
         "filepond-plugin-image-transform": "^3.8.7",
+        "flag-icons": "^7.5.0",
         "lodash": "^4.17.21",
         "mapbox-gl": "^3.18.1",
         "moment": "^2.30.1",

@@ -114,6 +114,31 @@ const sortLangs = computed(() => {
     return [...langs].sort((a, b) => a.label.localeCompare(b.label));
 });
 
+const getFlagCode = (langCode) => {
+    const mapping = {
+        'en': 'gb',
+        'sq': 'al',
+        'el': 'gr',
+        'hy': 'am',
+        'zh': 'cn',
+        'ja': 'jp',
+        'ko': 'kr',
+        'cs': 'cz',
+        'da': 'dk',
+        'et': 'ee',
+        'sv': 'se',
+        'uk': 'ua',
+        // Added missing languages
+        'fa': 'ir', // Persian (Farsi)
+        'dv': 'mv', // Maldivian (Dhivehi)
+        'lo': 'la', // Lao
+        'ka': 'ge', // Georgian
+        'he': 'il', // Hebrew
+        'hi': 'in', // Hindi
+    };
+    return mapping[langCode] || langCode;
+};
+
 const showConfetti = ref(false);
 watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
     if (newVal === __('translate.makeAplication')) {
@@ -216,7 +241,7 @@ const socialLinks = [
 
                 <!-- Language selector and auth -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <div class="custom-multiselect w-40">
+                    <div class="custom-multiselect w-52">
                         <Multiselect
                             v-model="lang"
                             :options="sortLangs"
@@ -229,6 +254,18 @@ const socialLinks = [
                             :deselectLabel="''"
                             class="languages-multiselect"
                         >
+                            <template #singleLabel="{ option }">
+                                <div class="flex items-center gap-2">
+                                    <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
+                                    <span>{{ option.label }}</span>
+                                </div>
+                            </template>
+                            <template #option="{ option }">
+                                <div class="flex items-center gap-2">
+                                    <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
+                                    <span>{{ option.label }}</span>
+                                </div>
+                            </template>
                             <template #noResult>
                                 <span>{{__('translate.noOptions')}}</span>
                             </template>
@@ -324,6 +361,18 @@ const socialLinks = [
                                     :deselectLabel="''"
                                     class="languages-multiselect"
                                 >
+                                    <template #singleLabel="{ option }">
+                                        <div class="flex items-center gap-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
+                                            <span>{{ option.label }}</span>
+                                        </div>
+                                    </template>
+                                    <template #option="{ option }">
+                                        <div class="flex items-center gap-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
+                                            <span>{{ option.label }}</span>
+                                        </div>
+                                    </template>
                                     <template #noResult>
                                         <span>{{__('translate.noOptions')}}</span>
                                     </template>
@@ -638,6 +687,9 @@ const socialLinks = [
         border-bottom-right-radius: 0.75rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         z-index: 50 !important;
+        width: auto !important;
+        min-width: 100%;
+        white-space: nowrap;
     }
 
     .multiselect__tag {
@@ -693,6 +745,12 @@ const socialLinks = [
     .multiselect__tag {
         font-size: 8px !important;
         text-transform: uppercase !important;
+    }
+
+    .fi {
+        width: 14px;
+        height: 14px;
+        border-radius: 2px;
     }
 }
 </style>

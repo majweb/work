@@ -8,6 +8,7 @@ import __ from './lang';
 // import VueApexCharts from "vue3-apexcharts";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import 'flag-icons/css/flag-icons.min.css';
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
