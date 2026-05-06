@@ -170,6 +170,8 @@ class FrontController extends Controller
 
     public function projects(SearchStatisticService $searchStatisticService, DictionaryService $dictionaryService)
     {
+        $banners = BannerResource::collection(Banner::active()->get());
+
         $searchStatisticService->log(request()->all());
 
         $query = Project::with('user.changeProducts')->featured()->active()->newest();
@@ -311,6 +313,7 @@ class FrontController extends Controller
         $page = Page::findOrFail(12);
 
         return inertia()->render('Front/Projects', [
+            'banners' => $banners,
             'projects' => $projects,
             'countries' => $countries,
             'workingModes' => $workingModes,
@@ -607,6 +610,8 @@ class FrontController extends Controller
 
     public function Firms()
     {
+        $banners = BannerResource::collection(Banner::active()->get());
+
         $query = User::role('firm')->with(['firm' => function ($query) {
             $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
                 'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
@@ -652,6 +657,7 @@ class FrontController extends Controller
         $page = Page::findOrFail(7);
 
         return inertia()->render('Front/Firms', [
+            'banners' => $banners,
             'firms' => $firms,
             'countries' => $countries,
             'features' => $features,
