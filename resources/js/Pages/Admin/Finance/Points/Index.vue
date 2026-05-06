@@ -168,7 +168,7 @@ const clearHistory = () => {
                         <button
                             @click="exportToExcel"
                             :disabled="isExporting"
-                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
+                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
                         >
                             {{ isExporting ? 'EKSPORTOWANIE...' : 'EKSPORTUJ DO ARKUSZA' }}
                         </button>

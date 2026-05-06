@@ -109,7 +109,7 @@ const submit = () => {
                             <PrimaryButton
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
-                                class="px-12 py-5 bg-[#0A2C5C] hover:bg-blue-800 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-xl shadow-blue-900/20"
+                                class="px-12 py-5 bg-[#0A2C5C] hover:bg-[#00a0e3] rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-xl shadow-blue-900/20"
                             >
                                 Zapisz zmiany
                             </PrimaryButton>

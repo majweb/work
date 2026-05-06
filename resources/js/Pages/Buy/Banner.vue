@@ -381,7 +381,7 @@ const sortLangs = computed(() => {
                                     type="submit"
                                     :class="{ 'opacity-50': form.processing }"
                                     :disabled="form.processing"
-                                    class="px-16 py-5 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
+                                    class="px-16 py-5 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
                                 >
                                     <spinner-action :process="form.processing">{{ props.banner ? __('translate.update') : __('translate.add') }}</spinner-action>
                                 </button>

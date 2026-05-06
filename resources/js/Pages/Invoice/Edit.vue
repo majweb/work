@@ -251,7 +251,7 @@ const updateInvoice = () => {
                                 <ActionMessage :on="form.recentlySuccessful" class="text-[10px] font-bold text-green-600 uppercase tracking-widest">
                                     {{__('translate.correctInvoice')}}
                                 </ActionMessage>
-                                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20">
+                                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20">
                                     <spinner-action :process="form.processing">{{__('translate.correcting')}}</spinner-action>
                                 </PrimaryButton>
                             </div>

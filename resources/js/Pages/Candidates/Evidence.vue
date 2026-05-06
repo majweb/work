@@ -359,7 +359,7 @@ const getCandidateInitials = (c) => {
                                 <button
                                     :disabled="form.processing || externalCompanies.length === 0"
                                     type="submit"
-                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                                 >
                                     <SpinnerAction :process="form.processing">
                                         {{ editingEvidenceId ? __('translate.save') : __('translate.add') }}

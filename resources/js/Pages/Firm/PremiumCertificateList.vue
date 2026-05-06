@@ -105,7 +105,7 @@ const resetFilters = () => {
                         </button>
                         <button
                             @click="updateFilter"
-                            class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
+                            class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
                         >
                             {{ __('premium.filter_apply') ?? 'Filtruj' }}
                         </button>
@@ -158,7 +158,7 @@ const resetFilters = () => {
 
                         <div class="w-full mt-auto">
                             <a :href="route('firm.premium-certificate.downloadFromList', history.id)"
-                               class="flex justify-center items-center w-full bg-[#0A2C5C] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg shadow-blue-900/10"
+                               class="flex justify-center items-center w-full bg-[#0A2C5C] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg shadow-blue-900/10"
                             >
                                 {{__('translate.getPdf')}}
                             </a>

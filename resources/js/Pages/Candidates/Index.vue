@@ -588,7 +588,7 @@ watch(selectedTags, (newTags) => {
                                     <div class="col-span-2 flex items-center justify-center md:justify-end gap-3">
                                         <Link
                                             :href="route('candidates.show', candidate.id)"
-                                            class="w-full md:w-auto px-6 py-3 bg-[#0A2C5C] text-white text-[9px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest text-center"
+                                            class="w-full md:w-auto px-6 py-3 bg-[#0A2C5C] text-white text-[9px] font-black rounded-xl hover:bg-[#00a0e3] shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest text-center"
                                         >
                                             {{ __('translate.candidateDetails') }}
                                         </Link>

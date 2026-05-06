@@ -1030,7 +1030,7 @@ onMounted(async () => {
                                 type="button"
                                 @click="nextStep"
                                 :disabled="isValidating"
-                                class="inline-flex items-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                class="inline-flex items-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                             >
                                 <svg v-if="isValidating" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -1339,7 +1339,7 @@ onMounted(async () => {
                                 type="button"
                                 @click="nextStep"
                                 :disabled="isValidating"
-                                class="inline-flex items-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                class="inline-flex items-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                             >
                                 <svg v-if="isValidating" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -1721,7 +1721,7 @@ onMounted(async () => {
                                 type="submit"
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
-                                class="!inline-flex !items-center !px-10 !py-4 !bg-[#0A2C5C] !text-white !text-[10px] !font-black !rounded-2xl !uppercase !tracking-widest !hover:bg-blue-800 !shadow-lg !shadow-blue-900/20 !transition-all !hover:-translate-y-0.5"
+                                class="!inline-flex !items-center !px-10 !py-4 !bg-[#0A2C5C] !text-white !text-[10px] !font-black !rounded-2xl !uppercase !tracking-widest !hover:bg-[#00a0e3] !shadow-lg !shadow-blue-900/20 !transition-all !hover:-translate-y-0.5"
                             >
                                 <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>

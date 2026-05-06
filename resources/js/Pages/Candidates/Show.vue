@@ -447,7 +447,7 @@ const filepondOptions = {
                             <!-- Primary Actions -->
                             <div class="mt-8 w-full">
                                 <a v-if="candidate?.cv_file?.url" :href="candidate.cv_file.url" target="_blank"
-                                   class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-6 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5">
+                                   class="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-[#0A2C5C] px-6 py-4 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                     </svg>
@@ -613,7 +613,7 @@ const filepondOptions = {
                                 </Link>
 
                                 <button @click="saveAnswers" :disabled="answersForm.processing"
-                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
+                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                     {{ __('translate.save') || 'ZAPISZ' }}
                                 </button>
                             </footer>
@@ -627,7 +627,7 @@ const filepondOptions = {
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-tight mb-10 max-w-sm mx-auto">{{ __('translate.unlockQuestionsInfo') }}</p>
 
                             <button @click="unlockQuestions" :disabled="questionsForm.processing"
-                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
+                                    class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                 {{ __('translate.unlockQuestions') }}
                             </button>
                             <p class="text-[10px] font-bold text-gray-400 mt-6 uppercase tracking-widest">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
@@ -697,7 +697,7 @@ const filepondOptions = {
                             </div>
                             <div class="flex justify-end">
                                 <button @click="handleCvUpload" :disabled="cvForm.processing || isSavingCv"
-                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
+                                        class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                     <span>{{ (cvForm.processing || isSavingCv) ? __('translate.saving') : __('translate.saveCv') }}</span>
                                 </button>
                             </div>
@@ -820,7 +820,7 @@ const filepondOptions = {
 
                                 <div class="mt-10 flex justify-end">
                                     <button @click="saveTags" :disabled="form.processing || isSavingTags"
-                                            class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
+                                            class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                         <span>{{ (form.processing || isSavingTags) ? __('translate.saving') : __('translate.saveTags') }}</span>
                                     </button>
                                 </div>

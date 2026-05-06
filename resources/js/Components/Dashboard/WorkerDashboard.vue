@@ -25,7 +25,7 @@ const auth = page.props.auth ?? null;
 
 
 const createdFromNow = computed(() => {
-    return moment(props.lastAplications.created_at).format('DD-M-Y')
+    return moment(props.lastAplications.created_at).format('DD.MM.YYYY HH:mm')
 })
 
 const applicationProgress = computed(() => {
@@ -164,7 +164,7 @@ const markAsRead = (id) => {
                                         </div>
                                         <div class="min-w-0 flex-1">
                                             <p class="text-[8px] font-black text-gray-300 uppercase tracking-widest mb-1.5">
-                                                {{ moment(other.created_at).format('DD-MM-YYYY') }}
+                                                {{ moment(other.created_at).format('DD.MM.YYYY HH:mm') }}
                                             </p>
                                             <h4 class="text-xs sm:text-sm font-black text-[#0A2C5C] uppercase tracking-tight group-hover:text-[#00a0e3] transition-colors leading-tight mb-1">
                                                 {{ other.project?.position?.allTranslations['title'][usePage().props.language] }}

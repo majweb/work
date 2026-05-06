@@ -103,7 +103,7 @@ const getServiceDescription = (type) => {
                             </p>
 
                             <div class="flex justify-center">
-                                <Link :href="route('front.readMore')" class="group relative inline-flex items-center gap-4 px-12 py-5 bg-[#0A2C5C] text-white text-xs font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-1">
+                                <Link :href="route('front.readMore')" class="group relative inline-flex items-center gap-4 px-12 py-5 bg-[#0A2C5C] text-white text-xs font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-1">
                                     {{ __('info.read_more') }}
                                     <span class="text-xl group-hover:translate-x-2 transition-transform">→</span>
                                 </Link>
@@ -287,7 +287,7 @@ const getServiceDescription = (type) => {
                                                 :href="route('buy.change', { product: service.id, points: service.price })"
                                                 method="post"
                                                 as="button"
-                                                class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg"
+                                                class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg"
                                             >
                                                 {{ __('translate.exchangePoints') }}
                                             </Link>

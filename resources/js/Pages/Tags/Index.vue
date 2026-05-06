@@ -105,7 +105,7 @@ const getContrastColor = (bgColor) => {
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj dostępnymi tagami</p>
                         </div>
                         <Link :href="route('tags.create')">
-                            <button class="bg-[#0A2C5C] text-white px-10 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-900/20">
+                            <button class="bg-[#0A2C5C] text-white px-10 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-900/20">
                                 {{ __('translate.create') }}
                             </button>
                         </Link>

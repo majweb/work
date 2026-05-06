@@ -281,7 +281,7 @@ watch(params.value, debounce(function () {
                             <div class="flex flex-col gap-3 mt-auto">
                                 <Link
                                     :href="route('articles.edit', article)"
-                                    class="flex justify-center items-center w-full bg-[#0A2C5C] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg shadow-blue-900/10"
+                                    class="flex justify-center items-center w-full bg-[#0A2C5C] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg shadow-blue-900/10"
                                 >
                                     {{ __('translate.edit') }}
                                 </Link>

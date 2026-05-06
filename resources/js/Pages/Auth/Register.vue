@@ -338,7 +338,7 @@ const submit = () => {
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="w-full py-5 bg-[#0A2C5C] text-white text-xs font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2"
+                            class="w-full py-5 bg-[#0A2C5C] text-white text-xs font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-[#00a0e3] shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2"
                         >
                             <SpinnerAction v-if="form.processing" />
                             {{ __('translate.register') }}

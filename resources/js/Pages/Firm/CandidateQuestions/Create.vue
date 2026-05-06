@@ -115,7 +115,7 @@ const submit = () => {
                         <div class="flex items-center justify-end">
                             <button
                                 type="submit"
-                                class="bg-[#0A2C5C] hover:bg-blue-800 text-white px-12 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-900/20 transition-all active:scale-95 disabled:opacity-50"
+                                class="bg-[#0A2C5C] hover:bg-[#00a0e3] text-white px-12 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-900/20 transition-all active:scale-95 disabled:opacity-50"
                                 :disabled="form.processing"
                             >
                                 {{ __('translate.save') }}

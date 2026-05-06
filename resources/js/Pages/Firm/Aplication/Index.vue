@@ -572,7 +572,7 @@ watch(() => usePage().props.sender, (newVal) => {
                             <button
                                 @click="exportToCSV"
                                 :disabled="isExporting || (firmLoginPoints < exportRequiredPoints)"
-                                class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
+                                class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
                             >
                                 <span v-if="isExporting">{{ __('translate.exporting') }}</span>
                                 <span v-else>{{ __('translate.exportToSpreadsheet') }}</span>
@@ -851,7 +851,7 @@ watch(() => usePage().props.sender, (newVal) => {
             <div class="flex justify-center w-full">
                 <button
                     type="button"
-                    class="inline-flex justify-center rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                    class="inline-flex justify-center rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
                     @click="showNoPointsModal = false"
                 >
                     {{ __('translate.ok') || 'OK' }}

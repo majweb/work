@@ -216,7 +216,7 @@ const dispatchActionSingleRecruit = value => {
 
                     <button
                         type="button"
-                        class="inline-flex justify-center rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                        class="inline-flex justify-center rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
                         @click="saveNote"
                     >
                         {{ __('translate.save') }}
@@ -370,7 +370,7 @@ const dispatchActionSingleRecruit = value => {
                                         <button
                                             v-if="application.status === 'yes'"
                                             @click="openAddNoteModal"
-                                            class="rounded-xl bg-[#0A2C5C] px-6 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-md shadow-blue-900/10 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                                            class="rounded-xl bg-[#0A2C5C] px-6 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-md shadow-blue-900/10 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
                                         >
                                             {{ __('translate.addNote') }}
                                         </button>
@@ -470,7 +470,7 @@ const dispatchActionSingleRecruit = value => {
                                             </button>
                                             <button
                                                 @click="saveAnswers"
-                                                class="rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5"
+                                                class="rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
                                             >
                                                 {{ __('translate.saveAnswers') }}
                                             </button>

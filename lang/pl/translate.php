@@ -62,7 +62,6 @@ return [
     'regards' => 'Pozdrowienia',
     'hello' => 'Witaj!!',
     'rights' => 'Wszelkie prawa zastrzeżone.',
-    'cvRequired' => 'Wymagane CV',
     'resetTitle' => 'Zresetuj hasło',
     'resetContent' => 'Otrzymujesz tego e-maila, ponieważ otrzymaliśmy prośbę o zresetowanie hasła do Twojego konta',
     'resetQuestion' => 'Jeśli nie poprosiłeś o zresetowanie hasła, nie są wymagane żadne dalsze działania.',
@@ -1696,4 +1695,5 @@ return [
     'uploadFile' => 'Wgraj plik',
     'cvGenerator' => 'Kreator CV',
     'fillForm' => 'Wypełnij formularz',
+    'cannotAddArticle' => 'Brak możliwości dodania artykułu',
 ];

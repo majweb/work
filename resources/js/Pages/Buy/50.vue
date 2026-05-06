@@ -77,7 +77,7 @@ const updateFilter = () => {
                                     </div>
                                 </div>
                                 <a :href="route('firm.download50')"
-                                   class="inline-flex items-center justify-center w-full bg-[#0A2C5C] hover:bg-blue-800 text-white font-black py-4 px-12 rounded-2xl text-[10px] uppercase tracking-widest transition shadow-lg shadow-blue-900/20 hover:-translate-y-0.5">
+                                   class="inline-flex items-center justify-center w-full bg-[#0A2C5C] hover:bg-[#00a0e3] text-white font-black py-4 px-12 rounded-2xl text-[10px] uppercase tracking-widest transition shadow-lg shadow-blue-900/20 hover:-translate-y-0.5">
                                     {{ __('translate.invoiceDownload') }}
                                 </a>
                             </div>

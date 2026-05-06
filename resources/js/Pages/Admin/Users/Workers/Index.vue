@@ -640,7 +640,7 @@ const formatDate = (date) => {
                     </SecondaryButton>
                     <button
                         @click="verifyEmail"
-                        class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all"
+                        class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all"
                     >
                         Zatwierdź email
                     </button>

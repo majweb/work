@@ -240,7 +240,7 @@ const socialLinks = [
                     <button v-if="page.props.currentCountry != page.props.language" @click="resetLang(page.props.currentCountry)" class="text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] hover:underline underline-offset-4">{{ page.props.currentCountry }}</button>
 
                     <div v-if="auth?.user" class="flex items-center gap-3">
-                        <Link :href="route('dashboard')" class="px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5">
+                        <Link :href="route('dashboard')" class="px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5">
                             {{__('translate.dashboard')}}
                         </Link>
                     </div>
@@ -360,7 +360,7 @@ const socialLinks = [
         <button
             v-if="showScrollTop"
             @click="scrollToTop"
-            class="fixed right-8 bottom-8 bg-[#0A2C5C] text-white rounded-2xl w-14 h-14 flex items-center justify-center shadow-2xl shadow-blue-900/40 hover:bg-blue-800 transition-all hover:-translate-y-1 z-[90]"
+            class="fixed right-8 bottom-8 bg-[#0A2C5C] text-white rounded-2xl w-14 h-14 flex items-center justify-center shadow-2xl shadow-blue-900/40 hover:bg-[#00a0e3] transition-all hover:-translate-y-1 z-[90]"
         >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -466,7 +466,7 @@ const socialLinks = [
                                 </div>
                                 <button
                                     type="submit"
-                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-[0.3em] leading-loose rounded-2xl hover:bg-blue-800 shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-[0.3em] leading-loose rounded-2xl hover:bg-[#00a0e3] shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                                     :disabled="form.processing"
                                 >
                                     {{ __('translate.footer.subscribe') }}

@@ -205,7 +205,7 @@ const submit = () => {
                         <div class="flex justify-end pt-10 border-t border-gray-50">
                             <PrimaryButton
                                 :disabled="form.processing"
-                                class="inline-flex items-center px-16 py-6 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-blue-800 transition duration-300 shadow-xl shadow-blue-900/20 active:scale-95"
+                                class="inline-flex items-center px-16 py-6 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-[#00a0e3] transition duration-300 shadow-xl shadow-blue-900/20 active:scale-95"
                             >
                                 <SpinnerAction :process="form.processing">
                                     Zatwierdź i zapisz zmiany

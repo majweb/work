@@ -399,7 +399,7 @@ onMounted(async () => {
                                     <button
                                         type="button"
                                         @click="saveAnswers"
-                                        class="px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/10 transition-all active:scale-95 disabled:opacity-50"
+                                        class="px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/10 transition-all active:scale-95 disabled:opacity-50"
                                         :disabled="answersForm.processing"
                                     >
                                         {{ __('translate.save') || 'Zapisz odpowiedzi' }}
@@ -568,7 +568,7 @@ onMounted(async () => {
                                         <button
                                             type="button"
                                             @click="saveTags"
-                                            class="inline-flex items-center px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl uppercase tracking-widest hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition-all active:scale-95 disabled:opacity-50"
+                                            class="inline-flex items-center px-8 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all active:scale-95 disabled:opacity-50"
                                             :disabled="tagsForm.processing || isSavingTags"
                                         >
                                             <svg v-if="tagsForm.processing || isSavingTags" class="animate-spin h-3.5 w-3.5 text-white mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

@@ -127,7 +127,7 @@ const submit = () => {
                         <button
                             type="submit"
                             :disabled="form.processing"
-                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 disabled:opacity-50 transition-all shadow-lg shadow-blue-900/20"
+                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] disabled:opacity-50 transition-all shadow-lg shadow-blue-900/20"
                         >
                             {{ form.processing ? 'PRZETWARZANIE...' : 'WYSTAW KOREKTĘ I WYŚLIJ E-MAIL' }}
                         </button>

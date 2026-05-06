@@ -672,7 +672,7 @@ onMounted(async () => {
                             <button
                                 @click="exportToCSV"
                                 :disabled="isExporting"
-                                class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
+                                class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 active:translate-y-0"
                             >
                                 <span v-if="isExporting">{{ __('translate.exporting') }}</span>
                                 <span v-else>{{ __('translate.exportToSpreadsheet') }}</span>
@@ -781,7 +781,7 @@ onMounted(async () => {
                                         <button
                                             v-else-if="app.status === 'yes'"
                                             @click="updateStatus(app.id, 'no')"
-                                            class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
+                                            class="w-full px-4 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-[#00a0e3] shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest"
                                         >
                                             {{ __('translate.statusYes') }}
                                         </button>

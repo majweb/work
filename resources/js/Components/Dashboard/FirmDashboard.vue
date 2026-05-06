@@ -219,7 +219,7 @@
                                             :href="route('buy.change', { product: service.id, points: service.price })"
                                             method="post"
                                             as="button"
-                                            class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg"
+                                            class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg"
                                         >
                                             {{ __('translate.exchangePoints') }}
                                         </Link>
@@ -455,7 +455,7 @@
                             <td class="py-6 px-6 last:rounded-r-[2rem] border-y border-r border-gray-50 group-hover:border-blue-100 group-hover:bg-blue-50/10 transition-colors text-center">
                                 <a
                                     :href="route('invoicesDownload', invoice.id)"
-                                    class="inline-flex items-center justify-center px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest"
+                                    class="inline-flex items-center justify-center px-6 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-xl hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/10 uppercase tracking-widest"
                                     @click="invoice.opened = true"
                                 >
                                     {{ __('translate.invoiceDownload') }}
@@ -568,7 +568,7 @@
                                 ></button>
                                 <span v-else class="text-[11px] sm:text-xs font-bold text-gray-400 uppercase tracking-tight leading-snug" v-html="formatNotification(notification).message"></span>
                                 <p v-if="notification.created_at" class="mt-2 text-[8px] font-black text-gray-300 uppercase tracking-widest">
-                                    {{ moment(notification.created_at).format('DD.MM.YYYY') }}
+                                    {{ moment(notification.created_at).format('DD.MM.YYYY HH:mm') }}
                                 </p>
                             </div>
                         </li>

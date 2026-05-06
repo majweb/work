@@ -79,7 +79,7 @@ const getContrastColor = (bgColor) => {
                                         type="submit"
                                         :class="{ 'opacity-25': form.processing }"
                                         :disabled="form.processing"
-                                        class="bg-[#0A2C5C] text-white px-12 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition-all active:scale-95 shadow-lg shadow-blue-900/20"
+                                        class="bg-[#0A2C5C] text-white px-12 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition-all active:scale-95 shadow-lg shadow-blue-900/20"
                                     >
                                         {{ __('translate.create') }}
                                     </button>

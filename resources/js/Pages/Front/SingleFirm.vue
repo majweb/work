@@ -207,7 +207,7 @@ function closeLightbox() {
                                     v-for="(p, i) in firm.phone"
                                     :key="i"
                                     :href="`tel:${p.phone}`"
-                                    class="flex items-center justify-center sm:justify-start gap-3 px-8 py-5 bg-[#0A2C5C] text-white text-[11px] font-black uppercase tracking-widest rounded-[2rem] hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20 w-full sm:w-auto"
+                                    class="flex items-center justify-center sm:justify-start gap-3 px-8 py-5 bg-[#0A2C5C] text-white text-[11px] font-black uppercase tracking-widest rounded-[2rem] hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 w-full sm:w-auto"
                                 >
                                     <svg class="w-6 h-6 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                     {{ p.phone }}

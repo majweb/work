@@ -25,7 +25,7 @@ class ArticleController extends Controller
 {
     private function errorArticle()
     {
-        session()->flash('flash.banner', 'Brak możliwości dodania artykułu');
+        session()->flash('flash.banner', __('translate.cannotAddArticle'));
         session()->flash('flash.bannerStyle', 'danger');
         return to_route('articles.index');
     }

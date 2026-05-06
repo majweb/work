@@ -249,7 +249,7 @@
                                         <p class="text-[10px] font-bold text-gray-300 mt-1 line-clamp-1 uppercase tracking-widest" v-html="formatNotification(notification).message"></p>
                                     </div>
                                     <p class="mt-2 text-[8px] font-black text-gray-300 uppercase tracking-widest" v-if="notification.created_at">
-                                        {{ moment(notification.created_at).fromNow() }}
+                                        {{ moment(notification.created_at).format('DD.MM.YYYY HH:mm') }}
                                     </p>
                                 </div>
 

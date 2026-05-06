@@ -161,7 +161,7 @@ const markAllAsRead = () => {
 
                                     <div class="flex flex-col items-end gap-3 shrink-0">
                                         <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 px-2 py-1 rounded-md">
-                                            {{ moment(notification.created_at).fromNow() }}
+                                            {{ moment(notification.created_at).format('DD.MM.YYYY HH:mm') }}
                                         </span>
 
                                         <div v-if="!notification.read_at" class="flex gap-2">
@@ -170,7 +170,8 @@ const markAllAsRead = () => {
                                                 {{ __('translate.markAsRead') }}
                                             </button>
                                         </div>
-                                        <span v-else class="text-[10px] font-black uppercase tracking-widest text-green-600 bg-green-50 px-3 py-1.5 rounded-lg">
+                                        <span v-else class="text-[10px] font-bold uppercase tracking-widest text-gray-400 py-1.5 flex items-center gap-1.5">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
                                             {{ __('translate.read') }}
                                         </span>
                                     </div>

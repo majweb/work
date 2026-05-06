@@ -101,7 +101,7 @@ const cancelReply = () => {
                         </button>
                         <button
                             @click="submitReply(comment.id)"
-                            class="px-8 py-2.5 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-800 shadow-lg shadow-blue-900/10 transition-all flex items-center gap-2"
+                            class="px-8 py-2.5 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/10 transition-all flex items-center gap-2"
                             :disabled="form.processing"
                         >
                             {{__('comments.response')}}

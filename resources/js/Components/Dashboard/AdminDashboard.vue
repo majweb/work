@@ -61,7 +61,7 @@
                                     </p>
                                     <Link
                                         :href="route('admin.questions-accepts.index')"
-                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-blue-800 transition-all uppercase tracking-widest relative overflow-hidden group/btn"
+                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-[#00a0e3] transition-all uppercase tracking-widest relative overflow-hidden group/btn"
                                     >
                                         <span class="relative z-10">SPRAWDŹ</span>
                                     </Link>
@@ -82,7 +82,7 @@
                                     </p>
                                     <Link
                                         :href="route('admin.banners-accepts.index')"
-                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-blue-800 transition-all uppercase tracking-widest relative overflow-hidden group/btn"
+                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-[#00a0e3] transition-all uppercase tracking-widest relative overflow-hidden group/btn"
                                     >
                                         <span class="relative z-10">SPRAWDŹ</span>
                                     </Link>
@@ -103,7 +103,7 @@
                                     </p>
                                     <Link
                                         :href="route('admin.articles-accepts.index')"
-                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-blue-800 transition-all uppercase tracking-widest relative overflow-hidden group/btn"
+                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-[#00a0e3] transition-all uppercase tracking-widest relative overflow-hidden group/btn"
                                     >
                                         <span class="relative z-10">SPRAWDŹ</span>
                                     </Link>

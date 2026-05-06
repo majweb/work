@@ -73,7 +73,7 @@ const getInitials = (name) => {
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.recruits') }}</h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj zespołem rekruterów w Twojej firmie</p>
                         </div>
-                        <Link :href="route('recruits.create')" class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-blue-800 transition duration-200 shadow-lg shadow-blue-900/20">
+                        <Link :href="route('recruits.create')" class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-[#00a0e3] transition duration-200 shadow-lg shadow-blue-900/20">
                             {{ __('translate.createRecruit') }}
                         </Link>
                     </div>
@@ -140,7 +140,7 @@ const getInitials = (name) => {
 
                         <!-- Przyciski akcji -->
                         <div class="w-full space-y-2 mt-auto">
-                            <Link :href="route('recruits.edit', user)" class="block w-full bg-[#0A2C5C] text-white font-black py-3 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-md shadow-blue-900/10">
+                            <Link :href="route('recruits.edit', user)" class="block w-full bg-[#0A2C5C] text-white font-black py-3 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-md shadow-blue-900/10">
                                 {{ __('translate.edit') }}
                             </Link>
                             <button @click="openModal(user)" class="block w-full bg-red-50 text-red-600 font-black py-3 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-red-100 transition">

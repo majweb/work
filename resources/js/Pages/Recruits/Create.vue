@@ -114,7 +114,7 @@ const createUser = () => {
 
                 <button
                     type="button"
-                    class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#0A2C5C] text-white text-[10px] font-black px-6 py-2 rounded-xl hover:bg-blue-800 transition uppercase tracking-widest z-10 shadow-lg"
+                    class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#0A2C5C] text-white text-[10px] font-black px-6 py-2 rounded-xl hover:bg-[#00a0e3] transition uppercase tracking-widest z-10 shadow-lg"
                     @click.prevent="selectNewPhoto"
                 >
                   {{ __('translate.ProfileInformationPhoto') }}
@@ -177,7 +177,7 @@ const createUser = () => {
                 <button
                     @click.prevent="createUser"
                     :disabled="form.processing"
-                    class="bg-[#0A2C5C] text-white px-12 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-800 transition shadow-lg shadow-blue-900/20 disabled:opacity-50"
+                    class="bg-[#0A2C5C] text-white px-12 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg shadow-blue-900/20 disabled:opacity-50"
                 >
                   <spinner-action :process="form.processing">ZAPISZ</spinner-action>
                 </button>
