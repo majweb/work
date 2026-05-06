@@ -7,6 +7,9 @@ import { pickBy } from "lodash";
 import Multiselect from "vue-multiselect";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import ConfirmationModal from "@/Components/ConfirmationModal.vue";
+import DangerButton from "@/Components/DangerButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
     foundations: Object,
@@ -40,6 +43,20 @@ const resetFilters = () => {
 
 const toggleActive = (id) => {
     router.put(route('admin.foundations.toggle', id), {}, { preserveScroll: true });
+};
+
+const foundationIdBeingDeleted = ref(null);
+
+const confirmFoundationDeletion = (id) => {
+    foundationIdBeingDeleted.value = id;
+};
+
+const deleteFoundation = () => {
+    router.delete(route('admin.foundations.destroy', foundationIdBeingDeleted.value), {
+        preserveScroll: true,
+        preserveState: true,
+        onSuccess: () => foundationIdBeingDeleted.value = null,
+    });
 };
 </script>
 
@@ -204,7 +221,7 @@ const toggleActive = (id) => {
                                         </Link>
                                         <button
                                             :disabled="p.invoices_count > 0"
-                                            @click="router.delete(route('admin.foundations.destroy', p.id))"
+                                            @click="confirmFoundationDeletion(p.id)"
                                             class="px-4 py-2 bg-red-600 rounded-lg text-white text-[8px] font-black uppercase tracking-widest hover:bg-red-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             USUŃ
@@ -222,6 +239,30 @@ const toggleActive = (id) => {
                 </div>
             </div>
         </div>
+
+        <!-- Delete Foundation Confirmation Modal -->
+        <ConfirmationModal :show="foundationIdBeingDeleted !== null" @close="foundationIdBeingDeleted = null">
+            <template #title>
+                Usuń Fundację
+            </template>
+
+            <template #content>
+                Czy na pewno chcesz usunąć tę fundację? Tej operacji nie można cofnąć.
+            </template>
+
+            <template #footer>
+                <SecondaryButton @click="foundationIdBeingDeleted = null">
+                    Anuluj
+                </SecondaryButton>
+
+                <DangerButton
+                    class="ml-3"
+                    @click="deleteFoundation"
+                >
+                    Usuń Fundację
+                </DangerButton>
+            </template>
+        </ConfirmationModal>
     </AppLayout>
 </template>
 

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
@@ -43,6 +42,7 @@ class Foundation extends Model implements HasMedia
         'address_postcode',
         'registration_code',
     ];
+
     protected $casts = [
         'latitude' => 'float',
         'longitude' => 'float',
@@ -53,12 +53,9 @@ class Foundation extends Model implements HasMedia
         'address_country' => 'json',
     ];
 
-
     /**
      * Główna kategoria fundacji
      */
-
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('foundation_logo');
@@ -74,8 +71,8 @@ class Foundation extends Model implements HasMedia
         static::created(function ($foundation) {
             if (empty($foundation->registration_code)) {
                 $foundation->registration_code =
-                    'FND-' .
-                    $foundation->id . '-' .
+                    'FND-'.
+                    $foundation->id.'-'.
                     strtoupper(Str::random(4));
 
                 $foundation->saveQuietly(); // ⬅️ ważne
