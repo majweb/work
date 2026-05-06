@@ -297,25 +297,25 @@ const isSearching = ref(false);
                     </swiper>
                 </div>
                 <!-- Formularz wyszukiwania -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                <div class="bg-[#0A2C5C] rounded-[3rem] shadow-xl shadow-blue-900/10 border border-[#0A2C5C] p-10">
                     <form @submit.prevent="submit" class="w-full">
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center gap-4 flex-1">
-                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
-                                <div class="h-px flex-1 bg-gray-100"></div>
+                                <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                                <div class="h-px flex-1 bg-white/10"></div>
                             </div>
                             <div class="flex flex-col sm:flex-row gap-3 items-end md:items-center ml-4">
                                 <div class="flex gap-3 items-center">
                                     <button
                                         type="button"
                                         @click="toggleFilters"
-                                        class="px-6 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                                        class="px-6 py-3 bg-white/5 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-white/10 shadow-sm transition-all hover:-translate-y-0.5"
                                     >
                                         {{ __('translate.filters') }}
                                     </button>
                                     <button
                                         type="submit"
-                                        class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                        class="px-8 py-3 bg-[#e31e24] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5 flex items-center gap-2"
                                         :disabled="isSearching"
                                     >
                                         <template v-if="isSearching">
@@ -329,7 +329,7 @@ const isSearching = ref(false);
                                 </div>
                                 <Link v-if="isFilterActive"
                                       :href="route('front.projects')"
-                                      class="text-[10px] font-black text-red-500 hover:underline uppercase tracking-widest sm:ml-2">
+                                      class="text-[10px] font-black text-red-400 hover:text-red-300 hover:underline uppercase tracking-widest sm:ml-2">
                                     {{__('translate.resetFilters')}}
                                 </Link>
                             </div>
@@ -339,7 +339,7 @@ const isSearching = ref(false);
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6" :class="{'lg:grid-cols-4': form.city}">
                             <!-- Select Country -->
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
+                                <label class="block text-[10px] font-black text-white/50 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
                                 <Multiselect
                                     v-model="form.country"
                                     :options="props.countries"
@@ -369,7 +369,7 @@ const isSearching = ref(false);
 
                             <!-- Select City -->
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCity') }}</label>
+                                <label class="block text-[10px] font-black text-white/50 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCity') }}</label>
                                 <Multiselect
                                     v-model="form.city"
                                     :options="optionsCities"
@@ -404,7 +404,7 @@ const isSearching = ref(false);
                                 leave-to-class="transform scale-90 opacity-0 -translate-x-4"
                             >
                                 <div v-if="form.city" class="space-y-2">
-                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.distance') }}</label>
+                                    <label class="block text-[10px] font-black text-white/50 mb-2 uppercase tracking-widest">{{ __('translate.distance') }}</label>
                                     <Multiselect
                                         v-model="form.distance"
                                         :options="props.distanceOptions"
@@ -432,7 +432,7 @@ const isSearching = ref(false);
 
                             <!-- Select Category -->
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategory') }}</label>
+                                <label class="block text-[10px] font-black text-white/50 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategory') }}</label>
                                 <Multiselect
                                     v-model="form.category"
                                     :options="optionsCategories"

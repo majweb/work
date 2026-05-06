@@ -317,10 +317,10 @@ function zoomToContinent(continent) {
     map.value.fitBounds(box, { padding: 40, duration: 800 });
 }
 
-async function zoomToCountry(country) {
-    if (!country || !country.trim()) return;
+async function zoomToCountry(countryObj) {
+    if (!countryObj || !countryObj.name) return;
 
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${country}.json?types=country&access_token=${mapboxgl.accessToken}`;
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(countryObj.name)}.json?types=country&country=${countryObj.countryCode.toLowerCase()}&access_token=${mapboxgl.accessToken}`;
     const res = await fetch(url);
     const data = await res.json();
     if (!data.features?.length) return;
@@ -343,8 +343,8 @@ async function zoomToCountry(country) {
 
 // Watcher — wykona zoomToCountry dla każdej wybranej pozycji
 watch(selectedCountry, (newVal) => {
-    if (newVal && newVal.name) {
-        zoomToCountry(newVal.name);
+    if (newVal) {
+        zoomToCountry(newVal);
     }
 });
 
@@ -417,7 +417,7 @@ watch(() => props.foundations, () => {
 
                 <!-- Nazwa -->
                 <div class="space-y-2">
-                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest ml-2">{{ __('continents.search_placeholder') }}</label>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('continents.search_placeholder') }}</label>
                     <TextInput
                         type="text"
                         v-model="searchName"
@@ -558,70 +558,4 @@ watch(() => props.foundations, () => {
     </div>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
-<style lang="scss">
-.custom-multiselect {
-    .multiselect {
-        &__tags {
-            @apply rounded-2xl border-gray-100 bg-gray-50/50 py-3 px-4 min-h-[54px] flex items-center transition-all border-2;
-        }
 
-        &__placeholder {
-            @apply text-[11px] font-black text-gray-400 uppercase tracking-widest pt-0 mb-0;
-        }
-
-        &__single {
-            @apply bg-transparent text-[11px] font-black text-[#0A2C5C] uppercase tracking-widest pt-0 mb-0;
-        }
-
-        &__input {
-            @apply bg-transparent text-[11px] font-black uppercase tracking-widest pt-0 mb-0;
-        }
-
-        &__select {
-            @apply top-1/2 -translate-y-1/2 h-full flex items-center justify-center right-0;
-            &::before {
-                @apply border-t-gray-400 border-l-transparent border-r-transparent border-b-transparent border-t-[6px] border-x-[5px] relative top-0;
-            }
-        }
-
-        &__content-wrapper {
-            @apply rounded-2xl mt-2 border-none shadow-xl overflow-hidden;
-        }
-
-        &__option {
-            @apply text-[10px] font-bold uppercase tracking-wider py-4;
-
-            &--highlight {
-                @apply bg-[#0A2C5C] text-white;
-                &::after {
-                    @apply bg-red-500 text-[10px] font-black uppercase tracking-widest px-4;
-                }
-            }
-
-            &--selected {
-                @apply bg-gray-100 text-[#0A2C5C] font-black;
-                &::after {
-                    @apply content-['✓'] bg-transparent text-green-500;
-                }
-            }
-
-            &--group {
-                @apply bg-gray-50/50 text-gray-400 text-[9px] font-black uppercase tracking-[0.2em] py-3 px-4;
-            }
-        }
-    }
-
-    .multiselect--active {
-        .multiselect__tags {
-            @apply border-[#0A2C5C] bg-white ring-4 ring-blue-900/5;
-        }
-    }
-
-    .multiselect--disabled {
-        @apply opacity-50;
-        .multiselect__tags {
-            @apply bg-gray-100;
-        }
-    }
-}
-</style>

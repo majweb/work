@@ -134,18 +134,18 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                     </swiper>
                 </div>
                 <!-- Formularz wyszukiwania -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                <div class="bg-[#0A2C5C] rounded-[3rem] shadow-xl shadow-blue-900/10 border border-[#0A2C5C] p-10">
                     <form @submit.prevent="submit" class="w-full">
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center gap-4 flex-1">
-                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
-                                <div class="h-px flex-1 bg-gray-100"></div>
+                                <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                                <div class="h-px flex-1 bg-white/10"></div>
                             </div>
                             <div class="flex gap-3 items-center ml-4">
                                 <button
                                     type="submit"
                                     :disabled="loading"
-                                    class="px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                    class="px-8 py-3 bg-[#e31e24] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5 flex items-center gap-2"
                                 >
                                     <svg
                                         v-if="loading"
@@ -163,7 +163,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     v-if="form.country"
                                     type="button"
                                     @click="clearFilters"
-                                    class="px-6 py-3 bg-white border border-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5"
+                                    class="px-6 py-3 bg-white/5 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-white/10 shadow-sm transition-all hover:-translate-y-0.5"
                                 >
                                     {{ __('translate.clearFiltersOnly') }}
                                 </button>
@@ -172,7 +172,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
 
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
+                                <label class="block text-[10px] font-black text-white/50 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCountry') }}</label>
                                 <multiselect
                                     v-model="form.country"
                                     :options="props.countries"
@@ -195,7 +195,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                 <InputError :message="form.errors.country" class="mt-2"/>
                             </div>
                             <div class="flex items-end pb-4">
-                                <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest">{{ props.firms.total }} {{ __('translate.firms_count') }}</span>
+                                <span class="text-sm font-black text-white uppercase tracking-widest">{{ props.firms.total }} {{ __('translate.firms_count') }}</span>
                             </div>
                         </div>
                     </form>
