@@ -561,7 +561,7 @@ const socialLinks = [
         <CookieConsent />
     </div>
 </template>
-<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<!--<style src="vue-multiselect/dist/vue-multiselect.css"></style>-->
 <style lang="scss">
 .custom-multiselect {
     .multiselect__tags {

@@ -234,22 +234,6 @@ onUnmounted(()=>{
                                         {{__('translate.tags')}}
                                     </NavLink>
                                 </template>
-
-<!--                                &lt;!&ndash; Admin Links &ndash;&gt;-->
-<!--                                <template v-if="hasRole('admin')">-->
-<!--                                    <NavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">-->
-<!--                                        {{__('translate.admin-questions')}}-->
-<!--                                    </NavLink>-->
-<!--                                    <NavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">-->
-<!--                                        {{__('translate.aplications')}}-->
-<!--                                    </NavLink>-->
-<!--                                    <NavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">-->
-<!--                                        {{__('partners.partners')}}-->
-<!--                                    </NavLink>-->
-<!--                                    <NavLink :href="route('admin.foundations.index')" :active="route().current('admin.foundations.index')">-->
-<!--                                        {{__('foundations.foundations')}}-->
-<!--                                    </NavLink>-->
-<!--                                </template>-->
                             </div>
                         </div>
 
@@ -307,6 +291,17 @@ onUnmounted(()=>{
                                             <span class="text-xs font-black text-blue-900 leading-none mt-0.5">{{ $page.props.firmLoginPoints || 0 }}</span>
                                         </div>
                                     </div>
+                                    <Link v-if="hasRole('firm') && countCart > 0" :href="route('buy.detail')" class="flex items-center px-3 py-1.5 bg-blue-50 rounded-xl border border-blue-100 shadow-sm group hover:bg-blue-100 transition-colors duration-200 relative">
+                                        <div class="p-1 bg-[#0A2C5C] rounded-lg mr-2 group-hover:scale-110 transition-transform text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex flex-col text-left">
+                                            <span class="text-[8px] font-black text-[#0A2C5C] uppercase tracking-widest leading-none">{{ __('translate.cart') }}</span>
+                                            <span class="text-xs font-black text-blue-900 leading-none mt-0.5">{{ countCart }}</span>
+                                        </div>
+                                    </Link>
                                     <notification-bell :count="notifications" />
                                 </div>
 
@@ -519,9 +514,9 @@ onUnmounted(()=>{
             <main>
                 <slot />
             </main>
-            <button
+            <Link
                 v-if="countCart > 0"
-                @click="open = true"
+                :href="route('buy.detail')"
                 class="fixed right-8 md:ight-4 bottom-24 z-10 md:right-10 md:bottom-24 flex items-center justify-center w-14 h-14 bg-blue-500 text-white rounded-full shadow-lg animate-pulse transition-transform hover:scale-110"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -529,7 +524,7 @@ onUnmounted(()=>{
                           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 <span class="font-bold">{{ countCart }}</span>
-            </button>
+            </Link>
             <TransitionRoot as="template" :show="open">
                 <Dialog class="relative z-50" @close="open = false">
                     <!-- Overlay -->

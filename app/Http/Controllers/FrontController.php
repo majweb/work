@@ -210,7 +210,7 @@ class FrontController extends Controller
         // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
         if (! ($lat && $lng && $distance > 0)) {
             if (request('country')) {
-                $query->whereJsonContains('country', ['value' => (int) request('country')]);
+                $query->whereJsonContains('countryWork', ['value' => (int) request('country')]);
             }
 
             if (request('city')) {
