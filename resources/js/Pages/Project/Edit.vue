@@ -153,25 +153,35 @@ const form = useForm({
     bonusSalaryTo: props.project.bonusSalaryTo,
     hoursFrom: props.project.hoursFrom,
     hoursTo: props.project.hoursTo,
-    workLoad: props.project.workLoad,
+    workLoad: props.workLoads.find(load => (load.id || load.value) === (props.project.workLoad?.id || props.project.workLoad?.value || props.project.workLoad)) || props.project.workLoad,
     education: props.project.education,
     shiftWork: props.project.shiftWork,
-    payoutMode: props.project.payoutMode,
+    payoutMode: props.payoutModes.find(mode => (mode.id || mode.value) === (props.project.payoutMode?.id || props.project.payoutMode?.value || props.project.payoutMode)) || props.project.payoutMode,
     workNight: props.project.workNight,
-    workingMode: props.project.workingMode ?? [],
+    workingMode: props.workingModes.filter(mode =>
+        props.project.workingMode?.some(pMode => (pMode.id || pMode.value) === mode.id)
+    ) ?? [],
     typeOfContract: props.typesOfContract.filter(type =>
         props.project.typeOfContract.some(pType => (pType.id || pType.value) === type.id)
     ) ?? [],
     paySystem: props.paySystems.filter(system =>
         props.project.paySystem?.some(pSystem => (pSystem.id || pSystem.value) === system.id)
     ) ?? [],
-    workingPlace: props.project.workingPlace ?? [],
+    workingPlace: props.workingPlaces.find(place => (place.id || place.value) === (props.project.workingPlace?.id || props.project.workingPlace?.value || props.project.workingPlace)) || props.project.workingPlace,
     country: props.project.country ?? [],
-    days: props.project.days ?? [],
-    offer: props.project.offer ?? [],
-    wait: props.project.wait ?? [],
+    days: props.days.filter(day =>
+        props.project.days?.some(pDay => (pDay.id || pDay.value) === day.id)
+    ) ?? [],
+    offer: props.offers.filter(item =>
+        props.project.offer?.some(pItem => (pItem.id || pItem.value) === item.id)
+    ) ?? [],
+    wait: props.waits.filter(item =>
+        props.project.wait?.some(pItem => (pItem.id || pItem.value) === item.id)
+    ) ?? [],
     experience: props.project.experience ?? [],
-    welcome: props.project.welcome ?? [],
+    welcome: props.welcomes.filter(item =>
+        props.project.welcome?.some(pItem => (pItem.id || pItem.value) === item.id)
+    ) ?? [],
     detailProjects:  props.project.detailprojects.map(el=>el.id) ?? [],
     countryWork: props.project.countryWork,
     streetWork: props.project.streetWork,
@@ -180,7 +190,9 @@ const form = useForm({
     cityWork: props.project.cityWork,
     lat: props.project.lat,
     lng: props.project.lng,
-    cv: props.project.cv ?? [],
+    cv: props.cvs.filter(cv =>
+        props.project.cv?.some(pCv => (pCv.id || pCv.value) === cv.id)
+    ) ?? [],
     questions: props.project.questions ?? [],
     external_company_id: props.externalCompanies.find(
         company => company.id === props.project.external_company_id
@@ -530,6 +542,43 @@ onMounted(async () => {
     // Ustaw drugi element jako domyślny dla experience (Niewymagane/Bez doświadczenia)
     if (!form.experience && props.experiences && props.experiences.length > 1) {
         form.experience = props.experiences[1];
+    }
+
+    if (form.workingMode && form.workingMode.length > 0) {
+        workingModeSelect.value = form.workingMode;
+    }
+
+    if (form.typeOfContract && form.typeOfContract.length > 0) {
+        typesOfContractSelect.value = form.typeOfContract;
+    }
+
+    if (form.paySystem && form.paySystem.length > 0) {
+        paySystemSelect.value = form.paySystem;
+    }
+
+    // Inicjalizacja daySelect
+    if (form.days && form.days.length > 0) {
+        daySelect.value = form.days;
+    }
+
+    if (form.offer && form.offer.length > 0) {
+        offerSelect.value = form.offer;
+    }
+
+    if (form.welcome && form.welcome.length > 0) {
+        welcomeSelect.value = form.welcome;
+    }
+
+    if (form.wait && form.wait.length > 0) {
+        waitSelect.value = form.wait;
+    }
+
+    if (form.payoutMode && form.payoutMode.name) {
+        payoutModeSelect.value = form.payoutMode.name;
+    }
+
+    if (form.workLoad && form.workLoad.name) {
+        workLoadSelect.value = form.workLoad.name;
     }
 
     // Załaduj podkategorie, zawody i stanowiska jeśli projekt ma je wypełnione
