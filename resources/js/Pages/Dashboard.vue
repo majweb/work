@@ -25,6 +25,7 @@ const props = defineProps({
     viewCount: Number,
     certificate: Object,
     adminData: Object,
+    adminBanner: Object,
 });
 </script>
 
@@ -46,8 +47,8 @@ const props = defineProps({
                                 :queue="adminData?.queue"
                                 :events="adminData?.events" />
                 <WorkerDashboard v-else-if="hasRole('worker')" :notifications="notifications" :lastAplications="lastAplications" :otherAplications="otherAplications" />
-                <RecruitDashboard v-else-if="hasRole('recruit') && !hasRole('firm')" :applications="otherAplications" :notifications="notifications" :projects="chartRecruit?.projects || []" :chartData="chartRecruit?.data || null" :lastAplications="chartRecruit?.applications" || []/>
-                <FirmDashboard v-else-if="hasRole('firm')" :firmData="chartFirm" :aplicationCount="aplicationCount" :viewCount="viewCount" :projectsCount="projectsCount" :recruitsCount="recruitsCount" :chartData="chartFirm?.recruits || null"  :chartDataApp="chartFirm?.aplications || null" :chartDataInvoices="chartFirm?.lastInvoices"  :notifications="notifications" :packages="packages" :additionalServices="additionalServices" :certificate="chartFirm?.certificate || null"/>
+                <RecruitDashboard v-else-if="hasRole('recruit') && !hasRole('firm')" :adminBanner="adminBanner" :applications="otherAplications" :notifications="notifications" :projects="chartRecruit?.projects || []" :chartData="chartRecruit?.data || null" :lastAplications="chartRecruit?.applications" || []/>
+                <FirmDashboard v-else-if="hasRole('firm')" :adminBanner="adminBanner" :firmData="chartFirm" :aplicationCount="aplicationCount" :viewCount="viewCount" :projectsCount="projectsCount" :recruitsCount="recruitsCount" :chartData="chartFirm?.recruits || null"  :chartDataApp="chartFirm?.aplications || null" :chartDataInvoices="chartFirm?.lastInvoices"  :notifications="notifications" :packages="packages" :additionalServices="additionalServices" :certificate="chartFirm?.certificate || null"/>
         </div>
     </AppLayout>
 </template>

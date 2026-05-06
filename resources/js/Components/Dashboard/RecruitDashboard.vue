@@ -12,6 +12,17 @@
                 </div>
             </div>
 
+            <!-- Admin Banner -->
+            <div v-if="adminBanner" class="mb-8 px-4">
+                <div class="relative group overflow-hidden rounded-[2rem] shadow-xl border border-gray-100 transition-all duration-700 hover:shadow-2xl">
+                    <img
+                        :src="adminBanner.image"
+                        class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
+                        alt="Admin Banner"
+                    />
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
                 <!-- STATYSTYKI -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 flex flex-col h-full relative overflow-hidden group">
@@ -408,6 +419,10 @@ const props = defineProps({
         default: () => []
     },
     chartData: {
+        type: Object,
+        default: null
+    },
+    adminBanner: {
         type: Object,
         default: null
     }

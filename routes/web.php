@@ -348,6 +348,11 @@ Route::middleware([
         Route::get('aplicationsAdmin', [\App\Http\Controllers\Admin\AplicationController::class, 'index'])->name('aplicationsA.index');
         Route::post('aplicationsAdmin/applications/export/{form}', [App\Http\Controllers\Admin\AplicationController::class, 'export'])
             ->name('aplicationsA.export');
+
+        //        ADMIN BANNERS
+        Route::resource('admin-banners', \App\Http\Controllers\Admin\AdminBannerController::class);
+        Route::post('admin-banners/{adminBanner}/toggle', [\App\Http\Controllers\Admin\AdminBannerController::class, 'toggle'])->name('admin-banners.toggle');
+
         //        STATYSTYKI
         Route::get('statisticsAdmin', [\App\Http\Controllers\Admin\StatisticsController::class, 'index'])->name('statistics.index');
         Route::get('statisticsAdmin/charts', [\App\Http\Controllers\Admin\StatisticsController::class, 'charts'])->name('statistics.charts');

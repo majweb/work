@@ -40,6 +40,17 @@
             </div>
         </div>
 
+        <!-- Admin Banner -->
+        <div v-if="adminBanner" class="mb-8 px-4">
+            <div class="relative group overflow-hidden rounded-[2rem] shadow-xl border border-gray-100 transition-all duration-700 hover:shadow-2xl">
+                <img
+                    :src="adminBanner.image"
+                    class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
+                    alt="Admin Banner"
+                />
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <!-- KAFEL 1 -->
             <Link :href="route('recruits.index')" class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500 hover:-translate-y-2 p-10 text-center cursor-pointer relative overflow-hidden flex flex-col items-center justify-center min-h-[180px]">
@@ -634,6 +645,10 @@ const props = defineProps({
     projectsCount: Number,
     aplicationCount: Number,
     viewCount: Number,
+    adminBanner: {
+        type: Object,
+        default: null
+    },
 });
 
 const packagesRef = ref(props.packages);

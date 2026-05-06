@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charts\AdminSparklineChart;
+use App\Models\AdminBanner;
 use App\Models\Aplication;
 use App\Models\Article;
 use App\Models\Banner;
@@ -83,7 +84,7 @@ class DashboardController extends Controller
                     'profession',
                     'views_count',
                     'user_id',
-                    'created_at'
+                    'created_at',
                 ]) // Dodano ograniczenie kolumn
                 ->withCount([
                     'aplications',
@@ -402,6 +403,11 @@ class DashboardController extends Controller
             }
         }
 
+        $adminBanner = AdminBanner::where('is_active', true)->latest()->first();
+        $adminBannerData = $adminBanner ? [
+            'image' => $adminBanner->getFirstMediaUrl('images'),
+        ] : null;
+
         return inertia()->render('Dashboard', [
             'chartRecruit' => $user->hasRole('recruit') ? $recruitData : null,
             'chartFirm' => $user->hasRole('firm') ? $firmData : null,
@@ -418,6 +424,7 @@ class DashboardController extends Controller
             'projectsCount' => $projectsCount,
             'aplicationCount' => $aplicationCount,
             'viewCount' => $viewCount,
+            'adminBanner' => $adminBannerData,
         ]);
     }
 }

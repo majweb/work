@@ -97,6 +97,7 @@ const menuItems = [
             { name: 'Newsletter', route: 'admin.newsletter.index' },
             { name: 'Integracje', route: 'admin.integrations.edit' },
             { name: 'CMS', route: 'admin.cms.index' },
+            { name: 'Baner', route: 'admin.admin-banners.index' },
             { name: 'Profil admina', route: 'profile.show' },
         ],
         can: 'super-admin-only'

@@ -135,6 +135,9 @@ const getFlagCode = (langCode) => {
         'ka': 'ge', // Georgian
         'he': 'il', // Hebrew
         'hi': 'in', // Hindi
+        'vi': 'vn', // Vietnamese
+        'lb': 'lu', // Luxembourgish
+        'tk': 'tm', // Turkmen
     };
     return mapping[langCode] || langCode;
 };
