@@ -129,15 +129,31 @@ const getFlagCode = (langCode) => {
         'sv': 'se',
         'uk': 'ua',
         // Added missing languages
+        'vi': 'vn', // Vietnamese
+        'tk': 'tm', // Turkmen
+        'tg': 'tj', // Tajik
+        'si': 'lk', // Sinhalese
+        'sl': 'si', // Slovenian
+        'sr': 'rs', // Serbian
+        'ps': 'af', // Pashto
+        'ne': 'np', // Nepali
+        'ms': 'my', // Malay
+        'lb': 'lu', // Luxembourgish
+        'km': 'kh', // Khmer
+        'ca': 'es-ct', // Catalan
+        'dz': 'bt', // Dzongkha
+        'bs': 'ba', // Bosnian
+        'my': 'mm', // Burmese
+        'be': 'by', // Belarusian
+        'bn': 'bd', // Bengali
+        'ar': 'sa', // Arabic
+        'am': 'et', // Amharic
         'fa': 'ir', // Persian (Farsi)
         'dv': 'mv', // Maldivian (Dhivehi)
         'lo': 'la', // Lao
         'ka': 'ge', // Georgian
         'he': 'il', // Hebrew
         'hi': 'in', // Hindi
-        'vi': 'vn', // Vietnamese
-        'lb': 'lu', // Luxembourgish
-        'tk': 'tm', // Turkmen
     };
     return mapping[langCode] || langCode;
 };
