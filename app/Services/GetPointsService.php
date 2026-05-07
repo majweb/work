@@ -54,7 +54,7 @@ class GetPointsService
         if ($aplication->cvVideo) {
             return config('getPoints.OpenAppWithVideo');
         }
-        return 0;
+        return config('getPoints.OpenAppWithNoAuth', 0);
     }
 
     private function getActionName(Aplication $aplication): string
@@ -68,7 +68,8 @@ class GetPointsService
         if ($aplication->cvVideo) {
             return 'OpenAppWithVideo';
         }
-        return 'OpenAppUnknown';
+        // ZMIANA: Zamiast OpenAppUnknown, używamy konkretnej nazwy
+        return 'OpenAppWithNoAuth';
     }
 
     private function getFirmForUser(Aplication $aplication)

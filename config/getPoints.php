@@ -7,6 +7,8 @@ return array (
   'OpenAppWithAudio_default' => 180,
   'OpenAppWithVideo' => 250,
   'OpenAppWithVideo_default' => 250,
+  'OpenAppWithNoAuth' => 100,
+  'OpenAppWithNoAuth_default' => 100,
   'ExportAplications' => 150,
   'ExportAplications_default' => 150,
   'UnlockQuestions' => 250,

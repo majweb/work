@@ -53,6 +53,16 @@ const operations = computed(() => [
                 ]
             },
             {
+                name: __("translate.cv_no_auth"),
+                points: props.pointCosts.OpenAppWithNoAuth,
+                icon: '/images/icons/firm/klasyczne_cv.svg',
+                details: [
+                    `<strong>${__("translate.description")}</strong>: ${__("translate.cv_no_auth_desc")}`,
+                    `<strong>${__("translate.target")}</strong>: ${__("translate.cv_no_auth_target")}`,
+                    `<strong>${__("translate.detail")}</strong>: ${__("translate.cv_no_auth_detail")}`
+                ]
+            },
+            {
                 name: __("translate.cv_video"),
                 points: props.pointCosts.OpenAppWithVideo,
                 icon: '/images/icons/firm/video_cv.svg',

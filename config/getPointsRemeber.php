@@ -3,6 +3,7 @@
 return [
     // Koszt pobrania aplikacji z CV PDF
     'OpenAppWithPdf' => 120,
+    'OpenAppWithNoAuth' => 100,
 
     // Koszt pobrania aplikacji z CV audio
     'OpenAppWithAudio' => 180,

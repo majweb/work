@@ -1724,4 +1724,9 @@ return [
     'social_media_price' => 'PROMOCJA:',
     'social_media_active_to' => 'AKTYWNE DO:',
     'social_media_button' => 'WYMIEŃ PUNKTY NA PROMOCJĘ',
+    'info' => 'Informacja',
+    'cv_no_auth' => 'Odczytanie CV bez autoryzacji',
+    'cv_no_auth_desc' => 'Rekruter lub firma otwiera CV kandydata, który nie przeszedł pełnej autoryzacji profilu.',
+    'cv_no_auth_target' => 'Umożliwia wgląd w dane kandydata spoza bazy zweryfikowanej.',
+    'cv_no_auth_detail' => 'Odczytanie liczone jest w momencie pierwszego otwarcia aplikacji.',
 ];

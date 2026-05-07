@@ -33,6 +33,7 @@ class PointHistory extends Model
             'OpenAppWithVideo' => 'Otwarcie aplikacji z wideo',
             'OpenAppWithPdf' => 'Otwarcie aplikacji z PDF',
             'OpenAppWithAudio' => 'Otwarcie aplikacji z audio',
+            'OpenAppWithNoAuth' => 'Odczytanie CV bez autoryzacji',
             'sendReservedProject' => 'Wysłanie zarezerwowanego projektu',
             'BuyProduct' => 'Zakup produktu',
             'Purchase' => 'Zakup',
@@ -46,7 +47,7 @@ class PointHistory extends Model
 
     public static function translateActionName(?string $action): string
     {
-        if (!$action) {
+        if (! $action) {
             return '-';
         }
 
@@ -62,12 +63,14 @@ class PointHistory extends Model
         // Dynamiczne tłumaczenie dla "BuyProduct: Nazwa produktu"
         if ($baseAction === 'BuyProduct' && count($parts) > 1) {
             $productName = trim(implode(':', array_slice($parts, 1)));
-            return 'Zakup produktu: ' . $productName;
+
+            return 'Zakup produktu: '.$productName;
         }
 
         if (count($parts) > 1) {
             $prefix = $translations[$baseAction] ?? $baseAction;
-            return $prefix . ': ' . trim(implode(':', array_slice($parts, 1)));
+
+            return $prefix.': '.trim(implode(':', array_slice($parts, 1)));
         }
 
         return $translations[$baseAction] ?? $action;

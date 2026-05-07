@@ -91,6 +91,7 @@ const actionTranslations = {
     'OpenAppWithVideo': 'Otwarcie aplikacji z wideo',
     'OpenAppWithPdf': 'Otwarcie aplikacji z PDF',
     'OpenAppWithAudio': 'Otwarcie aplikacji z audio',
+    'OpenAppWithNoAuth': 'Odczytanie CV bez autoryzacji',
     'sendReservedProject': 'Wysłanie zarezerwowanego projektu',
     'BuyProduct': 'Zakup produktu',
     'Purchase': 'Zakup',
