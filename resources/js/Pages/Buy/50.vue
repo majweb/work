@@ -1,9 +1,11 @@
 <script setup>
-import { router, Link } from '@inertiajs/vue3';
+import { router, Link, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import __ from "@/lang.js";
 import Pagination from "@/Components/Pagination.vue";
 import pickBy from 'lodash/pickBy';
+import { ref, nextTick } from "vue";
+import ConfettiExplosion from "vue-confetti-explosion";
 
 const props = defineProps({
     cert50: Object,
@@ -27,10 +29,41 @@ const updateFilter = () => {
         replace: true,
     });
 };
+
+const page = usePage();
+const showConfetti = ref(false);
+const isConfettiActive = ref(false);
+
+const confettiColors = ['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499'];
+
+const handleExchange = (productId, price) => {
+    router.post(route('buy.change', [productId, price]), {}, {
+        preserveScroll: true,
+        onStart: () => {
+            isConfettiActive.value = true;
+        },
+        onSuccess: async () => {
+            showConfetti.value = false;
+            await nextTick();
+            showConfetti.value = true;
+
+            setTimeout(() => {
+                showConfetti.value = false;
+                isConfettiActive.value = false;
+            }, 3000);
+        },
+        onError: () => {
+            isConfettiActive.value = false;
+        },
+    });
+};
 </script>
 
 <template>
     <AppLayout :title="__('translate.p50')">
+        <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
+            <ConfettiExplosion :particleCount="100" :force="0.6" :colors="confettiColors" />
+        </div>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('translate.p50') }}
@@ -134,16 +167,14 @@ const updateFilter = () => {
                     <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10 max-w-4xl mx-auto">
                         <div class="relative group flex-1">
                             <span class="absolute -left-4 top-1/2 -translate-y-1/2 text-7xl font-black text-white/5 select-none transition-all group-hover:text-white/10">1</span>
-                            <Link
+                            <button
                                 v-if="points && product && points >= parseInt(product.price)"
-                                :href="route('buy.change', [product.id, product.price])"
-                                method="post"
-                                preserve-scroll
-                                as="button"
-                                class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white font-black py-5 px-8 rounded-2xl text-[10px] uppercase tracking-widest transition shadow-xl shadow-red-900/20 hover:-translate-y-1 active:translate-y-0"
+                                @click="handleExchange(product.id, product.price)"
+                                :disabled="isConfettiActive"
+                                class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white font-black py-5 px-8 rounded-2xl text-[10px] uppercase tracking-widest transition shadow-xl shadow-red-900/20 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                             >
                                 {{ __('translate.exchangePointsForCert') }}
-                            </Link>
+                            </button>
                             <button
                                 v-else
                                 disabled

@@ -8,7 +8,8 @@ import FormSection from "@/Components/FormSection.vue";
 import ActionMessage from "@/Components/ActionMessage.vue";
 import TextInput from "@/Components/TextInput.vue";
 import SpinnerAction from "@/Components/SpinnerAction.vue";
-import {computed, ref} from "vue";
+import {computed, ref, nextTick} from "vue";
+import ConfettiExplosion from "vue-confetti-explosion";
 import Multiselect from "vue-multiselect";
 const props = defineProps({
     banner: Object,
@@ -22,6 +23,33 @@ const showForm = ref(false);
 
 const page = usePage();
 const firmPoints = computed(() => page?.props?.auth?.user?.firm?.points ?? null);
+
+const showConfetti = ref(false);
+const isConfettiActive = ref(false);
+
+const confettiColors = ['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499'];
+
+const handleExchange = (productId, price) => {
+    router.post(route('buy.change', [productId, price]), {}, {
+        preserveScroll: true,
+        onStart: () => {
+            isConfettiActive.value = true;
+        },
+        onSuccess: async () => {
+            showConfetti.value = false;
+            await nextTick();
+            showConfetti.value = true;
+
+            setTimeout(() => {
+                showConfetti.value = false;
+                isConfettiActive.value = false;
+            }, 3000);
+        },
+        onError: () => {
+            isConfettiActive.value = false;
+        },
+    });
+};
 
 const form = useForm({
     active: props.banner?.active ?? true,
@@ -65,6 +93,9 @@ const sortLangs = computed(() => {
 </script>
 <template>
     <AppLayout :title="__('translate.banner')">
+        <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
+            <ConfettiExplosion :particleCount="100" :force="0.6" :colors="confettiColors" />
+        </div>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('translate.banner') }}
@@ -190,16 +221,14 @@ const sortLangs = computed(() => {
 
                     <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10 max-w-3xl mx-auto">
                         <div class="flex-1">
-                            <Link
+                            <button
                                 v-if="firmPoints !== null && props.product && firmPoints >= parseInt(props.product.price)"
-                                :href="route('buy.change', [props.product.id, props.product.price])"
-                                method="post"
-                                preserve-scroll
-                                as="button"
-                                class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-red-900/20 hover:-translate-y-1 active:translate-y-0"
+                                @click="handleExchange(props.product.id, props.product.price)"
+                                :disabled="isConfettiActive"
+                                class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-red-900/20 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                             >
                                 {{ __('translate.exchangePointsBanner') }}
-                            </Link>
+                            </button>
                             <button
                                 v-else
                                 disabled

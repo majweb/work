@@ -31,7 +31,7 @@ onMounted(() => {
                             :force="0.5"
                             :stageHeight="800"
                             :stageWidth="1200"
-                            :colors="['#00aaff', '#0b2a55', '#e31e24', '#ffffff']"
+                            :colors="['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499']"
                         />
                     </div>
 

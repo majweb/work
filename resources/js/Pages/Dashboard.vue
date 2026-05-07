@@ -19,6 +19,7 @@ const props = defineProps({
     countQuestions: Number,
     countBanners: Number,
     countArticles: Number,
+    countSocialMedia: Number,
     recruitsCount: Number,
     projectsCount: Number,
     aplicationCount: Number,
@@ -42,6 +43,7 @@ const props = defineProps({
                                 :countQuestions="countQuestions"
                                 :countBanners="countBanners"
                                 :countArticles="countArticles"
+                                :countSocialMedia="countSocialMedia"
                                 :stats="adminData?.stats"
                                 :alerts="adminData?.alerts"
                                 :queue="adminData?.queue"

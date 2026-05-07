@@ -16,6 +16,7 @@ const form = useForm({
 });
 
 const isArticle = computed(() => props.activeService.product_name.toLowerCase().includes('artykuł'));
+const isSocial = computed(() => props.activeService.product_name.toLowerCase().includes('social media'));
 const isPoints = computed(() => props.activeService.product_type === 'Points');
 
 const submit = () => {
@@ -46,7 +47,7 @@ const submit = () => {
                     <form @submit.prevent="submit" class="space-y-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <!-- Start Date -->
-                            <div class="space-y-2" v-if="!isArticle && !isPoints">
+                            <div class="space-y-2" v-if="!isArticle && !isPoints && !isSocial">
                                 <label class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] ml-4">Data rozpoczęcia</label>
                                 <input
                                     v-model="form.start"
@@ -58,7 +59,7 @@ const submit = () => {
                             </div>
 
                             <!-- End Date -->
-                            <div class="space-y-2" v-if="!isArticle && !isPoints">
+                            <div class="space-y-2" v-if="!isArticle && !isPoints && !isSocial">
                                 <label class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] ml-4">Data zakończenia</label>
                                 <input
                                     v-model="form.end"
@@ -69,8 +70,8 @@ const submit = () => {
                                 <div v-if="form.errors.end" class="text-red-500 text-[10px] font-bold uppercase mt-1 ml-4">{{ form.errors.end }}</div>
                             </div>
 
-                            <!-- Qty (Articles, Points etc) -->
-                            <div v-if="isArticle || isPoints" class="space-y-2">
+                            <!-- Qty (Articles, Points, Social etc) -->
+                            <div v-if="isArticle || isPoints || isSocial" class="space-y-2">
                                 <label class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] ml-4">Ilość</label>
                                 <input
                                     v-model="form.qty"

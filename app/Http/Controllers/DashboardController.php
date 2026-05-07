@@ -7,6 +7,7 @@ use App\Models\AdminBanner;
 use App\Models\Aplication;
 use App\Models\Article;
 use App\Models\Banner;
+use App\Models\ChangeProduct;
 use App\Models\Firm;
 use App\Models\Foundation;
 use App\Models\Invoice;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
         $countQuestions = ProjectQuestion::whereNull('accepted')->count();
         $countBanners = Banner::where('active_admin', 0)->count();
         $countArticles = Article::where('active_admin', 0)->count();
+        $countSocialMedia = ChangeProduct::where('product_id', 11)->where('qty', '>', 0)->count();
 
         // Helper to get stats for periods
         $getPeriodStats = function ($model, $days = 7, $sumColumn = null) {
@@ -351,6 +353,7 @@ class DashboardController extends Controller
                 'countQuestions' => $countQuestions,
                 'countBanners' => $countBanners,
                 'countArticles' => $countArticles,
+                'countSocialMedia' => $countSocialMedia,
                 'stats' => [
                     'newCompanies' => [
                         'value' => $firmStats['total'],
@@ -401,6 +404,12 @@ class DashboardController extends Controller
                     'text' => 'Masz '.$countArticles.' artykułów oczekujących na akceptację.',
                 ];
             }
+            if ($countSocialMedia > 0) {
+                $adminData['alerts'][] = [
+                    'level' => 'info',
+                    'text' => 'Masz '.$countSocialMedia.' nowych zgłoszeń promocji w social media.',
+                ];
+            }
         }
 
         $adminBanner = AdminBanner::where('is_active', true)->latest()->first();
@@ -416,6 +425,7 @@ class DashboardController extends Controller
             'countQuestions' => $countQuestions,
             'countBanners' => $countBanners,
             'countArticles' => $countArticles,
+            'countSocialMedia' => $countSocialMedia ?? 0,
             'otherAplications' => $otherAplications,
             'notifications' => $notifications,
             'packages' => $packages,

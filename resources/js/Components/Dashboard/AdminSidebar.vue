@@ -18,6 +18,7 @@ const menuItems = [
             { name: 'Pulpit', route: 'dashboard' },
             { name: 'Banery', route: 'admin.banners-accepts.index' },
             { name: 'Artykuły', route: 'admin.articles-accepts.index' },
+            { name: 'Social Media', route: 'admin.social-media.index' },
             { name: 'Statystyki', route: 'admin.statistics.index' },
         ]
     },

@@ -278,6 +278,10 @@ Route::middleware([
         Route::delete('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
         Route::put('articles-accepts/{article}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');
 
+        // SOCIAL MEDIA PROMOTION
+        Route::get('social-media-promotions', [\App\Http\Controllers\Admin\SocialMediaPromotionController::class, 'index'])->name('social-media.index');
+        Route::post('social-media-promotions/{changeProduct}/decrement', [\App\Http\Controllers\Admin\SocialMediaPromotionController::class, 'decrement'])->name('social-media.decrement');
+
         //        RYNEK PRACY
         Route::get('job-offers', [\App\Http\Controllers\Admin\JobOfferController::class, 'index'])->name('job-offers.index');
         Route::get('job-offers/export', [\App\Http\Controllers\Admin\JobOfferController::class, 'export'])->name('job-offers.export');

@@ -50,17 +50,32 @@ class ActiveServiceController extends Controller
         $activeServices = $query->latest()
             ->paginate(20)
             ->withQueryString()
-            ->through(fn ($item) => [
-                'id' => $item->id,
-                'user_name' => $item->user?->name ?? 'N/A',
-                'product_name' => $item->product?->getTranslation('name', 'pl') ?? 'N/A',
-                'product_type' => $item->product?->product_type->value ?? 'N/A',
-                'start' => $item->start?->format('Y-m-d') ?? '-',
-                'end' => $item->end?->format('Y-m-d') ?? '-',
-                'qty' => $item->qty,
-                'certificate_pdf' => $item->certificate_pdf,
-                'is_active' => $item->start?->isPast() && $item->end?->isFuture(),
-            ]);
+            ->through(function ($item) {
+                $user = $item->user;
+                $firm = null;
+
+                if ($user) {
+                    if ($user->firm) {
+                        $firm = $user->firm;
+                    } elseif ($user->recruiter_from_firm_id) {
+                        $parentUser = \App\Models\User::with('firm')->find($user->recruiter_from_firm_id);
+                        $firm = $parentUser?->firm;
+                    }
+                }
+
+                return [
+                    'id' => $item->id,
+                    'user_name' => $firm?->name ?? $user?->name ?? 'N/A',
+                    'firm_logo_url' => $firm?->getFirstMediaUrl('firms_images', 'preview') ?: $firm?->getFirstMediaUrl('firms_images'),
+                    'product_name' => $item->product?->getTranslation('name', 'pl') ?? 'N/A',
+                    'product_type' => $item->product?->product_type->value ?? 'N/A',
+                    'start' => $item->start?->format('Y-m-d') ?? '-',
+                    'end' => $item->end?->format('Y-m-d') ?? '-',
+                    'qty' => $item->qty,
+                    'certificate_pdf' => $item->certificate_pdf,
+                    'is_active' => $item->start?->isPast() && $item->end?->isFuture(),
+                ];
+            });
 
         $products = Product::whereHas('chageProduct')
             ->get()

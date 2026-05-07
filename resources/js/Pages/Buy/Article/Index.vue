@@ -1,8 +1,9 @@
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, nextTick } from 'vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
+import ConfettiExplosion from "vue-confetti-explosion";
 
 import { pickBy, debounce } from 'lodash';
 import DialogModal from "@/Components/DialogModal.vue";
@@ -56,6 +57,33 @@ const resetSort = () => {
     params.value.direction = null;
 }
 
+const showConfetti = ref(false);
+const isConfettiActive = ref(false);
+
+const confettiColors = ['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499'];
+
+const handleExchange = (productId, price) => {
+    router.post(route('buy.change', [productId, price]), {}, {
+        preserveScroll: true,
+        onStart: () => {
+            isConfettiActive.value = true;
+        },
+        onSuccess: async () => {
+            showConfetti.value = false;
+            await nextTick();
+            showConfetti.value = true;
+
+            setTimeout(() => {
+                showConfetti.value = false;
+                isConfettiActive.value = false;
+            }, 3000);
+        },
+        onError: () => {
+            isConfettiActive.value = false;
+        },
+    });
+};
+
 watch(params.value, debounce(function () {
     let rest = pickBy(params.value);
     router.get(route('articles.index'), rest, { preserveState: true, replace: true });
@@ -64,6 +92,9 @@ watch(params.value, debounce(function () {
 </script>
 <template>
     <AppLayout :title="__('translate.recruits')">
+        <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 z-[100] pointer-events-none">
+            <ConfettiExplosion :particleCount="150" :force="0.6" :colors="confettiColors" />
+        </div>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{__('translate.articles')}}
@@ -196,16 +227,14 @@ watch(params.value, debounce(function () {
 
                     <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10 max-w-3xl mx-auto">
                         <div class="flex-1">
-                            <Link
+                            <button
                                 v-if="firmPoints !== null && props.product && firmPoints >= parseInt(props.product.price)"
-                                :href="route('buy.change', [props.product.id, props.product.price])"
-                                method="post"
-                                preserve-scroll
-                                as="button"
-                                class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-red-900/20 hover:-translate-y-1 active:translate-y-0"
+                                @click="handleExchange(props.product.id, props.product.price)"
+                                :disabled="isConfettiActive"
+                                class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-red-900/20 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                             >
                                 {{ __('translate.exchangePointsArticle') }}
-                            </Link>
+                            </button>
                             <button
                                 v-else
                                 disabled

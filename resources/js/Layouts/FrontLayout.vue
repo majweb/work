@@ -160,7 +160,9 @@ const getFlagCode = (langCode) => {
 
 const showConfetti = ref(false);
 watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
-    if (newVal === __('translate.makeAplication')) {
+    // Zachowujemy globalne confetti tylko dla aplikacji na ofertę i opłacenia zamówienia
+    // Widoki wymiany punktów mają teraz własną, lokalną logikę wyzwalania
+    if (newVal === __('translate.makeAplication') || newVal === __('translate.orderPay')) {
         showConfetti.value = true;
         setTimeout(() => {
             showConfetti.value = false;
@@ -220,7 +222,7 @@ const socialLinks = [
                 :force="0.8"
                 :stageHeight="1000"
                 :stageWidth="1500"
-                :colors="['#00a0e3', '#0A2C5C', '#E11D48', '#60a5fa']"
+                :colors="['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499']"
             />
         </div>
         <div

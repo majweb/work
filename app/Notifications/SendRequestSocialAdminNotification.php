@@ -56,6 +56,10 @@ class SendRequestSocialAdminNotification extends Notification
     {
         return [
             'product' => $this->product->id,
+            'title' => 'Usługa promowanie social media',
+            'message' => 'Klient ' . $this->who->name . ' o adresie email ' . $this->who->email . ' wybrał usługę Promowanie social media',
+            'name' => $this->who->name,
+            'email' => $this->who->email,
         ];
     }
 }

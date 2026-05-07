@@ -51,6 +51,10 @@ class SendRequestBannerAdminNotification extends Notification
     {
         return [
             'product' => 'Project',
+            'title' => 'Pytanie o projekt graficzny baneru',
+            'message' => 'Klient ' . $this->who->name . ' o adresie email ' . $this->who->email . ' wysłał prośbę o zaprojektowanie projektu graficznego baneru.',
+            'name' => $this->who->name,
+            'email' => $this->who->email,
         ];
     }
 }

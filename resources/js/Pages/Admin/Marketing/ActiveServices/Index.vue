@@ -112,7 +112,15 @@ const getDownloadUrl = (id) => {
                             <tbody class="divide-y divide-gray-50">
                                 <tr v-for="service in activeServices.data" :key="service.id" class="group hover:bg-gray-50/50 transition-colors">
                                     <td class="py-6 px-4">
-                                        <span class="text-sm font-bold text-[#0A2C5C] uppercase tracking-tight">{{ service.user_name }}</span>
+                                        <div class="flex items-center gap-3">
+                                            <div v-if="service.firm_logo_url" class="h-8 w-8 rounded-lg overflow-hidden border border-gray-100 bg-white flex-shrink-0">
+                                                <img :src="service.firm_logo_url" :alt="service.user_name" class="w-full h-full object-contain">
+                                            </div>
+                                            <div v-else class="h-8 w-8 rounded-lg bg-gray-100 flex items-center justify-center text-[#0A2C5C] font-black text-[10px] flex-shrink-0">
+                                                {{ service.user_name?.substring(0, 1).toUpperCase() }}
+                                            </div>
+                                            <span class="text-sm font-bold text-[#0A2C5C] uppercase tracking-tight">{{ service.user_name }}</span>
+                                        </div>
                                     </td>
                                     <td class="py-6 px-4">
                                         <span class="text-sm font-medium text-gray-600">{{ service.product_name }}</span>

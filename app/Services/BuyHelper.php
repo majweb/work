@@ -189,15 +189,8 @@ class BuyHelper
             if (Auth::user()->firm->points >= $points) {
                     $now = now();
                     $lastChange = ChangeProduct::where('user_id',Auth::user()->id)->where('product_id',$product->id)->first();
-                if($product->id != 10){
-//                    różne od artykułu
-                    if($product->id == 11 ){
-                        $admins=User::role('admin')->get();
-                        $lang = app()->getLocale();
-                        $admins->each(function ($admin) use ($product,$lang){
-                            $admin->notify((new SendRequestSocialAdminNotification($product,Auth::user()))->locale($lang));
-                        });
-                    }
+                if($product->id != 10 && $product->id != 11){
+//                    różne od artykułu i social media
                     if($lastChange){
                         $end = $lastChange->end->addDays(30);
                         $lastChange->update(['end'=>$end]);
@@ -212,6 +205,13 @@ class BuyHelper
                         ]);
                     }
                 } else {
+                    if($product->id == 11 ){
+                        $admins=User::role('admin')->get();
+                        $lang = app()->getLocale();
+                        $admins->each(function ($admin) use ($product,$lang){
+                            $admin->notify((new SendRequestSocialAdminNotification($product,Auth::user()))->locale($lang));
+                        });
+                    }
                     if($lastChange){
                         $lastChange->increment('qty',1);
                     } else {

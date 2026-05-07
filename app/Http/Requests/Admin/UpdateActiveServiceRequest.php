@@ -22,7 +22,7 @@ class UpdateActiveServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start' => ['nullable', 'date', 'after_or_equal:today'],
+            'start' => ['nullable', 'date'],
             'end' => ['nullable', 'date', 'after_or_equal:start'],
             'qty' => ['nullable', 'integer', 'min:0'],
         ];
