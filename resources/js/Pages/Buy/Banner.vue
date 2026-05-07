@@ -104,11 +104,6 @@ const sortLangs = computed(() => {
 
                 <!-- KOLUMNY INFORMACYJNE -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                    <div class="flex items-center gap-4 mb-10">
-                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.information') }}</h3>
-                        <div class="h-px flex-1 bg-gray-100"></div>
-                    </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div class="group flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
@@ -125,16 +120,16 @@ const sortLangs = computed(() => {
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIncludeBanner') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.bannerInclude1') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.bannerInclude2') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.bannerInclude3') }}
                                 </li>
                             </ul>
@@ -145,16 +140,16 @@ const sortLangs = computed(() => {
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.howUseBanner') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.bannerUse1') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.bannerUse2') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.bannerUse3') }}
                                 </li>
                             </ul>

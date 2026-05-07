@@ -207,6 +207,19 @@ class BuyController extends Controller
         return back();
     }
 
+    public function featuredEmployer()
+    {
+        $product = Product::find(9);
+        $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 9])
+            ->isCurrent()
+            ->first();
+
+        return inertia()->render('Buy/FeaturedEmployer', [
+            'product' => $product,
+            'check' => $check,
+        ]);
+    }
+
     public function reservedProject(\App\Services\PointService $pointService)
     {
         $executed = RateLimiter::attempt(

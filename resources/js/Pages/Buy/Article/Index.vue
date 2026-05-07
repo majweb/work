@@ -121,24 +121,24 @@ watch(params.value, debounce(function () {
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIncludeArticle') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleInclude1') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleInclude2') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleInclude3') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleInclude4') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleInclude5') }}
                                 </li>
                             </ul>
@@ -149,20 +149,20 @@ watch(params.value, debounce(function () {
                             </div>
                             <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.howUseArticle') }}</h3>
                             <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleUse1') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleUse2') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleUse3') }}
                                 </li>
-                                <li class="flex items-center gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0]"></div>
+                                <li class="flex items-start gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
                                     {{ __('translate.articleUse4') }}
                                 </li>
                             </ul>

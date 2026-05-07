@@ -187,7 +187,7 @@ const updateFilter = () => {
             border-radius: 9999px;
             background-color: #00a3e0;
             flex-shrink: 0;
-            margin-top: 3px;
+            margin-top: 0.375rem;
         }
     }
 }
