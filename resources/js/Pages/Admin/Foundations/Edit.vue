@@ -334,10 +334,10 @@ const submit = () => {
                                 v-model="form.category_id"
                                 :options="optionsCategory"
                                 :placeholder="__('translate.selectCategory')"
-                                :selectLabel="__('translate.selectLabel')"
+                                :selectLabel="''"
                                 :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                             >
                                 <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
                                 <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
@@ -355,10 +355,10 @@ const submit = () => {
                                 v-model="form.subcategory_id"
                                 :options="optionsSubCategory"
                                 :placeholder="__('translate.selectSubcategory')"
-                                :selectLabel="__('translate.selectLabel')"
+                                :selectLabel="''"
                                 :selectGroupLabel="__('translate.selectGroupLabel')"
-                                :selectedLabel="__('translate.selectedLabel')"
-                                :deselectLabel="__('translate.deselectLabel')"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
                             >
                                 <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
                                 <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
@@ -496,10 +496,10 @@ const submit = () => {
                                     track-by="value"
                                     label="name"
                                     :placeholder="__('translate.placeholderCountry')"
-                                    :selectLabel="__('translate.selectLabel')"
+                                    :selectLabel="''"
                                     :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                 >
                                     <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
@@ -728,11 +728,14 @@ const submit = () => {
             &--highlight {
                 @apply bg-[#0A2C5C] text-white;
                 &::after {
-                    @apply bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest px-4;
+                    display: none !important;
                 }
             }
             &--selected {
                 @apply bg-gray-100 text-[#0A2C5C] font-black;
+                &::after {
+                    display: none !important;
+                }
             }
         }
     }
@@ -748,9 +751,7 @@ const submit = () => {
 }
 
 .multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #00a0e3 !important;
-    color: white;
+    display: none !important;
 }
 
 .multiselect__option--selected {
@@ -765,15 +766,11 @@ const submit = () => {
 }
 
 .multiselect__option--selected.multiselect__option--highlight:after {
-    background: #00A0E3B2 !important;
-    content: attr(data-deselect);
-    color: white !important;
+    display: none !important;
 }
 
 .multiselect__option--selected:after {
-    content: attr(data-selected);
-    color: #00A0E3B2;
-    background: transparent !important;
+    display: none !important;
 }
 </style>
 

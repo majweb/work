@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Zgłoszenie nielegalnych treści',
-    'form_header' => 'Własność Intelektualna | WORK4YOU.GLOBAL',
+    'form_header' => 'Kontakt / Informacje prawne | WORK4YOU.GLOBAL',
     'scope_label' => 'Wybierz zakres zgłoszenia z listy poniżej*',
     'scope_options' => [
         'illegal' => 'nielegalne treści/ treści niezgodne z regulaminem serwisu',

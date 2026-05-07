@@ -9,6 +9,7 @@ const props = defineProps({
     activeServices: Object,
     filters: Object,
     products: Array,
+    stats: Object,
 });
 
 const filters = ref({
@@ -96,6 +97,22 @@ const getDownloadUrl = (id) => {
                         </div>
                     </div>
 
+                    <!-- Stats Cards -->
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+                            <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">Łącznie zakupiono</p>
+                            <p class="text-2xl font-black text-[#0A2C5C]">{{ stats.total_initial }}</p>
+                        </div>
+                        <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100">
+                            <p class="text-[10px] font-black text-green-400 uppercase tracking-widest mb-1">Pozostało</p>
+                            <p class="text-2xl font-black text-green-600">{{ stats.total_remaining }}</p>
+                        </div>
+                        <div class="bg-orange-50/50 p-6 rounded-2xl border border-orange-100">
+                            <p class="text-[10px] font-black text-orange-400 uppercase tracking-widest mb-1">Wykorzystano</p>
+                            <p class="text-2xl font-black text-orange-600">{{ stats.total_used }}</p>
+                        </div>
+                    </div>
+
                     <div class="mt-10 overflow-x-auto">
                         <table class="w-full">
                             <thead>
@@ -104,7 +121,7 @@ const getDownloadUrl = (id) => {
                                     <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4">Usługa</th>
                                     <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4">Start</th>
                                     <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4">Koniec</th>
-                                    <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4">Ilość</th>
+                                    <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4">Wykorzystano / Łącznie</th>
                                     <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4 text-center">Status</th>
                                     <th class="pb-6 text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] px-4 text-right">Akcje</th>
                                 </tr>
@@ -137,7 +154,15 @@ const getDownloadUrl = (id) => {
                                     </td>
                                     <td class="py-6 px-4">
                                         <span class="text-sm font-bold text-[#00a0e3]">
-                                            {{ service.qty || '-' }}
+                                            <template v-if="service.total_qty !== null">
+                                                {{ service.total_qty - service.qty }} / {{ service.total_qty }}
+                                            </template>
+                                            <template v-else-if="service.qty !== null">
+                                                {{ service.qty }}
+                                            </template>
+                                            <template v-else>
+                                                -
+                                            </template>
                                         </span>
                                     </td>
                                     <td class="py-6 px-4">

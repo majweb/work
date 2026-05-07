@@ -49,8 +49,12 @@ class ActiveServiceController extends Controller
 
         $activeServices = $query->latest()
             ->paginate(20)
-            ->withQueryString()
-            ->through(function ($item) {
+            ->withQueryString();
+
+        $statsQuery = clone $query->getQuery();
+        $totals = $statsQuery->selectRaw('SUM(qty) as total_remaining, SUM(total_qty) as total_initial')->first();
+
+        $activeServices->through(function ($item) {
                 $user = $item->user;
                 $firm = null;
 
@@ -72,6 +76,7 @@ class ActiveServiceController extends Controller
                     'start' => $item->start?->format('Y-m-d') ?? '-',
                     'end' => $item->end?->format('Y-m-d') ?? '-',
                     'qty' => $item->qty,
+                    'total_qty' => $item->total_qty,
                     'certificate_pdf' => $item->certificate_pdf,
                     'is_active' => $item->start?->isPast() && $item->end?->isFuture(),
                 ];
@@ -88,6 +93,11 @@ class ActiveServiceController extends Controller
             'activeServices' => $activeServices,
             'filters' => $request->only(['service', 'date_from', 'date_to', 'status']),
             'products' => $products,
+            'stats' => [
+                'total_initial' => (int) ($totals->total_initial ?? 0),
+                'total_remaining' => (int) ($totals->total_remaining ?? 0),
+                'total_used' => (int) (($totals->total_initial ?? 0) - ($totals->total_remaining ?? 0)),
+            ]
         ]);
     }
 
@@ -104,6 +114,7 @@ class ActiveServiceController extends Controller
                 'start' => $activeService->start?->format('Y-m-d'),
                 'end' => $activeService->end?->format('Y-m-d'),
                 'qty' => $activeService->qty,
+                'total_qty' => $activeService->total_qty,
                 'certificate_pdf' => $activeService->certificate_pdf,
             ]
         ]);

@@ -13,6 +13,7 @@ const form = useForm({
     start: props.activeService.start || "",
     end: props.activeService.end || "",
     qty: props.activeService.qty || 0,
+    total_qty: props.activeService.total_qty || 0,
 });
 
 const isArticle = computed(() => props.activeService.product_name.toLowerCase().includes('artykuł'));
@@ -72,13 +73,24 @@ const submit = () => {
 
                             <!-- Qty (Articles, Points, Social etc) -->
                             <div v-if="isArticle || isPoints || isSocial" class="space-y-2">
-                                <label class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] ml-4">Ilość</label>
+                                <label class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] ml-4">Pozostała ilość (QTY)</label>
                                 <input
                                     v-model="form.qty"
                                     type="number"
                                     class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl text-[#0A2C5C] font-bold focus:ring-2 focus:ring-[#00a0e3] transition-all"
                                 />
                                 <div v-if="form.errors.qty" class="text-red-500 text-[10px] font-bold uppercase mt-1 ml-4">{{ form.errors.qty }}</div>
+                            </div>
+
+                            <!-- Total Qty (Articles, Social etc) -->
+                            <div v-if="(isArticle || isSocial) && activeService.total_qty !== null" class="space-y-2">
+                                <label class="text-[10px] font-black text-[#00a0e3] uppercase tracking-[0.2em] ml-4">Łączna ilość (TOTAL)</label>
+                                <input
+                                    v-model="form.total_qty"
+                                    type="number"
+                                    class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl text-[#0A2C5C] font-bold focus:ring-2 focus:ring-[#00a0e3] transition-all"
+                                />
+                                <div v-if="form.errors.total_qty" class="text-red-500 text-[10px] font-bold uppercase mt-1 ml-4">{{ form.errors.total_qty }}</div>
                             </div>
                         </div>
 

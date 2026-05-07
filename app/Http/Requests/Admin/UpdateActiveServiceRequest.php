@@ -25,6 +25,7 @@ class UpdateActiveServiceRequest extends FormRequest
             'start' => ['nullable', 'date'],
             'end' => ['nullable', 'date', 'after_or_equal:start'],
             'qty' => ['nullable', 'integer', 'min:0'],
+            'total_qty' => ['nullable', 'integer', 'min:0'],
         ];
     }
 

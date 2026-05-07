@@ -214,13 +214,15 @@ class BuyHelper
                     }
                     if($lastChange){
                         $lastChange->increment('qty',1);
+                        $lastChange->increment('total_qty',1);
                     } else {
                         Auth::user()->changeProducts()->create([
                             'product_id' => $product->id,
                             'start' => NULL,
                             'end' => NULL,
                             'qty' => 1,
-                            'pdf' => NULL,
+                            'total_qty' => 1,
+                            'certificate_pdf' => NULL,
                         ]);
                     }
                 }

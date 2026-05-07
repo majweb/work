@@ -18,6 +18,7 @@ class ChangeProduct extends Model
         'start',
         'end',
         'qty',
+        'total_qty',
         'certificate_pdf',
     ];
 
