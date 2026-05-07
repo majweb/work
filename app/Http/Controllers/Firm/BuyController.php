@@ -220,6 +220,19 @@ class BuyController extends Controller
         ]);
     }
 
+    public function socialMedia()
+    {
+        $product = Product::find(11);
+        $check = ChangeProduct::where(['user_id' => auth()->id(), 'product_id' => 11])
+            ->isCurrent()
+            ->first();
+
+        return inertia()->render('Buy/SocialMediaPromotion', [
+            'product' => $product,
+            'check' => $check,
+        ]);
+    }
+
     public function reservedProject(\App\Services\PointService $pointService)
     {
         $executed = RateLimiter::attempt(

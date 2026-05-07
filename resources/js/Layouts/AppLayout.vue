@@ -197,6 +197,7 @@ onUnmounted(()=>{
                                                 <DropdownLink :href="route('articles.index')">{{__('translate.articles')}}</DropdownLink>
                                                 <DropdownLink :href="route('firm.banners')">{{__('translate.banners')}}</DropdownLink>
                                                 <DropdownLink :href="route('firm.featuredEmployer')">{{__('translate.featured_employer_title')}}</DropdownLink>
+                                                <DropdownLink :href="route('firm.socialMedia')">{{__('translate.social_media_title')}}</DropdownLink>
                                                 <DropdownLink :href="route('firm.premium-certificate.show')">{{__('translate.premium_certificate')}}</DropdownLink>
                                             </template>
                                         </Dropdown>
@@ -453,6 +454,7 @@ onUnmounted(()=>{
                                         <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')" class="uppercase pl-8">{{__('translate.articles')}}</ResponsiveNavLink>
                                         <ResponsiveNavLink :href="route('firm.banners')" :active="route().current('firm.banners')" class="uppercase pl-8">{{__('translate.banners')}}</ResponsiveNavLink>
                                         <ResponsiveNavLink :href="route('firm.featuredEmployer')" :active="route().current('firm.featuredEmployer')" class="uppercase pl-8">{{__('translate.featured_employer_title')}}</ResponsiveNavLink>
+                                        <ResponsiveNavLink :href="route('firm.socialMedia')" :active="route().current('firm.socialMedia')" class="uppercase pl-8">{{__('translate.social_media_title')}}</ResponsiveNavLink>
                                         <ResponsiveNavLink :href="route('firm.premium-certificate.show')" :active="route().current('firm.premium-certificate.show')" class="uppercase pl-8">{{__('translate.premium_certificate')}}</ResponsiveNavLink>
                                     </div>
                                 </div>

@@ -169,6 +169,7 @@ Route::middleware([
     Route::get('download/50/50', [BuyController::class, 'downloadPDF'])->middleware('role:firm')->name('firm.download50');
     Route::get('banners', [BuyController::class, 'banners'])->middleware('role:firm')->name('firm.banners');
     Route::get('featured-employer', [BuyController::class, 'featuredEmployer'])->middleware('role:firm')->name('firm.featuredEmployer');
+    Route::get('social-media', [BuyController::class, 'socialMedia'])->middleware('role:firm')->name('firm.socialMedia');
     Route::post('banners', [BuyController::class, 'bannersStore'])->middleware('role:firm')->name('firm.banners.store');
     Route::get('/points', [PoinstController::class, 'index'])->name('points.index')->middleware('role:firm');
     Route::post('/addMoreRecruits/{project}', [ProjectController::class, 'addMoreRecruits'])->name('firm.addMoreRecruits')->middleware('role:firm');
