@@ -1729,4 +1729,5 @@ return [
     'cv_no_auth_desc' => 'Rekruter lub firma otwiera CV kandydata, który nie przeszedł pełnej autoryzacji profilu.',
     'cv_no_auth_target' => 'Umożliwia wgląd w dane kandydata spoza bazy zweryfikowanej.',
     'cv_no_auth_detail' => 'Odczytanie liczone jest w momencie pierwszego otwarcia aplikacji.',
+    'salary_type' => 'Rodzaj wynagrodzenia',
 ];

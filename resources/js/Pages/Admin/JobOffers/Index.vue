@@ -952,11 +952,17 @@ const getTranslation = (value) => {
                                     <div class="flex flex-col gap-1">
                                             <span
                                                 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">
-                                                {{ getTranslation(offer.category) }}
+                                                {{ offer.category?.name || offer.category?.allTranslations?.title?.[$page.props.locale] || getTranslation(offer.category) }}
                                             </span>
-                                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
-                                                {{ getTranslation(offer.countryWork) }}, {{ offer.cityWork }}
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
+                                                {{ offer.countryWork?.name || offer.countryWork?.allTranslations?.[$page.props.locale] || getTranslation(offer.countryWork) }}, {{ offer.cityWork }}
                                             </span>
+                                            <span v-if="offer.salary_type"
+                                                  class="text-[9px] font-black px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 uppercase tracking-widest border border-blue-100">
+                                                {{ offer.salary_type }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </td>
                                 <td class="p-8">

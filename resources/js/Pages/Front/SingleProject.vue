@@ -268,6 +268,9 @@ onMounted(async () => {
                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-tight">
                                         {{ __('premium.history_to') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryTo }} {{ project.currency?.name || project.currency }}</span>
                                     </p>
+                                    <p v-if="project.salary_type" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
+                                        {{ __('translate.' + project.salary_type) }}
+                                    </p>
                                 </div>
                             </div>
 
@@ -347,6 +350,10 @@ onMounted(async () => {
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.premia') }}</p>
                                             <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.bonusSalaryFrom }}{{ project.currency?.name }} {{ __('translate.do') }} {{ project.bonusSalaryTo }}{{ project.currency?.name }}</p>
+                                        </div>
+                                        <div class="space-y-1" v-if="project.salary_type">
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.salary_type') }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.' + project.salary_type) }}</p>
                                         </div>
                                         <div class="md:col-span-2 pt-4 border-t border-gray-50">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose mb-3">{{ __('translate.system_wynagr') }}</p>

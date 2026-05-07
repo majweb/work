@@ -28,6 +28,7 @@ class Project extends Model
         'workingPlace',
         'basicSalaryFrom',
         'basicSalaryTo',
+        'salary_type',
         'bonusSalaryFrom',
         'bonusSalaryTo',
         'hoursFrom',

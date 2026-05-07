@@ -432,11 +432,16 @@ function closeLightbox() {
                                         </div>
 
                                         <div class="text-right flex flex-col items-end gap-2">
-                                            <div class="px-6 py-3 bg-blue-50 rounded-2xl border border-blue-100/50">
+                                            <div class="px-6 py-3 bg-blue-50 rounded-2xl border border-blue-100/50 flex flex-col items-center">
                                                 <p class="text-[8px] font-black text-blue-600/50 uppercase tracking-widest leading-none mb-1 text-center">{{ __('translate.salary') }}</p>
-                                                <p class="text-xl font-black text-blue-600 tracking-tight leading-none">
-                                                    {{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency || 'zł' }}
-                                                </p>
+                                                <div class="flex items-center gap-1.5">
+                                                    <p class="text-xl font-black text-blue-600 tracking-tight leading-none">
+                                                        {{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency || 'zł' }}
+                                                    </p>
+                                                    <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none">
+                                                        {{ __('translate.' + project.salary_type) }}
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-[#0A2C5C] group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20">
                                                 <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

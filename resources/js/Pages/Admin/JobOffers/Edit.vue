@@ -137,6 +137,7 @@ const form = useForm({
     currency: props.project.currency,
     basicSalaryFrom: props.project.basicSalaryFrom,
     basicSalaryTo: props.project.basicSalaryTo,
+    salary_type: props.project.salary_type || 'brutto',
     bonusSalaryFrom: props.project.bonusSalaryFrom,
     bonusSalaryTo: props.project.bonusSalaryTo,
     hoursFrom: props.project.hoursFrom,
@@ -204,6 +205,10 @@ let workingModeSelect = ref([]);
 let workLoadSelect = ref(null);
 let typesOfContractSelect = ref([]);
 let paySystemSelect = ref([]);
+const salaryTypeOptions = [
+    { value: 'brutto', label: __('translate.brutto') },
+    { value: 'netto', label: __('translate.netto') }
+];
 let payoutModeSelect = ref(null);
 let daySelect = ref([]);
 let offerSelect = ref([]);
@@ -1144,6 +1149,27 @@ onMounted(async () => {
                                     </multiselect>
                                     <InputError :message="form.errors.currency" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
+                            </div>
+
+                            <!-- Rodzaj wynagrodzenia -->
+                            <div class="mb-10">
+                                <InputLabel :value="__('translate.salary_type')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                <div class="flex gap-4">
+                                    <div v-for="option in salaryTypeOptions" :key="option.value"
+                                         class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
+                                         @click="form.salary_type = option.value">
+                                        <div class="relative flex items-center justify-center">
+                                            <input
+                                                type="radio" :id="'salary_type-'+option.value" v-model="form.salary_type"
+                                                :value="option.value"
+                                                class="peer sr-only"
+                                            />
+                                            <div class="h-6 w-6 rounded-full border-2 border-white bg-white shadow-sm transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px]"></div>
+                                        </div>
+                                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{option.label}}</span>
+                                    </div>
+                                </div>
+                                <InputError :message="form.errors.salary_type" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                             </div>
 
                             <!-- Tryb wypłaty -->

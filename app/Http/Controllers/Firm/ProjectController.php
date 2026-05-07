@@ -148,6 +148,7 @@ class ProjectController extends Controller
                 'city' => $project->cityWork ?? '',
                 'country' => $countryWork['allTranslations'][app()->getLocale()] ?? $countryWork['name'] ?? '',
                 'basicSalaryFrom' => $project->basicSalaryFrom ?? null,
+                'salary_type' => $project->salary_type ?? null,
                 'currency' => $currency['value'] ?? $currency['name'] ?? '',
                 'is_active' => $project->is_active ?? true,
                 'aplications_count' => $project->aplications_count ?? 0,
@@ -210,7 +211,8 @@ class ProjectController extends Controller
                 ($countryTitle ? $countryTitle.', ' : '').
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
-                $request->projectData()['currency']['name'];
+                $request->projectData()['currency']['name'].' '.
+                __('translate.'.$request->projectData()['salary_type']);
         }
         $project = Project::create([
             'title' => $title,
@@ -231,6 +233,7 @@ class ProjectController extends Controller
             'workNight' => $request->projectData()['workNight'],
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
+            'salary_type' => $request->projectData()['salary_type'],
             'bonusSalaryTo' => $request->projectData()['bonusSalaryTo'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
             'hoursFrom' => $request->projectData()['hoursFrom'],
@@ -354,7 +357,6 @@ class ProjectController extends Controller
     public function update(StoreProject $request, Project $project)
     {
         Gate::authorize('update', $project);
-
         $title = [];
         foreach (config('langsShorts') as $lang) {
             $posTitle = $request->projectData()['position']['allTranslations']['title'][$lang]
@@ -369,7 +371,8 @@ class ProjectController extends Controller
                 ($countryTitle ? $countryTitle.', ' : '').
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
-                $request->projectData()['currency']['name'];
+                $request->projectData()['currency']['name'].' '.
+                __('translate.'.$request->projectData()['salary_type']);
         }
         $project->update([
             'title' => $title,
@@ -390,6 +393,7 @@ class ProjectController extends Controller
             'workNight' => $request->projectData()['workNight'],
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
+            'salary_type' => $request->projectData()['salary_type'],
             'bonusSalaryTo' => $request->projectData()['bonusSalaryTo'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
             'hoursFrom' => $request->projectData()['hoursFrom'],
@@ -531,6 +535,7 @@ class ProjectController extends Controller
                     'currency' => ['required'],
                     'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
+                    'salary_type' => ['required', 'in:brutto,netto'],
                     'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 

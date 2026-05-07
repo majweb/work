@@ -333,7 +333,12 @@ const getStatusDotClass = (status) => {
                                             {{ project.id }}
                                         </div>
                                         <div>
-                                            <div class="text-sm font-black text-[#0A2C5C]">{{ getPositionTitle(project) }}</div>
+                                            <div class="text-sm font-black text-[#0A2C5C] flex items-center gap-2">
+                                                {{ getPositionTitle(project) }}
+                                                <span v-if="project.salary_type" class="px-2 py-0.5 bg-blue-50 text-blue-500 rounded text-[8px] font-black uppercase tracking-widest">
+                                                    {{ project.salary_type }}
+                                                </span>
+                                            </div>
                                             <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ moment(project.created_at).format('DD.MM.YYYY') }}</div>
                                         </div>
                                     </div>

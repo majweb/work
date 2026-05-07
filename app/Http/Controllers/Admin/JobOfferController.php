@@ -347,7 +347,8 @@ class JobOfferController extends Controller
                 ($countryTitle ? $countryTitle.', ' : '').
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
-                $request->projectData()['currency']['name'];
+                $request->projectData()['currency']['name'].' '.
+                __('translate.'.$request->projectData()['salary_type']);
         }
 
         $project->update([
@@ -370,6 +371,7 @@ class JobOfferController extends Controller
             'currency' => $request->projectData()['currency'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
+            'salary_type' => $request->projectData()['salary_type'],
             'payoutMode' => $request->projectData()['payoutMode'],
             'paySystem' => $request->projectData()['paySystem'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
@@ -508,6 +510,7 @@ class JobOfferController extends Controller
                     'currency' => ['required'],
                     'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
+                    'salary_type' => ['required', 'in:brutto,netto'],
                     'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 
