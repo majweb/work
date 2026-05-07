@@ -718,16 +718,23 @@ const isSearching = ref(false);
                                         </div>
                                     </div>
 
-                                    <div class="text-right flex flex-col items-end gap-2">
-                                        <div class="px-6 py-3 bg-blue-50 rounded-2xl border border-blue-100/50 flex flex-col items-center">
-                                            <p class="text-[8px] font-black text-blue-600/50 uppercase tracking-widest leading-none mb-1 text-center">{{ __('translate.salary') }}</p>
-                                            <div class="flex items-center gap-1.5">
-                                                <p class="text-xl font-black text-blue-600 tracking-tight leading-none">
-                                                    {{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency || 'zł' }}
-                                                </p>
-                                                <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none">
-                                                    {{ __('translate.' + project.salary_type) }}
+                                    <div class="text-right flex flex-col items-end gap-3">
+                                        <div class="flex flex-col items-end group/salary">
+                                            <div class="flex items-baseline gap-1 mb-1">
+                                                <span class="text-2xl font-black text-[#0A2C5C] tracking-tight">
+                                                    {{ project.basicSalaryFrom }}
                                                 </span>
+                                                <span class="text-sm font-bold text-[#0A2C5C]/60 uppercase">
+                                                    {{ project.currency?.name || project.currency || 'zł' }}
+                                                </span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <div v-if="project.salary_type" class="px-2 py-0.5 bg-blue-50 text-[#329CD1] text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
+                                                    {{ __('translate.' + project.salary_type) }}
+                                                </div>
+                                                <div class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
+                                                    / {{ project.payoutMode?.allTranslations?.name?.[usePage().props.language] || project.payoutMode?.name?.[usePage().props.language] || project.payoutMode?.name || __('translate.month') }}
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20"

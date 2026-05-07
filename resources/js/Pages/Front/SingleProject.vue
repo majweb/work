@@ -345,7 +345,7 @@ onMounted(async () => {
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.tryb_wyplaty') }}</p>
-                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ project.payoutMode.allTranslations.name[usePage().props.language] }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ project.payoutMode?.allTranslations?.name?.[usePage().props.language] || project.payoutMode?.name?.[usePage().props.language] || project.payoutMode?.name || __('translate.month') }}</p>
                                         </div>
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.premia') }}</p>
