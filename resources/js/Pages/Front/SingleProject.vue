@@ -259,7 +259,7 @@ onMounted(async () => {
 
                     <!-- GRID SECTION 1: ICONS -->
                     <div class="p-8 md:p-16">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
                             <!-- Wynagrodzenie -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
@@ -290,6 +290,17 @@ onMounted(async () => {
                                         {{ workingMode.allTranslations.title[usePage().props.language] }}
                                     </span>
                                 </div>
+                            </div>
+
+                            <!-- Miejsce pracy -->
+                            <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
+                                    <img src="/images/icons/firm/lokalizacja.svg" alt="place icon" class="w-10 h-10" />
+                                </div>
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workingPlace') }}</p>
+                                <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                    {{ project.workingPlace?.allTranslations?.name[usePage().props.language] || project.workingPlace?.name }}
+                                </p>
                             </div>
 
                             <!-- Umowa -->
