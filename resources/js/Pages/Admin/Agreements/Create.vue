@@ -16,6 +16,10 @@ const props = defineProps({
 const form = useForm({
     type: '',
     parent_id: null,
+    title: props.langs.reduce((acc, lang) => {
+        acc[lang] = '';
+        return acc;
+    }, {}),
     description: props.langs.reduce((acc, lang) => {
         acc[lang] = '';
         return acc;
@@ -78,7 +82,7 @@ const goToNextEmptyTab = () => {
 };
 
 const hasErrorInTab = (lang) => {
-    return !!(form.errors['description.' + lang] || form.errors['help_text.' + lang]);
+    return !!(form.errors['title.' + lang] || form.errors['description.' + lang] || form.errors['help_text.' + lang]);
 };
 
 const isHelpTextStarted = computed(() => {
@@ -216,7 +220,7 @@ const submit = () => {
                                             <span class="flex items-center gap-2">
                                                 {{ lang }}
                                                 <div v-if="hasErrorInTab(lang)" class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
-                                                <div v-else-if="!form.description[lang] || (isHelpTextStarted && !form.help_text[lang])" class="w-1 h-1 bg-red-400 rounded-full"></div>
+                                                <div v-else-if="!form.title[lang] || !form.description[lang] || (isHelpTextStarted && !form.help_text[lang])" class="w-1 h-1 bg-red-400 rounded-full"></div>
                                             </span>
                                         </button>
                                     </div>
@@ -250,6 +254,20 @@ const submit = () => {
                                 <!-- Tab Content -->
                                 <div v-for="lang in sortedLanguages" :key="lang" v-show="activeTab === lang" class="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
                                     <div class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 space-y-6">
+                                        <div>
+                                            <div class="flex items-center justify-between mb-3 ml-1">
+                                                <InputLabel :for="'title_' + lang" :value="'Tytuł zgody (' + lang.toUpperCase() + ')'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest" />
+                                            </div>
+                                            <TextInput
+                                                :id="'title_' + lang"
+                                                v-model="form.title[lang]"
+                                                type="text"
+                                                class="w-full px-6 py-4 bg-white border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 transition-all font-medium leading-relaxed"
+                                                :placeholder="'Wpisz tytuł zgody w języku ' + lang.toUpperCase()"
+                                            />
+                                            <div v-if="form.errors['title.' + lang]" class="text-red-500 text-[10px] font-bold uppercase mt-2 ml-1">{{ form.errors['title.' + lang] }}</div>
+                                        </div>
+
                                         <div>
                                             <div class="flex items-center justify-between mb-3 ml-1">
                                                 <InputLabel :for="'description_' + lang" :value="'Treść zgody (' + lang.toUpperCase() + ')'" class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest" />

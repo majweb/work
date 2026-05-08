@@ -12,11 +12,12 @@ class Agreement extends Model
     use HasFactory;
     use HasTranslations;
 
-    protected $fillable = ['description', 'help_text', 'type', 'is_active', 'parent_id', 'is_required'];
+    protected $fillable = ['title', 'description', 'help_text', 'type', 'is_active', 'parent_id', 'is_required'];
 
-    public array $translatable = ['description', 'help_text'];
+    public array $translatable = ['title', 'description', 'help_text'];
 
     protected $casts = [
+        'title' => 'array',
         'description' => 'array',
         'help_text' => 'array',
         'is_active' => 'boolean',

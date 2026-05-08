@@ -196,9 +196,14 @@ onMounted(async () => {
 
                         <div class="relative z-10">
                             <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Oferta pracy #{{ project.id }}</p>
-                            <h1 class="text-2xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
-                                {{ getPositionTitle(project) }}
-                            </h1>
+                            <div class="flex flex-col md:flex-row md:items-end gap-4">
+                                <h1 class="text-2xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
+                                    {{ getPositionTitle(project) }}
+                                </h1>
+                                <p v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">
+                                    {{ __('translate.sickPeople') }}
+                                </p>
+                            </div>
                         </div>
                         <!-- Decorative element -->
                         <div class="absolute top-0 right-0 w-64 h-64 bg-blue-400/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
@@ -270,9 +275,6 @@ onMounted(async () => {
                                     </p>
                                     <p v-if="project.salary_type" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
                                         {{ __('translate.' + project.salary_type) }}
-                                    </p>
-                                    <p v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
-                                        {{ __('translate.sickPeople') }}
                                     </p>
                                 </div>
                             </div>
@@ -357,10 +359,6 @@ onMounted(async () => {
                                         <div class="space-y-1" v-if="project.salary_type">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.salary_type') }}</p>
                                             <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.' + project.salary_type) }}</p>
-                                        </div>
-                                        <div class="space-y-1" v-if="project.inclusive_recruitment">
-                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.sickPeople') }}</p>
-                                            <p class="text-xs font-black text-blue-500 uppercase tracking-widest">{{ __('translate.sickPeople') }}</p>
                                         </div>
                                         <div class="md:col-span-2 pt-4 border-t border-gray-50">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose mb-3">{{ __('translate.system_wynagr') }}</p>

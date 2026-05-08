@@ -119,6 +119,9 @@ const groupedAgreements = computed(() => {
                                                 Rodzic ({{ agreement.children.length }} dzieci)
                                             </span>
                                         </div>
+                                        <div class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-2">
+                                            {{ getTranslation(agreement.title) }}
+                                        </div>
                                         <div class="text-sm text-gray-600 mb-4 font-medium leading-relaxed">
                                             {{ getTranslation(agreement.description) }}
                                         </div>
@@ -161,6 +164,9 @@ const groupedAgreements = computed(() => {
                                                     Wymagana
                                                 </span>
                                                 <span class="text-[9px] font-bold text-gray-300 uppercase tracking-widest">Dziecko ID: #{{ child.id }}</span>
+                                            </div>
+                                            <div class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-1">
+                                                {{ getTranslation(child.title) }}
                                             </div>
                                             <div class="text-xs text-gray-600 font-medium">
                                                 {{ getTranslation(child.description) }}

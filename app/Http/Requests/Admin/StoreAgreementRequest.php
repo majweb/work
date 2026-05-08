@@ -42,6 +42,7 @@ class StoreAgreementRequest extends FormRequest
         }
 
         foreach ($langs as $lang) {
+            $rules['title.'.$lang] = 'required|string';
             $rules['description.'.$lang] = 'required|string';
 
             if ($this->filled('parent_id')) {
@@ -71,6 +72,7 @@ class StoreAgreementRequest extends FormRequest
         ];
 
         foreach (config('langsShorts') as $lang) {
+            $attributes['title.'.$lang] = 'tytuł zgody ('.strtoupper($lang).')';
             $attributes['description.'.$lang] = 'treść zgody ('.strtoupper($lang).')';
             $attributes['help_text.'.$lang] = 'tekst pomocniczy ('.strtoupper($lang).')';
         }
