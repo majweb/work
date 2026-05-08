@@ -17,23 +17,44 @@ class AdminSeeder extends Seeder
         // Stwórz użytkownika admina
 
         $admin = User::firstOrCreate(
-            ['email' => 'admin@admin.com'],
+            ['email' => 'l.koziol@work4you.global'],
             [
-                'name' => 'Administrator',
+                'name' => 'Łukasz Kozioł',
                 'email_verified_at' => now(),
-                'password' => Hash::make('password'), // zmień hasło na bezpieczne
+                'password' => Hash::make('F5qIOCoByKIDucW7'), // zmień hasło na bezpieczne
             ]
         );
         $admin->assignRole('admin');
 
-        $adminSub = User::firstOrCreate(
-            ['email' => 'sub@admin.com'],
+        $subs = [
             [
-                'name' => 'SubAdministrator',
-                'email_verified_at' => now(),
-                'password' => Hash::make('password'), // zmień hasło na bezpieczne
-            ]
-        );
-        $adminSub->assignRole('admin-sub');
+                'email' => 'k.karwowska@work4you.global',
+                'name' => 'K. Karwowska',
+                'password' => 'uQW6Nh0Tj7HeMwOn',
+            ],
+            [
+                'email' => 'm.maj@work4you.global',
+                'name' => 'M. Maj',
+                'password' => 'KZCPSpchd7LocFzX',
+            ],
+            [
+                'email' => 'a.lewek@work4you.global',
+                'name' => 'A. Lewek',
+                'password' => 'y52AJSxTgqyRIomv',
+            ],
+        ];
+
+        foreach ($subs as $subData) {
+            $sub = User::firstOrCreate(
+                ['email' => $subData['email']],
+                [
+                    'name' => $subData['name'],
+                    'email_verified_at' => now(),
+                    'password' => Hash::make($subData['password']),
+                ]
+            );
+            $sub->assignRole('admin');
+            $sub->assignRole('admin-sub');
+        }
     }
 }
