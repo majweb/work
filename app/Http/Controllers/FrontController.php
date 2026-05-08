@@ -447,12 +447,12 @@ class FrontController extends Controller
             ->where('is_active', true)
             ->whereNull('parent_id')
             ->with('children')
-            ->get(['id', 'description', 'help_text', 'is_required']);
+            ->get(['id', 'title', 'description', 'help_text', 'is_required']);
 
         return inertia()->render('Front/Contact', [
             'page' => $page ? new PageResource($page) : null,
             'supportAgreements' => $supportAgreements,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description', 'help_text', 'is_required']),
+            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 

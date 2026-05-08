@@ -665,9 +665,6 @@ const socialLinks = [
                                     </div>
                                 </div>
 
-                                <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest text-center sm:text-left mt-4">
-                                    {{ __('translate.footer.privacy_notice') }}
-                                </p>
                             </div>
                         </form>
                     </div>
