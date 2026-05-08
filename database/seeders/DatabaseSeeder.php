@@ -84,6 +84,7 @@ class DatabaseSeeder extends Seeder
             //             Detale
 
             AdminSeeder::class,
+            AdminBannerSeeder::class,
             CategoryImageSeeder::class,
             CountryImagesSeeder::class,
             FoundationCategorySeeder::class,

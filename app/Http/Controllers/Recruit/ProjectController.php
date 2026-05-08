@@ -74,7 +74,7 @@ class ProjectController extends Controller implements HasMiddleware
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
         }, function ($q) {
-            $q->latest();
+            $q->latest('id');
         });
 
         $query->when(request()->has('recruiter'), function ($q) {

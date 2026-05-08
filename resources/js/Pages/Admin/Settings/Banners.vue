@@ -12,28 +12,30 @@ import { ref } from 'vue';
 
 const props = defineProps({
     banners: Array,
+    langs: Array,
 });
 
 const isEditing = ref(false);
 const editingBanner = ref(null);
 const confirmingBannerDeletion = ref(false);
 const bannerBeingDeleted = ref(null);
+const activeLang = ref(props.langs[0] || 'pl');
 
 const form = useForm({
     title: '',
-    image: null,
+    images: {}, // Obiekt na pliki dla każdego języka
     is_active: false,
 });
 
-const imagePreview = ref(null);
+const imagePreviews = ref({}); // Obiekt na podglądy dla każdego języka
 
-const handleImageChange = (e) => {
+const handleImageChange = (lang, e) => {
     const file = e.target.files[0];
     if (file) {
-        form.image = file;
+        form.images[lang] = file;
         const reader = new FileReader();
         reader.onload = (e) => {
-            imagePreview.value = e.target.result;
+            imagePreviews.value[lang] = e.target.result;
         };
         reader.readAsDataURL(file);
     }
@@ -44,7 +46,9 @@ const submit = () => {
         // Inertia v1 workaround for multipart PUT: use POST with _method=PUT
         router.post(route('admin.admin-banners.update', editingBanner.value.id), {
             _method: 'put',
-            ...form.data(),
+            title: form.title,
+            is_active: form.is_active,
+            images: form.images,
         }, {
             onSuccess: () => resetForm(),
         });
@@ -60,7 +64,14 @@ const editBanner = (banner) => {
     editingBanner.value = banner;
     form.title = banner.title;
     form.is_active = !!banner.is_active;
-    imagePreview.value = banner.image_url;
+
+    // Ustawienie podglądów z istniejących grafik
+    imagePreviews.value = {};
+    Object.keys(banner.images).forEach(lang => {
+        if (banner.images[lang].url) {
+            imagePreviews.value[lang] = banner.images[lang].url;
+        }
+    });
 };
 
 const resetForm = () => {
@@ -68,7 +79,7 @@ const resetForm = () => {
     editingBanner.value = null;
     form.reset();
     form.clearErrors();
-    imagePreview.value = null;
+    imagePreviews.value = {};
 };
 
 const toggleStatus = (banner) => {
@@ -130,26 +141,50 @@ const confirmDeleteBanner = () => {
                                 </div>
 
                                 <div>
-                                    <label class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-2 block">Grafika baneru</label>
-                                    <div class="mt-2 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-[2rem] p-6 hover:border-blue-400 transition-colors cursor-pointer relative overflow-hidden group">
-                                        <input
-                                            type="file"
-                                            class="absolute inset-0 opacity-0 cursor-pointer z-10"
-                                            @change="handleImageChange"
-                                            accept="image/*"
-                                        />
-                                        <div v-if="!imagePreview" class="text-center">
-                                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                            <p class="mt-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Kliknij aby wybrać plik</p>
-                                        </div>
-                                        <img v-else :src="imagePreview" class="w-full h-auto rounded-xl object-cover shadow-sm" />
-                                        <div v-if="imagePreview" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                            <p class="text-white text-[10px] font-black uppercase tracking-widest">Zmień obraz</p>
-                                        </div>
+                                    <label class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-2 block">Grafiki baneru (według języków)</label>
+
+                                    <!-- Języki - Tabs -->
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <button
+                                            v-for="lang in langs"
+                                            :key="lang"
+                                            type="button"
+                                            @click="activeLang = lang"
+                                            :class="[
+                                                activeLang === lang ? 'bg-[#0A2C5C] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200',
+                                                form.errors['images.' + lang] ? 'ring-2 ring-red-500' : ''
+                                            ]"
+                                            class="px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all relative"
+                                        >
+                                            {{ lang }}
+                                            <span v-if="!imagePreviews[lang]" class="absolute -top-1 -right-1 flex h-2 w-2">
+                                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                            </span>
+                                        </button>
                                     </div>
-                                    <InputError :message="form.errors.image" class="mt-2" />
+
+                                    <div v-for="lang in langs" :key="lang" v-show="activeLang === lang">
+                                        <div class="mt-2 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-[2rem] p-6 hover:border-blue-400 transition-colors cursor-pointer relative overflow-hidden group">
+                                            <input
+                                                type="file"
+                                                class="absolute inset-0 opacity-0 cursor-pointer z-10"
+                                                @change="handleImageChange(lang, $event)"
+                                                accept="image/*"
+                                            />
+                                            <div v-if="!imagePreviews[lang]" class="text-center">
+                                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                                <p class="mt-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Kliknij aby wybrać plik ({{ lang }})</p>
+                                            </div>
+                                            <img v-else :src="imagePreviews[lang]" class="w-full h-auto rounded-xl object-cover shadow-sm" />
+                                            <div v-if="imagePreviews[lang]" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                                <p class="text-white text-[10px] font-black uppercase tracking-widest">Zmień obraz ({{ lang }})</p>
+                                            </div>
+                                        </div>
+                                        <InputError :message="form.errors['images.' + lang]" class="mt-2" />
+                                    </div>
                                 </div>
 
                                 <div class="flex items-center gap-4">
@@ -196,7 +231,7 @@ const confirmDeleteBanner = () => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div v-for="banner in banners" :key="banner.id" class="group relative bg-white rounded-[2rem] border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
                                     <div class="aspect-video relative overflow-hidden">
-                                        <img :src="banner.preview_url || banner.image_url" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                        <img :src="banner.images[$page.props.auth.user.lang || 'pl']?.preview || banner.images['pl']?.preview || Object.values(banner.images).find(img => img.preview)?.preview" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                                         <div class="absolute top-4 right-4">
                                             <div :class="banner.is_active ? 'bg-green-500 text-white' : 'bg-gray-500 text-white'" class="px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg">
                                                 {{ banner.is_active ? 'Aktywny' : 'Nieaktywny' }}

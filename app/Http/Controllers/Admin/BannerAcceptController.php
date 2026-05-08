@@ -29,7 +29,7 @@ class BannerAcceptController extends Controller
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
         }, function ($q) {
-            $q->latest();
+            $q->latest('id');
         });
 
         return inertia()->render('Admin/Banners-Accept/Index', [

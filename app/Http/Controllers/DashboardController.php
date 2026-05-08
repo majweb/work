@@ -413,9 +413,16 @@ class DashboardController extends Controller
         }
 
         $adminBanner = AdminBanner::where('is_active', true)->latest()->first();
-        $adminBannerData = $adminBanner ? [
-            'image' => $adminBanner->getFirstMediaUrl('images'),
-        ] : null;
+        $adminBannerData = null;
+
+        if ($adminBanner) {
+            $image = $adminBanner->getFirstMediaUrl('images_' . app()->getLocale());
+            if ($image) {
+                $adminBannerData = [
+                    'image' => $image,
+                ];
+            }
+        }
 
         return inertia()->render('Dashboard', [
             'chartRecruit' => $user->hasRole('recruit') ? $recruitData : null,

@@ -19,16 +19,26 @@ class AdminBannerController extends Controller
     {
         Gate::authorize('admin', User::class);
 
+        $langs = config('langsShorts');
+
         return Inertia::render('Admin/Settings/Banners', [
-            'banners' => AdminBanner::latest()->get()->map(function ($banner) {
+            'banners' => AdminBanner::latest()->get()->map(function ($banner) use ($langs) {
+                $images = [];
+                foreach ($langs as $lang) {
+                    $images[$lang] = [
+                        'url' => $banner->getFirstMediaUrl('images_' . $lang),
+                        'preview' => $banner->getFirstMediaUrl('images_' . $lang, 'preview'),
+                    ];
+                }
+
                 return [
                     'id' => $banner->id,
                     'title' => $banner->title,
                     'is_active' => $banner->is_active,
-                    'image_url' => $banner->getFirstMediaUrl('images'),
-                    'preview_url' => $banner->getFirstMediaUrl('images', 'preview'),
+                    'images' => $images,
                 ];
             }),
+            'langs' => $langs,
         ]);
     }
 
@@ -39,20 +49,30 @@ class AdminBannerController extends Controller
     {
         Gate::authorize('admin', User::class);
 
-        $request->validate([
+        $langs = config('langsShorts');
+        $rules = [
             'title' => 'nullable|string|max:255',
-            'image' => 'required|image|max:5120',
             'is_active' => 'boolean',
-        ], [], [
+        ];
+
+        $attributes = [
             'title' => 'tytuł',
-            'image' => 'grafika',
             'is_active' => 'aktywny',
-        ]);
+        ];
+
+        foreach ($langs as $lang) {
+            $rules["images.$lang"] = 'required|image|max:5120';
+            $attributes["images.$lang"] = "grafika ($lang)";
+        }
+
+        $request->validate($rules, [], $attributes);
 
         $banner = AdminBanner::create($request->only('title', 'is_active'));
 
-        if ($request->hasFile('image')) {
-            $banner->addMediaFromRequest('image')->toMediaCollection('images');
+        foreach ($langs as $lang) {
+            if ($request->hasFile("images.$lang")) {
+                $banner->addMediaFromRequest("images.$lang")->toMediaCollection('images_' . $lang);
+            }
         }
 
         if ($banner->is_active) {
@@ -72,21 +92,36 @@ class AdminBannerController extends Controller
     {
         Gate::authorize('admin', User::class);
 
-        $request->validate([
+        $langs = config('langsShorts');
+        $rules = [
             'title' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:5120',
             'is_active' => 'boolean',
-        ], [], [
+        ];
+
+        $attributes = [
             'title' => 'tytuł',
-            'image' => 'grafika',
             'is_active' => 'aktywny',
-        ]);
+        ];
+
+        foreach ($langs as $lang) {
+            $hasImage = $adminBanner->hasMedia('images_' . $lang);
+            $rules["images.$lang"] = [
+                $hasImage ? 'nullable' : 'required',
+                'image',
+                'max:5120',
+            ];
+            $attributes["images.$lang"] = "grafika ($lang)";
+        }
+
+        $request->validate($rules, [], $attributes);
 
         $adminBanner->update($request->only('title', 'is_active'));
 
-        if ($request->hasFile('image')) {
-            $adminBanner->clearMediaCollection('images');
-            $adminBanner->addMediaFromRequest('image')->toMediaCollection('images');
+        foreach ($langs as $lang) {
+            if ($request->hasFile("images.$lang")) {
+                $adminBanner->clearMediaCollection('images_' . $lang);
+                $adminBanner->addMediaFromRequest("images.$lang")->toMediaCollection('images_' . $lang);
+            }
         }
 
         if ($adminBanner->is_active) {
