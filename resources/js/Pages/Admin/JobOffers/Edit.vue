@@ -1215,7 +1215,7 @@ onMounted(async () => {
                                 </div>
 
                                 <div>
-                                    <InputLabel :value="__('translate.sickPeople')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <InputLabel :value="__('translate.recInk')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
                                     <div class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md h-[58px]"
                                          @click="form.inclusive_recruitment = !form.inclusive_recruitment">
                                         <div class="relative flex items-center justify-center">

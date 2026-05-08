@@ -1731,4 +1731,7 @@ return [
     'cv_no_auth_detail' => 'Odczytanie liczone jest w momencie pierwszego otwarcia aplikacji.',
     'salary_type' => 'Rodzaj wynagrodzenia',
     'createCandidatePointsInfo' => 'Utworzenie kandydata pobierze :points punktów z Twojego konta.',
+    'showMore' => 'Więcej',
+    'showLess' => 'Mniej',
+    'recInk' => 'Rekrutacja inkluzywna',
 ];

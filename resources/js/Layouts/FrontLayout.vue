@@ -51,23 +51,34 @@ const submitForm = () => {
 };
 
 const isAllNewsletterAgreementsSelected = computed(() => {
-    const requiredAgreements = newsletterAgreements.value.filter(a => a.is_required);
-    if (requiredAgreements.length === 0) {
-        return newsletterAgreements.value.length > 0 && form.agreements.length === newsletterAgreements.value.length;
-    }
-    return requiredAgreements.every(a => form.agreements.includes(a.id.toString()) || form.agreements.includes(a.id));
+    const allIds = [];
+    newsletterAgreements.value.forEach(agreement => {
+        allIds.push(agreement.id.toString());
+        if (agreement.children) {
+            agreement.children.forEach(child => {
+                allIds.push(child.id.toString());
+            });
+        }
+    });
+
+    if (allIds.length === 0) return false;
+    return allIds.every(id => form.agreements.includes(id));
 });
 
 const toggleAllNewsletterAgreements = () => {
     if (isAllNewsletterAgreementsSelected.value) {
         form.agreements = [];
     } else {
-        const requiredAgreements = newsletterAgreements.value.filter(a => a.is_required);
-        if (requiredAgreements.length === 0) {
-            form.agreements = newsletterAgreements.value.map(a => a.id.toString());
-        } else {
-            form.agreements = requiredAgreements.map(a => a.id.toString());
-        }
+        const allIds = [];
+        newsletterAgreements.value.forEach(agreement => {
+            allIds.push(agreement.id.toString());
+            if (agreement.children) {
+                agreement.children.forEach(child => {
+                    allIds.push(child.id.toString());
+                });
+            }
+        });
+        form.agreements = allIds;
     }
 };
 
@@ -79,6 +90,17 @@ const isAgreementRequired = (id) => {
 // Mobile menu
 const mobileMenuOpen = ref(false);
 const showNewsletterAgreements = ref(false);
+const expandedAgreements = ref([]);
+
+const toggleAgreementExpansion = (id) => {
+    if (expandedAgreements.value.includes(id)) {
+        expandedAgreements.value = expandedAgreements.value.filter(itemId => itemId !== id);
+    } else {
+        expandedAgreements.value.push(id);
+    }
+};
+
+const isAgreementExpanded = (id) => expandedAgreements.value.includes(id);
 const toggleMenu = () => mobileMenuOpen.value = !mobileMenuOpen.value;
 const closeMenu = () => mobileMenuOpen.value = false;
 watch(mobileMenuOpen, val => {
@@ -542,76 +564,111 @@ const socialLinks = [
                                     {{ __('translate.footer.subscribe') }}
                                 </button>
                             </div>
-                            <div v-if="form.errors.email" class="text-[10px] font-black text-red-500 uppercase mt-1">
-                                {{ form.errors.email }}
-                            </div>
-                            <div v-if="newsletterAgreements.length > 0 && form.errors.agreements" class="text-[10px] font-black text-red-500 uppercase mt-1">
-                                {{ form.errors.agreements }}
-                            </div>
 
-                            <div v-if="newsletterAgreements.length > 0" class="mt-4 space-y-4 border-t border-gray-50 pt-6">
-                                <div class="flex items-center gap-3 group">
-                                    <div @click="toggleAllNewsletterAgreements" class="relative mt-1 cursor-pointer">
-                                        <Checkbox :checked="isAllNewsletterAgreementsSelected" class="sr-only" />
-                                        <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllNewsletterAgreementsSelected}"></div>
-                                        <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllNewsletterAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
-                                    </div>
-                                    <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllNewsletterAgreementsSelected ? 'text-[#0A2C5C]' : 'text-[#0A2C5C]'">
-                                        <span class="cursor-pointer uppercase" @click="toggleAllNewsletterAgreements">{{ __('translate.agree') }}</span>
-                                        <button
-                                            type="button"
-                                            class="uppercase text-[#0A2C5C] font-black hover:underline cursor-pointer decoration-2 underline-offset-4"
-                                            @click.stop="showNewsletterAgreements = true"
-                                        >
-                                            {{ __('translate.newsletter_agreements') }}
-                                        </button>
-
-                                        <DialogModal :show="showNewsletterAgreements" @close="showNewsletterAgreements = false">
-                                            <template #title>
-                                                {{ __('translate.newsletter_agreements') }}
-                                            </template>
-                                            <template #content>
-                                                <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 text-left">
-                                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="space-y-4">
-                                                        <div class="flex items-start gap-3">
-                                                            <Checkbox
-                                                                :id="'newsletter-agreement-' + agreement.id"
-                                                                v-model:checked="form.agreements"
-                                                                :value="agreement.id.toString()"
-                                                                class="w-5 h-5 !rounded-lg !text-[#00a0e3] mt-1"
-                                                                :class="[
-                                                                    form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())
-                                                                    ? '!border-red-500 !ring-red-500/20'
-                                                                    : '!border-gray-300 focus:!ring-[#00a0e3]/20'
-                                                                ]"
-                                                            />
-                                                            <div class="flex-grow">
-                                                                <label :for="'newsletter-agreement-' + agreement.id"
-                                                                       class="text-gray-700 leading-relaxed font-bold text-sm normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
-                                                                       :class="{'text-red-600': form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())}"
-                                                                       v-html="agreement.description[page.props.language] || agreement.description['pl']"></label>
-                                                                <div v-if="agreement.help_text && (agreement.help_text[page.props.language] || agreement.help_text['pl'])"
-                                                                     class="mt-2 text-[10px] text-[#0A2C5C] font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
-                                                                    <div v-html="agreement.help_text[page.props.language] || agreement.help_text['pl']"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                            <template #footer>
-                                                <SecondaryButton @click="showNewsletterAgreements = false">
-                                                    {{ __('translate.close') }}
-                                                </SecondaryButton>
-                                            </template>
-                                        </DialogModal>
-                                    </div>
+                            <!-- Błędy walidacji pod inputem -->
+                            <div class="mt-2 space-y-1">
+                                <div v-if="form.errors.email" class="text-[10px] font-black text-red-500 uppercase">
+                                    {{ form.errors.email }}
+                                </div>
+                                <div v-if="form.errors.agreements" class="text-[10px] font-black text-red-500 uppercase">
+                                    {{ form.errors.agreements }}
                                 </div>
                             </div>
 
-                            <p class="mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center sm:text-left">
-                                {{ __('translate.footer.privacy_notice') }}
-                            </p>
+                            <div v-if="newsletterAgreements.length > 0" class="mt-8 space-y-4">
+                                <!-- Zaznacz wszystkie -->
+                                <div v-if="newsletterAgreements.length > 1" class="flex items-center gap-2 px-1">
+                                    <div class="flex items-center h-4">
+                                        <Checkbox
+                                            id="select-all-agreements"
+                                            :checked="isAllNewsletterAgreementsSelected"
+                                            @update:checked="toggleAllNewsletterAgreements"
+                                            class="w-4 h-4 !rounded !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                        />
+                                    </div>
+                                    <label for="select-all-agreements" class="text-[10px] font-black uppercase tracking-widest text-[#0A2C5C] cursor-pointer">
+                                        {{ __('translate.selectAll') || 'Zaznacz wszystkie' }}
+                                    </label>
+                                </div>
+
+                                <!-- Lista zgód -->
+                                <div>
+                                    <div v-for="agreement in newsletterAgreements" :key="agreement.id" class="px-1 transition-all">
+                                        <div class="flex items-start gap-3">
+                                            <Checkbox
+                                                :id="'newsletter-agreement-' + agreement.id"
+                                                v-model:checked="form.agreements"
+                                                :value="agreement.id.toString()"
+                                                class="w-4 h-4 !rounded !text-[#00a0e3] mt-0.5"
+                                                :class="[
+                                                    form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())
+                                                    ? '!border-red-500 !ring-red-500/20'
+                                                    : '!border-gray-300 focus:!ring-[#00a0e3]/20'
+                                                ]"
+                                            />
+                                            <div class="flex-grow min-w-0">
+                                                <div class="flex items-center justify-between gap-4">
+                                                    <label
+                                                        :for="'newsletter-agreement-' + agreement.id"
+                                                        class="mt-1 text-[10px] font-bold uppercase tracking-wide text-[#0A2C5C] cursor-pointer"
+                                                        v-html="agreement.title[page.props.language] || agreement.title['pl'] || agreement.title"
+                                                    ></label>
+                                                    <button
+                                                        type="button"
+                                                        @click="toggleAgreementExpansion(agreement.id)"
+                                                        class="text-[9px] font-bold uppercase tracking-wider text-[#00a0e3] hover:text-[#0A2C5C] transition-colors whitespace-nowrap"
+                                                    >
+                                                        {{ isAgreementExpanded(agreement.id) ? (__('translate.showLess') || 'Mniej') : (__('translate.showMore') || 'Więcej') }}
+                                                    </button>
+                                                </div>
+
+                                                <transition
+                                                    enter-active-class="transition duration-200 ease-out"
+                                                    enter-from-class="opacity-0 -translate-y-1"
+                                                    enter-to-class="opacity-100 translate-y-0"
+                                                    leave-active-class="transition duration-150 ease-in"
+                                                    leave-from-class="opacity-100 translate-y-0"
+                                                    leave-to-class="opacity-0 -translate-y-1"
+                                                >
+                                                    <div v-if="isAgreementExpanded(agreement.id)" class="mt-2 space-y-3">
+                                                        <div
+                                                            class="text-gray-500 leading-relaxed font-medium text-[11px] normal-case [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                            :class="{'text-red-600': form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())}"
+                                                            v-html="agreement.description[page.props.language] || agreement.description['pl']"
+                                                        ></div>
+
+                                                        <!-- Podzgody -->
+                                                        <div v-if="agreement.children && agreement.children.length > 0" class="pl-4 space-y-2 border-l border-gray-100 mt-2">
+                                                            <div v-for="child in agreement.children" :key="child.id" class="flex items-start gap-2">
+                                                                <Checkbox
+                                                                    :id="'newsletter-agreement-' + child.id"
+                                                                    v-model:checked="form.agreements"
+                                                                    :value="child.id.toString()"
+                                                                    class="w-3.5 h-3.5 !rounded-sm !text-[#00a0e3] mt-0.5 !border-gray-200 focus:!ring-[#00a0e3]/10"
+                                                                />
+                                                                <label
+                                                                    :for="'newsletter-agreement-' + child.id"
+                                                                    class="text-[10px] text-gray-400 font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-500 hover:[&_a]:text-blue-700 transition-colors"
+                                                                    v-html="child.description[page.props.language] || child.description['pl']"
+                                                                ></label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div v-if="agreement.help_text && (agreement.help_text[page.props.language] || agreement.help_text['pl'])"
+                                                            class="text-[9px] text-[#0A2C5C]/70 font-medium normal-case leading-relaxed bg-blue-50/30 p-2 rounded-lg border border-blue-100/30 italic [&_a]:underline">
+                                                            <div v-html="agreement.help_text[page.props.language] || agreement.help_text['pl']"></div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest text-center sm:text-left mt-4">
+                                    {{ __('translate.footer.privacy_notice') }}
+                                </p>
+                            </div>
                         </form>
                     </div>
 
