@@ -671,8 +671,11 @@ const isSearching = ref(false);
                                             </span>
                                             <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
                                         </div>
-                                        <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight group-hover:text-[#0A2C5C] transition-colors">
+                                        <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight group-hover:text-[#0A2C5C] transition-colors flex items-center gap-2">
                                             {{ getPositionTitle(project) }}
+                                            <span v-if="project.inclusive_recruitment" class="shrink-0 px-2 py-0.5 bg-blue-50 text-blue-500 text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
+                                                {{ __('translate.sickPeople') }}
+                                            </span>
                                         </h4>
                                     </div>
                                         <div class="flex flex-col items-end gap-1 relative z-1" :class="{'-left-10' : project.is_featured}">
@@ -729,9 +732,6 @@ const isSearching = ref(false);
                                                 </span>
                                             </div>
                                             <div class="flex items-center gap-2">
-                                                <div v-if="project.inclusive_recruitment" class="px-2 py-0.5 bg-blue-50 text-blue-500 text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
-                                                    {{ __('translate.sickPeople') }}
-                                                </div>
                                                 <div v-if="project.salary_type" class="px-2 py-0.5 bg-blue-50 text-[#329CD1] text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
                                                     {{ __('translate.' + project.salary_type) }}
                                                 </div>
