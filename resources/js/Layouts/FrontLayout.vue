@@ -82,6 +82,36 @@ const toggleAllNewsletterAgreements = () => {
     }
 };
 
+const toggleAgreement = (agreement, checked) => {
+    if (!agreement.children) return;
+
+    agreement.children.forEach(child => {
+        const childId = child.id.toString();
+        const index = form.agreements.indexOf(childId);
+        if (checked && index === -1) {
+            form.agreements.push(childId);
+        } else if (!checked && index !== -1) {
+            form.agreements.splice(index, 1);
+        }
+    });
+};
+
+const toggleChildAgreement = (agreement) => {
+    if (!agreement) return;
+    const parentId = agreement.id.toString();
+    const childrenIds = agreement.children ? agreement.children.map(c => c.id.toString()) : [];
+    if (childrenIds.length === 0) return;
+
+    const allChildrenSelected = childrenIds.every(id => form.agreements.includes(id));
+    const parentIndex = form.agreements.indexOf(parentId);
+
+    if (allChildrenSelected && parentIndex === -1) {
+        form.agreements.push(parentId);
+    } else if (!allChildrenSelected && parentIndex !== -1) {
+        form.agreements.splice(parentIndex, 1);
+    }
+};
+
 const isAgreementRequired = (id) => {
     const agreement = newsletterAgreements.value.find(a => a.id === id);
     return agreement ? !!agreement.is_required : false;
@@ -582,7 +612,7 @@ const socialLinks = [
                                         <Checkbox
                                             id="select-all-agreements"
                                             :checked="isAllNewsletterAgreementsSelected"
-                                            @update:checked="toggleAllNewsletterAgreements"
+                                            @change="toggleAllNewsletterAgreements"
                                             class="w-4 h-4 !rounded !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
                                         />
                                     </div>
@@ -599,6 +629,7 @@ const socialLinks = [
                                                 :id="'newsletter-agreement-' + agreement.id"
                                                 v-model:checked="form.agreements"
                                                 :value="agreement.id.toString()"
+                                                @change="(checked) => toggleAgreement(agreement, checked)"
                                                 class="w-4 h-4 !rounded !text-[#00a0e3] mt-0.5"
                                                 :class="[
                                                     form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())
@@ -610,7 +641,8 @@ const socialLinks = [
                                                 <div class="flex items-center justify-between gap-4">
                                                     <label
                                                         :for="'newsletter-agreement-' + agreement.id"
-                                                        class="mt-1 text-[10px] font-bold uppercase tracking-wide text-[#0A2C5C] cursor-pointer"
+                                                        class="mt-1 text-[10px] font-bold uppercase tracking-wide cursor-pointer transition-colors"
+                                                        :class="form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString()) ? 'text-red-600' : 'text-[#0A2C5C]'"
                                                         v-html="agreement.title[page.props.language] || agreement.title['pl'] || agreement.title"
                                                     ></label>
                                                     <button
@@ -644,11 +676,13 @@ const socialLinks = [
                                                                     :id="'newsletter-agreement-' + child.id"
                                                                     v-model:checked="form.agreements"
                                                                     :value="child.id.toString()"
+                                                                    @change="toggleChildAgreement(agreement)"
                                                                     class="w-3.5 h-3.5 !rounded-sm !text-[#00a0e3] mt-0.5 !border-gray-200 focus:!ring-[#00a0e3]/10"
                                                                 />
                                                                 <label
                                                                     :for="'newsletter-agreement-' + child.id"
-                                                                    class="text-[10px] text-gray-400 font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-500 hover:[&_a]:text-blue-700 transition-colors"
+                                                                    class="text-[10px] font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-500 hover:[&_a]:text-blue-700 transition-colors"
+                                                                    :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-400'"
                                                                     v-html="child.description[page.props.language] || child.description['pl']"
                                                                 ></label>
                                                             </div>

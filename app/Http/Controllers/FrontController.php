@@ -696,17 +696,17 @@ class FrontController extends Controller
                 ->where('is_active', true)
                 ->whereNull('parent_id')
                 ->with(['children' => function ($query) {
-                    $query->select('id', 'description', 'parent_id', 'is_required', 'help_text');
+                    $query->select('id', 'title', 'description', 'parent_id', 'is_required', 'help_text');
                 }])
-                ->get(['id', 'description', 'is_required', 'help_text']);
+                ->get(['id', 'title', 'description', 'is_required', 'help_text']);
         } else {
             $agreements = Agreement::where('type', 'app_not_logged_in')
                 ->where('is_active', true)
                 ->whereNull('parent_id')
                 ->with(['children' => function ($query) {
-                    $query->select('id', 'description', 'parent_id', 'is_required', 'help_text');
+                    $query->select('id', 'title', 'description', 'parent_id', 'is_required', 'help_text');
                 }])
-                ->get(['id', 'description', 'is_required', 'help_text']);
+                ->get(['id', 'title', 'description', 'is_required', 'help_text']);
         }
         $professionCv = $project->categorySub['value'];
 

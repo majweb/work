@@ -30,24 +30,93 @@ const form = useForm({
 
 const supportAgreements = computed(() => page.props.supportAgreements || []);
 
-const agreementsModalVisible = ref(false);
+const expandedAgreements = ref([]);
+
+const toggleAgreementExpansion = (id) => {
+    if (expandedAgreements.value.includes(id)) {
+        expandedAgreements.value = expandedAgreements.value.filter(itemId => itemId !== id);
+    } else {
+        expandedAgreements.value.push(id);
+    }
+};
+
+const isAgreementExpanded = (id) => expandedAgreements.value.includes(id);
 
 const isAllAgreementsChecked = computed(() => {
-    const requiredAgreements = supportAgreements.value.filter(agreement => agreement.is_required);
-    if (requiredAgreements.length === 0) return false;
+    const allIds = [];
+    supportAgreements.value.forEach(agreement => {
+        allIds.push(agreement.id.toString());
+        if (agreement.children) {
+            agreement.children.forEach(child => {
+                allIds.push(child.id.toString());
+            });
+        }
+    });
 
-    const requiredIds = requiredAgreements.map(agreement => agreement.id.toString());
-    return requiredIds.every(id => form.agreements.includes(id));
+    if (allIds.length === 0) return false;
+    return allIds.every(id => form.agreements.includes(id));
 });
 
 const toggleAllAgreements = () => {
     if (isAllAgreementsChecked.value) {
         form.agreements = [];
     } else {
-        form.agreements = supportAgreements.value
-            .filter(agreement => agreement.is_required)
-            .map(agreement => agreement.id.toString());
+        const allIds = [];
+        supportAgreements.value.forEach(agreement => {
+            allIds.push(agreement.id.toString());
+            if (agreement.children) {
+                agreement.children.forEach(child => {
+                    allIds.push(child.id.toString());
+                });
+            }
+        });
+        form.agreements = allIds;
     }
+};
+
+const toggleAgreement = (agreement, checked) => {
+    if (!agreement.children) return;
+
+    agreement.children.forEach(child => {
+        const childId = child.id.toString();
+        const index = form.agreements.indexOf(childId);
+        if (checked && index === -1) {
+            form.agreements.push(childId);
+        } else if (!checked && index !== -1) {
+            form.agreements.splice(index, 1);
+        }
+    });
+};
+
+const toggleChildAgreement = (agreement) => {
+    if (!agreement) return;
+    const parentId = agreement.id.toString();
+    const childrenIds = agreement.children ? agreement.children.map(c => c.id.toString()) : [];
+    if (childrenIds.length === 0) return;
+
+    const allChildrenSelected = childrenIds.every(id => form.agreements.includes(id));
+    const parentIndex = form.agreements.indexOf(parentId);
+
+    if (allChildrenSelected && parentIndex === -1) {
+        form.agreements.push(parentId);
+    } else if (!allChildrenSelected && parentIndex !== -1) {
+        form.agreements.splice(parentIndex, 1);
+    }
+};
+
+const isAgreementRequired = (id) => {
+    const findAgreement = (list, targetId) => {
+        for (const item of list) {
+            if (item.id === targetId) return item;
+            if (item.children) {
+                const found = findAgreement(item.children, targetId);
+                if (found) return found;
+            }
+        }
+        return null;
+    };
+    const agreement = findAgreement(supportAgreements.value, id);
+    return agreement ? !!agreement.is_required : false;
 };
 
 const randomColor = () => {
@@ -266,72 +335,102 @@ const submit = () => {
                                             </div>
 
                                             <!-- Agreements -->
-                                            <div v-if="supportAgreements && supportAgreements.length > 0" class="space-y-4">
-                                                <div class="flex items-center gap-3">
-                                                    <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
-                                                        <Checkbox :checked="isAllAgreementsChecked" name="agree" class="sr-only" />
-                                                        <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsChecked}"></div>
-                                                        <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsChecked ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
+                                            <div v-if="supportAgreements && supportAgreements.length > 0" class="space-y-4 !mt-12">
+                                                <!-- Zaznacz wszystkie -->
+                                                <div v-if="supportAgreements.length > 1" class="flex items-center gap-3 px-1 mb-4">
+                                                    <div class="flex items-center h-4">
+                                                        <Checkbox
+                                                            id="support-select-all"
+                                                            :checked="isAllAgreementsChecked"
+                                                            @change="toggleAllAgreements"
+                                                            class="w-4 h-4 !rounded !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                        />
                                                     </div>
-                                                    <div class="text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="isAllAgreementsChecked ? 'text-[#0A2C5C]' : 'text-gray-400'">
-                                                        <span @click="toggleAllAgreements" class="cursor-pointer uppercase">
-                                                            {{ __('translate.agree_to') }}
-                                                        </span>
-                                                        <button type="button" @click.stop="agreementsModalVisible = true" class="text-[#0A2C5C] font-black uppercase hover:underline ml-1">
-                                                            {{ __('translate.agreements') }}
-                                                        </button>
-                                                    </div>
+                                                    <label for="support-select-all" class="text-[10px] font-black uppercase tracking-widest text-gray-400 cursor-pointer">
+                                                        {{ __('translate.selectAll') || 'Zaznacz wszystkie' }}
+                                                    </label>
                                                 </div>
-                                                <InputError :message="form.errors.agreements" />
-                                            </div>
 
-                                            <!-- DialogModal for Agreements -->
-                                            <DialogModal :show="agreementsModalVisible" @close="agreementsModalVisible = false">
-                                                <template #title>
-                                                    <span class="uppercase font-black text-[#0A2C5C] tracking-widest">{{ __('translate.agreements') }}</span>
-                                                </template>
+                                                <InputError :message="form.errors.agreements" class="ml-2" />
 
-                                                <template #content>
-                                                    <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
-                                                        <div v-for="(agreement, index) in supportAgreements" :key="agreement.id" class="group/item">
-                                                            <div class="flex items-start gap-4 p-4 rounded-3xl transition-all duration-300 hover:bg-gray-50 border border-transparent hover:border-gray-100"
-                                                                 :class="{'bg-red-50/50 border-red-100': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
-                                                            >
-                                                                <div>
-                                                                    <Checkbox
-                                                                        v-model:checked="form.agreements"
-                                                                        :value="agreement.id.toString()"
-                                                                        :id="'agreement-' + agreement.id"
-                                                                        class="w-5 h-5 !rounded-lg !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
-                                                                        :class="{'!border-red-500': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
-                                                                    />
+                                                <!-- Lista zgód -->
+                                                <div class="space-y-4">
+                                                    <div v-for="agreement in supportAgreements" :key="agreement.id" class="px-1 transition-all">
+                                                        <div class="flex items-start gap-3">
+                                                            <Checkbox
+                                                                :id="'support-agreement-' + agreement.id"
+                                                                v-model:checked="form.agreements"
+                                                                :value="agreement.id.toString()"
+                                                                @change="(checked) => toggleAgreement(agreement, checked)"
+                                                                class="w-4 h-4 !rounded !text-[#00a0e3] mt-0.5"
+                                                                :class="[
+                                                                    form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())
+                                                                    ? '!border-red-500 !ring-red-500/20'
+                                                                    : '!border-gray-300 focus:!ring-[#00a0e3]/20'
+                                                                ]"
+                                                            />
+                                                            <div class="flex-grow min-w-0">
+                                                                <div class="flex items-center justify-between gap-4">
+                                                                    <label
+                                                                        :for="'support-agreement-' + agreement.id"
+                                                                        class="mt-1 text-[10px] font-bold uppercase tracking-wide cursor-pointer transition-colors"
+                                                                        :class="form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString()) ? 'text-red-600' : 'text-[#0A2C5C]'"
+                                                                        v-html="agreement.title[page.props.language] || agreement.title['pl'] || agreement.title"
+                                                                    ></label>
+                                                                    <button
+                                                                        type="button"
+                                                                        @click="toggleAgreementExpansion(agreement.id)"
+                                                                        class="text-[9px] font-bold uppercase tracking-wider text-[#00a0e3] hover:text-[#0A2C5C] transition-colors whitespace-nowrap"
+                                                                    >
+                                                                        {{ isAgreementExpanded(agreement.id) ? (__('translate.showLess') || 'Mniej') : (__('translate.showMore') || 'Więcej') }}
+                                                                    </button>
                                                                 </div>
-                                                                <div class="flex-1 space-y-3">
-                                                                    <label :for="'agreement-' + agreement.id" class="text-sm text-gray-600 text-left leading-relaxed normal-case cursor-pointer block [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
-                                                                           :class="{'text-red-700 font-bold': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id)}"
-                                                                    >
-                                                                        <span v-html="agreement.description[page.props.language] || agreement.description['pl']"></span>
-                                                                    </label>
 
-                                                                    <!-- Help Text (Optional) -->
-                                                                    <div v-if="agreement.help_text && agreement.help_text[page.props.language]"
-                                                                         class="mt-3 p-4 bg-blue-50/50 rounded-2xl border border-blue-100/50 text-[11px] font-medium text-gray-500 italic leading-relaxed text-left [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
-                                                                    >
-                                                                        <div v-html="agreement.help_text[page.props.language]"></div>
+                                                                <transition
+                                                                    enter-active-class="transition duration-200 ease-out"
+                                                                    enter-from-class="opacity-0 -translate-y-1"
+                                                                    enter-to-class="opacity-100 translate-y-0"
+                                                                    leave-active-class="transition duration-150 ease-in"
+                                                                    leave-from-class="opacity-100 translate-y-0"
+                                                                    leave-to-class="opacity-0 -translate-y-1"
+                                                                >
+                                                                    <div v-if="isAgreementExpanded(agreement.id)" class="mt-2 space-y-3">
+                                                                        <div
+                                                                            class="text-gray-500 leading-relaxed font-medium text-[11px] normal-case [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
+                                                                            :class="{'text-red-600': form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())}"
+                                                                            v-html="agreement.description[page.props.language] || agreement.description['pl']"
+                                                                        ></div>
+
+                                                                        <!-- Podzgody -->
+                                                                        <div v-if="agreement.children && agreement.children.length > 0" class="pl-4 space-y-2 border-l border-gray-100 mt-2">
+                                                                            <div v-for="child in agreement.children" :key="child.id" class="flex items-start gap-2">
+                                                                                <Checkbox
+                                                                                    :id="'support-agreement-' + child.id"
+                                                                                    v-model:checked="form.agreements"
+                                                                                    :value="child.id.toString()"
+                                                                                    @change="toggleChildAgreement(agreement)"
+                                                                                    class="w-3.5 h-3.5 !rounded-sm !text-[#00a0e3] mt-0.5 !border-gray-200 focus:!ring-[#00a0e3]/10"
+                                                                                />
+                                                                                <label
+                                                                                    :for="'support-agreement-' + child.id"
+                                                                                    class="text-[10px] font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-500 hover:[&_a]:text-blue-700 transition-colors"
+                                                                                    :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-400'"
+                                                                                    v-html="child.description[page.props.language] || child.description['pl']"
+                                                                                ></label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div v-if="agreement.help_text && (agreement.help_text[page.props.language] || agreement.help_text['pl'])"
+                                                                            class="text-[9px] text-[#0A2C5C]/70 font-medium normal-case leading-relaxed bg-blue-50/30 p-2 rounded-lg border border-blue-100/30 italic [&_a]:underline">
+                                                                            <div v-html="agreement.help_text[page.props.language] || agreement.help_text['pl']"></div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                </transition>
                                                             </div>
-                                                            <div v-if="index < supportAgreements.length - 1" class="my-4 mx-8 border-b border-gray-50"></div>
                                                         </div>
                                                     </div>
-                                                </template>
-
-                                                <template #footer>
-                                                    <SecondaryButton @click="agreementsModalVisible = false">
-                                                        {{ __('translate.close') }}
-                                                    </SecondaryButton>
-                                                </template>
-                                            </DialogModal>
+                                                </div>
+                                            </div>
 
                                             <!-- CAPTCHA -->
                                             <div class="bg-gray-50 rounded-3xl p-4 border border-gray-100">

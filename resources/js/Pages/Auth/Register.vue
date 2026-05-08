@@ -5,9 +5,6 @@ import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import Socialstream from '@/Components/Socialstream.vue'
 import TextInput from '@/Components/TextInput.vue'
-import Dropdown from '@/Components/Dropdown.vue'
-import DialogModal from '@/Components/DialogModal.vue'
-import SecondaryButton from '@/Components/SecondaryButton.vue'
 import SpinnerAction from '@/Components/SpinnerAction.vue'
 import { computed, ref } from "vue"
 import { usePage } from "@inertiajs/vue3"
@@ -24,57 +21,83 @@ const form = useForm({
 })
 
 const showAgreementsModal = ref(false);
+const expandedAgreements = ref([]);
+
+const lang = computed(() => usePage().props.language);
+
+const toggleAgreementExpansion = (id) => {
+    const index = expandedAgreements.value.indexOf(id);
+    if (index > -1) {
+        expandedAgreements.value.splice(index, 1);
+    } else {
+        expandedAgreements.value.push(id);
+    }
+};
 
 const agreements = computed(() => {
     return usePage().props.registrationAgreements[form.type] || [];
 });
 
-const getAllAgreementIds = (agreementsList) => {
-    let ids = [];
-    agreementsList.forEach(agreement => {
-        ids.push(agreement.id);
-        if (agreement.children && agreement.children.length > 0) {
-            ids = [...ids, ...getAllAgreementIds(agreement.children)];
+const isAllAgreementsSelected = computed(() => {
+    if (agreements.value.length === 0) return false;
+
+    const allIds = [];
+    agreements.value.forEach(agreement => {
+        allIds.push(agreement.id.toString());
+        if (agreement.children) {
+            agreement.children.forEach(child => {
+                allIds.push(child.id.toString());
+            });
         }
     });
-    return ids;
-};
 
-const isAllAgreementsSelected = computed(() => {
-    const requiredAgreements = agreements.value.filter(agreement => agreement.is_required);
-    if (requiredAgreements.length === 0) return false;
-
-    const requiredIds = requiredAgreements.map(agreement => agreement.id.toString());
-    return requiredIds.every(id => form.agreements.includes(id));
+    return allIds.every(id => form.agreements.includes(id));
 });
 
 const toggleAllAgreements = () => {
     if (isAllAgreementsSelected.value) {
         form.agreements = [];
     } else {
-        form.agreements = agreements.value
-            .filter(agreement => agreement.is_required)
-            .map(agreement => agreement.id.toString());
+        const allIds = [];
+        agreements.value.forEach(agreement => {
+            allIds.push(agreement.id.toString());
+            if (agreement.children) {
+                agreement.children.forEach(child => {
+                    allIds.push(child.id.toString());
+                });
+            }
+        });
+        form.agreements = allIds;
     }
 };
 
 const toggleAgreement = (agreement, checked) => {
-    const agreementId = agreement.id.toString();
-    if (checked) {
-        if (!form.agreements.includes(agreementId)) {
-            form.agreements.push(agreementId);
-        }
-        if (agreement.children) {
-            agreement.children.forEach(child => toggleAgreement(child, true));
-        }
-    } else {
-        const index = form.agreements.indexOf(agreementId);
-        if (index > -1) {
+    if (!agreement.children) return;
+
+    agreement.children.forEach(child => {
+        const childId = child.id.toString();
+        const index = form.agreements.indexOf(childId);
+        if (checked && index === -1) {
+            form.agreements.push(childId);
+        } else if (!checked && index !== -1) {
             form.agreements.splice(index, 1);
         }
-        if (agreement.children) {
-            agreement.children.forEach(child => toggleAgreement(child, false));
-        }
+    });
+};
+
+const toggleChildAgreement = (agreement) => {
+    if (!agreement) return;
+    const parentId = agreement.id.toString();
+    const childrenIds = agreement.children ? agreement.children.map(c => c.id.toString()) : [];
+    if (childrenIds.length === 0) return;
+
+    const allChildrenSelected = childrenIds.every(id => form.agreements.includes(id));
+    const parentIndex = form.agreements.indexOf(parentId);
+
+    if (allChildrenSelected && parentIndex === -1) {
+        form.agreements.push(parentId);
+    } else if (!allChildrenSelected && parentIndex !== -1) {
+        form.agreements.splice(parentIndex, 1);
     }
 };
 
@@ -223,93 +246,97 @@ const submit = () => {
                     </div>
 
                     <!-- Agreements -->
-                    <div v-if="agreements.length > 0" class="space-y-4 border-t border-gray-100 pt-6 ml-2">
-                        <div class="flex items-center gap-3 group">
-                            <div @click="toggleAllAgreements" class="relative mt-1 cursor-pointer">
-                                <Checkbox :checked="isAllAgreementsSelected" class="sr-only" />
-                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': isAllAgreementsSelected}"></div>
-                                <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="isAllAgreementsSelected ? 'translate-x-5 bg-work-main' : 'bg-white'"></div>
+                    <div v-if="agreements.length > 0" class="space-y-4 pt-6">
+                        <InputLabel :value="__('translate.agreements')"
+                                    class="mb-6 font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-[10px] flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-[#00a0e3] rounded-full animate-pulse"></span>
+                            {{ __('translate.agreements') }}
+                        </InputLabel>
+
+                        <div v-if="agreements.length > 1"
+                             class="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 hover:border-[#00a0e3] transition-all shadow-sm group">
+                            <div class="flex items-center h-4">
+                                <Checkbox :checked="isAllAgreementsSelected" @change="toggleAllAgreements"
+                                          class="w-4 h-4 !rounded-md !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20" />
                             </div>
-                            <div class="text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 flex-wrap transition-colors duration-300" :class="isAllAgreementsSelected ? 'text-[#0A2C5C]' : 'text-[#0A2C5C]'">
-                                <span class="cursor-pointer uppercase" @click="toggleAllAgreements">{{ __('translate.agree') }}</span>
-                                <button
-                                    type="button"
-                                    class="text-[#0A2C5C] font-black uppercase hover:underline cursor-pointer decoration-2 underline-offset-4"
-                                    @click.stop="showAgreementsModal = true"
-                                >
-                                    {{ __('translate.agreements') }}
-                                </button>
+                            <span class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest cursor-pointer"
+                                  @click="toggleAllAgreements">
+                                {{ __('translate.selectAll') }}
+                            </span>
+                        </div>
 
-                                <DialogModal :show="showAgreementsModal" @close="showAgreementsModal = false">
-                                    <template #title>
-                                        {{ __('translate.agreements') }}
-                                    </template>
-                                    <template #content>
-                                        <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-4 text-left">
-                                                <div v-for="agreement in agreements" :key="agreement.id" class="space-y-4">
-                                                    <div class="flex items-start gap-3">
-                                                        <Checkbox
-                                                            :id="'reg-agreement-' + agreement.id"
-                                                            :checked="form.agreements.includes(agreement.id.toString())"
-                                                            @update:checked="(val) => toggleAgreement(agreement, val)"
-                                                            :value="agreement.id.toString()"
-                                                            class="w-5 h-5 !rounded-lg !text-[#00a0e3] mt-1"
-                                                            :class="[
-                                                                form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())
-                                                                ? '!border-red-500 !ring-red-500/20'
-                                                                : '!border-gray-300 focus:!ring-[#00a0e3]/20'
-                                                            ]"
-                                                        />
-                                                        <div class="flex-grow">
-                                                            <label :for="'reg-agreement-' + agreement.id"
-                                                                   class="text-gray-700 leading-relaxed font-bold text-sm normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
-                                                                   :class="{'text-red-600': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}"
-                                                                   v-html="agreement.description[usePage().props.language] || agreement.description['pl']"></label>
-                                                            <div v-if="agreement.help_text && (agreement.help_text[usePage().props.language] || agreement.help_text['pl'])"
-                                                                 class="mt-2 text-[10px] text-[#0A2C5C] font-medium normal-case leading-relaxed bg-blue-50/50 p-3 rounded-xl border border-blue-100/50 italic [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
-                                                                <div v-html="agreement.help_text[usePage().props.language] || agreement.help_text['pl']"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                        <div class="space-y-3">
+                            <div v-for="agreement in agreements" :key="agreement.id"
+                                 class="p-4 bg-white rounded-2xl border border-gray-100 transition-all">
+                                <div class="flex items-start gap-4">
+                                    <div class="flex items-center h-5">
+                                        <Checkbox
+                                            v-model:checked="form.agreements"
+                                            :value="agreement.id.toString()"
+                                            :id="'agreement-' + agreement.id"
+                                            @change="(checked) => toggleAgreement(agreement, checked)"
+                                            class="w-4 h-4 !rounded-md !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                            :class="{'!border-red-500 !ring-red-500': form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString())}"
+                                        />
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-start justify-between gap-4">
+                                            <label :for="'agreement-' + agreement.id"
+                                                   class="text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors"
+                                                   :class="form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString()) ? 'text-red-600' : 'text-[#0A2C5C]'">
+                                                <span v-html="agreement.title[lang] || agreement.title['pl'] || agreement.title"></span>
+                                                <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
+                                            </label>
+                                            <button type="button"
+                                                    @click="toggleAgreementExpansion(agreement.id)"
+                                                    class="text-[10px] font-black uppercase tracking-widest text-[#00a0e3] hover:text-[#0A2C5C] transition-colors whitespace-nowrap">
+                                                {{ expandedAgreements.includes(agreement.id) ? __('translate.showLess') : __('translate.showMore') }}
+                                            </button>
+                                        </div>
 
-                                                    <!-- Children -->
-                                                    <div v-if="agreement.children && agreement.children.length > 0" class="ml-8 space-y-4 border-l-2 border-blue-50 pl-6">
-                                                        <div v-for="child in agreement.children" :key="child.id">
-                                                            <div class="flex items-start gap-3">
-                                                                <Checkbox
-                                                                    :id="'reg-agreement-' + child.id"
-                                                                    :checked="form.agreements.includes(child.id.toString())"
-                                                                    @update:checked="(val) => toggleAgreement(child, val)"
-                                                                    :value="child.id.toString()"
-                                                                    class="w-4 h-4 !rounded-md !text-[#00a0e3] mt-1"
-                                                                    :class="[
-                                                                        form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())
-                                                                        ? '!border-red-500 !ring-red-500/20'
-                                                                        : '!border-gray-300 focus:!ring-[#00a0e3]/20'
-                                                                    ]"
-                                                                />
-                                                                <div class="flex-grow">
-                                                                    <label :for="'reg-agreement-' + child.id"
-                                                                           class="text-gray-600 leading-relaxed font-medium text-xs normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
-                                                                           :class="{'text-red-600': form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())}"
-                                                                           v-html="child.description[usePage().props.language] || child.description['pl']"></label>
-                                                                    <div v-if="child.help_text && (child.help_text[usePage().props.language] || child.help_text['pl'])"
-                                                                         class="mt-1 text-[10px] text-[#0A2C5C] italic leading-relaxed [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors">
-                                                                        <div v-html="child.help_text[usePage().props.language] || child.help_text['pl']"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                        <transition
+                                            enter-active-class="transition duration-200 ease-out"
+                                            enter-from-class="transform scale-95 opacity-0"
+                                            enter-to-class="transform scale-100 opacity-100"
+                                            leave-active-class="transition duration-150 ease-in"
+                                            leave-from-class="transform scale-100 opacity-100"
+                                            leave-to-class="transform scale-95 opacity-0"
+                                        >
+                                            <div v-if="expandedAgreements.includes(agreement.id)" class="mt-4 space-y-4">
+                                                <div class="text-[11px] leading-relaxed normal-case [&_a]:underline [&_a]:text-blue-600 transition-colors"
+                                                     :class="form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString()) ? 'text-red-500' : 'text-gray-500'"
+                                                     v-html="agreement.description[lang] || agreement.description['pl']">
+                                                </div>
+
+                                                <div v-if="agreement.children && agreement.children.length > 0"
+                                                     class="ml-2 space-y-3 border-l-2 border-gray-100 pl-4">
+                                                    <div v-for="child in agreement.children" :key="child.id" class="flex items-start gap-3">
+                                                        <div class="flex items-center h-4">
+                                                            <Checkbox
+                                                                v-model:checked="form.agreements"
+                                                                :value="child.id.toString()"
+                                                                :id="'agreement-' + child.id"
+                                                                @change="toggleChildAgreement(agreement)"
+                                                                class="w-3.5 h-3.5 !rounded-md !text-[#00a0e3] !border-gray-300 focus:!ring-[#00a0e3]/20"
+                                                                :class="{'!border-red-500 !ring-red-500': form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString())}"
+                                                            />
                                                         </div>
+                                                        <label :for="'agreement-' + child.id"
+                                                               class="text-[11px] leading-relaxed font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 transition-colors"
+                                                               :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-500'">
+                                                            <span v-html="child.description[lang] || child.description['pl']"></span>
+                                                        </label>
                                                     </div>
                                                 </div>
-                                        </div>
-                                    </template>
-                                    <template #footer>
-                                        <SecondaryButton @click="showAgreementsModal = false">
-                                            {{ __('translate.close') }}
-                                        </SecondaryButton>
-                                    </template>
-                                </DialogModal>
+
+                                                <div v-if="agreement.help_text && (agreement.help_text[lang] || agreement.help_text['pl'])"
+                                                     class="p-3 bg-blue-50/50 rounded-xl border border-blue-100/50 text-[10px] text-gray-500 italic leading-relaxed"
+                                                     v-html="agreement.help_text[lang] || agreement.help_text['pl']">
+                                                </div>
+                                            </div>
+                                        </transition>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <InputError :message="form.errors.agreements" />
