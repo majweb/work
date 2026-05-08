@@ -174,160 +174,176 @@ class FrontController extends Controller
 
         $searchStatisticService->log(request()->all());
 
-        $query = Project::with('user.changeProducts')->featured()->active()->newest();
+        // Pobieramy aktualną wersję cache dla listy projektów
+        $version = Cache::get('projects_list_version', 1);
 
-        $lat = request('lat');
-        $lng = request('lng');
+        // Tworzymy unikalny klucz na podstawie wersji, języka i wszystkich parametrów filtrowania
+        // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
+        $cacheKey = "projects_list_v{$version}_" . app()->getLocale() . "_" . date('Y-m-d') . "_" . md5(json_encode(request()->all()));
 
-        // Filtrowanie po promieniu (Haversine)
-        $distance = (int) request('distance');
+        $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
+            $query = Project::with('user.changeProducts')->featured()->active()->newest();
 
-        if (! $lat && ! $lng && request('city') && $distance > 0) {
-            $cityName = request('city');
-            $cityCoords = Project::where('cityWork', $cityName)
-                ->whereNotNull('lat')
-                ->whereNotNull('lng')
-                ->selectRaw('AVG(lat) as lat, AVG(lng) as lng')
-                ->first();
+            $lat = request('lat');
+            $lng = request('lng');
 
-            if ($cityCoords && $cityCoords->lat) {
-                $lat = $cityCoords->lat;
-                $lng = $cityCoords->lng;
+            // Filtrowanie po promieniu (Haversine)
+            $distance = (int) request('distance');
+
+            if (! $lat && ! $lng && request('city') && $distance > 0) {
+                $cityName = request('city');
+                $cityCoords = Project::where('cityWork', $cityName)
+                    ->whereNotNull('lat')
+                    ->whereNotNull('lng')
+                    ->selectRaw('AVG(lat) as lat, AVG(lng) as lng')
+                    ->first();
+
+                if ($cityCoords && $cityCoords->lat) {
+                    $lat = $cityCoords->lat;
+                    $lng = $cityCoords->lng;
+                }
             }
-        }
 
-        if ($lat && $lng && $distance > 0) {
-            $lat = (float) $lat;
-            $lng = (float) $lng;
+            if ($lat && $lng && $distance > 0) {
+                $lat = (float) $lat;
+                $lng = (float) $lng;
 
-            $query->select('*')
-                ->selectRaw(
-                    '(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance',
-                    [$lat, $lng, $lat]
-                )
-                ->having('distance', '<=', $distance)
-                ->orderBy('distance');
-        }
+                $query->select('*')
+                    ->selectRaw(
+                        '(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance',
+                        [$lat, $lng, $lat]
+                    )
+                    ->having('distance', '<=', $distance)
+                    ->orderBy('distance');
+            }
 
-        // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
-        if (! ($lat && $lng && $distance > 0)) {
+            // Filtrowanie po kraju i mieście (tylko jeśli nie szukamy po promieniu)
+            if (! ($lat && $lng && $distance > 0)) {
+                if (request('country')) {
+                    $query->whereJsonContains('countryWork', ['value' => (int) request('country')]);
+                }
+
+                if (request('city')) {
+                    $query->where('cityWork', 'like', '%'.request('city').'%');
+                }
+            }
+
+            // Filtrowanie po kategorii
+            if (request('category')) {
+                $categoryValue = (int) request('category');
+                $query->whereJsonContains('category', ['value' => $categoryValue]);
+            }
+
+            // Filtrowanie po podkategorii
+            if (request('categorySub')) {
+                $categorySubValue = (int) request('categorySub');
+                $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
+            }
+
+            // Filtrowanie po zawodzie
+            if (request('profession')) {
+                $professionValue = (int) request('profession');
+                $query->whereJsonContains('profession', ['value' => $professionValue]);
+            }
+
+            // Filtrowanie po trybie pracy
+            if (request('workingMode')) {
+                $workingModeId = (int) request('workingMode');
+                $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
+            }
+
+            if (request('experience')) {
+                $experienceId = (int) request('experience');
+                $query->whereJsonContains('experience', ['id' => $experienceId]);
+            }
+
+            // Filtrowanie po typie umowy
+            if (request('typeOfContract')) {
+                $typeOfContractId = (int) request('typeOfContract');
+                $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
+            }
+
+            // Filtrowanie po wymiarze pracy
+            if (request('workLoad')) {
+                $workLoadId = (int) request('workLoad');
+                $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
+            }
+
+            $projects = $query->paginate(5)->withQueryString();
+
+            $countries = (new Helper)->makeCountriesToSelectHasProjects();
+
+            // Pobierz opcje z pamięci podręcznej lub z bazy danych
+            $workingModes = $dictionaryService->getWorkingModesForSelect();
+            $experiences = $dictionaryService->getExperiencesForSelect();
+            $typesOfContract = $dictionaryService->getTypesOfContractForSelect();
+            $workLoads = $dictionaryService->getWorkLoadsForSelect();
+            $distanceOptions = $dictionaryService->getDistanceOptions();
+
+            $distanceFront = null;
+            if (request()->has('distance') && request('distance') !== null && request('distance') !== '') {
+                $distanceValue = request('distance');
+                $distanceFront = collect($distanceOptions)->first(function ($option) use ($distanceValue) {
+                    return $option['value'] == $distanceValue;
+                });
+            }
+
+            $countryId = request('country');
+            $cityValue = request('city');
+            $country = null;
             if (request('country')) {
-                $query->whereJsonContains('countryWork', ['value' => (int) request('country')]);
+                $country = Country::where('id', request('country'))->first();
+            }
+            $cityFront = null;
+
+            if ($countryId && $cityValue) {
+                $cityFront = [
+                    'name' => $cityValue,
+                    'value' => $cityValue,
+                    'countryCode' => $country->countryCode,
+                    'lat' => $lat ? (float) $lat : null,
+                    'lng' => $lng ? (float) $lng : null,
+                ];
+            } elseif ($cityValue) {
+                $cityFront = [
+                    'name' => $cityValue,
+                    'value' => $cityValue,
+                    'lat' => $lat ? (float) $lat : null,
+                    'lng' => $lng ? (float) $lng : null,
+                ];
             }
 
-            if (request('city')) {
-                $query->where('cityWork', 'like', '%'.request('city').'%');
+            $category = null;
+            if (request('category')) {
+                $category = Category::where('id', request('category'))->first();
             }
-        }
 
-        // Filtrowanie po kategorii
-        if (request('category')) {
-            $categoryValue = (int) request('category');
-            $query->whereJsonContains('category', ['value' => $categoryValue]);
-        }
-
-        // Filtrowanie po podkategorii
-        if (request('categorySub')) {
-            $categorySubValue = (int) request('categorySub');
-            $query->whereJsonContains('categorySub', ['value' => $categorySubValue]);
-        }
-
-        // Filtrowanie po zawodzie
-        if (request('profession')) {
-            $professionValue = (int) request('profession');
-            $query->whereJsonContains('profession', ['value' => $professionValue]);
-        }
-
-        // Filtrowanie po trybie pracy
-        if (request('workingMode')) {
-            $workingModeId = (int) request('workingMode');
-            $query->whereJsonContains('workingMode', ['value' => $workingModeId]);
-        }
-
-        if (request('experience')) {
-            $experienceId = (int) request('experience');
-            $query->whereJsonContains('experience', ['id' => $experienceId]);
-        }
-
-        // Filtrowanie po typie umowy
-        if (request('typeOfContract')) {
-            $typeOfContractId = (int) request('typeOfContract');
-            $query->whereJsonContains('typeOfContract', ['id' => $typeOfContractId]);
-        }
-
-        // Filtrowanie po wymiarze pracy
-        if (request('workLoad')) {
-            $workLoadId = (int) request('workLoad');
-            $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
-        }
-
-        $projects = $query->paginate(5)->withQueryString();
-
-        $countries = (new Helper)->makeCountriesToSelectHasProjects();
-
-        // Pobierz opcje z pamięci podręcznej lub z bazy danych
-        $workingModes = $dictionaryService->getWorkingModesForSelect();
-        $experiences = $dictionaryService->getExperiencesForSelect();
-        $typesOfContract = $dictionaryService->getTypesOfContractForSelect();
-        $workLoads = $dictionaryService->getWorkLoadsForSelect();
-        $distanceOptions = $dictionaryService->getDistanceOptions();
-
-        $distanceFront = null;
-        if (request()->has('distance') && request('distance') !== null && request('distance') !== '') {
-            $distanceValue = request('distance');
-            $distanceFront = collect($distanceOptions)->first(function ($option) use ($distanceValue) {
-                return $option['value'] == $distanceValue;
-            });
-        }
-
-        $countryId = request('country');
-        $cityValue = request('city');
-        $country = null;
-        if (request('country')) {
-            $country = Country::where('id', request('country'))->first();
-        }
-        $cityFront = null;
-
-        if ($countryId && $cityValue) {
-            $cityFront = [
-                'name' => $cityValue,
-                'value' => $cityValue,
-                'countryCode' => $country->countryCode,
-                'lat' => $lat ? (float) $lat : null,
-                'lng' => $lng ? (float) $lng : null,
+            return [
+                'projects' => $projects,
+                'countries' => $countries,
+                'workingModes' => $workingModes,
+                'experiences' => $experiences,
+                'typesOfContract' => $typesOfContract,
+                'workLoads' => $workLoads,
+                'distanceOptions' => $distanceOptions,
+                'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
+                'categoryFront' => $category ? new MultiselectWithoutDetailResource($category) : null,
+                'cityFront' => $cityFront,
+                'distanceFront' => $distanceFront,
+                'lat' => $lat,
+                'lng' => $lng,
+                'country' => $country,
+                'category' => $category,
             ];
-        } elseif ($cityValue) {
-            $cityFront = [
-                'name' => $cityValue,
-                'value' => $cityValue,
-                'lat' => $lat ? (float) $lat : null,
-                'lng' => $lng ? (float) $lng : null,
-            ];
-        }
-
-        $category = null;
-        if (request('category')) {
-            $category = Category::where('id', request('category'))->first();
-        }
+        });
 
         $page = Page::findOrFail(12);
 
-        return inertia()->render('Front/Projects', [
+        return inertia()->render('Front/Projects', array_merge($data, [
             'banners' => $banners,
-            'projects' => $projects,
-            'countries' => $countries,
-            'workingModes' => $workingModes,
-            'experiences' => $experiences,
-            'typesOfContract' => $typesOfContract,
-            'workLoads' => $workLoads,
-            'distanceOptions' => $distanceOptions,
-            'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
-            'categoryFront' => $category ? new MultiselectWithoutDetailResource($category) : null,
-            'cityFront' => $cityFront,
-            'distanceFront' => $distanceFront,
             'page' => $page ? new PageResource($page) : null,
             'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
-        ]);
+        ]));
     }
 
     public function SingleArticle(Article $article)

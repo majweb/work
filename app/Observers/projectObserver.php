@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Cache;
 
 class projectObserver
 {
+    private function clearProjectsListCache(): void
+    {
+        // Aktualizacja wersji unieważnia wszystkie klucze cache dla list projektów
+        // Używamy forever, aby mieć pewność, że klucz istnieje i jest aktualizowany
+        $version = Cache::get('projects_list_version', 1);
+        Cache::forever('projects_list_version', $version + 1);
+    }
+
     private function clearProjectSingleCache(Project $project): void
     {
         $locales = config('langsShorts', []);
@@ -83,6 +91,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearProjectsListCache();
     }
 
     /**
@@ -91,6 +100,7 @@ class projectObserver
     public function updated(Project $project): void
     {
         $this->clearProjectSingleCache($project);
+        $this->clearProjectsListCache();
         $locales = config('langsShorts', []);
 
         // Wyczyść cache zarówno dla starych jak i nowych wartości
@@ -143,6 +153,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearProjectsListCache();
     }
 
     /**
@@ -152,6 +163,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearProjectsListCache();
     }
 
     /**
@@ -161,5 +173,6 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearProjectsListCache();
     }
 }
