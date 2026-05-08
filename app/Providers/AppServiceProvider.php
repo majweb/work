@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Models\Aplication;
 use App\Models\CandidateQuestion;
 use App\Models\Comment;
+use App\Models\ChangeProduct;
 use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Tag;
 use App\Models\User;
+use App\Observers\ChangeProductObserver;
 use App\Observers\projectObserver;
 use App\Policies\CandidateQuestionPolicy;
 use App\Policies\CommentPolicy;
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
 
         //        observer
         Project::observe(ProjectObserver::class);
+        ChangeProduct::observe(ChangeProductObserver::class);
 
         Gate::policy(CandidateQuestion::class, CandidateQuestionPolicy::class);
         Gate::policy(ExternalCompany::class, ExternalCompanyPolicy::class);

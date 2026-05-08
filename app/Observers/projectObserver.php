@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\Cache;
 
 class projectObserver
 {
+    private function clearProjectSingleCache(Project $project): void
+    {
+        $locales = config('langsShorts', []);
+
+        foreach ($locales as $locale) {
+            Cache::forget("project_single_{$project->id}_{$locale}");
+        }
+    }
+
     private function clearCategoriesCache(Project $project): void
     {
         $locales = config('langsShorts', []);
@@ -72,6 +81,7 @@ class projectObserver
      */
     public function created(Project $project): void
     {
+        $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
     }
 
@@ -80,6 +90,7 @@ class projectObserver
      */
     public function updated(Project $project): void
     {
+        $this->clearProjectSingleCache($project);
         $locales = config('langsShorts', []);
 
         // Wyczyść cache zarówno dla starych jak i nowych wartości
@@ -130,6 +141,7 @@ class projectObserver
      */
     public function deleted(Project $project): void
     {
+        $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
     }
 
@@ -138,6 +150,7 @@ class projectObserver
      */
     public function restored(Project $project): void
     {
+        $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
     }
 
@@ -146,6 +159,7 @@ class projectObserver
      */
     public function forceDeleted(Project $project): void
     {
+        $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
     }
 }

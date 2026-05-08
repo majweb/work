@@ -406,16 +406,22 @@ class FrontController extends Controller
 
     public function SingleProject(Project $project, Request $request)
     {
-        $project = Project::query()
-            ->with(['user', 'education', 'detailprojects'])
-            ->active() // <<--- dodane filtrowanie tylko aktywnych
-            ->findOrFail($project->id);
+        $cacheKey = "project_single_{$project->id}_" . app()->getLocale();
 
-        $project->is_featured = $project->user->changeProducts()
-            ->where('product_id', 9)
-            ->whereDate('start', '<=', now())
-            ->whereDate('end', '>=', now())
-            ->exists();
+        $project = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(60), function () use ($project) {
+            $fullProject = Project::query()
+                ->with(['user', 'education', 'detailprojects'])
+                ->active()
+                ->findOrFail($project->id);
+
+            $fullProject->is_featured = $fullProject->user->changeProducts()
+                ->where('product_id', 9)
+                ->whereDate('start', '<=', now())
+                ->whereDate('end', '>=', now())
+                ->exists();
+
+            return $fullProject;
+        });
 
         // Zliczanie odwiedzin - 1 inkrementacja na IP na 24h
         $key = 'project-view:'.$project->id.':'.$request->ip();
