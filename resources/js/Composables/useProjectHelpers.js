@@ -31,6 +31,22 @@ export function useProjectHelpers() {
             return project.title[language];
         }
 
+        // Fallback do polskiego
+        if (position?.allTranslations?.title?.['pl']) {
+            return position.allTranslations.title['pl'];
+        }
+        if (profession?.allTranslations?.title?.['pl']) {
+            return profession.allTranslations.title['pl'];
+        }
+        if (project.title?.['pl']) {
+            return project.title['pl'];
+        }
+
+        // Fallback do surowych danych
+        if (position?.title) return position.title;
+        if (profession?.title) return profession.title;
+        if (project.title && typeof project.title === 'string') return project.title;
+
         return __('translate.noPosition');
     };
 

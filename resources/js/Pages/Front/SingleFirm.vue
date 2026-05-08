@@ -3,6 +3,7 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import {Link, usePage} from "@inertiajs/vue3";
 import __ from "@/lang";
 import {computed, onMounted, ref, nextTick} from "vue";
+import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import moment from "moment";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -86,9 +87,7 @@ function openLightbox(url) {
     showLightbox.value = true;
 }
 
-function closeLightbox() {
-    showLightbox.value = false;
-}
+const { getPositionTitle } = useProjectHelpers();
 </script>
 
 <template>
@@ -400,8 +399,11 @@ function closeLightbox() {
                                                 </span>
                                                 <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
                                             </div>
-                                            <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
-                                                {{ project.position?.allTranslations.title[usePage().props.language] }}
+                                            <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors flex items-center gap-2">
+                                                {{ getPositionTitle(project) }}
+                                                <span v-if="project.inclusive_recruitment" class="px-2 py-0.5 bg-blue-50 text-blue-500 text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50 shrink-0">
+                                                    {{ __('translate.sickPeople') }}
+                                                </span>
                                             </h4>
                                         </div>
                                         <div class="flex items-center gap-2 text-gray-400">
@@ -441,9 +443,6 @@ function closeLightbox() {
                                                     <div class="flex items-center gap-1">
                                                         <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none">
                                                             {{ __('translate.' + project.salary_type) }}
-                                                        </span>
-                                                        <span v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-600 uppercase tracking-widest leading-none">
-                                                            / {{ __('translate.sickPeople') }}
                                                         </span>
                                                     </div>
                                                 </div>
