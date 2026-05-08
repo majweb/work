@@ -271,6 +271,9 @@ onMounted(async () => {
                                     <p v-if="project.salary_type" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
                                         {{ __('translate.' + project.salary_type) }}
                                     </p>
+                                    <p v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
+                                        {{ __('translate.sickPeople') }}
+                                    </p>
                                 </div>
                             </div>
 
@@ -354,6 +357,10 @@ onMounted(async () => {
                                         <div class="space-y-1" v-if="project.salary_type">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.salary_type') }}</p>
                                             <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.' + project.salary_type) }}</p>
+                                        </div>
+                                        <div class="space-y-1" v-if="project.inclusive_recruitment">
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.sickPeople') }}</p>
+                                            <p class="text-xs font-black text-blue-500 uppercase tracking-widest">{{ __('translate.sickPeople') }}</p>
                                         </div>
                                         <div class="md:col-span-2 pt-4 border-t border-gray-50">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose mb-3">{{ __('translate.system_wynagr') }}</p>

@@ -411,9 +411,14 @@ const { getPositionTitle } = useProjectHelpers();
                                     <p class="text-xs font-black text-blue-600 uppercase tracking-widest">
                                         {{ project.basicSalaryFrom }} {{ project.currency }}
                                     </p>
-                                    <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase">
-                                        {{ __('translate.' + project.salary_type) }}
-                                    </span>
+                                    <div class="flex items-center gap-1">
+                                        <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase">
+                                            {{ __('translate.' + project.salary_type) }}
+                                        </span>
+                                        <span v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-600 uppercase">
+                                            / {{ __('translate.sickPeople') }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

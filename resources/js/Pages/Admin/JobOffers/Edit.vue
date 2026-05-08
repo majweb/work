@@ -179,6 +179,7 @@ const form = useForm({
     cityWork: props.project.cityWork,
     lat: props.project.lat,
     lng: props.project.lng,
+    inclusive_recruitment: props.project.inclusive_recruitment ?? false,
     cv: props.cvs.filter(cv =>
         props.project.cv?.some(pCv => (pCv.id || pCv.value) === cv.id)
     ) ?? [],
@@ -1151,25 +1152,46 @@ onMounted(async () => {
                                 </div>
                             </div>
 
-                            <!-- Rodzaj wynagrodzenia -->
-                            <div class="mb-10">
-                                <InputLabel :value="__('translate.salary_type')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
-                                <div class="flex gap-4">
-                                    <div v-for="option in salaryTypeOptions" :key="option.value"
-                                         class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                         @click="form.salary_type = option.value">
+                            <!-- Rodzaj wynagrodzenia i Rekrutacja inkluzywna -->
+                            <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <InputLabel :value="__('translate.salary_type')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <div class="flex gap-4">
+                                        <div v-for="option in salaryTypeOptions" :key="option.value"
+                                             class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
+                                             @click="form.salary_type = option.value">
+                                            <div class="relative flex items-center justify-center">
+                                                <input
+                                                    type="radio" :id="'salary_type-'+option.value" v-model="form.salary_type"
+                                                    :value="option.value"
+                                                    class="peer sr-only"
+                                                />
+                                                <div class="h-6 w-6 rounded-full border-2 border-white bg-white shadow-sm transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px]"></div>
+                                            </div>
+                                            <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{option.label}}</span>
+                                        </div>
+                                    </div>
+                                    <InputError :message="form.errors.salary_type" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
+                                </div>
+
+                                <div>
+                                    <InputLabel :value="__('translate.sickPeople')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <div class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md h-[58px]"
+                                         @click="form.inclusive_recruitment = !form.inclusive_recruitment">
                                         <div class="relative flex items-center justify-center">
                                             <input
-                                                type="radio" :id="'salary_type-'+option.value" v-model="form.salary_type"
-                                                :value="option.value"
+                                                type="checkbox"
+                                                v-model="form.inclusive_recruitment"
                                                 class="peer sr-only"
                                             />
-                                            <div class="h-6 w-6 rounded-full border-2 border-white bg-white shadow-sm transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px]"></div>
+                                            <div class="h-6 w-6 rounded-lg border-2 border-white bg-white shadow-sm transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent flex items-center justify-center">
+                                                <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
+                                            </div>
                                         </div>
-                                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{option.label}}</span>
+                                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{ __('translate.sickPeople') }}</span>
                                     </div>
+                                    <InputError :message="form.errors.inclusive_recruitment" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
-                                <InputError :message="form.errors.salary_type" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                             </div>
 
                             <!-- Tryb wypłaty -->

@@ -729,6 +729,9 @@ const isSearching = ref(false);
                                                 </span>
                                             </div>
                                             <div class="flex items-center gap-2">
+                                                <div v-if="project.inclusive_recruitment" class="px-2 py-0.5 bg-blue-50 text-blue-500 text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
+                                                    {{ __('translate.sickPeople') }}
+                                                </div>
                                                 <div v-if="project.salary_type" class="px-2 py-0.5 bg-blue-50 text-[#329CD1] text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
                                                     {{ __('translate.' + project.salary_type) }}
                                                 </div>

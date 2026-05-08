@@ -40,6 +40,7 @@ class ProjectController extends Controller
             'positionSelect' => ['nullable', 'integer'],
         ]);
         $query = Project::query()
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession')
             ->with('recruit')
             ->withCount([
                 'aplications',
@@ -60,6 +61,8 @@ class ProjectController extends Controller
 
         $query->when(request()->has(['field', 'direction']), function ($q) {
             $q->orderBy(request('field'), request('direction'));
+        }, function ($q) {
+            $q->latest();
         });
 
         $query->when(request()->has('recruiter'), function ($q) {
@@ -149,6 +152,7 @@ class ProjectController extends Controller
                 'country' => $countryWork['allTranslations'][app()->getLocale()] ?? $countryWork['name'] ?? '',
                 'basicSalaryFrom' => $project->basicSalaryFrom ?? null,
                 'salary_type' => $project->salary_type ?? null,
+                'inclusive_recruitment' => (bool) $project->inclusive_recruitment,
                 'currency' => $currency['value'] ?? $currency['name'] ?? '',
                 'is_active' => $project->is_active ?? true,
                 'aplications_count' => $project->aplications_count ?? 0,
@@ -234,6 +238,7 @@ class ProjectController extends Controller
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'salary_type' => $request->projectData()['salary_type'],
+            'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
             'bonusSalaryTo' => $request->projectData()['bonusSalaryTo'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
             'hoursFrom' => $request->projectData()['hoursFrom'],
@@ -394,6 +399,7 @@ class ProjectController extends Controller
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'salary_type' => $request->projectData()['salary_type'],
+            'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
             'bonusSalaryTo' => $request->projectData()['bonusSalaryTo'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
             'hoursFrom' => $request->projectData()['hoursFrom'],
@@ -536,6 +542,7 @@ class ProjectController extends Controller
                     'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
                     'salary_type' => ['required', 'in:brutto,netto'],
+                    'inclusive_recruitment' => ['nullable', 'boolean'],
                     'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 

@@ -663,6 +663,10 @@ const dispatchActionSingleRecruit = value => {
                                         >
                                             {{ __('translate.createCandidate') }}
                                         </button>
+
+
+
+
                                         <Link
                                             v-else-if="application.candidate && application.worker"
                                             :href="route('candidates.show', application.candidate.id)"

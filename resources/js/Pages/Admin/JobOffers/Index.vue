@@ -960,7 +960,11 @@ const getTranslation = (value) => {
                                             </span>
                                             <span v-if="offer.salary_type"
                                                   class="text-[9px] font-black px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 uppercase tracking-widest border border-blue-100">
-                                                {{ offer.salary_type }}
+                                               {{ offer.salary_type }}
+                                            </span>
+                                            <span v-if="offer.inclusive_recruitment"
+                                                  class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black uppercase tracking-widest border border-blue-100/50">
+                                               {{ __('translate.sickPeople') }}
                                             </span>
                                         </div>
                                     </div>

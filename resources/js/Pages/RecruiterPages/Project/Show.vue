@@ -193,6 +193,12 @@ onMounted(async () => {
                                         {{ props.project.is_active ? __('translate.activeStatus') : __('translate.inactiveStatus') }}
                                     </p>
                                 </div>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.inclusive_recruitment">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.sickPeople') }}</p>
+                                    <p class="text-xl font-black text-blue-600 uppercase tracking-tight">
+                                        {{ __('translate.yes') }}
+                                    </p>
+                                </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2 flex items-center gap-4">
                                     <div class="w-12 h-12 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
                                          <div class="text-[#0A2C5C] font-black text-sm uppercase">

@@ -338,6 +338,11 @@ onMounted(async () => {
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ getTranslation(props.project.payoutMode?.allTranslations?.name) }}</p>
                                 </div>
 
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.inclusive_recruitment">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.sickPeople') }}</p>
+                                    <p class="text-sm font-black text-blue-600 uppercase tracking-tight">{{ __('translate.sickPeople') }}</p>
+                                </div>
+
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.bonusSalaryFrom || props.project.bonusSalaryTo">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.bonusLabel') }}</p>
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">

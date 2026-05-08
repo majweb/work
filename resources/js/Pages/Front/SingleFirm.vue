@@ -438,9 +438,14 @@ function closeLightbox() {
                                                     <p class="text-xl font-black text-blue-600 tracking-tight leading-none">
                                                         {{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency || 'zł' }}
                                                     </p>
-                                                    <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none">
-                                                        {{ __('translate.' + project.salary_type) }}
-                                                    </span>
+                                                    <div class="flex items-center gap-1">
+                                                        <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase tracking-widest leading-none">
+                                                            {{ __('translate.' + project.salary_type) }}
+                                                        </span>
+                                                        <span v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-600 uppercase tracking-widest leading-none">
+                                                            / {{ __('translate.sickPeople') }}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-[#0A2C5C] group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20">

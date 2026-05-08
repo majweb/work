@@ -372,6 +372,7 @@ class JobOfferController extends Controller
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'salary_type' => $request->projectData()['salary_type'],
+            'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
             'payoutMode' => $request->projectData()['payoutMode'],
             'paySystem' => $request->projectData()['paySystem'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
@@ -511,6 +512,7 @@ class JobOfferController extends Controller
                     'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
                     'salary_type' => ['required', 'in:brutto,netto'],
+                    'inclusive_recruitment' => ['nullable', 'boolean'],
                     'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 
