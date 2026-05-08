@@ -40,7 +40,7 @@ class AdminSeeder extends Seeder
             [
                 'email' => 'a.lewek@work4you.global',
                 'name' => 'A. Lewek',
-                'password' => 'y52AJSxTgqyRIomv',
+                'password' => 'KZCPSpchd7LocFzc',
             ],
         ];
 
