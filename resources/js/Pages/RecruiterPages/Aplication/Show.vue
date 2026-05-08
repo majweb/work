@@ -10,6 +10,7 @@ const props = defineProps({
     application: Object,
     otherRecruits: Array,
     project: Object,
+    createCandidateCost: Number,
 });
 
 // Stan dla modalu notatek
@@ -539,6 +540,11 @@ const createCandidate = () => {
                                         >
                                             {{ __('translate.createCandidate') }}
                                         </button>
+
+                                        <div v-if="!application.candidate && application.worker" class="text-[10px] font-black text-center text-gray-400 uppercase tracking-widest">
+                                            {{ __('translate.createCandidatePointsInfo', { points: props.createCandidateCost }) }}
+                                        </div>
+
                                         <Link
                                             v-else-if="application.candidate && application.worker"
                                             :href="route('candidates.show', application.candidate.id)"

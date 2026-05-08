@@ -101,6 +101,7 @@ class AplicationController extends Controller
         return inertia()->render('Firm/Aplication/Show', [
             'application' => $aplication,
             'otherRecruits'=>$otherRecruits,
+            'createCandidateCost' => config('getPoints.CreateCandidate', 5),
         ]);
     }
 

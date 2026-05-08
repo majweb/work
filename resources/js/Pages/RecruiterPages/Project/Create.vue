@@ -226,6 +226,7 @@ const toggleArrayItem = (item, formArray, selectRef) => {
 const waitFilter = ref('');
 const welcomeFilter = ref('');
 const offerFilter = ref('');
+const dutyFilter = ref('');
 
 // Computed properties dla przefiltrowanych list
 const filteredWaits = computed(() => {
@@ -255,6 +256,19 @@ const filteredOffers = computed(() => {
     const search = offerFilter.value.toLowerCase().trim();
     return props.offers.filter(offer =>
         offer.name.toLowerCase().includes(search)
+    );
+});
+
+const filteredDuties = computed(() => {
+    const duties = form.position?.detailprojects || form.profession?.detailprojects;
+    if (!duties) return [];
+    if (!dutyFilter.value.trim()) return duties;
+
+    const search = dutyFilter.value.toLowerCase().trim();
+    const lang = usePage().props.language;
+
+    return duties.filter(duty =>
+        duty.name[lang]?.toLowerCase().includes(search)
     );
 });
 
@@ -785,7 +799,7 @@ onMounted(() => {
                                 <div v-if="form.position || form.profession">
                                     <div v-if="((form.position?.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession?.detailprojects && Object.keys(form.profession.detailprojects).length))" class="sticky top-4">
                                         <div class="bg-blue-50/50 rounded-[2.5rem] p-8 border border-blue-100/50">
-                                            <div class="flex items-center justify-between mb-6">
+                                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
                                                 <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{ __('translate.detailProjects') }}</h3>
                                                 <div class="flex gap-4">
                                                     <button type="button" @click="addAll()" class="text-[10px] font-black text-[#00a0e3] hover:text-blue-700 uppercase tracking-widest transition-colors">
@@ -796,8 +810,34 @@ onMounted(() => {
                                                     </button>
                                                 </div>
                                             </div>
+
+                                            <!-- Search for Duties -->
+                                            <div class="mb-6 relative group">
+                                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                    <svg class="h-4 w-4 text-blue-400 group-focus-within:text-[#00a0e3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                    </svg>
+                                                </div>
+                                                <input
+                                                    v-model="dutyFilter"
+                                                    type="text"
+                                                    :placeholder="__('translate.search') + '...'"
+                                                    class="w-full pl-11 pr-12 py-3 bg-white border-2 border-blue-50 rounded-2xl text-xs font-bold text-[#0A2C5C] placeholder:text-blue-300 focus:border-[#00a0e3] focus:ring-0 transition-all outline-none"
+                                                />
+                                                <button
+                                                    v-if="dutyFilter"
+                                                    @click="dutyFilter = ''"
+                                                    type="button"
+                                                    class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-red-500 transition-colors"
+                                                >
+                                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+
                                             <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                                                <div v-for="detail in (form.position?.detailprojects || form.profession?.detailprojects)" :key="detail.id"
+                                                <div v-for="detail in filteredDuties" :key="detail.id"
                                                      class="group/item flex items-start gap-4 bg-white/50 rounded-2xl p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer"
                                                 >
                                                     <label class="group/check flex items-start cursor-pointer flex-1">

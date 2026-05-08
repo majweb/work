@@ -12,6 +12,7 @@ const props = defineProps({
     application: Object,
     otherRecruits: Array,
     candidateQuestions: Array,
+    createCandidateCost: Number,
 });
 
 const { getPositionTitle } = useProjectHelpers();
@@ -664,7 +665,9 @@ const dispatchActionSingleRecruit = value => {
                                             {{ __('translate.createCandidate') }}
                                         </button>
 
-
+                                        <div v-if="!application.candidate && application.worker" class="text-[10px] font-black text-center text-gray-400 uppercase tracking-widest">
+                                            {{ __('translate.createCandidatePointsInfo', { points: props.createCandidateCost }) }}
+                                        </div>
 
 
                                         <Link

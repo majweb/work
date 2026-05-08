@@ -1730,4 +1730,5 @@ return [
     'cv_no_auth_target' => 'Umożliwia wgląd w dane kandydata spoza bazy zweryfikowanej.',
     'cv_no_auth_detail' => 'Odczytanie liczone jest w momencie pierwszego otwarcia aplikacji.',
     'salary_type' => 'Rodzaj wynagrodzenia',
+    'createCandidatePointsInfo' => 'Utworzenie kandydata pobierze :points punktów z Twojego konta.',
 ];

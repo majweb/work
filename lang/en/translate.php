@@ -1636,5 +1636,6 @@ return [
     'completeProfileTitle' => 'Complete your company profile',
     'completeProfileDescription' => 'Your company profile is incomplete. Fill in the missing information to fully use the platform.',
     'completeProfileLink' => 'Go to profile',
-    'video_cost_info' => 'Η προσθήκη βίντεο στο προφίλ κοστίζει :points πόντους.',
+    'video_cost_info' => 'Adding video to profile costs :points points.',
+    'createCandidatePointsInfo' => 'Creating a candidate will deduct :points points from your account.',
 ];
