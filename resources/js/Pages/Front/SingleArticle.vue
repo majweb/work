@@ -130,7 +130,7 @@ const articleSchema = computed(() => {
         :title="article.meta_title || __('translate.article')"
         :description="article.meta_description || ''"
         :keywords="article.meta_keywords"
-        :image="article.photo_fb"
+        image="https://abctest.pl/storage/4/4.jpg"
         :url="route('front.articles.single', article.id)"
         type="article"
         :author="article.user?.name"
