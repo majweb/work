@@ -297,15 +297,15 @@ const isSearching = ref(false);
                     </swiper>
                 </div>
                 <!-- Formularz wyszukiwania -->
-                <div class="bg-[#0A2C5C] rounded-[3rem] shadow-xl shadow-blue-900/10 border border-[#0A2C5C] p-10">
+                <div class="bg-[#0A2C5C] rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/10 border border-[#0A2C5C] p-6 sm:p-10">
                     <form @submit.prevent="submit" class="w-full">
-                        <div class="flex items-center justify-between mb-8">
-                            <div class="flex items-center gap-4 flex-1">
-                                <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-6">
+                            <div class="flex items-center gap-4 w-full lg:flex-1">
+                                <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.filter') }}</h3>
                                 <div class="h-px flex-1 bg-white/10"></div>
                             </div>
-                            <div class="flex flex-col sm:flex-row gap-3 items-end md:items-center ml-4">
-                                <div class="flex gap-3 items-center">
+                            <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center w-full lg:w-auto">
+                                <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center flex-1 sm:flex-none">
                                     <button
                                         type="button"
                                         @click="toggleFilters"
@@ -315,7 +315,7 @@ const isSearching = ref(false);
                                     </button>
                                     <button
                                         type="submit"
-                                        class="px-8 py-3 bg-[#e31e24] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                        class="px-8 py-3 bg-[#e31e24] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2"
                                         :disabled="isSearching"
                                     >
                                         <template v-if="isSearching">
@@ -329,7 +329,7 @@ const isSearching = ref(false);
                                 </div>
                                 <Link v-if="isFilterActive"
                                       :href="route('front.projects')"
-                                      class="text-[10px] font-black text-red-400 hover:text-red-300 hover:underline uppercase tracking-widest sm:ml-2">
+                                      class="text-[10px] font-black text-red-400 hover:text-red-300 hover:underline uppercase tracking-widest text-center sm:text-left sm:ml-2">
                                     {{__('translate.resetFilters')}}
                                 </Link>
                             </div>
@@ -457,7 +457,7 @@ const isSearching = ref(false);
                         </div>
 
                         <div v-show="showFilters" class="space-y-6 pt-6 border-t border-gray-50 mb-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <!-- Select CategorySub -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderCategorySub') }}</label>
@@ -557,7 +557,7 @@ const isSearching = ref(false);
                                     <InputError :message="form.errors.workingMode" class="mt-2"/>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <!-- Select Experience -->
                                 <div class="space-y-2">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderExperience') }}</label>
@@ -607,7 +607,7 @@ const isSearching = ref(false);
                                 </div>
 
                                 <!-- Select Work Load -->
-                                <div class="space-y-2 lg:col-span-3">
+                                <div class="space-y-2 md:col-span-2 lg:col-span-1">
                                     <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.placeholderWorkLoad') }}</label>
                                     <Multiselect
                                         v-model="form.workLoad"

@@ -964,19 +964,19 @@ const removeFile = async (source, load) => {
                                                     />
                                                 </div>
                                                 <div class="flex-1 min-w-0">
-                                                    <div class="flex items-start justify-between gap-4">
+                                                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
                                                         <label :for="'agreement-' + agreement.id"
                                                                class="text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors"
                                                                :class="form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString()) ? 'text-red-600' : 'text-[#0A2C5C]'">
-                                                            <span v-html="agreement.title[lang] || agreement.title['pl'] || agreement.title"></span>
+                                                            <span v-html="(agreement.title && agreement.title[lang]) || (agreement.title && agreement.title['pl']) || agreement.title"></span>
                                                             <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
                                                         </label>
-                                                            <button type="button"
-                                                                    @click="toggleAgreementExpansion(agreement.id)"
-                                                                    class="text-[10px] font-black uppercase tracking-widest text-[#00a0e3] hover:text-[#0A2C5C] transition-colors whitespace-nowrap">
-                                                                {{ expandedAgreements.includes(agreement.id) ? __('translate.showLess') : __('translate.showMore') }}
-                                                            </button>
-                                                        </div>
+                                                        <button type="button"
+                                                                @click="toggleAgreementExpansion(agreement.id)"
+                                                                class="text-[10px] font-black uppercase tracking-widest text-[#00a0e3] hover:text-[#0A2C5C] transition-colors whitespace-nowrap self-start sm:self-auto">
+                                                            {{ expandedAgreements.includes(agreement.id) ? __('translate.showLess') : __('translate.showMore') }}
+                                                        </button>
+                                                    </div>
 
                                                         <transition
                                                             enter-active-class="transition duration-200 ease-out"
@@ -989,7 +989,7 @@ const removeFile = async (source, load) => {
                                                             <div v-if="expandedAgreements.includes(agreement.id)" class="mt-4 space-y-4">
                                                                 <div class="text-[11px] leading-relaxed normal-case [&_a]:underline [&_a]:text-blue-600 transition-colors"
                                                                      :class="form.errors.agreements && agreement.is_required && !form.agreements.includes(agreement.id.toString()) ? 'text-red-500' : 'text-gray-500'"
-                                                                     v-html="formatAgreementText(agreement.description[lang] || agreement.description['pl'])">
+                                                                     v-html="formatAgreementText((agreement.description && agreement.description[lang]) || (agreement.description && agreement.description['pl']))">
                                                                 </div>
 
                                                                 <div v-if="agreement.children && agreement.children.length > 0"
@@ -1008,14 +1008,14 @@ const removeFile = async (source, load) => {
                                                                         <label :for="'agreement-' + child.id"
                                                                                class="text-[11px] leading-relaxed font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 transition-colors"
                                                                                :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-500'">
-                                                                            <span v-html="formatAgreementText(child.description[lang] || child.description['pl'])"></span>
+                                                                            <span v-html="formatAgreementText((child.description && child.description[lang]) || (child.description && child.description['pl']))"></span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
 
                                                                 <div v-if="agreement.help_text && (agreement.help_text[lang] || agreement.help_text['pl'])"
                                                                      class="p-3 bg-blue-50/50 rounded-xl border border-blue-100/50 text-[10px] text-gray-500 italic leading-relaxed"
-                                                                     v-html="formatAgreementText(agreement.help_text[lang] || agreement.help_text['pl'])">
+                                                                     v-html="formatAgreementText((agreement.help_text && agreement.help_text[lang]) || (agreement.help_text && agreement.help_text['pl']))">
                                                                 </div>
                                                             </div>
                                                         </transition>

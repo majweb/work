@@ -1678,7 +1678,6 @@ return [
     'alreadyhaveanaccount' => 'Masz już konto?',
     'noAccount' => 'Nie masz jeszcze konta?',
     'video_cost_info' => 'DODANIE VIDEO DO PROFILU KOSZTUJE :points PUNKTÓW.',
-
     'chooseCvToEditClick' => 'Wybierz jeden ze swoich życiorysów z listy po lewej stronie, aby rozpocząć edycję.',
     'enterNameTag' => 'Wpisz nazwę',
     'editArticleDescription' => 'Popraw swój artykuł',
@@ -1734,4 +1733,15 @@ return [
     'showMore' => 'Więcej',
     'showLess' => 'Mniej',
     'recInk' => 'Rekrutacja inkluzywna',
+    'backToHome' => 'Powrót do strony głównej',
+    'errorDefaultTitle' => 'Wystąpił błąd',
+    'errorDefaultDescription' => 'Wystąpił nieoczekiwany błąd. Prosimy spróbować ponownie później.',
+    'error404Title' => 'Strona nie znaleziona',
+    'error404Description' => 'Przepraszamy, strona której szukasz nie została znaleziona.',
+    'error403Title' => 'Brak dostępu',
+    'error403Description' => 'Przepraszamy, nie masz uprawnień do dostępu do tej strony.',
+    'error500Title' => 'Błąd serwera',
+    'error500Description' => 'Ups, coś poszło nie tak na naszych serwerach.',
+    'error503Title' => 'Usługa niedostępna',
+    'error503Description' => 'Przepraszamy, trwają prace konserwacyjne. Prosimy spróbować później.',
 ];

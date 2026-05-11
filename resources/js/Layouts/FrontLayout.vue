@@ -643,7 +643,7 @@ const socialLinks = [
                                                         :for="'newsletter-agreement-' + agreement.id"
                                                         class="mt-1 text-[10px] font-bold uppercase tracking-wide cursor-pointer transition-colors"
                                                         :class="form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString()) ? 'text-red-600' : 'text-[#0A2C5C]'"
-                                                        v-html="agreement.title[page.props.language] || agreement.title['pl'] || agreement.title"
+                                                        v-html="(agreement.title && agreement.title[page.props.language]) || (agreement.title && agreement.title['pl']) || agreement.title"
                                                     ></label>
                                                     <button
                                                         type="button"
@@ -666,7 +666,7 @@ const socialLinks = [
                                                         <div
                                                             class="text-gray-500 leading-relaxed font-medium text-[11px] normal-case [&_a]:underline [&_a]:text-blue-600 hover:[&_a]:text-blue-800 transition-colors"
                                                             :class="{'text-red-600': form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString())}"
-                                                            v-html="agreement.description[page.props.language] || agreement.description['pl']"
+                                                            v-html="(agreement.description && agreement.description[page.props.language]) || (agreement.description && agreement.description['pl'])"
                                                         ></div>
 
                                                         <!-- Podzgody -->
@@ -683,14 +683,14 @@ const socialLinks = [
                                                                     :for="'newsletter-agreement-' + child.id"
                                                                     class="text-[10px] font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-500 hover:[&_a]:text-blue-700 transition-colors"
                                                                     :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-400'"
-                                                                    v-html="child.description[page.props.language] || child.description['pl']"
+                                                                    v-html="(child.description && child.description[page.props.language]) || (child.description && child.description['pl'])"
                                                                 ></label>
                                                             </div>
                                                         </div>
 
                                                         <div v-if="agreement.help_text && (agreement.help_text[page.props.language] || agreement.help_text['pl'])"
                                                             class="text-[9px] text-[#0A2C5C]/70 font-medium normal-case leading-relaxed bg-blue-50/30 p-2 rounded-lg border border-blue-100/30 italic [&_a]:underline">
-                                                            <div v-html="agreement.help_text[page.props.language] || agreement.help_text['pl']"></div>
+                                                            <div v-html="(agreement.help_text && agreement.help_text[page.props.language]) || (agreement.help_text && agreement.help_text['pl'])"></div>
                                                         </div>
                                                     </div>
                                                 </transition>
