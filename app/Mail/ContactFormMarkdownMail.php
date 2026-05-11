@@ -33,7 +33,9 @@ class ContactFormMarkdownMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address($this->email, 'Formularz Kontaktowy'), // nadawca
+            replyTo: [
+                new Address($this->email),
+            ],
             subject: 'Nowa wiadomość z formularza kontaktowego Work4You.Global',
         );
     }
