@@ -43,28 +43,28 @@ return Application::configure(basePath: dirname(__DIR__))
 //    })
     ->withExceptions(function (Exceptions $exceptions) {
         Integration::handles($exceptions);
-        $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
-            if ( !app()->environment(['local', 'testing']) && in_array($response->getStatusCode(), [404])) {
-                return Inertia::render('Error', [
-                    'status' => $response->getStatusCode(),
-                    'translations' => cache()->rememberForever('translations.'.app()->getLocale(), function () {
-                        return collect(\Illuminate\Support\Facades\File::allFiles(base_path('lang/'.app()->getLocale())))
-                            ->flatMap(function ($file) {
-                                return \Illuminate\Support\Arr::dot(
-                                    \Illuminate\Support\Facades\File::getRequire($file->getRealPath()),
-                                    $file->getBasename('.'.$file->getExtension()).'.'
-                                );
-                            });
-                    }),
-                ])
-                    ->toResponse($request)
-                    ->setStatusCode($response->getStatusCode());
-            } elseif ($response->getStatusCode() === 419) {
-                return back()->with([
-                    'message' => 'The page expired, please try again.',
-                ]);
-            }
-
-            return $response;
-        });
+//        $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
+//            if ( !app()->environment(['local', 'testing']) && in_array($response->getStatusCode(), [404])) {
+//                return Inertia::render('Error', [
+//                    'status' => $response->getStatusCode(),
+//                    'translations' => cache()->rememberForever('translations.'.app()->getLocale(), function () {
+//                        return collect(\Illuminate\Support\Facades\File::allFiles(base_path('lang/'.app()->getLocale())))
+//                            ->flatMap(function ($file) {
+//                                return \Illuminate\Support\Arr::dot(
+//                                    \Illuminate\Support\Facades\File::getRequire($file->getRealPath()),
+//                                    $file->getBasename('.'.$file->getExtension()).'.'
+//                                );
+//                            });
+//                    }),
+//                ])
+//                    ->toResponse($request)
+//                    ->setStatusCode($response->getStatusCode());
+//            } elseif ($response->getStatusCode() === 419) {
+//                return back()->with([
+//                    'message' => 'The page expired, please try again.',
+//                ]);
+//            }
+//
+//            return $response;
+//        });
     })->create();
