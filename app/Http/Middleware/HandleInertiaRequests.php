@@ -88,6 +88,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'supportAgreements' => fn () => \App\Models\Agreement::where('type', 'tickets')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
             'cookieAgreements' => fn () => \App\Models\Agreement::where('type', 'cookie')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'description', 'help_text', 'is_required']),
+            'newsletterAgreements' => fn () => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 }

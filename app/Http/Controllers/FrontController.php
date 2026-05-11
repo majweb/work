@@ -342,7 +342,6 @@ class FrontController extends Controller
         return inertia()->render('Front/Projects', array_merge($data, [
             'banners' => $banners,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]));
     }
 
@@ -399,7 +398,6 @@ class FrontController extends Controller
             'article' => new FrontArticleResource($article),
             'sidebarSections' => $sections,
             'allOtherArticles' => $allOtherArticles,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -418,7 +416,6 @@ class FrontController extends Controller
         return inertia()->render('Front/SingleFirm', [
             'firm' => new FrontUserResource($user),
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -460,7 +457,6 @@ class FrontController extends Controller
             'project' => $project,
             'image' => $image,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -476,7 +472,6 @@ class FrontController extends Controller
         return inertia()->render('Front/Contact', [
             'page' => $page ? new PageResource($page) : null,
             'supportAgreements' => $supportAgreements,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -568,7 +563,6 @@ class FrontController extends Controller
         return inertia()->render('Front/Privacy', [
             'page' => $page ? new PageResource($page) : null,
             'langs' => ['pl','en'] ?? config('langsShorts'),
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -584,7 +578,6 @@ class FrontController extends Controller
         return inertia('Front/Price', [
             'products' => $products,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -595,7 +588,6 @@ class FrontController extends Controller
         return inertia()->render('Front/Terms', [
             'page' => $page ? new PageResource($page) : null,
             'langs' => ['pl','en'] ?? config('langsShorts'),
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -686,7 +678,6 @@ class FrontController extends Controller
             'countries' => $countries,
             'features' => $features,
             'page' => $page ? new PageResource($page) : null,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
@@ -1095,7 +1086,6 @@ class FrontController extends Controller
         return inertia()->render('Front/About',
             [
                 'page' => $page ? new PageResource($page) : null,
-                'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
             ]
         );
     }
@@ -1107,7 +1097,6 @@ class FrontController extends Controller
         return inertia()->render('Front/ReadMore',
             [
                 'page' => $page ? new PageResource($page) : null,
-                'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->get(['id', 'description']),
             ]
         );
     }
@@ -1168,7 +1157,6 @@ class FrontController extends Controller
             'categoriesToSend' => $categoriesToSend,
             'countriesToSend' => $countriesToSend,
             'foundationsCount' => $foundationsCount,
-            'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
     }
 
