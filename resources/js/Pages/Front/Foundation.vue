@@ -277,7 +277,7 @@ function addMarker() {
                                 </div>
                                 <div>
                                     <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{{__('translate.benefit_organization')}}</p>
-                                    <p class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ props.foundation.benefit_organization ? __('translate.yes') :__('translate.no') }}</p>
+                                    <p class="text-lg font-black text-[#0A2C5C] tracking-tight uppercase">{{ props.foundation.benefit_organization ? __('translate.yes') :__('translate.no') }}</p>
                                 </div>
                             </div>
 

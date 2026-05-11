@@ -87,6 +87,11 @@ function openLightbox(url) {
     showLightbox.value = true;
 }
 
+function closeLightbox() {
+    showLightbox.value = false;
+    currentImage.value = '';
+}
+
 const { getPositionTitle } = useProjectHelpers();
 </script>
 

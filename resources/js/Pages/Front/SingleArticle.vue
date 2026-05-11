@@ -130,7 +130,7 @@ const articleSchema = computed(() => {
         :title="article.meta_title || __('translate.article')"
         :description="article.meta_description || ''"
         :keywords="article.meta_keywords"
-        image="https://abctest.pl/storage/4/4.jpg"
+        :image="article.photo_fb"
         :url="route('front.articles.single', article.id)"
         type="article"
         :author="article.user?.name"
@@ -142,7 +142,7 @@ const articleSchema = computed(() => {
         </template>
         <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-{{article.photo_fb}}
+
                 <!-- BACK BUTTON -->
                 <div class="mb-8">
                     <Link :href="route('front.articles')" class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5">
