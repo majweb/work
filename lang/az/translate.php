@@ -1702,4 +1702,6 @@ return [
     'error500Description' => 'Ups, serverlərimizdə problem yarandı.',
     'error503Title' => 'Xidmət mövcud deyil',
     'error503Description' => 'Bağışlayın, texniki işlər aparılır. Zəhmət olmasa, daha sonra yenidən cəhd edin.',
+    'termsInterpretation' => 'Bu Qaydalar polyak dilində hazırlanmış və istifadəçilərin rahatlığı üçün digər dillərə tərcümə edilmişdir. Dil versiyaları arasında hər hansı şərh fərqi yaranarsa, polyak və ingilis dillərində olan versiyalar əsas hesab olunur.',
+    'privacyInterpretation' => 'Bu Məxfilik Siyasəti yalnız məlumat məqsədi ilə və istifadəçilərin rahatlığı üçün müxtəlif dil versiyalarında təqdim oluna bilər. Dil versiyaları arasında hər hansı uyğunsuzluq, ziddiyyət və ya fərqli şərh yaranarsa, polyak və ingilis dillərində hazırlanmış versiyalar üstün tutulur.',
 ];

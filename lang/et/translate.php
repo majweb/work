@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Oih, meie serverites tekkis probleem.',
     'error503Title' => 'Teenus pole saadaval',
     'error503Description' => 'Vabandust, toimub hooldus. Palun proovige hiljem uuesti.',
+    'termsInterpretation' => 'Käesolevad tingimused on koostatud poola keeles ja tõlgitud teistesse keelversioonidesse kasutajate mugavuse huvides. Keelte versioonide vaheliste tõlgenduserinevuste korral on siduvad poola ja ingliskeelne versioon.',
+    'privacyInterpretation' => 'Käesolevat privaatsuspoliitikat võidakse esitada erinevates keeleversioonides üksnes teavitamise eesmärgil ja kasutajate mugavuse huvides. Keelte versioonide vaheliste vastuolude, erinevuste või erineva tõlgenduse korral on ülimuslikud poola ja ingliskeelne versioon.',
 ];

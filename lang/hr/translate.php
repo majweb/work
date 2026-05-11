@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Ups, došlo je do problema na našim poslužiteljima.',
     'error503Title' => 'Usluga nije dostupna',
     'error503Description' => 'Žao nam je, u tijeku su radovi na održavanju. Molimo pokušajte kasnije.',
+    'termsInterpretation' => 'Ovi Uvjeti sastavljeni su na poljskom jeziku i prevedeni na druge jezične verzije radi lakšeg korištenja. U slučaju bilo kakvih razlika u tumačenju između jezičnih verzija, mjerodavne su poljska i engleska verzija.',
+    'privacyInterpretation' => 'Ova Politika privatnosti može biti dostupna u različitim jezičnim verzijama isključivo u informativne svrhe i radi lakšeg korištenja. U slučaju bilo kakvih neslaganja, proturječnosti ili različitih tumačenja između jezičnih verzija, prednost imaju poljska i engleska verzija.',
 ];

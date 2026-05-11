@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Wah, serwerlerimizde mesele ýüze çykdy.',
     'error503Title' => 'Hyzmat elýeterli däl',
     'error503Description' => 'Bagyşlaň, häzirki wagtda tehniki hyzmat alnyp barylýar. Soňrak synanyşyň.',
+    'termsInterpretation' => 'Bu şertler Polşa dilinde taýýarlanyldy we ulanyjylaryň amatlylygy üçin beýleki dillerde terjime edildi. Dil wersiýalarynyň arasynda düşündiriş tapawudy ýüze çyksa, Polşa we Iňlis wersiýalary hökmany hasap edilýär.',
+    'privacyInterpretation' => 'Bu Gizlinlik Syýasaty diňe maglumat bermek we ulanyjylaryň amatlylygy üçin dürli dil wersiýalarynda berlip bilner. Dil wersiýalarynyň arasynda islendik laýyk gelmezlik, gapma-garşylyk ýa-da dürli düşündiriş ýüze çyksa, Polşa we Iňlis wersiýalary ileri tutulýar.',
 ];

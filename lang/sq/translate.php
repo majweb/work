@@ -1702,4 +1702,6 @@ return [
     'error500Description' => 'Ups, ndodhi një problem në serverët tanë.',
     'error503Title' => 'Shërbimi nuk është i disponueshëm',
     'error503Description' => 'Na vjen keq, po kryhen punime mirëmbajtjeje. Ju lutemi provoni përsëri më vonë.',
+    'termsInterpretation' => 'Këto Kushte janë hartuar në gjuhën polake dhe janë përkthyer në versione të tjera gjuhësore për lehtësinë e përdoruesve. Në rast të ndonjë ndryshimi në interpretim midis versioneve gjuhësore, versionet në polonisht dhe anglisht janë detyruese.',
+    'privacyInterpretation' => 'Kjo Politikë e Privatësisë mund të ofrohet në versione të ndryshme gjuhësore vetëm për qëllime informuese dhe për lehtësinë e përdoruesve. Në rast të ndonjë mospërputhjeje, kundërshtie ose interpretimi të ndryshëm midis versioneve gjuhësore, versionet në polonisht dhe anglisht kanë përparësi.',
 ];

@@ -1744,4 +1744,6 @@ return [
     'error500Description' => 'Oups, un problème est survenu sur nos serveurs.',
     'error503Title' => 'Service indisponible',
     'error503Description' => 'Désolé, une maintenance est en cours. Veuillez réessayer plus tard.',
+    'termsInterpretation' => 'Les présentes Conditions ont été rédigées en polonais et traduites dans d’autres versions linguistiques pour le confort des utilisateurs. En cas de divergence d’interprétation entre les versions linguistiques, les versions polonaise et anglaise font foi.',
+    'privacyInterpretation' => 'La présente Politique de confidentialité peut être fournie en différentes versions linguistiques uniquement à des fins d’information et pour le confort des utilisateurs. En cas d’incohérence, de contradiction ou d’interprétation différente entre les versions linguistiques, les versions polonaise et anglaise prévalent.',
 ];

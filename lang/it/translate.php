@@ -1744,4 +1744,6 @@ return [
     'error500Description' => 'Ops, si è verificato un problema sui nostri server.',
     'error503Title' => 'Servizio non disponibile',
     'error503Description' => 'Spiacenti, sono in corso lavori di manutenzione. Riprova più tardi.',
+    'termsInterpretation' => 'I presenti Termini sono stati redatti in lingua polacca e tradotti in altre versioni linguistiche per la comodità degli utenti. In caso di eventuali discrepanze interpretative tra le versioni linguistiche, fanno fede le versioni in polacco e in inglese.',
+    'privacyInterpretation' => 'La presente Informativa sulla Privacy può essere resa disponibile in diverse versioni linguistiche esclusivamente a scopo informativo e per la comodità degli utenti. In caso di eventuali incongruenze, contraddizioni o diverse interpretazioni tra le versioni linguistiche, prevalgono le versioni in polacco e in inglese.',
 ];

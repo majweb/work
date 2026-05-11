@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Oi, mūsų serveriuose įvyko problema.',
     'error503Title' => 'Paslauga nepasiekiama',
     'error503Description' => 'Atsiprašome, vyksta techniniai darbai. Prašome bandyti vėliau.',
+    'termsInterpretation' => 'Šios Taisyklės parengtos lenkų kalba ir vartotojų patogumui išverstos į kitas kalbines versijas. Esant bet kokiems interpretacijos skirtumams tarp kalbinių versijų, galioja lenkų ir anglų kalbos versijos.',
+    'privacyInterpretation' => 'Ši Privatumo politika gali būti pateikiama įvairiomis kalbinėmis versijomis tik informaciniais tikslais ir vartotojų patogumui. Esant bet kokiems neatitikimams, prieštaravimams ar skirtingam aiškinimui tarp kalbinių versijų, galioja lenkų ir anglų kalbos versijos.',
 ];

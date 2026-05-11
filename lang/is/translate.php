@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Úps, vandamál kom upp á netþjónum okkar.',
     'error503Title' => 'Þjónusta ekki í boði',
     'error503Description' => 'Því miður er viðhald í gangi. Vinsamlegast reyndu aftur síðar.',
+    'termsInterpretation' => 'Þessi skilmálar hafa verið samdir á pólsku og þýddir á aðrar tungumálaversionir til þæginda fyrir notendur. Ef upp koma túlkunarmunir milli tungumálaversiona skulu pólsk og enska útgáfan gilda.',
+    'privacyInterpretation' => 'Þessi persónuverndarstefna getur verið aðgengileg á mismunandi tungumálum eingöngu í upplýsingaskyni og til þæginda fyrir notendur. Ef upp koma ósamræmi, mótsagnir eða mismunandi túlkanir milli tungumálaversiona skulu pólsk og enska útgáfan gilda.',
 ];

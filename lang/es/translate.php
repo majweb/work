@@ -1744,4 +1744,6 @@ return [
     'error500Description' => 'Vaya, algo salió mal en nuestros servidores.',
     'error503Title' => 'Servicio no disponible',
     'error503Description' => 'Lo sentimos, hay tareas de mantenimiento en curso. Por favor, inténtalo de nuevo más tarde.',
+    'termsInterpretation' => 'Estos Términos han sido redactados en idioma polaco y traducidos a otras versiones lingüísticas para la comodidad de los usuarios. En caso de cualquier discrepancia en la interpretación entre las versiones lingüísticas, prevalecerán las versiones en polaco e inglés.',
+    'privacyInterpretation' => 'Esta Política de Privacidad puede estar disponible en diferentes versiones lingüísticas únicamente con fines informativos y para la comodidad de los usuarios. En caso de cualquier inconsistencia, contradicción o interpretación diferente entre las versiones lingüísticas, prevalecerán las versiones en polaco e inglés.',
 ];

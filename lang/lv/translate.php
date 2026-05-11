@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Ups, mūsu serveros radās problēma.',
     'error503Title' => 'Pakalpojums nav pieejams',
     'error503Description' => 'Atvainojiet, notiek uzturēšanas darbi. Lūdzu, mēģiniet vēlāk.',
+    'termsInterpretation' => 'Šie noteikumi ir sagatavoti poļu valodā un lietotāju ērtībai tulkoti citās valodu versijās. Jebkuru interpretācijas atšķirību gadījumā starp valodu versijām noteicošās ir poļu un angļu valodas versijas.',
+    'privacyInterpretation' => 'Šī privātuma politika var tikt nodrošināta dažādās valodu versijās tikai informatīvos nolūkos un lietotāju ērtībai. Jebkuru neatbilstību, pretrunu vai atšķirīgas interpretācijas gadījumā starp valodu versijām noteicošās ir poļu un angļu valodas versijas.',
 ];

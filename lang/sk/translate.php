@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Ups, na našich serveroch sa vyskytol problém.',
     'error503Title' => 'Služba nie je dostupná',
     'error503Description' => 'Prepáčte, prebieha údržba. Skúste to prosím neskôr.',
+    'termsInterpretation' => 'Tieto podmienky boli vypracované v poľskom jazyku a pre pohodlie používateľov preložené do iných jazykových verzií. V prípade akýchkoľvek rozdielov vo výklade medzi jazykovými verziami sú záväzné poľská a anglická verzia.',
+    'privacyInterpretation' => 'Tieto zásady ochrany osobných údajov môžu byť poskytované v rôznych jazykových verziách výlučne na informačné účely a pre pohodlie používateľov. V prípade akýchkoľvek nezrovnalostí, rozporov alebo odlišných výkladov medzi jazykovými verziami majú prednosť poľská a anglická verzia.',
 ];

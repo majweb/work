@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Jejda, na našich serverech došlo k problému.',
     'error503Title' => 'Služba není dostupná',
     'error503Description' => 'Omlouváme se, probíhá údržba. Zkuste to prosím později.',
+    'termsInterpretation' => 'Tyto Pravidla byly vypracovány v polském jazyce a pro pohodlí uživatelů byly přeloženy do dalších jazykových verzí. V případě jakýchkoli rozdílů ve výkladu mezi jazykovými verzemi jsou závazné polská a anglická verze.',
+    'privacyInterpretation' => 'Tyto Zásady ochrany osobních údajů mohou být poskytovány v různých jazykových verzích výhradně pro informační účely a pro pohodlí uživatelů. V případě jakýchkoli nesrovnalostí, rozporů nebo odlišných výkladů mezi jazykovými verzemi mají přednost verze v polském a anglickém jazyce.',
 ];

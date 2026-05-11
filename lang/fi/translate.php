@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Hups, palvelimillamme tapahtui virhe.',
     'error503Title' => 'Palvelu ei ole käytettävissä',
     'error503Description' => 'Valitettavasti huoltotöitä on käynnissä. Yritä myöhemmin uudelleen.',
+    'termsInterpretation' => 'Nämä ehdot on laadittu puolaksi ja käännetty muille kieliversioille käyttäjien mukavuuden vuoksi. Mikäli kieliversioiden välillä ilmenee tulkintaeroja, ratkaisevina pidetään puolankielistä ja englanninkielistä versiota.',
+    'privacyInterpretation' => 'Tämä tietosuojakäytäntö voidaan tarjota eri kieliversioina ainoastaan tiedotustarkoituksiin ja käyttäjien mukavuuden vuoksi. Mikäli kieliversioiden välillä ilmenee ristiriitoja, epäjohdonmukaisuuksia tai erilaisia tulkintoja, ensisijaisina pidetään puolankielistä ja englanninkielistä versiota.',
 ];

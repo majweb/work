@@ -1744,4 +1744,6 @@ return [
     'error500Description' => 'Ups, alguna cosa ha fallat als nostres servidors.',
     'error503Title' => 'Servei no disponible',
     'error503Description' => 'Ho sentim, s’estan fent tasques de manteniment. Torna-ho a intentar més tard.',
+    'termsInterpretation' => 'Ovaj Pravilnik je izrađen na poljskom jeziku i preveden na druge jezičke verzije radi lakšeg korištenja. U slučaju bilo kakvih razlika u tumačenju između jezičkih verzija, mjerodavne su poljska i engleska verzija.',
+    'privacyInterpretation' => 'Ova Politika privatnosti može biti dostupna u različitim jezičkim verzijama isključivo u informativne svrhe i radi lakšeg korištenja. U slučaju bilo kakvih neslaganja, kontradikcija ili različitih tumačenja između jezičkih verzija, prednost imaju verzije na poljskom i engleskom jeziku.',
 ];

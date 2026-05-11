@@ -1743,5 +1743,7 @@ return [
     'error500Description' => 'Ups, et gouf e Problem op eise Serveren.',
     'error503Title' => 'Service net verfügbar',
     'error503Description' => 'Et deet eis leed, et ginn aktuell Ënnerhaltsaarbechten. Probéiert w.e.g. méi spéit nach eng Kéier.',
+    'termsInterpretation' => 'Dës Bedéngungen goufen op Polnesch ausgeschafft an fir d’Bequemlechkeet vun de Benotzer an aner Sproochversiounen iwwersat. Am Fall vu Kënnen am Interpretatiounsënnerscheed tëscht de Sproochversioune sinn déi polnesch an englesch Versiounen entscheedend.',
+    'privacyInterpretation' => 'Dës Dateschutzrichtlinn kann a verschiddene Sproochversioune ausschliisslech zu Informatiounszwecker an zur Bequemlechkeet vun de Benotzer zur Verfügung gestallt ginn. Am Fall vu géigesäitege Widderspréch, Inkonsistenzen oder ënnerschiddlecher Interpretatioun tëscht de Sproochversioune hunn déi polnesch an englesch Versiounen Virrang.',
 
     ];

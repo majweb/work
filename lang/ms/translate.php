@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Maaf, terdapat masalah pada pelayan kami.',
     'error503Title' => 'Perkhidmatan tidak tersedia',
     'error503Description' => 'Maaf, penyelenggaraan sedang dijalankan. Sila cuba lagi kemudian.',
+    'termsInterpretation' => 'Terma dan Syarat ini telah disediakan dalam bahasa Poland dan diterjemahkan ke dalam versi bahasa lain untuk kemudahan pengguna. Sekiranya terdapat sebarang perbezaan tafsiran antara versi bahasa, versi bahasa Poland dan Inggeris akan diutamakan.',
+    'privacyInterpretation' => 'Dasar Privasi ini mungkin disediakan dalam pelbagai versi bahasa hanya untuk tujuan maklumat dan kemudahan pengguna. Sekiranya terdapat sebarang ketidakselarasan, percanggahan atau perbezaan tafsiran antara versi bahasa, versi bahasa Poland dan Inggeris akan diutamakan.',
 ];

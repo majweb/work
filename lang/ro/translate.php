@@ -1730,4 +1730,6 @@ return [
     'error500Description' => 'Ups, a apărut o problemă pe serverele noastre.',
     'error503Title' => 'Serviciu indisponibil',
     'error503Description' => 'Ne pare rău, se efectuează lucrări de mentenanță. Vă rugăm să încercați mai târziu.',
+    'termsInterpretation' => 'Estes Termos foram redigidos em língua polaca e traduzidos para outras versões linguísticas para conveniência dos utilizadores. Em caso de quaisquer discrepâncias de interpretação entre as versões linguísticas, prevalecem as versões em polaco e inglês.',
+    'privacyInterpretation' => 'Esta Política de Privacidade pode ser disponibilizada em diferentes versões linguísticas apenas para fins informativos e conveniência dos utilizadores. Em caso de quaisquer inconsistências, contradições ou diferentes interpretações entre as versões linguísticas, prevalecem as versões em polaco e inglês.',
 ];

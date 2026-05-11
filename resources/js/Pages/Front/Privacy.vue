@@ -20,7 +20,7 @@ const props = defineProps({
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full -mr-64 -mt-64 blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-50/20 rounded-full -ml-48 -mb-48 blur-3xl"></div>
 
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto px-6 relative z-10">
                 <!-- Header Section -->
                 <div class="text-center mb-16">
                     <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100 mb-8">
@@ -42,6 +42,10 @@ const props = defineProps({
                 <div class="bg-white rounded-[2.5rem] shadow-xl shadow-blue-900/5 p-8 md:p-12 border border-gray-100">
                     <div class="prose prose-blue max-w-none text-gray-600 leading-relaxed text-center">
                         <section class="mb-10" v-html="props.page.content"></section>
+
+                        <section class="mt-8 pt-8 border-t border-gray-100 text-xs text-gray-400 italic">
+                            {{ __('translate.privacyInterpretation') }}
+                        </section>
                     </div>
 
                     <!-- PDF Downloads -->

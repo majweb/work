@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Oops, det oppstod et problem på våre servere.',
     'error503Title' => 'Tjenesten er utilgjengelig',
     'error503Description' => 'Beklager, det pågår vedlikehold. Vennligst prøv igjen senere.',
+    'termsInterpretation' => 'Disse vilkårene er utarbeidet på polsk og oversatt til andre språkversjoner for brukernes bekvemmelighet. Ved eventuelle tolkningsforskjeller mellom språkversjonene skal den polske og engelske versjonen være gjeldende.',
+    'privacyInterpretation' => 'Denne personvernerklæringen kan gjøres tilgjengelig i ulike språkversjoner kun for informasjonsformål og brukernes bekvemmelighet. Ved eventuelle uoverensstemmelser, motstrid eller ulike tolkninger mellom språkversjonene skal den polske og engelske versjonen ha forrang.',
 ];

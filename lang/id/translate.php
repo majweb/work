@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Ups, terjadi masalah pada server kami.',
     'error503Title' => 'Layanan tidak tersedia',
     'error503Description' => 'Maaf, sedang dilakukan pemeliharaan. Silakan coba lagi nanti.',
+    'termsInterpretation' => 'Syarat ini disusun dalam bahasa Polandia dan diterjemahkan ke dalam versi bahasa lain untuk kenyamanan pengguna. Jika terjadi perbedaan penafsiran antar versi bahasa, versi bahasa Polandia dan Inggris yang berlaku.',
+    'privacyInterpretation' => 'Kebijakan Privasi ini dapat disediakan dalam berbagai versi bahasa hanya untuk tujuan informasi dan kenyamanan pengguna. Jika terjadi ketidaksesuaian, pertentangan, atau perbedaan penafsiran antar versi bahasa, versi bahasa Polandia dan Inggris yang berlaku.',
 ];

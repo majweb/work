@@ -1743,4 +1743,7 @@ return [
     'error500Description' => 'Ups, na naših strežnikih je prišlo do težave.',
     'error503Title' => 'Storitev ni na voljo',
     'error503Description' => 'Oprostite, trenutno potekajo vzdrževalna dela. Poskusite znova kasneje.',
+    'termsInterpretation' => 'Ti pogoji so bili pripravljeni v poljščini in prevedeni v druge jezikovne različice zaradi lažje uporabe. V primeru kakršnih koli razlik v razlagi med jezikovnimi različicami sta zavezujoči poljska in angleška različica.',
+    'privacyInterpretation' => 'Ta politika zasebnosti je lahko na voljo v različnih jezikovnih različicah izključno v informativne namene in zaradi lažje uporabe. V primeru kakršnih koli neskladij, nasprotij ali različnih razlag med jezikovnimi različicami imata prednost poljska in angleška različica.',
+
 ];

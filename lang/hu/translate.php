@@ -1744,5 +1744,7 @@ return [
     'error500Description' => 'Hoppá, hiba történt a szervereinken.',
     'error503Title' => 'A szolgáltatás nem elérhető',
     'error503Description' => 'Sajnáljuk, karbantartás folyik. Kérjük, próbálja meg később.',
+    'termsInterpretation' => 'Jelen Feltételek lengyel nyelven készültek, és a felhasználók kényelme érdekében más nyelvi változatokra is le lettek fordítva. A nyelvi verziók közötti bármilyen értelmezési eltérés esetén a lengyel és az angol verzió az irányadó.',
+    'privacyInterpretation' => 'Jelen Adatvédelmi Szabályzat különböző nyelvi változatokban kizárólag tájékoztató jelleggel és a felhasználók kényelme érdekében elérhető. A nyelvi verziók közötti bármilyen eltérés, ellentmondás vagy eltérő értelmezés esetén a lengyel és az angol verzió az irányadó.',
 ];
 

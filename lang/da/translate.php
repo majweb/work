@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Ups, der opstod et problem på vores servere.',
     'error503Title' => 'Tjenesten er utilgængelig',
     'error503Description' => 'Beklager, der udføres vedligeholdelse. Prøv venligst igen senere.',
+    'termsInterpretation' => 'Disse vilkår er udarbejdet på polsk og oversat til andre sprog for brugernes bekvemmelighed. I tilfælde af eventuelle forskelle i fortolkning mellem sprogversionerne er den polske og engelske version gældende.',
+    'privacyInterpretation' => 'Denne privatlivspolitik kan stilles til rådighed i forskellige sprogversioner udelukkende til informationsformål og for brugernes bekvemmelighed. I tilfælde af uoverensstemmelser, modstrid eller forskellige fortolkninger mellem sprogversionerne har den polske og engelske version forrang.',
 ];

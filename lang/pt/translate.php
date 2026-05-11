@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Ops, algo deu errado em nossos servidores.',
     'error503Title' => 'Serviço indisponível',
     'error503Description' => 'Desculpe, estamos em manutenção. Por favor, tente novamente mais tarde.',
+    'termsInterpretation' => 'Estes Termos foram redigidos em língua polaca e traduzidos para outras versões linguísticas para conveniência dos utilizadores. Em caso de quaisquer discrepâncias de interpretação entre as versões linguísticas, prevalecem as versões em polaco e inglês.',
+    'privacyInterpretation' => 'Esta Política de Privacidade pode ser disponibilizada em diferentes versões linguísticas apenas para fins informativos e conveniência dos utilizadores. Em caso de quaisquer inconsistências, contradições ou diferentes interpretações entre as versões linguísticas, prevalecem as versões em polaco e inglês.',
 ];

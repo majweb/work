@@ -1726,4 +1726,6 @@ return [
     'error500Description' => 'Hoppsan, ett problem uppstod på våra servrar.',
     'error503Title' => 'Tjänsten är inte tillgänglig',
     'error503Description' => 'Tyvärr pågår underhållsarbete. Försök igen senare.',
+    'termsInterpretation' => 'Ovi Uslovi su sastavljeni na poljskom jeziku i prevedeni na druge jezičke verzije radi lakšeg korišćenja. U slučaju bilo kakvih razlika u tumačenju između jezičkih verzija, važeće su poljska i engleska verzija.',
+    'privacyInterpretation' => 'Ova Politika privatnosti može biti dostupna u različitim jezičkim verzijama isključivo u informativne svrhe i radi lakšeg korišćenja. U slučaju bilo kakvih neslaganja, kontradikcija ili različitih tumačenja između jezičkih verzija, prednost imaju poljska i engleska verzija.',
 ];

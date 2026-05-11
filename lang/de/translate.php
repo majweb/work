@@ -1826,4 +1826,6 @@ return [
     'error500Description' => 'Ups, auf unseren Servern ist ein Problem aufgetreten.',
     'error503Title' => 'Dienst nicht verfügbar',
     'error503Description' => 'Entschuldigung, es werden Wartungsarbeiten durchgeführt. Bitte versuchen Sie es später erneut.',
+    'termsInterpretation' => 'Diese Bedingungen wurden in polnischer Sprache erstellt und zur Benutzerfreundlichkeit in andere Sprachversionen übersetzt. Im Falle von Abweichungen in der Auslegung zwischen den Sprachversionen sind die polnische und die englische Version verbindlich.',
+    'privacyInterpretation' => 'Diese Datenschutzrichtlinie kann in verschiedenen Sprachversionen ausschließlich zu Informationszwecken und zur Benutzerfreundlichkeit bereitgestellt werden. Im Falle von Unstimmigkeiten, Widersprüchen oder unterschiedlichen Auslegungen zwischen den Sprachversionen haben die polnische und die englische Version Vorrang.',
 ];

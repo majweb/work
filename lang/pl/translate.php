@@ -1744,4 +1744,6 @@ return [
     'error500Description' => 'Ups, coś poszło nie tak na naszych serwerach.',
     'error503Title' => 'Usługa niedostępna',
     'error503Description' => 'Przepraszamy, trwają prace konserwacyjne. Prosimy spróbować później.',
+    'termsInterpretation' => 'Niniejszy Regulamin został sporządzony w języku polskim oraz przetłumaczony na inne wersje językowe dla wygody użytkowników. W przypadku jakichkolwiek rozbieżności interpretacyjnych pomiędzy wersjami językowymi, wiążąca pozostaje wersja polska oraz angielska.',
+    'privacyInterpretation' => 'Niniejsza Polityka Prywatności może zostać udostępniona w różnych wersjach językowych wyłącznie w celach informacyjnych i dla wygody użytkowników. W przypadku jakichkolwiek rozbieżności, sprzeczności lub odmiennych interpretacji pomiędzy poszczególnymi wersjami językowymi, nadrzędne znaczenie mają wersje sporządzone w języku polskim oraz angielskim.',
 ];

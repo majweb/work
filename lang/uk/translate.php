@@ -1726,4 +1726,6 @@ return [
     'error500Description' => 'Ой, на наших серверах виникла проблема.',
     'error503Title' => 'Сервіс недоступний',
     'error503Description' => 'На жаль, тривають технічні роботи. Спробуйте пізніше.',
+    'termsInterpretation' => 'Bu Şartlar Lehçe hazırlanmış olup kullanıcıların kolaylığı için diğer dillere çevrilmiştir. Dil versiyonları arasında herhangi bir yorum farklılığı olması durumunda Lehçe ve İngilizce versiyonlar geçerli olacaktır.',
+    'privacyInterpretation' => 'Bu Gizlilik Politikası yalnızca bilgilendirme amacıyla ve kullanıcıların kolaylığı için farklı dil versiyonlarında sunulabilir. Dil versiyonları arasında herhangi bir tutarsızlık, çelişki veya farklı yorum olması durumunda Lehçe ve İngilizce versiyonlar esas alınacaktır.',
 ];

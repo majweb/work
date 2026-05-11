@@ -1743,4 +1743,6 @@ return [
     'error500Description' => 'Oeps, er is iets misgegaan op onze servers.',
     'error503Title' => 'Dienst niet beschikbaar',
     'error503Description' => 'Sorry, er wordt onderhoud uitgevoerd. Probeer het later opnieuw.',
+    'termsInterpretation' => 'Deze voorwaarden zijn opgesteld in het Pools en voor het gemak van gebruikers vertaald naar andere taalversies. In geval van eventuele interpretatieverschillen tussen de taalversies zijn de Poolse en Engelse versies bindend.',
+    'privacyInterpretation' => 'Dit privacybeleid kan in verschillende taalversies worden предоставд uitsluitend ter informatie en voor het gemak van gebruikers. In geval van eventuele inconsistenties, tegenstrijdigheden of verschillende interpretaties tussen de taalversies hebben de Poolse en Engelse versies voorrang.',
 ];
