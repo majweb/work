@@ -252,6 +252,7 @@ class BuyController extends Controller
                 }
 
                 $admins = User::role('admin')->get();
+                dd($admins);
                 $lang = app()->getLocale();
                 $admins->each(function ($admin) use ($lang) {
                     $admin->notify((new SendRequestBannerAdminNotification(auth()->user()))->locale($lang));
