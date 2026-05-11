@@ -240,7 +240,7 @@ const socialLinks = [
             <!-- Meta description & keywords -->
             <meta name="description" :content="props.description || __('translate.meta_description_default')" />
             <meta name="keywords" :content="props.keywords || __('translate.meta_keywords_default')" />
-
+            <meta name="robots" content="index, follow" />
             <!-- Canonical -->
             <link v-if="props.url || ogUrl" rel="canonical" :href="props.url || ogUrl" />
 
