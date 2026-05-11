@@ -105,21 +105,21 @@ const articleSchema = computed(() => {
         "author": {
             "@type": "Organization",
             "name": "WORK4YOU.GLOBAL",
-            "url": usePage().props.pageUrl + '/aboutus'
+            "url": (usePage().props.pageUrl || '') + '/aboutus'
         },
         "publisher": {
             "@type": "Organization",
             "name": "WORK4YOU.GLOBAL",
             "logo": {
                 "@type": "ImageObject",
-                "url": usePage().props.pageUrl + '/images/logo.png'
+                "url": (usePage().props.pageUrl || '') + '/images/logo.png'
             }
         },
         "datePublished": props.article.created_at,
         "dateModified": props.article.updated_at || props.article.created_at,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": usePage().props.pageUrl + '/articles/' + props.article.id
+            "@id": (usePage().props.pageUrl || '') + '/articles/' + props.article.id
         }
     });
 });
@@ -142,7 +142,7 @@ const articleSchema = computed(() => {
         </template>
         <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+{{article.photo_fb}}
                 <!-- BACK BUTTON -->
                 <div class="mb-8">
                     <Link :href="route('front.articles')" class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5">

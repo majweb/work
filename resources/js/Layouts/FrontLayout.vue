@@ -24,10 +24,10 @@ const props = defineProps({
 });
 
 const page = usePage();
-const auth = page.props.auth ?? null;
+const auth = page.props?.auth ?? null;
 
 const isClient = ref(false);
-const ogUrl = ref(page.props.ziggy?.location || page.props.pageUrl || '');
+const ogUrl = ref(page.props?.ziggy?.location || page.props?.pageUrl || '');
 
 onMounted(() => {
     isClient.value = true;
@@ -39,7 +39,7 @@ const form = useForm({
     agreements: [],
 });
 
-const newsletterAgreements = computed(() => page.props.newsletterAgreements || []);
+const newsletterAgreements = computed(() => page.props?.newsletterAgreements || []);
 
 const submitForm = () => {
     form.post(route('newsletter.store'), {
