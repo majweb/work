@@ -308,11 +308,11 @@ const submit = () => {
                                             <div class="space-y-2">
                                                 <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('translate.support_subject') }}</label>
                                                 <input
-                                                    v-model="form.subject"
-                                                    type="text"
-                                                    class="w-full bg-gray-50 border-0 rounded-[2rem] px-5 py-3 text-xs font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all"
-                                                    :placeholder="__('translate.support_subject')"
-                                                />
+                                                   v-model="form.subject"
+                                                   type="text"
+                                                   class="w-full bg-gray-50 border-0 rounded-[2rem] px-5 py-3 text-xs font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all placeholder:uppercase"
+                                                   :placeholder="__('translate.support_subject')"
+                                               />
                                                 <InputError :message="form.errors.subject" />
                                             </div>
 
@@ -320,12 +320,12 @@ const submit = () => {
                                             <div class="space-y-2">
                                                 <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('translate.support_content') }}</label>
                                                 <textarea
-                                                    v-model="form.content"
-                                                    rows="5"
-                                                    maxlength="500"
-                                                    class="w-full bg-gray-50 border-0 rounded-[2.5rem] px-5 py-3 text-xs font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all resize-none"
-                                                    :placeholder="__('translate.support_content')"
-                                                ></textarea>
+                                                   v-model="form.content"
+                                                   rows="5"
+                                                   maxlength="500"
+                                                   class="w-full bg-gray-50 border-0 rounded-[2.5rem] px-5 py-3 text-xs font-bold text-[#0A2C5C] placeholder:text-gray-300 focus:ring-4 focus:ring-blue-100 transition-all resize-none placeholder:uppercase"
+                                                   :placeholder="__('translate.support_content')"
+                                               ></textarea>
                                                 <div class="flex justify-end px-4">
                                                     <span class="text-[9px] font-black uppercase tracking-widest" :class="contentCharsRemaining < 50 ? 'text-red-500' : 'text-gray-400'">
                                                         {{ __('translate.chars_remaining') }}: {{ contentCharsRemaining }}
@@ -456,7 +456,7 @@ const submit = () => {
                                                             v-model="form.captcha"
                                                             type="text"
                                                             maxlength="6"
-                                                            class="w-full rounded-2xl bg-white border-gray-200 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-3 text-center text-lg font-black tracking-[0.5em] transition-all placeholder:text-gray-300"
+                                                            class="w-full rounded-2xl bg-white border-gray-200 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-3 text-center text-lg font-black tracking-[0.5em] transition-all placeholder:text-gray-300 placeholder:uppercase"
                                                             :placeholder="__('translate.support_captcha_placeholder')"
                                                         />
                                                     </div>

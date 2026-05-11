@@ -283,7 +283,6 @@ const getServiceDescription = (type) => {
                                         <div class="space-y-3">
                                             <Link
                                                 preserve-scroll
-                                                v-if="points && points >= parseInt(service.price)"
                                                 :href="route('buy.change', { product: service.id, points: service.price })"
                                                 method="post"
                                                 as="button"
@@ -304,11 +303,15 @@ const getServiceDescription = (type) => {
                                     </template>
                                     <template v-else>
                                         <button
+                                            v-if="points && points >= parseInt(service.price)"
                                             @click="toggleBannerOptions(service.id)"
                                             class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4"
                                         >
                                             {{ __('translate.exchangePoints') }}
                                         </button>
+                                        <div v-else class="w-full bg-gray-50 text-gray-300 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed mb-4">
+                                            {{ __('translate.notEnoughPoints') }}
+                                        </div>
                                         <div class="text-xl font-black text-[#0A2C5C] tracking-tighter">
                                             {{ parseInt(service.price).toLocaleString() }} <span class="text-[10px] uppercase tracking-widest text-gray-400">{{ __('translate.pointsUnit') }}</span>
                                         </div>

@@ -109,7 +109,7 @@ class StatisticController extends Controller
                 'aplications as no_count' => fn($q) => $q->where('status', 'no'),
                 'aplications as maybe_count' => fn($q) => $q->where('status', 'maybe'),
             ])
-            ->latest()
+            ->latest('id')
             ->get()
             ->map(function ($project) {
                 $total = $project->aplications_count;

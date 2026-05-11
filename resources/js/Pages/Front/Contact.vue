@@ -246,7 +246,7 @@ onMounted(() => loadCaptcha())
                                         <div class="space-y-2">
                                             <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('info.subject') }}</label>
                                             <TextInput
-                                                :placeholder="__('info.subject')"
+                                                :placeholder="__('info.subject').toUpperCase()"
                                                 id="subject"
                                                 v-model="form.subject"
                                                 type="text"
@@ -263,7 +263,7 @@ onMounted(() => loadCaptcha())
                                             :placeholder="__('info.message')"
                                             rows="5"
                                             maxlength="500"
-                                            class="w-full rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:ring-4 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-4 px-4 transition-all text-sm font-bold text-[#0A2C5C] placeholder:text-gray-300 shadow-sm"
+                                            class="w-full rounded-2xl bg-gray-50 border-transparent focus:bg-white focus:ring-4 focus:ring-[#00a0e3]/10 focus:border-[#00a0e3] py-4 px-4 transition-all text-sm font-bold text-[#0A2C5C] placeholder:text-gray-300 shadow-sm placeholder:uppercase"
                                         ></textarea>
                                         <div class="flex justify-end px-4">
                                             <span class="text-[9px] font-black uppercase tracking-widest" :class="messageCharsRemaining < 50 ? 'text-red-500' : 'text-gray-400'">
@@ -294,7 +294,7 @@ onMounted(() => loadCaptcha())
 
                                             <div class="flex-1 w-full">
                                                 <TextInput
-                                                    :placeholder="__('info.code')"
+                                                    :placeholder="__('info.code').toUpperCase()"
                                                     id="captcha"
                                                     maxlength="6"
                                                     v-model="form.captcha"

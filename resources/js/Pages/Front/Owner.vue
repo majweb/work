@@ -144,13 +144,13 @@ const submit = () => {
 
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.links_label') }}</label>
-                            <textarea id="links" v-model="form.links" rows="3" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all" :placeholder="__('illegalForm.links_placeholder')"></textarea>
+                            <textarea id="links" v-model="form.links" rows="3" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all placeholder:uppercase" :placeholder="__('illegalForm.links_placeholder')"></textarea>
                             <InputError :message="form.errors.links" class="mt-2" />
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.details_label') }}</label>
-                            <textarea id="details" v-model="form.details" rows="5" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all" :placeholder="__('illegalForm.details_placeholder')"></textarea>
+                            <textarea id="details" v-model="form.details" rows="5" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all placeholder:uppercase" :placeholder="__('illegalForm.details_placeholder')"></textarea>
                             <InputError :message="form.errors.details" class="mt-2" />
                         </div>
                         <div>
