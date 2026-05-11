@@ -245,7 +245,7 @@ const socialLinks = [
             <link v-if="props.url || ogUrl" rel="canonical" :href="props.url || ogUrl" />
 
             <!-- Open Graph -->
-            <meta property="og:locale" :content="page.props.currentCountry || 'pl'" />
+            <meta property="og:locale" content="pl_PL" />
             <meta property="og:type" :content="props.type || 'website'" />
             <meta v-if="props.title" property="og:title" :content="props.title" />
             <meta v-if="props.description" property="og:description" :content="props.description" />
