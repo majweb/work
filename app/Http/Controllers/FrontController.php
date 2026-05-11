@@ -645,7 +645,7 @@ class FrontController extends Controller
             });
         }
 
-        $firms = $query->paginate(10)->withQueryString();
+        $firms = $query->paginate(12)->withQueryString();
 
         // Używamy Resource dla danych w paginacji
         $firms->setCollection(

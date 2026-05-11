@@ -54,7 +54,7 @@ class AdminSeeder extends Seeder
                 ]
             );
             $sub->assignRole('admin');
-            $sub->assignRole('admin-sub');
+//            $sub->assignRole('admin-sub');
         }
     }
 }

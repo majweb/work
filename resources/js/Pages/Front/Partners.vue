@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import mapboxgl from "mapbox-gl";
-import {computed, ref, watch} from "vue";
+import {computed, onMounted, onUnmounted, ref, watch} from "vue";
 import {usePage, useForm} from "@inertiajs/vue3";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
@@ -47,6 +47,20 @@ const props = defineProps({
     page: Object
 });
 const foundations = computed(() => props.foundations);
+
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1280);
+const updateWidth = () => {
+    windowWidth.value = window.innerWidth;
+};
+
+onMounted(() => window.addEventListener('resize', updateWidth));
+onUnmounted(() => window.removeEventListener('resize', updateWidth));
+
+const shouldLoop = computed(() => {
+    const limit = windowWidth.value < 1024 ? 2 : 6;
+    return props.partners.length > limit;
+});
+
 mapboxgl.accessToken = usePage().props.mapboxToken;
 
 // ===============================
@@ -252,8 +266,8 @@ const submit = () => {
                         <Swiper
                             :modules="[Autoplay]"
                             :space-between="32"
-                            :loop="props.partners.length > 6"
-                            :autoplay="props.partners.length > 6 ? { delay: 3000, disableOnInteraction: false } : false"
+                            :loop="shouldLoop"
+                            :autoplay="shouldLoop ? { delay: 3000, disableOnInteraction: false } : false"
                             :breakpoints="{
                                 0:   { slidesPerView: 2.3 },
                                 640: { slidesPerView: 3.5 },
