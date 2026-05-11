@@ -47,7 +47,9 @@ class FrontUserResource extends JsonResource
             'is_featured' => $this->whenHas('is_featured_count', fn() => $this->is_featured_count > 0, $this->is_featured ?? false),
             'points' => $this->firm->points,
             'currency' => $this->firm->currency,
-            'projects' => $this->whenLoaded('projects'),
+            'projects' => $this->whenLoaded('projects', function() {
+                return $this->projects->where('is_active', true);
+            }),
             'media' => $this->firm->getMedia('firms_images')->map(fn($item) => [
                 'url' => $item->getUrl(),
                 'name' => $item->name, // to będzie użyte jako alt

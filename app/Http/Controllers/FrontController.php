@@ -405,7 +405,9 @@ class FrontController extends Controller
 
     public function SingleFirm(User $user)
     {
-        $user->load('firm', 'projects.user.firm.media');
+        $user->load(['firm', 'projects' => function ($query) {
+            $query->where('is_active', true);
+        }, 'projects.user.firm.media']);
         $user->loadCount(['changeProducts as is_featured_count' => function ($query) {
             $query->where('product_id', 9)
                 ->whereDate('start', '<=', now())
