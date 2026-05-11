@@ -318,9 +318,11 @@ function zoomToContinent(continent) {
 }
 
 async function zoomToCountry(countryObj) {
-    if (!countryObj || !countryObj.name) return;
+    if (!countryObj || !countryObj.countryCode) return;
+    // Używamy countryCode zamiast name, aby zapewnić 100% trafność w Mapbox API
+    const query = countryObj.countryCode.toLowerCase();
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?types=country&access_token=${mapboxgl.accessToken}`;
 
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(countryObj.name)}.json?types=country&country=${countryObj.countryCode.toLowerCase()}&access_token=${mapboxgl.accessToken}`;
     const res = await fetch(url);
     const data = await res.json();
     if (!data.features?.length) return;

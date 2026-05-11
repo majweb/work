@@ -227,7 +227,7 @@ function addMarker() {
                                 <div class="w-10 h-10 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100">
                                     <img src="/images/partners/localizations.svg" class="h-5 opacity-70" />
                                 </div>
-                                <p class="text-sm font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
                                     {{ props.foundation.address_street }}<br>
                                     {{ props.foundation.address_postcode }} {{ props.foundation.address_city }}<br>
                                     {{ props.foundation.address_country?.allTranslations?.[usePage().props.language] }}
