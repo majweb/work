@@ -1184,7 +1184,7 @@ onMounted(async () => {
                                         v-model="form.basicSalaryFrom"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                         type="number"
-                                        step="0.1"
+                                        step="0.01"
                                         :placeholder="__('translate.salaryFromPlaceholder')"
                                     />
                                     <InputError :message="form.errors.basicSalaryFrom" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
@@ -1196,7 +1196,7 @@ onMounted(async () => {
                                         v-model="form.basicSalaryTo"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                         type="number"
-                                        step="0.1"
+                                        step="0.01"
                                         :placeholder="__('translate.salaryToPlaceholder')"
                                     />
                                     <InputError :message="form.errors.basicSalaryTo" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
@@ -1298,7 +1298,7 @@ onMounted(async () => {
                                         v-model="form.bonusSalaryFrom"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                         type="number"
-                                        step="0.1"
+                                        step="0.01"
                                         :placeholder="__('translate.bonusFromPlaceholder')"
                                     />
                                     <InputError :message="form.errors.bonusSalaryFrom" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
@@ -1310,7 +1310,7 @@ onMounted(async () => {
                                         v-model="form.bonusSalaryTo"
                                         class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-white focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"
                                         type="number"
-                                        step="0.1"
+                                        step="0.01"
                                         :placeholder="__('translate.bonusToPlaceholder')"
                                     />
                                     <InputError :message="form.errors.bonusSalaryTo" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
