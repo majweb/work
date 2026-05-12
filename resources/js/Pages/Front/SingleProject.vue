@@ -347,16 +347,16 @@ onMounted(async () => {
                     <div class="p-8 md:p-16 bg-gray-50/30 border-t border-gray-50">
                         <div class="relative max-w-5xl">
                             <!-- pionowa linia -->
-                            <div class="absolute left-6 md:left-10 inset-y-0 w-px bg-gradient-to-b from-[#0A2C5C] via-blue-200 to-transparent"></div>
+                            <div class="hidden md:block absolute left-6 md:left-10 inset-y-0 w-px bg-gradient-to-b from-[#0A2C5C] via-blue-200 to-transparent"></div>
 
                             <!-- Sekcja 1: PŁATNOŚĆ -->
                             <div class="flex items-start mb-16 relative group">
                                 <!-- ikona -->
-                                <div class="z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
+                                <div class="hidden md:flex z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
                                     <img src="/images/icons/płatnosc_i_oczekiwania.svg" :alt="__('translate.icon_pay')" class="w-8 h-8 md:w-12 md:h-12" />
                                 </div>
                                 <!-- treść -->
-                                <div class="ml-8 md:ml-12 flex-1">
+                                <div class="md:ml-12 flex-1">
                                     <h2 class="text-xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __('translate.platnosc') }}</h2>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
@@ -385,10 +385,10 @@ onMounted(async () => {
 
                             <!-- Sekcja 2: ORGANIZACJA PRACY -->
                             <div class="flex items-start mb-16 relative group">
-                                <div class="z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
+                                <div class="hidden md:flex z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
                                     <img src="/images/icons/organizacja_pracy_i_oczekiwania.svg" :alt="__('translate.ikona_org')" class="w-8 h-8 md:w-12 md:h-12" />
                                 </div>
-                                <div class="ml-8 md:ml-12 flex-1">
+                                <div class="md:ml-12 flex-1">
                                     <h2 class="text-xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __('translate.org_prac') }}</h2>
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
@@ -417,10 +417,10 @@ onMounted(async () => {
 
                             <!-- Sekcja 3: WYMAGANIA I OCZEKIWANIA -->
                             <div class="flex items-start mb-4 relative group">
-                                <div class="z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
+                                <div class="hidden md:flex z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
                                     <img src="/images/icons/wymagania_i_oczekiwania.svg" :alt="__('translate.iko_wym')" class="w-8 h-8 md:w-12 md:h-12" />
                                 </div>
-                                <div class="ml-8 md:ml-12 flex-1">
+                                <div class="md:ml-12 flex-1">
                                     <h2 class="text-xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __('translate.wym_i_oczek') }}</h2>
                                     <div class="bg-white p-8 rounded-[3rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow space-y-8">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -431,6 +431,24 @@ onMounted(async () => {
                                             <div class="space-y-1">
                                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.education') }}</p>
                                                 <p class="font-black text-[#0A2C5C] uppercase tracking-tight">{{ project.education.name[usePage().props.language] || project.education.name }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div v-if="project.langs && project.langs.length" class="pt-8 border-t border-gray-50">
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                                <span class="w-1 h-1 bg-[#2386BC] rounded-full"></span>
+                                                {{ __('translate.language') || 'Języki' }}
+                                            </p>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div v-for="(lang, index) in project.langs" :key="index" class="flex items-center gap-2">
+                                                    <svg class="w-3 h-3 text-[#2386BC] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                    <p class="text-xs font-bold text-gray-600 uppercase tracking-widest">
+                                                        <span class="text-[#0A2C5C]">{{ lang.name.allLabels?.[usePage().props.language] || lang.name.label || lang.name }}</span>:
+                                                        <span class="text-gray-400">{{ lang.level.allTranslations?.[usePage().props.language] || lang.level.name || lang.level }}</span>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
 
