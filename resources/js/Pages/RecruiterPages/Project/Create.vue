@@ -36,8 +36,33 @@ const props = defineProps({
     welcomes: Array,
     educations: Array,
     cvs: Array,
+    langLevels: Array,
     externalCompanies: Array,
 });
+
+const sortLangs = computed(() => {
+    const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+    const languages = usePage().props.languages;
+
+    if (!languages || !Array.isArray(languages)) {
+        return [];
+    }
+
+    return languages
+        .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
+        .sort((a, b) => (a.label || '').localeCompare(b.label || ''));
+})
+
+const addLang = () => {
+    form.langs.push({
+        name: null,
+        level: null
+    });
+};
+
+const removeLang = (index) => {
+    form.langs.splice(index, 1);
+};
 
 // Kroki formularza
 const currentStep = ref(1);
@@ -175,6 +200,7 @@ const form = useForm({
     lng: '',
     inclusive_recruitment: false,
     cv: [],
+    langs: [],
     questions: [],
     external_company_id: '',
     is_active: true,
@@ -1731,29 +1757,72 @@ onMounted(() => {
                                 <InputError :message="form.errors.experience" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                             </div>
                         </div>
-
-                        <!-- Wykształcenie -->
+                        <!-- Języki obce -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                            <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.education') }}</h2>
-                                <div class="h-px flex-1 bg-gray-100"></div>
+                            <div class="flex items-center justify-between mb-8">
+                                <h3 class="text-xl font-black uppercase tracking-widest text-[#0A2C5C]">{{ __('translate.language') }}</h3>
+                                <button
+                                    type="button"
+                                    @click="addLang"
+                                    class="group flex items-center gap-2 px-6 py-3 bg-blue-50 text-blue-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                                >
+                                    <span class="text-lg leading-none group-hover:rotate-90 transition-transform">+</span>
+                                    {{ __('translate.addLang') }}
+                                </button>
                             </div>
-                            <div v-if="educations" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div v-for="education in educations" :key="education.id"
-                                     class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                     @click="educationSelect = education.name; form.education = education.id">
-                                    <div class="relative flex items-center justify-center">
-                                        <input
-                                            type="radio" :id="'education-'+education.id" v-model="form.education"
-                                            :value="education.id"
-                                            class="peer sr-only"
-                                        />
-                                        <div class="h-6 w-6 rounded-full border-2 border-white bg-white shadow-sm transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px]"></div>
+
+                            <InputError :message="form.errors.langs" class="my-4 text-[10px] font-black uppercase tracking-widest" />
+
+                            <div v-if="form.langs.length > 0" class="space-y-6">
+                                <div v-for="(lang, index) in form.langs" :key="index" class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 relative group transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-900/5">
+                                    <button
+                                        type="button"
+                                        @click="removeLang(index)"
+                                        class="absolute -top-3 -right-3 w-8 h-8 bg-white border border-gray-100 text-red-500 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                    >
+                                        ×
+                                    </button>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div class="space-y-2">
+                                            <InputLabel :value="__('translate.language')" class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4 mb-2" />
+                                            <multiselect
+                                                v-model="lang.name"
+                                                :options="sortLangs"
+                                                :placeholder="__('translate.select')"
+                                                label="label"
+                                                track-by="value"
+                                                class="custom-multiselect"
+                                                :select-label="''"
+                                                :deselect-label="''"
+                                                :selected-label="''"
+                                            />
+                                            <InputError :message="form.errors['langs.' + index + '.name']" class="my-4 text-[10px] font-black uppercase tracking-widest" />
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <InputLabel :value="__('translate.levelLang')" class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4 mb-2" />
+                                            <multiselect
+                                                v-model="lang.level"
+                                                :options="props.langLevels"
+                                                :placeholder="__('translate.select')"
+                                                label="name"
+                                                track-by="id"
+                                                class="custom-multiselect"
+                                                :select-label="''"
+                                                :deselect-label="''"
+                                                :selected-label="''"
+                                            />
+                                            <InputError :message="form.errors['langs.' + index + '.level']" class="my-4 text-[10px] font-black uppercase tracking-widest" />
+                                        </div>
                                     </div>
-                                    <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{education.name}}</span>
                                 </div>
                             </div>
-                            <InputError :message="form.errors.education" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
+
+                            <div v-else class="text-center py-12 border-2 border-dashed border-gray-100 rounded-[2rem]">
+                                <div class="text-4xl mb-4 opacity-20">🌍</div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-gray-400">{{ __('translate.noLangsAdded') }}</p>
+                            </div>
                         </div>
 
                         <!-- Przyciski nawigacji i submit -->

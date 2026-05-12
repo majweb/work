@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Recruit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
+use App\Lang\Lang;
 use App\Models\Category;
 use App\Models\ExternalCompany;
 use App\Models\Project;
@@ -217,6 +218,29 @@ class ProjectController extends Controller implements HasMiddleware
                 $request->projectData()['currency']['name'].' '.
                 __('translate.'.$request->projectData()['salary_type']);
         }
+        $langs = [];
+        foreach ($request->projectData()['langs'] ?? [] as $langData) {
+            $langEnum = is_array($langData['name'])
+                ? Lang::tryFrom($langData['name']['value'] ?? '')
+                : Lang::tryFrom($langData['name'] ?? '');
+
+            $levelId = is_array($langData['level']) ? ($langData['level']['id'] ?? $langData['level']['value'] ?? null) : $langData['level'];
+            $levelModel = \App\Models\LangLevel::find($levelId);
+            $levelTranslations = $levelModel ? $levelModel->getTranslations('name') : null;
+
+            $langs[] = [
+                'name' => [
+                    'value' => $langData['name']['value'] ?? $langData['name'],
+                    'label' => $langEnum ? $langEnum->label() : ($langData['name']['label'] ?? null),
+                    'allLabels' => $langEnum ? $langEnum->allLabels() : ($langData['name']['allLabels'] ?? null),
+                ],
+                'level' => [
+                    'id' => $levelId,
+                    'name' => ($levelModel ? $levelModel->name : ($langData['level']['name'] ?? null)),
+                    'allTranslations' => $levelTranslations ?: ($langData['level']['allTranslations'] ?? null),
+                ],
+            ];
+        }
         $project = Project::create([
             'title' => $title,
             'category' => $request->projectData()['category'],
@@ -257,6 +281,7 @@ class ProjectController extends Controller implements HasMiddleware
             'user_id' => auth()->user()->recruiter_from_firm_id ?? auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
@@ -362,6 +387,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'educations' => $dictionaries['educations'],
                 'project' => $project,
                 'cvs' => $dictionaries['cvs'],
+                'langLevels' => $dictionaries['langLevels'],
                 'externalCompanies' => $externalCompanies,
             ]);
     }
@@ -388,6 +414,29 @@ class ProjectController extends Controller implements HasMiddleware
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
                 __('translate.'.$request->projectData()['salary_type']);
+        }
+        $langs = [];
+        foreach ($request->projectData()['langs'] ?? [] as $langData) {
+            $langEnum = is_array($langData['name'])
+                ? Lang::tryFrom($langData['name']['value'] ?? '')
+                : Lang::tryFrom($langData['name'] ?? '');
+
+            $levelId = is_array($langData['level']) ? ($langData['level']['id'] ?? $langData['level']['value'] ?? null) : $langData['level'];
+            $levelModel = \App\Models\LangLevel::find($levelId);
+            $levelTranslations = $levelModel ? $levelModel->getTranslations('name') : null;
+
+            $langs[] = [
+                'name' => [
+                    'value' => $langData['name']['value'] ?? $langData['name'],
+                    'label' => $langEnum ? $langEnum->label() : ($langData['name']['label'] ?? null),
+                    'allLabels' => $langEnum ? $langEnum->allLabels() : ($langData['name']['allLabels'] ?? null),
+                ],
+                'level' => [
+                    'id' => $levelId,
+                    'name' => ($levelModel ? $levelModel->name : ($langData['level']['name'] ?? null)),
+                    'allTranslations' => $levelTranslations ?: ($langData['level']['allTranslations'] ?? null),
+                ],
+            ];
         }
         $project->update([
             'title' => $title,
@@ -429,6 +478,7 @@ class ProjectController extends Controller implements HasMiddleware
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
