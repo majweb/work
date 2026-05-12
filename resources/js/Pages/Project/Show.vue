@@ -372,7 +372,7 @@ onMounted(async () => {
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salaryLabel') }}</p>
                                     <div class="flex items-baseline gap-2">
                                         <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                            {{ props.project.basicSalaryFrom }} - {{ props.project.basicSalaryTo }}
+                                            {{ props.project.basicSalaryFrom ?? '-' }} - {{ props.project.basicSalaryTo ?? '-' }}
                                         </span>
                                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ props.project.currency?.name }}</span>
                                         <span v-if="props.project.salary_type" class="text-[10px] font-black text-blue-400 uppercase border-l border-gray-200 pl-2">
@@ -386,11 +386,14 @@ onMounted(async () => {
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.payoutMode?.allTranslations?.name[lang] }}</p>
                                 </div>
 
-                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.bonusSalaryFrom || props.project.bonusSalaryTo">
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.bonusLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                        {{ props.project.bonusSalaryFrom }} - {{ props.project.bonusSalaryTo }} {{ props.project.currency?.name }}
-                                    </p>
+                                    <div class="flex items-baseline gap-2">
+                                        <span class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                            {{ props.project.bonusSalaryFrom ?? '-' }} - {{ props.project.bonusSalaryTo ?? '-' }}
+                                        </span>
+                                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ props.project.currency?.name }}</span>
+                                    </div>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.paySystem && props.project.paySystem.length">
@@ -440,7 +443,7 @@ onMounted(async () => {
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workHoursLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] tracking-widest">{{ props.project.hoursFrom }} - {{ props.project.hoursTo }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] tracking-widest">{{ props.project.hoursFrom ?? '-' }} - {{ props.project.hoursTo ?? '-' }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">

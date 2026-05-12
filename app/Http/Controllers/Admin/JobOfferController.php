@@ -539,7 +539,7 @@ class JobOfferController extends Controller
                     'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
                     'salary_type' => ['required', 'in:brutto,netto'],
                     'inclusive_recruitment' => ['nullable', 'boolean'],
-                    'bonusSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
+                    'bonusSalaryFrom' => ['nullable', 'numeric', 'between:1,99999.99'],
                     'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],
 
                     // Tryb wypłaty
@@ -551,8 +551,8 @@ class JobOfferController extends Controller
                     'days.*.id' => ['required', 'exists:App\Models\Day,id'],
 
                     // Godziny pracy
-                    'hoursFrom' => ['required', 'date_format:H:i', 'before:hoursTo'],
-                    'hoursTo' => ['required', 'date_format:H:i', 'after:hoursFrom'],
+                    'hoursFrom' => ['nullable', 'date_format:H:i', 'before:hoursTo'],
+                    'hoursTo' => ['nullable', 'date_format:H:i', 'after:hoursFrom'],
 
                     // System wynagrodzeń
                     'paySystem' => ['required', 'array', 'min:1'],

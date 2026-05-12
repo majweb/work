@@ -268,10 +268,10 @@ onMounted(async () => {
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salary') }}</p>
                                 <div class="space-y-1">
                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-tight">
-                                        {{ __('premium.history_from') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryFrom }} {{ project.currency?.name || project.currency }}</span>
+                                        {{ __('premium.history_from') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryFrom ?? '-' }} {{ project.currency?.name || project.currency }}</span>
                                     </p>
                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-tight">
-                                        {{ __('premium.history_to') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryTo }} {{ project.currency?.name || project.currency }}</span>
+                                        {{ __('premium.history_to') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryTo ?? '-' }} {{ project.currency?.name || project.currency }}</span>
                                     </p>
                                     <p v-if="project.salary_type" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
                                         {{ __('translate.' + project.salary_type) }}
@@ -365,7 +365,12 @@ onMounted(async () => {
                                         </div>
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.premia') }}</p>
-                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.bonusSalaryFrom }}{{ project.currency?.name }} {{ __('translate.do') }} {{ project.bonusSalaryTo }}{{ project.currency?.name }}</p>
+                                            <div class="flex items-baseline gap-2">
+                                                <span class="text-xs font-black text-gray-700 uppercase tracking-widest">
+                                                    {{ project.bonusSalaryFrom ?? '-' }} - {{ project.bonusSalaryTo ?? '-' }}
+                                                </span>
+                                                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ project.currency?.name || project.currency }}</span>
+                                            </div>
                                         </div>
                                         <div class="space-y-1" v-if="project.salary_type">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.salary_type') }}</p>
@@ -393,7 +398,7 @@ onMounted(async () => {
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.godziny') || 'Godziny' }}</p>
-                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.hoursFrom }} {{ __('translate.do') }} {{ project.hoursTo }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ __('translate.od') }} {{ project.hoursFrom ?? '-' }} {{ __('translate.do') }} {{ project.hoursTo ?? '-' }}</p>
                                         </div>
                                         <div class="space-y-1">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.prac_zm') }}</p>

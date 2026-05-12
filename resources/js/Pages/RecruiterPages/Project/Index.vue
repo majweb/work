@@ -409,8 +409,11 @@ const { getPositionTitle } = useProjectHelpers();
                                 </div>
                                 <div class="flex items-baseline gap-2">
                                     <p class="text-xs font-black text-blue-600 uppercase tracking-widest">
-                                        {{ project.basicSalaryFrom }} {{ project.currency }}
+                                        {{ project.basicSalaryFrom ?? '-' }} - {{ project.basicSalaryTo ?? '-' }}
                                     </p>
+                                    <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">
+                                        {{ project.currency }}
+                                    </span>
                                     <div class="flex items-center gap-1">
                                         <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase">
                                             {{ __('translate.' + project.salary_type) }}
