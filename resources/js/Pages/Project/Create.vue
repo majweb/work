@@ -37,7 +37,32 @@ const props = defineProps({
     educations: Array,
     cvs: Array,
     externalCompanies: Array,
+    langLevels: Array,
 });
+
+const sortLangs = computed(() => {
+    const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+    const languages = props.languages || usePage().props.languages;
+
+    if (!languages || !Array.isArray(languages)) {
+        return [];
+    }
+
+    return languages
+        .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
+        .sort((a, b) => (a.label || '').localeCompare(b.label || ''));
+})
+
+const addLang = () => {
+    form.langs.push({
+        name: null,
+        level: null
+    });
+};
+
+const removeLang = (index) => {
+    form.langs.splice(index, 1);
+};
 
 // Kroki formularza
 const currentStep = ref(1);
@@ -177,6 +202,7 @@ const form = useForm({
     cv: [],
     questions: [],
     external_company_id: '',
+    langs: [],
     is_active: true,
 });
 
@@ -1726,9 +1752,72 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <!-- Wykształcenie -->
+                        <!-- Języki obce -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                            <div class="flex items-center justify-between mb-8">
+                                <h3 class="text-xl font-black uppercase tracking-widest text-[#0A2C5C]">{{ __('translate.language') }}</h3>
+                                <button
+                                    type="button"
+                                    @click="addLang"
+                                    class="group flex items-center gap-2 px-6 py-3 bg-blue-50 text-blue-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                                >
+                                    <span class="text-lg leading-none group-hover:rotate-90 transition-transform">+</span>
+                                    {{ __('translate.addLang') }}
+                                </button>
+                            </div>
 
+                            <InputError :message="form.errors.langs" class="my-4 text-[10px] font-black uppercase tracking-widest" />
+
+                            <div v-if="form.langs.length > 0" class="space-y-6">
+                                <div v-for="(lang, index) in form.langs" :key="index" class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 relative group transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-900/5">
+                                    <button
+                                        type="button"
+                                        @click="removeLang(index)"
+                                        class="absolute -top-3 -right-3 w-8 h-8 bg-white border border-gray-100 text-red-500 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                    >
+                                        ×
+                                    </button>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div class="space-y-2">
+                                            <InputLabel :value="__('translate.language')" class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4 mb-2" />
+                                            <multiselect
+                                                v-model="lang.name"
+                                                :options="sortLangs"
+                                                :placeholder="__('translate.select')"
+                                                label="label"
+                                                track-by="value"
+                                                class="custom-multiselect"
+                                                :select-label="''"
+                                                :deselect-label="''"
+                                                :selected-label="''"
+                                            />
+                                            <InputError :message="form.errors['langs.' + index + '.name']" class="ml-4" />
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <InputLabel :value="__('translate.levelLang')" class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4 mb-2" />
+                                            <multiselect
+                                                v-model="lang.level"
+                                                :options="props.langLevels"
+                                                :placeholder="__('translate.select')"
+                                                label="name"
+                                                track-by="id"
+                                                class="custom-multiselect"
+                                                :select-label="''"
+                                                :deselect-label="''"
+                                                :selected-label="''"
+                                            />
+                                            <InputError :message="form.errors['langs.' + index + '.level']" class="ml-4" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-else class="text-center py-12 border-2 border-dashed border-gray-100 rounded-[2rem]">
+                                <div class="text-4xl mb-4 opacity-20">🌍</div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-gray-400">{{ __('translate.noLangsAdded') }}</p>
+                            </div>
                         </div>
 
                         <!-- Przyciski nawigacji i submit -->

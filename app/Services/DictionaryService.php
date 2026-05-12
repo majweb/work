@@ -258,6 +258,7 @@ class DictionaryService
             'welcomes' => $this->getWelcomes(),
             'educations' => $this->getEducations(),
             'cvs' => $this->getCvs(),
+            'langLevels' => $this->getLangLevels(),
         ];
     }
 

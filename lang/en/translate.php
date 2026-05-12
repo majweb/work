@@ -1704,5 +1704,11 @@ return [
     'error503Description' => 'Sorry, we are doing some maintenance. Please check back soon.',
     'termsInterpretation' => 'These Terms and Conditions have been drawn up in Polish and translated into other language versions for the convenience of users. In the event of any interpretative discrepancies between the language versions, the Polish and English versions shall be binding.',
     'privacyInterpretation' => 'This Privacy Policy may be made available in different language versions for information purposes and user convenience only. In the event of any discrepancies, contradictions or different interpretations between the various language versions, the versions drawn up in Polish and English shall prevail.',
-
+    'addLang' => 'Add language',
+    'noLangsAdded' => 'No languages added yet',
+    'duplicate_lang_level' => 'The same language with the same level has already been added.',
+    'session_timeout_title' => 'Your session is expiring',
+    'session_timeout_content' => 'Your session is about to expire due to inactivity. Do you want to continue the session?',
+    'continue' => 'Continue',
+    'logout' => 'Log out',
 ];

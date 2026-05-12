@@ -177,7 +177,7 @@ const articleSchema = computed(() => {
                                     </h1>
 
                                     <div class="prose max-w-none mb-12">
-                                        <p class="text-xl font-bold text-gray-500 leading-relaxed italic border-l-4 border-blue-500 pl-6" v-html="article.short_description"></p>
+                                        <p class="text-md font-bold text-gray-500 leading-relaxed italic border-l-4 border-blue-500 pl-6" v-html="article.short_description"></p>
                                     </div>
 
                                     <!-- Table of Contents -->

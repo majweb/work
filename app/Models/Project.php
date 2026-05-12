@@ -55,6 +55,7 @@ class Project extends Model
         'is_active',
         'views_count',
         'image_generator',
+        'langs',
         'lat',
         'lng',
     ];
@@ -84,6 +85,7 @@ class Project extends Model
         'welcome' => 'array',
         'cv' => 'array',
         'other_recruits' => 'array',
+        'langs' => 'array',
         'basicSalaryFrom' => 'float',
         'basicSalaryTo' => 'float',
         'bonusSalaryFrom' => 'float',

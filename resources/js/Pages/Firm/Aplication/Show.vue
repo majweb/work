@@ -578,6 +578,25 @@ const dispatchActionSingleRecruit = value => {
                                     </div>
                                 </div>
 
+                                <!-- JĘZYKI OBCE -->
+                                <div class="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-sm" v-if="application.project?.langs && application.project.langs.length">
+                                    <div class="flex items-center gap-4 mb-8">
+                                        <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.language') }}</h3>
+                                        <div class="h-px flex-1 bg-gray-100"></div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div v-for="(l, index) in application.project.langs" :key="index" class="rounded-2xl bg-gray-50/50 p-5 border border-gray-100/50 transition-all hover:bg-white hover:shadow-md group/item">
+                                            <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 group-hover/item:text-blue-500 transition-colors">
+                                                {{ l.name?.label || l.name }}
+                                            </div>
+                                            <div class="text-sm font-black text-gray-900 uppercase tracking-tight">
+                                                {{ l.level?.name || l.level }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- MEDIA -->
                                 <div
                                     v-if="application.media && application.media.length > 0"

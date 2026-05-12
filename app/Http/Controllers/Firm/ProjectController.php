@@ -258,6 +258,7 @@ class ProjectController extends Controller
             'user_id' => auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'langs' => $request->projectData()['langs'],
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
@@ -352,6 +353,7 @@ class ProjectController extends Controller
                 'educations' => $dictionaries['educations'],
                 'project' => $project,
                 'cvs' => $dictionaries['cvs'],
+                'langLevels' => $dictionaries['langLevels'],
                 'externalCompanies' => $externalCompanies,
             ]);
     }
@@ -419,6 +421,7 @@ class ProjectController extends Controller
             'user_id' => auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'langs' => $request->projectData()['langs'],
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);

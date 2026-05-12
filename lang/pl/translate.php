@@ -1746,4 +1746,9 @@ return [
     'error503Description' => 'Przepraszamy, trwają prace konserwacyjne. Prosimy spróbować później.',
     'termsInterpretation' => 'Niniejszy Regulamin został sporządzony w języku polskim oraz przetłumaczony na inne wersje językowe dla wygody użytkowników. W przypadku jakichkolwiek rozbieżności interpretacyjnych pomiędzy wersjami językowymi, wiążąca pozostaje wersja polska oraz angielska.',
     'privacyInterpretation' => 'Niniejsza Polityka Prywatności może zostać udostępniona w różnych wersjach językowych wyłącznie w celach informacyjnych i dla wygody użytkowników. W przypadku jakichkolwiek rozbieżności, sprzeczności lub odmiennych interpretacji pomiędzy poszczególnymi wersjami językowymi, nadrzędne znaczenie mają wersje sporządzone w języku polskim oraz angielskim.',
+    'noLangsAdded' => 'Nie dodano jeszcze żadnych języków',
+    'duplicate_lang_level' => 'Ten sam język z tym samym poziomem został już dodany.',
+    'session_timeout_title' => 'Twoja sesja wygasa',
+    'session_timeout_content' => 'Twoja sesja wygaśnie za chwilę z powodu braku aktywności. Czy chcesz kontynuować sesję?',
+    'continue' => 'Kontynuuj',
 ];

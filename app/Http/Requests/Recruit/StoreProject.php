@@ -96,6 +96,28 @@ class StoreProject extends FormRequest
             'cv.*.id' => ['required', 'exists:App\Models\CvType,id'],
             'cv.*.name' => ['required'],
             'cv.*.allTranslations' => ['required'],
+            'langs' => [
+                'nullable',
+                'array',
+                function ($attribute, $value, $fail) {
+                    $uniqueLangs = [];
+                    foreach ($value as $index => $lang) {
+                        if (!empty($lang['name']) && !empty($lang['level'])) {
+                            $langId = $lang['name']['value'] ?? $lang['name'];
+                            $levelId = $lang['level']['id'] ?? $lang['level'];
+                            $key = $langId . '-' . $levelId;
+
+                            if (in_array($key, $uniqueLangs)) {
+                                $fail(__('translate.duplicate_lang_level'));
+                                return;
+                            }
+                            $uniqueLangs[] = $key;
+                        }
+                    }
+                },
+            ],
+            'langs.*.name' => ['required_with:langs'],
+            'langs.*.level' => ['required_with:langs'],
             'questions' => [
                 'array',
                 'max:10',

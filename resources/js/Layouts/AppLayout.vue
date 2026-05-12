@@ -12,6 +12,9 @@ import AdminSidebar from '@/Components/Dashboard/AdminSidebar.vue';
 import {usePermission} from "@/Composables/usePermission";
 import NotificationBell from "@/Components/NotificationBell.vue";
 import { Dialog, DialogPanel, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
+import DialogModal from '@/Components/DialogModal.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const {hasRole} = usePermission();
 
@@ -26,6 +29,25 @@ const showSupportDrawer = ref(false);
 const showingAplicationsDropdown = ref(false);
 const showingServicesDropdown = ref(false);
 const showingBuyDropdown = ref(false);
+
+const showSessionModal = ref(false);
+let timeoutTimer = null;
+const TIMEOUT_MS = 15 * 60 * 1000; // 15 minut
+
+const resetTimer = () => {
+    clearTimeout(timeoutTimer);
+    if (!showSessionModal.value) {
+        timeoutTimer = setTimeout(() => {
+            showSessionModal.value = true;
+        }, TIMEOUT_MS);
+    }
+};
+
+const continueSession = () => {
+    showSessionModal.value = false;
+    router.reload({ preserveScroll: true });
+    resetTimer();
+};
 
 const currentUser = computed(() => usePage().props.auth.user);
 
@@ -63,6 +85,10 @@ const logout = () => {
 
 
 onMounted(() => {
+    resetTimer();
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keydown', resetTimer);
+
     Echo.private(`App.Models.User.${currentUser.value.id}`)
         .notification((notification)=>{
             // Odświeżenie strony aby zaktualizować licznik powiadomień
@@ -74,6 +100,10 @@ onMounted(() => {
         });
 });
 onUnmounted(()=>{
+    clearTimeout(timeoutTimer);
+    window.removeEventListener('mousemove', resetTimer);
+    window.removeEventListener('keydown', resetTimer);
+
     Echo.leave(`App.Models.User.${currentUser.value?.id}`);
 });
 
@@ -84,6 +114,26 @@ onUnmounted(()=>{
         <Head :title="title" />
         <Banner />
         <SupportDrawer :show="showSupportDrawer" @close="showSupportDrawer = false" />
+
+        <DialogModal :show="showSessionModal" @close="continueSession">
+            <template #title>
+                {{ __('translate.session_timeout_title') }}
+            </template>
+
+            <template #content>
+                {{ __('translate.session_timeout_content') }}
+            </template>
+
+            <template #footer>
+                <SecondaryButton @click="logout">
+                    {{ __('translate.logout') }}
+                </SecondaryButton>
+
+                <PrimaryButton class="ms-3" @click="continueSession">
+                    {{ __('translate.continue') }}
+                </PrimaryButton>
+            </template>
+        </DialogModal>
 
         <!-- Floating Support Button -->
         <div
