@@ -17,6 +17,7 @@ class LanguageResource extends JsonResource
         return [
             'value' => $this->value,
             'label' => $this->label(),
+            'allLabels' => $this->allLabels(),
         ];
     }
 }

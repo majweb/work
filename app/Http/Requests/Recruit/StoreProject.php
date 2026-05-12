@@ -203,6 +203,8 @@ class StoreProject extends FormRequest
             'detailProjects' => strtolower(__('translate.detailProjects')),
             'questions' => strtolower(__('translate.questions')),
             'external_company_id' => strtolower(__('translate.external_company_id')),
+            'langs.*.name' => strtolower(__('translate.language')),
+            'langs.*.level' => strtolower(__('translate.levelLang')),
             'recruit' => 'nullable',
             'is_active' => 'nullable|boolean',
         ];

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectResource;
 use App\Http\Resources\OtherRecruitsResource;
+use App\Lang\Lang;
 use App\Models\Aplication;
 use App\Models\Category;
 use App\Models\ExternalCompany;
@@ -218,6 +219,30 @@ class ProjectController extends Controller
                 $request->projectData()['currency']['name'].' '.
                 __('translate.'.$request->projectData()['salary_type']);
         }
+        $langs = [];
+        foreach ($request->projectData()['langs'] ?? [] as $langData) {
+            $langEnum = is_array($langData['name'])
+                ? Lang::tryFrom($langData['name']['value'] ?? '')
+                : Lang::tryFrom($langData['name'] ?? '');
+
+            $levelId = is_array($langData['level']) ? ($langData['level']['id'] ?? $langData['level']['value'] ?? null) : $langData['level'];
+            $levelModel = \App\Models\LangLevel::find($levelId);
+            $levelTranslations = $levelModel ? $levelModel->getTranslations('name') : null;
+
+            $langs[] = [
+                'name' => [
+                    'value' => $langData['name']['value'] ?? $langData['name'],
+                    'label' => $langEnum ? $langEnum->label() : ($langData['name']['label'] ?? null),
+                    'allLabels' => $langEnum ? $langEnum->allLabels() : ($langData['name']['allLabels'] ?? null),
+                ],
+                'level' => [
+                    'id' => $levelId,
+                    'name' => ($levelModel ? $levelModel->name : ($langData['level']['name'] ?? null)),
+                    'allTranslations' => $levelTranslations ?: ($langData['level']['allTranslations'] ?? null),
+                ],
+            ];
+        }
+
         $project = Project::create([
             'title' => $title,
             'category' => $request->projectData()['category'],
@@ -258,7 +283,7 @@ class ProjectController extends Controller
             'user_id' => auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
-            'langs' => $request->projectData()['langs'],
+            'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
@@ -381,8 +406,31 @@ class ProjectController extends Controller
                 $request->projectData()['currency']['name'].' '.
                 __('translate.'.$request->projectData()['salary_type']);
         }
+        $langs = [];
+        foreach ($request->projectData()['langs'] ?? [] as $langData) {
+            $langEnum = is_array($langData['name'])
+                ? Lang::tryFrom($langData['name']['value'] ?? '')
+                : Lang::tryFrom($langData['name'] ?? '');
+
+            $levelId = is_array($langData['level']) ? ($langData['level']['id'] ?? $langData['level']['value'] ?? null) : $langData['level'];
+            $levelModel = \App\Models\LangLevel::find($levelId);
+            $levelTranslations = $levelModel ? $levelModel->getTranslations('name') : null;
+
+            $langs[] = [
+                'name' => [
+                    'value' => $langData['name']['value'] ?? $langData['name'],
+                    'label' => $langEnum ? $langEnum->label() : ($langData['name']['label'] ?? null),
+                    'allLabels' => $langEnum ? $langEnum->allLabels() : ($langData['name']['allLabels'] ?? null),
+                ],
+                'level' => [
+                    'id' => $levelId,
+                    'name' => ($levelModel ? $levelModel->name : ($langData['level']['name'] ?? null)),
+                    'allTranslations' => $levelTranslations ?: ($langData['level']['allTranslations'] ?? null),
+                ],
+            ];
+        }
+
         $project->update([
-            'title' => $title,
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
@@ -421,7 +469,7 @@ class ProjectController extends Controller
             'user_id' => auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
-            'langs' => $request->projectData()['langs'],
+            'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);

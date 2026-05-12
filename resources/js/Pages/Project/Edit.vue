@@ -225,9 +225,31 @@ const form = useForm({
     langs: (props.project.langs || []).map(l => {
         const languages = props.languages || usePage().props.languages || [];
         const levels = props.langLevels || [];
+
+        const langValue = l.name?.value || l.name;
+        const levelId = l.level?.id || l.level;
+
+        let language = languages.find(lang => lang.value === langValue);
+        if (!language && l.name?.allLabels) {
+            language = {
+                value: l.name.value,
+                label: l.name.allLabels[usePage().props.language] || l.name.label,
+                allLabels: l.name.allLabels
+            };
+        }
+
+        let level = levels.find(level => level.id === levelId);
+        if (!level && l.level?.allTranslations) {
+            level = {
+                id: l.level.id,
+                name: l.level.allTranslations[usePage().props.language] || l.level.name,
+                allTranslations: l.level.allTranslations
+            };
+        }
+
         return {
-            name: languages.find(lang => lang.value === (l.name?.value || l.name)) || l.name,
-            level: levels.find(level => level.id === (l.level?.id || l.level)) || l.level
+            name: language || l.name,
+            level: level || l.level
         };
     }),
     is_active: props.project.is_active ?? true,

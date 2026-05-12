@@ -510,10 +510,10 @@ onMounted(async () => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div v-for="(l, index) in props.project.langs" :key="index" class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">
-                                        {{ l.name?.label || l.name }}
+                                        {{ l.name?.allLabels?.[usePage().props.language] || l.name?.label || l.name }}
                                     </p>
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                        {{ l.level?.name || l.level }}
+                                        {{ l.level?.allTranslations?.[usePage().props.language] || l.level?.name || l.level }}
                                     </p>
                                 </div>
                             </div>

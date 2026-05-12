@@ -588,10 +588,10 @@ const dispatchActionSingleRecruit = value => {
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div v-for="(l, index) in application.project.langs" :key="index" class="rounded-2xl bg-gray-50/50 p-5 border border-gray-100/50 transition-all hover:bg-white hover:shadow-md group/item">
                                             <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 group-hover/item:text-blue-500 transition-colors">
-                                                {{ l.name?.label || l.name }}
+                                                {{ l.name?.allLabels?.[usePage().props.language] || l.name?.label || l.name }}
                                             </div>
                                             <div class="text-sm font-black text-gray-900 uppercase tracking-tight">
-                                                {{ l.level?.name || l.level }}
+                                                {{ l.level?.allTranslations?.[usePage().props.language] || l.level?.name || l.level }}
                                             </div>
                                         </div>
                                     </div>

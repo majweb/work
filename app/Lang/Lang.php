@@ -4234,4 +4234,23 @@ case AM = 'am';
             self::ZH => $array[app()->getLocale()]['zh'],
         };
     }
+
+    public function allLabels(): array
+    {
+        $result = [];
+        $langsShorts = config('langsShorts');
+        if (empty($langsShorts)) {
+            $langsShorts = ['pl', 'en'];
+        }
+
+        foreach ($langsShorts as $langCode) {
+            // Tymczasowo zmieniamy locale, aby pobrać etykietę w danym języku
+            $originalLocale = app()->getLocale();
+            app()->setLocale($langCode);
+            $result[$langCode] = $this->label();
+            app()->setLocale($originalLocale);
+        }
+
+        return $result;
+    }
 }
