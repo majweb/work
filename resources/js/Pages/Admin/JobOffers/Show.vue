@@ -518,6 +518,25 @@ onMounted(async () => {
                             </div>
                         </div>
 
+                        <!-- Języki obce -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.langs && props.project.langs.length">
+                            <div class="flex items-center gap-4 mb-8">
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.language') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div v-for="(l, index) in props.project.langs" :key="index" class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">
+                                        {{ l.name?.allLabels?.[usePage().props.language] || l.name?.label || l.name }}
+                                    </p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        {{ l.level?.allTranslations?.[usePage().props.language] || l.level?.name || l.level }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- oferujemy -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.offer && props.project.offer.length">
                             <div class="flex items-center gap-4 mb-8">

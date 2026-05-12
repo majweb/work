@@ -38,9 +38,34 @@ const props = defineProps({
     currencies: Array,
     cvs: Array,
     externalCompanies: Array,
+    langLevels: Array,
 
 
 });
+
+const sortLangs = computed(() => {
+    const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
+    const languages = props.languages || usePage().props.languages;
+
+    if (!languages || !Array.isArray(languages)) {
+        return [];
+    }
+
+    return languages
+        .filter(lang => lang?.value && !excludedLangs.includes(lang.value))
+        .sort((a, b) => (a.label || '').localeCompare(b.label || ''));
+})
+
+const addLang = () => {
+    form.langs.push({
+        name: null,
+        level: null
+    });
+};
+
+const removeLang = (index) => {
+    form.langs.splice(index, 1);
+};
 
 // Kroki formularza
 const currentStep = ref(1);
@@ -187,6 +212,36 @@ const form = useForm({
     external_company_id: props.externalCompanies.find(
         company => company.id === props.project.external_company_id
     ) || '',
+    langs: (props.project.langs || []).map(l => {
+        const languages = props.languages || usePage().props.languages || [];
+        const levels = props.langLevels || [];
+
+        const langValue = l.name?.value || l.name;
+        const levelId = l.level?.id || l.level;
+
+        let language = languages.find(lang => lang.value === langValue);
+        if (!language && l.name?.allLabels) {
+            language = {
+                value: l.name.value,
+                label: l.name.allLabels[usePage().props.language] || l.name.label,
+                allLabels: l.name.allLabels
+            };
+        }
+
+        let level = levels.find(level => level.id === levelId);
+        if (!level && l.level?.allTranslations) {
+            level = {
+                id: l.level.id,
+                name: l.level.allTranslations[usePage().props.language] || l.level.name,
+                allTranslations: l.level.allTranslations
+            };
+        }
+
+        return {
+            name: language || l.name,
+            level: level || l.level
+        };
+    }),
     is_active: props.project.is_active ?? true,
 
 
@@ -1059,9 +1114,8 @@ onMounted(async () => {
                                 <InputError v-if="form.errors.cityWork" :message="form.errors.cityWork" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                             </div>
                         </div>
-
-                        <!-- Wykształcenie -->
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
+                        <!-- Wyksztalcenie -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.education') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
@@ -1084,6 +1138,8 @@ onMounted(async () => {
                             </div>
                             <InputError :message="form.errors.education" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                         </div>
+
+                        <!-- Języki obce -->
 
                         <!-- Przyciski nawigacji -->
                         <div class="flex justify-end mt-12 pt-8 border-t border-gray-100">
@@ -1785,29 +1841,72 @@ onMounted(async () => {
                             </div>
                         </div>
 
-                        <!-- Wykształcenie -->
+                        <!-- Języki obce -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                            <div class="flex items-center gap-4 mb-8">
-                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.education') }}</h2>
-                                <div class="h-px flex-1 bg-gray-100"></div>
+                            <div class="flex items-center justify-between mb-8">
+                                <h3 class="text-xl font-black uppercase tracking-widest text-[#0A2C5C]">{{ __('translate.language') }}</h3>
+                                <button
+                                    type="button"
+                                    @click="addLang"
+                                    class="group flex items-center gap-2 px-6 py-3 bg-blue-50 text-blue-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                                >
+                                    <span class="text-lg leading-none group-hover:rotate-90 transition-transform">+</span>
+                                    {{ __('translate.addLang') }}
+                                </button>
                             </div>
-                            <div v-if="educations" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div v-for="education in educations" :key="education.id"
-                                     class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md">
-                                    <label class="group/check flex items-center cursor-pointer flex-1">
-                                        <div class="relative flex items-center justify-center">
-                                            <input
-                                                type="radio" :id="'education-'+education.id" v-model="form.education"
-                                                :value="education.id"
-                                                class="peer sr-only"
+
+                            <InputError :message="form.errors.langs" class="my-4 text-[10px] font-black uppercase tracking-widest" />
+
+                            <div v-if="form.langs.length > 0" class="space-y-6">
+                                <div v-for="(lang, index) in form.langs" :key="index" class="p-8 bg-gray-50/50 rounded-[2rem] border border-gray-100 relative group transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-900/5">
+                                    <button
+                                        type="button"
+                                        @click="removeLang(index)"
+                                        class="absolute -top-3 -right-3 w-8 h-8 bg-white border border-gray-100 text-red-500 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                    >
+                                        ×
+                                    </button>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div class="space-y-2">
+                                            <InputLabel :value="__('translate.language')" class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4 mb-2" />
+                                            <multiselect
+                                                v-model="lang.name"
+                                                :options="sortLangs"
+                                                :placeholder="__('translate.select')"
+                                                label="label"
+                                                track-by="value"
+                                                class="custom-multiselect"
+                                                :select-label="''"
+                                                :deselect-label="''"
+                                                :selected-label="''"
                                             />
-                                            <div class="h-6 w-6 rounded-full border-2 border-white bg-white shadow-sm transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px]"></div>
+                                            <InputError :message="form.errors['langs.' + index + '.name']" class="my-4 text-[10px] font-black uppercase tracking-widest" />
                                         </div>
-                                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight ml-4">{{education.name}}</span>
-                                    </label>
+
+                                        <div class="space-y-2">
+                                            <InputLabel :value="__('translate.levelLang')" class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4 mb-2" />
+                                            <multiselect
+                                                v-model="lang.level"
+                                                :options="props.langLevels"
+                                                :placeholder="__('translate.select')"
+                                                label="name"
+                                                track-by="id"
+                                                class="custom-multiselect"
+                                                :select-label="''"
+                                                :deselect-label="''"
+                                                :selected-label="''"
+                                            />
+                                            <InputError :message="form.errors['langs.' + index + '.level']" class="my-4 text-[10px] font-black uppercase tracking-widest" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <InputError :message="form.errors.education" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
+
+                            <div v-else class="text-center py-12 border-2 border-dashed border-gray-100 rounded-[2rem]">
+                                <div class="text-4xl mb-4 opacity-20">🌍</div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-gray-400">{{ __('translate.noLangsAdded') }}</p>
+                            </div>
                         </div>
 
                         <!-- Przyciski nawigacji i submit -->

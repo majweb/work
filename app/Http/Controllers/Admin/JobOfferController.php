@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\OtherRecruitsResource;
+use App\Lang\Lang;
 use App\Models\Category;
 use App\Models\ExternalCompany;
 use App\Models\Project;
@@ -351,6 +352,30 @@ class JobOfferController extends Controller
                 __('translate.'.$request->projectData()['salary_type']);
         }
 
+        $langs = [];
+        foreach ($request->projectData()['langs'] ?? [] as $langData) {
+            $langEnum = is_array($langData['name'])
+                ? Lang::tryFrom($langData['name']['value'] ?? '')
+                : Lang::tryFrom($langData['name'] ?? '');
+
+            $levelId = is_array($langData['level']) ? ($langData['level']['id'] ?? $langData['level']['value'] ?? null) : $langData['level'];
+            $levelModel = \App\Models\LangLevel::find($levelId);
+            $levelTranslations = $levelModel ? $levelModel->getTranslations('name') : null;
+
+            $langs[] = [
+                'name' => [
+                    'value' => $langData['name']['value'] ?? $langData['name'],
+                    'label' => $langEnum ? $langEnum->label() : ($langData['name']['label'] ?? null),
+                    'allLabels' => $langEnum ? $langEnum->allLabels() : ($langData['name']['allLabels'] ?? null),
+                ],
+                'level' => [
+                    'id' => $levelId,
+                    'name' => ($levelModel ? $levelModel->name : ($langData['level']['name'] ?? null)),
+                    'allTranslations' => $levelTranslations ?: ($langData['level']['allTranslations'] ?? null),
+                ],
+            ];
+        }
+
         $project->update([
             'title' => $title,
             'category' => $request->projectData()['category'],
@@ -392,6 +417,7 @@ class JobOfferController extends Controller
             'cv' => $request->projectData()['cv'],
             'is_active' => $request->projectData()['is_active'] ?? true,
             'country' => $request->projectData()['country'],
+            'langs' => $langs,
             'user_id' => $project->user_id,
         ]);
 
@@ -548,7 +574,7 @@ class JobOfferController extends Controller
 
                     // Miejsce pracy
                     'workingPlace' => ['required', 'array', 'min:1'],
-                    'workingPlace.*.id' => ['required', 'exists:App\Models\WorkingPlace,id'],
+                    'workingPlace.id' => ['required', 'exists:App\Models\WorkingPlace,id'],
 
                     // Doświadczenie
                     'experience' => ['required', 'array'],
@@ -558,6 +584,11 @@ class JobOfferController extends Controller
                     'offer' => ['nullable', 'array'],
                     'wait' => ['nullable', 'array'],
                     'welcome' => ['nullable', 'array'],
+
+                    // Języki obce
+                    'langs' => ['nullable', 'array'],
+                    'langs.*.name' => ['required_with:langs'],
+                    'langs.*.level' => ['required_with:langs'],
                 ];
                 break;
         }
