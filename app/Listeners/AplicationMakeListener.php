@@ -50,7 +50,6 @@ class AplicationMakeListener implements ShouldQueue
         if($auth){
             $auth->notify((new ApplicationMadeNotification($aplication))->locale($lang));
         } else {
-            Log::info('Guest Application Made: ' . $lang);
             Mail::to($aplication->email)->locale($lang)->send(new GuestApplicationMadeMail($aplication));
         }
 

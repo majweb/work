@@ -37,11 +37,19 @@ class ApplicationMadeNotification extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
+        if ($notifiable->id === $this->aplication->aplication_user_id || $notifiable->hasRole('client')) {
+            $url = url('/logged/worker/aplication/' . $this->aplication->id);
+        } elseif ($this->aplication->project->user_id == $this->aplication->project->recruiter_id) {
+            $url = url('/logged/aplications/' . $this->aplication->id);
+        } else {
+            $url = url('/logged/project-aplications-recruits/' . $this->aplication->id);
+        }
+
         return (new MailMessage)
-        ->greeting(__('ApllyMail-hello'))
-        ->subject(__('ApllyMail-applyNr').$this->aplication->id.__('ApllyMail-applySuccess'))
-        ->line(__('ApllyMail-applyConfirm'))
-        ->action(__('ApllyMail-applyLook'), url('/applications/' . $this->aplication->id));
+            ->greeting(__('ApllyMail-hello'))
+            ->subject(__('ApllyMail-applyNr').$this->aplication->id.__('ApllyMail-applySuccess'))
+            ->line(__('ApllyMail-applyConfirm'))
+            ->action(__('ApllyMail-applyLook'), $url);
     }
 
     /**
