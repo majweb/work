@@ -236,19 +236,19 @@ onMounted(async () => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.industryLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.category?.allTranslations?.title[usePage().props.language] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.category?.allTranslations?.title[usePage().props.language] || props.project.category?.title?.[usePage().props.language] }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.subIndustryLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.categorySub?.allTranslations?.title[usePage().props.language] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.categorySub?.allTranslations?.title[usePage().props.language] || props.project.categorySub?.title?.[usePage().props.language] }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.professionLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.profession?.allTranslations?.title[usePage().props.language] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.profession?.allTranslations?.title[usePage().props.language] || props.project.profession?.title?.[usePage().props.language] }}</p>
                                 </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.positionLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.position?.allTranslations?.title[usePage().props.language] ?? __('translate.noPosition') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.position?.allTranslations?.title[usePage().props.language] ?? props.project.position?.title?.[usePage().props.language] ?? __('translate.noPosition') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@ onMounted(async () => {
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.payoutModeLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.payoutMode?.allTranslations?.name[usePage().props.language] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.payoutMode?.allTranslations?.name[usePage().props.language] || props.project.payoutMode?.name?.[usePage().props.language] }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.bonusSalaryFrom || props.project.bonusSalaryTo">
@@ -291,7 +291,7 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-2">
                                         <span v-for="(pay, index) in props.project.paySystem" :key="index"
                                               class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
-                                            {{ pay.allTranslations?.name[usePage().props.language] }}
+                                            {{ pay.allTranslations?.name[usePage().props.language] || pay.name?.[usePage().props.language] }}
                                         </span>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-2">
                                         <span v-for="working in props.project.workingMode" :key="working.id"
                                               class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
-                                            {{ working.allTranslations?.title[usePage().props.language] }}
+                                            {{ working.allTranslations?.title[usePage().props.language] || working.title?.[usePage().props.language] }}
                                         </span>
                                     </div>
                                 </div>
@@ -321,14 +321,14 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-2">
                                         <span v-for="type in props.project.typeOfContract" :key="type.id"
                                               class="px-3 py-1 bg-white rounded-lg text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100">
-                                            {{ type.allTranslations?.name[usePage().props.language] }}
+                                            {{ type.allTranslations?.name[usePage().props.language] || type.name?.[usePage().props.language] }}
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workScopeLabel') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.workLoad?.allTranslations?.name[usePage().props.language] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.workLoad?.allTranslations?.name[usePage().props.language] || props.project.workLoad?.name?.[usePage().props.language] }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
@@ -357,7 +357,7 @@ onMounted(async () => {
                                     <span v-for="day in props.project.days"
                                           :key="day.id"
                                           class="px-5 py-2.5 bg-gray-50 rounded-2xl text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest border border-gray-100 shadow-sm">
-                                        {{ day.allTranslations?.name[usePage().props.language] }}
+                                        {{ day.allTranslations?.name[usePage().props.language] || day.name?.[usePage().props.language] }}
                                     </span>
                                 </div>
                             </div>
@@ -373,7 +373,7 @@ onMounted(async () => {
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.experience">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.experienceInternational') }}</p>
-                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.experience?.allTranslations?.name[usePage().props.language] }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.experience?.allTranslations?.name[usePage().props.language] || props.project.experience?.name?.[usePage().props.language] }}</p>
                                 </div>
 
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.education">
@@ -386,7 +386,7 @@ onMounted(async () => {
                                     <div class="flex flex-wrap gap-3">
                                         <span v-for="w in props.project.welcome" :key="w.id"
                                               class="px-5 py-2.5 bg-white rounded-2xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
-                                           {{ w.allTranslations?.name[usePage().props.language] }}
+                                           {{ w.allTranslations?.name[usePage().props.language] || w.name?.[usePage().props.language] }}
                                         </span>
                                     </div>
                                 </div>
@@ -406,7 +406,7 @@ onMounted(async () => {
                                         {{ l.name?.allLabels?.[usePage().props.language] || l.name?.label || l.name }}
                                     </p>
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                        {{ l.level?.allTranslations?.name?.[usePage().props.language] || l.level?.name || l.level }}
+                                        {{ l.level?.allTranslations?.[usePage().props.language] || l.level?.name?.[usePage().props.language] || l.level?.name || l.level }}
                                     </p>
                                 </div>
                             </div>
@@ -422,7 +422,7 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-3">
                                 <span v-for="off in props.project.offer" :key="off.id"
                                       class="px-6 py-3 bg-[#00a0e3] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-400/20 transition-all hover:-translate-y-0.5">
-                                    {{ off.allTranslations?.name[usePage().props.language] }}
+                                    {{ off.allTranslations?.name[usePage().props.language] || off.name?.[usePage().props.language] }}
                                 </span>
                             </div>
                         </div>
@@ -437,7 +437,7 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-3">
                                 <span v-for="w in props.project.wait" :key="w.id"
                                       class="px-6 py-3 bg-white text-gray-700 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-gray-100 shadow-sm transition-all hover:bg-gray-50">
-                                    {{ w.allTranslations?.name[usePage().props.language] }}
+                                    {{ w.allTranslations?.name[usePage().props.language] || w.name?.[usePage().props.language] }}
                                 </span>
                             </div>
                         </div>
@@ -466,7 +466,7 @@ onMounted(async () => {
                                     <div>
                                         <p class="text-sm font-black text-gray-900 uppercase tracking-tight">{{ props.project.cityWork }}</p>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                            {{ props.project.countryWork?.allTranslations?.[usePage().props.language] || props.project.countryWork }}
+                                            {{ props.project.countryWork?.allTranslations?.[usePage().props.language] || props.project.countryWork?.name?.[usePage().props.language] || props.project.countryWork }}
                                         </p>
                                     </div>
                                 </div>
@@ -493,7 +493,7 @@ onMounted(async () => {
                             <div class="flex flex-wrap gap-3">
                                 <span v-for="country in props.project.country" :key="country.id"
                                       class="px-4 py-2 bg-gray-50 rounded-xl text-[10px] font-black text-gray-700 uppercase tracking-widest border border-gray-100 shadow-sm">
-                                    {{ country.allTranslations?.[usePage().props.language] }}
+                                    {{ country.allTranslations?.[usePage().props.language] || country.name?.[usePage().props.language] || country.name }}
                                 </span>
                             </div>
                         </div>
@@ -504,7 +504,7 @@ onMounted(async () => {
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.workplaceLabel') }}</h2>
                             </div>
                             <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                {{ props.project.workingPlace?.allTranslations?.name[usePage().props.language] }}
+                                {{ props.project.workingPlace?.allTranslations?.name[usePage().props.language] || props.project.workingPlace?.name?.[usePage().props.language] }}
                             </p>
                         </div>
 
