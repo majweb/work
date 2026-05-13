@@ -283,13 +283,13 @@ const changeIds = (e) => {
 }
 
 const isAllSelected = computed(() => {
-    const appsWithCandidate = props.applications.data.filter(app => app.worker?.candidate);
+    const appsWithCandidate = props.applications.data.filter(app => app.worker?.candidate || app.candidate_by_email);
     return appsWithCandidate.length > 0 && appsWithCandidate.every(app => formSend.apps.includes(app.id));
 });
 
 const toggleSelectAll = () => {
     const currentIdsWithCandidate = props.applications.data
-        .filter(app => app.worker?.candidate)
+        .filter(app => app.worker?.candidate || app.candidate_by_email)
         .map(app => app.id);
 
     if (isAllSelected.value) {
@@ -662,7 +662,7 @@ watch(() => usePage().props.sender, (newVal) => {
                             <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
                                 <div class="flex items-center gap-4 flex-1">
                                     <!-- checkbox + ID -->
-                                    <div v-if="application.worker?.candidate" class="shrink-0">
+                                    <div v-if="application.worker?.candidate || application.candidate_by_email" class="shrink-0">
                                         <label class="group/check flex items-center cursor-pointer">
                                             <div class="relative flex items-center justify-center">
                                                 <input
@@ -693,7 +693,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                         <div class="min-w-0">
                                             <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight flex flex-wrap items-center gap-x-2 gap-y-1">
                                                 <span class="text-sm sm:text-base">{{ application.name }} {{ application.surname }}</span>
-                                                <span v-if="application.worker?.candidate" class="px-2 py-0.5 bg-green-500 text-white rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.candidateCreated')">
+                                                <span v-if="application.worker?.candidate || application.candidate_by_email" class="px-2 py-0.5 bg-green-500 text-white rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.candidateCreated')">
                                                     {{ __('translate.candidate') }}
                                                 </span>
                                                 <span v-else class="px-2 py-0.5 bg-gray-200 text-gray-500 rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.noCandidate')">

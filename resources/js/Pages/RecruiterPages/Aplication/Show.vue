@@ -543,7 +543,7 @@ const createCandidate = () => {
                                         </div>
 
                                         <button
-                                            v-if="!application.candidate && application.worker"
+                                            v-if="!application.candidate"
                                             @click="createCandidate"
                                             class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-6 py-4 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                                             :disabled="candidateForm.processing"
@@ -551,12 +551,12 @@ const createCandidate = () => {
                                             {{ __('translate.createCandidate') }}
                                         </button>
 
-                                        <div v-if="!application.candidate && application.worker" class="text-[10px] font-black text-center text-gray-400 uppercase tracking-widest">
+                                        <div v-if="!application.candidate" class="text-[10px] font-black text-center text-gray-400 uppercase tracking-widest">
                                             {{ __('translate.createCandidatePointsInfo', { points: props.createCandidateCost }) }}
                                         </div>
 
                                         <Link
-                                            v-else-if="application.candidate && application.worker"
+                                            v-else-if="application.candidate"
                                             :href="route('candidates.show', application.candidate.id)"
                                             class="inline-flex items-center justify-center rounded-2xl bg-emerald-50 px-6 py-4 text-[10px] font-black uppercase tracking-widest text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition-all text-center"
                                         >

@@ -73,7 +73,9 @@ class ApplicationsExport implements FromCollection,WithHeadings
             }
 
             // Kandydat
-            $hasCandidate = $application->worker && $application->worker->candidate ? __('translate.statusYesLabel') : __('translate.statusNoLabel');
+            $hasCandidate = ($application->worker && $application->worker->candidate) || $application->candidateByEmail
+                ? __('translate.statusYesLabel')
+                : __('translate.statusNoLabel');
 
             // Dane projektu
             $country = $application->project->countryWork['allTranslations']['title'][app()->getLocale()] ?? $application->project->countryWork['name'] ?? '-';
@@ -101,7 +103,7 @@ class ApplicationsExport implements FromCollection,WithHeadings
                 __('translate.country') => $country,
                 __('translate.City') => $city,
                 __('translate.category') => $category,
-                __('translate.categorySub') => $categorySub,
+                __('translate.subcategory') => $categorySub,
                 __('translate.profession') => $profession,
                 __('translate.position') => $position,
                 __('translate.status') => $statusText,
@@ -128,7 +130,7 @@ class ApplicationsExport implements FromCollection,WithHeadings
             __('translate.country'),
             __('translate.City'),
             __('translate.category'),
-            __('translate.categorySub'),
+            __('translate.subcategory'),
             __('translate.profession'),
             __('translate.position'),
             __('translate.status'),

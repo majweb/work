@@ -146,9 +146,9 @@ class ApplicationFilterService
         // Kandydat utworzony
         if (isset($filters['has_candidate']) && $filters['has_candidate'] !== '') {
             if ($filters['has_candidate'] === 'yes') {
-                $query->whereHas('worker.candidate');
+                $query->where(function ($q) { $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail'); });
             } else {
-                $query->whereDoesntHave('worker.candidate');
+                $query->where(function ($q) { $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail'); });
             }
         }
 
@@ -290,9 +290,9 @@ class ApplicationFilterService
         // Pozostałe filtry
         if (isset($filters['has_candidate']) && $filters['has_candidate'] !== '') {
             if ($filters['has_candidate'] === 'yes') {
-                $query->whereHas('worker.candidate');
+                $query->where(function ($q) { $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail'); });
             } else {
-                $query->whereDoesntHave('worker.candidate');
+                $query->where(function ($q) { $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail'); });
             }
         }
 
@@ -328,7 +328,7 @@ class ApplicationFilterService
     {
         // Bazowe zapytanie z relacjami
         $query = Aplication::query()
-            ->with(['project.user.firm', 'project.externalCompany', 'recruit', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.user.firm', 'project.externalCompany', 'recruit', 'candidateByEmail','cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])->forCurrentRecruiter();
 
@@ -377,7 +377,7 @@ class ApplicationFilterService
     {
         // Bazowe zapytanie z relacjami - bez forCurrentRecruiter()
         $query = Aplication::query()
-            ->with(['project.user.firm', 'project.externalCompany', 'recruit', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.user.firm', 'project.externalCompany', 'recruit', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'candidateByEmail', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }]);
 
@@ -420,7 +420,7 @@ class ApplicationFilterService
         $apps = $request->input('apps', []);
 
         $query = Aplication::query()
-            ->with(['project.externalCompany', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.externalCompany', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'candidateByEmail', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])->forCurrentRecruiter();
 
@@ -448,7 +448,7 @@ class ApplicationFilterService
         $form = $request->input('form', []);
 
         $query = Aplication::query()
-            ->with(['project.user.firm', 'project.externalCompany', 'project.recruit', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.user.firm', 'project.externalCompany', 'project.recruit', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'candidateByEmail', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }]);
 

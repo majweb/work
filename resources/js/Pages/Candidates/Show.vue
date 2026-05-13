@@ -399,8 +399,7 @@ const filepondOptions = {
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
                                 <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.candidateDetails') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">Zarządzaj danymi kandydata i jego procesem
-                                    rekrutacyjnym</p>
+                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.manageCandidateDescription') }}</p>
                             </div>
                         </div>
                     </div>

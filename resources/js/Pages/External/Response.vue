@@ -39,15 +39,15 @@ function downloadFile(url, filename = 'CV.pdf') {
 
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
-            <div class="mb-12 text-center">
-                <h2 class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] mb-3">
-                    {{ __('translate.externalCompanies') }}
-                </h2>
-                <h1 class="text-4xl font-black text-[#0A2C5C] uppercase tracking-tight">
-                    Lista Kandydatów
-                </h1>
-                <div class="mt-4 h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
-            </div>
+                    <div class="mb-12 text-center">
+                        <h2 class="text-[10px] font-black text-blue-600 uppercase tracking-[0.3em] mb-3">
+                            {{ __('translate.externalCompanies') }}
+                        </h2>
+                        <h1 class="text-4xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                            {{ __('translate.candidatesList') }}
+                        </h1>
+                        <div class="mt-4 h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
+                    </div>
 
             <!-- Applications Grid -->
             <div v-if="getApps && getApps.length" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -89,9 +89,9 @@ function downloadFile(url, filename = 'CV.pdf') {
                         <div class="flex items-center gap-2 mr-4">
                             <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.cv') }}:</span>
                             <div class="flex gap-2">
-                                <button v-if="app.first_cv_url" @click="downloadFile(app.first_cv_url)" class="px-3 py-1.5 bg-white border border-blue-100 text-blue-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm">PDF</button>
-                                <button v-else-if="app.upload_cv_url" @click="downloadFile(app.upload_cv_url)" class="px-3 py-1.5 bg-white border border-green-100 text-green-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-green-600 hover:text-white transition-all shadow-sm">UPLOAD</button>
-                                <button v-else-if="app.pathCv" @click="downloadFile(app.pathCv)" class="px-3 py-1.5 bg-white border border-gray-100 text-gray-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-gray-600 hover:text-white transition-all shadow-sm">FILE</button>
+                                <button v-if="app.first_cv_url" @click="downloadFile(app.first_cv_url)" class="px-3 py-1.5 bg-white border border-blue-100 text-blue-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm">{{ __('translate.pdf') }}</button>
+                                <button v-else-if="app.upload_cv_url" @click="downloadFile(app.upload_cv_url)" class="px-3 py-1.5 bg-white border border-green-100 text-green-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-green-600 hover:text-white transition-all shadow-sm">{{ __('translate.upload') }}</button>
+                                <button v-else-if="app.pathCv" @click="downloadFile(app.pathCv)" class="px-3 py-1.5 bg-white border border-gray-100 text-gray-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-gray-600 hover:text-white transition-all shadow-sm uppercase">{{ __('translate.file.singular') }}</button>
                                 <span v-else class="text-[9px] font-bold text-gray-300 uppercase tracking-widest italic">{{ __('translate.noFiles') }}</span>
                             </div>
                         </div>
@@ -100,8 +100,8 @@ function downloadFile(url, filename = 'CV.pdf') {
                         <div v-if="app.cv_audio?.file_path || app.cv_video?.file_path" class="flex items-center gap-2">
                             <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.variants') }}:</span>
                             <div class="flex gap-2">
-                                <a v-if="app.cv_audio?.file_path" :href="route('cv_audio.download', app.id)" class="px-3 py-1.5 bg-white border border-purple-100 text-purple-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-purple-600 hover:text-white transition-all shadow-sm">AUDIO</a>
-                                <a v-if="app.cv_video?.file_path" :href="route('cv_audio.download', app.id)" class="px-3 py-1.5 bg-white border border-orange-100 text-orange-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-orange-600 hover:text-white transition-all shadow-sm">VIDEO</a>
+                                <a v-if="app.cv_audio?.file_path" :href="route('cv_audio.download', app.id)" class="px-3 py-1.5 bg-white border border-purple-100 text-purple-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-purple-600 hover:text-white transition-all shadow-sm">{{ __('translate.audio') }}</a>
+                                <a v-if="app.cv_video?.file_path" :href="route('cv_audio.download', app.id)" class="px-3 py-1.5 bg-white border border-orange-100 text-orange-600 text-[9px] font-black uppercase tracking-widest rounded-lg hover:bg-orange-600 hover:text-white transition-all shadow-sm">{{ __('translate.video') }}</a>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ function downloadFile(url, filename = 'CV.pdf') {
                         <div class="flex items-center gap-2">
                              <div class="h-2 w-2 rounded-full" :class="app.status === 'yes' ? 'bg-green-500' : (app.status === 'no' ? 'bg-red-500' : 'bg-gray-300')"></div>
                              <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                 {{ app.status === 'yes' ? 'Zaakceptowano' : (app.status === 'no' ? 'Odrzucono' : 'Oczekiwanie') }}
+                                 {{ app.status === 'yes' ? __('translate.accepted') : (app.status === 'no' ? __('translate.rejected') : __('translate.waiting')) }}
                              </span>
                         </div>
                         <div class="flex gap-3">
@@ -122,7 +122,7 @@ function downloadFile(url, filename = 'CV.pdf') {
                                 :data="{ application: app.id, decision: 'yes' }"
                                 class="px-6 py-2.5 bg-green-50 text-green-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-green-600 hover:text-white transition-all"
                             >
-                                Tak
+                                {{ __('translate.yes') }}
                             </Link>
                             <Link
                                 v-if="app.status != 'no'"
@@ -131,7 +131,7 @@ function downloadFile(url, filename = 'CV.pdf') {
                                 :data="{ application: app.id, decision: 'no' }"
                                 class="px-6 py-2.5 bg-red-50 text-red-600 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl hover:bg-red-600 hover:text-white transition-all"
                             >
-                                Nie
+                                {{ __('translate.no') }}
                             </Link>
                         </div>
                     </div>

@@ -1755,4 +1755,11 @@ return [
     'deactivate' => 'Deaktywuj',
     'applicationNotificationMessage' => 'Otrzymano nową aplikację nr :id na stanowisko: :project_title',
     'applicationCandidateNotificationMessage' => 'Aplikowałeś na ofertę nr :id na stanowisko: :project_title',
+    'manageCandidateDescription' => 'Zarządzaj danymi kandydata i jego procesem rekrutacyjnym',
+    'pdf' => 'PDF',
+    'upload' => 'UPLOAD',
+    'audio' => 'AUDIO',
+    'rejected' => 'Odrzucono',
+    'waiting' => 'Oczekiwanie',
+    'noFiles' => 'Brak pliku',
 ];

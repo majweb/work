@@ -132,9 +132,9 @@ class ApplicationRecruitFilterService
         // Kandydat utworzony
         if (isset($filters['has_candidate']) && $filters['has_candidate'] !== '') {
             if ($filters['has_candidate'] === 'yes') {
-                $query->whereHas('worker.candidate');
+                $query->where(function ($q) { $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail'); });
             } else {
-                $query->whereDoesntHave('worker.candidate');
+                $query->where(function ($q) { $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail'); });
             }
         }
 
@@ -178,7 +178,7 @@ class ApplicationRecruitFilterService
     {
         // Bazowe zapytanie z relacjami
         $query = Aplication::query()
-            ->with(['project.externalCompany', 'project:id,other_recruits,position,countryWork,cityWork,category,categorySub,profession,external_company_id', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'media', 'notes' => function ($q) {
+            ->with(['project.externalCompany', 'project:id,other_recruits,position,countryWork,cityWork,category,categorySub,profession,external_company_id', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'candidateByEmail', 'cvAudio', 'cvVideo', 'media', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])
             ->forRecruiterWithOther();
@@ -288,7 +288,7 @@ class ApplicationRecruitFilterService
 
         // Bazowe zapytanie z relacjami - takie same jak w getFilteredApplications
         $query = Aplication::query()
-            ->with(['project.externalCompany', 'project:id,other_recruits,position,wait,recruiter_id,user_id,countryWork,cityWork,category,categorySub,profession,external_company_id', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.externalCompany', 'project:id,other_recruits,position,wait,recruiter_id,user_id,countryWork,cityWork,category,categorySub,profession,external_company_id', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'candidateByEmail', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])
             ->forRecruiterWithOther();

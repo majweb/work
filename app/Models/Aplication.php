@@ -221,4 +221,9 @@ class Aplication extends Model implements HasMedia
         ];
     }
 
+    public function candidateByEmail()
+    {
+        return $this->hasOne(\App\Models\Candidate::class, 'email', 'email');
+    }
+
 }

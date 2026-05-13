@@ -319,13 +319,13 @@ const changeIds = () => {
 };
 
 const isAllSelected = computed(() => {
-    const appsWithCandidate = props.applications.data.filter(app => app.worker?.candidate);
+    const appsWithCandidate = props.applications.data.filter(app => app.worker?.candidate || app.candidate_by_email);
     return appsWithCandidate.length > 0 && appsWithCandidate.every(app => formSend.apps.includes(app.id));
 });
 
 const toggleSelectAll = () => {
     const currentIdsWithCandidate = props.applications.data
-        .filter(app => app.worker?.candidate)
+        .filter(app => app.worker?.candidate || app.candidate_by_email)
         .map(app => app.id);
 
     if (isAllSelected.value) {
@@ -672,7 +672,7 @@ const submitForm = () => {
                             <!-- Lewa kolumna: Dane podstawowe i status -->
                             <div class="flex items-center gap-6">
                                 <!-- checkbox + ID -->
-                                <div v-if="application.worker?.candidate" class="shrink-0">
+                                <div v-if="application.worker?.candidate || application.candidate_by_email" class="shrink-0">
                                     <label class="group/check flex items-center cursor-pointer">
                                         <div class="relative flex items-center justify-center">
                                             <input
@@ -693,24 +693,24 @@ const submitForm = () => {
                                 <div v-else class="shrink-0 w-6 h-6"></div>
 
                                 <!-- Candidate info -->
-                                <div class="flex items-center gap-4 flex-1 min-w-0">
-                                    <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+                                <div class="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 sm:group-hover:scale-105">
                                         <img v-if="application.worker?.profile_photo_url" :src="application.worker?.profile_photo_url" :alt="application.name" class="w-full h-full object-cover"/>
-                                        <div v-else class="text-[#0A2C5C] font-black text-lg">
+                                        <div v-else class="text-[#0A2C5C] font-black text-base sm:text-lg">
                                             {{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}
                                         </div>
                                     </div>
                                     <div class="min-w-0">
-                                        <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight flex items-center gap-2">
-                                            <span>{{ application.name }} {{ application.surname }}</span>
-                                            <span v-if="application.worker?.candidate" class="px-2 py-0.5 bg-green-500 text-white rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.candidateCreated')">
+                                        <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight flex flex-wrap items-center gap-x-2 gap-y-1">
+                                            <span class="text-sm sm:text-base">{{ application.name }} {{ application.surname }}</span>
+                                            <span v-if="application.worker?.candidate || application.candidate_by_email" class="px-2 py-0.5 bg-green-500 text-white rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.candidateCreated')">
                                                 {{ __('translate.candidate') }}
                                             </span>
                                             <span v-else class="px-2 py-0.5 bg-gray-200 text-gray-500 rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.noCandidate')">
                                                 {{ __('translate.noProfile') }}
                                             </span>
                                         </div>
-                                        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
+                                        <div class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5 sm:mt-1 truncate">
                                             <Link :href="route('project-recruits.show', application.project?.id)" class="text-[#0A2C5C] hover:text-[#00a0e3] transition-colors">
                                                 {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
                                             </Link>
