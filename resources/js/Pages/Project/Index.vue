@@ -29,6 +29,10 @@ const props = defineProps({
         type: Array,
         default: () => []
     },
+    externalCompanies: {
+        type: Array,
+        default: () => []
+    },
     stats: {
         type: Object,
         default: () => ({
@@ -64,7 +68,10 @@ const params = ref({
     category: null,
     categorySub: null,
     profession: null,
-    positionSelect: null
+    positionSelect: null,
+    external_company: props.filters.external_company
+        ? props.externalCompanies.find(c => c.id == props.filters.external_company)
+        : null,
 });
 
 // Obsługa zmiany kategorii
@@ -142,7 +149,8 @@ const applyFilters = () => {
         category: params.value.category?.value || null,
         categorySub: params.value.categorySub?.value || null,
         profession: params.value.profession?.value || null,
-        positionSelect: params.value.positionSelect?.value || null
+        positionSelect: params.value.positionSelect?.value || null,
+        external_company: params.value.external_company?.id || null
     };
 
     const filtered = pickBy(transformedData);
@@ -170,7 +178,8 @@ const resetFilters = () => {
         category: null,
         categorySub: null,
         profession: null,
-        positionSelect: null
+        positionSelect: null,
+        external_company: null
     };
     optionsCategorySub.value = [];
     optionsProfession.value = [];
@@ -422,6 +431,26 @@ const { getPositionTitle } = useProjectHelpers();
                                 </template>
                             </multiselect>
                         </div>
+
+                        <!-- Firma zewnętrzna -->
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.externalCompanyLabel') }}</label>
+                            <multiselect
+                                v-model="params.external_company"
+                                :options="props.externalCompanies"
+                                track-by="id"
+                                label="name"
+                                :selectLabel="''"
+                                :selectedLabel="''"
+                                :deselectLabel="''"
+                                :placeholder="__('translate.externalCompanyLabel')"
+                                class="custom-multiselect"
+                            >
+                                <template #noResult>
+                                    <span>{{__('translate.noOptions')}}</span>
+                                </template>
+                            </multiselect>
+                        </div>
                     </div>
 
                     <!-- Przyciski filtrów -->
@@ -480,11 +509,21 @@ const { getPositionTitle } = useProjectHelpers();
                                     {{ getPositionTitle(project) }}
                                 </h4>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                    {{ project.created_at }}
-                                </span>
+                            <div class="flex flex-col items-end gap-1">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                                        {{ project.created_at }}
+                                    </span>
+                                </div>
+                                <div v-if="project.external_company" class="flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                    <span class="text-[10px] font-black text-blue-600 uppercase tracking-tight">
+                                        {{ project.external_company.name }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 

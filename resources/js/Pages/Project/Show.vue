@@ -142,9 +142,14 @@ onMounted(async () => {
                         <h2 class="text-2xl font-black text-gray-900 uppercase tracking-tight leading-tight">
                             {{ projectTitle }}
                         </h2>
-                        <p class="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1">
-                            {{ __('translate.project') }} #{{ props.project.id }}
-                        </p>
+                        <div v-if="props.project.external_company" class="flex items-center gap-2 mt-1">
+                            <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            <span class="text-[10px] font-black text-blue-600 uppercase tracking-tight">
+                                {{ props.project.external_company.name }}
+                            </span>
+                        </div>
                     </div>
 
                     <Link
@@ -619,16 +624,16 @@ onMounted(async () => {
                         </div>
 
                         <!-- Firma zewnętrzna -->
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.externalCompany">
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="props.project.external_company">
                             <div class="flex items-center gap-4 mb-6">
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.externalCompanyLabel') }}</h2>
                             </div>
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#0A2C5C] font-black uppercase text-xs">
-                                    {{ props.project.externalCompany.abbreviation }}
+                                    {{ props.project.external_company.abbreviation }}
                                 </div>
                                 <p class="text-sm font-black text-gray-900 uppercase tracking-tight">
-                                    {{ props.project.externalCompany.name }}
+                                    {{ props.project.external_company.name }}
                                 </p>
                             </div>
                         </div>

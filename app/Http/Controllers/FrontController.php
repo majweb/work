@@ -179,10 +179,10 @@ class FrontController extends Controller
 
         // Tworzymy unikalny klucz na podstawie wersji, języka i wszystkich parametrów filtrowania
         // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
-        $cacheKey = "projects_list_v{$version}_" . app()->getLocale() . "_" . date('Y-m-d') . "_" . md5(json_encode(request()->all()));
+        $cacheKey = "projects_list_v{$version}_".app()->getLocale().'_'.date('Y-m-d').'_'.md5(json_encode(request()->all()));
 
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
-            $query = Project::with('user.changeProducts')->featured()->active()->newest();
+            $query = Project::with(['user.changeProducts', 'externalCompany'])->featured()->active()->newest();
 
             $lat = request('lat');
             $lng = request('lng');
@@ -405,7 +405,7 @@ class FrontController extends Controller
     {
         $user->load(['firm', 'projects' => function ($query) {
             $query->where('is_active', true);
-        }, 'projects.user.firm.media']);
+        }, 'projects.user.firm.media', 'projects.externalCompany']);
         $user->loadCount(['changeProducts as is_featured_count' => function ($query) {
             $query->where('product_id', 9)
                 ->whereDate('start', '<=', now())
@@ -421,11 +421,11 @@ class FrontController extends Controller
 
     public function SingleProject(Project $project, Request $request)
     {
-        $cacheKey = "project_single_{$project->id}_" . app()->getLocale();
+        $cacheKey = "project_single_{$project->id}_".app()->getLocale();
 
         $project = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(60), function () use ($project) {
             $fullProject = Project::query()
-                ->with(['user', 'education', 'detailprojects'])
+                ->with(['user', 'education', 'detailprojects', 'externalCompany'])
                 ->active()
                 ->findOrFail($project->id);
 
@@ -562,7 +562,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Privacy', [
             'page' => $page ? new PageResource($page) : null,
-            'langs' => ['pl','en'] ?? config('langsShorts'),
+            'langs' => ['pl', 'en'] ?? config('langsShorts'),
         ]);
     }
 
@@ -587,7 +587,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Terms', [
             'page' => $page ? new PageResource($page) : null,
-            'langs' => ['pl','en'] ?? config('langsShorts'),
+            'langs' => ['pl', 'en'] ?? config('langsShorts'),
         ]);
     }
 
@@ -1027,7 +1027,7 @@ class FrontController extends Controller
         $cvClassic = CvClassic::where('worker_id', auth()->user()->id)->first();
         $imageUrl = null;
 
-        if (request()->has('photo') && !empty(request()->get('photo'))) {
+        if (request()->has('photo') && ! empty(request()->get('photo'))) {
             $photoData = request()->get('photo');
             $folder = is_array($photoData) ? ($photoData[0] ?? null) : $photoData;
 

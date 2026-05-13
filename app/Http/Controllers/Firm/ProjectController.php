@@ -39,10 +39,11 @@ class ProjectController extends Controller
             'categorySub' => ['nullable', 'integer'],
             'profession' => ['nullable', 'integer'],
             'positionSelect' => ['nullable', 'integer'],
+            'external_company' => ['nullable', 'integer'],
         ]);
         $query = Project::query()
-            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession')
-            ->with('recruit')
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
+            ->with(['recruit', 'externalCompany:id,name'])
             ->withCount([
                 'aplications',
                 'aplications as yes_count' => function ($q) {
@@ -127,6 +128,10 @@ class ProjectController extends Controller
             $query->whereJsonContains('position', ['value' => $positionValue]);
         }
 
+        $query->when(request()->filled('external_company'), function ($q) {
+            $q->where('external_company_id', request('external_company'));
+        });
+
         $projects = $query->paginate(10)->withQueryString();
 
         // Statystyki ogólne dla nagłówka
@@ -164,6 +169,10 @@ class ProjectController extends Controller
                 'new_count' => $project->new_count ?? 0,
                 'created_at' => $project->created_at ? \Carbon\Carbon::parse($project->created_at)->format('d.m.Y H:i') : '',
                 'updated_at' => $project->updated_at ? $project->updated_at->toISOString() : '',
+                'external_company' => $project->externalCompany ? [
+                    'id' => $project->externalCompany->id,
+                    'name' => $project->externalCompany->name,
+                ] : null,
             ];
         });
 
@@ -171,11 +180,14 @@ class ProjectController extends Controller
 
         $categories = Category::getCachedWithoutDetail();
 
+        $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
+
         return inertia()->render('Project/Index', [
             'recruiters' => $recruiters,
             'projects' => $projects,
-            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect']),
+            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect', 'external_company']),
             'categories' => $categories,
+            'externalCompanies' => $externalCompanies,
             'stats' => $stats,
         ]);
     }
@@ -189,6 +201,7 @@ class ProjectController extends Controller
         $externalCompanies = ExternalCompany::where('user_id', auth()->user()->id)->latest()->get();
         $countries = (new Helper)->makeCountriesToSelect();
         $currencies = config('currencyShorts');
+
         return inertia()->render('Project/Create', array_merge($dictionaryService->getAllProjectDictionaries(), [
             'countries' => $countries,
             'currencies' => $currencies,

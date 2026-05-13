@@ -48,10 +48,12 @@ class ProjectController extends Controller implements HasMiddleware
             'categorySub' => ['nullable', 'integer'],
             'profession' => ['nullable', 'integer'],
             'positionSelect' => ['nullable', 'integer'],
+            'external_company' => ['nullable', 'integer'],
         ]);
 
         $query = Project::query()
-            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession')
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
+            ->with('externalCompany:id,name')
             ->withCount([
                 'aplications',
                 'aplications as yes_count' => function ($q) {
@@ -139,6 +141,10 @@ class ProjectController extends Controller implements HasMiddleware
             $query->whereJsonContains('position', ['value' => $positionValue]);
         }
 
+        $query->when(request()->filled('external_company'), function ($q) {
+            $q->where('external_company_id', request('external_company'));
+        });
+
         $projects = $query->paginate(10)->withQueryString();
 
         // Transformacja danych projektów
@@ -168,15 +174,23 @@ class ProjectController extends Controller implements HasMiddleware
                 'new_count' => $project->new_count ?? 0,
                 'created_at' => $project->created_at ? \Carbon\Carbon::parse($project->created_at)->format('d.m.Y H:i') : '',
                 'updated_at' => $project->updated_at ? $project->updated_at->toISOString() : '',
+                'external_company' => $project->externalCompany ? [
+                    'id' => $project->externalCompany->id,
+                    'name' => $project->externalCompany->name,
+                ] : null,
             ];
         });
 
         $categories = Category::getCachedWithoutDetail();
 
+        $firmId = auth()->user()->recruiter_from_firm_id ?: auth()->user()->id;
+        $externalCompanies = ExternalCompany::where('user_id', $firmId)->latest()->get();
+
         return inertia()->render('RecruiterPages/Project/Index', [
             'projects' => $projects,
             'categories' => $categories,
-            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect']),
+            'filters' => request()->only(['field', 'direction', 'recruiter', 'is_active', 'position', 'id', 'city', 'date', 'category', 'categorySub', 'profession', 'positionSelect', 'external_company']),
+            'externalCompanies' => $externalCompanies,
         ]);
     }
 
