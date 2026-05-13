@@ -480,7 +480,7 @@ class ProjectController extends Controller
             'lat' => $request->projectData()['lat'],
             'lng' => $request->projectData()['lng'],
             'user_id' => auth()->user()->id,
-            'recruiter_id' => auth()->user()->id,
+            'recruiter_id' => $project->recruiter_id,
             'cv' => $request->projectData()['cv'],
             'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
