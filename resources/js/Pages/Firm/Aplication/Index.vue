@@ -701,7 +701,12 @@ watch(() => usePage().props.sender, (newVal) => {
                                                 </span>
                                             </div>
                                             <div class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5 sm:mt-1 truncate">
-                                                {{ getPositionTitle(application.project) || getPositionTitle(application.project?.categorySub) || 'Brak stanowiska' }}
+                                                <Link :href="route('projects.show', application.project?.id)" class="text-[#0A2C5C] hover:text-[#00a0e3] transition-colors">
+                                                    {{ getPositionTitle(application.project) || getPositionTitle(application.project?.categorySub) || 'Brak stanowiska' }}
+                                                </Link>
+                                                <span v-if="application.project?.external_company" class="text-blue-500 ml-1">
+                                                    ({{ application.project.external_company.name }})
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

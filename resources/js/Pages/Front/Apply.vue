@@ -269,7 +269,7 @@ const adjustMonth = (date) => {
         month: adjustedDate.getMonth() + 1, // Przekształcamy do 1-indexowanego
     };
 };
-
+console.log(props.project.cv)
 const form = useForm({
     name: (user.value && hasRole('worker')) ? user.value.name : '',
     surname: (user.value && user.value.worker_detail && hasRole('worker')) ? user.value.worker_detail?.surname : '',
@@ -278,7 +278,7 @@ const form = useForm({
     files: [],
     captcha: '',
     templateCv: 1,
-    cv: (props.project.cv?.length > 0) ? props.project.cv[0].id : '',
+    cv: (user.value && hasRole('worker') && props.project.cv?.length > 0) ? props.project.cv[0].id : '',
     agreements: [],
     step: formStep.value,
     birthday: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.birthday : '') : '',
@@ -787,9 +787,10 @@ const removeFile = async (source, load) => {
 
                                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                             <div v-for="cv in project.cv" :key="cv.id"
-                                                 @click="form.cv = cv.id"
+                                                 @click="user && hasRole('worker') ? form.cv = cv.id : null"
                                                  :class="[
-                                                     'relative flex flex-col items-center justify-center p-6 rounded-3xl border-2 cursor-pointer transition-all duration-300 group',
+                                                     'relative flex flex-col items-center justify-center p-6 rounded-3xl border-2 transition-all duration-300 group',
+                                                     user && hasRole('worker') ? 'cursor-pointer' : 'cursor-not-allowed opacity-60',
                                                      form.cv == cv.id
                                                          ? 'border-[#00a0e3] bg-blue-50/30 ring-4 ring-[#00a0e3]/5 shadow-lg'
                                                          : 'border-gray-100 bg-gray-50 hover:border-gray-200 hover:bg-white hover:shadow-md'
@@ -834,7 +835,7 @@ const removeFile = async (source, load) => {
                                             <InputError :message="form.errors.cv" class="m-0 text-[10px] font-bold uppercase tracking-widest"/>
 
                                             <button type="button" class="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors flex items-center gap-1.5"
-                                                    v-if="form.cv" @click="form.cv=''">
+                                                    v-if="form.cv && user && hasRole('worker')" @click="form.cv=''">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                 </svg>

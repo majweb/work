@@ -85,12 +85,17 @@ class ApplicationsExport implements FromCollection,WithHeadings
 
             // Firma i Rekruter
             $firmName = $application->project->user->firm->name ?? $application->project->user->name ?? '-';
+            if ($application->project && $application->project->externalCompany) {
+                $firmName .= ' (' . $application->project->externalCompany->name . ')';
+            }
+            $projectName = $application->project->title[app()->getLocale()] ?? $application->project->title['pl'] ?? '-';
             $recruiterName = $application->project->recruit->name ?? $application->openedBy->name ?? '-';
 
             return [
                 'ID' => $application->id,
                 __('translate.nameUser') => $application->name,
                 __('translate.surname') => $application->surname,
+                __('translate.project') => $projectName,
                 __('translate.firm') => $firmName,
                 __('translate.recruiter') => $recruiterName,
                 __('translate.country') => $country,
@@ -117,6 +122,7 @@ class ApplicationsExport implements FromCollection,WithHeadings
             'ID',
             __('translate.nameUser'),
             __('translate.surname'),
+            __('translate.project'),
             __('translate.firm'),
             __('translate.recruiter'),
             __('translate.country'),

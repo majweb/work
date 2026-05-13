@@ -266,8 +266,13 @@ const createCandidate = () => {
                                         {{ application.name }} {{ application.surname }}
                                     </h3>
 
-                                    <div class="text-sm font-bold text-gray-400 uppercase tracking-widest">
-                                        {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                    <div class="text-sm font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                        <Link :href="route('project-recruits.show', application.project?.id)" class="text-[#0A2C5C] hover:text-[#00a0e3] transition-colors">
+                                            {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                        </Link>
+                                        <span v-if="application.project?.external_company" class="text-blue-500">
+                                            ({{ application.project.external_company.name }})
+                                        </span>
                                     </div>
 
                                 </div>
@@ -416,8 +421,13 @@ const createCandidate = () => {
                                         </div>
                                         <div class="rounded-2xl bg-gray-50/50 p-5 border border-gray-100/50 transition-all hover:bg-white hover:shadow-md group/item">
                                             <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 group-hover/item:text-blue-500 transition-colors">{{ __('translate.project') }}</div>
-                                            <div class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                                {{ application.project?.title[usePage().props.language] || __('translate.noProject') }}
+                                            <div class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-2">
+                                                <Link :href="route('project-recruits.show', application.project?.id)" class="hover:text-[#00a0e3] transition-colors">
+                                                    {{ application.project?.title[usePage().props.language] || __('translate.noProject') }}
+                                                </Link>
+                                                <span v-if="application.project?.external_company" class="text-blue-500 text-[10px]">
+                                                    ({{ application.project.external_company.name }})
+                                                </span>
                                             </div>
                                         </div>
 

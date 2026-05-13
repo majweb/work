@@ -77,7 +77,7 @@ class AplicationController extends Controller
             abort(403, 'Brak uprawnień do tej aplikacji');
         }
 
-        $aplication->load(['project', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo', 'candidate']);
+        $aplication->load(['project.externalCompany', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo', 'candidate']);
         if($aplication->opened_by_user_id){
         $otherRecruits = OtherRecruitsResource::collection($aplication->user->recruits()->whereNull('user_blocked')->where('id','!=',$aplication->opened_by_user_id)->get());
         } else {

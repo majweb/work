@@ -103,7 +103,7 @@ class AplicationController extends Controller implements HasMiddleware
     public function show(Aplication $aplication)
     {
         Gate::authorize('aplication-recruiter', $aplication);
-        $aplication->load(['project','project', 'cvClassic', 'media', 'worker', 'notes', 'opened_by', 'status_changed_by','cvAudio','cvVideo','candidate']);
+        $aplication->load(['project.externalCompany', 'cvClassic', 'media', 'worker', 'notes', 'opened_by', 'status_changed_by','cvAudio','cvVideo','candidate']);
 
 
         // Aktualizuj informacje o otwarciu tylko jeśli pola są puste

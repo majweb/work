@@ -178,7 +178,7 @@ class ApplicationRecruitFilterService
     {
         // Bazowe zapytanie z relacjami
         $query = Aplication::query()
-            ->with(['project:id,other_recruits,position,countryWork,cityWork,category,categorySub,profession', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'media', 'notes' => function ($q) {
+            ->with(['project.externalCompany', 'project:id,other_recruits,position,countryWork,cityWork,category,categorySub,profession,external_company_id', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'media', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])
             ->forRecruiterWithOther();
@@ -288,7 +288,7 @@ class ApplicationRecruitFilterService
 
         // Bazowe zapytanie z relacjami - takie same jak w getFilteredApplications
         $query = Aplication::query()
-            ->with(['project:id,other_recruits,position,wait,recruiter_id,user_id,countryWork,cityWork,category,categorySub,profession', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.externalCompany', 'project:id,other_recruits,position,wait,recruiter_id,user_id,countryWork,cityWork,category,categorySub,profession,external_company_id', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])
             ->forRecruiterWithOther();

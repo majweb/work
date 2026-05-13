@@ -711,7 +711,12 @@ const submitForm = () => {
                                             </span>
                                         </div>
                                         <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
-                                            {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                            <Link :href="route('project-recruits.show', application.project?.id)" class="text-[#0A2C5C] hover:text-[#00a0e3] transition-colors">
+                                                {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
+                                            </Link>
+                                            <span v-if="application.project?.external_company" class="text-blue-500 ml-1">
+                                                ({{ application.project.external_company.name }})
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

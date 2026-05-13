@@ -400,6 +400,7 @@ import { computed, ref, shallowRef, onMounted } from 'vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import __ from '@/lang.js';
 import moment from "moment";
+import TextareaLimit from "@/Components/TextareaLimit.vue";
 
 const props = defineProps({
     applications: {
