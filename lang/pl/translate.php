@@ -892,7 +892,6 @@ return [
     'newNotification' => 'Nowe powiadomienie',
     'newComment' => 'Nowy komentarz',
     'commentNotificationMessage' => 'Użytkownik :user_name dodał komentarz do Twojego artykułu #:id',
-    'applicationNotificationMessage' => 'Otrzymano nową aplikację nr :id',
     'notificationsList' => 'Lista powiadomień',
     'noNotificationsAvailable' => 'Brak powiadomień',
     'unread' => 'Nieprzeczytane',
@@ -1754,4 +1753,6 @@ return [
     'noQuestions' => 'Brak pytań',
     'activate' => 'Aktywuj',
     'deactivate' => 'Deaktywuj',
+    'applicationNotificationMessage' => 'Otrzymano nową aplikację nr :id na stanowisko: :project_title',
+    'applicationCandidateNotificationMessage' => 'Aplikowałeś na ofertę nr :id na stanowisko: :project_title',
 ];

@@ -59,11 +59,17 @@ class ApplicationMadeNotification extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
+        $messageKey = 'translate.applicationNotificationMessage';
+        if ($notifiable->id === $this->aplication->aplication_user_id || $notifiable->hasRole('worker')) {
+            $messageKey = 'translate.applicationCandidateNotificationMessage';
+        }
+
         return [
             'title' => 'translate.newNotification',
-            'message' => 'translate.applicationNotificationMessage',
+            'message' => $messageKey,
             'id' => $this->aplication->id, // Parametr dla klucza tłumaczenia (opcjonalnie)
             'aplication' => $this->aplication->id,
+            'project_title' => $this->aplication->project->title[app()->getLocale()] ?? $this->aplication->project->title['pl'] ?? reset($this->aplication->project->title),
         ];
     }
 
@@ -72,11 +78,17 @@ class ApplicationMadeNotification extends Notification implements ShouldQueue
      */
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
+        $messageKey = 'translate.applicationNotificationMessage';
+        if ($notifiable->id === $this->aplication->aplication_user_id || $notifiable->hasRole('worker')) {
+            $messageKey = 'translate.applicationCandidateNotificationMessage';
+        }
+
         return new BroadcastMessage([
             'title' => 'translate.newNotification',
-            'message' => 'translate.applicationNotificationMessage',
+            'message' => $messageKey,
             'id' => $this->aplication->id,
             'aplication' => $this->aplication->id,
+            'project_title' => $this->aplication->project->title[app()->getLocale()] ?? $this->aplication->project->title['pl'] ?? reset($this->aplication->project->title),
         ]);
     }
 }

@@ -343,6 +343,7 @@ class BuyController extends Controller
         $buyHelper->createFromPoints($points, $product);
         session()->flash('flash.banner', __('translate.exchangeSuccess').'.');
         session()->flash('flash.bannerStyle', 'success');
+        session()->flash('scrollTo', 'download-certificate');
 
         $route = match ($product->id) {
             8 => 'firm.banners',

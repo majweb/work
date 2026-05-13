@@ -705,6 +705,18 @@ onMounted(async () => {
     VueApexChartsLazy.value = ApexChartsModule.default;
 });
 
+onMounted(() => {
+    setTimeout(() => {
+        const scrollTo = usePage().props.scrollTo;
+        if (scrollTo) {
+            const element = document.getElementById(scrollTo);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, 100);
+});
+
 // Ustawienie locale dla moment.js
 moment.locale(usePage().props.language);
 
@@ -731,7 +743,7 @@ const generateCertificate = (level) => {
     if (!form.selectedLevel) return;
 
     form.post(route('firm.premium-certificate.generate'), {
-        preserveScroll: true,
+        preserveScroll: false,
         onSuccess: () => {
             form.reset();
         },

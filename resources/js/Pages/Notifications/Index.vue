@@ -19,6 +19,8 @@ const formatDate = (dateString) => {
 // Konwertuje obiekt danych powiadomienia na czytelny format
 const formatNotification = (notification) => {
     const data = notification.data;
+    const page = usePage();
+    const roles = page.props.roles || [];
 
     if (!data) return { title: __('translate.unknownNotification'), message: '' };
 
@@ -40,13 +42,26 @@ const formatNotification = (notification) => {
         };
     }
 
-    const message = data.message ? __(data.message, { ...data, id: data.aplication || data.id }) : '';
+    const message = data.message ? __(data.message, { ...data, id: data.aplication || data.id, project_title: data.project_title || '' }) : '';
+    let actionUrl = data.actionUrl || null;
+
+    // Obsługa linku dla powiadomienia o nowej aplikacji
+    if (data.message === 'translate.applicationNotificationMessage' || data.message === 'translate.applicationCandidateNotificationMessage') {
+        const applicationId = data.aplication || data.id;
+        if (roles.includes('firm')) {
+            actionUrl = `/logged/aplications/${applicationId}`;
+        } else if (roles.includes('recruit')) {
+            actionUrl = `/logged/project-aplications-recruits/${applicationId}`;
+        } else if (roles.includes('worker') || roles.includes('client')) {
+            actionUrl = `/logged/worker/aplication/${applicationId}`;
+        }
+    }
 
     return {
         title: __(data.title || 'translate.newNotification', data) || __('translate.notification'),
         message: message,
         action: data.action ? __(data.action, data) : null,
-        actionUrl: data.actionUrl || null
+        actionUrl: actionUrl
     };
 };
 

@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import {computed} from 'vue';
+import {computed, onMounted} from 'vue';
 import {useForm, usePage} from "@inertiajs/vue3";
 import __ from "@/lang.js";
 
@@ -13,6 +13,18 @@ const props = defineProps({
     levelPoints: Object,
     levelNames: Object,
     levelColors: Object
+});
+
+onMounted(() => {
+    setTimeout(() => {
+        const scrollTo = usePage().props.scrollTo;
+        if (scrollTo) {
+            const element = document.getElementById(scrollTo);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, 100);
 });
 
 // Computed properties
@@ -69,7 +81,7 @@ const generateCertificate = () => {
     if (!form.selectedLevel) return;
 
     form.post(route('firm.premium-certificate.generate'), {
-        preserveScroll: true,
+        preserveScroll: false,
         onSuccess: () => {
             form.reset();
         },
@@ -251,7 +263,7 @@ const generateButtonText = computed(() => {
                     </div>
 
                     <!-- Aktualny certyfikat (jeśli posiada) -->
-                    <div v-if="currentLevel > 0" class="mt-12 bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div v-if="currentLevel > 0" id="download-certificate" class="mt-12 bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-4">
                             <div class="p-3 bg-blue-work rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
