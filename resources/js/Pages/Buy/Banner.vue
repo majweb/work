@@ -19,7 +19,7 @@ const props = defineProps({
 });
 let serverMessage=ref(null);
 const optionsCountry = ref(props.countries);
-const showForm = ref(false);
+const showForm = ref(props.check && !props.banner);
 
 const page = usePage();
 const firmPoints = computed(() => page?.props?.auth?.user?.firm?.points ?? null);

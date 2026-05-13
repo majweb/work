@@ -376,7 +376,6 @@
                             {{ certificate.levelNames[level] }}
                         </div>
                     </div>
-
                     <button
                         v-if="certificate.collectedPoints >= certificate.levelPoints[level]"
                         @click.stop="generateCertificate(level)"

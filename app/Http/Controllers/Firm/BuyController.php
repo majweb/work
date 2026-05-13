@@ -344,6 +344,19 @@ class BuyController extends Controller
         session()->flash('flash.banner', __('translate.exchangeSuccess').'.');
         session()->flash('flash.bannerStyle', 'success');
 
+        $route = match ($product->id) {
+            8 => 'firm.banners',
+            9 => 'firm.featuredEmployer',
+            10 => 'articles.index',
+            11 => 'firm.socialMedia',
+            12 => 'firm.p50',
+            default => null,
+        };
+
+        if ($route) {
+            return to_route($route);
+        }
+
         return back();
     }
 
