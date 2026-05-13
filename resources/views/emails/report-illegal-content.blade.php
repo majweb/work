@@ -7,7 +7,7 @@ Otrzymano nowe zgłoszenie dotyczące nielegalnych treści lub naruszenia regula
 
 ## Dane zgłoszenia:
 
-- **Zakres zgłoszenia:** {{ __('scope_options.' . $data['scope'], [], 'pl') }}
+- **Zakres zgłoszenia:** {{ __('illegalForm.scope_options.' . $data['scope'], [], 'pl') }}
 - **Status podmiotu sygnalizującego:** {{ $data['signaling_entity'] ? 'TAK' : 'NIE' }}
 - **Imię i nazwisko:** {{ $data['name'] }}
 - **Adres e-mail:** {{ $data['email'] }}
