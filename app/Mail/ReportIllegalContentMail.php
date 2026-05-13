@@ -26,7 +26,9 @@ class ReportIllegalContentMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address($this->data['email'], $this->data['name']),
+            replyTo: [
+                new Address($this->data['email'], $this->data['name']),
+            ],
             subject: 'Zgłoszenie nielegalnych treści - Work4You.Global',
         );
     }
