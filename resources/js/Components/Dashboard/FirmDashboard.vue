@@ -221,6 +221,50 @@
                         </div>
 
                         <div class="relative z-10 w-full mt-6">
+                            <div class="mb-3">
+                                <Link
+                                    v-if="service.id === 8"
+                                    :href="route('firm.banners')"
+                                    class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                >
+                                    {{ __('info.more') }}
+                                </Link>
+                                <Link
+                                    v-else-if="service.id === 9"
+                                    :href="route('firm.featuredEmployer')"
+                                    class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                >
+                                    {{ __('info.more') }}
+                                </Link>
+                                <Link
+                                    v-else-if="service.id === 10"
+                                    :href="route('articles.index')"
+                                    class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                >
+                                    {{ __('info.more') }}
+                                </Link>
+                                <Link
+                                    v-else-if="service.id === 11"
+                                    :href="route('firm.socialMedia')"
+                                    class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                >
+                                    {{ __('info.more') }}
+                                </Link>
+                                <Link
+                                    v-else-if="service.id === 12"
+                                    :href="route('firm.p50')"
+                                    class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                >
+                                    {{ __('info.more') }}
+                                </Link>
+                                <Link
+                                    v-else
+                                    :href="route('buy.index') + '#service-' + service.id"
+                                    class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                >
+                                    {{ __('info.more') }}
+                                </Link>
+                            </div>
                             <div v-if="service.id === 8">
                                 <div v-if="bannerOptionsVisible[service.id]">
                                     <div class="space-y-3">

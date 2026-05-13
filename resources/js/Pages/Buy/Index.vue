@@ -250,6 +250,7 @@ const getServiceDescription = (type) => {
                         <div
                             v-for="(service, index) in additionalServices"
                             :key="service.id"
+                            :id="'service-' + service.id"
                             class="group rounded-[2.5rem] p-8 text-center transition-all duration-500 relative border flex flex-col justify-between min-h-[350px] bg-white border-gray-100 shadow-xl shadow-blue-900/5 hover:shadow-blue-900/10 hover:-translate-y-2 overflow-hidden"
                         >
                             <!-- Decoration -->
@@ -278,6 +279,50 @@ const getServiceDescription = (type) => {
                             </div>
 
                             <div class="relative z-10 w-full mt-6">
+                                <div class="mb-3">
+                                    <Link
+                                        v-if="service.id === 8"
+                                        :href="route('firm.banners')"
+                                        class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                    >
+                                        {{ __('info.more') }}
+                                    </Link>
+                                    <Link
+                                        v-else-if="service.id === 9"
+                                        :href="route('firm.featuredEmployer')"
+                                        class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                    >
+                                        {{ __('info.more') }}
+                                    </Link>
+                                    <Link
+                                        v-else-if="service.id === 10"
+                                        :href="route('articles.index')"
+                                        class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                    >
+                                        {{ __('info.more') }}
+                                    </Link>
+                                    <Link
+                                        v-else-if="service.id === 11"
+                                        :href="route('firm.socialMedia')"
+                                        class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                    >
+                                        {{ __('info.more') }}
+                                    </Link>
+                                    <Link
+                                        v-else-if="service.id === 12"
+                                        :href="route('firm.p50')"
+                                        class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                    >
+                                        {{ __('info.more') }}
+                                    </Link>
+                                    <a
+                                        v-else
+                                        :href="'#service-' + service.id"
+                                        class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest hover:underline"
+                                    >
+                                        {{ __('info.more') }}
+                                    </a>
+                                </div>
                                 <template v-if="service.id === 8">
                                     <template v-if="bannerOptionsVisible[service.id]">
                                         <div class="space-y-3">
