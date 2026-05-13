@@ -114,15 +114,15 @@ const disableTwoFactorAuthentication = () => {
 
         <!-- Content -->
         <div class="px-6 py-6 space-y-6">
-            <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900">
+            <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900 uppercase">
                 {{__('translate.2factorAuthDescriptionEnabled')}}
             </h3>
 
-            <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900">
+            <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900 uppercase">
                 {{__('translate.2factorAuthDescriptionFinish')}}
             </h3>
 
-            <h3 v-else class="text-lg font-medium text-gray-900">
+            <h3 v-else class="text-lg font-medium text-gray-900 uppercase">
                 {{__('translate.2factorAuthDescriptionHave')}}
             </h3>
 

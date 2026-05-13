@@ -88,7 +88,7 @@ const updateProfileFirm = () => {
                 <InputError :message="form.errors.www" class="mt-2"/>
             </div>
             <div class="col-span-6">
-                <h3 class="text-lg mb-3 font-bold">{{ __('translate.opinions') }}</h3>
+                <h3 class="text-lg mb-3 font-bold uppercase">{{ __('translate.opinions') }}</h3>
                 <div class="grid grid-cols-4 gap-6">
                     <!-- opinion_google -->
                     <div class="col-span-6 sm:col-span-2">
@@ -131,7 +131,7 @@ const updateProfileFirm = () => {
                 </div>
             </div>
             <div class="col-span-6">
-                <h3 class="text-lg mb-3 font-bold">{{ __('translate.socials') }}</h3>
+                <h3 class="text-lg mb-3 font-bold uppercase">{{ __('translate.socials') }}</h3>
                 <div class="grid grid-cols-4 gap-6">
                     <!-- social_facebook -->
                     <div class="col-span-6 sm:col-span-2">
@@ -215,7 +215,7 @@ const updateProfileFirm = () => {
             </div>
 
             <div class="col-span-6">
-                <h3 class="text-lg mb-3 font-bold">{{ __('translate.rest') }}</h3>
+                <h3 class="text-lg mb-3 font-bold uppercase">{{ __('translate.rest') }}</h3>
                 <div class="grid grid-cols-6 gap-6">
                     <!-- count_workers -->
                     <div class="col-span-6 sm:col-span-2">

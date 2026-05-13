@@ -1762,4 +1762,5 @@ return [
     'rejected' => 'Odrzucono',
     'waiting' => 'Oczekiwanie',
     'noFiles' => 'Brak pliku',
+    'limitReached' => 'Limit osiągnięty',
 ];
