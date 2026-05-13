@@ -508,6 +508,21 @@ const initializeMap = () => {
         // Wypełnij pola formularza
         fillAddressFromGeocoder(place);
     });
+    // Obsługa braku wyników w autocomplete
+    geocoder.value.on('results', (e) => {
+        if (e && e.features && e.features.length === 0) {
+            // Mapbox potrzebuje chwili na wyrenderowanie kontenera z błędem
+            setTimeout(() => {
+                // Znajdź domyślny element z tekstem "No results found" wewnątrz geokodera
+                const noResultsElement = document.querySelector('.mapbox-gl-geocoder--error');
+
+                if (noResultsElement) {
+                    // Podmień na dowolny uniwersalny klucz tłumaczenia z Twojego systemu
+                    noResultsElement.innerHTML = __('translate.noResults');
+                }
+            }, 20); // minimalne opóźnienie, aby DOM zdążył się zaktualizować
+        }
+    });
 };
 
 const fillAddressFromGeocoder = (place) => {
@@ -1714,7 +1729,7 @@ onMounted(async () => {
                                             <img v-else-if="offer.id == 4" class="w-20 h-20" src="/images/icons/offers/system_premiowy.svg" alt="system_premiowy">
                                             <img v-else-if="offer.id == 5" class="w-20 h-20" src="/images/icons/offers/szkolenia.svg" alt="szkolenia">
                                             <img v-else-if="offer.id == 6" class="w-20 h-20" src="/images/icons/offers/możliwosc_awansu_zawodowego.svg" alt="możliwosc_awansu_zawodowego">
-                                            <img v-else-if="offer.id == 7" class="w-20 h-20" src="/images/icons/offers/wynagrodzenie.svg" alt="wynagrodzenie">
+                                            <img v-else-if="offer.id == 7" class="w-20 h-20" src="/images/icons/offers/elastyczny_czas_pracy.svg" alt="elastyczny_czas_pracy">
                                             <img v-else-if="offer.id == 8" class="w-20 h-20" src="/images/icons/offers/praca_zdalna.svg" alt="praca_zdalna">
                                             <img v-else-if="offer.id == 9" class="w-20 h-20" src="/images/icons/offers/prywatna_opieka_medyczna.svg" alt="prywatna_opieka_medyczna">
                                             <img v-else-if="offer.id == 10" class="w-20 h-20" src="/images/icons/offers/karta_sportowa.svg" alt="karta_sportowa">

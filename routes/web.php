@@ -167,6 +167,7 @@ Route::middleware([
     Route::get('maybeApplications', [AplicationController::class, 'maybeApplications'])->middleware('role:firm')->name('firm.applications.maybeApplications');
     Route::get('noApplications', [AplicationController::class, 'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');
     Route::resource('projects', ProjectController::class)->middleware('role:firm');
+    Route::post('projects/{project}/toggle-active', [ProjectController::class, 'toggleActive'])->middleware('role:firm')->name('projects.toggle-active');
     Route::get('projects/{project}/generator', [ProjectController::class, 'generatorData'])->middleware('role:firm|recruit')->name('projects.generator');
     Route::post('projects/{project}/generator', [ProjectController::class, 'generatorSave'])->middleware('role:firm|recruit')->name('projects.generator.save');
     Route::get('projects/getChildsCategory/{parent}', [ProjectController::class, 'getChildsCategory'])->middleware('role:firm')->name('projects.getChildsCategory');
@@ -246,6 +247,7 @@ Route::middleware([
 
     //    RECRUIT
     Route::resource('project-recruits', ProjectControllerRecruit::class)->parameters(['project-recruits' => 'project']);
+    Route::post('project-recruits/{project}/toggle-active', [ProjectControllerRecruit::class, 'toggleActive'])->middleware('role:recruit')->name('project-recruits.toggle-active');
     Route::post('/project-recruits/{project}/duplicate', [ProjectControllerRecruit::class, 'duplicate'])->name('project-recruits.duplicate');
     Route::post('/project-recruits/validate-step', [ProjectControllerRecruit::class, 'validateStep'])
         ->name('project-recruits.validate-step');

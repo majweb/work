@@ -912,7 +912,7 @@ const getTranslation = (value) => {
                             <tbody>
                             <tr v-for="offer in offers.data" :key="offer.id"
                                 class="group hover:bg-blue-50/30 transition-all duration-300 border-b border-gray-50 last:border-none"
-                                :class="{'bg-blue-50/50': selectedIds.includes(offer.id)}">
+                                :class="{'bg-blue-50/50': selectedIds.includes(offer.id), 'opacity-60 grayscale-[0.5]': !offer.is_active}">
                                 <td class="p-8">
                                     <div class="flex items-center justify-center">
                                         <input
@@ -1047,10 +1047,7 @@ const getTranslation = (value) => {
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                          class="w-4 h-4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                                     </svg>
                                                 </div>
                                                 Szczegóły oferty
@@ -1079,17 +1076,16 @@ const getTranslation = (value) => {
                                                     <svg v-if="offer.is_active" xmlns="http://www.w3.org/2000/svg"
                                                          fill="none" viewBox="0 0 24 24" stroke-width="2"
                                                          stroke="currentColor" class="w-4 h-4 transition-colors">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636"/>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
                                                     </svg>
                                                     <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                          class="w-4 h-4 transition-colors text-green-500 group-hover:text-white">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                     </svg>
                                                 </div>
-                                                {{ offer.is_active ? 'Dezaktywuj' : 'Aktywuj' }}
+                                                {{ offer.is_active ? (__('translate.deactivate') || 'Dezaktywuj') : (__('translate.activate') || 'Aktywuj') }}
                                             </button>
                                         </div>
                                     </div>
@@ -1126,10 +1122,12 @@ const getTranslation = (value) => {
             <template #title>
                 <div class="flex items-center gap-3"
                      :class="offerToToggle.is_active ? 'text-red-600' : 'text-green-600'">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
+                    <svg v-if="offerToToggle.is_active" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                    </svg>
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
                     Potwierdź akcję
                 </div>
@@ -1151,14 +1149,14 @@ const getTranslation = (value) => {
                         v-if="offerToToggle.is_active"
                         @click="toggleStatus"
                     >
-                        Dezaktywuj
+                        {{ __('translate.deactivate') || 'Dezaktywuj' }}
                     </DangerButton>
                     <button
                         v-else
                         @click="toggleStatus"
                         class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white text-xs font-black uppercase tracking-widest rounded-xl transition-all active:scale-95"
                     >
-                        Aktywuj
+                        {{ __('translate.activate') || 'Aktywuj' }}
                     </button>
                 </div>
             </template>

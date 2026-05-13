@@ -512,15 +512,6 @@ class WelcomeSeeder extends Seeder
             [
                 'id' => 8,
                 'name' => json_encode([
-                    'pl' => 'Doświadczenie w pracy w zespołach międzynarodowych',
-                    'en' => 'Experience working in international teams'
-                ]),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 9,
-                'name' => json_encode([
                     'am' => 'በዓለም አቀፍ ቡድኖች ውስጥ የሥራ ልምድ', // Amharski
                     'ar' => 'الخبرة في العمل في فرق دولية', // Arabski
                     'az' => 'Beynəlxalq qruplarda iş təcrübəsi', // Azerski
@@ -589,7 +580,7 @@ class WelcomeSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'id' => 10,
+                'id' => 9,
                 'name' => json_encode([
                     'am' => 'በቡድን አስተዳደር የሥራ ልምድ', // Amharski
                     'ar' => 'الخبرة في إدارة الفريق', // Arabski
@@ -659,7 +650,7 @@ class WelcomeSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'id' => 11,
+                'id' => 10,
                 'name' => json_encode([
                     'am' => 'በኢንዱስትሪ ክፍለ ጊዜ የሕግ ደንቦችን እውቀት', // Amharski
                     'ar' => 'معرفة اللوائح القانونية في مجال الصناعة', // Arabski
@@ -729,7 +720,7 @@ class WelcomeSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'id' => 12,
+                'id' => 11,
                 'name' => json_encode([
                     'am' => 'በሪፖርት ውስጥ የሥራ ልምድ', // Amharski
                     'ar' => 'الخبرة في إعداد التقارير', // Arabski
@@ -799,7 +790,7 @@ class WelcomeSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'id' => 13,
+                'id' => 12,
                 'name' => json_encode([
                     'am' => 'በተለያዩ ቦታዎች የስራ ጉዞ ለማድረግ ዝግጁነት', // Amharski
                     'ar' => 'الاستعداد للسفر في مهام عمل إلى مواقع مختلفة', // Arabski
@@ -869,7 +860,7 @@ class WelcomeSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'id' => 14,
+                'id' => 13,
                 'name' => json_encode([
                     'am' => 'የገበያ እውቀት', // Amharski
                     'ar' => 'معرفة السوق', // Arabski

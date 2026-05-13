@@ -855,4 +855,18 @@ class ProjectController extends Controller implements HasMiddleware
             'message' => 'Walidacja przeszła pomyślnie',
         ]);
     }
+
+    public function toggleActive(Project $project)
+    {
+        Gate::authorize('update', $project);
+
+        $project->update([
+            'is_active' => ! $project->is_active,
+        ]);
+
+        session()->flash('flash.banner', __('translate.Saved'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
+    }
 }

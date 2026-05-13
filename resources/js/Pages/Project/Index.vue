@@ -203,6 +203,13 @@ const duplicateProject = (project) => {
     router.post(route('projects.duplicate', project));
 };
 
+const toggleActive = (project) => {
+    router.post(route('projects.toggle-active', project.id), {}, {
+        preserveScroll: true,
+        preserveState: true,
+    });
+};
+
 const { getPositionTitle } = useProjectHelpers();
 </script>
 
@@ -458,6 +465,7 @@ const { getPositionTitle } = useProjectHelpers();
                         v-for="project in projects.data"
                         :key="project.id"
                         class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
+                        :class="{'opacity-60 grayscale-[0.5]': !project.is_active}"
                     >
                         <!-- Górna linia -->
                         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
@@ -577,12 +585,29 @@ const { getPositionTitle } = useProjectHelpers();
                                     </svg>
                                 </Link>
 
+                                <button
+                                    @click="toggleActive(project)"
+                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center transition-all shadow-sm"
+                                    :class="project.is_active ? 'text-green-500 hover:bg-green-50' : 'text-gray-400 hover:bg-gray-50'"
+                                    :title="project.is_active ? (__('translate.deactivate') || 'DEAKTYWUJ') : (__('translate.activate') || 'AKTYWUJ')"
+                                >
+                                    <svg v-if="project.is_active" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    <svg v-else class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                                    </svg>
+                                </button>
+
                                 <Link
                                     :href="route('projects.show', project)"
                                     class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
                                     :title="__('translate.show') || 'POKAŻ'"
                                 >
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
                                 </Link>
 
                                 <Link

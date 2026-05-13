@@ -1752,4 +1752,6 @@ return [
     'session_timeout_content' => 'Twoja sesja wygaśnie za chwilę z powodu braku aktywności. Czy chcesz kontynuować sesję?',
     'continue' => 'Kontynuuj',
     'noQuestions' => 'Brak pytań',
+    'activate' => 'Aktywuj',
+    'deactivate' => 'Deaktywuj',
 ];

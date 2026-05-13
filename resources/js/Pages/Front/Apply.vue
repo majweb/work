@@ -278,7 +278,7 @@ const form = useForm({
     files: [],
     captcha: '',
     templateCv: 1,
-    cv: '',
+    cv: (props.project.cv?.length > 0) ? props.project.cv[0].id : '',
     agreements: [],
     step: formStep.value,
     birthday: (user.value && hasRole('worker')) ? (props.project.cv_classics?.length ? props.project.cv_classics[0]?.birthday : '') : '',

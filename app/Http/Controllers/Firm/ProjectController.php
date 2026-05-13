@@ -855,6 +855,20 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function toggleActive(Project $project)
+    {
+        Gate::authorize('update', $project);
+
+        $project->update([
+            'is_active' => ! $project->is_active,
+        ]);
+
+        session()->flash('flash.banner', __('translate.Saved'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
+    }
+
     public function generatorSave(Request $request, Project $project)
     {
         Gate::authorize('update', $project);
