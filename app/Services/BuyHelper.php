@@ -227,6 +227,7 @@ class BuyHelper
                     }
                 }
                 $this->pointService->decrement(Auth::user(), $points, 'BuyProduct: ' . ($product->name ?? $product->id));
+                Auth::user()->firm->increment('certificate_points', $points);
             } else {
                 session()->flash('flash.banner', 'Brak wystarczajacych punktów');
                 session()->flash('flash.bannerStyle', 'danger');

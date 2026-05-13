@@ -22,9 +22,9 @@ class PremiumCertificateController extends Controller
 
         return inertia('Firm/PremiumCertificate', [
             'certificateHistory' => $certificateHistory,
-            'collectedPoints' => $firm->points,
+            'collectedPoints' => $firm->certificate_points,
             'currentLevel' => $firm->premium_certificate_level,
-            'nextLevelPoints' => $this->getNextLevelPoints($firm->points),
+            'nextLevelPoints' => $this->getNextLevelPoints($firm->certificate_points),
             'certificatePath' => $firm->premium_certificate_path,
             'canGenerate' => $this->canGenerateNextLevel($firm),
             'foundations' => $foundations,
@@ -46,7 +46,7 @@ class PremiumCertificateController extends Controller
         $selectedLevel = $request->selectedLevel;
 
         // Sprawdź czy użytkownik ma wystarczająco punktów na wybrany poziom
-        if ($firm->points < config('premium.points_required')[$selectedLevel]) {
+        if ($firm->certificate_points < config('premium.points_required')[$selectedLevel]) {
             return back()->with([
                 'flash.banner' => __('Nie masz wystarczającej liczby punktów na wybrany poziom'),
                 'flash.bannerStyle' => 'danger',
@@ -73,7 +73,7 @@ class PremiumCertificateController extends Controller
         }
 
         // Używamy już wcześniej obliczonej wartości pointsToDeduct
-        $remainingPoints = $firm->points - $pointsToDeduct;
+        $remainingPoints = $firm->certificate_points - $pointsToDeduct;
 
         $fileName = 'premium_certificate_' . $firm->id . '_' . time() . '.pdf';
         $path = 'certificates/' . $fileName;
@@ -81,7 +81,7 @@ class PremiumCertificateController extends Controller
         $firm->update([
             'premium_certificate_path' => $path,
             'premium_certificate_level' => $selectedLevel,
-            'points' => max(0, $remainingPoints) // zachowaj nadwyżkę punktów
+            'certificate_points' => max(0, $remainingPoints) // zachowaj nadwyżkę punktów
         ]);
 
         // Zapisz historię certyfikatu
@@ -124,7 +124,7 @@ class PremiumCertificateController extends Controller
     {
         // Sprawdź, czy użytkownik ma wystarczająco punktów na jakikolwiek poziom
         foreach (config('premium.points_required') as $level => $requiredPoints) {
-            if ($firm->points >= $requiredPoints) {
+            if ($firm->certificate_points >= $requiredPoints) {
                 return true;
             }
         }
@@ -142,7 +142,12 @@ class PremiumCertificateController extends Controller
         }
         $existFile = Storage::disk('local')->exists($firm->premium_certificate_path);
         if ($existFile) {
-            return response()->download(storage_path('app/'.$firm->premium_certificate_path));
+            $path = storage_path('app/' . $firm->premium_certificate_path);
+            return response()->download($path, null, [
+                'Cache-Control' => 'no-cache, no-store, must-revalidate',
+                'Pragma' => 'no-cache',
+                'Expires' => '0',
+            ]);
         } else{
             abort(404);
         }

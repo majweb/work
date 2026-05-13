@@ -52,6 +52,7 @@ class Firm extends Model implements HasMedia
         'annual_turnover',
         'video',
         'points',
+        'certificate_points',
         'currency',
         'description',
         'premium_certificate_path',

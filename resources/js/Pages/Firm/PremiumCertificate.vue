@@ -178,7 +178,7 @@ const generateButtonText = computed(() => {
                                     <img v-else src="/images/icons/firm/certyfikat-brown.svg" class="h-12 w-12 object-contain" alt="certyfikat">
                                 </div>
 
-                                <div class="text-2xl font-bold mb-0 leading-none">{{ points.toLocaleString() }}</div>
+                                <div class="text-2xl font-bold mb-0 leading-none">{{ (points || 0).toLocaleString() }}</div>
                                 <div class="text-[10px] uppercase tracking-tighter mb-4 opacity-80">{{ __('premium.certificates.points') }}</div>
 
                                 <div class="text-lg font-bold uppercase mb-6 text-center leading-tight">
@@ -198,7 +198,7 @@ const generateButtonText = computed(() => {
                                     {{ __('premium.certificates.select') }}
                                 </button>
                                 <div v-else class="w-full py-2 px-4 rounded-xl font-bold uppercase text-sm border-2 border-white/20 text-center opacity-50">
-                                    {{ points.toLocaleString() }} pkt
+                                    {{ (points || 0).toLocaleString() }} pkt
                                 </div>
                             </div>
                         </div>
@@ -229,7 +229,7 @@ const generateButtonText = computed(() => {
                                 <!-- Tooltip z punktami na końcu paska -->
                                 <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2">
                                     <div class="bg-[#e31e24] text-white text-[10px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap shadow-lg">
-                                        {{ collectedPoints.toLocaleString() }} pkt
+                                        {{ (collectedPoints || 0).toLocaleString() }} pkt
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +247,7 @@ const generateButtonText = computed(() => {
 
                                     <!-- Opis progu pod spodem -->
                                     <div class="absolute top-6 left-0 -translate-x-1/2 flex flex-col items-center">
-                                        <div class="text-[9px] font-bold whitespace-nowrap mb-0.5">{{ points.toLocaleString() }} pkt</div>
+                                        <div class="text-[9px] font-bold whitespace-nowrap mb-0.5">{{ (points || 0).toLocaleString() }} pkt</div>
                                         <div class="text-[8px] uppercase font-bold text-blue-300 whitespace-nowrap">{{ levelNames[level].split(' ')[0] }}</div>
                                     </div>
                                 </div>
@@ -258,7 +258,7 @@ const generateButtonText = computed(() => {
                     <!-- Footer / Saldo punktów -->
                     <div class="text-center">
                         <h2 class="text-4xl font-black text-blue-work tracking-tighter uppercase">
-                            {{ __('premium.certificates.you_have_points', { points: collectedPoints.toLocaleString() }) }}
+                            {{ __('premium.certificates.you_have_points', { points: (collectedPoints || 0).toLocaleString() }) }}
                         </h2>
                     </div>
 
