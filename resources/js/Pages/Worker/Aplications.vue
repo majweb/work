@@ -68,8 +68,8 @@ const chartOptions = ref({
                     show: true,
                     total: {
                         show: true,
-                        label: __('translate.total'),
-                        fontSize: '14px',
+                        label: __('translate.total').toUpperCase(),
+                        fontSize: '10px',
                         fontWeight: 600,
                         color: '#1f2937',
                         formatter: () => stats.value.total || 0

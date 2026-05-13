@@ -742,6 +742,7 @@ class ProjectController extends Controller
     {
         Gate::authorize('view', $project);
         $newProject = $project->replicate();
+        $newProject->views_count = 0;
         $newProject->save();
 
         session()->flash('flash.banner', __('translate.projectDuplicated'));

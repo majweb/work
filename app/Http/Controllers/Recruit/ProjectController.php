@@ -556,6 +556,7 @@ class ProjectController extends Controller implements HasMiddleware
     public function duplicate(Project $project)
     {
         $newProject = $project->replicate();
+        $newProject->views_count = 0;
         $newProject->save();
 
         session()->flash('flash.banner', __('translate.projectDuplicated'));

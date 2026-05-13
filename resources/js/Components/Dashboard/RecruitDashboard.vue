@@ -480,9 +480,10 @@ const chartOptions = computed(() => ({
                     show: true,
                     total: {
                         show: true,
-                        label: __('translate.total'),
-                        fontSize: '16px',
-                        fontWeight: 600
+                        label: __('translate.total').toUpperCase(),
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        color: '#1f2937',
                     }
                 }
             }
