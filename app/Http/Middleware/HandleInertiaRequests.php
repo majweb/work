@@ -72,6 +72,7 @@ class HandleInertiaRequests extends Middleware
             'sender' => session()->pull('sender') ?? null,
             'csrf_token' => csrf_token(),
             'cart' => Cart::content(),
+            'cartCountAll' => Cart::count(),
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'pageUrl' => env('APP_URL'),

@@ -32,16 +32,28 @@ watch(() => props.foundations, (newVal) => {
     optionsFundations.value = [...newVal];
 });
 
+const loading = ref(false);
 const removeFromCart = id => {
-    router.delete(route('buy.detailRemoveFromCart',id),{preserveScroll:true})
+    loading.value = true;
+    router.delete(route('buy.detailRemoveFromCart',id),{
+        preserveScroll:true,
+        onFinish: () => loading.value = false
+    })
 }
 
 const increment = (id,qty) => {
-    router.post(route('buy.detailIncrementCart',[id,qty]),null,{preserveScroll:true});
+    loading.value = true;
+    router.post(route('buy.detailIncrementCart',[id,qty]),null,{
+        preserveScroll:true,
+        onFinish: () => loading.value = false
+    });
 }
 const decrement = (id,qty) => {
-    router.post(route('buy.detailDecrementCart',[id,qty]),null,{preserveScroll:true});
-
+    loading.value = true;
+    router.post(route('buy.detailDecrementCart',[id,qty]),null,{
+        preserveScroll:true,
+        onFinish: () => loading.value = false
+    });
 }
 const currency  = '$';
 const dispatchAction = () => {
@@ -78,14 +90,21 @@ const stripeCheckout = () => {
     <AppLayout :title="__('translate.buy')">
         <template #header>
             <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.cart') }}</h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="countCart > 0">
-                        {{ __('translate.incart') }} {{ countCart }} {{ __('translate.service') }}
-                    </p>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-else>
-                        {{ __('translate.emptyCart') }}
-                    </p>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-[#0b2a55]/5 rounded-2xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#0b2a55]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.cart') }}</h3>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="countCart > 0">
+                            {{ __('translate.incart') }} <span class="text-[#00aaff]">{{ countCart }}</span> {{ __('translate.service') }}
+                        </p>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-else>
+                            {{ __('translate.emptyCart') }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </template>
@@ -97,7 +116,7 @@ const stripeCheckout = () => {
                             <div class="mt-6 sm:mt-8 flex flex-col lg:flex-row items-start gap-6 xl:gap-8">
                                 <div class="w-full lg:flex-1">
                                         <div v-if="countCart == 0">
-                                            <div class="text-center py-4 px-6 whitespace-nowrap font-semibold">
+                                            <div class="text-center py-4 px-6 whitespace-nowrap font-semibold uppercase">
                                                 <p>
                                                     {{__('translate.emptyCart')}}
                                                 </p>
@@ -125,7 +144,7 @@ const stripeCheckout = () => {
                                                     </div>
 
                                                     <div class="flex items-center gap-4">
-                                                        <button @click="removeFromCart(cartItem.rowId)" type="button" class="inline-flex items-center text-xs font-black text-red-500 hover:text-red-700 uppercase tracking-widest transition-colors">
+                                                        <button :disabled="loading" @click="removeFromCart(cartItem.rowId)" type="button" class="inline-flex items-center text-xs font-black text-red-500 hover:text-red-700 uppercase tracking-widest transition-colors disabled:opacity-50">
                                                             <svg class="me-1.5 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                                             </svg>
@@ -136,13 +155,13 @@ const stripeCheckout = () => {
 
                                                 <div class="flex items-center justify-between md:order-3 md:justify-end gap-8">
                                                     <div class="flex items-center bg-gray-50 p-1.5 rounded-xl border border-gray-100">
-                                                        <button type="button" @click="decrement(cartItem.rowId,cartItem.qty)" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#0b2a55] shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-100">
+                                                        <button :disabled="loading" type="button" @click="decrement(cartItem.rowId,cartItem.qty)" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#0b2a55] shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-100 disabled:opacity-50">
                                                             <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                                             </svg>
                                                         </button>
                                                         <input type="text" readonly class="w-12 shrink-0 border-0 bg-transparent text-center text-sm font-black text-[#0b2a55] focus:outline-none focus:ring-0" :value="cartItem.qty" />
-                                                        <button type="button" @click="increment(cartItem.rowId,cartItem.qty)" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#0b2a55] shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-100">
+                                                        <button :disabled="loading" type="button" @click="increment(cartItem.rowId,cartItem.qty)" class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#0b2a55] shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-100 disabled:opacity-50">
                                                             <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
                                                             </svg>
@@ -172,6 +191,26 @@ const stripeCheckout = () => {
                                         </div>
 
                                         <div class="space-y-4 pt-4 border-t border-gray-100">
+
+                                            <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-8">
+                                                <div class="flex items-center gap-4">
+                                                    <div class="p-3 bg-[#0b2a55]/5 rounded-2xl">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#0b2a55]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="countCart > 0">
+                                                            {{ __('translate.incart') }} <span class="text-[#00aaff]">{{ countCart }}</span> {{ __('translate.service') }}
+                                                        </p>
+                                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-else>
+                                                            {{ __('translate.emptyCart') }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                             <div class="flex items-center justify-between">
                                                 <div class="space-y-1">
                                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('translate.summary') }}</p>

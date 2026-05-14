@@ -46,7 +46,7 @@ class BuyController extends Controller
     public function index()
     {
         $query = Product::query()->active();
-        $countCart = Cart::content()->count();
+        $countCart = Cart::count();
 
         $query->when(request()->has('product_type'), function ($q) {
             if (request()->get('product_type') != 'all') {
@@ -65,7 +65,7 @@ class BuyController extends Controller
     {
         $cartItems = Cart::content();
         $total = Cart::subtotal();
-        $countCart = Cart::content()->count();
+        $countCart = Cart::count();
         $countryCode = getLocalBrowserLang();
         $foundations = Foundation::where('country', $countryCode)->get();
         $existoundation = auth()->user()->foundation;
