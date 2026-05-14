@@ -137,7 +137,7 @@ const updateInvoice = () => {
                                         v-model="form.name_invoice"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.name_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.name_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -148,7 +148,7 @@ const updateInvoice = () => {
                                         v-model="form.nip_invoice"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.nip_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.nip_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -159,7 +159,7 @@ const updateInvoice = () => {
                                         v-model="form.street_invoice"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.street_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.street_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -170,7 +170,7 @@ const updateInvoice = () => {
                                         v-model="form.city_invoice"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.city_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.city_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -181,7 +181,7 @@ const updateInvoice = () => {
                                         v-model="form.postal_invoice"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.postal_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.postal_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -192,7 +192,7 @@ const updateInvoice = () => {
                                         v-model="form.country_invoice"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.country_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.country_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">

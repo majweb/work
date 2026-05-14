@@ -70,7 +70,10 @@ const allRepliesCount = computed(() =>
                 </div>
                 <InputError :message="form.errors.content" class="mt-2 text-[10px] font-black uppercase tracking-widest ml-2"/>
 
-                <div class="flex justify-end pt-2">
+                <div class="flex flex-col items-end gap-2 pt-2">
+                    <p class="text-[10px] text-gray-400 font-medium uppercase tracking-widest mr-2">
+                        {{ __('translate.commentVerificationInfo') }}
+                    </p>
                     <button
                         type="submit"
                         class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] shadow-xl shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"

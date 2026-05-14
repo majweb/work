@@ -95,7 +95,7 @@ const deleteApiToken = () => {
                         class="mt-1 block w-full"
                         autofocus
                     />
-                    <InputError :message="createApiTokenForm.errors.name" class="mt-2" />
+                    <InputError :message="createApiTokenForm.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                 </div>
 
                 <!-- Token Permissions -->

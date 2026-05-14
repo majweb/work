@@ -73,7 +73,7 @@ const closeModal = () => {
                             :placeholder="__('translate.password')"
                             @keyup.enter="deleteUser"
                         />
-                        <InputError :message="form.errors.password" class="mt-2" />
+                        <InputError :message="form.errors.password" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                     </div>
                 </template>
 

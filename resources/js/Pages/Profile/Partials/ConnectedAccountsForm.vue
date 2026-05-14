@@ -122,7 +122,7 @@ const closeModal = () => {
                         @keyup.enter="removeAccount"
                     />
 
-                    <InputError :message="form.errors.password" class="mt-2" />
+                    <InputError :message="form.errors.password" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                 </div>
             </template>
 

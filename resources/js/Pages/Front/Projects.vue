@@ -364,7 +364,7 @@ const isSearching = ref(false);
                                         <span>{{__('translate.noOptions')}}</span>
                                     </template>
                                 </Multiselect>
-                                <InputError :message="form.errors.country" class="mt-2"/>
+                                <InputError :message="form.errors.country" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                             </div>
 
                             <!-- Select City -->
@@ -391,7 +391,7 @@ const isSearching = ref(false);
                                         <span>{{__('translate.noOptions')}}</span>
                                     </template>
                                 </Multiselect>
-                                <InputError :message="form.errors.city" class="mt-2"/>
+                                <InputError :message="form.errors.city" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                             </div>
 
                             <!-- Select Distance -->
@@ -426,7 +426,7 @@ const isSearching = ref(false);
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
                                     </Multiselect>
-                                    <InputError :message="form.errors.distance" class="mt-2"/>
+                                    <InputError :message="form.errors.distance" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </transition>
 
@@ -452,7 +452,7 @@ const isSearching = ref(false);
                                         <span>{{__('translate.noOptions')}}</span>
                                     </template>
                                 </Multiselect>
-                                <InputError :message="form.errors.category" class="mt-2"/>
+                                <InputError :message="form.errors.category" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                             </div>
                         </div>
 
@@ -480,7 +480,7 @@ const isSearching = ref(false);
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
                                     </Multiselect>
-                                    <InputError :message="form.errors.categorySub" class="mt-2"/>
+                                    <InputError :message="form.errors.categorySub" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
 
                                 <!-- Select Profession -->
@@ -505,7 +505,7 @@ const isSearching = ref(false);
                                             <span>{{__('translate.noOptions')}}</span>
                                         </template>
                                     </Multiselect>
-                                    <InputError :message="form.errors.profession" class="mt-2"/>
+                                    <InputError :message="form.errors.profession" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
 
                                 <!-- Select Position -->

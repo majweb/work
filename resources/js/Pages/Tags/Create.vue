@@ -71,7 +71,7 @@ const getContrastColor = (bgColor) => {
                                         :placeholder="__('translate.enterNameTag')"
                                         autofocus
                                     />
-                                    <InputError :message="form.errors.name" class="mt-2" />
+                                    <InputError :message="form.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                                 </div>
 
                                 <div class="flex justify-start">
@@ -106,7 +106,7 @@ const getContrastColor = (bgColor) => {
                                         <p class="text-[10px] text-gray-300 font-bold uppercase tracking-widest italic leading-relaxed">{{ __('translate.colorTagDesc') }}</p>
                                     </div>
                                 </div>
-                                <InputError :message="form.errors.color" class="mt-2"/>
+                                <InputError :message="form.errors.color" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                             </div>
                         </div>
                     </form>

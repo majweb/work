@@ -192,7 +192,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                         <span>{{__('translate.noOptions')}}</span>
                                     </template>
                                 </multiselect>
-                                <InputError :message="form.errors.country" class="mt-2"/>
+                                <InputError :message="form.errors.country" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                             </div>
                             <div class="flex items-end pb-4">
                                 <span class="text-sm font-black text-white uppercase tracking-widest">{{ props.firms.total }} {{ __('translate.firms_count') }}</span>

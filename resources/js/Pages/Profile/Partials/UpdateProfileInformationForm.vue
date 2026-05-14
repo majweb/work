@@ -128,7 +128,7 @@ const clearPhotoFileInput = () => {
                         </SecondaryButton>
                     </div>
 
-                    <InputError :message="form.errors.photo" class="mt-2" />
+                    <InputError :message="form.errors.photo" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                 </div>
 
                 <!-- Name -->
@@ -140,7 +140,7 @@ const clearPhotoFileInput = () => {
                     type="text"
                     class="mt-1 block w-full"
                 />
-                <InputError :message="form.errors.name" class="mt-2" />
+                <InputError :message="form.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
             </div>
 
                 <!-- Email -->

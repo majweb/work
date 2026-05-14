@@ -101,10 +101,10 @@ const createArticle = () => {
                                 <div>
                                     <InputLabel :value="__('translate.category')" class="block text-[10px] font-black text-gray-400 mb-3 uppercase tracking-widest" />
                                     <multiselect
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        selectLabel=""
+                                        selectGroupLabel=""
+                                        selectedLabel=""
+                                        deselectLabel=""
                                         :placeholder="__('translate.placeholder')"
                                         track-by="value"
                                         label="name"
@@ -191,7 +191,7 @@ const createArticle = () => {
                                             }"
                                         ></file-pond>
                                     </div>
-                                    <InputError :message="form.errors.photo" class="mt-1" />
+                                    <InputError :message="form.errors.photo" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                                 </div>
                             </div>
 

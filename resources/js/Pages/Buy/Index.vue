@@ -44,6 +44,16 @@ const additionalServices = computed(() => all.value
 );
 
 const bannerOptionsVisible = reactive({});
+const processing = ref(false);
+
+const startProcessing = () => {
+    processing.value = true;
+};
+
+const finishProcessing = () => {
+    processing.value = false;
+};
+
 const toggleBannerOptions = (serviceId) => {
     bannerOptionsVisible[serviceId] = !bannerOptionsVisible[serviceId];
 };
@@ -328,14 +338,17 @@ const getServiceDescription = (type) => {
                                         <div class="space-y-3">
                                             <Link
                                                 preserve-scroll
+                                                :disabled="processing"
                                                 :href="route('buy.change', { product: service.id, points: service.price })"
                                                 method="post"
                                                 as="button"
-                                                class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg"
+                                                @start="startProcessing"
+                                                @finish="finishProcessing"
+                                                class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 {{ __('translate.exchangePoints') }}
                                             </Link>
-                                            <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg px-2">
+                                            <Link preserve-scroll method="post" as="button" :disabled="processing" @start="startProcessing" @finish="finishProcessing" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg px-2 disabled:opacity-50 disabled:cursor-not-allowed">
                                                 {{__('translate.makeProject')}}
                                             </Link>
                                             <button
@@ -366,10 +379,13 @@ const getServiceDescription = (type) => {
                                     <Link
                                         preserve-scroll
                                         v-if="points && points >= parseInt(service.price)"
+                                        :disabled="processing"
                                         :href="route('buy.change', { product: service.id, points: service.price })"
                                         method="post"
                                         as="button"
-                                        class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4"
+                                        @start="startProcessing"
+                                        @finish="finishProcessing"
+                                        class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {{ __('translate.exchangePoints') }}
                                     </Link>

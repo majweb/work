@@ -132,7 +132,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.name_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.name_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -144,7 +144,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.nip_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.nip_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -156,7 +156,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.street_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.street_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -168,7 +168,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.city_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.city_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -180,7 +180,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.postal_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.postal_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -192,7 +192,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.country_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.country_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-2">
@@ -204,7 +204,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.date_invoice" class="mt-2"/>
+                                    <InputError :message="form.errors.date_invoice" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                             <div class="col-span-6 flex items-center">
@@ -216,7 +216,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.number" class="mt-2"/>
+                                    <InputError :message="form.errors.number" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                                 <div class="mt-4 mr-2">
                                     <InputLabel for="day" :value="__('translate.day')"/>
@@ -226,7 +226,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.day" class="mt-2"/>
+                                    <InputError :message="form.errors.day" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                                 <div class="mt-4 mr-2">
                                     <InputLabel for="month" :value="__('translate.month')"/>
@@ -236,7 +236,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.month" class="mt-2"/>
+                                    <InputError :message="form.errors.month" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                                 <div class="mt-4">
                                     <InputLabel for="year" :value="__('translate.year')"/>
@@ -246,7 +246,7 @@ const updateInvoice = () => {
                                         class="mt-1 block w-full"
                                         type="text"
                                     />
-                                    <InputError :message="form.errors.year" class="mt-2"/>
+                                    <InputError :message="form.errors.year" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
                         </template>

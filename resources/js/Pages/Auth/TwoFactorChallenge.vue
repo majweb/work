@@ -68,7 +68,7 @@ const submit = () => {
                     autofocus
                     autocomplete="one-time-code"
                 />
-                <InputError class="mt-2" :message="form.errors.code" />
+                <InputError class="mt-2 text-[10px] font-bold uppercase tracking-widest" :message="form.errors.code" />
             </div>
 
             <div v-else>
@@ -81,7 +81,7 @@ const submit = () => {
                     class="mt-1 block w-full"
                     autocomplete="one-time-code"
                 />
-                <InputError class="mt-2" :message="form.errors.recovery_code" />
+                <InputError class="mt-2 text-[10px] font-bold uppercase tracking-widest" :message="form.errors.recovery_code" />
             </div>
 
             <div class="flex items-center justify-end mt-4">

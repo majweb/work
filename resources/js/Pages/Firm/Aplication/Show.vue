@@ -550,9 +550,10 @@ const dispatchActionSingleRecruit = value => {
                                                         </button>
                                                         <div v-if="showChangeRecruit" class="w-full my-2">
                                                             <multiselect
-                                                                :selectLabel="__('translate.selectLabel')"
-                                                                :selectedLabel="__('translate.selectedLabel')"
-                                                                :deselectLabel="__('translate.deselectLabel')"
+                                                                :selectLabel="''"
+                                                                :selectGroupLabel="''"
+                                                                :selectedLabel="''"
+                                                                :deselectLabel="''"
                                                                 track-by="name"
                                                                 :multiple="false"
                                                                 label="name"

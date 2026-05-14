@@ -26,6 +26,15 @@ const firmPoints = computed(() => page?.props?.auth?.user?.firm?.points ?? null)
 
 const showConfetti = ref(false);
 const isConfettiActive = ref(false);
+const processing = ref(false);
+
+const startProcessing = () => {
+    processing.value = true;
+};
+
+const finishProcessing = () => {
+    processing.value = false;
+};
 
 const confettiColors = ['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499'];
 
@@ -108,7 +117,7 @@ const sortLangs = computed(() => {
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.banner') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.forInfo') }}</p>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.forInfoBanner') }}</p>
                         </div>
                     </div>
                 </div>
@@ -117,10 +126,8 @@ const sortLangs = computed(() => {
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex flex-col md:flex-row gap-12 items-center">
                         <div class="md:w-1/2">
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight mb-2">{{ __('translate.banner').toUpperCase() }}</h3>
-                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ __('translate.bannerSlogan') }}</p>
                             <div class="h-px w-20 bg-gray-100 mb-6"></div>
-                            <p class="text-sm font-bold text-[#0A2C5C] leading-relaxed uppercase">
+                            <p class="text-sm font-bold text-gray-500 leading-relaxed uppercase">
                                 {{ __('translate.bannerDescription') }}
                             </p>
                         </div>
@@ -224,7 +231,7 @@ const sortLangs = computed(() => {
                             <button
                                 v-if="firmPoints !== null && props.product && firmPoints >= parseInt(props.product.price)"
                                 @click="handleExchange(props.product.id, props.product.price)"
-                                :disabled="isConfettiActive"
+                                :disabled="isConfettiActive || processing"
                                 class="w-full bg-[#e31e24] hover:bg-[#c1191f] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-red-900/20 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                             >
                                 {{ __('translate.exchangePointsBanner') }}
@@ -236,6 +243,21 @@ const sortLangs = computed(() => {
                             >
                                 {{ __('translate.insufficientPoints') }}
                             </button>
+                        </div>
+
+                        <div class="flex-1" v-if="props.product">
+                            <Link
+                                preserve-scroll
+                                method="post"
+                                as="button"
+                                :disabled="processing || isConfettiActive"
+                                @start="startProcessing"
+                                @finish="finishProcessing"
+                                :href="route('buy.reservedProject', [props.product, props.product.price])"
+                                class="w-full bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest py-5 rounded-2xl transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {{ __('translate.makeProject') }}
+                            </Link>
                         </div>
 
                         <div class="flex-1">
@@ -282,10 +304,10 @@ const sortLangs = computed(() => {
                                         <multiselect
                                             group-values="elements" group-label="group"
                                             :group-select="false"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            selectLabel=""
+                                            selectGroupLabel=""
+                                            selectedLabel=""
+                                            deselectLabel=""
                                             track-by="name"
                                             :multiple="true"
                                             label="name"

@@ -288,10 +288,10 @@ const stripeCheckout = () => {
 
                                     <div class="space-y-4">
                                         <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            selectLabel=""
+                                            selectGroupLabel=""
+                                            selectedLabel=""
+                                            deselectLabel=""
                                             track-by="name"
                                             :multiple="false"
                                             label="name"

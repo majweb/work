@@ -1770,5 +1770,7 @@ return [
     'candidateDetailsDescription' => 'Dodaj pracownika do wewnętrznej bazy firmy, aby zachować jego profil i móc wykorzystać go w przyszłych rekrutacjach. Rekruter ma wtedy dostęp do historii aplikacji, notatek oraz statusów kandydata. Może nadać tagi, zadać dodatkowe pytania oraz przekazać aplikację firmie zewnętrznej. Jeśli pracownik nie zostanie dodany do bazy, jego aplikacja i CV zostaną automatycznie usunięte po 90 dniach od aplikacji. Koszt dodania do listy kandydatów: :points pkt',
     'myCvDescription' => 'W zakładce „Moje CV” znajdziesz CV wygenerowane na podstawie gotowych szablonów dostępnych na portalu. CV tworzy się dopiero podczas pierwszej aplikacji na ofertę z danej branży. Każde utworzone CV jest zapisywane na koncie kandydata — można je wielokrotnie wykorzystywać, edytować i dostosowywać do kolejnych ofert pracy. Dla każdej nowej branży należy wygenerować osobne CV, najlepiej dopasowane treścią do specyfiki wykonywanej pracy, co zwiększa szanse na powodzenie w rekrutacji. Generowanie CV na portalu jest całkowicie darmowe.',
     'noHistoryAvailable' => 'Brak dostępnej historii',
-
+    'forArticle' => 'Profesjonalna promocja Twojej firmy w przestrzeni WORK4YOU.GLOBAL',
+    'commentVerificationInfo' => 'Po dodaniu komentarz będzie weryfikowany.',
+    'forInfoBanner' => 'Twoja marka widoczna od pierwszego kliknięcia',
 ];

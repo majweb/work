@@ -1025,10 +1025,10 @@ onMounted(async () => {
                                     <multiselect
                                         group-values="elements" group-label="group"
                                         :group-select="false"
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         track-by="name"
                                         :multiple="true"
                                         label="name"
@@ -1047,10 +1047,10 @@ onMounted(async () => {
                                 <div v-if="externalCompanies && externalCompanies.length > 0">
                                     <InputLabel :value="__('translate.externalCompany')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <multiselect
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         track-by="id"
                                         label="name"
                                         :placeholder="__('translate.placeholder')"
@@ -1081,10 +1081,10 @@ onMounted(async () => {
                                 <multiselect
                                     group-values="elements" group-label="group"
                                     :group-select="false"
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     track-by="name"
                                     :multiple="false"
                                     label="name"
@@ -1246,10 +1246,10 @@ onMounted(async () => {
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <InputLabel :value="__('translate.currency')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                     <multiselect
-                                        :selectLabel="__('translate.selectLabel')"
-                                        :selectGroupLabel="__('translate.selectGroupLabel')"
-                                        :selectedLabel="__('translate.selectedLabel')"
-                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :selectLabel="''"
+                                        :selectGroupLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
                                         :noOptions="__('translate.noOptions')"
                                         :noResult="__('translate.noResult')"
                                         track-by="value"
@@ -1591,10 +1591,10 @@ onMounted(async () => {
                             <div class="mt-10">
                                 <InputLabel :value="__('translate.workingPlace')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                 <multiselect
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     :noOptions="__('translate.noOptions')"
                                     :noResult="__('translate.noResult')"
                                     track-by="value"

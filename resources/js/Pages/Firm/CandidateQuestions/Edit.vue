@@ -125,7 +125,7 @@ const submit = () => {
                                     {{ form.question.length }} / 2000
                                 </div>
                             </div>
-                            <InputError :message="form.errors.question" class="mt-4" />
+                            <InputError :message="form.errors.question" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
 
                         <div class="flex items-center justify-end">

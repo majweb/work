@@ -254,10 +254,10 @@ const clearCountry = () => {
                                         <multiselect
                                             group-values="elements" group-label="group"
                                             :group-select="false"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="name"
                                             :multiple="true"
                                             label="name"
@@ -280,10 +280,10 @@ const clearCountry = () => {
                                         <InputLabel :value="__('translate.category')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="value"
                                             label="name"
                                             :placeholder="__('translate.placeholder')"
@@ -302,10 +302,10 @@ const clearCountry = () => {
                                         <InputLabel :value="__('translate.subcategory')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"
@@ -326,10 +326,10 @@ const clearCountry = () => {
                                         <InputLabel :value="__('translate.profession')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"
@@ -350,10 +350,10 @@ const clearCountry = () => {
                                         <InputLabel :value="__('translate.position')"/>
                                         <multiselect
                                             :disabled="true"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"
@@ -377,10 +377,10 @@ const clearCountry = () => {
                                         <multiselect
                                             group-values="elements" group-label="group"
                                             :group-select="false"
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             track-by="name"
                                             :multiple="false"
                                             label="name"
@@ -477,10 +477,10 @@ const clearCountry = () => {
                                     <div class="mt-4">
                                         <InputLabel :value="__('translate.workingPlace')"/>
                                         <multiselect
-                                            :selectLabel="__('translate.selectLabel')"
-                                            :selectGroupLabel="__('translate.selectGroupLabel')"
-                                            :selectedLabel="__('translate.selectedLabel')"
-                                            :deselectLabel="__('translate.deselectLabel')"
+                                            :selectLabel="''"
+                                            :selectGroupLabel="''"
+                                            :selectedLabel="''"
+                                            :deselectLabel="''"
                                             :noOptions="__('translate.noOptions')"
                                             :noResult="__('translate.noResult')"
                                             track-by="value"
@@ -524,10 +524,10 @@ const clearCountry = () => {
                                         <div>
                                             <InputLabel :value="__('translate.currency')"/>
                                             <multiselect
-                                                :selectLabel="__('translate.selectLabel')"
-                                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                :selectedLabel="__('translate.selectedLabel')"
-                                                :deselectLabel="__('translate.deselectLabel')"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
                                                 :noOptions="__('translate.noOptions')"
                                                 :noResult="__('translate.noResult')"
                                                 track-by="value"

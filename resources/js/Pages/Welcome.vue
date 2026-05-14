@@ -139,7 +139,7 @@ const submit = () => {
                                             </template>
                                         </multiselect>
                                     </div>
-                                    <InputError :message="form.errors.country" class="mt-2"/>
+                                    <InputError :message="form.errors.country" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
 
                                 <!-- Select City -->
@@ -167,7 +167,7 @@ const submit = () => {
                                             </template>
                                         </multiselect>
                                     </div>
-                                    <InputError :message="form.errors.city" class="mt-2"/>
+                                    <InputError :message="form.errors.city" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
 
                                 <!-- Select Distance -->
@@ -203,7 +203,7 @@ const submit = () => {
                                                 </template>
                                             </multiselect>
                                         </div>
-                                        <InputError :message="form.errors.distance" class="mt-2"/>
+                                        <InputError :message="form.errors.distance" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                     </div>
                                 </transition>
 
@@ -232,7 +232,7 @@ const submit = () => {
                                             </template>
                                         </multiselect>
                                     </div>
-                                    <InputError :message="form.errors.category" class="mt-2"/>
+                                    <InputError :message="form.errors.category" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                                 </div>
                             </div>
 

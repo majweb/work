@@ -240,7 +240,7 @@ onMounted(() => loadCaptcha())
                                                 type="text"
                                                 class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
                                             />
-                                            <InputError :message="form.errors.email" class="ml-2" />
+                                            <InputError :message="form.errors.email" class="mt-2 text-[10px] font-bold uppercase tracking-widest ml-2" />
                                         </div>
 
                                         <div class="space-y-2">
@@ -252,7 +252,7 @@ onMounted(() => loadCaptcha())
                                                 type="text"
                                                 class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all !text-[#0A2C5C]"
                                             />
-                                            <InputError :message="form.errors.subject" class="ml-2" />
+                                            <InputError :message="form.errors.subject" class="mt-2 text-[10px] font-bold uppercase tracking-widest ml-2" />
                                         </div>
                                     </div>
 
@@ -270,7 +270,7 @@ onMounted(() => loadCaptcha())
                                                 {{ __('translate.chars_remaining') }}: {{ messageCharsRemaining }}
                                             </span>
                                         </div>
-                                        <InputError :message="form.errors.message" class="ml-2" />
+                                        <InputError :message="form.errors.message" class="mt-2 text-[10px] font-bold uppercase tracking-widest ml-2" />
                                     </div>
 
                                     <!-- CAPTCHA -->
@@ -323,7 +323,7 @@ onMounted(() => loadCaptcha())
                                             </label>
                                         </div>
 
-                                        <InputError :message="form.errors.agreements" class="ml-2" />
+                                        <InputError :message="form.errors.agreements" class="mt-2 text-[10px] font-bold uppercase tracking-widest ml-2" />
 
                                         <!-- Lista zgód -->
                                         <div class="space-y-4">

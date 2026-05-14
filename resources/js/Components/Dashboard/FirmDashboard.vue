@@ -271,14 +271,17 @@
                                         <Link
                                             preserve-scroll
                                             v-if="points && points >= parseInt(service.price)"
+                                            :disabled="processing"
                                             :href="route('buy.change', { product: service.id, points: service.price })"
                                             method="post"
                                             as="button"
-                                            class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg"
+                                            @start="startProcessing"
+                                            @finish="finishProcessing"
+                                            class="w-full bg-[#0A2C5C] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             {{ __('translate.exchangePoints') }}
                                         </Link>
-                                        <Link preserve-scroll method="post" as="button" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg">
+                                        <Link preserve-scroll method="post" as="button" :disabled="processing" @start="startProcessing" @finish="finishProcessing" :href="route('buy.reservedProject',[service,service.price])" class="w-full bg-red-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
                                             {{__('translate.makeProject')}}
                                         </Link>
                                         <button
@@ -305,10 +308,13 @@
                                 <Link
                                     preserve-scroll
                                     v-if="points && points >= parseInt(service.price)"
+                                    :disabled="processing"
                                     :href="route('buy.change', { product: service.id, points: service.price })"
                                     method="post"
                                     as="button"
-                                    class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4"
+                                    @start="startProcessing"
+                                    @finish="finishProcessing"
+                                    class="w-full bg-[#00a0e3] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#008cc6] transition shadow-lg shadow-blue-400/20 mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {{ __('translate.exchangePoints') }}
                                 </Link>
@@ -641,7 +647,7 @@
 <script setup>
 import {Link, router, usePage, useForm} from "@inertiajs/vue3";
 import __ from "@/lang.js";
-import {computed, ref, reactive, shallowRef, onMounted} from "vue";
+import {computed, ref, reactive, shallowRef, onMounted, onUnmounted} from "vue";
 import moment from "moment";
 
 const props = defineProps({
@@ -694,6 +700,16 @@ const props = defineProps({
 const packagesRef = ref(props.packages);
 const selected = ref(packagesRef.value[Math.floor(packagesRef.value.length / 2)] || {});
 const bannerOptionsVisible = reactive({});
+const processing = ref(false);
+
+const startProcessing = () => {
+    processing.value = true;
+};
+
+const finishProcessing = () => {
+    processing.value = false;
+};
+
 const lastInvoices = computed(() => {
     return props.chartDataInvoices || [];
 });
