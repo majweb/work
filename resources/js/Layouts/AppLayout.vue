@@ -31,20 +31,42 @@ const showingServicesDropdown = ref(false);
 const showingBuyDropdown = ref(false);
 
 const showSessionModal = ref(false);
+const countdown = ref(10);
 let timeoutTimer = null;
+let countdownTimer = null;
 const TIMEOUT_MS = 15 * 60 * 1000; // 15 minut
+
+const startCountdown = () => {
+    countdown.value = 10;
+    countdownTimer = setInterval(() => {
+        countdown.value--;
+        if (countdown.value <= 0) {
+            logout();
+        }
+    }, 1000);
+};
+
+const stopCountdown = () => {
+    if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+    }
+};
 
 const resetTimer = () => {
     clearTimeout(timeoutTimer);
+    stopCountdown();
     if (!showSessionModal.value) {
         timeoutTimer = setTimeout(() => {
             showSessionModal.value = true;
+            startCountdown();
         }, TIMEOUT_MS);
     }
 };
 
 const continueSession = () => {
     showSessionModal.value = false;
+    stopCountdown();
     router.reload({ preserveScroll: true });
     resetTimer();
 };
@@ -111,6 +133,7 @@ onMounted(() => {
 });
 onUnmounted(()=>{
     clearTimeout(timeoutTimer);
+    stopCountdown();
     window.removeEventListener('mousemove', resetTimer);
     window.removeEventListener('keydown', resetTimer);
 
@@ -131,7 +154,12 @@ onUnmounted(()=>{
             </template>
 
             <template #content>
-                {{ __('translate.session_timeout_content') }}
+                <div class="space-y-4">
+                    <p>{{ __('translate.session_timeout_content') }}</p>
+                    <p class="text-lg font-black text-red-600 animate-pulse">
+                        {{ __('translate.logout_in') }}: {{ countdown }}s
+                    </p>
+                </div>
             </template>
 
             <template #footer>

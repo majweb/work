@@ -38,7 +38,7 @@ const {hasRole} = usePermission();
                         <div class="flex justify-between items-center">
                             <div class="uppercase">
                                 <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.Profile') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">Zarządzaj swoimi danymi osobowymi, ustawieniami konta i bezpieczeństwem</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">Zarządzaj swoimi danymi osobowymi, ustawieniami konta i bezpieczeństwem</p>
                             </div>
                         </div>
                     </div>

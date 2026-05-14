@@ -1,5 +1,5 @@
 <script setup>
-import { useForm, Link } from '@inertiajs/vue3';
+import { useForm, Link, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -29,7 +29,12 @@ const createExternalCompany = () => {
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.createExternalCompany') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.externalCompanyDescription') }}</p>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 whitespace-pre-line">
+                                {{ __('translate.externalCompanyDescription', {
+                                    create_points: usePage().props.getPoints?.CreateExternalFirm,
+                                    send_points: usePage().props.getPoints?.SendToExternalFirm
+                                }) }}
+                            </p>
                         </div>
                         <Link :href="route('external-companies.index')" class="inline-flex items-center px-10 py-4 bg-red-50 border border-transparent rounded-2xl font-black text-[10px] text-red-600 uppercase tracking-widest hover:bg-red-100 transition duration-200 shadow-lg shadow-red-900/5">
                             {{ __('translate.goBack') }}

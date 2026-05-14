@@ -629,7 +629,7 @@ const filepondOptions = {
                                     class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50">
                                 {{ __('translate.unlockQuestions') }}
                             </button>
-                            <p class="text-[10px] font-bold text-gray-400 mt-6 uppercase tracking-widest">{{ __('translate.unlockQuestionsPointsInfo') }}</p>
+                            <p class="text-[10px] font-bold text-gray-400 mt-6 uppercase tracking-widest max-w-xl mx-auto">{{ __('translate.unlockQuestionsPointsInfo', { points: usePage().props.getPoints?.UnlockQuestions }) }}</p>
                         </div>
                     </section>
 

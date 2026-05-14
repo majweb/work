@@ -1,5 +1,5 @@
 <script setup>
-import { Link, router } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import DangerButton from "@/Components/DangerButton.vue";
@@ -38,19 +38,24 @@ const deleteCompany = () => {
     <AppLayout :title="__('translate.externalCompanies')">
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                    <div class="flex items-center justify-between">
+                <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 mb-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                         <div>
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.externalCompanies') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.externalCompanyDescription') }}</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.externalCompanies') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl whitespace-pre-line">
+                                {{ __('translate.externalCompanyDescription', {
+                                    create_points: usePage().props.getPoints?.CreateExternalFirm,
+                                    send_points: usePage().props.getPoints?.SendToExternalFirm
+                                }) }}
+                            </p>
                         </div>
-                        <Link :href="route('external-companies.create')" class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-[#00a0e3] transition duration-200 shadow-lg shadow-blue-900/20">
+                        <Link :href="route('external-companies.create')" class="inline-flex items-center justify-center px-6 sm:px-10 py-3 sm:py-4 bg-[#0A2C5C] border border-transparent rounded-xl sm:rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-[#00a0e3] transition duration-200 shadow-lg shadow-blue-900/20 w-full sm:w-auto text-center">
                             {{ __('translate.create') }}
                         </Link>
                     </div>
                 </div>
 
-                <div v-if="externalCompanies.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                <div v-if="externalCompanies.length === 0" class="bg-white rounded-[2rem] sm:rounded-[3rem] p-10 sm:p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
                     <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -59,8 +64,8 @@ const deleteCompany = () => {
                     <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noExternalCompanies') }}</p>
                 </div>
 
-                <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div v-for="company in externalCompanies" :key="company.id" class="group bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div v-for="company in externalCompanies" :key="company.id" class="group bg-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-sm border border-gray-100 flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="mb-6">
                             <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] mb-2">
                                 ID {{ company.id }} • {{ company.abbreviation }}

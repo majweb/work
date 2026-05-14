@@ -168,20 +168,20 @@ const getCandidateInitials = (c) => {
                         <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
 
-                    <div class="flex items-center justify-between mb-10">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
                         <div>
                             <h1 class="text-2xl font-black text-gray-900 uppercase tracking-tight">
                                 {{ __('translate.evidence') }}
                             </h1>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                                {{ __('translate.candidateDetails') }}
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">
+                                {{ __('translate.candidateDetailsDescription') }}
                             </p>
                         </div>
                         <Link
                             :href="route('candidates.show', candidate.id)"
                             class="px-8 py-3 bg-red-50 text-red-600 text-[10px] font-black rounded-xl hover:bg-red-100 transition-all uppercase tracking-widest"
                         >
-                            {{ __('translate.candidateDetails') }}
+                            {{ __('translate.candidate') }}
                         </Link>
                     </div>
 

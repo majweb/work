@@ -99,10 +99,10 @@ const getContrastColor = (bgColor) => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                    <div class="flex items-center justify-between mb-10">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
                         <div>
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.listTag') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj dostępnymi tagami</p>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.listTagDescription') }}</p>
                         </div>
                         <Link :href="route('tags.create')">
                             <button class="bg-[#0A2C5C] text-white px-10 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-900/20">

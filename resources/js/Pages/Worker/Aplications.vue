@@ -155,7 +155,7 @@ const getApplicationProgress = (status) => {
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div class="uppercase">
                                 <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.aplications') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.manageYourApplications') }}</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.manageYourApplications') }}</p>
                             </div>
 
                             <div class="flex flex-col sm:flex-row gap-4 items-center">

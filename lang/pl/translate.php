@@ -773,7 +773,6 @@ return [
     'answersUpdated' => 'Odpowiedzi zostały zaktualizowane',
     'unlockQuestions' => 'Odblokuj pytania',
     'unlockQuestionsInfo' => 'Aby zobaczyć pytania i odpowiedzi kandydata, musisz odblokować tę sekcję.',
-    'unlockQuestionsPointsInfo' => 'Za odblokowanie zostanie pobrane 5 punktów z konta Twojej firmy.',
     'questionsUnlocked' => 'Pytania zostały odblokowane',
     'questionsAlreadyUnlocked' => 'Pytania są już odblokowane',
     'questionsNotUnlocked' => 'Musisz najpierw odblokować pytania',
@@ -797,7 +796,6 @@ return [
     'createExternalCompany' => 'Utwórz firmę zewnętrzną',
     'editExternalCompany' => 'Edytuj firmę zewnętrzną',
     'externalCompanyInfo' => 'Informacje o firmie zewnętrznej',
-    'externalCompanyDescription' => 'Dodaj nową firmę zewnętrzną, która będzie dostępna przy tworzeniu projektów.',
     'externalCompanyEditDescription' => 'Edytuj informacje o firmie zewnętrznej.',
     'noExternalCompanies' => 'Brak firm zewnętrznych',
     'addedExternalCompany' => 'Dodano firmę zewnętrzną',
@@ -1763,4 +1761,12 @@ return [
     'waiting' => 'Oczekiwanie',
     'noFiles' => 'Brak pliku',
     'limitReached' => 'Limit osiągnięty',
+    'unlockQuestionsPointsInfo' => 'Dodaj dodatkowe pytania dla kandydatów w procesie rekrutacji i zbieraj ważne informacje, takie jak dostępność czy preferencje pracy. Odopwiedzi należy uzupełniać w dedykowanym miejscu na koncie kandydana przez rekrutera podczas rozmowy rekrutacyjnej. Wszystkie odpowiedzi zapisują się w profilu kandydata, a utworzone pytania można wykorzystać ponownie w innych rekrutacjach.Koszt stworzenia pytania: :points pkt',
+    'logout_in' => 'Wylogowanie za',
+    'externalCompanyDescription' => "Dodaj profil firmy zewnętrznej, dla której prowadzisz rekrutację oraz prześlij wybrane CV do firmy zewnętrznej bezpośrednio z poziomu systemu. Możesz wysłać jednego lub wielu kandydatów jednocześnie, a firma otrzyma dostęp do ich profili oraz możliwość aktualizacji statusów kandydatów. Dzięki temu cały proces współpracy i wymiany kandydatów odbywa się w jednym miejscu.\n Koszt dodania firmy :create_points pkt. Koszt wysłania paczki CV :send_points pkt",
+    'listTagDescription' => 'Twórz własne tagi opisujące cechy kandydatów, np. prawo jazdy, osoba paląca czy dostępność. Dzięki nim możesz później łatwo filtrować kandydatów według własnych kryteriów.Do jednego kandydata można przypisać wiele tagów. Domyślnie dostępne są tagi związane ze stanowiskiem.',
+    'recruitsDescription' => 'Dodawaj rekruterów, czyli pracowników odpowiedzialnych za publikację ogłoszeń i prowadzenie rekrutacji. Ich działania można później analizować w statystykach, m.in. według ostatniej aktywności, liczby ofert, aplikacji oraz jakości zgłoszeń.',
+    'candidateDetailsDescription' => 'Ewidencja pozwala rekruterom prowadzić historię zawodową kandydata, zawierającą informacje o jego wcześniejszym zatrudnieniu, doświadczeniu oraz przebiegu współpracy. Dzięki temu wszystkie ważne dane o kandydacie są zapisane w jednym miejscu i dostępne podczas kolejnych rekrutacji.',
+    'myCvDescription' => 'W zakładce „Moje CV” znajdziesz CV wygenerowane na podstawie gotowych szablonów dostępnych na portalu. CV tworzy się dopiero podczas pierwszej aplikacji na ofertę z danej branży. Każde utworzone CV jest zapisywane na koncie kandydata — można je wielokrotnie wykorzystywać, edytować i dostosowywać do kolejnych ofert pracy. Dla każdej nowej branży należy wygenerować osobne CV, najlepiej dopasowane treścią do specyfiki wykonywanej pracy, co zwiększa szanse na powodzenie w rekrutacji. Generowanie CV na portalu jest całkowicie darmowe.',
+
 ];

@@ -68,10 +68,10 @@ const getInitials = (name) => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                         <div>
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.recruits') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj zespołem rekruterów w Twojej firmie</p>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.recruitsDescription') }}</p>
                         </div>
                         <Link :href="route('recruits.create')" class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] border border-transparent rounded-2xl font-black text-[10px] text-white uppercase tracking-widest hover:bg-[#00a0e3] transition duration-200 shadow-lg shadow-blue-900/20">
                             {{ __('translate.createRecruit') }}
