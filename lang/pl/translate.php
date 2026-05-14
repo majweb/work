@@ -1772,5 +1772,8 @@ return [
     'noHistoryAvailable' => 'Brak dostępnej historii',
     'forArticle' => 'Profesjonalna promocja Twojej firmy w przestrzeni WORK4YOU.GLOBAL',
     'commentVerificationInfo' => 'Po dodaniu komentarz będzie weryfikowany.',
-    'forInfoBanner' => 'Twoja marka widoczna od pierwszego kliknięcia',
+    'forInfoBanner' => 'Twoja marka widoczna od pierwszego kliknięcia.',
+    'forInfoFeatured' => 'Status, który przyciąga kandydatów.',
+    'forInfoSocial' => 'Twoje ogłoszenia tam, gdzie są kandydaci.',
+    'admin_notification_info' => 'Administrator dostanie informacje o promowaniu i prosimy czekać na kontakt',
 ];

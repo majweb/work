@@ -27,7 +27,8 @@ class IndustryTrends
                 $id = $cat['value'];
                 $industryTotals[$id] = ($industryTotals[$id] ?? 0) + $project->aplications_count;
                 if (!isset($categoryNames[$id])) {
-                    $categoryNames[$id] = $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'] ?? __('translate.without');
+                    $name = $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'] ?? __('translate.without');
+                    $categoryNames[$id] = mb_strtoupper($name, 'UTF-8');
                 }
             }
         }

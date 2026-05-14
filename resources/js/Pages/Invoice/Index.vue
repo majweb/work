@@ -8,6 +8,10 @@ import moment from "moment";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+import {usePage} from "@inertiajs/vue3";
+import {computed} from "vue";
 
 const props = defineProps({
     invoices: Object,
@@ -25,6 +29,16 @@ const params = ref({
 const resetFilters = () => {
     router.get(route('invoices.index'));
 }
+
+const lang = computed(()=>usePage().props.language);
+
+const monthYearFormat = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+};
 
 const sort = (field) => {
     params.value.field = field;
@@ -75,6 +89,7 @@ const search = () => {
                                 type="text"
                                 :placeholder="__('translate.invoiceAmount').toUpperCase()"
                                 @keyup.enter="search"
+                                class="uppercase placeholder:uppercase"
                             />
                         </div>
                         <div class="space-y-2">
@@ -84,15 +99,23 @@ const search = () => {
                                 type="text"
                                 :placeholder="__('translate.invoiceNumber').toUpperCase()"
                                 @keyup.enter="search"
+                                class="uppercase placeholder:uppercase"
                             />
                         </div>
                         <div class="space-y-2">
                             <InputLabel :value="__('translate.invoiceDate')" class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
-                            <TextInput
+                            <VueDatePicker
                                 v-model="params.date"
-                                type="date"
-                                @keyup.enter="search"
-                                class="appearance-none"
+                                :locale="lang"
+                                :format="monthYearFormat"
+                                auto-apply
+                                :enable-time-picker="false"
+                                model-type="yyyy-MM-dd"
+                                class="custom-datepicker"
+                                :placeholder="__('translate.invoiceDate').toUpperCase()"
+                                text-input
+                                @cleared="search"
+                                @update:model-value="search"
                             />
                         </div>
                     </div>
@@ -196,3 +219,32 @@ const search = () => {
         </div>
     </AppLayout>
 </template>
+<style lang="scss">
+.custom-datepicker {
+    --dp-border-radius: 1rem;
+    --dp-cell-border-radius: 0.5rem;
+    --dp-font-size: 0.75rem;
+    --dp-input-padding: 0.75rem 1.25rem;
+
+    .dp__input {
+        background: #f9fafb; /* bg-gray-50 */
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #0A2C5C;
+        padding: 0.75rem 1.25rem 0.75rem 2.25rem;
+        border-radius: 1rem;
+        min-height: 45px;
+
+        &::placeholder {
+            color: #9ca3af; /* text-gray-400 */
+        }
+
+        &:focus {
+            border-color: #00a0e3;
+            background: #ffffff;
+        }
+    }
+}
+</style>

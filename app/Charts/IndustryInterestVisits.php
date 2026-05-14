@@ -26,7 +26,8 @@ class IndustryInterestVisits
                 $id = $category['value'];
                 $data[$id] = ($data[$id] ?? 0) + $project->total_views;
                 if (!isset($categoryNames[$id])) {
-                    $categoryNames[$id] = $category['allTranslations']['title'][app()->getLocale()] ?? $category['name'] ?? __('translate.without');
+                    $name = $category['allTranslations']['title'][app()->getLocale()] ?? $category['name'] ?? __('translate.without');
+                    $categoryNames[$id] = mb_strtoupper($name, 'UTF-8');
                 }
             }
         }

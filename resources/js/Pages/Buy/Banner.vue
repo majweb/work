@@ -141,57 +141,41 @@ const sortLangs = computed(() => {
                 </div>
 
                 <!-- KOLUMNY INFORMACYJNE -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        <div class="group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
-                            </div>
-                            <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIsBanner') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose">
-                                {{ __('translate.whatIsBannerDescription') }}
-                            </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                        <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
+                            <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
                         </div>
-                        <div class="group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
-                            </div>
-                            <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.whatIncludeBanner') }}</h3>
-                            <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
-                                <li class="flex items-start gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
-                                    {{ __('translate.bannerInclude1') }}
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
-                                    {{ __('translate.bannerInclude2') }}
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
-                                    {{ __('translate.bannerInclude3') }}
-                                </li>
-                            </ul>
+                        <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatIsBanner') }}</h3>
+                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list">
+                            <li>{{ __('translate.banner_desc') }}</li>
+                            <li>{{ __('translate.banner_target') }}</li>
+                            <li>{{ __('translate.banner_detail') }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                        <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
+                            <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
                         </div>
-                        <div class="group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 transition-colors group-hover:bg-blue-50">
-                                <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
-                            </div>
-                            <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-4">{{ __('translate.howUseBanner') }}</h3>
-                            <ul class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose text-left space-y-2">
-                                <li class="flex items-start gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
-                                    {{ __('translate.bannerUse1') }}
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
-                                    {{ __('translate.bannerUse2') }}
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-[#00a3e0] flex-shrink-0 mt-1.5"></div>
-                                    {{ __('translate.bannerUse3') }}
-                                </li>
-                            </ul>
+                        <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatIncludeBanner') }}</h3>
+                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list">
+                            <li>{{ __('translate.bannerInclude1') }}</li>
+                            <li>{{ __('translate.bannerInclude2') }}</li>
+                            <li>{{ __('translate.bannerInclude3') }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                        <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
+                            <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
                         </div>
+                        <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.howUseBanner') }}</h3>
+                        <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list">
+                            <li>{{ __('translate.bannerUse1') }}</li>
+                            <li>{{ __('translate.bannerUse2') }}</li>
+                            <li>{{ __('translate.bannerUse3') }}</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -439,6 +423,25 @@ const sortLangs = computed(() => {
         </div>
     </AppLayout>
 </template>
+<style lang="scss" scoped>
+.custom-list {
+    :deep(li) {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        &::before {
+            content: '';
+            width: 0.375rem;
+            height: 0.375rem;
+            border-radius: 9999px;
+            background-color: #00a3e0;
+            flex-shrink: 0;
+            margin-top: 0.375rem;
+        }
+    }
+}
+</style>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
 .multiselect__tags {

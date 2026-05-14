@@ -9,7 +9,7 @@ return [
             'gold' => 'Złoty',
             'diamond' => 'Diamentowy'
         ],
-        'points' => 'pkt|punktów',
+        'points' => 'punktów',
         'premium_certificate' => 'Certyfikat Premium',
         'progress' => 'Postęp certyfikacji:',
         'current_level' => 'Aktualny poziom',

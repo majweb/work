@@ -158,7 +158,7 @@ const generateButtonText = computed(() => {
 
                     <!-- Rodzaje certyfikatów -->
                     <div class="mb-16">
-                        <h3 class="text-2xl font-bold mb-8">{{ __('premium.certificates.types') }}</h3>
+                        <h3 class="text-2xl font-bold mb-8 uppercase">{{ __('premium.certificates.types') }}</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             <div
                                 v-for="(points, level) in levelPoints"
@@ -228,7 +228,7 @@ const generateButtonText = computed(() => {
                             >
                                 <!-- Tooltip z punktami na końcu paska -->
                                 <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2">
-                                    <div class="bg-[#e31e24] text-white text-[10px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap shadow-lg">
+                                    <div class="uppercase bg-[#e31e24] text-white text-[10px] font-bold px-2 py-0.5 rounded-md whitespace-nowrap shadow-lg">
                                         {{ (collectedPoints || 0).toLocaleString() }} pkt
                                     </div>
                                 </div>
@@ -239,16 +239,16 @@ const generateButtonText = computed(() => {
                                 <div
                                     v-for="(points, level) in levelPoints"
                                     :key="level"
-                                    class="relative h-full"
+                                    class="relative h-full uppercase"
                                     :style="{ position: 'absolute', left: `${(points / levelPoints[4]) * 100}%` }"
                                 >
                                     <!-- Pionowa kreska -->
-                                    <div class="h-full w-px bg-white/30"></div>
+                                    <div class="h-full w-px bg-white/30 uppercase"></div>
 
                                     <!-- Opis progu pod spodem -->
                                     <div class="absolute top-6 left-0 -translate-x-1/2 flex flex-col items-center">
-                                        <div class="text-[9px] font-bold whitespace-nowrap mb-0.5">{{ (points || 0).toLocaleString() }} pkt</div>
-                                        <div class="text-[8px] uppercase font-bold text-blue-300 whitespace-nowrap">{{ levelNames[level].split(' ')[0] }}</div>
+                                        <div class="text-[9px] font-bold whitespace-nowrap mb-0.5 uppercase">{{ (points || 0).toLocaleString() }} {{__('translate.pkt')}}</div>
+                                        <div class="text-[8px] uppercase font-bold text-blue-300 whitespace-nowrap uppercase">{{ levelNames[level].split(' ')[0] }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@ const generateButtonText = computed(() => {
                         </div>
                         <a
                             :href="route('firm.premium-certificate.download')"
-                            class="inline-flex items-center px-8 py-3 bg-white text-[#0d2a52] rounded-xl font-bold hover:bg-blue-work hover:text-white transition-all duration-300 shadow-xl"
+                            class="inline-flex items-center px-8 py-3 bg-white text-[#0d2a52] rounded-xl font-bold hover:bg-blue-work hover:text-white transition-all duration-300 shadow-xl uppercase"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
