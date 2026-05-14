@@ -986,8 +986,8 @@ watch(() => usePage().props.sender, (newVal) => {
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: #374151; /* text-gray-700 approx */
-        padding: 1rem 1.25rem 1rem 2.25rem;
+        color: #0A2C5C;
+        padding: 0.75rem 1.25rem 0.75rem 2.25rem;
         border-radius: 1rem;
 
         &::placeholder {

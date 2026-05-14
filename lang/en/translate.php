@@ -1713,4 +1713,5 @@ return [
     'logout_in' => 'Logout in',
     'continue' => 'Continue',
     'logout' => 'Log out',
+    'candidateDetailsDescription' => 'Add an employee to the company\'s internal database to keep their profile and be able to use it in future recruitments. The recruiter then has access to the application history, notes, and candidate statuses. They can assign tags, ask additional questions, and forward the application to an external company. If the employee is not added to the database, their application and CV will be automatically deleted after 90 days from the application. Cost of adding to the candidate list: :points points',
 ];

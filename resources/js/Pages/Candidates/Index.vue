@@ -20,6 +20,20 @@ const props = defineProps({
 
 const loading = ref(false);
 
+const getLocalizedTitle = (title) => {
+    if (!title) return '';
+    return title[locale.value] || title['pl'] || (Object.values(title).length > 0 ? Object.values(title)[0] : '');
+};
+
+const optionsProjects = computed(() => {
+    return [
+        { id: '', localizedTitle: __('translate.allProjects') },
+        ...props.projects.map(project => ({
+            id: project.id,
+            localizedTitle: getLocalizedTitle(project.title)
+        }))
+    ];
+});
 
 const form = ref({
     name: props.filters.name || '',
@@ -28,15 +42,9 @@ const form = ref({
     recruiter: props.filters?.recruiter || '',
     position: props.filters?.position || '',
     phone: props.filters.phone || '',
-    project: props.filters.project || '',
+    project: optionsProjects.value.find(p => p.id == props.filters?.project) || optionsProjects.value[0],
     tags: props.filters.tags || [],
 });
-
-const getLocalizedTitle = (title) => {
-    if (!title) return '';
-    return title[locale] || title['pl'] || (Object.values(title).length > 0 ? Object.values(title)[0] : '');
-};
-
 
 const selectedTags = ref([]);
 const professionCategories = ref(props.categories || []);
@@ -156,7 +164,7 @@ const resetFilters = () => {
         position:'',
         email: '',
         phone: '',
-        project: '',
+        project: optionsProjects.value[0],
         tags: [],
     };
     selectedTags.value = [];
@@ -176,8 +184,9 @@ watch(form, debounce(function () {
 
     let rest = pickBy({
         ...form.value,
-        recruiter: form.value.recruiter?.value || form.value.recruiter,
-        position: form.value.position?.value || form.value.position,
+        recruiter: form.value.recruiter?.value || '',
+        position: form.value.position?.value || '',
+        project: form.value.project?.id || '',
         tags: form.value.tags?.map(el => el.id).join(',')
     });
 
@@ -277,6 +286,14 @@ watch(selectedTags, (newTags) => {
                         </h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
+                        <div>
+                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.candidates') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">
+                                {{ __('translate.candidateDetailsDescription', { points: usePage().props.getPoints?.CreateCandidate }) }}
+                            </p>
+                        </div>
+                    </div>
 
                     <!-- Formularz filtrowania -->
                     <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
@@ -316,32 +333,33 @@ watch(selectedTags, (newTags) => {
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.recruiter') }}</label>
                                 <multiselect
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
-                                    :noOptions="__('translate.noOptions')"
-                                    :noResult="__('translate.noResult')"
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     track-by="value"
                                     label="name"
-                                    :placeholder="__('translate.placeholder')"
+                                    :placeholder="__('translate.searchRecruiter')"
                                     v-model="form.recruiter" :options="optionsRecruits" class="custom-multiselect">
+                                >
+                                <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
                                 </multiselect>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
                                 <multiselect
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectGroupLabel="__('translate.selectGroupLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
-                                    :noOptions="__('translate.noOptions')"
-                                    :noResult="__('translate.noResult')"
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     track-by="value"
                                     label="name"
-                                    :placeholder="__('translate.placeholder')"
+                                    :placeholder="__('translate.selectPosition')"
                                     v-model="form.position"
                                     :options="optionsPosition" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
                                 </multiselect>
                             </div>
                             <div class="space-y-2">
@@ -355,15 +373,19 @@ watch(selectedTags, (newTags) => {
                             </div>
                             <div class="col-span-2 space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.project') }}</label>
-                                <select
+                                <multiselect
+                                    :selectLabel="''"
+                                    :selectGroupLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
+                                    track-by="id"
+                                    label="localizedTitle"
+                                    :placeholder="__('translate.selectProject')"
                                     v-model="form.project"
-                                    class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none"
-                                >
-                                    <option value="">{{ __('translate.allProjects') }}</option>
-                                    <option v-for="project in projects" :key="project.id" :value="project.id">
-                                        {{ getLocalizedTitle(project.title) }}
-                                    </option>
-                                </select>
+                                    :options="optionsProjects" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                </multiselect>
                             </div>
                         </div>
 
@@ -679,7 +701,7 @@ watch(selectedTags, (newTags) => {
     .multiselect__tags {
         border: 1px solid #f3f4f6 !important; /* gray-100 */
         border-radius: 1rem !important; /* rounded-2xl */
-        padding: 1rem 2.5rem 1rem 1.25rem !important;
+        padding: 0.75rem 2.5rem 0.75rem 1.25rem !important;
         background: #f9fafb !important; /* gray-50 */
         min-height: 58px !important;
         display: flex !important;
@@ -694,7 +716,7 @@ watch(selectedTags, (newTags) => {
         font-size: 0.75rem !important; /* text-xs */
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
+        letter-spacing: 0.1em !important;
     }
 
     .multiselect__single {
@@ -704,8 +726,8 @@ watch(selectedTags, (newTags) => {
         background: transparent !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
-        color: #374151 !important;
+        letter-spacing: 0.1em !important;
+        color: #0A2C5C !important;
     }
 
     .multiselect__input {
@@ -727,7 +749,7 @@ watch(selectedTags, (newTags) => {
         font-size: 0.75rem !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
+        letter-spacing: 0.1em !important;
 
         &:after {
             background: #0A2C5C !important;

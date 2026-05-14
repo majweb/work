@@ -112,23 +112,6 @@ class ApplicationRecruitFilterService
             });
         }
 
-        // Filtrowanie według prawa jazdy
-        if (isset($filters['driveLicense']) && $filters['driveLicense'] !== '') {
-            $hasDriveLicense = $filters['driveLicense'] === 'yes' || filter_var($filters['driveLicense'], FILTER_VALIDATE_BOOLEAN);
-            if ($hasDriveLicense) {
-                $query->whereHas('project', function ($q) {
-                    $q->whereJsonContains('wait', ['id' => 19]);
-                });
-            } else {
-                $query->whereHas('project', function ($q) {
-                    $q->where(function ($sub) {
-                        $sub->whereJsonDoesntContain('wait', ['id' => 19])
-                            ->orWhereNull('wait');
-                    });
-                });
-            }
-        }
-
         // Kandydat utworzony
         if (isset($filters['has_candidate']) && $filters['has_candidate'] !== '') {
             if ($filters['has_candidate'] === 'yes') {
@@ -207,7 +190,7 @@ class ApplicationRecruitFilterService
             'filters' => $request->only([
                 'project', 'status', 'category', 'categorySub', 'profession', 'position',
                 'experience', 'education', 'course', 'lang', 'skill', 'has_cv', 'Langlevel',
-                'date', 'driveLicense', 'country', 'city', 'has_candidate'
+                'date', 'country', 'city', 'has_candidate'
             ]),
         ];
     }
@@ -322,7 +305,7 @@ class ApplicationRecruitFilterService
             'counters' => $counters,
             'filters' => collect($form)->only([
                 'project', 'status', 'category', 'categorySub', 'profession', 'position',
-                'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'date', 'driveLicense',
+                'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'date',
                 'country', 'city', 'has_candidate'
             ]),
         ];

@@ -174,7 +174,7 @@ const getCandidateInitials = (c) => {
                                 {{ __('translate.evidence') }}
                             </h1>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">
-                                {{ __('translate.candidateDetailsDescription') }}
+                                {{ __('translate.candidateEvidenceDescription') }}
                             </p>
                         </div>
                         <Link

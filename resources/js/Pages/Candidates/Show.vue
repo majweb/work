@@ -398,8 +398,8 @@ const filepondOptions = {
                     <div class="p-8">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.candidateDetails') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.manageCandidateDescription') }}</p>
+                                <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.candidateDetails') }}</h3>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.manageCandidateDescription') }}</p>
                             </div>
                         </div>
                     </div>
@@ -671,6 +671,36 @@ const filepondOptions = {
                                     :files="cvForm.cvFile"
                                     :allow-multiple="false"
                                     v-bind="filepondOptions"
+
+
+                                    :label-idle="__('translate.label-idle')"
+                                    :labelFileProcessing="__('translate.labelFileProcessing')"
+                                    :labelInvalidField="__('translate.labelInvalidField')"
+                                    :labelMaxFileSize="__('translate.labelMaxFileSize')"
+                                    :labelMaxFileSizeExceeded="__('translate.labelMaxFileSizeExceeded')"
+                                    :labelFileWaitingForSize="__('translate.labelFileWaitingForSize')"
+                                    :labelFileSizeNotAvailable="__('translate.labelFileSizeNotAvailable')"
+                                    :labelFileLoading="__('translate.labelFileLoading')"
+                                    :labelFileLoadError="__('translate.labelFileLoadError')"
+                                    :labelFileProcessingComplete="__('translate.labelFileProcessingComplete')"
+                                    :labelFileProcessingAborted="__('translate.labelFileProcessingAborted')"
+                                    :labelFileProcessingError="serverMessage ? serverMessage : __('translate.labelFileProcessingError')"
+                                    :labelFileProcessingRevertError="__('translate.labelFileProcessingRevertError')"
+                                    :labelFileRemoveError="__('translate.labelFileRemoveError')"
+                                    :labelTapToCancel="__('translate.labelTapToCancel')"
+                                    :labelTapToRetry="__('translate.labelTapToRetry')"
+                                    :labelTapToUndo="__('translate.labelTapToUndo')"
+                                    :labelButtonRemoveItem="__('translate.labelButtonRemoveItem')"
+                                    :labelButtonAbortItemLoad="__('translate.labelButtonAbortItemLoad')"
+                                    :labelButtonRetryItemLoad="__('translate.labelButtonRetryItemLoad')"
+                                    :labelButtonAbortItemProcessing="__('translate.labelButtonAbortItemProcessing')"
+                                    :labelButtonUndoItemProcessing="__('translate.labelButtonUndoItemProcessing')"
+                                    :labelButtonRetryItemProcessing="__('translate.labelButtonRetryItemProcessing')"
+                                    :labelButtonProcessItem="__('translate.labelButtonProcessItem')"
+                                    :accepted-file-types="'image/png, image/jpeg, image/jpg, image/gif, image/svg, image/webp'"
+                                    credits="false"
+
+
                                     :server="{
                                         url:'',
                                         headers: { 'X-CSRF-TOKEN': usePage().props.csrf_token },

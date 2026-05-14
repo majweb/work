@@ -565,7 +565,7 @@ return [
     'tagmaxElements' => 'Maksymalnie :max opcji wybranych. Usuń jedną z opcji, aby wybrać inną.',
     'skills' => 'Umiejętności',
     'previousStep' => 'Poprzedni krok',
-    'label-idle' => 'Upuść pliki tutaj lub <span class=\'filepond--label-action\'>Przeglądaj</span>',
+    'label-idle' => 'UPUŚĆ PLIKI TUTAJ LUB <span class=\'filepond--label-action\'>Przeglądaj</span>',
     'labelFileProcessing' => 'Wysyłanie',
     'labelInvalidField' => 'Pole zawiera nieprawidłowe pliki',
     'labelFileWaitingForSize' => 'Oczekiwanie na rozmiar',
@@ -1766,7 +1766,8 @@ return [
     'externalCompanyDescription' => "Dodaj profil firmy zewnętrznej, dla której prowadzisz rekrutację oraz prześlij wybrane CV do firmy zewnętrznej bezpośrednio z poziomu systemu. Możesz wysłać jednego lub wielu kandydatów jednocześnie, a firma otrzyma dostęp do ich profili oraz możliwość aktualizacji statusów kandydatów. Dzięki temu cały proces współpracy i wymiany kandydatów odbywa się w jednym miejscu.\n Koszt dodania firmy :create_points pkt. Koszt wysłania paczki CV :send_points pkt",
     'listTagDescription' => 'Twórz własne tagi opisujące cechy kandydatów, np. prawo jazdy, osoba paląca czy dostępność. Dzięki nim możesz później łatwo filtrować kandydatów według własnych kryteriów.Do jednego kandydata można przypisać wiele tagów. Domyślnie dostępne są tagi związane ze stanowiskiem.',
     'recruitsDescription' => 'Dodawaj rekruterów, czyli pracowników odpowiedzialnych za publikację ogłoszeń i prowadzenie rekrutacji. Ich działania można później analizować w statystykach, m.in. według ostatniej aktywności, liczby ofert, aplikacji oraz jakości zgłoszeń.',
-    'candidateDetailsDescription' => 'Ewidencja pozwala rekruterom prowadzić historię zawodową kandydata, zawierającą informacje o jego wcześniejszym zatrudnieniu, doświadczeniu oraz przebiegu współpracy. Dzięki temu wszystkie ważne dane o kandydacie są zapisane w jednym miejscu i dostępne podczas kolejnych rekrutacji.',
+    'candidateEvidenceDescription' => 'Ewidencja pozwala rekruterom prowadzić historię zawodową kandydata, zawierającą informacje o jego wcześniejszym zatrudnieniu, doświadczeniu oraz przebiegu współpracy. Dzięki temu wszystkie ważne dane o kandydacie są zapisane w jednym miejscu i dostępne podczas kolejnych rekrutacji.',
+    'candidateDetailsDescription' => 'Dodaj pracownika do wewnętrznej bazy firmy, aby zachować jego profil i móc wykorzystać go w przyszłych rekrutacjach. Rekruter ma wtedy dostęp do historii aplikacji, notatek oraz statusów kandydata. Może nadać tagi, zadać dodatkowe pytania oraz przekazać aplikację firmie zewnętrznej. Jeśli pracownik nie zostanie dodany do bazy, jego aplikacja i CV zostaną automatycznie usunięte po 90 dniach od aplikacji. Koszt dodania do listy kandydatów: :points pkt',
     'myCvDescription' => 'W zakładce „Moje CV” znajdziesz CV wygenerowane na podstawie gotowych szablonów dostępnych na portalu. CV tworzy się dopiero podczas pierwszej aplikacji na ofertę z danej branży. Każde utworzone CV jest zapisywane na koncie kandydata — można je wielokrotnie wykorzystywać, edytować i dostosowywać do kolejnych ofert pracy. Dla każdej nowej branży należy wygenerować osobne CV, najlepiej dopasowane treścią do specyfiki wykonywanej pracy, co zwiększa szanse na powodzenie w rekrutacji. Generowanie CV na portalu jest całkowicie darmowe.',
 
 ];
