@@ -1574,7 +1574,7 @@ return [
     'invoiceRead' => 'ODCZYTANA',
     'invoiceAction' => 'AKCJA',
     'invoiceSee' => 'ZOBACZ',
-    'invoiceDownload' => 'POBIERZ',
+    'invoiceDownload' => 'POBIERZ FAKTURĘ',
     'correctionDownload' => 'POBIERZ KOREKTĘ',
     'fullInvoiceList' => 'Pełna lista faktur',
     'choose' => 'Wybieram',
@@ -1776,4 +1776,6 @@ return [
     'forInfoFeatured' => 'Status, który przyciąga kandydatów.',
     'forInfoSocial' => 'Twoje ogłoszenia tam, gdzie są kandydaci.',
     'admin_notification_info' => 'Administrator dostanie informacje o promowaniu i prosimy czekać na kontakt',
+    'certDownload' => 'POBIERZ CERTYFIKAT',
+
 ];

@@ -298,7 +298,16 @@ class BuyController extends Controller
         }
         $existFile = Storage::disk('local')->exists($cert50->certificate_pdf);
         if ($existFile) {
-            return response()->download(storage_path('app/'.$cert50->certificate_pdf));
+            $path = storage_path('app/'.$cert50->certificate_pdf);
+            $fileName = 'certyfikat_50_50_'.auth()->id().'.pdf';
+
+            return response()->download($path, $fileName, [
+                'Cache-Control' => 'no-cache, no-store, must-revalidate',
+                'Pragma' => 'no-cache',
+                'Expires' => '0',
+            ]);
+
+
         } else {
             abort(404);
         }

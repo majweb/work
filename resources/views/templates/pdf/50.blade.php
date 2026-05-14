@@ -59,7 +59,7 @@
 </head>
 <body>
 <div id="watermark"></div>
-<div class="inner" style="background-image: url({{ App::environment() == 'local' ? public_path().'/images/certyficate_bg.png' : asset('images/certyficate_bg.png') }});">
+<div class="inner" style="background-image: url({{ App::environment() == 'local' ? public_path().'/images/certyficate_bg_new.png' : asset('images/certyficate_bg_new.png') }});">
     <div class="title">
         {{__('translate.certyficate')}}
     </div>
@@ -72,12 +72,7 @@
         {{$foundation->name}}
     </div>
     <div class="logo">
-    <div class="with">{{__('translate.forPosre')}}</div>
-        @if (App::environment() == 'local')
-            <img width="400" src="{{ public_path().'/images/certyficate_logo.png' }}" alt="logo">
-        @else
-            <img width="400" src="{{ asset('images/certyficate_logo.png') }}" alt="logo">
-        @endif
+        <div class="with">{{__('translate.forPosre')}}</div>
     </div>
 </div>
 </body>

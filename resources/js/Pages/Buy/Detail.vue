@@ -231,7 +231,7 @@ const stripeCheckout = () => {
                                                                v-model="agreeToService"
                                                                class="h-5 w-5 rounded-lg border-gray-300 text-[#0b2a55] focus:ring-[#0b2a55] transition-all cursor-pointer" />
                                                     </div>
-                                                    <label for="agreePointsPackage" class="text-[11px] font-bold text-[#0A2C5C] leading-relaxed cursor-pointer select-none">
+                                                    <label for="agreePointsPackage" class="uppercase text-[11px] font-bold text-[#0A2C5C] leading-relaxed cursor-pointer select-none">
                                                         {{ __('translate.agreePointsPackage') }}
                                                     </label>
                                                 </div>
@@ -310,7 +310,7 @@ const stripeCheckout = () => {
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
-                                            <p class="text-sm font-bold leading-relaxed">{{__('translate.fundationsInfo')}}</p>
+                                            <p class="text-sm font-bold leading-relaxed uppercase">{{__('translate.fundationsInfo')}}</p>
                                         </div>
                                     </div>
                                 </div>

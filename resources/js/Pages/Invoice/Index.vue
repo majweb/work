@@ -103,7 +103,7 @@ const search = () => {
                             />
                         </div>
                         <div class="space-y-2">
-                            <InputLabel :value="__('translate.invoiceDate')" class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
+                            <InputLabel :value="__('translate.invoiceDate')" class="block text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest" />
                             <VueDatePicker
                                 v-model="params.date"
                                 :locale="lang"
@@ -233,9 +233,9 @@ const search = () => {
         text-transform: uppercase;
         letter-spacing: 0.1em;
         color: #0A2C5C;
-        padding: 0.75rem 1.25rem 0.75rem 2.25rem;
+        padding: 1rem 1.25rem 1rem 2.25rem;
         border-radius: 1rem;
-        min-height: 45px;
+        height: 50px;
 
         &::placeholder {
             color: #9ca3af; /* text-gray-400 */

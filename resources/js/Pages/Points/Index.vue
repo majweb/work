@@ -266,7 +266,14 @@ const operations = computed(() => [
                                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">
                                             {{ __('translate.quantity') }}: <span class="text-[#0A2C5C]">{{ product.qty }}</span>
                                         </span>
+
+                                        <template v-if="product.product.name.toLowerCase().includes('social') || product.product.name.toLowerCase().includes('media')">
+                                            <p class="text-[9px] font-bold text-[#00a3e0] uppercase tracking-widest text-center mt-2 leading-relaxed">
+                                                {{ __('translate.admin_notification_info') }}
+                                            </p>
+                                        </template>
                                         <Link
+                                            v-else
                                             :href="route('articles.create')"
                                             class="w-full inline-flex justify-center items-center px-6 py-4 bg-[#00a3e0] hover:bg-blue-500 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-400/20 hover:-translate-y-1 active:translate-y-0"
                                         >
