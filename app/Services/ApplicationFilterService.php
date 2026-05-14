@@ -120,22 +120,6 @@ class ApplicationFilterService
             });
         }
 
-        // Filtrowanie według prawa jazdy
-        if (isset($filters['driveLicense']) && $filters['driveLicense'] !== '') {
-            $hasDriveLicense = $filters['driveLicense'] === 'yes' || filter_var($filters['driveLicense'], FILTER_VALIDATE_BOOLEAN);
-            if ($hasDriveLicense) {
-                $query->whereHas('project', function ($q) {
-                    $q->whereJsonContains('wait', ['id' => 19]);
-                });
-            } else {
-                $query->whereHas('project', function ($q) {
-                    $q->where(function ($sub) {
-                        $sub->whereJsonDoesntContain('wait', ['id' => 19])
-                            ->orWhereNull('wait');
-                    });
-                });
-            }
-        }
 
         // Filtrowanie według rekrutera
         if (!empty($filters['recruiter'])) {
@@ -259,22 +243,6 @@ class ApplicationFilterService
             });
         }
 
-        // Filtrowanie według prawa jazdy (wait.id == 19)
-        if (isset($filters['driveLicense']) && $filters['driveLicense'] !== '') {
-            $hasDriveLicense = $filters['driveLicense'] === 'yes' || filter_var($filters['driveLicense'], FILTER_VALIDATE_BOOLEAN);
-            if ($hasDriveLicense) {
-                $query->whereHas('project', function ($q) {
-                    $q->whereJsonContains('wait', ['id' => 19]);
-                });
-            } else {
-                $query->whereHas('project', function ($q) {
-                    $q->where(function ($sub) {
-                        $sub->whereJsonDoesntContain('wait', ['id' => 19])
-                            ->orWhereNull('wait');
-                    });
-                });
-            }
-        }
 
         // Filtrowanie według rekrutera i firmy
         if (!empty($filters['recruiter'])) {
@@ -361,7 +329,7 @@ class ApplicationFilterService
             'filters' => $request->only([
                 'project', 'status', 'category', 'categorySub', 'profession', 'position',
                 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'country', 'city',
-                'driveLicense', 'date', 'has_candidate', 'recruiter'
+                'date', 'has_candidate', 'recruiter'
             ]),
         ];
     }
@@ -402,7 +370,7 @@ class ApplicationFilterService
             'optionsRecruits' => $recruits,
             'optionsExternal' => $externals,
             'counters' => $counters,
-            'filters' => $request->only(['project', 'status', 'category', 'categorySub', 'profession', 'position', 'country', 'city', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'recruiter', 'firm', 'driveLicense', 'has_candidate', 'date', 'has_cv', 'skill']),
+            'filters' => $request->only(['project', 'status', 'category', 'categorySub', 'profession', 'position', 'country', 'city', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'recruiter', 'firm', 'has_candidate', 'date', 'has_cv', 'skill']),
         ];
     }
 
@@ -426,7 +394,7 @@ class ApplicationFilterService
 
         // Jeśli zaznaczono konkretne aplikacje
         if (!empty($apps)) {
-            $query->whereIn('id', (array)$apps);
+            $query->whereIn('id', array_values((array)$apps));
         }
 
         // Filtrowanie według statusu
@@ -479,7 +447,7 @@ class ApplicationFilterService
             'optionsFirms' => $firms,
             'optionsRecruits' => $recruits,
             'counters' => $counters,
-            'filters' => collect($form)->only(['project', 'status', 'category', 'categorySub', 'profession', 'position', 'country', 'city', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'recruiter', 'firm', 'driveLicense', 'has_candidate', 'date']),
+            'filters' => collect($form)->only(['project', 'status', 'category', 'categorySub', 'profession', 'position', 'country', 'city', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'recruiter', 'firm', 'has_candidate', 'date']),
         ];
     }
 

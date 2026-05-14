@@ -35,22 +35,6 @@ class ApplicationsExport implements FromCollection,WithHeadings
                 }
             }
 
-            // Pobierz informację o prawie jazdy z wymagań projektu
-            $driveLicense = __('translate.statusNo');
-            if ($application->project && !empty($application->project->wait)) {
-                $waits = is_string($application->project->wait)
-                    ? json_decode($application->project->wait, true)
-                    : $application->project->wait;
-
-                if (is_array($waits)) {
-                    foreach ($waits as $wait) {
-                        if (isset($wait['id']) && $wait['id'] == 19) {
-                            $driveLicense = __('translate.statusYes');
-                            break;
-                        }
-                    }
-                }
-            }
 
             // Status w polskiej wersji
             $statusText = '';
@@ -111,7 +95,6 @@ class ApplicationsExport implements FromCollection,WithHeadings
                 __('translate.note') => $application->notes[0]['content'] ?? '-',
                 __('translate.language') => $firstLang,
                 __('translate.languageLevel') => $firstLangLevel,
-                __('translate.driveLicense') => $driveLicense,
                 __('translate.cvType') => $cvType,
                 __('translate.candidateCreated') => $hasCandidate,
             ];
@@ -138,7 +121,6 @@ class ApplicationsExport implements FromCollection,WithHeadings
             __('translate.note'),
             __('translate.language'),
             __('translate.languageLevel'),
-            __('translate.driveLicense'),
             __('translate.cvType'),
             __('translate.candidateCreated'),
         ];

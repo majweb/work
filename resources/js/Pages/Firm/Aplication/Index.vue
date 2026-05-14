@@ -35,15 +35,35 @@ const optionsCategorySub = ref([]);
 const optionsProfession = ref([]);
 const optionsPositionLocal = ref([]);
 
+const optionsStatus = computed(() => [
+    { name: __('translate.all'), value: '' },
+    { name: __('translate.statusYes'), value: 'yes' },
+    { name: __('translate.statusNo'), value: 'no' },
+    { name: __('translate.statusMaybe'), value: 'maybe' },
+]);
+
+const optionsCandidateCreated = computed(() => [
+    { name: __('translate.all'), value: '' },
+    { name: __('translate.yes'), value: 'yes' },
+    { name: __('translate.no'), value: 'no' },
+]);
+
 const { getPositionTitle } = useProjectHelpers();
 
 const lang = computed(()=>usePage().props.language);
+const monthYearFormat = (date) => {
+    if (!date) return '';
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+}
 const firmLoginPoints = computed(()=>usePage().props.firmLoginPoints);
 const exportRequiredPoints = computed(()=>usePage().props.exportRequiredPoints);
 
 const form = ref({
     project: props.filters?.project || '',
-    status: props.filters?.status || '',
+    status: optionsStatus.value.find(o => o.value === props.filters?.status) || optionsStatus.value[0],
     recruiter: props.filters?.recruiter || '',
     country: props.filters?.country || '',
     city: props.filters?.city || '',
@@ -54,8 +74,7 @@ const form = ref({
     has_cv: props.filters?.has_cv || 'all',
     lang: props.filters?.lang || '',
     Langlevel: props.filters?.Langlevel || '',
-    driveLicense: props.filters?.driveLicense || '',
-    has_candidate: props.filters?.has_candidate || '',
+    has_candidate: optionsCandidateCreated.value.find(o => o.value === props.filters?.has_candidate) || optionsCandidateCreated.value[0],
     date: props.filters?.date || '',
 });
 
@@ -77,7 +96,7 @@ const updateStatus = (id, status) => {
 const resetFilters = () => {
     form.value = {
         project: '',
-        status: '',
+        status: optionsStatus.value[0],
         category: '',
         categorySub: '',
         profession: '',
@@ -88,8 +107,7 @@ const resetFilters = () => {
         has_cv: 'all',
         lang: '',
         Langlevel: '',
-        driveLicense: '',
-        has_candidate: '',
+        has_candidate: optionsCandidateCreated.value[0],
         date: '',
     };
 
@@ -103,9 +121,26 @@ const resetFilters = () => {
 const exportToCSV = async () => {
     isExporting.value = true;
 
+    const mappedForm = pickBy({
+        project: form.value.project,
+        status: form.value.status?.value,
+        country: form.value.country?.value || form.value.country,
+        city: form.value.city?.value || form.value.city,
+        category: form.value.category?.value || form.value.category,
+        categorySub: form.value.categorySub?.value || form.value.categorySub,
+        profession: form.value.profession?.value || form.value.profession,
+        position: form.value.position?.value || form.value.position,
+        recruiter: form.value.recruiter?.value || form.value.recruiter,
+        has_cv: form.value.has_cv === 'all' ? null : form.value.has_cv,
+        lang: form.value.has_cv === 'yes' ? (form.value.lang?.value || form.value.lang) : undefined,
+        Langlevel: form.value.has_cv === 'yes' ? (form.value.Langlevel?.value || form.value.Langlevel) : undefined,
+        has_candidate: form.value.has_candidate?.value,
+        date: form.value.date,
+    });
+
     try {
         const response = await axios.post(route('firm.applications.export'), {
-            form: form.value,
+            form: mappedForm,
             apps: formSend.apps,
         }, {
             responseType: 'blob',
@@ -139,7 +174,7 @@ const exportToCSV = async () => {
 watch(form, debounce(function (value) {
     let rest = pickBy({
         project: value.project,
-        status: value.status,
+        status: value.status?.value,
         country: value.country?.value || value.country,
         city: value.city?.value || value.city,
         category: value.category?.value || value.category,
@@ -150,8 +185,7 @@ watch(form, debounce(function (value) {
         has_cv: value.has_cv === 'all' ? null : value.has_cv,
         lang: value.has_cv === 'yes' ? (value.lang?.value || value.lang) : undefined,
         Langlevel: value.has_cv === 'yes' ? (value.Langlevel?.value || value.Langlevel) : undefined,
-        driveLicense: value.has_cv === 'yes' ? value.driveLicense : '',
-        has_candidate: value.has_candidate,
+        has_candidate: value.has_candidate?.value,
         date: value.date,
     });
 
@@ -277,9 +311,7 @@ const getBackgroundStyle = (application) => {
 }
 
 const changeIds = (e) => {
-    if (formSend.apps.length === 0) {
-        formSend.externalFirms = []
-    }
+    //
 }
 
 const isAllSelected = computed(() => {
@@ -441,12 +473,16 @@ watch(() => usePage().props.sender, (newVal) => {
                         </div>
                         <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.applicationStatus') }}</label>
-                            <select v-model="form.status" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
-                                <option value="">{{ __('translate.all') }}</option>
-                                <option value="yes">{{ __('translate.statusYes') }}</option>
-                                <option value="no">{{ __('translate.statusNo') }}</option>
-                                <option value="maybe">{{ __('translate.statusMaybe') }}</option>
-                            </select>
+                            <multiselect v-model="form.status" :options="optionsStatus" label="name"
+                                         track-by="value"
+                                         :selectLabel="''"
+                                         :selectGroupLabel="''"
+                                         :selectedLabel="''"
+                                         :deselectLabel="''"
+                                         :placeholder="__('translate.applicationStatus')" class="custom-multiselect">
+                                <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                            </multiselect>
                         </div>
                     </div>
 
@@ -523,15 +559,29 @@ watch(() => usePage().props.sender, (newVal) => {
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date') }}</label>
-                                <input v-model="form.date" type="date" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase"/>
+                                <VueDatePicker
+                                    v-model="form.date"
+                                    :locale="lang"
+                                    :enable-time-picker="false"
+                                    auto-apply
+                                    :format="monthYearFormat"
+                                    model-type="yyyy-MM-dd"
+                                    :placeholder="__('translate.date')"
+                                    class="custom-datepicker"
+                                />
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.candidateCreated') }}</label>
-                                <select v-model="form.has_candidate" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
-                                    <option value="">{{ __('translate.all') }}</option>
-                                    <option value="yes">{{ __('translate.yes') }}</option>
-                                    <option value="no">{{ __('translate.no') }}</option>
-                                </select>
+                                <multiselect v-model="form.has_candidate" :options="optionsCandidateCreated" label="name"
+                                             track-by="value"
+                                             :selectLabel="''"
+                                             :selectGroupLabel="''"
+                                             :selectedLabel="''"
+                                             :deselectLabel="''"
+                                             :placeholder="__('translate.candidateCreated')" class="custom-multiselect">
+                                    <template #noResult><span>{{ __('translate.noResults') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
+                                </multiselect>
                             </div>
                         </div>
                     </div>
@@ -555,14 +605,6 @@ watch(() => usePage().props.sender, (newVal) => {
                                 :selectedLabel="''"
                                 :deselectLabel="''"
                                 v-model="form.Langlevel" :options="props.langLevels" label="name" :placeholder="__('translate.selectLevel')" :disabled="!form.lang" class="custom-multiselect"/>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.driveLicenseB') }}</label>
-                            <select v-model="form.driveLicense" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all font-bold tracking-widest uppercase appearance-none">
-                                <option value="">{{ __('translate.all') }}</option>
-                                <option value="yes">{{ __('translate.yes') }}</option>
-                                <option value="no">{{ __('translate.no') }}</option>
-                            </select>
                         </div>
                     </div>
 
@@ -666,7 +708,6 @@ watch(() => usePage().props.sender, (newVal) => {
                                         <label class="group/check flex items-center cursor-pointer">
                                             <div class="relative flex items-center justify-center">
                                                 <input
-                                                    @change="changeIds"
                                                     type="checkbox"
                                                     :id="'app-'+application.id"
                                                     v-model="formSend.apps"
@@ -930,6 +971,33 @@ watch(() => usePage().props.sender, (newVal) => {
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.custom-datepicker {
+    --dp-border-radius: 1rem;
+    --dp-cell-border-radius: 0.5rem;
+    --dp-font-size: 0.75rem;
+    --dp-input-padding: 0.75rem 1.25rem;
+
+    .dp__input {
+        background: #f9fafb; /* bg-gray-50 */
+        border: 1px solid #f3f4f6; /* border-gray-100 */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #374151; /* text-gray-700 approx */
+        padding: 1rem 1.25rem 1rem 2.25rem;
+        border-radius: 1rem;
+
+        &::placeholder {
+            color: #9ca3af; /* text-gray-400 */
+        }
+
+        &:focus {
+            border-color: #00a0e3;
+            background: #ffffff;
+        }
     }
 }
 
