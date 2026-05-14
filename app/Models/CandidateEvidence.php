@@ -19,7 +19,7 @@ class CandidateEvidence extends Model
         'position' => 'array',
         'currency' => 'array',
         'country' => 'array',
-        'date_of_hire' => 'date:Y-m-d',
+        'date_of_hire' => 'date',
     ];
 
     // Position – zapisujemy tylko ID jako JSON, getter zwraca obiekt do Vue
@@ -60,10 +60,12 @@ class CandidateEvidence extends Model
     protected function dateOfHire(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::parse($value)->format('d-m-Y') : null,
-            set: fn($value) => $value ? Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d') : null
+            get: fn($value) => $value,
+            set: fn($value) => $value ? Carbon::parse($value)->format('Y-m-d') : null,
         );
-    }    public function candidate(): BelongsTo
+    }
+
+    public function candidate(): BelongsTo
     {
         return $this->belongsTo(Candidate::class);
     }

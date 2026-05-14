@@ -89,7 +89,7 @@ const updateExternalCompany = () => {
                                     <textarea
                                         id="note"
                                         v-model="form.note"
-                                        class="block w-full h-full min-h-[200px] border-2 border-gray-50 focus:border-[#00a0e3] focus:ring-0 rounded-[2rem] p-6 text-gray-900 text-sm font-black placeholder:text-gray-200 transition-all shadow-sm bg-gray-50/30"
+                                        class="block w-full h-full min-h-[200px] border-2 border-gray-50 focus:border-[#00a0e3] focus:ring-0 rounded-[2rem] p-6 text-gray-900 text-sm font-black placeholder:text-gray-200 placeholder:uppercase transition-all shadow-sm bg-gray-50/30"
                                         :placeholder="__('translate.note')"
                                     ></textarea>
                                 </div>

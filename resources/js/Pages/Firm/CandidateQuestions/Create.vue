@@ -102,7 +102,7 @@ const submit = () => {
                                 <textarea
                                     id="question"
                                     v-model="form.question"
-                                    class="block w-full border-2 border-gray-50 focus:border-[#00a0e3] focus:ring-0 rounded-[2rem] p-8 text-gray-900 text-lg font-black placeholder:text-gray-200 transition-all min-h-[180px] shadow-sm group-hover:border-gray-100 bg-gray-50/30"
+                                    class="block w-full border-2 border-gray-50 focus:border-[#00a0e3] focus:ring-0 rounded-[2rem] p-8 text-gray-900 text-lg font-black placeholder:text-gray-200 placeholder:uppercase transition-all min-h-[180px] shadow-sm group-hover:border-gray-100 bg-gray-50/30"
                                     :placeholder="__('translate.addQuestionPlaceholder')"
                                 ></textarea>
                                 <div class="absolute bottom-8 right-8 text-[9px] text-gray-300 font-mono tracking-widest uppercase font-black">

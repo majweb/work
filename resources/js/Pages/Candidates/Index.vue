@@ -3,10 +3,14 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import {Link, usePage} from '@inertiajs/vue3';
 import {computed, ref, watch} from 'vue';
 import { router } from '@inertiajs/vue3';
-import { debounce, pickBy } from 'lodash';
+import {debounce, pickBy} from 'lodash';
 import __ from '@/lang.js';
 import Multiselect from "vue-multiselect";
-const locale = computed(()=>usePage().props.language);
+import { usePermission } from '@/Composables/usePermission';
+
+const { hasRole } = usePermission();
+
+const locale = computed(() => usePage().props.language);
 
 const props = defineProps({
     candidates: Object,
@@ -19,6 +23,17 @@ const props = defineProps({
 });
 
 const loading = ref(false);
+
+const getProjectName = (project) => {
+    if (!project) return '-';
+
+    const localeVal = locale.value;
+    const position = project.position?.allTranslations?.title?.[localeVal] || project.position?.title?.[localeVal];
+    const profession = project.profession?.allTranslations?.title?.[localeVal] || project.profession?.title?.[localeVal];
+    const title = project.title?.[localeVal] || project.title;
+
+    return position || profession || title || `ID: ${project.id}`;
+};
 
 const getLocalizedTitle = (title) => {
     if (!title) return '';
@@ -302,7 +317,7 @@ watch(selectedTags, (newTags) => {
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.name') }}</label>
                                 <input
@@ -333,6 +348,7 @@ watch(selectedTags, (newTags) => {
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.recruiter') }}</label>
                                 <multiselect
+                                    :disabled="!(hasRole('firm') && hasRole('recruit'))"
                                     :selectLabel="''"
                                     :selectGroupLabel="''"
                                     :selectedLabel="''"
@@ -341,9 +357,8 @@ watch(selectedTags, (newTags) => {
                                     label="name"
                                     :placeholder="__('translate.searchRecruiter')"
                                     v-model="form.recruiter" :options="optionsRecruits" class="custom-multiselect">
-                                >
-                                <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
-                                <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
+                                    <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
+                                    <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
                                 </multiselect>
                             </div>
                             <div class="space-y-2">
@@ -371,7 +386,7 @@ watch(selectedTags, (newTags) => {
                                     :placeholder="__('translate.enterPhone')"
                                 />
                             </div>
-                            <div class="col-span-2 space-y-2">
+                            <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.project') }}</label>
                                 <multiselect
                                     :selectLabel="''"
@@ -565,20 +580,20 @@ watch(selectedTags, (newTags) => {
                                     </div>
 
                                     <!-- Project -->
-                                    <div class="col-span-2 flex flex-col items-center md:items-start">
+                                    <div class="col-span-2 flex flex-col items-center md:items-start min-w-0">
                                         <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.project') }}
                                         </div>
 
-                                        <div class="flex flex-wrap gap-2">
+                                        <div class="flex flex-wrap gap-2 w-full">
                                             <template v-if="candidate.projects && candidate.projects.length > 0">
                                                 <Link
                                                     v-for="project in candidate.projects"
                                                     :key="project.id"
                                                     :href="route('project-recruits.show', project.id)"
-                                                    class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-lg hover:bg-blue-100 transition-colors uppercase tracking-widest"
+                                                    class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-lg hover:bg-blue-100 transition-colors uppercase tracking-widest break-words"
                                                 >
-                                                    ID: {{ project.id }}
+                                                    {{ getProjectName(project) }}
                                                 </Link>
                                             </template>
                                             <span v-else class="text-xs font-bold text-gray-500">-</span>
@@ -586,7 +601,7 @@ watch(selectedTags, (newTags) => {
                                     </div>
 
                                     <!-- Tags -->
-                                    <div class="col-span-3">
+                                    <div class="col-span-2">
                                         <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.tags') }}
                                         </div>
@@ -596,7 +611,7 @@ watch(selectedTags, (newTags) => {
                                                 <span
                                                     v-for="tag in candidate.tags"
                                                     :key="tag.id"
-                                                    class="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02]"
+                                                    class="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02] break-words"
                                                     :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
                                                 >
                                                     {{ tag.title?.[usePage().props.language] || '-' }}
@@ -607,7 +622,7 @@ watch(selectedTags, (newTags) => {
                                     </div>
 
                                     <!-- Actions -->
-                                    <div class="col-span-2 flex items-center justify-center md:justify-end gap-3">
+                                    <div class="col-span-3 flex items-center justify-center md:justify-end gap-3">
                                         <Link
                                             :href="route('candidates.show', candidate.id)"
                                             class="w-full md:w-auto px-6 py-3 bg-[#0A2C5C] text-white text-[9px] font-black rounded-xl hover:bg-[#00a0e3] shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest text-center"
@@ -650,18 +665,20 @@ watch(selectedTags, (newTags) => {
     background: #0A2C5C !important;
     outline: none;
     color: white;
-}
 
-.multiselect__option--highlight:after {
-    content: attr(data-select);
-    background: #0A2C5C !important;
-    color: white;
+    &:after {
+        display: none !important;
+    }
 }
 
 .multiselect__option--selected {
     background: #12315d !important;
     color: white;
     font-weight: bold;
+
+    &:after {
+        display: none !important;
+    }
 }
 
 .multiselect__option--selected.multiselect__option--highlight {

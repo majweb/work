@@ -26,10 +26,10 @@ const createExternalCompany = () => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
                         <div>
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.createExternalCompany') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 whitespace-pre-line">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 whitespace-pre-line max-w-xl">
                                 {{ __('translate.externalCompanyDescription', {
                                     create_points: usePage().props.getPoints?.CreateExternalFirm,
                                     send_points: usePage().props.getPoints?.SendToExternalFirm
@@ -92,7 +92,7 @@ const createExternalCompany = () => {
                                     <textarea
                                         id="note"
                                         v-model="form.note"
-                                        class="block w-full h-full min-h-[200px] border-2 border-gray-50 focus:border-[#00a0e3] focus:ring-0 rounded-[2rem] p-6 text-gray-900 text-sm font-black placeholder:text-gray-200 transition-all shadow-sm bg-gray-50/30"
+                                        class="block w-full h-full min-h-[200px] border-2 border-gray-50 focus:border-[#00a0e3] focus:ring-0 rounded-[2rem] p-6 text-gray-900 text-sm font-black placeholder:text-gray-200 placeholder:uppercase transition-all shadow-sm bg-gray-50/30"
                                         :placeholder="__('translate.note')"
                                     ></textarea>
                                 </div>

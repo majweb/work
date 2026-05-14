@@ -434,7 +434,7 @@ watch(() => usePage().props.sender, (newVal) => {
                     <!-- Filters grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                         <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.projectID') }}</label>
+                            <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.projectID') }}</label>
                             <input v-model="form.project" type="text" :placeholder="__('translate.enterID')" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"/>
                         </div>
                         <div class="space-y-2">
@@ -957,12 +957,20 @@ watch(() => usePage().props.sender, (newVal) => {
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+
+        &:after {
+            display: none !important;
+        }
     }
 
     .multiselect__option--selected {
         background: #f3f4f6 !important;
         color: #0A2C5C;
         font-weight: 900;
+
+        &:after {
+            display: none !important;
+        }
     }
 
     .multiselect__content-wrapper {
@@ -989,6 +997,7 @@ watch(() => usePage().props.sender, (newVal) => {
         color: #0A2C5C;
         padding: 0.75rem 1.25rem 0.75rem 2.25rem;
         border-radius: 1rem;
+        min-height: 58px;
 
         &::placeholder {
             color: #9ca3af; /* text-gray-400 */

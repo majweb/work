@@ -976,12 +976,20 @@ const submitForm = () => {
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+
+        &:after {
+            display: none !important;
+        }
     }
 
     .multiselect__option--selected {
         background: #f3f4f6 !important;
         color: #0A2C5C;
         font-weight: 900;
+
+        &:after {
+            display: none !important;
+        }
     }
 
     .multiselect__content-wrapper {
@@ -1008,6 +1016,7 @@ const submitForm = () => {
         color: #0A2C5C;
         padding: 0.75rem 1.25rem 0.75rem 2.25rem;
         border-radius: 1rem;
+        min-height: 58px;
 
         &::placeholder {
             color: #9ca3af; /* text-gray-400 */

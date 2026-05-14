@@ -28,6 +28,7 @@ services:
             - mailpit
     mysql:
         image: 'mysql/mysql-server:8.0'
+        command: ["mysqld", "--sort_buffer_size=16M"]
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:

@@ -62,6 +62,17 @@ class CandidatesController extends Controller
         });
 
         // Filtry
+        if ($request->filled('project')) {
+            $projectId = $request->project;
+            $query->whereHas('applications', function ($q) use ($projectId) {
+                $q->where('project_id', $projectId)
+                    ->where(function ($qq) {
+                        $qq->where('user_id', Auth::id())
+                            ->orWhere('recruiter_id', Auth::id());
+                    });
+            });
+        }
+
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }
@@ -78,14 +89,12 @@ class CandidatesController extends Controller
             $query->where('phone', 'like', '%' . $request->phone . '%');
         }
 
-        if ($request->filled('project')) {
-            $query->whereHas('projects', function ($q) use ($request) {
-                $q->where('projects.id', $request->project);
-            });
-        }
-
         if ($request->filled('recruiter')) {
-            $query->where('created_by_id',$request->recruiter);
+            $recruiterId = $request->recruiter;
+            $query->whereHas('applications', function ($q) use ($recruiterId) {
+                $q->where('recruiter_id', $recruiterId)
+                    ->where('user_id', Auth::id());
+            });
         }
 
         if ($request->filled('position')) {
@@ -125,7 +134,7 @@ class CandidatesController extends Controller
 
         // Pobieramy kandydatów z ich projektami z Eager Loading i ograniczonymi kolumnami
         $candidates = $query->with([
-            'projects:projects.id,projects.title',
+            'projects:projects.id,projects.position,projects.profession,projects.title',
             'created_by:users.id,users.color,users.name',
             'tags:categories.id,categories.title',
             'userByEmail:users.id,users.email,users.profile_photo_path'
@@ -137,11 +146,16 @@ class CandidatesController extends Controller
 
         // Pobieranie projektów dla filtra - zoptymalizowane do jednego zapytania
         $projects = Project::whereHas('aplications', function ($q) {
-            $q->where('user_id', Auth::id())
-                ->orWhere('recruiter_id', Auth::id());
+            $q->where(function ($qq) {
+                $qq->where('user_id', Auth::id())
+                    ->orWhere('recruiter_id', Auth::id());
+            });
         })
-        ->select('projects.id', 'projects.title')
-        ->get();
+            ->select('projects.id', 'projects.title')
+            ->get();
+
+
+
 
         $userId = auth()->id();
 

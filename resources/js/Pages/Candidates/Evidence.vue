@@ -64,7 +64,23 @@ const editEvidence = (evidence) => {
     form.position = Array.isArray(evidence.position) ? evidence.position : [];
     form.salary = evidence.salary ?? '';
     form.currency = evidence.currency ?? null;
-    form.date_of_hire = evidence.date_of_hire;
+
+    // Obsługa daty dla VueDatePicker (musi być string YYYY-MM-DD lub obiekt Date)
+    if (evidence.date_of_hire) {
+        const d = new Date(evidence.date_of_hire);
+        if (!isNaN(d.getTime())) {
+            // Używamy lokalnego formatu daty YYYY-MM-DD, aby uniknąć problemów ze strefą czasową przy ISOString
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            form.date_of_hire = `${year}-${month}-${day}`;
+        } else {
+            form.date_of_hire = evidence.date_of_hire;
+        }
+    } else {
+        form.date_of_hire = '';
+    }
+
     form.country = Array.isArray(evidence.country) ? evidence.country : [];
     form.notes = evidence.notes ?? '';
 
@@ -117,10 +133,7 @@ const formatNumber = (n) => {
 };
 
 const formatDate = (d) => {
-    if (typeof d === 'string' && /^\d{2}-\d{2}-\d{4}$/.test(d)) {
-        const [dd, mm, yyyy] = d.split('-');
-        return new Date(`${yyyy}-${mm}-${dd}T00:00:00Z`).toLocaleDateString('pl-PL');
-    }
+    if (!d) return '—';
     const date = new Date(d);
     return isNaN(date.getTime()) ? d : date.toLocaleDateString('pl-PL');
 };
@@ -232,10 +245,10 @@ const getCandidateInitials = (c) => {
                                         <div>
                                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.currency') }}</label>
                                             <multiselect
-                                                :selectLabel="__('translate.selectLabel')"
-                                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                :selectedLabel="__('translate.selectedLabel')"
-                                                :deselectLabel="__('translate.deselectLabel')"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
                                                 :noOptions="__('translate.noOptions')"
                                                 :noResult="__('translate.noResult')"
                                                 track-by="value"
@@ -252,10 +265,10 @@ const getCandidateInitials = (c) => {
                                         <div>
                                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.position') }}</label>
                                             <multiselect
-                                                :selectLabel="__('translate.selectLabel')"
-                                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                :selectedLabel="__('translate.selectedLabel')"
-                                                :deselectLabel="__('translate.deselectLabel')"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
                                                 :noOptions="__('translate.noOptions')"
                                                 :noResult="__('translate.noResult')"
                                                 track-by="value"
@@ -274,10 +287,10 @@ const getCandidateInitials = (c) => {
                                                 group-values="elements"
                                                 group-label="group"
                                                 :group-select="false"
-                                                :selectLabel="__('translate.selectLabel')"
-                                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                :selectedLabel="__('translate.selectedLabel')"
-                                                :deselectLabel="__('translate.deselectLabel')"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
                                                 track-by="name"
                                                 :multiple="false"
                                                 label="name"
@@ -293,10 +306,10 @@ const getCandidateInitials = (c) => {
                                         <div v-if="externalCompanies && externalCompanies.length > 0">
                                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.externalCompany') }}</label>
                                             <multiselect
-                                                :selectLabel="__('translate.selectLabel')"
-                                                :selectGroupLabel="__('translate.selectGroupLabel')"
-                                                :selectedLabel="__('translate.selectedLabel')"
-                                                :deselectLabel="__('translate.deselectLabel')"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
                                                 track-by="id"
                                                 label="name"
                                                 :placeholder="__('translate.placeholder')"
@@ -310,7 +323,7 @@ const getCandidateInitials = (c) => {
                                         <div>
                                             <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.date_of_hire') }}</label>
                                             <VueDatePicker
-                                                model-type="dd-MM-yyyy"
+                                                model-type="yyyy-MM-dd"
                                                 format="dd-MM-yyyy"
                                                 class="custom-datepicker"
                                                 :enable-time-picker="false"
@@ -318,6 +331,7 @@ const getCandidateInitials = (c) => {
                                                 :locale="lang"
                                                 auto-apply
                                                 id="date_of_hire"
+                                                :placeholder="__('translate.date')"
                                             />
                                             <InputError :message="form.errors.date_of_hire" class="mt-2" />
                                         </div>
@@ -561,8 +575,7 @@ const getCandidateInitials = (c) => {
         letter-spacing: 0.05em !important;
 
         &:after {
-            background: #0A2C5C !important;
-            color: white !important;
+            display: none !important;
         }
     }
 
@@ -575,8 +588,7 @@ const getCandidateInitials = (c) => {
         letter-spacing: 0.1em !important;
 
         &:after {
-            background: transparent !important;
-            color: #9ca3af !important;
+            display: none !important;
         }
 
         &.multiselect__option--highlight {
@@ -627,12 +639,12 @@ const getCandidateInitials = (c) => {
         border-radius: 1rem !important;
         border: 1px solid #f3f4f6 !important;
         background: #f9fafb !important;
-        padding: 1rem 1.25rem 1rem 3rem !important;
+        padding: 0.75rem 1.25rem 0.75rem 2.25rem !important;
         font-size: 0.75rem !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
-        color: #374151 !important;
+        color: #0A2C5C !important;
         min-height: 58px !important;
 
         &:focus {
