@@ -297,7 +297,7 @@ const socialLinks = [
         ></div>
 
         <!-- Header -->
-        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-50">
+        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-1">
             <header class="flex items-center h-20 justify-between mt-4 bg-white/80 backdrop-blur-md rounded-[2rem] px-6 md:px-10 border border-gray-100 shadow-xl shadow-blue-900/5">
                 <Link :href="route('front')" class="flex items-center shrink-0">
                     <img v-if="route().current('front')" src="/images/logo-horizontal.svg" class="h-8 md:h-10 w-auto" :alt="__('translate.logo')" />
@@ -490,7 +490,7 @@ const socialLinks = [
         <button
             v-if="showScrollTop"
             @click="scrollToTop"
-            class="fixed right-8 bottom-8 bg-[#0A2C5C] text-white rounded-2xl w-14 h-14 flex items-center justify-center shadow-2xl shadow-blue-900/40 hover:bg-[#00a0e3] transition-all hover:-translate-y-1 z-[90]"
+            class="fixed right-8 bottom-8 bg-[#0A2C5C] text-white rounded-2xl w-14 h-14 flex items-center justify-center shadow-2xl shadow-blue-900/40 hover:bg-[#00a0e3] transition-all hover:-translate-y-1 z-[110]"
         >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18" />

@@ -80,16 +80,38 @@ onMounted(async () => {
 
 // Lightbox
 const showLightbox = ref(false);
-const currentImage = ref('');
+const currentImageIndex = ref(0);
 
-function openLightbox(url) {
-    currentImage.value = url;
+const galleryImages = computed(() => props.firm.media || []);
+
+function openLightbox(index) {
+    currentImageIndex.value = index;
     showLightbox.value = true;
+    window.addEventListener('keydown', handleKeyDown);
 }
 
 function closeLightbox() {
     showLightbox.value = false;
-    currentImage.value = '';
+    window.removeEventListener('keydown', handleKeyDown);
+}
+
+function nextImage() {
+    if (galleryImages.value.length > 1) {
+        currentImageIndex.value = (currentImageIndex.value + 1) % galleryImages.value.length;
+    }
+}
+
+function prevImage() {
+    if (galleryImages.value.length > 1) {
+        currentImageIndex.value = (currentImageIndex.value - 1 + galleryImages.value.length) % galleryImages.value.length;
+    }
+}
+
+function handleKeyDown(e) {
+    if (!showLightbox.value) return;
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'Escape') closeLightbox();
 }
 
 const { getPositionTitle } = useProjectHelpers();
@@ -262,9 +284,9 @@ const { getPositionTitle } = useProjectHelpers();
                                 </div>
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     <div
-                                        v-for="img in firm.media"
+                                        v-for="(img, index) in firm.media"
                                         :key="img.url"
-                                        @click="openLightbox(img.url)"
+                                        @click="openLightbox(index)"
                                         class="aspect-square rounded-[2rem] overflow-hidden cursor-pointer group relative shadow-sm hover:shadow-xl transition-all duration-500"
                                     >
                                         <img :src="img.url" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -418,14 +440,6 @@ const { getPositionTitle } = useProjectHelpers();
                                                     {{ moment(project.created_at).format('DD.MM.YYYY') }}
                                                 </span>
                                             </div>
-                                            <div v-if="project.external_company" class="flex items-center gap-2">
-                                                <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                                </svg>
-                                                <span class="text-[10px] font-black text-blue-600 uppercase tracking-tight">
-                                                    {{ project.external_company.name }}
-                                                </span>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -478,20 +492,55 @@ const { getPositionTitle } = useProjectHelpers();
         <!-- Lightbox -->
         <div
             v-if="showLightbox"
-            class="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50 backdrop-blur-sm"
+            class="fixed inset-0 bg-black/95 flex items-center justify-center p-4 z-[500] backdrop-blur-md"
             @click.self="closeLightbox"
         >
+            <!-- Close Button -->
             <button
                 @click="closeLightbox"
-                class="absolute top-8 right-8 text-white bg-white/10 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition-all group shadow-2xl"
+                class="absolute top-8 right-8 text-white bg-white/10 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition-all group shadow-2xl z-[510]"
             >
                 <svg class="w-6 h-6 transform group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
-            <img
-                :src="currentImage"
-                class="max-h-[85vh] max-w-[90vw] rounded-[2rem] shadow-2xl border-4 border-white/10"
-                @click.stop
-            />
+
+            <!-- Navigation Buttons -->
+            <div class="absolute inset-x-0 bottom-4 flex items-center justify-center gap-8 md:static md:contents z-[510]">
+                <button
+                    v-if="galleryImages.length > 1"
+                    @click="prevImage"
+                    class="md:absolute md:left-4 lg:left-8 md:top-1/2 md:-translate-y-1/2 text-white bg-white/10 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center hover:bg-white/20 transition-all group shadow-2xl"
+                >
+                    <svg class="w-6 h-6 md:w-8 md:h-8 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+
+                <!-- Counter (Mobile) -->
+                <div v-if="galleryImages.length > 1" class="md:hidden text-white/70 text-sm font-black uppercase tracking-[0.3em]">
+                    {{ currentImageIndex + 1 }} / {{ galleryImages.length }}
+                </div>
+
+                <button
+                    v-if="galleryImages.length > 1"
+                    @click="nextImage"
+                    class="md:absolute md:right-4 lg:right-8 md:top-1/2 md:-translate-y-1/2 text-white bg-white/10 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center hover:bg-white/20 transition-all group shadow-2xl"
+                >
+                    <svg class="w-6 h-6 md:w-8 md:h-8 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+
+            <!-- Image -->
+            <div class="relative max-h-[70vh] md:max-h-[85vh] max-w-[95vw] md:max-w-[90vw] flex items-center justify-center mb-20 md:mb-0">
+                <img
+                    v-if="galleryImages[currentImageIndex]"
+                    :src="galleryImages[currentImageIndex].url"
+                    class="max-h-[70vh] md:max-h-[85vh] max-w-[95vw] md:max-w-[90vw] rounded-[2rem] shadow-2xl border-4 border-white/10 object-contain"
+                    @click.stop
+                />
+
+                <!-- Counter (Desktop) -->
+                <div v-if="galleryImages.length > 1" class="hidden md:block absolute -bottom-12 left-1/2 -translate-x-1/2 text-white/50 text-xs font-black uppercase tracking-[0.3em]">
+                    {{ currentImageIndex + 1 }} / {{ galleryImages.length }}
+                </div>
+            </div>
         </div>
     </FrontLayout>
 </template>
