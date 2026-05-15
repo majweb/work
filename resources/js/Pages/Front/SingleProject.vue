@@ -213,12 +213,14 @@ onMounted(async () => {
                     <div class="p-8 md:px-16 flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-50">
                         <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
                             <div class="relative top-5 md:top-0">
-                                <img
-                                    :src="project.user?.profile_photo_url"
-                                    alt="Logo"
-                                    class="w-24 h-24 rounded-[2rem] border-4 border-white shadow-xl object-cover -mt-20 md:-mt-24 relative z-20"
-                                    :class="{ 'ring-4 ring-[#329CD1]/50 shadow-2xl shadow-[#329CD1]/20': project.is_featured }"
-                                />
+                                <Link :href="project.user?.id ? route('front.firms.single', project.user?.id) : '#'">
+                                    <img
+                                        :src="project.user?.profile_photo_url"
+                                        alt="Logo"
+                                        class="w-24 h-24 rounded-[2rem] border-4 border-white shadow-xl object-cover -mt-20 md:-mt-24 relative z-20 hover:scale-105 transition-transform duration-300"
+                                        :class="{ 'ring-4 ring-[#329CD1]/50 shadow-2xl shadow-[#329CD1]/20': project.is_featured }"
+                                    />
+                                </Link>
                                 <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
                                 <div v-if="project.is_featured" class="absolute -bottom-10 md:-bottom-10 -left-10 z-40 transform hover:scale-110 transition-transform duration-300">
                                     <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-[70px] h-[70px] md:w-20 md:h-20 drop-shadow-2xl" />
@@ -226,7 +228,9 @@ onMounted(async () => {
                             </div>
                             <div class="relative pt-5 md:pt-0">
                                 <h2 class="text-xl font-black text-gray-900 uppercase tracking-tight flex items-center justify-center md:justify-start gap-2 mt-4 md:mt-0">
-                                    {{ project.user?.name }}
+                                    <Link :href="project.user?.id ? route('front.firms.single', project.user?.id) : '#'" class="hover:text-[#01A0E2] transition-colors">
+                                        {{ project.user?.firm?.name || project.user?.name }}
+                                    </Link>
                                 </h2>
                                 <div class="flex items-center justify-center md:justify-start gap-3 mt-1">
                                     <div class="flex items-center gap-1.5">
@@ -268,10 +272,10 @@ onMounted(async () => {
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salary') }}</p>
                                 <div class="space-y-1">
                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-tight">
-                                        {{ __('premium.history_from') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryFrom ?? '-' }} {{ project.currency?.name || project.currency }}</span>
+                                        {{ __('premium.history_from') }} <span class="text-sm font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryFrom ?? '-' }} {{ project.currency?.name || project.currency }}</span>
                                     </p>
                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-tight">
-                                        {{ __('premium.history_to') }} <span class="text-lg font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryTo ?? '-' }} {{ project.currency?.name || project.currency }}</span>
+                                        {{ __('premium.history_to') }} <span class="text-sm font-black text-[#0A2C5C] tracking-tight">{{ project.basicSalaryTo ?? '-' }} {{ project.currency?.name || project.currency }}</span>
                                     </p>
                                     <p v-if="project.salary_type" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1 border-t border-gray-100 pt-1">
                                         {{ __('translate.' + project.salary_type) }}
@@ -539,7 +543,12 @@ onMounted(async () => {
                              :class="project.is_featured ? 'bg-[radial-gradient(circle_at_center,_#1e40af_0%,_#0A2C5C_100%)]' : 'bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/50 to-[#0A2C5C]'"></div>
                         <div class="relative z-10 space-y-8">
                             <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">{{ __('translate.readyForChallenges') }}</h2>
-                            <p class="text-blue-200 uppercase text-xs font-bold tracking-[0.2em]">{{ __('translate.applyNowJoinTeam') }} {{ project.user?.name }}</p>
+                            <p class="text-blue-200 uppercase text-xs font-bold tracking-[0.2em]">
+                                {{ __('translate.applyNowJoinTeam') }}
+                                <Link :href="project.user?.firm?.id ? route('front.firms.single', project.user.firm.id) : '#'" class="hover:text-[#01A0E2] transition-colors">
+                                    {{ project.user?.firm?.name || project.user?.name }}
+                                </Link>
+                            </p>
                             <Link
                                 class="inline-flex items-center gap-4 px-12 py-6 bg-red-600 text-white text-xs font-black uppercase tracking-widest rounded-[2rem] hover:bg-red-700 transition-all shadow-2xl shadow-red-900/40 hover:-translate-y-1 active:translate-y-0"
                                 :href="route('front.projects.applyView', project)"

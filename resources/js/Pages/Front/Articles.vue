@@ -73,7 +73,7 @@ const props = defineProps({
                                         {{ __('translate.latest_article') }}
                                     </span>
                                 </div>
-                                <h2 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none group-hover:text-blue-600 transition-colors">
+                                <h2 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none group-hover:text-[#01A0E2] transition-colors">
                                     {{ newest.title }}
                                 </h2>
                                 <p class="text-sm font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
@@ -146,7 +146,7 @@ const props = defineProps({
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">
                                     {{ moment(article.created).format('DD.MM.YYYY') }}
                                 </p>
-                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 group-hover:text-[#01A0E2] transition-colors line-clamp-2">
                                     {{ article.title }}
                                 </h4>
                                 <div class="mt-auto pt-6 border-t border-gray-50 flex items-center gap-3">
@@ -165,7 +165,7 @@ const props = defineProps({
                     <div class="flex items-center gap-4">
                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ group.name }}</h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
-                        <Link :href="route('front.groupArticles', { category: group.value })" class="text-[10px] font-black text-blue-500 hover:underline uppercase tracking-widest shrink-0">
+                        <Link :href="route('front.groupArticles', { category: group.value })" class="text-[10px] font-black text-[#0A2C5C] hover:text-[#01A0E2] hover:underline uppercase tracking-widest shrink-0">
                             {{ __('translate.check_all') }}
                         </Link>
                     </div>
@@ -187,7 +187,7 @@ const props = defineProps({
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">
                                     {{ moment(article.created).format('DD.MM.YYYY') }}
                                 </p>
-                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 group-hover:text-[#01A0E2] transition-colors line-clamp-2">
                                     {{ article.title }}
                                 </h4>
                                 <div class="mt-auto pt-6 border-t border-gray-50 flex items-center gap-3">
