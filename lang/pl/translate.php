@@ -951,6 +951,7 @@ return [
         'title' => 'Rozpoczęcie tworzenia CV audio',
         'steps' => [
             'start' => [
+                'title' => 'Wybór Audio',
                 'step_1' => 'Wybierz opcję „CV audio”.',
                 'step_2' => 'Na ekranie pojawi się pasek postępu oraz przycisk „Rozpocznij nagranie”.',
                 'step_3' => 'Naciśnij przycisk „Rozpocznij nagranie”, aby rozpocząć proces.',
@@ -990,6 +991,7 @@ return [
         'title' => 'Rozpoczęcie tworzenia CV video',
         'steps' => [
             'start' => [
+                'title' => 'Wybór Video',
                 'step_1' => 'Wybierz opcję „CV video”.',
                 'step_2' => 'Na ekranie pojawi się okno nagrywania oraz przycisk „Rozpocznij nagranie”.',
                 'step_3' => 'Naciśnij przycisk „Rozpocznij nagranie”, aby rozpocząć proces.',
@@ -1307,7 +1309,7 @@ return [
     'myData' => 'Moje dane',
     'myCv' => 'Moje Cv',
     'chooseCvToEdit' => 'Wybierz CV, aby edytować dane',
-    'noCvs' => 'Nie posiadasz jeszcze żadnego CV',
+    'noCvs' => 'Wyślij swoją pierwszą aplikację z wykorzystaniem generatora CV dostępnego podczas aplikowania, a Twoje utworzone CV automatycznie pojawi się tutaj!',
     'langKnow' => 'Znajomość języków',
     'updateCv' => 'Zaktualizowano Cv',
     'basic_info' => 'Informacje podstawowe',
@@ -1786,4 +1788,6 @@ return [
     'confirmPasswordButton' => 'Potwierdź',
     'makeData' => 'Uzupełnij swoje dane kontaktowe',
     'strongMe' => 'Podaj swoje mocne strony',
+    'recordAgain' => 'Nagraj ponownie',
+
 ];

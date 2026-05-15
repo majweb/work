@@ -71,7 +71,7 @@ const handleConsentChange = (agreementId) => {
                         <h3 class="text-xs font-black uppercase tracking-[0.2em] text-[#0A2C5C] dark:text-white">Ustawienia prywatności</h3>
                     </div>
 
-                    <div class="text-[13px] font-medium text-gray-500 dark:text-gray-400 leading-relaxed mb-8" v-html="__('translate.agreeCookie')">
+                    <div class="text-[13px] font-medium text-gray-500 dark:text-gray-400 leading-relaxed mb-8 uppercase" v-html="__('translate.agreeCookie')">
                     </div>
 
                     <div class="flex flex-col sm:flex-row justify-end gap-4">

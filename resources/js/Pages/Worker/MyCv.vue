@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue"
-import {computed, ref} from "vue"
+import {computed, onMounted, ref} from "vue"
 import {useForm, usePage} from "@inertiajs/vue3"
 import ActionMessage from "@/Components/ActionMessage.vue"
 import PrimaryButton from "@/Components/PrimaryButton.vue"
@@ -13,7 +13,7 @@ import Multiselect from 'vue-multiselect';
 import SpinnerAction from "@/Components/SpinnerAction.vue";
 
 const page = usePage()
-const user = page.props.auth.user
+const currentUser = computed(() => page.props.auth.user)
 const {hasRole} = usePermission()
 
 const props = defineProps({
@@ -26,7 +26,10 @@ const props = defineProps({
 /* =========================
    STAN WYBRANEGO CV
 ========================= */
-const selectedCv = ref(null)
+const selectedCvId = ref(null)
+const selectedCv = computed(() => {
+    return props.myCvs.find(cv => cv.id === selectedCvId.value) || null
+})
 const isLoadingCv = ref(false)
 
 /* =========================
@@ -34,13 +37,13 @@ const isLoadingCv = ref(false)
 ========================= */
 const form = useForm({
     _method: "PUT",
-    name: user.name,
-    surname: user.worker_detail?.surname ?? "",
+    name: page.props.auth.user.name,
+    surname: page.props.auth.user.worker_detail?.surname ?? "",
     birthdate: "",
-    contact_phone: user.worker_detail?.contact_phone ?? "",
+    contact_phone: page.props.auth.user.worker_detail?.contact_phone ?? "",
     city: "",
     zip: "",
-    email: user.email,
+    email: page.props.auth.user.email,
     photo: null,
 })
 const normalizeDate = (dateObj) => {
@@ -64,14 +67,13 @@ const normalizeDate = (dateObj) => {
 ========================= */
 const selectCv = (cv) => {
     isLoadingCv.value = true;
-    selectedCv.value = cv;
-    console.log(cv)
-    // 🔥 ŁADOWANIE DANYCH DO FORMULARZA
-    form.name = user.name
-    form.surname = user.worker_detail?.surname ?? ""
-    form.contact_phone = user.worker_detail?.contact_phone ?? ""
-    form.email = user.email
-    form.birthdate = cv?.birthday ?? ""
+    selectedCvId.value = cv.id;
+    // 🔥 ŁADOWANIE DANYCH DO FORMULARZA - Używamy świeżych danych z currentUser
+    form.name = currentUser.value.name
+    form.surname = currentUser.value.worker_detail?.surname ?? ""
+    form.contact_phone = currentUser.value.worker_detail?.contact_phone ?? ""
+    form.email = currentUser.value.email
+    form.birthdate = cv?.birthday ? cv.birthday.substring(0, 10) : ""
     form.city = cv?.city ?? ""
     form.zip = cv?.postal ?? ""
     formCv.experiences = cv?.experiences ? cv?.experiences.map(exp => ({
@@ -97,6 +99,12 @@ const selectCv = (cv) => {
         isLoadingCv.value = false;
     }, 300);
 }
+
+onMounted(() => {
+    if (props.myCvs.length > 0) {
+        selectCv(props.myCvs[0]);
+    }
+})
 const sortLangs = computed(() => {
     const excludedLangs = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
     return usePage().props.languages
@@ -138,7 +146,12 @@ const updateProfileInformation = () => {
 
     form.post(route("worker.myCvUpdateBasic", selectedCv.value), {
         preserveScroll: true,
-        onSuccess: () => clearPhotoFileInput(),
+        onSuccess: () => {
+            clearPhotoFileInput();
+            if (selectedCv.value) {
+                selectCv(selectedCv.value);
+            }
+        },
     })
 }
 
@@ -276,21 +289,21 @@ const submit = () => {
                                 :key="cv.id"
                                 @click="selectCv(cv)"
                                 class="group relative flex items-center gap-4 p-5 rounded-3xl transition-all duration-200 border cursor-pointer"
-                                :class="selectedCv?.id === cv.id
+                                :class="selectedCvId === cv.id
                                     ? 'bg-[#0A2C5C] border-transparent shadow-lg shadow-blue-900/20 shadow-md'
                                     : 'bg-white border-gray-100 hover:border-blue-100 hover:bg-blue-50/30 shadow-sm'"
                             >
                                 <div class="flex-1 min-w-0">
                                     <h4 class="text-sm font-bold truncate transition-colors uppercase"
-                                        :class="selectedCv?.id === cv.id ? 'text-white' : 'text-[#0A2C5C]'">
+                                        :class="selectedCvId === cv.id ? 'text-white' : 'text-[#0A2C5C]'">
                                         CV {{ cv.project?.category?.allTranslations?.title?.[usePage().props.language] || cv.project?.category?.name || '---' }}
                                     </h4>
                                     <p class="text-[10px] font-bold uppercase tracking-tight mt-1"
-                                       :class="selectedCv?.id === cv.id ? 'text-blue-200' : 'text-gray-400'">
+                                       :class="selectedCvId === cv.id ? 'text-blue-200' : 'text-gray-400'">
                                         {{ cv.project?.position?.allTranslations?.title?.[usePage().props.language] || cv.project?.position?.name || '---' }}
                                     </p>
                                 </div>
-                                <div v-if="selectedCv?.id === cv.id" class="shrink-0">
+                                <div v-if="selectedCvId === cv.id" class="shrink-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
@@ -298,7 +311,7 @@ const submit = () => {
                             </div>
                         </div>
                         <div v-else class="p-8 bg-white rounded-3xl border border-dashed border-gray-200 text-center">
-                            <p class="text-sm text-gray-400 font-medium">{{ __('translate.noCvs') }}</p>
+                            <p class="text-sm text-gray-400 font-medium uppercase">{{ __('translate.noCvs') }}</p>
                         </div>
                     </div>
 
@@ -326,7 +339,7 @@ const submit = () => {
                                             <div class="relative group shrink-0 mx-auto md:mx-0">
                                                 <input ref="photoInput" type="file" class="hidden" @change="updatePhotoPreview">
                                                 <div class="w-32 h-32 rounded-3xl overflow-hidden shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
-                                                    <img v-if="!photoPreview" :src="user.profile_photo_url" class="w-full h-full object-cover" />
+                                                    <img v-if="!photoPreview" :src="currentUser.profile_photo_url" class="w-full h-full object-cover" />
                                                     <div v-else class="w-full h-full bg-cover bg-center" :style="`background-image:url('${photoPreview}')`" />
                                                 </div>
                                                 <button type="button"
@@ -344,30 +357,45 @@ const submit = () => {
                                                 <div class="flex flex-col gap-1">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.nameUser') }}</span>
                                                     <TextInput v-model="form.name" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <InputError :message="form.errors.name" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                                 <div class="flex flex-col gap-1">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.surname') }}</span>
                                                     <TextInput v-model="form.surname" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <InputError :message="form.errors.surname" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                                 <div class="flex flex-col gap-1">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.birthdayDate') }}</span>
-                                                    <TextInput v-model="form.birthdate" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <VueDatePicker
+                                                        v-model="form.birthdate"
+                                                        model-type="dd-MM-yyyy"
+                                                        format="dd-MM-yyyy"
+                                                        :locale="lang"
+                                                        auto-apply
+                                                        :enable-time-picker="false"
+                                                        class="modern-datepicker"
+                                                    />
+                                                    <InputError :message="form.errors.birthdate" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                                 <div class="flex flex-col gap-1">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.nrPhone') }}</span>
                                                     <TextInput v-model="form.contact_phone" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <InputError :message="form.errors.contact_phone" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                                 <div class="flex flex-col gap-1">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.Postal') }}</span>
                                                     <TextInput v-model="form.zip" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <InputError :message="form.errors.zip" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                                 <div class="flex flex-col gap-1">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.City') }}</span>
                                                     <TextInput v-model="form.city" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <InputError :message="form.errors.city" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                                 <div class="flex flex-col gap-1 sm:col-span-2">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.email') }}</span>
                                                     <TextInput v-model="form.email" type="email" class="w-full rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"/>
+                                                    <InputError :message="form.errors.email" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,7 +439,7 @@ const submit = () => {
                                             {{ __('translate.limitComplete') }}
                                         </div>
 
-                                        <InputError :message="formCv.errors.experiences" class="mb-6"/>
+                                        <InputError :message="formCv.errors.experiences" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
                                         <draggable
                                             v-model="formCv.experiences"
@@ -448,7 +476,7 @@ const submit = () => {
                                                                 v-model="experience.position" :options="optionsPositions"
                                                                 class="custom-multiselect">
                                                             </multiselect>
-                                                            <InputError :message="formCv.errors[`experiences.${index}.position`]" class="mt-1"/>
+                                                            <InputError :message="formCv.errors[`experiences.${index}.position`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                         </div>
 
                                                         <!-- START -->
@@ -463,14 +491,14 @@ const submit = () => {
                                                                 :format="monthYearFormat"
                                                                 class="modern-datepicker"
                                                             />
-                                                            <InputError :message="formCv.errors[`experiences.${index}.start`]" class="mt-1"/>
+                                                            <InputError :message="formCv.errors[`experiences.${index}.start`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                         </div>
 
                                                         <!-- EMPLOYER -->
                                                         <div class="flex flex-col gap-1">
                                                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.employer') }}</span>
                                                             <TextInput v-model="experience.employer" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.employer')"/>
-                                                            <InputError :message="formCv.errors[`experiences.${index}.employer`]" class="mt-1"/>
+                                                            <InputError :message="formCv.errors[`experiences.${index}.employer`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                         </div>
 
                                                         <!-- END -->
@@ -496,14 +524,14 @@ const submit = () => {
                                                                     {{ __('translate.currently') }}
                                                                 </label>
                                                             </div>
-                                                            <InputError :message="formCv.errors[`experiences.${index}.end`]" class="mt-1"/>
+                                                            <InputError :message="formCv.errors[`experiences.${index}.end`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                         </div>
 
                                                         <!-- CITY -->
                                                         <div class="flex flex-col gap-1 md:col-span-2">
                                                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.City') }}</span>
                                                             <TextInput v-model="experience.city" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.City')"/>
-                                                            <InputError :message="formCv.errors[`experiences.${index}.city`]" class="mt-1"/>
+                                                            <InputError :message="formCv.errors[`experiences.${index}.city`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                         </div>
                                                     </div>
 
@@ -544,7 +572,7 @@ const submit = () => {
                                                 {{ __('translate.limitComplete') }}
                                             </div>
 
-                                            <InputError :message="formCv.errors.educations" class="mb-6"/>
+                                            <InputError :message="formCv.errors.educations" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
                                             <draggable :list="formCv.educations" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
                                                 <template #item="{ element: education, index }">
@@ -561,7 +589,7 @@ const submit = () => {
                                                             <div class="flex flex-col gap-1 lg:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.school') }}</span>
                                                                 <TextInput v-model="education.school" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.school')"/>
-                                                                <InputError :message="formCv.errors[`educations.${index}.school`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`educations.${index}.school`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1 lg:col-span-2" v-if="props.levelEducations">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.levelEducation') }}</span>
@@ -579,22 +607,22 @@ const submit = () => {
                                                                     v-model="education.level" :options="props.levelEducations"
                                                                     class="custom-multiselect">
                                                                 </multiselect>
-                                                                <InputError :message="formCv.errors[`educations.${index}.level`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`educations.${index}.level`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.specialization') }}</span>
                                                                 <TextInput v-model="education.specialization" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.specialization')"/>
-                                                                <InputError :message="formCv.errors[`educations.${index}.specialization`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`educations.${index}.specialization`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.experienceSchoolEnd') }}</span>
                                                                 <VueDatePicker model-type="yyyy" v-model="education.finish" :locale="lang" auto-apply year-picker class="modern-datepicker"/>
-                                                                <InputError :message="formCv.errors[`educations.${index}.finish`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`educations.${index}.finish`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1 sm:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.City') }}</span>
                                                                 <TextInput v-model="education.city" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.City')"/>
-                                                                <InputError :message="formCv.errors[`educations.${index}.city`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`educations.${index}.city`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                         </div>
 
@@ -632,7 +660,7 @@ const submit = () => {
                                                 {{ __('translate.limitComplete') }}
                                             </div>
 
-                                            <InputError :message="formCv.errors.courses" class="mb-6"/>
+                                            <InputError :message="formCv.errors.courses" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
                                             <draggable :list="formCv.courses" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
                                                 <template #item="{ element: course, index }">
@@ -649,12 +677,12 @@ const submit = () => {
                                                             <div class="flex flex-col gap-1 lg:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.name') }}</span>
                                                                 <TextInput v-model="course.name" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.name')"/>
-                                                                <InputError :message="formCv.errors[`courses.${index}.name`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`courses.${index}.name`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.organizator') }}</span>
                                                                 <TextInput v-model="course.organizator" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.organizator')"/>
-                                                                <InputError :message="formCv.errors[`courses.${index}.organizator`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`courses.${index}.organizator`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.date') }}</span>
@@ -667,7 +695,7 @@ const submit = () => {
                                                                     auto-apply
                                                                     class="modern-datepicker"
                                                                 />
-                                                                <InputError :message="formCv.errors[`courses.${index}.date`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`courses.${index}.date`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                         </div>
 
@@ -705,7 +733,7 @@ const submit = () => {
                                                 {{ __('translate.limitComplete') }}
                                             </div>
 
-                                            <InputError :message="formCv.errors.langs" class="mb-6"/>
+                                            <InputError :message="formCv.errors.langs" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
                                             <draggable :list="formCv.langs" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
                                                 <template #item="{ element: lang, index }">
@@ -735,7 +763,7 @@ const submit = () => {
                                                                     :options="sortLangs"
                                                                     class="custom-multiselect">
                                                                 </multiselect>
-                                                                <InputError :message="formCv.errors[`langs.${index}.name`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`langs.${index}.name`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                             <div class="flex flex-col gap-1" v-if="props.langLevels">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.levelLang') }}</span>
@@ -753,7 +781,7 @@ const submit = () => {
                                                                     v-model="lang.level" :options="props.langLevels"
                                                                     class="custom-multiselect">
                                                                 </multiselect>
-                                                                <InputError :message="formCv.errors[`langs.${index}.level`]" class="mt-1"/>
+                                                                <InputError :message="formCv.errors[`langs.${index}.level`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                                             </div>
                                                         </div>
 
@@ -805,7 +833,7 @@ const submit = () => {
                                                         {{ __('translate.noOptions', {max: 10}) }}
                                                     </template>
                                                 </multiselect>
-                                                <InputError :message="formCv.errors.skills" class="mt-2 text-center"/>
+                                                <InputError :message="formCv.errors.skills" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
                                             </div>
                                         </div>
 

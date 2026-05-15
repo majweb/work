@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref, computed, onMounted, shallowRef } from 'vue';
+import Multiselect from 'vue-multiselect';
 import __ from "@/lang.js";
 import CircularProgress from "@/Components/CircularProgress.vue";
 import {Link} from "@inertiajs/vue3";
@@ -21,9 +22,17 @@ const props = defineProps({
     }
 });
 
-const statusFilter = ref('all'); // all, sent, maybe, no, yes
+const statusFilter = ref({ value: 'all', label: __('translate.all_statuses') });
 const searchQuery = ref('');
 const activeTab = ref('active'); // 'active' or 'finished'
+
+const statusOptions = computed(() => [
+    { value: 'all', label: __('translate.all_statuses') },
+    { value: 'sent', label: __('translate.labels.sent') },
+    { value: 'maybe', label: __('translate.labels.maybe') },
+    { value: 'no', label: __('translate.labels.no') },
+    { value: 'yes', label: __('translate.labels.yes') },
+]);
 
 // Dodajemy statusLabel do każdej aplikacji
 const applications = computed(() =>
@@ -52,10 +61,10 @@ const stats = computed(() => {
 const chartOptions = ref({
     chart: { type: 'donut', fontFamily: 'Inter, sans-serif' },
     labels: [
-        __('translate.labels.yes'),
-        __('translate.labels.no'),
-        __('translate.labels.sent'),
-        __('translate.labels.maybe')
+        __('translate.labels.yes').toUpperCase(),
+        __('translate.labels.no').toUpperCase(),
+        __('translate.labels.sent').toUpperCase(),
+        __('translate.labels.maybe').toUpperCase()
     ],
     colors: ['#1e3a8a', '#dc2626', '#d1d5db', '#06b6d4'], // blue-900, red-600, gray-300, cyan-500
     legend: { show: false },
@@ -107,8 +116,8 @@ const filteredApplications = computed(() => {
         );
     }
 
-    if (statusFilter.value !== 'all') {
-        filtered = filtered.filter(app => app.status === statusFilter.value);
+    if (statusFilter.value && statusFilter.value.value !== 'all') {
+        filtered = filtered.filter(app => app.status === statusFilter.value.value);
     }
 
     return filtered;
@@ -150,7 +159,7 @@ const getApplicationProgress = (status) => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- HEADER CARD -->
-                <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                <section class="bg-white rounded-3xl shadow-sm border border-gray-100">
                     <div class="p-8">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div class="uppercase">
@@ -172,21 +181,19 @@ const getApplicationProgress = (status) => {
                                     >
                                 </div>
 
-                                <!-- Dropdown status -->
-                                <div class="relative">
-                                    <select
+                                <!-- Multiselect status -->
+                                <div class="relative min-w-[200px]">
+                                    <Multiselect
                                         v-model="statusFilter"
-                                        class="appearance-none bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5 pr-10 focus:ring-0 focus:border-blue-200 cursor-pointer text-sm font-bold text-gray-700 transition-all"
-                                    >
-                                        <option value="all">{{ __('translate.all_statuses') }}</option>
-                                        <option value="sent">{{ __('translate.labels.sent') }}</option>
-                                        <option value="maybe">{{ __('translate.labels.maybe') }}</option>
-                                        <option value="no">{{ __('translate.labels.no') }}</option>
-                                        <option value="yes">{{ __('translate.labels.yes') }}</option>
-                                    </select>
-                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
+                                        :options="statusOptions"
+                                        label="label"
+                                        track-by="value"
+                                        :placeholder="__('translate.all_statuses')"
+                                        :selectLabel="''"
+                                        :selectedLabel="''"
+                                        :deselectLabel="''"
+                                        class="status-multiselect"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -313,7 +320,7 @@ const getApplicationProgress = (status) => {
                                                     <span class="w-1 h-1 bg-gray-200 rounded-full"></span>
                                                     <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">{{ application.company }}</span>
                                                 </div>
-                                                <h4 class="text-lg font-black text-[#0A2C5C] truncate leading-tight group-hover:text-[#0A2C5C] transition-colors">{{ application.title }}</h4>
+                                                <h4 class="text-lg font-black text-[#0A2C5C] uppercase leading-tight group-hover:text-[#0A2C5C] transition-colors">{{ application.title }}</h4>
                                                 <p class="text-sm font-bold text-gray-400 mt-1 uppercase tracking-tight">{{ application.department }}</p>
                                             </div>
                                         </div>
@@ -357,6 +364,47 @@ const getApplicationProgress = (status) => {
     </AppLayout>
 </template>
 
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+
 <style scoped>
 /* Dodatkowe style jeśli potrzebne */
+.status-multiselect :deep(.multiselect__tags) {
+    @apply bg-gray-50 border-gray-100 rounded-xl min-h-[44px] flex items-center px-4;
+}
+
+.status-multiselect :deep(.multiselect__single) {
+    @apply bg-transparent text-sm font-bold text-gray-700 mb-0 p-0;
+}
+
+.status-multiselect :deep(.multiselect__input) {
+    @apply bg-transparent text-sm mb-0 p-0;
+}
+
+.status-multiselect :deep(.multiselect__select) {
+    @apply top-1/2 -translate-y-1/2 h-full w-10 transition-transform duration-200;
+}
+
+.status-multiselect.multiselect--active :deep(.multiselect__select) {
+    @apply transform -translate-y-1/2 rotate-180;
+}
+
+.status-multiselect :deep(.multiselect__placeholder) {
+    @apply text-gray-400 text-sm mb-0 p-0;
+}
+
+.status-multiselect :deep(.multiselect__content-wrapper) {
+    @apply border-gray-100 rounded-2xl shadow-xl mt-2 overflow-hidden;
+}
+
+.status-multiselect :deep(.multiselect__option) {
+    @apply text-sm font-bold text-gray-700 px-4 py-3;
+}
+
+.status-multiselect :deep(.multiselect__option--highlight) {
+    @apply bg-blue-50 text-blue-600;
+}
+
+.status-multiselect :deep(.multiselect__option--selected) {
+    @apply bg-[#0A2C5C] text-white;
+}
 </style>

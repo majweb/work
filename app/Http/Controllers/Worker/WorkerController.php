@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\Worker;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\WorkerDetailRequest;
 use App\Http\Requests\WorkerUpdateCv;
-use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\Category;
 use App\Models\CvClassic;
-use App\Models\LangLevel;
-use App\Models\LevelEducation;
 use App\Services\DictionaryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use function Termwind\render;
 
 class WorkerController extends Controller
 {
@@ -57,7 +51,6 @@ class WorkerController extends Controller
                         break;
                 }
 
-
                 return [
                     'id' => $app->id,
                     'title' => $app->project->position['allTranslations']['title'][app()->getLocale()]
@@ -97,18 +90,16 @@ class WorkerController extends Controller
         $user = auth()->user();
         $user->load('workerDetail');
 
-        $groupedCvs = $user
+        $myCvs = $user
             ->myCvs()
             ->with(['project'])
             ->orderByDesc('created_at')
-            ->get()
-            ->groupBy(fn ($cv) => $cv->project->category_id);
+            ->get();
 
-        $positions =  Category::getCachedWithoutPositionsWithoutDetail();
+        $positions = Category::getCachedWithoutPositionsWithoutDetail();
 
-        return inertia()->render('Worker/MyCv',
-        [
-            'myCvs' => $groupedCvs->map(fn ($cvs) => $cvs->first())->values(),
+        return inertia()->render('Worker/MyCv', [
+            'myCvs' => $myCvs,
             'positions' => $positions,
             'levelEducations' => $dictionaryService->getLevelEducations(),
             'langLevels' => $dictionaryService->getLangLevels(),
@@ -118,16 +109,17 @@ class WorkerController extends Controller
     public function myCvUpdateCv(WorkerUpdateCv $request, CvClassic $selectedCv)
     {
         $selectedCv->fill([
-            'experiences'=>$request->cvData()['experiences'],
-            'educations'=>$request->cvData()['educations'],
-            'courses'=>$request->cvData()['courses'],
-            'langs'=>$request->cvData()['langs'],
-            'skills'=>$request->cvData()['skills'],
+            'experiences' => $request->cvData()['experiences'],
+            'educations' => $request->cvData()['educations'],
+            'courses' => $request->cvData()['courses'],
+            'langs' => $request->cvData()['langs'],
+            'skills' => $request->cvData()['skills'],
         ]);
         $selectedCv->save();
 
         session()->flash('flash.banner', __('translate.updateCv'));
         session()->flash('flash.bannerStyle', 'success');
+
         return to_route('worker.myCv');
     }
 
@@ -138,12 +130,21 @@ class WorkerController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,'.$user->id],
             'contact_phone' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'zip' => ['required', 'string', 'max:255'],
             'photo' => ['nullable', 'image', 'max:1024'],
+        ], [], [
+            'name' => __('translate.nameUser'),
+            'surname' => __('translate.surname'),
+            'email' => __('translate.email'),
+            'contact_phone' => __('translate.nrPhone'),
+            'birthdate' => __('translate.birthdayDate'),
+            'city' => __('translate.City'),
+            'zip' => __('translate.Postal'),
+            'photo' => __('translate.Photo'),
         ]);
 
         if ($request->hasFile('photo')) {
@@ -204,14 +205,14 @@ class WorkerController extends Controller
             ->video()
             ->where('user_id', auth()->id())
             ->whereNotNull('aplication_id')
-            ->where('aplication_id',$aplication->id)
+            ->where('aplication_id', $aplication->id)
             ->first();
 
         $audio = $aplication->project
             ->audio()
             ->where('user_id', auth()->id())
             ->whereNotNull('aplication_id')
-            ->where('aplication_id',$aplication->id)
+            ->where('aplication_id', $aplication->id)
             ->first();
 
         if ($video) {
@@ -224,13 +225,13 @@ class WorkerController extends Controller
 
         $messages = [];
 
-// zawsze wysłano
+        // zawsze wysłano
         $messages[] = [
             'key' => 'sent',
             'message' => __('translate.Mail-sent-line'),
         ];
 
-// reszta zależnie od statusu
+        // reszta zależnie od statusu
         switch ($aplication->status) {
             case 'maybe':
                 $messages[] = ['key' => 'maybe', 'message' => __('translate.Mail-processing-line')];
@@ -264,6 +265,7 @@ class WorkerController extends Controller
                 'basicSalaryFrom' => $aplication->project->basicSalaryFrom,
                 'basicSalaryTo' => $aplication->project->basicSalaryTo,
                 'currency' => $aplication->project->currency,
+                'salary_type' => $aplication->project->salary_type,
                 'project' => $aplication->project->id,
 
                 // 🔹 SZCZEGÓŁY
@@ -271,7 +273,7 @@ class WorkerController extends Controller
                 'typeOfContract' => $aplication->project->typeOfContract,
                 'workLoad' => $aplication->project->workLoad,
                 'detailprojects' => $aplication->project->detailprojects,
-                'type'=>$applicationType,
+                'type' => $applicationType,
 
                 // 🔹 LOKALIZACJA
                 'location' => trim(implode(', ', array_filter([

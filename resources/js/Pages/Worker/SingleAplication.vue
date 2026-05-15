@@ -193,7 +193,7 @@ const isActiveStep = (stepKey) => {
                                 </div>
                                 <h3 class="text-2xl md:text-3xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none mb-3">{{ application.title }}</h3>
                                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-                                    <p class="text-sm text-slate-600 font-bold flex items-center gap-2">
+                                    <p class="uppercase text-sm text-slate-600 font-bold flex items-center gap-2">
                                         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-7h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                                         {{ application.company }}
                                     </p>
@@ -224,7 +224,12 @@ const isActiveStep = (stepKey) => {
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.salary') }}</p>
                                 <div class="flex flex-col">
-                                    <span class="text-sm font-black text-[#0A2C5C]">{{ application.basicSalaryFrom }} - {{ application.basicSalaryTo }} {{ application.currency?.value }}</span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm font-black text-[#0A2C5C]">{{ application.basicSalaryFrom }} - {{ application.basicSalaryTo }} {{ application.currency?.value }}</span>
+                                        <span v-if="application.salary_type" class="text-[10px] font-black text-blue-400 uppercase border border-blue-100 px-2 py-0.5 rounded-lg">
+                                            {{ __('translate.' + application.salary_type) }}
+                                        </span>
+                                    </div>
                                     <span class="text-[10px] font-bold text-slate-500 uppercase">{{ __('translate.monthly') }}</span>
                                 </div>
                             </div>
