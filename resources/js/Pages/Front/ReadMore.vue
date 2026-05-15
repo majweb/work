@@ -114,7 +114,7 @@ const props = defineProps({
                                         </li>
                                     </ul>
 
-                                    <p class="text-sm font-bold text-gray-400 leading-relaxed uppercase tracking-widest pt-4">
+                                    <p class="text-sm font-bold text-[#0A2C5C] leading-relaxed uppercase tracking-widest pt-4">
                                         {{ __('info.points_section5') }}
                                     </p>
                                 </div>

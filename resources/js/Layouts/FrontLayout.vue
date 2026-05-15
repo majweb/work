@@ -41,11 +41,22 @@ const form = useForm({
 
 const newsletterAgreements = computed(() => page.props?.newsletterAgreements || []);
 
+const triggerConfetti = () => {
+    showConfetti.value = false;
+    setTimeout(() => {
+        showConfetti.value = true;
+        setTimeout(() => {
+            showConfetti.value = false;
+        }, 6000);
+    }, 10);
+};
+
 const submitForm = () => {
     form.post(route('newsletter.store'), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset('email', 'agreements');
+            triggerConfetti();
         },
     });
 };
@@ -214,11 +225,8 @@ const showConfetti = ref(false);
 watch(() => page.props.jetstream?.flash?.banner, (newVal) => {
     // Zachowujemy globalne confetti tylko dla aplikacji na ofertę i opłacenia zamówienia
     // Widoki wymiany punktów mają teraz własną, lokalną logikę wyzwalania
-    if (newVal === __('translate.makeAplication') || newVal === __('translate.orderPay')) {
-        showConfetti.value = true;
-        setTimeout(() => {
-            showConfetti.value = false;
-        }, 3000);
+    if (newVal === __('translate.makeAplication') || newVal === __('translate.orderPay') || newVal === __('footer.newsletter_success')) {
+        triggerConfetti();
     }
 }, { immediate: true });
 
