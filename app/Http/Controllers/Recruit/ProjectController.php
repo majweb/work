@@ -566,28 +566,12 @@ class ProjectController extends Controller implements HasMiddleware
     public function getCategorySubForRecruit($categoryId)
     {
         return Cache::remember('recruit_category_sub_'.$categoryId.'_'.app()->getLocale(), 3600, function () use ($categoryId) {
-            $categorySubs = Project::where('recruiter_id', auth()->user()->id)
-                ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
+            $categorySubs = Category::where('parent_id', $categoryId)
                 ->get()
-                ->map(function ($item) {
-                    return [
-                        'categorySub' => is_string($item->categorySub)
-                            ? json_decode($item->categorySub, true)
-                            : $item->categorySub,
-                        'category' => is_string($item->category)
-                            ? json_decode($item->category, true)
-                            : $item->category,
-                    ];
-                })
-                ->filter(fn ($item) => isset($item['category']['value']) && $item['category']['value'] == $categoryId)
-                ->pluck('categorySub')
-                ->filter()
-                ->unique('value')
-                ->values()
                 ->map(fn ($cat) => [
-                    'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
-                    'value' => $cat['value'],
-                    'allTranslations' => $cat['allTranslations']['title'],
+                    'name' => $cat->getTranslation('title', app()->getLocale()) ?? $cat->name,
+                    'value' => $cat->id,
+                    'allTranslations' => $cat->getTranslations('title'),
                 ])
                 ->toArray();
 
@@ -598,28 +582,12 @@ class ProjectController extends Controller implements HasMiddleware
     public function getProfessionsForRecruit($categorySubId)
     {
         return Cache::remember('recruit_professions_'.$categorySubId.'_'.app()->getLocale(), 3600, function () use ($categorySubId) {
-            $professions = Project::where('recruiter_id', auth()->user()->id)
-                ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
+            $professions = Category::where('parent_id', $categorySubId)
                 ->get()
-                ->map(function ($item) {
-                    return [
-                        'profession' => is_string($item->profession)
-                            ? json_decode($item->profession, true)
-                            : $item->profession,
-                        'categorySub' => is_string($item->categorySub)
-                            ? json_decode($item->categorySub, true)
-                            : $item->categorySub,
-                    ];
-                })
-                ->filter(fn ($item) => isset($item['categorySub']['value']) && $item['categorySub']['value'] == $categorySubId)
-                ->pluck('profession')
-                ->filter()
-                ->unique('value')
-                ->values()
                 ->map(fn ($prof) => [
-                    'name' => $prof['allTranslations']['title'][app()->getLocale()] ?? $prof['name'],
-                    'value' => $prof['value'],
-                    'allTranslations' => $prof['allTranslations']['title'],
+                    'name' => $prof->getTranslation('title', app()->getLocale()) ?? $prof->name,
+                    'value' => $prof->id,
+                    'allTranslations' => $prof->getTranslations('title'),
                 ])
                 ->toArray();
 
@@ -630,28 +598,12 @@ class ProjectController extends Controller implements HasMiddleware
     public function getPositionsForRecruit($professionId)
     {
         return Cache::remember('recruit_positions_'.$professionId.'_'.app()->getLocale(), 3600, function () use ($professionId) {
-            $positions = Project::where('recruiter_id', auth()->user()->id)
-                ->orWhereJsonContains('other_recruits', ['value' => auth()->user()->id])
+            $positions = Category::where('parent_id', $professionId)
                 ->get()
-                ->map(function ($item) {
-                    return [
-                        'position' => is_string($item->position)
-                            ? json_decode($item->position, true)
-                            : $item->position,
-                        'profession' => is_string($item->profession)
-                            ? json_decode($item->profession, true)
-                            : $item->profession,
-                    ];
-                })
-                ->filter(fn ($item) => isset($item['profession']['value']) && $item['profession']['value'] == $professionId)
-                ->pluck('position')
-                ->filter()
-                ->unique('value')
-                ->values()
                 ->map(fn ($pos) => [
-                    'name' => $pos['allTranslations']['title'][app()->getLocale()] ?? $pos['name'],
-                    'value' => $pos['value'],
-                    'allTranslations' => $pos['allTranslations']['title'],
+                    'name' => $pos->getTranslation('title', app()->getLocale()) ?? $pos->name,
+                    'value' => $pos->id,
+                    'allTranslations' => $pos->getTranslations('title'),
                 ])
                 ->toArray();
 

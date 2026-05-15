@@ -1781,4 +1781,9 @@ return [
     'date_label' => 'DATA',
     'forPosre' => 'ZA POŚREDNICTWEM',
     'projectManage' => 'Zarządzaj swoimi ofertami pracy',
+    'confirmPasswordTitle' => 'Potwierdź hasło',
+    'confirmPasswordContent' => 'Dla Twojego bezpieczeństwa, potwierdź swoje hasło, aby kontynuować.',
+    'confirmPasswordButton' => 'Potwierdź',
+    'makeData' => 'Uzupełnij swoje dane kontaktowe',
+    'strongMe' => 'Podaj swoje mocne strony',
 ];

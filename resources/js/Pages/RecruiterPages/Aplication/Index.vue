@@ -96,7 +96,7 @@ onMounted(async () => {
 
     if (form.value.category) {
         try {
-            const response = await fetch(route("category.sub", form.value.category.value || form.value.category));
+            const response = await fetch(route("project-recruits.category.sub", form.value.category.value || form.value.category));
             const data = await response.json();
             optionsCategorySub.value = data;
         } catch (e) {}
@@ -104,7 +104,7 @@ onMounted(async () => {
 
     if (form.value.categorySub) {
         try {
-            const response = await fetch(route("category.professions", form.value.categorySub.value || form.value.categorySub));
+            const response = await fetch(route("project-recruits.category.professions", form.value.categorySub.value || form.value.categorySub));
             const data = await response.json();
             optionsProfession.value = data;
         } catch (e) {}
@@ -112,7 +112,7 @@ onMounted(async () => {
 
     if (form.value.profession) {
         try {
-            const response = await fetch(route("category.positions", form.value.profession.value || form.value.profession));
+            const response = await fetch(route("project-recruits.category.positions", form.value.profession.value || form.value.profession));
             const data = await response.json();
             optionsPositionLocal.value = data;
         } catch (e) {}
@@ -287,7 +287,7 @@ watch(() => form.value.category, async (newCategory) => {
     }
 
     try {
-        const response = await fetch(route("category.sub", newCategory.value));
+        const response = await fetch(route("project-recruits.category.sub", newCategory.value));
         const data = await response.json();
         optionsCategorySub.value = data;
         form.value.categorySub = null;
@@ -308,7 +308,7 @@ watch(() => form.value.categorySub, async (newSub) => {
     }
 
     try {
-        const response = await fetch(route("category.professions", newSub.value));
+        const response = await fetch(route("project-recruits.category.professions", newSub.value));
         const data = await response.json();
         optionsProfession.value = data;
         form.value.profession = null;
@@ -326,7 +326,7 @@ watch(() => form.value.profession, async (newProfession) => {
     }
 
     try {
-        const response = await fetch(route("category.positions", newProfession.value));
+        const response = await fetch(route("project-recruits.category.positions", newProfession.value));
         const data = await response.json();
         optionsPositionLocal.value = data;
         form.value.position = null;
@@ -561,7 +561,8 @@ const submitForm = () => {
                                              :selectGroupLabel="''"
                                              :selectedLabel="''"
                                              :deselectLabel="''"
-                                             :placeholder="__('translate.selectPosition')" class="custom-multiselect">
+                                             :placeholder="__('translate.selectPosition')"
+                                             class="custom-multiselect">
                                     <template #noResult><span>{{ __('translate.noResults') }}</span></template>
                                     <template #noOptions><span>{{ __('translate.noOptions') }}</span></template>
                                 </multiselect>

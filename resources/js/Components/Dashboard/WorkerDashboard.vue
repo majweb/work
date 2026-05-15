@@ -32,19 +32,32 @@ const applicationProgress = computed(() => {
     const status = props.lastAplications?.status
 
     if (status === "yes") {
-        return { value: 100, color: "blue" }
+        return { value: 100, color: "blue", label: __('translate.labels.yes'), class: 'bg-blue-900' }
     }
 
     if (status === "maybe") {
-        return { value: 50, color: "cyan" }
+        return { value: 50, color: "cyan", label: __('translate.labels.maybe'), class: 'bg-cyan-500' }
     }
 
     if (status === "no") {
-        return { value: 100, color: "red" }
+        return { value: 100, color: "red", label: __('translate.labels.no'), class: 'bg-red-600' }
     }
 
-    return { value: 0, color: "gray" }
+    if (status === "sent") {
+        return { value: 25, color: "gray", label: __('translate.labels.sent'), class: 'bg-gray-300' }
+    }
+
+    return { value: 0, color: "gray", label: status, class: 'bg-gray-300' }
 })
+const getStatusData = (status) => {
+    const map = {
+        yes: { label: __('translate.labels.yes'), class: 'bg-blue-900' },
+        no: { label: __('translate.labels.no'), class: 'bg-red-600' },
+        sent: { label: __('translate.labels.sent'), class: 'bg-gray-300' },
+        maybe: { label: __('translate.labels.maybe'), class: 'bg-cyan-500' }
+    };
+    return map[status] || { label: status, class: 'bg-gray-300' };
+};
 const formatNotification = (notification) => {
     const data = notification.data;
     if (!data) return { title: __('translate.unknownNotification'), message: '' };
@@ -113,7 +126,7 @@ const markAsRead = (id) => {
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
 
-                                <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 items-center bg-gray-50/50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border border-gray-100/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:bg-white group relative overflow-hidden">
+                                <div @click="router.get(route('worker.singleAplication', props.lastAplications.id))" class="cursor-pointer flex flex-col sm:flex-row gap-6 sm:gap-10 items-center bg-gray-50/50 p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border border-gray-100/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10 hover:bg-white group relative overflow-hidden">
                                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/20 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-blue-100/30 transition-colors"></div>
                                     <CircularProgress
                                         :value="applicationProgress.value"
@@ -133,6 +146,15 @@ const markAsRead = (id) => {
                                         <h4 class="text-sm sm:text-lg md:text-xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-2 group-hover:text-[#00a0e3] transition-colors">
                                             {{ props.lastAplications.project?.position?.allTranslations['title'][usePage().props.language] }}
                                         </h4>
+                                        <div class="flex items-center gap-2 mb-4">
+                                            <span :class="[
+                                                'inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest text-white shadow-sm',
+                                                applicationProgress.class
+                                            ]">
+                                                <div class="w-1 h-1 rounded-full bg-white animate-pulse"></div>
+                                                {{ applicationProgress.label }}
+                                            </span>
+                                        </div>
                                         <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-6">{{ props.lastAplications.project?.user?.name }}</p>
                                         <span class="inline-flex items-center px-4 py-2 rounded-xl text-[8px] font-black bg-white border border-gray-100 text-[#0A2C5C] uppercase tracking-[0.2em] shadow-sm">
                                             {{ props.lastAplications.project?.category?.allTranslations['title'][usePage().props.language] }}
@@ -153,7 +175,8 @@ const markAsRead = (id) => {
 
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" v-if="otherAplications.length">
                                     <div v-for="other in otherAplications" :key="other.id"
-                                         class="flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-[2rem] sm:rounded-[2.5rem] bg-gray-50/50 hover:bg-white transition-all duration-500 group border border-transparent hover:border-gray-100 hover:shadow-2xl hover:shadow-blue-900/10">
+                                         @click="router.get(route('worker.singleAplication', other.id))"
+                                         class="cursor-pointer flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-[2rem] sm:rounded-[2.5rem] bg-gray-50/50 hover:bg-white transition-all duration-500 group border border-transparent hover:border-gray-100 hover:shadow-2xl hover:shadow-blue-900/10">
                                         <div class="relative shrink-0">
                                             <img :src="other.project?.user?.profile_photo_url"
                                                  class="w-12 h-12 sm:w-16 sm:h-16 rounded-[1.2rem] sm:rounded-[1.5rem] object-cover border-2 sm:border-4 border-white shadow-lg group-hover:scale-110 transition-all duration-500"
@@ -169,6 +192,14 @@ const markAsRead = (id) => {
                                             <h4 class="text-xs sm:text-sm font-black text-[#0A2C5C] uppercase tracking-tight group-hover:text-[#00a0e3] transition-colors leading-tight mb-1">
                                                 {{ other.project?.position?.allTranslations['title'][usePage().props.language] }}
                                             </h4>
+                                            <div class="flex items-center gap-2 mb-1.5">
+                                                <span :class="[
+                                                    'inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[7px] font-black uppercase tracking-widest text-white shadow-sm',
+                                                    getStatusData(other.status).class
+                                                ]">
+                                                    {{ getStatusData(other.status).label }}
+                                                </span>
+                                            </div>
                                             <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ other.project?.user?.name }}</p>
                                         </div>
                                     </div>

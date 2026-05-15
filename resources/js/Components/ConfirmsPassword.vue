@@ -5,21 +5,21 @@ import InputError from './InputError.vue';
 import PrimaryButton from './PrimaryButton.vue';
 import SecondaryButton from './SecondaryButton.vue';
 import TextInput from './TextInput.vue';
-
+import __ from "@/lang.js";
 const emit = defineEmits(['confirmed']);
 
 defineProps({
     title: {
         type: String,
-        default: 'Confirm Password',
+        default: () => __('translate.confirmPasswordTitle'),
     },
     content: {
         type: String,
-        default: 'For your security, please confirm your password to continue.',
+        default: () => __('translate.confirmPasswordContent'),
     },
     button: {
         type: String,
-        default: 'Confirm',
+        default: () => __('translate.confirmPasswordButton'),
     },
 });
 
@@ -101,7 +101,7 @@ const closeModal = () => {
 
             <template #footer>
                 <SecondaryButton @click="closeModal">
-                    Cancel
+                    {{ __('translate.cancel') }}
                 </SecondaryButton>
 
                 <PrimaryButton

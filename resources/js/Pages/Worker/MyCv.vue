@@ -315,8 +315,8 @@ const submit = () => {
                                 <div class="p-8">
                                     <div class="flex justify-between items-center mb-8">
                                         <div>
-                                            <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.basic_info') }}</h3>
-                                            <p class="text-xs text-gray-500 mt-1">Uzupełnij swoje dane kontaktowe</p>
+                                            <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.basic_info') }}</h3>
+                                            <p class="text-xs text-gray-500 mt-1 uppercase">{{__('translate.makeData')}}</p>
                                         </div>
                                     </div>
 
@@ -391,8 +391,8 @@ const submit = () => {
                                     <form @submit.prevent="submit">
                                         <div class="flex justify-between items-center mb-8">
                                             <div>
-                                                <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.experience') }}</h3>
-                                                <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.experiences.length }}/5</p>
+                                                <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.experience') }}</h3>
+                                                <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.experiences.length }}/5</p>
                                             </div>
                                             <PrimaryButton
                                                 type="button"
@@ -524,8 +524,8 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.education') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.educations.length }}/5</p>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.education') }}</h3>
+                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.educations.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
                                                     type="button"
@@ -612,8 +612,8 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.courses') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.courses.length }}/5</p>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.courses') }}</h3>
+                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.courses.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
                                                     type="button"
@@ -685,8 +685,8 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.langKnow') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1">{{ __('translate.quantity') }}: {{ formCv.langs.length }}/5</p>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.langKnow') }}</h3>
+                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.langs.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
                                                     type="button"
@@ -771,8 +771,8 @@ const submit = () => {
                                         <div class="mt-16">
                                             <div class="flex justify-between items-center mb-8">
                                                 <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C]">{{ __('translate.skills') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1">Podaj swoje mocne strony</p>
+                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.skills') }}</h3>
+                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.strongMe') }}</p>
                                                 </div>
                                             </div>
 
@@ -829,8 +829,8 @@ const submit = () => {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-[#0A2C5C] mb-2">{{ __('translate.chooseCvToEdit') }}</h3>
-                            <p class="text-gray-400 max-w-xs mx-auto">{{ __('translate.chooseCvToEditClick') }} </p>
+                            <h3 class="text-xl font-bold text-[#0A2C5C] mb-2 uppercase">{{ __('translate.chooseCvToEdit') }}</h3>
+                            <p class="text-gray-400 max-w-xs mx-auto uppercase">{{ __('translate.chooseCvToEditClick') }} </p>
                         </div>
                     </div>
                 </div>

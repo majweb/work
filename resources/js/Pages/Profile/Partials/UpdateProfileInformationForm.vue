@@ -8,10 +8,13 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import __ from "@/lang.js";
+import {usePermission} from "@/Composables/usePermission.js";
 
 const props = defineProps({
     user: Object,
 });
+
+const {hasRole} = usePermission();
 
 const form = useForm({
     _method: 'PUT',
@@ -144,7 +147,7 @@ const clearPhotoFileInput = () => {
             </div>
 
                 <!-- Email -->
-                <div>
+                <div v-if="!(hasRole('recruit') && !hasRole('firm'))">
                     <InputLabel for="email" :value="__('translate.email')" />
                     <TextInput
                         id="email"
