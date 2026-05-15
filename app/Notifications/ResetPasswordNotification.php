@@ -2,11 +2,8 @@
 
 namespace App\Notifications;
 
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-
-
 
 class ResetPasswordNotification extends Notification
 {
@@ -64,6 +61,7 @@ class ResetPasswordNotification extends Notification
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
+
         return $this->buildMailMessage($this->resetUrl($notifiable));
     }
 
@@ -77,9 +75,9 @@ class ResetPasswordNotification extends Notification
     {
         return (new MailMessage)
             ->subject(__('translate.resetTitle'))
-            ->line(__('translate.resetContent'))
-            ->action(__('translate.resetTitle'), $url)
-            ->line(__('translate.resetEmailExpire', ['count' => config('translate.passwords.'.config('translate.defaults.passwords').'.expire')]))
+            ->line(__('translate.resetEmailText'))
+            ->action(__('translate.resetPassword'), $url)
+            ->line(__('translate.resetEmailExpire', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
             ->line(__('translate.resetEmailRequest'));
     }
 

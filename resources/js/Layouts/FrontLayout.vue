@@ -496,7 +496,7 @@ const socialLinks = [
                     <!-- Brand & Socials -->
                     <div class="lg:col-span-4 space-y-8 text-center lg:text-left">
                         <img src="/images/logo-horizontal.svg" class="h-12 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
-                        <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed max-w-sm mx-auto lg:mx-0">
+                        <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed max-w-sm mx-auto lg:mx-0 uppercase">
                             {{ __('translate.footer.description') }}
                         </p>
                         <div class="flex items-center justify-center lg:justify-start gap-3">
@@ -573,7 +573,7 @@ const socialLinks = [
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
                         <div class="space-y-4">
                             <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.footer.stay_in_touch') }}</h3>
-                            <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed">{{ __('translate.footer.newsletter_text') }}</p>
+                            <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed uppercase">{{ __('translate.footer.newsletter_text') }}</p>
                         </div>
                         <form @submit.prevent="submitForm" class="relative group">
                             <div class="flex flex-col sm:flex-row gap-4">
@@ -709,11 +709,11 @@ const socialLinks = [
 
                     <div class="flex flex-col lg:flex-row justify-between items-center gap-8 pt-8 border-t border-gray-50">
                         <div class="flex flex-wrap justify-center gap-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('front.privacy')">{{ __('translate.footer.privacy_policy') }}</Link>
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('front.owner')">{{ __('translate.footer.owner') }}</Link>
-                            <Link class="hover:text-[#0A2C5C] transition-colors" :href="route('front.terms')">{{ __('translate.footer.terms') }}</Link>
+                            <Link class="text-[#0A2C5C] uppercase" :href="route('front.privacy')">{{ __('translate.footer.privacy_policy') }}</Link>
+                            <Link class="text-[#0A2C5C] uppercase" :href="route('front.owner')">{{ __('translate.footer.owner') }}</Link>
+                            <Link class="text-[#0A2C5C] uppercase" :href="route('front.terms')">{{ __('translate.footer.terms') }}</Link>
                         </div>
-                        <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">
+                        <p class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
                             {{ __('translate.footer.copyright') }}
                         </p>
                     </div>

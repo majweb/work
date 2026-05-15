@@ -4,12 +4,13 @@ namespace App\Providers;
 
 use App\Models\Aplication;
 use App\Models\CandidateQuestion;
-use App\Models\Comment;
 use App\Models\ChangeProduct;
+use App\Models\Comment;
 use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Tag;
 use App\Models\User;
+use App\Notifications\ResetPasswordNotification;
 use App\Observers\ChangeProductObserver;
 use App\Observers\projectObserver;
 use App\Policies\CandidateQuestionPolicy;
@@ -17,14 +18,11 @@ use App\Policies\CommentPolicy;
 use App\Policies\ExternalCompanyPolicy;
 use App\Policies\TagPolicy;
 use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -52,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('super-admin-only', function (User $user) {
-            return $user->hasRole('admin') && !$user->hasRole('admin-sub');
+            return $user->hasRole('admin') && ! $user->hasRole('admin-sub');
         });
 
         //        observer
@@ -87,6 +85,20 @@ class AppServiceProvider extends ServiceProvider
                 ->subject(__('translate.emailVerifySubject'))
                 ->line(__('translate.emailVerifyLine'))
                 ->action(__('translate.emailVerifySubject'), $url);
+        });
+
+        ResetPasswordNotification::toMailUsing(function ($notifiable, $token) {
+            $url = url(route('password.reset', [
+                'token' => $token,
+                'email' => $notifiable->getEmailForPasswordReset(),
+            ], false));
+
+            return (new MailMessage)
+                ->subject(__('translate.resetTitle'))
+                ->line(__('translate.resetEmailText'))
+                ->action(__('translate.resetPassword'), $url)
+                ->line(__('translate.resetEmailExpire', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+                ->line(__('translate.resetEmailRequest'));
         });
 
         Gate::define('project-recruiter', function (User $user, Project $project) {
