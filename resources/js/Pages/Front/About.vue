@@ -42,7 +42,7 @@ const props = defineProps({
                             <img src="/images/icons/about/o_nas_1.svg" :alt="__('info.second_img')" class="w-12 md:w-16 animate-bounce" style="animation-delay: 0.5s" />
                         </div>
 
-                        <p class="text-lg md:text-xl font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                        <p class="text-md md:text-xl font-bold text-[#0A2C5C] uppercase tracking-widest leading-relaxed">
                             <span class="text-[#0A2C5C] font-black">WORK4YOU.GLOBAL</span> {{ __('info.about') }}
                         </p>
                     </div>

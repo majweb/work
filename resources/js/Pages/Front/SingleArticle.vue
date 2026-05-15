@@ -140,7 +140,7 @@ const articleSchema = computed(() => {
                 {{ articleSchema }}
             </component>
         </template>
-        <div class="py-12 bg-gray-50/50 min-h-screen singleArticle font-sans px-2 sm:px-0">
+        <div class="py-6 md:py-12 bg-gray-50/50 min-h-screen singleArticle font-sans px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <!-- BACK BUTTON -->
@@ -154,15 +154,15 @@ const articleSchema = computed(() => {
                 <div class="flex flex-col lg:flex-row gap-8">
                     <!-- MAIN CONTENT COLUMN -->
                     <div class="flex-1 space-y-8">
-                        <article class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                        <article class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
                             <!-- Hero Image -->
-                            <div class="relative h-[300px] md:h-[500px] overflow-hidden bg-gray-50">
+                            <div class="relative h-[200px] md:h-[500px] overflow-hidden bg-gray-50">
                                 <img class="w-full h-full object-cover" :src="article.photo?.original_url" :alt="article.title">
                                 <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60"></div>
                             </div>
 
-                            <div class="p-8 md:p-16 -mt-20 relative z-10">
-                                <div class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-blue-900/10 border border-gray-50">
+                            <div class="p-4 md:p-16 -mt-10 md:-mt-20 relative z-10">
+                                <div class="bg-white rounded-[1.5rem] md:rounded-[2.5rem] p-6 md:p-12 shadow-2xl shadow-blue-900/10 border border-gray-50">
                                     <div class="flex items-center gap-4 mb-6">
                                         <span class="px-4 py-1.5 bg-blue-50 text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-xl border border-blue-100">
                                             {{ article.category?.name }}
@@ -172,7 +172,7 @@ const articleSchema = computed(() => {
                                         </span>
                                     </div>
 
-                                    <h1 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-8">
+                                    <h1 class="text-2xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-6 md:mb-8">
                                         {{ article.title }}
                                     </h1>
 
@@ -181,7 +181,7 @@ const articleSchema = computed(() => {
                                     </div>
 
                                     <!-- Table of Contents -->
-                                    <div v-if="headings.length" class="mb-12 p-8 bg-gray-50 rounded-[2rem] border border-gray-100 shadow-inner">
+                                    <div v-if="headings.length" class="mb-8 md:mb-12 p-6 md:p-8 bg-gray-50 rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 shadow-inner">
                                         <div class="flex items-center gap-4 mb-6">
                                             <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.article_in_brief') }}</h3>
                                             <div class="h-px flex-1 bg-gray-200"></div>
@@ -199,7 +199,7 @@ const articleSchema = computed(() => {
                                     </div>
 
                                     <!-- Main Content -->
-                                    <div class="article-content rich-text" v-html="article.content"></div>
+                                    <div class="article-content rich-text text-sm md:text-base" v-html="article.content"></div>
 
                                     <!-- Footer Info -->
                                     <div class="mt-12 pt-8 border-t border-gray-50 flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between gap-6">
@@ -236,7 +236,7 @@ const articleSchema = computed(() => {
                         </article>
 
                         <!-- Author Card -->
-                        <div v-if="article.user" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 group">
+                        <div v-if="article.user" class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 md:p-12 flex flex-col md:flex-row items-center gap-8 group">
                             <div class="w-24 h-24 rounded-[2rem] bg-gray-50 flex items-center justify-center overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-500">
                                 <img class="w-full h-full object-contain" :src="article.user.logo" :alt="article.user.name">
                             </div>
@@ -248,7 +248,7 @@ const articleSchema = computed(() => {
                         </div>
 
                         <!-- Comments Section -->
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8 md:p-12">
+                        <div class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 md:p-12">
                             <CommentSection
                                 :article-id="article.id"
                                 :comments="article.comments"
@@ -260,7 +260,7 @@ const articleSchema = computed(() => {
                     <!-- SIDEBAR -->
                     <aside class="lg:w-1/3 space-y-8">
                         <!-- Sidebar Sections (Categories & Featured) -->
-                        <div v-for="(section, index) in sidebarSections" :key="index" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
+                        <div v-for="(section, index) in sidebarSections" :key="index" class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 md:p-8">
                             <div v-if="section.categories?.length" class="flex flex-wrap gap-2 mb-8">
                                 <Link
                                     v-for="category in section.categories"
@@ -296,7 +296,7 @@ const articleSchema = computed(() => {
                         </div>
 
                         <!-- allOtherArticles -->
-                        <div v-if="allOtherArticles.length" class="bg-[#0A2C5C] rounded-[3rem] shadow-2xl shadow-blue-900/20 border border-white/10 p-8 md:p-10 relative overflow-hidden group/sidebar">
+                        <div v-if="allOtherArticles.length" class="bg-[#0A2C5C] rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-blue-900/20 border border-white/10 p-6 md:p-10 relative overflow-hidden group/sidebar">
                             <!-- Background decoration -->
                             <div class="absolute top-0 right-0 w-40 h-40 bg-blue-400/10 rounded-full -mr-20 -mt-20 blur-3xl transition-transform duration-700 group-hover/sidebar:scale-125"></div>
                             <div class="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/5 rounded-full -ml-16 -mb-16 blur-2xl"></div>
@@ -352,21 +352,30 @@ const articleSchema = computed(() => {
 
     // Nagłówki
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
+        @media (min-width: 768px) {
+            font-size: 1.8rem;
+        }
         font-weight: 700;
         margin: 1.5rem 0 1rem 0;
         color: #0a2c5c;
     }
 
     h2 {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
+        @media (min-width: 768px) {
+            font-size: 1.6rem;
+        }
         font-weight: 600;
         margin: 1.4rem 0 0.9rem 0;
         color: #0a2c5c;
     }
 
     h3 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        @media (min-width: 768px) {
+            font-size: 1.4rem;
+        }
         font-weight: 600;
         margin: 1.2rem 0 0.8rem 0;
         color: #0a2c5c;
