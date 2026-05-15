@@ -2,9 +2,7 @@
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import Checkbox from '@/Components/Checkbox.vue'
 import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
 import Socialstream from '@/Components/Socialstream.vue'
-import TextInput from '@/Components/TextInput.vue'
 import {computed} from "vue";
 import __ from "@/lang.js";
 
@@ -58,7 +56,7 @@ const submit = () => {
         <div class="w-full max-w-xl relative">
             <!-- HEADER TEXT -->
             <div class="text-center mb-10 relative z-10">
-                <Link href="/" class="inline-block">
+                <Link href="/" class="inline-block mb-8">
                     <img src="/images/logo-horizontal.svg" class="h-10 w-auto mx-auto" alt="logo">
                 </Link>
                 <div class="mx-auto w-2/4 flex justify-center items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
@@ -114,7 +112,7 @@ const submit = () => {
                                 </div>
                             </label>
                         </div>
-                        <InputError :message="form.errors.type" />
+                        <InputError :message="form.errors.type" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
 
                     <!-- EMAIL -->
@@ -125,9 +123,9 @@ const submit = () => {
                             v-model="form.email"
                             type="email"
                             :placeholder="__('translate.email')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C]"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C] uppercase"
                         />
-                        <InputError :message="form.errors.email" />
+                        <InputError :message="form.errors.email" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
 
                     <!-- PASSWORD -->
@@ -147,10 +145,10 @@ const submit = () => {
                             v-model="form.password"
                             type="password"
                             :placeholder="__('translate.password')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C]"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C] uppercase"
                             autocomplete="current-password"
                         />
-                        <InputError :message="form.errors.password" />
+                        <InputError :message="form.errors.password" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
 
                     <!-- REMEMBER -->
@@ -158,10 +156,10 @@ const submit = () => {
                         <label class="flex items-center group cursor-pointer select-none" for="remember">
                             <div class="relative">
                                 <Checkbox id="remember" v-model:checked="form.remember" name="remember" class="sr-only" />
-                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#00a0e3] border-[#00a0e3]': form.remember}"></div>
-                                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="{'translate-x-5': form.remember, 'shadow-blue-900/20': form.remember}"></div>
+                                <div class="w-11 h-6 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="form.remember ? 'bg-[#0A2C5C] border-[#0A2C5C]' : 'bg-gray-100'"></div>
+                                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-sm" :class="form.remember ? 'translate-x-5 bg-blue-50' : ''"></div>
                             </div>
-                            <span class="ml-4 text-[10px] font-black uppercase tracking-widest transition-colors duration-300" :class="form.remember ? 'text-[#00a0e3]' : 'text-gray-400'">
+                            <span class="ml-4 text-[10px] font-black uppercase tracking-widest transition-colors duration-300" :class="form.remember ? 'text-[#0A2C5C]' : 'text-gray-400'">
                                 {{ __('translate.remember') }}
                             </span>
                         </label>
@@ -203,7 +201,7 @@ const submit = () => {
                         {{__('translate.noAccount')}}
                     </p>
                     <Link
-                        :href="route('register')"
+                        :href="route('register', { type: form.type })"
                         class="text-[10px] uppercase tracking-widest ml-2 text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2"
                     >
                         {{ __('translate.createAccount') }}

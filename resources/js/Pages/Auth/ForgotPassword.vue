@@ -1,9 +1,7 @@
 <script setup>
 import { Head, useForm,Link } from '@inertiajs/vue3';
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 
 defineProps({
     status: String,
@@ -65,12 +63,11 @@ const submit = () => {
                             v-model="form.email"
                             type="email"
                             :placeholder="__('translate.email')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest"
-                            required
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             autofocus
                             autocomplete="username"
                         />
-                        <InputError :message="form.errors.email" />
+                        <InputError :message="form.errors.email" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
 
                     <!-- ACTIONS -->

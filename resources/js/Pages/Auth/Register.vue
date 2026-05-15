@@ -137,7 +137,7 @@ const submit = () => {
         <div class="w-full max-w-xl relative">
             <!-- HEADER TEXT -->
             <div class="text-center mb-10 relative z-10">
-                <Link href="/" class="inline-block">
+                <Link href="/" class="inline-block mb-8">
                     <img src="/images/logo-horizontal.svg" class="h-10 w-auto mx-auto" alt="logo">
                 </Link>
                 <div class="mx-auto w-2/4 flex justify-center items-center gap-2 px-4 py-2 bg-red-50 rounded-full mb-6">
@@ -200,7 +200,7 @@ const submit = () => {
                             v-model="form.name"
                             type="text"
                             :placeholder="__('translate.name')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C]"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C] uppercase"
                             autofocus
                         />
                         <InputError :message="form.errors.name" />
@@ -214,7 +214,7 @@ const submit = () => {
                             v-model="form.email"
                             type="text"
                             :placeholder="__('translate.email')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C]"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest text-[#0A2C5C] uppercase"
                         />
                         <InputError :message="form.errors.email" />
                     </div>
@@ -228,7 +228,7 @@ const submit = () => {
                                 v-model="form.password"
                                 type="password"
                                 :placeholder="__('translate.password')"
-                                class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest"
+                                class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                             <InputError :message="form.errors.password" />
                         </div>
@@ -239,7 +239,7 @@ const submit = () => {
                                 v-model="form.password_confirmation"
                                 type="password"
                                 :placeholder="__('translate.passwordconfirm')"
-                                class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest"
+                                class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             />
                             <InputError :message="form.errors.password_confirmation" />
                         </div>
@@ -348,7 +348,7 @@ const submit = () => {
                         <label class="flex items-center group cursor-pointer select-none">
                             <div class="relative mt-1">
                                 <Checkbox id="terms" v-model:checked="form.terms" class="sr-only" />
-                                <div class="w-11 h-6 bg-gray-100 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="{'bg-[#0A2C5C] border-[#0A2C5C]': form.terms}"></div>
+                                <div class="w-11 h-6 rounded-full transition-all duration-300 border border-gray-200/50 group-hover:bg-gray-200" :class="form.terms ? 'bg-[#0A2C5C] border-[#0A2C5C]' : 'bg-gray-100'"></div>
                                 <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 shadow-sm" :class="form.terms ? 'translate-x-5 bg-blue-50' : 'bg-white'"></div>
                             </div>
                             <div class="ml-5 text-[10px] font-black uppercase tracking-widest leading-relaxed transition-colors duration-300" :class="form.terms ? 'text-[#0A2C5C]' : 'text-gray-400'">
@@ -394,10 +394,10 @@ const submit = () => {
                 <!-- FOOTER -->
                 <div class="mt-10 flex-wrap flex flex-col md:flex-row items-center justify-center gap-2">
                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                        {{__('translate.alreadyhaveanaccount')}}
+                        Masz już konto?
                     </p>
                     <Link
-                        :href="route('login')"
+                        :href="route('login', { type: form.type })"
                         class="text-[10px] uppercase tracking-widest ml-2 text-red-500 hover:text-red-600 transition-colors underline underline-offset-4 decoration-2"
                     >
                         {{ __('translate.already') }}

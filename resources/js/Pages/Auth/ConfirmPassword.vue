@@ -2,9 +2,7 @@
 import { ref } from 'vue'
 import { Head, useForm, Link } from '@inertiajs/vue3'
 import InputError from '@/Components/InputError.vue'
-import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
-import TextInput from '@/Components/TextInput.vue'
 import __ from "@/lang.js"
 
 const form = useForm({
@@ -66,12 +64,12 @@ const submit = () => {
                             v-model="form.password"
                             type="password"
                             :placeholder="__('translate.password')"
-                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest"
+                            class="w-full px-6 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-400 font-bold tracking-widest uppercase"
                             required
                             autofocus
                             autocomplete="current-password"
                         />
-                        <InputError :message="form.errors.password" />
+                        <InputError :message="form.errors.password" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
 
                     <!-- ACTIONS -->
