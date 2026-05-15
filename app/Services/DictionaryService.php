@@ -289,6 +289,7 @@ class DictionaryService
         $this->forgetAllLocales('categories_without_detail');
         $this->forgetAllLocales('categories_without_positions_without_detail');
         $this->forgetAllLocales('categoriesPositionsWithoutDetail');
+        $this->forgetAllLocales('categories_roots_only');
     }
 
     public function clearFoundationCategories(): void
@@ -322,5 +323,6 @@ class DictionaryService
         $this->forgetAllLocales('categories_without_detail');
         $this->forgetAllLocales('categories_without_positions_without_detail');
         $this->forgetAllLocales('categoriesPositionsWithoutDetail');
+        $this->forgetAllLocales('categories_roots_only');
     }
 }

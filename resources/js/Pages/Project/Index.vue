@@ -230,7 +230,7 @@ const { getPositionTitle } = useProjectHelpers();
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
-                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj swoimi ofertami pracy</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{__('translate.projectManage')}}</p>
                             </div>
                             <Link
                                 :href="route('projects.create')"

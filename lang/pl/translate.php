@@ -1130,7 +1130,6 @@ return [
     'certyficate' => 'Certyfikat',
     'forFirm' => 'Dla firmy',
     'forInfo' => 'Potwierdzenie Twojego zaangażowania społecznego.',
-    'forPosre' => 'ZA POŚREDNICTWEM',
     'yourCv' => 'Twoje CV (PDF)',
     'firms' => 'Firmy',
     'recruiterStatistics' => 'Statystyki rekruterów',
@@ -1777,5 +1776,9 @@ return [
     'forInfoSocial' => 'Twoje ogłoszenia tam, gdzie są kandydaci.',
     'admin_notification_info' => 'Administrator dostanie informacje o promowaniu i prosimy czekać na kontakt',
     'certDownload' => 'POBIERZ CERTYFIKAT',
-
+    'certyficate_przekazala' => 'PRZEKAZAŁA 50% KWOTY PAKIETU ZAKUPIONEGO NA PORTALU WORK4YOU.GLOBAL',
+    'potwierdza' => 'POTWIERDZA, ŻE FIRMA',
+    'date_label' => 'DATA',
+    'forPosre' => 'ZA POŚREDNICTWEM',
+    'projectManage' => 'Zarządzaj swoimi ofertami pracy',
 ];

@@ -29,9 +29,6 @@
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-blue-100/50 transition-colors"></div>
                     <div class="mb-8 relative z-10 flex items-center justify-between">
                         <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.recruiterStatistics') }}</h2>
-                        <div class="w-8 h-8 bg-blue-50 rounded-xl flex items-center justify-center">
-                            <svg class="w-4 h-4 text-[#00a0e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                        </div>
                     </div>
                     <div class="flex-1 flex items-center justify-center min-h-[300px] relative z-10">
                         <component

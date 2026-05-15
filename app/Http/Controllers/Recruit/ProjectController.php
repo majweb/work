@@ -180,9 +180,7 @@ class ProjectController extends Controller implements HasMiddleware
                 ] : null,
             ];
         });
-
         $categories = Category::getCachedWithoutDetail();
-
         $firmId = auth()->user()->recruiter_from_firm_id ?: auth()->user()->id;
         $externalCompanies = ExternalCompany::where('user_id', $firmId)->latest()->get();
 

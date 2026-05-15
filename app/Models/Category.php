@@ -45,7 +45,7 @@ class Category extends Model implements HasMedia
 
     public static function getCachedWithoutDetail()
     {
-        return Cache::rememberForever('categoriesWithoutDetail_' . app()->getLocale(), function () {
+        return Cache::rememberForever('categories_roots_only_' . app()->getLocale(), function () {
             return MultiselectWithoutDetailResource::collection(self::isRoot()->get());
         });
     }
