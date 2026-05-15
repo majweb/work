@@ -375,8 +375,10 @@ const submit = () => {
                                                                         :for="'support-agreement-' + agreement.id"
                                                                         class="mt-1 text-[10px] font-bold uppercase tracking-wide cursor-pointer transition-colors"
                                                                         :class="form.errors.agreements && isAgreementRequired(agreement.id) && !form.agreements.includes(agreement.id.toString()) ? 'text-red-600' : 'text-[#0A2C5C]'"
-                                                                        v-html="(agreement.title && agreement.title[page.props.language]) || (agreement.title && agreement.title['pl']) || agreement.title"
-                                                                    ></label>
+                                                                    >
+                                                                        <span v-html="(agreement.title && agreement.title[page.props.language]) || (agreement.title && agreement.title['pl']) || agreement.title"></span>
+                                                                        <span v-if="agreement.is_required" class="text-red-500 ml-1">*</span>
+                                                                    </label>
                                                                     <button
                                                                         type="button"
                                                                         @click="toggleAgreementExpansion(agreement.id)"
@@ -415,8 +417,10 @@ const submit = () => {
                                                                                     :for="'support-agreement-' + child.id"
                                                                                     class="text-[10px] font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-500 hover:[&_a]:text-blue-700 transition-colors"
                                                                                     :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-400'"
-                                                                                    v-html="(child.description && child.description[page.props.language]) || (child.description && child.description['pl'])"
-                                                                                ></label>
+                                                                                >
+                                                                                    <span v-html="(child.description && child.description[page.props.language]) || (child.description && child.description['pl'])"></span>
+                                                                                    <span v-if="child.is_required" class="text-red-500 ml-1">*</span>
+                                                                                </label>
                                                                             </div>
                                                                         </div>
 

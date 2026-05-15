@@ -325,6 +325,7 @@ const submit = () => {
                                                                class="text-[11px] leading-relaxed font-medium normal-case cursor-pointer [&_a]:underline [&_a]:text-blue-600 transition-colors"
                                                                :class="form.errors.agreements && child.is_required && !form.agreements.includes(child.id.toString()) ? 'text-red-600 font-bold' : 'text-gray-500'">
                                                             <span v-html="(child.description && child.description[lang]) || (child.description && child.description['pl'])"></span>
+                                                            <span v-if="child.is_required" class="text-red-500 ml-1">*</span>
                                                         </label>
                                                     </div>
                                                 </div>
