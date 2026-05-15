@@ -85,7 +85,7 @@ const updateProfileFirm = () => {
                     class="mt-1 block w-full"
                 />
                 <small class="text-gray-500">https://example.com</small>
-                <InputError :message="form.errors.www" class="mt-2"/>
+                <InputError :message="form.errors.www" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
             </div>
             <div class="col-span-6">
                 <h3 class="text-lg mb-3 font-bold uppercase">{{ __('translate.opinions') }}</h3>
@@ -100,7 +100,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.opinion_google" class="mt-2"/>
+                        <InputError :message="form.errors.opinion_google" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- opinion_trust -->
@@ -113,7 +113,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.opinion_trust" class="mt-2"/>
+                        <InputError :message="form.errors.opinion_trust" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- opinion_facebook -->
@@ -126,7 +126,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.opinion_facebook" class="mt-2"/>
+                        <InputError :message="form.errors.opinion_facebook" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_facebook" class="mt-2"/>
+                        <InputError :message="form.errors.social_facebook" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- social_google -->
@@ -156,7 +156,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_google" class="mt-2"/>
+                        <InputError :message="form.errors.social_google" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- social_x -->
@@ -169,7 +169,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_x" class="mt-2"/>
+                        <InputError :message="form.errors.social_x" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- social_instagram -->
@@ -182,7 +182,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_instagram" class="mt-2"/>
+                        <InputError :message="form.errors.social_instagram" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- social_linkedin -->
@@ -195,7 +195,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_linkedin" class="mt-2"/>
+                        <InputError :message="form.errors.social_linkedin" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- social_tiktok -->
@@ -208,7 +208,7 @@ const updateProfileFirm = () => {
                             class="mt-1 block w-full"
                         />
                         <small class="text-gray-500">https://example.com</small>
-                        <InputError :message="form.errors.social_tiktok" class="mt-2"/>
+                        <InputError :message="form.errors.social_tiktok" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                 </div>
 
@@ -226,7 +226,7 @@ const updateProfileFirm = () => {
                             type="number"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.count_workers" class="mt-2"/>
+                        <InputError :message="form.errors.count_workers" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- annual_turnover -->
@@ -238,7 +238,7 @@ const updateProfileFirm = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.annual_turnover" class="mt-2"/>
+                        <InputError :message="form.errors.annual_turnover" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
 
@@ -310,7 +310,7 @@ const updateProfileFirm = () => {
                                                 remove:removeFile
                                                 }"
                             ></file-pond>
-                            <InputError  :message="form.errors.photo" class="mt-1"/>
+                            <InputError  :message="form.errors.photo" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                             <div v-for="(error, fileKey) in form.errors" :key="fileKey">
                                 <span class="text-sm text-red-600" v-if="fileKey.startsWith('photos.')">{{ error }}</span>
                             </div>
@@ -379,14 +379,14 @@ const updateProfileFirm = () => {
                                 </div>
                             </div>
 
-                            <InputError :message="form.errors.video" class="mt-2"/>
+                            <InputError :message="form.errors.video" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                         </div>
                     </div>
                 </div>
                 <div class="my-4">
                     <InputLabel for="extra_description" :value="__('translate.extra_description')"/>
                     <TextareaLimit id="extra_description" v-model="form.extra_description" :limit="2000"/>
-                    <InputError :message="form.errors.extra_description" class="mt-2"/>
+                    <InputError :message="form.errors.extra_description" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                 </div>
                     <video :key="uploaderVideoKey" v-if="props.user.firm?.video" height="640" controls class="mt-6">
                         <source :src="'/storage/'+props.user.firm?.video" type="video/mp4">

@@ -1622,6 +1622,8 @@ return [
     'what_we_offer' => 'Co oferujemy',
     'firms_count' => 'firm',
     'all_firms' => 'Wszystkie firmy',
+    'firm_name' => 'Nazwa firmy',
+    'firm_name_placeholder' => 'Wpisz nazwę firmy...',
     'statusSent' => 'Wysłane',
     'bestOffers' => 'Najlepsza oferta',
     'selected' => 'Wybrano',

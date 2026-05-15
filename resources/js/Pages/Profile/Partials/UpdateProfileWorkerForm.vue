@@ -45,7 +45,7 @@ const updateProfileWorker = () => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.surname" class="mt-2"/>
+                        <InputError :message="form.errors.surname" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
 
                     <!-- PHONE -->
@@ -57,7 +57,7 @@ const updateProfileWorker = () => {
                             type="number"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.contact_phone" class="mt-2"/>
+                        <InputError :message="form.errors.contact_phone" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                 </div>
             </div>

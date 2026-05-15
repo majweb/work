@@ -165,7 +165,7 @@ const disableTwoFactorAuthentication = () => {
                             @keyup.enter="confirmTwoFactorAuthentication"
                         />
 
-                        <InputError :message="confirmationForm.errors.code" class="mt-2" />
+                        <InputError :message="confirmationForm.errors.code" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
                 </div>
 

@@ -52,7 +52,7 @@ const setPassword = () => {
                         class="mt-1 block w-full"
                         type="password"
                     />
-                    <InputError :message="form.errors.password" class="mt-2"/>
+                    <InputError :message="form.errors.password" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                 </div>
 
                 <!-- Confirm Password -->
@@ -65,7 +65,7 @@ const setPassword = () => {
                         class="mt-1 block w-full"
                         type="password"
                     />
-                    <InputError :message="form.errors.password_confirmation" class="mt-2"/>
+                    <InputError :message="form.errors.password_confirmation" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                 </div>
             </div>
 

@@ -42,6 +42,7 @@ const formatEmployeeCount = (count) => {
 
 const clearFilters = () => {
     form.country = null;
+    form.name = null;
 
     router.get(route('front.firms'), {}, {
         preserveState: false,
@@ -68,6 +69,7 @@ const submit = () => {
 
     const transformedData = {
         country: form.country?.value || null,
+        name: form.name || null,
     }
 
     const filteredData = pickBy(transformedData);
@@ -84,6 +86,7 @@ const submit = () => {
 
 const form = useForm({
     country: undefined,
+    name: usePage().props.ziggy?.query?.name || null,
 });
 
 const companies = ref([
@@ -160,7 +163,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     {{ loading ? __('translate.searching') : __('translate.search') }}
                                 </button>
                                 <button
-                                    v-if="form.country"
+                                    v-if="form.country || form.name"
                                     type="button"
                                     @click="clearFilters"
                                     class="px-6 py-3 bg-white/5 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-white/10 shadow-sm transition-all hover:-translate-y-0.5"
@@ -186,13 +189,23 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     :selectedLabel="''"
                                     :deselectLabel="''"
                                     :placeholder="__('translate.placeholderCountry')"
-                                    class="custom-multiselect"
+                                    class="custom-multiselect white-multiselect"
                                 >
                                     <template #noResult>
                                         <span>{{__('translate.noOptions')}}</span>
                                     </template>
                                 </multiselect>
                                 <InputError :message="form.errors.country" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-black text-white/50 uppercase tracking-widest">{{ __('translate.firm_name') }}</label>
+                                <input
+                                    v-model="form.name"
+                                    type="text"
+                                    :placeholder="__('translate.firm_name_placeholder')"
+                                    class="w-full bg-white border border-white/10 rounded-xl px-4 py-3 text-[#0A2C5C] text-xs font-bold placeholder:text-[#0A2C5C]/40 focus:outline-none focus:ring-2 focus:ring-[#329CD1]/50 transition-all"
+                                />
+                                <InputError :message="form.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                             </div>
                             <div class="flex items-end pb-4">
                                 <span class="text-sm font-black text-white uppercase tracking-widest">{{ props.firms.total }} {{ __('translate.firms_count') }}</span>
@@ -315,6 +328,15 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
 
 .animate-shimmer {
     animation: shimmer 3s infinite linear;
+}
+</style>
+<style>
+.white-multiselect .multiselect__tags {
+    background: #ffffff !important;
+    border: none !important;
+}
+.white-multiselect .multiselect__placeholder {
+    color: rgba(10, 44, 92, 0.4) !important;
 }
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>

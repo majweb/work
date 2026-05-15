@@ -112,7 +112,7 @@ const closeModal = () => {
                             :placeholder="__('translate.password')"
                             @keyup.enter="logoutOtherBrowserSessions"
                         />
-                        <InputError :message="form.errors.password" class="mt-2" />
+                        <InputError :message="form.errors.password" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                     </div>
                 </template>
 

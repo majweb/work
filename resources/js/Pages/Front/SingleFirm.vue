@@ -311,7 +311,7 @@ const { getPositionTitle } = useProjectHelpers();
                                     <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
                                         <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" alt="icon">
                                     </div>
-                                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.address') }}</h2>
+                                    <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.location') }}</h2>
                                 </div>
                                 <div class="space-y-6">
                                     <div class="flex items-start gap-4" v-if="firm.city">

@@ -645,6 +645,12 @@ class FrontController extends Controller
             });
         }
 
+        // Filtrowanie po nazwie
+        if (request('name')) {
+            $name = request('name');
+            $query->where('name', 'like', '%' . $name . '%');
+        }
+
         $firms = $query->paginate(12)->withQueryString();
 
         // Używamy Resource dla danych w paginacji
@@ -669,7 +675,7 @@ class FrontController extends Controller
             return (new FrontUserResource($user))->resolve();
         });
 
-        $countries = (new Helper)->makeCountriesToSelect();
+        $countries = (new Helper)->makeCountriesToSelectHasFirms();
         $page = Page::findOrFail(7);
 
         return inertia()->render('Front/Firms', [

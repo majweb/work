@@ -142,7 +142,7 @@ const getNipPlaceholder = (countryCode) => {
                         <p v-if="form.countryJson" class="text-[10px] text-gray-400 mt-1 uppercase">
                             {{ __('translate.suggested_format') }}: {{ getNipPlaceholder(form.countryJson.countryCode) }}
                         </p>
-                        <InputError :message="form.errors.nip" class="mt-2"/>
+                        <InputError :message="form.errors.nip" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <!-- REGON -->
                     <div class="col-span-6 sm:col-span-2">
@@ -153,7 +153,7 @@ const getNipPlaceholder = (countryCode) => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.regon" class="mt-2"/>
+                        <InputError :message="form.errors.regon" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <!-- STREET -->
                     <div class="col-span-6 sm:col-span-2">
@@ -164,7 +164,7 @@ const getNipPlaceholder = (countryCode) => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.street" class="mt-2"/>
+                        <InputError :message="form.errors.street" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <!-- NUMBER -->
                     <div class="col-span-6 sm:col-span-2">
@@ -175,7 +175,7 @@ const getNipPlaceholder = (countryCode) => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.number" class="mt-2"/>
+                        <InputError :message="form.errors.number" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <!-- CITY -->
                     <div class="col-span-6 sm:col-span-2">
@@ -186,7 +186,7 @@ const getNipPlaceholder = (countryCode) => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.city" class="mt-2"/>
+                        <InputError :message="form.errors.city" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <!-- POSTAL -->
                     <div class="col-span-6 sm:col-span-2">
@@ -197,7 +197,7 @@ const getNipPlaceholder = (countryCode) => {
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.postal" class="mt-2"/>
+                        <InputError :message="form.errors.postal" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <!-- COUNTRY -->
                     <div class="col-span-6 sm:col-span-3">
@@ -222,7 +222,7 @@ const getNipPlaceholder = (countryCode) => {
                                 <span>{{ __('translate.noResult') }}</span>
                             </template>
                         </multiselect>
-                        <InputError :message="form.errors.countryJson" class="mt-2"/>
+                        <InputError :message="form.errors.countryJson" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                     </div>
                     <div class="col-span-6 sm:col-span-2 flex items-center">
                         <Checkbox v-model:checked="form.invoice_same" id="invoice_same" name="invoice_same" class="mr-2"/>
