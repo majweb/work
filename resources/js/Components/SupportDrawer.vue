@@ -250,13 +250,13 @@ const submit = () => {
                                             leave-from-class="opacity-100"
                                             leave-to-class="opacity-0"
                                         >
-                                            <div v-if="successMessage" class="mb-4 p-4 bg-green-50 border border-green-100 rounded-3xl flex flex-col items-center justify-center text-center gap-3">
-                                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                            <div v-if="successMessage" class="mb-4 p-3 bg-green-50 border border-green-100 rounded-2xl flex flex-col items-center justify-center text-center gap-2">
+                                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                                     </svg>
                                                 </div>
-                                                <p class="text-[10px] font-black text-green-900 uppercase tracking-widest">{{ successMessage }}</p>
+                                                <p class="text-[10px] font-bold text-green-900 uppercase tracking-wider leading-tight">{{ successMessage }}</p>
                                             </div>
                                         </Transition>
 

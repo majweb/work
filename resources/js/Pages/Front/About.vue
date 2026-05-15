@@ -112,11 +112,6 @@ const props = defineProps({
                                 {{ __('info.values') }}
                                 <span class="text-[#00a0e3] block mt-2">{{ __('info.onTarget') }}</span>
                             </h3>
-
-                            <p class="text-sm md:text-base font-bold text-blue-200 uppercase tracking-widest leading-relaxed max-w-2xl">
-                                {{ __('translate.charityImpact') }}
-                            </p>
-
                             <Link
                                 :href="route('front.price')"
                                 class="inline-flex items-center gap-4 bg-[#00a0e3] hover:bg-[#008cc7] text-white font-black px-10 py-5 rounded-2xl transition-all hover:gap-6 uppercase tracking-widest text-xs shadow-xl shadow-blue-500/20 group/btn"

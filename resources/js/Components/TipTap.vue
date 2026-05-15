@@ -233,7 +233,7 @@ export default {
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 8px;
-
+    color: #0A2C5C;
     img {
         max-width: 100%;
 

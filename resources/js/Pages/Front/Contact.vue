@@ -219,12 +219,12 @@ onMounted(() => loadCaptcha())
                                     leave-from-class="opacity-100"
                                     leave-to-class="opacity-0"
                                 >
-                                    <div v-if="successMessage" class="mb-8 p-6 bg-green-50 border border-green-100 rounded-3xl flex items-center gap-4">
-                                        <div class="w-10 h-10 bg-green-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-green-200">
-                                            <span class="text-xl">✓</span>
+                                    <div v-if="successMessage" class="mb-8 p-4 bg-green-50 border border-green-100 rounded-2xl flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-green-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-green-200 flex-shrink-0">
+                                            <span class="text-lg">✓</span>
                                         </div>
                                         <div>
-                                            <p class="text-sm font-black text-green-900 uppercase tracking-widest">{{ successMessage }}</p>
+                                            <p class="text-[11px] font-bold text-green-900 uppercase tracking-wider leading-tight">{{ successMessage }}</p>
                                         </div>
                                     </div>
                                 </Transition>
@@ -238,7 +238,7 @@ onMounted(() => loadCaptcha())
                                                 id="email"
                                                 v-model="form.email"
                                                 type="text"
-                                                class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all"
+                                                class="w-full !rounded-2xl !bg-gray-50 !border-transparent focus:!bg-white focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 transition-all !text-[#0A2C5C]"
                                             />
                                             <InputError :message="form.errors.email" class="mt-2 text-[10px] font-bold uppercase tracking-widest ml-2" />
                                         </div>
@@ -299,7 +299,7 @@ onMounted(() => loadCaptcha())
                                                     maxlength="6"
                                                     v-model="form.captcha"
                                                     type="text"
-                                                    class="w-full !rounded-2xl !bg-white !border-gray-200 focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 text-center text-lg font-black tracking-[0.5em] transition-all"
+                                                    class="w-full !rounded-2xl !bg-white !border-gray-200 focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-4 text-center text-lg font-black tracking-[0.5em] transition-all !text-[#0A2C5C]"
                                                 />
                                             </div>
                                         </div>

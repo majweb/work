@@ -92,7 +92,7 @@ function filterByCountry(list) {
 function applyAllFilters() {
     let list = [];
 
-    if (!currentBox.value) {
+    if (!currentBox.value || (!selectedCountry.value && !selectedCategory.value && !searchName.value)) {
         list = foundations.value;
     } else {
         list = getFoundationsInBox(currentBox.value);
@@ -347,15 +347,59 @@ async function zoomToCountry(countryObj) {
 watch(selectedCountry, (newVal) => {
     if (newVal) {
         zoomToCountry(newVal);
+    } else {
+        applyAllFilters();
+        checkAndResetView();
     }
 });
 
-watch(selectedCategory, () => {
+watch(selectedCategory, (newVal) => {
     applyAllFilters();
+    if (!newVal) {
+        checkAndResetView();
+    }
 });
+
+watch(searchName, (newVal) => {
+    applyAllFilters();
+    if (!newVal) {
+        checkAndResetView();
+    }
+});
+
 watch(() => props.foundations, () => {
     applyAllFilters(); // zaktualizuje widok
 });
+
+function checkAndResetView() {
+    if (!selectedCountry.value && !selectedCategory.value && !searchName.value) {
+        currentBox.value = null;
+        applyAllFilters();
+        if (map.value) {
+            map.value.flyTo({
+                center: [0, 25],
+                zoom: 1.4,
+                duration: 900
+            });
+        }
+    }
+}
+
+function resetFilters() {
+    selectedCountry.value = null;
+    selectedCategory.value = null;
+    searchName.value = "";
+    currentBox.value = null;
+
+    applyAllFilters();
+
+    // Powrót mapy do widoku początkowego
+    map.value.flyTo({
+        center: [0, 25],
+        zoom: 1.4,
+        duration: 900
+    });
+}
 </script>
 
 <template>
@@ -420,13 +464,24 @@ watch(() => props.foundations, () => {
                 <!-- Nazwa -->
                 <div class="space-y-2">
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('continents.search_placeholder') }}</label>
-                    <TextInput
-                        type="text"
-                        v-model="searchName"
-                        @input="applyAllFilters"
-                        class="w-full !rounded-2xl !bg-white !border-gray-200 focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-3.5 text-xs font-bold tracking-widest uppercase placeholder-gray-300 transition-all shadow-sm"
-                        :placeholder="__('continents.search_placeholder')"
-                    />
+                    <div class="flex gap-2">
+                        <TextInput
+                            type="text"
+                            v-model="searchName"
+                            class="flex-1 !rounded-2xl !bg-white !border-gray-200 focus:!ring-[#00a0e3]/10 focus:!border-[#00a0e3] !py-3.5 text-xs font-bold tracking-widest uppercase placeholder-gray-300 transition-all shadow-sm"
+                            :placeholder="__('continents.search_placeholder')"
+                        />
+                        <button
+                            type="button"
+                            @click="resetFilters"
+                            class="px-4 bg-white border border-gray-200 rounded-2xl hover:bg-gray-50 transition-all shadow-sm group/reset"
+                            title="Resetuj filtry"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover/reset:rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -73,9 +73,9 @@ const submit = () => {
                         {{ __('illegalForm.submit_button') }}
                     </h2>
 
-                    <form @submit.prevent="submit" class="space-y-10 w-full">
+                    <form @submit.prevent="submit" class="space-y-6 w-full">
                         <!-- Zakres zgłoszenia -->
-                        <div class="space-y-4">
+                        <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2">{{ __('illegalForm.scope_label') }}</label>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <label v-for="(label, key) in {
@@ -97,11 +97,11 @@ const submit = () => {
                                     </div>
                                 </label>
                             </div>
-                            <InputError :message="form.errors.scope" class="mt-2" />
+                            <InputError :message="form.errors.scope" class="mt-2 text-[10px] font-black uppercase tracking-widest mt-2" />
                         </div>
 
                         <!-- Podmiot sygnalizujący -->
-                        <div class="space-y-4">
+                        <div class="space-y-2">
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 leading-relaxed">
                                 {{ __('illegalForm.signaling_entity_label') }}
                             </label>
@@ -121,58 +121,58 @@ const submit = () => {
                                     </div>
                                 </label>
                             </div>
-                            <InputError :message="form.errors.signaling_entity" class="mt-2" />
+                            <InputError :message="form.errors.signaling_entity" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.email_label') }}</label>
-                                <TextInput id="email" v-model="form.email" type="email" class="mt-1 block w-full" :placeholder="__('illegalForm.email_placeholder')" />
-                                <InputError :message="form.errors.email" class="mt-2" />
+                                <TextInput id="email" v-model="form.email" type="email" class="mt-1 block w-full !text-[#0A2C5C]" :placeholder="__('illegalForm.email_placeholder')" />
+                                <InputError :message="form.errors.email" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.name_label') }}</label>
-                                <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" :placeholder="__('illegalForm.name_placeholder')" />
-                                <InputError :message="form.errors.name" class="mt-2" />
+                                <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full !text-[#0A2C5C]" :placeholder="__('illegalForm.name_placeholder')" />
+                                <InputError :message="form.errors.name" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.company_name_label') }}</label>
-                            <TextInput id="company_name" v-model="form.company_name" type="text" class="mt-1 block w-full" :placeholder="__('illegalForm.company_name_placeholder')" />
-                            <InputError :message="form.errors.company_name" class="mt-2" />
+                            <TextInput id="company_name" v-model="form.company_name" type="text" class="mt-1 block w-full !text-[#0A2C5C]" :placeholder="__('illegalForm.company_name_placeholder')" />
+                            <InputError :message="form.errors.company_name" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.links_label') }}</label>
-                            <textarea id="links" v-model="form.links" rows="3" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all placeholder:uppercase" :placeholder="__('illegalForm.links_placeholder')"></textarea>
-                            <InputError :message="form.errors.links" class="mt-2" />
+                            <textarea id="links" v-model="form.links" rows="3" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-[#0A2C5C] focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-500 font-bold tracking-widest text-[#0A2C5C] placeholder:uppercase" :placeholder="__('illegalForm.links_placeholder')"></textarea>
+                            <InputError :message="form.errors.links" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.details_label') }}</label>
-                            <textarea id="details" v-model="form.details" rows="5" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all placeholder:uppercase" :placeholder="__('illegalForm.details_placeholder')"></textarea>
-                            <InputError :message="form.errors.details" class="mt-2" />
+                            <textarea id="details" v-model="form.details" rows="5" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-[#0A2C5C] focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-500 font-bold tracking-widest text-[#0A2C5C] placeholder:uppercase" :placeholder="__('illegalForm.details_placeholder')"></textarea>
+                            <InputError :message="form.errors.details" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.legal_provision_label') }}</label>
-                            <TextInput id="legal_provision" v-model="form.legal_provision" type="text" class="mt-1 block w-full" :placeholder="__('illegalForm.legal_provision_placeholder')" />
-                            <InputError :message="form.errors.legal_provision" class="mt-2" />
+                            <TextInput id="legal_provision" v-model="form.legal_provision" type="text" class="mt-1 block w-full !text-[#0A2C5C]" :placeholder="__('illegalForm.legal_provision_placeholder')" />
+                            <InputError :message="form.errors.legal_provision" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest ml-2 mb-1">{{ __('illegalForm.additional_info_label') }}</label>
-                            <textarea id="additional_info" v-model="form.additional_info" rows="3" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 rounded-2xl shadow-sm transition-all"></textarea>
-                            <InputError :message="form.errors.additional_info" class="mt-2" />
+                            <textarea id="additional_info" v-model="form.additional_info" rows="3" class="w-full px-5 py-4 text-xs rounded-2xl border-gray-100 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-[#0A2C5C] focus:bg-white focus:ring-0 focus:border-[#00a0e3] transition-all placeholder-gray-500 font-bold tracking-widest text-[#0A2C5C] placeholder:uppercase" :placeholder="__('illegalForm.additional_info_label')"></textarea>
+                            <InputError :message="form.errors.additional_info" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
 
                         <div class="flex flex-col gap-2">
                             <label class="flex items-center gap-3 cursor-pointer group">
                                 <Checkbox v-model:checked="form.declaration" class="mt-1" />
-                                <span class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                                <span class="mt-1 text-xs text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
                                     {{ __('illegalForm.declaration_label') }}
                                 </span>
                             </label>
-                            <InputError :message="form.errors.declaration" />
+                            <InputError :message="form.errors.declaration" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
                         </div>
 
                         <div class="flex justify-center pt-6">

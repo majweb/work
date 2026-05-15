@@ -338,7 +338,7 @@ function addMarker() {
                                 </div>
                                 <h3 class="text-[10px] font-black text-white uppercase tracking-[0.2em]">{{ __('translate.support_foundation') }}</h3>
                             </div>
-                            <h2 class="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-4 leading-tight">
+                            <h2 class="text-2xl md:text-2xl font-black text-white uppercase tracking-tight mb-4 leading-tight">
                                 {{ __('translate.foundation_support_info') }}
                             </h2>
                             <p class="text-blue-200/90 font-medium text-md max-w-2xl">

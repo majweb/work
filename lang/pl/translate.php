@@ -1789,5 +1789,6 @@ return [
     'makeData' => 'Uzupełnij swoje dane kontaktowe',
     'strongMe' => 'Podaj swoje mocne strony',
     'recordAgain' => 'Nagraj ponownie',
+    'charity' => 'na cele charytatywne',
 
 ];

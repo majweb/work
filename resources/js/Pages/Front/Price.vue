@@ -169,6 +169,7 @@ const donated = computed(() =>
                                     <span class="text-[#00a0e3] font-black">${{ selected.price }}</span>,
                                     {{ __('info.help_text_3') }}
                                     <span class="text-red-500 font-black underline decoration-4 decoration-red-100 underline-offset-8">${{ donated }}</span>
+                                    {{ __('translate.charity') }}
                                 </p>
                             </div>
 

@@ -472,12 +472,12 @@ const submit = () => {
                                                 <InputError :message="form.errors.iban" class="mt-2" />
                                             </div>
                                             <div>
-                                                <InputLabel value="SWIFT" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
+                                                <InputLabel value="SWIFT/BIC" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.swift" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
                                                 <InputError :message="form.errors.swift" class="mt-2" />
                                             </div>
                                             <div>
-                                                <InputLabel value="KRS" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
+                                                <InputLabel value="KRS/CRN" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.krs" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
                                                 <InputError :message="form.errors.krs" class="mt-2" />
                                             </div>
