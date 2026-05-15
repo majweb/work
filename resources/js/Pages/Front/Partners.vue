@@ -67,6 +67,7 @@ mapboxgl.accessToken = usePage().props.mapboxToken;
 // 🔵 STATE & TOGGLE
 // ===============================
 const showForm = ref(false);
+const addressSelected = ref(false);
 
 // ===============================
 // 🔵 MAPBOX AUTOCOMPLETE
@@ -77,6 +78,7 @@ const suggestions = ref([]);
 let searchTimeout = null;
 
 const fetchSuggestions = async () => {
+    form.clearErrors('address_street');
     if (!addressQuery.value) {
         suggestions.value = [];
         return;
@@ -148,6 +150,7 @@ const selectSuggestion = (item) => {
     form.country = countryObj?.short_code || null;
     form.latitude = item.center[1];
     form.longitude = item.center[0];
+    addressSelected.value = true;
 };
 
 // ===============================
@@ -210,6 +213,7 @@ const submit = () => {
             addressQuery.value = "";
             suggestions.value = [];
             showForm.value = false;
+            addressSelected.value = false;
         },
     });
 };
@@ -239,7 +243,7 @@ const submit = () => {
                             <div class="absolute inset-0 bg-blue-400/10 blur-3xl rounded-full scale-110 animate-pulse"></div>
                             <img src="/images/partners/partners.svg" class="w-full max-w-sm relative z-10 drop-shadow-2xl transition-transform duration-700 hover:scale-105" alt="partners">
                         </div>
-                        <div class="order-1 md:order-2 space-y-6">
+                        <div class="order-1 md:order-2 space-y-6 text-center md:text-left">
                             <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl">
                                 <div class="w-2 h-2 rounded-full bg-[#00a0e3] animate-pulse"></div>
                                 <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ __('translate.partners') || 'PARTNERZY' }}</span>
@@ -412,7 +416,7 @@ const submit = () => {
                                             <div class="md:col-span-2">
                                                 <InputLabel :value="__('translate.foundationName')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.name" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
-                                                <InputError :message="form.errors.name" class="mt-2" />
+                                                <InputError :message="form.errors.name" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
 
                                             <div>
@@ -432,7 +436,7 @@ const submit = () => {
                                                     <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
                                                     <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
                                                 </Multiselect>
-                                                <InputError :message="form.errors.category_id" class="mt-2" />
+                                                <InputError :message="form.errors.category_id" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
 
                                             <div>
@@ -453,7 +457,7 @@ const submit = () => {
                                                     <template #noResult><span>{{ __('translate.noOptions') }}</span></template>
                                                     <template #noOptions><span>{{ __('translate.noResult') }}</span></template>
                                                 </Multiselect>
-                                                <InputError :message="form.errors.subcategory_id" class="mt-2" />
+                                                <InputError :message="form.errors.subcategory_id" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                         </div>
                                     </div>
@@ -469,27 +473,27 @@ const submit = () => {
                                             <div>
                                                 <InputLabel value="IBAN" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.iban" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
-                                                <InputError :message="form.errors.iban" class="mt-2" />
+                                                <InputError :message="form.errors.iban" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel value="SWIFT/BIC" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.swift" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
-                                                <InputError :message="form.errors.swift" class="mt-2" />
+                                                <InputError :message="form.errors.swift" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel value="KRS/CRN" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.krs" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
-                                                <InputError :message="form.errors.krs" class="mt-2" />
+                                                <InputError :message="form.errors.krs" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.year_of_foundation')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.year_of_foundation" type="number" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]">
-                                                <InputError :message="form.errors.year_of_foundation" class="mt-2" />
+                                                <InputError :message="form.errors.year_of_foundation" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.count_workers')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.worker_count" type="number" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]">
-                                                <InputError :message="form.errors.worker_count" class="mt-2" />
+                                                <InputError :message="form.errors.worker_count" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div class="flex items-center pt-6">
                                                 <label class="flex items-center cursor-pointer group" for="benefit_organization_front">
@@ -515,6 +519,7 @@ const submit = () => {
                                                 v-model="addressQuery"
                                                 @input="fetchSuggestions"
                                             />
+                                            <InputError :message="form.errors.address_street" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             <ul v-if="suggestions.length" class="absolute bg-white border border-gray-100 rounded-2xl w-full mt-2 z-50 shadow-2xl max-h-60 overflow-auto">
                                                 <li v-for="s in suggestions" :key="s.id" class="px-6 py-4 hover:bg-gray-50 cursor-pointer text-sm" @click="selectSuggestion(s)">
                                                     {{ s.place_name }}
@@ -522,7 +527,7 @@ const submit = () => {
                                             </ul>
                                         </div>
 
-                                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                        <div v-if="addressSelected" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                                             <div>
                                                 <InputLabel :value="__('translate.Street')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.address_street" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]">
@@ -623,7 +628,7 @@ const submit = () => {
                                 }"
                                                 ></file-pond>
 
-                                                <InputError :message="form.errors.photo" class="mt-2" />
+                                                <InputError :message="form.errors.photo" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.foundationBanner')" class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest" />
@@ -681,7 +686,7 @@ const submit = () => {
                                     remove: removeFile
                                 }"
                                                 ></file-pond>
-                                                <InputError :message="form.errors.banner" class="mt-2" />
+                                                <InputError :message="form.errors.banner" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                         </div>
 
@@ -689,24 +694,24 @@ const submit = () => {
                                             <div>
                                                 <InputLabel :value="__('translate.foundationWebsite')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.www" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] bg-gray-50/30 p-4 text-[#0A2C5C]" type="text" placeholder="https://...">
-                                                <InputError :message="form.errors.www" class="mt-2" />
+                                                <InputError :message="form.errors.www" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.phone')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.phone" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] bg-gray-50/30 p-4 text-[#0A2C5C]" type="text">
-                                                <InputError :message="form.errors.phone" class="mt-2" />
+                                                <InputError :message="form.errors.phone" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.email')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.email" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] bg-gray-50/30 p-4 text-[#0A2C5C]" type="email">
-                                                <InputError :message="form.errors.email" class="mt-2" />
+                                                <InputError :message="form.errors.email" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                         </div>
 
                                         <div>
                                             <InputLabel :value="__('translate.foundationDescription')" class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest" />
                                             <Tiptap v-model="form.description" />
-                                            <InputError :message="form.errors.description" class="mt-2" />
+                                            <InputError :message="form.errors.description" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                         </div>
                                     </div>
 
@@ -721,27 +726,27 @@ const submit = () => {
                                             <div>
                                                 <InputLabel :value="__('translate.facebookOptional')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.facebook_url" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text" placeholder="https://facebook.com/...">
-                                                <InputError :message="form.errors.facebook_url" class="mt-2" />
+                                                <InputError :message="form.errors.facebook_url" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.instagramOptional')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.instagram_url" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text" placeholder="https://instagram.com/...">
-                                                <InputError :message="form.errors.instagram_url" class="mt-2" />
+                                                <InputError :message="form.errors.instagram_url" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.linkedinOptional')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.linkedin_url" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text" placeholder="https://linkedin.com/...">
-                                                <InputError :message="form.errors.linkedin_url" class="mt-2" />
+                                                <InputError :message="form.errors.linkedin_url" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.xOptional')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.x_url" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text" placeholder="https://x.com/...">
-                                                <InputError :message="form.errors.x_url" class="mt-2" />
+                                                <InputError :message="form.errors.x_url" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.tiktokOptional')" class="text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest" />
                                                 <input v-model="form.tiktok_url" class="w-full rounded-2xl border-gray-100 focus:border-[#00a0e3] focus:ring-[#00a0e3] transition-all bg-gray-50/30 p-4 text-[#0A2C5C]" type="text" placeholder="https://tiktok.com/@...">
-                                                <InputError :message="form.errors.tiktok_url" class="mt-2" />
+                                                <InputError :message="form.errors.tiktok_url" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
                                             </div>
                                         </div>
                                     </div>
