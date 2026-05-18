@@ -1796,4 +1796,5 @@ return [
     'cv_type_2' => 'Video CV',
     'cv_type_3' => 'Audio CV',
     'cv_type' => 'Typ aplikacji',
+    'similarOffers' => 'Podobne oferty',
 ];

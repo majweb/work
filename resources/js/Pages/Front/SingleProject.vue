@@ -15,6 +15,7 @@ import moment from "moment";
 
 const props = defineProps({
     project: Object,
+    similarProjects: Array,
     image: String,
     agreements: Array,
     page: Object
@@ -589,6 +590,114 @@ onMounted(async () => {
                             <div id="projectMap" class="w-full h-[450px]"></div>
                         </div>
                     </div>
+
+                    <!-- SIMILAR PROJECTS SECTION -->
+                    <div class="p-8 md:p-16 bg-gray-50/30 border-t border-gray-50" v-if="similarProjects && similarProjects.length">
+                        <div class="flex items-center gap-4 mb-12">
+                            <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.similarOffers') }}</h3>
+                            <div class="h-px flex-1 bg-gray-100"></div>
+                        </div>
+
+                        <div class="relative group/similar">
+                            <swiper
+                                :modules="[Navigation, Pagination, Autoplay]"
+                                :slides-per-view="1"
+                                :space-between="30"
+                                :loop="similarProjects.length > 1"
+                                :autoplay="{ delay: 5000, disableOnInteraction: false }"
+                                :navigation="{
+                                    prevEl: '.similar-prev',
+                                    nextEl: '.similar-next',
+                                }"
+                                :pagination="{ clickable: true, el: '.swiper-pagination-similar' }"
+                                :breakpoints="{
+                                    1024: { slidesPerView: 2, spaceBetween: 30 }
+                                }"
+                                class="pb-12"
+                            >
+                                <swiper-slide v-for="similar in similarProjects" :key="similar.id">
+                                    <div class="group bg-white rounded-[2.5rem] border transition-all duration-300 hover:-translate-y-1 p-6 relative overflow-hidden h-full"
+                                         :class="{
+                                             'border-[#329CD1]/50 ring-2 ring-[#329CD1]/20 bg-gradient-to-br from-blue-50/10 to-transparent': similar.is_featured,
+                                             'border-gray-200 shadow-sm hover:shadow-xl hover:shadow-blue-900/5': !similar.is_featured
+                                         }"
+                                    >
+                                        <!-- Featured Indicator -->
+                                        <div v-if="similar.is_featured" class="absolute top-0 right-0 h-24 w-24 overflow-hidden pointer-events-none z-0">
+                                            <div class="absolute top-0 right-0 w-[150%] h-8 bg-[#329CD1] border-b border-[#329CD1]/50 rotate-45 translate-x-[30%] translate-y-[50%] shadow-lg shadow-blue-400/20 animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_auto] flex items-center justify-center">
+                                                <svg class="w-4 h-4 text-white drop-shadow-sm animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <Link :href="route('front.projects.single', similar)" class="block">
+                                            <div class="flex flex-col mb-6">
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[9px] uppercase tracking-widest rounded-lg border border-blue-100/50">
+                                                        ID {{ similar.id }}
+                                                    </span>
+                                                </div>
+                                                <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight group-hover:text-[#0A2C5C] transition-colors line-clamp-1">
+                                                    {{ getPositionTitle(similar) }}
+                                                </h4>
+                                            </div>
+
+                                            <div class="flex items-start gap-4 mb-6">
+                                                <div
+                                                    class="w-16 h-16 rounded-[1.2rem] bg-gray-50 shadow-inner border border-gray-100 shrink-0"
+                                                    :style="{
+                                                        backgroundImage: `url('${similar.user?.profile_photo_url || '/default-company-logo.png'}')`,
+                                                        backgroundPosition: 'center',
+                                                        backgroundRepeat: 'no-repeat',
+                                                        backgroundSize: 'cover'
+                                                    }"
+                                                ></div>
+                                                <div class="min-w-0">
+                                                    <p class="text-xs font-black text-gray-700 uppercase tracking-widest mb-1 truncate">{{ similar.user?.name }}</p>
+                                                    <div class="flex items-center gap-2">
+                                                        <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                                                        <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest truncate">
+                                                            {{ similar.cityWork }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center justify-between mt-auto">
+                                                <div class="flex flex-col">
+                                                    <div class="flex items-baseline gap-1">
+                                                        <span class="text-xl font-black text-[#0A2C5C] tracking-tight">{{ similar.basicSalaryFrom }}</span>
+                                                        <span class="text-[10px] font-bold text-[#0A2C5C]/60 uppercase">{{ similar.currency?.name || similar.currency || 'zł' }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex gap-2">
+                                                    <div v-for="cvType in similar.cv" :key="cvType.id"
+                                                         class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-sm"
+                                                         :title="__('translate.cv_type_' + cvType.id)">
+                                                        <img v-if="cvType.id === 1" src="/images/icons/cv-classic.svg" class="w-5 h-5" alt="Classic">
+                                                        <img v-if="cvType.id === 2" src="/images/icons/cv-video.svg" class="w-5 h-5" alt="Video">
+                                                        <img v-if="cvType.id === 3" src="/images/icons/cv-audio.svg" class="w-5 h-5" alt="Audio">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </swiper-slide>
+                            </swiper>
+
+                            <!-- Custom Navigation Arrows -->
+                            <div class="flex lg:contents justify-center gap-4 mt-4 lg:mt-0">
+                                <button class="similar-prev lg:absolute lg:-left-14 lg:top-1/2 lg:-translate-y-1/2 w-12 h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all z-10 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                                <button class="similar-next lg:absolute lg:-right-14 lg:top-1/2 lg:-translate-y-1/2 w-12 h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all z-10 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination-similar flex justify-center gap-2 mt-4"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -604,14 +713,16 @@ onMounted(async () => {
     animation: shimmer 3s infinite linear;
 }
 
-.swiper-pagination-offers .swiper-pagination-bullet {
+.swiper-pagination-offers .swiper-pagination-bullet,
+.swiper-pagination-similar .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
     background: #0A2C5C;
     opacity: 0.2;
     transition: all 0.3s ease;
 }
-.swiper-pagination-offers .swiper-pagination-bullet-active {
+.swiper-pagination-offers .swiper-pagination-bullet-active,
+.swiper-pagination-similar .swiper-pagination-bullet-active {
     opacity: 1;
     width: 25px;
     border-radius: 5px;

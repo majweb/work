@@ -453,8 +453,39 @@ class FrontController extends Controller
         $image = $project->image_generator ?: asset('storage/generator/universal.png');
         $page = Page::where('id', 8)->first(); // Załóżmy ID dla Privacy
 
+        // Fetch similar projects (from same sub-branch, excluding current project)
+        $subCategoryId = $project->categorySub['id'] ?? null;
+        $similarProjects = [];
+
+        if ($subCategoryId) {
+            $locale = app()->getLocale();
+            $cacheKey = "similar_projects_{$subCategoryId}_{$locale}";
+
+            $similarProjects = Cache::remember($cacheKey, now()->addHours(2), function () use ($subCategoryId, $project) {
+                $projects = Project::query()
+                    ->with(['user', 'education', 'detailprojects', 'externalCompany'])
+                    ->active()
+                    ->where('id', '!=', $project->id)
+                    ->where('categorySub->id', $subCategoryId)
+                    ->limit(10)
+                    ->get();
+
+                // Mark featured status for similar projects
+                foreach ($projects as $similar) {
+                    $similar->is_featured = $similar->user->changeProducts()
+                        ->where('product_id', 9)
+                        ->whereDate('start', '<=', now())
+                        ->whereDate('end', '>=', now())
+                        ->exists();
+                }
+
+                return $projects;
+            });
+        }
+
         return inertia()->render('Front/SingleProject', [
             'project' => $project,
+            'similarProjects' => $similarProjects,
             'image' => $image,
             'page' => $page ? new PageResource($page) : null,
         ]);

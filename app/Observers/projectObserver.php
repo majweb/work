@@ -84,6 +84,21 @@ class projectObserver
         }
     }
 
+    private function clearSimilarProjectsCache(Project $project): void
+    {
+        $locales = config('langsShorts', []);
+
+        $categorySub = is_string($project->categorySub)
+            ? json_decode($project->categorySub, true)
+            : $project->categorySub;
+
+        if (isset($categorySub['id'])) {
+            foreach ($locales as $locale) {
+                Cache::forget("similar_projects_{$categorySub['id']}_{$locale}");
+            }
+        }
+    }
+
     /**
      * Handle the Project "created" event.
      */
@@ -91,6 +106,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 
@@ -101,28 +117,23 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearProjectsListCache();
+        $this->clearSimilarProjectsCache($project);
+
         $locales = config('langsShorts', []);
 
         // Wyczyść cache zarówno dla starych jak i nowych wartości
         $this->clearCategoriesCache($project);
 
-        if ($project->wasChanged('category')) {
-            $oldCategory = is_string($project->getOriginal('category'))
-                ? json_decode($project->getOriginal('category'), true)
-                : $project->getOriginal('category');
-
-            if (isset($oldCategory['value'])) {
-                foreach ($locales as $locale) {
-                    Cache::forget('category_sub_' . $oldCategory['value'] . '_' . $locale);
-                    Cache::forget('recruit_category_sub_' . $oldCategory['value'] . '_' . $locale);
-                }
-            }
-        }
-
         if ($project->wasChanged('categorySub')) {
             $oldCategorySub = is_string($project->getOriginal('categorySub'))
                 ? json_decode($project->getOriginal('categorySub'), true)
                 : $project->getOriginal('categorySub');
+
+            if (isset($oldCategorySub['id'])) {
+                foreach ($locales as $locale) {
+                    Cache::forget("similar_projects_{$oldCategorySub['id']}_{$locale}");
+                }
+            }
 
             if (isset($oldCategorySub['value'])) {
                 foreach ($locales as $locale) {
@@ -153,6 +164,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 
@@ -163,6 +175,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 
@@ -173,6 +186,7 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
+        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 }
