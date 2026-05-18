@@ -77,7 +77,7 @@ class AplicationController extends Controller
             abort(403, 'Brak uprawnień do tej aplikacji');
         }
 
-        $aplication->load(['project.externalCompany', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo', 'candidate']);
+        $aplication->load(['project.externalCompany', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo', 'candidate.answers']);
         if($aplication->opened_by_user_id){
         $otherRecruits = OtherRecruitsResource::collection($aplication->user->recruits()->whereNull('user_blocked')->where('id','!=',$aplication->opened_by_user_id)->get());
         } else {
@@ -98,9 +98,19 @@ class AplicationController extends Controller
             return $result; // Przekierowanie z powodu braku punktów
         }
 
+        $candidateQuestions = collect([]);
+        if ($aplication->candidate) {
+            $candidate = $aplication->candidate;
+            $candidateQuestions = CandidateQuestion::where('is_active', true)
+                ->where('created_by_id', $candidate->created_by_id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+
         return inertia()->render('Firm/Aplication/Show', [
             'application' => $aplication,
-            'otherRecruits'=>$otherRecruits,
+            'otherRecruits' => $otherRecruits,
+            'candidateQuestions' => $candidateQuestions,
             'createCandidateCost' => config('getPoints.CreateCandidate', 5),
         ]);
     }

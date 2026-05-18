@@ -437,49 +437,29 @@ const dispatchActionSingleRecruit = value => {
                                     <div v-if="candidateQuestions && candidateQuestions.length > 0" class="space-y-6">
                                         <div v-for="(question, index) in candidateQuestions" :key="question.id" class="rounded-2xl bg-gray-50/50 p-6 border border-gray-100/50">
                                             <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">
-                                                {{ index + 1 }}. {{ question.title[usePage().props.language] }}
+                                                {{ index + 1 }}. {{ question.question }}
                                             </div>
 
-                                            <div v-if="question.type === 'text'" class="mt-2">
-                                                <textarea
-                                                    v-model="answersForm.answers[index].text_answer"
-                                                    rows="3"
-                                                    class="block w-full rounded-xl border border-gray-100 bg-white p-4 text-sm shadow-inner outline-none focus:border-blue-200 transition-all resize-none"
-                                                    :placeholder="__('translate.enterAnswer')"
-                                                />
+                                            <div v-if="question.answer_type === 'text'" class="mt-2">
+                                                <div class="block w-full rounded-xl border border-gray-100 bg-white p-4 text-sm shadow-inner text-gray-700">
+                                                    {{ answersForm.answers[index].text_answer || __('translate.noAnswer') }}
+                                                </div>
                                             </div>
 
-                                            <div v-else-if="question.type === 'boolean'" class="mt-2 flex gap-4">
-                                                <button
-                                                    @click="answersForm.answers[index].boolean_answer = true"
-                                                    class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest transition-all border"
-                                                    :class="answersForm.answers[index].boolean_answer === true ? 'bg-emerald-600 text-white border-transparent' : 'bg-white text-gray-400 border-gray-100'"
+                                            <div v-else-if="question.answer_type === 'boolean'" class="mt-2 flex gap-4">
+                                                <div
+                                                    class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest border"
+                                                    :class="answersForm.answers[index].boolean_answer === true ? 'bg-emerald-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
                                                 >
                                                     {{ __('translate.yes') }}
-                                                </button>
-                                                <button
-                                                    @click="answersForm.answers[index].boolean_answer = false"
-                                                    class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest transition-all border"
-                                                    :class="answersForm.answers[index].boolean_answer === false ? 'bg-red-600 text-white border-transparent' : 'bg-white text-gray-400 border-gray-100'"
+                                                </div>
+                                                <div
+                                                    class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest border"
+                                                    :class="answersForm.answers[index].boolean_answer === false ? 'bg-red-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
                                                 >
                                                     {{ __('translate.no') }}
-                                                </button>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="flex justify-end gap-3 mt-8">
-                                            <button
-                                                @click="unlockQuestions"
-                                                class="rounded-2xl border border-gray-100 bg-white px-8 py-3 text-[10px] font-black uppercase tracking-widest text-gray-400 shadow-sm hover:bg-gray-50 transition-all"
-                                            >
-                                                {{ __('translate.unlockQuestions') }}
-                                            </button>
-                                            <button
-                                                @click="saveAnswers"
-                                                class="rounded-2xl bg-[#0A2C5C] px-8 py-3 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
-                                            >
-                                                {{ __('translate.saveAnswers') }}
-                                            </button>
                                         </div>
                                     </div>
                                     <div v-else class="text-center py-8">

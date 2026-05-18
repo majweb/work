@@ -121,12 +121,22 @@ class AplicationController extends Controller implements HasMiddleware
             return $result; // Przekierowanie z powodu braku punktów
         }
 
+        $candidateQuestions = collect([]);
+        if ($aplication->candidate) {
+            $candidate = $aplication->candidate;
+            $candidateQuestions = \App\Models\CandidateQuestion::where('is_active', true)
+                ->where('created_by_id', $candidate->created_by_id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $aplication->candidate->load('answers');
+        }
 
         $locale = app()->getLocale();
         $createCandidateCost = config('getPoints.CreateCandidate', 5);
         return inertia()->render('RecruiterPages/Aplication/Show', [
             'application' => $aplication,
             'locale' => $locale,
+            'candidateQuestions' => $candidateQuestions,
             'createCandidateCost' => $createCandidateCost,
         ]);
     }

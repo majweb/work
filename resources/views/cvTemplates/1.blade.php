@@ -7,7 +7,6 @@
         @page  {
             margin: 0;
             padding: 0;
-
         }
         @font-face {
             font-family: 'Montserrat';

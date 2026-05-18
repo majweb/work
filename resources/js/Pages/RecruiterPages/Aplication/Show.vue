@@ -10,7 +10,19 @@ const props = defineProps({
     application: Object,
     otherRecruits: Array,
     project: Object,
+    candidateQuestions: Array,
     createCandidateCost: Number,
+});
+
+const answersForm = useForm({
+    answers: props.candidateQuestions?.map(q => {
+        const existingAnswer = props.application.candidate?.answers?.find(a => a.candidate_question_id === q.id);
+        return {
+            question_id: q.id,
+            text_answer: existingAnswer?.text_answer || '',
+            boolean_answer: existingAnswer?.boolean_answer !== undefined ? existingAnswer.boolean_answer : null,
+        };
+    }) || []
 });
 
 // Stan dla modalu notatek
@@ -244,16 +256,16 @@ const createCandidate = () => {
                 <div class="rounded-[3rem] border border-gray-100 bg-white shadow-xl shadow-blue-900/5 overflow-hidden">
                     <div class="p-8 md:p-10">
                         <!-- Header row -->
-                        <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                        <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
                             <!-- Left: Avatar + info -->
-                            <div class="flex items-start gap-6">
-                                <div class="w-20 h-20 rounded-[2rem] bg-blue-50 flex items-center justify-center text-2xl overflow-hidden text-[#0A2C5C] font-black border-2 border-white shadow-md">
+                            <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6">
+                                <div class="w-24 h-24 sm:w-20 sm:h-20 shrink-0 rounded-[2.5rem] sm:rounded-[2rem] bg-blue-50 flex items-center justify-center text-3xl sm:text-2xl overflow-hidden text-[#0A2C5C] font-black border-2 border-white shadow-md">
                                         <img v-if="application.worker?.profile_photo_url" :src="application.worker?.profile_photo_url" :alt="application.name" class="w-full h-full object-cover"/>
                                         <span v-else>{{ (application.name?.[0]||'') + (application.surname?.[0]||'') }}</span>
                                     </div>
 
-                                <div class="min-w-0">
-                                    <div class="flex items-center gap-3 mb-2">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 mb-3 sm:mb-2">
                                         <span class="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100/50 shadow-sm">
                                             ID {{ application.id }}
                                         </span>
@@ -262,11 +274,11 @@ const createCandidate = () => {
                                         </span>
                                     </div>
 
-                                    <h3 class="truncate text-3xl font-black text-gray-900 uppercase tracking-tight leading-none mb-2">
+                                    <h3 class="text-2xl sm:text-3xl font-black text-gray-900 uppercase tracking-tight leading-tight sm:leading-none mb-3 sm:mb-2 break-words">
                                         {{ application.name }} {{ application.surname }}
                                     </h3>
 
-                                    <div class="text-sm font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                    <div class="text-sm font-bold text-gray-400 uppercase tracking-widest flex flex-wrap items-center justify-center sm:justify-start gap-2">
                                         <Link :href="route('project-recruits.show', application.project?.id)" class="text-[#0A2C5C] hover:text-[#00a0e3] transition-colors">
                                             {{ application.project?.position?.allTranslations?.title[usePage().props.language] || __('translate.positionPlaceholder') }}
                                         </Link>
@@ -279,43 +291,46 @@ const createCandidate = () => {
                             </div>
 
                             <!-- Right: status buttons -->
-                            <div class="flex flex-col items-start gap-3 md:items-end">
-                                <div class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
-                                    {{ __('translate.applicationStatus') }}
+                            <div class="flex flex-col items-center md:items-end gap-4">
+                                <div class="flex flex-col items-center md:items-end gap-3 w-full">
+                                    <div class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                                        {{ __('translate.applicationStatus') }}
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 bg-gray-50 rounded-2xl border border-gray-100 w-full sm:w-auto">
+                                        <button
+                                            @click="updateStatus(application.id, 'yes')"
+                                            class="rounded-xl px-6 py-3 sm:py-2.5 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
+                                            :class="[
+                                                application.status === 'yes' ? 'bg-[#0A2C5C] text-white shadow-blue-900/20' : 'bg-white text-gray-400 hover:text-gray-600'
+                                            ]"
+                                        >
+                                            {{ __('translate.statusYes') }}
+                                        </button>
+
+                                        <button
+                                            @click="updateStatus(application.id, 'maybe')"
+                                            class="rounded-xl px-6 py-3 sm:py-2.5 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
+                                            :class="[
+                                                application.status === 'maybe' ? 'bg-[#06b6d4] text-white shadow-cyan-500/20' : 'bg-white text-gray-400 hover:text-gray-600'
+                                            ]"
+                                        >
+                                            {{ __('translate.statusMaybe') }}
+                                        </button>
+
+                                        <button
+                                            @click="updateStatus(application.id, 'no')"
+                                            class="rounded-xl px-6 py-3 sm:py-2.5 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
+                                            :class="[
+                                                application.status === 'no' ? 'bg-red-600 text-white shadow-red-600/20' : 'bg-white text-gray-400 hover:text-gray-600'
+                                            ]"
+                                        >
+                                            {{ __('translate.statusNo') }}
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <div class="flex gap-2 p-1.5 bg-gray-50 rounded-2xl border border-gray-100">
-                                    <button
-                                        @click="updateStatus(application.id, 'yes')"
-                                        class="rounded-xl px-6 py-2.5 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
-                                        :class="[
-                                            application.status === 'yes' ? 'bg-[#0A2C5C] text-white shadow-blue-900/20' : 'bg-white text-gray-400 hover:text-gray-600'
-                                        ]"
-                                    >
-                                        {{ __('translate.statusYes') }}
-                                    </button>
-
-                                    <button
-                                        @click="updateStatus(application.id, 'maybe')"
-                                        class="rounded-xl px-6 py-2.5 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
-                                        :class="[
-                                            application.status === 'maybe' ? 'bg-[#06b6d4] text-white shadow-cyan-500/20' : 'bg-white text-gray-400 hover:text-gray-600'
-                                        ]"
-                                    >
-                                        {{ __('translate.statusMaybe') }}
-                                    </button>
-
-                                    <button
-                                        @click="updateStatus(application.id, 'no')"
-                                        class="rounded-xl px-6 py-2.5 text-[10px] font-black uppercase tracking-widest transition-all shadow-sm"
-                                        :class="[
-                                            application.status === 'no' ? 'bg-red-600 text-white shadow-red-600/20' : 'bg-white text-gray-400 hover:text-gray-600'
-                                        ]"
-                                    >
-                                        {{ __('translate.statusNo') }}
-                                    </button>
-                                </div>
-                                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-tight flex flex-col items-end" v-if="application && application.status_changed_at">
+                                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-tight flex flex-col items-center md:items-end" v-if="application && application.status_changed_at">
                                     <div class="flex items-center gap-2">
                                         <span>{{__('translate.actualStatus')}}</span>
                                         <span class="text-[#0A2C5C]">
@@ -389,7 +404,48 @@ const createCandidate = () => {
                                             </div>
                                         </div>
                                     </div>
-                                <!-- DANE PODSTAWOWE -->
+
+                                    <!-- PYTANIA KANDYDATA -->
+                                    <div v-if="application.candidate" class="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-sm">
+                                        <div class="flex items-center gap-4 mb-8">
+                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.candidateQuestions') }}</h3>
+                                            <div class="h-px flex-1 bg-gray-100"></div>
+                                        </div>
+
+                                        <div v-if="candidateQuestions && candidateQuestions.length > 0" class="space-y-6">
+                                            <div v-for="(question, index) in candidateQuestions" :key="question.id" class="rounded-2xl bg-gray-50/50 p-6 border border-gray-100/50">
+                                                <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">
+                                                    {{ index + 1 }}. {{ question.question }}
+                                                </div>
+
+                                                <div v-if="question.answer_type === 'text'" class="mt-2">
+                                                    <div class="block w-full rounded-xl border border-gray-100 bg-white p-4 text-sm shadow-inner text-gray-700">
+                                                        {{ answersForm.answers[index]?.text_answer || __('translate.noAnswer') }}
+                                                    </div>
+                                                </div>
+
+                                                <div v-else-if="question.answer_type === 'boolean'" class="mt-2 flex gap-4">
+                                                    <div
+                                                        class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest border"
+                                                        :class="answersForm.answers[index]?.boolean_answer === true ? 'bg-emerald-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
+                                                    >
+                                                        {{ __('translate.yes') }}
+                                                    </div>
+                                                    <div
+                                                        class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest border"
+                                                        :class="answersForm.answers[index]?.boolean_answer === false ? 'bg-red-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
+                                                    >
+                                                        {{ __('translate.no') }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-else class="text-center py-8">
+                                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.noQuestions') }}</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- DANE PODSTAWOWE -->
                                 <div class="rounded-[2.5rem] border border-gray-100 bg-white p-8 shadow-sm">
                                     <div class="flex items-center gap-4 mb-8">
                                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.mainData') }}</h3>
@@ -421,11 +477,11 @@ const createCandidate = () => {
                                         </div>
                                         <div class="rounded-2xl bg-gray-50/50 p-5 border border-gray-100/50 transition-all hover:bg-white hover:shadow-md group/item">
                                             <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 group-hover/item:text-blue-500 transition-colors">{{ __('translate.project') }}</div>
-                                            <div class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight flex items-center gap-2">
+                                            <div class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight flex flex-wrap items-center gap-2">
                                                 <Link :href="route('project-recruits.show', application.project?.id)" class="hover:text-[#00a0e3] transition-colors">
                                                     {{ application.project?.title[usePage().props.language] || __('translate.noProject') }}
                                                 </Link>
-                                                <span v-if="application.project?.external_company" class="text-blue-500 text-[10px]">
+                                                <span v-if="application.project?.external_company" class="text-blue-500 text-[10px] shrink-0">
                                                     ({{ application.project.external_company.name }})
                                                 </span>
                                             </div>

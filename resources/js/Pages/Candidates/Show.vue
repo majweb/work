@@ -494,9 +494,9 @@ const filepondOptions = {
                                             </span>
                                         </div>
 
-                                        <Link :href="route('projects.show', project.project_id)"
+                                        <Link :href="noRole('firm') ? route('project-recruits.show', project.project_id) : route('projects.show', project.project_id)"
                                               class="text-lg font-black text-gray-900 truncate group-hover:text-[#0A2C5C] transition-colors uppercase tracking-tight leading-tight mb-2">
-                                            {{ project.project_name }}
+                                           {{ project.project_name }}
                                         </Link>
 
                                         <div class="flex flex-wrap gap-2 mb-6">

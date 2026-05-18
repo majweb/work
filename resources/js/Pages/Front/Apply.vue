@@ -464,6 +464,13 @@ const normalizeDate = (dateObj) => {
 
 const generatePdf = (templateId) => {
     generateCvLoading.value = true;
+
+    // Otwieramy puste okno natychmiast po kliknięciu, aby uniknąć blokady popupów
+    const pdfWindow = isClient.value ? window.open('', '_blank') : null;
+    if (pdfWindow) {
+        pdfWindow.document.write(__('translate.generatingPdf'));
+    }
+
     const transformedForm = {
         ...form,
         experiences: (form.experiences || []).map(exp => ({
@@ -483,22 +490,26 @@ const generatePdf = (templateId) => {
         .then(response => {
             generateCvLoading.value = false;
             if (response.data.url) {
-                if (isClient.value) {
-                    const pdfWindow = window.open(response.data.url, '_blank');
+                if (pdfWindow) {
+                    // Dodajemy znacznik czasu, aby uniknąć cache'owania przez przeglądarkę
+                    pdfWindow.location.href = response.data.url + '?t=' + new Date().getTime();
                 }
+
                 if (response.data.deleteUrl) {
                     setTimeout(() => {
                         axios.post(route('front.projects.deletePdf'), {file: response.data.deleteUrl})
                             .catch(error => {
                                 console.error('Błąd przy usuwaniu pliku', error);
                             });
-                    }, 3000);
+                    }, 60000); // Wydłużono czas do 1 minuty
                 }
             } else {
+                if (pdfWindow) pdfWindow.close();
                 console.error('Nie otrzymano poprawnego URL PDF');
             }
         })
         .catch(error => {
+            if (pdfWindow) pdfWindow.close();
             console.error('Błąd przy ładowaniu PDF', error);
             generateCvLoading.value = false;
         });

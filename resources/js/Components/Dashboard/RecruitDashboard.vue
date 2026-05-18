@@ -138,7 +138,7 @@
                                 <!-- STATUSY -->
                                 <div class="space-y-4 mb-8">
                                     <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.change_status') || 'Zmień status' }}</p>
-                                    <div class="grid grid-cols-3 gap-3">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
                                         <button
                                             @click="updateStatus(selectedApplication?.id, 'yes')"
                                             :class="selectedApplication.status === 'yes'
@@ -188,7 +188,7 @@
                                 </div>
 
                                 <!-- AKCJE -->
-                                <div class="grid grid-cols-2 gap-4 mt-8 pt-8 border-t border-gray-100">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-gray-100">
                                     <button
                                         @click="saveNote(selectedApplication.id, selectedApplication.note)"
                                         class="px-6 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/10 transition-all duration-500 hover:-translate-y-1"
