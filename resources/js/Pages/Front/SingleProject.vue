@@ -263,7 +263,7 @@ onMounted(async () => {
 
                     <!-- GRID SECTION 1: ICONS -->
                     <div class="p-8 md:p-16">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                             <!-- Wynagrodzenie -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
@@ -329,6 +329,25 @@ onMounted(async () => {
                                 <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
                                     {{ project.workLoad.allTranslations.name[usePage().props.language] }}
                                 </p>
+                            </div>
+
+                            <!-- Typ aplikacji -->
+                            <div v-if="project.cv && project.cv.length" class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
+                                <div class="flex gap-2 mb-6">
+                                    <div v-for="cvType in project.cv" :key="cvType.id"
+                                         class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all cursor-default"
+                                         :title="__('translate.cv_type_' + cvType.id)">
+                                        <img v-if="cvType.id === 1" src="/images/icons/cv-classic.svg" class="w-7 h-7" alt="Classic">
+                                        <img v-if="cvType.id === 2" src="/images/icons/cv-video.svg" class="w-7 h-7" alt="Video">
+                                        <img v-if="cvType.id === 3" src="/images/icons/cv-audio.svg" class="w-7 h-7" alt="Audio">
+                                    </div>
+                                </div>
+                                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.cv_type') }}</p>
+                                <div class="flex flex-col flex-wrap justify-center gap-1">
+                                    <span v-for="(cvType, index) in project.cv" :key="cvType.id" class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        {{ __('translate.cv_type_' + cvType.id) }}<span v-if="index < project.cv.length - 1">,</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 

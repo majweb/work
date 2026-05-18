@@ -1792,5 +1792,8 @@ return [
     'strongMe' => 'Podaj swoje mocne strony',
     'recordAgain' => 'Nagraj ponownie',
     'charity' => 'na cele charytatywne',
-
+    'cv_type_1' => 'Klasyczne CV',
+    'cv_type_2' => 'Video CV',
+    'cv_type_3' => 'Audio CV',
+    'cv_type' => 'Typ aplikacji',
 ];

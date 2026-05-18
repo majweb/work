@@ -740,9 +740,18 @@ const isSearching = ref(false);
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20"
-                                             :class="project.is_featured ? 'group-hover:bg-[#329CD1]' : 'group-hover:bg-[#0A2C5C]'">
-                                            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                        <div class="flex items-center gap-3">
+                                            <div v-for="cvType in project.cv" :key="cvType.id"
+                                                 class="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-sm transition-all duration-300 cursor-default"
+                                                 :title="__('translate.cv_type_' + cvType.id)">
+                                                <img v-if="cvType.id === 1" src="/images/icons/cv-classic.svg" class="w-7 h-7" alt="Classic">
+                                                <img v-if="cvType.id === 2" src="/images/icons/cv-video.svg" class="w-7 h-7" alt="Video">
+                                                <img v-if="cvType.id === 3" src="/images/icons/cv-audio.svg" class="w-7 h-7" alt="Audio">
+                                            </div>
+                                            <div class="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20"
+                                                 :class="project.is_featured ? 'group-hover:bg-[#329CD1]' : 'group-hover:bg-[#0A2C5C]'">
+                                                <svg class="w-6 h-6 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
