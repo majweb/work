@@ -297,7 +297,7 @@ const socialLinks = [
         ></div>
 
         <!-- Header -->
-        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-1">
+        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <header class="flex items-center h-20 justify-between mt-4 bg-white/80 backdrop-blur-md rounded-[2rem] px-6 md:px-10 border border-gray-100 shadow-xl shadow-blue-900/5">
                 <Link :href="route('front')" class="flex items-center shrink-0">
                     <img v-if="route().current('front')" src="/images/logo-horizontal.svg" class="h-8 md:h-10 w-auto" :alt="__('translate.logo')" />
