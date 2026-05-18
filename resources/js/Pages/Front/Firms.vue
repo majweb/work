@@ -320,6 +320,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
         </div>
     </FrontLayout>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style>
 @keyframes shimmer {
     0% { background-position: -200% 0; }
@@ -339,4 +340,3 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
     color: rgba(10, 44, 92, 0.4) !important;
 }
 </style>
-<style src="vue-multiselect/dist/vue-multiselect.css"></style>
