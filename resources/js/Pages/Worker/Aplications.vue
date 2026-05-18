@@ -167,9 +167,9 @@ const getApplicationProgress = (status) => {
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.manageYourApplications') }}</p>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row gap-4 items-center">
+                            <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                                 <!-- Wyszukiwarka -->
-                                <div class="relative flex-1 min-w-[300px]">
+                                <div class="relative flex-1 sm:min-w-[300px]">
                                     <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
@@ -177,12 +177,12 @@ const getApplicationProgress = (status) => {
                                         v-model="searchQuery"
                                         type="text"
                                         :placeholder="__('translate.search_placeholder')"
-                                        class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border-gray-100 focus:bg-white focus:ring-0 focus:border-blue-200 rounded-2xl transition-all text-sm"
+                                        class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border-gray-100 focus:bg-white focus:ring-0 focus:border-blue-200 rounded-2xl transition-all text-sm placeholder:uppercase"
                                     >
                                 </div>
 
                                 <!-- Multiselect status -->
-                                <div class="relative min-w-[200px]">
+                                <div class="relative sm:min-w-[200px]">
                                     <Multiselect
                                         v-model="statusFilter"
                                         :options="statusOptions"

@@ -283,7 +283,7 @@ const isSearching = ref(false);
                         :allowTouchMove="false"
                         navigation
                         :pagination="{ clickable: true }"
-                        class="h-[300px] w-full rounded-[2.5rem] overflow-hidden"
+                        class="w-full rounded-[2.5rem] overflow-hidden"
                     >
                         <swiper-slide v-for="slide in props.banners" :key="slide.id">
                             <a :href="slide.url" class="block w-full h-full">

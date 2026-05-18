@@ -123,7 +123,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                         :allowTouchMove="false"
                         navigation
                         :pagination="{ clickable: true }"
-                        class="h-[300px] w-full rounded-[2.5rem] overflow-hidden"
+                        class="w-full rounded-[2.5rem] overflow-hidden"
                     >
                         <swiper-slide v-for="slide in props.banners" :key="slide.id">
                             <a :href="slide.url" class="block w-full h-full">
@@ -139,16 +139,16 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                 <!-- Formularz wyszukiwania -->
                 <div class="bg-[#0A2C5C] rounded-[3rem] shadow-xl shadow-blue-900/10 border border-[#0A2C5C] p-10">
                     <form @submit.prevent="submit" class="w-full">
-                        <div class="flex items-center justify-between mb-8">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
                             <div class="flex items-center gap-4 flex-1">
-                                <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
+                                <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.filter') }}</h3>
                                 <div class="h-px flex-1 bg-white/10"></div>
                             </div>
-                            <div class="flex gap-3 items-center ml-4">
+                            <div class="flex flex-wrap gap-3 items-center">
                                 <button
                                     type="submit"
                                     :disabled="loading"
-                                    class="px-8 py-3 bg-[#e31e24] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+                                    class="flex-1 sm:flex-none px-8 py-3 bg-[#e31e24] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-red-900/20 hover:bg-red-700 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2"
                                 >
                                     <svg
                                         v-if="loading"
@@ -166,7 +166,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     v-if="form.country || form.name"
                                     type="button"
                                     @click="clearFilters"
-                                    class="px-6 py-3 bg-white/5 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-white/10 shadow-sm transition-all hover:-translate-y-0.5"
+                                    class="flex-1 sm:flex-none px-6 py-3 bg-white/5 border border-white/10 text-white/80 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-white/10 shadow-sm transition-all hover:-translate-y-0.5 text-center"
                                 >
                                     {{ __('translate.clearFiltersOnly') }}
                                 </button>

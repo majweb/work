@@ -289,7 +289,7 @@ onMounted(async () => {
                                     <img src="/images/icons/praca_hybrydowa.svg" alt="work icon" class="w-10 h-10" />
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('projects.work') }}</p>
-                                <div class="flex flex-wrap justify-center gap-2">
+                                <div class="flex flex-col flex-wrap justify-center gap-2">
                                     <span v-for="workingMode in project.workingMode" class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
                                         {{ workingMode.allTranslations.title[usePage().props.language] }}
                                     </span>

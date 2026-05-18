@@ -743,7 +743,7 @@ onMounted(async () => {
                 <!-- Nagłówek z linkiem wstecz -->
                 <div class="mb-6">
                     <Link
-                        :href="route('project-recruits.index')"
+                        :href="route('projects.show', props.project.id)"
                         class="inline-flex items-center text-[#e31e24] hover:text-red-700 font-semibold text-xs uppercase tracking-wider transition-colors"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -454,7 +454,7 @@ onUnmounted(()=>{
 
                                         <div class="border-t border-gray-100 py-1">
                                             <form @submit.prevent="logout">
-                                                <DropdownLink as="button" class="!text-red-600 hover:!text-red-700 hover:!bg-red-50">
+                                                <DropdownLink as="button" class="!text-red-600 hover:!text-red-700 hover:!bg-red-50 !uppercase">
                                                     {{__('translate.logout')}}
                                                 </DropdownLink>
                                             </form>

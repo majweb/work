@@ -595,7 +595,7 @@ const removeFile = async (source, load) => {
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                             <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100/50">
                                 <dt class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                     {{ __('translate.projectID') }}

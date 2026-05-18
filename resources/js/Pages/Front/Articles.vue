@@ -36,7 +36,7 @@ const props = defineProps({
         type="website"
     >
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
                 <!-- BANNERS SWIPER -->
                 <div v-if="isClient && props.banners?.length" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden p-4">
@@ -49,7 +49,7 @@ const props = defineProps({
                         :allowTouchMove="false"
                         navigation
                         :pagination="{ clickable: true }"
-                        class="h-[300px] w-full rounded-[2.5rem] overflow-hidden"
+                        class="w-full rounded-[2.5rem] overflow-hidden"
                     >
                         <swiper-slide v-for="slide in props.banners" :key="slide.id">
                             <a :href="slide.url" class="block w-full h-full">
