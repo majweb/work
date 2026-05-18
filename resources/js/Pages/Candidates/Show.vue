@@ -32,6 +32,11 @@ const categorySearchQuery = ref('');
 const customTagSearchQuery = ref('');
 const isSavingTags = ref(false);
 const isSavingCv = ref(false);
+const goBack = () => {
+    if (typeof window !== 'undefined') {
+        window.history.back();
+    }
+};
 
 const form = useForm({
     tags: []
@@ -381,18 +386,26 @@ const filepondOptions = {
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     {{ __('translate.candidateDetails') }}
                 </h2>
-
-                <Link
-                    :href="route('candidates.index')"
-                    class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
-                >
-                    <span class="text-lg leading-none">←</span>
-                    {{ __('translate.backToList') }}
-                </Link>
             </div>
         </template>
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <button
+                        @click="goBack"
+                        class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-gray-500 shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
+                    >
+                        <span class="text-lg leading-none">←</span>
+                        {{ __('translate.back') || 'Wstecz' }}
+                    </button>
+
+                    <Link
+                        :href="route('candidates.index')"
+                        class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
+                    >
+                        {{ __('translate.backToList') }}
+                    </Link>
+                </div>
                 <!-- HEADER CARD -->
                 <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-8">

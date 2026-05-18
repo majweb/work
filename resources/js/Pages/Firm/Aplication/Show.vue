@@ -270,8 +270,8 @@ const dispatchActionSingleRecruit = value => {
                     <div class="p-8">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-900">{{ __('translate.aplicationDetails') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.aplicationDetailsInfo') }}</p>
+                                <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.aplicationDetails') }}</h2>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.aplicationDetailsInfo') }}</p>
                             </div>
                         </div>
                     </div>

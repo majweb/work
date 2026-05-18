@@ -22,6 +22,12 @@ const selectedProject = ref(null);
 const confirmCancelProject = ref(false);
 const map = ref(null);
 
+const goBack = () => {
+    if (typeof window !== 'undefined') {
+        window.history.back();
+    }
+};
+
 const openModal = (project)=>{
     confirmCancelProject.value = true;
     selectedProject.value = project;
@@ -116,13 +122,13 @@ onMounted(async () => {
                         </div>
                     </div>
 
-                    <Link
-                        :href="route('project-recruits.index')"
+                    <button
+                        @click="goBack"
                         class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-[#0A2C5C] shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
                     >
                         <span class="text-lg leading-none">←</span>
-                        {{ __('translate.backButton') }}
-                    </Link>
+                        {{ __('translate.back') || __('translate.backButton') }}
+                    </button>
                 </div>
 
                 <!-- Status naboru i statystyki -->
