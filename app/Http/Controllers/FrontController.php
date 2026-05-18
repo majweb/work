@@ -179,8 +179,7 @@ class FrontController extends Controller
 
         // Tworzymy unikalny klucz na podstawie wersji, języka i wszystkich parametrów filtrowania
         // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
-        $cacheKey = "projects_list_v{$version}_".app()->getLocale().'_'.date('Y-m-d').'_'.md5(json_encode(request()->all()));
-
+        $cacheKey = "projects_list_v{$version}_" . app()->getLocale() . '_' . date('Y-m-d_H') . '_' . md5(json_encode(request()->all()));
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
             $query = Project::with(['user.changeProducts', 'externalCompany'])->featured()->active()->newest();
 
@@ -408,8 +407,8 @@ class FrontController extends Controller
         }, 'projects.user.firm.media', 'projects.externalCompany']);
         $user->loadCount(['changeProducts as is_featured_count' => function ($query) {
             $query->where('product_id', 9)
-                ->whereDate('start', '<=', now())
-                ->whereDate('end', '>=', now());
+                ->where('start', '<=', now())
+                ->where('end', '>=', now());
         }]);
         $page = Page::where('id', 17)->first(); // Załóżmy ID dla Privacy
 
@@ -431,8 +430,8 @@ class FrontController extends Controller
 
             $fullProject->is_featured = $fullProject->user->changeProducts()
                 ->where('product_id', 9)
-                ->whereDate('start', '<=', now())
-                ->whereDate('end', '>=', now())
+                ->where('start', '<=', now())
+                ->where('end', '>=', now())
                 ->exists();
 
             return $fullProject;
@@ -474,8 +473,8 @@ class FrontController extends Controller
                 foreach ($projects as $similar) {
                     $similar->is_featured = $similar->user->changeProducts()
                         ->where('product_id', 9)
-                        ->whereDate('start', '<=', now())
-                        ->whereDate('end', '>=', now())
+                        ->where('start', '<=', now())
+                        ->where('end', '>=', now())
                         ->exists();
                 }
 
@@ -664,8 +663,8 @@ class FrontController extends Controller
                 'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
         }])->withCount(['changeProducts as is_featured_count' => function ($query) {
             $query->where('product_id', 9)
-                ->whereDate('start', '<=', now())
-                ->whereDate('end', '>=', now());
+                ->where('start', '<=', now())
+                ->where('end', '>=', now());
         }]);
 
         // Filtrowanie po kraju
@@ -698,13 +697,14 @@ class FrontController extends Controller
 
         $featuresRaw->loadCount(['changeProducts as is_featured_count' => function ($query) {
             $query->where('product_id', 9)
-                ->whereDate('start', '<=', now())
-                ->whereDate('end', '>=', now());
+                ->where('start', '<=', now())
+                ->where('end', '>=', now());
         }]);
 
         $features = $featuresRaw->map(function ($user) {
             return (new FrontUserResource($user))->resolve();
         });
+
 
         $countries = (new Helper)->makeCountriesToSelectHasFirms();
         $page = Page::findOrFail(7);

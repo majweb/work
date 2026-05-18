@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ClearExpiredProductsCache;
 use App\Console\Commands\UpdateMaybeApplicationsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         UpdateMaybeApplicationsCommand::class,
+        ClearExpiredProductsCache::class,
     ];
 
     /**
@@ -23,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('applications:update-maybe-status')->everyFiveMinutes();
+        $schedule->command("cache:clear-expired-products")->everyFiveMinutes();
     }
 
     /**

@@ -100,9 +100,9 @@
             vertical-align: middle;
         }
         .name {
-            font-size: 40px;
+            font-size: 30px;
             font-weight: bold;
-            line-height: 40px;
+            line-height: 30px;
             margin:25px 0;
             text-transform: uppercase;
             letter-spacing: 2px;

@@ -42,8 +42,8 @@ class Banner extends Model implements HasMedia
             ->inRandomOrder()
             ->whereHas('user.changeProducts', function ($q) {
                 $q->where('product_id', 8)
-                    ->whereDate('start', '<=', now())
-                    ->whereDate('end', '>=', now());
+                    ->where('start', '<=', now())
+                    ->where('end', '>=', now());
             });
     }
 

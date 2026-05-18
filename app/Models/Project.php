@@ -195,8 +195,8 @@ class Project extends Model
         $query->withCount(['user as is_featured' => function (Builder $q) {
             $q->whereHas('changeProducts', function (Builder $q2) {
                 $q2->where('product_id', 9)
-                    ->whereDate('start', '<=', now())
-                    ->whereDate('end', '>=', now());
+                    ->where('start', '<=', now())
+                    ->where('end', '>=', now());
             });
         }]);
     }

@@ -242,10 +242,7 @@
             font-size: 16px;
             color: #58595b;
             z-index: 99999;
-            text-align: right;
-            position: relative;
-            top: -30px;
-            right: 35px;
+            text-align: left;
         }
 
         .contact-item {

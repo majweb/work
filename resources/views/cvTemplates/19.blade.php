@@ -69,16 +69,17 @@
             height: auto;
             margin: 0 auto;
             margin-top: -10px;
+            margin-bottom: 10px;
         }
 
         .name-section h1 {
             margin: 0;
             padding: 0;
-            font-size: 50px;
+            font-size: 30px;
             color: #333;
             text-transform: uppercase;
             letter-spacing: 2px;
-            line-height: 50px;
+            line-height: 25px;
         }
 
         .birth-date {

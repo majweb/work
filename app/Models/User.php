@@ -159,8 +159,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $query->whereHas('changeProducts', function ($q) {
             $q->where('product_id', 9)
-                ->whereDate('start', '<=', now())
-                ->whereDate('end', '>=', now());
+                ->where('start', '<=', now())
+                ->where('end', '>=', now());
         });
     }
 

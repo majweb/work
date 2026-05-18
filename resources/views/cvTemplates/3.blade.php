@@ -130,6 +130,7 @@
             height: 150px !important;
         }
         .last-section{
+            margin-top: 60px;
             height: 200px !important;
         }
         .section {

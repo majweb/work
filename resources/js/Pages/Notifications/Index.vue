@@ -112,15 +112,15 @@ const markAllAsRead = () => {
                 <!-- HEADER CARD -->
                 <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-8">
-                        <div class="flex justify-between items-center">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-4">
                             <div class="uppercase">
-                                <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.notifications') }}</h2>
-                                <p class="text-sm text-gray-500 mt-1">{{ __('translate.stayInformedAboutYourUpdates') }}</p>
+                                <h2 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.notifications') }}</h2>
+                                <p class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ __('translate.stayInformedAboutYourUpdates') }}</p>
                             </div>
 
                             <button v-if="notifications.data.some(n => !n.read_at)"
                                     @click="markAllAsRead"
-                                    class="inline-flex items-center px-6 py-2 bg-red-50 text-red-600 text-xs font-bold rounded-xl hover:bg-red-100 transition-all uppercase tracking-widest">
+                                    class="w-full sm:w-auto inline-flex justify-center items-center px-6 py-2 bg-red-50 text-red-600 text-xs font-bold rounded-xl hover:bg-red-100 transition-all uppercase tracking-widest">
                                 {{ __('translate.markAllAsRead') }}
                             </button>
                         </div>

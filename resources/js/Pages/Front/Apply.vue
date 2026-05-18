@@ -1854,8 +1854,8 @@ const removeFile = async (source, load) => {
                                             <span
                                                 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{
                                                     __('translate.quantity')
-                                                }}: {{ form.langs.length }}/5</span>
-                                            <button type="button" @click="addLang" v-if="form.langs.length < 5"
+                                                }}: {{ form.langs.length }}/4</span>
+                                            <button type="button" @click="addLang" v-if="form.langs.length < 4"
                                                     class="inline-flex items-center gap-2 px-6 py-3 bg-[#00a0e3] hover:bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-blue-500/20 active:scale-95">
                                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
                                                      viewBox="0 0 24 24" stroke-width="4">
@@ -1951,7 +1951,7 @@ const removeFile = async (source, load) => {
                                     <div
                                         class="p-8 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 shadow-inner">
                                         <multiselect id="tagging" v-model="form.skills" label="name" track-by="code"
-                                                     :options="skillsOptions" :max="10" :multiple="true"
+                                                     :options="skillsOptions" :max="5" :multiple="true"
                                                      :taggable="true" @tag="addSkill"
                                                      :placeholder="__('translate.tagplaceholder')"
                                                      :tag-placeholder="''"

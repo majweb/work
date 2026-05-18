@@ -77,12 +77,14 @@
         .section {
             font-size: 12px;
             padding-left: 24px;
+            padding-right: 10px;
         }
 
         .section ul {
             margin: 0;
             padding: 0;
             list-style: none;
+            word-wrap: break-word;
         }
         .disc{
             list-style: disc !important;
@@ -193,8 +195,8 @@
         .inner{
             position: absolute;
             top: 50%;
-            left: 60px;
-            width: 90%;
+            right: 40px;
+            width: 80%;
             transform: translateY(-50%);
             height: auto;
             z-index:3 !important;
@@ -212,7 +214,9 @@
         .inner p {
             padding: 0;
             margin: 0;
+            padding-right: 10px;
             font-size: 25px;
+            text-align: right;
         }
         .left-inner{
             position: relative;
@@ -256,7 +260,8 @@
                 <h3>{{__('CvSchool')}}</h3>
                 <ul>
                     @foreach($data['educations'] as $education)
-                        <li><strong>{{$education['school']}} | {{$education['city']}}</strong><br>
+                        <li><strong>{{$education['school']}}</strong><br>
+                        <strong>{{$education['city']}}</strong><br>
                             {{$education['level']['name']}} - {{$education['specialization']}}<br>{{__('CvFinish')}} {{$education['finish']}}
                         </li>
                     @endforeach

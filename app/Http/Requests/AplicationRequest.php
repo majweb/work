@@ -383,8 +383,8 @@ class AplicationRequest extends FormRequest
                         }
                     }
                 },
-                'array', 'between:0,5' => function ($attribute, $val, $fail) {
-                    if (count($val) > 5) {
+                'array', 'between:0,4' => function ($attribute, $val, $fail) {
+                    if (count($val) > 4) {
                         $fail(__('translate.toMuchElements'));
                     }
                 }],
