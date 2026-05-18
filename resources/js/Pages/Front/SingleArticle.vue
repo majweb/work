@@ -353,32 +353,35 @@ const articleSchema = computed(() => {
     // Nagłówki
     h1 {
         font-size: 1.4rem;
-        @media (min-width: 768px) {
-            font-size: 1.8rem;
-        }
         font-weight: 700;
         margin: 1.5rem 0 1rem 0;
         color: #0a2c5c;
+
+        @media (min-width: 768px) {
+            font-size: 1.8rem;
+        }
     }
 
     h2 {
         font-size: 1.3rem;
-        @media (min-width: 768px) {
-            font-size: 1.6rem;
-        }
         font-weight: 600;
         margin: 1.4rem 0 0.9rem 0;
         color: #0a2c5c;
+
+        @media (min-width: 768px) {
+            font-size: 1.6rem;
+        }
     }
 
     h3 {
         font-size: 1.2rem;
-        @media (min-width: 768px) {
-            font-size: 1.4rem;
-        }
         font-weight: 600;
         margin: 1.2rem 0 0.8rem 0;
         color: #0a2c5c;
+
+        @media (min-width: 768px) {
+            font-size: 1.4rem;
+        }
     }
 
     h4 {
