@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\CvClassic;
 use App\Services\DictionaryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class WorkerController extends Controller
 {
@@ -90,11 +91,18 @@ class WorkerController extends Controller
         $user = auth()->user();
         $user->load('workerDetail');
 
-        $myCvs = $user
-            ->myCvs()
-            ->with(['project'])
-            ->orderByDesc('created_at')
-            ->get();
+        $myCvs = Cache::remember('user_cvs_' . $user->id . '_' . app()->getLocale(), 300, function () use ($user) {
+            return $user
+                ->myCvs()
+                ->with(['project:id,category,position', 'aplication:id,pathCv'])
+                ->orderByDesc('created_at')
+                ->get()
+                ->map(function ($cv) {
+                    return array_merge($cv->toArray(), [
+                        'pathCv' => $cv->aplication->pathCv ?? null,
+                    ]);
+                })->toArray();
+        });
 
         $positions = Category::getCachedWithoutPositionsWithoutDetail();
 
