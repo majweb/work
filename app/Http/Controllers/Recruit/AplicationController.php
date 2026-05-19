@@ -103,6 +103,14 @@ class AplicationController extends Controller implements HasMiddleware
     public function show(Aplication $aplication)
     {
         Gate::authorize('aplication-recruiter', $aplication);
+
+        // Zablokuj dostęp do usuniętych ofert starszych niż 90 dni
+        if ($aplication->status === 'no' && $aplication->whenDeleted && $aplication->whenDeleted->lt(now()->subDays(90))) {
+            session()->flash('flash.banner', __('translate.cannot_view_deleted_90_days'));
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        }
+
         $aplication->load(['project.externalCompany', 'cvClassic', 'media', 'worker', 'notes', 'opened_by', 'status_changed_by','cvAudio','cvVideo','candidate']);
 
 

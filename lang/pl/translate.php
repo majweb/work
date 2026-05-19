@@ -1801,4 +1801,6 @@ return [
     'noExternalCompaniesFoundRecruit' => 'Nie znaleziono firm zewnętrznych.',
     'mustAddExternalCompanyBeforeEvidenceRecruit' => 'Aby dodać ewidencję, firma zewnętrzna musi być utworzona przez administratora firmy.',
     'drag_to_reorder' => 'Przeciągnij, aby zmienić kolejność',
+    'deleted' => 'Usunięte',
+    'cannot_view_deleted_90_days' => 'Nie można przeglądać usuniętych ofert starszych niż 90 dni.',
 ];

@@ -34,7 +34,7 @@ const showSessionModal = ref(false);
 const countdown = ref(10);
 let timeoutTimer = null;
 let countdownTimer = null;
-const TIMEOUT_MS = 15 * 60 * 1000; // 15 minut
+const TIMEOUT_MS = 30 * 60 * 1000; // 30 minut
 
 const startCountdown = () => {
     countdown.value = 10;

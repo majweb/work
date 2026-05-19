@@ -77,6 +77,13 @@ class AplicationController extends Controller
             abort(403, 'Brak uprawnień do tej aplikacji');
         }
 
+        // Zablokuj dostęp do usuniętych ofert starszych niż 90 dni
+        if ($aplication->status === 'no' && $aplication->whenDeleted && $aplication->whenDeleted->lt(now()->subDays(90))) {
+            session()->flash('flash.banner', __('translate.cannot_view_deleted_90_days'));
+            session()->flash('flash.bannerStyle', 'danger');
+            return back();
+        }
+
         $aplication->load(['project.externalCompany', 'cvClassic', 'media', 'worker', 'notes','openedBy','status_changed_by','cvAudio','cvVideo', 'candidate.answers']);
         if($aplication->opened_by_user_id){
         $otherRecruits = OtherRecruitsResource::collection($aplication->user->recruits()->whereNull('user_blocked')->where('id','!=',$aplication->opened_by_user_id)->get());
