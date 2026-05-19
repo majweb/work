@@ -482,7 +482,15 @@ class CandidatesController extends Controller
     public function evidence(Candidate $candidate, \App\Services\DictionaryService $dictionaryService)
     {
         // Sprawdzenie czy kandydat ma aplikację w firmie zalogowanego użytkownika
-        if ($candidate->created_by_id !== Auth::id()) {
+        if (
+            $candidate->created_by_id !== Auth::id() &&
+            !$candidate->applications()
+                ->where(function ($q) {
+                    $q->where('user_id', Auth::id())
+                        ->orWhere('recruiter_id', Auth::id());
+                })
+                ->exists()
+        ) {
             abort(403);
         }
         $candidate->load('media','created_by');

@@ -89,7 +89,7 @@
                                 </div>
 
                                 <div class="flex-1 min-w-0">
-                                    <h4 class="text-sm font-black truncate leading-tight transition-colors" :class="selectedApplication?.id === application.id ? 'text-white' : 'text-[#0A2C5C]'">
+                                    <h4 class="text-sm font-black leading-tight transition-colors" :class="selectedApplication?.id === application.id ? 'text-white' : 'text-[#0A2C5C]'">
                                         {{ application.user?.name }}
                                     </h4>
                                     <p class="text-[9px] font-black uppercase tracking-widest mt-1 transition-colors" :class="selectedApplication?.id === application.id ? 'text-blue-200' : 'text-gray-400'">
@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="text-[9px] font-black text-[#00a0e3] uppercase tracking-widest mb-1">ID {{ selectedApplication.id }}</p>
-                                        <h4 class="font-black text-[#0A2C5C] text-xl truncate uppercase tracking-tight">{{ selectedApplication.user?.name }}</h4>
+                                        <h4 class="font-black text-[#0A2C5C] text-xl uppercase tracking-tight">{{ selectedApplication.user?.name }}</h4>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ moment(selectedApplication.created_at).format('DD.MM.YYYY') }}</p>
                                     </div>
                                 </div>
