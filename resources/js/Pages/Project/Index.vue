@@ -505,7 +505,7 @@ const { getPositionTitle } = useProjectHelpers();
                                     </span>
                                     <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
                                 </div>
-                                <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
+                                <h4 class="text-lg font-black text-[#0A2C5C] uppercase tracking-tight leading-tight group-hover:text-[#0A2C5C] transition-colors">
                                     {{ getPositionTitle(project) }}
                                 </h4>
                             </div>

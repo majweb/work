@@ -200,14 +200,14 @@ const { getPositionTitle } = useProjectHelpers();
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- Header Card -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <h2 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight text-center sm:text-left">
                             {{ __('translate.offerts') }}
                         </h2>
                         <Link
                             :href="route('project-recruits.create')"
-                            class="inline-flex items-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
+                            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
                         >
                             {{ __('translate.create') || 'UTWÓRZ' }}
                         </Link>
@@ -215,7 +215,7 @@ const { getPositionTitle } = useProjectHelpers();
                 </div>
 
                 <!-- FILTRY -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10">
                     <div class="flex items-center gap-4 mb-8">
                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') || 'Filtruj' }}</h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
@@ -360,11 +360,11 @@ const { getPositionTitle } = useProjectHelpers();
                         </div>
                     </div>
                     <!-- Przyciski filtrów -->
-                    <div class="flex flex-wrap gap-4 pt-6 border-t border-gray-50">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-50">
                         <button
                             @click="applyFilters"
                             :disabled="isLoading"
-                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
+                            class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                         >
                             <svg v-if="isLoading" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -375,7 +375,7 @@ const { getPositionTitle } = useProjectHelpers();
                         <button
                             @click="resetFilters"
                             :disabled="isLoading"
-                            class="px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {{ __('translate.reset') || 'RESETUJ' }}
                         </button>
@@ -399,23 +399,29 @@ const { getPositionTitle } = useProjectHelpers();
                     <div
                         v-for="project in projects.data"
                         :key="project.id"
-                        class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
+                        class="group bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-5 sm:p-6"
                         :class="{'opacity-60 grayscale-[0.5]': !project.is_active}"
                     >
                         <!-- Górna linia -->
                         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                            <div class="flex flex-col md:flex-row md:items-center gap-4">
-                                <div class="flex items-center gap-4">
+                            <div class="flex flex-col md:flex-row md:items-center gap-2 sm:gap-4">
+                                <div class="flex items-center gap-3 sm:gap-4">
                                     <span class="px-3 py-1 bg-blue-50 text-blue-500 font-black text-[10px] uppercase tracking-widest rounded-lg border border-blue-100/50">
                                         ID {{ project.id }}
                                     </span>
                                     <div class="h-4 w-px bg-gray-200 hidden md:block"></div>
+                                    <div class="flex items-center gap-2 md:hidden">
+                                        <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
+                                            {{ project.created_at }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <h4 class="text-lg font-black text-gray-900 uppercase tracking-tight leading-tight truncate group-hover:text-[#0A2C5C] transition-colors">
+                                <h4 class="text-base sm:text-lg font-black text-[#0A2C5C] uppercase tracking-tight leading-tight group-hover:text-[#0A2C5C] transition-colors">
                                     {{ getPositionTitle(project) }}
                                 </h4>
                             </div>
-                            <div class="flex flex-col items-end gap-1">
+                            <div class="hidden md:flex flex-col items-end gap-1">
                                 <div class="flex items-center gap-2">
                                     <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -431,15 +437,24 @@ const { getPositionTitle } = useProjectHelpers();
                                     </span>
                                 </div>
                             </div>
+                            <!-- Mobilna firma zewnętrzna -->
+                            <div v-if="project.external_company" class="md:hidden flex items-center gap-2">
+                                <svg class="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                                <span class="text-[9px] font-black text-blue-600 uppercase tracking-tight">
+                                    {{ project.external_company.name }}
+                                </span>
+                            </div>
                         </div>
 
                         <!-- Środkowa sekcja: Lokalizacja i płaca -->
-                        <div class="flex flex-wrap items-center gap-6 mb-8">
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 mb-8">
                             <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400">
+                                <div class="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 shrink-0">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 </div>
-                                <p class="text-xs font-black text-gray-700 uppercase tracking-widest">
+                                <p class="text-[10px] sm:text-xs font-black text-gray-700 uppercase tracking-widest">
                                     <span v-if="project.country">{{ project.country }}</span>
                                     <span v-if="project.country && project.city"> • </span>
                                     <span v-if="project.city">{{ project.city }}</span>
@@ -448,21 +463,21 @@ const { getPositionTitle } = useProjectHelpers();
                             </div>
 
                             <div v-if="project.basicSalaryFrom" class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500">
+                                <div class="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 </div>
-                                <div class="flex items-baseline gap-2">
-                                    <p class="text-xs font-black text-blue-600 uppercase tracking-widest">
+                                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                                    <p class="text-[10px] sm:text-xs font-black text-blue-600 uppercase tracking-widest">
                                         {{ project.basicSalaryFrom ?? '-' }} - {{ project.basicSalaryTo ?? '-' }}
                                     </p>
-                                    <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">
+                                    <span class="text-[9px] sm:text-[10px] font-black text-blue-400 uppercase tracking-widest">
                                         {{ project.currency }}
                                     </span>
                                     <div class="flex items-center gap-1">
-                                        <span v-if="project.salary_type" class="text-[10px] font-black text-blue-400 uppercase">
+                                        <span v-if="project.salary_type" class="text-[9px] sm:text-[10px] font-black text-blue-400 uppercase">
                                             {{ __('translate.' + project.salary_type) }}
                                         </span>
-                                        <span v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-600 uppercase">
+                                        <span v-if="project.inclusive_recruitment" class="text-[9px] sm:text-[10px] font-black text-blue-600 uppercase">
                                             / {{ __('translate.sickPeople') }}
                                         </span>
                                     </div>
@@ -471,60 +486,60 @@ const { getPositionTitle } = useProjectHelpers();
                         </div>
 
                         <!-- Statystyki i przyciski -->
-                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pt-6 border-t border-gray-100">
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 pt-6 border-t border-gray-100">
                             <!-- Statystyki -->
-                            <div class="flex flex-wrap items-center gap-3 flex-1">
+                            <div class="grid grid-cols-2 xs:grid-cols-3 sm:flex sm:flex-wrap items-center gap-3 flex-1">
                                 <!-- Wyświetlenia -->
-                                <div class="bg-gray-50/80 px-4 py-3 rounded-2xl border border-gray-100 flex items-center gap-3">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                <div class="bg-gray-50/80 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-gray-100 flex items-center gap-3">
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-gray-400 uppercase leading-none mb-1">{{ __('translate.views') || 'Wyświetlenia' }}</span>
-                                        <span class="text-xs font-black text-gray-900 leading-none">{{ project.views_count }}</span>
+                                        <span class="text-[7px] sm:text-[8px] font-black text-gray-400 uppercase leading-none mb-1">{{ __('translate.views') || 'Wyświetlenia' }}</span>
+                                        <span class="text-[10px] sm:text-xs font-black text-gray-900 leading-none">{{ project.views_count }}</span>
                                     </div>
                                 </div>
 
                                 <!-- Aplikacje -->
-                                <div class="bg-gray-50/80 px-4 py-3 rounded-2xl border border-gray-100 flex items-center gap-3">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                <div class="bg-gray-50/80 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-gray-100 flex items-center gap-3">
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-gray-400 uppercase leading-none mb-1">{{ __('translate.applications') || 'Aplikacje' }}</span>
-                                        <span class="text-xs font-black text-gray-900 leading-none">{{ project.aplications_count }}</span>
+                                        <span class="text-[7px] sm:text-[8px] font-black text-gray-400 uppercase leading-none mb-1">{{ __('translate.applications') || 'Aplikacje' }}</span>
+                                        <span class="text-[10px] sm:text-xs font-black text-gray-900 leading-none">{{ project.aplications_count }}</span>
                                     </div>
                                 </div>
 
                                 <!-- Tak -->
-                                <div class="bg-blue-50/50 px-4 py-3 rounded-2xl border border-blue-100/50 flex items-center gap-3">
+                                <div class="bg-blue-50/50 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-blue-100/50 flex items-center gap-3">
                                     <div class="w-1.5 h-1.5 rounded-full bg-[#0A2C5C] shadow-sm shadow-blue-200"></div>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-blue-900/50 uppercase leading-none mb-1">{{ __('translate.yes') || 'Tak' }}</span>
-                                        <span class="text-xs font-black text-[#0A2C5C] leading-none">{{ project.yes_count }}</span>
+                                        <span class="text-[7px] sm:text-[8px] font-black text-blue-900/50 uppercase leading-none mb-1">{{ __('translate.yes') || 'Tak' }}</span>
+                                        <span class="text-[10px] sm:text-xs font-black text-[#0A2C5C] leading-none">{{ project.yes_count }}</span>
                                     </div>
                                 </div>
 
                                 <!-- Może -->
-                                <div class="bg-cyan-50/50 px-4 py-3 rounded-2xl border border-cyan-100/50 flex items-center gap-3">
+                                <div class="bg-cyan-50/50 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-cyan-100/50 flex items-center gap-3">
                                     <div class="w-1.5 h-1.5 rounded-full bg-[#00a0e3] shadow-sm shadow-cyan-200"></div>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1">{{ __('translate.maybe') || 'Może' }}</span>
-                                        <span class="text-xs font-black text-[#00a0e3] leading-none">{{ project.maybe_count }}</span>
+                                        <span class="text-[7px] sm:text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1">{{ __('translate.maybe') || 'Może' }}</span>
+                                        <span class="text-[10px] sm:text-xs font-black text-[#00a0e3] leading-none">{{ project.maybe_count }}</span>
                                     </div>
                                 </div>
 
                                 <!-- Nie -->
-                                <div class="bg-red-50/50 px-4 py-3 rounded-2xl border border-red-100/50 flex items-center gap-3">
+                                <div class="bg-red-50/50 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-red-100/50 flex items-center gap-3">
                                     <div class="w-1.5 h-1.5 rounded-full bg-[#e31e24] shadow-sm shadow-red-200"></div>
                                     <div class="flex flex-col">
-                                        <span class="text-[8px] font-black text-red-600/50 uppercase leading-none mb-1">{{ __('translate.no') || 'Nie' }}</span>
-                                        <span class="text-xs font-black text-[#e31e24] leading-none">{{ project.no_count }}</span>
+                                        <span class="text-[7px] sm:text-[8px] font-black text-red-600/50 uppercase leading-none mb-1">{{ __('translate.no') || 'Nie' }}</span>
+                                        <span class="text-[10px] sm:text-xs font-black text-[#e31e24] leading-none">{{ project.no_count }}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Przyciski akcji -->
-                            <div class="flex flex-wrap gap-2 shrink-0">
+                            <div class="flex flex-wrap items-center gap-2 shrink-0 justify-center sm:justify-start">
                                 <Link
                                     :href="route('projects.generator', project)"
-                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-blue-500 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all shadow-sm"
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-blue-500 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all shadow-sm"
                                     :title="__('translate.linkGenerator') || 'GENERATOR'"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -534,7 +549,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                                 <button
                                     @click="toggleActive(project)"
-                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center transition-all shadow-sm"
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center transition-all shadow-sm"
                                     :class="project.is_active ? 'text-green-500 hover:bg-green-50' : 'text-gray-400 hover:bg-gray-50'"
                                     :title="project.is_active ? (__('translate.deactivate') || 'DEAKTYWUJ') : (__('translate.activate') || 'AKTYWUJ')"
                                 >
@@ -549,7 +564,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                                 <Link
                                     :href="route('project-recruits.show', project)"
-                                    class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gray-50 flex items-center justify-center text-[#0A2C5C] hover:bg-[#0A2C5C] hover:text-white transition-all shadow-sm"
                                     :title="__('translate.show') || 'POKAŻ'"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -559,7 +574,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                                 <Link
                                     :href="route('project-recruits.edit', project)"
-                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
                                     :title="__('translate.edit') || 'EDYTUJ'"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
@@ -567,7 +582,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                                 <button
                                     @click="duplicateProject(project)"
-                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-all shadow-sm"
                                     :title="__('translate.duplicate') || 'DUPLIKUJ'"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V7m-12 0h12" /></svg>
@@ -575,7 +590,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                                 <button
                                     @click="openModal(project)"
-                                    class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-red-500 hover:bg-red-600 hover:text-white hover:border-transparent transition-all shadow-sm"
+                                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-red-500 hover:bg-red-600 hover:text-white hover:border-transparent transition-all shadow-sm"
                                     :title="__('translate.delete') || 'USUŃ'"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>

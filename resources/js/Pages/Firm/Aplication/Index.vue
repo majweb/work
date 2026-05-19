@@ -659,13 +659,13 @@ watch(() => usePage().props.sender, (newVal) => {
 
                 <!-- Applications List -->
                 <div class="space-y-4 pb-12">
-                    <div class="flex items-center justify-between mb-6 px-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 px-4 sm:px-6 gap-4">
                         <div class="flex items-center gap-4">
                             <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.aplications') }}</h3>
-                            <div class="h-px w-24 bg-gray-100"></div>
+                            <div class="h-px w-12 sm:w-24 bg-gray-100"></div>
                         </div>
 
-                        <div class="flex items-center gap-3 bg-white px-6 py-3 rounded-2xl border border-gray-100 shadow-sm">
+                        <div class="flex items-center gap-2 sm:gap-3 bg-white px-4 sm:px-6 py-2 sm:py-3 rounded-2xl border border-gray-100 shadow-sm self-start sm:self-auto">
                             <label class="group/check-all flex items-center cursor-pointer">
                                 <div class="relative flex items-center justify-center">
                                     <input
@@ -732,7 +732,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                             </div>
                                         </div>
                                         <div class="min-w-0">
-                                            <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight flex flex-wrap items-center gap-x-2 gap-y-1">
+                                            <div class="font-black text-[#0A2C5C] uppercase tracking-tight leading-tight flex flex-wrap items-center gap-x-2 gap-y-1">
                                                 <span class="text-sm sm:text-base">{{ application.name }} {{ application.surname }}</span>
                                                 <span v-if="application.worker?.candidate || application.candidate_by_email" class="px-2 py-0.5 bg-green-500 text-white rounded-md text-[9px] font-black leading-none uppercase tracking-tighter" :title="__('translate.candidateCreated')">
                                                     {{ __('translate.candidate') }}
@@ -741,7 +741,7 @@ watch(() => usePage().props.sender, (newVal) => {
                                                     {{ __('translate.noProfile') }}
                                                 </span>
                                             </div>
-                                            <div class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5 sm:mt-1 truncate">
+                                            <div class="text-[9px] sm:text-[10px] font-bold text-gray-400 tracking-widest mt-0.5 sm:mt-1 truncate">
                                                 <Link :href="route('projects.show', application.project?.id)" class="text-[#0A2C5C] hover:text-[#00a0e3] transition-colors">
                                                     {{ getPositionTitle(application.project) || getPositionTitle(application.project?.categorySub) || 'Brak stanowiska' }}
                                                 </Link>
