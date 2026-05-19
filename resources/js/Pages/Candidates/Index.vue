@@ -284,7 +284,7 @@ watch(selectedTags, (newTags) => {
             </h2>
         </template>
 
-        <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
+        <div class="py-6 sm:py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div
                 v-if="loading"
                 class="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90"
@@ -293,31 +293,31 @@ watch(selectedTags, (newTags) => {
             </div>
 
             <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-8">
+                <div class="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 p-4 sm:p-8 space-y-6 sm:space-y-8">
                     <!-- Header -->
-                    <div class="flex items-center gap-4 mb-8">
+                    <div class="flex items-center gap-4 mb-4 sm:mb-8">
                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
                             {{ __('translate.candidatesList') }}
                         </h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
                     </div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
                         <div>
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.candidates') }}</h3>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.candidates') }}</h3>
+                            <p class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">
                                 {{ __('translate.candidateDetailsDescription', { points: usePage().props.getPoints?.CreateCandidate }) }}
                             </p>
                         </div>
                     </div>
 
                     <!-- Formularz filtrowania -->
-                    <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                        <div class="flex items-center gap-4 mb-8">
+                    <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-5 sm:p-10">
+                        <div class="flex items-center gap-4 mb-6 sm:mb-8">
                             <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') }}</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.name') }}</label>
                                 <input
@@ -417,7 +417,7 @@ watch(selectedTags, (newTags) => {
                             <div>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span v-for="category in paginatedCategories" :key="category.id"
-                                          class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-[1.02]"
+                                          class="px-3 sm:px-4 py-2 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-[1.02]"
                                           :class="[selectedTags.some(t => t.id === category.id && t.type === 'category') ? 'ring-2 ring-white outline outline-2 outline-offset-2 outline-blue-300 shadow-sm' : '']"
                                           :style="{ backgroundColor: getTagColor(category.id), color: getContrastColor(getTagColor(category.id)) }"
                                           @click="toggleCategoryTag(category)">
@@ -427,19 +427,19 @@ watch(selectedTags, (newTags) => {
                                         {{ categorySearchQuery ? __('translate.noMatchingCategories') : __('translate.noCategoriesAvailable') }}
                                     </span>
                                 </div>
-                                <div class="flex justify-between items-center mt-6" v-if="filteredCategories.length > categoriesPerPage">
+                                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6" v-if="filteredCategories.length > categoriesPerPage">
                                     <button
                                         @click="currentCategoryPage = Math.max(currentCategoryPage - 1, 1)"
                                         :disabled="currentCategoryPage === 1"
-                                        class="px-6 py-2 bg-white border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 disabled:opacity-50 transition-all"
+                                        class="w-full sm:w-auto px-4 sm:px-6 py-2 bg-white border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 disabled:opacity-50 transition-all"
                                     >
                                         &lt; {{__('translate.previous')}}
                                     </button>
-                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{__('translate.page')}} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
+                                    <span class="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest order-first sm:order-none">{{__('translate.page')}} {{ currentCategoryPage }} / {{ totalCategoryPages }}</span>
                                     <button
                                         @click="currentCategoryPage = Math.min(currentCategoryPage + 1, totalCategoryPages)"
                                         :disabled="currentCategoryPage === totalCategoryPages"
-                                        class="px-6 py-2 bg-white border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 disabled:opacity-50 transition-all"
+                                        class="w-full sm:w-auto px-4 sm:px-6 py-2 bg-white border border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-gray-50 disabled:opacity-50 transition-all"
                                     >
                                         {{__('translate.next')}} &gt;
                                     </button>
@@ -467,7 +467,7 @@ watch(selectedTags, (newTags) => {
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 <span v-for="tag in filteredCustomTags" :key="tag.id"
-                                      class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-[1.02]"
+                                      class="px-3 sm:px-4 py-2 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest cursor-pointer transition-all hover:scale-[1.02]"
                                       :class="[selectedTags.some(t => t.id === tag.id && t.type === 'custom') ? 'ring-2 ring-white outline outline-2 outline-offset-2 outline-blue-300 shadow-sm' : '']"
                                       :style="{ backgroundColor: tag.color || '#ccc', color: getContrastColorText(tag.color) }"
                                       @click="toggleCustomTag(tag)">
@@ -512,17 +512,17 @@ watch(selectedTags, (newTags) => {
                         </div>
                     </div>
 
-                    <div v-if="candidates.data.length === 0" class="bg-white rounded-[3rem] p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
-                        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div v-if="candidates.data.length === 0" class="bg-white rounded-[2rem] sm:rounded-[3rem] p-10 sm:p-20 text-center shadow-xl shadow-blue-900/5 border border-gray-100">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
-                        <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noCandidatesAvailable') }}</p>
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noCandidatesAvailable') }}</p>
                     </div>
 
                     <div v-else class="space-y-4 pb-12">
-                        <div class="flex items-center gap-4 mb-6 px-6">
+                        <div class="flex items-center gap-4 mb-4 sm:mb-6 px-2 sm:px-6">
                             <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.foundCandidates') }} ({{ candidates?.data?.length || 0 }})</h3>
                             <div class="h-px flex-1 bg-gray-100"></div>
                         </div>
@@ -532,11 +532,19 @@ watch(selectedTags, (newTags) => {
                                 v-for="candidate in candidates.data"
                                 :key="candidate.id"
                                 :style="getBackgroundStyle(candidate)"
-                                class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 p-6"
+                                class="group bg-white rounded-3xl sm:rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 sm:hover:-translate-y-1 p-4 sm:p-6"
                             >
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                                    <!-- ID -->
-                                    <div class="col-span-1 flex flex-col items-center md:items-start">
+                                <div class="flex flex-col md:grid md:grid-cols-12 gap-4 sm:gap-6 items-start md:items-center">
+                                    <!-- ID & Candidate Header (Mobile) -->
+                                    <div class="w-full flex items-center justify-between md:hidden mb-2">
+                                        <div class="flex flex-col">
+                                            <div class="text-[8px] font-black text-gray-400 uppercase tracking-widest">ID</div>
+                                            <div class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{ candidate.id }}</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ID (Desktop) -->
+                                    <div class="hidden md:flex md:col-span-1 flex-col items-start">
                                         <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             ID
                                         </div>
@@ -546,8 +554,8 @@ watch(selectedTags, (newTags) => {
                                     </div>
 
                                     <!-- Candidate -->
-                                    <div class="col-span-3 flex items-center gap-4">
-                                        <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
+                                    <div class="w-full md:col-span-3 flex items-center gap-4">
+                                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-50 flex items-center justify-center overflow-hidden shrink-0 border-2 border-white shadow-sm transition-transform duration-300 group-hover:scale-105">
                                             <img
                                                 v-if="candidate.user_by_email?.profile_photo_url"
                                                 :src="candidate.user_by_email?.profile_photo_url"
@@ -560,28 +568,28 @@ watch(selectedTags, (newTags) => {
                                         </div>
 
                                         <div class="min-w-0">
-                                            <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight">
+                                            <div class="font-black text-gray-900 uppercase tracking-tight truncate leading-tight text-sm sm:text-base">
                                                 {{ candidate.name }} {{ candidate.surname }}
                                             </div>
-                                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
+                                            <div class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 truncate">
                                                 {{ candidate.email || '-' }}
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Phone -->
-                                    <div class="col-span-1 flex flex-col items-center md:items-start">
-                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                    <div class="w-full md:col-span-1 flex flex-col items-start">
+                                        <div class="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.phone') }}
                                         </div>
-                                        <div class="text-xs font-bold text-gray-700 uppercase tracking-tight">
+                                        <div class="text-[11px] sm:text-xs font-bold text-gray-700 uppercase tracking-tight">
                                             {{ candidate.phone || '-' }}
                                         </div>
                                     </div>
 
                                     <!-- Project -->
-                                    <div class="col-span-2 flex flex-col items-center md:items-start min-w-0">
-                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                    <div class="w-full md:col-span-2 flex flex-col items-start min-w-0">
+                                        <div class="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.project') }}
                                         </div>
 
@@ -591,18 +599,18 @@ watch(selectedTags, (newTags) => {
                                                     v-for="project in candidate.projects"
                                                     :key="project.id"
                                                     :href="route('project-recruits.show', project.id)"
-                                                    class="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-lg hover:bg-blue-100 transition-colors uppercase tracking-widest break-words"
+                                                    class="text-[8px] sm:text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-lg hover:bg-blue-100 transition-colors uppercase tracking-widest break-words"
                                                 >
                                                     {{ getProjectName(project) }}
                                                 </Link>
                                             </template>
-                                            <span v-else class="text-xs font-bold text-gray-500">-</span>
+                                            <span v-else class="text-[11px] sm:text-xs font-bold text-gray-500">-</span>
                                         </div>
                                     </div>
 
                                     <!-- Tags -->
-                                    <div class="col-span-2">
-                                        <div class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
+                                    <div class="w-full md:col-span-2">
+                                        <div class="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">
                                             {{ __('translate.tags') }}
                                         </div>
 
@@ -611,28 +619,28 @@ watch(selectedTags, (newTags) => {
                                                 <span
                                                     v-for="tag in candidate.tags"
                                                     :key="tag.id"
-                                                    class="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02] break-words"
+                                                    class="px-2 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02] break-words"
                                                     :style="{ backgroundColor: getTagColor(tag.id + 1000), color: getContrastColor(getTagColor(tag.id + 1000)) }"
                                                 >
                                                     {{ tag.title?.[usePage().props.language] || '-' }}
                                                 </span>
                                             </template>
-                                            <span v-else class="text-xs font-bold text-gray-500">-</span>
+                                            <span v-else class="text-[11px] sm:text-xs font-bold text-gray-500">-</span>
                                         </div>
                                     </div>
 
                                     <!-- Actions -->
-                                    <div class="col-span-3 flex items-center justify-center md:justify-end gap-3">
+                                    <div class="w-full md:col-span-3 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-2 sm:gap-3 mt-2 sm:mt-0">
                                         <Link
                                             :href="route('candidates.show', candidate.id)"
-                                            class="w-full md:w-auto px-6 py-3 bg-[#0A2C5C] text-white text-[9px] font-black rounded-xl hover:bg-[#00a0e3] shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest text-center"
+                                            class="w-full md:w-auto px-4 sm:px-6 py-3 bg-[#0A2C5C] text-white text-[8px] sm:text-[9px] font-black rounded-xl hover:bg-[#00a0e3] shadow-md shadow-blue-900/10 transition-all uppercase tracking-widest text-center"
                                         >
                                             {{ __('translate.candidateDetails') }}
                                         </Link>
 
                                         <Link
                                             :href="route('candidates.evidence', candidate.id)"
-                                            class="w-full md:w-auto px-6 py-3 bg-blue-500 text-white text-[9px] font-black rounded-xl hover:bg-blue-600 shadow-md shadow-blue-500/10 transition-all uppercase tracking-widest text-center"
+                                            class="w-full md:w-auto px-4 sm:px-6 py-3 bg-blue-500 text-white text-[8px] sm:text-[9px] font-black rounded-xl hover:bg-blue-600 shadow-md shadow-blue-500/10 transition-all uppercase tracking-widest text-center"
                                         >
                                             {{ __('translate.evidence') }}
                                         </Link>
@@ -643,10 +651,33 @@ watch(selectedTags, (newTags) => {
 
                         <!-- Paginacja -->
                         <div class="mt-8 flex justify-center" v-if="candidates.links.length > 3">
-                            <div class="flex flex-wrap gap-2">
+                            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2">
                                 <template v-for="(link, index) in candidates.links" :key="index">
-                                    <div v-if="link.url === null" class="px-6 py-3 bg-white border border-gray-100 text-gray-300 text-[10px] font-black uppercase tracking-widest rounded-xl" v-html="link.label"></div>
-                                    <Link preserveScroll v-else class="px-6 py-3 border rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm hover:shadow-md" :class="link.active ? 'bg-[#0A2C5C] border-transparent text-white' : 'bg-white border-gray-100 text-[#0A2C5C] hover:bg-gray-50'" :href="link.url" v-html="link.label"></Link>
+                                    <!-- Dots -->
+                                    <div v-if="link.url === null && link.label.includes('...')"
+                                         class="px-3 sm:px-6 py-2 sm:py-3 bg-white border border-gray-100 text-gray-300 text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-xl"
+                                         v-html="link.label">
+                                    </div>
+
+                                    <!-- Disabled Prev/Next -->
+                                    <div v-else-if="link.url === null"
+                                         class="hidden sm:block px-4 sm:px-6 py-2 sm:py-3 bg-white border border-gray-100 text-gray-300 text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-xl"
+                                         v-html="link.label">
+                                    </div>
+
+                                    <!-- Active/Normal Links -->
+                                    <Link
+                                        preserveScroll
+                                        v-else
+                                        class="px-3 sm:px-6 py-2 sm:py-3 border rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all shadow-sm hover:shadow-md"
+                                        :class="[
+                                            link.active ? 'bg-[#0A2C5C] border-transparent text-white' : 'bg-white border-gray-100 text-[#0A2C5C] hover:bg-gray-50',
+                                            // Ukrywamy numery stron na bardzo małych ekranach, zostawiamy tylko kilka lub nawigację
+                                            index > 0 && index < candidates.links.length - 1 && !link.active ? 'hidden xs:inline-flex' : 'inline-flex'
+                                        ]"
+                                        :href="link.url"
+                                        v-html="link.label"
+                                    ></Link>
                                 </template>
                             </div>
                         </div>

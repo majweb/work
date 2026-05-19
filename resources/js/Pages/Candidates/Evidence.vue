@@ -5,6 +5,7 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import {router, useForm, usePage, Link} from "@inertiajs/vue3";
 import { computed, ref } from "vue";
+import { usePermission } from "@/Composables/usePermission";
 import TextInput from "@/Components/TextInput.vue";
 import FormSectionProject from "@/Components/FormSectionProject.vue";
 import SpinnerAction from "@/Components/SpinnerAction.vue";
@@ -25,6 +26,10 @@ const props = defineProps({
 
 const showDeleteModal = ref(false);
 const evidenceToDelete = ref(null);
+
+const { hasRole } = usePermission();
+const isFirmAndRecruit = computed(() => hasRole('firm') && hasRole('recruit'));
+const isOnlyRecruit = computed(() => hasRole('recruit') && !hasRole('firm'));
 
 const lang = computed(() => usePage().props.language);
 
@@ -207,12 +212,12 @@ const getCandidateInitials = (c) => {
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm text-amber-800 font-black uppercase tracking-wider">
-                                    {{ __('translate.noExternalCompaniesFound') }}
+                                    {{ isOnlyRecruit ? __('translate.noExternalCompaniesFoundRecruit') : __('translate.noExternalCompaniesFound') }}
                                 </p>
                                 <p class="text-xs text-amber-700 mt-1 font-bold">
-                                    {{ __('translate.mustAddExternalCompanyBeforeEvidence') }}
+                                    {{ isOnlyRecruit ? __('translate.mustAddExternalCompanyBeforeEvidenceRecruit') : __('translate.mustAddExternalCompanyBeforeEvidence') }}
                                 </p>
-                                <div class="mt-4">
+                                <div v-if="!isOnlyRecruit" class="mt-4">
                                     <Link :href="route('external-companies.create')" class="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 text-[10px] font-black rounded-xl hover:bg-amber-200 transition-all uppercase tracking-widest shadow-sm">
                                         {{ __('translate.addExternalCompany') }}
                                         <svg class="ml-2 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
