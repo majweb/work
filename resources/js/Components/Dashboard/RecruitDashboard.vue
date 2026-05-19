@@ -1,9 +1,9 @@
 <template>
-    <div class="max-w-[1600px] mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            <div class="flex items-center justify-between mb-8 px-4">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="p-4 sm:p-6 bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 px-2 sm:px-4 gap-4">
                 <div>
-                    <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                    <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
                         {{ __('translate.recruitDashboard') || 'Pulpit Rekrutera' }}
                     </h3>
                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
@@ -13,8 +13,8 @@
             </div>
 
             <!-- Admin Banner -->
-            <div v-if="adminBanner" class="mb-8 px-4">
-                <div class="relative group overflow-hidden rounded-[2rem] shadow-xl border border-gray-100 transition-all duration-700 hover:shadow-2xl">
+            <div v-if="adminBanner" class="mb-8 px-2 sm:px-4">
+                <div class="relative group overflow-hidden rounded-2xl sm:rounded-[2rem] shadow-xl border border-gray-100 transition-all duration-700 hover:shadow-2xl">
                     <img
                         :src="adminBanner.image"
                         class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -23,11 +23,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
                 <!-- STATYSTYKI -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 flex flex-col h-full relative overflow-hidden group">
+                <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 flex flex-col h-full relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-blue-100/50 transition-colors"></div>
-                    <div class="mb-8 relative z-10 flex items-center justify-between">
+                    <div class="mb-6 sm:mb-8 relative z-10 flex items-center justify-between">
                         <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.recruiterStatistics') }}</h2>
                     </div>
                     <div class="flex-1 flex items-center justify-center min-h-[300px] relative z-10">
@@ -53,25 +53,25 @@
                 </div>
 
                 <!-- APLIKACJE -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 col-span-1 lg:col-span-2 flex flex-col relative overflow-hidden">
+                <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 col-span-1 lg:col-span-2 flex flex-col relative overflow-hidden">
                     <div class="absolute bottom-0 left-0 w-48 h-48 bg-red-50/20 rounded-full -ml-24 -mb-24 blur-3xl opacity-50"></div>
-                    <div class="flex justify-between items-center mb-10 relative z-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-10 gap-6 relative z-10">
                         <div>
-                            <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.aplications') }}</h2>
+                            <h2 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.aplications') }}</h2>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Ostatnio otrzymane zgłoszenia</p>
                         </div>
                         <Link
                             :href="route('project-aplications-recruits.index')"
-                            class="group flex items-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100"
+                            class="group flex items-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100 w-full sm:w-auto justify-center"
                         >
                             {{ __('translate.details') }}
                             <span class="text-lg group-hover:translate-x-1 transition-transform">→</span>
                         </Link>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1 min-h-0 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 flex-1 min-h-0 relative z-10">
                         <!-- LISTA -->
-                        <div class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                        <div class="space-y-4 max-h-[400px] md:max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                             <div
                                 v-for="application in lastAplications"
                                 :key="application.id"
@@ -110,14 +110,14 @@
                         </div>
 
                         <!-- PANEL SZCZEGÓŁÓW -->
-                        <div class="relative bg-gray-50/50 rounded-[2.5rem] p-8 border border-gray-100 flex flex-col min-h-[400px]">
+                        <div class="relative bg-gray-50/50 rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-8 border border-gray-100 flex flex-col min-h-[400px]">
                             <div v-if="selectedApplication" class="h-full flex flex-col">
-                                <div class="flex gap-4 items-center mb-8">
+                                <div class="flex gap-4 items-center mb-6 sm:mb-8">
                                     <div class="relative">
                                         <img
                                             :src="selectedApplication.user?.profile_photo_url"
                                             :alt="selectedApplication.user?.name"
-                                            class="w-20 h-20 rounded-2xl object-cover shadow-lg border-4 border-white"
+                                            class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-lg border-4 border-white"
                                         />
                                         <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md border border-gray-50">
                                             <div class="w-3 h-3 bg-[#00a0e3] rounded-full animate-pulse"></div>
@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="text-[9px] font-black text-[#00a0e3] uppercase tracking-widest mb-1">ID {{ selectedApplication.id }}</p>
-                                        <h4 class="font-black text-[#0A2C5C] text-xl uppercase tracking-tight">{{ selectedApplication.user?.name }}</h4>
+                                        <h4 class="font-black text-[#0A2C5C] text-lg sm:text-xl uppercase tracking-tight">{{ selectedApplication.user?.name }}</h4>
                                         <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{ moment(selectedApplication.created_at).format('DD.MM.YYYY') }}</p>
                                     </div>
                                 </div>
@@ -136,15 +136,15 @@
                                 </div>
 
                                 <!-- STATUSY -->
-                                <div class="space-y-4 mb-8">
+                                <div class="space-y-4 mb-6 sm:mb-8">
                                     <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.change_status') || 'Zmień status' }}</p>
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+                                    <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3">
                                         <button
                                             @click="updateStatus(selectedApplication?.id, 'yes')"
                                             :class="selectedApplication.status === 'yes'
                                                 ? 'bg-[#0A2C5C] text-white shadow-xl shadow-blue-900/20'
                                                 : 'bg-white text-gray-600 border border-gray-100 hover:border-[#0A2C5C] hover:text-[#0A2C5C] shadow-sm'"
-                                            class="px-3 py-4 text-[9px] font-black uppercase tracking-widest rounded-2xl transition-all"
+                                            class="px-3 py-3 sm:py-4 text-[9px] font-black uppercase tracking-widest rounded-2xl transition-all"
                                         >
                                             {{ __('translate.statusYes') }}
                                         </button>
@@ -154,7 +154,7 @@
                                             :class="selectedApplication.status === 'maybe'
                                                 ? 'bg-[#00a0e3] text-white shadow-xl shadow-blue-400/20'
                                                 : 'bg-white text-gray-600 border border-gray-100 hover:border-[#00a0e3] hover:text-[#00a0e3] shadow-sm'"
-                                            class="px-3 py-4 text-[9px] font-black uppercase tracking-widest rounded-2xl transition-all"
+                                            class="px-3 py-3 sm:py-4 text-[9px] font-black uppercase tracking-widest rounded-2xl transition-all"
                                         >
                                             {{ __('translate.statusMaybe') }}
                                         </button>
@@ -164,7 +164,7 @@
                                             :class="selectedApplication.status === 'no'
                                                 ? 'bg-[#e31e24] text-white shadow-xl shadow-red-900/20'
                                                 : 'bg-white text-gray-600 border border-gray-100 hover:border-[#e31e24] hover:text-[#e31e24] shadow-sm'"
-                                            class="px-3 py-4 text-[9px] font-black uppercase tracking-widest rounded-2xl transition-all"
+                                            class="px-3 py-3 sm:py-4 text-[9px] font-black uppercase tracking-widest rounded-2xl transition-all"
                                         >
                                             {{ __('translate.statusNo') }}
                                         </button>
@@ -191,14 +191,14 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-gray-100">
                                     <button
                                         @click="saveNote(selectedApplication.id, selectedApplication.note)"
-                                        class="px-6 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/10 transition-all duration-500 hover:-translate-y-1"
+                                        class="px-6 py-4 bg-[#0A2C5C] text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-[#00a0e3] shadow-lg shadow-blue-900/10 transition-all duration-500 sm:hover:-translate-y-1"
                                     >
                                         {{ __('translate.Save') }}
                                     </button>
 
                                     <Link
                                         :href="route('project-aplications-recruits.show', selectedApplication.id)"
-                                        class="px-6 py-4 bg-white text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:bg-gray-50 transition-all duration-500 hover:-translate-y-1 text-center flex items-center justify-center gap-2"
+                                        class="px-6 py-4 bg-white text-[#0A2C5C] text-[10px] font-black uppercase tracking-widest rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 hover:bg-gray-50 transition-all duration-500 sm:hover:-translate-y-1 text-center flex items-center justify-center gap-2"
                                     >
                                         {{ __('translate.details') }}
                                         <span class="text-lg">→</span>
@@ -222,11 +222,11 @@
             </div>
 
             <!-- DOLNA SEKCJA -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 pb-8 sm:pb-12">
                 <!-- POWIADOMIENIA -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 flex flex-col relative overflow-hidden">
+                <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 flex flex-col relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50/30 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                    <div class="flex justify-between items-center mb-10 relative z-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-10 gap-4 relative z-10">
                         <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.notifications') }}</h2>
                         <Link preserveScroll v-if="usePage().props.unreadNotifications" :href="route('notifications.markAllAsRead')" method="post" as="button" class="text-[10px] font-black text-[#e31e24] hover:text-red-700 transition-colors uppercase tracking-widest">
                             {{ __('translate.markAllAsRead') }}
@@ -234,7 +234,7 @@
                     </div>
 
                     <div class="flex-1 overflow-hidden relative z-10">
-                        <ul class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                        <ul class="space-y-4 max-h-[400px] md:max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                             <li v-for="notification in notifications" :key="notification.id"
                                 class="group relative flex items-start gap-4 p-5 rounded-[2rem] transition-all duration-300 border border-transparent"
                                 :class="[!notification.read_at ? 'bg-blue-50/50 border-blue-100 shadow-lg shadow-blue-900/5 hover:bg-white' : 'hover:bg-gray-50 hover:border-gray-100']"
@@ -279,16 +279,16 @@
                 </div>
 
                 <!-- OFERTY -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 col-span-1 lg:col-span-2 flex flex-col relative overflow-hidden">
+                <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10 col-span-1 lg:col-span-2 flex flex-col relative overflow-hidden">
                     <div class="absolute bottom-0 right-0 w-64 h-64 bg-gray-50 rounded-full -mr-32 -mb-32 blur-3xl opacity-50"></div>
-                    <div class="flex justify-between items-center mb-10 relative z-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-10 gap-6 relative z-10">
                         <div>
-                            <h2 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.offerts') }}</h2>
+                            <h2 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.offerts') }}</h2>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Zarządzaj aktywnymi rekrutacjami</p>
                         </div>
                         <Link
                             :href="route('project-recruits.index')"
-                            class="group flex items-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100"
+                            class="group flex items-center gap-2 px-6 py-3 bg-gray-50 text-[#0A2C5C] text-[10px] font-black rounded-2xl hover:bg-blue-50 transition-all uppercase tracking-widest border border-gray-100 w-full sm:w-auto justify-center"
                         >
                             {{ __('translate.details') }}
                             <span class="text-lg group-hover:translate-x-1 transition-transform">→</span>
@@ -296,8 +296,8 @@
                     </div>
 
                     <!-- LEGENDA KOLORÓW -->
-                    <div class="mb-10 p-6 bg-gray-50/50 rounded-[2.5rem] border border-gray-100 relative z-10">
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="mb-8 sm:mb-10 p-4 sm:p-6 bg-gray-50/50 rounded-3xl sm:rounded-[2.5rem] border border-gray-100 relative z-10">
+                        <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                             <div class="flex items-center gap-3 bg-white p-3.5 rounded-2xl border border-gray-50 shadow-sm transition-all hover:shadow-md">
                                 <div class="w-3 h-3 rounded-full bg-[#0A2C5C] shadow-lg shadow-blue-900/20"></div>
                                 <span class="text-[9px] font-black text-gray-500 uppercase tracking-widest">{{ __('translate.labels.yes') }}</span>
@@ -311,7 +311,7 @@
                                 <span class="text-[9px] font-black text-gray-500 uppercase tracking-widest">{{ __('translate.labels.maybe') }}</span>
                             </div>
                             <div class="flex items-center gap-3 bg-white p-3.5 rounded-2xl border border-gray-50 shadow-sm transition-all hover:shadow-md">
-                                <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                                <div class="w-3 h-3 rounded-full bg-gray-300 shadow-lg shadow-gray-400/20"></div>
                                 <span class="text-[9px] font-black text-gray-500 uppercase tracking-widest">{{ __('translate.labels.sent') }}</span>
                             </div>
                         </div>
@@ -321,11 +321,11 @@
                         <div
                             v-for="project in projects"
                             :key="project.id"
-                            class="group relative bg-white border border-gray-50 rounded-[2.5rem] p-8 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500 hover:-translate-y-2 border-gray-100 shadow-xl shadow-blue-900/5"
+                            class="group relative bg-white border border-gray-50 rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-8 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500 sm:hover:-translate-y-2 border-gray-100 shadow-xl shadow-blue-900/5"
                         >
-                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-center gap-3 mb-4">
+                            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                                <div class="flex-1 min-w-0 w-full">
+                                    <div class="flex items-center gap-3 mb-4 flex-wrap">
                                         <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-xl border border-blue-100/50 shadow-sm">
                                             <div class="w-1.5 h-1.5 rounded-full bg-[#00a0e3] animate-pulse"></div>
                                             <p class="text-[9px] font-black text-[#0A2C5C] uppercase tracking-widest">ID {{ project.id }}</p>
@@ -337,7 +337,7 @@
                                             {{ project.is_active ? __('translate.active') : __('translate.inactive') }}
                                         </span>
                                     </div>
-                                    <h4 class="text-xl font-black text-[#0A2C5C] truncate group-hover:text-[#00a0e3] transition-colors uppercase tracking-tight leading-tight">
+                                    <h4 class="text-lg sm:text-xl font-black text-[#0A2C5C] group-hover:text-[#00a0e3] transition-colors uppercase tracking-tight leading-tight">
                                         {{ project.position || __('translate.projectWithoutTitle') }}
                                     </h4>
                                     <p class="text-[10px] font-bold text-gray-400 mt-2 uppercase tracking-widest flex items-center gap-2">
@@ -347,28 +347,30 @@
                                 </div>
 
                                 <!-- STATYSTYKI Z KOLORAMI -->
-                                <div class="flex flex-wrap items-center gap-3">
-                                    <!-- Aplikacje Razem -->
-                                    <div class="bg-gray-50/80 px-4 py-3 rounded-2xl border border-gray-100 flex flex-col items-center min-w-[70px] shadow-sm">
-                                        <span class="text-[8px] font-black text-gray-400 uppercase leading-none mb-1.5 tracking-widest">{{ __('translate.total') }}</span>
-                                        <span class="text-sm font-black text-[#0A2C5C] leading-none">{{ project.aplications_count || 0 }}</span>
-                                    </div>
+                                <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                                    <div class="grid grid-cols-1 xs:grid-cols-3 sm:flex sm:flex-wrap items-center gap-3 flex-1 lg:flex-initial w-full sm:w-auto">
+                                        <!-- Aplikacje Razem -->
+                                        <div class="bg-gray-50/80 px-3 sm:px-4 py-3 rounded-2xl border border-gray-100 flex flex-col items-center min-w-[60px] sm:min-w-[70px] shadow-sm transition-all hover:shadow-md">
+                                            <span class="text-[8px] font-black text-gray-400 uppercase leading-none mb-1.5 tracking-widest">{{ __('translate.total') }}</span>
+                                            <span class="text-sm font-black text-[#0A2C5C] leading-none">{{ project.aplications_count || 0 }}</span>
+                                        </div>
 
-                                    <!-- Zaakceptowane (yes) -->
-                                    <div class="bg-blue-50/50 px-4 py-3 rounded-2xl border border-blue-100/50 flex flex-col items-center min-w-[70px] shadow-sm">
-                                        <span class="text-[8px] font-black text-[#0A2C5C]/50 uppercase leading-none mb-1.5 tracking-widest">{{ __('translate.statusYes') }}</span>
-                                        <span class="text-sm font-black text-[#0A2C5C] leading-none">{{ project.yes_count || 0 }}</span>
-                                    </div>
+                                        <!-- Zaakceptowane (yes) -->
+                                        <div class="bg-blue-50/50 px-3 sm:px-4 py-3 rounded-2xl border border-blue-100/50 flex flex-col items-center min-w-[60px] sm:min-w-[70px] shadow-sm transition-all hover:shadow-md">
+                                            <span class="text-[8px] font-black text-[#0A2C5C]/50 uppercase leading-none mb-1.5 tracking-widest">{{ __('translate.statusYes') }}</span>
+                                            <span class="text-sm font-black text-[#0A2C5C] leading-none">{{ project.yes_count || 0 }}</span>
+                                        </div>
 
-                                    <!-- Rozpatrywane (maybe) -->
-                                    <div class="bg-cyan-50/50 px-4 py-3 rounded-2xl border border-cyan-100/50 flex flex-col items-center min-w-[70px] shadow-sm">
-                                        <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1.5 tracking-widest">{{ __('translate.statusMaybe') }}</span>
-                                        <span class="text-sm font-black text-cyan-600 leading-none">{{ project.maybe_count || 0 }}</span>
+                                        <!-- Rozpatrywane (maybe) -->
+                                        <div class="bg-cyan-50/50 px-3 sm:px-4 py-3 rounded-2xl border border-cyan-100/50 flex flex-col items-center min-w-[60px] sm:min-w-[70px] shadow-sm transition-all hover:shadow-md">
+                                            <span class="text-[8px] font-black text-cyan-600/50 uppercase leading-none mb-1.5 tracking-widest">{{ __('translate.statusMaybe') }}</span>
+                                            <span class="text-sm font-black text-cyan-600 leading-none">{{ project.maybe_count || 0 }}</span>
+                                        </div>
                                     </div>
 
                                     <Link
                                         :href="route('project-recruits.show', project.id)"
-                                        class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-[#0A2C5C] group-hover:text-white transition-all duration-500 border border-gray-100 group-hover:border-transparent group-hover:shadow-xl group-hover:shadow-blue-900/20 group-hover:-translate-y-1"
+                                        class="w-full sm:w-14 h-12 sm:h-14 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-[#0A2C5C] group-hover:text-white transition-all duration-500 border border-gray-100 group-hover:border-transparent group-hover:shadow-xl group-hover:shadow-blue-900/20 sm:group-hover:-translate-y-1 lg:ml-0"
                                     >
                                         <span class="text-2xl transition-transform duration-500 group-hover:translate-x-1">→</span>
                                     </Link>

@@ -403,6 +403,9 @@ onMounted(async () => {
                                             {{ props.project.bonusSalaryFrom ?? '-' }} - {{ props.project.bonusSalaryTo ?? '-' }}
                                         </span>
                                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ props.project.currency?.name }}</span>
+                                        <span v-if="props.project.salary_type" class="text-[10px] font-black text-blue-400 uppercase border-l border-gray-200 pl-2">
+                                            {{ __('translate.' + props.project.salary_type) }}
+                                        </span>
                                     </div>
                                 </div>
 

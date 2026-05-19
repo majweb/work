@@ -85,6 +85,8 @@ class DashboardController extends Controller
                     'position',
                     'profession',
                     'views_count',
+                    'cityWork',
+                    'countryWork',
                     'user_id',
                     'created_at',
                 ]) // Dodano ograniczenie kolumn
