@@ -54,7 +54,17 @@ const scrollTo = (href) => {
 };
 
 onMounted(() => {
-    isMobile.value = window.innerWidth < 768;
+    if (typeof window !== 'undefined') {
+        isMobile.value = window.innerWidth < 768;
+
+        window.addEventListener('scroll', () => {
+            isScrolled.value = window.scrollY > 50;
+        });
+
+        window.addEventListener('resize', () => {
+            isMobile.value = window.innerWidth < 768;
+        });
+    }
 
     const faqQuestions = __("landingi.faq_section.questions");
     if (Array.isArray(faqQuestions)) {
@@ -73,14 +83,6 @@ onMounted(() => {
         }
         faqs.value = questions;
     }
-
-    window.addEventListener('scroll', () => {
-        isScrolled.value = window.scrollY > 50;
-    });
-
-    window.addEventListener('resize', () => {
-        isMobile.value = window.innerWidth < 768;
-    });
 });
 </script>
 
