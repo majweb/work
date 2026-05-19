@@ -48,13 +48,22 @@ const props = defineProps({
 });
 const foundations = computed(() => props.foundations);
 
-const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1280);
+const windowWidth = ref(1280);
 const updateWidth = () => {
-    windowWidth.value = window.innerWidth;
+    if (typeof window !== 'undefined') {
+        windowWidth.value = window.innerWidth;
+    }
 };
 
-onMounted(() => window.addEventListener('resize', updateWidth));
-onUnmounted(() => window.removeEventListener('resize', updateWidth));
+onMounted(() => {
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+});
+onUnmounted(() => {
+    if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', updateWidth);
+    }
+});
 
 const shouldLoop = computed(() => {
     const limit = windowWidth.value < 1024 ? 2 : 6;
