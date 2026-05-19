@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 use Maatwebsite\Excel\Facades\Excel;
@@ -157,13 +158,38 @@ class FirmController extends Controller
         return Excel::download(new FirmsExport($ids, $request), 'firms_export.csv', \Maatwebsite\Excel\Excel::CSV);
     }
 
-    public function show(User $user): Response
+    public function show(User $user, Request $request): Response
     {
         $user->load(['firm', 'recruits', 'projects' => function ($query) {
             $query->latest()->limit(5);
         }]);
 
         $user->loadCount(['recruits', 'projects']);
+
+        $stats = [];
+        $availableMonths = [];
+        if ($user->firm) {
+            $availableMonths = $user->firm->clicks()
+                ->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"))
+                ->distinct()
+                ->orderBy('month', 'desc')
+                ->pluck('month');
+
+            $statsQuery = $user->firm->clicks()
+                ->select(
+                    DB::raw('count(*) as count'),
+                    'type',
+                    DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month")
+                );
+
+            if ($request->filled('month')) {
+                $statsQuery->whereRaw("DATE_FORMAT(created_at, '%Y-%m') = ?", [$request->input('month')]);
+            }
+
+            $stats = $statsQuery->groupBy('month', 'type')
+                ->orderBy('month', 'desc')
+                ->get();
+        }
 
         return Inertia::render('Admin/Firms/Show', [
             'firm' => [
@@ -175,6 +201,9 @@ class FirmController extends Controller
                 'email_verified_at' => $user->email_verified_at,
                 'created_at' => $user->created_at->format('Y-m-d H:i'),
                 'details' => $user->firm,
+                'stats' => $stats,
+                'available_months' => $availableMonths,
+                'filters' => $request->only(['month']),
                 'recruiters_count' => $user->recruits_count,
                 'projects_count' => $user->projects_count,
                 'recent_projects' => $user->projects,

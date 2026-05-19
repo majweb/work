@@ -50,14 +50,14 @@ const currentPdfSuffix = computed(() => {
                             :class="[activeTab === 'general' ? 'bg-[#0A2C5C] text-white shadow-lg' : 'text-gray-500 hover:text-gray-700']"
                             class="px-8 py-3 rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300"
                         >
-                            {{ __('translate.footer.terms') }} (Firma)
+                            {{ __('translate.footer.terms') }} ({{ __('translate.footer.company') }})
                         </button>
                         <button
                             @click="activeTab = 'candidate'"
                             :class="activeTab === 'candidate' ? 'bg-[#0A2C5C] text-white shadow-lg' : 'text-gray-500 hover:text-gray-700'"
                             class="px-8 py-3 rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300"
                         >
-                            {{ __('translate.footer.terms') }} (Kandydat)
+                            {{ __('translate.footer.terms') }} ({{ __('translate.footer.candidate') }})
                         </button>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ const currentPdfSuffix = computed(() => {
                     <!-- Dynamic PDF Downloads -->
                     <div class="mt-12 pt-12 border-t border-gray-100 flex flex-col items-center justify-center">
                         <h3 class="text-sm font-black text-[#0A2C5C] uppercase tracking-widest mb-6">
-                            {{ __('translate.footer.downloadTermsPdf') }} ({{ activeTab === 'general' ? 'Firma' : 'Kandydat' }})
+                            {{ __('translate.footer.downloadTerms') }} ({{ activeTab === 'general' ? __('translate.footer.company') : __('translate.footer.candidate') }})
                         </h3>
                         <div class="flex flex-wrap gap-3">
                             <a

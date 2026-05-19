@@ -2,12 +2,25 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link, router } from "@inertiajs/vue3";
 import { ref } from 'vue';
+import { groupBy, sumBy, find } from 'lodash';
 import { useProjectHelpers } from "@/Composables/useProjectHelpers.js";
 import moment from "moment";
 
 const props = defineProps({
     firm: Object,
 });
+
+const filterMonth = ref(props.firm.filters?.month || '');
+
+const handleFilter = () => {
+    router.get(route('admin.firms.show', props.firm.id), {
+        month: filterMonth.value
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+        replace: true
+    });
+};
 
 const { getPositionTitle } = useProjectHelpers();
 const showStatusModal = ref(false);
@@ -352,6 +365,53 @@ const getStatusDotClass = (status) => {
                                     </Link>
                                 </div>
                                 <div v-if="!firm.recent_projects?.length" class="text-center py-8 text-gray-400 font-bold text-sm">Brak aktywnych ofert</div>
+                            </div>
+                        </div>
+
+                        <!-- Click Statistics -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                            <div class="flex items-center justify-between mb-8">
+                                <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Statystyki kliknięć</h3>
+                                <div class="flex items-center gap-4">
+                                    <select
+                                        v-model="filterMonth"
+                                        @change="handleFilter"
+                                        class="text-[10px] font-black uppercase tracking-widest border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-[#0A2C5C]"
+                                    >
+                                        <option value="">Wszystkie miesiące</option>
+                                        <option v-for="month in firm.available_months" :key="month" :value="month">
+                                            {{ month }}
+                                        </option>
+                                    </select>
+                                    <div class="px-3 py-1 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-black uppercase tracking-widest">W podziale na miesiące</div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <template v-if="firm.stats && firm.stats.length">
+                                    <div v-for="(statGroup, month) in groupBy(firm.stats, 'month')" :key="month" class="p-6 bg-gray-50 rounded-3xl border border-gray-100">
+                                        <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200/50">
+                                            <div class="text-sm font-black text-[#0A2C5C] uppercase tracking-wider">{{ month }}</div>
+                                            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Suma: {{ sumBy(statGroup, 'count') }}</div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div v-for="type in ['phone', 'email']" :key="type" class="flex items-center gap-3">
+                                                <div class="w-8 h-8 rounded-xl flex items-center justify-center" :class="type === 'phone' ? 'bg-blue-100 text-blue-600' : 'bg-green-100 text-green-600'">
+                                                    <svg v-if="type === 'phone'" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                                    <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                                </div>
+                                                <div>
+                                                    <div class="text-xs font-black text-[#0A2C5C] leading-none mb-1">
+                                                        {{ find(statGroup, { type: type })?.count || 0 }}
+                                                    </div>
+                                                    <div class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">
+                                                        {{ type === 'phone' ? 'Telefon' : 'E-mail' }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <div v-else class="text-center py-8 text-gray-400 font-bold text-sm">Brak zarejestrowanych kliknięć</div>
                             </div>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\CvClassic;
+use App\Models\Firm;
 use App\Models\Foundation;
 use App\Models\FoundationCategory;
 use App\Models\IpEmailBlock;
@@ -179,7 +180,7 @@ class FrontController extends Controller
 
         // Tworzymy unikalny klucz na podstawie wersji, języka i wszystkich parametrów filtrowania
         // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
-        $cacheKey = "projects_list_v{$version}_" . app()->getLocale() . '_' . date('Y-m-d_H') . '_' . md5(json_encode(request()->all()));
+        $cacheKey = "projects_list_v{$version}_".app()->getLocale().'_'.date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
             $query = Project::with(['user.changeProducts', 'externalCompany'])->featured()->active()->newest();
 
@@ -416,6 +417,31 @@ class FrontController extends Controller
             'firm' => new FrontUserResource($user),
             'page' => $page ? new PageResource($page) : null,
         ]);
+    }
+
+    public function trackClick(Request $request, Firm $firm): \Illuminate\Http\JsonResponse
+    {
+        $request->validate([
+            'type' => 'required|in:phone,email',
+        ]);
+
+        $ip = $request->ip();
+        $type = $request->input('type');
+
+        $key = 'track-click:'.$firm->id.':'.$type.':'.$ip;
+
+        if (RateLimiter::tooManyAttempts($key, 1)) {
+            return response()->json(['message' => 'Too many requests'], 429);
+        }
+
+        RateLimiter::hit($key, 3600); // 1 hour limit per IP and type
+
+        $firm->clicks()->create([
+            'type' => $type,
+            'ip_address' => $ip,
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     public function SingleProject(Project $project, Request $request)
@@ -678,7 +704,7 @@ class FrontController extends Controller
         // Filtrowanie po nazwie
         if (request('name')) {
             $name = request('name');
-            $query->where('name', 'like', '%' . $name . '%');
+            $query->where('name', 'like', '%'.$name.'%');
         }
 
         $firms = $query->paginate(12)->withQueryString();
@@ -704,7 +730,6 @@ class FrontController extends Controller
         $features = $featuresRaw->map(function ($user) {
             return (new FrontUserResource($user))->resolve();
         });
-
 
         $countries = (new Helper)->makeCountriesToSelectHasFirms();
         $page = Page::findOrFail(7);

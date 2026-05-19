@@ -18,6 +18,7 @@ class FrontUserResource extends JsonResource
         return [
             'profile_photo_url' => $this->profilePhotoUrl,
             'id' => $this->id,
+            'firm_id' => $this->firm?->id,
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->firm->contact_phone,
@@ -32,7 +33,7 @@ class FrontUserResource extends JsonResource
             'extra_description' => $this->firm->extra_description,
             'website' => $this->firm->www,
             'count_workers' => $this->firm->count_workers,
-            'video' => $this->firm->video ? Storage::url($this->firm->video) : NULL,
+            'video' => $this->firm->video ? Storage::url($this->firm->video) : null,
             'street' => $this->firm->street,
             'number' => $this->firm->number,
             'country' => $this->firm->country,
@@ -44,13 +45,13 @@ class FrontUserResource extends JsonResource
             'social_instagram' => $this->firm->social_instagram,
             'social_linkedin' => $this->firm->social_linkedin,
             'social_tiktok' => $this->firm->social_tiktok,
-            'is_featured' => $this->whenHas('is_featured_count', fn() => $this->is_featured_count > 0, $this->is_featured ?? false),
+            'is_featured' => $this->whenHas('is_featured_count', fn () => $this->is_featured_count > 0, $this->is_featured ?? false),
             'points' => $this->firm->points,
             'currency' => $this->firm->currency,
-            'projects' => $this->whenLoaded('projects', function() {
+            'projects' => $this->whenLoaded('projects', function () {
                 return $this->projects->where('is_active', true);
             }),
-            'media' => $this->firm->getMedia('firms_images')->map(fn($item) => [
+            'media' => $this->firm->getMedia('firms_images')->map(fn ($item) => [
                 'url' => $item->getUrl(),
                 'name' => $item->name, // to będzie użyte jako alt
             ]),        ];

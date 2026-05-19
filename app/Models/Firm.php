@@ -79,6 +79,11 @@ class Firm extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function clicks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(FirmClick::class);
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
