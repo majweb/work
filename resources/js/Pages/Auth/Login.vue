@@ -179,15 +179,6 @@ const submit = () => {
 
                 <!-- SOCIALSTREAM -->
                 <div v-if="form.type == 'worker' && $page.props.socialstream.show && $page.props.socialstream.providers.length" class="mt-10">
-                    <div class="relative mb-8">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-100"></div>
-                        </div>
-                        <div class="relative flex justify-center text-[10px]">
-                            <span class="px-4 bg-white text-gray-400 font-black uppercase tracking-widest italic">lub zaloguj przez</span>
-                        </div>
-                    </div>
-
                     <Socialstream
                         :error="$page.props?.errors?.socialstream || null"
                         :labels="$page.props.socialstream.labels"

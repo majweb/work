@@ -1803,4 +1803,9 @@ return [
     'drag_to_reorder' => 'Przeciągnij, aby zmienić kolejność',
     'deleted' => 'Usunięte',
     'cannot_view_deleted_90_days' => 'Nie można przeglądać usuniętych ofert starszych niż 90 dni.',
+    'fillFormToVerify' => 'Wypełnij poniższy formularz, aby zgłosić fundację do weryfikacji',
+    'generalInfo' => 'Informacje ogólne',
+    'registrationData' => 'Dane rejestrowe',
+    'mediaAndDescription' => 'Media i Opis',
+    'jobOffer' => 'Oferta pracy',
 ];

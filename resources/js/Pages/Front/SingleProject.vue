@@ -154,7 +154,7 @@ onMounted(async () => {
 </script>
 <template>
     <FrontLayout
-        :title="project.title[usePage().props.currentCountry] || getPositionTitle(project)"
+        :title="project.title[usePage().props.language] || getPositionTitle(project)"
         :image="image"
         :keywords="props.page.keywords"
         :description="props.page.description"
@@ -196,7 +196,7 @@ onMounted(async () => {
                         <div v-if="project.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-[#329CD1] shadow-[2px_0_15px_rgba(50,156,209,0.3)] z-20"></div>
 
                         <div class="relative z-10">
-                            <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">Oferta pracy #{{ project.id }}</p>
+                            <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">{{ __('translate.jobOffer') }} #{{ project.id }}</p>
                             <div class="flex flex-col md:flex-row md:items-end gap-4">
                                 <h1 class="text-2xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
                                     {{ getPositionTitle(project) }}

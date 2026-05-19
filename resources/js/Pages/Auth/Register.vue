@@ -376,15 +376,6 @@ const submit = () => {
 
                 <!-- SOCIALSTREAM -->
                 <div v-if="form.type == 'worker' && $page.props.socialstream.show && $page.props.socialstream.providers.length" class="mt-10">
-                    <div class="relative mb-8">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-100"></div>
-                        </div>
-                        <div class="relative flex justify-center text-[10px]">
-                            <span class="px-4 bg-white text-gray-400 font-black uppercase tracking-widest italic">lub zarejestruj przez</span>
-                        </div>
-                    </div>
-
                     <Socialstream
                         :error="$page.props?.errors?.socialstream || null"
                         :labels="$page.props.socialstream.labels"
@@ -394,7 +385,7 @@ const submit = () => {
                 <!-- FOOTER -->
                 <div class="mt-10 flex-wrap flex flex-col md:flex-row items-center justify-center gap-2">
                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                        Masz już konto?
+                        {{ __('translate.alreadyhaveanaccount') }}
                     </p>
                     <Link
                         :href="route('login', { type: form.type })"

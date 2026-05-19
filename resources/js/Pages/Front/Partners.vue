@@ -401,14 +401,14 @@ const submit = () => {
                                     <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] uppercase tracking-tight mb-4">
                                         {{ __('translate.addFoundation') }}
                                     </h2>
-                                    <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Wypełnij poniższy formularz, aby zgłosić fundację do weryfikacji</p>
+                                    <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">{{ __('translate.fillFormToVerify') }}</p>
                                 </div>
 
                                 <form @submit.prevent="submit" class="space-y-12">
                                     <!-- Informacje ogólne -->
                                     <div class="space-y-8">
                                         <div class="flex items-center gap-4">
-                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Informacje ogólne</h3>
+                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.generalInfo') }}</h3>
                                             <div class="h-px flex-1 bg-gray-100"></div>
                                         </div>
 
@@ -465,7 +465,7 @@ const submit = () => {
                                     <!-- Dane rejestrowe -->
                                     <div class="space-y-8">
                                         <div class="flex items-center gap-4">
-                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Dane rejestrowe</h3>
+                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.registrationData') }}</h3>
                                             <div class="h-px flex-1 bg-gray-100"></div>
                                         </div>
 
@@ -507,7 +507,7 @@ const submit = () => {
                                     <!-- Adres -->
                                     <div class="space-y-8">
                                         <div class="flex items-center gap-4">
-                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Adres</h3>
+                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.address') }}</h3>
                                             <div class="h-px flex-1 bg-gray-100"></div>
                                         </div>
 
@@ -566,7 +566,7 @@ const submit = () => {
                                     <!-- Media i opis -->
                                     <div class="space-y-8">
                                         <div class="flex items-center gap-4">
-                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Media i Opis</h3>
+                                            <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.mediaAndDescription') }}</h3>
                                             <div class="h-px flex-1 bg-gray-100"></div>
                                         </div>
 
