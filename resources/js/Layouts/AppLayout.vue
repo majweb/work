@@ -468,7 +468,7 @@ onUnmounted(()=>{
                                 <button
                                     class="relative inline-flex items-center justify-center p-2.5 rounded-2xl text-gray-400 hover:text-[#0A2C5C] hover:bg-blue-50/50 focus:outline-none transition-all duration-300 group"
                                     :class="{'bg-blue-50/80 text-[#0A2C5C]': showingNavigationDropdown}"
-                                    @click="showingNavigationDropdown = ! showingNavigationDropdown"
+                                    @click="showingNavigationDropdown = true"
                                 >
                                     <span class="sr-only">Open main menu</span>
                                     <div class="relative w-6 h-6 flex items-center justify-center">
@@ -491,127 +491,355 @@ onUnmounted(()=>{
                     </div>
                 </div>
 
-                <!-- Responsive Navigation Menu (Modern Slide-down) -->
-                <transition
-                    enter-active-class="transition duration-200 ease-out"
-                    enter-from-class="transform -translate-y-4 opacity-0"
-                    enter-to-class="transform translate-y-0 opacity-100"
-                    leave-active-class="transition duration-150 ease-in"
-                    leave-from-class="transform translate-y-0 opacity-100"
-                    leave-to-class="transform -translate-y-4 opacity-0"
-                >
-                    <div v-show="showingNavigationDropdown" class="lg:hidden border-t border-gray-100 bg-white">
-                        <div class="pt-2 pb-6 space-y-1">
-                            <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')" class="uppercase">{{__('translate.dashboard')}}</ResponsiveNavLink>
+                <!-- Responsive Navigation Menu (Slide-over) -->
+                <TransitionRoot as="template" :show="showingNavigationDropdown">
+                    <Dialog as="div" class="relative z-50 lg:hidden" @close="showingNavigationDropdown = false">
+                        <TransitionChild
+                            as="template"
+                            enter="transition-opacity ease-linear duration-300"
+                            enter-from="opacity-0"
+                            enter-to="opacity-100"
+                            leave="transition-opacity ease-linear duration-300"
+                            leave-from="opacity-100"
+                            leave-to="opacity-0"
+                        >
+                            <div class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm" />
+                        </TransitionChild>
 
-                            <!-- Responsive Role Specific Links (Compact) -->
-                            <div class="px-4 py-2 border-l-4 border-transparent text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-50/50">Menu</div>
-
-                            <template v-if="hasRole('worker')">
-                                <ResponsiveNavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')" class="uppercase">{{__('translate.myCv')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')" class="uppercase">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')" class="uppercase">{{__('translate.Profile')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('front.projects')" :active="route().current('front.projects')" class="uppercase">{{__('translate.projects')}}</ResponsiveNavLink>
-                            </template>
-
-                            <template v-if="hasRole('firm')">
-                                <ResponsiveNavLink :href="route('recruits.index')" :active="route().current('recruits.index')" class="uppercase">{{__('translate.recruits')}}</ResponsiveNavLink>
-
-                                <div>
-                                    <button
-                                        @click="showingAplicationsDropdown = !showingAplicationsDropdown"
-                                        class="flex items-center justify-between w-full px-4 py-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50/30 hover:text-[#0A2C5C] transition-colors"
+                        <div class="fixed inset-0 overflow-hidden">
+                            <div class="absolute inset-0 overflow-hidden">
+                                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
+                                    <TransitionChild
+                                        as="template"
+                                        enter="transform transition ease-in-out duration-500 sm:duration-700"
+                                        enter-from="translate-x-full"
+                                        enter-to="translate-x-0"
+                                        leave="transform transition ease-in-out duration-500 sm:duration-700"
+                                        leave-from="translate-x-0"
+                                        leave-to="translate-x-full"
                                     >
-                                        {{__('translate.aplications')}}
-                                        <svg :class="{'rotate-180': showingAplicationsDropdown}" class="ms-1.5 h-3 w-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                    </button>
-                                    <div v-show="showingAplicationsDropdown" class="space-y-1">
-                                        <ResponsiveNavLink :href="route('aplications.index')" :active="route().current('aplications.index')" class="uppercase pl-8">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('candidate-questions.index')" :active="route().current('candidate-questions.index')" class="uppercase pl-8">{{__('translate.listQuestions')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('external-companies.index')" :active="route().current('external-companies.index')" class="uppercase pl-8">{{__('translate.externalCompanies')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')" class="uppercase pl-8">{{__('translate.tags')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')" class="uppercase pl-8">{{__('translate.candidates')}}</ResponsiveNavLink>
-                                    </div>
-                                </div>
+                                        <DialogPanel class="pointer-events-auto w-screen max-w-full">
+                                            <div class="flex h-full flex-col bg-white shadow-2xl overflow-hidden">
+                                                <!-- Header -->
+                                                <div class="px-6 py-6 bg-[#0A2C5C] text-white">
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-3">
+                                                            <ApplicationMark class="h-8 w-auto brightness-0 invert" />
+                                                            <span class="text-xl font-black uppercase tracking-tight">Menu</span>
+                                                        </div>
+                                                        <button
+                                                            type="button"
+                                                            class="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+                                                            @click="showingNavigationDropdown = false"
+                                                        >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
 
-                                <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')" class="uppercase">{{__('translate.projects')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('statistics.index')" :active="route().current('statistics.index')" class="uppercase">{{__('translate.statistics')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('invoices.index')" :active="route().current('invoices.index')" class="uppercase">{{__('translate.invoices')}}</ResponsiveNavLink>
+                                                    <!-- User Profile Summary in Menu -->
+                                                    <div class="mt-8 flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 shadow-inner">
+                                                        <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0">
+                                                            <img class="h-12 w-12 rounded-full object-cover border-2 border-white/20 shadow-sm" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+                                                        </div>
+                                                        <div v-else class="shrink-0 w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-black text-lg">
+                                                            {{ $page.props.auth.user.name.substring(0, 1).toUpperCase() }}
+                                                        </div>
+                                                        <div class="overflow-hidden">
+                                                            <p class="text-sm font-black uppercase tracking-tight truncate">{{ $page.props.auth.user.name }}</p>
+                                                            <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest truncate">{{ $page.props.auth.user.email }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                <div>
-                                    <button
-                                        @click="showingServicesDropdown = !showingServicesDropdown"
-                                        class="flex items-center justify-between w-full px-4 py-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50/30 hover:text-[#0A2C5C] transition-colors"
-                                    >
-                                        {{__('translate.services')}}
-                                        <svg :class="{'rotate-180': showingServicesDropdown}" class="ms-1.5 h-3 w-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                    </button>
-                                    <div v-show="showingServicesDropdown" class="space-y-1">
-                                        <ResponsiveNavLink :href="route('firm.p50')" :active="route().current('firm.p50')" class="uppercase pl-8">{{__('translate.p50')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')" class="uppercase pl-8">{{__('translate.articles')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('firm.banners')" :active="route().current('firm.banners')" class="uppercase pl-8">{{__('translate.banners')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('firm.featuredEmployer')" :active="route().current('firm.featuredEmployer')" class="uppercase pl-8">{{__('translate.featured_employer_title')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('firm.socialMedia')" :active="route().current('firm.socialMedia')" class="uppercase pl-8">{{__('translate.social_media_title')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('firm.premium-certificate.show')" :active="route().current('firm.premium-certificate.show')" class="uppercase pl-8">{{__('translate.premium_certificate')}}</ResponsiveNavLink>
-                                    </div>
-                                </div>
+                                                <!-- Content -->
+                                                <div class="flex-1 overflow-y-auto px-4 py-6 custom-scrollbar space-y-4">
+                                                    <!-- Main Navigation -->
+                                                    <div class="space-y-0.5">
+                                                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                                            <div class="flex items-center gap-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                                                </svg>
+                                                                {{__('translate.dashboard')}}
+                                                            </div>
+                                                        </ResponsiveNavLink>
 
-                                <div>
-                                    <button
-                                        @click="showingBuyDropdown = !showingBuyDropdown"
-                                        class="flex items-center justify-between w-full px-4 py-2 text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50/30 hover:text-[#0A2C5C] transition-colors"
-                                    >
-                                        {{__('translate.buy')}}
-                                        <svg :class="{'rotate-180': showingBuyDropdown}" class="ms-1.5 h-3 w-3 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                    </button>
-                                    <div v-show="showingBuyDropdown" class="space-y-1">
-                                        <ResponsiveNavLink :href="route('buy.index')" :active="route().current('buy.index')" class="uppercase pl-8">{{__('translate.buy')}}</ResponsiveNavLink>
-                                        <ResponsiveNavLink :href="route('points.index')" :active="route().current('points.index')" class="uppercase pl-8">{{__('translate.points')}}</ResponsiveNavLink>
-                                    </div>
-                                </div>
-                            </template>
+                                                        <!-- Worker Links -->
+                                                        <template v-if="hasRole('worker')">
+                                                            <ResponsiveNavLink :href="route('worker.myCv')" :active="route().current('worker.myCv')">
+                                                                <div class="flex items-center gap-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                                                    </svg>
+                                                                    {{__('translate.myCv')}}
+                                                                </div>
+                                                            </ResponsiveNavLink>
+                                                        <ResponsiveNavLink :href="route('worker.aplications')" :active="route().current('worker.aplications')">
+                                                            <div class="flex items-center gap-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                                                </svg>
+                                                                {{__('translate.aplications')}}
+                                                            </div>
+                                                        </ResponsiveNavLink>
+                                                        <ResponsiveNavLink :href="route('front.projects')" :active="route().current('front.projects')">
+                                                            <div class="flex items-center gap-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                                                </svg>
+                                                                {{__('translate.projects')}}
+                                                            </div>
+                                                        </ResponsiveNavLink>
+                                                        </template>
 
-<!--                            <template v-if="hasRole('admin')">-->
-<!--                                <ResponsiveNavLink :href="route('admin.questions-accepts.index')" :active="route().current('admin.questions-accepts.index')">{{__('translate.admin-questions')}}</ResponsiveNavLink>-->
-<!--                                <ResponsiveNavLink :href="route('admin.aplicationsA.index')" :active="route().current('admin.aplicationsA.index')">{{__('translate.aplications')}}</ResponsiveNavLink>-->
-<!--                                <ResponsiveNavLink :href="route('admin.partners.index')" :active="route().current('admin.partners.index')">{{__('partners.partners')}}</ResponsiveNavLink>-->
-<!--                            </template>-->
+                                                        <!-- Firm Links -->
+                                                        <template v-if="hasRole('firm')">
+                                                            <ResponsiveNavLink :href="route('recruits.index')" :active="route().current('recruits.index')">
+                                                                <div class="flex items-center gap-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                                                    </svg>
+                                                                    {{__('translate.recruits')}}
+                                                                </div>
+                                                            </ResponsiveNavLink>
 
-                            <template v-if="hasRole('recruit') && !hasRole('firm')">
-                                <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')" class="uppercase">{{__('translate.projects')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')" class="uppercase">{{__('translate.aplications')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')" class="uppercase">{{__('translate.candidates')}}</ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')" class="uppercase">{{__('translate.tags')}}</ResponsiveNavLink>
-                            </template>
-                        </div>
+                                                            <div class="space-y-1">
+                                                                <button
+                                                                    @click="showingAplicationsDropdown = !showingAplicationsDropdown"
+                                                                    class="flex items-center justify-between w-full ps-3 pe-4 py-3 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-[#0A2C5C] hover:bg-gray-50 hover:border-gray-300 rounded-r-xl transition duration-150 ease-in-out uppercase"
+                                                                    :class="{'text-[#0A2C5C] bg-blue-50/50 border-[#00a0e3]': showingAplicationsDropdown}"
+                                                                >
+                                                                    <div class="flex items-center gap-3">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                                                        </svg>
+                                                                        {{__('translate.aplications')}}
+                                                                    </div>
+                                                                    <svg :class="{'rotate-180': showingAplicationsDropdown}" class="h-4 w-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                                    </svg>
+                                                                </button>
+                                                                <div v-show="showingAplicationsDropdown" class="pl-1 space-y-0 border-l border-blue-100 ml-2 my-1">
+                                                                    <ResponsiveNavLink :href="route('aplications.index')" :active="route().current('aplications.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.aplications')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('candidate-questions.index')" :active="route().current('candidate-questions.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.listQuestions')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('external-companies.index')" :active="route().current('external-companies.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.externalCompanies')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.tags')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.candidates')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                </div>
+                                                            </div>
 
-                        <!-- Responsive User & Settings -->
-                        <div class="pt-4 pb-1 border-t border-gray-200">
-                            <div class="flex items-center px-4 mb-4 bg-gray-50/50 py-4 rounded-[2rem] mx-2 border border-gray-100">
-                                <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
-                                    <img class="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
-                                </div>
-                                <div>
-                                    <div class="font-black text-xs text-[#0A2C5C] uppercase tracking-tight">{{ $page.props.auth.user.name }}</div>
-                                    <div class="font-bold text-[10px] text-gray-400 uppercase tracking-widest">{{ $page.props.auth.user.email }}</div>
+                                                            <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')">
+                                                                <div class="flex items-center gap-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                                                    </svg>
+                                                                    {{__('translate.projects')}}
+                                                                </div>
+                                                            </ResponsiveNavLink>
+
+                                                            <div class="space-y-1">
+                                                                <button
+                                                                    @click="showingServicesDropdown = !showingServicesDropdown"
+                                                                    class="flex items-center justify-between w-full ps-3 pe-4 py-3 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-[#0A2C5C] hover:bg-gray-50 hover:border-gray-300 rounded-r-xl transition duration-150 ease-in-out uppercase"
+                                                                    :class="{'text-[#0A2C5C] bg-blue-50/50 border-[#00a0e3]': showingServicesDropdown}"
+                                                                >
+                                                                    <div class="flex items-center gap-3">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 22.25l-.394-1.683a2.25 2.25 0 0 0-1.623-1.623L12.75 18.5l1.733-.406a2.25 2.25 0 0 0 1.623-1.623l.394-1.683.394 1.683a2.25 2.25 0 0 0 1.623 1.623l1.733.406-1.733.406a2.25 2.25 0 0 0-1.623 1.623Z" />
+                                                                        </svg>
+                                                                        {{__('translate.services')}}
+                                                                    </div>
+                                                                    <svg :class="{'rotate-180': showingServicesDropdown}" class="h-4 w-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                                    </svg>
+                                                                </button>
+                                                                <div v-show="showingServicesDropdown" class="pl-1 space-y-0 border-l border-blue-100 ml-2 my-1">
+                                                                    <ResponsiveNavLink :href="route('firm.p50')" :active="route().current('firm.p50')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.p50')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('articles.index')" :active="route().current('articles.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.articles')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('firm.banners')" :active="route().current('firm.banners')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.banners')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('firm.featuredEmployer')" :active="route().current('firm.featuredEmployer')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.featured_employer_title')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('firm.socialMedia')" :active="route().current('firm.socialMedia')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.social_media_title')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('firm.premium-certificate.show')" :active="route().current('firm.premium-certificate.show')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.premium_certificate')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="space-y-1">
+                                                                <button
+                                                                    @click="showingBuyDropdown = !showingBuyDropdown"
+                                                                    class="flex items-center justify-between w-full ps-3 pe-4 py-3 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-[#0A2C5C] hover:bg-gray-50 hover:border-gray-300 rounded-r-xl transition duration-150 ease-in-out uppercase"
+                                                                    :class="{'text-[#0A2C5C] bg-blue-50/50 border-[#00a0e3]': showingBuyDropdown}"
+                                                                >
+                                                                    <div class="flex items-center gap-3">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                                        </svg>
+                                                                        {{__('translate.buy')}}
+                                                                    </div>
+                                                                    <svg :class="{'rotate-180': showingBuyDropdown}" class="h-4 w-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                                    </svg>
+                                                                </button>
+                                                                <div v-show="showingBuyDropdown" class="pl-1 space-y-0 border-l border-blue-100 ml-2 my-1">
+                                                                    <ResponsiveNavLink :href="route('buy.index')" :active="route().current('buy.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.buy')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                    <ResponsiveNavLink :href="route('points.index')" :active="route().current('points.index')" class="!py-1.5 !text-sm">
+                                                                        <div class="flex items-center gap-3">
+                                                                            <div class="w-1 h-1 rounded-full bg-blue-400"></div>
+                                                                            {{__('translate.points')}}
+                                                                        </div>
+                                                                    </ResponsiveNavLink>
+                                                                </div>
+                                                            </div>
+                                                        </template>
+
+                                                        <!-- Recruit (Non-firm) Links -->
+                                                        <template v-if="hasRole('recruit') && !hasRole('firm')">
+                                                        <ResponsiveNavLink :href="route('project-recruits.index')" :active="route().current('project-recruits.index')">
+                                                            <div class="flex items-center gap-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                                                                </svg>
+                                                                {{__('translate.projects')}}
+                                                            </div>
+                                                        </ResponsiveNavLink>
+                                                        <ResponsiveNavLink :href="route('project-aplications-recruits.index')" :active="route().current('project-aplications-recruits.index')">
+                                                            <div class="flex items-center gap-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                                                </svg>
+                                                                {{__('translate.aplications')}}
+                                                            </div>
+                                                        </ResponsiveNavLink>
+                                                            <ResponsiveNavLink :href="route('candidates.index')" :active="route().current('candidates.index')">
+                                                                <div class="flex items-center gap-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                                                    </svg>
+                                                                    {{__('translate.candidates')}}
+                                                                </div>
+                                                            </ResponsiveNavLink>
+                                                            <ResponsiveNavLink :href="route('tags.index')" :active="route().current('tags.index')">
+                                                                <div class="flex items-center gap-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.659A2.25 2.25 0 0 0 9.568 3Z" />
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                                                                    </svg>
+                                                                    {{__('translate.tags')}}
+                                                                </div>
+                                                            </ResponsiveNavLink>
+                                                        </template>
+                                                    </div>
+
+                                                    <!-- Account Management -->
+                                                    <div class="space-y-1">
+                                                        <div class="px-4 mb-2 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('translate.ManageAccount') }}</div>
+                                                        <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                                                            <div class="flex items-center gap-3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                                </svg>
+                                                                {{__('translate.Profile')}}
+                                                            </div>
+                                                        </ResponsiveNavLink>
+
+                                                        <!-- Teams on Mobile -->
+                                                        <template v-if="$page.props.jetstream.hasTeamFeatures">
+                                                            <div class="pt-4 px-4 mb-2 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{{ __('Manage Team') }}</div>
+                                                            <ResponsiveNavLink :href="route('teams.show', $page.props.auth.user.current_team)" :active="route().current('teams.show')">
+                                                                <div class="flex items-center gap-3">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a5.97 5.97 0 0 0-.942 3.198mfe0 0H6a5.002 5.002 0 0 1 4.715-4.954M12 12.75a3.375 3.375 0 1 0 0-6.75 3.375 3.375 0 0 0 0 6.75Zm6.75 3.375a2.625 2.625 0 1 0 0-5.25 2.625 2.625 0 0 0 0 5.25Zm-13.5 0a2.625 2.625 0 1 0 0-5.25 2.625 2.625 0 0 0 0 5.25Z" />
+                                                                    </svg>
+                                                                    {{ __('Team Settings') }}
+                                                                </div>
+                                                            </ResponsiveNavLink>
+                                                        </template>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Footer (Logout) -->
+                                                <div class="border-t border-gray-100 p-6 bg-gray-50/50">
+                                                    <form method="POST" @submit.prevent="logout">
+                                                        <button
+                                                            type="submit"
+                                                            class="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-red-50 text-red-600 font-black uppercase tracking-widest hover:bg-red-100 transition-colors"
+                                                        >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                                                            </svg>
+                                                            {{__('translate.logout')}}
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </DialogPanel>
+                                    </TransitionChild>
                                 </div>
                             </div>
-
-                            <div class="space-y-1">
-                                <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')" class="uppercase">{{__('translate.Profile')}}</ResponsiveNavLink>
-                                <form method="POST" @submit.prevent="logout">
-                                    <ResponsiveNavLink as="button" class="text-red-600 uppercase">{{__('translate.logout')}}</ResponsiveNavLink>
-                                </form>
-                            </div>
                         </div>
-                    </div>
-                </transition>
+                    </Dialog>
+                </TransitionRoot>
             </nav>
 
 

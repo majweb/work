@@ -1800,4 +1800,5 @@ return [
     'generatingPdf' => 'Trwa generowanie PDF...',
     'noExternalCompaniesFoundRecruit' => 'Nie znaleziono firm zewnętrznych.',
     'mustAddExternalCompanyBeforeEvidenceRecruit' => 'Aby dodać ewidencję, firma zewnętrzna musi być utworzona przez administratora firmy.',
+    'drag_to_reorder' => 'Przeciągnij, aby zmienić kolejność',
 ];

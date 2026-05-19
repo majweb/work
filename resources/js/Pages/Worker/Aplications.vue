@@ -159,15 +159,15 @@ const getApplicationProgress = (status) => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- HEADER CARD -->
-                <section class="bg-white rounded-3xl shadow-sm border border-gray-100">
-                    <div class="p-8">
+                <section class="bg-white rounded-[1.5rem] sm:rounded-3xl shadow-sm border border-gray-100">
+                    <div class="p-4 sm:p-8">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div class="uppercase">
-                                <h2 class="text-2xl font-bold text-[#0A2C5C]">{{ __('translate.aplications') }}</h2>
-                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.manageYourApplications') }}</p>
+                            <div class="uppercase text-center md:text-left">
+                                <h2 class="text-xl sm:text-2xl font-bold text-[#0A2C5C]">{{ __('translate.aplications') }}</h2>
+                                <p class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.manageYourApplications') }}</p>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
                                 <!-- Wyszukiwarka -->
                                 <div class="relative flex-1 sm:min-w-[300px]">
                                     <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,7 +177,7 @@ const getApplicationProgress = (status) => {
                                         v-model="searchQuery"
                                         type="text"
                                         :placeholder="__('translate.search_placeholder')"
-                                        class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border-gray-100 focus:bg-white focus:ring-0 focus:border-blue-200 rounded-2xl transition-all text-sm placeholder:uppercase"
+                                        class="w-full pl-11 pr-4 py-2 sm:py-2.5 bg-gray-50 border-gray-100 focus:bg-white focus:ring-0 focus:border-blue-200 rounded-xl sm:rounded-2xl transition-all text-xs sm:text-sm placeholder:uppercase"
                                     >
                                 </div>
 
@@ -192,7 +192,7 @@ const getApplicationProgress = (status) => {
                                         :selectLabel="''"
                                         :selectedLabel="''"
                                         :deselectLabel="''"
-                                        class="status-multiselect"
+                                        class="status-multiselect text-xs sm:text-sm"
                                     />
                                 </div>
                             </div>
@@ -201,13 +201,13 @@ const getApplicationProgress = (status) => {
                 </section>
 
                 <!-- MAIN CONTENT CARD -->
-                <div class="bg-white rounded-[3rem] shadow-sm border border-gray-100 p-8">
+                <div class="bg-white rounded-[1.5rem] sm:rounded-[3rem] shadow-sm border border-gray-100 p-4 sm:p-8">
                     <!-- Tab Buttons -->
-                    <div class="flex flex-wrap gap-2 mb-10">
+                    <div class="flex flex-wrap gap-2 mb-6 sm:mb-10">
                         <button
                             @click="activeTab = 'active'"
                             :class="[
-                                'px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-3',
+                                'px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all flex items-center gap-2 sm:gap-3',
                                 activeTab === 'active'
                                     ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20'
                                     : 'bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-600'
@@ -215,7 +215,7 @@ const getApplicationProgress = (status) => {
                         >
                             {{ __('translate.tabs.active') }}
                             <span :class="[
-                                'px-2 py-0.5 rounded-lg text-[10px] font-black',
+                                'px-1.5 sm:px-2 py-0.5 rounded-lg text-[8px] sm:text-[10px] font-black',
                                 activeTab === 'active' ? 'bg-blue-400/20 text-blue-100' : 'bg-gray-200 text-gray-500'
                             ]">{{ activeCount }}</span>
                         </button>
@@ -223,7 +223,7 @@ const getApplicationProgress = (status) => {
                         <button
                             @click="activeTab = 'finished'"
                             :class="[
-                                'px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-3',
+                                'px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest transition-all flex items-center gap-2 sm:gap-3',
                                 activeTab === 'finished'
                                     ? 'bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/20'
                                     : 'bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-600'
@@ -231,7 +231,7 @@ const getApplicationProgress = (status) => {
                         >
                             {{ __('translate.tabs.finished') }}
                             <span :class="[
-                                'px-2 py-0.5 rounded-lg text-[10px] font-black',
+                                'px-1.5 sm:px-2 py-0.5 rounded-lg text-[8px] sm:text-[10px] font-black',
                                 activeTab === 'finished' ? 'bg-blue-400/20 text-blue-100' : 'bg-gray-200 text-gray-500'
                             ]">{{ finishedCount }}</span>
                         </button>
@@ -240,52 +240,53 @@ const getApplicationProgress = (status) => {
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
                         <!-- Stats Chart -->
                         <div class="lg:col-span-4">
-                            <div class="bg-gray-50/50 border border-gray-100 rounded-[2.5rem] p-8 shadow-inner">
-                                <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-8 text-center">{{ __('translate.stats.title') }}</h3>
+                            <div class="bg-gray-50/50 border border-gray-100 rounded-[1.5rem] sm:rounded-[2.5rem] p-6 sm:p-8 shadow-inner">
+                                <h3 class="text-[10px] sm:text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 sm:mb-8 text-center">{{ __('translate.stats.title') }}</h3>
 
-                                <div class="mb-10 flex justify-center min-h-[240px]">
+                                <div class="mb-6 sm:mb-10 flex justify-center min-h-[200px] sm:min-h-[240px]">
                                     <component
                                         :is="VueApexChartsLazy"
                                         v-if="isClient && VueApexChartsLazy"
                                         type="donut"
                                         :options="chartOptions"
                                         :series="chartSeries"
-                                        height="240"
+                                        height="200"
+                                        class="sm:h-[240px]"
                                     />
                                 </div>
 
                                 <!-- Legend -->
                                 <div class="space-y-4">
-                                    <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.yes') }}</span>
+                                    <div class="flex items-center justify-between p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-50">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-blue-900 shadow-sm shadow-blue-200"></div>
+                                            <span class="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.yes') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.yes }}</span>
+                                        <span class="text-xs sm:text-sm font-black text-[#0A2C5C]">{{ stats.yes }}</span>
                                     </div>
 
-                                    <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.no') }}</span>
+                                    <div class="flex items-center justify-between p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-50">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-600 shadow-sm shadow-red-200"></div>
+                                            <span class="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.no') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.no }}</span>
+                                        <span class="text-xs sm:text-sm font-black text-[#0A2C5C]">{{ stats.no }}</span>
                                     </div>
 
-                                    <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-gray-300 shadow-sm shadow-gray-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.sent') }}</span>
+                                    <div class="flex items-center justify-between p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-50">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-gray-300 shadow-sm shadow-gray-200"></div>
+                                            <span class="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.sent') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.sent }}</span>
+                                        <span class="text-xs sm:text-sm font-black text-[#0A2C5C]">{{ stats.sent }}</span>
                                     </div>
 
-                                    <div class="flex items-center justify-between p-3 bg-white rounded-2xl shadow-sm border border-gray-50">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
-                                            <span class="text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.maybe') }}</span>
+                                    <div class="flex items-center justify-between p-2 sm:p-3 bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-50">
+                                        <div class="flex items-center gap-2 sm:gap-3">
+                                            <div class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200"></div>
+                                            <span class="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-tight">{{ __('translate.labels.maybe') }}</span>
                                         </div>
-                                        <span class="text-sm font-black text-[#0A2C5C]">{{ stats.maybe }}</span>
+                                        <span class="text-xs sm:text-sm font-black text-[#0A2C5C]">{{ stats.maybe }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -293,8 +294,8 @@ const getApplicationProgress = (status) => {
 
                         <!-- Applications List -->
                         <div class="lg:col-span-8">
-                            <div class="flex items-center gap-4 mb-8">
-                                <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.yourNotifications') }}</h3>
+                            <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                                <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.yourNotifications') }}</h3>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
@@ -302,12 +303,12 @@ const getApplicationProgress = (status) => {
                                 <div
                                     v-for="application in filteredApplications"
                                     :key="application.id"
-                                    class="group relative bg-white border border-gray-100 rounded-3xl p-5 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1"
+                                    class="group relative bg-white border border-gray-100 rounded-2xl sm:rounded-3xl p-4 sm:p-5 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1"
                                 >
-                                    <Link :href="route('worker.singleAplication',application)" class="flex items-center justify-between gap-6">
-                                        <div class="flex items-center gap-6 flex-1 min-w-0">
+                                    <Link :href="route('worker.singleAplication',application)" class="flex items-center justify-between gap-3 sm:gap-6">
+                                        <div class="flex items-center gap-3 sm:gap-6 flex-1 min-w-0">
                                             <!-- Progress -->
-                                            <div class="shrink-0 scale-90 md:scale-100">
+                                            <div class="shrink-0 scale-75 md:scale-100 -mx-2 md:mx-0">
                                                 <CircularProgress
                                                     :value="getApplicationProgress(application.status).value"
                                                     :color="getApplicationProgress(application.status).color"
@@ -315,17 +316,17 @@ const getApplicationProgress = (status) => {
                                             </div>
 
                                             <div class="flex-1 min-w-0">
-                                                <div class="flex items-center gap-2 mb-1">
-                                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ application.date }}</span>
-                                                    <span class="w-1 h-1 bg-gray-200 rounded-full"></span>
-                                                    <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">{{ application.company }}</span>
+                                                <div class="flex items-center gap-2 mb-1 flex-wrap">
+                                                    <span class="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ application.date }}</span>
+                                                    <span class="w-1 h-1 bg-gray-200 rounded-full hidden sm:block"></span>
+                                                    <span class="text-[9px] sm:text-[10px] font-black text-blue-400 uppercase tracking-widest">{{ application.company }}</span>
                                                 </div>
-                                                <h4 class="text-lg font-black text-[#0A2C5C] uppercase leading-tight group-hover:text-[#0A2C5C] transition-colors">{{ application.title }}</h4>
-                                                <p class="text-sm font-bold text-gray-400 mt-1 uppercase tracking-tight">{{ application.department }}</p>
+                                                <h4 class="text-base sm:text-lg font-black text-[#0A2C5C] uppercase leading-tight group-hover:text-[#0A2C5C] transition-colors truncate sm:whitespace-normal">{{ application.title }}</h4>
+                                                <p class="text-xs sm:text-sm font-bold text-gray-400 mt-1 uppercase tracking-tight truncate">{{ application.department }}</p>
                                             </div>
                                         </div>
 
-                                        <div class="flex items-center gap-6 shrink-0">
+                                        <div class="flex items-center gap-2 sm:gap-6 shrink-0">
                                             <div class="hidden sm:flex flex-col items-end">
                                                 <span :class="[
                                                     'inline-flex items-center gap-2 px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-sm',
@@ -336,8 +337,8 @@ const getApplicationProgress = (status) => {
                                                 </span>
                                             </div>
 
-                                            <div class="w-10 h-10 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
-                                                <svg class="w-5 h-5 text-gray-300 group-hover:text-[#0A2C5C] transition-all transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gray-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-[#0A2C5C] transition-all transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>

@@ -268,27 +268,27 @@ const submit = () => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <!-- HEADER -->
-                <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="p-8">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h2 class="text-2xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.myCv') }}</h2>
-                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl">{{ __('translate.myCvDescription') }}</p>
+                <section class="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-4 sm:p-8">
+                        <div class="flex justify-between items-center text-center sm:text-left">
+                            <div class="w-full">
+                                <h2 class="text-xl sm:text-2xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.myCv') }}</h2>
+                                <p class="text-[9px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1 max-w-4xl mx-auto sm:mx-0">{{ __('translate.myCvDescription') }}</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
                     <!-- LEWA KOLUMNA: LISTA CV -->
-                    <div class="w-full lg:w-80 space-y-4 shrink-0">
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider px-4">{{ __('translate.lastAplications') }}</h3>
-                        <div v-if="props.myCvs.length" class="space-y-3">
+                    <div class="w-full lg:w-80 space-y-4 shrink-0 order-2 lg:order-1">
+                        <h3 class="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-4 text-center lg:text-left">{{ __('translate.lastAplications') }}</h3>
+                        <div v-if="props.myCvs.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
                             <div
                                 v-for="cv in props.myCvs"
                                 :key="cv.id"
                                 @click="selectCv(cv)"
-                                class="group relative flex items-center gap-4 p-5 rounded-3xl transition-all duration-200 border cursor-pointer"
+                                class="group relative flex items-center gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-3xl transition-all duration-200 border cursor-pointer"
                                 :class="selectedCvId === cv.id
                                     ? 'bg-[#0A2C5C] border-transparent shadow-lg shadow-blue-900/20 shadow-md'
                                     : 'bg-white border-gray-100 hover:border-blue-100 hover:bg-blue-50/30 shadow-sm'"
@@ -316,36 +316,36 @@ const submit = () => {
                     </div>
 
                     <!-- PRAWA KOLUMNA: EDYCJA CV -->
-                    <div class="flex-1 w-full min-w-0 relative">
+                    <div class="flex-1 w-full min-w-0 relative order-1 lg:order-2">
                         <!-- Loader dla Multiselect / Ładowania CV -->
-                        <div v-if="isLoadingCv" class="absolute inset-0 bg-white/50 backdrop-blur-[1px] z-50 flex items-center justify-center rounded-3xl">
+                        <div v-if="isLoadingCv" class="absolute inset-0 bg-white/50 backdrop-blur-[1px] z-50 flex items-center justify-center rounded-2xl sm:rounded-3xl">
                              <SpinnerAction :show="true" class="!w-12 !h-12 text-[#0A2C5C]" />
                         </div>
 
-                        <div v-if="selectedCv" class="space-y-8">
+                        <div v-if="selectedCv" class="space-y-6 sm:space-y-8">
                             <!-- INFORMACJE PODSTAWOWE -->
-                            <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                                <div class="p-8">
-                                    <div class="flex justify-between items-center mb-8">
-                                        <div>
-                                            <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.basic_info') }}</h3>
-                                            <p class="text-xs text-gray-500 mt-1 uppercase">{{__('translate.makeData')}}</p>
+                            <section class="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                                <div class="p-4 sm:p-8">
+                                    <div class="flex justify-between items-center mb-6 sm:mb-8 text-center sm:text-left">
+                                        <div class="w-full sm:w-auto">
+                                            <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.basic_info') }}</h3>
+                                            <p class="text-[10px] sm:text-xs text-gray-500 mt-1 uppercase">{{__('translate.makeData')}}</p>
                                         </div>
                                     </div>
 
                                     <form @submit.prevent="updateProfileInformation">
-                                        <div class="flex flex-col md:flex-row gap-10 items-start">
+                                        <div class="flex flex-col md:flex-row gap-6 sm:gap-10 items-center md:items-start">
                                             <!-- AVATAR -->
-                                            <div class="relative group shrink-0 mx-auto md:mx-0">
+                                            <div class="relative group shrink-0">
                                                 <input ref="photoInput" type="file" class="hidden" @change="updatePhotoPreview">
-                                                <div class="w-32 h-32 rounded-3xl overflow-hidden shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
+                                                <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border-4 border-white group-hover:scale-105 transition-transform duration-300">
                                                     <img v-if="!photoPreview" :src="currentUser.profile_photo_url" class="w-full h-full object-cover" />
                                                     <div v-else class="w-full h-full bg-cover bg-center" :style="`background-image:url('${photoPreview}')`" />
                                                 </div>
                                                 <button type="button"
                                                         @click.prevent="selectNewPhoto"
-                                                        class="absolute -bottom-2 -right-2 bg-[#0A2C5C] text-white p-2 rounded-xl shadow-lg hover:bg-[#00a0e3] transition-colors">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        class="absolute -bottom-1 -right-1 bg-[#0A2C5C] text-white p-2 rounded-lg sm:rounded-xl shadow-lg hover:bg-[#00a0e3] transition-colors">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                                                     </svg>
@@ -414,28 +414,28 @@ const submit = () => {
                             </section>
 
                             <!-- DOŚWIADCZENIE -->
-                            <section class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                                <div class="p-4 md:p-8">
+                            <section class="bg-white rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                                <div class="p-4 sm:p-8">
                                     <form @submit.prevent="submit">
-                                        <div class="flex justify-between items-center mb-8">
-                                            <div>
-                                                <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.experience') }}</h3>
-                                                <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.experiences.length }}/5</p>
+                                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+                                            <div class="w-full text-center sm:text-left">
+                                                <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.experience') }}</h3>
+                                                <p class="text-[10px] sm:text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.experiences.length }}/5</p>
                                             </div>
                                             <PrimaryButton
                                                 type="button"
                                                 v-if="formCv.experiences.length < 5"
                                                 @click="addExperience"
-                                                class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
+                                                class="w-full sm:w-auto !bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-[10px] sm:text-xs md:text-sm py-3 sm:py-2 flex items-center justify-center gap-2"
                                             >
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                 </svg>
-                                                {{ __('translate.addExperience') }}
+                                                <span class="leading-none">{{ __('translate.addExperience') }}</span>
                                             </PrimaryButton>
                                         </div>
 
-                                        <div v-if="formCv.experiences.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-2xl text-center mb-6">
+                                        <div v-if="formCv.experiences.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-xl text-center mb-6">
                                             {{ __('translate.limitComplete') }}
                                         </div>
 
@@ -446,19 +446,18 @@ const submit = () => {
                                             item-key="id"
                                             handle=".handle"
                                             ghost-class="ghost"
-                                            class="space-y-6"
+                                            class="space-y-4 sm:space-y-6"
                                         >
                                             <template #item="{ element: experience, index }">
-                                                <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                    <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
-                                                        <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
-                                                            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                                                <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            </svg>
-                                                        </div>
+                                                <div class="relative p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                    <div class="flex items-center gap-2 mb-4 px-2 py-1 bg-gray-100/50 rounded-lg w-fit handle cursor-grab active:cursor-grabbing hover:bg-gray-200/50 transition-colors">
+                                                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                            <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        </svg>
+                                                        <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.drag_to_reorder') || 'Przeciągnij' }}</span>
                                                     </div>
 
-                                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
+                                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                                         <!-- POSITION -->
                                                         <div class="flex flex-col gap-1">
                                                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.position') }}</span>
@@ -515,7 +514,7 @@ const submit = () => {
                                                                     :disabled="experience.isCurrent"
                                                                     class="modern-datepicker"
                                                                 />
-                                                                <label class="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-tight ml-1">
+                                                                <label class="flex items-center gap-2 text-[10px] font-bold text-gray-500 uppercase tracking-tight ml-1">
                                                                     <Checkbox
                                                                         v-model:checked="experience.isCurrent"
                                                                         @change="handleIsCurrentChange(index)"
@@ -528,7 +527,7 @@ const submit = () => {
                                                         </div>
 
                                                         <!-- CITY -->
-                                                        <div class="flex flex-col gap-1 md:col-span-2">
+                                                        <div class="flex flex-col gap-1 sm:col-span-2">
                                                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.City') }}</span>
                                                             <TextInput v-model="experience.city" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.City')"/>
                                                             <InputError :message="formCv.errors[`experiences.${index}.city`]" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
@@ -538,9 +537,9 @@ const submit = () => {
                                                     <button
                                                         type="button"
                                                         @click="removeElement(index)"
-                                                        class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100"
+                                                        class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100 flex items-center justify-center"
                                                     >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                         </svg>
                                                     </button>
@@ -549,43 +548,42 @@ const submit = () => {
                                         </draggable>
 
                                         <!-- EDUKACJA -->
-                                        <div class="mt-16">
-                                            <div class="flex justify-between items-center mb-8">
-                                                <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.education') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.educations.length }}/5</p>
+                                        <div class="mt-12 sm:mt-16">
+                                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+                                                <div class="w-full text-center sm:text-left">
+                                                    <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.education') }}</h3>
+                                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.educations.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
                                                     type="button"
                                                     v-if="formCv.educations.length < 5"
                                                     @click="addEducation"
-                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
+                                                    class="w-full sm:w-auto !bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-[10px] sm:text-xs md:text-sm py-3 sm:py-2 flex items-center justify-center gap-2"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
-                                                    {{ __('translate.addEducation') }}
+                                                    <span class="leading-none">{{ __('translate.addEducation') }}</span>
                                                 </PrimaryButton>
                                             </div>
 
-                                            <div v-if="formCv.educations.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-2xl text-center mb-6">
+                                            <div v-if="formCv.educations.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-xl text-center mb-6">
                                                 {{ __('translate.limitComplete') }}
                                             </div>
 
                                             <InputError :message="formCv.errors.educations" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
-                                            <draggable :list="formCv.educations" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
+                                            <draggable :list="formCv.educations" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-4 sm:space-y-6">
                                                 <template #item="{ element: education, index }">
-                                                    <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                        <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
-                                                            <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
-                                                                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                                                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                                </svg>
-                                                            </div>
+                                                    <div class="relative p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                        <div class="flex items-center gap-2 mb-4 px-2 py-1 bg-gray-100/50 rounded-lg w-fit handle cursor-grab active:cursor-grabbing hover:bg-gray-200/50 transition-colors">
+                                                            <svg class="h-4 w-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                                <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            </svg>
+                                                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">{{ __('translate.drag_to_reorder') || 'Przeciągnij' }}</span>
                                                         </div>
 
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
+                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                                                             <div class="flex flex-col gap-1 lg:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.school') }}</span>
                                                                 <TextInput v-model="education.school" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.school')"/>
@@ -626,8 +624,8 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" @click="removeElementArray(index,formCv.educations)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <button type="button" @click="removeElementArray(index,formCv.educations)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100 flex items-center justify-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
                                                         </button>
@@ -637,43 +635,42 @@ const submit = () => {
                                         </div>
 
                                         <!-- KURSY -->
-                                        <div class="mt-16">
-                                            <div class="flex justify-between items-center mb-8">
-                                                <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.courses') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.courses.length }}/5</p>
+                                        <div class="mt-12 sm:mt-16">
+                                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+                                                <div class="w-full text-center sm:text-left">
+                                                    <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.courses') }}</h3>
+                                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.courses.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
                                                     type="button"
                                                     v-if="formCv.courses.length < 5"
                                                     @click="addCourse"
-                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
+                                                    class="w-full sm:w-auto !bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-[10px] sm:text-xs md:text-sm py-3 sm:py-2 flex items-center justify-center gap-2"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
-                                                    {{ __('translate.addCourse') }}
+                                                    <span class="leading-none">{{ __('translate.addCourse') }}</span>
                                                 </PrimaryButton>
                                             </div>
 
-                                            <div v-if="formCv.courses.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-2xl text-center mb-6">
+                                            <div v-if="formCv.courses.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-xl text-center mb-6">
                                                 {{ __('translate.limitComplete') }}
                                             </div>
 
                                             <InputError :message="formCv.errors.courses" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
-                                            <draggable :list="formCv.courses" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
+                                            <draggable :list="formCv.courses" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-4 sm:space-y-6">
                                                 <template #item="{ element: course, index }">
-                                                    <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                        <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
-                                                            <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
-                                                                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                                                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                                </svg>
-                                                            </div>
+                                                    <div class="relative p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                        <div class="flex items-center gap-2 mb-4 px-2 py-1 bg-gray-100/50 rounded-lg w-fit handle cursor-grab active:cursor-grabbing hover:bg-gray-200/50 transition-colors">
+                                                            <svg class="h-4 w-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                                <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            </svg>
+                                                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">{{ __('translate.drag_to_reorder') || 'Przeciągnij' }}</span>
                                                         </div>
 
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
+                                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                                                             <div class="flex flex-col gap-1 lg:col-span-2">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.name') }}</span>
                                                                 <TextInput v-model="course.name" class="w-full rounded-2xl border-gray-100" :placeholder="__('translate.name')"/>
@@ -699,8 +696,8 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" @click="removeElementArray(index,formCv.courses)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <button type="button" @click="removeElementArray(index,formCv.courses)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100 flex items-center justify-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
                                                         </button>
@@ -710,43 +707,42 @@ const submit = () => {
                                         </div>
 
                                         <!-- JĘZYKI -->
-                                        <div class="mt-16">
-                                            <div class="flex justify-between items-center mb-8">
-                                                <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.langKnow') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.langs.length }}/5</p>
+                                        <div class="mt-12 sm:mt-16">
+                                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
+                                                <div class="w-full text-center sm:text-left">
+                                                    <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.langKnow') }}</h3>
+                                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1 uppercase">{{ __('translate.quantity') }}: {{ formCv.langs.length }}/5</p>
                                                 </div>
                                                 <PrimaryButton
                                                     type="button"
                                                     v-if="formCv.langs.length < 5"
                                                     @click="addLang"
-                                                    class="!bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-xs md:text-sm"
+                                                    class="w-full sm:w-auto !bg-blue-50 !text-blue-600 hover:!bg-blue-100 border-none shadow-none rounded-xl text-[10px] sm:text-xs md:text-sm py-3 sm:py-2 flex items-center justify-center gap-2"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 md:mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                                     </svg>
-                                                    {{ __('translate.addLang') }}
+                                                    <span class="leading-none">{{ __('translate.addLang') }}</span>
                                                 </PrimaryButton>
                                             </div>
 
-                                            <div v-if="formCv.langs.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-2xl text-center mb-6">
+                                            <div v-if="formCv.langs.length === 5" class="bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest p-3 rounded-xl text-center mb-6">
                                                 {{ __('translate.limitComplete') }}
                                             </div>
 
                                             <InputError :message="formCv.errors.langs" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest mb-6"/>
 
-                                            <draggable :list="formCv.langs" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-6">
+                                            <draggable :list="formCv.langs" ghost-class="ghost" handle=".handle" item-key="id" class="space-y-4 sm:space-y-6">
                                                 <template #item="{ element: lang, index }">
-                                                    <div class="relative p-4 md:p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
-                                                        <div class="absolute left-2 top-4 md:left-4 md:top-1/2 md:-translate-y-1/2 opacity-100 md:opacity-0 group-hover/item:opacity-100 transition-opacity z-10">
-                                                            <div class="handle cursor-grab active:cursor-grabbing p-2 text-gray-300 hover:text-gray-500 transition-colors">
-                                                                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                                                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                                </svg>
-                                                            </div>
+                                                    <div class="relative p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] border border-gray-50 bg-gray-50/30 group/item transition-all hover:bg-white hover:shadow-md hover:border-gray-100">
+                                                        <div class="flex items-center gap-2 mb-4 px-2 py-1 bg-gray-100/50 rounded-lg w-fit handle cursor-grab active:cursor-grabbing hover:bg-gray-200/50 transition-colors">
+                                                            <svg class="h-4 w-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                                <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            </svg>
+                                                            <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">{{ __('translate.drag_to_reorder') || 'Przeciągnij' }}</span>
                                                         </div>
 
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pl-0 md:pl-10 mt-8 md:mt-0">
+                                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                                             <div class="flex flex-col gap-1">
                                                                 <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">{{ __('translate.name') }}</span>
                                                                 <multiselect
@@ -785,8 +781,8 @@ const submit = () => {
                                                             </div>
                                                         </div>
 
-                                                        <button type="button" @click="removeElementArray(index,formCv.langs)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <button type="button" @click="removeElementArray(index,formCv.langs)" class="absolute -top-3 -right-3 p-3 bg-white text-gray-300 hover:text-red-500 transition-colors shadow-md rounded-full z-10 opacity-100 md:opacity-0 group-hover/item:opacity-100 border border-gray-100 flex items-center justify-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                             </svg>
                                                         </button>
@@ -796,15 +792,15 @@ const submit = () => {
                                         </div>
 
                                         <!-- UMIEJĘTNOŚCI -->
-                                        <div class="mt-16">
-                                            <div class="flex justify-between items-center mb-8">
-                                                <div>
-                                                    <h3 class="text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.skills') }}</h3>
-                                                    <p class="text-xs text-gray-500 mt-1 uppercase">{{ __('translate.strongMe') }}</p>
+                                        <div class="mt-12 sm:mt-16">
+                                            <div class="flex justify-between items-center mb-6 sm:mb-8">
+                                                <div class="w-full text-center sm:text-left">
+                                                    <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] uppercase">{{ __('translate.skills') }}</h3>
+                                                    <p class="text-[10px] sm:text-xs text-gray-500 mt-1 uppercase">{{ __('translate.strongMe') }}</p>
                                                 </div>
                                             </div>
 
-                                            <div class="p-6 rounded-[2rem] border border-gray-50 bg-gray-50/30">
+                                            <div class="p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] border border-gray-50 bg-gray-50/30">
                                                 <multiselect
                                                     id="tagging"
                                                     v-model="formCv.skills"
@@ -837,8 +833,8 @@ const submit = () => {
                                             </div>
                                         </div>
 
-                                        <div class="flex justify-end mt-12 pt-8 border-t border-gray-100">
-                                            <PrimaryButton class="rounded-2xl px-12 py-4 bg-[#0A2C5C] hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                                        <div class="flex justify-center sm:justify-end mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-100">
+                                            <PrimaryButton class="w-full sm:w-auto rounded-xl sm:rounded-2xl px-8 sm:px-12 py-4 bg-[#0A2C5C] hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 active:translate-y-0"
                                                            :class="{ 'opacity-25': formCv.processing }"
                                                            :disabled="formCv.processing">
                                                 <SpinnerAction :show="formCv.processing" />
@@ -851,14 +847,14 @@ const submit = () => {
                         </div>
 
                         <!-- PLACEHOLDER BRAKU WYBORU -->
-                        <div v-else class="flex flex-col items-center justify-center h-[600px] bg-white rounded-3xl border border-dashed border-gray-200 p-12 text-center uppercase">
-                            <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div v-else class="flex flex-col items-center justify-center min-h-[400px] sm:h-[600px] bg-white rounded-2xl sm:rounded-3xl border border-dashed border-gray-200 p-6 sm:p-12 text-center uppercase">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-[#0A2C5C] mb-2 uppercase">{{ __('translate.chooseCvToEdit') }}</h3>
-                            <p class="text-gray-400 max-w-xs mx-auto uppercase">{{ __('translate.chooseCvToEditClick') }} </p>
+                            <h3 class="text-lg sm:text-xl font-bold text-[#0A2C5C] mb-2 uppercase">{{ __('translate.chooseCvToEdit') }}</h3>
+                            <p class="text-[10px] sm:text-xs text-gray-400 max-w-xs mx-auto uppercase">{{ __('translate.chooseCvToEditClick') }} </p>
                         </div>
                     </div>
                 </div>
