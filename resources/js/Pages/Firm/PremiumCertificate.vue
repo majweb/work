@@ -147,7 +147,7 @@ const generateButtonText = computed(() => {
                         <div class="md:w-1/2 flex justify-center">
                             <div class="relative group">
                                 <div class="absolute inset-0 bg-blue-100 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                                <img src="/images/icons/firm/certyfikat_premium.svg" alt="Certyfikat Icon" class="relative max-w-sm h-auto transform transition-transform duration-500 hover:scale-105">
+                                <img src="/images/icons/firm/certyfikat_premium.png" alt="Certyfikat Icon" class="relative max-w-sm h-auto transform transition-transform duration-500 hover:scale-105">
                             </div>
                         </div>
                     </div>
@@ -171,11 +171,11 @@ const generateButtonText = computed(() => {
                             >
                                 <!-- Icon Placeholder based on level -->
                                 <div class="mb-4">
-                                    <img v-if="level == 1" src="/images/icons/firm/certyfikat-brown.svg" class="h-12 w-12 object-contain" alt="certyfikat brown">
-                                    <img v-else-if="level == 2" src="/images/icons/firm/certyfikat-silver.svg" class="h-12 w-12 object-contain" alt="certyfikat silver">
-                                    <img v-else-if="level == 3" src="/images/icons/firm/certyfikat-gold.svg" class="h-12 w-12 object-contain" alt="certyfikat gold">
-                                    <img v-else-if="level == 4" src="/images/icons/firm/certyfikat-diamond.svg" class="h-12 w-12 object-contain" alt="certyfikat diamond">
-                                    <img v-else src="/images/icons/firm/certyfikat-brown.svg" class="h-12 w-12 object-contain" alt="certyfikat">
+                                    <img v-if="level == 1" src="/images/icons/firm/certyfikat-brown.png" class="h-12 w-12 object-contain" alt="certyfikat brown">
+                                    <img v-else-if="level == 2" src="/images/icons/firm/certyfikat-silver.png" class="h-12 w-12 object-contain" alt="certyfikat silver">
+                                    <img v-else-if="level == 3" src="/images/icons/firm/certyfikat-gold.png" class="h-12 w-12 object-contain" alt="certyfikat gold">
+                                    <img v-else-if="level == 4" src="/images/icons/firm/certyfikat-diamond.png" class="h-12 w-12 object-contain" alt="certyfikat diamond">
+                                    <img v-else src="/images/icons/firm/certyfikat-brown.png" class="h-12 w-12 object-contain" alt="certyfikat">
                                 </div>
 
                                 <div class="text-2xl font-bold mb-0 leading-none">{{ (points || 0).toLocaleString() }}</div>

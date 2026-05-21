@@ -245,12 +245,12 @@ const submit = () => {
                 <!-- PARTNERS SECTION -->
                 <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-white p-8 md:p-16 relative overflow-hidden group">
                     <!-- Logo background decoration -->
-                    <img src="/images/logo-horizontal.svg" class="absolute -bottom-20 -right-20 w-96 opacity-[0.03] pointer-events-none grayscale group-hover:scale-110 transition-transform duration-1000" alt="logo">
+                    <img src="/images/logo-horizontal.png" class="absolute -bottom-20 -right-20 w-96 opacity-[0.03] pointer-events-none grayscale group-hover:scale-110 transition-transform duration-1000" alt="logo">
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div class="flex justify-center order-2 md:order-1 relative">
                             <div class="absolute inset-0 bg-blue-400/10 blur-3xl rounded-full scale-110 animate-pulse"></div>
-                            <img src="/images/partners/partners.svg" class="w-full max-w-sm relative z-10 drop-shadow-2xl transition-transform duration-700 hover:scale-105" alt="partners">
+                            <img src="/images/partners/partners.png" class="w-full max-w-sm relative z-10 drop-shadow-2xl transition-transform duration-700 hover:scale-105" alt="partners">
                         </div>
                         <div class="order-1 md:order-2 space-y-6 text-center md:text-left">
                             <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl">
@@ -357,7 +357,7 @@ const submit = () => {
 
                         <div class="flex justify-center relative">
                             <div class="absolute inset-0 bg-blue-400/10 blur-3xl rounded-full scale-110 animate-pulse"></div>
-                            <img src="/images/partners/fundations.svg" class="w-full max-w-sm relative z-10 drop-shadow-2xl transition-transform duration-700 hover:scale-105" alt="fundations">
+                            <img src="/images/partners/fundations.png" class="w-full max-w-sm relative z-10 drop-shadow-2xl transition-transform duration-700 hover:scale-105" alt="fundations">
                         </div>
                     </div>
 

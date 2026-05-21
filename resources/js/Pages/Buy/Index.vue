@@ -37,7 +37,7 @@ const additionalServices = computed(() => all.value
     .map(p => ({
         ...p,
         service_type: p.type || '',
-        icon: `/images/price/${p.id}-points.svg`,
+        icon: `/images/price/${p.id}-points.png`,
         description: p.description || null
     }))
     .sort((a, b) => a.price - b.price)
@@ -141,7 +141,7 @@ const getServiceDescription = (type) => {
                                 <div class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110"
                                      :class="selected?.id === pack.id ? 'bg-white/10' : 'bg-gray-50'">
                                     <img
-                                        :src="`/images/price/${pack.points}.svg`"
+                                        :src="`/images/price/${pack.points}.png`"
                                         class="w-12 h-12 object-contain"
                                         :class="selected?.id === pack.id ? 'brightness-0 invert' : ''"
                                         :alt="pack.points"
@@ -227,7 +227,7 @@ const getServiceDescription = (type) => {
                                                      ? 'bg-white border-[#00a0e3] shadow-lg scale-125 z-10'
                                                      : 'bg-gray-50 border-transparent scale-100'">
                                                 <img
-                                                    :src="`/images/price/${pack.points}.svg`"
+                                                    :src="`/images/price/${pack.points}.png`"
                                                     :alt="pack.points"
                                                     class="w-8 h-8 object-contain"
                                                 />

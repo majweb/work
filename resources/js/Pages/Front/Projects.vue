@@ -744,9 +744,9 @@ const isSearching = ref(false);
                                             <div v-for="cvType in project.cv" :key="cvType.id"
                                                  class="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-sm transition-all duration-300 cursor-default"
                                                  :title="__('translate.cv_type_' + cvType.id)">
-                                                <img v-if="cvType.id === 1" src="/images/icons/cv-classic.svg" class="w-7 h-7" alt="Classic">
-                                                <img v-if="cvType.id === 2" src="/images/icons/cv-video.svg" class="w-7 h-7" alt="Video">
-                                                <img v-if="cvType.id === 3" src="/images/icons/cv-audio.svg" class="w-7 h-7" alt="Audio">
+                                                <img v-if="cvType.id === 1" src="/images/icons/cv-classic.png" class="w-7 h-7" alt="Classic">
+                                                <img v-if="cvType.id === 2" src="/images/icons/cv-video.png" class="w-7 h-7" alt="Video">
+                                                <img v-if="cvType.id === 3" src="/images/icons/cv-audio.png" class="w-7 h-7" alt="Audio">
                                             </div>
                                             <div class="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center group-hover:text-white transition-all duration-300 border border-gray-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/20"
                                                  :class="project.is_featured ? 'group-hover:bg-[#329CD1]' : 'group-hover:bg-[#0A2C5C]'">

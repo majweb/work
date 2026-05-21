@@ -934,9 +934,9 @@ onUnmounted(()=>{
                                                     <ul role="list" class="divide-y divide-gray-100">
                                                         <li v-for="item in usePage().props.cart" :key="item.id" class="flex py-6 first:pt-0 last:pb-0 transition-all hover:bg-gray-50/50 rounded-2xl -mx-2 px-2">
                                                             <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100 flex items-center justify-center border border-gray-200 shadow-sm">
-                                                                <img :src="`/images/price/${item.id}-points.svg`"
+                                                                <img :src="`/images/price/${item.id}-points.png`"
                                                                      class="h-10 w-10 object-contain opacity-80"
-                                                                     @error="(e) => e.target.src = '/images/icons/recruit/organizacja_pracy.svg'" />
+                                                                     @error="(e) => e.target.src = '/images/icons/recruit/organizacja_pracy.png'" />
                                                             </div>
 
                                                             <div class="ml-4 flex flex-1 flex-col">

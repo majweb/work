@@ -6,8 +6,6 @@ import ConfettiExplosion from "vue-confetti-explosion";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import NavLink from "@/Components/NavLink.vue";
 import Checkbox from "@/Components/Checkbox.vue";
-import DialogModal from "@/Components/DialogModal.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { ref, computed, watch, onMounted } from "vue";
 import __ from "@/lang.js";
 import CookieConsent from '@/Components/CookieConsent.vue';
@@ -32,6 +30,11 @@ const ogUrl = ref(page.props?.ziggy?.location || page.props?.pageUrl || '');
 onMounted(() => {
     isClient.value = true;
     ogUrl.value = window.location.href;
+
+    window.addEventListener('scroll', () => {
+        showScrollTop.value = window.scrollY > 400;
+        isScrolled.value = window.scrollY > 20;
+    });
 });
 
 const form = useForm({
@@ -152,16 +155,13 @@ watch(mobileMenuOpen, val => {
 
 // Scroll to top
 const showScrollTop = ref(false);
+const isScrolled = ref(false);
+
 const scrollToTop = () => {
     if (typeof window !== 'undefined') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
-onMounted(() => {
-    window.addEventListener('scroll', () => {
-        showScrollTop.value = window.scrollY > 400;
-    });
-});
 
 // Languages
 const changeLang = computed(() => page.props.languages?.find(el => el.value == page.props.language));
@@ -297,25 +297,36 @@ const socialLinks = [
         ></div>
 
         <!-- Header -->
-        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-            <header class="flex items-center h-20 justify-between mt-4 bg-white/80 backdrop-blur-md rounded-[2rem] px-6 md:px-10 border border-gray-100 shadow-xl shadow-blue-900/5">
+        <div
+            class="fixed top-0 left-0 right-0 z-[100] transition-all duration-300"
+            :class="[isScrolled ? 'py-0' : 'md:py-4']"
+        >
+            <div class="mx-auto transition-all duration-300" :class="[isScrolled ? 'max-w-full' : 'max-w-7xl md:px-6 lg:px-8']">
+                <header
+                    class="flex items-center h-16 md:h-20 justify-between bg-white/90 backdrop-blur-md px-4 md:px-10 border-b md:border border-gray-100 transition-all duration-300"
+                    :class="[
+                        isScrolled
+                            ? 'rounded-none shadow-md border-b-gray-200/50'
+                            : 'md:rounded-[2rem] md:shadow-xl md:shadow-blue-900/5'
+                    ]"
+                >
                 <Link :href="route('front')" class="flex items-center shrink-0">
-                    <img v-if="route().current('front')" src="/images/logo-horizontal.svg" class="h-8 md:h-10 w-auto" :alt="__('translate.logo')" />
+                    <img v-if="route().current('front')" src="/images/logo-horizontal.png" class="h-8 md:h-10 w-auto" :alt="__('translate.logo')" />
                     <ApplicationMark v-else class="h-10 md:h-12 w-auto" />
                 </Link>
 
                 <!-- Desktop nav -->
                 <nav class="hidden lg:flex items-center space-x-1">
-                    <NavLink :href="route('front.articles')" :active="route().current('front.articles')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.articles')" :active="route().current('front.articles')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#00a0e3] active:!scale-95 !transition-all duration-200">
                         {{__('translate.articles')}}
                     </NavLink>
-                    <NavLink :href="route('front.projects')" :active="route().current('front.projects')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.projects')" :active="route().current('front.projects')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#00a0e3] active:!scale-95 !transition-all duration-200">
                         {{__('translate.projects')}}
                     </NavLink>
-                    <NavLink :href="route('front.firms')" :active="route().current('front.firms')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.firms')" :active="route().current('front.firms')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#00a0e3] active:!scale-95 !transition-all duration-200">
                         {{__('translate.firms')}}
                     </NavLink>
-                    <NavLink :href="route('front.partners')" :active="route().current('front.partners')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#0A2C5C] !transition-colors">
+                    <NavLink :href="route('front.partners')" :active="route().current('front.partners')" class="!px-4 !py-2 !text-[10px] !font-black !uppercase !tracking-widest !border-none !text-[#0A2C5C] hover:!text-[#00a0e3] active:!scale-95 !transition-all duration-200">
                         {{__('translate.partners')}}
                     </NavLink>
                 </nav>
@@ -375,21 +386,22 @@ const socialLinks = [
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="lg:hidden relative z-50">
-                    <button @click="toggleMenu" class="p-2.5 rounded-2xl bg-gray-50 text-[#0A2C5C] hover:bg-gray-100 transition-colors border border-gray-100">
+                <div class="lg:hidden flex items-center gap-4">
+                    <button @click="toggleMenu" class="p-2 rounded-xl bg-gray-50 text-[#0A2C5C] hover:bg-gray-100 transition-colors border border-gray-100">
                         <svg v-if="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                         <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
             </header>
         </div>
+    </div>
 
         <!-- Main content -->
-        <main class="relative z-0 flex-grow">
+        <main class="relative z-0 flex-grow pt-16 md:pt-28">
             <slot />
         </main>
 
@@ -403,10 +415,10 @@ const socialLinks = [
             leave-to-class="opacity-0 translate-x-full"
         >
             <div v-if="mobileMenuOpen" class="fixed inset-0 z-[100] flex">
-                <div class="relative w-full max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto">
+                <div class="relative w-full lg:max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto">
                     <div class="p-8 border-b border-gray-50 flex items-center justify-between">
                         <Link href="/" @click="closeMenu">
-                            <img src="/images/logo-horizontal.svg" class="h-8 w-auto" :alt="__('translate.logo')" />
+                            <img src="/images/logo-horizontal.png" class="h-8 w-auto" :alt="__('translate.logo')" />
                         </Link>
                         <button @click="closeMenu" class="p-2.5 rounded-2xl bg-gray-50 text-gray-400 hover:text-red-600 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -503,13 +515,13 @@ const socialLinks = [
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->
                     <div class="lg:col-span-4 space-y-8 text-center lg:text-left">
-                        <img src="/images/logo-horizontal.svg" class="h-12 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
+                        <img src="/images/logo-horizontal.png" class="h-12 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
                         <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed max-w-sm mx-auto lg:mx-0 uppercase">
                             {{ __('translate.footer.description') }}
                         </p>
                         <div class="flex items-center justify-center lg:justify-start gap-3">
                             <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                <img :src="`/images/icons/${social.name}.svg`" :alt="social.name" class="h-5 w-5 opacity-70" />
+                                <img :src="`/images/icons/${social.name}.png`" :alt="social.name" class="h-5 w-5 opacity-70" />
                             </a>
                         </div>
                     </div>

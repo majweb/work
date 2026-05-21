@@ -845,13 +845,13 @@ watch(() => usePage().props.sender, (newVal) => {
                                 <div class="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
                                     <div class="shrink-0 transition-transform sm:group-hover:scale-110 flex items-center">
                                         <div v-if="application.cv_audio" class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center" :title="__('translate.cv_audio')">
-                                            <img class="w-5 h-5 sm:w-6 sm:h-6 opacity-60 sm:group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
+                                            <img class="w-5 h-5 sm:w-6 sm:h-6 opacity-60 sm:group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.png" :alt="__('translate.cv_audio')">
                                         </div>
                                         <div v-else-if="application.cv_video" class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center" :title="__('translate.cv_video')">
-                                            <img class="w-5 h-5 sm:w-6 sm:h-6 opacity-60 sm:group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
+                                            <img class="w-5 h-5 sm:w-6 sm:h-6 opacity-60 sm:group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.png" :alt="__('translate.cv_video')">
                                         </div>
                                         <div v-else-if="application.cv_classic" class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
-                                            <img class="w-5 h-5 sm:w-6 sm:h-6 opacity-60 sm:group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
+                                            <img class="w-5 h-5 sm:w-6 sm:h-6 opacity-60 sm:group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.png" :alt="__('translate.cv_classic')">
                                         </div>
                                         <div v-else class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-gray-300 font-bold" :title="__('translate.cv_classic')">
                                             -

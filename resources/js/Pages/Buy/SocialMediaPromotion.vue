@@ -68,7 +68,7 @@ const handleExchange = (productId, price) => {
                         <div class="md:w-1/2 flex justify-center">
                             <div class="relative">
                                 <div class="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full"></div>
-                                <img src="/images/icons/firm/promocja_w_social_mediach.svg" alt="Social Media" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
+                                <img src="/images/icons/firm/points/social.png" alt="Social Media" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ const handleExchange = (productId, price) => {
                     <!-- Czym jest -->
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
+                            <img src="/images/icons/firm/what.png" alt="What is" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">
                             {{ __('translate.social_media_what_title') }}
@@ -94,7 +94,7 @@ const handleExchange = (productId, price) => {
                     <!-- Co zawiera usługa -->
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/have.svg" alt="have" class="h-10">
+                            <img src="/images/icons/firm/have.png" alt="have" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">
                             {{ __('translate.social_media_include_title') }}
@@ -109,7 +109,7 @@ const handleExchange = (productId, price) => {
                     <!-- Jak wykorzystać -->
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/use.svg" alt="Use" class="h-10">
+                            <img src="/images/icons/firm/use.png" alt="Use" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">
                             {{ __('translate.social_media_use_title') }}

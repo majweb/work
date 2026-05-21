@@ -268,7 +268,7 @@ onMounted(async () => {
                             <!-- Wynagrodzenie -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                    <img src="/images/icons/wynagrodzenie.svg" alt="money icon" class="w-10 h-10" />
+                                    <img src="/images/icons/wynagrodzenie.png" alt="money icon" class="w-10 h-10" />
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salary') }}</p>
                                 <div class="space-y-1">
@@ -287,7 +287,7 @@ onMounted(async () => {
                             <!-- Tryb pracy -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                    <img src="/images/icons/praca_hybrydowa.svg" alt="work icon" class="w-10 h-10" />
+                                    <img src="/images/icons/praca_hybrydowa.png" alt="work icon" class="w-10 h-10" />
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('projects.work') }}</p>
                                 <div class="flex flex-col flex-wrap justify-center gap-2">
@@ -300,7 +300,7 @@ onMounted(async () => {
                             <!-- Miejsce pracy -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                    <img src="/images/icons/firm/lokalizacja.svg" alt="place icon" class="w-10 h-10" />
+                                    <img src="/images/icons/firm/lokalizacja.png" alt="place icon" class="w-10 h-10" />
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workingPlace') }}</p>
                                 <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
@@ -311,7 +311,7 @@ onMounted(async () => {
                             <!-- Umowa -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                    <img src="/images/icons/5.svg" alt="contract icon" class="w-10 h-10" />
+                                    <img src="/images/icons/5.png" alt="contract icon" class="w-10 h-10" />
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('projects.agreement') }}</p>
                                 <div class="flex flex-wrap justify-center gap-2">
@@ -324,7 +324,7 @@ onMounted(async () => {
                             <!-- Wymiar -->
                             <div class="group bg-gray-50/50 p-8 rounded-[2.5rem] border border-gray-100/50 flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                    <img src="/images/icons/wymiar_pracy.svg" alt="time icon" class="w-10 h-10" />
+                                    <img src="/images/icons/wymiar_pracy.png" alt="time icon" class="w-10 h-10" />
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('projects.time') }}</p>
                                 <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
@@ -338,9 +338,9 @@ onMounted(async () => {
                                     <div v-for="cvType in project.cv" :key="cvType.id"
                                          class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all cursor-default"
                                          :title="__('translate.cv_type_' + cvType.id)">
-                                        <img v-if="cvType.id === 1" src="/images/icons/cv-classic.svg" class="w-7 h-7" alt="Classic">
-                                        <img v-if="cvType.id === 2" src="/images/icons/cv-video.svg" class="w-7 h-7" alt="Video">
-                                        <img v-if="cvType.id === 3" src="/images/icons/cv-audio.svg" class="w-7 h-7" alt="Audio">
+                                        <img v-if="cvType.id === 1" src="/images/icons/cv-classic.png" class="w-7 h-7" alt="Classic">
+                                        <img v-if="cvType.id === 2" src="/images/icons/cv-video.png" class="w-7 h-7" alt="Video">
+                                        <img v-if="cvType.id === 3" src="/images/icons/cv-audio.png" class="w-7 h-7" alt="Audio">
                                     </div>
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.cv_type') }}</p>
@@ -377,7 +377,7 @@ onMounted(async () => {
                             <div class="flex items-start mb-16 relative group">
                                 <!-- ikona -->
                                 <div class="hidden md:flex z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/icons/płatnosc_i_oczekiwania.svg" :alt="__('translate.icon_pay')" class="w-8 h-8 md:w-12 md:h-12" />
+                                    <img src="/images/icons/płatnosc_i_oczekiwania.png" :alt="__('translate.icon_pay')" class="w-8 h-8 md:w-12 md:h-12" />
                                 </div>
                                 <!-- treść -->
                                 <div class="md:ml-12 flex-1">
@@ -415,7 +415,7 @@ onMounted(async () => {
                             <!-- Sekcja 2: ORGANIZACJA PRACY -->
                             <div class="flex items-start mb-16 relative group">
                                 <div class="hidden md:flex z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/icons/organizacja_pracy_i_oczekiwania.svg" :alt="__('translate.ikona_org')" class="w-8 h-8 md:w-12 md:h-12" />
+                                    <img src="/images/icons/organizacja_pracy_i_oczekiwania.png" :alt="__('translate.ikona_org')" class="w-8 h-8 md:w-12 md:h-12" />
                                 </div>
                                 <div class="md:ml-12 flex-1">
                                     <h2 class="text-xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __('translate.org_prac') }}</h2>
@@ -447,7 +447,7 @@ onMounted(async () => {
                             <!-- Sekcja 3: WYMAGANIA I OCZEKIWANIA -->
                             <div class="flex items-start mb-4 relative group">
                                 <div class="hidden md:flex z-10 flex-shrink-0 bg-[#0A2C5C] w-12 h-12 md:w-20 md:h-20 rounded-2xl items-center justify-center text-white shadow-xl shadow-blue-900/20 group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/icons/wymagania_i_oczekiwania.svg" :alt="__('translate.iko_wym')" class="w-8 h-8 md:w-12 md:h-12" />
+                                    <img src="/images/icons/wymagania_i_oczekiwania.png" :alt="__('translate.iko_wym')" class="w-8 h-8 md:w-12 md:h-12" />
                                 </div>
                                 <div class="md:ml-12 flex-1">
                                     <h2 class="text-xl font-black text-[#0A2C5C] mb-6 uppercase tracking-tight">{{ __('translate.wym_i_oczek') }}</h2>
@@ -542,7 +542,7 @@ onMounted(async () => {
                                     <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 ring-1 ring-blue-100 group-hover:scale-110 transition-all">
                                         <img
                                             class="w-12 h-12"
-                                            :src="`/images/icons/${offer.id}.svg`"
+                                            :src="`/images/icons/${offer.id}.png`"
                                             :alt="offer.allTranslations.name[usePage().props.language]"
                                         />
                                     </div>
@@ -675,9 +675,9 @@ onMounted(async () => {
                                                     <div v-for="cvType in similar.cv" :key="cvType.id"
                                                          class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-sm"
                                                          :title="__('translate.cv_type_' + cvType.id)">
-                                                        <img v-if="cvType.id === 1" src="/images/icons/cv-classic.svg" class="w-5 h-5" alt="Classic">
-                                                        <img v-if="cvType.id === 2" src="/images/icons/cv-video.svg" class="w-5 h-5" alt="Video">
-                                                        <img v-if="cvType.id === 3" src="/images/icons/cv-audio.svg" class="w-5 h-5" alt="Audio">
+                                                        <img v-if="cvType.id === 1" src="/images/icons/cv-classic.png" class="w-5 h-5" alt="Classic">
+                                                        <img v-if="cvType.id === 2" src="/images/icons/cv-video.png" class="w-5 h-5" alt="Video">
+                                                        <img v-if="cvType.id === 3" src="/images/icons/cv-audio.png" class="w-5 h-5" alt="Audio">
                                                     </div>
                                                 </div>
                                             </div>

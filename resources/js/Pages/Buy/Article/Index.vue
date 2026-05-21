@@ -123,7 +123,7 @@ watch(params.value, debounce(function () {
                         <div class="md:w-1/2 flex justify-center">
                             <div class="relative">
                                 <div class="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full"></div>
-                                <img src="/images/icons/firm/artykul.svg" alt="Artykuł" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
+                                <img src="/images/icons/firm/points/article.png" alt="Artykuł" class="relative max-w-sm h-auto transition-transform hover:scale-105 duration-500">
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ watch(params.value, debounce(function () {
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
+                            <img src="/images/icons/firm/what.png" alt="What is" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatIsArticleService') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list">
@@ -145,7 +145,7 @@ watch(params.value, debounce(function () {
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
+                            <img src="/images/icons/firm/have.png" alt="What have" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatIncludeArticle') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list">
@@ -159,7 +159,7 @@ watch(params.value, debounce(function () {
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
+                            <img src="/images/icons/firm/use.png" alt="use" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.howUseArticle') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list">

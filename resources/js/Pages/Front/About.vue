@@ -37,9 +37,9 @@ const props = defineProps({
                         </h2>
 
                         <div class="flex justify-center items-center gap-8 mb-12">
-                            <img src="/images/icons/about/o_nas_2.svg" :alt="__('info.first_img')" class="w-12 md:w-16 animate-bounce" />
+                            <img src="/images/icons/about/o_nas_2.png" :alt="__('info.first_img')" class="w-12 md:w-16 animate-bounce" />
                             <div class="h-px w-24 bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-                            <img src="/images/icons/about/o_nas_1.svg" :alt="__('info.second_img')" class="w-12 md:w-16 animate-bounce" style="animation-delay: 0.5s" />
+                            <img src="/images/icons/about/o_nas_1.png" :alt="__('info.second_img')" class="w-12 md:w-16 animate-bounce" style="animation-delay: 0.5s" />
                         </div>
 
                         <p class="text-md md:text-xl font-bold text-[#0A2C5C] uppercase tracking-widest leading-relaxed">
@@ -53,7 +53,7 @@ const props = defineProps({
                     <!-- MISJA -->
                     <div class="group bg-white rounded-[2.5rem] p-10 shadow-xl shadow-blue-900/5 border border-white hover:-translate-y-2 transition-all duration-500">
                         <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                            <img src="/images/icons/about/o_nas_misja.svg" :alt="__('info.missionT')" class="w-12" />
+                            <img src="/images/icons/about/o_nas_misja.png" :alt="__('info.missionT')" class="w-12" />
                         </div>
                         <h4 class="text-xl font-black text-[#0A2C5C] mb-4 uppercase tracking-widest">{{ __('info.missionT') }}</h4>
                         <p class="text-sm font-bold text-gray-400 leading-relaxed uppercase tracking-wider">
@@ -64,7 +64,7 @@ const props = defineProps({
                     <!-- WIZJA -->
                     <div class="group bg-white rounded-[2.5rem] p-10 shadow-xl shadow-blue-900/5 border border-white hover:-translate-y-2 transition-all duration-500">
                         <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                            <img src="/images/icons/about/o_nas_wizja.svg" :alt="__('info.vision')" class="w-12" />
+                            <img src="/images/icons/about/o_nas_wizja.png" :alt="__('info.vision')" class="w-12" />
                         </div>
                         <h4 class="text-xl font-black text-[#0A2C5C] mb-4 uppercase tracking-widest">{{ __('info.visionT') }}</h4>
                         <p class="text-sm font-bold text-gray-400 leading-relaxed uppercase tracking-wider">
@@ -75,7 +75,7 @@ const props = defineProps({
                     <!-- CELE -->
                     <div class="group bg-white rounded-[2.5rem] p-10 shadow-xl shadow-blue-900/5 border border-white hover:-translate-y-2 transition-all duration-500">
                         <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                            <img src="/images/icons/about/o_nas_cele.svg" :alt="__('info.targetT')" class="w-12" />
+                            <img src="/images/icons/about/o_nas_cele.png" :alt="__('info.targetT')" class="w-12" />
                         </div>
                         <h4 class="text-xl font-black text-[#0A2C5C] mb-4 uppercase tracking-widest">{{ __('info.targetT') }}</h4>
                         <p class="text-sm font-bold text-gray-400 leading-relaxed uppercase tracking-wider">
@@ -95,7 +95,7 @@ const props = defineProps({
                         <div class="relative">
                             <div class="absolute inset-0 bg-blue-400/20 blur-3xl rounded-full animate-pulse"></div>
                             <img
-                                src="/images/icons/about/50.svg"
+                                src="/images/icons/about/50.png"
                                 alt="50%"
                                 class="w-64 md:w-80 relative z-10 drop-shadow-2xl animate-float"
                             />

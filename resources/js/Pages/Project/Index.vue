@@ -245,7 +245,7 @@ const { getPositionTitle } = useProjectHelpers();
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div class="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-4 transition-all hover:shadow-blue-900/10 hover:-translate-y-1">
                         <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center shrink-0">
-                            <img src="/images/icons/firm/liczba_ofert.svg" class="w-10 h-10" alt="oferty">
+                            <img src="/images/icons/firm/liczba_ofert.png" class="w-10 h-10" alt="oferty">
                         </div>
                         <div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.offers_count') }}</p>
@@ -255,7 +255,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                     <div class="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-4 transition-all hover:shadow-blue-900/10 hover:-translate-y-1">
                         <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center shrink-0">
-                            <img src="/images/icons/firm/liczba_aplikacji.svg" class="w-10 h-10" alt="aplikacji">
+                            <img src="/images/icons/firm/liczba_aplikacji.png" class="w-10 h-10" alt="aplikacji">
                         </div>
                         <div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.applications_count') }}</p>
@@ -265,7 +265,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                     <div class="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-4 transition-all hover:shadow-blue-900/10 hover:-translate-y-1">
                         <div class="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center shrink-0">
-                            <img src="/images/icons/firm/liczba_aktywnych.svg" class="w-10 h-10" alt="aktywne">
+                            <img src="/images/icons/firm/liczba_aktywnych.png" class="w-10 h-10" alt="aktywne">
                         </div>
                         <div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.active_count') }}</p>
@@ -275,7 +275,7 @@ const { getPositionTitle } = useProjectHelpers();
 
                     <div class="bg-white rounded-[2.5rem] p-6 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-4 transition-all hover:shadow-blue-900/10 hover:-translate-y-1">
                         <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center shrink-0">
-                            <img src="/images/icons/firm/liczba_zakonczonych.svg" class="w-10 h-10" alt="zakończone">
+                            <img src="/images/icons/firm/liczba_zakonczonych.png" class="w-10 h-10" alt="zakończone">
                         </div>
                         <div>
                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.finished_count') }}</p>

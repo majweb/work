@@ -673,9 +673,9 @@ onMounted(() => {
                                             class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-all border-2"
                                             :class="form.cv.some(item => item.id === cv.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
                                         >
-                                            <img v-if="cv.id === 1" class="w-10 h-10" src="/images/icons/recruit/klasyczne_cv.svg" alt="cv">
-                                            <img v-else-if="cv.id === 2" class="w-10 h-10" src="/images/icons/recruit/video_cv.svg" alt="video_cv">
-                                            <img v-else-if="cv.id === 3" class="w-10 h-10" src="/images/icons/recruit/audio_cv.svg" alt="audio_cv">
+                                            <img v-if="cv.id === 1" class="w-10 h-10" src="/images/icons/recruit/klasyczne_cv.png" alt="cv">
+                                            <img v-else-if="cv.id === 2" class="w-10 h-10" src="/images/icons/recruit/video_cv.png" alt="video_cv">
+                                            <img v-else-if="cv.id === 3" class="w-10 h-10" src="/images/icons/recruit/audio_cv.png" alt="audio_cv">
                                         </div>
                                         <h3 class="font-black text-sm uppercase tracking-widest mb-4" :class="form.cv.some(item => item.id === cv.id) ? 'text-white' : 'text-gray-900'">{{ cv.name }}</h3>
 
@@ -1568,28 +1568,28 @@ onMounted(() => {
                                             :class="form.offer.some(item => item.id === offer.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
                                         >
                                             <!-- Ikony dla różnych ofert -->
-                                            <img v-if="offer.id == 2" class="w-20 h-20" src="/images/icons/offers/długoterminowa_wspolpraca.svg" alt="długoterminowa_wspolpraca">
-                                            <img v-else-if="offer.id == 1" class="w-20 h-20" src="/images/icons/offers/umowa_o_prace.svg" alt="umowa_o_prace">
-                                            <img v-else-if="offer.id == 3" class="w-20 h-20" src="/images/icons/offers/brak_okresu_probnego.svg" alt="brak_okresu_probnego">
-                                            <img v-else-if="offer.id == 4" class="w-20 h-20" src="/images/icons/offers/system_premiowy.svg" alt="system_premiowy">
-                                            <img v-else-if="offer.id == 5" class="w-20 h-20" src="/images/icons/offers/szkolenia.svg" alt="szkolenia">
-                                            <img v-else-if="offer.id == 6" class="w-20 h-20" src="/images/icons/offers/możliwosc_awansu_zawodowego.svg" alt="możliwosc_awansu_zawodowego">
-                                            <img v-else-if="offer.id == 7" class="w-20 h-20" src="/images/icons/offers/elastyczny_czas_pracy.svg" alt="elastyczny_czas_pracy">
-                                            <img v-else-if="offer.id == 8" class="w-20 h-20" src="/images/icons/offers/praca_zdalna.svg" alt="praca_zdalna">
-                                            <img v-else-if="offer.id == 9" class="w-20 h-20" src="/images/icons/offers/prywatna_opieka_medyczna.svg" alt="prywatna_opieka_medyczna">
-                                            <img v-else-if="offer.id == 10" class="w-20 h-20" src="/images/icons/offers/karta_sportowa.svg" alt="karta_sportowa">
-                                            <img v-else-if="offer.id == 11" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_posilkow.svg" alt="dofinansowanie_do_posilkow">
-                                            <img v-else-if="offer.id == 12" class="w-20 h-20" src="/images/icons/offers/biuro_w_centrum_miasta.svg" alt="biuro_w_centrum_miasta">
-                                            <img v-else-if="offer.id == 13" class="w-20 h-20" src="/images/icons/offers/parking_dla_pracownikow.svg" alt="parking_dla_pracownikow">
-                                            <img v-else-if="offer.id == 14" class="w-20 h-20" src="/images/icons/offers/samochod_sluzbowy.svg" alt="samochod_sluzbowy">
-                                            <img v-else-if="offer.id == 15" class="w-20 h-20" src="/images/icons/offers/dodatkowe_ubezpieczenie.svg" alt="dodatkowe_ubezpieczenie">
-                                            <img v-else-if="offer.id == 16" class="w-20 h-20" src="/images/icons/offers/znizka_na_zakupy.svg" alt="znizka_na_zakupy">
-                                            <img v-else-if="offer.id == 17" class="w-20 h-20" src="/images/icons/offers/wydarzenia_integracyjne.svg" alt="wydarzenia_integracyjne">
-                                            <img v-else-if="offer.id == 18" class="w-20 h-20" src="/images/icons/offers/kawa_herbata.svg" alt="kawa_herbata">
-                                            <img v-else-if="offer.id == 19" class="w-20 h-20" src="/images/icons/offers/owoce.svg" alt="owoce">
-                                            <img v-else-if="offer.id == 20" class="w-20 h-20" src="/images/icons/offers/brak_dres_codeu.svg" alt="brak_dres_codeu">
-                                            <img v-else-if="offer.id == 21" class="w-20 h-20" src="/images/icons/offers/nagrody_pracownicze.svg" alt="nagrody_pracownicze">
-                                            <img v-else-if="offer.id == 22" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_transportu.svg" alt="dofinansowanie_do_transportu">
+                                            <img v-if="offer.id == 2" class="w-20 h-20" src="/images/icons/offers/długoterminowa_wspolpraca.png" alt="długoterminowa_wspolpraca">
+                                            <img v-else-if="offer.id == 1" class="w-20 h-20" src="/images/icons/offers/umowa_o_prace.png" alt="umowa_o_prace">
+                                            <img v-else-if="offer.id == 3" class="w-20 h-20" src="/images/icons/offers/brak_okresu_probnego.png" alt="brak_okresu_probnego">
+                                            <img v-else-if="offer.id == 4" class="w-20 h-20" src="/images/icons/offers/system_premiowy.png" alt="system_premiowy">
+                                            <img v-else-if="offer.id == 5" class="w-20 h-20" src="/images/icons/offers/szkolenia.png" alt="szkolenia">
+                                            <img v-else-if="offer.id == 6" class="w-20 h-20" src="/images/icons/offers/możliwosc_awansu_zawodowego.png" alt="możliwosc_awansu_zawodowego">
+                                            <img v-else-if="offer.id == 7" class="w-20 h-20" src="/images/icons/offers/elastyczny_czas_pracy.png" alt="elastyczny_czas_pracy">
+                                            <img v-else-if="offer.id == 8" class="w-20 h-20" src="/images/icons/offers/praca_zdalna.png" alt="praca_zdalna">
+                                            <img v-else-if="offer.id == 9" class="w-20 h-20" src="/images/icons/offers/prywatna_opieka_medyczna.png" alt="prywatna_opieka_medyczna">
+                                            <img v-else-if="offer.id == 10" class="w-20 h-20" src="/images/icons/offers/karta_sportowa.png" alt="karta_sportowa">
+                                            <img v-else-if="offer.id == 11" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_posilkow.png" alt="dofinansowanie_do_posilkow">
+                                            <img v-else-if="offer.id == 12" class="w-20 h-20" src="/images/icons/offers/biuro_w_centrum_miasta.png" alt="biuro_w_centrum_miasta">
+                                            <img v-else-if="offer.id == 13" class="w-20 h-20" src="/images/icons/offers/parking_dla_pracownikow.png" alt="parking_dla_pracownikow">
+                                            <img v-else-if="offer.id == 14" class="w-20 h-20" src="/images/icons/offers/samochod_sluzbowy.png" alt="samochod_sluzbowy">
+                                            <img v-else-if="offer.id == 15" class="w-20 h-20" src="/images/icons/offers/dodatkowe_ubezpieczenie.png" alt="dodatkowe_ubezpieczenie">
+                                            <img v-else-if="offer.id == 16" class="w-20 h-20" src="/images/icons/offers/znizka_na_zakupy.png" alt="znizka_na_zakupy">
+                                            <img v-else-if="offer.id == 17" class="w-20 h-20" src="/images/icons/offers/wydarzenia_integracyjne.png" alt="wydarzenia_integracyjne">
+                                            <img v-else-if="offer.id == 18" class="w-20 h-20" src="/images/icons/offers/kawa_herbata.png" alt="kawa_herbata">
+                                            <img v-else-if="offer.id == 19" class="w-20 h-20" src="/images/icons/offers/owoce.png" alt="owoce">
+                                            <img v-else-if="offer.id == 20" class="w-20 h-20" src="/images/icons/offers/brak_dres_codeu.png" alt="brak_dres_codeu">
+                                            <img v-else-if="offer.id == 21" class="w-20 h-20" src="/images/icons/offers/nagrody_pracownicze.png" alt="nagrody_pracownicze">
+                                            <img v-else-if="offer.id == 22" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_transportu.png" alt="dofinansowanie_do_transportu">
                                         </div>
                                         <h3 class="font-black text-[10px] uppercase tracking-widest mb-3 leading-tight" :class="form.offer.some(item => item.id === offer.id) ? 'text-white' : 'text-gray-900'">{{ offer.name }}</h3>
 

@@ -57,7 +57,7 @@ const submit = () => {
             <!-- HEADER TEXT -->
             <div class="text-center mb-10 relative z-10">
                 <Link href="/" class="inline-block mb-8">
-                    <img src="/images/logo-horizontal.svg" class="h-10 w-auto mx-auto" alt="logo">
+                    <img src="/images/logo-horizontal.png" class="h-10 w-auto mx-auto" alt="logo">
                 </Link>
                 <div class="mx-auto w-2/4 flex justify-center items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
                     <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse flex-shrink-0"></span>

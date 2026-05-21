@@ -411,7 +411,7 @@ onMounted(() => {
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
                         <div class="col-span-1 lg:col-span-2">
-                            <img src="/images/logo-horizontal.svg" class="h-12 w-auto mb-8" alt="Work4you.global" />
+                            <img src="/images/logo-horizontal.png" class="h-12 w-auto mb-8" alt="Work4you.global" />
                             <p class="text-gray-500 text-lg max-w-md leading-relaxed">
                                 {{ __("landingi.footer.description") }}
                             </p>

@@ -141,7 +141,7 @@ const setProjectPage = (p) => {
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex items-center gap-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#00a0e3] shrink-0">
-                                <img class="w-8 h-8" src="/images/icons/statistics/recruits.svg" alt="recruits">
+                                <img class="w-8 h-8" src="/images/icons/statistics/recruits.png" alt="recruits">
                             </div>
                             <div>
                                 <p class="text-3xl font-black text-[#0A2C5C] tracking-tighter">{{ props.kpi.recruiters }}</p>
@@ -151,7 +151,7 @@ const setProjectPage = (p) => {
 
                         <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex items-center gap-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#00a0e3] shrink-0">
-                                <img class="w-8 h-8" src="/images/icons/statistics/offers.svg" alt="offers">
+                                <img class="w-8 h-8" src="/images/icons/statistics/offers.png" alt="offers">
                             </div>
                             <div>
                                 <p class="text-3xl font-black text-[#0A2C5C] tracking-tighter">{{ props.kpi.projects }}</p>
@@ -161,7 +161,7 @@ const setProjectPage = (p) => {
 
                         <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex items-center gap-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#00a0e3] shrink-0">
-                                <img class="w-8 h-8" src="/images/icons/statistics/apps.svg" alt="apps">
+                                <img class="w-8 h-8" src="/images/icons/statistics/apps.png" alt="apps">
                             </div>
                             <div>
                                 <p class="text-3xl font-black text-[#0A2C5C] tracking-tighter">{{ props.kpi.applications }}</p>
@@ -171,7 +171,7 @@ const setProjectPage = (p) => {
 
                         <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex items-center gap-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#00a0e3] shrink-0">
-                                <img class="w-8 h-8" src="/images/icons/statistics/views.svg" alt="views">
+                                <img class="w-8 h-8" src="/images/icons/statistics/views.png" alt="views">
                             </div>
                             <div>
                                 <p class="text-3xl font-black text-[#0A2C5C] tracking-tighter">{{ props.kpi.visits }}</p>

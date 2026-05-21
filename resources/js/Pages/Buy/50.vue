@@ -92,7 +92,7 @@ const handleExchange = (productId, price) => {
                         <div class="md:w-1/2 flex flex-col items-center">
                             <div class="relative mb-6 group">
                                 <div class="absolute inset-0 bg-blue-100 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
-                                <img src="/images/icons/firm/certyfikat50_50.svg" alt="Certyfikat 50/50" class="relative max-w-sm h-auto transform transition-transform duration-500 hover:scale-105">
+                                <img src="/images/icons/firm/points/certificate.png" alt="Certyfikat 50/50" class="relative max-w-sm h-auto transform transition-transform duration-500 hover:scale-105">
                             </div>
 
                             <div v-if="cert50 && cert50.certificate_pdf" class="text-center bg-gray-50/50 rounded-[2rem] p-8 border border-gray-100 w-full">
@@ -122,7 +122,7 @@ const handleExchange = (productId, price) => {
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/what.svg" alt="What is" class="h-10">
+                            <img src="/images/icons/firm/what.png" alt="What is" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-4">{{ __('translate.whatIsCert50') }}</h3>
                         <p class="text-[10px] font-bold text-gray-400 leading-relaxed uppercase tracking-widest">{{ __('translate.whatIsCert50Desc') }}</p>
@@ -130,7 +130,7 @@ const handleExchange = (productId, price) => {
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/have.svg" alt="What have" class="h-10">
+                            <img src="/images/icons/firm/have.png" alt="What have" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.whatContainsCert50') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list" v-html="__('translate.whatContainsCert50List')"></ul>
@@ -138,7 +138,7 @@ const handleExchange = (productId, price) => {
 
                     <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-gray-100 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1">
                         <div class="w-20 h-20 bg-gray-50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <img src="/images/icons/firm/use.svg" alt="use" class="h-10">
+                            <img src="/images/icons/firm/use.png" alt="use" class="h-10">
                         </div>
                         <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em] mb-6 text-center">{{ __('translate.howUseCert50') }}</h3>
                         <ul class="text-[10px] font-bold text-gray-400 space-y-3 uppercase tracking-widest list-none text-left w-full custom-list" v-html="__('translate.howUseCert50List')"></ul>

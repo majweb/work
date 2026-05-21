@@ -804,13 +804,13 @@ onMounted(async () => {
                                 <td class="p-8 text-center">
                                     <div class="flex justify-center shrink-0 transition-transform group-hover:scale-110">
                                         <div v-if="app.cv_audio" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_audio')">
-                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
+                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/audio_cv.png" :alt="__('translate.cv_audio')">
                                         </div>
                                         <div v-else-if="app.cv_video" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_video')">
-                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
+                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/video_cv.png" :alt="__('translate.cv_video')">
                                         </div>
                                         <div v-else-if="app.cv_classic" class="w-10 h-10 flex items-center justify-center" :title="__('translate.cv_classic')">
-                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
+                                            <img class="w-6 h-6 opacity-60 group-hover:opacity-100 transition-opacity" src="/images/icons/recruit/klasyczne_cv.png" :alt="__('translate.cv_classic')">
                                         </div>
                                         <div v-else class="w-6 h-6 flex items-center justify-center">
                                             -

@@ -14,18 +14,18 @@ const props = defineProps({
 
 const getProductIcon = (product) => {
     if (product.product_type === 'Points') {
-        return '/images/icons/firm/points/favorite.svg';
+        return '/images/icons/firm/points/favorite.png';
     }
 
     const name = product.name?.toLowerCase() || '';
 
-    if (name.includes('baner') || name.includes('banner')) return '/images/icons/firm/points/baner.svg';
-    if (name.includes('wyróżn') || name.includes('featured')) return '/images/icons/firm/points/favorite.svg';
-    if (name.includes('artykuł') || name.includes('article')) return '/images/icons/firm/points/article.svg';
-    if (name.includes('social') || name.includes('media')) return '/images/icons/firm/points/social.svg';
-    if (name.includes('certyfikat') || name.includes('cert') || name.includes('50/50')) return '/images/icons/firm/points/certificate.svg';
+    if (name.includes('baner') || name.includes('banner')) return '/images/icons/firm/points/baner.png';
+    if (name.includes('wyróżn') || name.includes('featured')) return '/images/icons/firm/points/favorite.png';
+    if (name.includes('artykuł') || name.includes('article')) return '/images/icons/firm/points/article.png';
+    if (name.includes('social') || name.includes('media')) return '/images/icons/firm/points/social.png';
+    if (name.includes('certyfikat') || name.includes('cert') || name.includes('50/50')) return '/images/icons/firm/points/certificate.png';
 
-    return '/images/icons/firm/dodanie_firmy_zewnetrznej.svg';
+    return '/images/icons/firm/dodanie_firmy_zewnetrznej.png';
 };
 
 const operations = computed(() => [
@@ -35,7 +35,7 @@ const operations = computed(() => [
             {
                 name: __("translate.cv_classic"),
                 points: props.pointCosts.OpenAppWithPdf,
-                icon: '/images/icons/firm/klasyczne_cv.svg',
+                icon: '/images/icons/firm/klasyczne_cv.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.cv_classic_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.cv_classic_target")}`,
@@ -45,7 +45,7 @@ const operations = computed(() => [
             {
                 name: __("translate.cv_audio"),
                 points: props.pointCosts.OpenAppWithAudio,
-                icon: '/images/icons/firm/audio_cv.svg',
+                icon: '/images/icons/firm/audio_cv.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.cv_audio_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.cv_audio_target")}`,
@@ -55,7 +55,7 @@ const operations = computed(() => [
             {
                 name: __("translate.cv_no_auth"),
                 points: props.pointCosts.OpenAppWithNoAuth,
-                icon: '/images/icons/firm/klasyczne_cv.svg',
+                icon: '/images/icons/firm/klasyczne_cv.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.cv_no_auth_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.cv_no_auth_target")}`,
@@ -65,7 +65,7 @@ const operations = computed(() => [
             {
                 name: __("translate.cv_video"),
                 points: props.pointCosts.OpenAppWithVideo,
-                icon: '/images/icons/firm/video_cv.svg',
+                icon: '/images/icons/firm/video_cv.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.cv_video_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.cv_video_target")}`,
@@ -75,7 +75,7 @@ const operations = computed(() => [
             {
                 name: __("translate.add_candidate"),
                 points: props.pointCosts.CreateCandidate,
-                icon: '/images/icons/firm/dodanie_kandydata_do_bazy.svg',
+                icon: '/images/icons/firm/dodanie_kandydata_do_bazy.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.add_candidate_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.add_candidate_target")}`,
@@ -85,7 +85,7 @@ const operations = computed(() => [
             {
                 name: __("translate.add_external_company"),
                 points: props.pointCosts.CreateExternalFirm,
-                icon: '/images/icons/firm/dodanie_firmy_zewnetrznej.svg',
+                icon: '/images/icons/firm/dodanie_firmy_zewnetrznej.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.add_external_company_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.add_external_company_target")}`,
@@ -95,7 +95,7 @@ const operations = computed(() => [
             {
                 name: __("translate.send_cv_external"),
                 points: props.pointCosts.SendToExternalFirm,
-                icon: '/images/icons/firm/wysylka_paczki_cv.svg',
+                icon: '/images/icons/firm/wysylka_paczki_cv.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.send_cv_external_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.send_cv_external_target")}`,
@@ -105,7 +105,7 @@ const operations = computed(() => [
             {
                 name: __("translate.unlock_questions"),
                 points: props.pointCosts.UnlockQuestions,
-                icon: '/images/icons/firm/pytanie_otwarte.svg',
+                icon: '/images/icons/firm/pytanie_otwarte.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.unlock_questions_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.unlock_questions_target")}`,
@@ -115,7 +115,7 @@ const operations = computed(() => [
             {
                 name: __("translate.export_data"),
                 points: props.pointCosts.ExportAplications,
-                icon: '/images/icons/firm/eksport_danych.svg',
+                icon: '/images/icons/firm/eksport_danych.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.export_data_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.export_data_target")}`,
@@ -130,7 +130,7 @@ const operations = computed(() => [
             {
                 name: __("translate.add_video_card"),
                 points: props.pointCosts.AddVideoToProfile,
-                icon: '/images/icons/firm/dodanie_filmu_do_wizytowki.svg',
+                icon: '/images/icons/firm/dodanie_filmu_do_wizytowki.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.add_video_card_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.add_video_card_target")}`,
@@ -140,7 +140,7 @@ const operations = computed(() => [
             {
                 name: __("translate.banner"),
                 points: props.pointCosts.sendReservedProject,
-                icon: '/images/icons/firm/baner.svg',
+                icon: '/images/icons/firm/points/baner.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.banner_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.banner_target")}`,
@@ -150,7 +150,7 @@ const operations = computed(() => [
             {
                 name: __("translate.featured_employer"),
                 points: 8000,
-                icon: '/images/icons/firm/wyrozniony_pracodawca.svg',
+                icon: '/images/icons/firm/points/favorite.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.featured_employer_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.featured_employer_target")}`,
@@ -160,7 +160,7 @@ const operations = computed(() => [
             {
                 name: __("translate.sponsored_article"),
                 points: 6000,
-                icon: '/images/icons/firm/artykul.svg',
+                icon: '/images/icons/firm/points/article.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.sponsored_article_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.sponsored_article_target")}`,
@@ -170,7 +170,7 @@ const operations = computed(() => [
             {
                 name: __("translate.social_media_promo"),
                 points: 10000,
-                icon: '/images/icons/firm/promocja_w_social_mediach.svg',
+                icon: '/images/icons/firm/points/social.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.social_media_promo_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.social_media_promo_target")}`,
@@ -180,7 +180,7 @@ const operations = computed(() => [
             {
                 name: __("translate.cert50_50"),
                 points: 2000,
-                icon: '/images/icons/firm/certyfikat50_50.svg',
+                icon: '/images/icons/firm/points/certificate.png',
                 details: [
                     `<strong>${__("translate.description")}</strong>: ${__("translate.cert50_50_desc")}`,
                     `<strong>${__("translate.target")}</strong>: ${__("translate.cert50_50_target")}`,

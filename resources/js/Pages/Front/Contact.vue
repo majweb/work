@@ -198,7 +198,7 @@ onMounted(() => loadCaptcha())
                     <div class="lg:col-span-7">
                         <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-white p-8 md:p-12 relative overflow-hidden group">
                             <!-- Logo background decoration -->
-                            <img src="/images/logo-horizontal.svg" class="absolute -bottom-20 -right-20 w-96 opacity-[0.03] pointer-events-none grayscale group-hover:scale-110 transition-transform duration-1000" alt="logo">
+                            <img src="/images/logo-horizontal.png" class="absolute -bottom-20 -right-20 w-96 opacity-[0.03] pointer-events-none grayscale group-hover:scale-110 transition-transform duration-1000" alt="logo">
 
                             <div class="relative z-10">
                                 <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl mb-8">
@@ -431,7 +431,7 @@ onMounted(() => loadCaptcha())
 
                             <div class="relative z-10 flex flex-col items-center text-center">
                                 <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-6">
-                                    <img src="/images/icons/recruit/lokalizacja.svg" alt="local" class="w-10">
+                                    <img src="/images/icons/recruit/lokalizacja.png" alt="local" class="w-10">
                                 </div>
                                 <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{{ __('translate.our_office') }}</h3>
                                 <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight mb-4">WORK4YOU.GLOBAL LTD</h4>
@@ -467,7 +467,7 @@ onMounted(() => loadCaptcha())
                             <div class="absolute top-0 right-0 w-32 h-32 bg-gray-50 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-700"></div>
 
                             <div class="relative z-10 flex flex-col items-center text-center">
-                                <div class="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mb-6">
+                                <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center mb-6">
                                     <img src="/images/contact/mail2.svg" alt="marketing" class="w-10 grayscale opacity-50">
                                 </div>
                                 <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{{ __('translate.advertising') }}</h3>

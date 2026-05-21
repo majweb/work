@@ -40,7 +40,7 @@ const submit = () => {
             <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/10 border border-white p-8 md:p-12 relative overflow-hidden">
                 <!-- LOGO -->
                 <div class="flex justify-center mb-8 relative z-10">
-                    <img src="/images/logo-horizontal.svg" class="w-48" alt="logo" />
+                    <img src="/images/logo-horizontal.png" class="w-48" alt="logo" />
                 </div>
 
                 <!-- STATUS MESSAGE -->

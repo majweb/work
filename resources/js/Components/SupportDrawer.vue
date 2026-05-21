@@ -489,7 +489,7 @@ const submit = () => {
 
                                     <!-- Footer Decoration -->
                                     <div class="px-6 py-4 bg-gray-50/50 flex justify-center items-center">
-                                        <img src="/images/logo-horizontal.svg" class="h-6 opacity-10 grayscale" alt="logo">
+                                        <img src="/images/logo-horizontal.png" class="h-6 opacity-10 grayscale" alt="logo">
                                     </div>
                                 </div>
                             </DialogPanel>

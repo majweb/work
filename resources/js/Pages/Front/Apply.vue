@@ -821,11 +821,11 @@ const removeFile = async (source, load) => {
                                                         'w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300',
                                                         form.cv == cv.id ? 'bg-[#00a0e3] shadow-inner scale-110' : 'bg-white text-gray-400 group-hover:bg-blue-50 group-hover:text-[#00a0e3]'
                                                     ]">
-                                                        <img v-if="cv.id == 1" src="/images/icons/cv-classic.svg" alt=""
+                                                        <img v-if="cv.id == 1" src="/images/icons/cv-classic.png" alt=""
                                                              class="w-10 h-10" />
-                                                        <img v-else-if="cv.id == 2" src="/images/icons/cv-video.svg" alt=""
+                                                        <img v-else-if="cv.id == 2" src="/images/icons/cv-video.png" alt=""
                                                              class="w-10 h-10" />
-                                                        <img v-else-if="cv.id == 3" src="/images/icons/cv-audio.svg" alt=""
+                                                        <img v-else-if="cv.id == 3" src="/images/icons/cv-audio.png" alt=""
                                                              class="w-10 h-10" />
                                                         <svg v-else class="w-10 h-10" :class="form.cv == cv.id ? 'text-white' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>

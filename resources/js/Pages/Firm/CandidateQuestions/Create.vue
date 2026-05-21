@@ -55,7 +55,7 @@ const submit = () => {
                             >
                                 <div class="w-20 h-20 shrink-0 flex items-center justify-center relative">
                                     <img
-                                        src="/images/icons/firm/pytanie_zamkniete.svg"
+                                        src="/images/icons/firm/pytanie_zamkniete.png"
                                         class="w-full h-full object-contain transition-all"
                                         :class="form.answer_type === 'boolean' ? 'brightness-0 invert opacity-20' : 'opacity-40'"
                                     />
@@ -80,7 +80,7 @@ const submit = () => {
                             >
                                 <div class="w-20 h-20 shrink-0 flex items-center justify-center relative">
                                     <img
-                                        src="/images/icons/firm/pytanie_otwarte.svg"
+                                        src="/images/icons/firm/pytanie_otwarte.png"
                                         class="w-full h-full object-contain transition-all"
                                         :class="form.answer_type === 'text' ? 'brightness-0 invert opacity-20' : 'opacity-40'"
                                     />

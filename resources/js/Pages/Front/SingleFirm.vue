@@ -342,7 +342,7 @@ const { getPositionTitle } = useProjectHelpers();
                             <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8" v-if="firm.city || firm.street">
                                 <div class="flex items-center gap-4 mb-6">
                                     <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm">
-                                        <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.svg" alt="icon">
+                                        <img class="w-10 h-10" src="/images/icons/recruit/lokalizacja.png" alt="icon">
                                     </div>
                                     <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.location') }}</h2>
                                 </div>
@@ -423,7 +423,7 @@ const { getPositionTitle } = useProjectHelpers();
                                     <div class="relative flex items-center gap-1.5 px-4 py-1.5 rounded-bl-2xl border-l border-b border-white/20 shadow-lg shadow-blue-900/20">
                                         <div class="relative flex items-center justify-center">
                                             <div class="absolute inset-0 bg-white/40 blur-sm rounded-full animate-ping"></div>
-                                            <img class="relative h-3 w-3 object-contain brightness-0 invert" src="/images/hand.svg" alt="featured">
+                                            <img class="relative h-3 w-3 object-contain brightness-0 invert" src="/images/hand.png" alt="featured">
                                         </div>
                                         <span class="text-[8px] font-black text-white uppercase tracking-[0.15em] drop-shadow-sm">{{ __('translate.featured') }}</span>
                                     </div>

@@ -145,7 +145,7 @@
                         <div class="w-16 h-16 rounded-3xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110"
                              :class="selected.id === pack.id ? 'bg-white/10' : 'bg-gray-50'">
                             <img
-                                :src="`/images/price/${pack.points}.svg`"
+                                :src="`/images/price/${pack.points}.png`"
                                 class="w-10 h-10 object-contain"
                                 :class="selected.id === pack.id ? 'brightness-0 invert' : ''"
                                 :alt="pack.points"
@@ -366,11 +366,11 @@
                         <div class="flex flex-col items-center relative z-10">
                             <div class="w-16 h-16 mb-6 rounded-3xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
                                  :class="form.selectedLevel === level ? 'bg-white/10' : 'bg-gray-50'">
-                                <img v-if="level == 1" src="/images/icons/firm/certyfikat-brown.svg" class="h-10 w-10 object-contain" alt="certyfikat brown">
-                                <img v-else-if="level == 2" src="/images/icons/firm/certyfikat-silver.svg" class="h-10 w-10 object-contain" alt="certyfikat silver">
-                                <img v-else-if="level == 3" src="/images/icons/firm/certyfikat-gold.svg" class="h-10 w-10 object-contain" alt="certyfikat gold">
-                                <img v-else-if="level == 4" src="/images/icons/firm/certyfikat-diamond.svg" class="h-10 w-10 object-contain" alt="certyfikat diamond">
-                                <img v-else src="/images/icons/firm/certyfikat-brown.svg" class="h-10 w-10 object-contain" alt="certyfikat">
+                                <img v-if="level == 1" src="/images/icons/firm/certyfikat-brown.png" class="h-10 w-10 object-contain" alt="certyfikat brown">
+                                <img v-else-if="level == 2" src="/images/icons/firm/certyfikat-silver.png" class="h-10 w-10 object-contain" alt="certyfikat silver">
+                                <img v-else-if="level == 3" src="/images/icons/firm/certyfikat-gold.png" class="h-10 w-10 object-contain" alt="certyfikat gold">
+                                <img v-else-if="level == 4" src="/images/icons/firm/certyfikat-diamond.png" class="h-10 w-10 object-contain" alt="certyfikat diamond">
+                                <img v-else src="/images/icons/firm/certyfikat-brown.png" class="h-10 w-10 object-contain" alt="certyfikat">
                             </div>
                         <div class="text-3xl font-black leading-none mb-1 transition-colors" :class="form.selectedLevel === level ? 'text-white' : 'text-[#0A2C5C]'">
                             {{ certificate.levelPoints[level].toLocaleString() }}

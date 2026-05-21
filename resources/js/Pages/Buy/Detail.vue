@@ -127,10 +127,10 @@ const stripeCheckout = () => {
                                             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                 <!-- Miniatura produktu -->
                                                 <div class="shrink-0 flex items-center justify-center w-24 h-24 bg-gray-50 rounded-2xl border border-gray-100 p-2 overflow-hidden">
-                                                    <img :src="`/images/price/${cartItem.options?.points || cartItem.id}.svg`"
+                                                    <img :src="`/images/price/${cartItem.options?.points || cartItem.id}.png`"
                                                          class="w-16 h-16 object-contain opacity-90"
                                                          :alt="cartItem.name"
-                                                         @error="(e) => e.target.src = '/images/icons/recruit/organizacja_pracy.svg'" />
+                                                         @error="(e) => e.target.src = '/images/icons/recruit/organizacja_pracy.png'" />
                                                 </div>
 
                                                 <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">

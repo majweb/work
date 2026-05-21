@@ -97,9 +97,9 @@ const applicationTypeLabel = computed(() => {
 });
 const applicationTypeIcon = computed(() => {
     switch (application.value.type) {
-        case 'video': return '/images/icons/cv-video.svg';
-        case 'audio': return '/images/icons/cv-audio.svg';
-        default: return '/images/icons/cv-classic.svg';
+        case 'video': return '/images/icons/cv-video.png';
+        case 'audio': return '/images/icons/cv-audio.png';
+        default: return '/images/icons/cv-classic.png';
     }
 });
 
@@ -219,7 +219,7 @@ const isActiveStep = (stepKey) => {
 
                         <div class="group flex items-center gap-5 rounded-[2rem] border border-slate-100 p-5 bg-gradient-to-br from-slate-50/50 to-white shadow-sm hover:shadow-md transition-all hover:border-blue-100">
                             <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                <img src="/images/icons/wynagrodzenie.svg" alt="money icon" class="w-12 h-12" />
+                                <img src="/images/icons/wynagrodzenie.png" alt="money icon" class="w-12 h-12" />
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.salary') }}</p>
@@ -237,7 +237,7 @@ const isActiveStep = (stepKey) => {
 
                         <div class="group flex items-center gap-5 rounded-[2rem] border border-slate-100 p-5 bg-gradient-to-br from-slate-50/50 to-white shadow-sm hover:shadow-md transition-all hover:border-blue-100">
                             <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                <img src="/images/icons/praca_hybrydowa.svg" alt="hybrid icon" class="w-12 h-12" />
+                                <img src="/images/icons/praca_hybrydowa.png" alt="hybrid icon" class="w-12 h-12" />
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.work_mode') }}</p>
@@ -249,7 +249,7 @@ const isActiveStep = (stepKey) => {
 
                         <div class="group flex items-center gap-5 rounded-[2rem] border border-slate-100 p-5 bg-gradient-to-br from-slate-50/50 to-white shadow-sm hover:shadow-md transition-all hover:border-blue-100">
                             <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                <img src="/images/icons/5.svg" alt="contract icon" class="w-12 h-12" />
+                                <img src="/images/icons/5.png" alt="contract icon" class="w-12 h-12" />
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.contract') }}</p>
@@ -261,7 +261,7 @@ const isActiveStep = (stepKey) => {
 
                         <div class="group flex items-center gap-5 rounded-[2rem] border border-slate-100 p-5 bg-gradient-to-br from-slate-50/50 to-white shadow-sm hover:shadow-md transition-all hover:border-blue-100">
                             <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100 group-hover:ring-blue-200 transition-all">
-                                <img src="/images/icons/wymiar_pracy.svg" alt="time icon" class="w-12 h-12" />
+                                <img src="/images/icons/wymiar_pracy.png" alt="time icon" class="w-12 h-12" />
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('translate.work_time') }}</p>

@@ -557,19 +557,19 @@ const createCandidate = () => {
                                 <div class="flex items-center justify-center p-6 bg-gray-50 rounded-[2rem] border border-gray-100 shadow-inner">
                                     <div v-if="application.cv_audio" class="flex flex-col items-center gap-3" :title="__('translate.cv_audio')">
                                         <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100">
-                                            <img class="w-12 h-12" src="/images/icons/recruit/audio_cv.svg" :alt="__('translate.cv_audio')">
+                                            <img class="w-12 h-12" src="/images/icons/recruit/audio_cv.png" :alt="__('translate.cv_audio')">
                                         </div>
                                         <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{__('translate.cv_audio')}}</span>
                                     </div>
                                     <div v-else-if="application.cv_video" class="flex flex-col items-center gap-3" :title="__('translate.cv_video')">
                                         <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100">
-                                            <img class="w-12 h-12" src="/images/icons/recruit/video_cv.svg" :alt="__('translate.cv_video')">
+                                            <img class="w-12 h-12" src="/images/icons/recruit/video_cv.png" :alt="__('translate.cv_video')">
                                         </div>
                                         <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{__('translate.cv_video')}}</span>
                                     </div>
                                     <div v-else-if="application.cv_classic" class="flex flex-col items-center gap-3" :title="__('translate.cv_classic')">
                                         <div class="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-blue-100">
-                                            <img class="w-12 h-12" src="/images/icons/recruit/klasyczne_cv.svg" :alt="__('translate.cv_classic')">
+                                            <img class="w-12 h-12" src="/images/icons/recruit/klasyczne_cv.png" :alt="__('translate.cv_classic')">
                                         </div>
                                         <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{__('translate.classicCV')}}</span>
                                     </div>
@@ -623,7 +623,7 @@ const createCandidate = () => {
                                             type="button"
                                             class="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-[10px] font-black uppercase tracking-widest text-blue-600 border-2 border-blue-600 shadow-sm hover:bg-blue-600 hover:text-white transition-all gap-3"
                                         >
-                                            <img class="w-8 h-8" src="/images/icons/recruit/zobacz_oferte.svg" alt="zobacz_oferte">
+                                            <img class="w-8 h-8" src="/images/icons/recruit/zobacz_oferte.png" alt="zobacz_oferte">
                                             {{ __('translate.goToOffer') || 'Przejdź do oferty' }}
                                         </Link>
                                     </div>

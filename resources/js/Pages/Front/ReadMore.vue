@@ -43,7 +43,7 @@ const props = defineProps({
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
                             <div class="md:col-span-4 flex justify-center">
                                 <div class="w-48 h-48 bg-gray-50 rounded-[3rem] flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/info/start.svg" class="w-32 h-32 object-contain" alt="start">
+                                    <img src="/images/info/start.png" class="w-32 h-32 object-contain" alt="start">
                                 </div>
                             </div>
                             <div class="md:col-span-8">
@@ -66,7 +66,7 @@ const props = defineProps({
                             </div>
                             <div class="md:col-span-4 order-1 md:order-2 flex justify-center">
                                 <div class="w-48 h-48 bg-gray-50 rounded-[3rem] flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/info/heart.svg" class="w-32 h-32 object-contain" alt="heart">
+                                    <img src="/images/info/heart.png" class="w-32 h-32 object-contain" alt="heart">
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@ const props = defineProps({
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
                             <div class="md:col-span-4 flex justify-center">
                                 <div class="w-48 h-48 bg-gray-50 rounded-[3rem] flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/info/secure.svg" class="w-32 h-32 object-contain" alt="secure">
+                                    <img src="/images/info/secure.png" class="w-32 h-32 object-contain" alt="secure">
                                 </div>
                             </div>
                             <div class="md:col-span-8">
@@ -121,7 +121,7 @@ const props = defineProps({
                             </div>
                             <div class="md:col-span-4 order-1 md:order-2 flex justify-center">
                                 <div class="w-48 h-48 bg-gray-50 rounded-[3rem] flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                                    <img src="/images/info/wallet.svg" class="w-32 h-32 object-contain" alt="wallet">
+                                    <img src="/images/info/wallet.png" class="w-32 h-32 object-contain" alt="wallet">
                                 </div>
                             </div>
                         </div>

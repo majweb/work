@@ -178,7 +178,7 @@ const clearHistory = () => {
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div class="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-6 transition-all hover:shadow-blue-900/10">
                             <div class="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center">
-                                <img src="/images/icons/statistics/views.svg" alt="" class="w-10 h-10">
+                                <img src="/images/icons/statistics/views.png" alt="" class="w-10 h-10">
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Łączna liczba zakupionych kredytów</p>
@@ -188,7 +188,7 @@ const clearHistory = () => {
 
                         <div class="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-6 transition-all hover:shadow-blue-900/10">
                             <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center">
-                                <img src="/images/icons/statistics/apps.svg" alt="" class="w-10 h-10">
+                                <img src="/images/icons/statistics/apps.png" alt="" class="w-10 h-10">
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Łączna liczba wykorzystanych kredytów</p>
@@ -198,7 +198,7 @@ const clearHistory = () => {
 
                         <div class="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-blue-900/5 border border-gray-100 flex items-center gap-6 transition-all hover:shadow-blue-900/10">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center">
-                                <img src="/images/icons/statistics/recruits.svg" alt="" class="w-10 h-10">
+                                <img src="/images/icons/statistics/recruits.png" alt="" class="w-10 h-10">
                             </div>
                             <div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Firmy z aktywnymi kredytami</p>
