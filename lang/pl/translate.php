@@ -1811,4 +1811,5 @@ return [
     'registrationData' => 'Dane rejestrowe',
     'mediaAndDescription' => 'Media i Opis',
     'jobOffer' => 'Oferta pracy',
+    'estonia' => 'Estonia',
 ];
