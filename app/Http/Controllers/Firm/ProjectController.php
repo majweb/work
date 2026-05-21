@@ -311,6 +311,7 @@ class ProjectController extends Controller
                     'user_id' => auth()->id(),
                     'content' => $questionData['content'],
                     'answer_time' => $questionData['answer_time'],
+                    'accepted' => now(),
                 ]);
             }
         }
@@ -513,6 +514,7 @@ class ProjectController extends Controller
                         'user_id' => auth()->id(),
                         'content' => $questionData['content'],
                         'answer_time' => $questionData['answer_time'],
+                        'accepted' => now(),
                     ]);
                 }
             }

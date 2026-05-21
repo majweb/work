@@ -1719,7 +1719,7 @@ onMounted(async () => {
                                             class="sr-only"
                                         />
                                         <div
-                                            class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-all border-2"
+                                            class="w-20 h-20 rounded-2xl flex items-center justify-center mb-4 transition-all border-2"
                                             :class="form.offer.some(item => item.id === offer.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
                                         >
                                             <!-- Ikony dla różnych ofert -->
