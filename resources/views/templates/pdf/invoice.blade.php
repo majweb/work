@@ -201,10 +201,10 @@
             <td class="address-box">
                 <h3>SELLER</h3>
                 <div class="address-content">
-                    <strong>WORK 4 YOU GLOBAL LTD</strong>
-                    Office 180B, 182-184 High Street<br>
-                    North London E6 2JA<br><br>
-                    Company No.: 11112672
+                    <strong>WORK 4 YOU GLOBAL OÜ</strong>
+                    Narva mnt 13-27<br>
+                    10151 Tallinn, Estonia<br><br>
+                    Company No.: 17504644
                 </div>
             </td>
             <td width="4%"></td>
