@@ -11,6 +11,7 @@ use Inertia\Inertia;
 
 class CandidateQuestionController extends Controller
 {
+
     public function index()
     {
         $questions = CandidateQuestion::with('createdBy')
