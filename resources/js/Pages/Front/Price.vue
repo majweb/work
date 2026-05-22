@@ -1,7 +1,8 @@
 <script setup>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import { ref, computed } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
+import { usePermission } from "@/Composables/usePermission";
 
 const props = defineProps({
     products: {
@@ -9,6 +10,16 @@ const props = defineProps({
         required: true
     },
     page: Object,
+});
+
+const { hasRole } = usePermission();
+const user = computed(() => usePage().props.auth.user);
+
+const canBuy = computed(() => {
+    if (!user.value) {
+        return true;
+    }
+    return hasRole('firm');
 });
 
 const packages = ref(
@@ -134,11 +145,16 @@ const donated = computed(() =>
                                 ${{ pack.price }}
                             </div>
 
-                            <Link :href="route('buy.index')"
+                            <Link :href="canBuy ? route('buy.index') : '#'"
+                                  :as="canBuy ? 'a' : 'button'"
+                                  :disabled="!canBuy"
                                   class="block w-full py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all"
-                                  :class="selected.id === pack.id
-                                      ? 'bg-white text-[#0A2C5C] hover:bg-gray-100'
-                                      : 'bg-[#00a0e3] text-white hover:bg-[#008cc6] shadow-lg shadow-blue-400/20'">
+                                  :class="[
+                                      selected.id === pack.id
+                                          ? 'bg-white text-[#0A2C5C] hover:bg-gray-100'
+                                          : 'bg-[#00a0e3] text-white hover:bg-[#008cc6] shadow-lg shadow-blue-400/20',
+                                      !canBuy ? 'opacity-50 cursor-not-allowed' : ''
+                                  ]">
                                 {{ __('info.buy_now') }}
                             </Link>
                         </div>

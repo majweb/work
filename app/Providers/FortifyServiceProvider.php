@@ -69,7 +69,7 @@ class FortifyServiceProvider extends ServiceProvider
 
                 if (! $connectedAccount) {
                     throw ValidationException::withMessages([
-                        Fortify::username() => [__('translate.failed')],
+                        Fortify::username() => [__('auth.failed')],
                     ]);
                 }
 

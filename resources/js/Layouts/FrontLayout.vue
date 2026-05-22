@@ -9,6 +9,7 @@ import Checkbox from "@/Components/Checkbox.vue";
 import { ref, computed, watch, onMounted } from "vue";
 import __ from "@/lang.js";
 import CookieConsent from '@/Components/CookieConsent.vue';
+import { usePermission } from "@/Composables/usePermission";
 
 const props = defineProps({
     title: String,
@@ -21,11 +22,27 @@ const props = defineProps({
     url: String,
 });
 
+const { hasRole } = usePermission();
 const page = usePage();
 const auth = page.props?.auth ?? null;
+const user = computed(() => auth?.user);
 
 const isClient = ref(false);
 const ogUrl = ref(page.props?.ziggy?.location || page.props?.pageUrl || '');
+
+const addOfferRoute = computed(() => {
+    if (hasRole('firm')) {
+        return route('projects.create');
+    }
+    return route('project-recruits.create');
+});
+
+const canAddOffer = computed(() => {
+    if (!user.value) {
+        return true;
+    }
+    return hasRole('firm') || hasRole('recruit');
+});
 
 onMounted(() => {
     isClient.value = true;
@@ -535,12 +552,12 @@ const socialLinks = [
                                 </h3>
                                 <ul class="space-y-4">
                                     <li v-for="link in [
-                                        { route: 'front.projects', label: 'browse_offers' },
-                                        { route: 'front.articles', label: 'articles_and_guides' },
-                                        { route: 'login', label: 'login', params: { type: 'worker' } },
-                                        { route: 'register', label: 'register', params: { type: 'worker' } }
-                                    ]" :key="link.route">
-                                        <Link :href="route(link.route, link.params || {})" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
+                                        { route: route('front.projects'), label: 'browse_offers' },
+                                        { route: route('front.articles'), label: 'articles_and_guides' },
+                                        { route: route('login', { type: 'worker' }), label: 'login' },
+                                        { route: route('register', { type: 'worker' }), label: 'register' }
+                                    ]" :key="link.label">
+                                        <Link :href="link.route" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
                                             {{ __('translate.footer.' + link.label) }}
                                         </Link>
                                     </li>
@@ -554,12 +571,20 @@ const socialLinks = [
                                 </h3>
                                 <ul class="space-y-4">
                                     <li v-for="link in [
-                                        { route: 'project-recruits.create', label: 'add_offer' },
-                                        { route: 'front.price', label: 'pricing' },
-                                        { route: 'login', label: 'login', params: { type: 'firm' } },
-                                        { route: 'register', label: 'register', params: { type: 'firm' } }
-                                    ]" :key="link.route">
-                                        <Link :href="route(link.route, link.params || {})" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
+                                        { route: addOfferRoute, label: 'add_offer', isDynamic: true },
+                                        { route: route('front.price'), label: 'pricing' },
+                                        { route: route('login', { type: 'firm' }), label: 'login' },
+                                        { route: route('register', { type: 'firm' }), label: 'register' }
+                                    ]" :key="link.label">
+                                        <Link v-if="link.isDynamic"
+                                              :href="canAddOffer ? link.route : '#'"
+                                              :as="canAddOffer ? 'a' : 'button'"
+                                              :disabled="!canAddOffer"
+                                              class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors"
+                                              :class="!canAddOffer ? 'opacity-50 cursor-not-allowed' : ''">
+                                            {{ __('translate.footer.' + link.label) }}
+                                        </Link>
+                                        <Link v-else :href="link.route" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
                                             {{ __('translate.footer.' + link.label) }}
                                         </Link>
                                     </li>
@@ -573,12 +598,12 @@ const socialLinks = [
                                 </h3>
                                 <ul class="space-y-4">
                                     <li v-for="link in [
-                                        { route: 'front.firms', label: 'companies' },
-                                        { route: 'front.aboutus', label: 'about' },
-                                        { route: 'front.contact', label: 'contact' },
-                                        { route: 'front.partners', label: 'partners' }
-                                    ]" :key="link.route">
-                                        <Link :href="route(link.route)" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
+                                        { route: route('front.firms'), label: 'companies' },
+                                        { route: route('front.aboutus'), label: 'about' },
+                                        { route: route('front.contact'), label: 'contact' },
+                                        { route: route('front.partners'), label: 'partners' }
+                                    ]" :key="link.label">
+                                        <Link :href="link.route" class="text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-[#0A2C5C] transition-colors">
                                             {{ __('translate.footer.' + link.label) }}
                                         </Link>
                                     </li>
