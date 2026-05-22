@@ -442,20 +442,20 @@ const dispatchActionSingleRecruit = value => {
 
                                             <div v-if="question.answer_type === 'text'" class="mt-2">
                                                 <div class="block w-full rounded-xl border border-gray-100 bg-white p-4 text-sm shadow-inner text-gray-700">
-                                                    {{ answersForm.answers[index].text_answer || __('translate.noAnswer') }}
+                                                    {{ answersForm.answers[index]?.text_answer || __('translate.noAnswers') }}
                                                 </div>
                                             </div>
 
                                             <div v-else-if="question.answer_type === 'boolean'" class="mt-2 flex gap-4">
                                                 <div
                                                     class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest border"
-                                                    :class="answersForm.answers[index].boolean_answer === true ? 'bg-emerald-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
+                                                    :class="answersForm.answers[index]?.boolean_answer === true ? 'bg-emerald-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
                                                 >
                                                     {{ __('translate.yes') }}
                                                 </div>
                                                 <div
                                                     class="rounded-xl px-6 py-2 text-[10px] font-black uppercase tracking-widest border"
-                                                    :class="answersForm.answers[index].boolean_answer === false ? 'bg-red-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
+                                                    :class="answersForm.answers[index]?.boolean_answer === false ? 'bg-red-600 text-white border-transparent' : 'bg-gray-100 text-gray-400 border-gray-200 opacity-50'"
                                                 >
                                                     {{ __('translate.no') }}
                                                 </div>
