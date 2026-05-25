@@ -208,25 +208,25 @@ const { getPositionTitle } = useProjectHelpers();
                         <div class="flex flex-col gap-3 w-full md:w-auto" v-if="props.firm?.website || props.firm?.social_facebook || props.firm?.social_google || props.firm?.social_x || props.firm?.social_instagram || props.firm?.social_linkedin || props.firm?.social_tiktok">
                             <div class="flex flex-wrap justify-center gap-3">
                                 <a v-if="props.firm.website" :href="props.firm.website" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/link.svg" alt="website" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/link.png" alt="website" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                                 <a v-if="props.firm.social_facebook" :href="props.firm.social_facebook" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/facebook.svg" alt="facebook" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/facebook.png" alt="facebook" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                                 <a v-if="props.firm.social_google" :href="props.firm.social_google" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/google.svg" alt="google" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/google.png" alt="google" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                                 <a v-if="props.firm.social_x" :href="props.firm.social_x" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/x.svg" alt="x" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/x.png" alt="x" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                                 <a v-if="props.firm.social_instagram" :href="props.firm.social_instagram" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/instagram.svg" alt="instagram" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/instagram.png" alt="instagram" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                                 <a v-if="props.firm.social_linkedin" :href="props.firm.social_linkedin" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/linkedin.svg" alt="linkedin" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/linkedin.png" alt="linkedin" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                                 <a v-if="props.firm.social_tiktok" :href="props.firm.social_tiktok" target="_blank" class="h-14 w-14 md:w-10 md:h-10 bg-gray-50 rounded-2xl md:rounded-xl flex items-center justify-center transition-all hover:bg-blue-50 hover:scale-110 shadow-sm border border-gray-100/50">
-                                    <img src="/images/icons/tik_tok.svg" alt="tik_tok" class="w-6 h-6 md:w-5 md:h-5">
+                                    <img src="/images/icons/tik_tok.png" alt="tik_tok" class="w-6 h-6 md:w-5 md:h-5">
                                 </a>
                             </div>
                         </div>
