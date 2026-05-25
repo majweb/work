@@ -196,12 +196,19 @@
                 enter-from-class="opacity-0 translate-y-4"
                 enter-to-class="opacity-100 translate-y-0"
             >
-                <div v-if="uploadSuccess" class="flex flex-col items-center gap-6">
-                    <div class="flex items-center gap-3 px-6 py-3 bg-green-50 text-green-600 rounded-2xl border border-green-100">
+                <div v-if="uploadSuccess || uploadError" class="flex flex-col items-center gap-6">
+                    <div v-if="uploadSuccess" class="flex items-center gap-3 px-6 py-3 bg-green-50 text-green-600 rounded-2xl border border-green-100">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                         </svg>
                         <span class="text-sm font-black uppercase tracking-widest">{{ __('translate.recordingSaved') }}</span>
+                    </div>
+
+                    <div v-if="uploadError" class="flex items-center gap-3 px-6 py-3 bg-red-50 text-red-600 rounded-2xl border border-red-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-xs font-black uppercase tracking-tight">{{ uploadError }}</span>
                     </div>
                 </div>
             </Transition>
@@ -261,36 +268,67 @@ function toggle() {
     open.value = !open.value
 }
 
+const getSupportedMimeType = () => {
+    if (!isClient.value || typeof MediaRecorder === 'undefined') return 'video/webm';
+
+    const types = [
+        'video/webm;codecs=vp9,opus',
+        'video/webm;codecs=vp8,opus',
+        'video/webm',
+        'video/mp4',
+        'video/quicktime'
+    ];
+
+    for (const type of types) {
+        if (MediaRecorder.isTypeSupported(type)) {
+            return type;
+        }
+    }
+    return 'video/webm';
+};
+
 const startRecording = async () => {
     if (!isClient.value) return;
-    if (countdownInterval) clearInterval(countdownInterval);
-    recordedBlobUrl.value = null;
-    const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: {
-            echoCancellation: false,
-            noiseSuppression: false,
-            autoGainControl: false
-        }
-    });
-    video.value.srcObject = stream;
+    try {
+        if (countdownInterval) clearInterval(countdownInterval);
+        recordedBlobUrl.value = null;
 
-    recordedChunks.length = 0;
-    mediaRecorder.value = new RecordRTCLazy.value(stream, {
-        type: 'video',
-        mimeType: 'video/webm',
-        bitsPerSecond: 1280000 // 1.28 Mbps dla dobrej jakości
-    });
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: 'user',
+                width: { ideal: 1280 },
+                height: { ideal: 720 }
+            },
+            audio: {
+                echoCancellation: true,
+                noiseSuppression: true
+            }
+        });
 
-    mediaRecorder.value.startRecording();
+        video.value.srcObject = stream;
+        recordedChunks.length = 0;
 
-    uploadId.value = `upload_${props.projectId}_${Date.now()}`;
-    props.form.cv_upload_id = uploadId.value;
-    recording.value = true;
-    uploadSuccess.value = false;
-    uploadError.value = '';
+        const mimeType = getSupportedMimeType();
 
-    startTimer();
+        mediaRecorder.value = new RecordRTCLazy.value(stream, {
+            type: 'video',
+            mimeType: mimeType,
+            bitsPerSecond: 1280000
+        });
+
+        mediaRecorder.value.startRecording();
+
+        uploadId.value = `upload_${props.projectId}_${Date.now()}`;
+        props.form.cv_upload_id = uploadId.value;
+        recording.value = true;
+        uploadSuccess.value = false;
+        uploadError.value = '';
+
+        startTimer();
+    } catch (error) {
+        console.error("Błąd podczas uruchamiania kamery:", error);
+        uploadError.value = "Nie udało się uzyskać dostępu do kamery lub mikrofonu. Upewnij się, że udzieliłeś wymaganych uprawnień.";
+    }
 };
 
 const startTimer = () => {
