@@ -259,7 +259,7 @@ class DashboardController extends Controller
                     'product_type' => $product->product_type->value,
                     'service_type' => $product->getTranslation('type', 'en'),
                     'description' => $product->description ?? null,
-                    'icon' => asset('images/price/'.$product->id.'-points.svg'),
+                    'icon' => asset('images/price/'.$product->id.'-points.png'),
                 ];
             })->sortBy('price')->values();
             $lastInvoices = Invoice::where('user_id', auth()->id())->latest()->take(3)->get();
