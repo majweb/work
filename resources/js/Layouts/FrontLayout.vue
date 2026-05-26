@@ -366,13 +366,13 @@ const socialLinks = [
                             <template #singleLabel="{ option }">
                                 <div class="flex items-center gap-2">
                                     <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                    <span>{{ option.label }}</span>
+                                    <span>{{ option.allLabels[option.value] || option.label }}</span>
                                 </div>
                             </template>
                             <template #option="{ option }">
                                 <div class="flex items-center gap-2">
                                     <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                    <span>{{ option.label }}</span>
+                                    <span>{{ option.allLabels[option.value] || option.label }}</span>
                                 </div>
                             </template>
                             <template #noResult>
@@ -474,13 +474,13 @@ const socialLinks = [
                                     <template #singleLabel="{ option }">
                                         <div class="flex items-center gap-2">
                                             <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                            <span>{{ option.label }}</span>
+                                            <span>{{ option.allLabels[option.value] || option.label }}</span>
                                         </div>
                                     </template>
                                     <template #option="{ option }">
                                         <div class="flex items-center gap-2">
                                             <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
-                                            <span>{{ option.label }}</span>
+                                            <span>{{ option.allLabels[option.value] || option.label }}</span>
                                         </div>
                                     </template>
                                     <template #noResult>
