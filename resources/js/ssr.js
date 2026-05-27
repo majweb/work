@@ -3,6 +3,7 @@ import createServer from '@inertiajs/vue3/server'
 import {renderToString} from '@vue/server-renderer'
 import {createSSRApp, h} from 'vue'
 import {ZiggyVue} from '../../vendor/tightenco/ziggy';
+import route from '../../vendor/tightenco/ziggy';
 import __ from "@/lang.js";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -31,6 +32,7 @@ createServer(page =>
 
             // Ensure route is globally available in SSR
             if (typeof global !== 'undefined') {
+                global.Ziggy = page.props.ziggy;
                 global.route = (name, params, absolute, config = page.props.ziggy) => {
                     return route(name, params, absolute, config);
                 };
