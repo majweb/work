@@ -60,7 +60,7 @@ return [
     'emailVerifyLine' => 'Kliknij poniższy przycisk, aby zweryfikować swój adres e-mail.',
     'emailVerifyExtra' => 'Jeśli masz problemy z kliknięciem przycisku ":actionText", skopiuj i wklej poniższy adres do swojej przeglądarki internetowej',
     'regards' => 'Pozdrowienia',
-    'hello' => 'Witaj!!',
+    'hello' => 'Witaj!',
     'rights' => 'Wszelkie prawa zastrzeżone.',
     'resetTitle' => 'Zresetuj hasło',
     'resetContent' => 'Otrzymujesz tego e-maila, ponieważ otrzymaliśmy prośbę o zresetowanie hasła do Twojego konta',
