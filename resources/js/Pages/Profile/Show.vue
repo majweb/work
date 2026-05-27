@@ -85,7 +85,7 @@ const {hasRole} = usePermission();
 
 
                         <!-- Password Form -->
-                        <div v-if="$page.props.jetstream.canUpdatePassword && $page.props.socialstream.hasPassword">
+                        <div v-if="$page.props.jetstream.canUpdatePassword">
                             <UpdatePasswordForm/>
                         </div>
 
@@ -100,7 +100,7 @@ const {hasRole} = usePermission();
                         </div>
 
                         <!-- Delete User -->
-                        <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && $page.props.socialstream.hasPassword && !(hasRole('recruit') && !hasRole('firm'))">
+                        <div v-if="$page.props.jetstream.hasAccountDeletionFeatures && !(hasRole('recruit') && !hasRole('firm'))">
                             <DeleteUserForm/>
                         </div>
 
