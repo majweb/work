@@ -19,7 +19,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-    <div class="fixed top-6 inset-x-0 flex items-start justify-center pointer-events-none z-[100]">
+    <div class="fixed top-6 inset-x-0 flex items-start justify-center pointer-events-none z-[200]">
         <transition
             enter-active-class="transform ease-out duration-500 transition"
             enter-from-class="translate-y-[-100%] opacity-0"
