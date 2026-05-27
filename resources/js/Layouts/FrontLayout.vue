@@ -293,6 +293,9 @@ const socialLinks = [
 
             <!-- Twitter -->
             <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" :content="props.title" />
+            <meta name="twitter:description" :content="props.description" />
+            <meta name="twitter:image" :content="`${props.image || '/default-image.png'}?v=${new Date().getTime()}`"/>
             <meta name="twitter:label1" :content="__('translate.written_by')" />
             <meta name="twitter:data1" content="Work4you.global" />
 
