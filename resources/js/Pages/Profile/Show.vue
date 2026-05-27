@@ -85,9 +85,10 @@ const {hasRole} = usePermission();
 
 
                         <!-- Password Form -->
-                        <div v-if="$page.props.jetstream.canUpdatePassword">
+                        <div v-if="$page.props.jetstream.canUpdatePassword && $page.props.socialstream.hasPassword">
                             <UpdatePasswordForm/>
                         </div>
+
                         <!-- Set Password -->
                         <div v-else>
                             <SetPasswordForm/>

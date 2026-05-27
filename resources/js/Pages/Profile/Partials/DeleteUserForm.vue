@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import InputError from '@/Components/InputError.vue';
@@ -11,6 +11,9 @@ import __ from "@/lang.js";
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);
 
+const page = usePage();
+const hasPassword = page.props.socialstream.hasPassword;
+
 const form = useForm({
     password: '',
 });
@@ -18,14 +21,20 @@ const form = useForm({
 const confirmUserDeletion = () => {
     confirmingUserDeletion.value = true;
 
-    setTimeout(() => passwordInput.value.focus(), 250);
+    if (hasPassword) {
+        setTimeout(() => passwordInput.value.focus(), 250);
+    }
 };
 
 const deleteUser = () => {
     form.delete(route('current-user.destroy'), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
-        onError: () => passwordInput.value.focus(),
+        onError: () => {
+            if (hasPassword) {
+                passwordInput.value.focus();
+            }
+        },
         onFinish: () => form.reset(),
     });
 };
@@ -64,7 +73,7 @@ const closeModal = () => {
 
                 <template #content>
                     {{__('translate.deleteAccountConfirm')}}
-                    <div class="mt-4">
+                    <div v-if="hasPassword" class="mt-4">
                         <TextInput
                             ref="passwordInput"
                             v-model="form.password"
@@ -74,6 +83,9 @@ const closeModal = () => {
                             @keyup.enter="deleteUser"
                         />
                         <InputError :message="form.errors.password" class="mt-2 text-[10px] font-bold uppercase tracking-widest" />
+                    </div>
+                    <div v-else class="mt-4 text-red-500 font-bold">
+                        {{ __('translate.confirmAccountDeletionSocial') || 'Potwierdź chęć usunięcia konta.' }}
                     </div>
                 </template>
 
