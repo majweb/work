@@ -298,6 +298,7 @@ class AgreementSeeder extends Seeder
 
             ]),
             'help_text' => null,
+            'is_required'=>1,
             'created_at' => $now,
             'updated_at' => $now,
         ]);
@@ -1653,6 +1654,7 @@ class AgreementSeeder extends Seeder
 
             ]),
             'help_text' => null,
+            'is_required'=>1,
             'created_at' => $now,
             'updated_at' => $now,
         ]);

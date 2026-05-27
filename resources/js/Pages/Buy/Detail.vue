@@ -77,6 +77,7 @@ const submitForm = () => {
     setTimeout(() => (clicked.value = false), 3000); // Resetowanie `clicked` po 3s
 };
 
+const buyActive = computed(() => usePage().props.buyActive);
 const stripeCheckout = () => {
     clicked.value = true;
     router.post(route('buy.stripe-checkout'), {}, {
@@ -224,7 +225,7 @@ const stripeCheckout = () => {
 
                                         <div class="space-y-3 mt-8">
                                             <div v-if="countCart > 0" class="space-y-4">
-                                                <div v-if="foundation" class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 transition-all animate-in fade-in slide-in-from-top-2 duration-300">
+                                                <div v-if="foundation && buyActive" class="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 transition-all animate-in fade-in slide-in-from-top-2 duration-300">
                                                     <div class="flex items-center h-5 pt-1">
                                                         <input id="agreePointsPackage"
                                                                type="checkbox"
@@ -236,7 +237,7 @@ const stripeCheckout = () => {
                                                     </label>
                                                 </div>
 
-                                                <button v-if="agreeToService && foundation"
+                                                <button v-if="agreeToService && foundation && buyActive"
                                                         :disabled="clicked || !foundation || !agreeToService"
                                                         @click="stripeCheckout"
                                                         class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#0b2a55] px-6 py-4 text-center text-sm font-black uppercase tracking-widest text-white shadow-xl transition-all hover:bg-[#0d3874] active:scale-[0.98] disabled:opacity-50"
