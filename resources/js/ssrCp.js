@@ -26,15 +26,13 @@ createServer(page =>
             app.component('VueDatePicker', VueDatePicker)
             app.component('file-pond', { template: '<div></div>' })
             app.use(ZiggyVue, {
-                ...(page.props.ziggy || {}),
-                location: page.props.ziggy?.location
-                    ? new URL(page.props.ziggy.location)
-                    : (page.props.pageUrl ? new URL(page.props.pageUrl) : null),
+                ...page.props.ziggy,
+                location: new URL(page.props.ziggy.location),
             });
 
             // Ensure route is globally available in SSR
             if (typeof global !== 'undefined') {
-                global.Ziggy = page.props.ziggy || {};
+                global.Ziggy = page.props.ziggy;
                 global.route = (name, params, absolute, config = page.props.ziggy) => {
                     return route(name, params, absolute, config);
                 };
