@@ -18,20 +18,12 @@ import axios from "axios";
 import Tiptap from "@/Components/TipTap.vue";
 
 // FILEPOND
-import vueFilePond from "vue-filepond";
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import __ from "@/lang.js";
 import Multiselect from "vue-multiselect";
 
-const FilePond = vueFilePond(
-    FilePondPluginImagePreview,
-    FilePondPluginFileValidateSize,
-    FilePondPluginFileValidateType
-);
+const isClient = ref(false);
 
 const props = defineProps({
     partners: {
@@ -56,6 +48,7 @@ const updateWidth = () => {
 };
 
 onMounted(() => {
+    isClient.value = true;
     updateWidth();
     window.addEventListener('resize', updateWidth);
 });
@@ -582,7 +575,7 @@ const submit = () => {
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                                             <div>
                                                 <InputLabel :value="__('translate.foundationLogo')" class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest" />
-                                                <file-pond
+                                                <file-pond v-if="isClient"
                                                     name="photo"
                                                     ref="uploadLogo"
                                                     :files="form.photo"
@@ -641,7 +634,7 @@ const submit = () => {
                                             </div>
                                             <div>
                                                 <InputLabel :value="__('translate.foundationBanner')" class="text-[10px] font-black text-gray-400 mb-4 uppercase tracking-widest" />
-                                                <file-pond
+                                                <file-pond v-if="isClient"
                                                     name="banner"
                                                     ref="uploadBaner"
                                                     :files="form.banner"

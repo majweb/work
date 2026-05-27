@@ -13,32 +13,37 @@ import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 
-import vueFilePond from "vue-filepond";
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
-import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
-
-// Create component
-const FilePond = vueFilePond(
-    FilePondPluginFileValidateSize,
-    FilePondPluginFileValidateType,
-    FilePondPluginImagePreview,
-    FilePondPluginFilePoster
-);
-
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
+    async setup({ el, App, props, plugin }) {
+        let FilePond;
+        if (typeof window !== 'undefined') {
+            const vueFilePond = (await import("vue-filepond")).default;
+            const FilePondPluginFileValidateType = (await import('filepond-plugin-file-validate-type')).default;
+            const FilePondPluginImagePreview = (await import("filepond-plugin-image-preview")).default;
+            const FilePondPluginFileValidateSize = (await import('filepond-plugin-file-validate-size')).default;
+            const FilePondPluginFilePoster = (await import('filepond-plugin-file-poster')).default;
+
+            FilePond = vueFilePond(
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType,
+                FilePondPluginImagePreview,
+                FilePondPluginFilePoster
+            );
+        }
+
         const app = createSSRApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .component('VueDatePicker', VueDatePicker)
-            .component('file-pond', FilePond)
-            // .use(VueApexCharts)
+            .component('VueDatePicker', VueDatePicker);
+
+        if (FilePond) {
+            app.component('file-pond', FilePond);
+        }
+
         app.config.globalProperties.__  = __
         app.mount(el);
     },

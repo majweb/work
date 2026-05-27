@@ -31,6 +31,9 @@ const isClient = ref(false);
 const ogUrl = ref(page.props?.ziggy?.location || page.props?.pageUrl || '');
 
 const addOfferRoute = computed(() => {
+    if (typeof route === 'undefined') {
+        return '#';
+    }
     if (hasRole('firm')) {
         return route('projects.create');
     }
@@ -72,6 +75,9 @@ const triggerConfetti = () => {
 };
 
 const submitForm = () => {
+    if (typeof route === 'undefined') {
+        return;
+    }
     form.post(route('newsletter.store'), {
         preserveScroll: true,
         onSuccess: () => {

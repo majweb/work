@@ -10,7 +10,7 @@ export default defineConfig({
         }
     },
     ssr: {
-        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','@spatie/media-library-pro-vue3-collection','vue-multiselect','axios','vue3-apexcharts','vuedraggable'],
+        noExternal: ['lodash', '@spatie/media-library-pro-vue3-attachment','@spatie/media-library-pro-vue3-collection','vue-multiselect','axios','vue3-apexcharts','vuedraggable', 'vue-filepond', 'filepond', 'filepond-plugin-file-validate-type', 'filepond-plugin-image-preview', 'filepond-plugin-file-validate-size', 'filepond-plugin-file-poster'],
     },
     build: {
         rollupOptions: {
