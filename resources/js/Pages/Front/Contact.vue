@@ -434,7 +434,7 @@ onMounted(() => loadCaptcha())
                                     <img src="/images/icons/recruit/lokalizacja.png" alt="local" class="w-10">
                                 </div>
                                 <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{{ __('translate.our_office') }}</h3>
-                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight mb-4">WORK4YOU.GLOBAL LTD OÜ</h4>
+                                <h4 class="text-xl font-black text-[#0A2C5C] uppercase tracking-tight mb-4">WORK4YOU.GLOBAL OÜ</h4>
                                 <p class="text-sm font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
                                     Narva mnt 13-27,<br />10151 Tallinn,<br />{{__('translate.estonia') }}
                                 </p>
