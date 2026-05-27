@@ -14,19 +14,12 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // Stwórz użytkownika admina
-
-        $admin = User::firstOrCreate(
-            ['email' => 'l.koziol@work4you.global'],
+        $admins = [
             [
+                'email' => 'l.koziol@work4you.global',
                 'name' => 'Łukasz Kozioł',
-                'email_verified_at' => now(),
-                'password' => Hash::make('F5qIOCoByKIDucW7'), // zmień hasło na bezpieczne
-            ]
-        );
-        $admin->assignRole('admin');
-
-        $subs = [
+                'password' => 'F5qIOCoByKIDucW7',
+            ],
             [
                 'email' => 'k.karwowska@work4you.global',
                 'name' => 'K. Karwowska',
@@ -44,17 +37,41 @@ class AdminSeeder extends Seeder
             ],
         ];
 
-        foreach ($subs as $subData) {
-            $sub = User::firstOrCreate(
-                ['email' => $subData['email']],
+        foreach ($admins as $adminData) {
+            $user = User::firstOrCreate(
+                ['email' => $adminData['email']],
                 [
-                    'name' => $subData['name'],
+                    'name' => $adminData['name'],
                     'email_verified_at' => now(),
-                    'password' => Hash::make($subData['password']),
+                    'password' => Hash::make($adminData['password']),
                 ]
             );
-            $sub->assignRole('admin');
-//            $sub->assignRole('admin-sub');
+            $user->syncRoles(['admin']);
+        }
+
+        $subAdmins = [
+            [
+                'email' => 'd.berger@work4you.global',
+                'name' => 'D. Berger',
+                'password' => 'pW8N3mQ9zR2xV4kL', // wygenerowane hasło
+            ],
+            [
+                'email' => 'm.klocek@work4you.global',
+                'name' => 'M. Klocek',
+                'password' => 'bJ5vT7nY1mS8fP3q', // wygenerowane hasło
+            ],
+        ];
+
+        foreach ($subAdmins as $subAdminData) {
+            $user = User::firstOrCreate(
+                ['email' => $subAdminData['email']],
+                [
+                    'name' => $subAdminData['name'],
+                    'email_verified_at' => now(),
+                    'password' => Hash::make($subAdminData['password']),
+                ]
+            );
+            $user->syncRoles(['admin', 'admin-sub']);
         }
     }
 }

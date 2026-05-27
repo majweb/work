@@ -458,7 +458,7 @@ const { getPositionTitle } = useProjectHelpers();
                                         <div class="flex items-center gap-4">
                                             <div class="relative shrink-0">
                                                 <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100/50 shadow-sm group-hover:bg-white transition-colors relative z-10">
-                                                    <img class="w-10 h-10" :src="`/images/icons/oferty.svg`" :alt="project.category?.name" />
+                                                    <img class="w-10 h-10" :src="`/images/icons/oferty.png`" :alt="project.category?.name" />
                                                 </div>
                                                 <div v-if="project.is_featured" class="absolute -top-6 -right-6 z-20 transform hover:scale-110 transition-transform duration-300">
                                                     <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-10 h-10 drop-shadow-lg" />

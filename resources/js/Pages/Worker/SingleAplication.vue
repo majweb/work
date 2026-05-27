@@ -329,7 +329,7 @@ const isActiveStep = (stepKey) => {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div v-for="(item, index) in application.statusMessages" :key="index" class="relative p-6 border border-slate-100 rounded-[2rem] bg-slate-50/30 flex items-start gap-4 transition-all hover:bg-white hover:shadow-md hover:border-blue-50">
                             <div class="p-3 bg-white rounded-xl shadow-sm ring-1 ring-slate-100">
-                                <img class="w-8 h-8" src="/images/icons/oferty.svg" alt="offers" />
+                                <img class="w-8 h-8" src="/images/icons/oferty.png" alt="offers" />
                             </div>
                             <div class="flex-1">
                                 <span v-if="application.statusDates?.[item.key]" class="text-[10px] font-black uppercase tracking-widest block mb-1"
