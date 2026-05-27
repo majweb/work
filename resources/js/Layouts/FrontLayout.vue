@@ -297,7 +297,7 @@ const socialLinks = [
 
             <slot name="head" />
         </Head>
-    <div class="flex flex-col font-sans relative">
+    <div class="flex flex-col font-sans relative overflow-x-hidden">
         <Banner />
         <div v-if="showConfetti" class="fixed top-0 left-1/2 -translate-x-1/2 pointer-events-none z-[300]">
             <ConfettiExplosion
@@ -424,7 +424,7 @@ const socialLinks = [
     </div>
 
         <!-- Main content -->
-        <main class="relative z-0 flex-grow pt-16 md:pt-28">
+        <main class="relative z-0 flex-grow pt-16 md:pt-28 overflow-x-hidden">
             <slot />
         </main>
 
@@ -437,9 +437,10 @@ const socialLinks = [
             leave-from-class="opacity-100 translate-x-0"
             leave-to-class="opacity-0 translate-x-full"
         >
-            <div v-if="mobileMenuOpen" class="fixed inset-0 z-[100] flex">
-                <div class="relative w-full lg:max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto">
-                    <div class="p-8 border-b border-gray-50 flex items-center justify-between">
+            <div v-if="mobileMenuOpen" class="fixed inset-0 z-[100] flex overflow-hidden">
+                <div @click="closeMenu" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" />
+                <div class="relative w-full lg:max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto overscroll-contain">
+                    <div class="p-8 border-b border-gray-50 flex items-center justify-between sticky top-0 bg-white z-10">
                         <Link href="/" @click="closeMenu">
                             <img src="/images/logo-horizontal.png" class="h-8 w-auto" :alt="__('translate.logo')" />
                         </Link>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import {ref, onMounted, computed, watch} from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import __ from "@/lang.js";
 
@@ -17,6 +17,16 @@ const getLocalizedValue = (value) => {
     return value[language.value] || value['pl'] || value['en'] || Object.values(value)[0] || '';
 };
 
+watch(showBanner, (val) => {
+    if (typeof document !== 'undefined') {
+        if (val) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+});
+
 onMounted(() => {
     const saved = localStorage.getItem('cookie_consent');
     if (!saved && cookieAgreements.value.length > 0) {
@@ -26,9 +36,6 @@ onMounted(() => {
             consents.value[agreement.id] = !!agreement.is_required;
         });
     }
-
-    // DEBUG: Log points if needed (uncomment to debug in browser console)
-    // console.log('Cookie Agreements:', page.props.cookieAgreements);
 });
 
 const acceptAll = () => {
@@ -59,8 +66,8 @@ const handleConsentChange = (agreementId) => {
 
 <template>
     <div v-if="showBanner" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-900 w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden border dark:border-gray-800">
-            <div class="p-8">
+        <div class="bg-white dark:bg-gray-900 w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden border dark:border-gray-800 flex flex-col max-h-[90vh]">
+            <div class="p-6 md:p-8 overflow-y-auto overscroll-contain">
                 <div v-if="!showSettings">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="p-4 bg-[#0A2C5C]/5 dark:bg-[#0A2C5C]/10 rounded-[2rem]">
