@@ -14,17 +14,25 @@ createServer(page =>
         render: renderToString,
         title: (title) => `${title} - ${appName}`,
         resolve: name => {
-            const pages = import.meta.glob('./Pages/**/*.vue', {eager: true})
-            return pages[`./Pages/${name}.vue`]
+            const pages = import.meta.glob('./Pages/**/*.vue', { eager: true });
+            const path = `./Pages/${name}.vue`;
+            const page = pages[path];
+
+            if (!page) {
+                console.error(`[SSR Error] Page not found: ${path}`);
+                throw new Error(`Page not found: ${path}`);
+            }
+
+            return page.default || page;
         },
-        setup({App, props, plugin}) {
+        setup({ App, props, plugin }) {
             let app = createSSRApp({
                 render: () => h(App, props),
             });
             app.config.globalProperties.__ = __;
             app.use(plugin)
             app.component('VueDatePicker', VueDatePicker)
-            app.component('file-pond', { template: '<div></div>' })
+            app.component('file-pond', { render: () => h('div') })
             app.use(ZiggyVue, {
                 ...(page.props.ziggy || {}),
                 location: page.props.ziggy?.location

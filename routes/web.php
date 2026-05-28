@@ -76,9 +76,6 @@ Route::post('/upload-image', function (Request $request) { // <- instancja!
     return response()->json(['error' => 'Niepoprawny plik'], 400);
 });
 
-Route::get('/moje', function () {
-    return inertia()->render('Moje');
-});
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 Route::get('/test', function () {
     $unsupportedLanguages = ['am', 'ps', 'bn', 'dz', 'zh', 'ka', 'ja', 'km', 'ko', 'dv', 'th'];
