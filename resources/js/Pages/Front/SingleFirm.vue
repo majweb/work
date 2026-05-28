@@ -188,7 +188,6 @@ const { getPositionTitle } = useProjectHelpers();
                                      :class="{ 'ring-4 ring-[#329CD1]/50 shadow-2xl shadow-[#329CD1]/20': firm.is_featured }"
                                      :style="{ backgroundImage: `url(${firm.profile_photo_url || firm.logo})` }">
                                 </div>
-                                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-30"></div>
                                 <div v-if="firm.is_featured" class="absolute -bottom-5 md:-bottom-10 -left-7 md:-left-10 z-40 transform hover:scale-110 transition-transform duration-300">
                                     <img src="/images/icons/prefer-icon.png" alt="TOP" class="w-[70px] h-[70px] md:w-20 md:h-20 drop-shadow-2xl" />
                                 </div>
