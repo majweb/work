@@ -30,7 +30,6 @@
         @inertia
         @mediaLibraryStyles
         @mediaLibraryScripts
-        <script defer src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API')}}&libraries=places"></script>
         @if(isset($page['props']['integrations']['gtm_body']) && $page['props']['integrations']['gtm_body']['active'])
             {!! $page['props']['integrations']['gtm_body']['value'] !!}
         @endif
