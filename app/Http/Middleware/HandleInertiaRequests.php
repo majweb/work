@@ -77,6 +77,7 @@ class HandleInertiaRequests extends Middleware
             'canRegister' => Route::has('register'),
             'pageUrl' => env('APP_URL'),
             'pageName' => env('APP_NAME'),
+            'assetVersion' => time(),
             'unreadNotifications' => $request->user() ? $request->user()->unreadNotifications()->count() : 0,
             'unreadTicketsCount' => $request->user() && $request->user()->hasRole('admin') ? \App\Models\Ticket::where('is_read', false)->count() : 0,
             'mapsApi' => env('GOOGLE_MAPS_API'),
