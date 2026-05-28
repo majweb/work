@@ -99,7 +99,7 @@ const submit = () => {
         :keywords="props.page.keywords"
         :description="props.page.description"
         :imageUrl="props.imageUrl"
-        url="https://work4you.global?v=2"
+        :url="route('front')"
         type="website"
     >
         <div class="relative min-h-screen pt-10 md:pt-32 pb-24">

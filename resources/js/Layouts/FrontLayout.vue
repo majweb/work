@@ -283,7 +283,6 @@ const socialLinks = [
             <meta v-if="props.url || ogUrl" property="og:url" :content="props.url || ogUrl" />
             <meta v-if="props.url || ogUrl" property="og:site_name" :content="props.url || ogUrl" />
             <meta property="og:image" :content="`${props.image || '/default-image.png'}?v=${page.props.assetVersion}`"/>
-            <!--        <meta property="og:image" :content="props.image || '/default-image.png'"/>    -->
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
 <!--            <meta property="og:image:type" content="image/jpeg" />-->
