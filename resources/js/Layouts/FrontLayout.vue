@@ -192,8 +192,8 @@ const lang = ref(changeLang.value);
 watch(changeLang, (newVal) => {
     lang.value = newVal;
 });
-const dispatchAction = (data) => router.post(route('front.language.store', { language: data.value }));
-const resetLang = (data) => router.post(route('front.language.store', { language: data }));
+const dispatchAction = (data) => router.post(route('front.language.store', { language: data.value }), {}, { preserveScroll: true });
+const resetLang = (data) => router.post(route('front.language.store', { language: data }), {}, { preserveScroll: true });
 const sortLangs = computed(() => {
     let langs = page.props.languages || [];
 
