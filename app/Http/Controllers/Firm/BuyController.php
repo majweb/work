@@ -439,7 +439,6 @@ class BuyController extends Controller
 
             return back();
         }
-        Log::error('stripeCheckout: ' . Session::get('foundation'));
         $subtotal = Cart::subtotal();
         $amount = (float) str_replace(',', '', $subtotal);
         $totalPoints = $cartItems->sum(function ($item) {
@@ -527,8 +526,6 @@ class BuyController extends Controller
                     if ($transaction->cart_data) {
                         GenerateInvoiceJob::dispatch($transaction, $user);
                     }
-
-                    Log::info('Stripe Payment Success for Transaction: '.$transaction->id);
                 });
             }
         }
