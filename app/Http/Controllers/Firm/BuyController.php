@@ -449,7 +449,7 @@ class BuyController extends Controller
 
         try {
             $checkoutSession = StripeSession::create([
-                'payment_method_types' => ['card', 'p24'],
+//                'payment_method_types' => ['card'],
                 'line_items' => [[
                     'price_data' => [
                         'currency' => 'usd',
