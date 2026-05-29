@@ -320,6 +320,7 @@ class BuyController extends Controller
             if ($foundation) {
                 // Jeśli mamy tablicę z 'id' albo 'value', wybierz pierwsze dostępne
                 $foundationId = $foundation['id'] ?? $foundation['value'] ?? null;
+                Log::error('dodano w addFoundation: ' . $foundationId);
 
                 if ($foundationId) {
                     Session::put('foundation', $foundationId);
