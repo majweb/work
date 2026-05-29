@@ -315,14 +315,21 @@ class BuyController extends Controller
 
     public function addFoundation()
     {
-        $foundation = request()->foundation;
-        if ($foundation) {
-            // Jeśli mamy tablicę z 'id' albo 'value', wybierz pierwsze dostępne
-            $foundationId = $foundation['id'] ?? $foundation['value'] ?? null;
+        try {
+            $foundation = request()->foundation;
+            if ($foundation) {
+                // Jeśli mamy tablicę z 'id' albo 'value', wybierz pierwsze dostępne
+                $foundationId = $foundation['id'] ?? $foundation['value'] ?? null;
 
-            if ($foundationId) {
-                Session::put('foundation', $foundationId);
+                if ($foundationId) {
+                    Session::put('foundation', $foundationId);
+                }
             }
+        } catch (\Exception $e) {
+            Log::error('Błąd w addFoundation: ' . $e->getMessage(), [
+                'foundation' => request()->foundation,
+                'trace' => $e->getTraceAsString()
+            ]);
         }
     }
 
@@ -421,8 +428,6 @@ class BuyController extends Controller
     public function stripeCheckout()
     {
         $cartItems = Cart::content();
-
-        dd($cartItems, Session::get('foundation'));
 
         if (! Session::has('foundation') || $cartItems->isEmpty()) {
             session()->flash('flash.banner', 'Zakup niemożliwy – brak fundacji albo koszyk pusty!');
