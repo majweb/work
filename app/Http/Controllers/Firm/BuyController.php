@@ -422,6 +422,8 @@ class BuyController extends Controller
     {
         $cartItems = Cart::content();
 
+        dd($cartItems, Session::get('foundation'));
+
         if (! Session::has('foundation') || $cartItems->isEmpty()) {
             session()->flash('flash.banner', 'Zakup niemożliwy – brak fundacji albo koszyk pusty!');
             session()->flash('flash.bannerStyle', 'danger');
