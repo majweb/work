@@ -436,7 +436,7 @@ class BuyController extends Controller
 
             return back();
         }
-
+        Log::error('stripeCheckout: ' . Session::get('foundation'));
         $subtotal = Cart::subtotal();
         $amount = (float) str_replace(',', '', $subtotal);
         $totalPoints = $cartItems->sum(function ($item) {
