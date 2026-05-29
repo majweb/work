@@ -58,7 +58,7 @@ const decrement = (id,qty) => {
 const currency  = '$';
 const dispatchAction = () => {
     if (foundation.value) {
-        router.post(route('buy.addFoundation', {foundation: foundation.value}), null, {preserveScroll: true});
+        router.post(route('buy.addFoundation'), {foundation: foundation.value}, {preserveScroll: true});
     }
 }
 onMounted(() => {
