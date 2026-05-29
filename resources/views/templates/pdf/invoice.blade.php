@@ -257,23 +257,5 @@
         </tr>
     </tbody>
 </table>
-
-<div class="payment-details">
-    <table>
-        <tr>
-            <td class="payment-label">Payment terms:</td>
-            <td class="payment-value">Bank Transfer</td>
-        </tr>
-        <tr>
-            <td class="payment-label">Transfer Detail:</td>
-            <td class="payment-value">MBank</td>
-        </tr>
-        <tr>
-            <td class="payment-label">Transfer Detail:</td>
-            <td class="payment-value">39 1140 1179 0000 4255 2700 1001</td>
-        </tr>
-    </table>
-</div>
-
 </body>
 </html>

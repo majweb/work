@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Firm;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BuyResource;
+use App\Jobs\GenerateInvoiceJob;
 use App\Lang\Lang;
 use App\Models\Banner;
 use App\Models\ChangeProduct;
@@ -404,10 +405,12 @@ class BuyController extends Controller
                     'session_id' => uniqid().'-'.time(),
                     'credits' => $totalPoints,
                     'user_id' => auth()->id(),
+                    'cart_data' => $cartItems->toArray(),
+                    'foundation_id' => is_array(Session::get('foundation')) ? (Session::get('foundation')['id'] ?? null) : (is_object(Session::get('foundation')) ? (Session::get('foundation')->id ?? null) : Session::get('foundation')),
                 ]);
 
                 $pointService->increment(auth()->user(), $transaction->credits, 'Purchase: Points');
-                $buyHelper->generateInvoiceAndPdf($cartItems, $amount, Session::get('foundation'));
+                GenerateInvoiceJob::dispatch($transaction, auth()->user());
 
                 Cart::destroy();
                 Session::forget('foundation');
@@ -464,7 +467,7 @@ class BuyController extends Controller
                 'metadata' => [
                     'user_id' => auth()->id(),
                     'credits' => $totalPoints,
-                    'foundation_id' => Session::get('foundation')->id ?? null,
+                    'foundation_id' => is_array(Session::get('foundation')) ? (Session::get('foundation')['id'] ?? null) : (is_object(Session::get('foundation')) ? (Session::get('foundation')->id ?? null) : Session::get('foundation')),
                 ],
             ]);
 
@@ -474,6 +477,8 @@ class BuyController extends Controller
                 'session_id' => $checkoutSession->id,
                 'credits' => $totalPoints,
                 'user_id' => auth()->id(),
+                'cart_data' => $cartItems->toArray(),
+                'foundation_id' => is_array(Session::get('foundation')) ? (Session::get('foundation')['id'] ?? null) : (is_object(Session::get('foundation')) ? (Session::get('foundation')->id ?? null) : Session::get('foundation')),
             ]);
 
             return Inertia::location($checkoutSession->url);
@@ -511,17 +516,17 @@ class BuyController extends Controller
             $transaction = Transaction::where('session_id', $session->id)->first();
 
             if ($transaction && $transaction->status === 'pending') {
-                DB::transaction(function () use ($transaction, $session, $pointService) {
+                DB::transaction(function () use ($transaction, $session, $pointService, $buyHelper) {
                     $transaction->update(['status' => 'paid']);
 
                     $user = User::find($session->metadata->user_id);
                     $pointService->increment($user, (int) $session->metadata->credits, 'Purchase: Points (Stripe)');
 
-                    $foundation = Foundation::find($session->metadata->foundation_id);
+                    // Generowanie faktury w kolejce
+                    if ($transaction->cart_data) {
+                        GenerateInvoiceJob::dispatch($transaction, $user);
+                    }
 
-                    // Ponieważ Cart::content() jest pusty w webhooku, musimy obsłużyć generowanie faktury inaczej
-                    // lub zapisać dane koszyka w metadanych/bazie danych przed płatnością.
-                    // Na ten moment symulujemy lub logujemy potrzebę.
                     Log::info('Stripe Payment Success for Transaction: '.$transaction->id);
                 });
             }
@@ -578,6 +583,11 @@ class BuyController extends Controller
 
     public function successView()
     {
+        Cart::destroy();
+        if (Session::has('foundation')) {
+            Session::forget('foundation');
+        }
+
         return inertia()->render('Buy/Success', [
             'auth' => [
                 'user' => auth()->user()->load('firm'),

@@ -20,11 +20,17 @@ use Illuminate\Support\Facades\Storage;
 class BuyHelper
 {
     /**
+     * @param User|null $user
      * @return mixed
      */
-    public function lastInvoiceFromMonth()
+    public function lastInvoiceFromMonth(?User $user = null)
     {
-        return optional(Invoice::where('month',\Carbon\Carbon::now()->format('m'))->where('year',\Carbon\Carbon::now()->format('Y'))->latest()->take(1)->first())->number;
+        $user = $user ?? auth()->user();
+        return optional(Invoice::where('user_id', $user->id)
+            ->where('month', \Carbon\Carbon::now()->format('m'))
+            ->where('year', \Carbon\Carbon::now()->format('Y'))
+            ->latest()
+            ->first())->number;
     }
 
     /**
@@ -74,15 +80,32 @@ class BuyHelper
      * @param $cartItems
      * @param $amount
      * @param $foundationId
+     * @param User|null $user
      * @return string|void
      */
-    public function generateInvoiceAndPdf($cartItems, $amount, $foundationId = null)
+    public function generateInvoiceAndPdf($cartItems, $amount, $foundationId = null, ?User $user = null)
     {
         try {
-            $user = auth()->user();
-            $lastInvoiceFromMonth = $this->lastInvoiceFromMonth() ?? 0;
+            $user = $user ?? auth()->user();
+            $lastInvoiceFromMonth = $this->lastInvoiceFromMonth($user) ?? 0;
             $maskNumber = sprintf("%03d", $lastInvoiceFromMonth + 1);
             $date = Carbon::now();
+
+            // Konwersja cartItems na kolekcję obiektów i tłumaczenie nazw na angielski
+            $cartItems = collect($cartItems)->map(function ($item) {
+                $item = is_array($item) ? (object) $item : $item;
+
+                // Próba pobrania tłumaczenia na angielski, jeśli to model Product
+                // Jeśli nazwa jest już stringiem (z koszyka), szukamy w bazie oryginału
+                if (isset($item->id)) {
+                    $product = \App\Models\Product::find($item->id);
+                    if ($product) {
+                        $item->name = $product->getTranslation('name', 'en');
+                    }
+                }
+
+                return $item;
+            });
 
             $pdf = Pdf::loadView('templates.pdf.invoice', compact('cartItems', 'amount', 'maskNumber', 'date', 'user', 'foundationId'));
             $filenameInvoice = 'firm/' . $user->id . '/pdf/invoices/' . $maskNumber . '-' . $date->format('m') . '-' . (string)$date->format('Y') . '_Work.pdf';

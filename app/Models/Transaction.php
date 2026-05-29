@@ -14,7 +14,16 @@ class Transaction extends Model
         'session_id',
         'user_id',
         'credits',
+        'cart_data',
+        'foundation_id',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'cart_data' => 'array',
+        ];
+    }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
