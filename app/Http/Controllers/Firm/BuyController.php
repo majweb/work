@@ -462,6 +462,7 @@ class BuyController extends Controller
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
+                'customer_email' => auth()->user()->email,
                 'success_url' => route('buy.successView'),
                 'cancel_url' => route('buy.detail'),
                 'metadata' => [
