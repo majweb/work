@@ -2,7 +2,7 @@
 <tr>
 <td class="header">
 <a href="{{ $url }}">
-<img src="{{asset('/images/mail.png')}}" width="100" alt="Logo">
+<img src="{{asset('/images/mail.png')}}" width="250" alt="Logo">
 </a>
 </td>
 </tr>

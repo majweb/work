@@ -169,7 +169,7 @@
         <tr>
             <td class="logo-section">
                 @if (App::environment() == 'local')
-                    <img height="120" src="{{ public_path().'/images/logo.png' }}" alt="logo">
+                    <img height="120" src="{{ public_path().'/images/logo-invoice.png' }}" alt="logo">
                 @else
                     <img height="120" src="{{ asset('images/logo.png') }}" alt="logo">
                 @endif
