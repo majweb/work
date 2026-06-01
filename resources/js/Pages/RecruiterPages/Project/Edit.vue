@@ -443,7 +443,8 @@ const initializeMap = () => {
         container: mapContainer.value,
         style: "mapbox://styles/mapbox/light-v11",
         center: defaultCoords,
-        zoom: 6
+        zoom: 6,
+        attributionControl: false
     });
 
     map.value.addControl(new mapboxgl.NavigationControl());

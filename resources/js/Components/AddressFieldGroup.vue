@@ -10,6 +10,9 @@
                 :value="street"
                 ref="streetRef"
                 :placeholder="__('translate.Street')"/>
+            <p class="mt-2 text-[10px] text-gray-400 font-medium tracking-tight">
+                {{ __('translate.StreetUnknownInfo') }}
+            </p>
         </div>
         <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
             <InputLabel for="number" :value="__('translate.Number')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
@@ -20,6 +23,9 @@
                 @input="$emit('update:streetNumber', $event.target.value)"
                 :value="streetNumber"
                 :placeholder="__('translate.Number')"/>
+            <p class="mt-2 text-[10px] text-gray-400 font-medium tracking-tight">
+                {{ __('translate.StreetNumberUnknownInfo') }}
+            </p>
         </div>
         <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
             <InputLabel for="postcode" :value="__('translate.Postal')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />

@@ -111,7 +111,8 @@ onMounted(async () => {
                 container: 'projectMap',
                 style: "mapbox://styles/mapbox/light-v11",
                 center: [lng, lat],
-                zoom: 14
+                zoom: 14,
+                attributionControl: false
             });
 
             // Dodaj marker

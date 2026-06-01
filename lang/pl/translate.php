@@ -1812,4 +1812,7 @@ return [
     'mediaAndDescription' => 'Media i Opis',
     'jobOffer' => 'Oferta pracy',
     'estonia' => 'Estonia',
+    'StreetUnknownInfo' => 'Jeśli ulica nie jest znana, wpisz „-”.',
+    'StreetNumberUnknownInfo' => 'Jeśli numer budynku nie jest znany, wpisz „-”.',
+
 ];
