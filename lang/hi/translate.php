@@ -1811,4 +1811,6 @@ return [
     'mediaAndDescription' => 'मीडिया और विवरण',
     'jobOffer' => 'नौकरी का ऑफ़र',
     'estonia' => 'एस्टोनिया',
+    'StreetUnknownInfo' => 'यदि सड़क ज्ञात नहीं है, तो "-" दर्ज करें।',
+    'StreetNumberUnknownInfo' => 'यदि भवन संख्या ज्ञात नहीं है, तो "-" दर्ज करें।',
 ];

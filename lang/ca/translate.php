@@ -1781,5 +1781,7 @@ return [
     'mediaAndDescription' => 'Mitjans i descripció',
     'jobOffer' => 'Oferta de feina',
     'estonia' => 'Estònia',
+    'StreetUnknownInfo' => 'Si es desconeix el carrer, introduïu "-".',
+    'StreetNumberUnknownInfo' => 'Si es desconeix el número de l’edifici, introduïu "-".',
 
 ];

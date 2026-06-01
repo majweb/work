@@ -1794,4 +1794,6 @@ return [
     'mediaAndDescription' => 'မီဒီယာနှင့် ဖော်ပြချက်',
     'jobOffer' => 'အလုပ်ကမ်းလှမ်းချက်',
     'estonia' => 'အက်စ်တိုးနီးယား',
+    'StreetUnknownInfo' => 'यदि सडक थाहा छैन भने',
+    'StreetNumberUnknownInfo' => 'यदि भवन नम्बर थाहा छैन भने',
 ];

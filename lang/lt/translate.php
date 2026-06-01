@@ -1788,5 +1788,7 @@ return [
     'mediaAndDescription' => 'Medija ir aprašymas',
     'jobOffer' => 'Darbo pasiūlymas',
     'estonia' => 'Estija',
+    'StreetUnknownInfo' => 'Jei gatvė nežinoma',
+    'StreetNumberUnknownInfo' => 'Jei pastato numeris nežinomas',
 ];
 

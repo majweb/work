@@ -1814,4 +1814,6 @@ return [
     'mediaAndDescription' => 'ВАО ва тавсиф',
     'jobOffer' => 'Пешниҳоди кор',
     'estonia' => 'Эстония',
+    'StreetUnknownInfo' => 'Агар кӯча номаълум бошад',
+    'StreetNumberUnknownInfo' => 'Агар рақами бино номаълум бошад',
 ];

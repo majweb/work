@@ -1813,4 +1813,6 @@ return [
     'mediaAndDescription' => 'Медиа и описание',
     'jobOffer' => 'Вакансия',
     'estonia' => 'Эстония',
+    'StreetUnknownInfo' => 'Dacă strada nu este cunoscută',
+    'StreetNumberUnknownInfo' => 'Dacă numărul clădirii nu este cunoscut',
 ];

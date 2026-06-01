@@ -1795,4 +1795,6 @@ return [
     'mediaAndDescription' => '미디어 및 설명',
     'jobOffer' => '채용 공고',
     'estonia' => '에스토니아',
+    'StreetUnknownInfo' => '도로를 알 수 없는 경우',
+    'StreetNumberUnknownInfo' => '건물 번호를 알 수 없는 경우',
 ];

@@ -1812,4 +1812,6 @@ return [
     'mediaAndDescription' => '媒体与描述',
     'jobOffer' => '工作机会',
     'estonia' => '爱沙尼亚',
+    'StreetUnknownInfo' => '如果街道未知',
+    'StreetNumberUnknownInfo' => '如果门牌号未知',
 ];

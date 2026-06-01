@@ -1549,4 +1549,6 @@ return [
     'mediaAndDescription' => 'Meedia ja kirjeldus',
     'jobOffer' => 'Tööpakkumine',
     'estonia' => 'Eesti',
+    'StreetUnknownInfo' => 'Kui tänav ei ole teada, sisestage "-".',
+    'StreetNumberUnknownInfo' => 'Kui maja number ei ole teada, sisestage "-".',
 ];

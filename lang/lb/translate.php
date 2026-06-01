@@ -1791,4 +1791,6 @@ return [
     'mediaAndDescription' => 'Media a Beschreiwung',
     'jobOffer' => 'Aarbechtsoffert',
     'estonia' => 'Estland',
+    'StreetUnknownInfo' => 'Wann d\'Strooss onbekannt ass',
+    'StreetNumberUnknownInfo' => 'Wann d’Hausnummer onbekannt ass',
 ];

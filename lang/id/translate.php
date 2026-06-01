@@ -1811,4 +1811,6 @@ return [
     'mediaAndDescription' => 'Մեդիա և Նկարագրություն',
     'jobOffer' => 'Աշխատանքի առաջարկ',
     'estonia' => 'Էստոնիա',
+    'StreetUnknownInfo' => 'Jika nama jalan tidak diketahui, masukkan "-".',
+    'StreetNumberUnknownInfo' => 'Jika nomor bangunan tidak diketahui, masukkan "-".',
 ];

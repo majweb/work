@@ -1812,4 +1812,6 @@ return [
     'mediaAndDescription' => 'Média és Leírás',
     'jobOffer' => 'Állásajánlat',
     'estonia' => 'Észtország',
+    'StreetUnknownInfo' => 'Ha az utca ismeretlen, írja be a „-” jelet.',
+    'StreetNumberUnknownInfo' => 'Ha az épület száma ismeretlen, írja be a „-” jelet.',
 ];

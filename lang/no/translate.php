@@ -1787,4 +1787,6 @@ return [
     'mediaAndDescription' => 'Medier og beskrivelse',
     'jobOffer' => 'Stillingsannonse',
     'estonia' => 'Estland',
+    'StreetUnknownInfo' => 'Hvis gaten er ukjent',
+    'StreetNumberUnknownInfo' => 'Hvis husnummeret er ukjent',
 ];

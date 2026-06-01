@@ -1787,4 +1787,6 @@ return [
     'mediaAndDescription' => 'Медиа ба тайлбар',
     'jobOffer' => 'Ажлын санал',
     'estonia' => 'Эстони',
+    'StreetUnknownInfo' => 'Гудамж тодорхойгүй бол',
+    'StreetNumberUnknownInfo' => 'Барилгын дугаар тодорхойгүй бол',
 ];

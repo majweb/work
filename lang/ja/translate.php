@@ -1809,4 +1809,6 @@ return [
     'mediaAndDescription' => 'メディア・詳細説明',
     'jobOffer' => '求人情報',
     'estonia' => 'エストニア',
+    'StreetUnknownInfo' => '通りが不明な場合',
+    'StreetNumberUnknownInfo' => '建物番号が不明な場合',
 ];

@@ -1820,5 +1820,7 @@ return [
     'mediaAndDescription' => 'ሚዲያ እና መግለጫ',
     'jobOffer' => 'የሥራ ማስታወቂያ',
     'estonia' => 'ኤስቶኒያ',
+    'StreetUnknownInfo' => 'Եթե փողոցը հայտնի չէ, մուտքագրեք «-»։',
+    'StreetNumberUnknownInfo' => 'Եթե շենքի համարը հայտնի չէ, մուտքագրեք «-»։',
 
 ];

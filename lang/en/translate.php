@@ -1937,5 +1937,6 @@ return [
 
     'jobOffer' => 'Job offer',
     'estonia' => 'Estonia',
-
+    'StreetUnknownInfo' => 'If the street is unknown, enter "-".',
+    'StreetNumberUnknownInfo' => 'If the building number is unknown, enter "-".',
 ];

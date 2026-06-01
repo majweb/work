@@ -1810,4 +1810,6 @@ return [
     'mediaAndDescription' => 'Media e Descrizione',
     'jobOffer' => 'Offerta di lavoro',
     'estonia' => 'Estonia',
+    'StreetUnknownInfo' => 'Se la via non è conosciuta',
+    'StreetNumberUnknownInfo' => 'Se il numero civico non è conosciuto',
 ];

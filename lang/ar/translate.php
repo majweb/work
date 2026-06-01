@@ -2122,4 +2122,6 @@ return [
     'mediaAndDescription' => 'الوسائط والوصف',
     'jobOffer' => 'عرض عمل',
     'estonia' => 'إستونيا',
+    'StreetUnknownInfo' => 'إذا كان اسم الشارع غير معروف، أدخل "-".',
+    'StreetNumberUnknownInfo' => 'إذا كان رقم المبنى غير معروف، أدخل "-".',
 ];

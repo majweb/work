@@ -1787,4 +1787,6 @@ return [
     'mediaAndDescription' => 'Mediji un apraksts',
     'jobOffer' => 'Darba piedāvājums',
     'estonia' => 'Igaunija',
+    'StreetUnknownInfo' => 'Ja iela nav zināma',
+    'StreetNumberUnknownInfo' => 'Ja ēkas numurs nav zināms',
 ];

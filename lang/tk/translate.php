@@ -1812,4 +1812,6 @@ return [
     'mediaAndDescription' => 'Media we Beýany',
     'jobOffer' => 'Iş teklibi',
     'estonia' => 'Estoniýa',
+    'StreetUnknownInfo' => 'Eger köçe belli bolmasa',
+    'StreetNumberUnknownInfo' => 'Eger bina belgisi belli bolmasa',
 ];

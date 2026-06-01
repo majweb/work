@@ -1816,4 +1816,6 @@ return [
     'mediaAndDescription' => 'Medya ve Açıklama',
     'jobOffer' => 'İş teklifi',
     'estonia' => 'Estonya',
+    'StreetUnknownInfo' => 'Sokak bilinmiyorsa',
+    'StreetNumberUnknownInfo' => 'Bina numarası bilinmiyorsa',
 ];

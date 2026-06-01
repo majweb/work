@@ -1811,4 +1811,6 @@ return [
     'mediaAndDescription' => 'Media ja kuvaus',
     'jobOffer' => 'Työpaikkailmoitus',
     'estonia' => 'Viro',
+    'StreetUnknownInfo' => 'Jos katua ei tunneta, syötä "-".',
+    'StreetNumberUnknownInfo' => 'Jos rakennuksen numeroa ei tunneta, syötä "-".',
 ];

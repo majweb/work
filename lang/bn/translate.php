@@ -1864,4 +1864,7 @@ return [
     'jobOffer' => 'চাকরির অফার',
 
     'estonia' => 'এস্তোনিয়া',
+
+    'StreetUnknownInfo' => 'রাস্তার নাম জানা না থাকলে "-" লিখুন।',
+    'StreetNumberUnknownInfo' => 'ভবনের নম্বর জানা না থাকলে "-" লিখুন।',
 ];

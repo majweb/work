@@ -1794,4 +1794,6 @@ return [
     'mediaAndDescription' => 'رسانه‌ها و توضیحات',
     'jobOffer' => 'فرصت شغلی',
     'estonia' => 'استونی',
+    'StreetUnknownInfo' => 'اگر نام خیابان مشخص نیست، «-» را وارد کنید.',
+    'StreetNumberUnknownInfo' => 'اگر شماره ساختمان مشخص نیست، «-» را وارد کنید.',
 ];

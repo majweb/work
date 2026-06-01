@@ -1794,4 +1794,6 @@ return [
     'mediaAndDescription' => 'މީޑިއާ އަދި ތަފްޞީލް',
     'jobOffer' => 'ވަޒީފާގެ އިއުލާން',
     'estonia' => 'އެސްޓޯނިއާ',
+    'StreetUnknownInfo' => 'މަގު އަންގައި ނުވާނަމަ "-" ލިޔުން.',
+    'StreetNumberUnknownInfo' => 'އިމާރާތު ނަންބަރު އަންގައި ނުވާނަމަ "-" ލިޔުން.',
 ];

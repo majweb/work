@@ -1792,6 +1792,8 @@ return [
     'mediaAndDescription' => 'ប្រព័ន្ធផ្សព្វផ្សាយ និងការពិពណ៌នា',
     'jobOffer' => 'ការផ្តល់ជូនការងារ',
     'estonia' => 'អេស្តូនី',
+    'StreetUnknownInfo' => 'ប្រសិនបើមិនស្គាល់ផ្លូវ',
+    'StreetNumberUnknownInfo' => 'ប្រសិនបើមិនស្គាល់លេខអគារ',
 ];
 
 

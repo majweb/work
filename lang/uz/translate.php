@@ -1812,4 +1812,6 @@ return [
     'mediaAndDescription' => 'Media va Tavsif',
     'jobOffer' => 'Ish taklifi',
     'estonia' => 'Estoniya',
+    'StreetUnknownInfo' => 'Agar ko‘cha noma’lum bo‘lsa',
+    'StreetNumberUnknownInfo' => 'Agar bino raqami noma’lum bo‘lsa',
 ];

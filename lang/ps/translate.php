@@ -1813,4 +1813,6 @@ return [
     'mediaAndDescription' => 'رسنۍ او شرح',
     'jobOffer' => 'د دندې وړاندیز',
     'estonia' => 'استونیا',
+    'StreetUnknownInfo' => 'که کوڅه معلومه نه وي',
+    'StreetNumberUnknownInfo' => 'که د ودانۍ شمېره معلومه نه وي',
 ];

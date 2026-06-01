@@ -3627,5 +3627,7 @@ return [
     'jobOffer' => 'Pracovní nabídka',
 
     'estonia' => 'Estonsko',
+    'StreetUnknownInfo' => 'Pokud ulice není známa, zadejte "-".',
+    'StreetNumberUnknownInfo' => 'Pokud číslo budovy není známo, zadejte "-".',
 
 ];

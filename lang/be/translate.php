@@ -1845,4 +1845,6 @@ return [
     'mediaAndDescription' => 'Медыя і апісанне',
     'jobOffer' => 'Вакансія',
     'estonia' => 'Эстонія',
+    'StreetUnknownInfo' => 'Калі вуліца невядомая, увядзіце «-».',
+    'StreetNumberUnknownInfo' => 'Калі нумар будынка невядомы, увядзіце «-».',
 ];

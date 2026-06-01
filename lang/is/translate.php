@@ -1811,4 +1811,7 @@ return [
     'mediaAndDescription' => 'Miðlar og lýsing',
     'jobOffer' => 'Atvinnutilboð',
     'estonia' => 'Eistland',
+    'StreetUnknownInfo' => 'Ef gata er óþekkt',
+    'StreetNumberUnknownInfo' => 'Ef húsnúmer er óþekkt',
 ];
+

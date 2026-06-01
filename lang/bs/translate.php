@@ -1981,4 +1981,6 @@ return [
 'mediaAndDescription' => 'Mediji i opis',
 'jobOffer' => 'Oglas za posao',
 'estonia' => 'Estonija',
+'StreetUnknownInfo' => 'Ako ulica nije poznata, unesite "-".',
+'StreetNumberUnknownInfo' => 'Ako broj zgrade nije poznat, unesite "-".',
 ];

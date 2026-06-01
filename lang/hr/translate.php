@@ -1811,4 +1811,6 @@ return [
     'mediaAndDescription' => 'Mediji i opis',
     'jobOffer' => 'Ponuda posla',
     'estonia' => 'Estonija',
+    'StreetUnknownInfo' => 'Ako ulica nije poznata, unesite "-".',
+    'StreetNumberUnknownInfo' => 'Ako broj zgrade nije poznat, unesite "-".',
 ];

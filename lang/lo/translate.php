@@ -1794,5 +1794,7 @@ return [
     'mediaAndDescription' => 'ສື່ ແລະ ຄຳອະທິບາຍ',
     'jobOffer' => 'ຂໍ້ສະເໜີວຽກ',
     'estonia' => 'ເອສໂຕເນຍ',
+    'StreetUnknownInfo' => 'ຖ້າບໍ່ຮູ້ຊື່ຖະໜົນ',
+    'StreetNumberUnknownInfo' => 'ຖ້າບໍ່ຮູ້ເລກອາຄານ',
 
 ];
