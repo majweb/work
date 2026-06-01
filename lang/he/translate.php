@@ -1803,4 +1803,5 @@ return [
     'estonia' => 'אסטוניה',
     'StreetUnknownInfo' => 'אם הרחוב אינו ידוע',
     'StreetNumberUnknownInfo' => 'אם מספר הבניין אינו ידוע',
+
 ];
