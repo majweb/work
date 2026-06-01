@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers\Firm;
 
-use App\Enum\Payment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRecruitRequest;
-use App\Http\Resources\PermissionsResource;
 use App\Models\User;
 use App\Notifications\SystemActivityNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
+use Illuminate\Auth\Events\Registered;
 class RecruitController extends Controller
 {
     /**
@@ -80,6 +75,8 @@ class RecruitController extends Controller
             'color' => $request->userData()['color'],
             'password' => Hash::make($request->userData()['password']),
         ]);
+        // Dodaj tę linię, aby wysłać maila weryfikacyjnego
+        event(new Registered($user));
         $user->assignRole('recruit');
         \Illuminate\Support\Facades\Cache::forget("user_" . auth()->id() . "_recruits");
 
