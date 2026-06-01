@@ -313,7 +313,7 @@ const { getPositionTitle } = useProjectHelpers();
                                     <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.companyVideo') }}</h3>
                                     <div class="h-px flex-1 bg-gray-100"></div>
                                 </div>
-                                <div v-if="firm.video" class="rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/10 bg-black aspect-video">
+                                <div class="rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-900/10 bg-black aspect-video">
                                     <video controls preload="metadata" class="w-full h-full">
                                         <source :src="firm.video" type="video/mp4"/>
                                         {{ __('translate.videoError') }}
