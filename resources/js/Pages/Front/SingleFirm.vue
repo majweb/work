@@ -308,7 +308,7 @@ const { getPositionTitle } = useProjectHelpers();
                             </div>
 
                             <!-- Wideo -->
-                            <div>
+                            <div v-if="firm.video">
                                 <div class="flex items-center gap-4 mb-8">
                                     <h3 class="text-xs font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.companyVideo') }}</h3>
                                     <div class="h-px flex-1 bg-gray-100"></div>
@@ -318,14 +318,6 @@ const { getPositionTitle } = useProjectHelpers();
                                         <source :src="firm.video" type="video/mp4"/>
                                         {{ __('translate.videoError') }}
                                     </video>
-                                </div>
-                                <div v-else class="rounded-[3rem] overflow-hidden border-4 border-dashed border-gray-100 bg-gray-50/50 aspect-video flex flex-col items-center justify-center p-8 text-center group hover:border-blue-200 transition-all">
-                                    <div class="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform duration-500">
-                                        <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </svg>
-                                    </div>
-                                    <p class="text-xs font-black text-gray-400 uppercase tracking-widest">{{ __('translate.noVideoAvailable') }}</p>
                                 </div>
                             </div>
                         </div>
