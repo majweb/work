@@ -11,7 +11,6 @@ use App\Jobs\MergeAudioChunksJob;
 
 class AudioUploadController extends Controller
 {
-//    test
     public function upload(Request $request)
     {
         $request->validate([
