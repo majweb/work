@@ -3,7 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link, router } from '@inertiajs/vue3';
 import moment from "moment";
 import DialogModal from '@/Components/DialogModal.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
     article: Object
@@ -29,6 +29,31 @@ const toggleAccept = () => {
 
 const getMediaUrl = (article) => {
     return article.media?.[0]?.original_url || '';
+};
+
+const toggleCommentVisibility = async (comment) => {
+    try {
+        await axios.post(route('comments.toggle-visibility', comment.id));
+        comment.show = !comment.show;
+    } catch (error) {
+        console.error('Błąd podczas zmiany widoczności komentarza:', error);
+    }
+};
+
+const perPage = 4;
+const currentPage = ref(1);
+const totalPages = computed(() => {
+    return Math.ceil((props.article.comments?.length || 0) / perPage) || 1;
+});
+const paginatedComments = computed(() => {
+    const start = (currentPage.value - 1) * perPage;
+    const end = start + perPage;
+    return props.article.comments?.slice(start, end) || [];
+});
+const goToPage = (page) => {
+    if (page >= 1 && page <= totalPages.value) {
+        currentPage.value = page;
+    }
 };
 </script>
 
@@ -123,6 +148,57 @@ const getMediaUrl = (article) => {
                             </div>
                         </div>
                     </div>
+
+                    <!-- Comments Section for Admin -->
+                    <div class="rounded-[3rem] bg-white shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
+                        <div class="px-10 py-8 border-b border-gray-50 bg-gradient-to-r from-white to-gray-50/30 flex items-center justify-between">
+                            <h3 class="text-xl font-black tracking-tight text-[#0A2C5C] uppercase">Komentarze</h3>
+                            <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Razem: {{ article.comments?.length || 0 }}</span>
+                        </div>
+                        <div class="p-10 space-y-6">
+                            <div v-if="(article.comments?.length || 0) > 0" class="space-y-6">
+                                <div v-for="comment in paginatedComments" :key="comment.id" class="bg-white p-6 rounded-2xl border border-gray-100">
+                                    <div class="flex items-start justify-between gap-4">
+                                        <div>
+                                            <p class="text-xs font-black text-[#0A2C5C] uppercase tracking-widest mb-1">{{ comment.user?.name || 'Użytkownik' }}</p>
+                                            <p class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">{{ new Date(comment.created_at).toLocaleDateString() }}</p>
+                                        </div>
+                                        <button @click="toggleCommentVisibility(comment)" type="button"
+                                                class="px-4 py-2 rounded-xl text-white text-[10px] font-black uppercase tracking-widest transition-all"
+                                                :class="comment.show ? 'bg-[#e31e24] hover:bg-red-600 shadow-red-900/10' : 'bg-green-500 hover:bg-green-600 shadow-green-900/10'">
+                                            {{ comment.show ? 'Ukryj' : 'Pokaż' }}
+                                        </button>
+                                    </div>
+                                    <p class="mt-4 text-sm font-medium text-[#0A2C5C] leading-relaxed">"{{ comment.content }}"</p>
+
+                                    <div v-if="comment.replies?.length" class="mt-4 space-y-4 bg-blue-50/30 p-6 rounded-2xl border-l-4 border-blue-200">
+                                        <div v-for="reply in comment.replies" :key="reply.id" class="border-b last:border-0 border-blue-100/60 pb-3">
+                                            <div class="flex items-center justify-between gap-4">
+                                                <p class="text-[10px] font-black text-[#00a3e0] uppercase tracking-widest mb-0.5">{{ reply.user?.name || 'Użytkownik' }}</p>
+                                                <button type="button" @click="toggleCommentVisibility(reply)"
+                                                        class="px-3 py-1.5 rounded-lg text-white text-[9px] font-black uppercase tracking-widest transition-all"
+                                                        :class="reply.show ? 'bg-[#e31e24] hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'">
+                                                    {{ reply.show ? 'Ukryj' : 'Pokaż' }}
+                                                </button>
+                                            </div>
+                                            <p class="text-xs text-[#0A2C5C]">"{{ reply.content }}"</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-center gap-2 mt-6" v-if="totalPages > 1">
+                                    <button class="px-3 py-1.5 rounded-lg border border-gray-200 text-[10px] font-black uppercase tracking-widest hover:bg-gray-50"
+                                            @click="goToPage(currentPage - 1)" :disabled="currentPage === 1">Prev</button>
+                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ currentPage }} / {{ totalPages }}</span>
+                                    <button class="px-3 py-1.5 rounded-lg border border-gray-200 text-[10px] font-black uppercase tracking-widest hover:bg-gray-50"
+                                            @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+                                </div>
+                            </div>
+                            <div v-else class="text-center py-6 text-gray-300 font-black uppercase tracking-widest text-[10px]">
+                                Brak komentarzy
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Info Column -->
@@ -133,7 +209,8 @@ const getMediaUrl = (article) => {
                             <h3 class="text-lg font-black tracking-tight text-[#0A2C5C] uppercase">Użytkownik</h3>
                         </div>
                         <div class="p-8 text-center flex flex-col items-center">
-                            <img v-if="article.user?.profile_photo_url" :src="article.user.profile_photo_url" class="w-16 h-16 rounded-full object-cover shadow-lg shadow-blue-900/10 mb-4 border-2 border-white">
+                            <img v-if="article.user?.name === 'Work4you.global'" src="/images/logo-invoice.png" class="w-16 h-16 rounded-full object-contain shadow-lg shadow-blue-900/10 mb-4 border-2 border-white">
+                            <img v-else-if="article.user?.profile_photo_url" :src="article.user.profile_photo_url" class="w-16 h-16 rounded-full object-cover shadow-lg shadow-blue-900/10 mb-4 border-2 border-white">
                             <div v-else class="w-16 h-16 rounded-full bg-[#0A2C5C] shadow-lg shadow-blue-900/10 flex items-center justify-center text-2xl font-black text-white mb-4">
                                 {{ article.user?.name?.substring(0, 1).toUpperCase() }}
                             </div>

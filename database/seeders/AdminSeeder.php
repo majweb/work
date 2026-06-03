@@ -22,17 +22,17 @@ class AdminSeeder extends Seeder
             ],
             [
                 'email' => 'k.karwowska@work4you.global',
-                'name' => 'K. Karwowska',
+                'name' => 'Work4you.global',
                 'password' => 'uQW6Nh0Tj7HeMwOn',
             ],
             [
                 'email' => 'm.maj@work4you.global',
-                'name' => 'M. Maj',
+                'name' => 'Work4you.global',
                 'password' => 'KZCPSpchd7LocFzX',
             ],
             [
                 'email' => 'a.lewek@work4you.global',
-                'name' => 'A. Lewek',
+                'name' => 'Work4you.global',
                 'password' => 'KZCPSpchd7LocFzc',
             ],
         ];

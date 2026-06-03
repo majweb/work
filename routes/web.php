@@ -170,7 +170,7 @@ Route::middleware([
     Route::get('projects/getChildsCategory/{parent}', [ProjectController::class, 'getChildsCategory'])->middleware('role:firm')->name('projects.getChildsCategory');
     Route::post('/projects/{project}/duplicate', [ProjectController::class, 'duplicate'])->name('projects.duplicate');
     Route::resource('articles', ArticleController::class)->middleware('role:firm')->except('show');
-    Route::post('/comments/{comment}/toggle-visibility', [ArticleController::class, 'toggleCommentVisibility'])->middleware('role:firm')
+    Route::post('/comments/{comment}/toggle-visibility', [ArticleController::class, 'toggleCommentVisibility'])->middleware('role:firm|admin')
         ->name('comments.toggle-visibility');
     Route::put('firmForm', FirmController::class)->middleware('role:firm')->name('firm.update.form');
     Route::put('firmUpdateForm', AboutController::class)->middleware('role:firm')->name('firm.update.about.form');
@@ -288,6 +288,8 @@ Route::middleware([
 
         //        ARTYKULY
         Route::get('articles-accepts', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'index'])->name('articles-accepts.index');
+        Route::get('articles-accepts/create', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'create'])->name('articles-accepts.create');
+        Route::post('articles-accepts', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'store'])->name('articles-accepts.store');
         Route::get('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'show'])->name('articles-accepts.show');
         Route::delete('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
         Route::put('articles-accepts/{article}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');

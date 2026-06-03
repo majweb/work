@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
+use App\Models\TemporaryFile;
 use App\Models\User;
+use App\Services\DictionaryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleAcceptController extends Controller
 {
@@ -38,12 +42,74 @@ class ArticleAcceptController extends Controller
         ]);
     }
 
+    public function create(DictionaryService $dictionaryService)
+    {
+        Gate::authorize('admin', User::class);
+
+        return inertia()->render('Admin/Articles-Accept/Create', [
+            'categories' => $dictionaryService->getCategories(),
+        ]);
+    }
+
+    public function store(StoreArticleRequest $request)
+    {
+        Gate::authorize('admin', User::class);
+
+        $article = auth()->user()->articles()->create([
+            'title' => $request->articleData()['title'],
+            'active' => $request->articleData()['active'],
+            'content' => $request->articleData()['content'],
+            'lang' => $request->articleData()['lang'],
+            'meta_title' => $request->articleData()['meta_title'],
+            'meta_description' => $request->articleData()['meta_description'],
+            'short_description' => $request->articleData()['short_description'],
+            'alt' => $request->articleData()['alt'],
+            'meta_keywords' => $request->articleData()['meta_keywords'],
+            'category' => $request->articleData()['category'],
+            'active_admin' => true, // Automatycznie zatwierdzony przez admina
+        ]);
+
+        $folder = $request['photo'][0];
+        $temporaryFile = TemporaryFile::where('folder', $folder)->first();
+
+        if ($temporaryFile) {
+            $filePath = 'temps/'.$folder.'/'.$temporaryFile->filename;
+
+            if (Storage::disk('public')->exists($filePath)) {
+                $article->addMediaFromDisk($filePath, 'public')
+                    ->usingName(basename($filePath))
+                    ->usingFileName(basename($filePath))
+                    ->toMediaCollection('articles_images');
+
+                Storage::disk('public')->deleteDirectory('temps/'.$folder);
+                $temporaryFile->delete();
+            }
+        } else {
+            session()->flash('flash.banner', __('translate.cannotAddArticle'));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return redirect()->back();
+        }
+
+        session()->flash('flash.banner', __('translate.addedArticle') ?? 'Artykuł został dodany');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return redirect()->route('admin.articles-accepts.index');
+    }
+
     public function show(Article $article)
     {
         Gate::authorize('admin', User::class);
-        $article->load(['user:id,name,profile_photo_path']);
+        $article->load([
+            'user:id,name,profile_photo_path',
+            'media',
+            'comments' => function ($q) {
+                $q->latest('created_at');
+            },
+        ]);
+
         return inertia()->render('Admin/Articles-Accept/Show', [
-            'article' => $article->load('media')
+            'article' => $article,
         ]);
     }
 

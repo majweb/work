@@ -57,9 +57,9 @@ class FrontArticleResource extends JsonResource
             'lang' => $this->lang,
             'active' => $this->active,
             'user' => [
-                    'name'=>$this->user['name'],
-                    'logo'=>$this->user['profile_photo_url'],
-                    'description'=>$this->user->firm['description'],
+                    'name'=>$this->user['name'] ?? null,
+                    'logo'=>$this->user['profile_photo_url'] ?? null,
+                    'description'=>$this->user->firm['description'] ?? null,
                 ],
             'photo'=> $this->getFirstMedia('articles_images'), // pierwszy plik z kolekcji
             'photo_fb'=> $this->getRandomCategoryImage(), // pierwszy plik z kolekcji

@@ -12,6 +12,15 @@
                     </p>
                 </div>
                 <div class="flex items-center gap-4">
+                    <Link
+                        :href="route('admin.articles-accepts.create')"
+                        class="px-6 py-3 rounded-xl bg-[#0A2C5C] text-white shadow-lg shadow-blue-900/10 text-[10px] font-black uppercase tracking-widest hover:bg-[#00a0e3] transition-all flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3 h-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        Dodaj artykuł
+                    </Link>
                     <button
                         @click="toggleFilter"
                         class="px-6 py-3 rounded-xl border border-gray-100 bg-white shadow-sm text-[10px] font-black uppercase tracking-widest transition-all"

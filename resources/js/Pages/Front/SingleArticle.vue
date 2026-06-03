@@ -212,16 +212,16 @@ const articleSchema = computed(() => {
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.share_article') }}</p>
                                             <div class="flex gap-2">
                                                 <button @click="openShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                                    <img src="/images/icons/facebook.svg" alt="facebook" class="w-5 h-5 opacity-70" />
+                                                    <img src="/images/icons/facebook.png" alt="facebook" class="w-5 h-5 opacity-70" />
                                                 </button>
                                                 <button @click="shareOnInstagram()" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-pink-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                                    <img src="/images/icons/instagram.svg" alt="instagram" class="w-5 h-5 opacity-70" />
+                                                    <img src="/images/icons/instagram.png" alt="instagram" class="w-5 h-5 opacity-70" />
                                                 </button>
                                                 <button @click="openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`)" class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-blue-50 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                                    <img src="/images/icons/linkedin.svg" alt="linkedin" class="w-5 h-5 opacity-70" />
+                                                    <img src="/images/icons/linkedin.png" alt="linkedin" class="w-5 h-5 opacity-70" />
                                                 </button>
                                                 <button @click="copyLink" class="relative w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center hover:bg-gray-100 hover:scale-110 transition-all shadow-sm border border-gray-100">
-                                                    <img src="/images/icons/link.svg" alt="link" class="w-5 h-5 opacity-70" />
+                                                    <img src="/images/icons/link.png" alt="link" class="w-5 h-5 opacity-70" />
                                                     <transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 -translate-y-2" enter-to-class="opacity-100 translate-y-0">
                                                         <span v-if="copied" class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#0A2C5C] text-white text-[8px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap">
                                                             {{ __('translate.copied') }}
@@ -238,7 +238,8 @@ const articleSchema = computed(() => {
                         <!-- Author Card -->
                         <div v-if="article.user" class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 md:p-12 flex flex-col md:flex-row items-center gap-8 group">
                             <div class="w-24 h-24 rounded-[2rem] bg-gray-50 flex items-center justify-center overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-500">
-                                <img class="w-full h-full object-contain" :src="article.user.logo" :alt="article.user.name">
+                                <img v-if="article.user.name === 'Work4you.global'" class="w-full h-full object-contain" src="/images/only-logo.png" :alt="article.user.name">
+                                <img v-else class="w-full h-full object-contain" :src="article.user.logo" :alt="article.user.name">
                             </div>
                             <div class="flex-1 text-center md:text-left">
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.written_by') }}</p>

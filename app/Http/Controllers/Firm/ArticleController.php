@@ -162,8 +162,8 @@ class ArticleController extends Controller
         // Możesz dodać autoryzację np. tylko właściciel artykułu lub admin
         $comment = Comment::findOrFail($commentId);
 
-        // Sprawdzenie, czy użytkownik ma prawo do edycji komentarza
-        if ($comment->article->user_id !== auth()->id()) {
+        // Sprawdzenie, czy użytkownik ma prawo do edycji komentarza (właściciel artykułu LUB admin)
+        if ($comment->article->user_id !== auth()->id() && !auth()->user()?->hasRole('admin')) {
             abort(403, 'Nie masz uprawnień do zmiany widoczności komentarza.');
         }
 
