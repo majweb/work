@@ -218,6 +218,7 @@ const form = useForm({
     cv: props.cvs.filter(cv =>
         props.project.cv?.some(pCv => (pCv.id || pCv.value) === cv.id)
     ) ?? [],
+    kraz: props.project.kraz || '',
     questions: props.project.questions ?? [],
     external_company_id: props.externalCompanies.find(
         company => company.id === props.project.external_company_id
@@ -988,6 +989,25 @@ onMounted(async () => {
                                 </div>
                             </div>
                             <InputError :message="form.errors.cv" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
+
+                            <!-- Pole KRAZ -->
+                            <div class="mt-10 p-8 bg-white rounded-[2.5rem] border border-gray-100">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.kraz') }}</h3>
+                                    <div class="h-px flex-1 bg-gray-100"></div>
+                                </div>
+                                <div class="max-w-md">
+                                    <TextInput
+                                        id="kraz"
+                                        v-model="form.kraz"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                        :placeholder="__('translate.kraz_placeholder')"
+                                        maxlength="6"
+                                    />
+                                    <InputError :message="form.errors.kraz" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
+                                </div>
+                            </div>
 
                             <!-- Pole is_active -->
                             <div class="mt-10 p-8 bg-blue-50/50 rounded-[2.5rem] border border-blue-100/50">

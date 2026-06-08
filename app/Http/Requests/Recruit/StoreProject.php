@@ -96,6 +96,7 @@ class StoreProject extends FormRequest
             'cv.*.id' => ['required', 'exists:App\Models\CvType,id'],
             'cv.*.name' => ['required'],
             'cv.*.allTranslations' => ['required'],
+            'kraz' => ['nullable', 'numeric', 'digits_between:1,6'],
             'langs' => [
                 'nullable',
                 'array',
@@ -201,6 +202,7 @@ class StoreProject extends FormRequest
             'cityWork' => strtolower(__('translate.City')),
             'streetWorkNumber' => strtolower(__('translate.Number')),
             'detailProjects' => strtolower(__('translate.detailProjects')),
+            'kraz' => strtolower(__('translate.kraz')),
             'questions' => strtolower(__('translate.questions')),
             'external_company_id' => strtolower(__('translate.external_company_id')),
             'langs.*.name' => strtolower(__('translate.language')),

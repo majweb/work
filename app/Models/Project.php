@@ -51,6 +51,7 @@ class Project extends Model
         'detailProjects',
         'other_recruits',
         'cv',
+        'kraz',
         'external_company_id',
         'is_active',
         'views_count',

@@ -52,7 +52,7 @@ class ProjectController extends Controller implements HasMiddleware
         ]);
 
         $query = Project::query()
-            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'basicSalaryTo','salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
             ->with('externalCompany:id,name')
             ->withCount([
                 'aplications',
@@ -162,6 +162,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'city' => $project->cityWork ?? '',
                 'country' => $countryWork['allTranslations'][app()->getLocale()] ?? $countryWork['name'] ?? '',
                 'basicSalaryFrom' => $project->basicSalaryFrom ?? null,
+                'basicSalaryTo' => $project->basicSalaryTo ?? null,
                 'salary_type' => $project->salary_type ?? null,
                 'inclusive_recruitment' => $project->inclusive_recruitment ?? false,
                 'currency' => $project->currency['value'] ?? $project->currency['name'] ?? '',
@@ -293,6 +294,7 @@ class ProjectController extends Controller implements HasMiddleware
             'user_id' => auth()->user()->recruiter_from_firm_id ?? auth()->user()->id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'kraz' => $request->projectData()['kraz'] ?? null,
             'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
@@ -489,6 +491,7 @@ class ProjectController extends Controller implements HasMiddleware
             'user_id' => auth()->user()->recruiter_from_firm_id,
             'recruiter_id' => auth()->user()->id,
             'cv' => $request->projectData()['cv'],
+            'kraz' => $request->projectData()['kraz'] ?? null,
             'langs' => $langs,
             'external_company_id' => $request->projectData()['external_company_id'],
             'is_active' => $request->projectData()['is_active'] ?? true,
@@ -670,6 +673,7 @@ class ProjectController extends Controller implements HasMiddleware
 
                     // External company
                     'external_company_id' => 'nullable|exists:App\Models\ExternalCompany,id',
+                    'kraz' => ['nullable', 'numeric', 'digits_between:1,6'],
                     'is_active' => 'nullable|boolean',
                 ];
                 break;
@@ -803,6 +807,7 @@ class ProjectController extends Controller implements HasMiddleware
             'external_company_id' => strtolower(__('translate.externalCompany')),
             'is_active' => strtolower(__('translate.projectIsActive')),
             'cv' => strtolower(__('translate.cvType')),
+            'kraz' => strtolower(__('translate.kraz')),
             'currency' => strtolower(__('translate.currency')),
         ]);
 

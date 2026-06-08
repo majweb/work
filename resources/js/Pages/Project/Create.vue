@@ -201,6 +201,7 @@ const form = useForm({
     lng: '',
     inclusive_recruitment: false,
     cv: [],
+    kraz: '',
     questions: [],
     external_company_id: '',
     langs: [],
@@ -814,6 +815,25 @@ onMounted(() => {
                                 </div>
                             </div>
                             <InputError :message="form.errors.cv" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
+
+                            <!-- Pole KRAZ -->
+                            <div class="mt-10 p-8 bg-white rounded-[2.5rem] border border-gray-100">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.kraz') }}</h3>
+                                    <div class="h-px flex-1 bg-gray-100"></div>
+                                </div>
+                                <div class="max-w-md">
+                                    <TextInput
+                                        id="kraz"
+                                        v-model="form.kraz"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                        :placeholder="__('translate.kraz_placeholder')"
+                                        maxlength="6"
+                                    />
+                                    <InputError :message="form.errors.kraz" class="mt-2 text-[10px] font-black uppercase tracking-widest" />
+                                </div>
+                            </div>
 
                             <!-- Pole is_active -->
                             <div class="mt-10 p-8 bg-blue-50/50 rounded-[2.5rem] border border-blue-100/50">
