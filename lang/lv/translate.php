@@ -1797,5 +1797,8 @@ return [
     'selected_position_info' => 'Izvēlētais amats: :position (:profession)',
     'selectedPosition' => 'Izvēlētais amats',
     'type_min_chars' => 'Sāciet rakstīt nosaukumu (vismaz 2 rakstzīmes)...',
+    'kraz' => 'KRAZ numurs',
+    'kraz_placeholder' => 'Ievadiet KRAZ numuru (1-6 cipari)',
+    'loading_details' => 'Notiek informācijas ielāde...',
 
 ];

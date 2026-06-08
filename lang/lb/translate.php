@@ -1801,4 +1801,7 @@ return [
     'selected_position_info' => 'Ausgewielt Positioun: :position (:profession)',
     'selectedPosition' => 'Ausgewielt Positioun',
     'type_min_chars' => 'Fänkt un en Numm anzeginn (min. 2 Zeechen)...',
+    'kraz' => 'KRAZ-Nummer',
+    'kraz_placeholder' => 'Gitt d’KRAZ-Nummer an (1-6 Zifferen)',
+    'loading_details' => 'Detailer ginn gelueden...',
 ];

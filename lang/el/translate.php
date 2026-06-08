@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Επιλεγμένη θέση: :position (:profession)',
     'selectedPosition' => 'Επιλεγμένη θέση',
     'type_min_chars' => 'Ξεκινήστε να πληκτρολογείτε το όνομα (τουλάχιστον 2 χαρακτήρες)...',
+    'kraz' => 'Αριθμός KRAZ',
+    'kraz_placeholder' => 'Εισαγάγετε τον αριθμό KRAZ (1-6 ψηφία)',
+    'loading_details' => 'Φόρτωση λεπτομερειών...',
 ];

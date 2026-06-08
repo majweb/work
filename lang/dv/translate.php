@@ -1804,4 +1804,7 @@ return [
     'selected_position_info' => 'ހޮވިފައިވާ މަޤާމު: :position (:profession)',
     'selectedPosition' => 'ހޮވިފައިވާ މަޤާމު',
     'type_min_chars' => 'ނަން ލިޔެލަން ފަށާށެވެ (މަދުވެގެން 2 އަކުރު)...',
+    'kraz' => 'KRAZ ނަންބަރ',
+    'kraz_placeholder' => 'KRAZ ނަންބަރ ލިޔުއްވާ (1-6 އަދަދު)',
+    'loading_details' => 'ތަފްޞީލުތައް ލޯޑް ވަނީ...',
 ];

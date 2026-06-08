@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Puesto seleccionado: :position (:profession)',
     'selectedPosition' => 'Puesto seleccionado',
     'type_min_chars' => 'Empiece a escribir el nombre (mín. 2 caracteres)...',
+    'kraz' => 'Número KRAZ',
+    'kraz_placeholder' => 'Introduzca el número KRAZ (1-6 dígitos)',
+    'loading_details' => 'Cargando detalles...',
 ];

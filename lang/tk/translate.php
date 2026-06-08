@@ -1822,4 +1822,7 @@ return [
     'selected_position_info' => 'Saýlanan wezipe: :position (:profession)',
     'selectedPosition' => 'Saýlanan wezipe',
     'type_min_chars' => 'Ady ýazyp başlaň (iň az 2 nyşan)...',
+    'kraz' => 'KRAZ belgisi',
+    'kraz_placeholder' => 'KRAZ belgisini giriziň (1-6 san)',
+    'loading_details' => 'Jikme-jiklikler ýüklenýär...',
 ];

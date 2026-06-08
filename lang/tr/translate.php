@@ -1826,4 +1826,7 @@ return [
     'selected_position_info' => 'Seçilen pozisyon: :position (:profession)',
     'selectedPosition' => 'Seçilen pozisyon',
     'type_min_chars' => 'Bir ad yazmaya başlayın (en az 2 karakter)...',
+    'kraz' => 'KRAZ numarası',
+    'kraz_placeholder' => 'KRAZ numarasını girin (1-6 rakam)',
+    'loading_details' => 'Ayrıntılar yükleniyor...',
 ];

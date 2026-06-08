@@ -1797,4 +1797,7 @@ return [
     'selected_position_info' => 'Избрана работна позиција: :position (:profession)',
     'selectedPosition' => 'Избрана работна позиција',
     'type_min_chars' => 'Почнете да внесувате назив (мин. 2 знаци)...',
+    'kraz' => 'KRAZ број',
+    'kraz_placeholder' => 'Внесете KRAZ број (1-6 цифри)',
+    'loading_details' => 'Се вчитуваат детали...',
 ];

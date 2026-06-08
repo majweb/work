@@ -1811,5 +1811,8 @@ return [
     'selected_position_info' => 'המשרה שנבחרה: :position (:profession)',
     'selectedPosition' => 'המשרה שנבחרה',
     'type_min_chars' => 'התחילו להקליד שם (לפחות 2 תווים)...',
+    'kraz' => 'מספר KRAZ',
+    'kraz_placeholder' => 'הזן מספר KRAZ (1-6 ספרות)',
+    'loading_details' => 'טוען פרטים...',
 
 ];

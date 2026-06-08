@@ -1875,4 +1875,7 @@ return [
     'selected_position_info' => 'নির্বাচিত পদ: :position (:profession)',
     'selectedPosition' => 'নির্বাচিত পদ',
     'type_min_chars' => 'নাম টাইপ করা শুরু করুন (ন্যূনতম ২ অক্ষর)...',
+    'kraz' => 'KRAZ নম্বর',
+    'kraz_placeholder' => 'KRAZ নম্বর লিখুন (১-৬ সংখ্যা)',
+    'loading_details' => 'বিস্তারিত লোড হচ্ছে...',
 ];

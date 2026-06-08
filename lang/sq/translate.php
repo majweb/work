@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Pozicioni i zgjedhur: :position (:profession)',
     'selectedPosition' => 'Pozicioni i zgjedhur',
     'type_min_chars' => 'Filloni të shkruani emrin (min. 2 karaktere)...',
+    'kraz' => 'Numri KRAZ',
+    'kraz_placeholder' => 'Shkruani numrin KRAZ (1-6 shifra)',
+    'loading_details' => 'Duke u ngarkuar detajet...',
 ];

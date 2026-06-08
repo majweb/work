@@ -1802,4 +1802,7 @@ return [
     'selected_position_info' => 'བདམས་པའི་གོ་གནས། :position (:profession)',
     'selectedPosition' => 'བདམས་པའི་གོ་གནས།',
     'type_min_chars' => 'མིང་འབྲི་འགོ་བཙུགས། (ཉུང་མཐར་ཡིག་འབྲུ་ 2)...',
+    'kraz' => 'KRAZ ཨང་།',
+    'kraz_placeholder' => 'KRAZ ཨང་བཙུགས། (ཨང་གྲངས་ 1-6)',
+    'loading_details' => 'ཁ་གསལ་ཚུ་འཇུག་བཞིན་པ...',
 ];

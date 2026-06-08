@@ -1821,4 +1821,7 @@ return [
     'selected_position_info' => 'Poste sélectionné : :position (:profession)',
     'selectedPosition' => 'Poste sélectionné',
     'type_min_chars' => 'Commencez à saisir un nom (min. 2 caractères)...',
+    'kraz' => 'Numéro KRAZ',
+    'kraz_placeholder' => 'Saisissez le numéro KRAZ (1 à 6 chiffres)',
+    'loading_details' => 'Chargement des détails...',
 ];

@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Izbrano delovno mesto: :position (:profession)',
     'selectedPosition' => 'Izbrano delovno mesto',
     'type_min_chars' => 'Začnite vnašati naziv (najmanj 2 znaka)...',
+    'kraz' => 'KRAZ številka',
+    'kraz_placeholder' => 'Vnesite KRAZ številko (1-6 števk)',
+    'loading_details' => 'Nalaganje podrobnosti...',
 ];

@@ -1798,5 +1798,8 @@ return [
     'selected_position_info' => 'Pasirinktos pareigos: :position (:profession)',
     'selectedPosition' => 'Pasirinktos pareigos',
     'type_min_chars' => 'Pradėkite rašyti pavadinimą (min. 2 simboliai)...',
+    'kraz' => 'KRAZ numeris',
+    'kraz_placeholder' => 'Įveskite KRAZ numerį (1–6 skaitmenys)',
+    'loading_details' => 'Įkeliama išsami informacija...',
 ];
 

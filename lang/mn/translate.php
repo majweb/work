@@ -1797,4 +1797,7 @@ return [
     'selected_position_info' => 'Сонгосон ажлын байр: :position (:profession)',
     'selectedPosition' => 'Сонгосон ажлын байр',
     'type_min_chars' => 'Нэрийг бичиж эхлээрэй (хамгийн багадаа 2 тэмдэгт)...',
+    'kraz' => 'KRAZ дугаар',
+    'kraz_placeholder' => 'KRAZ дугаарыг оруулна уу (1-6 цифр)',
+    'loading_details' => 'Дэлгэрэнгүй мэдээллийг ачаалж байна...',
 ];

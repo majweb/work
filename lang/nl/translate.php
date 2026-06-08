@@ -1797,4 +1797,7 @@ return [
     'selected_position_info' => 'Geselecteerde functie: :position (:profession)',
     'selectedPosition' => 'Geselecteerde functie',
     'type_min_chars' => 'Begin met het typen van een naam (min. 2 tekens)...',
+    'kraz' => 'KRAZ-nummer',
+    'kraz_placeholder' => 'Voer het KRAZ-nummer in (1-6 cijfers)',
+    'loading_details' => 'Details laden...',
 ];

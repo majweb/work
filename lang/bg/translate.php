@@ -1822,6 +1822,9 @@ return [
 'selected_position_info' => 'Избрана позиция: :position (:profession)',
 'selectedPosition' => 'Избрана позиция',
 'type_min_chars' => 'Започнете да въвеждате име (мин. 2 знака)...',
+'kraz' => 'KRAZ номер',
+'kraz_placeholder' => 'Въведете KRAZ номер (1-6 цифри)',
+'loading_details' => 'Зареждане на подробности...',
 
 ];
 

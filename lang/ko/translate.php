@@ -1805,4 +1805,7 @@ return [
     'selected_position_info' => '선택된 직무: :position (:profession)',
     'selectedPosition' => '선택된 직무',
     'type_min_chars' => '이름을 입력하세요 (최소 2자)...',
+    'kraz' => 'KRAZ 번호',
+    'kraz_placeholder' => 'KRAZ 번호를 입력하세요 (1-6자리 숫자)',
+    'loading_details' => '세부 정보를 불러오는 중...',
 ];

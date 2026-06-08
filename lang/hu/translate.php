@@ -1822,4 +1822,7 @@ return [
     'selected_position_info' => 'Kiválasztott pozíció: :position (:profession)',
     'selectedPosition' => 'Kiválasztott pozíció',
     'type_min_chars' => 'Kezdje el beírni a nevet (min. 2 karakter)...',
+    'kraz' => 'KRAZ szám',
+    'kraz_placeholder' => 'Adja meg a KRAZ számot (1–6 számjegy)',
+    'loading_details' => 'Részletek betöltése...',
 ];

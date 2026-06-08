@@ -1822,4 +1822,7 @@ return [
     'selected_position_info' => 'Tanlangan lavozim: :position (:profession)',
     'selectedPosition' => 'Tanlangan lavozim',
     'type_min_chars' => 'Nomni yozishni boshlang (kamida 2 ta belgi)...',
+    'kraz' => 'KRAZ raqami',
+    'kraz_placeholder' => 'KRAZ raqamini kiriting (1-6 ta raqam)',
+    'loading_details' => 'Tafsilotlar yuklanmoqda...',
 ];

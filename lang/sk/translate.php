@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Vybraná pozícia: :position (:profession)',
     'selectedPosition' => 'Vybraná pozícia',
     'type_min_chars' => 'Začnite písať názov (min. 2 znaky)...',
+    'kraz' => 'Číslo KRAZ',
+    'kraz_placeholder' => 'Zadajte číslo KRAZ (1-6 číslic)',
+    'loading_details' => 'Načítavajú sa podrobnosti...',
 ];

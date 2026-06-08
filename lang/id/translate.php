@@ -1821,4 +1821,7 @@ return [
     'selected_position_info' => 'Posisi yang dipilih: :position (:profession)',
     'selectedPosition' => 'Posisi yang dipilih',
     'type_min_chars' => 'Mulailah mengetik nama (min. 2 karakter)...',
+    'kraz' => 'Nomor KRAZ',
+    'kraz_placeholder' => 'Masukkan nomor KRAZ (1-6 digit)',
+    'loading_details' => 'Memuat detail...',
 ];

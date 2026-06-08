@@ -1996,4 +1996,8 @@ return [
     'selected_position_info' => 'الوظيفة المحددة: :position (:profession)',
     'selectedPosition' => 'الوظيفة المحددة',
     'type_min_chars' => 'ابدأ بكتابة الاسم (حد أدنى حرفان)...',
+    'kraz' => 'رقم KRAZ',
+    'kraz_placeholder' => 'أدخل رقم KRAZ (من 1 إلى 6 أرقام)',
+    'loading_details' => 'جارٍ تحميل التفاصيل...',
+
 ];

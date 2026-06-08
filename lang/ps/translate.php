@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'ټاکل شوې دنده: :position (:profession)',
     'selectedPosition' => 'ټاکل شوې دنده',
     'type_min_chars' => 'د نوم لیکل پیل کړئ (لږ تر لږه ۲ توري)...',
+    'kraz' => 'د KRAZ شمېره',
+    'kraz_placeholder' => 'د KRAZ شمېره دننه کړئ (۱-۶ عددونه)',
+    'loading_details' => 'جزئیات بارېږي...',
 ];

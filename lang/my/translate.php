@@ -1804,4 +1804,7 @@ return [
     'selected_position_info' => 'ရွေးချယ်ထားသော အလုပ်ရာထူး: :position (:profession)',
     'selectedPosition' => 'ရွေးချယ်ထားသော အလုပ်ရာထူး',
     'type_min_chars' => 'အမည်ကို စတင်ရိုက်ထည့်ပါ (အနည်းဆုံး စာလုံး ၂ လုံး)...',
+    'kraz' => 'KRAZ နံပါတ်',
+    'kraz_placeholder' => 'KRAZ နံပါတ်ကို ထည့်ပါ (ဂဏန်း 1-6 လုံး)',
+    'loading_details' => 'အသေးစိတ်အချက်အလက်များကို ဖွင့်နေသည်...',
 ];

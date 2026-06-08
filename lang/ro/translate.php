@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Post selectat: :position (:profession)',
     'selectedPosition' => 'Post selectat',
     'type_min_chars' => 'Începeți să introduceți denumirea (min. 2 caractere)...',
+    'kraz' => 'Număr KRAZ',
+    'kraz_placeholder' => 'Introduceți numărul KRAZ (1-6 cifre)',
+    'loading_details' => 'Se încarcă detaliile...',
 ];

@@ -1947,4 +1947,7 @@ return [
     'selected_position_info' => 'Selected position: :position (:profession)',
     'selectedPosition' => 'Selected position',
     'type_min_chars' => 'Start typing a name (min. 2 characters)...',
+    'kraz' => 'KRAZ number',
+    'kraz_placeholder' => 'Enter KRAZ number (1-6 digits)',
+    'loading_details' => 'Loading details...',
 ];

@@ -1804,4 +1804,7 @@ return [
     'selected_position_info' => 'موقعیت شغلی انتخاب‌شده: :position (:profession)',
     'selectedPosition' => 'موقعیت شغلی انتخاب‌شده',
     'type_min_chars' => 'شروع به تایپ نام کنید (حداقل ۲ کاراکتر)...',
+    'kraz' => 'شماره KRAZ',
+    'kraz_placeholder' => 'شماره KRAZ را وارد کنید (۱ تا ۶ رقم)',
+    'loading_details' => 'در حال بارگذاری جزئیات...',
 ];

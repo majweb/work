@@ -1559,4 +1559,7 @@ return [
     'selected_position_info' => 'Valitud ametikoht: :position (:profession)',
     'selectedPosition' => 'Valitud ametikoht',
     'type_min_chars' => 'Alustage nime sisestamist (vähemalt 2 tähemärki)...',
+    'kraz' => 'KRAZ number',
+    'kraz_placeholder' => 'Sisestage KRAZ number (1–6 numbrit)',
+    'loading_details' => 'Üksikasju laaditakse...',
 ];

@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'තෝරාගත් රැකියා තනතුර: :position (:profession)',
     'selectedPosition' => 'තෝරාගත් රැකියා තනතුර',
     'type_min_chars' => 'නම ටයිප් කිරීම ආරම්භ කරන්න (අවම වශයෙන් අකුරු 2ක්)...',
+    'kraz' => 'KRAZ අංකය',
+    'kraz_placeholder' => 'KRAZ අංකය ඇතුළත් කරන්න (ඉලක්කම් 1-6)',
+    'loading_details' => 'විස්තර පූරණය වෙමින් පවතී...',
 ];

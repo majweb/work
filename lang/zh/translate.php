@@ -1822,4 +1822,7 @@ return [
     'selected_position_info' => '已选择职位：:position (:profession)',
     'selectedPosition' => '已选择职位',
     'type_min_chars' => '开始输入名称（至少 2 个字符）...',
+    'kraz' => 'KRAZ编号',
+    'kraz_placeholder' => '请输入KRAZ编号（1-6位数字）',
+    'loading_details' => '正在加载详细信息...',
 ];

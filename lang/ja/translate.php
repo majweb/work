@@ -1819,4 +1819,7 @@ return [
     'selected_position_info' => '選択された職種: :position (:profession)',
     'selectedPosition' => '選択された職種',
     'type_min_chars' => '名前を入力してください（2文字以上）...',
+    'kraz' => 'KRAZ番号',
+    'kraz_placeholder' => 'KRAZ番号を入力してください（1〜6桁）',
+    'loading_details' => '詳細を読み込み中...',
 ];

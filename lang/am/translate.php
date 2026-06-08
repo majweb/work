@@ -1830,4 +1830,8 @@ return [
     'selected_position_info' => 'Ընտրված հաստիք՝ :position (:profession)',
     'selectedPosition' => 'Ընտրված հաստիք',
     'type_min_chars' => 'Սկսեք մուտքագրել անվանումը (առնվազն 2 նիշ)...',
+    'kraz' => 'ԿՌԱԶ համար',
+    'kraz_placeholder' => 'Մուտքագրեք ԿՌԱԶ համարը (1-6 թվանշան)',
+    'loading_details' => 'Մանրամասները բեռնվում են...',
+
 ];

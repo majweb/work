@@ -1823,4 +1823,7 @@ return [
     'selected_position_info' => 'Vald tjänst: :position (:profession)',
     'selectedPosition' => 'Vald tjänst',
     'type_min_chars' => 'Börja skriva ett namn (minst 2 tecken)...',
+    'kraz' => 'KRAZ-nummer',
+    'kraz_placeholder' => 'Ange KRAZ-nummer (1-6 siffror)',
+    'loading_details' => 'Laddar detaljer...',
 ];

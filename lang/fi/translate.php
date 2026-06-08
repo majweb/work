@@ -1821,4 +1821,7 @@ return [
     'selected_position_info' => 'Valittu tehtävä: :position (:profession)',
     'selectedPosition' => 'Valittu tehtävä',
     'type_min_chars' => 'Aloita nimen kirjoittaminen (vähintään 2 merkkiä)...',
+    'kraz' => 'KRAZ-numero',
+    'kraz_placeholder' => 'Syötä KRAZ-numero (1–6 numeroa)',
+    'loading_details' => 'Ladataan tietoja...',
 ];

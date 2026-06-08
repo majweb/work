@@ -1821,5 +1821,8 @@ return [
     'selected_position_info' => 'Valið starf: :position (:profession)',
     'selectedPosition' => 'Valið starf',
     'type_min_chars' => 'Byrjaðu að slá inn heiti (að minnsta kosti 2 stafir)...',
+    'kraz' => 'KRAZ-númer',
+    'kraz_placeholder' => 'Sláðu inn KRAZ-númer (1-6 tölustafir)',
+    'loading_details' => 'Hleð upplýsingum...',
 ];
 

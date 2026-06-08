@@ -1826,4 +1826,7 @@ return [
     'selected_position_info' => 'ตำแหน่งงานที่เลือก: :position (:profession)',
     'selectedPosition' => 'ตำแหน่งงานที่เลือก',
     'type_min_chars' => 'เริ่มพิมพ์ชื่อ (อย่างน้อย 2 ตัวอักษร)...',
+    'kraz' => 'หมายเลข KRAZ',
+    'kraz_placeholder' => 'กรอกหมายเลข KRAZ (1-6 หลัก)',
+    'loading_details' => 'กำลังโหลดรายละเอียด...',
 ];

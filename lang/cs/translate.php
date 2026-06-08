@@ -3637,5 +3637,7 @@ return [
     'selected_position_info' => 'Vybraná pozice: :position (:profession)',
     'selectedPosition' => 'Vybraná pozice',
     'type_min_chars' => 'Začněte psát název (min. 2 znaky)...',
-
+    'kraz' => 'Číslo KRAZ',
+    'kraz_placeholder' => 'Zadejte číslo KRAZ (1–6 číslic)',
+    'loading_details' => 'Načítání podrobností...',
 ];

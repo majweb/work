@@ -1806,4 +1806,7 @@ return [
     'selected_position_info' => 'Ausgewählte Stelle: :position (:profession)',
     'selectedPosition' => 'Ausgewählte Stelle',
     'type_min_chars' => 'Beginnen Sie mit der Eingabe des Namens (mind. 2 Zeichen)...',
+    'kraz' => 'KRAZ-nummer',
+    'kraz_placeholder' => 'Indtast KRAZ-nummer (1-6 cifre)',
+    'loading_details' => 'Indlæser detaljer...',
 ];

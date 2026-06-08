@@ -1804,5 +1804,8 @@ return [
     'selected_position_info' => 'ຕຳແໜ່ງທີ່ເລືອກ: :position (:profession)',
     'selectedPosition' => 'ຕຳແໜ່ງທີ່ເລືອກ',
     'type_min_chars' => 'ເລີ່ມພິມຊື່ (ຢ່າງໜ້ອຍ 2 ຕົວອັກສອນ)...',
+    'kraz' => 'ເລກ KRAZ',
+    'kraz_placeholder' => 'ປ້ອນເລກ KRAZ (1-6 ຕົວເລກ)',
+    'loading_details' => 'ກຳລັງໂຫຼດລາຍລະອຽດ...',
 
 ];

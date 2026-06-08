@@ -1797,4 +1797,7 @@ return [
     'selected_position_info' => 'Valgt stilling: :position (:profession)',
     'selectedPosition' => 'Valgt stilling',
     'type_min_chars' => 'Begynn å skrive inn et navn (min. 2 tegn)...',
+    'kraz' => 'KRAZ-nummer',
+    'kraz_placeholder' => 'Skriv inn KRAZ-nummer (1-6 sifre)',
+    'loading_details' => 'Laster inn detaljer...',
 ];

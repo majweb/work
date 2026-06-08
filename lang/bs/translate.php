@@ -1991,4 +1991,7 @@ return [
 'selected_position_info' => 'Odabrana pozicija: :position (:profession)',
 'selectedPosition' => 'Odabrana pozicija',
 'type_min_chars' => 'Počnite unositi naziv (min. 2 znaka)...',
+'kraz' => 'KRAZ broj',
+'kraz_placeholder' => 'Unesite KRAZ broj (1-6 cifara)',
+'loading_details' => 'Učitavanje detalja...',
 ];

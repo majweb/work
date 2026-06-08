@@ -374,6 +374,12 @@ const submit = () => {
     })).post(route('front.aplicationNoLogin.store', props.project), {
         preserveScroll: true,
         onSuccess: () => {
+            if (typeof window !== 'undefined' && typeof window.dataLayer !== 'undefined') {
+                window.dataLayer.push({
+                    event: 'job_application_sent',
+                    project_id: props.project?.id
+                });
+            }
             form.reset();
         },
         onError: (errors) => {

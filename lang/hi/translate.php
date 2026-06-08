@@ -1821,4 +1821,7 @@ return [
     'selected_position_info' => 'चयनित पद: :position (:profession)',
     'selectedPosition' => 'चयनित पद',
     'type_min_chars' => 'नाम टाइप करना शुरू करें (कम से कम 2 अक्षर)...',
+    'kraz' => 'KRAZ नंबर',
+    'kraz_placeholder' => 'KRAZ नंबर दर्ज करें (1-6 अंक)',
+    'loading_details' => 'विवरण लोड हो रहे हैं...',
 ];

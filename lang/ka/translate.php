@@ -1797,4 +1797,7 @@ return [
     'selected_position_info' => 'არჩეული პოზიცია: :position (:profession)',
     'selectedPosition' => 'არჩეული პოზიცია',
     'type_min_chars' => 'დაიწყეთ სახელის აკრეფა (მინ. 2 სიმბოლო)...',
+    'kraz' => 'KRAZ ნომერი',
+    'kraz_placeholder' => 'შეიყვანეთ KRAZ ნომერი (1-6 ციფრი)',
+    'loading_details' => 'დეტალები იტვირთება...',
 ];

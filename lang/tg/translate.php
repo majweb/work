@@ -1824,4 +1824,7 @@ return [
     'selected_position_info' => 'Вазифаи интихобшуда: :position (:profession)',
     'selectedPosition' => 'Вазифаи интихобшуда',
     'type_min_chars' => 'Ба навиштани ном оғоз кунед (ҳадди ақал 2 аломат)...',
+    'kraz' => 'Рақами KRAZ',
+    'kraz_placeholder' => 'Рақами KRAZ-ро ворид кунед (1-6 рақам)',
+    'loading_details' => 'Тафсилот бор шуда истодааст...',
 ];

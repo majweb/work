@@ -1797,4 +1797,7 @@ return [
     'selected_position_info' => 'Jawatan dipilih: :position (:profession)',
     'selectedPosition' => 'Jawatan dipilih',
     'type_min_chars' => 'Mula menaip nama (minimum 2 aksara)...',
+    'kraz' => 'Nombor KRAZ',
+    'kraz_placeholder' => 'Masukkan nombor KRAZ (1-6 digit)',
+    'loading_details' => 'Memuatkan butiran...',
 ];

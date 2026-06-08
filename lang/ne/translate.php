@@ -1804,4 +1804,7 @@ return [
     'selected_position_info' => 'छानिएको पद: :position (:profession)',
     'selectedPosition' => 'छानिएको पद',
     'type_min_chars' => 'नाम टाइप गर्न सुरु गर्नुहोस् (कम्तीमा २ अक्षर)...',
+    'kraz' => 'KRAZ नम्बर',
+    'kraz_placeholder' => 'KRAZ नम्बर प्रविष्ट गर्नुहोस् (१-६ अंक)',
+    'loading_details' => 'विवरणहरू लोड हुँदैछन्...',
 ];

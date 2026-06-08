@@ -1791,5 +1791,8 @@ return [
     'selected_position_info' => 'Lloc de treball seleccionat: :position (:profession)',
     'selectedPosition' => 'Lloc de treball seleccionat',
     'type_min_chars' => 'Comenceu a escriure el nom (mín. 2 caràcters)...',
+    'kraz' => 'Número KRAZ',
+    'kraz_placeholder' => 'Introduïu el número KRAZ (1-6 dígits)',
+    'loading_details' => 'S’estan carregant els detalls...',
 
 ];

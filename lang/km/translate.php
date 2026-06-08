@@ -1802,6 +1802,9 @@ return [
     'selected_position_info' => 'មុខតំណែងដែលបានជ្រើសរើស៖ :position (:profession)',
     'selectedPosition' => 'មុខតំណែងដែលបានជ្រើសរើស',
     'type_min_chars' => 'ចាប់ផ្តើមវាយបញ្ចូលឈ្មោះ (យ៉ាងតិច 2 តួអក្សរ)...',
+    'kraz' => 'លេខ KRAZ',
+    'kraz_placeholder' => 'បញ្ចូលលេខ KRAZ (1-6 ខ្ទង់)',
+    'loading_details' => 'កំពុងផ្ទុកព័ត៌មានលម្អិត...',
 ];
 
 

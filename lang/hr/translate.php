@@ -1821,4 +1821,7 @@ return [
     'selected_position_info' => 'Odabrano radno mjesto: :position (:profession)',
     'selectedPosition' => 'Odabrano radno mjesto',
     'type_min_chars' => 'Počnite upisivati naziv (min. 2 znaka)...',
+    'kraz' => 'KRAZ broj',
+    'kraz_placeholder' => 'Unesite KRAZ broj (1-6 znamenki)',
+    'loading_details' => 'Učitavanje detalja...',
 ];
