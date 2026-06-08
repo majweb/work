@@ -371,6 +371,21 @@ onMounted(async () => {
                             </div>
                         </div>
 
+                        <!-- Obowiązki -->
+                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10" v-if="props.project.detailprojects && props.project.detailprojects.length > 0">
+                            <div class="flex items-center gap-4 mb-8">
+                                <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.detailProjects') }}</h2>
+                                <div class="h-px flex-1 bg-gray-100"></div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <span v-for="(duty, index) in props.project.detailprojects" :key="index"
+                                      class="px-5 py-2.5 bg-gray-50 rounded-2xl text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest border border-gray-100 shadow-sm">
+                                    {{ duty.allTranslations?.title?.[lang] || duty.allTranslations?.name?.[lang] || duty.name?.[lang] || duty.name }}
+                                </span>
+                            </div>
+                        </div>
+
                         <!-- Wynagrodzenie -->
                         <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
                             <div class="flex items-center gap-4 mb-8">

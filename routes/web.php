@@ -163,6 +163,9 @@ Route::middleware([
     Route::get('acceptedApplications', [AplicationController::class, 'acceptedApplications'])->middleware('role:firm')->name('firm.applications.acceptedApplications');
     Route::get('maybeApplications', [AplicationController::class, 'maybeApplications'])->middleware('role:firm')->name('firm.applications.maybeApplications');
     Route::get('noApplications', [AplicationController::class, 'noApplications'])->middleware('role:firm')->name('firm.applications.noApplications');
+    Route::get('/projects/all-positions', [ProjectController::class, 'getAllPositions'])->name('projects.all-positions');
+    Route::get('/projects/search-positions', [ProjectController::class, 'searchPositions'])->name('projects.search-positions');
+    Route::get('/projects/category-details/{category}', [ProjectController::class, 'getCategoryDetails'])->name('projects.category-details');
     Route::resource('projects', ProjectController::class)->middleware('role:firm');
     Route::post('projects/{project}/toggle-active', [ProjectController::class, 'toggleActive'])->middleware('role:firm')->name('projects.toggle-active');
     Route::get('projects/{project}/generator', [ProjectController::class, 'generatorData'])->middleware('role:firm|recruit')->name('projects.generator');

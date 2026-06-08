@@ -268,6 +268,116 @@ const optionsCurrency = ref(props.currencies);
 const optionsSubCategory = ref([]);
 const optionsProfession = ref([]);
 const optionsPosition = ref([]);
+
+// Szybkie wyszukiwanie stanowisk
+const quickSearch = ref(null);
+const allPositionsOptions = ref([]);
+const isLoadingPositions = ref(false);
+
+const onSearchChange = async (query) => {
+    if (query.length < 2) {
+        allPositionsOptions.value = [];
+        return;
+    }
+    isLoadingPositions.value = true;
+    try {
+        const response = await axios.get(route('projects.search-positions'), {
+            params: { query: query }
+        });
+        allPositionsOptions.value = response.data;
+    } catch (error) {
+        console.error('Error searching positions:', error);
+    } finally {
+        isLoadingPositions.value = false;
+    }
+};
+
+const isAutoFilling = ref(false);
+const isFetchingDetails = ref(false);
+
+const onPositionSelect = async (selectedOption) => {
+    if (!selectedOption) return;
+
+    // Najpierw bezwzględnie czyścimy wybrane obowiązki, aby nie "doklejały" się do nowego stanowiska
+    form.detailProjects = [];
+
+    isAutoFilling.value = true;
+    isFetchingDetails.value = true;
+    const path = selectedOption.path || [];
+    const fullPath = [...path, selectedOption];
+
+    try {
+        // Czyścimy poprzednie wartości kategorii
+        form.category = null;
+        form.categorySub = null;
+        form.profession = null;
+        form.position = null;
+        // form.detailProjects = []; // już wyczyszczone wyżej dla pewności przed jakimkolwiek await
+
+        // Poziom 1: Branża
+        if (fullPath[0]) {
+            form.category = {
+                id: fullPath[0].id,
+                value: fullPath[0].id,
+                name: fullPath[0].name,
+                allTranslations: fullPath[0].allTranslations
+            };
+            optionsSubCategory.value = (await axios.get(route('getChildsCategory', fullPath[0].id))).data;
+        }
+
+        // Poziom 2: Podbranża
+        if (fullPath[1]) {
+            form.categorySub = {
+                id: fullPath[1].id,
+                value: fullPath[1].id,
+                name: fullPath[1].name,
+                allTranslations: fullPath[1].allTranslations
+            };
+            optionsProfession.value = (await axios.get(route('getChildsCategory', fullPath[1].id))).data;
+        }
+
+        // Poziom 3: Zawód
+        if (fullPath[2]) {
+            form.profession = {
+                id: fullPath[2].id,
+                value: fullPath[2].id,
+                name: fullPath[2].name,
+                allTranslations: fullPath[2].allTranslations,
+                detailprojects: []
+            };
+            const profDetails = await axios.get(route('projects.category-details', fullPath[2].id));
+            form.profession.detailprojects = profDetails.data.detailprojects || [];
+
+            optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
+        }
+
+        // Poziom 4: Stanowisko
+        if (fullPath[3]) {
+            form.position = {
+                id: fullPath[3].id,
+                value: fullPath[3].id,
+                name: fullPath[3].name,
+                allTranslations: fullPath[3].allTranslations,
+                detailprojects: []
+            };
+            const posDetails = await axios.get(route('projects.category-details', fullPath[3].id));
+            form.position.detailprojects = posDetails.data.detailprojects || [];
+        } else if (fullPath.length === 3) {
+            // Jeśli wybrano zawód, a nie stanowisko, możemy opcjonalnie dociągnąć stanowiska do dropdowna
+            optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
+        }
+
+    } catch (error) {
+        console.error('Error in onPositionSelect:', error);
+    } finally {
+        isAutoFilling.value = false;
+        isFetchingDetails.value = false;
+    }
+};
+
+const onQuickSearchSelect = (selectedOption) => {
+    onPositionSelect(selectedOption);
+};
 let workingModeSelect = ref([]);
 let workLoadSelect = ref(null);
 let typesOfContractSelect = ref([]);
@@ -345,8 +455,11 @@ const filteredOffers = computed(() => {
 });
 
 const filteredDuties = computed(() => {
-    const duties = form.position?.detailprojects || form.profession?.detailprojects;
-    if (!duties) return [];
+    const duties = (form.position && form.position.detailprojects && form.position.detailprojects.length > 0)
+        ? form.position.detailprojects
+        : (form.profession && form.profession.detailprojects ? form.profession.detailprojects : []);
+
+    if (!duties || duties.length === 0) return [];
     if (!dutyFilter.value.trim()) return duties;
 
     const search = dutyFilter.value.toLowerCase().trim();
@@ -358,6 +471,7 @@ const filteredDuties = computed(() => {
 });
 
 watch(() => form.category, async (category) => {
+    if (isAutoFilling.value) return;
     if (form.category) {
         optionsSubCategory.value =(await axios.get(route('getChildsCategory',category.value))).data
     }
@@ -369,6 +483,7 @@ watch(() => form.category, async (category) => {
     form.detailProjects = [];
 });
 watch(() => form.categorySub, async (categorySub) => {
+    if (isAutoFilling.value) return;
     if (form.categorySub) {
         optionsProfession.value =(await axios.get(route('getChildsCategory',categorySub.value))).data
     }
@@ -380,6 +495,7 @@ watch(() => form.categorySub, async (categorySub) => {
 });
 
 watch(() => form.profession, async (profession) => {
+    if (isAutoFilling.value) return;
     if (form.profession) {
         optionsPosition.value =(await axios.get(route('getChildsCategory',profession.value))).data
     }
@@ -388,10 +504,23 @@ watch(() => form.profession, async (profession) => {
 
 });
 watch(() => form.position, async (position) => {
+    if (isAutoFilling.value) return;
     form.title = '';
     form.detailProjects = [];
 });
 
+const addAll = () => {
+    const duties = (form.position && form.position.detailprojects && form.position.detailprojects.length > 0)
+        ? form.position.detailprojects
+        : (form.profession && form.profession.detailprojects ? form.profession.detailprojects : []);
+
+    if (duties && duties.length > 0) {
+        form.detailProjects = duties.map(el => el.id);
+    }
+}
+const zeroAll = () => {
+    form.detailProjects = []
+}
 const updateProject = () => {
     form.put(route('projects.update',props.project), {
         errorBag: 'updateProject',
@@ -422,15 +551,6 @@ const updateProject = () => {
     });
 };
 
-
-const addAll = () => {
-    if(form.position.detailprojects || form.profession.detailprojects){
-        form.detailProjects = (form.position.detailprojects || form.profession.detailprojects).map(el=>el.id)
-    }
-}
-const zeroAll = () => {
-    form.detailProjects = []
-}
 
 const addToArray = (array,name) =>{
     if(array.includes(name)){
@@ -671,27 +791,52 @@ onMounted(async () => {
     }
 
     // Załaduj podkategorie, zawody i stanowiska jeśli projekt ma je wypełnione
-    if (form.category && form.category.value) {
+    if (form.category && (form.category.value || form.category.id)) {
         try {
-            optionsSubCategory.value = (await axios.get(route('getChildsCategory', form.category.value))).data;
+            const categoryId = form.category.value || form.category.id;
+            optionsSubCategory.value = (await axios.get(route('getChildsCategory', categoryId))).data;
         } catch (error) {
             console.error(__('translate.errorLoadingSubcategories'), error);
         }
     }
 
-    if (form.categorySub && form.categorySub.value) {
+    if (form.categorySub && (form.categorySub.value || form.categorySub.id)) {
         try {
-            optionsProfession.value = (await axios.get(route('getChildsCategory', form.categorySub.value))).data;
+            const subCategoryId = form.categorySub.value || form.categorySub.id;
+            optionsProfession.value = (await axios.get(route('getChildsCategory', subCategoryId))).data;
         } catch (error) {
             console.error(__('translate.errorLoadingProfessions'), error);
         }
     }
 
-    if (form.profession && form.profession.value) {
+    if (form.profession && (form.profession.value || form.profession.id)) {
         try {
-            optionsPosition.value = (await axios.get(route('getChildsCategory', form.profession.value))).data;
+            const professionId = form.profession.value || form.profession.id;
+            optionsPosition.value = (await axios.get(route('getChildsCategory', professionId))).data;
+
+            // Inicjalizacja quickSearch
+            quickSearch.value = form.position || form.profession;
+
+            // Dociągnij detale (obowiązki)
+            isFetchingDetails.value = true;
+            const profDetails = await axios.get(route('projects.category-details', professionId));
+            if (!form.profession.detailprojects) {
+                form.profession.detailprojects = [];
+            }
+            form.profession.detailprojects = profDetails.data.detailprojects || [];
+
+            if (form.position && (form.position.value || form.position.id)) {
+                const positionId = form.position.value || form.position.id;
+                const posDetails = await axios.get(route('projects.category-details', positionId));
+                if (!form.position.detailprojects) {
+                    form.position.detailprojects = [];
+                }
+                form.position.detailprojects = posDetails.data.detailprojects || [];
+            }
         } catch (error) {
             console.error(__('translate.errorLoadingPositions'), error);
+        } finally {
+            isFetchingDetails.value = false;
         }
     }
 
@@ -883,119 +1028,209 @@ onMounted(async () => {
                         </div>
 
                         <!-- Kategoria z obowiązkami w 2 kolumnach -->
-                        <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                            <div class="flex items-center gap-4 mb-8">
+                        <div class="bg-white rounded-[2rem] md:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 md:p-10">
+                            <div class="flex items-center gap-4 mb-6 md:mb-8">
                                 <h2 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.categorySection') }}</h2>
                                 <div class="h-px flex-1 bg-gray-100"></div>
                             </div>
 
-                            <!-- Grid z 2 kolumnami: Kategorie | Obowiązki -->
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                                <!-- Lewa kolumna - kategorie -->
-                                <div class="space-y-6">
-                                    <div>
-                                        <InputLabel :value="__('translate.category')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
-                                        <multiselect
-                                            :selectLabel="''"
-                                            :selectGroupLabel="''"
-                                            :selectedLabel="''"
-                                            :deselectLabel="''"
-                                            track-by="value"
-                                            label="name"
-                                            :placeholder="__('translate.placeholder')"
-                                            v-model="form.category" :options="optionsCategory"
-                                            class="custom-multiselect">
-                                            <template #noResult>
-                                                <span>{{__('translate.noOptions')}}</span>
-                                            </template>
-                                            <template #noOptions>
-                                                <span>{{__('translate.noResult')}}</span>
-                                            </template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.category" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                                    </div>
+                            <!-- Szybkie wyszukiwanie -->
+                            <div class="mb-8 md:mb-12">
+                                <div class="bg-gradient-to-br from-[#0A2C5C] to-[#1a4a8e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 shadow-2xl shadow-blue-900/20 relative group">
+                                    <!-- Dekoracyjne tło -->
+                                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-24 h-24 md:w-40 md:h-40 bg-white/5 rounded-full blur-2xl md:blur-3xl group-hover:bg-white/10 transition-colors duration-700"></div>
+                                    <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-24 h-24 md:w-40 md:h-40 bg-[#00a0e3]/10 rounded-full blur-2xl md:blur-3xl"></div>
 
-                                    <div>
-                                        <InputLabel :value="__('translate.subcategory')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
-                                        <multiselect
-                                            :disabled="!form.category"
-                                            :selectLabel="''"
-                                            :selectGroupLabel="''"
-                                            :selectedLabel="''"
-                                            :deselectLabel="''"
-                                            :noOptions="__('translate.noOptions')"
-                                            :noResult="__('translate.noResult')"
-                                            track-by="value"
-                                            label="name"
-                                            :placeholder="__('translate.placeholder')"
-                                            v-model="form.categorySub" :options="optionsSubCategory"
-                                            class="custom-multiselect">
-                                            <template #noResult>
-                                                <span>{{__('translate.noOptions')}}</span>
-                                            </template>
-                                            <template #noOptions>
-                                                <span>{{__('translate.noResult')}}</span>
-                                            </template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.categorySub" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                                    </div>
+                                    <div class="relative z-10">
+                                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-6 md:mb-8">
+                                            <div>
+                                                <h3 class="text-white text-base md:text-xl font-black uppercase tracking-widest mb-1 md:mb-2">
+                                                    {{ __('translate.quick_position_search') || 'Szybkie wyszukiwanie' }}
+                                                </h3>
+                                                <p class="text-blue-200 text-[10px] md:text-xs font-medium tracking-wide leading-relaxed">
+                                                    {{ __('translate.quick_position_desc') || 'Zacznij wpisywać nazwę stanowiska, a we we wszystkich branżach i zawodach.' }}
+                                                </p>
+                                            </div>
+                                            <div class="hidden md:block">
+                                                <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/10">
+                                                    <svg class="w-6 h-6 text-[#00a0e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div>
-                                        <InputLabel :value="__('translate.profession')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
-                                        <multiselect
-                                            :disabled="!form.categorySub"
-                                            :selectLabel="''"
-                                            :selectGroupLabel="''"
-                                            :selectedLabel="''"
-                                            :deselectLabel="''"
-                                            :noOptions="__('translate.noOptions')"
-                                            :noResult="__('translate.noResult')"
-                                            track-by="value"
-                                            label="name"
-                                            :placeholder="__('translate.placeholder')"
-                                            v-model="form.profession" :options="optionsProfession"
-                                            class="custom-multiselect">
-                                            <template #noResult>
-                                                <span>{{__('translate.noOptions')}}</span>
-                                            </template>
-                                            <template #noOptions>
-                                                <span>{{__('translate.noResult')}}</span>
-                                            </template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.profession" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                                    </div>
+                                        <div class="relative">
+                                            <multiselect
+                                                v-model="quickSearch"
+                                                :options="allPositionsOptions"
+                                                @select="onQuickSearchSelect"
+                                                @search-change="onSearchChange"
+                                                :internal-search="false"
+                                                :clear-on-select="true"
+                                                :loading="isLoadingPositions"
+                                                track-by="id"
+                                                label="name"
+                                                :placeholder="__('translate.search_position_placeholder') || 'Wpisz np. Spawacz, Kierowca, Kucharz...'"
+                                                :selectLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
+                                                class="quick-search-multiselect"
+                                            >
+                                                <template #noOptions>
+                                                    <span class="text-xs font-bold uppercase tracking-widest p-4 block text-gray-500 italic">
+                                                        {{ __('translate.type_min_chars') || 'Zacznij wpisywać nazwę (min. 2 znaki)...' }}
+                                                    </span>
+                                                </template>
 
-                                    <div>
-                                        <InputLabel :value="__('translate.position')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
-                                        <multiselect
-                                            :disabled="!form.profession"
-                                            :selectLabel="''"
-                                            :selectGroupLabel="''"
-                                            :selectedLabel="''"
-                                            :deselectLabel="''"
-                                            :noOptions="__('translate.noOptions')"
-                                            :noResult="__('translate.noResult')"
-                                            track-by="value"
-                                            label="name"
-                                            :placeholder="__('translate.placeholder')"
-                                            v-model="form.position" :options="optionsPosition"
-                                            class="custom-multiselect">
-                                            <template #noResult>
-                                                <span>{{__('translate.noOptions')}}</span>
-                                            </template>
-                                            <template #noOptions>
-                                                <span>{{__('translate.noResult')}}</span>
-                                            </template>
-                                        </multiselect>
-                                        <InputError :message="form.errors.position" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                                                <template #noResult>
+                                                    <span class="text-xs font-bold uppercase tracking-widest p-4 block text-gray-500 italic">
+                                                        {{ __('translate.no_position_found') || 'Nie znaleziono takiego stanowiska' }}
+                                                    </span>
+                                                </template>
+                                                <template #option="{ option }">
+                                                    <div class="flex flex-col py-0.5">
+                                                        <span class="text-[11px] md:text-xs font-bold text-[#0A2C5C] leading-tight">{{ option.name }}</span>
+                                                        <span v-if="option.path && option.path.length > 0" class="text-[9px] text-gray-400 font-medium lowercase tracking-wider mt-0.5">
+                                                            {{ option.path.map(p => p.name).join(' > ') }}
+                                                        </span>
+                                                    </div>
+                                                </template>
+                                            </multiselect>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- Prawa kolumna - obowiązki (pokazuje się gdy są dostępne) -->
-                                <div v-if="form.position || form.profession">
-                                    <div v-if="((form.position?.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession?.detailprojects && Object.keys(form.profession.detailprojects).length))" class="sticky top-4">
-                                        <div class="bg-blue-50/50 rounded-[2.5rem] p-8 border border-blue-100/50">
-                                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                            <!-- Sekcja ukryta - Branża/Zawód (stare multiselecty) -->
+                            <div class="hidden">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                                    <!-- Lewa kolumna - kategorie -->
+                                    <div class="space-y-6">
+                                        <div>
+                                            <InputLabel :value="__('translate.category')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <multiselect
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
+                                                track-by="value"
+                                                label="name"
+                                                :placeholder="__('translate.placeholder')"
+                                                v-model="form.category" :options="optionsCategory"
+                                                class="custom-multiselect">
+                                                <template #noResult>
+                                                    <span>{{__('translate.noOptions')}}</span>
+                                                </template>
+                                                <template #noOptions>
+                                                    <span>{{__('translate.noResult')}}</span>
+                                                </template>
+                                            </multiselect>
+                                            <InputError :message="form.errors.category" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                                        </div>
+
+                                        <div>
+                                            <InputLabel :value="__('translate.subcategory')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <multiselect
+                                                :disabled="!form.category"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
+                                                :noOptions="__('translate.noOptions')"
+                                                :noResult="__('translate.noResult')"
+                                                track-by="value"
+                                                label="name"
+                                                :placeholder="__('translate.placeholder')"
+                                                v-model="form.categorySub" :options="optionsSubCategory"
+                                                class="custom-multiselect">
+                                                <template #noResult>
+                                                    <span>{{__('translate.noOptions')}}</span>
+                                                </template>
+                                                <template #noOptions>
+                                                    <span>{{__('translate.noResult')}}</span>
+                                                </template>
+                                            </multiselect>
+                                            <InputError :message="form.errors.categorySub" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                                        </div>
+
+                                        <div>
+                                            <InputLabel :value="__('translate.profession')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <multiselect
+                                                :disabled="!form.categorySub"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
+                                                :noOptions="__('translate.noOptions')"
+                                                :noResult="__('translate.noResult')"
+                                                track-by="value"
+                                                label="name"
+                                                :placeholder="__('translate.placeholder')"
+                                                v-model="form.profession" :options="optionsProfession"
+                                                class="custom-multiselect">
+                                                <template #noResult>
+                                                    <span>{{__('translate.noOptions')}}</span>
+                                                </template>
+                                                <template #noOptions>
+                                                    <span>{{__('translate.noResult')}}</span>
+                                                </template>
+                                            </multiselect>
+                                            <InputError :message="form.errors.profession" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                                        </div>
+
+                                        <div>
+                                            <InputLabel :value="__('translate.position')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
+                                            <multiselect
+                                                :disabled="!form.profession"
+                                                :selectLabel="''"
+                                                :selectGroupLabel="''"
+                                                :selectedLabel="''"
+                                                :deselectLabel="''"
+                                                :noOptions="__('translate.noOptions')"
+                                                :noResult="__('translate.noResult')"
+                                                track-by="value"
+                                                label="name"
+                                                :placeholder="__('translate.placeholder')"
+                                                v-model="form.position" :options="optionsPosition"
+                                                class="custom-multiselect">
+                                                <template #noResult>
+                                                    <span>{{__('translate.noOptions')}}</span>
+                                                </template>
+                                                <template #noOptions>
+                                                    <span>{{__('translate.noResult')}}</span>
+                                                </template>
+                                            </multiselect>
+                                            <InputError :message="form.errors.position" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Prawa kolumna - obowiązki (pokazuje się gdy są dostępne) -->
+                            <div class="w-full">
+                                <div v-if="form.position || form.profession || isFetchingDetails" class="p-0 m-0 w-full">
+                                    <div v-if="isFetchingDetails || ((form.position?.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession?.detailprojects && Object.keys(form.profession.detailprojects).length))" class="w-full">
+                                        <div class="bg-blue-50/50 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 border border-blue-100/50">
+                                            <!-- Komunikat o wybranym stanowisku -->
+                                            <div v-if="form.position?.name" class="mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[#0A2C5C] text-white p-5 md:p-6 rounded-3xl shadow-lg shadow-blue-900/10">
+                                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                                                    <svg class="w-5 h-5 md:w-6 md:h-6 text-[#00a0e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <p class="text-[10px] font-black text-blue-300 uppercase tracking-[0.2em] mb-1 leading-none">
+                                                        {{ __('translate.selectedPosition') || 'Wybrane stanowisko' }}
+                                                    </p>
+                                                    <h4 class="text-xs md:text-base font-black uppercase tracking-widest leading-tight">
+                                                        {{ form.position?.name }}
+                                                        <span class="block sm:inline text-blue-400 font-medium sm:ml-2 text-[10px] md:text-xs normal-case tracking-normal">({{ form.profession?.name }})</span>
+                                                    </h4>
+                                                </div>
+                                            </div>
+
+                                            <div v-if="!isFetchingDetails" class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
                                                 <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest">{{ __('translate.detailProjects') }}</h3>
                                                 <div class="flex gap-4">
                                                     <button type="button" @click="addAll()" class="text-[10px] font-black text-[#00a0e3] hover:text-blue-700 uppercase tracking-widest transition-colors">
@@ -1035,7 +1270,7 @@ onMounted(async () => {
                                             <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                                                 <div v-for="detail in filteredDuties" :key="detail.id"
                                                      class="group/item flex items-start gap-4 bg-white/50 rounded-2xl p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer">
-                                                   <label class="group/check flex items-start cursor-pointer flex-1">
+                                                  <label class="group/check flex items-start cursor-pointer flex-1">
                                                         <div class="relative flex items-center justify-center mt-0.5">
                                                             <input
                                                                 type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"
@@ -2127,6 +2362,107 @@ onMounted(async () => {
         z-index: 9999 !important;
         display: block !important;
         visibility: visible !important;
+    }
+}
+
+.quick-search-multiselect {
+    .multiselect__tags {
+        border: 1px solid #f3f4f6;
+        border-radius: 1.5rem;
+        padding: 0.875rem 2.5rem 0.875rem 1.25rem;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-blur: 8px;
+        transition: all 0.3s ease;
+    }
+
+    &.multiselect--active {
+        .multiselect__tags {
+            border-color: #00a0e3 !important;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 4px rgba(0, 160, 227, 0.1);
+        }
+    }
+
+    .multiselect__placeholder {
+        margin-bottom: 0;
+        padding-top: 0;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .multiselect__single {
+        margin-bottom: 0;
+        padding-left: 0;
+        font-size: 0.75rem;
+        background: transparent;
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .multiselect__input {
+        margin-bottom: 0;
+        background: transparent !important;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: white !important;
+
+        &::placeholder {
+            color: #9ca3af !important;
+        }
+    }
+
+    .multiselect__select {
+        height: 100%;
+        width: 2.5rem;
+
+        &:before {
+            border-color: #00a0e3 transparent transparent !important;
+        }
+    }
+
+    .multiselect__content-wrapper {
+        border: none;
+        border-radius: 1.5rem;
+        margin-top: 0.5rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        background: #ffffff;
+        z-index: 100 !important;
+    }
+
+    .multiselect__option--highlight {
+        background: #00a0e3 !important;
+        color: white;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+
+        span {
+            color: white !important;
+        }
+
+        &:after {
+            background: #00a0e3 !important;
+            content: "WYBIERZ" !important;
+            font-size: 8px;
+            font-weight: 900;
+        }
+    }
+
+    .multiselect__option {
+        padding: 8px 16px;
+        font-weight: 700;
+        color: #0A2C5C;
+        text-transform: uppercase;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
     }
 }
 

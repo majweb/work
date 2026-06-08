@@ -23,6 +23,15 @@ class DetailProject extends Model
         'name' => 'array',
     ];
 
+    protected $appends = ['allTranslations'];
+
+    public function getAllTranslationsAttribute()
+    {
+        return [
+            'title' => $this->getTranslations('name')
+        ];
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class,'category_detailproject');

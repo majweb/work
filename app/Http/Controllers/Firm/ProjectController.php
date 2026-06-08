@@ -301,8 +301,8 @@ class ProjectController extends Controller
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
-        if ($project && count($request->projectData()['detailProjects'])) {
-            $project->detailprojects()->sync($request->projectData()['detailProjects']);
+        if ($project) {
+            $project->detailprojects()->sync($request->projectData()['detailProjects'] ?? []);
         }
 
         if (isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
@@ -343,7 +343,7 @@ class ProjectController extends Controller
                 $q->whereNull('status');
             },
         ]);
-        $project->load(['recruit:id,name', 'shiftWork:id,name', 'education:id,name', 'externalCompany:id,name,abbreviation']);
+        $project->load(['recruit:id,name', 'shiftWork:id,name', 'education:id,name', 'externalCompany:id,name,abbreviation', 'detailprojects']);
 
         // Pobierz rekruterów przypisanych do firmy (właściciela projektu)
         $recruits = $project->user->recruits()->whereNull('user_blocked')->get();
@@ -488,8 +488,8 @@ class ProjectController extends Controller
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
-        if ($project && count($request->projectData()['detailProjects'])) {
-            $project->detailprojects()->sync($request->projectData()['detailProjects']);
+        if ($project) {
+            $project->detailprojects()->sync($request->projectData()['detailProjects'] ?? []);
         }
 
         // Update project questions
@@ -530,6 +530,23 @@ class ProjectController extends Controller
     public function getChildsCategory($parent)
     {
         return MultiselectResource::collection(Category::where('parent_id', $parent)->with('detailprojects')->get());
+    }
+
+    public function getCategoryDetails(Category $category)
+    {
+        return response()->json([
+            'detailprojects' => $category->detailprojects
+        ]);
+    }
+
+    public function getAllPositions(DictionaryService $dictionaryService)
+    {
+        return $dictionaryService->getAllPositions();
+    }
+
+    public function searchPositions(Request $request, DictionaryService $dictionaryService)
+    {
+        return $dictionaryService->searchPositions($request->input('query'));
     }
 
     public function validateStep(Request $request)

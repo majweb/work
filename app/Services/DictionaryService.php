@@ -186,6 +186,33 @@ class DictionaryService
         });
     }
 
+    public function getAllPositions(): mixed
+    {
+        return Cache::rememberForever($this->getCacheKey('all_positions_search'), function () {
+            $locale = app()->getLocale();
+            $positions = Category::whereDoesntHave('children')
+                ->with(['ancestors'])
+                ->orderBy("title->{$locale}")
+                ->get();
+            return \App\Http\Resources\CategorySearchResource::collection($positions)->resolve();
+        });
+    }
+
+    public function searchPositions(?string $query = null): mixed
+    {
+        $locale = app()->getLocale();
+        $positions = Category::whereDoesntHave("children")
+            ->when($query, function ($q) use ($query, $locale) {
+                $q->where("title->{$locale}", "like", "%" . $query . "%");
+            })
+            ->with(["ancestors"])
+            ->orderBy("title->{$locale}")
+            ->limit(20)
+            ->get();
+
+        return \App\Http\Resources\CategorySearchResource::collection($positions)->resolve();
+    }
+
     public function getFoundationCategories(): mixed
     {
         return Cache::rememberForever($this->getCacheKey('categoriesFoundations'), function () {
@@ -290,6 +317,7 @@ class DictionaryService
         $this->forgetAllLocales('categories_without_positions_without_detail');
         $this->forgetAllLocales('categoriesPositionsWithoutDetail');
         $this->forgetAllLocales('categories_roots_only');
+        $this->forgetAllLocales('all_positions_search'); // Dodaj tę linię
     }
 
     public function clearFoundationCategories(): void
@@ -324,5 +352,6 @@ class DictionaryService
         $this->forgetAllLocales('categories_without_positions_without_detail');
         $this->forgetAllLocales('categoriesPositionsWithoutDetail');
         $this->forgetAllLocales('categories_roots_only');
+        $this->forgetAllLocales('all_positions_search');
     }
 }
