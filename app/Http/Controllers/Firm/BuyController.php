@@ -509,19 +509,20 @@ class BuyController extends Controller
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
             return response()->json(['error' => 'Invalid signature'], 400);
         }
-
+        Log::info('Stripe webhook: '.$event->type);
         if ($event->type === 'checkout.session.completed') {
             $session = $event->data->object;
-
+            Log::info('Stripe webhook: Session completed: '.$session->id);
             $transaction = Transaction::where('session_id', $session->id)->first();
 
             if ($transaction && $transaction->status === 'pending') {
+                Log::info('Stripe webhook: Payment completed for session '.$session->id);
                 DB::transaction(function () use ($transaction, $session, $pointService, $buyHelper) {
                     $transaction->update(['status' => 'paid']);
 
                     $user = User::find($session->metadata->user_id);
                     $pointService->increment($user, (int) $session->metadata->credits, 'Purchase: Points (Stripe)');
-
+                    Log::info('Stripe webhook: Points incremented for user '.$user->id);
                     // Generowanie faktury w kolejce
                     if ($transaction->cart_data) {
                         GenerateInvoiceJob::dispatch($transaction, $user);
