@@ -992,7 +992,7 @@ onMounted(async () => {
                                                 @select="onQuickSearchSelect"
                                                 @search-change="onSearchChange"
                                                 :internal-search="false"
-                                                :loading="isLoadingPositions"
+                                                :loading="isLoadingPositions || isFetchingDetails"
                                                 track-by="id"
                                                 label="name"
                                                 :placeholder="__('translate.search_position_placeholder') || 'Wpisz np. Spawacz, Kierowca, Kucharz...'"
@@ -1135,7 +1135,14 @@ onMounted(async () => {
                                     <div v-if="isFetchingDetails || ((form.position?.detailprojects && Object.keys(form.position.detailprojects).length) || (form.profession?.detailprojects && Object.keys(form.profession.detailprojects).length))" class="w-full">
                                         <div class="bg-blue-50/50 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 border border-blue-100/50">
                                             <!-- Komunikat o wybranym stanowisku -->
-                                            <div v-if="form.position?.name" class="mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[#0A2C5C] text-white p-5 md:p-6 rounded-3xl shadow-lg shadow-blue-900/10">
+                                            <div v-if="isFetchingDetails" class="mb-6 md:mb-8 flex items-center justify-center p-8 bg-blue-50 rounded-3xl border-2 border-dashed border-blue-200">
+                                                <div class="flex flex-col items-center gap-4">
+                                                    <div class="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                                                    <p class="text-xs font-black text-blue-600 uppercase tracking-widest">{{ __('translate.loading_details') || 'Wczytywanie szczegółów...' }}</p>
+                                                </div>
+                                            </div>
+
+                                            <div v-else-if="form.position?.name" class="mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[#0A2C5C] text-white p-5 md:p-6 rounded-3xl shadow-lg shadow-blue-900/10">
                                                 <div class="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
                                                     <svg class="w-5 h-5 md:w-6 md:h-6 text-[#00a0e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

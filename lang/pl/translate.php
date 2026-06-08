@@ -1824,4 +1824,5 @@ return [
     'type_min_chars' => 'Zacznij wpisywać nazwę (min. 2 znaki)...',
     'kraz' => 'Numer KRAZ',
     'kraz_placeholder' => 'Wprowadź numer KRAZ (1-6 cyfr)',
+    'loading_details' => 'Wczytywanie szczegółów...',
 ];
