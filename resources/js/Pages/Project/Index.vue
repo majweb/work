@@ -226,17 +226,17 @@ const { getPositionTitle } = useProjectHelpers();
     <AppLayout :title="__('translate.projects')">
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
-                    <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                        <div class="flex justify-between items-center">
+                    <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
                             <div>
-                                <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
+                                <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{__('translate.projectManage')}}</p>
                             </div>
                             <Link
                                 :href="route('projects.create')"
-                                class="inline-flex items-center px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
+                                class="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5 animate-button-pulse"
                             >
-                                {{ __('translate.create') || 'UTWÓRZ' }}
+                                {{ __('translate.createProject') || 'UTWÓRZ' }}
                             </Link>
                         </div>
                     </div>
@@ -285,7 +285,7 @@ const { getPositionTitle } = useProjectHelpers();
                 </div>
 
                 <!-- FILTRY -->
-                <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
+                <div class="bg-white rounded-3xl sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10">
                     <div class="flex items-center gap-4 mb-8">
                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">{{ __('translate.filter') || 'Filtruj' }}</h3>
                         <div class="h-px flex-1 bg-gray-100"></div>
@@ -454,11 +454,11 @@ const { getPositionTitle } = useProjectHelpers();
                     </div>
 
                     <!-- Przyciski filtrów -->
-                    <div class="flex flex-wrap gap-4 pt-6 border-t border-gray-50">
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 pt-6 border-t border-gray-50">
                         <button
                             @click="applyFilters"
                             :disabled="isLoading"
-                            class="px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
+                            class="w-full sm:w-auto px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] transition-all shadow-lg shadow-blue-900/20 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                         >
                             <svg v-if="isLoading" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -469,7 +469,7 @@ const { getPositionTitle } = useProjectHelpers();
                         <button
                             @click="resetFilters"
                             :disabled="isLoading"
-                            class="px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {{ __('translate.reset') || 'RESETUJ' }}
                         </button>
@@ -723,6 +723,25 @@ const { getPositionTitle } = useProjectHelpers();
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
+@keyframes button-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(10, 44, 92, 0.4);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(10, 44, 92, 0);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(10, 44, 92, 0);
+        transform: scale(1);
+    }
+}
+
+.animate-button-pulse {
+    animation: button-pulse 2s infinite;
+}
+
 .custom-multiselect {
     .multiselect__tags {
         border: 1px solid #f3f4f6; /* border-gray-100 */

@@ -202,14 +202,15 @@ const { getPositionTitle } = useProjectHelpers();
                 <!-- Header Card -->
                 <div class="bg-white rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-6 sm:p-10">
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                        <h2 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight text-center sm:text-left">
-                            {{ __('translate.offerts') }}
-                        </h2>
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.projects') }}</h3>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{{__('translate.projectManage')}}</p>
+                        </div>
                         <Link
                             :href="route('project-recruits.create')"
-                            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5"
+                            class="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-lg shadow-blue-900/20 hover:bg-[#00a0e3] transition-all hover:-translate-y-0.5 animate-button-pulse"
                         >
-                            {{ __('translate.create') || 'UTWÓRZ' }}
+                            {{ __('translate.createProject') || 'UTWÓRZ' }}
                         </Link>
                     </div>
                 </div>
@@ -375,7 +376,7 @@ const { getPositionTitle } = useProjectHelpers();
                         <button
                             @click="resetFilters"
                             :disabled="isLoading"
-                            class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="w-full sm:w-auto px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-gray-50 shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                         >
                             {{ __('translate.reset') || 'RESETUJ' }}
                         </button>
@@ -646,6 +647,25 @@ const { getPositionTitle } = useProjectHelpers();
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="scss">
+@keyframes button-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(10, 44, 92, 0.4);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(10, 44, 92, 0);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(10, 44, 92, 0);
+        transform: scale(1);
+    }
+}
+
+.animate-button-pulse {
+    animation: button-pulse 2s infinite;
+}
+
 .custom-multiselect {
     .multiselect__tags {
         border: 1px solid #f3f4f6; /* border-gray-100 */
