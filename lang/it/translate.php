@@ -1812,4 +1812,12 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'Se la via non è conosciuta',
     'StreetNumberUnknownInfo' => 'Se il numero civico non è conosciuto',
+    'quick_position_search' => 'Ricerca rapida della posizione',
+    'quick_position_desc' => 'Inizia a digitare il nome della posizione e completeremo automaticamente il settore per te.',
+    'search_position_placeholder' => 'Inserisci ad es. Saldatore, Autista, Cuoco...',
+    'no_position_found' => 'Nessuna posizione trovata',
+    'loading' => 'Caricamento...',
+    'selected_position_info' => 'Posizione selezionata: :position (:profession)',
+    'selectedPosition' => 'Posizione selezionata',
+    'type_min_chars' => 'Inizia a digitare il nome (min. 2 caratteri)...',
 ];

@@ -1816,4 +1816,12 @@ return [
     'estonia' => 'Эстония',
     'StreetUnknownInfo' => 'Агар кӯча номаълум бошад',
     'StreetNumberUnknownInfo' => 'Агар рақами бино номаълум бошад',
+    'quick_position_search' => 'Ҷустуҷӯи фаврии вазифа',
+    'quick_position_desc' => 'Ба навиштани номи вазифа оғоз кунед ва мо соҳаро барои шумо ба таври худкор пур мекунем.',
+    'search_position_placeholder' => 'Масалан ворид кунед: Кафшергар, Ронанда, Ошпаз...',
+    'no_position_found' => 'Чунин вазифа ёфт нашуд',
+    'loading' => 'Боргирӣ шуда истодааст...',
+    'selected_position_info' => 'Вазифаи интихобшуда: :position (:profession)',
+    'selectedPosition' => 'Вазифаи интихобшуда',
+    'type_min_chars' => 'Ба навиштани ном оғоз кунед (ҳадди ақал 2 аломат)...',
 ];

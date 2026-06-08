@@ -1867,4 +1867,12 @@ return [
 
     'StreetUnknownInfo' => 'রাস্তার নাম জানা না থাকলে "-" লিখুন।',
     'StreetNumberUnknownInfo' => 'ভবনের নম্বর জানা না থাকলে "-" লিখুন।',
+    'quick_position_search' => 'দ্রুত পদ অনুসন্ধান',
+    'quick_position_desc' => 'পদের নাম টাইপ করা শুরু করুন, আমরা আপনার জন্য ক্ষেত্রটি স্বয়ংক্রিয়ভাবে পূরণ করব।',
+    'search_position_placeholder' => 'যেমন লিখুন: ওয়েল্ডার, ড্রাইভার, রাঁধুনি...',
+    'no_position_found' => 'এমন কোনো পদ পাওয়া যায়নি',
+    'loading' => 'লোড হচ্ছে...',
+    'selected_position_info' => 'নির্বাচিত পদ: :position (:profession)',
+    'selectedPosition' => 'নির্বাচিত পদ',
+    'type_min_chars' => 'নাম টাইপ করা শুরু করুন (ন্যূনতম ২ অক্ষর)...',
 ];

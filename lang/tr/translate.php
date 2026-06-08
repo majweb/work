@@ -1818,4 +1818,12 @@ return [
     'estonia' => 'Estonya',
     'StreetUnknownInfo' => 'Sokak bilinmiyorsa',
     'StreetNumberUnknownInfo' => 'Bina numarası bilinmiyorsa',
+    'quick_position_search' => 'Hızlı Pozisyon Arama',
+    'quick_position_desc' => 'Pozisyon adını yazmaya başlayın, sektör bilgisini sizin için otomatik olarak dolduralım.',
+    'search_position_placeholder' => 'Örn. Kaynakçı, Sürücü, Aşçı...',
+    'no_position_found' => 'Böyle bir pozisyon bulunamadı',
+    'loading' => 'Yükleniyor...',
+    'selected_position_info' => 'Seçilen pozisyon: :position (:profession)',
+    'selectedPosition' => 'Seçilen pozisyon',
+    'type_min_chars' => 'Bir ad yazmaya başlayın (en az 2 karakter)...',
 ];

@@ -1789,4 +1789,13 @@ return [
     'estonia' => 'Igaunija',
     'StreetUnknownInfo' => 'Ja iela nav zināma',
     'StreetNumberUnknownInfo' => 'Ja ēkas numurs nav zināms',
+    'quick_position_search' => 'Ātrā amata meklēšana',
+    'quick_position_desc' => 'Sāciet rakstīt amata nosaukumu, un mēs automātiski aizpildīsim nozari jūsu vietā.',
+    'search_position_placeholder' => 'Ievadiet, piemēram: Metinātājs, Autovadītājs, Pavārs...',
+    'no_position_found' => 'Šāda amata nav atrasta',
+    'loading' => 'Ielādē...',
+    'selected_position_info' => 'Izvēlētais amats: :position (:profession)',
+    'selectedPosition' => 'Izvēlētais amats',
+    'type_min_chars' => 'Sāciet rakstīt nosaukumu (vismaz 2 rakstzīmes)...',
+
 ];

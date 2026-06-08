@@ -1815,4 +1815,12 @@ return [
     'estonia' => 'Estland',
     'StreetUnknownInfo' => 'Om gatan är okänd',
     'StreetNumberUnknownInfo' => 'Om husnumret är okänt',
+    'quick_position_search' => 'Snabbsökning av tjänst',
+    'quick_position_desc' => 'Börja skriva in tjänstens namn så fyller vi automatiskt i branschen åt dig.',
+    'search_position_placeholder' => 'Ange t.ex. Svetsare, Chaufför, Kock...',
+    'no_position_found' => 'Ingen sådan tjänst hittades',
+    'loading' => 'Laddar...',
+    'selected_position_info' => 'Vald tjänst: :position (:profession)',
+    'selectedPosition' => 'Vald tjänst',
+    'type_min_chars' => 'Börja skriva ett namn (minst 2 tecken)...',
 ];

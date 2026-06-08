@@ -1796,4 +1796,12 @@ return [
     'estonia' => 'استونی',
     'StreetUnknownInfo' => 'اگر نام خیابان مشخص نیست، «-» را وارد کنید.',
     'StreetNumberUnknownInfo' => 'اگر شماره ساختمان مشخص نیست، «-» را وارد کنید.',
+    'quick_position_search' => 'جستجوی سریع موقعیت شغلی',
+    'quick_position_desc' => 'شروع به تایپ عنوان شغلی کنید، ما به‌صورت خودکار حوزه کاری را برای شما تکمیل می‌کنیم.',
+    'search_position_placeholder' => 'مثلاً وارد کنید: جوشکار، راننده، آشپز...',
+    'no_position_found' => 'چنین موقعیت شغلی‌ای یافت نشد',
+    'loading' => 'در حال بارگذاری...',
+    'selected_position_info' => 'موقعیت شغلی انتخاب‌شده: :position (:profession)',
+    'selectedPosition' => 'موقعیت شغلی انتخاب‌شده',
+    'type_min_chars' => 'شروع به تایپ نام کنید (حداقل ۲ کاراکتر)...',
 ];

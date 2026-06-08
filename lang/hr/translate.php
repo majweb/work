@@ -1813,4 +1813,12 @@ return [
     'estonia' => 'Estonija',
     'StreetUnknownInfo' => 'Ako ulica nije poznata, unesite "-".',
     'StreetNumberUnknownInfo' => 'Ako broj zgrade nije poznat, unesite "-".',
+    'quick_position_search' => 'Brzo pretraživanje radnog mjesta',
+    'quick_position_desc' => 'Počnite upisivati naziv radnog mjesta, a mi ćemo automatski popuniti djelatnost umjesto vas.',
+    'search_position_placeholder' => 'Upišite npr. Zavarivač, Vozač, Kuhar...',
+    'no_position_found' => 'Takvo radno mjesto nije pronađeno',
+    'loading' => 'Učitavanje...',
+    'selected_position_info' => 'Odabrano radno mjesto: :position (:profession)',
+    'selectedPosition' => 'Odabrano radno mjesto',
+    'type_min_chars' => 'Počnite upisivati naziv (min. 2 znaka)...',
 ];

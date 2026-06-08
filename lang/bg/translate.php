@@ -1814,6 +1814,14 @@ return [
 'estonia' => 'Естония',
 'StreetUnknownInfo' => 'Ако улицата не е известна, въведете "-".',
 'StreetNumberUnknownInfo' => 'Ако номерът на сградата не е известен, въведете "-".',
+'quick_position_search' => 'Бързо търсене на позиция',
+'quick_position_desc' => 'Започнете да въвеждате името на позицията, а ние ще попълним сектора вместо вас.',
+'search_position_placeholder' => 'Въведете напр. Заварчик, Шофьор, Готвач...',
+'no_position_found' => 'Не е намерена такава позиция',
+'loading' => 'Зареждане...',
+'selected_position_info' => 'Избрана позиция: :position (:profession)',
+'selectedPosition' => 'Избрана позиция',
+'type_min_chars' => 'Започнете да въвеждате име (мин. 2 знака)...',
 
 ];
 

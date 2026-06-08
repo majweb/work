@@ -1813,4 +1813,12 @@ return [
     'estonia' => 'एस्टोनिया',
     'StreetUnknownInfo' => 'यदि सड़क ज्ञात नहीं है, तो "-" दर्ज करें।',
     'StreetNumberUnknownInfo' => 'यदि भवन संख्या ज्ञात नहीं है, तो "-" दर्ज करें।',
+    'quick_position_search' => 'त्वरित पद खोज',
+    'quick_position_desc' => 'पद का नाम टाइप करना शुरू करें, और हम आपके लिए उद्योग क्षेत्र स्वतः भर देंगे।',
+    'search_position_placeholder' => 'उदाहरण के लिए लिखें: वेल्डर, ड्राइवर, रसोइया...',
+    'no_position_found' => 'ऐसा कोई पद नहीं मिला',
+    'loading' => 'लोड हो रहा है...',
+    'selected_position_info' => 'चयनित पद: :position (:profession)',
+    'selectedPosition' => 'चयनित पद',
+    'type_min_chars' => 'नाम टाइप करना शुरू करें (कम से कम 2 अक्षर)...',
 ];

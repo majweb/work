@@ -1844,142 +1844,6 @@ return [
     'fillForm' => 'املأ النموذج',
 
     'cannotAddArticle' => 'لا يمكن إضافة المقال',
-    'qualityStatus' => 'الجودة (% نعم)',
-    'noResults' => 'لم يتم العثور على نتائج',
-    'days' => 'أيام',
-    'months' => 'أشهر',
-    'services' => 'الخدمات',
-
-    // لعناصر الفلاتر
-    'filter_title' => 'تصفية',
-    'filter_apply' => 'تصفية',
-
-    'manageYourApplications' => 'قم بإدارة طلباتك وتتبع حالاتها',
-    'keepYourProfileUpdated' => 'حافظ على تحديث بياناتك ليتمكن مسؤولو التوظيف من التواصل معك',
-    'stayInformedAboutYourUpdates' => 'ابقَ على اطلاع بتحديثات طلباتك',
-
-    'noRecentApplications' => 'لا توجد طلبات حديثة',
-    'noOtherApplications' => 'لا توجد طلبات أخرى',
-
-    'check_offer' => 'تحقق من العرض',
-
-    'what_we_offer' => 'ما الذي نقدمه',
-    'firms_count' => 'شركة',
-    'all_firms' => 'جميع الشركات',
-
-    'firm_name' => 'اسم الشركة',
-    'firm_name_placeholder' => 'أدخل اسم الشركة...',
-
-    'statusSent' => 'تم الإرسال',
-    'bestOffers' => 'أفضل عرض',
-
-    'selected' => 'تم الاختيار',
-    'impact' => 'تأثيرك',
-
-    'noVideoAvailable' => 'لا يوجد فيديو متاح',
-    'videoError' => 'متصفحك لا يدعم عنصر الفيديو.',
-
-    'gallery' => 'المعرض',
-    'featured' => 'مميز',
-    'premium' => 'بريميوم',
-
-    'godziny' => 'الساعات',
-
-    'readyForChallenges' => 'هل أنت مستعد لتحديات جديدة؟',
-    'applyNowJoinTeam' => 'قدّم الآن وانضم إلى الفريق',
-
-    'article_in_brief' => 'ملخص المقال',
-    'published_at' => 'تم النشر',
-    'share_article' => 'مشاركة المقال',
-    'written_by' => 'كتبه',
-    'company_article' => 'مقال الشركة',
-    'latest_article' => 'أحدث مقال',
-
-    'categories' => 'الفئات',
-    'all_articles' => 'جميع المقالات',
-    'more_articles' => 'المزيد من المقالات',
-    'check_all' => 'عرض الكل',
-
-    'recommended' => 'موصى به',
-
-    'meta_description_default' => 'منصة توظيف حديثة تربط أفضل المتخصصين بالشركات المبتكرة حول العالم.',
-    'meta_keywords_default' => 'توظيف، عمل، مهنة، عروض عمل، شركة، صاحب عمل',
-
-    'welcome_badge' => 'انضم إلى الأفضل',
-    'welcome_title_part1' => 'اعثر على',
-    'welcome_title_part2' => 'وظيفتك المثالية',
-
-    'welcome_subtitle' => 'منصة توظيف حديثة تربط أفضل المتخصصين بالشركات المبتكرة حول العالم.',
-
-    'firms_count_label' => 'شركة موثوقة',
-    'candidates_count' => 'مرشح',
-    'categories_count' => 'فئة',
-
-    'worker' => 'موظف',
-    'users' => 'المستخدمون',
-
-    'chars_remaining' => 'الأحرف المتبقية',
-    'present' => 'حاليًا',
-
-    'agreements_required' => 'يجب عليك قبول الموافقات المطلوبة.',
-    'agreements_required_all' => 'يجب عليك قبول جميع الموافقات المطلوبة.',
-
-    'newsletter_agreements' => 'موافقات النشرة الإخبارية',
-
-    'select_all' => 'تحديد الكل',
-
-    'suggested_format' => 'التنسيق المقترح',
-
-    'foundation_rate_limit' => 'يمكنك إرسال طلب مؤسسة واحد فقط في الساعة. حاول مرة أخرى لاحقًا.',
-
-    'agreeCookie' => 'يستخدم موقع work4you.global ملفات تعريف الارتباط لتحسين تجربة المستخدم ولتخزين أو الوصول إلى المعلومات على جهاز المستخدم. يتم تخزين ملفات تعريف الارتباط الضرورية فقط لتشغيل الوظائف الأساسية للموقع. يستخدم الموقع أيضًا ملفات تعريف ارتباط أخرى تساعد في تحليل كيفية استخدام المستخدمين للموقع. يتم تخزين هذه الملفات فقط بموافقة المستخدم، ويمكن سحب هذه الموافقة في أي وقت. قد يؤثر عدم الموافقة أو سحبها سلبًا على بعض الميزات والوظائف. المزيد من المعلومات في <a href="/privacy">سياسة الخصوصية</a>.',
-
-    'agreePointsPackage' => 'أرغب في استخدام باقة النقاط فورًا، ولذلك أوافق على بدء تقديم الخدمة قبل انتهاء فترة الـ 14 يومًا للانسحاب من العقد. أوافق على أنني سأفقد حقي في الانسحاب من العقد بعد تنفيذ الخدمة بالكامل من قبل Work 4 You Global.',
-
-    'customize' => 'تخصيص',
-    'reject_all' => 'رفض الكل',
-    'only_essential' => 'الضروري فقط',
-
-    'sickPeople' => 'ذ/أ/م',
-
-    'stripe' => 'ادفع / الدفع',
-
-    'brutto' => 'إجمالي',
-    'netto' => 'صافي',
-
-    'alreadyhaveanaccount' => 'هل لديك حساب بالفعل؟',
-    'noAccount' => 'ليس لديك حساب بعد؟',
-
-    'video_cost_info' => 'إضافة فيديو إلى الملف الشخصي تكلف :points نقطة.',
-
-    'chooseCvToEditClick' => 'اختر إحدى سيرك الذاتية من القائمة على اليسار لبدء التعديل.',
-
-    'enterNameTag' => 'أدخل الاسم',
-
-    'editArticleDescription' => 'قم بتحسين مقالك',
-    'createArticleDescription' => 'أضف مقالك',
-
-    'applying_for' => 'يتقدم لوظيفة',
-    'change_status' => 'تغيير الحالة',
-
-    'updated' => 'تم التحديث',
-
-    'internalNote' => 'ملاحظة داخلية',
-
-    'invalidDateFormat' => 'تنسيق تاريخ غير صالح',
-
-    'mainCategory' => 'الفئة الرئيسية',
-
-    'cvRequired' => 'السيرة الذاتية مطلوبة',
-
-    'selectMethod' => 'اختر الطريقة',
-    'howDeliverCv' => 'كيف تريد تسليم السيرة الذاتية؟',
-
-    'uploadFile' => 'رفع ملف',
-    'cvGenerator' => 'منشئ السيرة الذاتية',
-    'fillForm' => 'املأ النموذج',
-
-    'cannotAddArticle' => 'لا يمكن إضافة المقال',
     'featured_employer_title' => 'التمييز',
     'featured_employer_subtitle' => 'حالة تجذب المرشحين',
     'featured_employer_description' => 'خدمة "صاحب العمل المميز" هي وسيلة فعالة لزيادة ظهور شركتك على منصة WORK4YOU.GLOBAL. بفضلها تحصل إعلاناتك على أولوية أكبر، وتصبح علامتك التجارية أكثر شهرة بين الموظفين المحتملين.',
@@ -2124,4 +1988,12 @@ return [
     'estonia' => 'إستونيا',
     'StreetUnknownInfo' => 'إذا كان اسم الشارع غير معروف، أدخل "-".',
     'StreetNumberUnknownInfo' => 'إذا كان رقم المبنى غير معروف، أدخل "-".',
+    'quick_position_search' => 'بحث سريع عن الوظيفة',
+    'quick_position_desc' => 'ابدأ بكتابة اسم الوظيفة، وسنقوم بإكمال المجال تلقائيًا.',
+    'search_position_placeholder' => 'اكتب مثلاً: لحّام، سائق، طاهٍ...',
+    'no_position_found' => 'لم يتم العثور على هذه الوظيفة',
+    'loading' => 'جارٍ التحميل...',
+    'selected_position_info' => 'الوظيفة المحددة: :position (:profession)',
+    'selectedPosition' => 'الوظيفة المحددة',
+    'type_min_chars' => 'ابدأ بكتابة الاسم (حد أدنى حرفان)...',
 ];

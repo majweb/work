@@ -1815,4 +1815,12 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'Dacă strada nu este cunoscută',
     'StreetNumberUnknownInfo' => 'Dacă numărul clădirii nu este cunoscut',
+    'quick_position_search' => 'Căutare rapidă a postului',
+    'quick_position_desc' => 'Începeți să introduceți denumirea postului, iar noi vom completa automat domeniul de activitate.',
+    'search_position_placeholder' => 'Introduceți, de exemplu: Sudor, Șofer, Bucătar...',
+    'no_position_found' => 'Nu a fost găsit un astfel de post',
+    'loading' => 'Se încarcă...',
+    'selected_position_info' => 'Post selectat: :position (:profession)',
+    'selectedPosition' => 'Post selectat',
+    'type_min_chars' => 'Începeți să introduceți denumirea (min. 2 caractere)...',
 ];

@@ -2209,7 +2209,7 @@ onMounted(() => {
     .multiselect__placeholder {
         margin-bottom: 0;
         padding-top: 0;
-        color: #9ca3af;
+        color: #cbd5e1;
         font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -2237,7 +2237,7 @@ onMounted(() => {
         color: white !important;
 
         &::placeholder {
-            color: #9ca3af !important;
+            color: #cbd5e1 !important;
         }
     }
 

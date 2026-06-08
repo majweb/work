@@ -1796,4 +1796,12 @@ return [
     'estonia' => 'အက်စ်တိုးနီးယား',
     'StreetUnknownInfo' => 'यदि सडक थाहा छैन भने',
     'StreetNumberUnknownInfo' => 'यदि भवन नम्बर थाहा छैन भने',
+    'quick_position_search' => 'द्रुत पद खोज',
+    'quick_position_desc' => 'पदको नाम टाइप गर्न सुरु गर्नुहोस्, हामी तपाईंको लागि क्षेत्र स्वतः भर्नेछौं।',
+    'search_position_placeholder' => 'उदाहरणका लागि: वेल्डर, चालक, भान्से...',
+    'no_position_found' => 'यस्तो पद फेला परेन',
+    'loading' => 'लोड हुँदैछ...',
+    'selected_position_info' => 'छानिएको पद: :position (:profession)',
+    'selectedPosition' => 'छानिएको पद',
+    'type_min_chars' => 'नाम टाइप गर्न सुरु गर्नुहोस् (कम्तीमा २ अक्षर)...',
 ];

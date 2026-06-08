@@ -1814,4 +1814,12 @@ return [
     'estonia' => '爱沙尼亚',
     'StreetUnknownInfo' => '如果街道未知',
     'StreetNumberUnknownInfo' => '如果门牌号未知',
+    'quick_position_search' => '快速职位搜索',
+    'quick_position_desc' => '开始输入职位名称，我们将自动为您填写所属行业。',
+    'search_position_placeholder' => '例如输入：焊工、司机、厨师...',
+    'no_position_found' => '未找到该职位',
+    'loading' => '加载中...',
+    'selected_position_info' => '已选择职位：:position (:profession)',
+    'selectedPosition' => '已选择职位',
+    'type_min_chars' => '开始输入名称（至少 2 个字符）...',
 ];

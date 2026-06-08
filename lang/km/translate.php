@@ -1794,6 +1794,14 @@ return [
     'estonia' => 'អេស្តូនី',
     'StreetUnknownInfo' => 'ប្រសិនបើមិនស្គាល់ផ្លូវ',
     'StreetNumberUnknownInfo' => 'ប្រសិនបើមិនស្គាល់លេខអគារ',
+    'quick_position_search' => 'ស្វែងរកមុខតំណែងរហ័ស',
+    'quick_position_desc' => 'ចាប់ផ្តើមវាយបញ្ចូលឈ្មោះមុខតំណែង ហើយយើងនឹងបំពេញវិស័យការងារឱ្យអ្នកដោយស្វ័យប្រវត្តិ។',
+    'search_position_placeholder' => 'បញ្ចូលឧទាហរណ៍៖ ជាងផ្សារ, អ្នកបើកបរ, ចុងភៅ...',
+    'no_position_found' => 'រកមិនឃើញមុខតំណែងនេះទេ',
+    'loading' => 'កំពុងផ្ទុក...',
+    'selected_position_info' => 'មុខតំណែងដែលបានជ្រើសរើស៖ :position (:profession)',
+    'selectedPosition' => 'មុខតំណែងដែលបានជ្រើសរើស',
+    'type_min_chars' => 'ចាប់ផ្តើមវាយបញ្ចូលឈ្មោះ (យ៉ាងតិច 2 តួអក្សរ)...',
 ];
 
 

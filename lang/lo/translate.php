@@ -1796,5 +1796,13 @@ return [
     'estonia' => 'ເອສໂຕເນຍ',
     'StreetUnknownInfo' => 'ຖ້າບໍ່ຮູ້ຊື່ຖະໜົນ',
     'StreetNumberUnknownInfo' => 'ຖ້າບໍ່ຮູ້ເລກອາຄານ',
+    'quick_position_search' => 'ຄົ້ນຫາຕຳແໜ່ງຢ່າງໄວ',
+    'quick_position_desc' => 'ເລີ່ມພິມຊື່ຕຳແໜ່ງ ແລະ ພວກເຮົາຈະຕື່ມຂໍ້ມູນຂະແໜງວຽກໃຫ້ທ່ານໂດຍອັດຕະໂນມັດ.',
+    'search_position_placeholder' => 'ພິມເຊັ່ນ: ຊ່າງເຊື່ອມ, ຄົນຂັບລົດ, ພໍ່ຄົວ...',
+    'no_position_found' => 'ບໍ່ພົບຕຳແໜ່ງນີ້',
+    'loading' => 'ກຳລັງໂຫຼດ...',
+    'selected_position_info' => 'ຕຳແໜ່ງທີ່ເລືອກ: :position (:profession)',
+    'selectedPosition' => 'ຕຳແໜ່ງທີ່ເລືອກ',
+    'type_min_chars' => 'ເລີ່ມພິມຊື່ (ຢ່າງໜ້ອຍ 2 ຕົວອັກສອນ)...',
 
 ];

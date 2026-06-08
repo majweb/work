@@ -298,9 +298,7 @@ class ProjectController extends Controller implements HasMiddleware
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
-        if ($project && count($request->projectData()['detailProjects'])) {
-            $project->detailprojects()->sync($request->projectData()['detailProjects']);
-        }
+        $project->detailprojects()->sync($request->projectData()['detailProjects'] ?? []);
 
         // Zapisywanie pytań projektu
         if (isset($request->projectData()['questions']) && is_array($request->projectData()['questions'])) {
@@ -348,7 +346,7 @@ class ProjectController extends Controller implements HasMiddleware
             },
         ]);
 
-        $project->load(['recruit:id,name', 'shiftWork:id,name', 'education:id,name', 'externalCompany:id,name,abbreviation']);
+        $project->load(['recruit:id,name', 'shiftWork:id,name', 'education:id,name', 'externalCompany:id,name,abbreviation', 'detailprojects']);
         // Pobierz other_recruits z JSON
         $otherRecruits = [];
         if ($project->other_recruits && is_array($project->other_recruits)) {
@@ -496,9 +494,7 @@ class ProjectController extends Controller implements HasMiddleware
             'is_active' => $request->projectData()['is_active'] ?? true,
         ]);
 
-        if ($project && count($request->projectData()['detailProjects'])) {
-            $project->detailprojects()->sync($request->projectData()['detailProjects']);
-        }
+        $project->detailprojects()->sync($request->projectData()['detailProjects'] ?? []);
 
         // Update project questions
         $questionsData = $request->projectData()['questions'] ?? [];

@@ -1789,4 +1789,12 @@ return [
     'estonia' => 'ესტონეთი',
     'StreetUnknownInfo' => 'თუ ქუჩა უცნობია',
     'StreetNumberUnknownInfo' => 'თუ შენობის ნომერი უცნობია',
+    'quick_position_search' => 'პოზიციის სწრაფი ძიება',
+    'quick_position_desc' => 'დაიწყეთ პოზიციის სახელის აკრეფა და ჩვენ ავტომატურად შევავსებთ სფეროს თქვენთვის.',
+    'search_position_placeholder' => 'შეიყვანეთ, მაგალითად: შემდუღებელი, მძღოლი, მზარეული...',
+    'no_position_found' => 'ასეთი პოზიცია ვერ მოიძებნა',
+    'loading' => 'იტვირთება...',
+    'selected_position_info' => 'არჩეული პოზიცია: :position (:profession)',
+    'selectedPosition' => 'არჩეული პოზიცია',
+    'type_min_chars' => 'დაიწყეთ სახელის აკრეფა (მინ. 2 სიმბოლო)...',
 ];

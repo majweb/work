@@ -1790,5 +1790,13 @@ return [
     'estonia' => 'Estija',
     'StreetUnknownInfo' => 'Jei gatvė nežinoma',
     'StreetNumberUnknownInfo' => 'Jei pastato numeris nežinomas',
+    'quick_position_search' => 'Greita pareigų paieška',
+    'quick_position_desc' => 'Pradėkite rašyti pareigų pavadinimą, o mes automatiškai užpildysime veiklos sritį.',
+    'search_position_placeholder' => 'Įveskite pvz.: Suvirintojas, Vairuotojas, Virėjas...',
+    'no_position_found' => 'Tokia pareigybė nerasta',
+    'loading' => 'Įkeliama...',
+    'selected_position_info' => 'Pasirinktos pareigos: :position (:profession)',
+    'selectedPosition' => 'Pasirinktos pareigos',
+    'type_min_chars' => 'Pradėkite rašyti pavadinimą (min. 2 simboliai)...',
 ];
 

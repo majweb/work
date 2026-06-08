@@ -1813,4 +1813,12 @@ return [
     'estonia' => 'Viro',
     'StreetUnknownInfo' => 'Jos katua ei tunneta, syötä "-".',
     'StreetNumberUnknownInfo' => 'Jos rakennuksen numeroa ei tunneta, syötä "-".',
+    'quick_position_search' => 'Nopea tehtävähaku',
+    'quick_position_desc' => 'Aloita tehtävänimikkeen kirjoittaminen, niin täytämme toimialan automaattisesti puolestasi.',
+    'search_position_placeholder' => 'Kirjoita esim. Hitsaaja, Kuljettaja, Kokki...',
+    'no_position_found' => 'Tehtävää ei löytynyt',
+    'loading' => 'Ladataan...',
+    'selected_position_info' => 'Valittu tehtävä: :position (:profession)',
+    'selectedPosition' => 'Valittu tehtävä',
+    'type_min_chars' => 'Aloita nimen kirjoittaminen (vähintään 2 merkkiä)...',
 ];

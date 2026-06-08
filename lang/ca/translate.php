@@ -1783,5 +1783,13 @@ return [
     'estonia' => 'Estònia',
     'StreetUnknownInfo' => 'Si es desconeix el carrer, introduïu "-".',
     'StreetNumberUnknownInfo' => 'Si es desconeix el número de l’edifici, introduïu "-".',
+    'quick_position_search' => 'Cerca ràpida de lloc de treball',
+    'quick_position_desc' => 'Comenceu a escriure el nom del lloc de treball i nosaltres completarem el sector per vosaltres.',
+    'search_position_placeholder' => 'Escriviu, per exemple: Soldador, Conductor, Cuiner...',
+    'no_position_found' => 'No s\'ha trobat aquest lloc de treball',
+    'loading' => 'S\'està carregant...',
+    'selected_position_info' => 'Lloc de treball seleccionat: :position (:profession)',
+    'selectedPosition' => 'Lloc de treball seleccionat',
+    'type_min_chars' => 'Comenceu a escriure el nom (mín. 2 caràcters)...',
 
 ];

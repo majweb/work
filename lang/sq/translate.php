@@ -1815,4 +1815,12 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'Nëse rruga nuk është e njohur',
     'StreetNumberUnknownInfo' => 'Nëse numri i ndërtesës nuk është i njohur',
+    'quick_position_search' => 'Kërkim i shpejtë i pozicionit',
+    'quick_position_desc' => 'Filloni të shkruani emrin e pozicionit dhe ne do ta plotësojmë automatikisht fushën për ju.',
+    'search_position_placeholder' => 'Shkruani p.sh.: Saldator, Shofer, Kuzhinier...',
+    'no_position_found' => 'Nuk u gjet një pozicion i tillë',
+    'loading' => 'Duke u ngarkuar...',
+    'selected_position_info' => 'Pozicioni i zgjedhur: :position (:profession)',
+    'selectedPosition' => 'Pozicioni i zgjedhur',
+    'type_min_chars' => 'Filloni të shkruani emrin (min. 2 karaktere)...',
 ];

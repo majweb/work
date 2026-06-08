@@ -1725,5 +1725,13 @@ return [
     'estonia' => 'Естонія',
     'StreetUnknownInfo' => 'Якщо вулиця невідома',
     'StreetNumberUnknownInfo' => 'Якщо номер будинку невідомий',
+    'quick_position_search' => 'Швидкий пошук посади',
+    'quick_position_desc' => 'Почніть вводити назву посади, і ми автоматично підберемо для вас сферу діяльності.',
+    'search_position_placeholder' => 'Введіть, наприклад: Зварювальник, Водій, Кухар...',
+    'no_position_found' => 'Таку посаду не знайдено',
+    'loading' => 'Завантаження...',
+    'selected_position_info' => 'Обрана посада: :position (:profession)',
+    'selectedPosition' => 'Обрана посада',
+    'type_min_chars' => 'Почніть вводити назву (мін. 2 символи)...',
 
 ];

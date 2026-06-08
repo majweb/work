@@ -1815,4 +1815,12 @@ return [
     'estonia' => 'استونیا',
     'StreetUnknownInfo' => 'که کوڅه معلومه نه وي',
     'StreetNumberUnknownInfo' => 'که د ودانۍ شمېره معلومه نه وي',
+    'quick_position_search' => 'د دندې چټک لټون',
+    'quick_position_desc' => 'د دندې نوم لیکل پیل کړئ، موږ به ستاسو لپاره اړونده څانګه په اتومات ډول ډکه کړو.',
+    'search_position_placeholder' => 'بېلګه: ویلډر، موټرچلوونکی، آشپز...',
+    'no_position_found' => 'دا ډول دنده ونه موندل شوه',
+    'loading' => 'بارېږي...',
+    'selected_position_info' => 'ټاکل شوې دنده: :position (:profession)',
+    'selectedPosition' => 'ټاکل شوې دنده',
+    'type_min_chars' => 'د نوم لیکل پیل کړئ (لږ تر لږه ۲ توري)...',
 ];

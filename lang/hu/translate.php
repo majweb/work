@@ -1814,4 +1814,12 @@ return [
     'estonia' => 'Észtország',
     'StreetUnknownInfo' => 'Ha az utca ismeretlen, írja be a „-” jelet.',
     'StreetNumberUnknownInfo' => 'Ha az épület száma ismeretlen, írja be a „-” jelet.',
+    'quick_position_search' => 'Gyors pozíciókeresés',
+    'quick_position_desc' => 'Kezdje el beírni a pozíció nevét, és mi automatikusan kitöltjük az ágazatot.',
+    'search_position_placeholder' => 'Írja be pl.: Hegesztő, Sofőr, Szakács...',
+    'no_position_found' => 'Ilyen pozíció nem található',
+    'loading' => 'Betöltés...',
+    'selected_position_info' => 'Kiválasztott pozíció: :position (:profession)',
+    'selectedPosition' => 'Kiválasztott pozíció',
+    'type_min_chars' => 'Kezdje el beírni a nevet (min. 2 karakter)...',
 ];

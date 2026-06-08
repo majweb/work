@@ -1789,4 +1789,12 @@ return [
     'estonia' => 'Estland',
     'StreetUnknownInfo' => 'Hvis gaten er ukjent',
     'StreetNumberUnknownInfo' => 'Hvis husnummeret er ukjent',
+    'quick_position_search' => 'Hurtigsøk etter stilling',
+    'quick_position_desc' => 'Begynn å skrive inn stillingstittelen, så fyller vi automatisk inn bransjen for deg.',
+    'search_position_placeholder' => 'Skriv inn f.eks. Sveiser, Sjåfør, Kokk...',
+    'no_position_found' => 'Ingen slik stilling ble funnet',
+    'loading' => 'Laster...',
+    'selected_position_info' => 'Valgt stilling: :position (:profession)',
+    'selectedPosition' => 'Valgt stilling',
+    'type_min_chars' => 'Begynn å skrive inn et navn (min. 2 tegn)...',
 ];

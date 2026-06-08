@@ -1813,4 +1813,12 @@ return [
     'estonia' => 'Էստոնիա',
     'StreetUnknownInfo' => 'Եթե փողոցը հայտնի չէ, մուտքագրեք «-»։',
     'StreetNumberUnknownInfo' => 'Եթե շենքի համարը հայտնի չէ, մուտքագրեք «-»։',
+    'quick_position_search' => 'Արագ հաստիքի որոնում',
+    'quick_position_desc' => 'Սկսեք մուտքագրել հաստիքի անվանումը, և մենք ավտոմատ կերպով կլրացնենք ոլորտը։',
+    'search_position_placeholder' => 'Մուտքագրեք, օրինակ՝ Եռակցող, Վարորդ, Խոհարար...',
+    'no_position_found' => 'Նման հաստիք չի գտնվել',
+    'loading' => 'Բեռնվում է...',
+    'selected_position_info' => 'Ընտրված հաստիք՝ :position (:profession)',
+    'selectedPosition' => 'Ընտրված հաստիք',
+    'type_min_chars' => 'Սկսեք մուտքագրել անվանումը (առնվազն 2 նիշ)...',
 ];

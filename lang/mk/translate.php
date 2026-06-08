@@ -1789,4 +1789,12 @@ return [
     'estonia' => 'Естонија',
     'StreetUnknownInfo' => 'Ако улицата не е позната',
     'StreetNumberUnknownInfo' => 'Ако бројот на зградата не е познат',
+    'quick_position_search' => 'Брзо пребарување на работна позиција',
+    'quick_position_desc' => 'Почнете да го внесувате називот на работната позиција, а ние автоматски ќе ја пополниме дејноста.',
+    'search_position_placeholder' => 'Внесете пр. Заварувач, Возач, Готвач...',
+    'no_position_found' => 'Не е пронајдена таква работна позиција',
+    'loading' => 'Се вчитува...',
+    'selected_position_info' => 'Избрана работна позиција: :position (:profession)',
+    'selectedPosition' => 'Избрана работна позиција',
+    'type_min_chars' => 'Почнете да внесувате назив (мин. 2 знаци)...',
 ];

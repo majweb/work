@@ -1796,4 +1796,12 @@ return [
     'estonia' => 'އެސްޓޯނިއާ',
     'StreetUnknownInfo' => 'މަގު އަންގައި ނުވާނަމަ "-" ލިޔުން.',
     'StreetNumberUnknownInfo' => 'އިމާރާތު ނަންބަރު އަންގައި ނުވާނަމަ "-" ލިޔުން.',
+    'quick_position_search' => 'އަވަސް މަޤާމު ހޯދުން',
+    'quick_position_desc' => 'މަޤާމުގެ ނަން ލިޔެލަން ފަށާށެވެ، އަދި އެ ކަމުގެ ދާއިރާ އަޅުގަނޑުމެން އޮޓޯމެޓިކްކޮށް ފުރާނެއެވެ.',
+    'search_position_placeholder' => 'މިސާލަކަށް: ވެލްޑަރ، ޑްރައިވަރ، ކުކް...',
+    'no_position_found' => 'މި މަޤާމު ނުފެނުނު',
+    'loading' => 'ލޯޑް ވަނީ...',
+    'selected_position_info' => 'ހޮވިފައިވާ މަޤާމު: :position (:profession)',
+    'selectedPosition' => 'ހޮވިފައިވާ މަޤާމު',
+    'type_min_chars' => 'ނަން ލިޔެލަން ފަށާށެވެ (މަދުވެގެން 2 އަކުރު)...',
 ];

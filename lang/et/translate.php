@@ -1551,4 +1551,12 @@ return [
     'estonia' => 'Eesti',
     'StreetUnknownInfo' => 'Kui tänav ei ole teada, sisestage "-".',
     'StreetNumberUnknownInfo' => 'Kui maja number ei ole teada, sisestage "-".',
+    'quick_position_search' => 'Kiire ametikoha otsing',
+    'quick_position_desc' => 'Alustage ametikoha nime sisestamist ja me täidame tegevusvaldkonna teie eest automaatselt.',
+    'search_position_placeholder' => 'Sisestage nt Keevitaja, Autojuht, Kokk...',
+    'no_position_found' => 'Sellist ametikohta ei leitud',
+    'loading' => 'Laadimine...',
+    'selected_position_info' => 'Valitud ametikoht: :position (:profession)',
+    'selectedPosition' => 'Valitud ametikoht',
+    'type_min_chars' => 'Alustage nime sisestamist (vähemalt 2 tähemärki)...',
 ];

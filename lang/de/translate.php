@@ -1798,4 +1798,12 @@ return [
     'estonia' => 'Estland',
     'StreetUnknownInfo' => 'Wenn die Straße unbekannt ist, geben Sie „-“ ein.',
     'StreetNumberUnknownInfo' => 'Wenn die Hausnummer unbekannt ist, geben Sie „-“ ein.',
+    'quick_position_search' => 'Schnelle Stellensuche',
+    'quick_position_desc' => 'Beginnen Sie mit der Eingabe der Stellenbezeichnung, und wir ergänzen die Branche automatisch für Sie.',
+    'search_position_placeholder' => 'Geben Sie z. B. Schweißer, Fahrer, Koch ein...',
+    'no_position_found' => 'Keine passende Stelle gefunden',
+    'loading' => 'Wird geladen...',
+    'selected_position_info' => 'Ausgewählte Stelle: :position (:profession)',
+    'selectedPosition' => 'Ausgewählte Stelle',
+    'type_min_chars' => 'Beginnen Sie mit der Eingabe des Namens (mind. 2 Zeichen)...',
 ];

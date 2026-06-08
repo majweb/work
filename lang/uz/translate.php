@@ -1814,4 +1814,12 @@ return [
     'estonia' => 'Estoniya',
     'StreetUnknownInfo' => 'Agar ko‘cha noma’lum bo‘lsa',
     'StreetNumberUnknownInfo' => 'Agar bino raqami noma’lum bo‘lsa',
+    'quick_position_search' => 'Tezkor lavozim qidiruvi',
+    'quick_position_desc' => 'Lavozim nomini yozishni boshlang, biz sohani siz uchun avtomatik ravishda to‘ldiramiz.',
+    'search_position_placeholder' => 'Masalan: Payvandchi, Haydovchi, Oshpaz...',
+    'no_position_found' => 'Bunday lavozim topilmadi',
+    'loading' => 'Yuklanmoqda...',
+    'selected_position_info' => 'Tanlangan lavozim: :position (:profession)',
+    'selectedPosition' => 'Tanlangan lavozim',
+    'type_min_chars' => 'Nomni yozishni boshlang (kamida 2 ta belgi)...',
 ];

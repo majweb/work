@@ -1939,4 +1939,12 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'If the street is unknown, enter "-".',
     'StreetNumberUnknownInfo' => 'If the building number is unknown, enter "-".',
+    'quick_position_search' => 'Quick Position Search',
+    'quick_position_desc' => 'Start typing the job title and we will automatically fill in the industry for you.',
+    'search_position_placeholder' => 'Enter e.g. Welder, Driver, Cook...',
+    'no_position_found' => 'No such position found',
+    'loading' => 'Loading...',
+    'selected_position_info' => 'Selected position: :position (:profession)',
+    'selectedPosition' => 'Selected position',
+    'type_min_chars' => 'Start typing a name (min. 2 characters)...',
 ];

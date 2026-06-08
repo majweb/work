@@ -1983,4 +1983,12 @@ return [
 'estonia' => 'Estonija',
 'StreetUnknownInfo' => 'Ako ulica nije poznata, unesite "-".',
 'StreetNumberUnknownInfo' => 'Ako broj zgrade nije poznat, unesite "-".',
+'quick_position_search' => 'Brza pretraga pozicije',
+'quick_position_desc' => 'Počnite unositi naziv pozicije, a mi ćemo automatski popuniti djelatnost za vas.',
+'search_position_placeholder' => 'Unesite npr. Zavarivač, Vozač, Kuhar...',
+'no_position_found' => 'Takva pozicija nije pronađena',
+'loading' => 'Učitavanje...',
+'selected_position_info' => 'Odabrana pozicija: :position (:profession)',
+'selectedPosition' => 'Odabrana pozicija',
+'type_min_chars' => 'Počnite unositi naziv (min. 2 znaka)...',
 ];

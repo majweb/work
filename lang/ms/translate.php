@@ -1789,4 +1789,12 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'Jika nama jalan tidak diketahui',
     'StreetNumberUnknownInfo' => 'Jika nombor bangunan tidak diketahui',
+    'quick_position_search' => 'Carian Jawatan Pantas',
+    'quick_position_desc' => 'Mula menaip nama jawatan dan kami akan melengkapkan bidang pekerjaan secara automatik untuk anda.',
+    'search_position_placeholder' => 'Masukkan contohnya: Jurukimpal, Pemandu, Tukang Masak...',
+    'no_position_found' => 'Jawatan tersebut tidak ditemui',
+    'loading' => 'Memuatkan...',
+    'selected_position_info' => 'Jawatan dipilih: :position (:profession)',
+    'selectedPosition' => 'Jawatan dipilih',
+    'type_min_chars' => 'Mula menaip nama (minimum 2 aksara)...',
 ];

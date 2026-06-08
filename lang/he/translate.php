@@ -1803,5 +1803,13 @@ return [
     'estonia' => 'אסטוניה',
     'StreetUnknownInfo' => 'אם הרחוב אינו ידוע',
     'StreetNumberUnknownInfo' => 'אם מספר הבניין אינו ידוע',
+    'quick_position_search' => 'חיפוש מהיר של משרה',
+    'quick_position_desc' => 'התחילו להקליד את שם המשרה ואנו נשלים עבורכם את תחום העיסוק באופן אוטומטי.',
+    'search_position_placeholder' => 'הקלידו למשל: רתך, נהג, טבח...',
+    'no_position_found' => 'לא נמצאה משרה כזו',
+    'loading' => 'טוען...',
+    'selected_position_info' => 'המשרה שנבחרה: :position (:profession)',
+    'selectedPosition' => 'המשרה שנבחרה',
+    'type_min_chars' => 'התחילו להקליד שם (לפחות 2 תווים)...',
 
 ];
