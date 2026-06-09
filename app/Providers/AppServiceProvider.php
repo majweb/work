@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -65,8 +66,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
 
+        Log::info(request()->getHost());
         if (
-            str_contains(request()->getHost(), 'crm.work4you.global') ||
+            str_contains(request()->getHost(), 'crm.') ||
             request()->is('logged/*') ||
             request()->is('projects/apply/*') ||
             request()->is('projects/apply') ||
