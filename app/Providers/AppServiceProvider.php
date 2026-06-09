@@ -65,7 +65,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
 
-        if (request()->is('logged/*') || request()->is('projects/apply/*') || request()->is('projects/apply') || request()->is('user/profile')) {
+        if (
+            request()->getHost() === 'crm.work4yuu.global' ||
+            request()->is('logged/*') ||
+            request()->is('projects/apply/*') ||
+            request()->is('projects/apply') ||
+            request()->is('user/profile')
+        ) {
             Config::set('inertia.ssr.enabled', false);
         }
 
