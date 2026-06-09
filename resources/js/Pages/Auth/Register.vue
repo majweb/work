@@ -128,6 +128,10 @@ const submit = () => {
                     window.dataLayer.push({
                         event: 'candidate_registered'
                     });
+                } else if (form.type === 'firm') {
+                    window.dataLayer.push({
+                        event: 'employer_registered'
+                    });
                 }
             }
         },
