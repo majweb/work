@@ -66,18 +66,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
 
-        Log::info('Headers Info', [
-            'x-forwarded-host' => request()->header('X-Forwarded-Host'),
-            'x-original-host' => request()->header('X-Original-Host'),
-            'server-name' => $_SERVER['SERVER_NAME'] ?? 'none',
-        ]);
-        if (
-            str_contains(request()->getHost(), 'crm.') ||
-            request()->is('logged/*') ||
-            request()->is('projects/apply/*') ||
-            request()->is('projects/apply') ||
-            request()->is('user/profile')
-        ) {
+        if (request()->is('logged/*') || request()->is('projects/apply/*') || request()->is('projects/apply') || request()->is('user/profile')) {
             Config::set('inertia.ssr.enabled', false);
         }
 

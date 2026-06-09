@@ -19,8 +19,7 @@ createServer(page =>
             const page = pages[path];
 
             if (!page) {
-                console.error(`[SSR Error] Page not found: ${path}`);
-                throw new Error(`Page not found: ${path}`);
+                return { default: { render: () => null } };
             }
 
             return page.default || page;
