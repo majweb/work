@@ -16,7 +16,7 @@ class UpdateArticleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return request()->user()->hasRole('firm');
+        return request()->user()->hasRole('firm') || request()->user()->hasRole('admin');
     }
 
     /**

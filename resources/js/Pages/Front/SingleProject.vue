@@ -332,6 +332,9 @@ onMounted(async () => {
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('projects.time') }}</p>
                                 <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
                                     {{ project.workLoad.allTranslations.name[usePage().props.language] }}
+                                    <span v-if="project.workLoad.value == 1">
+                                        {{ __('translate.etat') }}
+                                    </span>
                                 </p>
                             </div>
 

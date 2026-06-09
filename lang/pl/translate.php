@@ -1825,4 +1825,5 @@ return [
     'kraz' => 'Numer KRAZ',
     'kraz_placeholder' => 'Wprowadź numer KRAZ (1-6 cyfr)',
     'loading_details' => 'Wczytywanie szczegółów...',
+    'etat' => 'etat',
 ];

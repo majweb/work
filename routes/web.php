@@ -294,6 +294,8 @@ Route::middleware([
         Route::get('articles-accepts/create', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'create'])->name('articles-accepts.create');
         Route::post('articles-accepts', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'store'])->name('articles-accepts.store');
         Route::get('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'show'])->name('articles-accepts.show');
+        Route::get('articles-accepts/{article}/edit', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'edit'])->name('articles-accepts.edit');
+        Route::put('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'update'])->name('articles-accepts.update');
         Route::delete('articles-accepts/{article}', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'destroy'])->name('articles-accepts.destroy');
         Route::put('articles-accepts/{article}/accept', [\App\Http\Controllers\Admin\ArticleAcceptController::class, 'accept'])->name('articles-accepts.accept');
 
