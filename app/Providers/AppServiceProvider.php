@@ -66,11 +66,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
 
-        // W AppServiceProvider.php
-        Log::info('Current Request Info', [
-            'host' => request()->getHost(),
-            'url' => request()->fullUrl(),
-            'app_name' => config('app.name')
+        Log::info('Headers Info', [
+            'x-forwarded-host' => request()->header('X-Forwarded-Host'),
+            'x-original-host' => request()->header('X-Original-Host'),
+            'server-name' => $_SERVER['SERVER_NAME'] ?? 'none',
         ]);
         if (
             str_contains(request()->getHost(), 'crm.') ||
