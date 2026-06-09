@@ -118,7 +118,6 @@ const headerText = computed(() => {
         line4: __('translate.pracownika'),
     }
 })
-
 const submit = () => {
     form.post(route('register'), {
         onSuccess: () => {
