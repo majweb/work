@@ -1834,4 +1834,10 @@ return [
     'kraz' => 'KRAZ nömrəsi',
     'kraz_placeholder' => 'KRAZ nömrəsini daxil edin (1-6 rəqəm)',
     'loading_details' => 'Təfərrüatlar yüklənir...',
+    'etat' => 'ştat',
+    'missingPositionReported' => 'Təşəkkür edirik! Müraciətiniz administratora göndərildi.',
+    'throttle_position_report' => 'Çatışmayan vəzifəni hər 30 dəqiqədən bir dəfə bildirə bilərsiniz. :minutes dəqiqədən sonra yenidən cəhd edin.',
+    'not_found_position' => 'Vəzifəni tapa bilmədiniz? Bizə bildirin!',
+    'position_name_placeholder' => 'Çatışmayan vəzifənin adını daxil edin...',
+    'error_occurred' => 'Gözlənilməz xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.',
 ];

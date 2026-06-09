@@ -1825,4 +1825,10 @@ return [
     'kraz' => 'KRAZ编号',
     'kraz_placeholder' => '请输入KRAZ编号（1-6位数字）',
     'loading_details' => '正在加载详细信息...',
+    'etat' => '职位',
+    'missingPositionReported' => '谢谢！您的报告已发送给管理员。',
+    'throttle_position_report' => '您每30分钟只能报告一次缺失的职位。请在 :minutes 分钟后再试。',
+    'not_found_position' => '没有找到职位？请向我们报告！',
+    'position_name_placeholder' => '请输入缺失职位名称...',
+    'error_occurred' => '发生了意外错误。请重试。',
 ];

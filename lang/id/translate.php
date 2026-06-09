@@ -1824,4 +1824,10 @@ return [
     'kraz' => 'Nomor KRAZ',
     'kraz_placeholder' => 'Masukkan nomor KRAZ (1-6 digit)',
     'loading_details' => 'Memuat detail...',
+    'etat' => 'posisi',
+    'missingPositionReported' => 'Terima kasih! Laporan Anda telah dikirim ke administrator.',
+    'throttle_position_report' => 'Anda hanya bisa melaporkan posisi yang hilang sekali setiap 30 menit. Coba lagi dalam :minutes menit.',
+    'not_found_position' => 'Tidak menemukan posisi? Laporkan kepada kami!',
+    'position_name_placeholder' => 'Masukkan nama posisi yang hilang...',
+    'error_occurred' => 'Terjadi kesalahan yang tidak terduga. Silakan coba lagi.',
 ];

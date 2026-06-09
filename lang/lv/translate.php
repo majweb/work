@@ -1800,5 +1800,10 @@ return [
     'kraz' => 'KRAZ numurs',
     'kraz_placeholder' => 'Ievadiet KRAZ numuru (1-6 cipari)',
     'loading_details' => 'Notiek informācijas ielāde...',
-
+    'etat' => 'amata vieta',
+    'missingPositionReported' => 'Paldies! Jūsu ziņojums ir nosūtīts administratoram.',
+    'throttle_position_report' => 'Trūkstošo amatu var ziņot tikai reizi 30 minūtēs. Mēģiniet vēlreiz pēc :minutes minūtēm.',
+    'not_found_position' => 'Neatradāt amatu? Ziņojiet mums!',
+    'position_name_placeholder' => 'Ievadiet trūkstošā amata nosaukumu...',
+    'error_occurred' => 'Radās neparedzēta kļūda. Lūdzu, mēģiniet vēlreiz.',
 ];

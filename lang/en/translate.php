@@ -1950,4 +1950,10 @@ return [
     'kraz' => 'KRAZ number',
     'kraz_placeholder' => 'Enter KRAZ number (1-6 digits)',
     'loading_details' => 'Loading details...',
+    'etat' => 'job position',
+    'missingPositionReported' => 'Thank you! Your report has been sent to the administrator.',
+    'throttle_position_report' => 'You can report a missing position once every 30 minutes. Try again in :minutes min.',
+    'not_found_position' => 'Didn’t find the position? Report it to us!',
+    'position_name_placeholder' => 'Enter the name of the missing position...',
+    'error_occurred' => 'An unexpected error occurred. Please try again.',
 ];

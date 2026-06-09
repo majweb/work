@@ -1826,4 +1826,10 @@ return [
     'kraz' => 'KRAZ številka',
     'kraz_placeholder' => 'Vnesite KRAZ številko (1-6 števk)',
     'loading_details' => 'Nalaganje podrobnosti...',
+    'etat' => 'delovno mesto',
+    'missingPositionReported' => 'Hvala! Vaše poročilo je bilo poslano administratorju.',
+    'throttle_position_report' => 'Manjkajoče delovno mesto lahko prijavite le enkrat na 30 minut. Poskusite znova čez :minutes minut.',
+    'not_found_position' => 'Niste našli delovnega mesta? Prijavite nam ga!',
+    'position_name_placeholder' => 'Vnesite ime manjkajočega delovnega mesta...',
+    'error_occurred' => 'Prišlo je do nepričakovane napake. Prosimo, poskusite znova.',
 ];

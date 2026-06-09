@@ -3640,4 +3640,10 @@ return [
     'kraz' => 'Číslo KRAZ',
     'kraz_placeholder' => 'Zadejte číslo KRAZ (1–6 číslic)',
     'loading_details' => 'Načítání podrobností...',
+    'etat' => 'pracovní úvazek',
+    'missingPositionReported' => 'Děkujeme! Vaše hlášení bylo odesláno administrátorovi.',
+    'throttle_position_report' => 'Chybějící pracovní pozici můžete nahlásit jednou za 30 minut. Zkuste to znovu za :minutes min.',
+    'not_found_position' => 'Nenašli jste pracovní pozici? Nahlaste ji nám!',
+    'position_name_placeholder' => 'Zadejte název chybějící pracovní pozice...',
+    'error_occurred' => 'Došlo k neočekávané chybě. Zkuste to prosím znovu.',
 ];

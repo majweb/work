@@ -1814,5 +1814,11 @@ return [
     'kraz' => 'מספר KRAZ',
     'kraz_placeholder' => 'הזן מספר KRAZ (1-6 ספרות)',
     'loading_details' => 'טוען פרטים...',
+    'etat' => 'משרה',
+    'missingPositionReported' => 'תודה! הדיווח שלך נשלח למנהל.',
+    'throttle_position_report' => 'ניתן לדווח על משרה חסרה פעם אחת כל 30 דקות. נסה שוב בעוד :minutes דקות.',
+    'not_found_position' => 'לא מצאת משרה? דווח לנו!',
+    'position_name_placeholder' => 'הזן את שם המשרה החסרה...',
+    'error_occurred' => 'אירעה שגיאה בלתי צפויה. אנא נסה שוב.',
 
 ];

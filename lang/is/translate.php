@@ -1824,5 +1824,11 @@ return [
     'kraz' => 'KRAZ-númer',
     'kraz_placeholder' => 'Sláðu inn KRAZ-númer (1-6 tölustafir)',
     'loading_details' => 'Hleð upplýsingum...',
+    'etat' => 'starf',
+    'missingPositionReported' => 'Takk! Tilkynning þín hefur verið send til kerfisstjóra.',
+    'throttle_position_report' => 'Þú getur aðeins tilkynnt um vantar starf einu sinni á 30 mínútna fresti. Reyndu aftur eftir :minutes mín.',
+    'not_found_position' => 'Fannstu ekki starfið? Tilkynntu það til okkar!',
+    'position_name_placeholder' => 'Sláðu inn nafn á vantar starfi...',
+    'error_occurred' => 'Óvænt villa kom upp. Vinsamlegast reyndu aftur.',
 ];
 

@@ -1825,4 +1825,10 @@ return [
     'kraz' => 'KRAZ raqami',
     'kraz_placeholder' => 'KRAZ raqamini kiriting (1-6 ta raqam)',
     'loading_details' => 'Tafsilotlar yuklanmoqda...',
+    'etat' => 'lavozim',
+    'missingPositionReported' => 'Rahmat! Sizning xabaringiz administratorga yuborildi.',
+    'throttle_position_report' => 'Siz yetishmayotgan lavozim haqida faqat har 30 daqiqada bir marta xabar bera olasiz. :minutes daqiqadan so‘ng qayta urinib ko‘ring.',
+    'not_found_position' => 'Lavozimni topa olmadingizmi? Bizga xabar bering!',
+    'position_name_placeholder' => 'Yetishmayotgan lavozim nomini kiriting...',
+    'error_occurred' => 'Kutilmagan xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.',
 ];

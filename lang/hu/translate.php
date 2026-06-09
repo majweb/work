@@ -1825,4 +1825,10 @@ return [
     'kraz' => 'KRAZ szám',
     'kraz_placeholder' => 'Adja meg a KRAZ számot (1–6 számjegy)',
     'loading_details' => 'Részletek betöltése...',
+    'etat' => 'állás',
+    'missingPositionReported' => 'Köszönjük! A jelentésed elküldésre került a rendszergazdának.',
+    'throttle_position_report' => 'Hiányzó pozíciót 30 percenként egyszer lehet jelenteni. Próbáld újra :minutes perc múlva.',
+    'not_found_position' => 'Nem találtad a pozíciót? Jelentsd nekünk!',
+    'position_name_placeholder' => 'Írd be a hiányzó pozíció nevét...',
+    'error_occurred' => 'Váratlan hiba történt. Kérlek próbáld újra.',
 ];

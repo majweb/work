@@ -1826,4 +1826,10 @@ return [
     'kraz' => 'Número KRAZ',
     'kraz_placeholder' => 'Introduzca el número KRAZ (1-6 dígitos)',
     'loading_details' => 'Cargando detalles...',
+    'etat' => 'puesto de trabajo',
+    'missingPositionReported' => '¡Gracias! Tu informe ha sido enviado al administrador.',
+    'throttle_position_report' => 'Solo puedes reportar un puesto faltante una vez cada 30 minutos. Inténtalo de nuevo en :minutes min.',
+    'not_found_position' => '¿No encontraste el puesto? ¡Repórtalo!',
+    'position_name_placeholder' => 'Introduce el nombre del puesto faltante...',
+    'error_occurred' => 'Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.',
 ];

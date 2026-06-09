@@ -1822,4 +1822,10 @@ return [
     'kraz' => 'KRAZ番号',
     'kraz_placeholder' => 'KRAZ番号を入力してください（1〜6桁）',
     'loading_details' => '詳細を読み込み中...',
+    'etat' => '職位',
+    'missingPositionReported' => 'ありがとうございます！あなたの報告は管理者に送信されました。',
+    'throttle_position_report' => '欠員の報告は30分に1回のみ可能です。:minutes分後に再度お試しください。',
+    'not_found_position' => '職位が見つかりませんか？私たちに報告してください！',
+    'position_name_placeholder' => '欠員の職位名を入力してください…',
+    'error_occurred' => '予期しないエラーが発生しました。もう一度お試しください。',
 ];

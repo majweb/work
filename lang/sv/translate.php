@@ -1826,4 +1826,10 @@ return [
     'kraz' => 'KRAZ-nummer',
     'kraz_placeholder' => 'Ange KRAZ-nummer (1-6 siffror)',
     'loading_details' => 'Laddar detaljer...',
+    'etat' => 'tjänst',
+    'missingPositionReported' => 'Tack! Din rapport har skickats till administratören.',
+    'throttle_position_report' => 'Du kan bara rapportera en saknad tjänst en gång var 30:e minut. Försök igen om :minutes min.',
+    'not_found_position' => 'Hittade du inte tjänsten? Rapportera den till oss!',
+    'position_name_placeholder' => 'Ange namnet på den saknade tjänsten...',
+    'error_occurred' => 'Ett oväntat fel uppstod. Försök igen.',
 ];

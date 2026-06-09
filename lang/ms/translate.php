@@ -1800,4 +1800,10 @@ return [
     'kraz' => 'Nombor KRAZ',
     'kraz_placeholder' => 'Masukkan nombor KRAZ (1-6 digit)',
     'loading_details' => 'Memuatkan butiran...',
+    'etat' => 'jawatan',
+    'missingPositionReported' => 'Terima kasih! Laporan anda telah dihantar kepada pentadbir.',
+    'throttle_position_report' => 'Anda hanya boleh melaporkan jawatan yang hilang sekali setiap 30 minit. Sila cuba lagi dalam :minutes min.',
+    'not_found_position' => 'Tidak jumpa jawatan? Laporkan kepada kami!',
+    'position_name_placeholder' => 'Masukkan nama jawatan yang hilang...',
+    'error_occurred' => 'Ralat yang tidak dijangka telah berlaku. Sila cuba lagi.',
 ];

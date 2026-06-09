@@ -1808,4 +1808,10 @@ return [
     'kraz' => 'KRAZ 번호',
     'kraz_placeholder' => 'KRAZ 번호를 입력하세요 (1-6자리 숫자)',
     'loading_details' => '세부 정보를 불러오는 중...',
+    'etat' => '직무',
+    'missingPositionReported' => '감사합니다! 신고가 관리자에게 전송되었습니다.',
+    'throttle_position_report' => '누락된 직무는 30분에 한 번만 신고할 수 있습니다. :minutes분 후에 다시 시도하세요.',
+    'not_found_position' => '직무를 찾지 못하셨나요? 저희에게 알려주세요!',
+    'position_name_placeholder' => '누락된 직무 이름을 입력하세요...',
+    'error_occurred' => '예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.',
 ];

@@ -1804,4 +1804,10 @@ return [
     'kraz' => 'KRAZ-Nummer',
     'kraz_placeholder' => 'Gitt d’KRAZ-Nummer an (1-6 Zifferen)',
     'loading_details' => 'Detailer ginn gelueden...',
+    'etat' => 'Aarbechtspositioun',
+    'missingPositionReported' => 'Merci! Äre Bericht gouf un den Administrateur geschéckt.',
+    'throttle_position_report' => 'Dir kënnt eng fehlend Positioun nëmmen eemol all 30 Minutten mellen. Probéiert et nach eng Kéier no :minutes Minutten.',
+    'not_found_position' => 'Dir hutt d’Positioun net fonnt? Sot eis Bescheed!',
+    'position_name_placeholder' => 'Gitt de Numm vun der fehlender Positioun an...',
+    'error_occurred' => 'Et ass en onerwaarten Feeler geschitt. Probéiert et w.e.g. nach eng Kéier.',
 ];

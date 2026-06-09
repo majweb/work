@@ -1800,4 +1800,10 @@ return [
     'kraz' => 'KRAZ-nummer',
     'kraz_placeholder' => 'Voer het KRAZ-nummer in (1-6 cijfers)',
     'loading_details' => 'Details laden...',
+    'etat' => 'functie',
+    'missingPositionReported' => 'Bedankt! Je melding is naar de beheerder gestuurd.',
+    'throttle_position_report' => 'Je kunt een ontbrekende functie slechts eenmaal per 30 minuten melden. Probeer het opnieuw over :minutes minuten.',
+    'not_found_position' => 'Functie niet gevonden? Meld het ons!',
+    'position_name_placeholder' => 'Voer de naam van de ontbrekende functie in...',
+    'error_occurred' => 'Er is een onverwachte fout opgetreden. Probeer het opnieuw.',
 ];

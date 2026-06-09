@@ -1824,4 +1824,10 @@ return [
     'kraz' => 'KRAZ-numero',
     'kraz_placeholder' => 'Syötä KRAZ-numero (1–6 numeroa)',
     'loading_details' => 'Ladataan tietoja...',
+    'etat' => 'työpaikka',
+    'missingPositionReported' => 'Kiitos! Ilmoituksesi on lähetetty ylläpitäjälle.',
+    'throttle_position_report' => 'Voit ilmoittaa puuttuvasta työpaikasta kerran 30 minuutissa. Yritä uudelleen :minutes minuutin kuluttua.',
+    'not_found_position' => 'Etkö löytänyt työpaikkaa? Ilmoita siitä meille!',
+    'position_name_placeholder' => 'Syötä puuttuvan työpaikan nimi...',
+    'error_occurred' => 'Tapahtui odottamaton virhe. Yritä uudelleen.',
 ];

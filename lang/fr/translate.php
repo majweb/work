@@ -1824,4 +1824,10 @@ return [
     'kraz' => 'Numéro KRAZ',
     'kraz_placeholder' => 'Saisissez le numéro KRAZ (1 à 6 chiffres)',
     'loading_details' => 'Chargement des détails...',
+    'etat' => 'poste',
+    'missingPositionReported' => 'Merci ! Votre signalement a été envoyé à l’administrateur.',
+    'throttle_position_report' => 'Vous pouvez signaler un poste manquant une fois toutes les 30 minutes. Réessayez dans :minutes min.',
+    'not_found_position' => 'Vous n’avez pas trouvé le poste ? Signalez-le-nous !',
+    'position_name_placeholder' => 'Entrez le nom du poste manquant...',
+    'error_occurred' => 'Une erreur inattendue est survenue. Veuillez réessayer.',
 ];

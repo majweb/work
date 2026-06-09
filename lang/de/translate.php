@@ -1809,4 +1809,10 @@ return [
     'kraz' => 'KRAZ-nummer',
     'kraz_placeholder' => 'Indtast KRAZ-nummer (1-6 cifre)',
     'loading_details' => 'Indlæser detaljer...',
+    'etat' => 'Stelle',
+    'missingPositionReported' => 'Danke! Deine Meldung wurde an den Administrator gesendet.',
+    'throttle_position_report' => 'Du kannst eine fehlende Stelle nur einmal alle 30 Minuten melden. Versuche es in :minutes Min. erneut.',
+    'not_found_position' => 'Hast du die Stelle nicht gefunden? Melde sie uns!',
+    'position_name_placeholder' => 'Gib den Namen der fehlenden Stelle ein...',
+    'error_occurred' => 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.',
 ];

@@ -1833,5 +1833,11 @@ return [
     'kraz' => 'ԿՌԱԶ համար',
     'kraz_placeholder' => 'Մուտքագրեք ԿՌԱԶ համարը (1-6 թվանշան)',
     'loading_details' => 'Մանրամասները բեռնվում են...',
+    'etat' => 'ሙሉ ጊዜ',
+    'missingPositionReported' => 'እናመሰግናለን! ሪፖርትዎ ለአስተዳዳሪው ተልኳል።',
+    'throttle_position_report' => 'የጎደለ የስራ መደብን በ30 ደቂቃ ውስጥ አንድ ጊዜ ብቻ ማሳወቅ ይችላሉ። ከ :minutes ደቂቃ በኋላ እንደገና ይሞክሩ።',
+    'not_found_position' => 'የስራ መደቡን አላገኙትም? ያሳውቁን!',
+    'position_name_placeholder' => 'የጎደለውን የስራ መደብ ስም ያስገቡ...',
+    'error_occurred' => 'ያልተጠበቀ ስህተት ተከስቷል። እባክዎ እንደገና ይሞክሩ።',
 
 ];

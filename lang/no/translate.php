@@ -1800,4 +1800,10 @@ return [
     'kraz' => 'KRAZ-nummer',
     'kraz_placeholder' => 'Skriv inn KRAZ-nummer (1-6 sifre)',
     'loading_details' => 'Laster inn detaljer...',
+    'etat' => 'stilling',
+    'missingPositionReported' => 'Takk! Rapporten din er sendt til administrator.',
+    'throttle_position_report' => 'Du kan bare rapportere en manglende stilling én gang hver 30. minutt. Prøv igjen om :minutes minutter.',
+    'not_found_position' => 'Fann du ikke stillingen? Rapporter det til oss!',
+    'position_name_placeholder' => 'Skriv inn navnet på den manglende stillingen...',
+    'error_occurred' => 'En uventet feil oppstod. Vennligst prøv igjen.',
 ];

@@ -1562,4 +1562,10 @@ return [
     'kraz' => 'KRAZ number',
     'kraz_placeholder' => 'Sisestage KRAZ number (1–6 numbrit)',
     'loading_details' => 'Üksikasju laaditakse...',
+    'etat' => 'töökoht',
+    'missingPositionReported' => 'Aitäh! Teie teade on saadetud administraatorile.',
+    'throttle_position_report' => 'Saate puuduvat ametikohta teatada üks kord iga 30 minuti järel. Proovige uuesti :minutes minuti pärast.',
+    'not_found_position' => 'Ei leidnud ametikohta? Teatage sellest meile!',
+    'position_name_placeholder' => 'Sisestage puuduva ametikoha nimi...',
+    'error_occurred' => 'Ilmnes ootamatu viga. Palun proovige uuesti.',
 ];

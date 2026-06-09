@@ -1824,4 +1824,10 @@ return [
     'kraz' => 'KRAZ नंबर',
     'kraz_placeholder' => 'KRAZ नंबर दर्ज करें (1-6 अंक)',
     'loading_details' => 'विवरण लोड हो रहे हैं...',
+    'etat' => 'पद',
+    'missingPositionReported' => 'धन्यवाद! आपकी रिपोर्ट प्रशासक को भेज दी गई है।',
+    'throttle_position_report' => 'आप किसी गायब पद की रिपोर्ट हर 30 मिनट में केवल एक बार कर सकते हैं। :minutes मिनट बाद फिर से प्रयास करें।',
+    'not_found_position' => 'पद नहीं मिला? हमें इसकी रिपोर्ट करें!',
+    'position_name_placeholder' => 'गायब पद का नाम दर्ज करें...',
+    'error_occurred' => 'एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।',
 ];

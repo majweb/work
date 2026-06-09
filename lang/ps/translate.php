@@ -1826,4 +1826,10 @@ return [
     'kraz' => 'د KRAZ شمېره',
     'kraz_placeholder' => 'د KRAZ شمېره دننه کړئ (۱-۶ عددونه)',
     'loading_details' => 'جزئیات بارېږي...',
+    'etat' => 'دنده',
+    'missingPositionReported' => 'مننه! ستاسو راپور مدیر ته واستول شو.',
+    'throttle_position_report' => 'تاسو کولی شئ د ورک شوي دندې راپور یوازې هر ۳۰ دقیقو کې یو ځل ورکړئ. :minutes دقیقې وروسته بیا هڅه وکړئ.',
+    'not_found_position' => 'دنده مو ونه موندله؟ موږ ته یې راپور کړئ!',
+    'position_name_placeholder' => 'د ورک شوې دندې نوم دننه کړئ...',
+    'error_occurred' => 'یوه ناڅاپي تېروتنه رامنځته شوه. مهرباني وکړئ بیا هڅه وکړئ.',
 ];

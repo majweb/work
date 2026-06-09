@@ -1826,4 +1826,10 @@ return [
     'kraz' => 'Număr KRAZ',
     'kraz_placeholder' => 'Introduceți numărul KRAZ (1-6 cifre)',
     'loading_details' => 'Se încarcă detaliile...',
+    'etat' => 'post',
+    'missingPositionReported' => 'Mulțumim! Raportul tău a fost trimis administratorului.',
+    'throttle_position_report' => 'Poți raporta o poziție lipsă o dată la 30 de minute. Încearcă din nou peste :minutes min.',
+    'not_found_position' => 'Nu ai găsit poziția? Raporteaz-o către noi!',
+    'position_name_placeholder' => 'Introdu numele poziției lipsă...',
+    'error_occurred' => 'A apărut o eroare neașteptată. Te rugăm să încerci din nou.',
 ];

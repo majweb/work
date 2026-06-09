@@ -1826,4 +1826,10 @@ return [
     'kraz' => 'Numri KRAZ',
     'kraz_placeholder' => 'Shkruani numrin KRAZ (1-6 shifra)',
     'loading_details' => 'Duke u ngarkuar detajet...',
+    'etat' => 'pozicion pune',
+    'missingPositionReported' => 'Faleminderit! Raporti juaj është dërguar te administratori.',
+    'throttle_position_report' => 'Mund të raportoni një pozicion që mungon vetëm një herë çdo 30 minuta. Provoni përsëri pas :minutes minutash.',
+    'not_found_position' => 'Nuk e gjetët pozicionin? Na e raportoni!',
+    'position_name_placeholder' => 'Shkruani emrin e pozicionit që mungon...',
+    'error_occurred' => 'Ndodhi një gabim i papritur. Ju lutemi provoni përsëri.',
 ];

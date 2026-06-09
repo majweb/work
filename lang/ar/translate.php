@@ -1999,5 +1999,11 @@ return [
     'kraz' => 'رقم KRAZ',
     'kraz_placeholder' => 'أدخل رقم KRAZ (من 1 إلى 6 أرقام)',
     'loading_details' => 'جارٍ تحميل التفاصيل...',
+    'etat' => 'دوام كامل',
+    'missingPositionReported' => 'شكرًا لك! تم إرسال بلاغك إلى المسؤول.',
+    'throttle_position_report' => 'يمكنك الإبلاغ عن وظيفة مفقودة مرة واحدة كل 30 دقيقة. يرجى المحاولة مرة أخرى بعد :minutes دقيقة.',
+    'not_found_position' => 'لم تجد الوظيفة؟ أبلغنا بها!',
+    'position_name_placeholder' => 'أدخل اسم الوظيفة المفقودة...',
+    'error_occurred' => 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
 
 ];

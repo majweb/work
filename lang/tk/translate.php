@@ -1825,4 +1825,10 @@ return [
     'kraz' => 'KRAZ belgisi',
     'kraz_placeholder' => 'KRAZ belgisini giriziň (1-6 san)',
     'loading_details' => 'Jikme-jiklikler ýüklenýär...',
+    'etat' => 'wezipä',
+    'missingPositionReported' => 'Sag boluň! Hasabatyňyz dolandyryja ugradyldy.',
+    'throttle_position_report' => 'Siz ýitip giden wezipäni diňe 30 minutda bir gezek habar berip bilersiňiz. :minutes minutdan soň gaýtadan synanyşyň.',
+    'not_found_position' => 'Wezipäni tapmadyňyzmy? Bize habar beriň!',
+    'position_name_placeholder' => 'Ýitip giden wezipäniň adyny giriziň...',
+    'error_occurred' => 'Kütleşilmän garaşylmadyk näsazlyk ýüze çykdy. Gaýtadan synanyşyň.',
 ];

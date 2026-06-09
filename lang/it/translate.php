@@ -1823,4 +1823,10 @@ return [
     'kraz' => 'Numero KRAZ',
     'kraz_placeholder' => 'Inserisci il numero KRAZ (1-6 cifre)',
     'loading_details' => 'Caricamento dei dettagli...',
+    'etat' => 'posizione lavorativa',
+    'missingPositionReported' => 'Grazie! La tua segnalazione è stata inviata all’amministratore.',
+    'throttle_position_report' => 'Puoi segnalare una posizione mancante una volta ogni 30 minuti. Riprova tra :minutes minuti.',
+    'not_found_position' => 'Non hai trovato la posizione? Segnalacelo!',
+    'position_name_placeholder' => 'Inserisci il nome della posizione mancante...',
+    'error_occurred' => 'Si è verificato un errore imprevisto. Per favore riprova.',
 ];

@@ -1829,4 +1829,10 @@ return [
     'kraz' => 'KRAZ numarası',
     'kraz_placeholder' => 'KRAZ numarasını girin (1-6 rakam)',
     'loading_details' => 'Ayrıntılar yükleniyor...',
+    'etat' => 'pozisyon',
+    'missingPositionReported' => 'Teşekkürler! Raporunuz yöneticye gönderildi.',
+    'throttle_position_report' => 'Eksik bir pozisyonu yalnızca 30 dakikada bir bildirebilirsiniz. :minutes dakika sonra tekrar deneyin.',
+    'not_found_position' => 'Pozisyonu bulamadınız mı? Bize bildirin!',
+    'position_name_placeholder' => 'Eksik pozisyonun adını girin...',
+    'error_occurred' => 'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.',
 ];

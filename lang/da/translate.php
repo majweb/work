@@ -1817,4 +1817,10 @@ return [
     'kraz' => 'KRAZ-nummer',
     'kraz_placeholder' => 'Indtast KRAZ-nummer (1-6 cifre)',
     'loading_details' => 'Indlæser detaljer...',
+    'etat' => 'stilling',
+    'missingPositionReported' => 'Tak! Din rapport er sendt til administratoren.',
+    'throttle_position_report' => 'Du kan kun rapportere en manglende stilling én gang hvert 30. minut. Prøv igen om :minutes min.',
+    'not_found_position' => 'Fandt du ikke stillingen? Rapportér den til os!',
+    'position_name_placeholder' => 'Indtast navnet på den manglende stilling...',
+    'error_occurred' => 'Der opstod en uventet fejl. Prøv venligst igen.',
 ];

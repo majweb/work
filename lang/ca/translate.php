@@ -1794,5 +1794,11 @@ return [
     'kraz' => 'Número KRAZ',
     'kraz_placeholder' => 'Introduïu el número KRAZ (1-6 dígits)',
     'loading_details' => 'S’estan carregant els detalls...',
+    'etat' => 'lloc de treball',
+    'missingPositionReported' => 'Gràcies! El teu informe ha estat enviat a l’administrador.',
+    'throttle_position_report' => 'Pots informar d’un lloc de treball que falta una vegada cada 30 minuts. Torna-ho a intentar d’aquí a :minutes min.',
+    'not_found_position' => 'No has trobat el lloc de treball? Informa’ns-en!',
+    'position_name_placeholder' => 'Introdueix el nom del lloc de treball que falta...',
+    'error_occurred' => 'S’ha produït un error inesperat. Torna-ho a intentar, si us plau.',
 
 ];

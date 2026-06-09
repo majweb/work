@@ -1801,5 +1801,11 @@ return [
     'kraz' => 'KRAZ numeris',
     'kraz_placeholder' => 'Įveskite KRAZ numerį (1–6 skaitmenys)',
     'loading_details' => 'Įkeliama išsami informacija...',
+    'etat' => 'pareigos',
+    'missingPositionReported' => 'Ačiū! Jūsų pranešimas buvo išsiųstas administratoriui.',
+    'throttle_position_report' => 'Apie trūkstamas pareigas galite pranešti tik kartą per 30 minučių. Bandykite dar kartą po :minutes min.',
+    'not_found_position' => 'Neradote pareigų? Praneškite mums!',
+    'position_name_placeholder' => 'Įveskite trūkstamų pareigų pavadinimą...',
+    'error_occurred' => 'Įvyko netikėta klaida. Bandykite dar kartą.',
 ];
 
