@@ -109,6 +109,27 @@
                                     </Link>
                                 </div>
 
+                                <!-- Brakujące stanowiska -->
+                                <div class="flex flex-col justify-between p-8 rounded-[2.5rem] border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 transition-all group relative overflow-hidden">
+                                    <div class="flex items-start justify-between mb-6 relative">
+                                        <div class="h-12 w-12 rounded-xl bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/10 transition-all">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 text-white">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                            </svg>
+                                        </div>
+                                        <span class="text-4xl font-black text-[#0A2C5C] tracking-tight transition-transform">{{ countMissingPositions }}</span>
+                                    </div>
+                                    <p class="text-[10px] font-black text-[#0A2C5C]/60 mb-8 uppercase tracking-widest leading-relaxed relative">
+                                        Brakujące<br/><span class="text-orange-500">Stanowiska</span>
+                                    </p>
+                                    <Link
+                                        :href="route('dashboard')"
+                                        class="w-full text-center rounded-xl bg-[#0A2C5C] py-4 text-[10px] font-black text-white shadow-lg shadow-blue-900/10 hover:bg-[#00a0e3] transition-all uppercase tracking-widest relative overflow-hidden group/btn"
+                                    >
+                                        <span class="relative z-10">SPRAWDŹ</span>
+                                    </Link>
+                                </div>
+
                                 <!-- Social Media Promotion -->
                                 <div class="flex flex-col justify-between p-8 rounded-[2.5rem] border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl hover:shadow-blue-900/5 transition-all group relative overflow-hidden">
                                     <div class="flex items-start justify-between mb-6 relative">
@@ -224,6 +245,7 @@ const props = defineProps({
     countBanners: { type: Number, default: 0 },
     countArticles: { type: Number, default: 0 },
     countSocialMedia: { type: Number, default: 0 },
+    countMissingPositions: { type: Number, default: 0 },
     stats: {
         type: Object,
         default: () => ({})
@@ -249,6 +271,7 @@ const isQueueEmpty = computed(() => {
         props.countBanners === 0 &&
         props.countArticles === 0 &&
         props.countSocialMedia === 0 &&
+        props.countMissingPositions === 0 &&
         (!props.queue || props.queue.length === 0);
 });
 

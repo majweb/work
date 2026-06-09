@@ -35,7 +35,14 @@ const hasNotifications = computed(() => notificationCount.value > 0);
                     <div v-for="notification in usePage().props.notifications_mini" :key="notification.id"
                          class="p-3 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
                         <p class="text-xs font-bold text-gray-900 leading-tight">{{ __(notification.data.title || 'translate.newNotification', notification.data) || __('translate.notification') }}</p>
-                        <p class="text-[10px] text-gray-500 mt-0.5 line-clamp-2" v-html="__(notification.data.message, { ...notification.data, id: notification.data.aplication || notification.data.id })"></p>
+                        <p class="text-[10px] text-gray-500 mt-0.5 line-clamp-2">
+                            <template v-if="notification.data.type === 'missing_position'">
+                                {{ notification.data.content }}
+                            </template>
+                            <template v-else>
+                                <span v-html="__(notification.data.message, { ...notification.data, id: notification.data.aplication || notification.data.id })"></span>
+                            </template>
+                        </p>
                     </div>
                 </div>
 

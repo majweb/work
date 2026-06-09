@@ -166,6 +166,7 @@ Route::middleware([
     Route::get('/projects/all-positions', [ProjectController::class, 'getAllPositions'])->name('projects.all-positions');
     Route::get('/projects/search-positions', [ProjectController::class, 'searchPositions'])->name('projects.search-positions');
     Route::get('/projects/category-details/{category}', [ProjectController::class, 'getCategoryDetails'])->name('projects.category-details');
+    Route::post('/projects/report-missing-position', [ProjectController::class, 'reportMissingPosition'])->name('projects.report-missing');
     Route::resource('projects', ProjectController::class)->middleware('role:firm');
     Route::post('projects/{project}/toggle-active', [ProjectController::class, 'toggleActive'])->middleware('role:firm')->name('projects.toggle-active');
     Route::get('projects/{project}/generator', [ProjectController::class, 'generatorData'])->middleware('role:firm|recruit')->name('projects.generator');

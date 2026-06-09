@@ -27,6 +27,7 @@ class DashboardController extends Controller
         $countBanners = Banner::where('active_admin', 0)->count();
         $countArticles = Article::where('active_admin', 0)->count();
         $countSocialMedia = ChangeProduct::where('product_id', 11)->where('qty', '>', 0)->count();
+        $countMissingPositions = auth()->user()->notifications()->where('data->type', 'missing_position')->whereNull('read_at')->count();
 
         // Helper to get stats for periods
         $getPeriodStats = function ($model, $days = 7, $sumColumn = null) {
@@ -340,6 +341,9 @@ class DashboardController extends Controller
                     } elseif ($data['type'] === 'recruit_created') {
                         $title = "Firma {$data['creator_name']} dodała rekrutera: ".$data['user_name'];
                         $icon = 'R';
+                    } elseif ($data['type'] === 'missing_position') {
+                        $title = "Zgłoszono brakujące stanowisko: ".$data['content'];
+                        $icon = 'T';
                     }
 
                     if ($title) {
@@ -356,6 +360,7 @@ class DashboardController extends Controller
                 'countBanners' => $countBanners,
                 'countArticles' => $countArticles,
                 'countSocialMedia' => $countSocialMedia,
+                'countMissingPositions' => $countMissingPositions,
                 'stats' => [
                     'newCompanies' => [
                         'value' => $firmStats['total'],
@@ -412,6 +417,12 @@ class DashboardController extends Controller
                     'text' => 'Masz '.$countSocialMedia.' nowych zgłoszeń promocji w social media.',
                 ];
             }
+            if ($countMissingPositions > 0) {
+                $adminData['alerts'][] = [
+                    'level' => 'info',
+                    'text' => 'Masz '.$countMissingPositions.' zgłoszeń brakujących stanowisk.',
+                ];
+            }
         }
 
         $adminBanner = AdminBanner::where('is_active', true)->latest()->first();
@@ -435,6 +446,7 @@ class DashboardController extends Controller
             'countBanners' => $countBanners,
             'countArticles' => $countArticles,
             'countSocialMedia' => $countSocialMedia ?? 0,
+            'countMissingPositions' => $countMissingPositions,
             'otherAplications' => $otherAplications,
             'notifications' => $notifications,
             'packages' => $packages,

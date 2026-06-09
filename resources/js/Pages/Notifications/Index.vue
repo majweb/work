@@ -25,20 +25,31 @@ const formatNotification = (notification) => {
     if (!data) return { title: __('translate.unknownNotification'), message: '' };
 
     // Jeśli dane zawierają gotowy tytuł (nie klucz tłumaczenia), używamy go bezpośrednio
-    if (data.type === 'user_registered' || data.type === 'recruit_created') {
+    if (data.type === 'user_registered' || data.type === 'recruit_created' || data.type === 'missing_position') {
         let title = '';
+        let message = '';
+
         if (data.type === 'user_registered') {
             const roleName = data.role === 'worker' ? 'pracownik' : 'firma';
             title = `Zarejestrowano nowego użytkownika (${roleName}): ${data.user_name}`;
         } else if (data.type === 'recruit_created') {
             title = `Firma ${data.creator_name} dodała rekrutera: ${data.user_name}`;
+        } else if (data.type === 'missing_position') {
+            title = data.title || 'Zgłoszono brakujące stanowisko';
+            message = data.content || '';
+            return {
+                title: title,
+                message: message,
+                action: null,
+                actionUrl: null
+            };
         }
 
         return {
             title: title,
-            message: '',
+            message: message,
             action: null,
-            actionUrl: null
+            actionUrl: data.url || null
         };
     }
 

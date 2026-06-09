@@ -1,6 +1,6 @@
 <script setup>
 
-import {useForm, Link, usePage} from '@inertiajs/vue3';
+import {useForm, Link, usePage, router} from '@inertiajs/vue3';
 
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -69,6 +69,36 @@ const removeLang = (index) => {
 const currentStep = ref(1);
 const totalSteps = 3; // Zmieniono na 3 kroki
 const isValidating = ref(false);
+
+const isReporting = ref(false);
+const missingName = ref('');
+const statusMessage = ref('');
+const isError = ref(false);
+const isLoading = ref(false);
+
+const submitMissingPosition = () => {
+    if (!missingName.value) return;
+
+    isLoading.value = true;
+    isError.value = false;
+    statusMessage.value = '';
+
+    router.post(route('projects.report-missing'), {
+        position_name: missingName.value
+    }, {
+        preserveScroll: true,
+        onSuccess: () => {
+            missingName.value = '';
+            setTimeout(() => isReporting.value = false, 3000);
+        },
+        onError: () => {
+            isError.value = true;
+        },
+        onFinish: () => {
+            isLoading.value = false;
+        }
+    });
+};
 
 const validateStep = async (step) => {
     form.clearErrors();
@@ -942,6 +972,33 @@ onMounted(() => {
                                                     </div>
                                                 </template>
                                             </multiselect>
+                                            <div class="mt-3">
+                                                <button @click="isReporting = !isReporting" type="button" class="text-[10px] font-black text-blue-200 hover:text-white uppercase tracking-widest transition-colors flex items-center gap-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
+                                                    {{ __('translate.not_found_position') }}
+                                                </button>
+
+                                                <div v-if="isReporting" class="mt-3 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 animate-fade-in">
+                                                    <div class="flex gap-2">
+                                                        <input
+                                                            v-model="missingName"
+                                                            type="text"
+                                                            class="flex-1 bg-white/10 border-2 border-white/10 rounded-xl px-3 py-2 text-xs font-bold !text-blue-200 placeholder:text-blue-200 focus:border-[#00a0e3] focus:ring-0 outline-none transition-all"
+                                                            :placeholder="__('translate.position_name_placeholder')"
+                                                        >
+                                                        <button
+                                                            @click="submitMissingPosition"
+                                                            :disabled="isLoading || !missingName"
+                                                            class="bg-[#00a0e3] text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-400 disabled:opacity-50 transition-all shadow-lg shadow-blue-500/20"
+                                                        >
+                                                            {{ isLoading ? '...' : __('translate.support_send') }}
+                                                        </button>
+                                                    </div>
+                                                    <p v-if="statusMessage" class="mt-2 text-[10px] font-black uppercase tracking-widest" :class="isError ? 'text-red-400' : 'text-green-400'">
+                                                        {{ statusMessage }}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

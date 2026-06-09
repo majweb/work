@@ -12,11 +12,14 @@ use App\Models\Category;
 use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\User;
+use App\Notifications\SystemActivityNotification;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\RateLimiter;
 
 class ProjectController extends Controller
 {
@@ -925,5 +928,41 @@ class ProjectController extends Controller
         $backRoute = auth()->user()->hasRole('recruit') ? 'project-recruits.index' : 'projects.index';
 
         return to_route($backRoute);
+    }
+
+    public function reportMissingPosition(Request $request)
+    {
+        $user = auth()->user();
+        $key = 'report-missing-position:'.$user->id;
+
+        if (RateLimiter::tooManyAttempts($key, 1)) {
+            $seconds = RateLimiter::availableIn($key);
+            $minutes = ceil($seconds / 60);
+
+            session()->flash('flash.banner', __('translate.throttle_position_report', ['minutes' => $minutes]));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return back();
+        }
+
+        $validated = $request->validate([
+            'position_name' => 'required|string|max:255',
+        ]);
+
+        $admins = User::role('admin')->get();
+
+        Notification::send($admins, new SystemActivityNotification([
+            'type' => 'missing_position',
+            'title' => 'Zgłoszono brakujące stanowisko',
+            'content' => $validated['position_name'],
+            'user_name' => $user->name,
+        ]));
+
+        RateLimiter::hit($key, 1800);
+
+        session()->flash('flash.banner', __('translate.missingPositionReported'));
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
     }
 }
