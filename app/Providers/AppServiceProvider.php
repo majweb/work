@@ -66,7 +66,12 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Comment::class, CommentPolicy::class);
         Gate::policy(Tag::class, TagPolicy::class);
 
-        Log::info(request()->getHost());
+        // W AppServiceProvider.php
+        Log::info('Current Request Info', [
+            'host' => request()->getHost(),
+            'url' => request()->fullUrl(),
+            'app_name' => config('app.name')
+        ]);
         if (
             str_contains(request()->getHost(), 'crm.') ||
             request()->is('logged/*') ||
