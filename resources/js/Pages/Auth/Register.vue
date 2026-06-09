@@ -121,6 +121,16 @@ const headerText = computed(() => {
 
 const submit = () => {
     form.post(route('register'), {
+        onSuccess: () => {
+            if (typeof window !== 'undefined') {
+                window.dataLayer = window.dataLayer || [];
+                if (form.type === 'worker') {
+                    window.dataLayer.push({
+                        event: 'candidate_registered'
+                    });
+                }
+            }
+        },
         onFinish: () => form.reset('password', 'password_confirmation'),
     })
 }
