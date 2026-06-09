@@ -66,7 +66,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Tag::class, TagPolicy::class);
 
         if (
-            str_contains(request()->getHost(), 'crm.work4yuu.global') ||
+            str_contains(request()->getHost(), 'crm.work4you.global') ||
             request()->is('logged/*') ||
             request()->is('projects/apply/*') ||
             request()->is('projects/apply') ||
