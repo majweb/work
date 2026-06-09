@@ -20,7 +20,7 @@ createServer(page =>
 
             if (!page) {
                 console.error(`[SSR Error] Page not found: ${path}`);
-                // throw new Error(`Page not found: ${path}`);
+                throw new Error(`Page not found: ${path}`);
             }
 
             return page.default || page;
