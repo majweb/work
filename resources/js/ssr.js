@@ -23,7 +23,8 @@ createServer(page =>
                 // Używamy funkcji render, która zwraca pusty div (h('div')).
                 return {
                     default: {
-                        render: () => h('div')
+                        render: () => h('div'),
+                        component: {}
                     }
                 };
             }
