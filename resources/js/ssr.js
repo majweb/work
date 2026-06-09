@@ -19,8 +19,13 @@ createServer(page =>
             const page = pages[path];
 
             if (!page) {
-                console.error(`[SSR Error] Page not found: ${path}`);
-                throw new Error(`Page not found: ${path}`);
+                // Zamiast null, zwracamy minimalny, poprawny komponent Vue.
+                // Używamy funkcji render, która zwraca pusty div (h('div')).
+                return {
+                    default: {
+                        render: () => h('div')
+                    }
+                };
             }
 
             return page.default || page;
