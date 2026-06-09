@@ -1154,17 +1154,17 @@ onMounted(async () => {
                                                 </button>
 
                                                 <div v-if="isReporting" class="mt-3 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 animate-fade-in">
-                                                    <div class="flex gap-2">
+                                                    <div class="flex flex-col sm:flex-row gap-2">
                                                         <input
                                                             v-model="missingName"
                                                             type="text"
-                                                            class="flex-1 bg-white/10 border-2 border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-blue-200 placeholder-white focus:border-[#00a0e3] focus:ring-0 outline-none transition-all"
+                                                            class="flex-1 bg-white/10 border-2 border-white/10 rounded-xl px-3 py-2 text-xs font-bold !text-blue-200 placeholder:text-blue-200 focus:border-[#00a0e3] focus:ring-0 outline-none transition-all"
                                                             :placeholder="__('translate.position_name_placeholder')"
                                                         >
                                                         <button
                                                             @click="submitMissingPosition"
                                                             :disabled="isLoading || !missingName"
-                                                            class="bg-[#00a0e3] text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-400 disabled:opacity-50 transition-all shadow-lg shadow-blue-500/20"
+                                                            class="bg-[#00a0e3] text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-400 disabled:opacity-50 transition-all shadow-lg shadow-blue-500/20 whitespace-nowrap"
                                                         >
                                                             {{ isLoading ? '...' : __('translate.support_send') }}
                                                         </button>
