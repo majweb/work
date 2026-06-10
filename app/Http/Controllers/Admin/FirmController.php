@@ -365,9 +365,7 @@ class FirmController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
-        $user->loadCount(['transactions', 'invoice']);
-
-        if ($user->transactions_count > 0 || $user->invoice_count > 0) {
+        if (\App\Models\Transaction::where('user_id', $user->id)->exists() || \App\Models\Invoice::where('user_id', $user->id)->exists()) {
             return back()->with('flash.banner', 'Nie można usunąć firmy, która posiada transakcje lub faktury.')->with('flash.bannerStyle', 'danger');
         }
 
