@@ -8,7 +8,7 @@ import NavLink from "@/Components/NavLink.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import { ref, computed, watch, onMounted } from "vue";
 import __ from "@/lang.js";
-import CookieConsent from '@/Components/CookieConsent.vue';
+// import CookieConsent from '@/Components/CookieConsent.vue';
 import { usePermission } from "@/Composables/usePermission";
 
 const props = defineProps({
@@ -780,7 +780,7 @@ const socialLinks = [
                 </div>
             </div>
         </footer>
-        <CookieConsent />
+<!--        <CookieConsent />-->
     </div>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
