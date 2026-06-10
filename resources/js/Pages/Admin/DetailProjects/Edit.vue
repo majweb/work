@@ -87,7 +87,7 @@ const submit = () => {
 <template>
     <AppLayout title="Edytuj obowiązek">
         <div class="py-12 bg-gray-50/50 min-h-screen">
-            <div class="w-full mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-[1200px] mx-auto sm:px-6 lg:px-8">
                 <!-- Header Section -->
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10 mb-8">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
@@ -256,7 +256,10 @@ const submit = () => {
         &__option {
             @apply text-[10px] py-4 px-6 font-black uppercase tracking-widest border-b border-gray-50 last:border-none;
             &--highlight { @apply bg-[#0A2C5C] text-white; }
-            &--selected { @apply bg-blue-50 text-[#0A2C5C]; }
+            &--selected {
+                @apply bg-blue-50 text-[#0A2C5C];
+                &.multiselect__option--highlight { @apply bg-[#0A2C5C] text-white; }
+            }
         }
         &__tag {
             @apply bg-[#00AEEF] text-white rounded-lg text-[10px] font-black uppercase tracking-widest px-3 py-1 mr-2 mb-1 flex items-center gap-1;

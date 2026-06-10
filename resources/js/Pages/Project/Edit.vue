@@ -1543,12 +1543,12 @@ onMounted(async () => {
                         </div>
 
                         <!-- Przyciski nawigacji -->
-                        <div class="flex justify-end mt-12 pt-8 border-t border-gray-100">
+                        <div class="flex flex-col md:flex-row md:justify-end items-center gap-4 mt-12 pt-8 border-t border-gray-100">
                             <button
                                 type="button"
                                 @click="nextStep"
                                 :disabled="isValidating"
-                                class="inline-flex items-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                             >
                                 <svg v-if="isValidating" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -1886,11 +1886,11 @@ onMounted(async () => {
                         </div>
 
                         <!-- Przyciski nawigacji -->
-                        <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-100">
+                        <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-4 mt-12 pt-8 border-t border-gray-100">
                             <button
                                 type="button"
                                 @click="prevStep"
-                                class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400 shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
+                                class="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-100 bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400 shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
                             >
                                 <span class="text-lg leading-none">←</span>
                                 {{ __('translate.previous') }}
@@ -1899,7 +1899,7 @@ onMounted(async () => {
                                 type="button"
                                 @click="nextStep"
                                 :disabled="isValidating"
-                                class="inline-flex items-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
+                                class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#0A2C5C] text-white text-[10px] font-black rounded-2xl uppercase tracking-widest hover:bg-[#00a0e3] shadow-lg shadow-blue-900/20 transition-all hover:-translate-y-0.5 disabled:opacity-50"
                             >
                                 <svg v-if="isValidating" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -2311,11 +2311,11 @@ onMounted(async () => {
                         </div>
 
                         <!-- Przyciski nawigacji i submit -->
-                        <div class="flex justify-between items-center mt-12 pt-8 border-t border-gray-100">
+                        <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-4 mt-12 pt-8 border-t border-gray-100">
                             <button
                                 type="button"
                                 @click="prevStep"
-                                class="inline-flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400 shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
+                                class="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-100 bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-gray-400 shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
                             >
                                 <span class="text-lg leading-none">←</span>
                                 {{ __('translate.previous') }}
@@ -2324,7 +2324,7 @@ onMounted(async () => {
                                 type="submit"
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
-                                class="!inline-flex !items-center !px-10 !py-4 !bg-[#0A2C5C] !text-white !text-[10px] !font-black !rounded-2xl !uppercase !tracking-widest !hover:bg-[#00a0e3] !shadow-lg !shadow-blue-900/20 !transition-all !hover:-translate-y-0.5"
+                                class="!w-full md:!w-auto !inline-flex !items-center !justify-center !px-10 !py-4 !bg-[#0A2C5C] !text-white !text-[10px] !font-black !rounded-2xl !uppercase !tracking-widest !hover:bg-[#00a0e3] !shadow-lg !shadow-blue-900/20 !transition-all !hover:-translate-y-0.5"
                             >
                                 <spinner-action :process="form.processing">{{__('translate.update')}}</spinner-action>
                             </PrimaryButton>

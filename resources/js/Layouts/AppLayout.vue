@@ -180,10 +180,10 @@ onUnmounted(()=>{
         ><button
             @click="showSupportDrawer = true"
             :title="__('translate.support_tickets')"
-            class="group flex items-center gap-0 hover:gap-3 p-4 hover:px-6 bg-[#0A2C5C] hover:bg-[#00a0e3] text-white rounded-full shadow-2xl shadow-blue-900/30 transition-all duration-500 hover:scale-110 active:scale-95 border-4 border-white"
+            class="group flex items-center gap-0 hover:gap-3 p-3 hover:px-5 bg-[#0A2C5C] hover:bg-[#00a0e3] text-white rounded-full shadow-2xl shadow-blue-900/30 transition-all duration-500 hover:scale-110 active:scale-95 border-4 border-white"
         >
             <div class="relative flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 transition-transform duration-500 group-hover:rotate-12">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-transform duration-500 group-hover:rotate-12">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                 </svg>
                 <span class="absolute -top-1 -right-1 flex h-3 w-3">
@@ -850,15 +850,15 @@ onUnmounted(()=>{
 
             <div
                 v-if="hasRole('firm') && countCart > 0 && !route().current('buy.detail')"
-                class="fixed bottom-24 right-6 z-[60]"
+                class="fixed bottom-20 right-6 z-[60]"
             >
                 <Link
                     :href="route('buy.detail')"
                     :title="__('translate.cart')"
-                    class="group flex items-center gap-0 hover:gap-3 p-4 hover:px-6 bg-[#00aaff] hover:bg-[#00a0e3] text-white rounded-full shadow-2xl shadow-blue-900/30 transition-all duration-500 hover:scale-110 active:scale-95 border-4 border-white overflow-hidden"
+                    class="group flex items-center gap-0 hover:gap-3 p-3 hover:px-5 bg-[#00aaff] hover:bg-[#00a0e3] text-white rounded-full shadow-2xl shadow-blue-900/30 transition-all duration-500 hover:scale-110 active:scale-95 border-4 border-white overflow-hidden"
                 >
                     <div class="relative flex-shrink-0 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 transition-transform duration-500 group-hover:rotate-12">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-transform duration-500 group-hover:rotate-12">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                         </svg>
                         <span class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center bg-red-500 text-[10px] font-black rounded-full border-2 border-white shadow-sm transition-transform group-hover:scale-110">
