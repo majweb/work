@@ -26,6 +26,21 @@ const isLoading = ref(false);
 const translations = ref(props.translate || {});
 
 const { getPositionTitle } = useProjectHelpers();
+const page = usePage();
+
+const getFlagCode = (langCode) => {
+    const mapping = {
+        'en': 'gb', 'sq': 'al', 'el': 'gr', 'hy': 'am', 'zh': 'cn',
+        'ja': 'jp', 'ko': 'kr', 'cs': 'cz', 'da': 'dk', 'et': 'ee',
+        'sv': 'se', 'uk': 'ua', 'vi': 'vn', 'tk': 'tm', 'tg': 'tj',
+        'si': 'lk', 'sl': 'si', 'sr': 'rs', 'ps': 'af', 'ne': 'np',
+        'ms': 'my', 'lb': 'lu', 'km': 'kh', 'ca': 'es-ct', 'dz': 'bt',
+        'bs': 'ba', 'my': 'mm', 'be': 'by', 'bn': 'bd', 'ar': 'sa',
+        'am': 'et', 'fa': 'ir', 'dv': 'mv', 'lo': 'la', 'ka': 'ge',
+        'he': 'il', 'hi': 'in'
+    };
+    return mapping[langCode] || langCode;
+};
 
 const previewImage = computed(() => {
     return selectedImage.value || props.universalImage;
@@ -73,12 +88,17 @@ watch(selectedLang, () => {
     loadImages();
 });
 
-const langOptions = props.availableLangs.map(lang => ({
-    value: lang,
-    name: lang.toUpperCase()
-}));
+const langOptions = computed(() => {
+    const allLangs = page.props.languages || [];
+    return allLangs
+        .filter(l => props.availableLangs.includes(l.value))
+        .map(l => ({
+            ...l,
+            searchString: Object.values(l.allLabels || {}).join(' ').toLowerCase() + ' ' + l.label.toLowerCase() + ' ' + l.value.toLowerCase()
+        }));
+});
 
-const selectedLangOption = ref(langOptions.find(o => o.value === selectedLang.value) || null);
+const selectedLangOption = ref(langOptions.value.find(o => o.value === selectedLang.value) || null);
 
 watch(selectedLangOption, (newVal) => {
     selectedLang.value = newVal ? newVal.value : null;
@@ -91,9 +111,9 @@ watch(selectedLangOption, (newVal) => {
         <div class="py-12 bg-gray-50/50 min-h-screen px-2 sm:px-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-10">
-                    <div class="flex justify-between items-center">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-0">
                         <div>
-                            <h3 class="text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
+                            <h3 class="text-xl sm:text-2xl font-black text-[#0A2C5C] uppercase tracking-tight">
                                 {{ __('translate.linkGenerator') }}
                             </h3>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
@@ -102,10 +122,13 @@ watch(selectedLangOption, (newVal) => {
                                 {{ getPositionTitle(project) }}
                                 </strong>
                             </p>
+                            <p class="text-[9px] font-medium text-gray-400 uppercase tracking-wider mt-2 max-w-xl leading-relaxed">
+                                {{ __('translate.generator_desc') }}
+                            </p>
                         </div>
                         <Link
                             :href="route(backRoute)"
-                            class="inline-flex items-center px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
+                            class="w-full sm:w-auto justify-center inline-flex items-center px-10 py-4 bg-white border border-gray-100 text-gray-500 text-[10px] font-black rounded-2xl uppercase tracking-widest shadow-sm hover:bg-gray-50 transition-all hover:-translate-y-0.5"
                         >
                             {{ __('translate.back') }}
                         </Link>
@@ -124,13 +147,27 @@ watch(selectedLangOption, (newVal) => {
                                     v-model="selectedLangOption"
                                     :options="langOptions"
                                     track-by="value"
-                                    label="name"
+                                    label="searchString"
                                     :placeholder="__('translate.select')"
-                                    :selectLabel="__('translate.selectLabel')"
-                                    :selectedLabel="__('translate.selectedLabel')"
-                                    :deselectLabel="__('translate.deselectLabel')"
+                                    :selectLabel="''"
+                                    :selectedLabel="''"
+                                    :deselectLabel="''"
                                     class="custom-multiselect"
                                 >
+                                    <template #singleLabel="{ option }">
+                                        <div class="flex items-center gap-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
+                                            <span>{{ option.allLabels[option.value] || option.label }}</span>
+                                        </div>
+                                    </template>
+
+                                    <template #option="{ option }">
+                                        <div class="flex items-center gap-2">
+                                            <span :class="'fi fi-' + getFlagCode(option.value) + ' fis'"></span>
+                                            <span>{{ option.allLabels[option.value] || option.label }}</span>
+                                        </div>
+                                    </template>
+
                                     <template #noResult>
                                         <span>{{ __('translate.noOptions') }}</span>
                                     </template>

@@ -197,7 +197,12 @@ const resetLang = (data) => router.post(route('front.language.store', { language
 const sortLangs = computed(() => {
     let langs = page.props.languages || [];
 
-    return [...langs].sort((a, b) => a.label.localeCompare(b.label));
+    return [...langs]
+        .map(l => ({
+            ...l,
+            searchString: Object.values(l.allLabels || {}).join(' ').toLowerCase() + ' ' + l.label.toLowerCase() + ' ' + l.value.toLowerCase()
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label));
 });
 
 const getFlagCode = (langCode) => {
@@ -363,7 +368,7 @@ const socialLinks = [
                         <Multiselect
                             v-model="lang"
                             :options="sortLangs"
-                            label="label"
+                            label="searchString"
                             track-by="value"
                             @select="dispatchAction"
                             :placeholder="__('translate.placeholder')"
