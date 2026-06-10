@@ -450,7 +450,7 @@ const socialLinks = [
                 <div class="relative w-full lg:max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto overscroll-contain">
                     <div class="p-8 border-b border-gray-50 flex items-center justify-between sticky top-0 bg-white z-10">
                         <Link href="/" @click="closeMenu">
-                            <img src="/images/logo-horizontal.png" class="h-8 w-auto" :alt="__('translate.logo')" />
+                            <img src="/images/logo-horizontal.png" class="h-5 w-auto" :alt="__('translate.logo')" />
                         </Link>
                         <button @click="closeMenu" class="p-2.5 rounded-2xl bg-gray-50 text-gray-400 hover:text-red-600 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
