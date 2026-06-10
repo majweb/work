@@ -1800,5 +1800,5 @@ return [
     'not_found_position' => 'No has trobat el lloc de treball? Informa’ns-en!',
     'position_name_placeholder' => 'Introdueix el nom del lloc de treball que falta...',
     'error_occurred' => 'S’ha produït un error inesperat. Torna-ho a intentar, si us plau.',
-
+    'generator_desc' => 'Quan comparteixes un enllaç a les xarxes socials es mostra una imatge de previsualització. Aquí pots triar una de les 8 imatges que hem preparat, que es mostraran juntament amb el teu enllaç a Facebook, LinkedIn i altres plataformes. Això fa que les teves publicacions siguin més atractives i ajudin a captar l’atenció del públic més fàcilment.',
 ];

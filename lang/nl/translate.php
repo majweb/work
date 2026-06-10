@@ -1806,4 +1806,5 @@ return [
     'not_found_position' => 'Functie niet gevonden? Meld het ons!',
     'position_name_placeholder' => 'Voer de naam van de ontbrekende functie in...',
     'error_occurred' => 'Er is een onverwachte fout opgetreden. Probeer het opnieuw.',
+    'generator_desc' => 'Wanneer je een link deelt op sociale media wordt een voorbeeldafbeelding weergegeven. Hier kun je een van de 8 door ons voorbereide afbeeldingen kiezen, die samen met je link wordt getoond op Facebook, LinkedIn en andere platforms. Dit maakt je berichten aantrekkelijker en helpt om de aandacht van het publiek gemakkelijker te trekken.',
 ];

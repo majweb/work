@@ -1830,4 +1830,5 @@ return [
     'not_found_position' => 'Etkö löytänyt työpaikkaa? Ilmoita siitä meille!',
     'position_name_placeholder' => 'Syötä puuttuvan työpaikan nimi...',
     'error_occurred' => 'Tapahtui odottamaton virhe. Yritä uudelleen.',
+    'generator_desc' => 'Kun jaat linkin sosiaalisessa mediassa, näytetään esikatselukuva. Täältä voit valita yhden kahdeksasta valmiiksi tekemästämme kuvasta, joka näytetään linkkisi yhteydessä Facebookissa, LinkedInissä ja muilla alustoilla. Tämä tekee julkaisuistasi houkuttelevampia ja auttaa kiinnittämään yleisön huomion helpommin.',
 ];

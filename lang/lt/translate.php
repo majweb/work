@@ -1807,5 +1807,6 @@ return [
     'not_found_position' => 'Neradote pareigų? Praneškite mums!',
     'position_name_placeholder' => 'Įveskite trūkstamų pareigų pavadinimą...',
     'error_occurred' => 'Įvyko netikėta klaida. Bandykite dar kartą.',
+    'generator_desc' => 'Bendrinant nuorodą socialiniuose tinkluose, rodoma peržiūros nuotrauka. Čia galite pasirinkti vieną iš 8 mūsų paruoštų nuotraukų, kuri bus rodoma kartu su jūsų nuoroda Facebook, LinkedIn ir kitose platformose. Tai padaro jūsų įrašus patrauklesnius ir padeda lengviau patraukti auditorijos dėmesį.',
 ];
 

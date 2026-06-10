@@ -1956,4 +1956,5 @@ return [
     'not_found_position' => 'Didn’t find the position? Report it to us!',
     'position_name_placeholder' => 'Enter the name of the missing position...',
     'error_occurred' => 'An unexpected error occurred. Please try again.',
+    'generator_desc' => 'When you share a link on social media, a preview image is displayed. Here you can choose one of the 8 images we have prepared, which will be shown together with your link on Facebook, LinkedIn and other platforms. This makes your posts more attractive and helps them easily capture the attention of your audience.',
 ];

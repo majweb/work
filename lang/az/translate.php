@@ -1840,4 +1840,5 @@ return [
     'not_found_position' => 'Vəzifəni tapa bilmədiniz? Bizə bildirin!',
     'position_name_placeholder' => 'Çatışmayan vəzifənin adını daxil edin...',
     'error_occurred' => 'Gözlənilməz xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.',
+    'generator_desc' => 'Sosial şəbəkələrdə link paylaşdıqdan sonra önizləmə şəkli göstərilir. Burada Facebook, LinkedIn və digər platformalarda linkinizlə birlikdə göstəriləcək 8 hazırlanmış şəkildən birini seçə bilərsiniz. Bu, paylaşımlarınızı daha cəlbedici edir və izləyicilərin diqqətini daha asan cəlb etməyə kömək edir.',
 ];

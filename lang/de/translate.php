@@ -1815,4 +1815,5 @@ return [
     'not_found_position' => 'Hast du die Stelle nicht gefunden? Melde sie uns!',
     'position_name_placeholder' => 'Gib den Namen der fehlenden Stelle ein...',
     'error_occurred' => 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.',
+    'generator_desc' => 'Wenn du einen Link in sozialen Medien teilst, wird ein Vorschaubild angezeigt. Hier kannst du eines der 8 von uns vorbereiteten Bilder auswählen, das zusammen mit deinem Link auf Facebook, LinkedIn und anderen Plattformen angezeigt wird. Dadurch werden deine Beiträge ansprechender und ziehen die Aufmerksamkeit der Nutzer leichter auf sich.',
 ];

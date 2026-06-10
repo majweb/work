@@ -1806,4 +1806,5 @@ return [
     'not_found_position' => 'Tidak jumpa jawatan? Laporkan kepada kami!',
     'position_name_placeholder' => 'Masukkan nama jawatan yang hilang...',
     'error_occurred' => 'Ralat yang tidak dijangka telah berlaku. Sila cuba lagi.',
+    'generator_desc' => 'Apabila anda berkongsi pautan di media sosial, imej pratonton akan dipaparkan. Di sini anda boleh memilih salah satu daripada 8 imej yang telah kami sediakan, yang akan dipaparkan bersama pautan anda di Facebook, LinkedIn dan platform lain. Ini menjadikan siaran anda lebih menarik dan membantu menarik perhatian audiens dengan lebih mudah.',
 ];

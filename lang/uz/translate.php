@@ -1831,4 +1831,5 @@ return [
     'not_found_position' => 'Lavozimni topa olmadingizmi? Bizga xabar bering!',
     'position_name_placeholder' => 'Yetishmayotgan lavozim nomini kiriting...',
     'error_occurred' => 'Kutilmagan xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.',
+    'generator_desc' => 'Ijtimoiy tarmoqlarda havola ulashilganda oldindan ko‘rish rasmi ko‘rsatiladi. Bu yerda siz biz tayyorlagan 8 ta rasmdan birini tanlashingiz mumkin, u Facebook, LinkedIn va boshqa platformalarda havolangiz bilan birga ko‘rsatiladi. Bu sizning postlaringizni yanada jozibador qiladi va auditoriya e’tiborini osonroq jalb etishga yordam beradi.',
 ];

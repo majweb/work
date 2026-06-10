@@ -1830,4 +1830,5 @@ return [
     'not_found_position' => 'Tidak menemukan posisi? Laporkan kepada kami!',
     'position_name_placeholder' => 'Masukkan nama posisi yang hilang...',
     'error_occurred' => 'Terjadi kesalahan yang tidak terduga. Silakan coba lagi.',
+    'generator_desc' => 'Saat membagikan tautan di media sosial, gambar pratinjau akan ditampilkan. Di sini Anda dapat memilih salah satu dari 8 gambar yang telah kami siapkan, yang akan ditampilkan bersama tautan Anda di Facebook, LinkedIn, dan platform lainnya. Hal ini membuat postingan Anda lebih menarik dan membantu menarik perhatian audiens dengan lebih mudah.',
 ];

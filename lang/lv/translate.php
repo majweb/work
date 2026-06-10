@@ -1806,4 +1806,5 @@ return [
     'not_found_position' => 'Neatradāt amatu? Ziņojiet mums!',
     'position_name_placeholder' => 'Ievadiet trūkstošā amata nosaukumu...',
     'error_occurred' => 'Radās neparedzēta kļūda. Lūdzu, mēģiniet vēlreiz.',
+    'generator_desc' => 'Kad kopīgojat saiti sociālajos tīklos, tiek parādīts priekšskatījuma attēls. Šeit varat izvēlēties vienu no 8 mūsu sagatavotajiem attēliem, kas tiks rādīts kopā ar jūsu saiti Facebook, LinkedIn un citās platformās. Tas padara jūsu ierakstus pievilcīgākus un palīdz vieglāk piesaistīt auditorijas uzmanību.',
 ];

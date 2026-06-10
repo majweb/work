@@ -1835,4 +1835,5 @@ return [
     'not_found_position' => 'Pozisyonu bulamadınız mı? Bize bildirin!',
     'position_name_placeholder' => 'Eksik pozisyonun adını girin...',
     'error_occurred' => 'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.',
+    'generator_desc' => 'Sosyal medyada bir bağlantı paylaştığınızda önizleme görseli görüntülenir. Burada Facebook, LinkedIn ve diğer platformlarda bağlantınızla birlikte gösterilecek olan, bizim hazırladığımız 8 görselden birini seçebilirsiniz. Bu, paylaşımlarınızı daha çekici hale getirir ve kitlenizin dikkatini daha kolay çekmenize yardımcı olur.',
 ];

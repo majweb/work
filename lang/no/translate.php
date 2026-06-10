@@ -1806,4 +1806,5 @@ return [
     'not_found_position' => 'Fann du ikke stillingen? Rapporter det til oss!',
     'position_name_placeholder' => 'Skriv inn navnet på den manglende stillingen...',
     'error_occurred' => 'En uventet feil oppstod. Vennligst prøv igjen.',
+    'generator_desc' => 'Når du deler en lenke på sosiale medier vises et forhåndsvisningsbilde. Her kan du velge ett av de 8 bildene vi har forberedt, som vil vises sammen med lenken din på Facebook, LinkedIn og andre plattformer. Dette gjør innleggene dine mer attraktive og hjelper med å fange publikums oppmerksomhet lettere.',
 ];

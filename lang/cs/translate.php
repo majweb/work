@@ -3646,4 +3646,5 @@ return [
     'not_found_position' => 'Nenašli jste pracovní pozici? Nahlaste ji nám!',
     'position_name_placeholder' => 'Zadejte název chybějící pracovní pozice...',
     'error_occurred' => 'Došlo k neočekávané chybě. Zkuste to prosím znovu.',
+    'generator_desc' => 'Po sdílení odkazu na sociálních sítích se zobrazí náhledový obrázek. Zde si můžete vybrat jeden z 8 námi připravených obrázků, který se bude zobrazovat spolu s vaším odkazem na Facebooku, LinkedIn a dalších platformách. Díky tomu jsou vaše příspěvky atraktivnější a snáze přitahují pozornost publika.',
 ];
