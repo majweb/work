@@ -489,6 +489,12 @@ const createProject = () => {
         errorBag: 'createProject',
         preserveScroll: true,
         onSuccess: () => {
+            if (typeof window !== 'undefined') {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'job_post_created'
+                });
+            }
             form.reset();
         },
         onError: () => {
