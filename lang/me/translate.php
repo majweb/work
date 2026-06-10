@@ -1789,7 +1789,7 @@ return [
     'estonia' => 'Estonija',
     'StreetUnknownInfo' => 'Ako ulica nije poznata',
     'StreetNumberUnknownInfo' => 'Ako broj zgrade nije poznat',
-    'quick_position_search' => 'Brza pretraga pozicije',
+    'quick_position_search' => 'Pretraži naziv pozicije',
     'quick_position_desc' => 'Počnite unositi naziv pozicije, a mi ćemo automatski popuniti djelatnost za vas.',
     'search_position_placeholder' => 'Unesite npr. Zavarivač, Vozač, Kuvar...',
     'no_position_found' => 'Takva pozicija nije pronađena',

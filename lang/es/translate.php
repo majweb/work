@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'Si la calle no es conocida, introduzca "-".',
     'StreetNumberUnknownInfo' => 'Si el número del edificio no es conocido, introduzca "-".',
-    'quick_position_search' => 'Búsqueda rápida de puesto',
+    'quick_position_search' => 'Buscar nombre del puesto',
     'quick_position_desc' => 'Empiece a escribir el nombre del puesto y completaremos automáticamente el sector por usted.',
     'search_position_placeholder' => 'Escriba, por ejemplo: Soldador, Conductor, Cocinero...',
     'no_position_found' => 'No se encontró ese puesto',

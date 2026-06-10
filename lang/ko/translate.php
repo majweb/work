@@ -1797,7 +1797,7 @@ return [
     'estonia' => '에스토니아',
     'StreetUnknownInfo' => '도로를 알 수 없는 경우',
     'StreetNumberUnknownInfo' => '건물 번호를 알 수 없는 경우',
-    'quick_position_search' => '빠른 직무 검색',
+    'quick_position_search' => '직책명 검색',
     'quick_position_desc' => '직무명을 입력하기 시작하면 해당 업종을 자동으로 입력해 드립니다.',
     'search_position_placeholder' => '예: 용접공, 운전기사, 요리사...',
     'no_position_found' => '해당 직무를 찾을 수 없습니다',

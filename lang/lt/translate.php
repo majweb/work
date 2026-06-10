@@ -1790,7 +1790,7 @@ return [
     'estonia' => 'Estija',
     'StreetUnknownInfo' => 'Jei gatvė nežinoma',
     'StreetNumberUnknownInfo' => 'Jei pastato numeris nežinomas',
-    'quick_position_search' => 'Greita pareigų paieška',
+    'quick_position_search' => 'Ieškoti pareigų pavadinimo',
     'quick_position_desc' => 'Pradėkite rašyti pareigų pavadinimą, o mes automatiškai užpildysime veiklos sritį.',
     'search_position_placeholder' => 'Įveskite pvz.: Suvirintojas, Vairuotojas, Virėjas...',
     'no_position_found' => 'Tokia pareigybė nerasta',

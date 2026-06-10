@@ -1813,7 +1813,7 @@ return [
     'estonia' => 'Էստոնիա',
     'StreetUnknownInfo' => 'Jika nama jalan tidak diketahui, masukkan "-".',
     'StreetNumberUnknownInfo' => 'Jika nomor bangunan tidak diketahui, masukkan "-".',
-    'quick_position_search' => 'Pencarian Posisi Cepat',
+    'quick_position_search' => 'Cari nama posisi',
     'quick_position_desc' => 'Mulailah mengetik nama posisi, dan kami akan mengisi bidang industri secara otomatis untuk Anda.',
     'search_position_placeholder' => 'Masukkan misalnya: Tukang Las, Sopir, Juru Masak...',
     'no_position_found' => 'Posisi tersebut tidak ditemukan',

@@ -1813,7 +1813,7 @@ return [
     'estonia' => 'Estonie',
     'StreetUnknownInfo' => 'Si la rue est inconnue, saisissez "-".',
     'StreetNumberUnknownInfo' => 'Si le numéro du bâtiment est inconnu, saisissez "-".',
-    'quick_position_search' => 'Recherche rapide de poste',
+    'quick_position_search' => 'Rechercher un intitulé de poste',
     'quick_position_desc' => 'Commencez à saisir l’intitulé du poste et nous compléterons automatiquement le secteur pour vous.',
     'search_position_placeholder' => 'Saisissez par ex. Soudeur, Chauffeur, Cuisinier...',
     'no_position_found' => 'Aucun poste correspondant trouvé',

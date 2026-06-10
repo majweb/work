@@ -1814,7 +1814,7 @@ return [
     'estonia' => 'Estoniýa',
     'StreetUnknownInfo' => 'Eger köçe belli bolmasa',
     'StreetNumberUnknownInfo' => 'Eger bina belgisi belli bolmasa',
-    'quick_position_search' => 'Çalt wezipe gözlegi',
+    'quick_position_search' => 'Wezipesiniň adyny gözläň',
     'quick_position_desc' => 'Wezipäniň adyny ýazyp başlaň, biz pudagy siziň üçin awtomatiki doldurarys.',
     'search_position_placeholder' => 'Mysal üçin: Kebşirleýji, Sürüji, Aşpez...',
     'no_position_found' => 'Şeýle wezipe tapylmady',

@@ -1793,7 +1793,7 @@ return [
     'estonia' => 'Estland',
     'StreetUnknownInfo' => 'Wann d\'Strooss onbekannt ass',
     'StreetNumberUnknownInfo' => 'Wann d’Hausnummer onbekannt ass',
-    'quick_position_search' => 'Schnell Sich no enger Positioun',
+    'quick_position_search' => 'Numm vun der Positioun sichen',
     'quick_position_desc' => 'Fänkt un den Numm vun der Positioun anzeginn, a mir ergänzen automatesch d’Branche fir Iech.',
     'search_position_placeholder' => 'Gitt z. B. Schweißer, Chauffer, Kach an...',
     'no_position_found' => 'Keng entspriechend Positioun fonnt',

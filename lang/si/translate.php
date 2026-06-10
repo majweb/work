@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'එස්තෝනියාව',
     'StreetUnknownInfo' => 'වීථිය නොදන්නා නම්',
     'StreetNumberUnknownInfo' => 'ගොඩනැගිලි අංකය නොදන්නා නම්',
-    'quick_position_search' => 'ඉක්මන් රැකියා තනතුරු සෙවීම',
+    'quick_position_search' => 'තනතුරේ නම සොයන්න',
     'quick_position_desc' => 'රැකියා තනතුරේ නම ටයිප් කිරීම ආරම්භ කරන්න, අපි ඔබ වෙනුවෙන් ක්ෂේත්‍රය ස්වයංක්‍රීයව පුරවන්නෙමු.',
     'search_position_placeholder' => 'උදාහරණයක් ලෙස: වෙල්ඩර්, රියදුරු, අරක්කැමියා...',
     'no_position_found' => 'එවැනි රැකියා තනතුරක් හමු නොවීය',

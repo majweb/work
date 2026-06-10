@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'Естонија',
     'StreetUnknownInfo' => 'Ako ulica nije poznata',
     'StreetNumberUnknownInfo' => 'Ako broj zgrade nije poznat',
-    'quick_position_search' => 'Брза претрага радног места',
+    'quick_position_search' => 'Претражи назив позиције',
     'quick_position_desc' => 'Почните да уносите назив радног места, а ми ћемо аутоматски попунити област делатности.',
     'search_position_placeholder' => 'Унесите нпр. Заваривач, Возач, Кувар...',
     'no_position_found' => 'Такво радно место није пронађено',

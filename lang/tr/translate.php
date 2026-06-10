@@ -1818,7 +1818,7 @@ return [
     'estonia' => 'Estonya',
     'StreetUnknownInfo' => 'Sokak bilinmiyorsa',
     'StreetNumberUnknownInfo' => 'Bina numarası bilinmiyorsa',
-    'quick_position_search' => 'Hızlı Pozisyon Arama',
+    'quick_position_search' => 'Pozisyon adını ara',
     'quick_position_desc' => 'Pozisyon adını yazmaya başlayın, sektör bilgisini sizin için otomatik olarak dolduralım.',
     'search_position_placeholder' => 'Örn. Kaynakçı, Sürücü, Aşçı...',
     'no_position_found' => 'Böyle bir pozisyon bulunamadı',

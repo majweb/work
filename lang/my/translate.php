@@ -1796,7 +1796,7 @@ return [
     'estonia' => 'အက်စ်တိုးနီးယား',
     'StreetUnknownInfo' => 'လမ်းအမည်မသိပါက',
     'StreetNumberUnknownInfo' => 'အဆောက်အဦးနံပါတ်မသိပါက',
-    'quick_position_search' => 'အလုပ်ရာထူး အမြန်ရှာဖွေရန်',
+    'quick_position_search' => 'ရာထူးအမည် ရှာဖွေရန်',
     'quick_position_desc' => 'အလုပ်ရာထူးအမည်ကို စတင်ရိုက်ထည့်ပါ၊ ကျွန်ုပ်တို့က လုပ်ငန်းကဏ္ဍကို အလိုအလျောက် ဖြည့်ပေးပါမည်။',
     'search_position_placeholder' => 'ဥပမာ - ဂဟေဆော်သူ၊ ယာဉ်မောင်း၊ စားဖိုမှူး...',
     'no_position_found' => 'ဤအလုပ်ရာထူးကို မတွေ့ရှိပါ',

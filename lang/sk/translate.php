@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'Estónsko',
     'StreetUnknownInfo' => 'Ak ulica nie je známa',
     'StreetNumberUnknownInfo' => 'Ak číslo budovy nie je známe',
-    'quick_position_search' => 'Rýchle vyhľadávanie pozície',
+    'quick_position_search' => 'Vyhľadať názov pozície',
     'quick_position_desc' => 'Začnite písať názov pozície a my za vás automaticky doplníme odvetvie.',
     'search_position_placeholder' => 'Zadajte napr. Zvárač, Vodič, Kuchár...',
     'no_position_found' => 'Takáto pozícia nebola nájdená',

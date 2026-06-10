@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'Estonija',
     'StreetUnknownInfo' => 'Če ulica ni znana',
     'StreetNumberUnknownInfo' => 'Če številka stavbe ni znana',
-    'quick_position_search' => 'Hitro iskanje delovnega mesta',
+    'quick_position_search' => 'Poišči naziv delovnega mesta',
     'quick_position_desc' => 'Začnite vnašati naziv delovnega mesta, mi pa bomo namesto vas samodejno dopolnili panogo.',
     'search_position_placeholder' => 'Vnesite npr. Varilec, Voznik, Kuhar...',
     'no_position_found' => 'Takšno delovno mesto ni bilo najdeno',

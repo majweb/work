@@ -1806,7 +1806,7 @@ return [
     'estonia' => 'Estland',
     'StreetUnknownInfo' => 'Hvis gaden ikke er kendt,',
     'StreetNumberUnknownInfo' => 'Hvis husnummeret ikke er kendt,',
-    'quick_position_search' => 'Hurtig stillingssøgning',
+    'quick_position_search' => 'Søg efter stillingsbetegnelse',
     'quick_position_desc' => 'Begynd at skrive stillingsnavnet, så udfylder vi branchen for dig.',
     'search_position_placeholder' => 'Indtast f.eks. Svejser, Chauffør, Kok...',
     'no_position_found' => 'Stillingen blev ikke fundet',

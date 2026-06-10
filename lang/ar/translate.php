@@ -1988,7 +1988,7 @@ return [
     'estonia' => 'إستونيا',
     'StreetUnknownInfo' => 'إذا كان اسم الشارع غير معروف، أدخل "-".',
     'StreetNumberUnknownInfo' => 'إذا كان رقم المبنى غير معروف، أدخل "-".',
-    'quick_position_search' => 'بحث سريع عن الوظيفة',
+    'quick_position_search' => 'البحث السريع عن الوظيفة',
     'quick_position_desc' => 'ابدأ بكتابة اسم الوظيفة، وسنقوم بإكمال المجال تلقائيًا.',
     'search_position_placeholder' => 'اكتب مثلاً: لحّام، سائق، طاهٍ...',
     'no_position_found' => 'لم يتم العثور على هذه الوظيفة',

@@ -1813,7 +1813,7 @@ return [
     'estonia' => 'Eistland',
     'StreetUnknownInfo' => 'Ef gata er óþekkt',
     'StreetNumberUnknownInfo' => 'Ef húsnúmer er óþekkt',
-    'quick_position_search' => 'Flýtileit að starfi',
+    'quick_position_search' => 'Leita að starfsheiti',
     'quick_position_desc' => 'Byrjaðu að slá inn heiti starfs og við fyllum sjálfkrafa út starfsgreinina fyrir þig.',
     'search_position_placeholder' => 'Sláðu inn t.d. Suðumaður, Bílstjóri, Kokkur...',
     'no_position_found' => 'Ekkert slíkt starf fannst',

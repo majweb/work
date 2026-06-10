@@ -1796,7 +1796,7 @@ return [
     'estonia' => 'استونی',
     'StreetUnknownInfo' => 'اگر نام خیابان مشخص نیست، «-» را وارد کنید.',
     'StreetNumberUnknownInfo' => 'اگر شماره ساختمان مشخص نیست، «-» را وارد کنید.',
-    'quick_position_search' => 'جستجوی سریع موقعیت شغلی',
+    'quick_position_search' => 'جستجوی عنوان شغلی',
     'quick_position_desc' => 'شروع به تایپ عنوان شغلی کنید، ما به‌صورت خودکار حوزه کاری را برای شما تکمیل می‌کنیم.',
     'search_position_placeholder' => 'مثلاً وارد کنید: جوشکار، راننده، آشپز...',
     'no_position_found' => 'چنین موقعیت شغلی‌ای یافت نشد',

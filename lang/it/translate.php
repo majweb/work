@@ -1812,7 +1812,7 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'Se la via non è conosciuta',
     'StreetNumberUnknownInfo' => 'Se il numero civico non è conosciuto',
-    'quick_position_search' => 'Ricerca rapida della posizione',
+    'quick_position_search' => 'Cerca il nome della posizione',
     'quick_position_desc' => 'Inizia a digitare il nome della posizione e completeremo automaticamente il settore per te.',
     'search_position_placeholder' => 'Inserisci ad es. Saldatore, Autista, Cuoco...',
     'no_position_found' => 'Nessuna posizione trovata',

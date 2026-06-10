@@ -1803,7 +1803,7 @@ return [
     'estonia' => 'אסטוניה',
     'StreetUnknownInfo' => 'אם הרחוב אינו ידוע',
     'StreetNumberUnknownInfo' => 'אם מספר הבניין אינו ידוע',
-    'quick_position_search' => 'חיפוש מהיר של משרה',
+    'quick_position_search' => 'חפש שם משרה',
     'quick_position_desc' => 'התחילו להקליד את שם המשרה ואנו נשלים עבורכם את תחום העיסוק באופן אוטומטי.',
     'search_position_placeholder' => 'הקלידו למשל: רתך, נהג, טבח...',
     'no_position_found' => 'לא נמצאה משרה כזו',

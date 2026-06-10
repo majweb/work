@@ -3629,7 +3629,7 @@ return [
     'estonia' => 'Estonsko',
     'StreetUnknownInfo' => 'Pokud ulice není známa, zadejte "-".',
     'StreetNumberUnknownInfo' => 'Pokud číslo budovy není známo, zadejte "-".',
-    'quick_position_search' => 'Rychlé vyhledávání pozice',
+    'quick_position_search' => 'Vyhledat název pozice',
     'quick_position_desc' => 'Začněte psát název pozice a my za vás automaticky doplníme obor.',
     'search_position_placeholder' => 'Zadejte např. Svářeč, Řidič, Kuchař...',
     'no_position_found' => 'Taková pozice nebyla nalezena',

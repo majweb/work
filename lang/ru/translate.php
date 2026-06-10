@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'Эстония',
     'StreetUnknownInfo' => 'Dacă strada nu este cunoscută',
     'StreetNumberUnknownInfo' => 'Dacă numărul clădirii nu este cunoscut',
-    'quick_position_search' => 'Быстрый поиск вакансии',
+    'quick_position_search' => 'Поиск названия должности',
     'quick_position_desc' => 'Начните вводить название должности, и мы автоматически подберём для вас сферу деятельности.',
     'search_position_placeholder' => 'Введите, например: Сварщик, Водитель, Повар...',
     'no_position_found' => 'Такая должность не найдена',

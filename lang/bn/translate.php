@@ -1867,7 +1867,7 @@ return [
 
     'StreetUnknownInfo' => 'রাস্তার নাম জানা না থাকলে "-" লিখুন।',
     'StreetNumberUnknownInfo' => 'ভবনের নম্বর জানা না থাকলে "-" লিখুন।',
-    'quick_position_search' => 'দ্রুত পদ অনুসন্ধান',
+    'quick_position_search' => 'পদের নাম অনুসন্ধান করুন',
     'quick_position_desc' => 'পদের নাম টাইপ করা শুরু করুন, আমরা আপনার জন্য ক্ষেত্রটি স্বয়ংক্রিয়ভাবে পূরণ করব।',
     'search_position_placeholder' => 'যেমন লিখুন: ওয়েল্ডার, ড্রাইভার, রাঁধুনি...',
     'no_position_found' => 'এমন কোনো পদ পাওয়া যায়নি',

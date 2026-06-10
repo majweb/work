@@ -1789,7 +1789,7 @@ return [
     'estonia' => 'Эстони',
     'StreetUnknownInfo' => 'Гудамж тодорхойгүй бол',
     'StreetNumberUnknownInfo' => 'Барилгын дугаар тодорхойгүй бол',
-    'quick_position_search' => 'Ажлын байрны хурдан хайлт',
+    'quick_position_search' => 'Албан тушаалын нэр хайх',
     'quick_position_desc' => 'Ажлын байрны нэрийг бичиж эхлээрэй, бид салбарыг автоматаар бөглөнө.',
     'search_position_placeholder' => 'Жишээ нь: Гагнуурчин, Жолооч, Тогооч...',
     'no_position_found' => 'Ийм ажлын байр олдсонгүй',

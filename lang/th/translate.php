@@ -1818,7 +1818,7 @@ return [
     'estonia' => 'เอสโตเนีย',
     'StreetUnknownInfo' => 'หากไม่ทราบชื่อถนน',
     'StreetNumberUnknownInfo' => 'หากไม่ทราบเลขที่อาคาร',
-    'quick_position_search' => 'ค้นหาตำแหน่งงานอย่างรวดเร็ว',
+    'quick_position_search' => 'ค้นหาชื่อตำแหน่งงาน',
     'quick_position_desc' => 'เริ่มพิมพ์ชื่อตำแหน่งงาน แล้วเราจะเติมสายงานให้คุณโดยอัตโนมัติ',
     'search_position_placeholder' => 'กรอก เช่น ช่างเชื่อม, คนขับรถ, พ่อครัว...',
     'no_position_found' => 'ไม่พบตำแหน่งงานนี้',

@@ -1789,7 +1789,7 @@ return [
     'estonia' => 'Estland',
     'StreetUnknownInfo' => 'Als de straat onbekend is',
     'StreetNumberUnknownInfo' => 'Als het huisnummer onbekend is',
-    'quick_position_search' => 'Snel zoeken naar een functie',
+    'quick_position_search' => 'Zoek functienaam',
     'quick_position_desc' => 'Begin met het typen van de functienaam en wij vullen automatisch de branche voor u in.',
     'search_position_placeholder' => 'Voer bijvoorbeeld in: Lasser, Chauffeur, Kok...',
     'no_position_found' => 'Geen dergelijke functie gevonden',

@@ -1822,7 +1822,7 @@ return [
     'estonia' => 'ኤስቶኒያ',
     'StreetUnknownInfo' => 'Եթե փողոցը հայտնի չէ, մուտքագրեք «-»։',
     'StreetNumberUnknownInfo' => 'Եթե շենքի համարը հայտնի չէ, մուտքագրեք «-»։',
-    'quick_position_search' => 'Արագ հաստիքի որոնում',
+    'quick_position_search' => 'ፈጣን የስራ መደብ ፍለጋ',
     'quick_position_desc' => 'Սկսեք մուտքագրել հաստիքի անվանումը, և մենք ավտոմատ կլրացնենք ոլորտը։',
     'search_position_placeholder' => 'Մուտքագրեք, օրինակ՝ Եռակցող, Վարորդ, Խոհարար...',
     'no_position_found' => 'Նման հաստիք չի գտնվել',

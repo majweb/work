@@ -1811,7 +1811,7 @@ return [
     'estonia' => 'エストニア',
     'StreetUnknownInfo' => '通りが不明な場合',
     'StreetNumberUnknownInfo' => '建物番号が不明な場合',
-    'quick_position_search' => '職種のクイック検索',
+    'quick_position_search' => '職種名を検索',
     'quick_position_desc' => '職種名を入力し始めると、業種を自動的に補完します。',
     'search_position_placeholder' => '例: 溶接工、運転手、料理人...',
     'no_position_found' => '該当する職種が見つかりません',

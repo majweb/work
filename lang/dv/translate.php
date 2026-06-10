@@ -1796,7 +1796,7 @@ return [
     'estonia' => 'އެސްޓޯނިއާ',
     'StreetUnknownInfo' => 'މަގު އަންގައި ނުވާނަމަ "-" ލިޔުން.',
     'StreetNumberUnknownInfo' => 'އިމާރާތު ނަންބަރު އަންގައި ނުވާނަމަ "-" ލިޔުން.',
-    'quick_position_search' => 'އަވަސް މަޤާމު ހޯދުން',
+    'quick_position_search' => 'މަޤާމުގެ ނަން ހޯދާ',
     'quick_position_desc' => 'މަޤާމުގެ ނަން ލިޔެލަން ފަށާށެވެ، އަދި އެ ކަމުގެ ދާއިރާ އަޅުގަނޑުމެން އޮޓޯމެޓިކްކޮށް ފުރާނެއެވެ.',
     'search_position_placeholder' => 'މިސާލަކަށް: ވެލްޑަރ، ޑްރައިވަރ، ކުކް...',
     'no_position_found' => 'މި މަޤާމު ނުފެނުނު',

@@ -1847,7 +1847,7 @@ return [
     'estonia' => 'Эстонія',
     'StreetUnknownInfo' => 'Калі вуліца невядомая, увядзіце «-».',
     'StreetNumberUnknownInfo' => 'Калі нумар будынка невядомы, увядзіце «-».',
-    'quick_position_search' => 'Хуткі пошук пасады',
+    'quick_position_search' => 'Знайсці назву пасады',
     'quick_position_desc' => 'Пачніце ўводзіць назву пасады, і мы аўтаматычна падбяром для вас сферу дзейнасці.',
     'search_position_placeholder' => 'Увядзіце, напрыклад: Зваршчык, Кіроўца, Повар...',
     'no_position_found' => 'Такой пасады не знойдзена',

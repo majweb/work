@@ -1823,7 +1823,7 @@ return [
     'estonia' => 'Estoniya',
     'StreetUnknownInfo' => 'Küçə məlum deyilsə, "-" daxil edin.',
     'StreetNumberUnknownInfo' => 'Bina nömrəsi məlum deyilsə, "-" daxil edin.',
-    'quick_position_search' => 'Sürətli vəzifə axtarışı',
+    'quick_position_search' => 'Vəzifə adını axtarın',
     'quick_position_desc' => 'Vəzifənin adını yazmağa başlayın, biz sahəni sizin üçün avtomatik dolduracağıq.',
     'search_position_placeholder' => 'Məsələn yazın: Qaynaqçı, Sürücü, Aşpaz...',
     'no_position_found' => 'Belə vəzifə tapılmadı',

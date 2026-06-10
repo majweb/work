@@ -1815,7 +1815,7 @@ return [
     'estonia' => 'Estónia',
     'StreetUnknownInfo' => 'Se a rua não for conhecida',
     'StreetNumberUnknownInfo' => 'Se o número do edifício não for conhecido',
-    'quick_position_search' => 'Pesquisa rápida de cargo',
+    'quick_position_search' => 'Pesquisar nome do cargo',
     'quick_position_desc' => 'Comece a digitar o nome do cargo e nós preencheremos automaticamente o setor para você.',
     'search_position_placeholder' => 'Digite, por exemplo: Soldador, Motorista, Cozinheiro...',
     'no_position_found' => 'Nenhum cargo encontrado',

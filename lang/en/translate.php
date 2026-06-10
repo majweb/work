@@ -1939,7 +1939,7 @@ return [
     'estonia' => 'Estonia',
     'StreetUnknownInfo' => 'If the street is unknown, enter "-".',
     'StreetNumberUnknownInfo' => 'If the building number is unknown, enter "-".',
-    'quick_position_search' => 'Quick Position Search',
+    'quick_position_search' => 'Search position name',
     'quick_position_desc' => 'Start typing the job title and we will automatically fill in the industry for you.',
     'search_position_placeholder' => 'Enter e.g. Welder, Driver, Cook...',
     'no_position_found' => 'No such position found',
