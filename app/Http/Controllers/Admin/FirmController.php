@@ -35,6 +35,7 @@ class FirmController extends Controller
                 'blocked' => $user->user_blocked !== null,
                 'verified' => $user->email_verified_at !== null,
                 'email_verified_at' => $user->email_verified_at,
+                'can_delete' => $user->transactions_count === 0 && $user->invoice_count === 0,
             ]);
 
         $stats = [
@@ -54,7 +55,9 @@ class FirmController extends Controller
 
     public function buildQuery(Request $request)
     {
-        $query = User::role('firm')->with(['firm', 'recruits', 'projects'])->withCount(['recruits', 'projects']);
+        $query = User::role('firm')
+            ->with(['firm', 'recruits', 'projects'])
+            ->withCount(['recruits', 'projects', 'transactions', 'invoice']);
 
         // Filtrowanie
         if ($request->filled('search')) {
@@ -358,5 +361,29 @@ class FirmController extends Controller
     {
         // Tutaj można dodać przekierowanie do listy rekruterów przefiltrowanej po tym użytkowniku
         return back();
+    }
+
+    public function destroy(User $user): RedirectResponse
+    {
+        $user->loadCount(['transactions', 'invoice']);
+
+        if ($user->transactions_count > 0 || $user->invoice_count > 0) {
+            return back()->with('flash.banner', 'Nie można usunąć firmy, która posiada transakcje lub faktury.')->with('flash.bannerStyle', 'danger');
+        }
+
+        DB::transaction(function () use ($user) {
+            // Usuwamy powiązane dane, jeśli istnieją
+            if ($user->firm) {
+                $user->firm->delete();
+            }
+
+            // Usuwamy rekruterów powiązanych z tą firmą (opcjonalnie, zależy od wymagań, ale zazwyczaj firma ma rekruterów)
+            // User::where('recruiter_from_firm_id', $user->id)->delete();
+
+            $user->delete();
+        });
+
+        return redirect()->route('admin.firms.index')
+            ->with('flash.banner', 'Firma została pomyślnie usunięta.');
     }
 }

@@ -184,6 +184,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Invoice::class);
     }
 
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     /**
      * Send the password reset notification.
      *

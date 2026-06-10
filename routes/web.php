@@ -398,6 +398,7 @@ Route::middleware([
         Route::get('firms/{user}/credits', [App\Http\Controllers\Admin\FirmController::class, 'manageCredits'])->name('firms.manageCredits');
         Route::get('firms/{user}/offers', [App\Http\Controllers\Admin\FirmController::class, 'offers'])->name('firms.offers');
         Route::get('firms/{user}/recruiters', [App\Http\Controllers\Admin\FirmController::class, 'recruiters'])->name('firms.recruiters');
+        Route::delete('firms/{user}', [App\Http\Controllers\Admin\FirmController::class, 'destroy'])->name('firms.destroy');
 
         //        FIRMY ZEWNĘTRZNE
         Route::get('admin-external-companies', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'index'])->name('external-companies.index');
