@@ -51,6 +51,17 @@ onMounted(() => {
     isClient.value = true;
     updateWidth();
     window.addEventListener('resize', updateWidth);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('register') === 'foundation') {
+        showForm.value = true;
+        setTimeout(() => {
+            const element = document.getElementById('registration-form-section');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 500);
+    }
 });
 onUnmounted(() => {
     if (typeof window !== 'undefined') {
@@ -372,7 +383,7 @@ const submit = () => {
                 </div>
 
                 <!-- SEARCH & MAP (ZNAJDŹ FUNDACJĘ) -->
-                <div class="space-y-12">
+                <div class="space-y-12" id="registration-form-section">
                     <!-- PRZYCISK ZGŁOSZENIA -->
                     <div class="text-center">
                         <button

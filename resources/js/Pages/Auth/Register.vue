@@ -174,7 +174,7 @@ const submit = () => {
                     <!-- TYPE -->
                     <div class="space-y-4">
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">{{ __('translate.type') }}</label>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <label class="relative flex flex-col items-center justify-center p-4 border-2 rounded-2xl cursor-pointer transition-all duration-300"
                                    :class="form.type === 'worker' ? 'border-[#00a0e3] bg-blue-50/30' : 'border-gray-100 bg-gray-50 hover:bg-gray-100'">
                                 <input type="radio" v-model="form.type" value="worker" class="sr-only" />
@@ -201,6 +201,11 @@ const submit = () => {
                                     </svg>
                                 </div>
                             </label>
+                            <Link :href="route('front.partners', { register: 'foundation' })" class="relative flex flex-col items-center justify-center p-4 border-2 rounded-2xl cursor-pointer transition-all duration-300 border-gray-100 bg-gray-50 hover:bg-[#00a0e3]/5 hover:border-[#00a0e3] group">
+                                <span class="text-[10px] font-black uppercase tracking-widest text-center text-gray-400 group-hover:text-[#0A2C5C] transition-colors">
+                                    {{ __('translate.foundations') }}
+                                </span>
+                            </Link>
                         </div>
                         <InputError :message="form.errors.type" />
                     </div>
