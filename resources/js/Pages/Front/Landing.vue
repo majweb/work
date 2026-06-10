@@ -87,6 +87,7 @@ onMounted(() => {
 const page = usePage();
 </script>
 
+
 <template>
     <Head :title="__('landingi.meta.title')">
         <meta name="description" :content="__('landingi.meta.description')" />
