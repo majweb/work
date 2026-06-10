@@ -55,11 +55,15 @@ onMounted(() => {
         isMobile.value = window.innerWidth < 768;
     });
 });
+const page = usePage();
 </script>
 
 <template>
     <Head :title="__('landingi.meta.title')">
         <meta name="description" :content="__('landingi.meta.description')" />
+        <meta property="og:image" :content="`/default-image.png?v=${page.props.assetVersion}`" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
     </Head>
 
     <div class="min-h-screen bg-white font-sans selection:bg-red-work-100 selection:text-red-work-100">
