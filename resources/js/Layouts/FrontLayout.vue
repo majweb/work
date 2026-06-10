@@ -342,7 +342,7 @@ const socialLinks = [
                     ]"
                 >
                 <Link :href="route('front')" class="flex items-center shrink-0">
-                    <img v-if="route().current('front')" src="/images/logo-horizontal.png" class="h-8 md:h-10 w-auto" :alt="__('translate.logo')" />
+                    <img v-if="route().current('front')" src="/images/logo-horizontal.png" class="h-5 w-auto" :alt="__('translate.logo')" />
                     <ApplicationMark v-else class="h-10 md:h-12 w-auto" />
                 </Link>
 
@@ -547,7 +547,7 @@ const socialLinks = [
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->
                     <div class="lg:col-span-4 space-y-8 text-center lg:text-left">
-                        <img src="/images/logo-horizontal.png" class="h-12 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
+                        <img src="/images/logo-horizontal.png" class="h-6 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
                         <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed max-w-sm mx-auto lg:mx-0 uppercase">
                             {{ __('translate.footer.description') }}
                         </p>
