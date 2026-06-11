@@ -6,3 +6,5 @@ Allow: /
 
 User-agent: *
 Disallow:
+
+Sitemap: https://work4you.global/sitemap.xml
