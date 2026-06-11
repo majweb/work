@@ -248,9 +248,6 @@ const submit = () => {
             <div class="max-w-7xl mx-auto px-4 relative z-10 space-y-12">
                 <!-- PARTNERS SECTION -->
                 <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-white p-8 md:p-16 relative overflow-hidden group">
-                    <!-- Logo background decoration -->
-                    <img src="/images/logo-horizontal.png" class="absolute -bottom-20 -right-20 w-96 opacity-[0.03] pointer-events-none grayscale group-hover:scale-110 transition-transform duration-1000" alt="logo">
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div class="flex justify-center order-2 md:order-1 relative">
                             <div class="absolute inset-0 bg-blue-400/10 blur-3xl rounded-full scale-110 animate-pulse"></div>

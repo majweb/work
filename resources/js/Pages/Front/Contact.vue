@@ -197,9 +197,6 @@ onMounted(() => loadCaptcha())
                     <!-- FORMULARZ -->
                     <div class="lg:col-span-7">
                         <div class="bg-white rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-white p-8 md:p-12 relative overflow-hidden group">
-                            <!-- Logo background decoration -->
-                            <img src="/images/logo-horizontal.png" class="absolute -bottom-20 -right-20 w-96 opacity-[0.03] pointer-events-none grayscale group-hover:scale-110 transition-transform duration-1000" alt="logo">
-
                             <div class="relative z-10">
                                 <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 rounded-2xl mb-8">
                                     <div class="w-2 h-2 rounded-full bg-[#00a0e3] animate-pulse"></div>

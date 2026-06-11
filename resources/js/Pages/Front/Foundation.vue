@@ -298,23 +298,23 @@ function addMarker() {
                             <div class="flex flex-wrap gap-2 justify-center">
                                 <a v-if="props.foundation.facebook_url" :href="props.foundation.facebook_url" target="_blank"
                                    class="w-10 h-10 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center transition hover:scale-110 hover:shadow-md">
-                                    <img src="/images/icons/facebook.svg" class="h-5 w-5" alt="facebook">
+                                    <img src="/images/icons/facebook.png" class="h-5 w-5" alt="facebook">
                                 </a>
                                 <a v-if="props.foundation.x_url" :href="props.foundation.x_url" target="_blank"
                                    class="w-10 h-10 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center transition hover:scale-110 hover:shadow-md">
-                                    <img src="/images/icons/x.svg" class="h-5 w-5" alt="x">
+                                    <img src="/images/icons/x.png" class="h-5 w-5" alt="x">
                                 </a>
                                 <a v-if="props.foundation.instagram_url" :href="props.foundation.instagram_url"
                                    target="_blank" class="w-10 h-10 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center transition hover:scale-110 hover:shadow-md">
-                                    <img src="/images/icons/instagram.svg" class="h-5 w-5" alt="instagram">
+                                    <img src="/images/icons/instagram.png" class="h-5 w-5" alt="instagram">
                                 </a>
                                 <a v-if="props.foundation.linkedin_url" :href="props.foundation.linkedin_url" target="_blank"
                                    class="w-10 h-10 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center transition hover:scale-110 hover:shadow-md">
-                                    <img src="/images/icons/linkedin.svg" class="h-5 w-5" alt="linkedin">
+                                    <img src="/images/icons/linkedin.png" class="h-5 w-5" alt="linkedin">
                                 </a>
                                 <a v-if="props.foundation.tiktok_url" :href="props.foundation.tiktok_url" target="_blank"
                                    class="w-10 h-10 bg-white rounded-xl border border-gray-100 shadow-sm flex items-center justify-center transition hover:scale-110 hover:shadow-md">
-                                    <img src="/images/icons/tik_tok.svg" class="h-5 w-5" alt="tik_tok">
+                                    <img src="/images/icons/tik_tok.png" class="h-5 w-5" alt="tik_tok">
                                 </a>
                             </div>
                         </div>
