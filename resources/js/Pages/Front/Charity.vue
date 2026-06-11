@@ -334,6 +334,26 @@ const page = usePage();
                 </div>
             </section>
 
+            <!-- Nasza Misja -->
+            <section class="py-24 bg-[#0A2C5C] text-white text-center">
+                <div class="max-w-4xl mx-auto px-4">
+                    <h2 class="text-2xl md:text-3xl font-black mb-12 uppercase tracking-widest">
+                        {{ __("landingi.charity.our_mission.title") }}
+                    </h2>
+                    <div class="space-y-8">
+                        <p class="text-lg md:text-xl font-bold leading-relaxed">
+                            {{ __("landingi.charity.our_mission.text1") }}
+                        </p>
+                        <p class="text-lg md:text-xl font-bold leading-relaxed">
+                            {{ __("landingi.charity.our_mission.text2") }}
+                        </p>
+                        <p class="text-lg md:text-xl font-bold leading-relaxed">
+                            {{ __("landingi.charity.our_mission.text3") }}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Bottom CTA -->
             <section class="py-24 bg-white text-center">
                 <div class="max-w-4xl mx-auto px-4">

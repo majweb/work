@@ -348,6 +348,12 @@ return [
             'subtitle' => 'Zarejestruj się za darmo, stwórz wizytówkę swojej organizacji i zacznij otrzymywać wsparcie od odpowiedzialnych pracodawców.',
             'cta' => 'Zarejestruj fundację',
         ],
+        'our_mission' => [
+            'title' => 'NASZA MISJA',
+            'text1' => 'Pomoc społeczna nie powinna zależeć wyłącznie od okazjonalnych zbiórek.',
+            'text2' => 'Dlatego stworzyliśmy model, w którym firmy mogą wspierać fundacje przy okazji działań, które realizują każdego dnia – rekrutacji pracowników.',
+            'text3' => 'WORK4YOU.GLOBAL łączy świat rekrutacji ze światem pomocy społecznej, tworząc model korzystny dla wszystkich stron.',
+        ],
         'footer_features' => [
             'free_reg' => 'darmowa rejestracja',
             'simple_csr' => 'prosty CSR dla biznesu',
