@@ -37,7 +37,7 @@ Route::name('front.')->group(function () {
     Route::get('price', [FrontController::class, 'Price'])->name('price');
     Route::get('readMore', [FrontController::class, 'ReadMore'])->name('readMore');
     Route::get('partners', [FrontController::class, 'Partners'])->name('partners');
-    Route::get('foundation/{foundation}', [FrontController::class, 'Foundation'])->name('foundation.single');
+    Route::get('foundation/{foundation:slug}', [FrontController::class, 'Foundation'])->name('foundation.single');
     Route::get('terms', [FrontController::class, 'Terms'])->name('terms');
     Route::get('report-illegal-content', [FrontController::class, 'Owner'])->name('owner');
     Route::post('report-illegal-content', [FrontController::class, 'OwnerSend'])->name('owner.post');

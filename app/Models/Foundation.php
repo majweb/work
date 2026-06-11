@@ -8,14 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Foundation extends Model implements HasMedia
 {
-    use HasFactory,InteractsWithMedia;
+    use HasFactory,HasSlug, InteractsWithMedia;
 
     protected $fillable = [
         'country',
         'name',
+        'slug',
         'iban',
         'swift',
         'krs',
@@ -52,6 +55,18 @@ class Foundation extends Model implements HasMedia
         'subcategory_id' => 'json',
         'address_country' => 'json',
     ];
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     /**
      * Główna kategoria fundacji

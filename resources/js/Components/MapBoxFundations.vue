@@ -231,7 +231,7 @@ function addGlowPoints() {
             features: foundations.value.map(f => ({
                 type: "Feature",
                 geometry: { type: "Point", coordinates: f.coords },
-                properties: { id: f.id, name: f.name }
+                properties: { id: f.id, slug: f.slug, name: f.name }
             }))
         }
     });
@@ -299,8 +299,11 @@ function addGlowPoints() {
     });
 
     map.value.on("click", "foundation-point", e => {
-        const id = e.features[0].properties.id;
-        router.visit(route("front.foundation.single", id));
+        const slug = e.features[0].properties.slug;
+        if (!slug) {
+            return;
+        }
+        router.visit(route("front.foundation.single", { foundation: slug }));
     });
 }
 
@@ -541,7 +544,7 @@ function resetFilters() {
                 <Link
                     v-for="f in paginatedFoundations"
                     :key="f.id"
-                    :href="route('front.foundation.single', f.id)"
+                    :href="route('front.foundation.single', { foundation: f.slug })"
                     class="group bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500 hover:-translate-y-2 p-6 flex flex-col h-full"
                 >
                     <div class="flex items-start gap-4 mb-6">

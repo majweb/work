@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreFoundationRequest extends FormRequest
 {
@@ -22,56 +23,61 @@ class StoreFoundationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('foundations', 'name')->ignore($this->foundation),
+            ],
             'category_id' => ['required', 'array'],
             'subcategory_id' => ['required', 'array'],
 
             'phone' => ['required', 'string', 'max:50'],
             'email' => ['required', 'email', 'max:255'],
-            'www'   => [
+            'www' => [
                 'required',
                 'string',
                 'max:255',
-                'regex:/^https?:\/\/.+$/i' // <- link musi zaczynać się od http:// lub https://
+                'regex:/^https?:\/\/.+$/i', // <- link musi zaczynać się od http:// lub https://
             ],
             'facebook_url' => [
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^https?:\/\/.+$/i'
+                'regex:/^https?:\/\/.+$/i',
             ],
             'instagram_url' => [
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^https?:\/\/.+$/i'
+                'regex:/^https?:\/\/.+$/i',
             ],
             'linkedin_url' => [
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^https?:\/\/.+$/i'
+                'regex:/^https?:\/\/.+$/i',
             ],
             'x_url' => [
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^https?:\/\/.+$/i'
+                'regex:/^https?:\/\/.+$/i',
             ],
             'tiktok_url' => [
                 'nullable',
                 'string',
                 'max:255',
-                'regex:/^https?:\/\/.+$/i'
+                'regex:/^https?:\/\/.+$/i',
             ],
             'description' => ['required', 'string'],
 
             'address_street' => ['required', 'string', 'max:255'],
             'address_city' => ['required', 'string', 'max:255'],
             'address_country' => ['required', 'array'],
-            'address_postcode' => ['required','string', 'max:255'],
+            'address_postcode' => ['required', 'string', 'max:255'],
 
-            'year_of_foundation' => ['required', 'digits:4', 'integer', 'min:1901', 'max:' . date('Y')],
+            'year_of_foundation' => ['required', 'digits:4', 'integer', 'min:1901', 'max:'.date('Y')],
             'worker_count' => ['required', 'integer', 'min:0'],
             'benefit_organization' => ['boolean'],
 
@@ -85,8 +91,8 @@ class StoreFoundationRequest extends FormRequest
             'krs' => ['required'],    // max długość KRS
 
             'active' => ['boolean'],
-            'photo'   => ['required','array'],
-            'banner'   => ['required','array'],
+            'photo' => ['required', 'array'],
+            'banner' => ['required', 'array'],
 
         ];
     }

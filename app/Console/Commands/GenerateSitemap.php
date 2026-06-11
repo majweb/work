@@ -67,7 +67,7 @@ class GenerateSitemap extends Command
         });
 
         // Fundacje
-        Foundation::where('active', true)->get()->each(function (Foundation $foundation) use ($sitemap) {
+        Foundation::where('active', true)->whereNotNull('slug')->get()->each(function (Foundation $foundation) use ($sitemap) {
             $sitemap->add(
                 Url::create(route('front.foundation.single', $foundation))
                     ->setLastModificationDate($foundation->updated_at)

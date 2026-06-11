@@ -1194,6 +1194,7 @@ class FrontController extends Controller
                 return [
                     'id' => $f->id,
                     'name' => $f->name,
+                    'slug' => $f->slug,
                     'country' => $f->country,
                     'category' => $f->category?->allTranslations['name'][app()->getLocale()] ?? null,
                     'categoryId' => $f->category_id['value'] ?? null,
@@ -1226,6 +1227,7 @@ class FrontController extends Controller
     {
         $data = [
             'id' => $foundation->id,
+            'slug' => $foundation->slug,
             'name' => $foundation->name,
             'country' => $foundation->country,
             'category' => $foundation->category?->allTranslations['name'][app()->getLocale()] ?? null,
