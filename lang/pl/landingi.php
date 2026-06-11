@@ -233,6 +233,36 @@ return [
                 ],
             ],
         ],
+        'funds_origin' => [
+            'title' => 'Skąd pochodzą środki dla fundacji?',
+            'steps' => [
+                'step1' => 'Pracodawca/firma prowadzi rekrutację',
+                'step2' => 'Kupuje punkty potrzebne do korzystania z platformy',
+                'step3' => '50% płatności trafia do wybranej fundacji',
+                'step4' => 'Fundacja realizuje swoją misję',
+            ],
+        ],
+        'why_model_works' => [
+            'title' => 'DLACZEGO TEN MODEL DZIAŁA?',
+            'items' => [
+                [
+                    'title' => 'Firmy rekrutują każdego dnia',
+                    'desc' => 'Rekrutacja jest stałym elementem działalności tysięcy firm i agencji pracy.',
+                ],
+                [
+                    'title' => 'Pomoc powstaje automatycznie',
+                    'desc' => 'Wsparcie powstaje przy okazji rekrutacji i nie wymaga dodatkowych wpłat.',
+                ],
+                [
+                    'title' => 'Korzystają wszyscy',
+                    'desc' => 'Pracodawcy rekrutują skuteczniej, fundacje otrzymują wsparcie, a kandydaci pracę.',
+                ],
+                [
+                    'title' => 'Każda rekrutacja pomaga',
+                    'desc' => 'Każda aktywność na platformie zwiększa skalę wsparcia dla organizacji społecznych.',
+                ],
+            ],
+        ],
         'benefits' => [
             'title' => 'DLACZEGO WARTO ZOSTAĆ NASZYM AMBASADOREM?',
             'items' => [
@@ -263,6 +293,19 @@ return [
             ],
             'cta' => 'Zarejestruj swoją fundację teraz',
         ],
+        'how_to_increase_support' => [
+            'title' => 'JAK ZWIĘKSZYĆ WSPARCIE DLA SWOJEJ FUNDACJI?',
+            'subtitle' => 'Po rejestracji otrzymasz własny link afiliacyjny.',
+            'description' => 'Możesz go:',
+            'items' => [
+                'umieścić na stronie internetowej,',
+                'dodać do stopki e-mail,',
+                'przesłać partnerom biznesowym,',
+                'udostępniać w social mediach,',
+                'wykorzystywać podczas akcji fundraisingowych.',
+            ],
+            'footer' => 'Każda firma, która skorzysta z WORK4YOU.GLOBAL przez Twój link, może wspierać właśnie Twoją fundację.',
+        ],
         'faq' => [
             'title' => 'FAQ',
             'questions' => [
@@ -281,6 +324,22 @@ return [
                 [
                     'question' => 'Jakie dokumenty są potrzebne?',
                     'answer' => 'Wystarczy numer KRS i podstawowe dane statutowe, które zweryfikujemy podczas zakładania konta.',
+                ],
+                [
+                    'question' => 'Skąd pochodzą środki dla fundacji?',
+                    'answer' => 'Środki pochodzą z płatności dokonywanych przez pracodawców korzystających z WORK4YOU.GLOBAL. Za każdym razem, gdy firma kupuje punkty potrzebne do korzystania z platformy, 50% wartości płatności trafia do wybranej fundacji.',
+                ],
+                [
+                    'question' => 'Jak pracodawcy wybierają fundacje?',
+                    'answer' => 'Pracodawcy mogą samodzielnie wybrać fundację podczas korzystania z platformy lub trafić do niej przez indywidualny link udostępniany przez fundację.',
+                ],
+                [
+                    'question' => 'Czy otrzymamy własny profil na platformie?',
+                    'answer' => 'Tak. Każda fundacja otrzymuje własny profil z opisem działalności, danymi kontaktowymi oraz możliwością prezentacji swojej misji i celów.',
+                ],
+                [
+                    'question' => 'Czy muszę promować portal w swoich mediach społecznościowych?',
+                    'answer' => 'Nie wymagamy regularnej promocji. Po dołączeniu do programu prosimy jedynie o opublikowanie jednego posta informującego o współpracy z WORK4YOU.GLOBAL. Dalsza promocja jest dobrowolna.',
                 ],
             ],
         ],

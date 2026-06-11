@@ -197,6 +197,48 @@ const page = usePage();
                 </div>
             </section>
 
+            <!-- Skąd pochodzą środki dla fundacji? -->
+            <section class="bg-blue-50/50 py-16">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="mb-12">
+                        <h2 class="text-[#0A2C5C] font-black text-xl md:text-2xl mb-8">
+                            {{ __("landingi.charity.funds_origin.title") }}
+                        </h2>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+                        <template v-for="(step, key, index) in __('landingi.charity.funds_origin.steps')" :key="key">
+                            <div class="flex-1 flex flex-col items-center text-center px-4">
+                                <p class="text-[#0A2C5C] text-sm md:text-base font-bold leading-tight">{{ step }}</p>
+                            </div>
+                            <!-- Strzałka pomiędzy krokami (ukryta na ostatnim kroku) -->
+                            <div v-if="index < Object.keys(__('landingi.charity.funds_origin.steps')).length - 1" class="shrink-0">
+                                <img src="/images/landing/iconsCharity/strzalka.png" class="w-auto h-8 transform rotate-90 md:rotate-0" alt="arrow" />
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DLACZEGO TEN MODEL DZIAŁA? -->
+            <section class="bg-[#0A2C5C] py-20">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-white font-black text-2xl md:text-3xl mb-12 uppercase tracking-wide">
+                        {{ __("landingi.charity.why_model_works.title") }}
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div v-for="(item, index) in __('landingi.charity.why_model_works.items')" :key="index" class="bg-white rounded-2xl p-8 flex items-start gap-6 shadow-lg">
+                            <div class="shrink-0 w-12 h-12 flex items-center justify-center">
+                                <img src="/images/landing/iconsCharity/serce.png" class="w-10 h-10 object-contain" alt="heart" />
+                            </div>
+                            <div>
+                                <h3 class="text-[#0A2C5C] text-lg font-black mb-2">{{ item.title }}</h3>
+                                <p class="text-gray-600 text-sm font-medium leading-relaxed">{{ item.desc }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Dlaczego warto zostać naszym ambasadorem -->
             <section id="korzysci" class="py-24 bg-white">
                 <div class="max-w-7xl mx-auto px-4">
@@ -237,6 +279,33 @@ const page = usePage();
                         <div class="relative group order-1 lg:order-2 flex justify-center">
                             <img src="/images/landing/iconsCharity/charity1.png" class="w-full max-w-sm mx-auto drop-shadow-2xl transition-all duration-500 transform group-hover:scale-105" alt="Wizytówka" />
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-blue-50/50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="">
+                        <h2 class="text-2xl md:text-3xl font-black text-[#0A2C5C] mb-6 uppercase tracking-wide">
+                            {{ __("landingi.charity.how_to_increase_support.title") }}
+                        </h2>
+                        <p class="text-lg font-bold text-[#0A2C5C] mb-8">
+                            {{ __("landingi.charity.how_to_increase_support.subtitle") }}
+                        </p>
+
+                        <div class="space-y-2">
+                            <p class="text-gray-600 font-medium">{{ __("landingi.charity.how_to_increase_support.description") }}</p>
+                            <ul class="space-y-1">
+                                <li v-for="(item, index) in __('landingi.charity.how_to_increase_support.items')" :key="index" class="flex items-start gap-2 text-gray-600 font-medium">
+                                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#0A2C5C] shrink-0"></span>
+                                    {{ item }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p class="mt-12 text-gray-600 font-medium">
+                            {{ __("landingi.charity.how_to_increase_support.footer") }}
+                        </p>
                     </div>
                 </div>
             </section>
