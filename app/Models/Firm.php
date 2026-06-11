@@ -89,6 +89,7 @@ class Firm extends Model implements HasMedia
         $this
             ->addMediaConversion('preview')
             ->performOnCollections('firms_images')
+            ->quality(80)
             ->nonQueued();
     }
 }

@@ -31,6 +31,7 @@ class AdminBanner extends Model implements HasMedia
         $this
             ->addMediaConversion('preview')
             ->fit(Fit::Fill, 300, 300)
+            ->quality(80)
             ->nonQueued();
     }
 }

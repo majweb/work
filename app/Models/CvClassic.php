@@ -53,6 +53,7 @@ class CvClassic extends Model implements HasMedia
         $this
             ->addMediaConversion('preview')
             ->performOnCollections('aplications_cvClassic_photo')
+            ->quality(80)
             ->nonQueued();
     }
 
