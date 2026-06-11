@@ -24,7 +24,7 @@ const foundationSchema = computed(() => {
         "@context": "https://schema.org",
         "@type": "NGO",
         "name": props.foundation.name,
-        "url": pageUrl.value + '/foundation/' + props.foundation.id,
+        "url": pageUrl.value + '/foundation/' + props.foundation.slug,
         "logo": props.foundation.logo,
         "description": stripHtml(props.foundation.description),
         "parentOrganization": {
@@ -123,7 +123,7 @@ function addMarker() {
             :image="props.page.image"
             :keywords="props.page.keywords"
             :description="props.page.description"
-            :url="route('front.foundation.single',foundation?.id)"
+            :url="route('front.foundation.single', { foundation: props.foundation.slug })"
             type="website"
         >
         <template #head>
