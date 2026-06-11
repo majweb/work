@@ -342,7 +342,7 @@ const socialLinks = [
                     ]"
                 >
                 <Link :href="route('front')" class="flex items-center shrink-0">
-                    <img v-if="route().current('front')" src="/images/logo-horizontal.png" class="h-5 w-auto" :alt="__('translate.logo')" />
+                    <img v-if="route().current('front')" src="/images/logo-horizontal.png" class="h-4 w-auto" :alt="__('translate.logo')" />
                     <ApplicationMark v-else class="h-10 md:h-12 w-auto" />
                 </Link>
 
@@ -450,7 +450,7 @@ const socialLinks = [
                 <div class="relative w-full lg:max-w-sm ml-auto flex flex-col bg-white shadow-2xl overflow-y-auto overscroll-contain">
                     <div class="p-8 border-b border-gray-50 flex items-center justify-between sticky top-0 bg-white z-10">
                         <Link href="/" @click="closeMenu">
-                            <img src="/images/logo-horizontal.png" class="h-5 w-auto" :alt="__('translate.logo')" />
+                            <img src="/images/logo-horizontal.png" class="h-4 w-auto" :alt="__('translate.logo')" />
                         </Link>
                         <button @click="closeMenu" class="p-2.5 rounded-2xl bg-gray-50 text-gray-400 hover:text-red-600 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -547,7 +547,7 @@ const socialLinks = [
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->
                     <div class="lg:col-span-4 space-y-8 text-center lg:text-left">
-                        <img src="/images/logo-horizontal.png" class="h-6 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
+                        <img src="/images/logo-horizontal.png" class="h-4 w-auto mx-auto lg:mx-0" :alt="__('translate.logo')" />
                         <p class="text-sm text-[#0A2C5C] font-medium leading-relaxed max-w-sm mx-auto lg:mx-0 uppercase">
                             {{ __('translate.footer.description') }}
                         </p>
