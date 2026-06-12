@@ -20,7 +20,6 @@ class DeleteUser implements DeletesUsers
                 \Log::error('CRM Deletion Notification Error: '.$e->getMessage());
             }
         }
-
         $user->deleteProfilePhoto();
         $user->tokens->each->delete();
         $user->delete();
