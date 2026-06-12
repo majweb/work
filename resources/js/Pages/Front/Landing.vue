@@ -46,9 +46,13 @@ const scrollTo = (href) => {
     mobileMenuOpen.value = false;
     const element = document.querySelector(href);
     if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        const offset = 100; // Wysokość fixed header
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
         });
     }
 };

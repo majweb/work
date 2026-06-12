@@ -58,7 +58,14 @@ onMounted(() => {
         setTimeout(() => {
             const element = document.getElementById('registration-form-section');
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const offset = 120; // Wysokość fixed header + zapas
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             }
         }, 500);
     }

@@ -86,7 +86,16 @@ function openShare(url) {
 function scrollToHeading(id) {
     if (!isClient.value) return;
     const element = document.getElementById(id);
-    if (element) element.scrollIntoView({behavior: 'smooth', block: 'start'});
+    if (element) {
+        const offset = 120; // Wysokość fixed header + zapas
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
 }
 
 function shareOnInstagram() {
