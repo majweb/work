@@ -43,12 +43,13 @@ const navLinks = [
 ];
 
 const scrollTo = (href) => {
+    if (typeof window === 'undefined') return;
     mobileMenuOpen.value = false;
     const element = document.querySelector(href);
     if (element) {
         const offset = 100; // Wysokość fixed header
         const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        const offsetPosition = elementPosition + (window.pageYOffset || window.scrollY) - offset;
 
         window.scrollTo({
             top: offsetPosition,

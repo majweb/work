@@ -52,15 +52,16 @@ onMounted(() => {
     updateWidth();
     window.addEventListener('resize', updateWidth);
 
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('register') === 'foundation') {
+    const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+    if (urlParams && urlParams.get('register') === 'foundation') {
         showForm.value = true;
         setTimeout(() => {
+            if (typeof window === 'undefined') return;
             const element = document.getElementById('registration-form-section');
             if (element) {
                 const offset = 120; // Wysokość fixed header + zapas
                 const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                const offsetPosition = elementPosition + (window.pageYOffset || window.scrollY) - offset;
 
                 window.scrollTo({
                     top: offsetPosition,

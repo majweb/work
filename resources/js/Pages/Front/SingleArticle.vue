@@ -84,12 +84,12 @@ function openShare(url) {
 }
 
 function scrollToHeading(id) {
-    if (!isClient.value) return;
+    if (typeof window === 'undefined') return;
     const element = document.getElementById(id);
     if (element) {
         const offset = 120; // Wysokość fixed header + zapas
         const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        const offsetPosition = elementPosition + (window.pageYOffset || window.scrollY) - offset;
 
         window.scrollTo({
             top: offsetPosition,
