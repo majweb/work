@@ -36,6 +36,18 @@ class CrmService
     }
 
     /**
+     * Powiadamia CRM o usunięciu konta przez firmę.
+     */
+    public function notifyAccountDeleted(User $user): \Illuminate\Http\Client\Response
+    {
+        return $this->client()->post('/portal/company-deleted', [
+            'work_user_id' => $user->id,
+            'status' => 'inactive',
+            'deletion_date' => now()->format('Y-m-d H:i:s'),
+        ]);
+    }
+
+    /**
      * Pobiera dane użytkownika z CRM (przykład GET).
      */
     public function getUserData(int $id): array
