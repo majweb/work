@@ -1,167 +1,168 @@
 <?php
 
+
 return [
     'meta' => [
-        'title' => 'Work4you.global - Pulsuz iş elanları yerləşdirin',
-        'description' => 'Məhdudiyyətsiz sayda iş elanı əlavə edin və namizədlərin müraciətlərini pulsuz toplayın. Başlanğıc üçün 50 000 xal əldə edin!',
+        'title' => 'Work4you.global - Vakansiyaları pulsuz əlavə edin',
+        'description' => 'Məhdudiyyətsiz sayda iş elanı əlavə edin və namizədlərin müraciətlərini pulsuz toplayın. Başlanğıc üçün 50 000 bonus xal qazanın!',
     ],
     'nav' => [
-        'how_it_works' => 'Necə işləyir',
+        'how_it_works' => 'Bu necə işləyir',
         'benefits' => 'Üstünlüklər',
-        'faq' => 'Suallar',
-        'register_free' => 'Pulsuz hesab yaradın',
+        'faq' => 'FAQ',
+        'register_free' => 'Pulsuz hesab açın',
     ],
     'hero' => [
         'title' => 'Məhdudiyyətsiz sayda iş elanı əlavə edin <br class="hidden lg:block"/> və namizədlərin müraciətlərini pulsuz toplayın.',
-        'subtitle' => 'Abunəlik yoxdur. Nəşr haqqı yoxdur. <br class="hidden md:block"/> Başlanğıcda istifadə üçün 50 000 xal alırsınız.',
-        'cta' => 'Pulsuz hesab yaradın və ilk elanınızı əlavə edin',
-        'target' => 'İşə qəbul agentlikləri və <br class="hidden sm:block" /> böyük miqyasda işçi götürən şirkətlər üçün idealdır.',
+        'subtitle' => 'Aylıq abunə yoxdur. Elan yerləşdirmə haqqı yoxdur. <br class="hidden md:block"/> Başlanğıcda istifadə etmək üçün dərhal 50 000 xal əldə edirsiniz.',
+        'cta' => 'Pulsuz hesab yaradın və ilk elanınızı yerləşdirin',
+        'target' => 'İşəgötürmə agentlikləri və <br class="hidden sm:block" /> irimiqyaslı işçi qəbulu həyata keçirən şirkətlər üçün mükəmməldir.',
     ],
     'model' => [
-        'title' => 'Sadə model: Pulsuz nəşr edin və namizədləri toplayın',
+        'title' => 'Sadə model: Pulsuz dərc edin və namizədləri toplayın',
         'step1' => [
-            'title' => 'İstənilən sayda elan əlavə edirsiniz',
-            'desc' => 'Limitlər və xərclər olmadan',
+            'title' => 'İstədiyiniz sayda elan əlavə edirsiniz',
+            'desc' => 'Məhdudiyyətsiz və tamamilə pulsuz',
         ],
         'step2' => [
-            'title' => 'Namizədlərin müraciətlərini alırsınız',
-            'desc' => 'Namizədləri pulsuz toplayırsınız',
+            'title' => 'Namizədlərin müraciətlərini qəbul edirsiniz',
+            'desc' => 'İş axtaranların CV-lərini pulsuz toplayırsınız',
         ],
         'step3' => [
-            'title' => 'Xalları yalnız istədikdə istifadə edirsiniz',
-            'desc' => 'məsələn, CV-lərə daxil olmaq və ya reklam üçün',
+            'title' => 'Xallardan yalnız istədiyiniz zaman istifadə edirsiniz',
+            'desc' => 'Məsələn, CV-ləri nəzərdən keçirmək və ya elanları önə çıxarmaq üçün',
         ],
     ],
     'credits' => [
-        'badge' => 'başlanğıc üçün!',
+        'badge' => 'başlanğıc üçün hədiyyə!',
         'amount_label' => 'xal',
-        'test_platform' => 'Qeydiyyatdan keçdikdən sonra platformanı tam sınaqdan keçirmək üçün başlanğıc paketi alırsınız:',
+        'test_platform' => 'Qeydiyyatdan keçdikdən sonra platformanı tam sınaqdan keçirmək üçün start paketi əldə edirsiniz:',
         'benefits_list' => [
             'Namizədlərin CV-lərini oxumaq (klassik, audio, video)',
             'İş elanlarının siyahının yuxarı hissəsində tanıdılması',
-            'İşəgötürənlər kataloqunda şirkətin fərqləndirilməsi',
-            'Təkmilləşdirilmiş işə qəbul filtrlərinə giriş',
+            'Şirkətinizin işəgötürənlər kataloqunda önə çıxarılması',
+            'Təkmilləşdirilmiş rekrutinq filtrlərinə çıxış əldə etmək',
         ],
-        'no_start_costs' => 'Nəhayət, başlanğıc xərcləri olmadan işə qəbul edirsiniz...',
+        'no_start_costs' => 'Nəhayət... Heç bir ilkin xərc çəkmədən işçi qəbulu həyata keçirirsiniz...',
         'items' => [
             'free_ads' => 'Elanları pulsuz yerləşdirirsiniz',
-            'no_contracts' => 'Müqavilələr və abunəliklər olmadan',
+            'no_contracts' => 'Müqavilələr və aylıq abunə haqqı yoxdur',
             'own_rules' => 'Öz qaydalarınızla istifadə edirsiniz',
-            'cv_types' => 'Klassik, audio, video CV-lər',
-            'all_languages' => 'Bütün dillərdə elanlar',
+            'cv_types' => 'Klassik, audio və video CV-lər',
+            'all_languages' => 'Bütün dillərdə elan yerləşdirmə imkanı',
         ],
     ],
     'foundation' => [
         'badge' => 'Dünyanı birlikdə dəyişirik:',
-        'title' => 'Hər alış məbləğinin 50%-i seçdiyiniz fonda köçürülür.',
-        'subtitle' => 'İşə qəbul edirsiniz. Eyni zamanda ehtiyacı olanlara dəstək olursunuz.',
+        'title' => 'Hər alış məbləğinin 50%-i seçdiyiniz xeyriyyə fonduna köçürülür.',
+        'subtitle' => 'Həm işçi qəbul edirsiniz, həm də eyni zamanda ehtiyacı olanlara dəstək olursunuz.',
     ],
     'cta' => [
-        'title' => 'Pulsuz işə qəbula hazırsınız? <br/><span class="text-red-work">50 000 xal</span> əldə edin!',
-        'button' => 'Şirkəti pulsuz qeydiyyatdan keçirin',
+        'title' => 'Pulsuz rekrutinqə hazırsınız? <br/>İndi <span class="text-red-work">50 000 xalınızı</span> əldə edin!',
+        'button' => 'Şirkətinizi pulsuz qeydiyyatdan keçirin',
     ],
     'who_is_it_for' => [
-        'title' => 'Kim daha çox faydalanacaq?',
+        'title' => 'Bu platformadan ən çox kim faydalanacaq?',
         'groups' => [
-            'agencies' => 'İşə qəbul agentlikləri ve rekruterlər',
-            'high_volume' => 'Çox sayda işə qəbulu olan şirkətlər',
-            'cost_conscious' => 'Xərcləri azaltmaq istəyən işəgötürənlər',
+            'agencies' => 'Rekrutinq agentlikləri və HR mütəxəssisləri',
+            'high_volume' => 'Böyük həcmdə işçi qəbulu olan şirkətlər',
+            'cost_conscious' => 'Xərclərini azaltmaq istəyən işəgötürənlər',
             'international' => 'Beynəlxalq səviyyədə fəaliyyət göstərən şirkətlər',
             'everyone' => 'İşçi axtaran hər kəs',
         ],
     ],
     'faq_section' => [
-        'title' => 'Tez-tez verilən suallar',
+        'title' => 'FAQ',
         'subtitle' => 'Ən çox verilən suallar',
         'questions' => [
             [
-                'question' => 'Elan əlavə etmək həqiqetən pulsuzdur?',
-                'answer' => 'Bəli — elanların sayından asılı olmayaraq nəşr üçün ödəniş etmirsiniz.',
+                'question' => 'Elan əlavə etmək həqiqətən pulsuzdur?',
+                'answer' => 'Bəli — elanların sayından asılı olmayaraq dərc üçün heç bir ödəniş etmirsiniz.',
             ],
             [
-                'question' => 'Başlanğıcda xal almalıyam?',
-                'answer' => 'Xeyr — qeydiyyatdan keçdikdən sonra 50 000 xal alırsınız.',
+                'question' => 'Başlamaq üçün mütləq xal satın almalıyam?',
+                'answer' => 'Xeyr — qeydiyyatdan dərhal sonra balansınıza 50 000 pulsuz xal yüklənir.',
             ],
             [
-                'question' => 'Nə vaxt ödəniş etməyə başlayıram?',
-                'answer' => 'Yalnız əlavə xal almaq istədiyiniz zaman.',
+                'question' => 'Ödəniş etməyə nə vaxt başlayıram?',
+                'answer' => 'Yalnız əlavə xal satın almaq istədiyiniz zaman.',
             ],
             [
                 'question' => 'İstənilən vaxt imtina edə bilərəm?',
-                'answer' => 'Bəli — heç bir müqavilə və ya öhdəlik yoxdur.',
+                'answer' => 'Bəli — heç bir müqavilə və ya məcburi öhdəlik yoxdur.',
             ],
         ],
     ],
     'footer' => [
-        'description' => 'İşəgötürənlərə və namizədlərə səs verən, eyni zamanda fondlara real dəstək verən ilk işə qəbul platforması.',
+        'description' => 'Həm işəgötürənlərin, həm də namizədlərin səsini eşidən, eyni zamanda xeyriyyə fondlarına real dəstək verən ilk rekrutinq platforması.',
         'nav' => 'Naviqasiya',
         'legal' => 'Hüquqi',
-        'privacy' => 'Məxfilik Siyasəti',
-        'terms' => 'Qaydalar',
+        'privacy' => 'Məxfilik siyasəti',
+        'terms' => 'İstifadə şərtləri',
         'rights' => 'Bütün hüquqlar qorunur.',
     ],
     'sold' => [
         'hero' => [
-            'title' => 'Elanlarınız namizədləri cəlb etdi. <br/> Onları gözlətməyin.',
-            'subtitle' => 'Müraciətlərin sayını artırın, CV-lərə girişi açın və elanlarınızın tam potensialından istifadə edin.',
+            'title' => 'Elanlarınız namizədlərin diqqətini çəkdi. <br/> Onları gözlətməyin.',
+            'subtitle' => 'Müraciətlərin sayını artırın, CV-lərə baxış imkanını aktivləşdirin və elanlarınızın tam potensialından yararlanın.',
             'cta' => 'Balansı artırın',
-            'warning' => 'Artıq müraciət edən namizədləri itirməyin!',
+            'warning' => 'Artıq müraciət edən namizədləri əldən verməyin!',
         ],
         'points_benefits' => [
-            'title' => 'ALINMIŞ XALLARLA NƏ EDƏ BİLƏCƏYİNİZƏ BAXIN',
+            'title' => 'SATIN ALINMIŞ XALLARLA NƏLƏR EDƏ BİLƏCƏYİNİZƏ BAXIN',
             'items' => [
-                'cv_access' => 'namizədlərin CV-lərinə giriş',
-                'cv_formats' => 'müxtəlif formalarda CV-lər',
-                'ads_promo' => 'elanların reklamı',
+                'cv_access' => 'namizədlərin CV-lərinə çıxış',
+                'cv_formats' => 'müxtəlif formatlarda CV-lər',
+                'ads_promo' => 'elanların önə çıxarılması',
                 'employer_distinction' => 'işəgötürənin fərqləndirilməsi',
-                'brand_building' => 'işə qəbul brendinin qurulması',
+                'brand_building' => 'işəgötürən brendinin (Employer Brand) qurulması',
             ],
         ],
         'recharges' => [
-            'title' => 'ABUNƏLİK ƏVƏZİNƏ BALANSIN ARTIRILMASI',
-            'subtitle' => 'Sizin xallarınız, Sizin qaydalarınız...',
+            'title' => 'ABUNƏ YOX, BALANSIN ARTIRILMASI SİSTEMİ',
+            'subtitle' => 'Sizin xallarınız, sizin qaydalarınız...',
             'items' => [
                 'free_ads' => [
-                    'title' => 'Elanları pulsuz nəşr edirsiniz',
-                    'desc' => 'Elanların əlavə edilməsi hər zaman pulsuz qalır. Heç bir başlanğıc xərci olmadan namizəd bazası qurursunuz.',
+                    'title' => 'Elanları pulsuz yerləşdirirsiniz',
+                    'desc' => 'İş elanları əlavə etmək həmişə pulsuz olaraq qalır. Heç bir ilkin xərc olmadan namizəd bazanızı qurursunuz.',
                 ],
                 'no_expiration' => [
                     'title' => 'Xallarınızın vaxtı bitmir',
-                    'desc' => 'Artırılmış vəsaitlər həmişəlik sizindir. Onları bu gün, bir həftə və ya bir ay sonra istənilən fəaliyyət üçün istifadə edə bilərsiniz.',
+                    'desc' => 'Balansa yüklənən vəsait həmişəlik sizindir. Ondan bu gün, gələn həftə və ya bir ay sonra istənilən fəaliyyət üçün istifadə edə bilərsiniz.',
                 ],
                 'pay_per_effect' => [
-                    'title' => 'Yalnız effekt üçün ödəyirsiniz',
-                    'desc' => 'Xalları yalnız konkret funksiyadan istifadə etmək istədikdə dəyişirsiniz. Büdcə üzərində tam nəzarət.',
+                    'title' => 'Yalnız nəticəyə görə ödəyirsiniz',
+                    'desc' => 'Xalları yalnız konkret funksiyadan istifadə etmək istədiyiniz zaman dəyişirsiniz. Büdcənizə tam nəzarət sizdədir.',
                 ],
             ],
         ],
         'foundation' => [
-            'title' => 'Sizin qərarınızın gücü var:',
-            'subtitle' => 'Sifariş məbləğinin yarısı seçilmiş fondun hesabına köçürüləcək.',
+            'title' => 'Sizin qərarınız böyük gücə malikdir:',
+            'subtitle' => 'Sifarişinizin məbləğinin yarısı (50%-i) seçdiyiniz xeyriyyə fondunun hesabına köçürüləcək.',
             'step1' => [
                 'title' => 'Məqsədi seçirsiniz:',
-                'desc' => 'Balansınızı artırdıqdan sonra hansı təşkilata dəstək olacağımıza Siz qərar verirsiniz.',
+                'desc' => 'Balansınızı artırdıqdan sonra hansı sosial təşkilata dəstək olacağımıza məhz siz qərar verirsiniz.',
             ],
             'step2' => [
                 'title' => 'Şirkətiniz üçün sertifikat:',
-                'desc' => 'İşə qəbulu sosial dəstəklə birləşdirdiyinizin rəsmi təsdiqi.',
+                'desc' => 'İşçi qəbulunu sosial məsuliyyətlə birləşdirdiyinizi təsdiq edən rəsmi sənəd.',
             ],
-            'cta' => 'Xal paketini seçin və fondu göstərin',
+            'cta' => 'Xal paketini seçin və xeyriyyə fondunu göstərin',
         ],
         'solutions' => [
             'title' => 'İşçi axtaran hər kəs üçün həllimiz var:',
             'items' => [
                 'agencies' => [
-                    'title' => 'İŞƏ QƏBUL AGENTLİKLƏRİ VƏ REKRUTERLƏR',
-                    'desc' => 'Klassik, audio və ya video formatında CV-lərə sürətli giriş və seçim alətləri prosesi rəqiblərdən daha tez bağlamağa imkan verir.',
+                    'title' => 'REKRUTİNQ AGENTLİKLƏRİ VƏ HR MÜTƏXƏSSİSLƏRİ',
+                    'desc' => 'Klassik, audio və ya video formatda CV-lərə anında çıxış və seçim alətləri prosesi rəqiblərinizdən daha tez tamamlamağa imkan verir.',
                 ],
                 'high_volume' => [
-                    'title' => 'ÇOX SAYDA İŞƏ QƏBULU OLAN ŞİRKƏTLƏR',
-                    'desc' => 'Daimi ödənişlərin olmaması real qənaətdir. Xallar yalnız konkret hərəkətlər üçün tutulur və elanlar daim görünür.',
+                    'title' => 'BÖYÜK HƏCMDƏ İŞÇİ QƏBULU OLAN ŞİRKƏTLƏR',
+                    'desc' => 'Sabit ödənişlərin olmaması real qənaətdir. Xallar yalnız konkret hərəkətlər üçün çıxılır, elanlarınız isə daimi olaraq görünür.',
                 ],
                 'cost_conscious' => [
-                    'title' => 'XƏRCLƏRİ AZALTMAQ İSTƏYƏN İŞƏGÖTÜRƏNLƏR',
-                    'desc' => 'Xal modeli büdcəni dəqiq idarə etməyə imkan verir. Müəyyən vakansiya üçün planlaşdırdığınız qədər xərcləyirsiniz.',
+                    'title' => 'XƏRCLƏRİNİ AZALTMAQ İSTƏYƏN İŞƏGÖTÜRƏNLƏR',
+                    'desc' => 'Xal sistemi büdcənizi dəqiqliklə idarə etməyə imkan verir. Vakansiya üçün planlaşdırdığınız qədər vəsait xərcləyirsiniz.',
                 ],
                 'international' => [
                     'title' => 'BEYNƏLXALQ SƏVİYYƏDƏ FƏALİYYƏT GÖSTƏRƏN ŞİRKƏTLƏR',
@@ -169,36 +170,36 @@ return [
                 ],
                 'everyone' => [
                     'title' => 'İŞÇİ AXTARAN HƏR KƏS',
-                    'desc' => 'Miqyasdan asılı olmayaraq, motivasiyalı namizədlərə giriş əldə edirsiniz və eyni zamanda xeyirxah məqsədə dəstək olursunuz.',
+                    'desc' => 'Şirkətinizin miqyasından asılı olmayaraq, motivasiyalı namizədlərə çıxış əldə edir və eyni zamanda xeyirxah bir məqsədə dəstək olursunuz.',
                 ],
             ],
         ],
         'faq' => [
             'questions' => [
                 [
-                    'question' => 'Balansı artırmasam, elanlarıma nə olacaq?',
-                    'answer' => 'Elanlar aktiv qalır. Balansın artırılması yalnız namizədlərin CV-lərini oxumaq, elanları fərqləndirmək və digər reklam seçimləri üçün lazımdır.',
+                    'question' => 'Balansımı artırmasam, elanlarıma nə olacaq?',
+                    'answer' => 'Elanlar aktiv qalır. Balansın artırılması yalnız namizədlərin CV-lərini oxumaq, elanları önə çıxarmaq və digər tanıtım seçimlərindən istifadə üçün lazımdır.',
                 ],
                 [
                     'question' => 'Xalların etibarlılıq müddəti nə qədərdir?',
-                    'answer' => 'Xalların vaxtı bitmir. Onları indi və ya bir neçə ay sonra növbəti işə qəbullarda istifadə edə bilərsiniz – vəsaitlər hər zaman hesabınızda sizi gözləyir.',
+                    'answer' => 'Xalların vaxtı bitmir. Onlardan indi və ya bir neçə aydan sonrakı növbəti rekrutinqlərdə istifadə edə bilərsiniz – vəsaitiniz həmişə hesabınızda qalır.',
                 ],
                 [
-                    'question' => 'Xalları elanın reklamı ilə dəyişə bilərəm?',
-                    'answer' => 'Bəli. Xallar universal valyutadır – onlardan CV-ləri açmaq, elanı fərqləndirmək və ya əlavə reklam üçün istifadə edə bilərsiniz.',
+                    'question' => 'Xalları elanın önə çıxarılması ilə dəyişdirə bilərəm?',
+                    'answer' => 'Bəli. Xallar universal valyutadır – onlardan CV-lərin açılması, elanın fərqləndirilməsi və ya əlavə tanıtım üçün istifadə edə bilərsiniz.',
                 ],
                 [
-                    'question' => 'Namizədlərin məlumatlarına nə vaxt giriş əldə edəcəyəm?',
-                    'answer' => 'Xalları dəyişdikdən dərhal sonra. Hesabınızın balansını xallarla artırırsınız və sonra elan panelində bir kliklə müraciətləri oxuyursunuz.',
+                    'question' => 'Namizədlərin məlumatlarına nə vaxt çıxış əldə edəcəyəm?',
+                    'answer' => 'Xalları dəyişdikdən dərhal sonra. Hesabınızı xallarla doldurursunuz və elan panelində tək bir kliklə müraciətləri oxuyursunuz.',
                 ],
             ],
         ],
         'bottom_cta' => [
-            'title' => 'Namizədləriniz əlaqə gözləyir',
-            'subtitle' => 'Balansı 30 saniyəyə artırın və portalın tam imkanlarını açın',
+            'title' => 'Namizədləriniz sizinlə əlaqə saxlanılmasını gözləyir',
+            'subtitle' => '30 saniyə ərzində balansı artırın və portalın bütün imkanlarından yararlanın',
             'button' => 'Balansı indi artırın',
             'features' => [
-                'free_ads' => 'pulsuz elan yerləşdirmə',
+                'free_ads' => 'pulsuz elan yerləşdirilməsi',
                 'no_expiration' => 'hesabınızda müddətsiz xallar',
                 'real_support' => 'ehtiyacı olanlara real dəstək',
             ],
@@ -206,30 +207,60 @@ return [
     ],
     'charity' => [
         'nav' => [
-            'how_it_works' => 'Necə işləyir?',
+            'how_it_works' => 'Bu necə işləyir?',
             'benefits' => 'Üstünlüklər',
-            'faq' => 'Tez-tez verilən suallar',
-            'register_foundation' => 'Fondu qeydiyyatdan keçirin',
+            'faq' => 'FAQ',
+            'register_foundation' => 'Xeyriyyə fondunu qeydiyyatdan keçirin',
         ],
         'hero' => [
-            'title' => 'İşə qəbul proseslərini Fondunuz üçün <br class="hidden lg:block"/> real dəstəyə çevirin.',
-            'subtitle' => 'Portalın Səfirlərinə qoşulun. Hər bir işə qəbul himayənizdə olanlar üçün real dəstəkdir. Xərclər və lazımsız rəsmiyyət olmadan.',
-            'cta' => 'Fondu qeydiyyatdan keçirin',
+            'title' => 'Rekrutinq proseslərini Fondunuz üçün <br class="hidden lg:block"/> real dəstəyə çevirin.',
+            'subtitle' => 'Platformanın Səfirlərinə qoşulun. Hər bir işçi qəbulu himayənizdə olanlar üçün real kömək deməkdir. Heç bir xərc və lazımsız rəsmiyyət olmadan.',
+            'cta' => 'Xeyriyyə fondunu qeydiyyatdan keçirin',
         ],
         'how_it_works' => [
-            'title' => 'NECƏ İŞLƏYİR?',
+            'title' => 'BU NECƏ İŞLƏYİR?',
             'steps' => [
                 'step1' => [
                     'title' => 'Profil yaradırsınız',
-                    'desc' => 'Təşkilatınızın vizit kartını yaradırsınız, bu, portalda işəgötürənlər üçün görünür və missiyanızın tanınmasını artırır.',
+                    'desc' => 'Təşkilatınızın vizit kartını yaradırsınız; bu, portalda işəgötürənlərə görünür və missiyanızın tanınmasını artırır.',
                 ],
                 'step2' => [
                     'title' => 'Səfir olursunuz',
-                    'desc' => 'Şirkətləri məsuliyyətli işə qəbula dəvət edərək portalın səfiri kimi çıxış edirsiniz. Onların hər bir balans artımı fondunuz üçün məbləğin 50%-i deməkdir.',
+                    'desc' => 'Platformanın səfiri kimi çıxış edərək şirkətləri məsuliyyətli rekrutinqə dəvət edirsiniz. Onların hər balans artımından 50% fondunuza köçürülür.',
                 ],
                 'step3' => [
-                    'title' => 'Vəsaitləri alırsınız',
-                    'desc' => 'İşəgötürənlər özləri dəstək məqsədi kimi Sizin fondunuzu seçirlər və ya onlarla paylaşdığınız unikal keçid vasitəsilə Sizə çatırlar.',
+                    'title' => 'Vəsaitləri qəbul edirsiniz',
+                    'desc' => 'İşəgötürənlər özləri dəstək məqsədilə sizin fondu seçirlər və ya onlarla paylaşdığınız unikal link vasitəsilə sizə müraciət edirlər.',
+                ],
+            ],
+        ],
+        'funds_origin' => [
+            'title' => 'Xeyriyyə fondları üçün vəsait haradan gəlir?',
+            'steps' => [
+                'step1' => 'İşəgötürən/şirkət rekrutinq həyata keçirir',
+                'step2' => 'Platformadan istifadə üçün lazım olan xalları satın alır',
+                'step3' => 'Ödənişin 50%-i seçilmiş xeyriyyə fonduna köçürülür',
+                'step4' => 'Fond öz missiyasını reallaşdırır',
+            ],
+        ],
+        'why_model_works' => [
+            'title' => 'BU MODEL NİYƏ UĞURLUDUR?',
+            'items' => [
+                [
+                    'title' => 'Şirkətlər hər gün işçi qəbul edir',
+                    'desc' => 'Rekrutinq minlərlə şirkət və məşğulluq agentliyinin fəaliyyətinin daimi tərkib hissəsidir.',
+                ],
+                [
+                    'title' => 'Yardım avtomatik olaraq formalaşır',
+                    'desc' => 'Dəstək rekrutinq prosesi zamanı təbii olaraq yaranır və əlavə ianələr tələb etmir.',
+                ],
+                [
+                    'title' => 'Hər kəs qazanır',
+                    'desc' => 'İşəgötürənlər daha effektiv işçi tapır, fondlar dəstək alır, namizədlər isə işlə təmin olunurlar.',
+                ],
+                [
+                    'title' => 'Hər bir rekrutinq kömək edir',
+                    'desc' => 'Platformadakı hər bir aktivlik sosial təşkilatlara göstərilən dəstəyin miqyasını artırır.',
                 ],
             ],
         ],
@@ -237,62 +268,98 @@ return [
             'title' => 'NİYƏ BİZİM SƏFİRİMİZ OLMAĞA DƏYƏR?',
             'items' => [
                 'new_source' => [
-                    'title' => 'Yeni maliyyə mənbəyi',
-                    'desc' => 'Kömək etmək istəyən, lakin öz KSM strategiyalarını həyata keçirmək üçün sadə, şəffaf və tam avtomatlaşdırılmış yol axtaran şirkətlərə çatırsınız.',
+                    'title' => 'Yeni maliyyələşmə mənbəyi',
+                    'desc' => 'Kömək etmək istəyən, lakin öz CSR strategiyalarını həyata keçirmək üçün sadə, şəffaf və tam avtomatlaşdırılmış yol axtaran şirkətlərə çıxış əldə edirsiniz.',
                 ],
                 'free_promo' => [
-                    'title' => 'Pulsuz reklam',
-                    'desc' => 'Fondunuz portaldan istifadə edən hər bir işəgötürən üçün görünür, bununla da qlobal biznes arasında tanınırsınız.',
+                    'title' => 'Pulsuz tanıtım',
+                    'desc' => 'Fondunuz portaldan istifadə edən hər bir işəgötürənə görünür, bununla da qlobal biznes mühitində tanınmağınızı təmin edirsiniz.',
                 ],
                 'ready_tools' => [
                     'title' => 'Hazır alətlər',
-                    'desc' => 'İstədiyiniz kimi paylaşa biləcəyiniz materiallar alırsınız. Siz effektiv işə qəbul alətini tövsiyə edirsiniz, işçi axtaran şirkətlər isə Sizin məqsədinizə dəstək olurlar.',
+                    'desc' => 'Sərbəst şəkildə paylaşa biləcəyiniz materiallar əldə edirsiniz. Siz effektiv rekrutinq alətini tövsiyə edirsiniz, işçi axtaran şirkətlər isə sizin məqsədinizə dəstək olur.',
                 ],
                 'business_relations' => [
-                    'title' => 'Bizneslə münasibətlərin qurulması',
-                    'desc' => 'Şirkətlər üçün tərəfdaş olursunuz. İşəgötürənlər missiyanıza dəstəyi təsdiq edən sertifikat alırlar ki, bu da əməkdaşlığınızı gücləndirir.',
+                    'title' => 'Bizneslə əlaqələrin qurulması',
+                    'desc' => 'Şirkətlərin tərəfdaşına çevrilirsiniz. İşəgötürənlər missiyanıza dəstəyi təsdiq edən sertifikat alırlar ki, bu da əməkdaşlığınızı daha da gücləndirir.',
                 ],
             ],
         ],
         'business_card' => [
             'title' => 'Sizin vizit kartınız – biznes dünyasına açılan pəncərəniz',
             'items' => [
-                'describe' => 'Fondunuzun nə ilə məşğul olduğunu və hazırda nə üçün vəsaitə ehtiyacı olduğunu dəqiq təsvir edin.',
-                'link' => 'Veb saytınıza keçid və əlaqə məlumatlarını əlavə edin ki, hər bir şirkət fəaliyyətinizlə daha yaxından tanış ola bilsin.',
-                'visible' => 'Hər xal alışında seçim siyahısında və „Tərəfdaşlarımız” bölməmizdə görünürsünüz.',
+                'describe' => 'Fondunuzun tam olaraq nə ilə məşğul olduğunu və hazırda hansı layihələr üçün vəsaitə ehtiyacı olduğunu dəqiq təsvir edin.',
+                'link' => 'Hər bir şirkətin fəaliyyətinizlə yaxından tanış ola bilməsi üçün veb-saytınızın linkini və əlaqə məlumatlarını əlavə edin.',
+                'visible' => 'Hər xal alışında seçim siyahısında və bizim „Tərəfdaşlar” bölməmizdə görünürsünüz.',
             ],
-            'cta' => 'Fondunuzu indi qeydiyyatdan keçirin',
+            'cta' => 'Xeyriyyə fondunuzu indi qeydiyyatdan keçirin',
+        ],
+        'how_to_increase_support' => [
+            'title' => 'XEYRİYYƏ FONDUNUZA DƏSTƏYİ REAL OLARAQ NECƏ ARTIRMAQ OLAR?',
+            'subtitle' => 'Qeydiyyatdan sonra şəxsi tərəfdaşlıq (Affiliate) linkinizi əldə edəcəksiniz.',
+            'description' => 'Onu aşağıdakı platformalarda istifadə edə bilərsiniz:',
+            'items' => [
+                'veb-saytınızda yerləşdirmək,',
+                'e-mail imzanıza əlavə etmək,',
+                'biznes tərəfdaşlarınıza göndərmək,',
+                'sosial şəbəkələrdə paylaşmaq,',
+                'fandraizinq kampaniyaları zamanı istifadə etmək.',
+            ],
+            'footer' => 'Sizin linkiniz vasitəsilə WORK4YOU.GLOBAL platformasından istifadə edən hər bir şirkət məhz sizin fondunuza dəstək ola bilər.',
         ],
         'faq' => [
-            'title' => 'Tez-tez verilən suallar',
+            'title' => 'FAQ',
             'questions' => [
                 [
-                    'question' => 'Qeydiyyat neçəyədir?',
-                    'answer' => 'Heç nə. Fondun profilinin qeydiyyatı və saxlanılması tamamilə pulsuzdur.',
+                    'question' => 'Qeydiyyat neçəyə başa gəlir?',
+                    'answer' => 'Tamamilə pulsuzdur. Fondun qeydiyyatı və profilinin saxlanılması tamamilə ödənişsizdir.',
                 ],
                 [
                     'question' => 'Vəsaitləri nə vaxt alırıq?',
-                    'answer' => 'Vəsaitlər Sizi dəstəkləyən işəgötürən tərəfindən hər ödəniş edildikdən sonra 2-7 iş günü ərzində fondun hesabına daxil olur.',
+                    'answer' => 'Vəsaitlər sizi dəstəkləyən işəgötürən tərəfindən edilən hər ödənişdən sonra 2-7 iş günü ərzində fondun rəsmi bank hesabına köçürülür.',
                 ],
                 [
-                    'question' => 'Portalı reklam etməliyik?',
-                    'answer' => 'Bu tələb deyil, lakin Səfir olmaq faydalıdır. Sizin tövsiyənizlə işə qəbul edən hər bir şirkət, təşkilatınız üçün onların balans artımı dəyərinin zəmanətli 50%-i deməkdir.',
+                    'question' => 'Portalı mütləq tanıtmalıyıq?',
+                    'answer' => 'Bu məcburi tələb deyil, lakin Səfir olmaq faydalıdır. Sizin tövsiyənizlə işçi qəbul edən hər bir şirkət, etdiyi balans artımının 50%-ni təşkilatınıza qarantiyalı gəlir olaraq qazandırır.',
                 ],
                 [
-                    'question' => 'Hansı sənədlər lazımdır?',
-                    'answer' => 'Qeydiyyat nömrəsi və hesab yaradarkən yoxlayacağımız əsas nizamnamə məlumatları kifayətdir.',
+                    'question' => 'Hansı sənədlər tələb olunur?',
+                    'answer' => 'Hesab yaradarkən yoxlayacağımız rəsmi qeydiyyat nömrəsi (KRS və ya analoqu) və əsas nizamnamə məlumatları kifayətdir.',
+                ],
+                [
+                    'question' => 'Xeyriyyə fondları üçün vəsait haradan gəlir?',
+                    'answer' => 'Vəsaitlər WORK4YOU.GLOBAL xidmətlərindən istifadə edən işəgötürənlərin ödənişlərindən formalaşır. Şirkət platformada istifadə üçün xal satın aldıqda, ödənişin 50%-i dərhal seçilmiş xeyriyyə fonduna yönləndirilir.',
+                ],
+                [
+                    'question' => 'İşəgötürənlər fondları necə seçirlər?',
+                    'answer' => 'İşəgötürənlər platformadan istifadə edərkən fondu müstəqil şəkildə seçə bilər və ya fond tərəfindən təqdim olunan fərdi link vasitəsilə birbaşa keçid edə bilərlər.',
+                ],
+                [
+                    'question' => 'Platformada öz profilimiz olacaq?',
+                    'answer' => 'Bəli. Hər bir fond fəaliyyətinin təsviri, əlaqə məlumatları, həmçinin öz missiya və hədəflərini təqdim etmək imkanı olan şəxsi profil əldə edir.',
+                ],
+                [
+                    'question' => 'Portalı sosial şəbəkələrimdə daimi olaraq tanıtmalıyam?',
+                    'answer' => 'Mütəmadi olaraq tanıtım tələb etmirik. Proqrama qoşulduqdan sonra yalnız WORK4YOU.GLOBAL ilə əməkdaşlıq barədə məlumat verən bir post dərc etməyinizi xahiş edirik. Sonrakı tanıtım tamamilə könüllüdür.',
                 ],
             ],
         ],
         'bottom_cta' => [
-            'title' => 'Tərəfdaş Fondlar sırasına qoşulun',
-            'subtitle' => 'Pulsuz qeydiyyatdan keçin, təşkilatınızın vizit kartını yaradın və məsuliyyətli işəgötürənlərdən dəstək almağa başlayın.',
-            'cta' => 'Fondu qeydiyyatdan keçirin',
+            'title' => 'Tərəfdaş Fondların sırasına qoşulun',
+            'subtitle' => 'Pulsuz qeydiyyatdan keçin, təşkilatınızın vizit kartını yaradın və sosial məsuliyyətli işəgötürənlərdən dəstək almağa başlayın.',
+            'cta' => 'Xeyriyyə fondunu qeydiyyatdan keçirin',
+        ],
+        'our_mission' => [
+            'title' => 'BİZİM MİSSİYAMIZ',
+            'text1' => 'Sosial yardım yalnız bəzi vaxtlarda keçirilən xeyriyyə marafonlarından və ianə toplama kampaniyalarından asılı olmamalıdır.',
+            'text2' => 'Buna görə də biz şirkətlərin hər gün etdikləri fəaliyyət – yəni işçi qəbulu zamanı fondları dəstəkləyə biləcəyi bir model yaratdıq.',
+            'text3' => 'WORK4YOU.GLOBAL rekrutinq dünyasını sosial yardım dünyası ilə birləşdirərək hər bir tərəf üçün faydalı olan davamlı bir model təklif edir.',
         ],
         'footer_features' => [
             'free_reg' => 'pulsuz qeydiyyat',
-            'simple_csr' => 'biznes üçün sadə KSM',
+            'simple_csr' => 'biznes üçün sadə CSR',
             'constant_support' => 'daimi dəstək mənbəyi',
         ],
     ],
+
 ];

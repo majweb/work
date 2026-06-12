@@ -1,206 +1,207 @@
 <?php
 
+
 return [
     'meta' => [
-        'title' => 'Work4you.global - Objavljujte oglase za posao besplatno',
-        'description' => 'Objavite neograničen broj oglasa za posao i prikupljajte prijave kandidata besplatno. Ostvarite 50.000 bodova na startu!',
+        'title' => 'Work4you.global - Dodajte oglase za posao besplatno',
+        'description' => 'Dodajte neograničen broj oglasa za posao i prikupljajte prijave kandidata potpuno besplatno. Preuzmite 50.000 bonus bodova za start!',
     ],
     'nav' => [
         'how_it_works' => 'Kako to radi',
         'benefits' => 'Prednosti',
         'faq' => 'FAQ',
-        'register_free' => 'Otvori besplatan račun',
+        'register_free' => 'Otvorite besplatan račun',
     ],
     'hero' => [
-        'title' => 'Objavljujte neograničen broj oglasa za posao <br class="hidden lg:block"/> i prikupljajte prijave kandidata besplatno.',
-        'subtitle' => 'Bez pretplate. Bez naknada za objavu. <br class="hidden md:block"/> Na startu dobivate 50.000 bodova za korištenje.',
-        'cta' => 'Otvori besplatan račun i dodaj prvi oglas',
-        'target' => 'Idealno za agencije za zapošljavanje i <br class="hidden sm:block" /> tvrtke koje zapošljavaju u velikom opsegu.',
+        'title' => 'Dodajte neograničen broj oglasa za posao <br class="hidden lg:block"/> i prikupljajte prijave kandidata potpuno besplatno.',
+        'subtitle' => 'Bez pretplate. Bez naknada za objavu. <br class="hidden md:block"/> Na startu odmah dobivate 50.000 bodova spremnih za korištenje.',
+        'cta' => 'Otvorite besplatan račun i dodajte svoj prvi oglas',
+        'target' => 'Idealno za agencije za zapošljavanje i <br class="hidden sm:block" /> tvrtke koje zapošljavaju na veliko.',
     ],
     'model' => [
-        'title' => 'Jednostavan model: Objavljujete besplatno i prikupljate kandidate',
+        'title' => 'Jednostavan model: Objavljujte besplatno i prikupljajte kandidate',
         'step1' => [
-            'title' => 'Dodajete bilo koji broj oglasa',
-            'desc' => 'Bez limita i bez troškova',
+            'title' => 'Dodajete željeni broj oglasa',
+            'desc' => 'Bez limita i bez ikakvih troškova',
         ],
         'step2' => [
-            'title' => 'Dobivate prijave kandidata',
-            'desc' => 'Prikupljate kandidate besplatno',
+            'title' => 'Primate prijave kandidata',
+            'desc' => 'Prikupljate životopise (CV) kandidata potpuno besplatno',
         ],
         'step3' => [
-            'title' => 'Koristite bodove samo kada želite',
-            'desc' => 'npr. za pristup životopisu ili promociju',
+            'title' => 'Koristite bodove samo kada vi to želite',
+            'desc' => 'npr. za pristup CV-ovima ili za promociju oglasa',
         ],
     ],
     'credits' => [
-        'badge' => 'na startu!',
+        'badge' => 'za start!',
         'amount_label' => 'bodova',
         'test_platform' => 'Nakon registracije dobivate startni paket za potpuno testiranje platforme:',
         'benefits_list' => [
-            'Pregled životopisa kandidata (klasični, audio, video)',
+            'Pregled CV-ova kandidata (klasični, audio, video)',
             'Promocija oglasa za posao na vrhu liste',
             'Isticanje tvrtke u katalogu poslodavaca',
-            'Pristup naprednim filtrima za zapošljavanje',
+            'Pristup naprednim filterima za regrutaciju',
         ],
-        'no_start_costs' => 'Napokon zapošljavate bez početnih troškova...',
+        'no_start_costs' => 'Napokon regrutirate bez ikakvih početnih troškova...',
         'items' => [
             'free_ads' => 'Objavljujete oglase besplatno',
-            'no_contracts' => 'Bez ugovora i pretplata',
-            'own_rules' => 'Koristite prema vlastitim pravilima',
-            'cv_types' => 'Klasični, audio, video životopisi',
+            'no_contracts' => 'Bez ugovora i mjesečnih pretplata',
+            'own_rules' => 'Koristite platformu pod vlastitim uvjetima',
+            'cv_types' => 'Klasični, audio i video CV-ovi',
             'all_languages' => 'Oglasi na svim jezicima',
         ],
     ],
     'foundation' => [
         'badge' => 'Zajedno mijenjamo svijet:',
-        'title' => '50% iznosa svake kupnje financira zakladu po Vašem izboru.',
-        'subtitle' => 'Zapošljavate. I istovremeno pomažete onima u potrebi.',
+        'title' => '50% od iznosa svake kupnje financira zakladu koju vi izaberete.',
+        'subtitle' => 'Zapošljavate radnike, a istovremeno pomažete onima kojima je to potrebno.',
     ],
     'cta' => [
-        'title' => 'Spremni za besplatno zapošljavanje? <br/>Preuzmite <span class="text-red-work">50.000 bodova</span>!',
-        'button' => 'Registriraj tvrtku besplatno',
+        'title' => 'Spremni za besplatnu regrutaciju? <br/>Preuzmite svojih <span class="text-red-work">50.000 bodova</span> odmah!',
+        'button' => 'Registrirajte tvrtku besplatno',
     ],
     'who_is_it_for' => [
         'title' => 'Tko će imati najviše koristi?',
         'groups' => [
             'agencies' => 'Agencije za zapošljavanje i regruteri',
-            'high_volume' => 'Tvrtke s velikim brojem zapošljavanja',
+            'high_volume' => 'Tvrtke s velikim opsegom zapošljavanja',
             'cost_conscious' => 'Poslodavci koji žele smanjiti troškove',
-            'international' => 'Tvrtke koje posluju međunarodno',
-            'everyone' => 'Svatko tko traži zaposlenika',
+            'international' => 'Tvrtke koje posluju na međunarodnoj razini',
+            'everyone' => 'Svatko tko traži radnika',
         ],
     ],
     'faq_section' => [
         'title' => 'FAQ',
-        'subtitle' => 'Najčešće postavljana pitanja',
+        'subtitle' => 'Često postavljana pitanja',
         'questions' => [
             [
-                'question' => 'Je li dodavanje oglasa doista besplatno?',
-                'answer' => 'Da — ne plaćate objavu, bez obzira na broj oglasa.',
+                'question' => 'Je li dodavanje oglasa zaista besplatno?',
+                'answer' => 'Da — ne plaćate ništa za objavu, bez obzira na broj oglasa.',
             ],
             [
-                'question' => 'Moram li kupiti bodove na početku?',
-                'answer' => 'Ne — dobivate 50.000 bodova odmah nakon registracije.',
+                'question' => 'Moram li kupiti bodove na samom početku?',
+                'answer' => 'Ne — dobivate 50.000 bodova automatski odmah nakon registracije.',
             ],
             [
                 'question' => 'Kada počinjem plaćati?',
-                'answer' => 'Tek kada poželite dokupiti dodatne bodove.',
+                'answer' => 'Tek kada sami odlučite dokupiti dodatne bodove.',
             ],
             [
                 'question' => 'Mogu li odustati u bilo kojem trenutku?',
-                'answer' => 'Da — nema ugovora niti obveza.',
+                'answer' => 'Da — nema nikakvih ugovora niti obvezujućih rokova.',
             ],
         ],
     ],
     'footer' => [
-        'description' => 'Prva platforma za zapošljavanje koja daje glas poslodavcima i kandidatima, istovremeno pružajući stvarnu podršku zakladama.',
+        'description' => 'Prva regrutacijska platforma koja daje glas poslodavcima i kandidatima, dok istovremeno pruža stvarnu podršku humanitarnim zakladama.',
         'nav' => 'Navigacija',
         'legal' => 'Pravne informacije',
         'privacy' => 'Politika privatnosti',
-        'terms' => 'Pravilnik',
+        'terms' => 'Uvjeti korištenja',
         'rights' => 'Sva prava pridržana.',
     ],
     'sold' => [
         'hero' => [
-            'title' => 'Vaši su oglasi privukli kandidate. <br/> Nemojte ih pustiti da čekaju.',
-            'subtitle' => 'Povećajte broj prijava, otključajte pristup životopisima i iskoristite puni potencijal svojih oglasa.',
-            'cta' => 'Nadoplati račun',
+            'title' => 'Vaši oglasi su privukli kandidate. <br/> Ne dozvolite im da čekaju.',
+            'subtitle' => 'Povećajte broj prijava, otključajte pristup CV-ovima i iskoristite puni potencijal svojih oglasa.',
+            'cta' => 'Dopunite račun',
             'warning' => 'Ne gubite kandidate koji se već prijavljuju!',
         ],
         'points_benefits' => [
-            'title' => 'POGLEDAJTE ŠTO MOŽETE UČINITI S KUPLJENIM BODOVIMA',
+            'title' => 'POGLEDAJTE ŠTO SVE MOŽETE UČINITI S KUPLJENIM BODOVIMA',
             'items' => [
-                'cv_access' => 'pristup životopisima kandidata',
-                'cv_formats' => 'životopisi u različitim oblicima',
-                'ads_promo' => 'promocija oglasa',
-                'employer_distinction' => 'isticanje poslodavca',
-                'brand_building' => 'izgradnja brenda za zapošljavanje',
+                'cv_access' => 'pristup CV-ovima kandidata',
+                'cv_formats' => 'CV u različitim formatima',
+                'ads_promo' => 'promocija oglasa za posao',
+                'employer_distinction' => 'isticanje brenda poslodavca',
+                'brand_building' => 'izgradnja jakog regrutacijskog brenda',
             ],
         ],
         'recharges' => [
-            'title' => 'NADOPLATE UMJESTO PRETPLATE',
+            'title' => 'DOPUNA RAČUNA UMJESTO PRETPLATE',
             'subtitle' => 'Vaši bodovi, Vaša pravila...',
             'items' => [
                 'free_ads' => [
-                    'title' => 'Objavljujete oglase besplatno',
+                    'title' => 'Objavljujete oglase potpuno besplatno',
                     'desc' => 'Dodavanje oglasa uvijek ostaje besplatno. Gradite bazu kandidata bez ikakvih početnih troškova.',
                 ],
                 'no_expiration' => [
-                    'title' => 'Vaši bodovi ne istječu',
-                    'desc' => 'Nadoplaćena sredstva su Vaša zauvijek. Možete ih iskoristiti danas, za tjedan ili za mjesec dana za bilo koju aktivnost.',
+                    'title' => 'Vaši bodovi nikada ne istječu',
+                    'desc' => 'Dopunjena sredstva su Vaša zauvijek. Možete ih iskoristiti danas, za tjedan ili za mjesec dana za bilo koju aktivnost.',
                 ],
                 'pay_per_effect' => [
-                    'title' => 'Plaćate samo za učinak',
-                    'desc' => 'Mijenjate bodove samo kada želite koristiti određenu funkciju. Potpuna kontrola nad proračunom.',
+                    'title' => 'Plaćate samo za stvarni efekt',
+                    'desc' => 'Mijenjate bodove samo kada želite iskoristiti konkretnu funkciju. Potpuna kontrola nad Vašim budžetom.',
                 ],
             ],
         ],
         'foundation' => [
-            'title' => 'Vaša odluka ima moć:',
-            'subtitle' => 'Polovica iznosa Vaše narudžbe ide na račun odabrane zaklade.',
+            'title' => 'Vaša odluka ima stvarnu moć:',
+            'subtitle' => 'Polovica iznosa Vaše narudžbe bit će uplaćena izravno na račun izabrane zaklade.',
             'step1' => [
-                'title' => 'Birate cilj:',
-                'desc' => 'Vi odlučujete koju ćemo od organizacija podržati nakon Vaše nadoplate.',
+                'title' => 'Vi birate cilj:',
+                'desc' => 'Vi odlučujete koju od organizacija ćemo podržati nakon što dopunite svoj račun.',
             ],
             'step2' => [
                 'title' => 'Certifikat za Vašu tvrtku:',
-                'desc' => 'Službena potvrda da spajate zapošljavanje s društvenom podrškom.',
+                'desc' => 'Službena potvrda da uspješno povezujete proces zapošljavanja s društvenom odgovornošću.',
             ],
-            'cta' => 'Odaberite paket bodova i navedite zakladu',
+            'cta' => 'Izaberite paket bodova i navedite zakladu',
         ],
         'solutions' => [
-            'title' => 'Imamo rješenje za svakoga tko traži zaposlenike:',
+            'title' => 'Imamo rješenje za svakoga tko traži radnike:',
             'items' => [
                 'agencies' => [
                     'title' => 'AGENCIJE ZA ZAPOŠLJAVANJE I REGRUTERI',
-                    'desc' => 'Trenutačni pristup životopisima u klasičnom, audio ili video obliku i alati za selekciju omogućuju Vam da završite proces prije konkurencije.',
+                    'desc' => 'Trenutni pristup klasičnim, audio ili video CV-ovima i napredni alati za selekciju omogućuju Vam da završite proces prije konkurencije.',
                 ],
                 'high_volume' => [
-                    'title' => 'TVRTKE S VELIKIM BROJEM ZAPOŠLJAVANJA',
-                    'desc' => 'Nedostatak fiksnih naknada znači stvarnu uštedu. Bodovi se skidaju samo za konkretne radnje, a oglasi su stalno vidljivi.',
+                    'title' => 'TVRTKE S VELIKIM OPSEGOM ZAPOŠLJAVANJA',
+                    'desc' => 'Odsutnost fiksnih troškova donosi stvarnu uštedu. Bodovi se skidaju samo za konkretne akcije, dok su Vaši oglasi vidljivi stalno.',
                 ],
                 'cost_conscious' => [
                     'title' => 'POSLODAVCI KOJI ŽELE SMANJITI TROŠKOVE',
-                    'desc' => 'Model bodova omogućuje precizno upravljanje proračunom. Trošite točno onoliko koliko ste planirali za određeno radno mjesto.',
+                    'desc' => 'Model bodovanja omogućuje precizno upravljanje budžetom. Trošite točno onoliko koliko ste planirali za određeno radno mjesto.',
                 ],
                 'international' => [
-                    'title' => 'TVRTKE KOJE POSLUJU MEĐUNARODNO',
-                    'desc' => 'Portal dostupan na svim jezicima omogućuje traženje radnika posvuda. Globalni doseg i jednostavan oblik obračuna.',
+                    'title' => 'TVRTKE KOJE POSLUJU NA MEĐUNARODNOJ RAZINI',
+                    'desc' => 'Portal je dostupan na svim jezicima, što Vam omogućuje da tražite radnike bilo gdje. Globalni domet i jednostavan način obračuna.',
                 ],
                 'everyone' => [
-                    'title' => 'SVATKO TKO TRAŽI ZAPOSLENIKA',
-                    'desc' => 'Bez obzira na veličinu, dobivate pristup motiviranim kandidatima i pritom podržavate plemeniti cilj.',
+                    'title' => 'SVATKO TKO TRAŽI RADNIKA',
+                    'desc' => 'Bez obzira na veličinu Vašeg poslovanja, dobivate pristup visokomotiviranim kandidatima i istovremeno podržavate plemenit cilj.',
                 ],
             ],
         ],
         'faq' => [
             'questions' => [
                 [
-                    'question' => 'Što će se dogoditi s mojim oglasima ako ne nadoplatim račun?',
-                    'answer' => 'Oglasi ostaju aktivni. Nadoplata je potrebna samo za otključavanje pregleda životopisa kandidata, isticanje oglasa i druge promotivne opcije.',
+                    'question' => 'Što će se dogoditi s mojim oglasima ako ne dopunim račun?',
+                    'answer' => 'Oglasi ostaju aktivni. Dopuna računa je potrebna isključivo za otključavanje pregleda CV-ova kandidata, isticanje ponuda i druge promotivne opcije.',
                 ],
                 [
                     'question' => 'Koji je rok trajanja bodova?',
-                    'answer' => 'Bodovi ne istječu. Možete ih iskoristiti sada ili kod sljedećih zapošljavanja za nekoliko mjeseci – sredstva uvijek čekaju na Vašem računu.',
+                    'answer' => 'Bodovi ne istječu. Možete ih iskoristiti sada ili prilikom narednih zapošljavanja za nekoliko mjeseci – sredstva Vas uvijek čekaju na računu.',
                 ],
                 [
                     'question' => 'Mogu li zamijeniti bodove za promociju oglasa?',
-                    'answer' => 'Da. Bodovi su univerzalna valuta – možete ih usmjeriti na otključavanje životopisa, isticanje oglasa ili dodatnu promociju.',
+                    'answer' => 'Da. Bodovi su univerzalna valuta platforme – možete ih usmjeriti na otključavanje CV-ova, isticanje oglasa ili dodatnu promociju.',
                 ],
                 [
                     'question' => 'Kada ću dobiti pristup podacima kandidata?',
-                    'answer' => 'Odmah nakon zamjene bodova. Nadoplatite račun bodovima, a zatim u panelu oglasa jednim klikom otvarate prijave.',
+                    'answer' => 'Odmah nakon što zamijenite bodove. Dopunite račun bodovima, a zatim u panelu oglasa jednim klikom otključavate prijave.',
                 ],
             ],
         ],
         'bottom_cta' => [
             'title' => 'Vaši kandidati čekaju na kontakt',
-            'subtitle' => 'Nadoplatite račun u 30 sekundi i otključajte puni potencijal portala',
-            'button' => 'Nadoplati račun sada',
+            'subtitle' => 'Dopunite račun za 30 sekundi i otključajte pune mogućnosti portala',
+            'button' => 'Dopunite račun sada',
             'features' => [
                 'free_ads' => 'besplatna objava oglasa',
-                'no_expiration' => 'bodovi bez roka trajanja na Vašem računu',
-                'real_support' => 'stvarna podrška onima u potrebi',
+                'no_expiration' => 'bezvremenski bodovi na Vašem računu',
+                'real_support' => 'stvarna podrška onima kojima je potrebna',
             ],
         ],
     ],
@@ -209,40 +210,70 @@ return [
             'how_it_works' => 'Kako to radi?',
             'benefits' => 'Prednosti',
             'faq' => 'FAQ',
-            'register_foundation' => 'Registriraj zakladu',
+            'register_foundation' => 'Registrirajte zakladu',
         ],
         'hero' => [
-            'title' => 'Pretvorite procese zapošljavanja u <br class="hidden lg:block"/> stvarnu podršku za svoju Zakladu.',
-            'subtitle' => 'Pridružite se Ambasadorima portala. Svako zapošljavanje je stvarna podrška za Vaše štićenike. Bez troškova i suvišnih formalnosti.',
-            'cta' => 'Registriraj zakladu',
+            'title' => 'Pretvorite procese regrutacije u <br class="hidden lg:block"/> stvarnu podršku za Vašu zakladu.',
+            'subtitle' => 'Pridružite se Ambasadorima portala. Svaka regrutacija je stvarna pomoć za Vaše štićenike. Bez troškova i suvišne birokracije.',
+            'cta' => 'Registrirajte zakladu',
         ],
         'how_it_works' => [
             'title' => 'KAKO TO RADI?',
             'steps' => [
                 'step1' => [
-                    'title' => 'Otvarate profil',
-                    'desc' => 'Kreirate posjetnicu svoje organizacije koja je vidljiva poslodavcima na portalu, gradeći prepoznatljivost svoje misije.',
+                    'title' => 'Kreirate profil',
+                    'desc' => 'Kreirate vizit kartu Vaše organizacije koja je vidljiva poslodavcima na portalu, čime gradite prepoznatljivost Vaše misije.',
                 ],
                 'step2' => [
                     'title' => 'Vi ste Ambasador',
-                    'desc' => 'Djelujete kao ambasador portala, pozivajući tvrtke na odgovorno zapošljavanje. Svaka njihova nadoplata znači 50% iznosa za Vašu zakladu.',
+                    'desc' => 'Djelujete kao ambasador portala, pozivajući tvrtke na društveno odgovorno zapošljavanje. Svaka njihova dopuna donosi 50% iznosa Vašoj zakladi.',
                 ],
                 'step3' => [
-                    'title' => 'Dobivate sredstva',
-                    'desc' => 'Poslodavci sami biraju Vašu zakladu kao cilj podrške ili dolaze do Vas putem jedinstvene poveznice koju im podijelite.',
+                    'title' => 'Primate sredstva',
+                    'desc' => 'Poslodavci sami biraju Vašu zakladu kao cilj podrške ili dolaze do Vas putem unikatnog linka koji podijelite s njima.',
+                ],
+            ],
+        ],
+        'funds_origin' => [
+            'title' => 'Odakle dolaze sredstva za zaklade?',
+            'steps' => [
+                'step1' => 'Poslodavac/tvrtka provodi proces regrutacije',
+                'step2' => 'Kupuje bodove potrebne za korištenje platforme',
+                'step3' => '50% uplate ide na račun izabrane zaklade',
+                'step4' => 'Zaklada uspješno realizira svoju misiju',
+            ],
+        ],
+        'why_model_works' => [
+            'title' => 'ZAŠTO OVAJ MODEL RADI?',
+            'items' => [
+                [
+                    'title' => 'Tvrtke zapošljavaju svakog dana',
+                    'desc' => 'Regrutacija je stalan i neizbježan dio poslovanja tisuća tvrtki i agencija za zapošljavanje.',
+                ],
+                [
+                    'title' => 'Pomoć nastaje automatski',
+                    'desc' => 'Podrška se generira usporedo s regrutacijom i ne zahtijeva nikakve dodatne donatorske uplate od biznisa.',
+                ],
+                [
+                    'title' => 'Svi su na dobitku',
+                    'desc' => 'Poslodavci zapošljavaju učinkovitije, zaklade dobivaju sredstva, a kandidati pronalaze posao.',
+                ],
+                [
+                    'title' => 'Svaka regrutacija pomaže',
+                    'desc' => 'Svaka aktivnost na platformi izravno povećava opseg podrške društvenim organizacijama.',
                 ],
             ],
         ],
         'benefits' => [
-            'title' => 'ZAŠTO SE ISPLATI POSTATI NAŠ AMBASADOR?',
+            'title' => 'ZAŠTO VRIJEDI POSTATI NAŠ AMBASADOR?',
             'items' => [
                 'new_source' => [
                     'title' => 'Novi izvor financiranja',
-                    'desc' => 'Dolazite do tvrtki koje žele pomoći, ali traže jednostavan, transparentan i potpuno automatiziran način za provedbu svojih CSR strategija.',
+                    'desc' => 'Dolazite do tvrtki koje žele pomoći, ali traže jednostavan, transparentan i potpuno automatiziran način za realizaciju svojih CSR strategija.',
                 ],
                 'free_promo' => [
                     'title' => 'Besplatna promocija',
-                    'desc' => 'Vaša zaklada je vidljiva svakom poslodavcu koji koristi portal, čime gradite prepoznatljivost u globalnom poslovanju.',
+                    'desc' => 'Vaša zaklada je vidljiva svakom poslodavcu koji koristi portal, čime gradite prepoznatljivost unutar globalne poslovne zajednice.',
                 ],
                 'ready_tools' => [
                     'title' => 'Gotovi alati',
@@ -250,44 +281,79 @@ return [
                 ],
                 'business_relations' => [
                     'title' => 'Izgradnja odnosa s biznisom',
-                    'desc' => 'Postajete partner tvrtkama. Poslodavci dobivaju certifikat koji potvrđuje podršku Vašoj misiji, što jača vašu suradnju.',
+                    'desc' => 'Postajete partner tvrtkama. Poslodavci dobivaju certifikat koji potvrđuje podršku Vašoj misiji, što dodatno učvršćuje vašu suradnju.',
                 ],
             ],
         ],
         'business_card' => [
-            'title' => 'Vaša posjetnica – Vaš prozor u svijet biznisa',
+            'title' => 'Vaša vizit karta – Vaš prozor u svijet biznisa',
             'items' => [
-                'describe' => 'Opišite točno čime se bavi Vaša zaklada i za što joj trenutno trebaju sredstva.',
-                'link' => 'Dodajte poveznicu na svoju web stranicu i kontakt podatke kako bi svaka tvrtka mogla pobliže upoznati Vaše djelovanje.',
-                'visible' => 'Vidljivi ste na listi izbora pri svakoj kupnji bodova te u našoj sekciji „Partneri“.',
+                'describe' => 'Detaljno opišite čime se Vaša zaklada bavi i za što su joj trenutno najpotrebnija sredstva.',
+                'link' => 'Dodajte link do Vaše web stranice i kontakt podatke kako bi se svaka tvrtka mogla bliže upoznati s Vašim radom.',
+                'visible' => 'Vidljivi ste na listi izbora prilikom svake kupovine bodova, kao i u našoj sekciji „Partneri“.',
             ],
-            'cta' => 'Registriraj svoju zakladu sada',
+            'cta' => 'Registrirajte svoju zakladu sada',
+        ],
+        'how_to_increase_support' => [
+            'title' => 'KAKO POVEĆATI PODRŠKU ZA SVOJU ZAKLADU?',
+            'subtitle' => 'Nakon registracije dobit ćete vlastiti afiliacijski (partnerski) link.',
+            'description' => 'Možete ga:',
+            'items' => [
+                'postaviti na Vašu web stranicu,',
+                'dodati u potpis Vašeg e-maila,',
+                'poslati poslovnim partnerima,',
+                'dijeliti na društvenim mrežama,',
+                'koristiti tijekom fandrajzing akcija.',
+            ],
+            'footer' => 'Svaka tvrtka koja iskoristi WORK4YOU.GLOBAL putem Vašeg linka može podržati upravo Vašu zakladu.',
         ],
         'faq' => [
             'title' => 'FAQ',
             'questions' => [
                 [
                     'question' => 'Koliko košta registracija?',
-                    'answer' => 'Ništa. Registracija i održavanje profila zaklade potpuno su besplatni.',
+                    'answer' => 'Ništa. Registracija i održavanje profila zaklade su potpuno besplatni.',
                 ],
                 [
                     'question' => 'Kada dobivamo sredstva?',
-                    'answer' => 'Sredstva stižu na račun zaklade u roku od 2-7 radnih dana nakon svake uplate koju izvrši poslodavac koji Vas podržava.',
+                    'answer' => 'Sredstva se uplaćuju na račun zaklade u roku od 2-7 radnih dana nakon svake uplate koju izvrši poslodavac koji Vas podržava.',
                 ],
                 [
                     'question' => 'Moramo li promovirati portal?',
-                    'answer' => 'To nije uvjet, ali biti Ambasador se isplati. Svaka tvrtka koja zapošljava prema Vašoj preporuci jamči 50% vrijednosti njihovih nadoplata za Vašu organizaciju.',
+                    'answer' => 'To nije obveza, ale biti Ambasador se isplati. Svaka tvrtka koja zapošljava preko Vaše preporuke donosi zajamčenih 50% vrijednosti svojih dopuna Vašoj organizaciji.',
                 ],
                 [
-                    'question' => 'Koji su dokumenti potrebni?',
-                    'answer' => 'Dovoljan je identifikacijski broj (npr. OIB/KRS) i osnovni statutarni podaci koje ćemo provjeriti tijekom otvaranja računa.',
+                    'question' => 'Koji dokumenti su potrebni?',
+                    'answer' => 'Dovoljan je službeni registracijski broj (npr. OIB / KRS ili ekvivalent) i osnovni statutarni podaci koje ćemo verificirati tijekom kreiranja računa.',
+                ],
+                [
+                    'question' => 'Odakle dolaze sredstva za zakladu?',
+                    'answer' => 'Sredstva dolaze od uplata poslodavaca koji koriste WORK4YOU.GLOBAL. Svaki put kada tvrtka kupi bodove za korištenje platforme, 50% vrijednosti uplate ide izabranoj zakladi.',
+                ],
+                [
+                    'question' => 'Kako poslodavci biraju zaklade?',
+                    'answer' => 'Poslodavci mogu samostalno izabrati zakladu tijekom korištenja platforme ili doći do nje putem individualnog linka koji dijeli sama zaklada.',
+                ],
+                [
+                    'question' => 'Hoćemo li dobiti vlastiti profil na platformi?',
+                    'answer' => 'Bäli. Svaka zaklada dobiva vlastiti profil s opisom djelatnosti, kontakt podacima te mogućnošću prezentacije svoje misije i ciljeva.',
+                ],
+                [
+                    'question' => 'Moram li promovirati portal na svojim društvenim mrežama?',
+                    'answer' => 'Ne zahtijevamo redovnu promociju. Nakon pridruživanja programu, molimo Vas samo da objavite jedan informativni post o suradnji s WORK4YOU.GLOBAL. Daljnja promocija je potpuno dobrovoljna.',
                 ],
             ],
         ],
         'bottom_cta' => [
-            'title' => 'Pridružite se krugu Partnerskih Zaklada',
-            'subtitle' => 'Registrirajte se besplatno, kreirajte posjetnicu svoje organizacije i počnite primati podršku od odgovornih poslodavaca.',
-            'cta' => 'Registriraj zakladu',
+            'title' => 'Pridružite se krugu Partner Zaklada',
+            'subtitle' => 'Registrirajte se besplatno, kreirajte vizit kartu Vaše organizacije i počnite primati podršku od društveno odgovornih poslodavaca.',
+            'cta' => 'Registrirajte zakladu',
+        ],
+        'our_mission' => [
+            'title' => 'NAŠA MISIJA',
+            'text1' => 'Društvena pomoć ne bi trebala ovisiti isključivo o povremenim humanitarnim akcijama i prikupljanju donacija.',
+            'text2' => 'Zato smo kreirali model u kojem tvrtke mogu podržati zaklade kroz aktivnosti koje provode svakodnevno – zapošljavanje radnika.',
+            'text3' => 'WORK4YOU.GLOBAL uspješno spaja svijet regrutacije sa svijetom društvene pomoći, stvarajući model koristan za sve strane.',
         ],
         'footer_features' => [
             'free_reg' => 'besplatna registracija',
@@ -295,4 +361,5 @@ return [
             'constant_support' => 'stalan izvor podrške',
         ],
     ],
+
 ];

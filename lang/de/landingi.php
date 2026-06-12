@@ -1,8 +1,10 @@
 <?php
+
+
 return [
     'meta' => [
-        'title' => 'Work4you.global - Stellenangebote kostenlos hinzufügen',
-        'description' => 'Fügen Sie eine unbegrenzte Anzahl von Stellenangeboten hinzu und sammeln Sie Bewerbungen von Kandidaten kostenlos. Erhalten Sie 50.000 Punkte zum Start!',
+        'title' => 'Work4you.global - Stellenangebote kostenlos inserieren',
+        'description' => 'Schalten Sie unbegrenzt viele Stellenanzeigen und sammeln Sie Bewerbungen von Kandidaten völlig kostenlos. Erhalten Sie 50.000 Startpunkte geschenkt!',
     ],
     'nav' => [
         'how_it_works' => 'Wie es funktioniert',
@@ -11,62 +13,62 @@ return [
         'register_free' => 'Kostenloses Konto erstellen',
     ],
     'hero' => [
-        'title' => 'Fügen Sie eine unbegrenzte Anzahl von Stellenangeboten hinzu <br class="hidden lg:block"/> und sammeln Sie Bewerbungen von Kandidaten kostenlos.',
-        'subtitle' => 'Kein Abonnement. Keine Veröffentlichungsgebühren. <br class="hidden md:block"/> Zum Start erhalten Sie 50.000 Punkte zur freien Verwendung.',
-        'cta' => 'Kostenloses Konto erstellen und erste Anzeige aufgeben',
-        'target' => 'Ideal für Personalvermittlungsagenturen und <br class="hidden sm:block" /> Unternehmen mit hohem Einstellungsbedarf.',
+        'title' => 'Schalten Sie unbegrenzt viele Stellenanzeigen <br class="hidden lg:block"/> und sammeln Sie Bewerbungen von Kandidaten völlig kostenlos.',
+        'subtitle' => 'Kein Abonnement. Keine Veröffentlichungsgebühren. <br class="hidden md:block"/> Zum Start erhalten Sie sofort 50.000 Punkte zur freien Verfügung.',
+        'cta' => 'Kostenloses Konto erstellen und erste Anzeige schalten',
+        'target' => 'Ideal für Personalvermittlungen und <br class="hidden sm:block" /> Unternehmen mit hohem Einstellungsbedarf.',
     ],
     'model' => [
-        'title' => 'Einfaches Modell: Kostenlos veröffentlichen und Kandidaten sammeln',
+        'title' => 'Einfaches Modell: Kostenlos veröffentlichen und Kandidaten gewinnen',
         'step1' => [
-            'title' => 'Beliebige Anzahl von Anzeigen hinzufügen',
+            'title' => 'Beliebig viele Anzeigen schalten',
             'desc' => 'Ohne Limits und ohne Kosten',
         ],
         'step2' => [
             'title' => 'Bewerbungen erhalten',
-            'desc' => 'Kandidaten kostenlos sammeln',
+            'desc' => 'Lebensläufe von Kandidaten völlig kostenlos sammeln',
         ],
         'step3' => [
-            'title' => 'Punkte nur bei Bedarf nutzen',
-            'desc' => 'z.B. für Zugriff auf Lebensläufe oder Werbung',
+            'title' => 'Punkte nur bei Bedarf einlösen',
+            'desc' => 'z. B. für den Zugriff auf CVs oder zur Premium-Promotion',
         ],
     ],
     'credits' => [
-        'badge' => 'zum Start!',
+        'badge' => 'geschenkt zum Start!',
         'amount_label' => 'Punkte',
-        'test_platform' => 'Nach der Registrierung erhalten Sie ein Startpaket, um die Plattform vollständig zu testen:',
+        'test_platform' => 'Nach der Registrierung erhalten Sie ein Starterpaket, um die Plattform auf Herz und Nieren zu prüfen:',
         'benefits_list' => [
-            'Lebensläufe lesen (klassisch, Audio, Video)',
-            'Anzeigen oben auf der Liste bewerben',
-            'Unternehmen im Arbeitgeberverzeichnis hervorheben',
-            'Zugriff auf fortgeschrittene Rekrutierungsfilter',
+            'Einsicht in Kandidaten-CVs (klassisch, Audio, Video)',
+            'Hervorhebung von Stellenanzeigen ganz oben in der Liste',
+            'Präsenz des Unternehmens im Arbeitgeberverzeichnis',
+            'Zugang zu erweiterten Recruiting-Filtern',
         ],
-        'no_start_costs' => 'Endlich rekrutieren ohne Startkosten...',
+        'no_start_costs' => 'Endlich rekrutieren ohne jegliche Vorabkosten...',
         'items' => [
-            'free_ads' => 'Kostenlos Anzeigen schalten',
-            'no_contracts' => 'Ohne Verträge oder Abonnements',
-            'own_rules' => 'Nutzung nach eigenen Regeln',
-            'cv_types' => 'Lebenslauf: klassisch, Audio, Video',
-            'all_languages' => 'Anzeigen in allen Sprachen',
+            'free_ads' => 'Stellenanzeigen kostenlos veröffentlichen',
+            'no_contracts' => 'Ohne Verträge und ohne Abo-Bindung',
+            'own_rules' => 'Nutzung zu Ihren eigenen Bedingungen',
+            'cv_types' => 'Klassische, Audio- und Video-Lebensläufe',
+            'all_languages' => 'Anzeigen in allen Sprachen möglich',
         ],
     ],
     'foundation' => [
-        'badge' => 'Gemeinsam die Welt verändern:',
-        'title' => '50 % des Betrags jedes Kaufs gehen an eine von Ihnen gewählte Stiftung.',
-        'subtitle' => 'Sie rekrutieren und unterstützen gleichzeitig Bedürftige.',
+        'badge' => 'Gemeinsam verändern wir die Welt:',
+        'title' => '50 % des Betrags jedes Einkaufs fließen an eine von Ihnen ausgewählte Stiftung.',
+        'subtitle' => 'Sie rekrutieren Personal und unterstützen gleichzeitig Menschen in Not.',
     ],
     'cta' => [
-        'title' => 'Bereit für kostenlose Rekrutierung? <br/>Holen Sie sich <span class="text-red-work">50.000 Punkte</span>!',
+        'title' => 'Bereit für kostenloses Recruiting? <br/>Sichern Sie sich jetzt Ihre <span class="text-red-work">50.000 Punkte</span>!',
         'button' => 'Unternehmen kostenlos registrieren',
     ],
     'who_is_it_for' => [
         'title' => 'Wer profitiert am meisten?',
         'groups' => [
-            'agencies' => 'Personalvermittlungsagenturen und Recruiter',
-            'high_volume' => 'Unternehmen mit hohem Einstellungsbedarf',
-            'cost_conscious' => 'Arbeitgeber, die Kosten senken wollen',
-            'international' => 'International tätige Unternehmen',
-            'everyone' => 'Jeder, der Mitarbeiter sucht',
+            'agencies' => 'Personalagenturen und Recruiter',
+            'high_volume' => 'Unternehmen mit hohem Rekrutierungsvolumen',
+            'cost_conscious' => 'Arbeitgeber, die ihre Kosten senken möchten',
+            'international' => 'International agierende Unternehmen',
+            'everyone' => 'Jeder, der qualifizierte Mitarbeiter sucht',
         ],
     ],
     'faq_section' => [
@@ -74,101 +76,101 @@ return [
         'subtitle' => 'Häufig gestellte Fragen',
         'questions' => [
             [
-                'question' => 'Ist das Schalten von Anzeigen wirklich kostenlos?',
-                'answer' => 'Ja – Sie zahlen nicht für die Veröffentlichung, unabhängig von der Anzahl der Anzeigen.',
+                'question' => 'Ist das Schalten von Stellenanzeigen wirklich kostenlos?',
+                'answer' => 'Ja – Sie zahlen nichts für die Veröffentlichung, unabhängig von der Anzahl der Anzeigen.',
             ],
             [
                 'question' => 'Muss ich zum Start Punkte kaufen?',
-                'answer' => 'Nein – Sie erhalten 50.000 Punkte direkt nach der Registrierung.',
+                'answer' => 'Nein – Sie erhalten direkt nach der Registrierung automatisch 50.000 Punkte gratis.',
             ],
             [
-                'question' => 'Wann fange ich an zu zahlen?',
-                'answer' => 'Erst wenn Sie zusätzliche Punkte kaufen möchten.',
+                'question' => 'Wann beginne ich zu zahlen?',
+                'answer' => 'Erst dann, wenn Sie sich aktiv dazu entscheiden, zusätzliche Punkte nachzukaufen.',
             ],
             [
-                'question' => 'Kann ich jederzeit kündigen?',
-                'answer' => 'Ja – es gibt keine Verträge oder Verpflichtungen.',
+                'question' => 'Kann ich den Service jederzeit kündigen?',
+                'answer' => 'Ja – es gibt keine Verträge, Mindestlaufzeiten oder Verpflichtungen.',
             ],
         ],
     ],
     'footer' => [
-        'description' => 'Die erste Rekrutierungsplattform, die Arbeitgebern und Bewerbern eine Stimme gibt und gleichzeitig Stiftungen real unterstützt.',
+        'description' => 'Die erste Recruiting-Plattform, die Arbeitgebern und Kandidaten eine echte Stimme gibt i jednocześnie gemeinnützige Stiftungen spürbar unterstützt.',
         'nav' => 'Navigation',
         'legal' => 'Rechtliches',
         'privacy' => 'Datenschutzerklärung',
-        'terms' => 'Nutzungsbedingungen',
+        'terms' => 'AGB',
         'rights' => 'Alle Rechte vorbehalten.',
     ],
     'sold' => [
         'hero' => [
-            'title' => 'Ihre Anzeigen haben Bewerber angezogen. <br/> Lassen Sie sie nicht warten.',
-            'subtitle' => 'Erhöhen Sie die Anzahl der Bewerbungen, schalten Sie den Zugriff auf Lebensläufe frei und nutzen Sie das volle Potenzial Ihrer Anzeigen.',
+            'title' => 'Ihre Anzeigen haben Kandidaten angezogen. <br/> Lassen Sie sie nicht warten.',
+            'subtitle' => 'Erhöhen Sie die Anzahl der Bewerbungen, schalten Sie den Zugriff auf CVs frei und nutzen Sie das volle Potenzial Ihrer Anzeigen.',
             'cta' => 'Konto aufladen',
-            'warning' => 'Verlieren Sie keine Bewerber, die sich bereits bewerben!',
+            'warning' => 'Verlieren Sie keine Kandidaten, die sich bereits bewerben!',
         ],
         'points_benefits' => [
-            'title' => 'SEHEN SIE, WAS SIE MIT GEKAUFTEN PUNKTEN TUN KÖNNEN',
+            'title' => 'SEHEN SIE, WAS SIE MIT DEN GEKAUFTEN PUNKTEN TUN KÖNNEN',
             'items' => [
-                'cv_access' => 'Zugriff auf Bewerber-Lebensläufe',
-                'cv_formats' => 'Lebensläufe in verschiedenen Formaten',
-                'ads_promo' => 'Bewerbung von Anzeigen',
-                'employer_distinction' => 'Hervorhebung als Arbeitgeber',
-                'brand_building' => 'Aufbau der Arbeitgebermarke',
+                'cv_access' => 'Zugriff auf die Lebensläufe der Kandidaten',
+                'cv_formats' => 'CVs in verschiedenen Formaten',
+                'ads_promo' => 'Promotion und Top-Platzierung von Anzeigen',
+                'employer_distinction' => 'Hervorhebung als Top-Arbeitgeber',
+                'brand_building' => 'Aufbau einer starken Employer Brand',
             ],
         ],
         'recharges' => [
-            'title' => 'AUFLADEN STATT ABONNEMENT',
+            'title' => 'AUFLADEN STATT ABO-FALLE',
             'subtitle' => 'Ihre Punkte, Ihre Regeln...',
             'items' => [
                 'free_ads' => [
-                    'title' => 'Kostenlos Anzeigen schalten',
-                    'desc' => 'Das Schalten von Anzeigen bleibt immer kostenlos. Bauen Sie einen Bewerberpool ohne Startkosten auf.',
+                    'title' => 'Sie inserieren dauerhaft kostenlos',
+                    'desc' => 'Das Schalten von Anzeigen bleibt immer kostenfrei. Sie bauen Ihren Kandidatenpool ohne jegliche Vorabinvestitionen auf.',
                 ],
                 'no_expiration' => [
-                    'title' => 'Ihre Punkte laufen nicht ab',
-                    'desc' => 'Aufgeladene Punkte gehören Ihnen für immer. Sie können sie heute, in einer Woche oder in einem Monat für jede Aktion nutzen.',
+                    'title' => 'Ihre Punkte verfallen nie',
+                    'desc' => 'Aufgeladene Punkte gehören für immer Ihnen. Sie können sie heute, nächste Woche oder erst in einem Monat für jede beliebige Aktion nutzen.',
                 ],
                 'pay_per_effect' => [
-                    'title' => 'Zahlen Sie nur für Ergebnisse',
-                    'desc' => 'Tauschen Sie Punkte nur ein, wenn Sie eine bestimmte Funktion nutzen möchten. Volle Kontrolle über das Budget.',
+                    'title' => 'Sie zahlen nur für den Erfolg',
+                    'desc' => 'Sie tauschen Punkte nur dann ein, wenn Sie eine konkrete Funktion nutzen möchten. Volle Kontrolle über Ihr Budget.',
                 ],
             ],
         ],
         'foundation' => [
-            'title' => 'Ihre Entscheidung hat Kraft:',
-            'subtitle' => 'Die Hälfte des Betrags Ihrer Bestellung geht auf das Konto einer gewählten Stiftung.',
+            'title' => 'Ihre Entscheidung hat echte Wirkung:',
+            'subtitle' => 'Die Hälfte des Betrags Ihrer Bestellung geht direkt auf das Konto einer von Ihnen gewählten Stiftung.',
             'step1' => [
-                'title' => 'Ziel wählen:',
-                'desc' => 'Sie entscheiden, welche der Organisationen wir nach Ihrer Aufladung unterstützen.',
+                'title' => 'Sie wählen den Zweck:',
+                'desc' => 'Sie allein entscheiden, welche Organisation wir nach Ihrer Guthaben-Aufladung unterstützen.',
             ],
             'step2' => [
                 'title' => 'Zertifikat für Ihr Unternehmen:',
-                'desc' => 'Offizielle Bestätigung, dass Sie Rekrutierung mit sozialer Unterstützung verbinden.',
+                'desc' => 'Die offizielle Bestätigung, dass Sie erfolgreiches Recruiting mit sozialem Engagement verbinden.',
             ],
-            'cta' => 'Punktpaket wählen und Stiftung angeben',
+            'cta' => 'Punktepaket wählen und Stiftung bestimmen',
         ],
         'solutions' => [
-            'title' => 'Wir haben die Lösung für jeden, der Mitarbeiter sucht:',
+            'title' => 'Wir haben die passende Lösung für jeden, der Mitarbeiter sucht:',
             'items' => [
                 'agencies' => [
-                    'title' => 'PERSONALVERMITTLUNGSAGENTUREN UND RECRUITER',
-                    'desc' => 'Sofortiger Zugriff auf Lebensläufe in klassischer Form, Audio oder Video und Selektionswerkzeuge ermöglichen es, den Prozess vor der Konkurrenz abzuschließen.',
+                    'title' => 'PERSONALAGENTUREN VET RECRUITER',
+                    'desc' => 'Sofortiger Zugriff auf CVs im klassischen Text-, Audio- oder Videoformat sowie clevere Selektionstools ermöglichen es Ihnen, Stellen schneller als die Konkurrenz zu besetzen.',
                 ],
                 'high_volume' => [
-                    'title' => 'UNTERNEHMEN MIT HOHEM EINSTELLUNGSBEDARF',
-                    'desc' => 'Keine festen Gebühren bedeuten echte Ersparnisse. Punkte werden nur für konkrete Aktionen abgebucht, und Anzeigen sind ständig sichtbar.',
+                    'title' => 'UNTERNEHMEN MIT HOHEM REKRUTIERUNGSVOLUMEN',
+                    'desc' => 'Der Verzicht auf feste Gebühren bedeutet echte Ersparnisse. Punkte werden nur für konkrete Aktionen abgezogen, während Ihre Anzeigen dauerhaft sichtbar bleiben.',
                 ],
                 'cost_conscious' => [
-                    'title' => 'ARBEITGEBER, DIE KOSTEN SENKEN WOLLEN',
-                    'desc' => 'Das Punktmodell ermöglicht ein präzises Budgetmanagement. Sie geben genau so viel aus, wie Sie für eine bestimmte Stelle geplant haben.',
+                    'title' => 'ARBEITGEBER, DIE IHRE KOSTEN SENKEN MÖCHTEN',
+                    'desc' => 'Das Punktemodell erlaubt ein präzises Budgetmanagement. Sie geben exakt so viel aus, wie Sie für die jeweilige Vakanz eingeplant haben.',
                 ],
                 'international' => [
-                    'title' => 'INTERNATIONAL TÄTIGE UNTERNEHMEN',
-                    'desc' => 'Das Portal ist in allen Sprachen verfügbar und ermöglicht die Mitarbeitersuche überall. Globale Reichweite und einfache Abrechnung.',
+                    'title' => 'INTERNATIONAL AGIERENDE UNTERNEHMEN',
+                    'desc' => 'Das in allen Sprachen verfügbare Portal erlaubt die weltweite Mitarbeitersuche. Globale Reichweite kombiniert mit einfachster Abrechnung.',
                 ],
                 'everyone' => [
-                    'title' => 'JEDER, DER MITARBEITER SUCHT',
-                    'desc' => 'Unabhängig von der Größe erhalten Sie Zugriff auf motivierte Kandidaten und unterstützen dabei einen guten Zweck.',
+                    'title' => 'JEDER, DER QUALIFIZIERTE MITARBEITER SUCHT',
+                    'desc' => 'Unabhängig von Ihrer Unternehmensgröße erhalten Sie Zugang zu hochmotivierten Kandidaten und unterstützen gleichzeitig den guten Zweck.',
                 ],
             ],
         ],
@@ -176,30 +178,30 @@ return [
             'questions' => [
                 [
                     'question' => 'Was passiert mit meinen Anzeigen, wenn ich mein Konto nicht auflade?',
-                    'answer' => 'Die Anzeigen bleiben aktiv. Eine Aufladung ist nur erforderlich, um Lebensläufe zu lesen, Anzeigen hervorzuheben und andere Werbeoptionen zu nutzen.',
+                    'answer' => 'Ihre Anzeigen bleiben aktiv. Eine Aufladung ist nur erforderlich, um die Kontaktdaten in den Lebensläufen freizuschalten, Anzeigen hervorzuheben oder andere Promotion-Optionen zu nutzen.',
                 ],
                 [
                     'question' => 'Wie lange sind die Punkte gültig?',
-                    'answer' => 'Die Punkte laufen nicht ab. Sie können sie jetzt oder bei späteren Rekrutierungen in einigen Monaten verwenden – das Guthaben wartet immer auf Ihrem Konto.',
+                    'answer' => 'Die Punkte verfallen nicht. Sie können sie jetzt oder für zukünftige Rekrutierungen in einigen Monaten nutzen – Ihr Guthaben wartet immer sicher auf Ihrem Konto.',
                 ],
                 [
-                    'question' => 'Kann ich Punkte gegen Anzeigenwerbung eintauschen?',
-                    'answer' => 'Ja. Punkte sind eine universelle Währung – Sie können sie für den Zugriff auf Lebensläufe, die Hervorhebung von Angeboten oder zusätzliche Werbung verwenden.',
+                    'question' => 'Kann ich Punkte gegen die Promotion einer Anzeige eintauschen?',
+                    'answer' => 'Ja. Punkte sind die universelle Währung der Plattform – Sie können sie für das Freischalten von CVs, Top-Platzierungen oder zusätzliche Werbung einsetzen.',
                 ],
                 [
-                    'question' => 'Wann erhalte ich Zugriff auf die Bewerberdaten?',
-                    'answer' => 'Sofort nach dem Eintausch der Punkte. Sie laden Ihr Konto mit Punkten auf und können dann im Anzeigen-Panel mit einem Klick die Bewerbungen lesen.',
+                    'question' => 'Wann erhalte ich Zugriff auf die Kandidatendaten?',
+                    'answer' => 'Sofort nach dem Eintauschen der Punkte. Sie laden Ihr Punktekonto auf i können anschließend im Anzeigen-Dashboard die Bewerbungen mit einem Klick einsehen.',
                 ],
             ],
         ],
         'bottom_cta' => [
-            'title' => 'Ihre Bewerber warten auf Kontakt',
-            'subtitle' => 'Laden Sie Ihr Konto in 30 Sekunden auf und schalten Sie die vollen Möglichkeiten des Portals frei',
+            'title' => 'Ihre Kandidaten warten auf Ihre Kontaktaufnahme',
+            'subtitle' => 'Laden Sie Ihr Konto in 30 Sekunden auf und schalten Sie das volle Potenzial des Portals frei',
             'button' => 'Konto jetzt aufladen',
             'features' => [
-                'free_ads' => 'Kostenlose Veröffentlichung von Anzeigen',
-                'no_expiration' => 'unbegrenzt gültige Punkte auf Ihrem Konto',
-                'real_support' => 'reale Unterstützung für Bedürftige',
+                'free_ads' => 'Kostenlose Veröffentlichung von Stellenanzeigen',
+                'no_expiration' => 'Unbegrenzt gültige Punkte auf Ihrem Konto',
+                'real_support' => 'Echte und direkte Unterstützung für Menschen in Not',
             ],
         ],
     ],
@@ -211,24 +213,54 @@ return [
             'register_foundation' => 'Stiftung registrieren',
         ],
         'hero' => [
-            'title' => 'Verwandeln Sie Rekrutierungsprozesse in <br class="hidden lg:block"/> reale Unterstützung für Ihre Stiftung.',
-            'subtitle' => 'Werden Sie Botschafter des Portals. Jede Rekrutierung bedeutet reale Unterstützung für Ihre Schützlinge. Ohne Kosten und unnötige Formalitäten.',
+            'title' => 'Verwandeln Sie alltägliche Recruiting-Prozesse in <br class="hidden lg:block"/> eine echte finanzielle Unterstützung für Ihre Stiftung.',
+            'subtitle' => 'Werden Sie Botschafter des Portals. Jede Personalsuche generiert wertvolle Hilfe für Ihre Schützlinge. Ohne Kosten und ohne unnötige Bürokratie.',
             'cta' => 'Stiftung registrieren',
         ],
         'how_it_works' => [
             'title' => 'WIE ES FUNKTIONIERT?',
             'steps' => [
                 'step1' => [
-                    'title' => 'Profil erstellen',
-                    'desc' => 'Sie erstellen eine Visitenkarte Ihrer Organisation, die für Arbeitgeber auf dem Portal sichtbar ist und die Bekanntheit Ihrer Mission steigert.',
+                    'title' => 'Profil anlegen',
+                    'desc' => 'Sie erstellen die digitale Visitenkarte Ihrer Organisation, die für alle Arbeitgeber auf dem Portal sichtbar ist, um das Bewusstsein für Ihre Mission zu stärken.',
                 ],
                 'step2' => [
                     'title' => 'Botschafter sein',
-                    'desc' => 'Sie agieren als Botschafter des Portals und laden Unternehmen zu verantwortungsvoller Rekrutierung ein. Jede Aufladung bedeutet 50 % des Betrags für Ihre Stiftung.',
+                    'desc' => 'Sie agieren als Botschafter des Portals und laden Unternehmen zu sozial verantwortlichem Recruiting ein. Jede ihrer Aufladungen bringt 50 % des Betrags direkt für Ihre Stiftung.',
                 ],
                 'step3' => [
-                    'title' => 'Mittel erhalten',
-                    'desc' => 'Arbeitgeber wählen Ihre Stiftung selbst als Spendenziel aus oder gelangen über einen von Ihnen bereitgestellten Link zu Ihnen.',
+                    'title' => 'Spenden erhalten',
+                    'desc' => 'Arbeitgeber wählen Ihre Stiftung direkt als Spendenziel aus oder gelangen über einen einzigartigen Affiliate-Link, den Sie mit ihnen teilen, zu Ihnen.',
+                ],
+            ],
+        ],
+        'funds_origin' => [
+            'title' => 'Woher stammen die Gelder für die Stiftungen?',
+            'steps' => [
+                'step1' => 'Ein Arbeitgeber/Unternehmen führt eine Rekrutierung durch',
+                'step2' => 'Es kauft Punkte, die für die Nutzung der erweiterten Plattform-Features nötig sind',
+                'step3' => '50 % dieser Zahlung fließen direkt an die ausgewählte Stiftung',
+                'step4' => 'Die Stiftung setzt das Geld erfolgreich zur Erfüllung ihrer Mission ein',
+            ],
+        ],
+        'why_model_works' => [
+            'title' => 'WARUM DIESES MODELL SO ERFOLGREICH IST?',
+            'items' => [
+                [
+                    'title' => 'Unternehmen rekrutieren jeden Tag',
+                    'desc' => 'Die Personalsuche ist ein fester, dauerhafter Bestandteil im Betrieb von tausenden Unternehmen und Arbeitsagenturen.',
+                ],
+                [
+                    'title' => 'Die Hilfe entsteht vollautomatisch',
+                    'desc' => 'Die Unterstützung wird quasi nebenbei im Zuge des Recruitings generiert und erfordert vom Unternehmen keine zusätzlichen Budget-Spenden.',
+                ],
+                [
+                    'title' => 'Es ist eine Win-Win-Situation für alle',
+                    'desc' => 'Arbeitgeber rekrutieren effizienter, Stiftungen erhalten finanzielle Mittel und Kandidaten finden Arbeit.',
+                ],
+                [
+                    'title' => 'Jede einzelne Anzeige hilft',
+                    'desc' => 'Jede Aktivität auf der Plattform erhöht das Spendenvolumen für soziale Organisationen.',
                 ],
             ],
         ],
@@ -236,62 +268,98 @@ return [
             'title' => 'WARUM ES SICH LOHNT, UNSER BOTSCHAFTER ZU WERDEN?',
             'items' => [
                 'new_source' => [
-                    'title' => 'Neue Finanzierungsquelle',
-                    'desc' => 'Sie erreichen Unternehmen, die helfen wollen, aber einen einfachen, transparenten und vollautomatischen Weg für ihre CSR-Strategien suchen.',
+                    'title' => 'Eine neue, nachhaltige Finanzierungsquelle',
+                    'desc' => 'Sie erreichen Firmen, die helfen möchten, aber nach einem einfachen, transparenten und vollautomatisierten Weg zur Umsetzung ihrer CSR-Strategien suchen.',
                 ],
                 'free_promo' => [
-                    'title' => 'Kostenlose Werbung',
-                    'desc' => 'Ihre Stiftung ist für jeden Arbeitgeber auf dem Portal sichtbar, wodurch Sie Bekanntheit in der globalen Geschäftswelt aufbauen.',
+                    'title' => 'Kostenlose Markenbekanntheit',
+                    'desc' => 'Ihre Stiftung ist für jeden Arbeitgeber auf dem Portal sichtbar. So bauen Sie wertvolle Kontakte und Bekanntheit in der globalen Wirtschaft auf.',
                 ],
                 'ready_tools' => [
-                    'title' => 'Fertige Werkzeuge',
-                    'desc' => 'Sie erhalten Materialien, die Sie frei teilen können. Sie empfehlen ein effektives Rekrutierungswerkzeug, und Unternehmen unterstützen Ihren Zweck.',
+                    'title' => 'Sofort einsatzbereite Marketing-Tools',
+                    'desc' => 'Sie erhalten Informationsmaterialien, die Sie frei teilen können. Sie empfehlen ein starkes Recruiting-Tool, und die Firmen unterstützen im Gegenzug Ihre Zwecke.',
                 ],
                 'business_relations' => [
-                    'title' => 'Beziehungen zur Geschäftswelt aufbauen',
-                    'desc' => 'Sie werden Partner für Unternehmen. Arbeitgeber erhalten ein Zertifikat über die Unterstützung Ihrer Mission, was die Zusammenarbeit stärkt.',
+                    'title' => 'Aufbau starker B2B-Beziehungen',
+                    'desc' => 'Sie werden zum echten Partner für die Wirtschaft. Arbeitgeber erhalten ein offizielles CSR-Zertifikat, was die Bindung zu Ihrer Stiftung nachhaltig stärkt.',
                 ],
             ],
         ],
         'business_card' => [
-            'title' => 'Ihre Visitenkarte – Ihr Fenster zur Geschäftswelt',
+            'title' => 'Ihre digitale Visitenkarte – Ihr Fenster zur Wirtschaft',
             'items' => [
-                'describe' => 'Beschreiben Sie genau, was Ihre Stiftung tut und wofür sie derzeit Mittel benötigt.',
-                'link' => 'Fügen Sie einen Link zu Ihrer Website und Kontaktdaten hinzu, damit jedes Unternehmen Ihre Arbeit näher kennenlernen kann.',
-                'visible' => 'Sie sind bei jedem Punktekauf in der Auswahlliste und in unserem Bereich „Partner“ sichtbar.',
+                'describe' => 'Beschreiben Sie präzise, welche Projekte Ihre Stiftung betreut und wofür aktuell am dringendsten finanzielle Mittel benötigt werden.',
+                'link' => 'Hinterlegen Sie Ihren Website-Link und Kontaktdaten, damit Unternehmen Ihre Arbeit unkompliziert im Detail kennenlernen können.',
+                'visible' => 'Sie erscheinen gut sichtbar in der Auswahlliste bei jedem Punktekauf sowie in unserer exklusiven Sektion „Partner“.',
             ],
             'cta' => 'Registrieren Sie Ihre Stiftung jetzt',
+        ],
+        'how_to_increase_support' => [
+            'title' => 'WIE SIE DIE UNTERSTÜTZUNG FÜR IHRE STIFTUNG MAXIMIEREN?',
+            'subtitle' => 'Direkt nach der Registrierung erhalten Sie Ihren persönlichen Affiliate-Link.',
+            'description' => 'Diesen können Sie ganz einfach:',
+            'items' => [
+                'auf Ihrer offiziellen Website einbinden,',
+                'in Ihre E-Mail-Signatur integrieren,',
+                'direkt an Ihre bestehenden Wirtschaftspartner senden,',
+                'in Ihren sozialen Netzwerken teilen,',
+                'aktiv im Rahmen Ihrer Fundraising-Aktionen nutzen.',
+            ],
+            'footer' => 'Jedes Unternehmen, das WORK4YOU.GLOBAL über Ihren Link nutzt, spendet automatisch und exklusiv an Ihre Stiftung.',
         ],
         'faq' => [
             'title' => 'FAQ',
             'questions' => [
                 [
                     'question' => 'Wie viel kostet die Registrierung?',
-                    'answer' => 'Nichts. Die Registrierung und die Pflege des Stiftungsprofils sind vollkommen kostenlos.',
+                    'answer' => 'Absolut nichts. Die Registrierung sowie das Hosten des Stiftungsprofils sind und bleiben vollkommen kostenlos.',
                 ],
                 [
-                    'question' => 'Wann erhalten wir die Mittel?',
-                    'answer' => 'Die Mittel gehen innerhalb von 2-7 Werktagen nach jeder Einzahlung durch einen unterstützenden Arbeitgeber auf dem Konto der Stiftung ein.',
+                    'question' => 'Wann werden die Gelder an uns ausgezahlt?',
+                    'answer' => 'Die Beträge werden innerhalb von 2–7 Werktagen nach dem Zahlungseingang des unterstützenden Arbeitgebers direkt auf das offizielle Bankkonto der Stiftung überwiesen.',
                 ],
                 [
-                    'question' => 'Müssen wir das Portal bewerben?',
-                    'answer' => 'Es ist keine Voraussetzung, aber Botschafter zu sein, lohnt sich. Jedes Unternehmen, das auf Ihre Empfehlung hin rekrutiert, garantiert 50 % seiner Aufladungen für Ihre Organisation.',
+                    'question' => 'Sind wir dazu verpflichtet, Werbung für das Portal zu machen?',
+                    'answer' => 'Nein, das ist keine Pflicht. Als Botschafter aktiv zu sein, zahlt sich jedoch aus: Jedes Unternehmen, das über Ihre Empfehlung rekrutiert, sichert Ihnen 50 % seines Umsatzes.',
                 ],
                 [
-                    'question' => 'Welche Dokumente werden benötigt?',
-                    'answer' => 'Es genügt die Handelsregisternummer (KRS o.ä.) und grundlegende Satzungsdaten, die wir bei der Kontoerstellung verifizieren.',
+                    'question' => 'Welche Unterlagen werden benötigt?',
+                    'answer' => 'Es genügen die offizielle Registernummer (z. B. Stiftungsverzeichnis-Nummer/KRS) oraz grundlegende satzungsgemäße Daten, die wir bei der Kontoerstellung verifizieren.',
+                ],
+                [
+                    'question' => 'Woher genau stammen die Gelder?',
+                    'answer' => 'Das Geld stammt aus den regulären kommerziellen Zahlungen der Arbeitgeber für die Plattform-Dienste. Sobald ein Unternehmen Punkte kauft, fließen 50 % des Wertes an die gewählte Stiftung.',
+                ],
+                [
+                    'question' => 'Wie wählen die Arbeitgeber die passende Stiftung aus?',
+                    'answer' => 'Unternehmen können Stiftungen während des Kaufprozesses manuell aus einer Liste wählen oder werden über den individuellen Link einer Stiftung direkt dorthin geleitet.',
+                ],
+                [
+                    'question' => 'Erhalten wir ein eigenes Profil auf der Plattform?',
+                    'answer' => 'Ja. Jede Stiftung bekommt ein eigenes Profil mit Tätigkeitsbeschreibung, Kontaktdaten und der Möglichkeit, ihre Ziele und Erfolge visuell zu präsentieren.',
+                ],
+                [
+                    'question' => 'Muss ich das Portal regelmäßig auf meinen Social-Media-Kanälen teilen?',
+                    'answer' => 'Nein, wir verlangen keine regelmäßige Werbung. Nach der Freischaltung bitten wir lediglich um einen einmaligen Infopost über die Kooperation mit WORK4YOU.GLOBAL. Alles Weitere ist absolut freiwillig.',
                 ],
             ],
         ],
         'bottom_cta' => [
-            'title' => 'Werden Sie Teil der Partnerstiftungen',
-            'subtitle' => 'Registrieren Sie sich kostenlos, erstellen Sie eine Visitenkarte Ihrer Organisation und erhalten Sie Unterstützung von verantwortungsbewussten Arbeitgebern.',
+            'title' => 'Werden Sie Teil unseres Netzwerks aus Partner-Stiftungen',
+            'subtitle' => 'Registrieren Sie sich kostenlos, erstellen Sie Ihr Profil und erhalten Sie langfristige Unterstützung von verantwortungsvollen Unternehmen.',
             'cta' => 'Stiftung registrieren',
         ],
+        'our_mission' => [
+            'title' => 'UNSERE MISSION',
+            'text1' => 'Soziale Hilfe sollte nicht ausschließlich von gelegentlichen Spendenaufrufen oder unregelmäßigen Sammlungen abhängen.',
+            'text2' => 'Deshalb haben wir ein nachhaltiges System geschaffen, bei dem Unternehmen Stiftungen über einen Prozess unterstützen, den sie ohnehin täglich ausführen – die Rekrutierung von Mitarbeitern.',
+            'text3' => 'WORK4YOU.GLOBAL verbindet die HR-Welt mit dem karitativen Sektor zu einem hocheffizienten Kreislauf, von dem absolut jede Seite profitiert.',
+        ],
         'footer_features' => [
-            'free_reg' => 'kostenlose Registrierung',
-            'simple_csr' => 'einfaches CSR für Unternehmen',
-            'constant_support' => 'stetige Unterstützungsquelle',
+            'free_reg' => 'Kostenlose Registrierung',
+            'simple_csr' => 'Einfache CSR-Lösung für Unternehmen',
+            'constant_support' => 'Dauerhafte und verlässliche Einnahmequelle',
         ],
     ],
+
 ];
