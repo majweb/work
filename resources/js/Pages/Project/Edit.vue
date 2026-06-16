@@ -346,6 +346,12 @@ const onPositionSelect = async (selectedOption) => {
         form.position = null;
         // form.detailProjects = []; // już wyczyszczone wyżej dla pewności przed jakimkolwiek await
 
+        // Mapowanie ścieżki na odpowiednie pola formularza
+        // fullPath[0] -> category (Branża)
+        // fullPath[1] -> categorySub (Podbranża)
+        // fullPath[2] -> profession (Zawód)
+        // Ostatni element -> position (Stanowisko), jeśli nie jest to jeden z powyższych
+
         // Poziom 1: Branża
         if (fullPath[0]) {
             form.category = {
@@ -384,7 +390,7 @@ const onPositionSelect = async (selectedOption) => {
         }
 
         // Poziom 4: Stanowisko
-        if (fullPath[3]) {
+        if (fullPath.length >= 4) {
             form.position = {
                 id: fullPath[3].id,
                 value: fullPath[3].id,
@@ -395,8 +401,15 @@ const onPositionSelect = async (selectedOption) => {
             const posDetails = await axios.get(route('projects.category-details', fullPath[3].id));
             form.position.detailprojects = posDetails.data.detailprojects || [];
         } else if (fullPath.length === 3) {
-            // Jeśli wybrano zawód, a nie stanowisko, możemy opcjonalnie dociągnąć stanowiska do dropdowna
-            optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
+            form.position = {
+                id: fullPath[2].id,
+                value: fullPath[2].id,
+                name: fullPath[2].name,
+                allTranslations: fullPath[2].allTranslations,
+                detailprojects: []
+            };
+            const posDetails = await axios.get(route('projects.category-details', fullPath[2].id));
+            form.position.detailprojects = posDetails.data.detailprojects || [];
         }
 
     } catch (error) {

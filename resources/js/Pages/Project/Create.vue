@@ -292,7 +292,12 @@ const onPositionSelect = async (selectedOption) => {
         form.profession = null;
         form.position = null;
 
-        // Poziom 1: Branża
+        // Mapowanie ścieżki na odpowiednie pola formularza
+        // fullPath[0] -> category (Branża)
+        // fullPath[1] -> categorySub (Podbranża)
+        // fullPath[2] -> profession (Zawód)
+        // Ostatni element -> position (Stanowisko), jeśli nie jest to jeden z powyższych
+
         if (fullPath[0]) {
             form.category = {
                 id: fullPath[0].id,
@@ -303,7 +308,6 @@ const onPositionSelect = async (selectedOption) => {
             optionsSubCategory.value = (await axios.get(route('getChildsCategory', fullPath[0].id))).data;
         }
 
-        // Poziom 2: Podbranża
         if (fullPath[1]) {
             form.categorySub = {
                 id: fullPath[1].id,
@@ -314,7 +318,6 @@ const onPositionSelect = async (selectedOption) => {
             optionsProfession.value = (await axios.get(route('getChildsCategory', fullPath[1].id))).data;
         }
 
-        // Poziom 3: Zawód
         if (fullPath[2]) {
             form.profession = {
                 id: fullPath[2].id,
@@ -329,8 +332,13 @@ const onPositionSelect = async (selectedOption) => {
             optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
         }
 
-        // Poziom 4: Stanowisko
-        if (fullPath[3]) {
+        // Zawsze ustawiamy wybrany element jako stanowisko, jeśli jest wystarczająco głęboko
+        // lub jeśli jest to liść (z założenia wyszukiwarka zwraca liście)
+        // Jeśli fullPath ma 4 elementy, to fullPath[3] jest stanowiskiem.
+        // Jeśli fullPath ma 3 elementy i wybrany element jest liściem, to powinien trafić do position?
+        // Wg starej logiki fullPath[2] to profession.
+
+        if (fullPath.length >= 4) {
             form.position = {
                 id: fullPath[3].id,
                 value: fullPath[3].id,
@@ -341,8 +349,25 @@ const onPositionSelect = async (selectedOption) => {
             const posDetails = await axios.get(route('projects.category-details', fullPath[3].id));
             form.position.detailprojects = posDetails.data.detailprojects || [];
         } else if (fullPath.length === 3) {
-            // Jeśli wybrano zawód, a nie stanowisko, możemy opcjonalnie dociągnąć stanowiska do dropdowna
-            optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
+            // Sprawdzamy czy to co wybraliśmy (selectedOption/fullPath[2]) ma dzieci.
+            // Szybkie wyszukiwanie zwraca tylko liście (stanowiska).
+            // Jeśli wybrany element z wyszukiwarki jest na poziomie 3, to technicznie jest on "stanowiskiem"
+            // w kontekście tego formularza, ale system mapuje poziom 3 jako "profession".
+            // Trzeba zdecydować: czy ma być w form.profession czy form.position.
+            // Zazwyczaj jeśli to jest "Stanowisko", to powinno być w form.position.
+
+            form.position = {
+                id: fullPath[2].id,
+                value: fullPath[2].id,
+                name: fullPath[2].name,
+                allTranslations: fullPath[2].allTranslations,
+                detailprojects: []
+            };
+            const posDetails = await axios.get(route('projects.category-details', fullPath[2].id));
+            form.position.detailprojects = posDetails.data.detailprojects || [];
+
+            // Jeśli wybrano element na 3 poziomie jako stanowisko, to profession i position będą tym samym?
+            // Nie, zazwyczaj path[2] (fullPath[2]) to ten sam obiekt co selectedOption.
         }
 
     } catch (error) {
