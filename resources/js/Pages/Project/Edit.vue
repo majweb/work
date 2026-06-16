@@ -1351,9 +1351,9 @@ onMounted(async () => {
                                                 </button>
                                             </div>
 
-                                            <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 max-h-[500px] md:max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
                                                 <div v-for="detail in filteredDuties" :key="detail.id"
-                                                     class="group/item flex items-start gap-4 bg-white/50 rounded-2xl p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer">
+                                                     class="group/item flex items-start gap-3 md:gap-4 bg-white/50 rounded-2xl p-3 md:p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer">
                                                     <label class="group/check flex items-start cursor-pointer flex-1">
                                                         <div class="relative flex items-center justify-center mt-0.5">
                                                             <input
@@ -1365,7 +1365,7 @@ onMounted(async () => {
                                                                 <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
                                                             </div>
                                                         </div>
-                                                        <span class="ml-3 text-xs font-bold text-gray-600 uppercase tracking-tight leading-snug group-hover/check:text-[#0A2C5C] transition-colors">{{detail.name[usePage().props.language]}}</span>
+                                                        <span class="ml-3 text-[11px] md:text-xs font-bold text-gray-600 uppercase tracking-tight leading-snug group-hover/check:text-[#0A2C5C] transition-colors">{{detail.name[usePage().props.language]}}</span>
                                                     </label>
                                                 </div>
                                             </div>

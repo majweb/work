@@ -1212,7 +1212,7 @@ onMounted(async () => {
                                                     </p>
                                                     <h4 class="text-xs md:text-base font-black uppercase tracking-widest leading-tight">
                                                         {{ form.position?.name }}
-                                                        <span v-if="form.profession?.name" class="block sm:inline text-blue-400 font-medium sm:ml-2 text-[10px] md:text-xs normal-case tracking-normal">({{ form.profession?.name }})</span>
+                                                        <span class="block sm:inline text-blue-400 font-medium sm:ml-2 text-[10px] md:text-xs normal-case tracking-normal">({{ form.profession?.name }})</span>
                                                     </h4>
                                                 </div>
                                             </div>
@@ -1282,7 +1282,7 @@ onMounted(async () => {
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                                             </svg>
                                         </div>
-                                        <p class="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-widest leading-relaxed max-w-[200px]">{{ __('translate.noDetailProjects') || 'Brak zdefiniowanych obowiązków' }}</p>
+                                        <p class="text-xs font-black text-gray-400 uppercase tracking-widest leading-relaxed max-w-[200px]">{{ __('translate.noDetailProjects') || 'Brak zdefiniowanych obowiązków' }}</p>
                                     </div>
                                 </div>
 
@@ -1292,7 +1292,7 @@ onMounted(async () => {
                                         <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                                     </div>
-                                    <p class="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-widest leading-relaxed max-w-[200px]">{{ __('translate.selectPositionToSeeDetails') }}</p>
+                                    <p class="text-xs font-black text-gray-400 uppercase tracking-widest leading-relaxed max-w-[200px]">{{ __('translate.selectPositionToSeeDetails') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -2575,7 +2575,6 @@ onMounted(async () => {
             font-weight: 900;
         }
     }
-
     .multiselect__option {
         padding: 8px 16px;
         font-weight: 700;
