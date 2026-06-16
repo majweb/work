@@ -284,7 +284,6 @@ const onPositionSelect = async (selectedOption) => {
     isFetchingDetails.value = true;
     const path = selectedOption.path || [];
     const fullPath = [...path, selectedOption];
-
     try {
         // Czyścimy poprzednie wartości
         form.category = null;
