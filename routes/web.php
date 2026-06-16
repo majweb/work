@@ -167,7 +167,7 @@ Route::middleware([
     Route::get('/projects/search-positions', [ProjectController::class, 'searchPositions'])->name('projects.search-positions');
     Route::get('/projects/category-details/{category}', [ProjectController::class, 'getCategoryDetails'])->name('projects.category-details');
     Route::post('/projects/report-missing-position', [ProjectController::class, 'reportMissingPosition'])->name('projects.report-missing');
-    Route::resource('projects', ProjectController::class)->middleware('role:firm');
+    Route::resource('projects', ProjectController::class)->middleware(['role:firm', 'firm.profile.completed']);
     Route::post('projects/{project}/toggle-active', [ProjectController::class, 'toggleActive'])->middleware('role:firm')->name('projects.toggle-active');
     Route::get('projects/{project}/generator', [ProjectController::class, 'generatorData'])->middleware('role:firm|recruit')->name('projects.generator');
     Route::post('projects/{project}/generator', [ProjectController::class, 'generatorSave'])->middleware('role:firm|recruit')->name('projects.generator.save');
@@ -197,8 +197,8 @@ Route::middleware([
     Route::delete('/buyRemoveFromCart/{product}', [BuyController::class, 'detailRemoveFromCart'])->name('buy.detailRemoveFromCart')->middleware('role:firm');
     Route::post('/buyIncrementCart/{product}/{qty}', [BuyController::class, 'detailIncrementCart'])->name('buy.detailIncrementCart')->middleware('role:firm');
     Route::post('/buyDecrementCart/{product}/{qty}', [BuyController::class, 'detailDecrementCart'])->name('buy.detailDecrementCart')->middleware('role:firm');
-    Route::post('/makeOrder', [BuyController::class, 'makeOrder'])->name('buy.order')->middleware('role:firm');
-    Route::post('/stripe-checkout', [BuyController::class, 'stripeCheckout'])->name('buy.stripe-checkout')->middleware('role:firm');
+    Route::post('/makeOrder', [BuyController::class, 'makeOrder'])->name('buy.order')->middleware(['role:firm', 'firm.profile.completed']);
+    Route::post('/stripe-checkout', [BuyController::class, 'stripeCheckout'])->name('buy.stripe-checkout')->middleware(['role:firm', 'firm.profile.completed']);
     Route::post('/addFoundation', [BuyController::class, 'addFoundation'])->name('buy.addFoundation')->middleware('role:firm');
     Route::get('/paymentView', [BuyController::class, 'paymentView'])->name('buy.paymentView')->middleware('role:firm');
     Route::get('/successView', [BuyController::class, 'successView'])->name('buy.successView')->middleware('role:firm');

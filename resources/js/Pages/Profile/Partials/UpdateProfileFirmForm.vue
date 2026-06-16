@@ -59,7 +59,7 @@ const addPhoneList = () => {
     }
 }
 const updateProfileFirm = () => {
-    form.post(route('firm.update.form'), {
+    form.put(route('firm.update.form'), {
         errorBag: 'updateProfileFirm',
         preserveScroll: true,
     });
@@ -233,7 +233,7 @@ const getNipPlaceholder = (countryCode) => {
                         <div class="my-4">
                             <InputLabel for="description" :value="__('translate.description')"/>
                             <TextareaLimit id="description" v-model="form.description" :limit="1000"/>
-                            <InputError :message="form.errors.description" class="mt-2"/>
+                            <InputError :message="form.errors.description" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                         </div>
 
 
@@ -254,7 +254,7 @@ const getNipPlaceholder = (countryCode) => {
                                 {{ __('translate.phone') }}
                             </div>
                         </PrimaryButton>
-                        <InputError :message="form.errors.contact_phone" class="mt-2"/>
+                        <InputError :message="form.errors.contact_phone" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                     </div>
 
                     <div class="col-span-6">

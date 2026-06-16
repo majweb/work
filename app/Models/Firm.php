@@ -92,4 +92,15 @@ class Firm extends Model implements HasMedia
             ->quality(80)
             ->nonQueued();
     }
+
+    public function hasCompletedProfile(): bool
+    {
+        return ! empty($this->nip)
+            && ! empty($this->street)
+            && ! empty($this->number)
+            && ! empty($this->city)
+            && ! empty($this->postal)
+            && ! empty($this->country)
+            && ! empty($this->description);
+    }
 }

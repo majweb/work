@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promocja firmy w social mediach',
     'list_highlight' => 'Wyróżnienie ofert i certyfikaty firmowe',
     'points_section5' => 'Każda czynność ma przypisaną wartość punktową – płacisz tylko za konkretne, zrealizowane działania, a nie za sam dostęp do platformy.',
+    'firm_profile_not_completed'=>'Aby kontynuować, musisz uzupełnić dane firmy w profilu.'
     ];

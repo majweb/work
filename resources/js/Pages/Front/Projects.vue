@@ -692,13 +692,13 @@ const isSearching = ref(false);
                                     <div class="flex items-start gap-4">
                                         <div class="relative shrink-0">
                                             <div
-                                                class="w-20 h-20 rounded-[1.5rem] bg-gray-50 shadow-inner border border-gray-100 relative z-10"
+                                                class="w-20 h-20 rounded-[1.5rem] bg-white shadow-inner border border-gray-100 relative z-10"
                                                 :class="{ 'ring-2 ring-[#329CD1]/50 shadow-lg shadow-[#329CD1]/10': project.is_featured }"
                                                 :style="{
                                                     backgroundImage: `url('${project.user?.profile_photo_url || '/default-company-logo.png'}')`,
                                                     backgroundPosition: 'center',
                                                     backgroundRepeat: 'no-repeat',
-                                                    backgroundSize: 'cover'
+                                                    backgroundSize: 'contain'
                                                 }"
                                             ></div>
                                             <div v-if="project.is_featured" class="absolute -bottom-6 -left-5 z-20 transform hover:scale-110 transition-transform duration-300">

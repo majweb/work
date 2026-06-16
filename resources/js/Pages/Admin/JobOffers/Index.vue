@@ -974,19 +974,19 @@ const getTranslation = (value) => {
                                         <template v-for="cv in offer.cv" :key="cv.id">
                                             <img
                                                 v-if="cv.id === 1"
-                                                src="/images/icons/cv-classic.svg"
+                                                src="/images/icons/cv-classic.png"
                                                 class="w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
                                                 :title="getTranslation(cv.name)"
                                             />
                                             <img
                                                 v-if="cv.id === 2"
-                                                src="/images/icons/cv-video.svg"
+                                                src="/images/icons/cv-video.png"
                                                 class="w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
                                                 :title="getTranslation(cv.name)"
                                             />
                                             <img
                                                 v-if="cv.id === 3"
-                                                src="/images/icons/cv-audio.svg"
+                                                src="/images/icons/cv-audio.png"
                                                 class="w-6 h-6 opacity-80 hover:opacity-100 transition-opacity"
                                                 :title="getTranslation(cv.name)"
                                             />

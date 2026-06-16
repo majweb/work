@@ -34,7 +34,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'only_direct_permission' => \App\Http\Middleware\OnlyDirectPermissions::class,
-
+            'firm.profile.completed' => \App\Http\Middleware\EnsureFirmProfileIsCompleted::class,
         ]);
         //
     })

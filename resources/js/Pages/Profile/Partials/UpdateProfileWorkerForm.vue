@@ -18,7 +18,7 @@ const form = useForm({
 });
 
 const updateProfileWorker = () => {
-    form.post(route('worker.update.form'), {
+    form.put(route('worker.update.form'), {
         errorBag: 'updateProfileWorker',
         preserveScroll: true,
     });

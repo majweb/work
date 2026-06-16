@@ -294,7 +294,7 @@ const highlighted = ref([1, 2]); // wyróżnione firmy
                                     <!-- Left Accent Bar -->
                                     <div v-if="firm.is_featured" class="absolute left-0 top-0 bottom-0 w-2 bg-[#329CD1] shadow-[2px_0_15px_rgba(50,156,209,0.3)] z-20"></div>
 
-                                    <div class="w-20 h-20 bg-gray-50 rounded-[1.5rem] flex items-center justify-center shadow-inner mb-6 group-hover:bg-white transition-colors border border-transparent group-hover:border-gray-100 relative z-10 bg-center bg-no-repeat bg-contain"
+                                    <div class="w-20 h-20 bg-white rounded-[1.5rem] flex items-center justify-center shadow-inner mb-6 group-hover:bg-white transition-colors border border-transparent group-hover:border-gray-100 relative z-10 bg-center bg-no-repeat bg-contain"
                                         :class="firm.is_featured ? 'ring-4 ring-[#329CD1]/20 shadow-lg shadow-[#329CD1]/10' : ''"
                                         :style="{ backgroundImage: `url(${firm.profile_photo_url || firm.logo})` }">
                                    </div>

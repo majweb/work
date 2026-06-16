@@ -445,17 +445,17 @@ onMounted(async () => {
                                         <div class="flex flex-col items-center gap-1 group/cv">
                                             <img
                                                 v-if="cv.id === 1"
-                                                src="/images/icons/cv-classic.svg"
+                                                src="/images/icons/cv-classic.png"
                                                 class="w-8 h-8 opacity-80 group-hover/cv:opacity-100 transition-opacity"
                                             />
                                             <img
                                                 v-if="cv.id === 2"
-                                                src="/images/icons/cv-video.svg"
+                                                src="/images/icons/cv-video.png"
                                                 class="w-8 h-8 opacity-80 group-hover/cv:opacity-100 transition-opacity"
                                             />
                                             <img
                                                 v-if="cv.id === 3"
-                                                src="/images/icons/cv-audio.svg"
+                                                src="/images/icons/cv-audio.png"
                                                 class="w-8 h-8 opacity-80 group-hover/cv:opacity-100 transition-opacity"
                                             />
                                             <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{{ getTranslation(cv.name) }}</span>
