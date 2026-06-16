@@ -275,6 +275,9 @@ const isFetchingDetails = ref(false);
 const onPositionSelect = async (selectedOption) => {
     if (!selectedOption) return;
 
+    // Najpierw bezwzględnie czyścimy wybrane obowiązki, aby nie "doklejały" się do nowego stanowiska
+    form.detailProjects = [];
+
     isAutoFilling.value = true;
     isFetchingDetails.value = true;
     const path = selectedOption.path || [];
@@ -286,7 +289,6 @@ const onPositionSelect = async (selectedOption) => {
         form.categorySub = null;
         form.profession = null;
         form.position = null;
-        form.detailProjects = [];
 
         // Poziom 1: Branża
         if (fullPath[0]) {
@@ -425,8 +427,10 @@ const filteredOffers = computed(() => {
 });
 
 const filteredDuties = computed(() => {
-    const duties = form.position?.detailprojects || form.profession?.detailprojects;
-    if (!duties) return [];
+    const duties = (form.position && form.position.detailprojects && form.position.detailprojects.length > 0)
+        ? form.position.detailprojects
+        : (form.profession && form.profession.detailprojects ? form.profession.detailprojects : []);
+    if (!duties || duties.length === 0) return [];
     if (!dutyFilter.value.trim()) return duties;
 
     const search = dutyFilter.value.toLowerCase().trim();
