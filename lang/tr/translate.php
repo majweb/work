@@ -1497,7 +1497,7 @@ return [
     'clear' => 'Temizle',
     'selectPositionToSeeDetails' => 'Sorumlulukları görmek için pozisyon seçin',
     'searchAddress' => 'Adres ara',
-    'searchAddressDescription' => 'Önerileri görmek için adres yazmaya başlayın. Aşağıdaki alanları otomatik doldurmak için listeden bir adres seçin.',
+    'searchAddressDescription' => 'İşin yapıldığı şehir veya tam adresi girin.',
     'salaryFromPlaceholder' => 'Çalışma itibaren',
     'salaryToPlaceholder' => 'Çalışma e kadar',
     'bonusFromPlaceholder' => 'Prim itibaren',

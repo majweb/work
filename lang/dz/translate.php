@@ -1473,7 +1473,7 @@ return [
     'clear' => 'བཤུབ།',
     'selectPositionToSeeDetails' => 'ལཱ་འགན་ཚུ་བལྟ་ནིའི་དོན་ལུ་གོ་གནས་ཅིག་གདམ་ཁ་རྐྱབས།',
     'searchAddress' => 'ཁ་བྱང་འཚོལ།',
-    'searchAddressDescription' => 'ལམ་སྟོན་ཚུ་བལྟ་ནིའི་དོན་ལུ་ཁ་བྱང་ལྷག་ནི་འགོ་བཙུགས། འོག་གི་ས་སྟོང་ཚུ་རང་བཞིན་གྱིས་ཕྲི་ནིའི་དོན་ལུ་ཐོ་ཡིག་ལས་ཁ་བྱང་ཅིག་གདམ་ཁ་རྐྱབས།',
+    'searchAddressDescription' => 'ལས་ཀ་སྤྱོད་སའི་གྲོང་ཁྱེར་ཡང་ན་ཁ་བྱང་ཆ་ཚང་བཅུག་དགོ།',
     'salaryFromPlaceholder' => 'ལཱ་ (ལས་)།',
     'salaryToPlaceholder' => 'ལཱ་ (ཚུན་)།',
     'bonusFromPlaceholder' => 'སྦྱིན་གསལ་ (ལས་)།',

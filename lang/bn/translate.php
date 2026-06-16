@@ -1510,7 +1510,7 @@ return [
     'clear' => 'মুছে ফেলুন',
     'selectPositionToSeeDetails' => 'দায়িত্ব দেখতে একটি পদ নির্বাচন করুন',
     'searchAddress' => 'ঠিকানা অনুসন্ধান করুন',
-    'searchAddressDescription' => 'পরামর্শ দেখতে ঠিকানা টাইপ করা শুরু করুন। নিচের ক্ষেত্রগুলো স্বয়ংক্রিয়ভাবে পূরণ করতে তালিকা থেকে ঠিকানা নির্বাচন করুন।',
+    'searchAddressDescription' => 'কাজটি যেখানে সম্পন্ন হচ্ছে সেই শহর বা সম্পূর্ণ ঠিকানা লিখুন।',
     'salaryFromPlaceholder' => 'বেতন শুরু',
     'salaryToPlaceholder' => 'বেতন শেষ',
     'bonusFromPlaceholder' => 'বোনাস শুরু',

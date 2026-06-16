@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Обриши',
     'selectPositionToSeeDetails' => 'Изаберите позицију да бисте видели обавезе',
     'searchAddress' => 'Претражите адресу',
-    'searchAddressDescription' => 'Почните да куцате адресу да бисте видели предлоге. Изаберите адресу са листе да бисте аутоматски попунили поља испод.',
+    'searchAddressDescription' => 'Unesite grad ili punu adresu mesta gde se posao obavlja.',
     'salaryFromPlaceholder' => 'Плата од',
     'salaryToPlaceholder' => 'Плата до',
     'bonusFromPlaceholder' => 'Бонус од',

@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Pastro',
     'selectPositionToSeeDetails' => 'Zgjidhni pozicionin për të parë përgjegjësitë',
     'searchAddress' => 'Kërkoni adresën',
-    'searchAddressDescription' => 'Filloni të shkruani adresën për të parë sugjerimet. Zgjidhni një adresë nga lista për të plotësuar automatikisht fushat e mëposhtme.',
+    'searchAddressDescription' => 'Shkruani qytetin ose adresën e plotë të vendit ku kryhet puna.',
     'salaryFromPlaceholder' => 'Paga nga',
     'salaryToPlaceholder' => 'Paga deri',
     'bonusFromPlaceholder' => 'Bonusi nga',

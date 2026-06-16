@@ -1497,7 +1497,7 @@ return [
     'clear' => 'ล้าง',
     'selectPositionToSeeDetails' => 'เลือกตำแหน่งเพื่อดูหน้าที่รับผิดชอบ',
     'searchAddress' => 'ค้นหาที่อยู่',
-    'searchAddressDescription' => 'เริ่มพิมพ์ที่อยู่เพื่อดูคำแนะนำ เลือกที่อยู่จากรายการเพื่อกรอกข้อมูลในช่องด้านล่างโดยอัตโนมัติ',
+    'searchAddressDescription' => 'กรอกเมืองหรือที่อยู่แบบเต็มของสถานที่ทำงาน',
     'salaryFromPlaceholder' => 'งานตั้งแต่',
     'salaryToPlaceholder' => 'งานถึง',
     'bonusFromPlaceholder' => 'โบนัสตั้งแต่',

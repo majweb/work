@@ -49,4 +49,5 @@ return [
     'list_social' => 'Firma op Social Media promovéieren',
     'list_highlight' => 'Offeren ervirhiewen a Firmenzertifikater',
     'points_section5' => 'All Aktioun huet e bestëmmte Punktwäert – Dir bezuelt nëmme fir konkret ausgeféiert Aktiounen, net fir den Zougang zur Plattform.',
+    'firm_profile_not_completed' => 'Fir weiderzefueren, musst Dir d’Firmendaten an Ärem Profil ausfëllen.',
 ];

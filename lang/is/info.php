@@ -49,4 +49,5 @@ return [
     'list_social' => 'Kynning fyrirtækis á samfélagsmiðlum',
     'list_highlight' => 'Auðkenning auglýsinga og fyrirtækjavottorð',
     'points_section5' => 'Hver aðgerð hefur ákveðið punktagildi – þú greiðir aðeins fyrir raunverulegar aðgerðir, ekki fyrir aðgang að vettvanginum.',
+    'firm_profile_not_completed' => 'Til að halda áfram þarftu að fylla út fyrirtækjaupplýsingar í prófílnum þínum.',
 ];

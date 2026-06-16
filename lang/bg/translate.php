@@ -1493,7 +1493,7 @@ return [
 'clear' => 'Изчисти',
 'selectPositionToSeeDetails' => 'Изберете позиция, за да видите задълженията',
 'searchAddress' => 'Търсене на адрес',
-'searchAddressDescription' => 'Започнете да въвеждате адрес, за да видите предложения. Изберете адрес от списъка, за да попълните автоматично полетата по-долу.',
+'searchAddressDescription' => 'Въведете град или пълен адрес на мястото, където се извършва работата.',
 'salaryFromPlaceholder' => 'Заплата от',
 'salaryToPlaceholder' => 'Заплата до',
 'bonusFromPlaceholder' => 'Бонус от',

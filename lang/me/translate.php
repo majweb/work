@@ -1473,7 +1473,7 @@ return [
     'clear' => 'Obriši',
     'selectPositionToSeeDetails' => 'Izaberite poziciju da biste vidjeli obaveze',
     'searchAddress' => 'Pretražite adresu',
-    'searchAddressDescription' => 'Počnite pisati adresu da biste vidjeli prijedloge. Izaberite adresu sa liste da biste automatski popunili polja ispod.',
+    'searchAddressDescription' => 'Unesite grad ili punu adresu mjesta gdje se posao obavlja.',
     'salaryFromPlaceholder' => 'Posao od',
     'salaryToPlaceholder' => 'Posao do',
     'bonusFromPlaceholder' => 'Bonus od',

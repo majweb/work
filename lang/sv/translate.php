@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Rensa',
     'selectPositionToSeeDetails' => 'Välj position för att se arbetsuppgifter',
     'searchAddress' => 'Sök adress',
-    'searchAddressDescription' => 'Börja skriva adressen för att se förslag. Välj en adress från listan för att automatiskt fylla i fälten nedan.',
+    'searchAddressDescription' => 'Ange stad eller fullständig adress för arbetsplatsen.',
     'salaryFromPlaceholder' => 'Jobb från',
     'salaryToPlaceholder' => 'Jobb till',
     'bonusFromPlaceholder' => 'Bonus från',

@@ -1493,7 +1493,7 @@ return [
     'clear' => 'Καθαρισμός',
     'selectPositionToSeeDetails' => 'Επιλέξτε θέση εργασίας για να δείτε τα καθήκοντα',
     'searchAddress' => 'Αναζήτηση διεύθυνσης',
-    'searchAddressDescription' => 'Ξεκινήστε να πληκτρολογείτε τη διεύθυνση για να δείτε προτάσεις. Επιλέξτε μια διεύθυνση από τη λίστα για να συμπληρωθούν αυτόματα τα παρακάτω πεδία.',
+    'searchAddressDescription' => 'Εισάγετε την πόλη ή την πλήρη διεύθυνση του τόπου εκτέλεσης της εργασίας.',
     'salaryFromPlaceholder' => 'Εργασία από',
     'salaryToPlaceholder' => 'Εργασία έως',
     'bonusFromPlaceholder' => 'Bonus από',

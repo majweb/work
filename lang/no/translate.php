@@ -1473,7 +1473,7 @@ return [
     'clear' => 'Tøm',
     'selectPositionToSeeDetails' => 'Velg stilling for å se arbeidsoppgaver',
     'searchAddress' => 'Søk etter adresse',
-    'searchAddressDescription' => 'Begynn å skrive adresse for å se forslag. Velg en adresse fra listen for å automatisk fylle ut feltene nedenfor.',
+    'searchAddressDescription' => 'Skriv inn byen eller full adresse for arbeidsstedet.',
     'salaryFromPlaceholder' => 'Arbeid fra',
     'salaryToPlaceholder' => 'Arbeid til',
     'bonusFromPlaceholder' => 'Bonus fra',

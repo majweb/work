@@ -76,4 +76,5 @@ return [
     'list_highlight' => 'Destacar ofertas y certificados de empresa',
 
     'points_section5' => 'Cada acción tiene un valor en puntos asignado: pagas solo por acciones concretas realizadas, no por el acceso a la plataforma.',
+    'firm_profile_not_completed' => 'Para continuar, debes completar los datos de tu empresa en el perfil.',
 ];

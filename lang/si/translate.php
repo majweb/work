@@ -1494,7 +1494,7 @@ return [
     'clear' => 'හිස් කරන්න',
     'selectPositionToSeeDetails' => 'වගකීම් බැලීමට තනතුරක් තෝරන්න',
     'searchAddress' => 'ලිපිනය සොයන්න',
-    'searchAddressDescription' => 'යෝජනා බැලීමට ලිපිනය ටයිප් කිරීම ආරම්භ කරන්න. පහත ක්ෂේත්‍ර ස්වයංක්‍රීයව පිරවීමට ලැයිස්තුවෙන් ලිපිනයක් තෝරන්න.',
+    'searchAddressDescription' => 'වැඩ සිදු කරන නගරය හෝ සම්පූර්ණ ලිපිනය ඇතුළත් කරන්න.',
     'salaryFromPlaceholder' => 'වැටුප සිට',
     'salaryToPlaceholder' => 'වැටුප දක්වා',
     'bonusFromPlaceholder' => 'ප්‍රසාද දීමනාව සිට',

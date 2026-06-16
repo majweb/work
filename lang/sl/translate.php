@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Počisti',
     'selectPositionToSeeDetails' => 'Izberite delovno mesto za ogled nalog',
     'searchAddress' => 'Išči naslov',
-    'searchAddressDescription' => 'Začnite tipkati naslov za ogled predlogov. Izberite naslov s seznama za samodejno izpolnjevanje spodnjih polj.',
+    'searchAddressDescription' => 'Vnesite mesto ali polni naslov lokacije, kjer se opravlja delo.',
     'salaryFromPlaceholder' => 'Plača od',
     'salaryToPlaceholder' => 'Plača do',
     'bonusFromPlaceholder' => 'Bonus od',

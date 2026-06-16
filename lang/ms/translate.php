@@ -1473,7 +1473,7 @@ return [
     'clear' => 'Kosongkan',
     'selectPositionToSeeDetails' => 'Pilih jawatan untuk melihat tugas',
     'searchAddress' => 'Cari alamat',
-    'searchAddressDescription' => 'Mula menaip alamat untuk melihat cadangan. Pilih alamat dari senarai untuk mengisi medan di bawah secara automatik.',
+    'searchAddressDescription' => 'Masukkan bandar atau alamat penuh lokasi kerja dijalankan.',
     'salaryFromPlaceholder' => 'Kerja dari',
     'salaryToPlaceholder' => 'Kerja hingga',
     'bonusFromPlaceholder' => 'Bonus dari',

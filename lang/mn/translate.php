@@ -1473,7 +1473,7 @@ return [
     'clear' => 'Цэвэрлэх',
     'selectPositionToSeeDetails' => 'Үүргийг харахын тулд албан тушаал сонгох',
     'searchAddress' => 'Хаяг хайх',
-    'searchAddressDescription' => 'Санал болгохыг харахын тулд хаяг бичиж эхлэх. Доорх талбаруудыг автоматаар бөглөхийн тулд жагсаалтаас хаяг сонгох.',
+    'searchAddressDescription' => 'Masukkan bandar atau alamat penuh lokasi kerja dijalankan.',
     'salaryFromPlaceholder' => 'Эхлэх ажил',
     'salaryToPlaceholder' => 'Дуусах ажил',
     'bonusFromPlaceholder' => 'Урамшуулал эхлэх',

@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promotion de l’entreprise sur les réseaux sociaux',
     'list_highlight' => 'Mise en avant des offres et certificats d’entreprise',
     'points_section5' => 'Chaque action a une valeur en points définie – vous ne payez que pour les actions réellement réalisées, et non pour l’accès à la plateforme.',
+    'firm_profile_not_completed' => 'Pour continuer, vous devez compléter les informations de l’entreprise dans votre profil.',
 ];

@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Очистить',
     'selectPositionToSeeDetails' => 'Выберите должность, чтобы увидеть обязанности',
     'searchAddress' => 'Поиск адреса',
-    'searchAddressDescription' => 'Начните вводить адрес, чтобы увидеть подсказки. Выберите адрес из списка, чтобы автоматически заполнить поля ниже.',
+    'searchAddressDescription' => 'Введите город или полный адрес места выполнения работы.',
     'salaryFromPlaceholder' => 'Зарплата от',
     'salaryToPlaceholder' => 'Зарплата до',
     'bonusFromPlaceholder' => 'Премия от',

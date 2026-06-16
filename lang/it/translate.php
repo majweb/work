@@ -1491,7 +1491,7 @@ return [
     'clear' => 'Cancella',
     'selectPositionToSeeDetails' => 'Seleziona una posizione per vedere le mansioni',
     'searchAddress' => 'Cerca indirizzo',
-    'searchAddressDescription' => 'Inizia a digitare l\'indirizzo per vedere i suggerimenti. Seleziona l\'indirizzo dall\'elenco per compilare automaticamente i campi sottostanti.',
+    'searchAddressDescription' => 'Inserisci la città o l’indirizzo completo del luogo in cui viene svolto il lavoro.',
     'salaryFromPlaceholder' => 'Lavoro da',
     'salaryToPlaceholder' => 'Lavoro a',
     'bonusFromPlaceholder' => 'Bonus da',

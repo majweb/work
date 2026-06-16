@@ -651,8 +651,8 @@ class ProjectController extends Controller implements HasMiddleware
                     'streetWorkNumber' => ['required', 'string', 'max:100'],
                     'postalWork' => ['required', 'string', 'max:100'],
                     'cityWork' => ['required', 'string', 'max:100'],
-                    'lat' => ['nullable', 'numeric'],
-                    'lng' => ['nullable', 'numeric'],
+                    'lat' => ['required', 'numeric'],
+                    'lng' => ['required', 'numeric'],
 
                     // Wykształcenie
                     'education' => ['nullable', 'exists:App\Models\Education,id'],

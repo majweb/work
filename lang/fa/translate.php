@@ -1480,7 +1480,7 @@ return [
     'clear' => 'پاک کردن',
     'selectPositionToSeeDetails' => 'برای مشاهده وظایف، یک موقعیت شغلی را انتخاب کنید',
     'searchAddress' => 'جستجوی آدرس',
-    'searchAddressDescription' => 'شروع به نوشتن آدرس کنید تا پیشنهادات نمایش داده شوند. برای تکمیل خودکار فیلدهای زیر، آدرس را از لیست انتخاب کنید.',
+    'searchAddressDescription' => 'شهر یا آدرس کامل محل انجام کار را وارد کنید.',
     'salaryFromPlaceholder' => 'حقوق از',
     'salaryToPlaceholder' => 'حقوق تا',
     'bonusFromPlaceholder' => 'پاداش از',

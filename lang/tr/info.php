@@ -49,4 +49,5 @@ return [
     'list_social' => 'Şirketin sosyal medyada tanıtımı',
     'list_highlight' => 'İlanları öne çıkarma ve şirket sertifikaları',
     'points_section5' => 'Her eylemin belirlenmiş bir puan değeri vardır – yalnızca platforma erişim için değil, gerçekleştirilen belirli eylemler için ödersiniz.',
+    'firm_profile_not_completed' => 'Devam etmek için profilinizde şirket bilgilerini tamamlamalısınız.',
 ];

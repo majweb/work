@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Vymazať',
     'selectPositionToSeeDetails' => 'Vyberte pozíciu a zobrazte povinnosti',
     'searchAddress' => 'Vyhľadať adresu',
-    'searchAddressDescription' => 'Začnite písať adresu a zobrazia sa návrhy. Vyberte adresu zo zoznamu a automaticky vyplníte polia nižšie.',
+    'searchAddressDescription' => 'Zadajte mesto alebo úplnú adresu miesta výkonu práce.',
     'salaryFromPlaceholder' => 'Mzda od',
     'salaryToPlaceholder' => 'Mzda do',
     'bonusFromPlaceholder' => 'Bonus od',

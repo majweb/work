@@ -1459,7 +1459,7 @@ return [
     'clear' => 'Очистити',
     'selectPositionToSeeDetails' => 'Виберіть посаду, щоб побачити обов’язки',
     'searchAddress' => 'Пошук адреси',
-    'searchAddressDescription' => 'Почніть вводити адресу, щоб побачити підказки.',
+    'searchAddressDescription' => 'Введіть місто або повну адресу місця виконання роботи.',
     'salaryFromPlaceholder' => 'від',
     'salaryToPlaceholder' => 'до',
     'bonusFromPlaceholder' => 'премія від',

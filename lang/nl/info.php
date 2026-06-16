@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promotie van het bedrijf op social media',
     'list_highlight' => 'Uitlichten van vacatures en bedrijfs-certificaten',
     'points_section5' => 'Elke actie heeft een vaste puntenwaarde – je betaalt alleen voor concrete, uitgevoerde acties en niet voor toegang tot het platform.',
+    'firm_profile_not_completed' => 'Om door te gaan moet je de bedrijfsgegevens in je profiel invullen.',
 ];

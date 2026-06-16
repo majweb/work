@@ -1490,7 +1490,7 @@ return [
     'clear' => 'クリア',
     'selectPositionToSeeDetails' => '職位を選択すると職務内容が表示されます',
     'searchAddress' => '住所を検索',
-    'searchAddressDescription' => '住所を入力し始めると候補が表示されます。リストから住所を選択すると、以下のフィールドが自動的に入力されます。',
+    'searchAddressDescription' => '作業が行われる都市または完全な住所を入力してください。',
     'salaryFromPlaceholder' => '基本給（下限）',
     'salaryToPlaceholder' => '基本給（上限）',
     'bonusFromPlaceholder' => '手当・賞与（下限）',

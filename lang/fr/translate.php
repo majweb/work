@@ -1492,7 +1492,7 @@ return [
     'clear' => 'Effacer',
     'selectPositionToSeeDetails' => 'Sélectionnez un poste pour voir les missions',
     'searchAddress' => 'Rechercher une adresse',
-    'searchAddressDescription' => 'Commencez à saisir l\'adresse pour voir les suggestions. Sélectionnez l\'adresse dans la liste pour remplir automatiquement les champs ci-dessous.',
+    'searchAddressDescription' => 'Indiquez la ville ou l’adresse complète du lieu où le travail est effectué.',
     'salaryFromPlaceholder' => 'Travail à partir de',
     'salaryToPlaceholder' => 'Travail jusqu\'à',
     'bonusFromPlaceholder' => 'Prime à partir de',

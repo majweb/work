@@ -1476,7 +1476,7 @@ return [
     'clear' => 'נקה',
     'selectPositionToSeeDetails' => 'בחר תפקיד כדי לראות את תחומי האחריות',
     'searchAddress' => 'חפש כתובת',
-    'searchAddressDescription' => 'התחל להקליד את הכתובת כדי לראות הצעות. בחר כתובת מהרשימה כדי למלא אוטומטית את השדות למטה.',
+    'searchAddressDescription' => 'הזן את העיר או הכתובת המלאה של מקום ביצוע העבודה.',
     'salaryFromPlaceholder' => 'שכר מ-',
     'salaryToPlaceholder' => 'שכר עד',
     'bonusFromPlaceholder' => 'בונוס מ-',

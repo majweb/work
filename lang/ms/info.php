@@ -49,4 +49,5 @@ return [
     'list_social' => 'Mempromosikan syarikat di media sosial',
     'list_highlight' => 'Menonjolkan tawaran dan sijil syarikat',
     'points_section5' => 'Setiap tindakan mempunyai nilai mata tersendiri – anda hanya membayar untuk tindakan yang benar-benar dilaksanakan, bukan untuk akses kepada platform.',
+    'firm_profile_not_completed' => 'Untuk meneruskan, anda perlu melengkapkan maklumat syarikat dalam profil anda.',
 ];

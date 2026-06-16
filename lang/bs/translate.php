@@ -1577,8 +1577,7 @@ return [
 'selectPositionToSeeDetails' => 'Odaberite poziciju da vidite obaveze',
 
 'searchAddress' => 'Pretraži adresu',
-'searchAddressDescription' => 'Počnite pisati adresu kako biste vidjeli prijedloge. Odaberite adresu sa liste za automatsko popunjavanje polja ispod.',
-
+    'searchAddressDescription' => 'Unesite grad ili punu adresu mjesta gdje se posao obavlja.',
 'salaryFromPlaceholder' => 'Plata od',
 'salaryToPlaceholder' => 'Plata do',
 

@@ -1494,7 +1494,7 @@ return [
     'clear' => 'خالي کړئ',
     'selectPositionToSeeDetails' => 'د دندو لیدلو لپاره موقف وټاکئ',
     'searchAddress' => 'پته وپلټئ',
-    'searchAddressDescription' => 'د وړاندیزونو لیدلو لپاره پته ټایپ کول پیل کړئ. د لاندې ساحو اتوماتیک ډکولو لپاره له لیست څخه یوه پته وټاکئ.',
+    'searchAddressDescription' => 'د کار ځای ښار یا بشپړ پته دننه کړئ.',
     'salaryFromPlaceholder' => 'معاش له',
     'salaryToPlaceholder' => 'معاش تر',
     'bonusFromPlaceholder' => 'بونس له',

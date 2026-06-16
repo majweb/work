@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promocija kompanije na društvenim mrežama',
     'list_highlight' => 'Isticanje ponuda i sertifikati kompanije',
     'points_section5' => 'Svaka akcija ima dodeljenu bodovnu vrednost – plaćate samo za konkretne, realizovane akcije, a ne za sam pristup platformi.',
+    'firm_profile_not_completed' => 'Да бисте наставили, морате попунити податке о компанији у свом профилу.',
 ];

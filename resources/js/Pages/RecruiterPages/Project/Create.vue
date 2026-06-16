@@ -534,18 +534,23 @@ const addToArray = (array,name) =>{
     }
 }
 
-const clearCountry = () => {
-    form.countryWork = '';
+const clearAddressFields = () => {
     form.streetWork = '';
-    form.streetWorkNumber =  '';
+    form.streetWorkNumber = '';
     form.postalWork = '';
-    form.cityWork =  '';
+    form.cityWork = '';
+    form.lat = '';
+    form.lng = '';
 
-    // Wyczyść mapę i marker
     if (marker.value) {
         marker.value.remove();
         marker.value = null;
     }
+};
+
+const clearCountry = () => {
+    form.countryWork = '';
+    clearAddressFields();
 }
 
 // Mapbox
@@ -560,13 +565,10 @@ const initializeMap = () => {
 
     mapboxgl.accessToken = usePage().props.mapboxToken;
 
-    // Domyślne współrzędne (centrum Polski)
-    const defaultCoords = [19.1451, 51.9194];
-
     map.value = new mapboxgl.Map({
         container: mapContainer.value,
         style: "mapbox://styles/mapbox/light-v11",
-        center: defaultCoords,
+        center: [19.1451, 51.9194],
         zoom: 6,
         attributionControl: false
     });
@@ -584,6 +586,16 @@ const initializeMap = () => {
     });
 
     geocoderContainer.value.appendChild(geocoder.value.onAdd(map.value));
+
+    // Czyść pola przy nowym wyszukiwaniu
+    geocoder.value.on('loading', () => {
+        clearAddressFields();
+    });
+
+    // Czyść pola przy wyczyszczeniu wyszukiwarki
+    geocoder.value.on('clear', () => {
+        clearAddressFields();
+    });
 
     // Obsługa wyboru miejsca z autocomplete
     geocoder.value.on('result', (e) => {
@@ -718,6 +730,29 @@ const isExperienceEnabled = computed(() => {
         props.experiences &&
         props.experiences.length > 0 &&
         form.experience.value === props.experiences[0].value;
+});
+
+const selectedAddressDisplay = computed(() => {
+    if (!form.cityWork) return '';
+
+    let parts = [];
+    if (form.streetWork) {
+        let streetStr = form.streetWork;
+        if (form.streetWorkNumber) {
+            streetStr += ' ' + form.streetWorkNumber;
+        }
+        parts.push(streetStr);
+    }
+
+    let cityParts = [];
+    if (form.postalWork) cityParts.push(form.postalWork);
+    if (form.cityWork) cityParts.push(form.cityWork);
+
+    if (cityParts.length > 0) {
+        parts.push(cityParts.join(' '));
+    }
+
+    return parts.join(', ');
 });
 
 // Inicjalizacja wartości domyślnej dla experience przy montowaniu komponentu
@@ -1317,6 +1352,21 @@ onMounted(() => {
                                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-3">
                                         {{ __('translate.searchAddressDescription') }}
                                     </p>
+                                    <div v-if="selectedAddressDisplay" class="mt-4 p-4 bg-[#0A2C5C]/5 border border-[#0A2C5C]/10 rounded-2xl flex items-start gap-3">
+                                        <div class="mt-0.5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#0A2C5C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-widest mb-1">{{ __('translate.selected_address') }}</p>
+                                            <p class="text-sm font-bold text-[#0A2C5C]">{{ selectedAddressDisplay }}</p>
+                                        </div>
+                                    </div>
+                                    <InputError v-if="form.errors.streetWork || form.errors.cityWork || form.errors.lat || form.errors.lng"
+                                                :message="__('translate.address_required')"
+                                                class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
 
                                 <!-- Mapa Mapbox -->
@@ -1325,18 +1375,12 @@ onMounted(() => {
                                 </div>
                             </div>
 
-                            <AddressFieldGroup class="mt-8" v-if="form.countryWork" :code="form.countryWork?.countryCode"
+                            <AddressFieldGroup class="hidden mt-8" v-if="form.countryWork" :code="form.countryWork?.countryCode"
                                                v-model:street="form.streetWork"
                                                v-model:streetNumber="form.streetWorkNumber"
                                                v-model:postcode="form.postalWork"
                                                v-model:city="form.cityWork"
                             />
-                            <div class="grid grid-cols-1 gap-4" v-if="form.countryWork">
-                                <InputError v-if="form.errors.streetWork" :message="form.errors.streetWork" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                                <InputError v-if="form.errors.streetWorkNumber" :message="form.errors.streetWorkNumber" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                                <InputError v-if="form.errors.postalWork" :message="form.errors.postalWork" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                                <InputError v-if="form.errors.cityWork" :message="form.errors.cityWork" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
-                            </div>
                         </div>
 
                         <!-- Wykształcenie -->

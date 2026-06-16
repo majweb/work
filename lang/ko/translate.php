@@ -1486,7 +1486,7 @@ return [
     'clear' => '지우기',
     'selectPositionToSeeDetails' => '업무를 보려면 직위 선택',
     'searchAddress' => '주소 검색',
-    'searchAddressDescription' => '제안을 보려면 주소 입력을 시작하세요. 목록에서 주소를 선택하여 아래 필드를 자동으로 채웁니다.',
+    'searchAddressDescription' => '작업이 수행되는 도시 또는 전체 주소를 입력하세요.',
     'salaryFromPlaceholder' => '근무 시작',
     'salaryToPlaceholder' => '근무 종료',
     'bonusFromPlaceholder' => '보너스 시작',

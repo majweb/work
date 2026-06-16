@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promovering af virksomheden på sociale medier',
     'list_highlight' => 'Fremhævelse af jobopslag og virksomhedscertifikater',
     'points_section5' => 'Hver handling har en tildelt pointværdi – du betaler kun for konkrete, udførte handlinger og ikke for selve adgangen til platformen.',
+    'firm_profile_not_completed' => 'For at fortsætte skal du udfylde virksomhedsoplysningerne i din profil.',
 ];

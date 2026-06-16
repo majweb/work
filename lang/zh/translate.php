@@ -1493,7 +1493,7 @@ return [
     'clear' => '清除',
     'selectPositionToSeeDetails' => '选择职位以查看职责',
     'searchAddress' => '搜索地址',
-    'searchAddressDescription' => '开始输入地址以查看提示。从列表中选择地址以自动填写下方字段。',
+    'searchAddressDescription' => '请输入工作地点所在的城市或完整地址。',
     'salaryFromPlaceholder' => '薪资从',
     'salaryToPlaceholder' => '薪资到',
     'bonusFromPlaceholder' => '奖金从',

@@ -1492,7 +1492,7 @@ return [
     'clear' => 'Hreinsa',
     'selectPositionToSeeDetails' => 'Veldu stöðu til að sjá skyldur',
     'searchAddress' => 'Leita að heimilisfangi',
-    'searchAddressDescription' => 'Byrjaðu að skrifa heimilisfang til að sjá tillögur. Veldu heimilisfang af listanum til að fylla sjálfkrafa út reitina hér að neðan.',
+    'searchAddressDescription' => 'Sláðu inn borg eða fullt heimilisfang þar sem verkið er unnið.',
     'salaryFromPlaceholder' => 'Vinna frá',
     'salaryToPlaceholder' => 'Vinna til',
     'bonusFromPlaceholder' => 'Bónus frá',

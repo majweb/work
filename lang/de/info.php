@@ -49,4 +49,6 @@ return [
     'list_social' => 'Unternehmenswerbung in sozialen Medien',
     'list_highlight' => 'Hervorhebung von Angeboten und Unternehmenszertifikate',
     'points_section5' => 'Jeder Aktion ist ein Punktewert zugeordnet – Sie zahlen nur für konkret durchgeführte Aktionen und nicht für den Zugang zur Plattform selbst.',
+    'firm_profile_not_completed' => 'Um fortzufahren, müssen Sie die Firmendaten in Ihrem Profil vervollständigen.',
+
 ];

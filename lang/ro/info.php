@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promovarea companiei pe rețelele sociale',
     'list_highlight' => 'Evidențierea ofertelor și certificate de companie',
     'points_section5' => 'Fiecare acțiune are o valoare în puncte – plătești doar pentru acțiunile concrete realizate, nu pentru accesul la platformă.',
+    'firm_profile_not_completed' => 'Pentru a continua, trebuie să completați datele companiei din profilul dvs.',
 ];

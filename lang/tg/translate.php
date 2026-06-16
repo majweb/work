@@ -1495,7 +1495,7 @@ return [
     'clear' => 'Тоза кунед',
     'selectPositionToSeeDetails' => 'Барои дидани вазифаҳо вазифаро интихоб кунед',
     'searchAddress' => 'Суроғаро ҷустуҷӯ кунед',
-    'searchAddressDescription' => 'Барои дидани маслиҳатҳо суроғаро навистан гиред. Барои пур кардани автоматӣ майдонҳои зерин суроғаро аз рӯйхат интихоб кунед.',
+    'searchAddressDescription' => 'Шаҳр ё суроғаи пурраи ҷойи иҷрои корро ворид кунед.',
     'salaryFromPlaceholder' => 'Кор аз',
     'salaryToPlaceholder' => 'Кор то',
     'bonusFromPlaceholder' => 'Бонус аз',

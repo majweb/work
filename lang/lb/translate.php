@@ -1482,7 +1482,7 @@ return [
     'clear' => 'Eidel maachen',
     'selectPositionToSeeDetails' => 'Wielt eng Positioun fir d\'Aufgaben ze gesinn',
     'searchAddress' => 'Adress sichen',
-    'searchAddressDescription' => 'Fänkt un d\'Adress ze tippen fir Virschléi ze gesinn. Wielt eng Adress aus der Lëscht fir d\'Felder hei ënnen automatesch auszefëllen.',
+    'searchAddressDescription' => 'Gitt d’Stad oder déi komplett Adress vum Aarbechtsplaz un.',
     'salaryFromPlaceholder' => 'Aarbecht vun',
     'salaryToPlaceholder' => 'Aarbecht bis',
     'bonusFromPlaceholder' => 'Bonus vun',

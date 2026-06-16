@@ -1473,7 +1473,7 @@ return [
     'clear' => 'Wissen',
     'selectPositionToSeeDetails' => 'Selecteer functie om taken te zien',
     'searchAddress' => 'Zoek adres',
-    'searchAddressDescription' => 'Begin met het typen van een adres om suggesties te zien. Selecteer een adres uit de lijst om de onderstaande velden automatisch in te vullen.',
+    'searchAddressDescription' => 'Voer de stad of het volledige adres van de werklocatie in.',
     'salaryFromPlaceholder' => 'Werk vanaf',
     'salaryToPlaceholder' => 'Werk tot',
     'bonusFromPlaceholder' => 'Bonus van',

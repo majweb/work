@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Limpiar',
     'selectPositionToSeeDetails' => 'Seleccione un puesto para ver las responsabilidades',
     'searchAddress' => 'Buscar dirección',
-    'searchAddressDescription' => 'Comience a escribir la dirección para ver sugerencias. Seleccione una dirección de la lista para rellenar automáticamente los campos inferiores.',
+    'searchAddressDescription' => 'Introduce la ciudad o la dirección completa del lugar donde se realiza el trabajo.',
     'salaryFromPlaceholder' => 'Trabajo desde',
     'salaryToPlaceholder' => 'Trabajo hasta',
     'bonusFromPlaceholder' => 'Bono desde',

@@ -49,4 +49,5 @@ return [
     'list_social' => 'Yrityksen markkinointi sosiaalisessa mediassa',
     'list_highlight' => 'Ilmoitusten korostaminen ja yrityssertifikaatit',
     'points_section5' => 'Jokaisella toiminnolla on määritelty pistearvo – maksat vain tietyistä, toteutetuista toimenpiteistä, etkä pelkästä pääsystä alustalle.',
+    'firm_profile_not_completed' => 'Jatkaaksesi sinun on täytettävä yrityksen tiedot profiilissasi.',
 ];

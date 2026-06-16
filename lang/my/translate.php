@@ -1485,7 +1485,7 @@ return [
     'clear' => 'ရှင်းလင်းပါ',
     'selectPositionToSeeDetails' => 'တာဝန်များကိုကြည့်ရန် ရာထူးရွေးပါ',
     'searchAddress' => 'လိပ်စာရှာဖွေပါ',
-    'searchAddressDescription' => 'အကြံပြုချက်များကိုကြည့်ရန် လိပ်စာစတင်ရိုက်ပါ။ အောက်ပါအကွက်များကို အလိုအလျောက်ဖြည့်ရန် စာရင်းမှ လိပ်စာတစ်ခုကို ရွေးပါ။',
+    'searchAddressDescription' => 'အလုပ်လုပ်ဆောင်ရာမြို့ သို့မဟုတ် လိပ်စာအပြည့်အစုံကို ထည့်ပါ။',
     'salaryFromPlaceholder' => 'မှစ၍ အလုပ်',
     'salaryToPlaceholder' => 'အထိ အလုပ်',
     'bonusFromPlaceholder' => 'ဘောနပ်စ် မှစ၍',

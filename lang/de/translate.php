@@ -1476,7 +1476,7 @@ return [
     'clear' => 'Leeren',
     'selectPositionToSeeDetails' => 'Wählen Sie eine Position aus, um die Aufgaben zu sehen',
     'searchAddress' => 'Adresse suchen',
-    'searchAddressDescription' => 'Beginnen Sie mit der Eingabe der Adresse, um Vorschläge anzuzeigen. Wählen Sie eine Adresse aus der Liste, um die folgenden Felder automatisch auszufüllen.',
+    'searchAddressDescription' => 'Geben Sie die Stadt oder die vollständige Adresse des Arbeitsorts ein.',
     'salaryFromPlaceholder' => 'Arbeit von',
     'salaryToPlaceholder' => 'Arbeit bis',
     'bonusFromPlaceholder' => 'Bonus von',

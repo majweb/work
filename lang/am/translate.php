@@ -1501,7 +1501,7 @@ return [
     'clear' => 'አጽዳ',
     'selectPositionToSeeDetails' => 'ዝርዝሮችን ለማየት የሥራ ቦታ ይምረጡ',
     'searchAddress' => 'አድራሻ ፈልግ',
-    'searchAddressDescription' => 'ጥቆማዎችን ለማየት አድራሻውን መጻፍ ይጀምሩ። ከታች ያሉትን መስኮች በራስ-ሰር ለመሙላት ከዝርዝሩ ውስጥ አድራሻ ይምረጡ።',
+    'searchAddressDescription' => 'የስራ ቦታውን ከተማ ወይም ሙሉ አድራሻ ያስገቡ።',
     'salaryFromPlaceholder' => 'ሥራ ከ',
     'salaryToPlaceholder' => 'ሥራ እስከ',
     'bonusFromPlaceholder' => 'ቦነስ ከ',

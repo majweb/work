@@ -49,4 +49,5 @@ return [
     'list_social' => 'Propagácia firmy na sociálnych sieťach',
     'list_highlight' => 'Zvýraznenie ponúk a firemné certifikáty',
     'points_section5' => 'Každá činnosť má priradenú bodovú hodnotu – platíte len za konkrétne, realizované činnosti, nie za samotný prístup k platforme.',
+    'firm_profile_not_completed' => 'Aby ste mohli pokračovať, musíte vo svojom profile vyplniť údaje o spoločnosti.',
 ];

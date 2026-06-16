@@ -1493,7 +1493,7 @@ return [
     'clear' => 'Tozalash',
     'selectPositionToSeeDetails' => 'Vazifalarni ko‘rish uchun lavozimni tanlang',
     'searchAddress' => 'Manzilni qidirish',
-    'searchAddressDescription' => 'Manzilni yozishni boshlang, maslahatlarni ko‘rish uchun. Quyidagi maydonlarni avtomatik to‘ldirish uchun ro‘yxatdan manzilni tanlang.',
+    'searchAddressDescription' => 'Ish bajariladigan shahar yoki to‘liq manzilni kiriting.',
     'salaryFromPlaceholder' => 'Ish haqi dan',
     'salaryToPlaceholder' => 'Ish haqi gacha',
     'bonusFromPlaceholder' => 'Bonus dan',

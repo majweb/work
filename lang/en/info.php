@@ -76,4 +76,5 @@ return [
     'list_highlight' => 'Featured offers and company certificates',
 
     'points_section5' => 'Each activity has an assigned point value – you pay only for specific actions, not for access to the platform.',
+    'firm_profile_not_completed' => 'To continue, you must complete your company details in your profile.',
 ];

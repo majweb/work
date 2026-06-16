@@ -594,6 +594,8 @@ class ProjectController extends Controller
                     'streetWorkNumber' => ['required', 'string', 'max:100'],
                     'postalWork' => ['required', 'string', 'max:100'],
                     'cityWork' => ['required', 'string', 'max:100'],
+                    'lat' => ['required', 'numeric'],
+                    'lng' => ['required', 'numeric'],
 
                     // Wykształcenie
                     'education' => ['nullable', 'exists:App\Models\Education,id'],

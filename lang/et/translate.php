@@ -1230,7 +1230,7 @@ return [
     'clear' => 'Tühjenda',
     'selectPositionToSeeDetails' => 'Kohustuste nägemiseks vali ametikoht',
     'searchAddress' => 'Otsi aadressi',
-    'searchAddressDescription' => 'Alustage aadressi kirjutamist, et näha soovitusi. Valige aadress nimekirjast, et allolevad väljad automaatselt täita.',
+    'searchAddressDescription' => 'Sisestage töö tegemise linna või täielik aadress.',
     'salaryFromPlaceholder' => 'Töö alates',
     'salaryToPlaceholder' => 'Töö kuni',
     'bonusFromPlaceholder' => 'Bonus alates',

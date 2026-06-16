@@ -1492,7 +1492,7 @@ return [
     'clear' => 'साफ़ करें',
     'selectPositionToSeeDetails' => 'ज़िम्मेदारियाँ देखने के लिए पद चुनें',
     'searchAddress' => 'पता खोजें',
-    'searchAddressDescription' => 'सुझाव देखने के लिए पता लिखना शुरू करें। नीचे दिए गए क्षेत्रों को स्वचालित रूप से भरने के लिए सूची से पता चुनें।',
+    'searchAddressDescription' => 'कार्य के स्थान का शहर या पूरा पता दर्ज करें।',
     'salaryFromPlaceholder' => 'कार्य यहाँ से',
     'salaryToPlaceholder' => 'कार्य यहाँ तक',
     'bonusFromPlaceholder' => 'बोनस यहाँ से',

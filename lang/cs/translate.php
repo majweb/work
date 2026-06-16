@@ -2990,8 +2990,7 @@ return [
 
     'searchAddress' => 'Vyhledat adresu',
 
-    'searchAddressDescription' => 'Začněte psát adresu pro zobrazení nápovědy. Vyberte adresu ze seznamu pro automatické vyplnění polí níže.',
-
+    'searchAddressDescription' => 'Zadejte město nebo úplnou adresu místa, kde se práce vykonává.',
     'salaryFromPlaceholder' => 'Práce od',
 
     'salaryToPlaceholder' => 'Práce do',

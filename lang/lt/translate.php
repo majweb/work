@@ -1474,7 +1474,7 @@ return [
     'clear' => 'Išvalyti',
     'selectPositionToSeeDetails' => 'Pasirinkite pareigas, kad pamatytumėte pareigas',
     'searchAddress' => 'Ieškoti adreso',
-    'searchAddressDescription' => 'Pradėkite rašyti adresą, kad pamatytumėte pasiūlymus. Pasirinkite adresą iš sąrašo, kad automatiškai užpildytumėte žemiau esančius laukelius.',
+    'searchAddressDescription' => 'Įveskite miestą arba visą darbo vietos adresą.',
     'salaryFromPlaceholder' => 'Darbas nuo',
     'salaryToPlaceholder' => 'Darbas iki',
     'bonusFromPlaceholder' => 'Premija nuo',

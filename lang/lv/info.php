@@ -49,4 +49,5 @@ return [
     'list_social' => 'Uzņēmuma popularizēšana sociālajos tīklos',
     'list_highlight' => 'Sludinājumu izcelšana un uzņēmuma sertifikāti',
     'points_section5' => 'Katrai darbībai ir noteikta punktu vērtība – tu maksā tikai par konkrēti veiktajām darbībām, nevis par piekļuvi platformai.',
+    'firm_profile_not_completed' => 'Lai turpinātu, jums jāaizpilda uzņēmuma dati savā profilā.',
 ];

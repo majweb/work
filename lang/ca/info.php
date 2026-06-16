@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promoció de l’empresa a les xarxes socials',
     'list_highlight' => 'Destacat d’ofertes i certificats d’empresa',
     'points_section5' => 'Cada acció té assignat un valor en punts: només pagueu per les accions concretes realitzades, i no pel simple accés a la plataforma.',
+    'firm_profile_not_completed' => 'Per continuar, has d’omplir les dades de l’empresa al perfil.',
 ];

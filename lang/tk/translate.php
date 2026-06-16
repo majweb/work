@@ -1493,7 +1493,7 @@ return [
     'clear' => 'Arassala',
     'selectPositionToSeeDetails' => 'Borçlary görmek üçin wezipäni saýlaň',
     'searchAddress' => 'Salgy gözle',
-    'searchAddressDescription' => 'Salgy ýazyp başlaň, maslahatlary görmek üçin. Aşakdaky meýdançalary awtomatik doldurmak üçin sanawdan salgy saýlaň.',
+    'searchAddressDescription' => 'Işiň ýerine ýetirilýän şäheri ýa-da doly salgyny giriziň.',
     'salaryFromPlaceholder' => 'Aýlyk',
     'salaryToPlaceholder' => 'Aýlyk çenli',
     'bonusFromPlaceholder' => 'Premium',

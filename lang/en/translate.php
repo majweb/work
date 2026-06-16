@@ -1513,7 +1513,7 @@ return [
     'clear' => 'Clear',
     'selectPositionToSeeDetails' => 'Select a position to see responsibilities',
     'searchAddress' => 'Search address',
-    'searchAddressDescription' => 'Start typing the address to see suggestions. Select an address from the list to automatically fill in the fields below.',
+    'searchAddressDescription' => 'Enter the city or full address of the work location.',
     'salaryFromPlaceholder' => 'Salary from',
     'salaryToPlaceholder' => 'Salary to',
     'bonusFromPlaceholder' => 'Bonus from',
@@ -1957,4 +1957,6 @@ return [
     'position_name_placeholder' => 'Enter the name of the missing position...',
     'error_occurred' => 'An unexpected error occurred. Please try again.',
     'generator_desc' => 'When you share a link on social media, a preview image is displayed. Here you can choose one of the 8 images we have prepared, which will be shown together with your link on Facebook, LinkedIn and other platforms. This makes your posts more attractive and helps them easily capture the attention of your audience.',
+    'address_required' => 'Please select an address from the autocomplete suggestions.',
+    'selected_address' => 'Selected address:',
 ];

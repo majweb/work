@@ -49,4 +49,5 @@ return [
     'list_social' => '소셜 미디어에서 회사 홍보',
     'list_highlight' => '채용 공고 강조 및 기업 인증',
     'points_section5' => '각 활동에는 포인트 가치가 지정되어 있으며, 플랫폼 접근 자체가 아닌 실제 수행된 작업에 대해서만 비용을 지불합니다.',
+    'firm_profile_not_completed' => '계속하려면 프로필에서 회사 정보를 작성해야 합니다.',
 ];

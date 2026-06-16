@@ -1473,7 +1473,7 @@ return [
     'clear' => 'Notīrīt',
     'selectPositionToSeeDetails' => 'Izvēlieties amatu, lai redzētu pienākumus',
     'searchAddress' => 'Meklēt adresi',
-    'searchAddressDescription' => 'Sāciet rakstīt adresi, lai redzētu ieteikumus. Izvēlieties adresi no saraksta, lai automātiski aizpildītu zemāk esošos laukus.',
+    'searchAddressDescription' => 'Ievadiet pilsētu vai pilnu darba veikšanas vietas adresi.',
     'salaryFromPlaceholder' => 'Darbs no',
     'salaryToPlaceholder' => 'Darbs līdz',
     'bonusFromPlaceholder' => 'Prēmija no',

@@ -1492,7 +1492,7 @@ return [
     'clear' => 'Մաքրել',
     'selectPositionToSeeDetails' => 'Ընտրեք հաստիքը՝ պարտականությունները տեսնելու համար',
     'searchAddress' => 'Փնտրել հասցեն',
-    'searchAddressDescription' => 'Սկսեք գրել հասցեն հուշումները տեսնելու համար։ Ընտրեք հասցեն ցուցակից՝ ստորև բերված դաշտերն ավտոմատ լրացնելու համար։',
+    'searchAddressDescription' => 'Masukkan kota atau alamat lengkap tempat pekerjaan dilakukan.',
     'salaryFromPlaceholder' => 'Աշխատանք սկսած',
     'salaryToPlaceholder' => 'Աշխատանք մինչև',
     'bonusFromPlaceholder' => 'Պարգևավճար սկսած',

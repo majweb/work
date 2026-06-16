@@ -1467,7 +1467,7 @@ return [
     'clear' => 'Neteja',
     'selectPositionToSeeDetails' => 'Selecciona posició per veure responsabilitats',
     'searchAddress' => 'Cerca adreça',
-    'searchAddressDescription' => 'Comença a escriure l’adreça per veure suggeriments. Selecciona de la llista per omplir automàticament els camps.',
+    'searchAddressDescription' => 'Zadejte město nebo úplnou adresu místa, kde se práce vykonává.',
     'salaryFromPlaceholder' => 'Salari des de',
     'salaryToPlaceholder' => 'Salari fins a',
     'bonusFromPlaceholder' => 'Boni des de',

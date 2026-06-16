@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Goliți',
     'selectPositionToSeeDetails' => 'Selectați poziția pentru a vedea responsabilitățile',
     'searchAddress' => 'Căutați adresa',
-    'searchAddressDescription' => 'Începeți să tastați adresa pentru a vedea sugestiile. Selectați o adresă din listă pentru a completa automat câmpurile de mai jos.',
+    'searchAddressDescription' => 'Introduceți orașul sau adresa completă a locului unde se desfășoară munca.',
     'salaryFromPlaceholder' => 'Salariu de la',
     'salaryToPlaceholder' => 'Salariu până la',
     'bonusFromPlaceholder' => 'Bonus de la',

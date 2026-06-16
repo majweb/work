@@ -1492,7 +1492,7 @@ return [
     'clear' => 'Tyhjennä',
     'selectPositionToSeeDetails' => 'Valitse tehtävänimike nähdäksesi työtehtävät',
     'searchAddress' => 'Etsi osoitetta',
-    'searchAddressDescription' => 'Aloita osoitteen kirjoittaminen nähdäksesi ehdotukset. Valitse osoite luettelosta täyttääksesi alla olevat kentät automaattisesti.',
+    'searchAddressDescription' => 'Syötä kaupunki tai työn suorituspaikan täydellinen osoite.',
     'salaryFromPlaceholder' => 'Työ alkaen',
     'salaryToPlaceholder' => 'Työ asti',
     'bonusFromPlaceholder' => 'Bonus alkaen',

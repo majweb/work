@@ -1480,7 +1480,7 @@ return [
     'clear' => 'Ryd',
     'selectPositionToSeeDetails' => 'Vælg en stilling for at se ansvarsområder',
     'searchAddress' => 'Søg efter adresse',
-    'searchAddressDescription' => 'Begynd at skrive en adresse for at se forslag. Vælg en adresse fra listen for at udfylde felterne nedenfor automatisk.',
+    'searchAddressDescription' => 'Indtast byen eller den fulde adresse for stedet, hvor arbejdet udføres.',
     'salaryFromPlaceholder' => 'Løn fra',
     'salaryToPlaceholder' => 'Løn til',
     'bonusFromPlaceholder' => 'Bonus fra',

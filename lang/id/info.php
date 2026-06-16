@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promosi perusahaan di media sosial',
     'list_highlight' => 'Penonjolan lowongan dan sertifikat perusahaan',
     'points_section5' => 'Setiap tindakan memiliki nilai poin tertentu — Anda hanya membayar untuk tindakan yang benar-benar dilakukan, bukan untuk akses ke platform.',
+    'firm_profile_not_completed' => 'Untuk melanjutkan, Anda harus melengkapi data perusahaan di profil Anda.',
 ];

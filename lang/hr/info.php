@@ -49,4 +49,5 @@ return [
     'list_social' => 'Promocija tvrtke na društvenim mrežama',
     'list_highlight' => 'Isticanje oglasa i certifikati tvrtke',
     'points_section5' => 'Svaka aktivnost ima dodijeljenu vrijednost u bodovima – plaćate samo za konkretne, realizirane aktivnosti, a ne za sam pristup platformi.',
+    'firm_profile_not_completed' => 'Za nastavak morate popuniti podatke o tvrtki u svom profilu.',
 ];

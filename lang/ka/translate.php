@@ -1491,7 +1491,7 @@ return [
     'clear' => 'გასუფთავება',
     'selectPositionToSeeDetails' => 'აირჩიეთ პოზიცია მოვალეობების სანახავად',
     'searchAddress' => 'მისამართის ძებნა',
-    'searchAddressDescription' => 'დაიწყეთ მისამართის წერა მინიშნებების სანახავად. აირჩიეთ მისამართი სიიდან ქვემოთ მოცემული ველების ავტომატურად შესავსებად.',
+    'searchAddressDescription' => 'បញ្ចូលទីក្រុង ឬអាសយដ្ឋានពេញលេញនៃទីតាំងធ្វើការងារ។',
     'salaryFromPlaceholder' => 'მუშაობა დან',
     'salaryToPlaceholder' => 'მუშაობა მდე',
     'bonusFromPlaceholder' => 'პრემია დან',

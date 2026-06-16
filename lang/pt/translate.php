@@ -1494,7 +1494,7 @@ return [
     'clear' => 'Limpar',
     'selectPositionToSeeDetails' => 'Selecione a posição para ver os deveres',
     'searchAddress' => 'Pesquisar endereço',
-    'searchAddressDescription' => 'Comece a digitar o endereço para ver sugestões. Selecione um endereço da lista para preencher automaticamente os campos abaixo.',
+    'searchAddressDescription' => 'Insira a cidade ou o endereço completo do local de trabalho.',
     'salaryFromPlaceholder' => 'Salário de',
     'salaryToPlaceholder' => 'Salário até',
     'bonusFromPlaceholder' => 'Bónus de',

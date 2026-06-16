@@ -1485,7 +1485,7 @@ return [
     'clear' => 'ລ້າງ',
     'selectPositionToSeeDetails' => 'ເລືອກຕໍາແໜ່ງ ເພື່ອເບິ່ງໜ້າທີ່',
     'searchAddress' => 'ຄົ້ນຫາທີ່ຢູ່',
-    'searchAddressDescription' => 'ເລີ່ມພິມທີ່ຢູ່ ເພື່ອເບິ່ງຄຳແນະນຳ. ເລືອກທີ່ຢູ່ຈາກລາຍຊື່ ເພື່ອຕື່ມຂໍ້ມູນໃສ່ຊ່ອງດ້ານລຸ່ມໂດຍອັດຕະໂນມັດ.',
+    'searchAddressDescription' => 'ໃສ່ເມືອງ ຫຼື ທີ່ຢູ່ເຕັມຂອງສະຖານທີ່ເຮັດວຽກ.',
     'salaryFromPlaceholder' => 'ເຮັດວຽກແຕ່',
     'salaryToPlaceholder' => 'ເຮັດວຽກເຖິງ',
     'bonusFromPlaceholder' => 'ໂບນັດແຕ່',

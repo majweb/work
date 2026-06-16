@@ -1524,7 +1524,7 @@ return [
     'clear' => 'Ачысціць',
     'selectPositionToSeeDetails' => 'Выберыце пасаду, каб убачыць абавязкі',
     'searchAddress' => 'Пошук адрасу',
-    'searchAddressDescription' => 'Пачніце ўводзіць адрас, каб убачыць падказкі. Выберыце адрас са спісу для аўтаматычнага запаўнення палёў ніжэй.',
+    'searchAddressDescription' => 'Увядзіце горад або поўны адрас месца выканання працы.',
     'salaryFromPlaceholder' => 'Праца ад',
     'salaryToPlaceholder' => 'Праца да',
     'bonusFromPlaceholder' => 'Бонус ад',
