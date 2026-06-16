@@ -346,12 +346,6 @@ const onPositionSelect = async (selectedOption) => {
         form.position = null;
         // form.detailProjects = []; // już wyczyszczone wyżej dla pewności przed jakimkolwiek await
 
-        // Mapowanie ścieżki na odpowiednie pola formularza
-        // fullPath[0] -> category (Branża)
-        // fullPath[1] -> categorySub (Podbranża)
-        // fullPath[2] -> profession (Zawód)
-        // Ostatni element -> position (Stanowisko), jeśli nie jest to jeden z powyższych
-
         // Poziom 1: Branża
         if (fullPath[0]) {
             form.category = {
@@ -390,7 +384,7 @@ const onPositionSelect = async (selectedOption) => {
         }
 
         // Poziom 4: Stanowisko
-        if (fullPath.length >= 4) {
+        if (fullPath[3]) {
             form.position = {
                 id: fullPath[3].id,
                 value: fullPath[3].id,
@@ -401,15 +395,8 @@ const onPositionSelect = async (selectedOption) => {
             const posDetails = await axios.get(route('projects.category-details', fullPath[3].id));
             form.position.detailprojects = posDetails.data.detailprojects || [];
         } else if (fullPath.length === 3) {
-            form.position = {
-                id: fullPath[2].id,
-                value: fullPath[2].id,
-                name: fullPath[2].name,
-                allTranslations: fullPath[2].allTranslations,
-                detailprojects: []
-            };
-            const posDetails = await axios.get(route('projects.category-details', fullPath[2].id));
-            form.position.detailprojects = posDetails.data.detailprojects || [];
+            // Jeśli wybrano zawód, a nie stanowisko, możemy opcjonalnie dociągnąć stanowiska do dropdowna
+            optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
         }
 
     } catch (error) {
@@ -1367,7 +1354,7 @@ onMounted(async () => {
                                             <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                                                 <div v-for="detail in filteredDuties" :key="detail.id"
                                                      class="group/item flex items-start gap-4 bg-white/50 rounded-2xl p-4 border border-white hover:bg-white hover:shadow-md transition-all cursor-pointer">
-                                                  <label class="group/check flex items-start cursor-pointer flex-1">
+                                                    <label class="group/check flex items-start cursor-pointer flex-1">
                                                         <div class="relative flex items-center justify-center mt-0.5">
                                                             <input
                                                                 type="checkbox" :id="'detailProjects-'+detail.id" v-model="form.detailProjects"

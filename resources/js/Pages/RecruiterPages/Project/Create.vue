@@ -288,12 +288,6 @@ const onPositionSelect = async (selectedOption) => {
         form.position = null;
         form.detailProjects = [];
 
-        // Mapowanie ścieżki na odpowiednie pola formularza
-        // fullPath[0] -> category (Branża)
-        // fullPath[1] -> categorySub (Podbranża)
-        // fullPath[2] -> profession (Zawód)
-        // Ostatni element -> position (Stanowisko), jeśli nie jest to jeden z powyższych
-
         // Poziom 1: Branża
         if (fullPath[0]) {
             form.category = {
@@ -332,7 +326,7 @@ const onPositionSelect = async (selectedOption) => {
         }
 
         // Poziom 4: Stanowisko
-        if (fullPath.length >= 4) {
+        if (fullPath[3]) {
             form.position = {
                 id: fullPath[3].id,
                 value: fullPath[3].id,
@@ -343,15 +337,8 @@ const onPositionSelect = async (selectedOption) => {
             const posDetails = await axios.get(route('projects.category-details', fullPath[3].id));
             form.position.detailprojects = posDetails.data.detailprojects || [];
         } else if (fullPath.length === 3) {
-            form.position = {
-                id: fullPath[2].id,
-                value: fullPath[2].id,
-                name: fullPath[2].name,
-                allTranslations: fullPath[2].allTranslations,
-                detailprojects: []
-            };
-            const posDetails = await axios.get(route('projects.category-details', fullPath[2].id));
-            form.position.detailprojects = posDetails.data.detailprojects || [];
+            // Jeśli wybrano zawód, a nie stanowisko, możemy opcjonalnie dociągnąć stanowiska do dropdowna
+            optionsPosition.value = (await axios.get(route('getChildsCategory', fullPath[2].id))).data;
         }
 
     } catch (error) {
@@ -455,21 +442,21 @@ watch(() => form.category, async (category) => {
     if (form.category) {
         optionsSubCategory.value =(await axios.get(route('getChildsCategory',category.value))).data
     }
-        optionsProfession.value = [];
-        optionsPosition.value = [];
-        form.categorySub = '';
-        form.profession = '';
-        form.position = '';
-        form.detailProjects = [];
+    optionsProfession.value = [];
+    optionsPosition.value = [];
+    form.categorySub = '';
+    form.profession = '';
+    form.position = '';
+    form.detailProjects = [];
 });
 watch(() => form.categorySub, async (categorySub) => {
     if (isAutoFilling.value) return;
     if (form.categorySub) {
         optionsProfession.value =(await axios.get(route('getChildsCategory',categorySub.value))).data
     }
-        optionsPosition.value = [];
-        form.profession = '';
-        form.position = '';
+    optionsPosition.value = [];
+    form.profession = '';
+    form.position = '';
     form.detailProjects = [];
 
 });
@@ -479,7 +466,7 @@ watch(() => form.profession, async (profession) => {
     if (form.profession) {
         optionsPosition.value =(await axios.get(route('getChildsCategory',profession.value))).data
     }
-        form.position = '';
+    form.position = '';
     form.detailProjects = [];
 
 });
@@ -531,7 +518,7 @@ const addAll = () => {
     }
 }
 const zeroAll = () => {
-        form.detailProjects = []
+    form.detailProjects = []
 }
 
 const addToArray = (array,name) =>{
@@ -723,10 +710,10 @@ const toggleExperience = () => {
 // Włączone = pierwszy element z tablicy experiences
 const isExperienceEnabled = computed(() => {
     return form.experience &&
-           form.experience.value &&
-           props.experiences &&
-           props.experiences.length > 0 &&
-           form.experience.value === props.experiences[0].value;
+        form.experience.value &&
+        props.experiences &&
+        props.experiences.length > 0 &&
+        form.experience.value === props.experiences[0].value;
 });
 
 // Inicjalizacja wartości domyślnej dla experience przy montowaniu komponentu
@@ -817,39 +804,39 @@ onMounted(() => {
 
                             <!-- Karty wyboru typu CV -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10" v-if="cvs">
-                            <label
-                                v-for="cv in cvs"
-                                :key="cv.id"
-                                class="border border-gray-100 rounded-[2.5rem] p-8 cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1"
-                                :class="form.cv.some(item => item.id === cv.id) ? 'bg-[#0A2C5C] border-transparent shadow-lg shadow-blue-900/20' : 'bg-gray-50/50'"
-                            >
-                                <div class="flex flex-col items-center text-center">
-                                    <input
-                                        type="checkbox"
-                                        :id="'cv-'+cv.id"
-                                        v-model="form.cv"
-                                        :value="cv"
-                                        class="sr-only"
-                                    />
-                                    <div
-                                        class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-all border-2"
-                                        :class="form.cv.some(item => item.id === cv.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
-                                    >
-                                        <img v-if="cv.id === 1" class="w-10 h-10" src="/images/icons/recruit/klasyczne_cv.png" alt="cv">
-                                        <img v-else-if="cv.id === 2" class="w-10 h-10" src="/images/icons/recruit/video_cv.png" alt="video_cv">
-                                        <img v-else-if="cv.id === 3" class="w-10 h-10" src="/images/icons/recruit/audio_cv.png" alt="audio_cv">
-                                    </div>
-                                    <h3 class="font-black text-sm uppercase tracking-widest mb-4" :class="form.cv.some(item => item.id === cv.id) ? 'text-white' : 'text-gray-900'">{{ cv.name }}</h3>
+                                <label
+                                    v-for="cv in cvs"
+                                    :key="cv.id"
+                                    class="border border-gray-100 rounded-[2.5rem] p-8 cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1"
+                                    :class="form.cv.some(item => item.id === cv.id) ? 'bg-[#0A2C5C] border-transparent shadow-lg shadow-blue-900/20' : 'bg-gray-50/50'"
+                                >
+                                    <div class="flex flex-col items-center text-center">
+                                        <input
+                                            type="checkbox"
+                                            :id="'cv-'+cv.id"
+                                            v-model="form.cv"
+                                            :value="cv"
+                                            class="sr-only"
+                                        />
+                                        <div
+                                            class="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 transition-all border-2"
+                                            :class="form.cv.some(item => item.id === cv.id) ? 'bg-white/10 border-white/20' : 'bg-white border-white shadow-sm'"
+                                        >
+                                            <img v-if="cv.id === 1" class="w-10 h-10" src="/images/icons/recruit/klasyczne_cv.png" alt="cv">
+                                            <img v-else-if="cv.id === 2" class="w-10 h-10" src="/images/icons/recruit/video_cv.png" alt="video_cv">
+                                            <img v-else-if="cv.id === 3" class="w-10 h-10" src="/images/icons/recruit/audio_cv.png" alt="audio_cv">
+                                        </div>
+                                        <h3 class="font-black text-sm uppercase tracking-widest mb-4" :class="form.cv.some(item => item.id === cv.id) ? 'text-white' : 'text-gray-900'">{{ cv.name }}</h3>
 
-                                    <div class="relative flex items-center justify-center">
-                                        <div class="h-6 w-6 rounded-lg border-2 transition-all flex items-center justify-center"
-                                             :class="form.cv.some(item => item.id === cv.id) ? 'bg-white border-transparent' : 'bg-white border-gray-200'">
-                                            <svg v-if="form.cv.some(item => item.id === cv.id)" class="w-4 h-4 text-[#0A2C5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
+                                        <div class="relative flex items-center justify-center">
+                                            <div class="h-6 w-6 rounded-lg border-2 transition-all flex items-center justify-center"
+                                                 :class="form.cv.some(item => item.id === cv.id) ? 'bg-white border-transparent' : 'bg-white border-gray-200'">
+                                                <svg v-if="form.cv.some(item => item.id === cv.id)" class="w-4 h-4 text-[#0A2C5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </label>
-                        </div>
+                                </label>
+                            </div>
                             <InputError :message="form.errors.cv" class="mt-2 text-center text-[10px] font-black uppercase tracking-widest"/>
 
                             <!-- Pole KRAZ -->
@@ -1335,10 +1322,10 @@ onMounted(() => {
                             </div>
 
                             <AddressFieldGroup class="mt-8" v-if="form.countryWork" :code="form.countryWork?.countryCode"
-                                v-model:street="form.streetWork"
-                                v-model:streetNumber="form.streetWorkNumber"
-                                v-model:postcode="form.postalWork"
-                                v-model:city="form.cityWork"
+                                               v-model:street="form.streetWork"
+                                               v-model:streetNumber="form.streetWorkNumber"
+                                               v-model:postcode="form.postalWork"
+                                               v-model:city="form.cityWork"
                             />
                             <div class="grid grid-cols-1 gap-4" v-if="form.countryWork">
                                 <InputError v-if="form.errors.streetWork" :message="form.errors.streetWork" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
@@ -1577,27 +1564,27 @@ onMounted(() => {
                             <div class="flex items-center gap-2 mb-6">
                                 <h2 class="text-xl font-bold text-gray-900">{{ __('translate.workDays') }}</h2>
                             </div>
-                                <div v-if="days" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                                    <div v-for="day in days" :key="day.id"
-                                         class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
-                                    >
-                                        <label class="group/check flex items-center cursor-pointer flex-1">
-                                            <div class="relative flex items-center justify-center">
-                                                <input
-                                                    type="checkbox"
-                                                    :id="'day-'+day.id"
-                                                    v-model="form.days"
-                                                    :value="day"
-                                                    class="peer sr-only"
-                                                />
-                                                <div class="h-5 w-5 rounded-lg border-2 border-white bg-white shadow-sm transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent flex items-center justify-center">
-                                                    <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
-                                                </div>
+                            <div v-if="days" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                                <div v-for="day in days" :key="day.id"
+                                     class="flex items-center gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
+                                >
+                                    <label class="group/check flex items-center cursor-pointer flex-1">
+                                        <div class="relative flex items-center justify-center">
+                                            <input
+                                                type="checkbox"
+                                                :id="'day-'+day.id"
+                                                v-model="form.days"
+                                                :value="day"
+                                                class="peer sr-only"
+                                            />
+                                            <div class="h-5 w-5 rounded-lg border-2 border-white bg-white shadow-sm transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent flex items-center justify-center">
+                                                <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
                                             </div>
-                                            <span class="ml-3 text-[10px] font-black text-gray-500 uppercase tracking-widest group-hover/check:text-[#0A2C5C] transition-colors leading-tight">{{day.name}}</span>
-                                        </label>
-                                    </div>
+                                        </div>
+                                        <span class="ml-3 text-[10px] font-black text-gray-500 uppercase tracking-widest group-hover/check:text-[#0A2C5C] transition-colors leading-tight">{{day.name}}</span>
+                                    </label>
                                 </div>
+                            </div>
                             <InputError :message="form.errors.days" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                         </div>
 
