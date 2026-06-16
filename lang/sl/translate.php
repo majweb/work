@@ -1833,4 +1833,6 @@ return [
     'position_name_placeholder' => 'Vnesite ime manjkajočega delovnega mesta...',
     'error_occurred' => 'Prišlo je do nepričakovane napake. Prosimo, poskusite znova.',
     'generator_desc' => 'Ko deliš povezavo na družbenih omrežjih, se prikaže predogledna slika. Tukaj lahko izbereš eno od 8 pripravljenih slik, ki bo prikazana skupaj s tvojo povezavo na Facebooku, LinkedInu in drugih platformah. To naredi tvoje objave privlačnejše in pomaga lažje pritegniti pozornost občinstva.',
-];
+    'address_required' => 'Izberite naslov iz predlogov samodejnega izpolnjevanja.',
+    'selected_address' => 'Izbrani naslov:',
+    ];

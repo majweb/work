@@ -1831,4 +1831,6 @@ return [
     'position_name_placeholder' => 'Entrez le nom du poste manquant...',
     'error_occurred' => 'Une erreur inattendue est survenue. Veuillez réessayer.',
     'generator_desc' => 'Lorsque vous partagez un lien sur les réseaux sociaux, une image d’aperçu s’affiche. Ici, vous pouvez choisir l’une des 8 images que nous avons préparées, qui sera affichée avec votre lien sur Facebook, LinkedIn et d’autres plateformes. Cela rend vos publications plus attractives et permet de capter plus facilement l’attention de votre audience.',
-];
+    'address_required' => 'Veuillez sélectionner une adresse parmi les suggestions d’autocomplétion.',
+    'selected_address' => 'Adresse sélectionnée :',
+    ];

@@ -1833,4 +1833,6 @@ return [
     'position_name_placeholder' => 'Introdu numele poziției lipsă...',
     'error_occurred' => 'A apărut o eroare neașteptată. Te rugăm să încerci din nou.',
     'generator_desc' => 'Când partajezi un link pe rețelele sociale este afișată o imagine de previzualizare. Aici poți alege una dintre cele 8 imagini pregătite de noi, care va fi afișată împreună cu linkul tău pe Facebook, LinkedIn și alte platforme. Acest lucru face ca postările tale să fie mai atractive și ajută la captarea mai ușoară a atenției publicului.',
-];
+    'address_required' => 'Vă rugăm să selectați o adresă din sugestiile de completare automată.',
+    'selected_address' => 'Adresă selectată:',
+    ];

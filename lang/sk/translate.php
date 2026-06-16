@@ -1833,4 +1833,6 @@ return [
     'position_name_placeholder' => 'Zadajte názov chýbajúcej pracovnej pozície...',
     'error_occurred' => 'Vyskytla sa neočakávaná chyba. Skúste to prosím znova.',
     'generator_desc' => 'Pri zdieľaní odkazu na sociálnych sieťach sa zobrazí náhľadový obrázok. Tu si môžete vybrať jeden z 8 nami pripravených obrázkov, ktorý sa zobrazí spolu s vaším odkazom na Facebooku, LinkedIn a iných platformách. Vďaka tomu sú vaše príspevky atraktívnejšie a ľahšie upútajú pozornosť publika.',
-];
+    'address_required' => 'Vyberte adresu z návrhov automatického dopĺňania.',
+    'selected_address' => 'Vybraná adresa:',
+    ];

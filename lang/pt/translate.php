@@ -1833,4 +1833,6 @@ return [
     'position_name_placeholder' => 'Digite o nome da posição ausente...',
     'error_occurred' => 'Ocorreu um erro inesperado. Por favor, tente novamente.',
     'generator_desc' => 'Quando partilha um link nas redes sociais é apresentada uma imagem de pré-visualização. Aqui pode escolher uma das 8 imagens que preparámos, que será exibida juntamente com o seu link no Facebook, LinkedIn e outras plataformas. Isto torna as suas publicações mais atrativas e ajuda a captar mais facilmente a atenção do público.',
-];
+    'address_required' => 'Por favor, selecione um endereço entre as sugestões de preenchimento automático.',
+    'selected_address' => 'Endereço selecionado:',
+    ];

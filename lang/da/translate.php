@@ -1824,4 +1824,6 @@ return [
     'position_name_placeholder' => 'Indtast navnet på den manglende stilling...',
     'error_occurred' => 'Der opstod en uventet fejl. Prøv venligst igen.',
     'generator_desc' => 'Når du deler et link på sociale medier, vises et forhåndsvisningsbillede. Her kan du vælge et af de 8 billeder, vi har forberedt, som vil blive vist sammen med dit link på Facebook, LinkedIn og andre platforme. Dette gør dine opslag mere attraktive og hjælper med lettere at fange publikums opmærksomhed.',
-];
+    'address_required' => 'Vælg venligst en adresse fra autofuldførelsesforslagene.',
+    'selected_address' => 'Valgt adresse:',
+    ];

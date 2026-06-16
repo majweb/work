@@ -1830,4 +1830,6 @@ return [
     'position_name_placeholder' => 'Unesite naziv nedostajućeg radnog mjesta...',
     'error_occurred' => 'Došlo je do neočekivane pogreške. Molimo pokušajte ponovo.',
     'generator_desc' => 'Nakon što podijelite poveznicu na društvenim mrežama prikazuje se slika pregleda. Ovdje možete odabrati jednu od 8 pripremljenih slika koje će se prikazivati zajedno s vašom poveznicom na Facebooku, LinkedInu i drugim platformama. To čini vaše objave privlačnijima i lakše privlači pažnju publike.',
-];
+    'address_required' => 'Molimo odaberite adresu iz prijedloga automatskog popunjavanja.',
+    'selected_address' => 'Odabrana adresa:',
+    ];

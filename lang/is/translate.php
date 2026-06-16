@@ -1831,5 +1831,7 @@ return [
     'position_name_placeholder' => 'Sláðu inn nafn á vantar starfi...',
     'error_occurred' => 'Óvænt villa kom upp. Vinsamlegast reyndu aftur.',
     'generator_desc' => 'Þegar þú deilir tengli á samfélagsmiðlum birtist forskoðunarmynd. Hér getur þú valið eina af 8 myndum sem við höfum útbúið, sem birtist með tenglinum þínum á Facebook, LinkedIn og öðrum kerfum. Þetta gerir færslurnar þínar aðlaðandi og hjálpar til við að fanga athygli áhorfenda auðveldara.',
-];
+    'address_required' => 'Vinsamlegast veldu heimilisfang úr tillögum sjálfvirkrar útfyllingar.',
+    'selected_address' => 'Valið heimilisfang:',
+    ];
 

@@ -1833,4 +1833,6 @@ return [
     'position_name_placeholder' => 'Shkruani emrin e pozicionit që mungon...',
     'error_occurred' => 'Ndodhi një gabim i papritur. Ju lutemi provoni përsëri.',
     'generator_desc' => 'Kur shpërndan një link në rrjetet sociale shfaqet një imazh paraprak. Këtu mund të zgjedhësh një nga 8 imazhet e përgatitura nga ne, e cila do të shfaqet së bashku me linkun tënd në Facebook, LinkedIn dhe platforma të tjera. Kjo i bën postimet e tua më tërheqëse dhe ndihmon në tërheqjen më të lehtë të vëmendjes së audiencës.',
-];
+    'address_required' => 'Ju lutemi zgjidhni një adresë nga sugjerimet e plotësimit automatik.',
+    'selected_address' => 'Adresa e zgjedhur:',
+    ];

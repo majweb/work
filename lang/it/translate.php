@@ -1830,4 +1830,6 @@ return [
     'position_name_placeholder' => 'Inserisci il nome della posizione mancante...',
     'error_occurred' => 'Si è verificato un errore imprevisto. Per favore riprova.',
     'generator_desc' => 'Quando condividi un link sui social media viene mostrata un’immagine di anteprima. Qui puoi scegliere una delle 8 immagini che abbiamo preparato, che verrà visualizzata insieme al tuo link su Facebook, LinkedIn e altre piattaforme. Questo rende i tuoi contenuti più attraenti e aiuta a catturare più facilmente l’attenzione del pubblico.',
-];
+    'address_required' => 'Seleziona un indirizzo tra i suggerimenti di completamento automatico.',
+    'selected_address' => 'Indirizzo selezionato:',
+    ];

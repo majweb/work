@@ -1832,4 +1832,6 @@ return [
     'position_name_placeholder' => 'Ýitip giden wezipäniň adyny giriziň...',
     'error_occurred' => 'Kütleşilmän garaşylmadyk näsazlyk ýüze çykdy. Gaýtadan synanyşyň.',
     'generator_desc' => 'Sosial mediada baglanyşyk paýlaşanyňyzda deslapky suraty görkezilýär. Bu ýerde biz tarapyndan taýýarlanan 8 suratyň birini saýlap bilersiňiz, ol Facebook, LinkedIn we beýleki platformalarda baglanyşygyňyz bilen bilelikde görkeziler. Bu ýazgylaryňyzy has özüne çekiji edýär we okyjylaryň ünsüni has aňsat çekmäge kömek edýär.',
-];
+    'address_required' => 'Awto-doldurmak tekliplerinden bir salgy saýlaň.',
+    'selected_address' => 'Saýlanan salgy:',
+    ];
