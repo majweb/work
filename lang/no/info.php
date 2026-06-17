@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Fremheving av tilbud og bedriftssertifikater',
     'points_section5' => 'Hver handling har en bestemt poengverdi – du betaler kun for konkrete, utførte aktiviteter, ikke for tilgang til plattformen.',
     'firm_profile_not_completed' => 'For å fortsette må du fylle ut bedriftsinformasjonen i profilen din.',
-];
+    'recruiter_firm_profile_not_completed' => 'For å fortsette må bedriftsprofilen din fylles ut av bedriftsadministratoren.',
+    ];

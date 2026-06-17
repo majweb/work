@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Isticanje ponuda i sertifikati kompanije',
     'points_section5' => 'Svaka akcija ima dodeljenu bodovnu vrednost – plaćate samo za konkretne, realizovane akcije, a ne za sam pristup platformi.',
     'firm_profile_not_completed' => 'Да бисте наставили, морате попунити податке о компанији у свом профилу.',
-];
+    'recruiter_firm_profile_not_completed' => 'Да бисте наставили, профил ваше компаније мора да попуни администратор компаније.',
+    ];

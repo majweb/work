@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Evidencimi i ofertave dhe certifikatat e kompanisë',
     'points_section5' => 'Çdo veprim ka një vlerë të caktuar pikësh – ju paguani vetëm për veprimet konkrete të realizuara, dhe jo për qasjen në platformë.',
     'firm_profile_not_completed' => 'Për të vazhduar, duhet të plotësoni të dhënat e kompanisë në profilin tuaj.',
-];
+    'recruiter_firm_profile_not_completed' => 'Për të vazhduar, profili i kompanisë suaj duhet të plotësohet nga administratori i kompanisë.',
+    ];

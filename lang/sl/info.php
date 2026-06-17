@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Poudarjanje ponudb in certifikati podjetja',
     'points_section5' => 'Vsaka dejavnost ima dodeljeno točkovno vrednost – plačate samo za določene, izvedene dejavnosti, ne pa za sam dostop do platforme.',
     'firm_profile_not_completed' => 'Za nadaljevanje morate v svojem profilu izpolniti podatke o podjetju.',
-];
+    'recruiter_firm_profile_not_completed' => 'Za nadaljevanje mora profil vašega podjetja izpolniti skrbnik podjetja.',
+    ];

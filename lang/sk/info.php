@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Zvýraznenie ponúk a firemné certifikáty',
     'points_section5' => 'Každá činnosť má priradenú bodovú hodnotu – platíte len za konkrétne, realizované činnosti, nie za samotný prístup k platforme.',
     'firm_profile_not_completed' => 'Aby ste mohli pokračovať, musíte vo svojom profile vyplniť údaje o spoločnosti.',
-];
+    'recruiter_firm_profile_not_completed' => 'Aby ste mohli pokračovať, profil vašej spoločnosti musí byť vyplnený administrátorom spoločnosti.',
+    ];

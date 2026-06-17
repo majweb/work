@@ -50,5 +50,5 @@ return [
     'list_highlight' => 'Hervorhebung von Angeboten und Unternehmenszertifikate',
     'points_section5' => 'Jeder Aktion ist ein Punktewert zugeordnet – Sie zahlen nur für konkret durchgeführte Aktionen und nicht für den Zugang zur Plattform selbst.',
     'firm_profile_not_completed' => 'Um fortzufahren, müssen Sie die Firmendaten in Ihrem Profil vervollständigen.',
-
+    'recruiter_firm_profile_not_completed' => 'Um fortzufahren, muss Ihr Unternehmensprofil vom Unternehmensadministrator ausgefüllt werden.',
 ];

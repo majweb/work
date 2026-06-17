@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Destaque de ofertas e certificados da empresa',
     'points_section5' => 'Cada ação tem um valor em pontos atribuído — você paga apenas por ações concretas realizadas, e não pelo acesso à plataforma.',
     'firm_profile_not_completed' => 'Para continuar, você deve completar os dados da empresa no seu perfil.',
-];
+    'recruiter_firm_profile_not_completed' => 'Para continuar, o perfil da sua empresa deve ser preenchido pelo administrador da empresa.',
+    ];

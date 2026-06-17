@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Isticanje oglasa i certifikati tvrtke',
     'points_section5' => 'Svaka aktivnost ima dodijeljenu vrijednost u bodovima – plaćate samo za konkretne, realizirane aktivnosti, a ne za sam pristup platformi.',
     'firm_profile_not_completed' => 'Za nastavak morate popuniti podatke o tvrtki u svom profilu.',
-];
+    'recruiter_firm_profile_not_completed' => 'Da biste nastavili, profil vaše tvrtke mora biti popunjen od strane administratora tvrtke.',
+    ];

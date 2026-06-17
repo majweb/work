@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Kuulutuste esiletõstmine ja ettevõtte sertifikaadid',
     'points_section5' => 'Igale tegevusele on määratud punktiväärtus — maksate ainult konkreetsete teostatud tegevuste eest, mitte platvormile juurdepääsu eest.',
     'firm_profile_not_completed' => 'Jätkamiseks peate oma profiilis ettevõtte andmed täitma.',
-];
+    'recruiter_firm_profile_not_completed' => 'Jätkamiseks peab teie ettevõtte profiili täitma ettevõtte administraator.',
+    ];

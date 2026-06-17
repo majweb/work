@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Ilmoitusten korostaminen ja yrityssertifikaatit',
     'points_section5' => 'Jokaisella toiminnolla on määritelty pistearvo – maksat vain tietyistä, toteutetuista toimenpiteistä, etkä pelkästä pääsystä alustalle.',
     'firm_profile_not_completed' => 'Jatkaaksesi sinun on täytettävä yrityksen tiedot profiilissasi.',
-];
+    'recruiter_firm_profile_not_completed' => 'Jatkaaksesi yrityksesi profiilin on oltava yrityksen ylläpitäjän täyttämä.',
+    ];

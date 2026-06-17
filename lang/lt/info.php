@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Pasiūlymų išryškinimas ir įmonės sertifikatai',
     'points_section5' => 'Kiekvienas veiksmas turi priskirtą taškų vertę – mokate tik už konkrečiai atliktus veiksmus, o ne už pačią prieigą prie platformos.',
     'firm_profile_not_completed' => 'Norėdami tęsti, turite užpildyti įmonės duomenis savo profilyje.',
-];
+    'recruiter_firm_profile_not_completed' => 'Norėdami tęsti, jūsų įmonės profilį turi užpildyti įmonės administratorius.',
+    ];

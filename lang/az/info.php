@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Elanların fərqləndirilməsi və şirkət sertifikatları',
     'points_section5' => 'Hər bir fəaliyyətin müəyyən xal dəyəri var – siz yalnız platformaya giriş üçün deyil, yerinə yetirilən konkret hərəkətlər üçün ödəniş edirsiniz.',
     'firm_profile_not_completed' => 'Davam etmək üçün profilinizdə şirkət məlumatlarını tamamlamalısınız.',
-];
+    'recruiter_firm_profile_not_completed' => 'Davam etmək üçün şirkət profiliniz şirkət administratoru tərəfindən tamamlanmalıdır.',
+    ];

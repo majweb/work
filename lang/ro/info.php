@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Evidențierea ofertelor și certificate de companie',
     'points_section5' => 'Fiecare acțiune are o valoare în puncte – plătești doar pentru acțiunile concrete realizate, nu pentru accesul la platformă.',
     'firm_profile_not_completed' => 'Pentru a continua, trebuie să completați datele companiei din profilul dvs.',
-];
+    'recruiter_firm_profile_not_completed' => 'Pentru a continua, profilul companiei dvs. trebuie să fie completat de administratorul companiei.',
+    ];

@@ -50,4 +50,5 @@ return [
     'list_highlight' => 'Uitlichten van vacatures en bedrijfs-certificaten',
     'points_section5' => 'Elke actie heeft een vaste puntenwaarde – je betaalt alleen voor concrete, uitgevoerde acties en niet voor toegang tot het platform.',
     'firm_profile_not_completed' => 'Om door te gaan moet je de bedrijfsgegevens in je profiel invullen.',
-];
+    'recruiter_firm_profile_not_completed' => 'Om door te gaan moet het bedrijfsprofiel door de bedrijfsbeheerder worden ingevuld.',
+    ];

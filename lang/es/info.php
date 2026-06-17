@@ -77,4 +77,5 @@ return [
 
     'points_section5' => 'Cada acción tiene un valor en puntos asignado: pagas solo por acciones concretas realizadas, no por el acceso a la plataforma.',
     'firm_profile_not_completed' => 'Para continuar, debes completar los datos de tu empresa en el perfil.',
-];
+    'recruiter_firm_profile_not_completed' => 'Para continuar, el perfil de su empresa debe ser completado por el administrador de la empresa.',
+    ];

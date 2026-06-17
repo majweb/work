@@ -50,5 +50,6 @@ return [
     'list_highlight' => 'Ajánlatok kiemelése és céges tanúsítványok',
     'points_section5' => 'Minden tevékenységhez meghatározott pontérték tartozik – csak a konkrét, végrehajtott műveletekért fizetsz, nem pedig magáért a platformhoz való hozzáférésért.',
     'firm_profile_not_completed' => 'A folytatáshoz ki kell töltenie a vállalati adatokat a profiljában.',
-];
+    'recruiter_firm_profile_not_completed' => 'A folytatáshoz a vállalat profilját a vállalati rendszergazdának kell kitöltenie.',
+    ];
 
