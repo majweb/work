@@ -24,6 +24,7 @@ class ProjectController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('role:recruit'),
+            new Middleware('recruiter.firm.profile.completed', only: ['index','create', 'store']),
             //            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
             //            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
 
