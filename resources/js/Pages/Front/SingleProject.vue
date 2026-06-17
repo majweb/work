@@ -218,7 +218,7 @@ onMounted(async () => {
                                     <img
                                         :src="project.user?.profile_photo_url"
                                         alt="Logo"
-                                        class="w-24 h-24 rounded-[2rem] border-4 border-white shadow-xl object-cover -mt-20 md:-mt-24 relative z-20 hover:scale-105 transition-transform duration-300"
+                                        class="w-24 h-24 rounded-[2rem] border-4 bg-white border-white shadow-xl object-contain -mt-20 md:-mt-24 relative z-20 hover:scale-105 transition-transform duration-300"
                                         :class="{ 'ring-4 ring-[#329CD1]/50 shadow-2xl shadow-[#329CD1]/20': project.is_featured }"
                                     />
                                 </Link>

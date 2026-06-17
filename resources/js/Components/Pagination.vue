@@ -42,7 +42,6 @@ const cleanLabel = (label) => {
                 <!-- Active or Regular Link -->
                 <Link
                     v-else
-                    preserveScroll
                     :href="link.url"
                     class="inline-flex items-center justify-center min-w-[40px] h-[40px] px-3 text-sm font-bold rounded-xl transition-all duration-200 shadow-sm border"
                     :class="[
