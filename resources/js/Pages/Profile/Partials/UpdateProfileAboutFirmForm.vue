@@ -48,7 +48,7 @@ const removeFile =  async (source,load) => {
     load();
 }
 const updateProfileFirm = () => {
-    form.put(route('firm.update.about.form'), {
+    form.post(route('firm.update.about.form'), {
         errorBag: 'updateProfileFirm',
         preserveScroll: true,
         forceFormData: true,
