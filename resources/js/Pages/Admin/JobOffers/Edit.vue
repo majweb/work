@@ -530,6 +530,14 @@ const fillAddressFromGeocoder = (place) => {
         }
     }
 
+    // Jeśli pola są puste, dodaj -
+    if (!form.streetWorkNumber) {
+        form.streetWorkNumber = '-';
+    }
+    if (!form.postalWork) {
+        form.postalWork = '-';
+    }
+
     // Dodaj współrzędne
     if (place.center) {
         form.lng = place.center[0];
@@ -1117,7 +1125,7 @@ onMounted(async () => {
                                 </div>
                             </div>
 
-                            <AddressFieldGroup class="mt-8" v-if="form.countryWork" :code="form.countryWork?.countryCode"
+                            <AddressFieldGroup class="mt-8 bg-gray-50 p-6 rounded-[2rem] border border-dashed border-gray-300" v-if="form.countryWork" :code="form.countryWork?.countryCode"
                                                v-model:street="form.streetWork"
                                                v-model:streetNumber="form.streetWorkNumber"
                                                v-model:postcode="form.postalWork"

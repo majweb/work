@@ -1494,6 +1494,7 @@ return [
     'selectPositionToSeeDetails' => 'Wybierz stanowisko, aby zobaczyć obowiązki',
     'searchAddress' => 'Wyszukaj adres',
     'searchAddressDescription' => 'Wprowadź miasto lub pełny adres miejsca wykonywania pracy.',
+    'salaryFromPlaceholder' => 'Praca od',
     'salaryToPlaceholder' => 'Praca do',
     'bonusFromPlaceholder' => 'Premia od',
     'bonusToPlaceholder' => 'Premia do',

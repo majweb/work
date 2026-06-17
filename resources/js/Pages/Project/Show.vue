@@ -620,9 +620,9 @@ onMounted(async () => {
                                     </div>
                                     <div>
                                         <p class="text-sm font-black text-gray-900 uppercase tracking-tight">
-                                            {{ props.project.streetWork }} {{ props.project.streetWorkNumber }}
+                                            {{ props.project.streetWork && props.project.streetWork !== '-' ? props.project.streetWork : '' }} {{ props.project.streetWorkNumber && props.project.streetWorkNumber !== '-' ? props.project.streetWorkNumber : '' }}
                                         </p>
-                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="props.project.postalWork">{{ props.project.postalWork }}</p>
+                                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1" v-if="props.project.postalWork && props.project.postalWork !== '-'">{{ props.project.postalWork }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -733,6 +733,14 @@ const fillAddressFromGeocoder = (place) => {
             form.postalWork = postcodeMatch[0];
         }
     }
+
+    // Jeśli pola są puste, dodaj -
+    if (!form.streetWorkNumber) {
+        form.streetWorkNumber = '-';
+    }
+    if (!form.postalWork) {
+        form.postalWork = '-';
+    }
 };
 
 // Nasłuchuj na zmiany countryWork, aby zainicjalizować mapę
@@ -799,17 +807,17 @@ const selectedAddressDisplay = computed(() => {
     if (!form.cityWork) return '';
 
     let parts = [];
-    if (form.streetWork) {
+    if (form.streetWork && form.streetWork !== '-') {
         let streetStr = form.streetWork;
-        if (form.streetWorkNumber) {
+        if (form.streetWorkNumber && form.streetWorkNumber !== '-') {
             streetStr += ' ' + form.streetWorkNumber;
         }
         parts.push(streetStr);
     }
 
     let cityParts = [];
-    if (form.postalWork) cityParts.push(form.postalWork);
-    if (form.cityWork) cityParts.push(form.cityWork);
+    if (form.postalWork && form.postalWork !== '-') cityParts.push(form.postalWork);
+    if (form.cityWork && form.cityWork !== '-') cityParts.push(form.cityWork);
 
     if (cityParts.length > 0) {
         parts.push(cityParts.join(' '));
@@ -1557,7 +1565,7 @@ onMounted(async () => {
                                 </div>
                             </div>
 
-                            <AddressFieldGroup class="hidden mt-8" v-if="form.countryWork" :code="form.countryWork?.countryCode"
+                            <AddressFieldGroup class="mt-8 bg-gray-50 p-6 rounded-[2rem] border border-dashed border-gray-300" v-if="form.countryWork" :code="form.countryWork?.countryCode"
                                                v-model:street="form.streetWork"
                                                v-model:streetNumber="form.streetWorkNumber"
                                                v-model:postcode="form.postalWork"
