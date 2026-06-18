@@ -125,7 +125,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->prefix('logged')->group(function () {
-
+    Route::post('impersonate/stop', [\App\Http\Controllers\Admin\ImpersonateController::class, 'stop'])->name('impersonate.stop');
     Route::get('/notifications', [\App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{id}/mark-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAsRead'])->name('notifications.markAsRead');
     Route::post('/notifications/mark-all-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
@@ -400,6 +400,9 @@ Route::middleware([
         Route::get('firms/{user}/recruiters', [App\Http\Controllers\Admin\FirmController::class, 'recruiters'])->name('firms.recruiters');
         Route::delete('firms/{user}', [App\Http\Controllers\Admin\FirmController::class, 'destroy'])->name('firms.destroy');
 
+        // Impersonalizacja
+        Route::post('firms/{user}/impersonate', [\App\Http\Controllers\Admin\ImpersonateController::class, 'take'])->name('firms.impersonate');
+
         //        FIRMY ZEWNĘTRZNE
         Route::get('admin-external-companies', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'index'])->name('external-companies.index');
         Route::get('admin-external-companies/export', [App\Http\Controllers\Admin\ExternalCompanyController::class, 'export'])->name('external-companies.export');
@@ -530,6 +533,9 @@ Route::get('/download/cv-audio/{id}', function ($id) {
         return Storage::download($app->cvVideo->file_path);
     }
 })->name('cv_audio.download');
+
+
+
 
 require __DIR__.'/socialstream.php';
 require __DIR__.'/front.php';

@@ -111,6 +111,12 @@ const countTotal = computed(() =>{
     return items.reduce((acc, curr) => acc + curr.subtotal, 0);
 });
 
+const isImpersonating = computed(() => usePage().props.isImpersonating);
+
+const stopImpersonating = () => {
+    router.post(route('impersonate.stop'));
+};
+
 const logout = () => {
     router.post(route('logout'));
 };
@@ -197,10 +203,34 @@ onUnmounted(()=>{
         </button>
         </div>
 
-        <div class="min-h-screen bg-gray-50/50" :class="{'pl-72': hasRole('admin')}">
-            <AdminSidebar v-if="hasRole('admin')" />
+        <div class="min-h-screen bg-gray-50/50" :class="{'pl-72': hasRole('admin') && !isImpersonating}">
+            <!-- Impersonation Banner -->
+            <div v-if="isImpersonating" class="bg-[#0A2C5C] text-white px-4 py-3 flex flex-col sm:flex-row items-center justify-between sticky top-0 z-[100] gap-4 shadow-lg border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-white/10 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-[#00a0e3]">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-[#00a0e3] leading-none mb-1">Tryb impersonacji</p>
+                        <p class="text-xs font-black uppercase tracking-widest leading-none">Zalogowano jako: {{ $page.props.auth.user.name }}</p>
+                    </div>
+                </div>
+                <button
+                    @click="stopImpersonating"
+                    class="bg-[#00a0e3] text-white px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-[0.1em] hover:bg-[#008cc7] transition-all duration-200 shadow-sm active:scale-95 flex items-center gap-2 border border-white/10"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                    </svg>
+                    Wróć do konta administratora
+                </button>
+            </div>
+
+            <AdminSidebar v-if="hasRole('admin') && !isImpersonating" />
             <!-- Modern Sticky Header -->
-            <nav v-if="!hasRole('admin')" class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-gray-100 bg-white shadow-xl shadow-blue-900/5">
+            <nav v-if="!hasRole('admin') || isImpersonating" class="sticky top-0 z-40 w-full transition-all duration-300 border-b border-gray-100 bg-white shadow-xl shadow-blue-900/5">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
