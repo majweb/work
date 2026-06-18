@@ -34,7 +34,7 @@ const formatNotification = (notification) => {
     // Jeśli dane zawierają gotowy tytuł (nie klucz tłumaczenia), używamy go bezpośrednio
     if (data.type === 'user_registered' || data.type === 'recruit_created' || data.type === 'missing_position') {
         let title = '';
-        let message = '';
+        let messageStr = '';
 
         if (data.type === 'user_registered') {
             const roleName = data.role === 'worker' ? 'pracownik' : 'firma';
@@ -43,10 +43,18 @@ const formatNotification = (notification) => {
             title = `Firma ${data.creator_name} dodała rekrutera: ${data.user_name}`;
         } else if (data.type === 'missing_position') {
             title = data.title || 'Zgłoszono brakujące stanowisko';
-            message = `${data.content || ''}<br><small class="text-gray-500">Zgłoszone przez: ${data.user_name}</small>`;
+
+            messageStr = data.content || '';
+            if (data.firm_name && data.firm_id) {
+                const firmUrl = route('admin.firms.show', data.firm_id);
+                messageStr += `<br><small class="text-gray-500">Zgłoszone przez: <a href="${firmUrl}" class="underline hover:text-[#0A2C5C] transition-colors">${data.firm_name}</a></small>`;
+            } else if (data.user_name) {
+                messageStr += `<br><small class="text-gray-500">Zgłoszone przez: ${data.user_name}</small>`;
+            }
+
             return {
                 title: title,
-                message: message,
+                message: messageStr,
                 action: null,
                 actionUrl: null,
                 type: 'missing_position',
@@ -60,7 +68,7 @@ const formatNotification = (notification) => {
 
         return {
             title: title,
-            message: message,
+            message: messageStr || '',
             action: null,
             actionUrl: data.url || null
         };

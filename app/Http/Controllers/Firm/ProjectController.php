@@ -958,6 +958,9 @@ class ProjectController extends Controller
             'title' => 'Zgłoszono brakujące stanowisko',
             'content' => $validated['position_name'],
             'user_name' => $user->name,
+            'user_email' => $user->email,
+            'firm_name' => $user->firm?->name_invoice ?? $user->name,
+            'firm_id' => $user->id,
         ]));
 
         RateLimiter::hit($key, 1800);

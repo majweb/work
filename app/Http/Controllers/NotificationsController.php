@@ -91,10 +91,30 @@ class NotificationsController extends Controller
 
         $notification = Auth::user()->notifications()->findOrFail($validated['notification_id']);
 
-        // W rzeczywistej aplikacji tutaj pobralibyśmy e-mail użytkownika, który zgłosił brakujące stanowisko.
-        // Zakładamy, że e-mail może być przekazany w danych powiadomienia lub musimy go znaleźć.
-        // Na potrzeby zadania używamy przykładowego odbiorcy lub wyciągamy z danych jeśli tam jest.
-        $recipient = $notification->data['user_email'] ?? 'kontakt@work4you.global'; // Domyślny fallback
+        $recipient = $notification->data['user_email'] ?? null;
+
+        if (! $recipient) {
+            // Próba znalezienia użytkownika po ID, jeśli e-mail nie został zapisany w powiadomieniu
+            $userId = $notification->data['firm_id'] ?? null;
+            if ($userId) {
+                $user = \App\Models\User::find($userId);
+                $recipient = $user?->email;
+            }
+
+            if (! $recipient) {
+                // Próba znalezienia użytkownika po imieniu/nazwisku
+                $userName = $notification->data['user_name'] ?? null;
+                if ($userName) {
+                    $user = \App\Models\User::where('name', $userName)->first();
+                    $recipient = $user?->email;
+                }
+            }
+        }
+
+        // Jeśli nadal brak, szukamy w powiązaniach (powiadomienia systemowe są wysyłane DO adminów, więc notifiable to admin)
+        // Ale dane powiadomienia powinny zawierać info o zgłaszającym.
+
+        $recipient = $recipient ?? 'kontakt@work4you.global'; // Ostateczny fallback
 
         Mail::to($recipient)->send(new MissingPositionReplyMail($validated['subject'], $validated['message']));
 
