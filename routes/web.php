@@ -33,27 +33,26 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\Worker\WorkerController;
 use App\Http\Controllers\Worker\WorkerDetailController;
 use App\Http\Resources\PageResource;
+use App\Mail\TestSimpleMail;
 use App\Models\Country;
 use App\Models\Page;
 use App\Services\DictionaryService;
 use App\Services\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Mail\ContactFormMarkdownMail;
-use App\Mail\TestSimpleMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Inertia\Inertia; // to jest instancja, nie fasada
 
 Route::get('/test-email', function (Request $request) {
     $to = $request->query('email', 'marcin.five@gmail.com');
 
     try {
-        Mail::to($to)->send(new TestSimpleMail("To jest treść testowej wiadomości wysłanej przez klasę Mail przy użyciu szablonu Markdown."));
+        Mail::to($to)->send(new TestSimpleMail('To jest treść testowej wiadomości wysłanej przez klasę Mail przy użyciu szablonu Markdown.'));
 
-        return "Email (klasa Mail + Markdown) wysłany pomyślnie na adres: " . $to;
+        return 'Email (klasa Mail + Markdown) wysłany pomyślnie na adres: '.$to;
     } catch (\Exception $e) {
-        return "Błąd podczas wysyłki (klasa Mail + Markdown): " . $e->getMessage();
+        return 'Błąd podczas wysyłki (klasa Mail + Markdown): '.$e->getMessage();
     }
 });
 
@@ -131,6 +130,7 @@ Route::middleware([
     Route::post('/notifications/{id}/mark-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAsRead'])->name('notifications.markAsRead');
     Route::post('/notifications/mark-all-as-read', [\App\Http\Controllers\NotificationsController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
     Route::get('/notifications/count', [\App\Http\Controllers\NotificationsController::class, 'getCount'])->name('notifications.count');
+    Route::post('/notifications/reply-email', [\App\Http\Controllers\NotificationsController::class, 'replyEmail'])->name('notifications.reply-email');
 
     // Trasa do synchronizacji istniejących aplikacji z kandydatami
     Route::get('/sync-applications', [\App\Http\Controllers\BatchProcessController::class, 'syncExistingApplicationsWithCandidates'])
