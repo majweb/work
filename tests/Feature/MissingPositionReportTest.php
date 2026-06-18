@@ -26,6 +26,10 @@ class MissingPositionReportTest extends TestCase
 
         $user = User::factory()->create();
         $user->assignRole('firm');
+        \App\Models\Firm::factory()->create([
+            'user_id' => $user->id,
+            'name_invoice' => 'Test Company'
+        ]);
 
         $admin = User::factory()->create();
         $admin->assignRole('admin');
@@ -40,9 +44,11 @@ class MissingPositionReportTest extends TestCase
         Notification::assertSentTo(
             $admin,
             \App\Notifications\SystemActivityNotification::class,
-            function ($notification, $channels) {
+            function ($notification, $channels) use ($user) {
                 return $notification->data['type'] === 'missing_position' &&
-                       $notification->data['content'] === 'Software Architect';
+                       $notification->data['content'] === 'Software Architect' &&
+                       $notification->data['firm_name'] === 'Test Company' &&
+                       $notification->data['firm_id'] === $user->id;
             }
         );
     }

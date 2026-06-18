@@ -494,19 +494,19 @@ const { getPositionTitle } = useProjectHelpers();
         <!-- Lightbox -->
         <div
             v-if="showLightbox"
-            class="fixed inset-0 bg-black/95 flex items-center justify-center p-4 z-[500] backdrop-blur-md"
+            class="fixed inset-0 bg-black/95 flex items-center justify-center p-4 !z-[9999] backdrop-blur-md"
             @click.self="closeLightbox"
         >
             <!-- Close Button -->
             <button
                 @click="closeLightbox"
-                class="absolute top-8 right-8 text-white bg-white/10 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition-all group shadow-2xl z-[510]"
+                class="absolute top-8 right-8 text-white bg-white/10 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition-all group shadow-2xl z-[10010]"
             >
                 <svg class="w-6 h-6 transform group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
 
             <!-- Navigation Buttons -->
-            <div class="absolute inset-x-0 bottom-4 flex items-center justify-center gap-8 md:static md:contents z-[510]">
+            <div class="absolute inset-x-0 bottom-4 flex items-center justify-center gap-8 md:static md:contents z-[10010]">
                 <button
                     v-if="galleryImages.length > 1"
                     @click="prevImage"

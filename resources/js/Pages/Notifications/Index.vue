@@ -36,7 +36,7 @@ const formatNotification = (notification) => {
             title = `Firma ${data.creator_name} dodała rekrutera: ${data.user_name}`;
         } else if (data.type === 'missing_position') {
             title = data.title || 'Zgłoszono brakujące stanowisko';
-            message = data.content || '';
+            message = `${data.content || ''}<br><small class="text-gray-500">Zgłoszone przez: ${data.user_name}</small>`;
             return {
                 title: title,
                 message: message,
