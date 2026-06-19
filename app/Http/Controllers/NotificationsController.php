@@ -118,15 +118,44 @@ class NotificationsController extends Controller
 
         Mail::to($recipient)->send(new MissingPositionReplyMail($validated['subject'], $validated['message']));
 
-        // Aktualizacja statusu w powiadomieniu
-        $data = $notification->data;
-        $data['email_sent'] = true;
-        $data['email_sent_at'] = now()->toDateTimeString();
-        $data['email_sent_count'] = ($data['email_sent_count'] ?? 0) + 1;
-        $notification->data = $data;
-        $notification->save();
+        // Pobieramy dane identyfikacyjne zgłoszenia
+        $notificationData = $notification->data;
+        $type = $notificationData['type'] ?? null;
+        $content = $notificationData['content'] ?? null;
+        $firmId = $notificationData['firm_id'] ?? null;
+        $createdAt = $notification->created_at;
 
-        session()->flash('flash.banner', 'E-mail został wysłany.');
+        // Jeśli to powiadomienie o brakującym stanowisku, aktualizujemy status u wszystkich adminów dla tego konkretnego zgłoszenia
+        if ($type === 'missing_position' && $content && $firmId) {
+            // Wyszukujemy wszystkie powiadomienia o tym samym typie, treści i ID firmy, wysłane w tym samym czasie
+            $relatedNotifications = \Illuminate\Notifications\DatabaseNotification::where('data->type', 'missing_position')
+                ->where('data->content', $content)
+                ->where('data->firm_id', $firmId)
+                ->whereBetween('created_at', [
+                    $createdAt->copy()->subSecond(),
+                    $createdAt->copy()->addSecond(),
+                ])
+                ->get();
+
+            foreach ($relatedNotifications as $relatedNotification) {
+                $data = $relatedNotification->data;
+                $data['email_sent'] = true;
+                $data['email_sent_at'] = now()->toDateTimeString();
+                $data['email_sent_count'] = ($data['email_sent_count'] ?? 0) + 1;
+                $relatedNotification->data = $data;
+                $relatedNotification->save();
+            }
+        } else {
+            // Fallback dla pojedynczego powiadomienia (jeśli dane nie pasują do wzorca lub to inny typ)
+            $data = $notification->data;
+            $data['email_sent'] = true;
+            $data['email_sent_at'] = now()->toDateTimeString();
+            $data['email_sent_count'] = ($data['email_sent_count'] ?? 0) + 1;
+            $notification->data = $data;
+            $notification->save();
+        }
+
+        session()->flash('flash.banner', 'E-mail został wysłany i status został zaktualizowany u wszystkich administratorów.');
         session()->flash('flash.bannerStyle', 'success');
 
         return back();
