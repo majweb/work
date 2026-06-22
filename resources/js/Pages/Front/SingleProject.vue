@@ -55,7 +55,7 @@ const jobSchema = computed(() => {
 
     const currentLang = usePage().props.language || 'pl';
     const title = props.project.title?.[currentLang] || props.project.title?.pl || props.project.title || getPositionTitle(props.project);
-    const description = props.project.offer?.[currentLang] || props.project.offer?.pl || props.project.offer || "";
+    // const description = props.project.offer?.[currentLang] || props.project.offer?.pl || props.project.offer || "";
 
     const datePosted = new Date(props.project.created_at);
     const validThrough = new Date(datePosted.getTime() + 30 * 24 * 60 * 60 * 1000);
@@ -64,7 +64,7 @@ const jobSchema = computed(() => {
         "@context": "https://schema.org/",
         "@type": "JobPosting",
         "title": title,
-        "description": description,
+        "description": title,
         "identifier": {
             "@type": "PropertyValue",
             "name": "Praca",
