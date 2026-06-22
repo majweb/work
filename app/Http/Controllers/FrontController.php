@@ -486,13 +486,12 @@ class FrontController extends Controller
             $locale = app()->getLocale();
             $cacheKey = "similar_projects_{$subCategoryId}_{$locale}";
 
-            $similarProjects = Cache::remember($cacheKey, now()->addHours(2), function () use ($subCategoryId, $project) {
+            $similarProjects = Cache::remember($cacheKey, now()->addHours(2), function () use ($subCategoryId) {
                 $projects = Project::query()
                     ->with(['user', 'education', 'detailprojects', 'externalCompany'])
                     ->active()
-                    ->where('id', '!=', $project->id)
                     ->where('categorySub->id', $subCategoryId)
-                    ->limit(10)
+                    ->limit(11)
                     ->get();
 
                 // Mark featured status for similar projects
@@ -506,6 +505,11 @@ class FrontController extends Controller
 
                 return $projects;
             });
+
+            // Filtrowanie aktualnego projektu po pobraniu z cache
+            $similarProjects = $similarProjects
+                ->where('id', '!=', $project->id)
+                ->take(10);
         }
 
         return inertia()->render('Front/SingleProject', [
