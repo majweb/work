@@ -182,7 +182,11 @@ class FrontController extends Controller
         // Dodajemy datę dzisiejszą do klucza, aby uniknąć problemów z cache w przypadku braku zmian w wersji
         $cacheKey = "projects_list_v{$version}_".app()->getLocale().'_'.date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
-            $query = Project::with(['user.changeProducts', 'externalCompany'])->featured()->active()->newest();
+            $query = Project::with(['user.changeProducts', 'externalCompany'])
+                ->lang()
+                ->featured()
+                ->active()
+                ->newest();
 
             $lat = request('lat');
             $lng = request('lng');

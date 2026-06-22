@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
+
     protected $fillable = [
         'user_id',
         'recruiter_id',
@@ -210,5 +211,12 @@ class Project extends Model
     public function scopeNewest(Builder $query)
     {
         return $query->latest();
+    }
+
+    public function scopeLang($query)
+    {
+        $locale = getLocalBrowserLang();
+
+        return $query->whereJsonContains('country', ['countryCode' => $locale]);
     }
 }
