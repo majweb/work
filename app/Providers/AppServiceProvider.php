@@ -11,6 +11,9 @@ use App\Models\ExternalCompany;
 use App\Models\Project;
 use App\Models\Tag;
 use App\Models\User;
+use App\Listeners\UpdateLastLoginDate;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Event;
 use App\Notifications\ResetPasswordNotification;
 use App\Observers\ChangeProductObserver;
 use App\Observers\CvClassicObserver;
@@ -46,6 +49,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Event::listen(
+            Login::class,
+            UpdateLastLoginDate::class
+        );
+
         Http::macro('crm', function () {
             return Http::withHeaders([
                 'X-API-KEY' => config('services.crm.key'),

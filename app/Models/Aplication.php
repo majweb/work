@@ -100,6 +100,11 @@ class Aplication extends Model implements HasMedia
         return $this->hasMany(CandidateAnswer::class, 'aplication_id');
     }
 
+    public function candidateAnswersOthers(): HasMany
+    {
+        return $this->hasMany(CandidateAnswer::class, 'candidate_id');
+    }
+
 
 
     public function opened_by()

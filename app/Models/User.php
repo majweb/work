@@ -47,6 +47,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_blocked',
         'color',
         'foundation',
+        'inactive_notification_sent_at',
+        'last_login_at'
     ];
 
     /**
@@ -81,6 +83,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'user_blocked' => 'datetime',
             'foundation' => 'array',
+            'last_login_at' => 'datetime',
+            'inactive_notification_sent_at' => 'datetime',
         ];
     }
 
@@ -195,6 +199,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * Relacja do banerów użytkownika.
+     */
+    public function banners(): HasMany
+    {
+        return $this->hasMany(Banner::class);
     }
 
     /**

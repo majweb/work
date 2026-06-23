@@ -9,4 +9,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 Schedule::command('app:generate-sitemap')->daily();
+Schedule::command('app:cleanup-inactive-users')->daily();
 
