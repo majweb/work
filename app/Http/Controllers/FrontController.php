@@ -692,7 +692,10 @@ class FrontController extends Controller
     {
         $banners = BannerResource::collection(Banner::active()->get());
         $query = User::role('firm')
-            ->whereNotNull('profile_photo_path')
+            ->where(function ($q) {
+                $q->whereNotNull('profile_photo_path')
+                    ->orWhereHas('firm', fn ($f) => $f->where('is_verified_by_admin', true));
+            })
             ->withCompletedFirm()
             ->with(['firm' => function ($query) {
                 $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
@@ -728,7 +731,10 @@ class FrontController extends Controller
         );
 
         $featuresRaw = User::featured()
-            ->whereNotNull('profile_photo_path')
+            ->where(function ($q) {
+                $q->whereNotNull('profile_photo_path')
+                    ->orWhereHas('firm', fn ($f) => $f->where('is_verified_by_admin', true));
+            })
             ->withCompletedFirm()
             ->with(['firm' => function ($query) {
                 $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',

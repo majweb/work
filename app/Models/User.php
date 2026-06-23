@@ -173,7 +173,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function scopeWithCompletedFirm(Builder $query): Builder
     {
-        return $query->whereHas('firm', fn ($q) => $q->whereCompleted());
+        return $query->whereHas('firm', function ($q) {
+            $q->where(function ($sub) {
+                $sub->whereCompleted();
+            })->orWhere('is_verified_by_admin', true);
+        });
     }
 
     public function myCvs(): HasMany
