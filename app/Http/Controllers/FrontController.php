@@ -691,7 +691,6 @@ class FrontController extends Controller
     public function Firms()
     {
         $banners = BannerResource::collection(Banner::active()->get());
-
         $query = User::role('firm')
             ->whereNotNull('profile_photo_path')
             ->withCompletedFirm()
