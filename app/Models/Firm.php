@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\Currency;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -93,6 +94,20 @@ class Firm extends Model implements HasMedia
             ->nonQueued();
     }
 
+    /**
+     * Scope ograniczający zapytanie do firm z kompletnym profilem.
+     */
+    public function scopeWhereCompleted(Builder $query): Builder
+    {
+        $fields = ['nip', 'street', 'number', 'city', 'postal', 'country', 'description'];
+
+        foreach ($fields as $field) {
+            $query->whereNotNull($field)->where($field, '<>', '');
+        }
+
+        return $query;
+    }
+
     public function hasCompletedProfile(): bool
     {
         return ! empty($this->nip)
@@ -101,6 +116,7 @@ class Firm extends Model implements HasMedia
             && ! empty($this->city)
             && ! empty($this->postal)
             && ! empty($this->country)
-            && ! empty($this->description);
+            && ! empty($this->description)
+            && ! empty($this->user?->profile_photo_path);
     }
 }

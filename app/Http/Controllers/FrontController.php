@@ -626,7 +626,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Privacy', [
             'page' => $page ? new PageResource($page) : null,
-            'langs' => ['pl', 'en'] ?? config('langsShorts'),
+            'langs' => config('langsShorts'),
         ]);
     }
 
@@ -651,7 +651,7 @@ class FrontController extends Controller
 
         return inertia()->render('Front/Terms', [
             'page' => $page ? new PageResource($page) : null,
-            'langs' => ['pl', 'en'] ?? config('langsShorts'),
+            'langs' => config('langsShorts'),
         ]);
     }
 
@@ -692,14 +692,18 @@ class FrontController extends Controller
     {
         $banners = BannerResource::collection(Banner::active()->get());
 
-        $query = User::role('firm')->with(['firm' => function ($query) {
-            $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
-                'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
-        }])->withCount(['changeProducts as is_featured_count' => function ($query) {
-            $query->where('product_id', 9)
-                ->where('start', '<=', now())
-                ->where('end', '>=', now());
-        }]);
+        $query = User::role('firm')
+            ->whereNotNull('profile_photo_path')
+            ->withCompletedFirm()
+            ->with(['firm' => function ($query) {
+                $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
+                    'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
+            }])->withCount(['changeProducts as is_featured_count' => function ($query) {
+                $query->where('product_id', 9)
+                    ->where('start', '<=', now())
+                    ->where('end', '>=', now());
+            }])
+            ->orderBy('name', 'asc');
 
         // Filtrowanie po kraju
         if (request('country')) {
@@ -724,10 +728,15 @@ class FrontController extends Controller
             })
         );
 
-        $featuresRaw = User::featured()->with(['firm' => function ($query) {
-            $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
-                'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
-        }])->get();
+        $featuresRaw = User::featured()
+            ->whereNotNull('profile_photo_path')
+            ->withCompletedFirm()
+            ->with(['firm' => function ($query) {
+                $query->select('id', 'user_id', 'nip', 'regon', 'street', 'city', 'postal', 'country', 'description', 'www',
+                    'count_workers', 'video', 'opinion_google', 'opinion_facebook', 'opinion_trust', 'points', 'countryJson');
+            }])
+            ->orderBy('name', 'asc')
+            ->get();
 
         $featuresRaw->loadCount(['changeProducts as is_featured_count' => function ($query) {
             $query->where('product_id', 9)

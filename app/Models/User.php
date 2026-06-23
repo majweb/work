@@ -164,6 +164,14 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
+    /**
+     * Scope ograniczający zapytanie do użytkowników z kompletnym profilem firmy.
+     */
+    public function scopeWithCompletedFirm(Builder $query): Builder
+    {
+        return $query->whereHas('firm', fn ($q) => $q->whereCompleted());
+    }
+
     public function myCvs(): HasMany
     {
         return $this->hasMany(CvClassic::class, 'worker_id');
