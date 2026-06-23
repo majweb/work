@@ -183,6 +183,9 @@ class FrontController extends Controller
         $cacheKey = "projects_list_v{$version}_".app()->getLocale().'_'.date('Y-m-d_H').'_'.md5(json_encode(request()->all()));
         $data = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($dictionaryService) {
             $query = Project::with(['user.changeProducts', 'externalCompany'])
+                ->whereHas('user', function ($q) {
+                    $q->whereNull('user_blocked');
+                })
                 ->lang()
                 ->featured()
                 ->active()
@@ -692,6 +695,7 @@ class FrontController extends Controller
     {
         $banners = BannerResource::collection(Banner::active()->get());
         $query = User::role('firm')
+            ->whereNull('user_blocked')
             ->where(function ($q) {
                 $q->whereNotNull('profile_photo_path')
                     ->orWhereHas('firm', fn ($f) => $f->where('is_verified_by_admin', true));
@@ -731,6 +735,7 @@ class FrontController extends Controller
         );
 
         $featuresRaw = User::featured()
+            ->whereNull('user_blocked')
             ->where(function ($q) {
                 $q->whereNotNull('profile_photo_path')
                     ->orWhereHas('firm', fn ($f) => $f->where('is_verified_by_admin', true));

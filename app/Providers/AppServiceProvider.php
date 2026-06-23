@@ -18,6 +18,7 @@ use App\Notifications\ResetPasswordNotification;
 use App\Observers\ChangeProductObserver;
 use App\Observers\CvClassicObserver;
 use App\Observers\projectObserver;
+use App\Observers\UserObserver;
 use App\Policies\CandidateQuestionPolicy;
 use App\Policies\CommentPolicy;
 use App\Policies\ExternalCompanyPolicy;
@@ -68,6 +69,7 @@ class AppServiceProvider extends ServiceProvider
         Project::observe(ProjectObserver::class);
         ChangeProduct::observe(ChangeProductObserver::class);
         CvClassic::observe(CvClassicObserver::class);
+        User::observe(UserObserver::class);
 
         Gate::policy(CandidateQuestion::class, CandidateQuestionPolicy::class);
         Gate::policy(ExternalCompany::class, ExternalCompanyPolicy::class);
