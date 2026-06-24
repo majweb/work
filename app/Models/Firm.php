@@ -62,6 +62,7 @@ class Firm extends Model implements HasMedia
         'countryJson',
         'countryInvoiceJson',
         'is_verified_by_admin',
+        'incomplete_profile_reminder_sent_at',
     ];
 
     protected $attributes = [
@@ -75,6 +76,7 @@ class Firm extends Model implements HasMedia
         'countryInvoiceJson' => 'array',
         'currency' => Currency::class,
         'is_verified_by_admin' => 'boolean',
+        'incomplete_profile_reminder_sent_at' => 'datetime',
     ];
 
     public function user(): BelongsTo

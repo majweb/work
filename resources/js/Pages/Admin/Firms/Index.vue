@@ -431,7 +431,11 @@ onUnmounted(() => {
                                             </svg>
                                         </span>
                                     </th>
-                                    <th class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Status</th>
+                                    <th class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap text-center">
+                                        Aplikacje
+                                        <div class="text-[8px] font-bold text-gray-300 mt-1">Rekruterzy / Oferty / Łącznie</div>
+                                    </th>
+                                    <th class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap text-center">Status</th>
                                     <th @click="handleSort('kredyty')" class="py-8 px-6 text-[10px] font-black text-gray-400 uppercase tracking-widest cursor-pointer group whitespace-nowrap text-center">
                                         Kredyty
                                         <span class="inline-block ml-2 transition-all" :class="{ 'rotate-180': props.filters.sort === 'kredyty' && props.filters.direction === 'desc', 'opacity-0 group-hover:opacity-100': props.filters.sort !== 'kredyty' }">
@@ -480,6 +484,25 @@ onUnmounted(() => {
                                         <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-blue-50 text-[10px] font-black text-[#0A2C5C]">
                                             {{ firm.projects_count }}
                                         </span>
+                                    </td>
+                                    <td class="py-8 px-6 text-center">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-xs font-black text-[#0A2C5C] tracking-tight">
+                                                {{ firm.applications_recruiters_count }} / {{ firm.applications_offers_count }} / {{ firm.applications_total_count }}
+                                            </span>
+                                            <div class="w-[60px] bg-gray-100 h-1.5 rounded-full overflow-hidden flex">
+                                                <div
+                                                    class="bg-blue-400 h-full border-r border-white"
+                                                    :title="'Aplikacje rekruterów: ' + firm.applications_recruiters_count"
+                                                    :style="{ width: firm.applications_total_count > 0 ? (firm.applications_recruiters_count / firm.applications_total_count * 100) + '%' : '0%' }"
+                                                ></div>
+                                                <div
+                                                    class="bg-indigo-400 h-full"
+                                                    :title="'Aplikacje na oferty: ' + firm.applications_offers_count"
+                                                    :style="{ width: firm.applications_total_count > 0 ? (firm.applications_offers_count / firm.applications_total_count * 100) + '%' : '0%' }"
+                                                ></div>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td class="py-8 px-6">
                                         <div

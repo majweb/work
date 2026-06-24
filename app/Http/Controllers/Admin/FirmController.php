@@ -22,21 +22,33 @@ class FirmController extends Controller
         $query = $this->buildQuery($request);
 
         $firms = $query->paginate(20)->withQueryString()
-            ->through(fn ($user) => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'logo' => $user->profile_photo_url,
-                'country' => $user->firm?->country ?? '-',
-                'recruiters_count' => $user->recruits_count ?? $user->recruits()->count(),
-                'projects_count' => $user->projects_count ?? $user->projects()->count(),
-                'status' => $this->getStatus($user),
-                'points' => $user->firm?->points ?? 0,
-                'blocked' => $user->user_blocked !== null,
-                'verified' => $user->email_verified_at !== null,
-                'email_verified_at' => $user->email_verified_at,
-                'can_delete' => $user->transactions_count === 0 && $user->invoice_count === 0,
-            ]);
+            ->through(function ($user) {
+                $recruiterIds = $user->recruits->pluck('id');
+                $recruitersApplicationsCount = \App\Models\Aplication::whereIn('recruiter_id', $recruiterIds)->count();
+                $firmApplicationsCount = \App\Models\Aplication::where('user_id', $user->id)->count();
+
+                $projectIds = $user->projects->pluck('id');
+                $offersApplicationsCount = \App\Models\Aplication::whereIn('project_id', $projectIds)->count();
+
+                return [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'logo' => $user->profile_photo_url,
+                    'country' => $user->firm?->country ?? '-',
+                    'recruiters_count' => $user->recruits_count ?? $user->recruits()->count(),
+                    'projects_count' => $user->projects_count ?? $user->projects()->count(),
+                    'applications_total_count' => $recruitersApplicationsCount + $firmApplicationsCount,
+                    'applications_recruiters_count' => $recruitersApplicationsCount,
+                    'applications_offers_count' => $offersApplicationsCount,
+                    'status' => $this->getStatus($user),
+                    'points' => $user->firm?->points ?? 0,
+                    'blocked' => $user->user_blocked !== null,
+                    'verified' => $user->email_verified_at !== null,
+                    'email_verified_at' => $user->email_verified_at,
+                    'can_delete' => $user->transactions_count === 0 && $user->invoice_count === 0,
+                ];
+            });
 
         $stats = [
             'total' => User::role('firm')->count(),

@@ -14,4 +14,12 @@ return [
     'login_button' => 'Zaloguj się do Work4You Global',
     'inactive_body_6' => 'W przypadku pytań lub problemów z dostępem do konta prosimy o kontakt z naszym zespołem wsparcia.',
     'inactive_footer' => 'Dziękujemy za korzystanie z Work4You Global.',
+    'incomplete_profile_subject' => 'Uzupełnij swój profil na platformie Work4You.Global',
+    'incomplete_profile_greeting' => 'Szanowni Państwo,',
+    'incomplete_profile_thanks' => 'Dziękujemy za korzystanie z platformy Work4You.Global.',
+    'incomplete_profile_body_1' => 'Chcielibyśmy zachęcić Państwa do uzupełnienia profilu firmy o dodatkowe informacje, takie jak opis działalności, logo, dane kontaktowe czy prezentacja organizacji.',
+    'incomplete_profile_body_2' => 'Kompletny profil stanowi wizytówkę firmy na naszej platformie, zwiększa jej wiarygodność oraz potwierdza autentyczność pracodawcy. Kandydaci znacznie chętniej aplikują na oferty firm, o których mogą dowiedzieć się czegoś więcej jeszcze przed wysłaniem swojej aplikacji.',
+    'incomplete_profile_body_3' => 'Dobrze przygotowany profil pomaga budować pozytywny wizerunek pracodawcy, wyróżnia się na tle innych firm oraz zwiększa zainteresowanie publikowanymi ogłoszeniami.',
+    'incomplete_profile_body_4' => 'Zachęcamy do poświęcenia kilku minut na uzupełnienie profilu i jak najlepsze zaprezentowanie swojej organizacji potencjalnym kandydatom.',
+    'incomplete_profile_footer' => 'W przypadku pytań lub potrzeby wsparcia pozostajemy do Państwa dyspozycji.',
 ];
