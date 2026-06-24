@@ -11,3 +11,4 @@ Artisan::command('inspire', function () {
 Schedule::command('app:generate-sitemap')->daily();
 Schedule::command('app:cleanup-inactive-users')->daily();
 Schedule::command('app:send-incomplete-profile-reminders')->daily();
+Schedule::command('app:cleanup-admin-notifications')->monthlyOn(1, '03:00');
