@@ -307,8 +307,7 @@ onMounted(async () => {
                                 </div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.workingPlace') }}</p>
                                 <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
-                                    {{ project.workingPlace?.allTranslations?.name[usePage().props.language] || project.workingPlace?.name }}
-                                </p>
+                                    {{ project.workingPlace?.allTranslations?.name?.[usePage().props.language] || project.workingPlace?.name }}                                </p>
                             </div>
 
                             <!-- Umowa -->
@@ -465,7 +464,7 @@ onMounted(async () => {
                                             </div>
                                             <div class="space-y-1">
                                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.education') }}</p>
-                                                <p class="font-black text-[#0A2C5C] uppercase tracking-tight">{{ project.education.name[usePage().props.language] || project.education.name }}</p>
+                                                <p class="font-black text-[#0A2C5C] uppercase tracking-tight">{{ project.education?.name?.[usePage().props.language] || project.education?.name }}</p>
                                             </div>
                                         </div>
 
@@ -480,9 +479,8 @@ onMounted(async () => {
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                                                     </svg>
                                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-widest">
-                                                        <span class="text-[#0A2C5C]">{{ lang.name.allLabels?.[usePage().props.language] || lang.name.label || lang.name }}</span>:
-                                                        <span class="text-gray-400">{{ lang.level.allTranslations?.[usePage().props.language] || lang.level.name || lang.level }}</span>
-                                                    </p>
+                                                        <span class="text-[#0A2C5C]">{{ lang.name?.allLabels?.[usePage().props.language] || lang.name?.label || lang.name }}</span>:
+                                                        <span class="text-gray-400">{{ lang.level?.allTranslations?.[usePage().props.language] || lang.level?.name || lang.level }}</span>                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
