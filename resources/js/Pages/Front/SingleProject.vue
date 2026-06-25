@@ -467,7 +467,6 @@ onMounted(async () => {
                                                 <p class="font-black text-[#0A2C5C] uppercase tracking-tight">{{ project.education?.name?.[usePage().props.language] || project.education?.name }}</p>
                                             </div>
                                         </div>
-
                                         <div v-if="project.langs && project.langs.length" class="pt-8 border-t border-gray-50">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                                                 <span class="w-1 h-1 bg-[#2386BC] rounded-full"></span>
