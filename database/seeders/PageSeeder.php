@@ -5369,7 +5369,7 @@ class PageSeeder extends Seeder
                 ]),
                 'image' => json_encode(array_combine(
                     $langs,
-                    array_map(fn ($code) => "pages/11{$code}.jpg", $langs)
+                    array_map(fn ($code) => "pages/11/{$code}.jpg", $langs)
                 )),
                 'description' => json_encode([
                     'ad' => 'Consulta les nostres tarifes transparents per a empreses a Andorra. Oferim solucions de recrutament ètic on el 50% dels beneficis es destinen a causes socials.',
