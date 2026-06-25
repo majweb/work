@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategoryImageSeeder extends Seeder
@@ -13,6 +12,11 @@ class CategoryImageSeeder extends Seeder
      */
     public function run(): void
     {
+        // Usuwamy wszystkie media z kolekcji 'images_category' dla wszystkich kategorii
+        Category::all()->each(function (Category $category) {
+            $category->clearMediaCollection('images_category');
+        });
+
         $categories = Category::whereNull('parent_id')->get();
 
         foreach ($categories as $category) {

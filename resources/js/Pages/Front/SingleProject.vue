@@ -649,12 +649,12 @@ onMounted(async () => {
 
                                             <div class="flex items-start gap-4 mb-6">
                                                 <div
-                                                    class="w-16 h-16 rounded-[1.2rem] bg-gray-50 shadow-inner border border-gray-100 shrink-0"
+                                                    class="w-16 h-16 rounded-[1.2rem] bg-white shadow-inner border border-gray-100 shrink-0"
                                                     :style="{
                                                         backgroundImage: `url('${similar.user?.profile_photo_url || '/default-company-logo.png'}')`,
                                                         backgroundPosition: 'center',
                                                         backgroundRepeat: 'no-repeat',
-                                                        backgroundSize: 'cover'
+                                                        backgroundSize: 'contain'
                                                     }"
                                                 ></div>
                                                 <div class="min-w-0">
