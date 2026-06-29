@@ -140,7 +140,7 @@ const articleSchema = computed(() => {
         :description="article.meta_description || ''"
         :keywords="article.meta_keywords"
         :image="article.photo_fb"
-        :url="route('front.articles.single', article.id)"
+        :url="route('front.articles.single', article.slug)"
         type="article"
         :author="article.user?.name"
     >
@@ -290,7 +290,7 @@ const articleSchema = computed(() => {
                                 <Link
                                     v-for="sidebarArticle in section.articles"
                                     :key="sidebarArticle.id"
-                                    :href="route('front.articles.single', sidebarArticle.id)"
+                                    :href="route('front.articles.single', sidebarArticle.slug)"
                                     class="group flex gap-4 items-center"
                                 >
                                     <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gray-50 shrink-0 shadow-sm">
@@ -321,7 +321,7 @@ const articleSchema = computed(() => {
                                     <Link
                                         v-for="otherArticle in allOtherArticles"
                                         :key="otherArticle.id"
-                                        :href="route('front.articles.single', otherArticle.id)"
+                                        :href="route('front.articles.single', otherArticle.slug)"
                                         class="group block relative"
                                     >
                                         <div class="flex flex-col">

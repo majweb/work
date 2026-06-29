@@ -31,20 +31,22 @@ class StoreArticleRequest extends FormRequest
             'title' => ['required', 'string', 'max:100'],
             'content' => ['required', 'string'],
             'category' => ['required', 'array'],
-            'short_description' => ['required', 'string','max:500'],
-            'meta_title' => ['nullable', 'string','max:70'],
-            'alt' => ['nullable', 'string','max:70'],
-            'meta_description' => ['nullable', 'string','max:160'],
-            'meta_keywords' => ['required', 'string','max:160'],
+            'short_description' => ['required', 'string', 'max:500'],
+            'meta_title' => ['nullable', 'string', 'max:70'],
+            'alt' => ['nullable', 'string', 'max:70'],
+            'meta_description' => ['nullable', 'string', 'max:160'],
+            'meta_keywords' => ['required', 'string', 'max:160'],
             'lang' => ['required', 'string', new Enum(Lang::class)],
             'active' => ['boolean'],
             'photo' => ['required', 'array'],
         ];
     }
 
-    public function articleData(){
+    public function articleData()
+    {
         return $this->validated();
     }
+
     public function attributes(): array
     {
         return [
@@ -56,5 +58,4 @@ class StoreArticleRequest extends FormRequest
             'category' => strtolower(__('translate.category')),
         ];
     }
-
 }

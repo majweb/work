@@ -49,7 +49,7 @@ class GenerateSitemap extends Command
         // Artykuły
         Article::active()->get()->each(function (Article $article) use ($sitemap) {
             $sitemap->add(
-                Url::create(route('front.articles.single', $article))
+                Url::create(route('front.articles.single', $article->slug))
                     ->setLastModificationDate($article->updated_at)
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
                     ->setPriority(0.7)

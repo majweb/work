@@ -57,7 +57,7 @@ const props = defineProps({
                         <Link
                             v-for="article in section"
                             :key="article.id"
-                            :href="route('front.articles.single', article.id)"
+                            :href="route('front.articles.single', article.slug)"
                             class="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 flex flex-col"
                         >
                             <div class="relative overflow-hidden aspect-[16/9]">
@@ -119,7 +119,7 @@ const props = defineProps({
                             >
                                 <SwiperSlide v-for="article in section" :key="article.id">
                                     <Link
-                                        :href="route('front.articles.single', article.id)"
+                                        :href="route('front.articles.single', article.slug)"
                                         class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-gray-100 flex flex-col h-full mb-8"
                                     >
                                         <div class="relative aspect-[16/9]">
@@ -155,7 +155,7 @@ const props = defineProps({
                             <Link
                                 v-for="article in section"
                                 :key="article.id"
-                                :href="route('front.articles.single', article.id)"
+                                :href="route('front.articles.single', article.slug)"
                                 class="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 flex flex-col"
                             >
                                 <div class="relative aspect-[4/3] overflow-hidden">

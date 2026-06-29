@@ -65,7 +65,7 @@ const props = defineProps({
 
                 <!-- LATEST ARTICLE -->
                 <div v-if="newest" class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 overflow-hidden">
-                    <Link :href="route('front.articles.single', newest.id)" class="group block">
+                    <Link :href="route('front.articles.single', newest.slug)" class="group block">
                         <div class="flex flex-col lg:flex-row">
                             <div class="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center space-y-6">
                                 <div class="flex items-center gap-3">
@@ -133,7 +133,7 @@ const props = defineProps({
                         <Link
                             v-for="article in most3Articles"
                             :key="article.id"
-                            :href="route('front.articles.single', article.id)"
+                            :href="route('front.articles.single', article.slug)"
                             class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
                         >
                             <div class="relative h-64 overflow-hidden bg-gray-50">
@@ -174,7 +174,7 @@ const props = defineProps({
                         <Link
                             v-for="article in group.articles"
                             :key="article.id"
-                            :href="route('front.articles.single', article.id)"
+                            :href="route('front.articles.single', article.slug)"
                             class="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
                         >
                             <div class="relative h-64 overflow-hidden bg-gray-50">

@@ -15,24 +15,31 @@ class FrontArticleResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-
     protected function getRandomCategoryImage()
     {
-        if (!isset($this->category)) return null;
+        if (! isset($this->category)) {
+            return null;
+        }
 
         $categoryId = $this->category['value'] ?? null;
-        if (!$categoryId) return null;
+        if (! $categoryId) {
+            return null;
+        }
 
         $category = Category::find($categoryId);
-        if (!$category) return null;
+        if (! $category) {
+            return null;
+        }
 
         $mediaItems = $category->getMedia('images_category')->values();
-        if ($mediaItems->isEmpty()) return null;
+        if ($mediaItems->isEmpty()) {
+            return null;
+        }
 
         $usedIds = static::$usedImages[$categoryId] ?? [];
 
         // Filtrujemy media, które nie były jeszcze użyte
-        $available = $mediaItems->filter(fn($media) => !in_array($media->id, $usedIds))->values();
+        $available = $mediaItems->filter(fn ($media) => ! in_array($media->id, $usedIds))->values();
 
         if ($available->isEmpty()) {
             // Wszystkie media zostały już użyte → resetujemy
@@ -48,21 +55,23 @@ class FrontArticleResource extends JsonResource
 
         return $randomMedia->getUrl();
     }
+
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
+            'slug' => $this->slug,
             'title' => $this->title,
             'content' => $this->content,
             'lang' => $this->lang,
             'active' => $this->active,
             'user' => [
-                    'name'=>$this->user['name'] ?? null,
-                    'logo'=>$this->user['profile_photo_url'] ?? null,
-                    'description'=>$this->user->firm['description'] ?? null,
-                ],
-            'photo'=> $this->getFirstMedia('articles_images'), // pierwszy plik z kolekcji
-            'photo_fb'=> $this->getRandomCategoryImage(), // pierwszy plik z kolekcji
+                'name' => $this->user['name'] ?? null,
+                'logo' => $this->user['profile_photo_url'] ?? null,
+                'description' => $this->user->firm['description'] ?? null,
+            ],
+            'photo' => $this->getFirstMedia('articles_images'), // pierwszy plik z kolekcji
+            'photo_fb' => $this->getRandomCategoryImage(), // pierwszy plik z kolekcji
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
             'short_description' => $this->short_description,
