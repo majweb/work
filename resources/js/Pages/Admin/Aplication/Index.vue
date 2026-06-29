@@ -25,6 +25,7 @@ const props = defineProps({
     maybeCount: Number,
     noCount: Number,
     otherCount: Number,
+    todayCount: Number,
     optionsPosition: Array,
     optionsFirms: Array,
     optionsRecruits: Object,
@@ -377,7 +378,7 @@ onMounted(async () => {
                     </div>
 
                     <!-- Stats Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mt-12">
                         <div class="bg-gray-50/50 rounded-[2rem] p-6 border border-gray-100 transition-all group cursor-pointer"
                              @click="form.status = ''" :class="{'ring-2 ring-gray-400 bg-white': form.status === ''}">
                             <p class="text-[10px] font-black text-gray-400/80 uppercase tracking-widest mb-2">Wszystkie</p>
@@ -404,6 +405,18 @@ onMounted(async () => {
                             <p class="text-[10px] font-black text-red-600/60 uppercase tracking-widest mb-2">Odrzucone</p>
                             <div class="flex items-end justify-between">
                                 <span class="text-3xl font-black text-red-700">{{ noCount }}</span>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50/30 rounded-[2rem] p-6 border border-orange-100 transition-all group cursor-pointer"
+                             @click="form.date = new Date().toISOString().split('T')[0]" :class="{'ring-2 ring-orange-500 bg-white': form.date === new Date().toISOString().split('T')[0]}">
+                            <p class="text-[10px] font-black text-orange-600/60 uppercase tracking-widest mb-2">Aplikacje z dziś</p>
+                            <div class="flex items-end justify-between">
+                                <span class="text-3xl font-black text-orange-700">{{ todayCount }}</span>
+                                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform text-orange-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>

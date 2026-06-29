@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ApplicationsExport;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
 use App\Models\ApplicationNote;
-use App\Models\LangLevel;
-use App\Services\DictionaryService;
 use App\Services\ApplicationFilterService;
 use App\Services\ApplicationStatusService;
+use App\Services\DictionaryService;
 use App\Services\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ApplicationsExport;
-use Maatwebsite\Excel\Excel as ExcelFormat; // Tylko do stałych: ExcelFormat::XLSX
+use Maatwebsite\Excel\Excel as ExcelFormat;
+use Maatwebsite\Excel\Facades\Excel; // Tylko do stałych: ExcelFormat::XLSX
 
 class AplicationController extends Controller
 {
     protected $filterService;
+
     protected $statusService;
+
     protected $helper;
 
     public function __construct(
@@ -37,7 +36,6 @@ class AplicationController extends Controller
     /**
      * Wyświetla listę wszystkich aktywnych aplikacji
      *
-     * @param Request $request
      * @return \Inertia\Response
      */
     public function index(Request $request, DictionaryService $dictionaryService)
@@ -56,29 +54,27 @@ class AplicationController extends Controller
             'maybeCount' => $result['counters']['maybeCount'],
             'noCount' => $result['counters']['noCount'],
             'otherCount' => $result['counters']['otherCount'],
+            'todayCount' => $result['todayCount'] ?? 0,
             'langLevels' => $dictionaryService->getLangLevels(),
             'countries' => $countries,
         ]);
     }
 
-
     /**
      * Aktualizuje status aplikacji
      *
-     * @param Request $request
-     * @param Aplication $aplication
      * @return RedirectResponse
      */
     public function updateStatus(Request $request, Aplication $aplication)
     {
         $request->validate([
-            'status' => 'required|in:yes,no,maybe,""'
+            'status' => 'required|in:yes,no,maybe,""',
         ]);
 
         // Użyj serwisu do aktualizacji statusu
         $updated = $this->statusService->updateStatus($aplication, $request->status);
 
-        if (!$updated) {
+        if (! $updated) {
             return $this->flashAndRedirect('translate.cannotChangeStatusAfter90Days', 'danger');
         }
 
@@ -88,36 +84,33 @@ class AplicationController extends Controller
     /**
      * Wyświetla komunikat flash i przekierowuje z powrotem
      *
-     * @param string $message Klucz tłumaczenia dla komunikatu
-     * @param string $style Styl komunikatu (success, danger, itp.)
-     * @return RedirectResponse
+     * @param  string  $message  Klucz tłumaczenia dla komunikatu
+     * @param  string  $style  Styl komunikatu (success, danger, itp.)
      */
     protected function flashAndRedirect(string $message, string $style = 'success'): RedirectResponse
     {
         session()->flash('flash.banner', __($message));
         session()->flash('flash.bannerStyle', $style);
+
         return back();
     }
 
     /**
      * Wyświetla listę aplikacji ze statusem 'no'
      *
-     * @param Request $request
      * @return \Inertia\Response
      */
 
     /**
      * Dodaje nową notatkę do aplikacji
      *
-     * @param Request $request
-     * @param Aplication $aplication
      * @return RedirectResponse
      */
     public function storeNote(Request $request, Aplication $aplication)
     {
         $data = $request->validate([
             'content' => 'required|string|max:500',
-        ],[],[
+        ], [], [
             'content' => strtolower(__('translate.noteContent')),
         ]);
 
@@ -136,7 +129,7 @@ class AplicationController extends Controller
         try {
             return Excel::download(
                 new ApplicationsExport($applications),
-                'aplikacje_' . now()->format('Y-m-d') . '.xlsx',
+                'aplikacje_'.now()->format('Y-m-d').'.xlsx',
                 ExcelFormat::XLSX,
                 [
                     'Content-Disposition' => 'attachment; filename="aplikacje.xlsx"',
@@ -144,7 +137,8 @@ class AplicationController extends Controller
                 ]
             );
         } catch (\Exception $e) {
-            \Log::error('Admin Export failed: ' . $e->getMessage());
+            \Log::error('Admin Export failed: '.$e->getMessage());
+
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
@@ -152,21 +146,20 @@ class AplicationController extends Controller
     public function getRecruitsByFirm($firmId)
     {
         $recruits = $this->filterService->getRecruitsAdmin($firmId);
+
         return response()->json($recruits);
     }
 
     /**
      * Aktualizuje istniejącą notatkę
      *
-     * @param Request $request
-     * @param ApplicationNote $note
      * @return RedirectResponse
      */
     public function updateNote(Request $request, ApplicationNote $note)
     {
         $data = $request->validate([
             'content' => 'required|string|max:500',
-        ],[],[
+        ], [], [
             'content' => strtolower(__('translate.noteContent')),
         ]);
 
@@ -180,7 +173,6 @@ class AplicationController extends Controller
     /**
      * Usuwa notatkę
      *
-     * @param ApplicationNote $note
      * @return RedirectResponse
      */
     public function deleteNote(ApplicationNote $note)
@@ -194,7 +186,6 @@ class AplicationController extends Controller
     /**
      * Wyświetla szczegóły aplikacji dla administratora
      *
-     * @param Aplication $aplication
      * @return \Inertia\Response
      */
     public function show(Aplication $aplication)

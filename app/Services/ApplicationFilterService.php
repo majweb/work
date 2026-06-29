@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Models\Aplication;
-use App\Models\Category;
 use App\Models\ExternalCompany;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,16 +13,14 @@ class ApplicationFilterService
     /**
      * Przygotowuje zapytanie bazowe dla aplikacji
      *
-     * @param Request $request
-     * @param string|null $status Opcjonalny status aplikacji (yes, no, maybe lub null dla specjalnych warunków)
+     * @param  Request  $request
+     * @param  string|null  $status  Opcjonalny status aplikacji (yes, no, maybe lub null dla specjalnych warunków)
      * @return array Zawiera zapytanie, aplikacje, kategorie i liczniki statusów
      */
     /**
      * Stosuje wspólne filtry dla firm
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param array $filters
-     * @param string|null $status
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      */
     private function applyCommonFirmFilters($query, array $filters, ?string $status = null): void
     {
@@ -57,72 +53,71 @@ class ApplicationFilterService
         }
 
         // Podstawowe filtry
-        if (!empty($filters['project'])) {
+        if (! empty($filters['project'])) {
             $query->where('project_id', $filters['project']);
         }
 
-        if (!empty($filters['status']) && $status === null) {
+        if (! empty($filters['status']) && $status === null) {
             $query->where('status', $filters['status']);
         }
 
         // Filtrowanie według lokalizacji (Kraj, Miasto)
-        if (!empty($filters['country'])) {
+        if (! empty($filters['country'])) {
             $countryValue = is_array($filters['country']) ? ($filters['country']['value'] ?? $filters['country']) : $filters['country'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('countryWork->value', (int)$countryValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('countryWork->value', (int) $countryValue));
         }
 
-        if (!empty($filters['city'])) {
+        if (! empty($filters['city'])) {
             $cityValue = is_array($filters['city']) ? ($filters['city']['value'] ?? $filters['city']) : $filters['city'];
             $query->whereHas('project', fn ($q) => $q->where('cityWork', $cityValue));
         }
 
         // Filtrowanie według kategorii, podkategorii, zawodu i stanowiska
-        if (!empty($filters['category'])) {
+        if (! empty($filters['category'])) {
             $categoryValue = is_array($filters['category']) ? ($filters['category']['value'] ?? $filters['category']) : $filters['category'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('category->value', (int)$categoryValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('category->value', (int) $categoryValue));
         }
 
-        if (!empty($filters['categorySub'])) {
+        if (! empty($filters['categorySub'])) {
             $categorySubValue = is_array($filters['categorySub']) ? ($filters['categorySub']['value'] ?? $filters['categorySub']) : $filters['categorySub'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('categorySub->value', (int)$categorySubValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('categorySub->value', (int) $categorySubValue));
         }
 
-        if (!empty($filters['profession'])) {
+        if (! empty($filters['profession'])) {
             $professionValue = is_array($filters['profession']) ? ($filters['profession']['value'] ?? $filters['profession']) : $filters['profession'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('profession->value', (int)$professionValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('profession->value', (int) $professionValue));
         }
 
-        if (!empty($filters['position'])) {
+        if (! empty($filters['position'])) {
             $positionValue = is_array($filters['position']) ? ($filters['position']['value'] ?? $filters['position']) : $filters['position'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('position->value', (int)$positionValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('position->value', (int) $positionValue));
         }
 
         // Filtrowanie według języka
-        if (!empty($filters['lang'])) {
+        if (! empty($filters['lang'])) {
             $langValue = is_array($filters['lang']) ? ($filters['lang']['value'] ?? $filters['lang']) : $filters['lang'];
-            $levelValue = !empty($filters['Langlevel']) ? (is_array($filters['Langlevel']) ? ($filters['Langlevel']['value'] ?? $filters['Langlevel']) : $filters['Langlevel']) : null;
+            $levelValue = ! empty($filters['Langlevel']) ? (is_array($filters['Langlevel']) ? ($filters['Langlevel']['value'] ?? $filters['Langlevel']) : $filters['Langlevel']) : null;
 
             $query->whereHas('cvClassic', function ($q) use ($langValue, $levelValue) {
                 $q->whereJsonContains('langs', ['name' => ['value' => $langValue]]);
                 if ($levelValue) {
-                    $q->whereJsonContains('langs', ['level' => ['value' => (int)$levelValue]]);
+                    $q->whereJsonContains('langs', ['level' => ['value' => (int) $levelValue]]);
                 }
             });
         }
 
         // Filtrowanie według doświadczenia
-        if (!empty($filters['experience'])) {
+        if (! empty($filters['experience'])) {
             $experienceValue = is_array($filters['experience']) ? ($filters['experience']['value'] ?? $filters['experience']) : $filters['experience'];
             $query->whereHas('cvClassic', function ($q) use ($experienceValue) {
                 $q->whereJsonContains('experiences', [
-                    'position' => ['value' => (int)$experienceValue],
+                    'position' => ['value' => (int) $experienceValue],
                 ]);
             });
         }
 
-
         // Filtrowanie według rekrutera
-        if (!empty($filters['recruiter'])) {
+        if (! empty($filters['recruiter'])) {
             $recruiterValue = is_array($filters['recruiter']) ? ($filters['recruiter']['value'] ?? $filters['recruiter']) : $filters['recruiter'];
             $query->where('recruiter_id', $recruiterValue);
         }
@@ -130,14 +125,18 @@ class ApplicationFilterService
         // Kandydat utworzony
         if (isset($filters['has_candidate']) && $filters['has_candidate'] !== '') {
             if ($filters['has_candidate'] === 'yes') {
-                $query->where(function ($q) { $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail'); });
+                $query->where(function ($q) {
+                    $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail');
+                });
             } else {
-                $query->where(function ($q) { $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail'); });
+                $query->where(function ($q) {
+                    $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail');
+                });
             }
         }
 
         // Filtrowanie po dacie
-        if (!empty($filters['date'])) {
+        if (! empty($filters['date'])) {
             $query->whereDate('created_at', $filters['date']);
         }
     }
@@ -145,9 +144,7 @@ class ApplicationFilterService
     /**
      * Stosuje wspólne filtry dla administratora
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param array $filters
-     * @param string|null $status
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      */
     private function applyCommonAdminFilters($query, array $filters, ?string $status = null): void
     {
@@ -180,91 +177,94 @@ class ApplicationFilterService
         }
 
         // Podstawowe filtry (ID projektu i status z formularza)
-        if (!empty($filters['project'])) {
+        if (! empty($filters['project'])) {
             $query->where('project_id', $filters['project']);
         }
 
-        if (!empty($filters['status']) && $status === null) {
+        if (! empty($filters['status']) && $status === null) {
             $query->where('status', $filters['status']);
         }
 
         // Filtrowanie według lokalizacji (Kraj, Miasto)
-        if (!empty($filters['country'])) {
+        if (! empty($filters['country'])) {
             $countryValue = is_array($filters['country']) ? ($filters['country']['value'] ?? $filters['country']) : $filters['country'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('countryWork->value', (int)$countryValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('countryWork->value', (int) $countryValue));
         }
 
-        if (!empty($filters['city'])) {
+        if (! empty($filters['city'])) {
             $cityValue = is_array($filters['city']) ? ($filters['city']['value'] ?? $filters['city']) : $filters['city'];
             $query->whereHas('project', fn ($q) => $q->where('cityWork', $cityValue));
         }
 
         // Filtrowanie według kategorii i zawodu
-        if (!empty($filters['category'])) {
+        if (! empty($filters['category'])) {
             $categoryValue = is_array($filters['category']) ? ($filters['category']['value'] ?? $filters['category']) : $filters['category'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('category->value', (int)$categoryValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('category->value', (int) $categoryValue));
         }
 
-        if (!empty($filters['categorySub'])) {
+        if (! empty($filters['categorySub'])) {
             $categorySubValue = is_array($filters['categorySub']) ? ($filters['categorySub']['value'] ?? $filters['categorySub']) : $filters['categorySub'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('categorySub->value', (int)$categorySubValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('categorySub->value', (int) $categorySubValue));
         }
 
-        if (!empty($filters['profession'])) {
+        if (! empty($filters['profession'])) {
             $professionValue = is_array($filters['profession']) ? ($filters['profession']['value'] ?? $filters['profession']) : $filters['profession'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('profession->value', (int)$professionValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('profession->value', (int) $professionValue));
         }
 
-        if (!empty($filters['position'])) {
+        if (! empty($filters['position'])) {
             $positionValue = is_array($filters['position']) ? ($filters['position']['value'] ?? $filters['position']) : $filters['position'];
-            $query->whereHas('project', fn ($q) => $q->whereJsonContains('position->value', (int)$positionValue));
+            $query->whereHas('project', fn ($q) => $q->whereJsonContains('position->value', (int) $positionValue));
         }
 
         // Filtrowanie według języka
-        if (!empty($filters['lang'])) {
+        if (! empty($filters['lang'])) {
             $langValue = is_array($filters['lang']) ? ($filters['lang']['value'] ?? $filters['lang']) : $filters['lang'];
-            $levelValue = !empty($filters['Langlevel']) ? (is_array($filters['Langlevel']) ? ($filters['Langlevel']['value'] ?? $filters['Langlevel']) : $filters['Langlevel']) : null;
+            $levelValue = ! empty($filters['Langlevel']) ? (is_array($filters['Langlevel']) ? ($filters['Langlevel']['value'] ?? $filters['Langlevel']) : $filters['Langlevel']) : null;
 
             $query->whereHas('cvClassic', function ($q) use ($langValue, $levelValue) {
                 $q->whereJsonContains('langs', ['name' => ['value' => $langValue]]);
                 if ($levelValue) {
-                    $q->whereJsonContains('langs', ['level' => ['value' => (int)$levelValue]]);
+                    $q->whereJsonContains('langs', ['level' => ['value' => (int) $levelValue]]);
                 }
             });
         }
 
         // Filtrowanie według doświadczenia
-        if (!empty($filters['experience'])) {
+        if (! empty($filters['experience'])) {
             $experienceValue = is_array($filters['experience']) ? ($filters['experience']['value'] ?? $filters['experience']) : $filters['experience'];
             $query->whereHas('cvClassic', function ($q) use ($experienceValue) {
                 $q->whereJsonContains('experiences', [
-                    'position' => ['value' => (int)$experienceValue],
+                    'position' => ['value' => (int) $experienceValue],
                 ]);
             });
         }
 
-
         // Filtrowanie według rekrutera i firmy
-        if (!empty($filters['recruiter'])) {
+        if (! empty($filters['recruiter'])) {
             $recruiterValue = is_array($filters['recruiter']) ? ($filters['recruiter']['value'] ?? $filters['recruiter']) : $filters['recruiter'];
             $query->where('recruiter_id', $recruiterValue);
         }
 
-        if (!empty($filters['firm'])) {
+        if (! empty($filters['firm'])) {
             $firmValue = is_array($filters['firm']) ? ($filters['firm']['value'] ?? $filters['firm']) : $filters['firm'];
-            $query->whereHas('project.user.firm', fn($q) => $q->where('id', $firmValue));
+            $query->whereHas('project.user.firm', fn ($q) => $q->where('id', $firmValue));
         }
 
         // Pozostałe filtry
         if (isset($filters['has_candidate']) && $filters['has_candidate'] !== '') {
             if ($filters['has_candidate'] === 'yes') {
-                $query->where(function ($q) { $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail'); });
+                $query->where(function ($q) {
+                    $q->whereHas('worker.candidate')->orWhereHas('candidateByEmail');
+                });
             } else {
-                $query->where(function ($q) { $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail'); });
+                $query->where(function ($q) {
+                    $q->whereDoesntHave('worker.candidate')->whereDoesntHave('candidateByEmail');
+                });
             }
         }
 
-        if (!empty($filters['date'])) {
+        if (! empty($filters['date'])) {
             $query->whereDate('created_at', $filters['date']);
         }
     }
@@ -272,8 +272,7 @@ class ApplicationFilterService
     /**
      * Stosuje filtr statusu
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $status
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      */
     private function applyStatusFilter($query, ?string $status): void
     {
@@ -296,13 +295,13 @@ class ApplicationFilterService
     {
         // Bazowe zapytanie z relacjami
         $query = Aplication::query()
-            ->with(['project.user.firm', 'project.externalCompany', 'recruit', 'candidateByEmail','cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
+            ->with(['project.user.firm', 'project.externalCompany', 'recruit', 'candidateByEmail', 'cvClassic', 'openedBy', 'statusChangedBy', 'worker.candidate', 'cvAudio', 'cvVideo', 'notes' => function ($q) {
                 $q->latest()->limit(1);
             }])->forCurrentRecruiter();
 
         // Jeśli zaznaczono konkretne aplikacje (np. do eksportu)
-        if ($request->has('apps') && !empty($request->apps)) {
-            $query->whereIn('id', (array)$request->apps);
+        if ($request->has('apps') && ! empty($request->apps)) {
+            $query->whereIn('id', (array) $request->apps);
         }
 
         // Filtrowanie według statusu
@@ -329,7 +328,7 @@ class ApplicationFilterService
             'filters' => $request->only([
                 'project', 'status', 'category', 'categorySub', 'profession', 'position',
                 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'country', 'city',
-                'date', 'has_candidate', 'recruiter'
+                'date', 'has_candidate', 'recruiter',
             ]),
         ];
     }
@@ -337,8 +336,7 @@ class ApplicationFilterService
     /**
      * Przygotowuje zapytanie bazowe dla aplikacji dla administratora (widzi wszystkie)
      *
-     * @param Request $request
-     * @param string|null $status Opcjonalny status aplikacji
+     * @param  string|null  $status  Opcjonalny status aplikacji
      * @return array Zawiera zapytanie, aplikacje, kategorie i liczniki statusów
      */
     public function getFilteredApplicationsAdmin(Request $request, ?string $status = null): array
@@ -370,6 +368,7 @@ class ApplicationFilterService
             'optionsRecruits' => $recruits,
             'optionsExternal' => $externals,
             'counters' => $counters,
+            'todayCount' => $counters['todayCount'] ?? 0,
             'filters' => $request->only(['project', 'status', 'category', 'categorySub', 'profession', 'position', 'country', 'city', 'experience', 'lang', 'skill', 'has_cv', 'Langlevel', 'recruiter', 'firm', 'has_candidate', 'date', 'has_cv', 'skill']),
         ];
     }
@@ -377,11 +376,9 @@ class ApplicationFilterService
     /**
      * Przygotowuje zapytanie bazowe dla aplikacji dla administratora (widzi wszystkie)
      *
-     * @param Request $request
-     * @param string|null $status Opcjonalny status aplikacji
+     * @param  string|null  $status  Opcjonalny status aplikacji
      * @return array Zawiera zapytanie, aplikacje, kategorie i liczniki statusów
      */
-
     public function getFilteredApplicationsExport(Request $request, ?string $status = null): array
     {
         $form = $request->input('form', []);
@@ -393,8 +390,8 @@ class ApplicationFilterService
             }])->forCurrentRecruiter();
 
         // Jeśli zaznaczono konkretne aplikacje
-        if (!empty($apps)) {
-            $query->whereIn('id', array_values((array)$apps));
+        if (! empty($apps)) {
+            $query->whereIn('id', array_values((array) $apps));
         }
 
         // Filtrowanie według statusu
@@ -421,7 +418,7 @@ class ApplicationFilterService
             }]);
 
         // Jeśli zaznaczono konkretne aplikacje
-        if (!empty($request->apps)) {
+        if (! empty($request->apps)) {
             $query->whereIn('id', $request->apps);
         }
 
@@ -456,10 +453,10 @@ class ApplicationFilterService
      */
     private function getCategories()
     {
-        return Cache::remember('categoriesAll_Admin_v2_'.app()->getLocale(), now()->addDay(), function() {
+        return Cache::remember('categoriesAll_Admin_v2_'.app()->getLocale(), now()->addDay(), function () {
             return \App\Models\Category::whereNull('parent_id')
                 ->get()
-                ->map(fn($cat) => [
+                ->map(fn ($cat) => [
                     'name' => $cat->getTranslation('title', app()->getLocale()),
                     'value' => $cat->id,
                 ])
@@ -561,7 +558,7 @@ class ApplicationFilterService
             'acceptedCount' => $acceptedCount,
             'maybeCount' => $maybeCount,
             'noCount' => $noCount,
-            'otherCount' => $otherCount
+            'otherCount' => $otherCount,
         ];
     }
 
@@ -596,7 +593,8 @@ class ApplicationFilterService
             'acceptedCount' => $acceptedCount,
             'maybeCount' => $maybeCount,
             'noCount' => $noCount,
-            'otherCount' => $otherCount
+            'otherCount' => $otherCount,
+            'todayCount' => Aplication::whereDate('created_at', now()->toDateString())->count(),
         ];
     }
 }

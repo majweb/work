@@ -25,11 +25,15 @@ class JobOfferController extends Controller
     {
         $query = $this->buildQuery($request);
 
+        $todayOffers = Project::whereDate('created_at', now()->toDateString())->with('user:id,name')->get();
+
         $stats = [
             'total' => Project::count(),
             'active' => Project::where('is_active', true)->count(),
             'inactive' => Project::where('is_active', false)->count(),
             'applications' => \App\Models\Aplication::count(),
+            'today_count' => $todayOffers->count(),
+            'today_creators' => $todayOffers->pluck('user.name')->filter()->unique()->values()->all(),
         ];
 
         $companies = User::role('firm')->orderBy('name')->get(['id', 'name']);
