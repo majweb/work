@@ -55,6 +55,7 @@ class AplicationController extends Controller
             'noCount' => $result['counters']['noCount'],
             'otherCount' => $result['counters']['otherCount'],
             'todayCount' => $result['todayCount'] ?? 0,
+            'currentDate' => $result['counters']['currentDate'] ?? now()->toDateString(),
             'langLevels' => $dictionaryService->getLangLevels(),
             'countries' => $countries,
         ]);

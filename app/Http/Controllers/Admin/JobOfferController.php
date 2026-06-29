@@ -25,7 +25,8 @@ class JobOfferController extends Controller
     {
         $query = $this->buildQuery($request);
 
-        $todayOffers = Project::whereDate('created_at', now()->toDateString())->with('user:id,name')->get();
+        $dateFilter = $request->filled('date') ? $request->date : now()->toDateString();
+        $todayOffers = Project::whereDate('created_at', $dateFilter)->with('user:id,name')->get();
 
         $stats = [
             'total' => Project::count(),
@@ -34,6 +35,7 @@ class JobOfferController extends Controller
             'applications' => \App\Models\Aplication::count(),
             'today_count' => $todayOffers->count(),
             'today_creators' => $todayOffers->pluck('user.name')->filter()->unique()->values()->all(),
+            'current_date' => $dateFilter,
         ];
 
         $companies = User::role('firm')->orderBy('name')->get(['id', 'name']);
@@ -160,6 +162,8 @@ class JobOfferController extends Controller
 
         if ($request->filled('date')) {
             $query->whereDate('created_at', $request->date);
+        } else {
+            $query->whereDate('created_at', now()->toDateString());
         }
 
         if ($request->filled('company')) {

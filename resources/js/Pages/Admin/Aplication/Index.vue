@@ -26,6 +26,7 @@ const props = defineProps({
     noCount: Number,
     otherCount: Number,
     todayCount: Number,
+    currentDate: String,
     optionsPosition: Array,
     optionsFirms: Array,
     optionsRecruits: Object,
@@ -409,7 +410,9 @@ onMounted(async () => {
                         </div>
                         <div class="bg-orange-50/30 rounded-[2rem] p-6 border border-orange-100 transition-all group cursor-pointer"
                              @click="form.date = new Date().toISOString().split('T')[0]" :class="{'ring-2 ring-orange-500 bg-white': form.date === new Date().toISOString().split('T')[0]}">
-                            <p class="text-[10px] font-black text-orange-600/60 uppercase tracking-widest mb-2">Aplikacje z dziś</p>
+                            <p class="text-[10px] font-black text-orange-600/60 uppercase tracking-widest mb-2">
+                                {{ currentDate === new Date().toISOString().split('T')[0] ? 'Aplikacje z dziś' : 'Aplikacje z dnia: ' + currentDate }}
+                            </p>
                             <div class="flex items-end justify-between">
                                 <span class="text-3xl font-black text-orange-700">{{ todayCount }}</span>
                                 <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform text-orange-500">

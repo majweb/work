@@ -148,6 +148,10 @@ class ApplicationFilterService
      */
     private function applyCommonAdminFilters($query, array $filters, ?string $status = null): void
     {
+        // Jeśli nie wybrano daty, domyślnie pokazujemy z dzisiaj
+        if (empty($filters['date'])) {
+            $filters['date'] = now()->toDateString();
+        }
         // Filtrowanie według CV
         if (isset($filters['has_cv'])) {
             $hasCv = $filters['has_cv'];
@@ -359,7 +363,7 @@ class ApplicationFilterService
         $externals = $this->getExternalAdmin();
 
         $applications = $query->orderBy('created_at', 'desc')->paginate(10);
-        $counters = $this->getStatusCountersAdmin();
+        $counters = $this->getStatusCountersAdmin($request->date);
 
         return [
             'applications' => $applications->withQueryString(),
@@ -565,7 +569,7 @@ class ApplicationFilterService
     /**
      * Pobiera liczniki dla różnych statusów aplikacji dla administratora
      */
-    private function getStatusCountersAdmin(): array
+    private function getStatusCountersAdmin(?string $date = null): array
     {
         // Liczba zaakceptowanych aplikacji
         $acceptedCount = Aplication::where('status', 'yes')
@@ -589,12 +593,15 @@ class ApplicationFilterService
         $otherCount = Aplication::activeStart()
             ->count();
 
+        $dateFilter = $date ?: now()->toDateString();
+
         return [
             'acceptedCount' => $acceptedCount,
             'maybeCount' => $maybeCount,
             'noCount' => $noCount,
             'otherCount' => $otherCount,
-            'todayCount' => Aplication::whereDate('created_at', now()->toDateString())->count(),
+            'todayCount' => Aplication::whereDate('created_at', $dateFilter)->count(),
+            'currentDate' => $dateFilter,
         ];
     }
 }

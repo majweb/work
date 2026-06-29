@@ -523,7 +523,8 @@ const getTranslation = (value) => {
                         <div
                             class="bg-orange-50/30 rounded-[2rem] p-6 border border-orange-100 hover:border-orange-200 transition-all group">
                             <p class="text-[10px] font-black text-orange-600/60 uppercase tracking-widest mb-2">
-                                Dzisiejsze oferty</p>
+                                {{ stats.current_date === new Date().toISOString().split('T')[0] ? 'Dzisiejsze oferty' : 'Oferty z dnia: ' + (stats.current_date || '') }}
+                            </p>
                             <div class="flex items-end justify-between">
                                 <div class="flex flex-col">
                                     <span class="text-3xl font-black text-orange-700">{{ stats.today_count }}</span>
