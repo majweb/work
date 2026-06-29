@@ -542,7 +542,8 @@ const socialLinks = [
         </button>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10" :class="{'mt-[-100px]': route().current('front')}">
+<!--        <footer class="bg-white border-t border-gray-100 relative z-50 pt-20 pb-10" :class="{'mt-[-100px]': route().current('front')}">-->
+        <footer class="py-5" :class="{'mt-[-100px]': route().current('front')}">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
                     <!-- Brand & Socials -->

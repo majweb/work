@@ -44,6 +44,7 @@ const menuItems = [
         icon: 'jobs',
         subItems: [
             { name: 'Oferty pracy', route: 'admin.job-offers.index' },
+            { name: 'Zgłoszenia stanowisk', route: 'admin.missing-positions.index' },
             { name: 'Obowiązki projektów', route: 'admin.detail-projects.index', can: 'super-admin-only' },
             { name: 'Branże / podbranże', route: 'admin.industries.index',can: 'super-admin-only' },
             { name: 'Kategorie stanowisk', route: 'admin.categories.index',can: 'super-admin-only' },

@@ -306,6 +306,8 @@ Route::middleware([
 
         //        RYNEK PRACY
         Route::get('job-offers', [\App\Http\Controllers\Admin\JobOfferController::class, 'index'])->name('job-offers.index');
+        Route::get('missing-positions', [\App\Http\Controllers\Admin\MissingPositionController::class, 'index'])->name('missing-positions.index');
+        Route::post('missing-positions/reply', [\App\Http\Controllers\Admin\MissingPositionController::class, 'replyEmail'])->name('missing-positions.reply-email');
         Route::get('job-offers/export', [\App\Http\Controllers\Admin\JobOfferController::class, 'export'])->name('job-offers.export');
         Route::get('job-offers/{project}', [\App\Http\Controllers\Admin\JobOfferController::class, 'show'])->name('job-offers.show');
         Route::get('job-offers/{project}/edit', [\App\Http\Controllers\Admin\JobOfferController::class, 'edit'])->name('job-offers.edit');
@@ -533,9 +535,6 @@ Route::get('/download/cv-audio/{id}', function ($id) {
         return Storage::download($app->cvVideo->file_path);
     }
 })->name('cv_audio.download');
-
-
-
 
 require __DIR__.'/socialstream.php';
 require __DIR__.'/front.php';
