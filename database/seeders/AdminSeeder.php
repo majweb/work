@@ -15,7 +15,6 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
 
-
         $admins = [
             [
                 'email' => 'l.koziol@work4you.global',
