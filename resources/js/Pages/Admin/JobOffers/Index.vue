@@ -909,7 +909,18 @@ const getTranslation = (value) => {
                                     <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">CV</span>
                                 </th>
                                 <th class="p-8">
-                                    <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Status / Aplikacje</span>
+                                    <button @click="handleSort('aplications_count')"
+                                            class="flex items-center gap-2 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] group">
+                                        Status / Aplikacje
+                                        <svg v-if="filters.sort === 'aplications_count'"
+                                             class="w-4 h-4 transition-transform duration-300"
+                                             :class="filters.direction === 'asc' ? 'rotate-180' : ''"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                  clip-rule="evenodd"/>
+                                        </svg>
+                                    </button>
                                 </th>
                                 <th class="p-8 text-center">
                                     <button @click="handleSort('created_at')"

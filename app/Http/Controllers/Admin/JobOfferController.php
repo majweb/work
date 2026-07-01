@@ -137,7 +137,7 @@ class JobOfferController extends Controller
 
     public function buildQuery(Request $request)
     {
-        $query = Project::query()->select('projects.*')->with(['user', 'recruit', 'aplications', 'externalCompany']);
+        $query = Project::query()->select('projects.*')->with(['user', 'recruit', 'aplications', 'externalCompany'])->withCount('aplications');
 
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
@@ -214,7 +214,7 @@ class JobOfferController extends Controller
         $direction = $request->get('direction', 'desc');
 
         // Zabezpieczenie przed nieprawidłowymi kolumnami
-        $allowedSorts = ['id', 'title', 'created_at', 'is_active', 'views_count'];
+        $allowedSorts = ['id', 'title', 'created_at', 'is_active', 'views_count', 'aplications_count'];
         if ($sort === 'title') {
             $locale = app()->getLocale();
             $query->orderByRaw("LOWER(JSON_UNQUOTE(JSON_EXTRACT(title, '$.$locale'))) $direction")
