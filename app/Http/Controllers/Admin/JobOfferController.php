@@ -162,8 +162,6 @@ class JobOfferController extends Controller
 
         if ($request->filled('date')) {
             $query->whereDate('created_at', $request->date);
-        } else {
-            $query->whereDate('created_at', now()->toDateString());
         }
 
         if ($request->filled('company')) {
