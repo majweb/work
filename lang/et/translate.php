@@ -1571,4 +1571,6 @@ return [
     'generator_desc' => 'Cuando compartes un enlace en redes sociales se muestra una imagen de vista previa. Aquí puedes elegir una de las 8 imágenes que hemos preparado, que se mostrará junto con tu enlace en Facebook, LinkedIn y otras plataformas. Esto hace que tus publicaciones sean más atractivas y ayuda a captar la atención del público con mayor facilidad.',
     'address_required' => 'Palun valige aadress automaatse täitmise soovituste hulgast.',
     'selected_address' => 'Valitud aadress:',
-    ];
+    'noDetailProjectsSelected' => 'Palun valige loendist vähemalt üks üksus',
+
+];

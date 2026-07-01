@@ -26,7 +26,7 @@ class StoreProject extends FormRequest
             'categorySub' => ['required', 'array', 'max:100'],
             'profession' => ['required', 'array', 'max:100'],
             'position' => ['nullable', 'array', 'max:100'],
-            'detailProjects' => ['required_with:position', 'array'],
+            'detailProjects' => ['required_with:category', 'array'],
             'workingMode' => ['required', 'array', 'min:1'],
             'workingMode.*.value' => ['required', 'exists:App\Models\WorkingMode,id'],
             'workingMode.*.name' => ['required'],
@@ -144,6 +144,8 @@ class StoreProject extends FormRequest
         return [
             'questions.*.content.required_with' => __('translate.enter_question_content'),
             'questions.*.answer_time.required_with' => __('translate.select_appropriate_value'),
+            'detailProjects.required_with' => __('translate.noDetailProjects'),
+
         ];
     }
 

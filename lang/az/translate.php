@@ -1843,4 +1843,5 @@ return [
     'generator_desc' => 'Sosial şəbəkələrdə link paylaşdıqdan sonra önizləmə şəkli göstərilir. Burada Facebook, LinkedIn və digər platformalarda linkinizlə birlikdə göstəriləcək 8 hazırlanmış şəkildən birini seçə bilərsiniz. Bu, paylaşımlarınızı daha cəlbedici edir və izləyicilərin diqqətini daha asan cəlb etməyə kömək edir.',
     'address_required' => 'Zəhmət olmasa avtomatik tamamlama təkliflərindən ünvanı seçin.',
     'selected_address' => 'Seçilmiş ünvan:',
+    'noDetailProjectsSelected' => 'Zəhmət olmasa, siyahıdan ən azı bir element seçin',
 ];

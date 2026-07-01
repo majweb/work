@@ -1834,4 +1834,5 @@ return [
     'generator_desc' => 'Ijtimoiy tarmoqlarda havola ulashilganda oldindan ko‘rish rasmi ko‘rsatiladi. Bu yerda siz biz tayyorlagan 8 ta rasmdan birini tanlashingiz mumkin, u Facebook, LinkedIn va boshqa platformalarda havolangiz bilan birga ko‘rsatiladi. Bu sizning postlaringizni yanada jozibador qiladi va auditoriya e’tiborini osonroq jalb etishga yordam beradi.',
     'address_required' => 'Iltimos, avtomatik to‘ldirish takliflaridan manzilni tanlang.',
     'selected_address' => 'Tanlangan manzil:',
+    'noDetailProjectsSelected' => 'Iltimos, ro‘yxatdan kamida bitta elementni tanlang',
     ];

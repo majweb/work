@@ -1803,4 +1803,5 @@ return [
     'generator_desc' => 'Quan comparteixes un enllaç a les xarxes socials es mostra una imatge de previsualització. Aquí pots triar una de les 8 imatges que hem preparat, que es mostraran juntament amb el teu enllaç a Facebook, LinkedIn i altres plataformes. Això fa que les teves publicacions siguin més atractives i ajudin a captar l’atenció del públic més fàcilment.',
     'address_required' => 'Si us plau, selecciona una adreça de les suggerències d’autocompletar.',
     'selected_address' => 'Adreça seleccionada:',
+    'noDetailProjectsSelected' => 'Seleccioneu almenys un element de la llista',
     ];

@@ -1835,4 +1835,5 @@ return [
     'generator_desc' => 'Cuando compartes un enlace en redes sociales se muestra una imagen de vista previa. Aquí puedes elegir una de las 8 imágenes que hemos preparado, que se mostrará junto con tu enlace en Facebook, LinkedIn y otras plataformas. Esto hace que tus publicaciones sean más atractivas y ayuda a captar la atención del público con mayor facilidad.',
     'address_required' => 'Por favor, selecciona una dirección de las sugerencias de autocompletado.',
     'selected_address' => 'Dirección seleccionada:',
+    'noDetailProjectsSelected' => 'Seleccione al menos un elemento de la lista',
     ];

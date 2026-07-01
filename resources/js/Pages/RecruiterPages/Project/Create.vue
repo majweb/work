@@ -1263,6 +1263,7 @@ onMounted(() => {
                                             </svg>
                                         </div>
                                         <p class="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-widest leading-relaxed max-w-[200px]">{{ __('translate.noDetailProjects') || 'Brak zdefiniowanych obowiązków' }}</p>
+                                        <InputError :message="form.errors.detailProjects" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                                     </div>
                                 </div>
 

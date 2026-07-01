@@ -2002,4 +2002,5 @@ return [
 'generator_desc' => 'Nakon što podijelite link na društvenim mrežama prikazuje se slika pregleda. Ovdje možete odabrati jednu od 8 pripremljenih slika koje će se prikazivati zajedno s vašim linkom na Facebooku, LinkedInu i drugim platformama. To čini vaše objave privlačnijim i lakše privlači pažnju publike.',
 'address_required' => 'Molimo odaberite adresu iz prijedloga za automatsko popunjavanje.',
 'selected_address' => 'Odabrana adresa:',
+'noDetailProjectsSelected' => 'Molimo odaberite barem jednu stavku sa liste',
     ];

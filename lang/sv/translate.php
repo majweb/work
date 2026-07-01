@@ -1835,4 +1835,5 @@ return [
     'generator_desc' => 'När du delar en länk på sociala medier visas en förhandsgranskningsbild. Här kan du välja en av de 8 bilder vi har förberett, som visas tillsammans med din länk på Facebook, LinkedIn och andra plattformar. Detta gör dina inlägg mer attraktiva och hjälper till att lättare fånga publikens uppmärksamhet.',
     'address_required' => 'Välj en adress från förslagen för automatisk ifyllning.',
     'selected_address' => 'Vald adress:',
+    'noDetailProjectsSelected' => 'Välj minst ett objekt från listan',
     ];

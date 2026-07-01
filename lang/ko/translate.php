@@ -1817,4 +1817,5 @@ return [
     'generator_desc' => '소셜 미디어에서 링크를 공유하면 미리보기 이미지가 표시됩니다. 여기에서 Facebook, LinkedIn 및 기타 플랫폼에서 링크와 함께 표시될 8개의 준비된 이미지 중 하나를 선택할 수 있습니다. 이를 통해 게시물이 더 매력적으로 보이고 더 쉽게 사용자의 관심을 끌 수 있습니다.',
     'address_required' => '자동완성 제안에서 주소를 선택하세요.',
     'selected_address' => '선택된 주소:',
+    'noDetailProjectsSelected' => '목록에서 항목을 하나 이상 선택해 주세요',
     ];

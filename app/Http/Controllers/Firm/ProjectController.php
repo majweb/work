@@ -583,7 +583,7 @@ class ProjectController extends Controller
                     'categorySub' => ['required', 'array', 'max:100'],
                     'profession' => ['required', 'array', 'max:100'],
                     'position' => ['nullable', 'array', 'max:100'],
-                    'detailProjects' => ['required_with:position', 'array'],
+                    'detailProjects' => ['required_with:category', 'array'],
 
                     // Kraj publikacji
                     'country' => ['required', 'array', 'min:1'],
@@ -712,6 +712,7 @@ class ProjectController extends Controller
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules, [
             'questions.*.content.required_with' => __('translate.enter_question_content'),
             'questions.*.answer_time.required_with' => __('translate.select_appropriate_value'),
+            'detailProjects.required_with' => __('translate.noDetailProjectsSelected'),
         ], [
             // Nazwy atrybutów
             'title' => strtolower(__('translate.title')),

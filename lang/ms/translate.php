@@ -1809,4 +1809,5 @@ return [
     'generator_desc' => 'Apabila anda berkongsi pautan di media sosial, imej pratonton akan dipaparkan. Di sini anda boleh memilih salah satu daripada 8 imej yang telah kami sediakan, yang akan dipaparkan bersama pautan anda di Facebook, LinkedIn dan platform lain. Ini menjadikan siaran anda lebih menarik dan membantu menarik perhatian audiens dengan lebih mudah.',
     'address_required' => 'Sila pilih alamat daripada cadangan auto-lengkap.',
     'selected_address' => 'Alamat dipilih:',
+    'noDetailProjectsSelected' => 'Sila pilih sekurang-kurangnya satu item daripada senarai',
     ];

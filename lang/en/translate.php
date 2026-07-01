@@ -1959,4 +1959,5 @@ return [
     'generator_desc' => 'When you share a link on social media, a preview image is displayed. Here you can choose one of the 8 images we have prepared, which will be shown together with your link on Facebook, LinkedIn and other platforms. This makes your posts more attractive and helps them easily capture the attention of your audience.',
     'address_required' => 'Please select an address from the autocomplete suggestions.',
     'selected_address' => 'Selected address:',
+    'noDetailProjectsSelected' => 'Please select at least one item from the list',
 ];

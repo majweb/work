@@ -1835,4 +1835,5 @@ return [
     'generator_desc' => 'Quando partilha um link nas redes sociais é apresentada uma imagem de pré-visualização. Aqui pode escolher uma das 8 imagens que preparámos, que será exibida juntamente com o seu link no Facebook, LinkedIn e outras plataformas. Isto torna as suas publicações mais atrativas e ajuda a captar mais facilmente a atenção do público.',
     'address_required' => 'Por favor, selecione um endereço entre as sugestões de preenchimento automático.',
     'selected_address' => 'Endereço selecionado:',
+    'noDetailProjectsSelected' => 'Por favor, selecione pelo menos um item da lista',
     ];

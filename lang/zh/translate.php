@@ -1834,4 +1834,5 @@ return [
     'generator_desc' => '当你在社交媒体上分享链接时，会显示一张预览图片。在这里你可以选择我们准备的8张图片之一，该图片将与你的链接一起显示在 Facebook、LinkedIn 等平台上。这可以让你的发布内容更具吸引力，并更容易吸引受众的注意。',
     'address_required' => '请从自动完成建议中选择一个地址。',
     'selected_address' => '已选择的地址：',
+    'noDetailProjectsSelected' => '请至少从列表中选择一项',
     ];

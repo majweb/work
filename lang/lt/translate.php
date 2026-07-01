@@ -1810,5 +1810,7 @@ return [
     'generator_desc' => 'Bendrinant nuorodą socialiniuose tinkluose, rodoma peržiūros nuotrauka. Čia galite pasirinkti vieną iš 8 mūsų paruoštų nuotraukų, kuri bus rodoma kartu su jūsų nuoroda Facebook, LinkedIn ir kitose platformose. Tai padaro jūsų įrašus patrauklesnius ir padeda lengviau patraukti auditorijos dėmesį.',
     'address_required' => 'Prašome pasirinkti adresą iš automatinio užbaigimo pasiūlymų.',
     'selected_address' => 'Pasirinktas adresas:',
-    ];
+    'noDetailProjectsSelected' => 'Prašome pasirinkti bent vieną elementą iš sąrašo',
+
+];
 

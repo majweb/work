@@ -1838,4 +1838,5 @@ return [
     'generator_desc' => 'Sosyal medyada bir bağlantı paylaştığınızda önizleme görseli görüntülenir. Burada Facebook, LinkedIn ve diğer platformlarda bağlantınızla birlikte gösterilecek olan, bizim hazırladığımız 8 görselden birini seçebilirsiniz. Bu, paylaşımlarınızı daha çekici hale getirir ve kitlenizin dikkatini daha kolay çekmenize yardımcı olur.',
     'address_required' => 'Lütfen otomatik tamamlama önerilerinden bir adres seçin.',
     'selected_address' => 'Seçilen adres:',
+    'noDetailProjectsSelected' => 'Lütfen listeden en az bir öğe seçin',
     ];

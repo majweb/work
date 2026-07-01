@@ -1834,4 +1834,5 @@ return [
     'generator_desc' => 'Amikor megosztasz egy linket a közösségi médiában, egy előnézeti kép jelenik meg. Itt kiválaszthatod a 8 általunk előkészített kép egyikét, amely a linkeddel együtt megjelenik a Facebookon, LinkedInen és más platformokon. Ez vonzóbbá teszi a bejegyzéseidet, és segít könnyebben felkelteni a közönség figyelmét.',
     'address_required' => 'Kérjük, válasszon címet az automatikus kiegészítési javaslatok közül.',
     'selected_address' => 'Kiválasztott cím:',
+    'noDetailProjectsSelected' => 'Kérjük, válasszon ki legalább egy elemet a listából',
     ];

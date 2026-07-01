@@ -1809,4 +1809,5 @@ return [
     'generator_desc' => 'Når du deler en lenke på sosiale medier vises et forhåndsvisningsbilde. Her kan du velge ett av de 8 bildene vi har forberedt, som vil vises sammen med lenken din på Facebook, LinkedIn og andre plattformer. Dette gjør innleggene dine mer attraktive og hjelper med å fange publikums oppmerksomhet lettere.',
     'address_required' => 'Velg en adresse fra autofullføringsforslagene.',
     'selected_address' => 'Valgt adresse:',
+    'noDetailProjectsSelected' => 'Velg minst ett element fra listen',
     ];

@@ -1813,4 +1813,6 @@ return [
     'generator_desc' => 'Wann Dir e Link op sozialen Netzwierker deelt, gëtt eng Virschau-Bild ugewisen. Hei kënnt Dir ee vun den 8 Biller auswielen, déi mir virbereet hunn, an dat zesumme mat Ärem Link op Facebook, LinkedIn an anere Plattformen ugewise gëtt. Dëst mécht Är Publikatiounen méi attraktiv a hëlleft d’Opmierksamkeet vum Publikum méi einfach ze kréien.',
     'address_required' => 'Wielt w.e.g. eng Adress aus den Autocomplete-Virschléi aus.',
     'selected_address' => 'Ausgewielte Adress:',
-    ];
+    'noDetailProjectsSelected' => 'Wielt w.e.g. mindestens ee Punkt aus der Lëscht',
+
+];

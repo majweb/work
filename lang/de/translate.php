@@ -1818,4 +1818,5 @@ return [
     'generator_desc' => 'Wenn du einen Link in sozialen Medien teilst, wird ein Vorschaubild angezeigt. Hier kannst du eines der 8 von uns vorbereiteten Bilder auswählen, das zusammen mit deinem Link auf Facebook, LinkedIn und anderen Plattformen angezeigt wird. Dadurch werden deine Beiträge ansprechender und ziehen die Aufmerksamkeit der Nutzer leichter auf sich.',
     'address_required' => 'Bitte wählen Sie eine Adresse aus den Autovervollständigungsvorschlägen aus.',
     'selected_address' => 'Ausgewählte Adresse:',
+    'noDetailProjectsSelected' => 'Bitte wählen Sie mindestens einen Eintrag aus der Liste aus',
     ];
