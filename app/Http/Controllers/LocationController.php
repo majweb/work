@@ -14,6 +14,7 @@ class LocationController extends Controller
     {
         $projects = Project::whereNotNull('lat')
             ->whereNotNull('lng')
+            ->active()
             ->get();
 
         $cities = $projects->groupBy('cityWork')
@@ -30,7 +31,6 @@ class LocationController extends Controller
                 return [
                     'name' => $cityName,
                     'value' => $cityName,
-                    'project' => $group,
                     'lat' => $group->avg('lat'),
                     'lng' => $group->avg('lng'),
                 ];
