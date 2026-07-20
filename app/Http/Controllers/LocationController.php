@@ -30,6 +30,7 @@ class LocationController extends Controller
                 return [
                     'name' => $cityName,
                     'value' => $cityName,
+                    'project' => $group,
                     'lat' => $group->avg('lat'),
                     'lng' => $group->avg('lng'),
                 ];
