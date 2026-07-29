@@ -46,6 +46,8 @@ const optionsCategories = ref([]);
 const optionsCategorySub = ref([]);
 const optionsProfession = ref([]);
 const optionsPosition = ref([]);
+const isLoadingCities = ref(false);
+const isLoadingCategories = ref(false);
 
 const form = useForm({
     country: props.countryFront ?? undefined,
@@ -77,8 +79,27 @@ watch(() => props.distanceFront, (newDistance) => {
     }
 });
 
+const fetchCategories = async (countryCode = null) => {
+    isLoadingCategories.value = true;
+    try {
+        const url = countryCode
+            ? route("categories.byCountry", countryCode)
+            : route("categories.byCountry");
+        const response = await fetch(url);
+        const data = await response.json();
+        optionsCategories.value = data;
+    } catch (e) {
+        console.error(__('translate.errorLoadingCategories'), e);
+    } finally {
+        isLoadingCategories.value = false;
+    }
+};
+
 onMounted(async () => {
+    fetchCategories(props.countryFront?.countryCode);
+
     if (props.countryFront) {
+        isLoadingCities.value = true;
         try {
             // --- miasta ---
             const responseCities = await fetch(route("cities.byCountry", props.countryFront.countryCode));
@@ -90,19 +111,8 @@ onMounted(async () => {
             }
         } catch (e) {
             console.error(__('translate.errorLoadingCities'), e);
-        }
-
-        try {
-            // --- kategorie ---
-            const responseCategories = await fetch(route("categories.byCountry", props.countryFront.countryCode));
-            const categoriesData = await responseCategories.json();
-            optionsCategories.value = categoriesData;
-
-            if (props.categoryFront) {
-                form.category = props.categoryFront;
-            }
-        } catch (e) {
-            console.error(__('translate.errorLoadingCategories'), e);
+        } finally {
+            isLoadingCities.value = false;
         }
     }
 });
@@ -112,19 +122,19 @@ onMounted(async () => {
 watch(() => form.country, async (newCountry) => {
     if (!newCountry || !newCountry.countryCode) {
         optionsCities.value = [];
-        optionsCategories.value = [];
         optionsCategorySub.value = [];
         optionsProfession.value = [];
         optionsPosition.value = [];
         form.city = null;
-        form.category = null;
         form.categorySub = null;
         form.profession = null;
         form.position = null;
         form.distance = null;
+        fetchCategories();
         return;
     }
 
+    isLoadingCities.value = true;
     try {
         const response = await fetch(route("cities.byCountry", newCountry.countryCode));
         const data = await response.json();
@@ -132,16 +142,11 @@ watch(() => form.country, async (newCountry) => {
         form.city = null;
     } catch (e) {
         console.error(__('translate.errorLoadingCities'), e);
+    } finally {
+        isLoadingCities.value = false;
     }
 
-    try {
-        const responseCategories = await fetch(route("categories.byCountry", newCountry.countryCode));
-        const categoriesData = await responseCategories.json();
-        optionsCategories.value = categoriesData;
-        form.category = null;
-    } catch (e) {
-        console.error(__('translate.errorLoadingCategories'), e);
-    }
+    fetchCategories(newCountry.countryCode);
 });
 
 // Obsługa zmiany kategorii
@@ -373,6 +378,7 @@ const isSearching = ref(false);
                                 <Multiselect
                                     v-model="form.city"
                                     :options="optionsCities"
+                                    :loading="isLoadingCities"
                                     :disabled="!form.country"
                                     track-by="value"
                                     label="name"
@@ -436,7 +442,7 @@ const isSearching = ref(false);
                                 <Multiselect
                                     v-model="form.category"
                                     :options="optionsCategories"
-                                    :disabled="!form.country"
+                                    :loading="isLoadingCategories"
                                     track-by="value"
                                     label="name"
                                     :selectLabel="''"
@@ -773,6 +779,17 @@ const isSearching = ref(false);
     </FrontLayout>
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+
+<style>
+.custom-multiselect .multiselect__spinner:after,
+.custom-multiselect .multiselect__spinner:before {
+    border-top-color: #0A2C5C !important;
+}
+
+.custom-multiselect .multiselect__spinner {
+    background: transparent !important;
+}
+</style>
 <style>
 @keyframes shimmer {
     0% { background-position: -200% 0; }
