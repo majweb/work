@@ -31,7 +31,7 @@ class DictionaryService
 {
     private function getCacheKey(string $key): string
     {
-        return $key . '_' . app()->getLocale();
+        return $key.'_'.app()->getLocale();
     }
 
     public function getCategories(): mixed
@@ -194,6 +194,7 @@ class DictionaryService
                 ->with(['ancestors'])
                 ->orderBy("title->{$locale}")
                 ->get();
+
             return \App\Http\Resources\CategorySearchResource::collection($positions)->resolve();
         });
     }
@@ -201,11 +202,11 @@ class DictionaryService
     public function searchPositions(?string $query = null): mixed
     {
         $locale = app()->getLocale();
-        $positions = Category::whereDoesntHave("children")
+        $positions = Category::whereDoesntHave('children')
             ->when($query, function ($q) use ($query, $locale) {
-                $q->where("title->{$locale}", "like", "%" . $query . "%");
+                $q->whereRaw("LOWER(title->'$.{$locale}') like ?", ['%'.mb_strtolower($query).'%']);
             })
-            ->with(["ancestors"])
+            ->with(['ancestors'])
             ->orderBy("title->{$locale}")
             ->limit(20)
             ->get();
@@ -223,7 +224,7 @@ class DictionaryService
     public function getCountries(string $locale): mixed
     {
         return Cache::rememberForever('countries_'.$locale, function () {
-            return (new Helper())->makeCountriesToSelect();
+            return (new Helper)->makeCountriesToSelect();
         });
     }
 
@@ -239,6 +240,7 @@ class DictionaryService
     public function getCategoriesForCandidates(): mixed
     {
         $locale = app()->getLocale();
+
         return Cache::rememberForever($this->getCacheKey('categoriesForCandidates'), function () use ($locale) {
             return CategoryTagResource::collection(
                 \App\Models\Category::whereNotNull('parent_id')
@@ -246,11 +248,13 @@ class DictionaryService
                     ->filter(function ($category) use ($locale) {
                         // Sprawdzamy czy kategoria ma wpisany tytuł w obecnym języku
                         $translation = $category->getTranslation('title', $locale, false);
-                        return !empty($translation);
+
+                        return ! empty($translation);
                     })
             )->resolve();
         });
     }
+
     public function getCategoriesWithArticles(): mixed
     {
         return Cache::rememberForever($this->getCacheKey('categoriesWithArticles'), function () {
@@ -292,7 +296,7 @@ class DictionaryService
     private function forgetAllLocales(string $key): void
     {
         foreach (config('langsShorts', []) as $locale) {
-            Cache::forget($key . '_' . $locale);
+            Cache::forget($key.'_'.$locale);
         }
     }
 

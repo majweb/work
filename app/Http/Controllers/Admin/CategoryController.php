@@ -20,8 +20,9 @@ class CategoryController extends Controller
             ->with(['parent.parent.parent'])
             ->when($request->search, function ($query, $search) use ($locale) {
                 $query->where(function ($q) use ($search, $locale) {
-                    $q->where('title->' . $locale, 'like', "%{$search}%")
-                        ->orWhere('title->pl', 'like', "%{$search}%");
+                    $searchLower = mb_strtolower($search);
+                    $q->whereRaw("LOWER(title->'$.{$locale}') like ?", ["%{$searchLower}%"])
+                        ->orWhereRaw("LOWER(title->'$.pl') like ?", ["%{$searchLower}%"]);
                 });
             })
             ->orderBy('id', 'desc')
@@ -36,6 +37,7 @@ class CategoryController extends Controller
                 $parent = $parent->parent;
             }
             $category->depth = $depth;
+
             return $category;
         });
 
@@ -55,6 +57,7 @@ class CategoryController extends Controller
                 $depth++;
                 $parent = $parent->parent;
             }
+
             return [
                 'id' => $category->id,
                 'title' => $category->getTranslations('title'),
@@ -102,19 +105,20 @@ class CategoryController extends Controller
         $allCategories = Category::with('parent', 'parent.parent', 'parent.parent.parent')
             ->where('id', '!=', $category->id)
             ->get()->map(function ($cat) {
-            $depth = 0;
-            $parent = $cat->parent;
-            while ($parent) {
-                $depth++;
-                $parent = $parent->parent;
-            }
-            return [
-                'id' => $cat->id,
-                'title' => $cat->getTranslations('title'),
-                'depth' => $depth,
-                'parent_id' => $cat->parent_id,
-            ];
-        });
+                $depth = 0;
+                $parent = $cat->parent;
+                while ($parent) {
+                    $depth++;
+                    $parent = $parent->parent;
+                }
+
+                return [
+                    'id' => $cat->id,
+                    'title' => $cat->getTranslations('title'),
+                    'depth' => $depth,
+                    'parent_id' => $cat->parent_id,
+                ];
+            });
 
         return Inertia::render('Admin/Categories/Edit', [
             'category' => [
@@ -161,5 +165,4 @@ class CategoryController extends Controller
 
         return back()->with('success', 'Kategoria została usunięta.');
     }
-
 }

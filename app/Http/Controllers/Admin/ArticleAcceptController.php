@@ -39,7 +39,18 @@ class ArticleAcceptController extends Controller
         });
 
         return inertia()->render('Admin/Articles-Accept/Index', [
-            'articles' => $query->with(['user:id,name,profile_photo_path'])->paginate(10)->withQueryString(),
+            'articles' => $query->with(['user:id,name,profile_photo_path'])->paginate(10)->through(fn($article) => [
+                'id' => $article->id,
+                'title' => $article->title,
+                'slug' => $article->slug,
+                'created_at' => $article->created_at,
+                'user' => [
+                    'id' => $article->user->id ?? null,
+                    'name' => $article->user->name ?? null,
+                    'profile_photo_path' => $article->user->profile_photo_path ?? null,
+                ],
+                'active_admin' => $article->active_admin,
+            ])->withQueryString(),
             'filters' => request()->only(['field', 'direction', 'all'])
         ]);
     }
@@ -111,7 +122,25 @@ class ArticleAcceptController extends Controller
         ]);
 
         return inertia()->render('Admin/Articles-Accept/Show', [
-            'article' => $article,
+            'article' => [
+                'id' => $article->id,
+                'slug' => $article->slug,
+                'title' => $article->title,
+                'content' => $article->content,
+                'lang' => $article->lang,
+                'active' => $article->active,
+                'active_admin' => $article->active_admin,
+                'user' => $article->user,
+                'media' => $article->media,
+                'comments' => $article->comments,
+                'meta_title' => $article->meta_title,
+                'meta_description' => $article->meta_description,
+                'short_description' => $article->short_description,
+                'alt' => $article->alt,
+                'meta_keywords' => $article->meta_keywords,
+                'category' => $article->category,
+                'created_at' => $article->created_at,
+            ],
         ]);
     }
 
@@ -120,7 +149,21 @@ class ArticleAcceptController extends Controller
         Gate::authorize('admin', User::class);
 
         return inertia()->render('Admin/Articles-Accept/Edit', [
-            'article' => FrontArticleResource::make($article)->resolve(),
+            'article' => [
+                'id' => $article->id,
+                'slug' => $article->slug,
+                'title' => $article->title,
+                'content' => $article->content,
+                'lang' => $article->lang,
+                'active' => $article->active,
+                'photo' => $article->getFirstMedia('articles_images'),
+                'meta_title' => $article->meta_title,
+                'meta_description' => $article->meta_description,
+                'short_description' => $article->short_description,
+                'alt' => $article->alt,
+                'meta_keywords' => $article->meta_keywords,
+                'category' => $article->category,
+            ],
             'categories' => $dictionaryService->getCategories()
         ]);
     }
