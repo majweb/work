@@ -90,7 +90,7 @@ Route::get('/test', function () {
 
 Route::get('/cities/{countryCode}', LocationController::class)
     ->name('cities.byCountry');
-Route::get('/categories/{countryCode}', CategoryControllerInvoke::class)
+Route::get('/categories/{countryCode?}', CategoryControllerInvoke::class)
     ->name('categories.byCountry');
 
 Route::get('/start', [FrontController::class, 'Landing'])->name('landing');

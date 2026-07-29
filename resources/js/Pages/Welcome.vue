@@ -3,7 +3,7 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
 import {router, useForm} from '@inertiajs/vue3';
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 
 const props = defineProps({
     page: Object,
@@ -15,6 +15,8 @@ const props = defineProps({
 const optionsCities = ref([]); // 👈 tutaj będą miasta
 const optionsCategories = ref([]);
 const isSearching = ref(false);
+const isLoadingCities = ref(false);
+const isLoadingCategories = ref(false);
 
 const form = useForm({
     country: null, // 👈 wybrany kraj
@@ -26,16 +28,36 @@ const form = useForm({
 });
 
 // Watcher dla zmiany kraju
+const fetchCategories = async (countryCode = null) => {
+    isLoadingCategories.value = true;
+    try {
+        const url = countryCode
+            ? route("categories.byCountry", countryCode)
+            : route("categories.byCountry");
+        const response = await fetch(url);
+        const data = await response.json();
+        optionsCategories.value = data;
+    } catch (e) {
+        console.error("Błąd ładowania kategorii:", e);
+    } finally {
+        isLoadingCategories.value = false;
+    }
+};
+
+onMounted(() => {
+    fetchCategories();
+});
+
 watch(() => form.country, async (newCountry) => {
     if (!newCountry || !newCountry.countryCode) {
         optionsCities.value = [];
         form.city = null;
-        optionsCategories.value = [];
-        form.category = null;
         form.distance = null;
+        fetchCategories();
         return;
     }
 
+    isLoadingCities.value = true;
     try {
         const response = await fetch(route("cities.byCountry", newCountry.countryCode));
         const data = await response.json();
@@ -45,17 +67,11 @@ watch(() => form.country, async (newCountry) => {
         form.city = null; // reset wybranego miasta
     } catch (e) {
         console.error("Błąd ładowania miast:", e);
-    }
-    // --- pobieranie kategorii ---
-    try {
-        const responseCategories = await fetch(route("categories.byCountry", newCountry.countryCode));
-        const categoriesData = await responseCategories.json();
-        optionsCategories.value = categoriesData;
-        form.category = null;
-    } catch (e) {
-        console.error("Błąd ładowania kategorii:", e);
+    } finally {
+        isLoadingCities.value = false;
     }
 
+    fetchCategories(newCountry.countryCode);
 });
 
 // Watcher dla zmiany miasta
@@ -153,6 +169,7 @@ const submit = () => {
                                             :deselectLabel="''"
                                             track-by="value"
                                             label="name"
+                                            :loading="isLoadingCities"
                                             :disabled="!form.country"
                                             :multiple="false"
                                             v-model="form.city"
@@ -218,7 +235,7 @@ const submit = () => {
                                             :deselectLabel="''"
                                             track-by="value"
                                             label="name"
-                                            :disabled="!form.country"
+                                            :loading="isLoadingCategories"
                                             :multiple="false"
                                             v-model="form.category"
                                             :options="optionsCategories"
@@ -264,3 +281,14 @@ const submit = () => {
 </template>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+
+<style>
+.custom-multiselect .multiselect__spinner:after,
+.custom-multiselect .multiselect__spinner:before {
+    border-top-color: #0A2C5C !important;
+}
+
+.custom-multiselect .multiselect__spinner {
+    background: transparent !important;
+}
+</style>
