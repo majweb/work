@@ -1811,6 +1811,7 @@ return [
     'address_required' => 'Prašome pasirinkti adresą iš automatinio užbaigimo pasiūlymų.',
     'selected_address' => 'Pasirinktas adresas:',
     'noDetailProjectsSelected' => 'Prašome pasirinkti bent vieną elementą iš sąrašo',
+    'salaryPeriod' => 'Atlyginimo tipas',
 
 ];
 

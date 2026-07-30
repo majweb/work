@@ -1836,5 +1836,7 @@ return [
     'address_required' => 'Izberite naslov iz predlogov samodejnega izpolnjevanja.',
     'selected_address' => 'Izbrani naslov:',
     'noDetailProjectsSelected' => 'Prosimo, izberite vsaj en element s seznama',
+    'salaryPeriod' => 'Vrsta plačila',
+
 
 ];

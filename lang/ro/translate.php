@@ -1836,5 +1836,7 @@ return [
     'address_required' => 'Vă rugăm să selectați o adresă din sugestiile de completare automată.',
     'selected_address' => 'Adresă selectată:',
     'noDetailProjectsSelected' => 'Selectați cel puțin un element din listă',
+    'salaryPeriod' => 'Tip salariu',
+
 
 ];

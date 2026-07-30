@@ -1817,4 +1817,6 @@ return [
     'address_required' => 'ກະລຸນາເລືອກທີ່ຢູ່ຈາກຄຳແນະນຳການປ້ອນອັດຕະໂນມັດ.',
     'selected_address' => 'ທີ່ຢູ່ທີ່ເລືອກ:',
     'noDetailProjectsSelected' => 'ກະລຸນາເລືອກຢ່າງນ້ອຍຫນຶ່ງລາຍການຈາກລາຍການ',
+    'salaryPeriod' => 'ປະເພດເງິນເດືອນ',
+
 ];

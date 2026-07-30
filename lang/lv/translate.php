@@ -1810,4 +1810,6 @@ return [
     'address_required' => 'Lūdzu, izvēlieties adresi no automātiskās aizpildes ieteikumiem.',
     'selected_address' => 'Izvēlētā adrese:',
     'noDetailProjectsSelected' => 'Lūdzu, izvēlieties vismaz vienu vienumu no saraksta',
-    ];
+    'salaryPeriod' => 'Algas veids',
+
+];

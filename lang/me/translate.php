@@ -1810,5 +1810,7 @@ return [
     'address_required' => 'Molimo odaberite adresu iz predloga za automatsko popunjavanje.',
     'selected_address' => 'Odabrana adresa:',
     'noDetailProjectsSelected' => 'Molimo odaberite najmanje jednu stavku sa liste',
+    'salaryPeriod' => 'Vrsta plate',
+
 
 ];

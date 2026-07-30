@@ -38,6 +38,7 @@ const props = defineProps({
     cvs: Array,
     langLevels: Array,
     externalCompanies: Array,
+    salaryPeriods: Array,
 });
 
 const sortLangs = computed(() => {
@@ -200,6 +201,7 @@ const form = useForm({
     currency: '',
     basicSalaryFrom: '',
     basicSalaryTo: '',
+    salaryPeriod: null,
     salary_type: 'brutto',
     bonusSalaryFrom: '',
     bonusSalaryTo: '',
@@ -1541,6 +1543,26 @@ onMounted(() => {
                                     </multiselect>
                                     <InputError :message="form.errors.currency" class="mt-2 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
+                            </div>
+
+                            <div class="mb-10" v-if="salaryPeriods">
+                                <InputLabel :value="__('translate.salaryPeriod')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div v-for="period in salaryPeriods" :key="period.id"
+                                         class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md"
+                                         @click="form.salaryPeriod = period">
+                                        <div class="relative flex items-center justify-center">
+                                            <input
+                                                type="radio" :id="'salaryPeriod-'+period.id" v-model="form.salaryPeriod"
+                                                :value="period"
+                                                class="peer sr-only"
+                                            />
+                                            <div class="h-6 w-6 rounded-full border-2 border-white bg-white shadow-sm transition-all peer-checked:border-[#0A2C5C] peer-checked:border-[6px]"></div>
+                                        </div>
+                                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{period.name}}</span>
+                                    </div>
+                                </div>
+                                <InputError :message="form.errors.salaryPeriod" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                             </div>
 
                             <!-- Rodzaj wynagrodzenia i Rekrutacja inkluzywna -->

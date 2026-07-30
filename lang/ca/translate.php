@@ -1804,4 +1804,5 @@ return [
     'address_required' => 'Si us plau, selecciona una adreça de les suggerències d’autocompletar.',
     'selected_address' => 'Adreça seleccionada:',
     'noDetailProjectsSelected' => 'Seleccioneu almenys un element de la llista',
-    ];
+    'salaryPeriod' => 'Tipus de salari',
+];

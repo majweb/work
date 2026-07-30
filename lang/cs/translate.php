@@ -3649,4 +3649,6 @@ return [
     'address_required' => 'Vyberte prosím adresu z návrhů automatického doplňování.',
     'selected_address' => 'Vybraná adresa:',
     'noDetailProjectsSelected' => 'Vyberte prosím alespoň jednu položku ze seznamu',
-    ];
+    'salaryPeriod' => 'Typ mzdy',
+
+];

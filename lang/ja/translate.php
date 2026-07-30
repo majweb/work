@@ -1832,5 +1832,7 @@ return [
     'address_required' => 'オートコンプリートの候補から住所を選択してください。',
     'selected_address' => '選択された住所：',
     'noDetailProjectsSelected' => 'リストから少なくとも1つの項目を選択してください',
+    'salaryPeriod' => '給与の種類',
+
 
 ];

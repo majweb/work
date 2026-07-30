@@ -1836,5 +1836,7 @@ return [
     'address_required' => 'ස්වයං-සම්පූර්ණ යෝජනා වලින් ලිපිනයක් තෝරන්න.',
     'selected_address' => 'තෝරාගත් ලිපිනය:',
     'noDetailProjectsSelected' => 'කරුණාකර ලැයිස්තුවෙන් අවම වශයෙන් එක් අයිතමයක් තෝරන්න',
+    'salaryPeriod' => 'වැටුප් වර්ගය',
+
 
 ];

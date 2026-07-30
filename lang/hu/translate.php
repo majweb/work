@@ -1835,4 +1835,6 @@ return [
     'address_required' => 'Kérjük, válasszon címet az automatikus kiegészítési javaslatok közül.',
     'selected_address' => 'Kiválasztott cím:',
     'noDetailProjectsSelected' => 'Kérjük, válasszon ki legalább egy elemet a listából',
-    ];
+    'salaryPeriod' => 'Fizetés típusa',
+
+];

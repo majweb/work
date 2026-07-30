@@ -1834,6 +1834,8 @@ return [
     'address_required' => 'Vinsamlegast veldu heimilisfang úr tillögum sjálfvirkrar útfyllingar.',
     'selected_address' => 'Valið heimilisfang:',
     'noDetailProjectsSelected' => 'Vinsamlegast veldu að minnsta kosti eitt atriði af listanum',
+    'salaryPeriod' => 'Tegund launa',
+
 
 ];
 

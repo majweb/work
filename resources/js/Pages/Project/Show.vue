@@ -411,6 +411,13 @@ onMounted(async () => {
                                     </div>
                                 </div>
 
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50" v-if="props.project.salary_period">
+                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.salaryPeriod') }}</p>
+                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">
+                                        {{ props.project.salary_period?.allTranslations?.name[lang] || props.project.salary_period?.name }}
+                                    </p>
+                                </div>
+
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50">
                                     <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.payoutModeLabel') }}</p>
                                     <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ props.project.payoutMode?.allTranslations?.name[lang] }}</p>

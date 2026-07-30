@@ -1824,5 +1824,7 @@ return [
     'address_required' => 'נא לבחור כתובת מתוך הצעות ההשלמה האוטומטית.',
     'selected_address' => 'כתובת שנבחרה:',
     'noDetailProjectsSelected' => 'אנא בחר לפחות פריט אחד מהרשימה',
+    'salaryPeriod' => 'סוג שכר',
+
 
 ];

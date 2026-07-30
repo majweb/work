@@ -1818,4 +1818,6 @@ return [
     'address_required' => '자동완성 제안에서 주소를 선택하세요.',
     'selected_address' => '선택된 주소:',
     'noDetailProjectsSelected' => '목록에서 항목을 하나 이상 선택해 주세요',
-    ];
+    'salaryPeriod' => '급여 유형',
+
+];

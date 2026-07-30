@@ -1835,4 +1835,6 @@ return [
     'address_required' => '请从自动完成建议中选择一个地址。',
     'selected_address' => '已选择的地址：',
     'noDetailProjectsSelected' => '请至少从列表中选择一项',
-    ];
+    'salaryPeriod' => '薪资类型',
+
+];

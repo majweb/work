@@ -18,6 +18,7 @@ use App\Models\LangLevel;
 use App\Models\Offer;
 use App\Models\PayoutMode;
 use App\Models\PaySystem;
+use App\Models\SalaryPeriod;
 use App\Models\ShiftWork;
 use App\Models\TypeOfContract;
 use App\Models\Wait;
@@ -73,6 +74,13 @@ class DictionaryService
     {
         return Cache::rememberForever($this->getCacheKey('payoutModes'), function () {
             return PayModesResource::collection(PayoutMode::all());
+        });
+    }
+
+    public function getSalaryPeriods(): mixed
+    {
+        return Cache::rememberForever($this->getCacheKey('salaryPeriods'), function () {
+            return PayModesResource::collection(SalaryPeriod::all());
         });
     }
 
@@ -280,6 +288,7 @@ class DictionaryService
             'typesOfContract' => $this->getTypesOfContract(),
             'workLoads' => $this->getWorkLoads(),
             'payoutModes' => $this->getPayoutModes(),
+            'salaryPeriods' => $this->getSalaryPeriods(),
             'paySystems' => $this->getPaySystems(),
             'days' => $this->getDays(),
             'shiftWorks' => $this->getShiftWorks(),
@@ -337,6 +346,7 @@ class DictionaryService
         $this->forgetAllLocales('typesOfContract');
         $this->forgetAllLocales('workLoads');
         $this->forgetAllLocales('payoutModes');
+        $this->forgetAllLocales('salaryPeriods');
         $this->forgetAllLocales('paySystems');
         $this->forgetAllLocales('days');
         $this->forgetAllLocales('shiftWorks');

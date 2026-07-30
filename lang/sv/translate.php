@@ -1836,4 +1836,6 @@ return [
     'address_required' => 'Välj en adress från förslagen för automatisk ifyllning.',
     'selected_address' => 'Vald adress:',
     'noDetailProjectsSelected' => 'Välj minst ett objekt från listan',
-    ];
+    'salaryPeriod' => 'Lönetyp',
+
+];

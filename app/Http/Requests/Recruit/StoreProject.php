@@ -79,6 +79,10 @@ class StoreProject extends FormRequest
             'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
             'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
             'salary_type' => ['required', 'in:brutto,netto'],
+            'salaryPeriod' => ['nullable', 'array'],
+            'salaryPeriod.id' => ['nullable', 'exists:App\Models\SalaryPeriod,id'],
+            'salaryPeriod.name' => ['nullable', 'string'],
+            'salaryPeriod.allTranslations' => ['nullable', 'array'],
             'inclusive_recruitment' => ['nullable', 'boolean'],
             'bonusSalaryFrom' => ['nullable', 'numeric', 'between:1,99999.99'],
             'hoursFrom' => ['nullable', 'date_format:H:i', 'before:hoursTo'],
@@ -103,13 +107,14 @@ class StoreProject extends FormRequest
                 function ($attribute, $value, $fail) {
                     $uniqueLangs = [];
                     foreach ($value as $index => $lang) {
-                        if (!empty($lang['name']) && !empty($lang['level'])) {
+                        if (! empty($lang['name']) && ! empty($lang['level'])) {
                             $langId = $lang['name']['value'] ?? $lang['name'];
                             $levelId = $lang['level']['id'] ?? $lang['level'];
-                            $key = $langId . '-' . $levelId;
+                            $key = $langId.'-'.$levelId;
 
                             if (in_array($key, $uniqueLangs)) {
                                 $fail(__('translate.duplicate_lang_level'));
+
                                 return;
                             }
                             $uniqueLangs[] = $key;

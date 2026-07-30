@@ -2009,4 +2009,5 @@ return [
     'address_required' => 'يرجى اختيار العنوان من اقتراحات الإكمال التلقائي.',
     'selected_address' => 'العنوان المحدد:',
     'noDetailProjectsSelected' => 'يرجى اختيار عنصر واحد على الأقل من القائمة',
+    'salaryPeriod' => 'نوع الراتب',
 ];

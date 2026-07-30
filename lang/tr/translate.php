@@ -1839,4 +1839,6 @@ return [
     'address_required' => 'Lütfen otomatik tamamlama önerilerinden bir adres seçin.',
     'selected_address' => 'Seçilen adres:',
     'noDetailProjectsSelected' => 'Lütfen listeden en az bir öğe seçin',
-    ];
+    'salaryPeriod' => 'Maaş türü',
+
+];

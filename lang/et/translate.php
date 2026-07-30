@@ -1572,5 +1572,6 @@ return [
     'address_required' => 'Palun valige aadress automaatse täitmise soovituste hulgast.',
     'selected_address' => 'Valitud aadress:',
     'noDetailProjectsSelected' => 'Palun valige loendist vähemalt üks üksus',
+    'salaryPeriod' => 'Palga tüüp',
 
 ];

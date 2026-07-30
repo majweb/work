@@ -742,7 +742,7 @@ const isSearching = ref(false);
                                                     {{ __('translate.' + project.salary_type) }}
                                                 </div>
                                                 <div class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
-                                                    / {{ project.payoutMode?.allTranslations?.name?.[usePage().props.language] || project.payoutMode?.name?.[usePage().props.language] || project.payoutMode?.name || __('translate.month') }}
+                                                    / {{ project.salary_period?.allTranslations?.name?.[usePage().props.language] || project.salary_period?.name?.[usePage().props.language] || project.salary_period?.name || __('translate.month') }}
                                                 </div>
                                             </div>
                                         </div>

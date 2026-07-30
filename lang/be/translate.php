@@ -1868,4 +1868,5 @@ return [
     'address_required' => 'Калі ласка, выберыце адрас з падказак аўтазапаўнення.',
     'selected_address' => 'Выбраны адрас:',
     'noDetailProjectsSelected' => 'Калі ласка, выберыце хаця б адзін элемент са спісу',
+    'salaryPeriod' => 'Тып заробку',
     ];

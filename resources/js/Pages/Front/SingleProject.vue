@@ -392,6 +392,12 @@ onMounted(async () => {
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.tryb_wyplaty') }}</p>
                                             <p class="text-xs font-black text-gray-700 uppercase tracking-widest">{{ project.payoutMode?.allTranslations?.name?.[usePage().props.language] || project.payoutMode?.name?.[usePage().props.language] || project.payoutMode?.name || __('translate.month') }}</p>
                                         </div>
+                                        <div class="space-y-1" v-if="project.salary_period">
+                                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.salaryPeriod') }}</p>
+                                            <p class="text-xs font-black text-gray-700 uppercase tracking-widest">
+                                                {{ project.salary_period?.allTranslations?.name?.[usePage().props.language] || project.salary_period?.name?.[usePage().props.language] || project.salary_period?.name }}
+                                            </p>
+                                        </div>
                                         <div class="space-y-1" v-if="project.bonusSalaryFrom || project.bonusSalaryTo">
                                             <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-loose">{{ __('translate.premia') }}</p>
                                             <div class="flex items-baseline gap-2">

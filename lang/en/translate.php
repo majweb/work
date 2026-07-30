@@ -1960,4 +1960,5 @@ return [
     'address_required' => 'Please select an address from the autocomplete suggestions.',
     'selected_address' => 'Selected address:',
     'noDetailProjectsSelected' => 'Please select at least one item from the list',
+    'salaryPeriod' => 'Salary period type',
 ];

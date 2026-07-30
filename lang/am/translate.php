@@ -1843,4 +1843,5 @@ return [
     'address_required' => 'እባክዎ ከአውቶኮምፕሊት አማራጮች አድራሻ ይምረጡ።',
     'selected_address' => 'የተመረጠ አድራሻ:',
     'noDetailProjectsSelected' => 'እባክዎ ከዝርዝሩ ውስጥ ቢያንስ አንድ ንጥል ይምረጡ',
+    'salaryPeriod' => 'የደመወዝ ዓይነት',
 ];

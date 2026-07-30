@@ -1827,4 +1827,5 @@ return [
     'address_required' => 'Vælg venligst en adresse fra autofuldførelsesforslagene.',
     'selected_address' => 'Valgt adresse:',
     'noDetailProjectsSelected' => 'Vælg venligst mindst én post fra listen',
-    ];
+    'salaryPeriod' => 'Løntype',
+];

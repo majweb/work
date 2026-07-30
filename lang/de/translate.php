@@ -1819,4 +1819,6 @@ return [
     'address_required' => 'Bitte wählen Sie eine Adresse aus den Autovervollständigungsvorschlägen aus.',
     'selected_address' => 'Ausgewählte Adresse:',
     'noDetailProjectsSelected' => 'Bitte wählen Sie mindestens einen Eintrag aus der Liste aus',
-    ];
+    'salaryPeriod' => 'Gehaltsart',
+
+];

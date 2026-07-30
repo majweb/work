@@ -1835,4 +1835,6 @@ return [
     'address_required' => 'Iltimos, avtomatik to‘ldirish takliflaridan manzilni tanlang.',
     'selected_address' => 'Tanlangan manzil:',
     'noDetailProjectsSelected' => 'Iltimos, ro‘yxatdan kamida bitta elementni tanlang',
-    ];
+    'salaryPeriod' => 'Ish haqi turi',
+
+];

@@ -1810,4 +1810,6 @@ return [
     'address_required' => 'Sila pilih alamat daripada cadangan auto-lengkap.',
     'selected_address' => 'Alamat dipilih:',
     'noDetailProjectsSelected' => 'Sila pilih sekurang-kurangnya satu item daripada senarai',
-    ];
+    'salaryPeriod' => 'Jenis gaji',
+
+];

@@ -24,7 +24,7 @@ class ProjectController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('role:recruit'),
-            new Middleware('recruiter.firm.profile.completed', only: ['index','create', 'store']),
+            new Middleware('recruiter.firm.profile.completed', only: ['index', 'create', 'store']),
             //            new Middleware('only_direct_permission:editing projects', only: ['edit', 'update']),
             //            new Middleware('only_direct_permission:adding projects', only: ['create', 'store']),
 
@@ -53,7 +53,7 @@ class ProjectController extends Controller implements HasMiddleware
         ]);
 
         $query = Project::query()
-            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'basicSalaryTo','salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'basicSalaryTo', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
             ->with('externalCompany:id,name')
             ->withCount([
                 'aplications',
@@ -230,7 +230,8 @@ class ProjectController extends Controller implements HasMiddleware
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']);
+                __('translate.'.$request->projectData()['salary_type']).
+                (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : '');
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
@@ -265,6 +266,7 @@ class ProjectController extends Controller implements HasMiddleware
             'workingMode' => $request->projectData()['workingMode'],
             'typeOfContract' => $request->projectData()['typeOfContract'],
             'payoutMode' => $request->projectData()['payoutMode'],
+            'salary_period' => $request->projectData()['salaryPeriod'] ?? null,
             'workingPlace' => $request->projectData()['workingPlace'],
             'country' => $request->projectData()['country'],
             'workLoad' => $request->projectData()['workLoad'],
@@ -391,6 +393,7 @@ class ProjectController extends Controller implements HasMiddleware
                 'typesOfContract' => $dictionaries['typesOfContract'],
                 'workLoads' => $dictionaries['workLoads'],
                 'payoutModes' => $dictionaries['payoutModes'],
+                'salaryPeriods' => $dictionaries['salaryPeriods'],
                 'paySystems' => $dictionaries['paySystems'],
                 'days' => $dictionaries['days'],
                 'shiftWorks' => $dictionaries['shiftWorks'],
@@ -427,7 +430,8 @@ class ProjectController extends Controller implements HasMiddleware
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']);
+                __('translate.'.$request->projectData()['salary_type']).
+                (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : '');
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
@@ -462,6 +466,7 @@ class ProjectController extends Controller implements HasMiddleware
             'workingMode' => $request->projectData()['workingMode'],
             'typeOfContract' => $request->projectData()['typeOfContract'],
             'payoutMode' => $request->projectData()['payoutMode'],
+            'salary_period' => $request->projectData()['salaryPeriod'] ?? null,
             'workingPlace' => $request->projectData()['workingPlace'],
             'country' => $request->projectData()['country'],
             'workLoad' => $request->projectData()['workLoad'],

@@ -1817,4 +1817,6 @@ return [
     'address_required' => 'لطفاً یک آدرس را از پیشنهادهای تکمیل خودکار انتخاب کنید.',
     'selected_address' => 'آدرس انتخاب‌شده:',
     'noDetailProjectsSelected' => 'لطفاً حداقل یک مورد را از فهرست انتخاب کنید',
-    ];
+    'salaryPeriod' => 'نوع حقوق',
+
+];

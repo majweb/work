@@ -1844,4 +1844,5 @@ return [
     'address_required' => 'Zəhmət olmasa avtomatik tamamlama təkliflərindən ünvanı seçin.',
     'selected_address' => 'Seçilmiş ünvan:',
     'noDetailProjectsSelected' => 'Zəhmət olmasa, siyahıdan ən azı bir element seçin',
+    'salaryPeriod' => 'Maaş növü',
 ];

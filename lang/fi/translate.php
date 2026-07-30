@@ -1834,5 +1834,6 @@ return [
     'address_required' => 'Valitse osoite automaattisen täydennyksen ehdotuksista.',
     'selected_address' => 'Valittu osoite:',
     'noDetailProjectsSelected' => 'Valitse vähintään yksi kohde luettelosta',
+    'salaryPeriod' => 'Palkkatyyppi',
 
 ];

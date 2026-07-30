@@ -1835,5 +1835,7 @@ return [
     'address_required' => 'Awto-doldurmak tekliplerinden bir salgy saýlaň.',
     'selected_address' => 'Saýlanan salgy:',
     'noDetailProjectsSelected' => 'Sanawdan azyndan bir elementi saýlaň',
+    'salaryPeriod' => 'Aýlyk görnüşi',
+
 
 ];

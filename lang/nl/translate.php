@@ -1810,5 +1810,7 @@ return [
     'address_required' => 'Selecteer een adres uit de autocomplete-suggesties.',
     'selected_address' => 'Geselecteerd adres:',
     'noDetailProjectsSelected' => 'Selecteer ten minste één item uit de lijst',
+    'salaryPeriod' => 'Soort salaris',
+
 
 ];

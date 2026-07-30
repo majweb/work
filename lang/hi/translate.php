@@ -1834,4 +1834,6 @@ return [
     'address_required' => 'कृपया ऑटो-कम्प्लीट सुझावों से एक पता चुनें।',
     'selected_address' => 'चयनित पता:',
     'noDetailProjectsSelected' => 'कृपया सूची से कम से कम एक आइटम चुनें',
-    ];
+    'salaryPeriod' => 'वेतन का प्रकार',
+
+];

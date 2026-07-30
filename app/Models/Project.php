@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
-
     protected $fillable = [
         'user_id',
         'recruiter_id',
@@ -55,6 +54,7 @@ class Project extends Model
         'kraz',
         'external_company_id',
         'is_active',
+        'salary_period',
         'views_count',
         'image_generator',
         'langs',
@@ -88,6 +88,7 @@ class Project extends Model
         'cv' => 'array',
         'other_recruits' => 'array',
         'langs' => 'array',
+        'salary_period' => 'array',
         'basicSalaryFrom' => 'float',
         'basicSalaryTo' => 'float',
         'bonusSalaryFrom' => 'float',

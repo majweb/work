@@ -1836,4 +1836,6 @@ return [
     'address_required' => 'Por favor, selecione um endereço entre as sugestões de preenchimento automático.',
     'selected_address' => 'Endereço selecionado:',
     'noDetailProjectsSelected' => 'Por favor, selecione pelo menos um item da lista',
-    ];
+    'salaryPeriod' => 'Tipo de salário',
+
+];

@@ -1834,4 +1834,6 @@ return [
     'address_required' => 'Խնդրում ենք ընտրել հասցե ավտոլրացման առաջարկներից։',
     'selected_address' => 'Ընտրված հասցե՝',
     'noDetailProjectsSelected' => 'Խնդրում ենք ընտրել ցանկից առնվազն մեկ տարր',
+    'salaryPeriod' => 'Աշխատավարձի տեսակը',
+
 ];

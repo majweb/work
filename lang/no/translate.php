@@ -1810,4 +1810,6 @@ return [
     'address_required' => 'Velg en adresse fra autofullføringsforslagene.',
     'selected_address' => 'Valgt adresse:',
     'noDetailProjectsSelected' => 'Velg minst ett element fra listen',
-    ];
+    'salaryPeriod' => 'Lønnstype',
+
+];

@@ -1814,5 +1814,7 @@ return [
     'address_required' => 'Wielt w.e.g. eng Adress aus den Autocomplete-Virschléi aus.',
     'selected_address' => 'Ausgewielte Adress:',
     'noDetailProjectsSelected' => 'Wielt w.e.g. mindestens ee Punkt aus der Lëscht',
+    'salaryPeriod' => 'Aart vum Gehalt',
+
 
 ];

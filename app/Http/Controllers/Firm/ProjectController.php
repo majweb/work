@@ -45,7 +45,7 @@ class ProjectController extends Controller
             'external_company' => ['nullable', 'integer'],
         ]);
         $query = Project::query()
-            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom','basicSalaryTo', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
+            ->select('id', 'position', 'cityWork', 'countryWork', 'basicSalaryFrom', 'basicSalaryTo', 'salary_type', 'inclusive_recruitment', 'currency', 'is_active', 'views_count', 'created_at', 'updated_at', 'user_id', 'profession', 'external_company_id')
             ->with(['recruit', 'externalCompany:id,name'])
             ->withCount([
                 'aplications',
@@ -234,7 +234,8 @@ class ProjectController extends Controller
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']);
+                __('translate.'.$request->projectData()['salary_type']).
+                (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : '');
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
@@ -280,6 +281,7 @@ class ProjectController extends Controller
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'salary_type' => $request->projectData()['salary_type'],
+            'salary_period' => $request->projectData()['salaryPeriod'] ?? null,
             'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
             'bonusSalaryTo' => $request->projectData()['bonusSalaryTo'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
@@ -396,6 +398,7 @@ class ProjectController extends Controller
                 'welcomes' => $dictionaries['welcomes'],
                 'educations' => $dictionaries['educations'],
                 'project' => $project,
+                'salaryPeriods' => $dictionaries['salaryPeriods'],
                 'cvs' => $dictionaries['cvs'],
                 'langLevels' => $dictionaries['langLevels'],
                 'externalCompanies' => $externalCompanies,
@@ -423,7 +426,8 @@ class ProjectController extends Controller
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']);
+                __('translate.'.$request->projectData()['salary_type']).
+                (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : '');
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
@@ -468,6 +472,7 @@ class ProjectController extends Controller
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'salary_type' => $request->projectData()['salary_type'],
+            'salary_period' => $request->projectData()['salaryPeriod'] ?? null,
             'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
             'bonusSalaryTo' => $request->projectData()['bonusSalaryTo'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],
@@ -541,7 +546,7 @@ class ProjectController extends Controller
     public function getCategoryDetails(Category $category)
     {
         return response()->json([
-            'detailprojects' => $category->detailprojects
+            'detailprojects' => $category->detailprojects,
         ]);
     }
 
@@ -634,6 +639,10 @@ class ProjectController extends Controller
                     'basicSalaryFrom' => ['required', 'numeric', 'between:1,99999.99'],
                     'basicSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:basicSalaryFrom'],
                     'salary_type' => ['required', 'in:brutto,netto'],
+                    'salaryPeriod' => ['nullable', 'array'],
+                    'salaryPeriod.id' => ['nullable', 'exists:App\Models\SalaryPeriod,id'],
+                    'salaryPeriod.name' => ['nullable', 'string'],
+                    'salaryPeriod.allTranslations' => ['nullable', 'array'],
                     'inclusive_recruitment' => ['nullable', 'boolean'],
                     'bonusSalaryFrom' => ['nullable', 'numeric', 'between:1,99999.99'],
                     'bonusSalaryTo' => ['nullable', 'numeric', 'between:1,99999.99', 'gt:bonusSalaryFrom'],

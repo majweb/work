@@ -1833,4 +1833,6 @@ return [
     'address_required' => 'Seleziona un indirizzo tra i suggerimenti di completamento automatico.',
     'selected_address' => 'Indirizzo selezionato:',
     'noDetailProjectsSelected' => 'Seleziona almeno un elemento dall\'elenco',
-    ];
+    'salaryPeriod' => 'Tipo di stipendio',
+
+];

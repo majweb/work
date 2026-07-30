@@ -355,7 +355,8 @@ class JobOfferController extends Controller
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']);
+                __('translate.'.$request->projectData()['salary_type']).
+                (isset($request->projectData()['salaryPeriod']) ? ' / '.($request->projectData()['salaryPeriod']['allTranslations']['name'][$lang] ?? $request->projectData()['salaryPeriod']['name']) : '');
         }
 
         $langs = [];
@@ -403,6 +404,7 @@ class JobOfferController extends Controller
             'basicSalaryFrom' => $request->projectData()['basicSalaryFrom'],
             'basicSalaryTo' => $request->projectData()['basicSalaryTo'],
             'salary_type' => $request->projectData()['salary_type'],
+            'salary_period' => $request->projectData()['salaryPeriod'] ?? null,
             'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
             'payoutMode' => $request->projectData()['payoutMode'],
             'paySystem' => $request->projectData()['paySystem'],

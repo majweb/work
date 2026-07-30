@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
+class SalaryPeriod extends Model
+{
+    use HasFactory;
+    use HasTranslations;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    protected $casts = [
+        'name' => 'array',
+    ];
+
+    public array $translatable = ['name'];
+
+    public function projects(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Project::class, 'salary_period');
+    }
+}

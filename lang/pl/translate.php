@@ -1831,9 +1831,10 @@ return [
     'not_found_position' => 'Nie znalazłeś stanowiska? Zgłoś je nam!',
     'position_name_placeholder' => 'Wpisz nazwę brakującego stanowiska...',
     'error_occurred' => 'Wystąpił nieoczekiwany błąd. Prosimy spróbować ponownie.',
-    'generator_desc'=>'Po udostępnieniu linku w mediach społecznościowych wyświetla się grafika podglądu. Tutaj możesz wybrać jedną z 8 przygotowanych przez nas grafik, która będzie prezentowana wraz z Twoim linkiem na Facebooku, LinkedIn i innych platformach. Dzięki temu Twoje publikacje będą bardziej atrakcyjne i łatwiej przyciągną uwagę odbiorców.',
+    'generator_desc' => 'Po udostępnieniu linku w mediach społecznościowych wyświetla się grafika podglądu. Tutaj możesz wybrać jedną z 8 przygotowanych przez nas grafik, która będzie prezentowana wraz z Twoim linkiem na Facebooku, LinkedIn i innych platformach. Dzięki temu Twoje publikacje będą bardziej atrakcyjne i łatwiej przyciągną uwagę odbiorców.',
     'address_required' => 'Proszę wybrać adres z podpowiedzi autocomplete.',
     'selected_address' => 'Wybrany adres:',
     'noDetailProjectsSelected' => 'Wybierz choć jedną pozycję z listy',
+    'salaryPeriod' => 'Typ wynagrodzenia',
 
 ];

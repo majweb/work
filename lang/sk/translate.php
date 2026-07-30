@@ -1836,4 +1836,6 @@ return [
     'address_required' => 'Vyberte adresu z návrhov automatického dopĺňania.',
     'selected_address' => 'Vybraná adresa:',
     'noDetailProjectsSelected' => 'Vyberte prosím aspoň jednu položku zo zoznamu',
-    ];
+    'salaryPeriod' => 'Typ mzdy',
+
+];

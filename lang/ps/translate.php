@@ -1836,5 +1836,7 @@ return [
     'address_required' => 'مهرباني وکړئ د اتومات بشپړولو له وړاندیزونو څخه یو پته وټاکئ.',
     'selected_address' => 'ټاکل شوی پته:',
     'noDetailProjectsSelected' => 'مهرباني وکړئ له لیست څخه لږ تر لږه یو توکی وټاکئ',
+    'salaryPeriod' => 'د معاش ډول',
+
 
 ];

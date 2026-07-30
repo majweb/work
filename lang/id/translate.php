@@ -1834,4 +1834,6 @@ return [
     'address_required' => 'Silakan pilih alamat dari saran autocomplete.',
     'selected_address' => 'Alamat yang dipilih:',
     'noDetailProjectsSelected' => 'Silakan pilih setidaknya satu item dari daftar',
-    ];
+    'salaryPeriod' => 'Jenis gaji',
+
+];

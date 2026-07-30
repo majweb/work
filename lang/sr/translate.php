@@ -1836,5 +1836,7 @@ return [
     'address_required' => 'Молимо изаберите адресу из предлога аутоматског попуњавања.',
     'selected_address' => 'Изабрана адреса:',
     'noDetailProjectsSelected' => 'Молимо изаберите бар једну ставку са листе',
+    'salaryPeriod' => 'Vrsta plate',
+
 
 ];

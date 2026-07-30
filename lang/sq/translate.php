@@ -1836,5 +1836,7 @@ return [
     'address_required' => 'Ju lutemi zgjidhni një adresë nga sugjerimet e plotësimit automatik.',
     'selected_address' => 'Adresa e zgjedhur:',
     'noDetailProjectsSelected' => 'Prosimo, izberite vsaj en element s seznama',
+    'salaryPeriod' => 'Lloji i pagës',
+
 
 ];
