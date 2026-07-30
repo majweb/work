@@ -406,6 +406,7 @@ class JobOfferController extends Controller
             'salary_type' => $request->projectData()['salary_type'],
             'salary_period' => $request->projectData()['salaryPeriod'] ?? null,
             'inclusive_recruitment' => $request->projectData()['inclusive_recruitment'] ?? false,
+            'disability_friendly' => $request->projectData()['disability_friendly'] ?? false,
             'payoutMode' => $request->projectData()['payoutMode'],
             'paySystem' => $request->projectData()['paySystem'],
             'bonusSalaryFrom' => $request->projectData()['bonusSalaryFrom'],

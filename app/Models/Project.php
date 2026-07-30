@@ -30,6 +30,7 @@ class Project extends Model
         'basicSalaryTo',
         'salary_type',
         'inclusive_recruitment',
+        'disability_friendly',
         'bonusSalaryFrom',
         'bonusSalaryTo',
         'hoursFrom',
@@ -65,6 +66,7 @@ class Project extends Model
     protected $casts = [
         'is_active' => 'boolean',
         'inclusive_recruitment' => 'boolean',
+        'disability_friendly' => 'boolean',
         'title' => 'array',
         'category' => 'array',
         'currency' => 'array',

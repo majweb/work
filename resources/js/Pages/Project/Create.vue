@@ -232,6 +232,7 @@ const form = useForm({
     lat: '',
     lng: '',
     inclusive_recruitment: false,
+    disability_friendly: false,
     cv: [],
     kraz: '',
     questions: [],
@@ -1614,6 +1615,25 @@ onMounted(() => {
                                     </div>
                                     <InputError :message="form.errors.inclusive_recruitment" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
                                 </div>
+
+                                <div>
+                                    <InputLabel :value="__('translate.disability_friendly')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4" />
+                                    <div class="flex items-center gap-4 bg-gray-50/50 p-4 rounded-2xl border border-gray-100/50 cursor-pointer transition-all hover:bg-white hover:shadow-md h-[58px]"
+                                         @click="form.disability_friendly = !form.disability_friendly">
+                                        <div class="relative flex items-center justify-center">
+                                            <input
+                                                type="checkbox"
+                                                v-model="form.disability_friendly"
+                                                class="peer sr-only"
+                                            />
+                                            <div class="h-6 w-6 rounded-lg border-2 border-white bg-white shadow-sm transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent flex items-center justify-center">
+                                                <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs font-black text-gray-500 uppercase tracking-widest leading-tight">{{ __('translate.yes') }}</span>
+                                    </div>
+                                    <InputError :message="form.errors.disability_friendly" class="mt-4 text-[10px] font-black uppercase tracking-widest"/>
+                                </div>
                             </div>
 
                             <!-- Tryb wypłaty -->
@@ -1989,6 +2009,9 @@ onMounted(() => {
                                             <img v-else-if="offer.id == 20" class="w-20 h-20" src="/images/icons/offers/brak_dres_codeu.png" alt="brak_dres_codeu">
                                             <img v-else-if="offer.id == 21" class="w-20 h-20" src="/images/icons/offers/nagrody_pracownicze.png" alt="nagrody_pracownicze">
                                             <img v-else-if="offer.id == 22" class="w-20 h-20" src="/images/icons/offers/dofinansowanie_do_transportu.png" alt="dofinansowanie_do_transportu">
+                                            <img v-else-if="offer.id == 23" class="w-20 h-20" src="/images/icons/offers/zakwaterowanie.png" alt="zakwaterowanie">
+                                            <img v-else-if="offer.id == 24" class="w-20 h-20" src="/images/icons/offers/wyzywienie.png" alt="wyzywienie">
+                                            <img v-else-if="offer.id == 25" class="w-20 h-20" src="/images/icons/offers/transport.png" alt="transport">
                                         </div>
                                         <h3 class="font-black text-[10px] uppercase tracking-widest mb-3 leading-tight" :class="form.offer.some(item => item.id === offer.id) ? 'text-white' : 'text-gray-900'">{{ offer.name }}</h3>
 

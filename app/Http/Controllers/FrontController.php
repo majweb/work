@@ -276,6 +276,11 @@ class FrontController extends Controller
                 $query->whereJsonContains('workLoad', ['value' => $workLoadId]);
             }
 
+            // Filtrowanie po niepełnosprawności
+            if (request('disability_friendly')) {
+                $query->where('disability_friendly', true);
+            }
+
             $projects = $query->paginate(5)->withQueryString();
 
             $countries = (new Helper)->makeCountriesToSelectHasProjects();
@@ -337,6 +342,7 @@ class FrontController extends Controller
                 'categoryFront' => $category ? new MultiselectWithoutDetailResource($category) : null,
                 'cityFront' => $cityFront,
                 'distanceFront' => $distanceFront,
+                'disabilityFront' => (bool) request('disability_friendly'),
                 'lat' => $lat,
                 'lng' => $lng,
                 'country' => $country,

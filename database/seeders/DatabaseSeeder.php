@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             LevelEducationSeeder::class,
             CvTypeSeeder::class,
             LangLevelSeeder::class,
+            SalaryPeriodSeeder::class,
 
             // Detale
             DetailProjectHandelPart1Seeder::class,
@@ -89,7 +90,7 @@ class DatabaseSeeder extends Seeder
             CountryImagesSeeder::class,
             FoundationCategorySeeder::class,
             IntegrationSeeder::class,
-            AgreementSeeder::class
+            AgreementSeeder::class,
         ]);
 
     }

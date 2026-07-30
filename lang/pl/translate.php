@@ -1836,5 +1836,6 @@ return [
     'selected_address' => 'Wybrany adres:',
     'noDetailProjectsSelected' => 'Wybierz choć jedną pozycję z listy',
     'salaryPeriod' => 'Typ wynagrodzenia',
+    'disability_friendly' => 'Oferta dla osób z niepełnosprawnościami',
 
 ];

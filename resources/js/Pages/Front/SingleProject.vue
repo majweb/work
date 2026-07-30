@@ -198,8 +198,9 @@ onMounted(async () => {
                         <div class="relative z-10">
                             <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4">{{ __('translate.jobOffer') }} #{{ project.id }}</p>
                             <div class="flex flex-col md:flex-row md:items-end gap-4">
-                                <h1 class="text-2xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl">
+                                <h1 class="text-2xl md:text-5xl font-black text-white uppercase tracking-tight leading-none max-w-3xl flex items-center gap-4">
                                     {{ getPositionTitle(project) }}
+                                    <img v-if="project.disability_friendly" src="/images/icons/disability.png" class="w-8 h-8 md:w-12 md:h-12 object-contain bg-white rounded-full p-1" alt="Disability friendly">
                                 </h1>
                                 <p v-if="project.inclusive_recruitment" class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">
                                     {{ __('translate.sickPeople') }}
@@ -355,6 +356,7 @@ onMounted(async () => {
                                     </span>
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Opis stanowiska -->
@@ -517,6 +519,17 @@ onMounted(async () => {
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div v-if="project.disability_friendly" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gray-50">
+                                            <div class="flex items-center gap-4">
+                                                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100 shadow-sm">
+                                                    <img src="/images/icons/disability.png" alt="disability icon" class="w-8 h-8" />
+                                                </div>
+                                                <div>
+                                                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ __('translate.disability_friendly') }}</p>
+                                                    <p class="text-sm font-black text-[#0A2C5C] uppercase tracking-tight">{{ __('translate.yes') }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -670,6 +683,7 @@ onMounted(async () => {
                                                         <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest truncate">
                                                             {{ similar.cityWork }}
                                                         </p>
+                                                        <img v-if="similar.disability_friendly" src="/images/icons/disability.png" class="w-3 h-3 object-contain" :title="__('translate.disability_friendly')">
                                                     </div>
                                                 </div>
                                             </div>

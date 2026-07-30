@@ -31,6 +31,7 @@ const props = defineProps({
     countryFront: Object,
     categoryFront: Object,
     cityFront: Object,
+    disabilityFront: Boolean,
     page: Object,
     distanceOptions: Array,
     distanceFront: Object,
@@ -57,6 +58,7 @@ const form = useForm({
     profession: undefined,
     position: undefined,
     workingMode: undefined,
+    disability_friendly: props.disabilityFront ?? false,
     experience: undefined,
     typeOfContract: undefined,
     workLoad: undefined,
@@ -226,7 +228,7 @@ const toggleFilters = () => {
 };
 
 const isFilterActive = computed(() => {
-    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.workingMode || form.experience || form.typeOfContract || form.workLoad || (form.distance && form.distance.value));
+    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.workingMode || form.experience || form.typeOfContract || form.workLoad || form.disability_friendly || (form.distance && form.distance.value));
 });
 
 
@@ -241,6 +243,7 @@ const submit = () => {
         profession: form.profession?.value ?? null,
         position: form.position?.value ?? null,
         workingMode: form.workingMode?.value ?? null,
+        disability_friendly: form.disability_friendly ? 1 : null,
         experience: form.experience?.value ?? null,
         typeOfContract: form.typeOfContract?.value ?? null,
         workLoad: form.workLoad?.value ?? null,
@@ -562,6 +565,22 @@ const isSearching = ref(false);
                                     </Multiselect>
                                     <InputError :message="form.errors.workingMode" class="mt-2"/>
                                 </div>
+
+                                <!-- Disability Friendly Filter -->
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">{{ __('translate.disability_friendly') }}</label>
+                                    <div class="flex items-center gap-4 bg-white p-3 rounded-2xl border border-gray-100 cursor-pointer transition-all hover:bg-gray-50 h-[43px]"
+                                         @click="form.disability_friendly = !form.disability_friendly">
+                                        <div class="relative flex items-center justify-center">
+                                            <input type="checkbox" v-model="form.disability_friendly" class="peer sr-only" />
+                                            <div class="h-6 w-6 rounded-lg border-2 border-gray-100 bg-white shadow-sm transition-all peer-checked:bg-[#0A2C5C] peer-checked:border-transparent flex items-center justify-center">
+                                                <svg class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" /></svg>
+                                            </div>
+                                        </div>
+                                        <span class="text-[10px] font-black text-gray-500 uppercase tracking-widest leading-tight">{{ __('translate.yes') }}</span>
+                                    </div>
+                                    <InputError :message="form.errors.disability_friendly" class="mt-2"/>
+                                </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <!-- Select Experience -->
@@ -681,6 +700,9 @@ const isSearching = ref(false);
                                             {{ getPositionTitle(project) }}
                                             <span v-if="project.inclusive_recruitment" class="shrink-0 px-2 py-0.5 bg-blue-50 text-blue-500 text-[9px] font-black uppercase tracking-wider rounded-md border border-blue-100/50">
                                                 {{ __('translate.sickPeople') }}
+                                            </span>
+                                            <span v-if="project.disability_friendly" class="shrink-0" :title="__('translate.disability_friendly')">
+                                                <img src="/images/icons/disability.png" class="w-5 h-5 object-contain" alt="Disability friendly">
                                             </span>
                                         </h4>
                                     </div>

@@ -253,6 +253,13 @@ onMounted(async () => {
                                         {{ __('translate.yes') }}
                                     </p>
                                 </div>
+                                <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 flex items-center gap-4" v-if="props.project.disability_friendly">
+                                    <img src="/images/icons/disability.png" class="w-8 h-8 object-contain" alt="Disability friendly">
+                                    <div>
+                                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{{ __('translate.disability_friendly') }}</p>
+                                        <p class="text-sm font-black text-blue-600 uppercase tracking-tight">{{ __('translate.yes') }}</p>
+                                    </div>
+                                </div>
                                 <div class="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100/50 col-span-1 md:col-span-2 flex items-center gap-4" v-if="props.project.title">
                                     <div>
                                         <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">{{ __('translate.projectTitleLabel') }}</p>

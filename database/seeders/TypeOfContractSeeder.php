@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -84,11 +83,11 @@ class TypeOfContractSeeder extends Seeder
                     'uk' => 'Трудовий договір', // Ukraiński
                     'uz' => 'Mehnat shartnomasi', // Uzbecki
                     'vi' => 'Hợp đồng lao động', // Wietnamski
-                    'zh' => '劳动合同' // Chiński
+                    'zh' => '劳动合同', // Chiński
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],[
+                'updated_at' => date('Y-m-d H:i:s'),
+            ], [
                 'id' => 2,
                 'name' => json_encode([
                     'am' => 'የግል እንቅስቃሴ ውል', // Amharski
@@ -153,11 +152,11 @@ class TypeOfContractSeeder extends Seeder
                     'uk' => 'Договір доручення', // Ukraiński
                     'uz' => 'Vakolatnoma shartnomasi', // Uzbecki
                     'vi' => 'Hợp đồng ủy nhiệm', // Wietnamski
-                    'zh' => '委托合同' // Chiński
+                    'zh' => '委托合同', // Chiński
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],[
+                'updated_at' => date('Y-m-d H:i:s'),
+            ], [
                 'id' => 3,
                 'name' => json_encode([
                     'pl' => 'Umowa o dzieło',
@@ -223,10 +222,10 @@ class TypeOfContractSeeder extends Seeder
                     'uk' => 'Договір на виконання робіт', // Ukraiński
                     'uz' => 'Muayyan ish uchun shartnoma', // Uzbecki
                     'vi' => 'Hợp đồng lao động cho công việc cụ thể', // Wietnamski
-                    'zh' => '特定工作的合同' // Chiński
+                    'zh' => '特定工作的合同', // Chiński
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'id' => 4,
@@ -293,10 +292,10 @@ class TypeOfContractSeeder extends Seeder
                     'uk' => 'Бізнес для бізнесу (B2B)', // Ukraiński
                     'uz' => 'Biznesdan biznesga (B2B)', // Uzbecki
                     'vi' => 'Doanh nghiệp với doanh nghiệp (B2B)', // Wietnamski
-                    'zh' => '企业对企业 (B2B)' // Chiński
+                    'zh' => '企业对企业 (B2B)', // Chiński
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'id' => 5,
@@ -363,11 +362,81 @@ class TypeOfContractSeeder extends Seeder
                     'uk' => 'Контракт', // Ukraiński
                     'uz' => 'Shartnoma', // Uzbecki
                     'vi' => 'Hợp đồng', // Wietnamski
-                    'zh' => '合同' // Chiński
+                    'zh' => '合同', // Chiński
                 ]),
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'id' => 6,
+                'name' => json_encode([
+                    'am' => 'የኤጀንሲ ውል',
+                    'ar' => 'عقد وكالة',
+                    'az' => 'Agentlik müqaviləsi',
+                    'be' => 'Агенцкі дагавор',
+                    'bg' => 'Агенционен договор',
+                    'bn' => 'এজেন্সি চুক্তি',
+                    'bs' => 'Agencijski ugovor',
+                    'ca' => 'Contracte d’agència',
+                    'cs' => 'Agenturní smlouva',
+                    'da' => 'Agenturaftale',
+                    'de' => 'Agenturvertrag',
+                    'dv' => 'އޭޖެންސީ އެއްބަސްވުން',
+                    'dz' => 'ལས་ཚོགས་གན་རྒྱ།',
+                    'el' => 'Σύμβαση αντιπροσωπείας',
+                    'en' => 'Agency contract',
+                    'es' => 'Contrato de agencia',
+                    'et' => 'Agentuurileping',
+                    'fa' => 'قرارداد نمایندگی',
+                    'fi' => 'Agenttisopimus',
+                    'fr' => 'Contrat d’agence',
+                    'he' => 'חוזה סוכנות',
+                    'hi' => 'एजेंसी अनुबंध',
+                    'hr' => 'Ugovor o zastupanju',
+                    'hu' => 'Ügynöki szerződés',
+                    'hy' => 'Գործակալության պայմանագիր',
+                    'id' => 'Kontrak keagenan',
+                    'is' => 'Umboðssamningur',
+                    'it' => 'Contratto di agenzia',
+                    'ja' => '代理店契約',
+                    'ka' => 'სააგენტო ხელშეკრულება',
+                    'km' => 'កិច្ចសន្យាភ្នាក់ងារ',
+                    'ko' => '대리점 계약',
+                    'lb' => 'Agencevertrag',
+                    'lo' => 'ສັນຍາຕົວແທນ',
+                    'lt' => 'Agentūros sutartis',
+                    'lv' => 'Aģentūras līgums',
+                    'me' => 'Agencijski ugovor',
+                    'mk' => 'Агенциски договор',
+                    'mn' => 'Агентын гэрээ',
+                    'ms' => 'Kontrak agensi',
+                    'my' => 'အေဂျင်စီစာချုပ်',
+                    'ne' => 'एजेन्सी सम्झौता',
+                    'nl' => 'Agentuurovereenkomst',
+                    'no' => 'Agenturavtale',
+                    'pl' => 'Umowa agencyjna',
+                    'ps' => 'د استازولۍ تړون',
+                    'pt' => 'Contrato de agência',
+                    'ro' => 'Contract de agenție',
+                    'ru' => 'Агентский договор',
+                    'si' => 'නියෝජිත ගිවිසුම',
+                    'sk' => 'Agentská zmluva',
+                    'sl' => 'Agencijska pogodba',
+                    'sq' => 'Kontratë agjencie',
+                    'sr' => 'Агенцијски уговор',
+                    'sv' => 'Agenturavtal',
+                    'tg' => 'Шартномаи агентӣ',
+                    'th' => 'สัญญาตัวแทน',
+                    'tk' => 'Agentlik şertnamasy',
+                    'tr' => 'Acentelik sözleşmesi',
+                    'uk' => 'Агентський договір',
+                    'uz' => 'Agentlik shartnomasi',
+                    'vi' => 'Hợp đồng đại lý',
+                    'zh' => '代理合同',
+                ]),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ];
         DB::table('type_of_contracts')->insert($types);
     }
