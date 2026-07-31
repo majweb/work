@@ -162,6 +162,7 @@ watch(() => filters.value.country, async (newCountry) => {
 });
 
 const offerToToggle = ref(null);
+const showCopySuccessModal = ref(false);
 const activeMenuId = ref(null);
 const selectedIds = ref([]);
 
@@ -324,6 +325,27 @@ const updateFilters = () => {
         preserveState: true,
         preserveScroll: true,
         replace: true
+    });
+};
+
+const copyPublicLink = () => {
+    const params = {
+        search: filters.value.search,
+        category: filters.value.category?.value !== undefined ? filters.value.category.value : filters.value.category,
+        categorySub: filters.value.categorySub?.value !== undefined ? filters.value.categorySub.value : filters.value.categorySub,
+        profession: filters.value.profession?.value !== undefined ? filters.value.profession.value : filters.value.profession,
+        country: filters.value.country?.value !== undefined ? filters.value.country.value : filters.value.country,
+        city: filters.value.city?.value !== undefined ? filters.value.city.value : (filters.value.city?.name || filters.value.city),
+    };
+
+    const cleanParams = pickBy(params, (value) => {
+        return value !== null && value !== '' && value !== undefined;
+    });
+
+    const publicUrl = route('front.projects', cleanParams);
+
+    navigator.clipboard.writeText(publicUrl).then(() => {
+        showCopySuccessModal.value = true;
     });
 };
 
@@ -841,6 +863,16 @@ const getTranslation = (value) => {
                                         </Multiselect>
                                     </div>
                                     <button
+                                        @click="copyPublicLink"
+                                        class="py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm font-black uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2"
+                                        title="Kopiuj link do widoku publicznego z tymi filtrami"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                        </svg>
+                                        Kopiuj Link
+                                    </button>
+                                    <button
                                         @click="resetFilters"
                                         class="py-4 px-6 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-2xl text-sm font-black uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2"
                                     >
@@ -1192,6 +1224,30 @@ const getTranslation = (value) => {
                         {{ __('translate.activate') || 'Aktywuj' }}
                     </button>
                 </div>
+            </template>
+        </DialogModal>
+
+        <!-- Copy Success Modal -->
+        <DialogModal :show="showCopySuccessModal" @close="showCopySuccessModal = false">
+            <template #title>
+                <div class="flex items-center gap-3 text-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    Sukces
+                </div>
+            </template>
+
+            <template #content>
+                <p class="text-sm text-gray-600 font-bold">
+                    Link do widoku publicznego został pomyślnie skopiowany do schowka!
+                </p>
+            </template>
+
+            <template #footer>
+                <SecondaryButton @click="showCopySuccessModal = false">
+                    Zamknij
+                </SecondaryButton>
             </template>
         </DialogModal>
     </AppLayout>
