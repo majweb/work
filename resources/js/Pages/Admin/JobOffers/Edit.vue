@@ -2155,7 +2155,7 @@ onMounted(async () => {
 
     .multiselect__option--selected {
         background: #f3f4f6 !important;
-        color: #0A2C5C;
+        color: #0A2C5C !important;
         font-weight: 900;
 
         &:after {

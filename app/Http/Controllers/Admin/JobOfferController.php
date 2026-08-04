@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruit\StoreProject;
+use App\Http\Resources\LanguageResource;
 use App\Http\Resources\MultiselectWithoutDetailResource;
 use App\Http\Resources\OtherRecruitsResource;
 use App\Lang\Lang;
 use App\Models\Category;
 use App\Models\ExternalCompany;
+use App\Models\LangLevel;
 use App\Models\Project;
 use App\Models\User;
 use App\Services\DictionaryService;
@@ -112,6 +114,22 @@ class JobOfferController extends Controller
                 : ['value' => 'inactive', 'name' => 'Nieaktywne'];
         }
 
+        $languages = LanguageResource::collection(Lang::cases())->toArray($request);
+        $langLevels = LangLevel::all()->map(fn($level) => [
+            'id' => $level->id,
+            'name' => $level->name,
+        ]);
+
+        $selectedLanguage = null;
+        if ($request->filled('language')) {
+            $selectedLanguage = collect($languages)->firstWhere('value', $request->language);
+        }
+
+        $selectedLanguageLevel = null;
+        if ($request->filled('language_level')) {
+            $selectedLanguageLevel = $langLevels->firstWhere('id', (int) $request->language_level);
+        }
+
         return Inertia::render('Admin/JobOffers/Index', [
             'offers' => $query->paginate(20)->withQueryString(),
             'filters' => array_merge(
@@ -125,6 +143,8 @@ class JobOfferController extends Controller
                     'profession' => $selectedProfession,
                     'positionSelect' => $selectedPosition,
                     'status' => $selectedStatus,
+                    'language' => $selectedLanguage,
+                    'language_level' => $selectedLanguageLevel,
                 ]
             ),
             'stats' => $stats,
@@ -132,6 +152,8 @@ class JobOfferController extends Controller
             'recruiters' => $recruiters,
             'categories' => $categories,
             'countries' => $countries,
+            'languages' => $languages,
+            'langLevels' => $langLevels,
         ]);
     }
 
@@ -208,6 +230,14 @@ class JobOfferController extends Controller
         if ($request->filled('positionSelect')) {
             $positionValue = (int) $request->positionSelect;
             $query->whereJsonContains('position', ['value' => $positionValue]);
+        }
+
+        if ($request->filled('language')) {
+            $query->whereJsonContains('langs', [['name' => ['value' => $request->language]]]);
+        }
+
+        if ($request->filled('language_level')) {
+            $query->whereJsonContains('langs', [['level' => ['id' => (int) $request->language_level]]]);
         }
 
         $sort = $request->get('sort', 'created_at');

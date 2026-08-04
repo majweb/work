@@ -95,11 +95,31 @@
 .custom-multiselect .multiselect__option--highlight {
     background: #0A2C5C !important;
     outline: none;
-    color: white;
+    color: white !important;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+.custom-multiselect .multiselect__option--highlight::after {
+    background: #0A2C5C !important;
+    color: white !important;
+}
+
+.custom-multiselect .multiselect__option--selected {
+    background: #f3f4f6 !important;
+    color: #0A2C5C !important;
+}
+
+.custom-multiselect .multiselect__option--selected.multiselect__option--highlight {
+    background: #0A2C5C !important;
+    color: white !important;
+}
+
+.custom-multiselect .multiselect__option--selected.multiselect__option--highlight::after {
+    background: #0A2C5C !important;
+    color: white !important;
 }
 
 .custom-multiselect .multiselect__option {

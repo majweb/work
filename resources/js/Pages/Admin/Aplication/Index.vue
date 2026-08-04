@@ -927,6 +927,18 @@ onMounted(async () => {
             }
             &--selected {
                 @apply bg-gray-100 text-[#0A2C5C] font-black;
+
+                &.multiselect__option--highlight {
+                    @apply bg-[#0A2C5C] text-white;
+
+                    &::after {
+                        @apply bg-[#0A2C5C] text-white;
+                    }
+                }
+
+                &::after {
+                    @apply bg-transparent text-[#0A2C5C];
+                }
             }
         }
     }

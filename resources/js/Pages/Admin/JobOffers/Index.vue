@@ -18,6 +18,8 @@ const props = defineProps({
     companies: Array,
     categories: Array,
     countries: Array,
+    languages: Array,
+    langLevels: Array,
 });
 
 const filters = ref({
@@ -35,6 +37,8 @@ const filters = ref({
     profession: props.filters.profession || null,
     positionSelect: props.filters.positionSelect || null,
     country: props.filters.country || null,
+    language: props.filters.language || null,
+    language_level: props.filters.language_level || null,
 });
 
 const statusOptions = [
@@ -194,6 +198,8 @@ const exportCsv = () => {
         profession: filters.value.profession?.value !== undefined ? filters.value.profession.value : filters.value.profession,
         positionSelect: filters.value.positionSelect?.value !== undefined ? filters.value.positionSelect.value : filters.value.positionSelect,
         country: filters.value.country?.value !== undefined ? filters.value.country.value : filters.value.country,
+        language: filters.value.language?.value !== undefined ? filters.value.language.value : filters.value.language,
+        language_level: filters.value.language_level?.id !== undefined ? filters.value.language_level.id : filters.value.language_level,
         city: filters.value.city?.value !== undefined ? filters.value.city.value : (filters.value.city?.name || filters.value.city),
     };
 
@@ -283,6 +289,8 @@ const resetFilters = () => {
         profession: null,
         positionSelect: null,
         country: null,
+        language: null,
+        language_level: null,
     };
     optionsCategorySub.value = [];
     optionsProfession.value = [];
@@ -313,6 +321,8 @@ const updateFilters = () => {
         profession: filters.value.profession?.value !== undefined ? filters.value.profession.value : filters.value.profession,
         positionSelect: filters.value.positionSelect?.value !== undefined ? filters.value.positionSelect.value : filters.value.positionSelect,
         country: filters.value.country?.value !== undefined ? filters.value.country.value : filters.value.country,
+        language: filters.value.language?.value !== undefined ? filters.value.language.value : filters.value.language,
+        language_level: filters.value.language_level?.id !== undefined ? filters.value.language_level.id : filters.value.language_level,
         city: filters.value.city?.value !== undefined ? filters.value.city.value : (filters.value.city?.name || filters.value.city),
     };
 
@@ -378,6 +388,14 @@ watch(() => filters.value.recruiter, () => {
 });
 
 watch(() => filters.value.country, () => {
+    updateFilters();
+});
+
+watch(() => filters.value.language, () => {
+    updateFilters();
+});
+
+watch(() => filters.value.language_level, () => {
     updateFilters();
 });
 
@@ -722,6 +740,62 @@ const getTranslation = (value) => {
                                         type="date"
                                         class="block w-full py-4 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all font-medium"
                                     />
+                                </div>
+                            </div>
+
+                            <!-- Advanced Row: Język, Poziom języka -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label
+                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Język</label>
+                                    <Multiselect
+                                        class="custom-multiselect"
+                                        v-model="filters.language"
+                                        :options="languages"
+                                        :close-on-select="true"
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        placeholder="Język"
+                                        label="label"
+                                        track-by="value"
+                                    >
+                                        <template #noResult>
+                                            <span>{{ __('translate.noResult') }}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{ __('translate.noOptions') }}</span>
+                                        </template>
+                                    </Multiselect>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Poziom języka</label>
+                                    <Multiselect
+                                        class="custom-multiselect"
+                                        v-model="filters.language_level"
+                                        :options="langLevels"
+                                        :close-on-select="true"
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        placeholder="Poziom języka"
+                                        label="name"
+                                        track-by="id"
+                                    >
+                                        <template #noResult>
+                                            <span>{{ __('translate.noResult') }}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{ __('translate.noOptions') }}</span>
+                                        </template>
+                                    </Multiselect>
                                 </div>
                             </div>
 
@@ -1296,14 +1370,17 @@ const getTranslation = (value) => {
 
             &--selected {
                 @apply bg-gray-100 text-[#0A2C5C] font-black;
-                &--highlight {
+
+                &.multiselect__option--highlight {
                     @apply bg-[#0A2C5C] text-white;
+
                     &::after {
-                        @apply bg-[#0A2C5C] text-white content-[attr(data-deselect)];
+                        @apply bg-[#0A2C5C] text-white;
                     }
                 }
+
                 &::after {
-                    @apply content-[attr(data-selected)] bg-transparent text-[#0A2C5C];
+                    @apply bg-transparent text-[#0A2C5C];
                 }
             }
 
