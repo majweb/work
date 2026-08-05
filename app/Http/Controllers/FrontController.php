@@ -185,9 +185,15 @@ class FrontController extends Controller
             $query = Project::with(['user.changeProducts', 'externalCompany'])
                 ->whereHas('user', function ($q) {
                     $q->whereNull('user_blocked');
-                })
-                ->lang()
-                ->featured()
+                });
+
+            if (request('countryLang')) {
+                $query->whereJsonContains('country', ['countryCode' => request('countryLang')]);
+            } else {
+                $query->lang();
+            }
+
+            $query->featured()
                 ->active()
                 ->newest();
 
@@ -347,6 +353,7 @@ class FrontController extends Controller
                 'lng' => $lng,
                 'country' => $country,
                 'category' => $category,
+                'countryLang' => request('countryLang'),
             ];
         });
 

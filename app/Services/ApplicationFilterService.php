@@ -148,10 +148,6 @@ class ApplicationFilterService
      */
     private function applyCommonAdminFilters($query, array $filters, ?string $status = null): void
     {
-        // Jeśli nie wybrano daty, domyślnie pokazujemy z dzisiaj
-        if (empty($filters['date'])) {
-            $filters['date'] = now()->toDateString();
-        }
         // Filtrowanie według CV
         if (isset($filters['has_cv'])) {
             $hasCv = $filters['has_cv'];
@@ -290,6 +286,8 @@ class ApplicationFilterService
                 });
         } elseif ($status === 'maybe') {
             $query->where('status', 'maybe');
+        } elseif ($status === 'all') {
+            // Nie dodajemy żadnych filtrów statusu, aby pokazać wszystkie
         } elseif ($status === null) {
             $query->activeStart();
         }
@@ -343,7 +341,7 @@ class ApplicationFilterService
      * @param  string|null  $status  Opcjonalny status aplikacji
      * @return array Zawiera zapytanie, aplikacje, kategorie i liczniki statusów
      */
-    public function getFilteredApplicationsAdmin(Request $request, ?string $status = null): array
+    public function getFilteredApplicationsAdmin(Request $request, ?string $status = 'all'): array
     {
         // Bazowe zapytanie z relacjami - bez forCurrentRecruiter()
         $query = Aplication::query()

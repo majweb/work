@@ -1029,6 +1029,9 @@ const getTranslation = (value) => {
                                     </button>
                                 </th>
                                 <th class="p-8 text-center">
+                                    <span class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Publikacja</span>
+                                </th>
+                                <th class="p-8 text-center">
                                     <button @click="handleSort('created_at')"
                                             class="inline-flex items-center gap-2 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] group">
                                         Data publikacji
@@ -1150,6 +1153,19 @@ const getTranslation = (value) => {
                                                 </svg>
                                                 {{ offer.aplications?.length || 0 }} aplikacji
                                             </span>
+                                    </div>
+                                </td>
+                                <td class="p-8 text-center text-xs font-bold text-[#0A2C5C]">
+                                    <div class="flex flex-col items-center justify-center gap-1">
+                                        <template v-if="Array.isArray(offer.country)">
+                                            <span v-for="(c, index) in offer.country" :key="index" class="px-2 py-1 bg-gray-100 rounded uppercase tracking-tighter whitespace-nowrap">
+                                                {{ c.name }} ({{ c.countryCode }})
+                                            </span>
+                                        </template>
+                                        <span v-else-if="offer.country" class="px-2 py-1 bg-gray-100 rounded uppercase tracking-tighter whitespace-nowrap">
+                                            {{ offer.country.name }} ({{ offer.country.countryCode }})
+                                        </span>
+                                        <span v-else class="text-gray-300">-</span>
                                     </div>
                                 </td>
                                 <td class="p-8 text-center text-xs font-bold text-gray-400">
