@@ -63,10 +63,16 @@ class JobOfferController extends Controller
 
         $categories = Category::getCachedWithoutDetail();
         $countries = (new Helper)->makeCountriesToSelectHasProjects();
+        $allCountries = (new Helper)->makeCountriesToSelect();
 
         $selectedCountry = null;
         if ($request->filled('country')) {
-            $selectedCountry = collect($countries)->firstWhere('value', (int) $request->country);
+            $selectedCountry = collect($countries)->flatMap(fn($g) => $g['elements'])->firstWhere('value', (int) $request->country);
+        }
+
+        $selectedPublicationCountry = null;
+        if ($request->filled('publication_country')) {
+            $selectedPublicationCountry = collect($allCountries)->flatMap(fn($g) => $g['elements'])->firstWhere('value', (int) $request->publication_country);
         }
 
         $selectedCategory = null;
@@ -133,11 +139,12 @@ class JobOfferController extends Controller
         return Inertia::render('Admin/JobOffers/Index', [
             'offers' => $query->paginate(20)->withQueryString(),
             'filters' => array_merge(
-                $request->only(['search', 'sort', 'direction', 'id', 'city', 'date']),
+                $request->only(['search', 'sort', 'direction', 'id', 'city', 'date', 'publication_country']),
                 [
                     'company' => $selectedCompany,
                     'recruiter' => $selectedRecruiter,
                     'country' => $selectedCountry,
+                    'publication_country' => $selectedPublicationCountry,
                     'category' => $selectedCategory,
                     'categorySub' => $selectedCategorySub,
                     'profession' => $selectedProfession,
@@ -152,6 +159,7 @@ class JobOfferController extends Controller
             'recruiters' => $recruiters,
             'categories' => $categories,
             'countries' => $countries,
+            'allCountries' => $allCountries,
             'languages' => $languages,
             'langLevels' => $langLevels,
         ]);
@@ -176,6 +184,10 @@ class JobOfferController extends Controller
 
         if ($request->filled('country')) {
             $query->whereJsonContains('countryWork', ['value' => (int) $request->country]);
+        }
+
+        if ($request->filled('publication_country')) {
+            $query->whereJsonContains('country', ['value' => (int) $request->publication_country]);
         }
 
         if ($request->filled('city')) {

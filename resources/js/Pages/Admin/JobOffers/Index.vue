@@ -18,6 +18,7 @@ const props = defineProps({
     companies: Array,
     categories: Array,
     countries: Array,
+    allCountries: Array,
     languages: Array,
     langLevels: Array,
 });
@@ -37,6 +38,7 @@ const filters = ref({
     profession: props.filters.profession || null,
     positionSelect: props.filters.positionSelect || null,
     country: props.filters.country || null,
+    publication_country: props.filters.publication_country || null,
     language: props.filters.language || null,
     language_level: props.filters.language_level || null,
 });
@@ -198,6 +200,7 @@ const exportCsv = () => {
         profession: filters.value.profession?.value !== undefined ? filters.value.profession.value : filters.value.profession,
         positionSelect: filters.value.positionSelect?.value !== undefined ? filters.value.positionSelect.value : filters.value.positionSelect,
         country: filters.value.country?.value !== undefined ? filters.value.country.value : filters.value.country,
+        publication_country: filters.value.publication_country?.value !== undefined ? filters.value.publication_country.value : filters.value.publication_country,
         language: filters.value.language?.value !== undefined ? filters.value.language.value : filters.value.language,
         language_level: filters.value.language_level?.id !== undefined ? filters.value.language_level.id : filters.value.language_level,
         city: filters.value.city?.value !== undefined ? filters.value.city.value : (filters.value.city?.name || filters.value.city),
@@ -289,6 +292,7 @@ const resetFilters = () => {
         profession: null,
         positionSelect: null,
         country: null,
+        publication_country: null,
         language: null,
         language_level: null,
     };
@@ -321,6 +325,7 @@ const updateFilters = () => {
         profession: filters.value.profession?.value !== undefined ? filters.value.profession.value : filters.value.profession,
         positionSelect: filters.value.positionSelect?.value !== undefined ? filters.value.positionSelect.value : filters.value.positionSelect,
         country: filters.value.country?.value !== undefined ? filters.value.country.value : filters.value.country,
+        publication_country: filters.value.publication_country?.value !== undefined ? filters.value.publication_country.value : filters.value.publication_country,
         language: filters.value.language?.value !== undefined ? filters.value.language.value : filters.value.language,
         language_level: filters.value.language_level?.id !== undefined ? filters.value.language_level.id : filters.value.language_level,
         city: filters.value.city?.value !== undefined ? filters.value.city.value : (filters.value.city?.name || filters.value.city),
@@ -384,6 +389,10 @@ watch(() => filters.value.status, () => {
 });
 
 watch(() => filters.value.recruiter, () => {
+    updateFilters();
+});
+
+watch(() => filters.value.publication_country, () => {
     updateFilters();
 });
 
@@ -666,8 +675,8 @@ const getTranslation = (value) => {
                         <!-- Advanced Filters -->
                         <div v-show="showAdvancedFilters"
                              class="space-y-6 pt-6 border-t border-gray-50 transition-all duration-300">
-                            <!-- Advanced Row 1: ID, Country, City, Date -->
-                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            <!-- Advanced Row 1: ID, Country, Publication Country, City, Date -->
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
                                 <div>
                                     <label
                                         class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">ID</label>
@@ -695,6 +704,34 @@ const getTranslation = (value) => {
                                         :noOptions="__('translate.noOptions')"
                                         :noResult="__('translate.noResult')"
                                         placeholder="Kraj"
+                                        label="name"
+                                        track-by="value"
+                                    >
+                                        <template #noResult>
+                                            <span>{{ __('translate.noResult') }}</span>
+                                        </template>
+                                        <template #noOptions>
+                                            <span>{{ __('translate.noOptions') }}</span>
+                                        </template>
+                                    </Multiselect>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-[10px] font-black text-gray-400 mb-2 uppercase tracking-widest">Kraj publikacji</label>
+                                    <Multiselect
+                                        class="custom-multiselect"
+                                        v-model="filters.publication_country"
+                                        :options="allCountries"
+                                        group-values="elements"
+                                        group-label="group"
+                                        :group-select="false"
+                                        :selectLabel="__('translate.selectLabel')"
+                                        :selectGroupLabel="__('translate.selectGroupLabel')"
+                                        :selectedLabel="__('translate.selectedLabel')"
+                                        :deselectLabel="__('translate.deselectLabel')"
+                                        :noOptions="__('translate.noOptions')"
+                                        :noResult="__('translate.noResult')"
+                                        placeholder="Kraj publikacji"
                                         label="name"
                                         track-by="value"
                                     >
