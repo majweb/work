@@ -1,11 +1,13 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { Link, router } from '@inertiajs/vue3';
+import { Link, router, useForm } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import pickBy from 'lodash/pickBy';
 import Pagination from '@/Components/Pagination.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
     tickets: Object,
@@ -19,9 +21,14 @@ const filters = ref({
     is_read: props.filters.is_read || '',
 });
 
+const replyForm = useForm({
+    message: '',
+});
+
 const showingTicket = ref(null);
 const closeModal = () => {
     showingTicket.value = null;
+    replyForm.reset();
 };
 
 const showTicket = (ticket) => {
@@ -35,6 +42,15 @@ const showTicket = (ticket) => {
             }
         });
     }
+};
+
+const submitReply = () => {
+    replyForm.post(route('admin.tickets.reply', showingTicket.value.id), {
+        preserveScroll: true,
+        onSuccess: () => {
+            closeModal();
+        }
+    });
 };
 
 const updateFilters = () => {
@@ -155,7 +171,8 @@ const getTypeClass = (type) => {
                                     <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Użytkownik</th>
                                     <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Temat</th>
                                     <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Typ</th>
-                                    <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Data utworzenia</th>
+                                    <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Status</th>
+                                    <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">Data</th>
                                     <th class="p-8 text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em] text-right">Akcje</th>
                                 </tr>
                             </thead>
@@ -178,6 +195,16 @@ const getTypeClass = (type) => {
                                         <span :class="['text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl', getTypeClass(ticket.type)]">
                                             {{ getTypeLabel(ticket.type) }}
                                         </span>
+                                    </td>
+                                    <td class="p-8">
+                                        <div v-if="ticket.replied_at" class="flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                            <span class="text-[10px] font-black text-green-600 uppercase tracking-widest">Odpowiedziano</span>
+                                        </div>
+                                        <div v-else class="flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                                            <span class="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Oczekuje</span>
+                                        </div>
                                     </td>
                                     <td class="p-8">
                                         <span class="text-sm font-medium text-gray-400">{{ new Date(ticket.created_at).toLocaleString() }}</span>
@@ -251,13 +278,39 @@ const getTypeClass = (type) => {
                             {{ showingTicket?.content }}
                         </div>
                     </div>
+
+                    <div v-if="showingTicket?.replied_at" class="px-6 pb-6">
+                        <span class="text-[10px] font-black text-green-600 uppercase tracking-widest block mb-2">Odpowiedziano dnia</span>
+                        <span class="text-sm font-bold text-gray-600">{{ new Date(showingTicket.replied_at).toLocaleString() }}</span>
+                    </div>
+
+                    <div v-if="!showingTicket?.replied_at" class="px-6 pb-6 border-t border-gray-100 pt-6">
+                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-4">Twoja odpowiedź</span>
+                        <textarea
+                            v-model="replyForm.message"
+                            class="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all font-medium min-h-[150px]"
+                            placeholder="Wpisz treść odpowiedzi..."
+                        ></textarea>
+                        <InputError :message="replyForm.errors.message" class="mt-2" />
+                    </div>
                 </div>
             </template>
 
             <template #footer>
-                <SecondaryButton @click="closeModal" class="rounded-xl px-8">
-                    Zamknij
-                </SecondaryButton>
+                <div class="flex gap-4">
+                    <SecondaryButton @click="closeModal" class="rounded-xl px-8">
+                        Zamknij
+                    </SecondaryButton>
+                    <PrimaryButton
+                        v-if="!showingTicket?.replied_at"
+                        @click="submitReply"
+                        :class="{ 'opacity-25': replyForm.processing }"
+                        :disabled="replyForm.processing"
+                        class="rounded-xl px-8 bg-[#0A2C5C]"
+                    >
+                        Wyślij odpowiedź
+                    </PrimaryButton>
+                </div>
             </template>
         </DialogModal>
     </AppLayout>

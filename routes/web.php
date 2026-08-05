@@ -351,6 +351,7 @@ Route::middleware([
         Route::get('tickets', [\App\Http\Controllers\Admin\TicketController::class, 'index'])->name('tickets.index');
         Route::get('tickets/export', [\App\Http\Controllers\Admin\TicketController::class, 'export'])->name('tickets.export');
         Route::post('tickets/{ticket}/mark-as-read', [\App\Http\Controllers\Admin\TicketController::class, 'markAsRead'])->name('tickets.markAsRead');
+        Route::post('tickets/{ticket}/reply', [\App\Http\Controllers\Admin\TicketController::class, 'reply'])->name('tickets.reply');
 
         //        BEZPIECZEŃSTWO
         Route::get('security/ip-email-blocks', [\App\Http\Controllers\Admin\IpEmailBlockController::class, 'index'])->name('security.ip-email-blocks.index');

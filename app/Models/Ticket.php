@@ -15,12 +15,14 @@ class Ticket extends Model
         'content',
         'type',
         'is_read',
+        'replied_at',
     ];
 
     protected function casts(): array
     {
         return [
             'is_read' => 'boolean',
+            'replied_at' => 'datetime',
         ];
     }
 

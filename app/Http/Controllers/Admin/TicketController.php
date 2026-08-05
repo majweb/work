@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Ticket;
 use App\Exports\TicketsExport;
+use App\Http\Controllers\Controller;
+use App\Mail\TicketReplyMail;
+use App\Models\Ticket;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Illuminate\Http\RedirectResponse;
 
 class TicketController extends Controller
 {
@@ -19,7 +21,7 @@ class TicketController extends Controller
         $query = Ticket::with('user');
 
         if ($request->filled('subject')) {
-            $query->where('subject', 'like', '%' . $request->subject . '%');
+            $query->where('subject', 'like', '%'.$request->subject.'%');
         }
 
         if ($request->filled('type')) {
@@ -28,7 +30,7 @@ class TicketController extends Controller
 
         if ($request->filled('user')) {
             $query->whereHas('user', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->user . '%');
+                $q->where('name', 'like', '%'.$request->user.'%');
             });
         }
 
@@ -52,11 +54,36 @@ class TicketController extends Controller
         return back();
     }
 
+    public function reply(Request $request, Ticket $ticket): RedirectResponse
+    {
+        $validated = $request->validate([
+            'message' => 'required|string|min:5',
+        ]);
+
+        if (! $ticket->user?->email) {
+            return back()->withErrors(['message' => 'Użytkownik nie posiada adresu e-mail.']);
+        }
+
+        Mail::to($ticket->user->email)->send(
+            new TicketReplyMail("Re: {$ticket->subject}", $validated['message'])
+        );
+
+        $ticket->update([
+            'replied_at' => now(),
+            'is_read' => true,
+        ]);
+
+        session()->flash('flash.banner', 'Odpowiedź została wysłana do użytkownika.');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return back();
+    }
+
     public function export(Request $request): BinaryFileResponse
     {
         return Excel::download(
             new TicketsExport($request->only(['subject', 'type', 'user', 'is_read'])),
-            'tickets_' . now()->format('Y_m_d_H_i') . '.csv',
+            'tickets_'.now()->format('Y_m_d_H_i').'.csv',
             \Maatwebsite\Excel\Excel::CSV
         );
     }
