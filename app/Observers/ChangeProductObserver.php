@@ -18,30 +18,10 @@ class ChangeProductObserver
                 $locales = config('langsShorts', ['pl', 'en', 'de']);
                 $projects = $user->projects()->get();
 
-                // Zbieramy unikalne ID podkategorii, w których użytkownik ma projekty
-                $subCategoryIds = [];
-
                 foreach ($projects as $project) {
                     // Czyścimy cache pojedynczego projektu (istniejąca logika)
                     foreach ($locales as $locale) {
                         Cache::forget("project_single_{$project->id}_{$locale}");
-                    }
-
-                    // Pobieramy ID podkategorii z projektu
-                    $categorySub = is_string($project->categorySub)
-                        ? json_decode($project->categorySub, true)
-                        : $project->categorySub;
-
-                    if (isset($categorySub['id'])) {
-                        $subCategoryIds[] = $categorySub['id'];
-                    }
-                }
-
-                // Czyścimy cache "Podobnych ofert" dla każdej dotkniętej podkategorii
-                $uniqueSubCategories = array_unique($subCategoryIds);
-                foreach ($uniqueSubCategories as $subId) {
-                    foreach ($locales as $locale) {
-                        Cache::forget("similar_projects_{$subId}_{$locale}");
                     }
                 }
 

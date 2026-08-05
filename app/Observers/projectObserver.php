@@ -40,11 +40,11 @@ class projectObserver
 
         // Czyść cache dla kraju dla wszystkich języków
         foreach ($locales as $locale) {
-            Cache::forget('workingModes_' . $locale);
-            Cache::forget('experiences_' . $locale);
-            Cache::forget('typesOfContract_' . $locale);
-            Cache::forget('workLoads_' . $locale);
-            Cache::forget('categoriesAll_Admin_v2_' . $locale);
+            Cache::forget('workingModes_'.$locale);
+            Cache::forget('experiences_'.$locale);
+            Cache::forget('typesOfContract_'.$locale);
+            Cache::forget('workLoads_'.$locale);
+            Cache::forget('categoriesAll_Admin_v2_'.$locale);
         }
 
         // Pobierz kategorię i wyczyść cache dla podkategorii
@@ -54,8 +54,8 @@ class projectObserver
 
         if (isset($category['value'])) {
             foreach ($locales as $locale) {
-                Cache::forget('category_sub_' . $category['value'] . '_' . $locale);
-                Cache::forget('recruit_category_sub_' . $category['value'] . '_' . $locale);
+                Cache::forget('category_sub_'.$category['value'].'_'.$locale);
+                Cache::forget('recruit_category_sub_'.$category['value'].'_'.$locale);
             }
         }
 
@@ -66,8 +66,8 @@ class projectObserver
 
         if (isset($categorySub['value'])) {
             foreach ($locales as $locale) {
-                Cache::forget('professions_' . $categorySub['value'] . '_' . $locale);
-                Cache::forget('recruit_professions_' . $categorySub['value'] . '_' . $locale);
+                Cache::forget('professions_'.$categorySub['value'].'_'.$locale);
+                Cache::forget('recruit_professions_'.$categorySub['value'].'_'.$locale);
             }
         }
 
@@ -78,23 +78,8 @@ class projectObserver
 
         if (isset($profession['value'])) {
             foreach ($locales as $locale) {
-                Cache::forget('positions_' . $profession['value'] . '_' . $locale);
-                Cache::forget('recruit_positions_' . $profession['value'] . '_' . $locale);
-            }
-        }
-    }
-
-    private function clearSimilarProjectsCache(Project $project): void
-    {
-        $locales = config('langsShorts', []);
-
-        $categorySub = is_string($project->categorySub)
-            ? json_decode($project->categorySub, true)
-            : $project->categorySub;
-
-        if (isset($categorySub['id'])) {
-            foreach ($locales as $locale) {
-                Cache::forget("similar_projects_{$categorySub['id']}_{$locale}");
+                Cache::forget('positions_'.$profession['value'].'_'.$locale);
+                Cache::forget('recruit_positions_'.$profession['value'].'_'.$locale);
             }
         }
     }
@@ -106,7 +91,6 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
-        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 
@@ -117,11 +101,10 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearProjectsListCache();
-        $this->clearSimilarProjectsCache($project);
 
         $locales = config('langsShorts', []);
 
-        // Wyczyść cache zarówno dla starych jak i nowych wartości
+        // Wyczyść cache dla aktualnych (nowych) wartości
         $this->clearCategoriesCache($project);
 
         if ($project->wasChanged('categorySub')) {
@@ -129,18 +112,16 @@ class projectObserver
                 ? json_decode($project->getOriginal('categorySub'), true)
                 : $project->getOriginal('categorySub');
 
-            if (isset($oldCategorySub['id'])) {
-                foreach ($locales as $locale) {
-                    Cache::forget("similar_projects_{$oldCategorySub['id']}_{$locale}");
-                }
-            }
-
             if (isset($oldCategorySub['value'])) {
                 foreach ($locales as $locale) {
-                    Cache::forget('professions_' . $oldCategorySub['value'] . '_' . $locale);
-                    Cache::forget('recruit_professions_' . $oldCategorySub['value'] . '_' . $locale);
+                    Cache::forget('professions_'.$oldCategorySub['value'].'_'.$locale);
+                    Cache::forget('recruit_professions_'.$oldCategorySub['value'].'_'.$locale);
                 }
             }
+        }
+
+        if ($project->wasChanged('country')) {
+            // Logika czyszczenia cache dla krajów została usunięta, ponieważ zrezygnowano z cache dla podobnych projektów po krajach
         }
 
         if ($project->wasChanged('profession')) {
@@ -150,8 +131,8 @@ class projectObserver
 
             if (isset($oldProfession['value'])) {
                 foreach ($locales as $locale) {
-                    Cache::forget('positions_' . $oldProfession['value'] . '_' . $locale);
-                    Cache::forget('recruit_positions_' . $oldProfession['value'] . '_' . $locale);
+                    Cache::forget('positions_'.$oldProfession['value'].'_'.$locale);
+                    Cache::forget('recruit_positions_'.$oldProfession['value'].'_'.$locale);
                 }
             }
         }
@@ -164,7 +145,6 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
-        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 
@@ -175,7 +155,6 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
-        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 
@@ -186,7 +165,6 @@ class projectObserver
     {
         $this->clearProjectSingleCache($project);
         $this->clearCategoriesCache($project);
-        $this->clearSimilarProjectsCache($project);
         $this->clearProjectsListCache();
     }
 }

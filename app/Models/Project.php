@@ -222,4 +222,28 @@ class Project extends Model
 
         return $query->whereJsonContains('country', ['countryCode' => $locale]);
     }
+
+    public function getCountryIds(): array
+    {
+        $countryData = $this->getAttributeFromArray('country');
+        $countryIds = [];
+
+        if (is_string($countryData)) {
+            $countryData = json_decode($countryData, true);
+        }
+
+        if (isset($countryData['value'])) {
+            $countryIds = [(int) $countryData['value']];
+        } elseif (is_array($countryData) && ! empty($countryData)) {
+            $countryIds = collect($countryData)
+                ->pluck('value')
+                ->filter()
+                ->map(fn ($id) => (int) $id)
+                ->toArray();
+        }
+
+        sort($countryIds);
+
+        return array_values(array_unique($countryIds));
+    }
 }

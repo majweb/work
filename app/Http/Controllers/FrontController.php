@@ -497,39 +497,37 @@ class FrontController extends Controller
 
         $image = $project->image_generator ?: asset('storage/generator/universal.png');
         $page = Page::where('id', 8)->first(); // Załóżmy ID dla Privacy
+        // Fetch similar projects (from same country of publication)
+        $countryIds = $project->getCountryIds();
 
-        // Fetch similar projects (from same sub-branch, excluding current project)
-        $subCategoryId = $project->categorySub['id'] ?? null;
         $similarProjects = [];
 
-        if ($subCategoryId) {
-            $locale = app()->getLocale();
-            $cacheKey = "similar_projects_{$subCategoryId}_{$locale}";
+        if (! empty($countryIds)) {
+            $projects = Project::query()
+                ->with(['user', 'education', 'detailprojects', 'externalCompany'])
+                ->active()
+                ->where(function ($query) use ($countryIds) {
+                    foreach ($countryIds as $id) {
+                        $query->orWhereJsonContains('country', ['value' => $id]);
+                    }
+                })
+                ->limit(11)
+                ->get();
 
-            $similarProjects = Cache::remember($cacheKey, now()->addHours(2), function () use ($subCategoryId) {
-                $projects = Project::query()
-                    ->with(['user', 'education', 'detailprojects', 'externalCompany'])
-                    ->active()
-                    ->where('categorySub->id', $subCategoryId)
-                    ->limit(11)
-                    ->get();
+            // Mark featured status for similar projects
+            foreach ($projects as $similar) {
+                $similar->is_featured = $similar->user->changeProducts()
+                    ->where('product_id', 9)
+                    ->where('start', '<=', now())
+                    ->where('end', '>=', now())
+                    ->exists();
+            }
 
-                // Mark featured status for similar projects
-                foreach ($projects as $similar) {
-                    $similar->is_featured = $similar->user->changeProducts()
-                        ->where('product_id', 9)
-                        ->where('start', '<=', now())
-                        ->where('end', '>=', now())
-                        ->exists();
-                }
-
-                return $projects;
-            });
-
-            // Filtrowanie aktualnego projektu po pobraniu z cache
-            $similarProjects = $similarProjects
+            // Filtrowanie aktualnego projektu
+            $similarProjects = $projects
                 ->where('id', '!=', $project->id)
-                ->take(10);
+                ->take(10)
+                ->values();
         }
 
         return inertia()->render('Front/SingleProject', [
