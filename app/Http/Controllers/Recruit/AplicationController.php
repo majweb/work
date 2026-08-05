@@ -120,6 +120,11 @@ class AplicationController extends Controller implements HasMiddleware
                 'opened_by_user_id' => auth()->id(),
                 'opened_at' => now()
             ]);
+
+            // Automatyczna zmiana statusu na 'maybe' (rozpatrywane), jeśli status jest obecnie pusty
+            if (empty($aplication->status)) {
+                $this->statusService->updateStatus($aplication, 'maybe');
+            }
         }
 
         $result = $this->getPointsService->getPoints($aplication);
