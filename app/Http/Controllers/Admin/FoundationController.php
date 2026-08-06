@@ -30,6 +30,7 @@ class FoundationController extends Controller
             ->withQueryString()
             ->through(fn ($p) => [
                 'id' => $p->id,
+                'slug' => $p->slug,
                 'name' => $p->name,
                 'link' => $p->www,
                 'active' => $p->active,
@@ -72,8 +73,13 @@ class FoundationController extends Controller
 
     public function toggle(Foundation $foundation)
     {
+        $oldStatus = $foundation->active;
         $foundation->active = ! $foundation->active;
         $foundation->save();
+
+        if (! $oldStatus && $foundation->active) {
+            \Illuminate\Support\Facades\Mail::to($foundation->email)->send(new \App\Mail\FoundationStatusChanged($foundation));
+        }
 
         return back()->with('success', 'Status updated');
     }
@@ -125,7 +131,7 @@ class FoundationController extends Controller
             'swift' => $data['swift'],  // max długość SWIFT/BIC
             'krs' => $data['krs'],    // max długość KRS
 
-            'active' => $data['active'] ?? true,
+            'active' => $data['active'] ?? false,
         ]);
 
         /*
@@ -195,6 +201,7 @@ class FoundationController extends Controller
             'countries' => $countries,
             'foundation' => [
                 'id' => $foundation->id,
+                'slug' => $foundation->slug,
                 'name' => $foundation->name,
                 'www' => $foundation->www,
                 'facebook_url' => $foundation->facebook_url,
@@ -238,7 +245,13 @@ class FoundationController extends Controller
 
     public function update(StoreFoundationRequest $request, Foundation $foundation, DictionaryService $dictionaryService)
     {
+        $oldStatus = $foundation->active;
         $foundation->update($request->validated());
+
+        if (! $oldStatus && $foundation->active) {
+            \Illuminate\Support\Facades\Mail::to($foundation->email)->send(new \App\Mail\FoundationStatusChanged($foundation));
+        }
+
         // Obsługa zdjęć przesłanych tymczasowo
         if ($request->photo) {
             $photo = $request->photo[0];
@@ -287,6 +300,6 @@ class FoundationController extends Controller
 
         $dictionaryService->clearFoundationCategories();
 
-        return redirect()->back();
+        return redirect()->route('admin.foundations.edit', $foundation->slug);
     }
 }

@@ -3,10 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Sentry\Laravel\Integration;
-use Inertia\Inertia;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Sentry\Laravel\Integration;
+use Symfony\Component\HttpFoundation\Response;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -26,9 +26,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\SetLanguage::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
+            \App\Http\Middleware\BlockFoundationOnPublicRoutes::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
         $middleware->alias([
+            'foundation.auth' => \App\Http\Middleware\FoundationSessionAuth::class,
             'auth.internal' => \App\Http\Middleware\VerifyInternalApiKey::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
@@ -45,7 +47,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         Integration::handles($exceptions);
         $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
-            if ( !app()->environment(['local', 'testing']) && in_array($response->getStatusCode(), [404])) {
+            if (! app()->environment(['local', 'testing']) && in_array($response->getStatusCode(), [404])) {
                 return Inertia::render('Error', [
                     'status' => $response->getStatusCode(),
                     'translations' => cache()->rememberForever('translations.'.app()->getLocale(), function () {

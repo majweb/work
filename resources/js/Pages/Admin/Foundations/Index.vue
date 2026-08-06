@@ -41,21 +41,21 @@ const resetFilters = () => {
     router.get(route('admin.foundations.index'));
 };
 
-const toggleActive = (id) => {
-    router.put(route('admin.foundations.toggle', id), {}, { preserveScroll: true });
+const toggleActive = (slug) => {
+    router.put(route('admin.foundations.toggle', slug), {}, { preserveScroll: true });
 };
 
-const foundationIdBeingDeleted = ref(null);
+const foundationSlugBeingDeleted = ref(null);
 
-const confirmFoundationDeletion = (id) => {
-    foundationIdBeingDeleted.value = id;
+const confirmFoundationDeletion = (slug) => {
+    foundationSlugBeingDeleted.value = slug;
 };
 
 const deleteFoundation = () => {
-    router.delete(route('admin.foundations.destroy', foundationIdBeingDeleted.value), {
+    router.delete(route('admin.foundations.destroy', foundationSlugBeingDeleted.value), {
         preserveScroll: true,
         preserveState: true,
-        onSuccess: () => foundationIdBeingDeleted.value = null,
+        onSuccess: () => foundationSlugBeingDeleted.value = null,
     });
 };
 </script>
@@ -149,10 +149,16 @@ const deleteFoundation = () => {
                 </div>
 
                 <div class="bg-white rounded-[3rem] shadow-xl shadow-blue-900/5 border border-gray-100 p-8">
-                    <div class="flex justify-between mb-8 px-2 border-b border-gray-50 pb-6">
+                    <div class="flex justify-between items-center mb-8 px-2 border-b border-gray-50 pb-6">
                         <h3 class="text-[10px] font-black text-[#0A2C5C] uppercase tracking-[0.2em]">
                             Lista fundacji
                         </h3>
+                        <div class="text-[10px] font-bold text-blue-500 uppercase tracking-widest flex items-center bg-blue-50 px-4 py-2 rounded-xl border border-blue-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Każdorazowa zmiana statusu na aktywny wysyła maila do fundacji z danymi do logowania
+                        </div>
                     </div>
 
                     <div class="overflow-x-auto">
@@ -198,7 +204,7 @@ const deleteFoundation = () => {
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex justify-center">
                                         <button
-                                            @click="toggleActive(p.id)"
+                                            @click="toggleActive(p.slug)"
                                             class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                             :class="p.active ? 'bg-[#00a0e3]' : 'bg-gray-200'"
                                         >
@@ -214,14 +220,14 @@ const deleteFoundation = () => {
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex gap-2 justify-center">
                                         <Link
-                                            :href="route('admin.foundations.edit', p.id)"
+                                            :href="route('admin.foundations.edit', p.slug)"
                                             class="px-4 py-2 bg-[#0A2C5C] rounded-lg text-white text-[8px] font-black uppercase tracking-widest hover:bg-blue-900 transition-all shadow-sm"
                                         >
                                             EDYTUJ
                                         </Link>
                                         <button
                                             :disabled="p.invoices_count > 0"
-                                            @click="confirmFoundationDeletion(p.id)"
+                                            @click="confirmFoundationDeletion(p.slug)"
                                             class="px-4 py-2 bg-red-600 rounded-lg text-white text-[8px] font-black uppercase tracking-widest hover:bg-red-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             USUŃ
@@ -241,7 +247,7 @@ const deleteFoundation = () => {
         </div>
 
         <!-- Delete Foundation Confirmation Modal -->
-        <ConfirmationModal :show="foundationIdBeingDeleted !== null" @close="foundationIdBeingDeleted = null">
+        <ConfirmationModal :show="foundationSlugBeingDeleted !== null" @close="foundationSlugBeingDeleted = null">
             <template #title>
                 Usuń Fundację
             </template>
@@ -251,7 +257,7 @@ const deleteFoundation = () => {
             </template>
 
             <template #footer>
-                <SecondaryButton @click="foundationIdBeingDeleted = null">
+                <SecondaryButton @click="foundationSlugBeingDeleted = null">
                     Anuluj
                 </SecondaryButton>
 

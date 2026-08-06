@@ -281,7 +281,7 @@ const removeFileBaner = async (source, load) => {
 // Submit
 // ===============================
 const submit = () => {
-    form.post(route("admin.foundations.update", props.foundation.id), {
+    form.post(route("admin.foundations.update", props.foundation.slug), {
         preserveScroll: true,
     });
 };

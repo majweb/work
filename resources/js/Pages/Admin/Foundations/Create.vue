@@ -153,7 +153,7 @@ const form = useForm({
     longitude: null,
     category_id: "",
     subcategory_id: "",
-    active: true,
+    active: false,
     photo: [],
     banner: [],
     iban: "",    // ⬅️ nowo dodane

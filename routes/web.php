@@ -20,6 +20,7 @@ use App\Http\Controllers\Firm\PremiumCertificateController;
 use App\Http\Controllers\Firm\ProjectController;
 use App\Http\Controllers\Firm\RecruitController;
 use App\Http\Controllers\Firm\StatisticController;
+use App\Http\Controllers\Foundation\SessionController as FoundationSessionController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\Global\DeletePosterFile;
 use App\Http\Controllers\Global\DeleteTemporaryFileController;
@@ -539,3 +540,49 @@ Route::get('/download/cv-audio/{id}', function ($id) {
 
 require __DIR__.'/socialstream.php';
 require __DIR__.'/front.php';
+
+// Foundation Panel Routes
+Route::prefix('foundation-panel')->name('foundation.')->group(function () {
+    Route::get('/login', [FoundationSessionController::class, 'showLogin'])->name('login');
+    Route::post('/login', [FoundationSessionController::class, 'login']);
+
+    Route::middleware(['foundation.auth'])->group(function () {
+        Route::get('/dashboard', function () {
+            $foundationId = session('foundation_auth_id');
+            $foundation = \App\Models\Foundation::find($foundationId);
+
+            $transactionsQuery = \App\Models\Transaction::where('foundation_id', $foundationId);
+
+            $totalSupport = $transactionsQuery->sum('price') / 2;
+            $supportingFirmsCount = $transactionsQuery->distinct('user_id')->count('user_id');
+
+            return Inertia::render('Foundation/Dashboard', [
+                'foundation' => $foundation,
+                'totalSupport' => $totalSupport,
+                'supportingFirmsCount' => $supportingFirmsCount,
+            ]);
+        })->name('dashboard');
+
+        Route::get('/transactions', function () {
+            $foundationId = session('foundation_auth_id');
+            $transactions = \App\Models\Transaction::where('foundation_id', $foundationId)
+                ->with('user')
+                ->latest()
+                ->paginate(15)
+                ->through(fn ($transaction) => [
+                    'id' => $transaction->id,
+                    'created_at' => $transaction->created_at,
+                    'support_amount' => $transaction->price / 2,
+                    'currency' => 'PLN', // Domyślna waluta, można pobrać z bazy jeśli istnieje
+                    'user' => $transaction->user,
+                    'type' => 'Wsparcie z usług',
+                ]);
+
+            return Inertia::render('Foundation/Transactions', [
+                'transactions' => $transactions,
+            ]);
+        })->name('transactions');
+
+        Route::post('/logout', [FoundationSessionController::class, 'logout'])->name('logout');
+    });
+});

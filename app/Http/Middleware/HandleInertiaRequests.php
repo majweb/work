@@ -81,6 +81,9 @@ class HandleInertiaRequests extends Middleware
             'unreadNotifications' => $request->user() ? $request->user()->unreadNotifications()->count() : 0,
             'unreadTicketsCount' => $request->user() && $request->user()->hasRole('admin') ? \App\Models\Ticket::where('is_read', false)->count() : 0,
             'isImpersonating' => $request->session()->has('impersonate'),
+            'foundation' => fn () => $request->session()->has('foundation_auth_id')
+                ? \App\Models\Foundation::find($request->session()->get('foundation_auth_id'))
+                : null,
             'mapsApi' => config('services.google.maps_api_key'),
             'mapboxToken' => config('services.mapbox.token'),
             'buyActive' => config('services.stripe.active'),
