@@ -79,9 +79,11 @@ class FoundationController extends Controller
 
         if (! $oldStatus && $foundation->active) {
             \Illuminate\Support\Facades\Mail::to($foundation->email)->send(new \App\Mail\FoundationStatusChanged($foundation));
+            session()->flash('flash.banner', 'Fundacja jest aktywna i został wysłany mail z danymi do logowania.');
+            session()->flash('flash.bannerStyle', 'success');
         }
 
-        return back()->with('success', 'Status updated');
+        return back();
     }
 
     public function getChildsCategory($parent)
@@ -250,6 +252,8 @@ class FoundationController extends Controller
 
         if (! $oldStatus && $foundation->active) {
             \Illuminate\Support\Facades\Mail::to($foundation->email)->send(new \App\Mail\FoundationStatusChanged($foundation));
+            session()->flash('flash.banner', 'Fundacja jest aktywna i został wysłany mail z danymi do logowania.');
+            session()->flash('flash.bannerStyle', 'success');
         }
 
         // Obsługa zdjęć przesłanych tymczasowo
