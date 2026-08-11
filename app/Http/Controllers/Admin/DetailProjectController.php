@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\DetailProject;
 use App\Models\Category;
+use App\Models\DetailProject;
 use App\Services\DictionaryService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,10 +19,10 @@ class DetailProjectController extends Controller
         $query = DetailProject::query();
 
         if ($request->search) {
-            $search = $request->search;
+            $search = mb_strtolower($request->search, 'UTF-8');
             $query->where(function ($q) use ($search, $locale) {
-                $q->where('name->' . $locale, 'like', "%{$search}%")
-                  ->orWhere('name->pl', 'like', "%{$search}%");
+                $q->whereRaw("LOWER(JSON_EXTRACT(name, '$.\"{$locale}\"')) like ?", ["%{$search}%"])
+                    ->orWhereRaw("LOWER(JSON_EXTRACT(name, '$.pl')) like ?", ["%{$search}%"]);
             });
         }
 
@@ -39,9 +39,9 @@ class DetailProjectController extends Controller
 
     public function create(): Response
     {
-        $categories = Category::whereDoesntHave('children')->get()->map(fn($c) => [
+        $categories = Category::whereDoesntHave('children')->get()->map(fn ($c) => [
             'id' => $c->id,
-            'title' => $c->getTranslations('title')
+            'title' => $c->getTranslations('title'),
         ]);
 
         return Inertia::render('Admin/DetailProjects/Create', [
@@ -63,7 +63,7 @@ class DetailProjectController extends Controller
 
         foreach ($languages as $lang) {
             $rules["name.{$lang}"] = 'required|string|max:255';
-            $messages["name.{$lang}.required"] = "Nazwa w języku " . strtoupper($lang) . " jest wymagana.";
+            $messages["name.{$lang}.required"] = 'Nazwa w języku '.strtoupper($lang).' jest wymagana.';
         }
 
         $validated = $request->validate($rules, $messages);
@@ -81,9 +81,9 @@ class DetailProjectController extends Controller
 
     public function edit(DetailProject $detailProject): Response
     {
-        $categories = Category::whereDoesntHave('children')->get()->map(fn($c) => [
+        $categories = Category::whereDoesntHave('children')->get()->map(fn ($c) => [
             'id' => $c->id,
-            'title' => $c->getTranslations('title')
+            'title' => $c->getTranslations('title'),
         ]);
 
         return Inertia::render('Admin/DetailProjects/Edit', [
@@ -110,7 +110,7 @@ class DetailProjectController extends Controller
 
         foreach ($languages as $lang) {
             $rules["name.{$lang}"] = 'required|string|max:255';
-            $messages["name.{$lang}.required"] = "Nazwa w języku " . strtoupper($lang) . " jest wymagana.";
+            $messages["name.{$lang}.required"] = 'Nazwa w języku '.strtoupper($lang).' jest wymagana.';
         }
 
         $validated = $request->validate($rules, $messages);
