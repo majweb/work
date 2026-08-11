@@ -31,9 +31,12 @@ class DetailProjectController extends Controller
             ->paginate(50)
             ->withQueryString();
 
+        $unassignedCount = DetailProject::whereDoesntHave('categories')->count();
+
         return Inertia::render('Admin/DetailProjects/Index', [
             'detailProjects' => $detailProjects,
             'filters' => $request->only(['search']),
+            'unassignedCount' => $unassignedCount,
         ]);
     }
 
@@ -133,5 +136,19 @@ class DetailProjectController extends Controller
         $dictionaryService->clearCategories();
 
         return back()->with('flash.banner', 'Obowiązek został usunięty.');
+    }
+
+    public function cleanupUnassigned(DictionaryService $dictionaryService): RedirectResponse
+    {
+        $count = DetailProject::whereDoesntHave('categories')->count();
+
+        if ($count > 0) {
+            DetailProject::whereDoesntHave('categories')->delete();
+            $dictionaryService->clearCategories();
+
+            return back()->with('flash.banner', "Usunięto {$count} nieprzypisanych obowiązków.");
+        }
+
+        return back()->with('flash.banner', 'Nie znaleziono nieprzypisanych obowiązków do usunięcia.');
     }
 }

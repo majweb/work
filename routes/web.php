@@ -324,6 +324,7 @@ Route::middleware([
             Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
             Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class);
             Route::resource('detail-projects', \App\Http\Controllers\Admin\DetailProjectController::class);
+            Route::delete('detail-projects-cleanup', [\App\Http\Controllers\Admin\DetailProjectController::class, 'cleanupUnassigned'])->name('detail-projects.cleanup');
             Route::resource('agreements', \App\Http\Controllers\Admin\AgreementController::class);
 
             Route::get('countries', [\App\Http\Controllers\Admin\CountryController::class, 'index'])->name('countries.index');

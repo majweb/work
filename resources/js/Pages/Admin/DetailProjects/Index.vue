@@ -11,6 +11,7 @@ import pickBy from 'lodash/pickBy';
 const props = defineProps({
     detailProjects: Object,
     filters: Object,
+    unassignedCount: Number,
 });
 
 const filters = ref({
@@ -42,6 +43,11 @@ const confirmDelete = (detailProject) => {
     detailProjectToDelete.value = detailProject;
 };
 
+const showCleanupModal = ref(false);
+const confirmCleanup = () => {
+    showCleanupModal.value = true;
+};
+
 const deleteDetailProject = () => {
     if (detailProjectToDelete.value) {
         router.delete(route('admin.detail-projects.destroy', detailProjectToDelete.value.id), {
@@ -50,6 +56,14 @@ const deleteDetailProject = () => {
             },
         });
     }
+};
+
+const cleanupUnassigned = () => {
+    router.delete(route('admin.detail-projects.cleanup'), {
+        onSuccess: () => {
+            showCleanupModal.value = false;
+        },
+    });
 };
 
 const getTranslation = (value) => {
@@ -75,15 +89,28 @@ const getTranslation = (value) => {
                                 Zarządzanie obowiązkami i ich kategoriami</p>
                         </div>
 
-                        <Link
-                            :href="route('admin.detail-projects.create')"
-                            class="px-8 py-4 bg-[#00AEEF] hover:bg-[#0096ce] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-blue-200 flex items-center gap-2"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                            Dodaj obowiązek
-                        </Link>
+                        <div class="flex items-center gap-4">
+                            <button
+                                v-if="unassignedCount > 0"
+                                @click="confirmCleanup"
+                                class="px-8 py-4 bg-white hover:bg-red-50 text-red-500 border-2 border-red-500 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-red-100 flex items-center gap-2"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-2.25a2.25 2.25 0 0 0-2.25-2.25h-4.5a2.25 2.25 0 0 0-2.25 2.25v2.25m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                </svg>
+                                Usuń nieprzypisane ({{ unassignedCount }})
+                            </button>
+
+                            <Link
+                                :href="route('admin.detail-projects.create')"
+                                class="px-8 py-4 bg-[#00AEEF] hover:bg-[#0096ce] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-blue-200 flex items-center gap-2"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Dodaj obowiązek
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
@@ -186,6 +213,30 @@ const getTranslation = (value) => {
                     @click="deleteDetailProject"
                 >
                     Usuń
+                </DangerButton>
+            </template>
+        </DialogModal>
+
+        <!-- Cleanup Confirmation Modal -->
+        <DialogModal :show="showCleanupModal" @close="showCleanupModal = false">
+            <template #title>
+                Usuń nieprzypisane obowiązki
+            </template>
+
+            <template #content>
+                Czy na pewno chcesz usunąć wszystkie obowiązki (ilość: {{ unassignedCount }}), które nie są przypisane do żadnej kategorii? Ta operacja jest nieodwracalna.
+            </template>
+
+            <template #footer>
+                <SecondaryButton @click="showCleanupModal = false">
+                    Anuluj
+                </SecondaryButton>
+
+                <DangerButton
+                    class="ml-3"
+                    @click="cleanupUnassigned"
+                >
+                    Usuń wszystkie ({{ unassignedCount }})
                 </DangerButton>
             </template>
         </DialogModal>
