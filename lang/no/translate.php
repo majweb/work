@@ -1811,5 +1811,8 @@ return [
     'selected_address' => 'Valgt adresse:',
     'noDetailProjectsSelected' => 'Velg minst ett element fra listen',
     'salaryPeriod' => 'Lønnstype',
-
+    'disability_friendly' => 'Tilbud for personer med funksjonsnedsettelser',
+    'meta_description_login' => 'Logg inn på WORK4YOU.GLOBAL for å finne den ideelle jobben eller medarbeideren. Rask tilgang til profilen din og jobbtilbud.',
+    'meta_description_register' => 'Bli med i WORK4YOU.GLOBAL-fellesskapet. Registrer deg som arbeidstaker eller bedrift, og begynn å bruke den moderne rekrutteringsplattformen.',
+    'meta_description_forgot' => 'Har du glemt passordet ditt til WORK4YOU.GLOBAL? Skriv inn e-postadressen din for å motta en lenke for tilbakestilling av passordet og få tilgang til kontoen din igjen.',
 ];

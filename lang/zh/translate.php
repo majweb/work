@@ -1836,5 +1836,8 @@ return [
     'selected_address' => '已选择的地址：',
     'noDetailProjectsSelected' => '请至少从列表中选择一项',
     'salaryPeriod' => '薪资类型',
-
+    'disability_friendly' => '面向残障人士的工作机会',
+    'meta_description_login' => '登录 WORK4YOU.GLOBAL，寻找理想的工作或员工。快速访问您的个人资料和职位信息。',
+    'meta_description_register' => '加入 WORK4YOU.GLOBAL 社区。以求职者或企业身份注册，开始使用现代化招聘平台。',
+    'meta_description_forgot' => '忘记了 WORK4YOU.GLOBAL 的密码？请输入您的电子邮箱地址，以获取密码重置链接并恢复账户访问权限。',
 ];

@@ -1836,5 +1836,8 @@ return [
     'selected_address' => 'Tanlangan manzil:',
     'noDetailProjectsSelected' => 'Iltimos, ro‘yxatdan kamida bitta elementni tanlang',
     'salaryPeriod' => 'Ish haqi turi',
-
+    'disability_friendly' => 'Nogironligi bo‘lgan shaxslar uchun taklif',
+    'meta_description_login' => 'Ideal ish yoki xodimni topish uchun WORK4YOU.GLOBAL saytiga kiring. Profilingiz va ish takliflariga tezkor kirish imkoniyati.',
+    'meta_description_register' => 'WORK4YOU.GLOBAL hamjamiyatiga qo‘shiling. Xodim yoki kompaniya sifatida ro‘yxatdan o‘ting va zamonaviy ishga qabul qilish platformasidan foydalanishni boshlang.',
+    'meta_description_forgot' => 'WORK4YOU.GLOBAL parolingizni unutdingizmi? Parolni tiklash havolasini olish va hisobingizga kirishni qayta tiklash uchun elektron pochta manzilingizni kiriting.',
 ];

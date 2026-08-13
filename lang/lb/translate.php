@@ -1815,6 +1815,9 @@ return [
     'selected_address' => 'Ausgewielte Adress:',
     'noDetailProjectsSelected' => 'Wielt w.e.g. mindestens ee Punkt aus der Lëscht',
     'salaryPeriod' => 'Aart vum Gehalt',
-
+    'disability_friendly' => 'Offer fir Leit mat enger Behënnerung',
+    'meta_description_login' => 'Loggt Iech bei WORK4YOU.GLOBAL an, fir déi ideal Aarbecht oder de passenden Employé ze fannen. Séieren Zougang zu Ärem Profil an den Aarbechtsannoncen.',
+    'meta_description_register' => 'Gitt Deel vun der WORK4YOU.GLOBAL Gemeinschaft. Registréiert Iech als Employé oder Entreprise a benotzt déi modern Rekrutéierungsplattform.',
+    'meta_description_forgot' => 'Hutt Dir Äert Passwuert fir WORK4YOU.GLOBAL vergiess? Gitt Är E-Mail-Adress an, fir e Link zum Zerécksetze vum Passwuert ze kréien an den Zougang zu Ärem Kont erëmzestellen.',
 
 ];

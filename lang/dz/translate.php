@@ -1816,5 +1816,8 @@ return [
     'selected_address' => 'གདམ་འདེམས་བྱས་པའི་ཁ་བྱང་:',
     'noDetailProjectsSelected' => 'ཐོ་ཡིག་ནང་ལས་ཉུང་མཐའ་གཅིག་གདམ་ཁ་རྐྱབ་གནང་།',
     'salaryPeriod' => 'གླ་ཕོགས་ཀྱི་རིགས།',
-
+    'disability_friendly' => 'ⵜⵉⵔⵔⴰ ⵉ ⵉⵎⵣⵣⵉⵢⵏ ⵙ ⵡⴰⵙⵙⴰⵔ',
+    'meta_description_login' => 'ⴽⵛⵎ ⵖⵔ WORK4YOU.GLOBAL ⵃⵎⴰ ⴰⴷ ⵜⴰⴼⵜ ⵜⵉⵔⵔⴰ ⵏⵏⴽ ⵏ ⵍⵅⴷⵎⴰ ⵏⵉⵖ ⴰⵎⵙⵙⵡⴰⴹ ⵉⵙⵙⵓⵍⵏ. ⴰⴷⵔⵉⵙ ⴰⵔⵓⵙⵔⵉ ⵖⵔ ⵓⵎⴰⵙ ⵏⵏⴽ ⴷ ⵜⵉⵔⵔⴰ ⵏ ⵍⵅⴷⵎⴰ.',
+    'meta_description_register' => 'ⵔⵏⵓ ⵖⵔ ⵜⵎⵙⵙⵉⵔⵜ ⵏ WORK4YOU.GLOBAL. ⵙⵙⵏⴷ ⴰⵎⵙⵙⵡⴰⴹ ⵏⵉⵖ ⵜⴰⵙⵙⵔⵜ ⴷ ⵙⵙⵏⴷ ⵉ ⵜⵙⵏⵙⵉ ⵏ ⵜⵔⴰⵔⴰ ⵏ ⵉⵎⵙⵙⵡⴰⴹⵏ.',
+    'meta_description_forgot' => 'ⵜⵔⵓⵃⵜ ⴰⵙⵏⴼⵍ ⵏ ⵓⵎⵏⵣⴰⵢ ⵏ WORK4YOU.GLOBAL? ⵙⵙⵏⴷ ⴰⴷⵔⵉⵙ ⵏ ⵉⵎⴰⵢⵍ ⵃⵎⴰ ⴰⴷ ⵜⴰⵡⵉⵜ ⵉⵙⵏⴼⵍ ⵏ ⵓⵎⵏⵣⴰⵢ ⴷ ⵜⵔⵔⴰⵔⵜ ⵖⵔ ⵓⵎⵉⵔ ⵏⵏⴽ.',
 ];

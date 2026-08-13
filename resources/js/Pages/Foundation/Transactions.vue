@@ -106,7 +106,8 @@ const formatDate = (dateString) => {
                                     </td>
                                     <td class="px-8 py-6 text-right">
                                         <div class="text-[#0A2C5C] font-black text-sm">
-                                            {{ parseFloat(transaction.support_amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }} {{ transaction.currency || 'PLN' }}
+                                            {{ transaction.currency }}
+                                            {{ parseFloat(transaction.support_amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }} $
                                         </div>
                                     </td>
                                 </tr>

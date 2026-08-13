@@ -1811,6 +1811,9 @@ return [
     'selected_address' => 'Geselecteerd adres:',
     'noDetailProjectsSelected' => 'Selecteer ten minste één item uit de lijst',
     'salaryPeriod' => 'Soort salaris',
-
+    'disability_friendly' => 'Aanbod voor mensen met een beperking',
+    'meta_description_login' => 'Log in bij WORK4YOU.GLOBAL om de ideale baan of werknemer te vinden. Snelle toegang tot je profiel en vacatures.',
+    'meta_description_register' => 'Word lid van de WORK4YOU.GLOBAL-community. Registreer je als werknemer of bedrijf en maak gebruik van het moderne wervingsplatform.',
+    'meta_description_forgot' => 'Ben je je WORK4YOU.GLOBAL-wachtwoord vergeten? Voer je e-mailadres in om een link voor het opnieuw instellen van je wachtwoord te ontvangen en weer toegang te krijgen tot je account.',
 
 ];

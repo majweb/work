@@ -1825,6 +1825,9 @@ return [
     'selected_address' => 'כתובת שנבחרה:',
     'noDetailProjectsSelected' => 'אנא בחר לפחות פריט אחד מהרשימה',
     'salaryPeriod' => 'סוג שכר',
-
+    'disability_friendly' => 'הצעה לאנשים עם מוגבלויות',
+    'meta_description_login' => 'התחברו ל-WORK4YOU.GLOBAL כדי למצוא את העבודה או העובד האידיאלי. גישה מהירה לפרופיל שלכם ולהצעות עבודה.',
+    'meta_description_register' => 'הצטרפו לקהילת WORK4YOU.GLOBAL. הירשמו כעובד או כחברה והתחילו להשתמש בפלטפורמת הגיוס המודרנית.',
+    'meta_description_forgot' => 'שכחתם את הסיסמה שלכם ל-WORK4YOU.GLOBAL? הזינו את כתובת הדוא"ל שלכם כדי לקבל קישור לאיפוס הסיסמה ולשחזר את הגישה לחשבון.',
 
 ];

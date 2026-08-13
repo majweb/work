@@ -45,7 +45,9 @@ const submit = () => {
 </script>
 
 <template>
-    <Head :title="__('translate.login')" />
+    <Head :title="__('translate.login')">
+        <meta name="description" :content="__('translate.meta_description_login')" />
+    </Head>
 
     <!-- MAIN WRAPPER -->
     <div class="bg-gray-50 flex flex-col justify-center items-center min-h-screen p-6 relative overflow-hidden">

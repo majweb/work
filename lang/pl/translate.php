@@ -1837,5 +1837,7 @@ return [
     'noDetailProjectsSelected' => 'Wybierz choć jedną pozycję z listy',
     'salaryPeriod' => 'Typ wynagrodzenia',
     'disability_friendly' => 'Oferta dla osób z niepełnosprawnościami',
-
+    'meta_description_login' => 'Zaloguj się do WORK4YOU.GLOBAL, aby znaleźć idealną pracę lub pracownika. Szybki dostęp do Twojego profilu i ofert pracy.',
+    'meta_description_register' => 'Dołącz do społeczności WORK4YOU.GLOBAL. Zarejestruj się jako pracownik lub firma i zacznij korzystać z nowoczesnej platformy rekrutacyjnej.',
+    'meta_description_forgot' => 'Zapomniałeś hasła do WORK4YOU.GLOBAL? Podaj swój adres e-mail, aby otrzymać link do resetowania hasła i odzyskać dostęp do konta.',
 ];

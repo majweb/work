@@ -1573,5 +1573,8 @@ return [
     'selected_address' => 'Valitud aadress:',
     'noDetailProjectsSelected' => 'Palun valige loendist vähemalt üks üksus',
     'salaryPeriod' => 'Palga tüüp',
-
+    'disability_friendly' => 'Pakkumine puuetega inimestele',
+    'meta_description_login' => 'Logi sisse WORK4YOU.GLOBAL-i, et leida ideaalne töö või töötaja. Kiire juurdepääs oma profiilile ja tööpakkumistele.',
+    'meta_description_register' => 'Liitu WORK4YOU.GLOBAL-i kogukonnaga. Registreeru töötaja või ettevõttena ja hakka kasutama kaasaegset värbamisplatvormi.',
+    'meta_description_forgot' => 'Unustasid WORK4YOU.GLOBAL-i parooli? Sisesta oma e-posti aadress, et saada parooli lähtestamise link ja taastada juurdepääs oma kontole.',
 ];

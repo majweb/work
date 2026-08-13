@@ -1811,5 +1811,8 @@ return [
     'selected_address' => 'Izvēlētā adrese:',
     'noDetailProjectsSelected' => 'Lūdzu, izvēlieties vismaz vienu vienumu no saraksta',
     'salaryPeriod' => 'Algas veids',
-
+    'disability_friendly' => 'Piedāvājums cilvēkiem ar invaliditāti',
+    'meta_description_login' => 'Piesakieties WORK4YOU.GLOBAL, lai atrastu ideālo darbu vai darbinieku. Ātra piekļuve jūsu profilam un darba piedāvājumiem.',
+    'meta_description_register' => 'Pievienojieties WORK4YOU.GLOBAL kopienai. Reģistrējieties kā darbinieks vai uzņēmums un sāciet izmantot mūsdienīgu personāla atlases platformu.',
+    'meta_description_forgot' => 'Aizmirsāt WORK4YOU.GLOBAL paroli? Ievadiet savu e-pasta adresi, lai saņemtu paroles atiestatīšanas saiti un atgūtu piekļuvi savam kontam.',
 ];

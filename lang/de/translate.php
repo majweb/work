@@ -1820,5 +1820,8 @@ return [
     'selected_address' => 'Ausgewählte Adresse:',
     'noDetailProjectsSelected' => 'Bitte wählen Sie mindestens einen Eintrag aus der Liste aus',
     'salaryPeriod' => 'Gehaltsart',
-
+    'disability_friendly' => 'Angebot für Menschen mit Behinderung',
+    'meta_description_login' => 'Melden Sie sich bei WORK4YOU.GLOBAL an, um den idealen Job oder Mitarbeiter zu finden. Schneller Zugriff auf Ihr Profil und aktuelle Stellenangebote.',
+    'meta_description_register' => 'Werden Sie Teil der WORK4YOU.GLOBAL-Community. Registrieren Sie sich als Mitarbeiter oder Unternehmen und nutzen Sie die moderne Recruiting-Plattform.',
+    'meta_description_forgot' => 'Haben Sie Ihr Passwort für WORK4YOU.GLOBAL vergessen? Geben Sie Ihre E-Mail-Adresse ein, um einen Link zum Zurücksetzen des Passworts zu erhalten und den Zugriff auf Ihr Konto wiederherzustellen.',
 ];

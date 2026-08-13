@@ -1837,6 +1837,9 @@ return [
     'selected_address' => 'Изабрана адреса:',
     'noDetailProjectsSelected' => 'Молимо изаберите бар једну ставку са листе',
     'salaryPeriod' => 'Vrsta plate',
-
+    'disability_friendly' => 'Ponuda za osobe sa invaliditetom',
+    'meta_description_login' => 'Prijavite se na WORK4YOU.GLOBAL da biste pronašli idealan posao ili zaposlenog. Brz pristup vašem profilu i ponudama poslova.',
+    'meta_description_register' => 'Pridružite se WORK4YOU.GLOBAL zajednici. Registrujte se kao zaposleni ili kompanija i počnite da koristite modernu platformu za zapošljavanje.',
+    'meta_description_forgot' => 'Zaboravili ste lozinku za WORK4YOU.GLOBAL? Unesite svoju e-mail adresu da biste dobili link za resetovanje lozinke i povratili pristup svom nalogu.',
 
 ];

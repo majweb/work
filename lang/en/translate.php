@@ -1961,4 +1961,8 @@ return [
     'selected_address' => 'Selected address:',
     'noDetailProjectsSelected' => 'Please select at least one item from the list',
     'salaryPeriod' => 'Salary period type',
+    'disability_friendly' => 'Offer for people with disabilities',
+    'meta_description_login' => 'Log in to WORK4YOU.GLOBAL to find the perfect job or employee. Quick access to your profile and job offers.',
+    'meta_description_register' => 'Join the WORK4YOU.GLOBAL community. Register as an employee or company and start using the modern recruitment platform.',
+    'meta_description_forgot' => 'Forgot your WORK4YOU.GLOBAL password? Enter your email address to receive a password reset link and regain access to your account.',
 ];

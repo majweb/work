@@ -1811,5 +1811,8 @@ return [
     'selected_address' => 'Alamat dipilih:',
     'noDetailProjectsSelected' => 'Sila pilih sekurang-kurangnya satu item daripada senarai',
     'salaryPeriod' => 'Jenis gaji',
-
+    'disability_friendly' => 'Tawaran untuk orang kurang upaya',
+    'meta_description_login' => 'Log masuk ke WORK4YOU.GLOBAL untuk mencari pekerjaan atau pekerja yang ideal. Akses pantas kepada profil dan tawaran pekerjaan anda.',
+    'meta_description_register' => 'Sertai komuniti WORK4YOU.GLOBAL. Daftar sebagai pekerja atau syarikat dan mula menggunakan platform pengambilan pekerja moden.',
+    'meta_description_forgot' => 'Lupa kata laluan WORK4YOU.GLOBAL anda? Masukkan alamat e-mel anda untuk menerima pautan tetapan semula kata laluan dan mendapatkan semula akses ke akaun anda.',
 ];

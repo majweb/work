@@ -1812,6 +1812,9 @@ return [
     'selected_address' => 'Pasirinktas adresas:',
     'noDetailProjectsSelected' => 'Prašome pasirinkti bent vieną elementą iš sąrašo',
     'salaryPeriod' => 'Atlyginimo tipas',
-
+    'disability_friendly' => 'Pasiūlymas žmonėms su negalia',
+    'meta_description_login' => 'Prisijunkite prie WORK4YOU.GLOBAL ir raskite idealų darbą arba darbuotoją. Greita prieiga prie savo profilio ir darbo pasiūlymų.',
+    'meta_description_register' => 'Prisijunkite prie WORK4YOU.GLOBAL bendruomenės. Užsiregistruokite kaip darbuotojas arba įmonė ir pradėkite naudotis modernia darbuotojų paieškos platforma.',
+    'meta_description_forgot' => 'Pamiršote WORK4YOU.GLOBAL slaptažodį? Įveskite savo el. pašto adresą, kad gautumėte slaptažodžio atkūrimo nuorodą ir atgautumėte prieigą prie savo paskyros.',
 ];
 

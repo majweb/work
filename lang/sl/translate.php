@@ -1837,6 +1837,9 @@ return [
     'selected_address' => 'Izbrani naslov:',
     'noDetailProjectsSelected' => 'Prosimo, izberite vsaj en element s seznama',
     'salaryPeriod' => 'Vrsta plačila',
-
+    'disability_friendly' => 'Ponudba za osebe z invalidnostjo',
+    'meta_description_login' => 'Prijavite se v WORK4YOU.GLOBAL in poiščite idealno zaposlitev ali zaposlenega. Hiter dostop do svojega profila in ponudb za delo.',
+    'meta_description_register' => 'Pridružite se skupnosti WORK4YOU.GLOBAL. Registrirajte se kot zaposleni ali podjetje in začnite uporabljati sodobno platformo za zaposlovanje.',
+    'meta_description_forgot' => 'Ste pozabili geslo za WORK4YOU.GLOBAL? Vnesite svoj e-poštni naslov, da prejmete povezavo za ponastavitev gesla in ponovno pridobite dostop do svojega računa.',
 
 ];

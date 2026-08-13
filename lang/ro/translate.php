@@ -1837,6 +1837,9 @@ return [
     'selected_address' => 'Adresă selectată:',
     'noDetailProjectsSelected' => 'Selectați cel puțin un element din listă',
     'salaryPeriod' => 'Tip salariu',
-
+    'disability_friendly' => 'Ofertă pentru persoanele cu dizabilități',
+    'meta_description_login' => 'Conectați-vă la WORK4YOU.GLOBAL pentru a găsi locul de muncă sau angajatul ideal. Acces rapid la profilul dvs. și la ofertele de muncă.',
+    'meta_description_register' => 'Alăturați-vă comunității WORK4YOU.GLOBAL. Înregistrați-vă ca angajat sau companie și începeți să utilizați platforma modernă de recrutare.',
+    'meta_description_forgot' => 'Ați uitat parola WORK4YOU.GLOBAL? Introduceți adresa de e-mail pentru a primi un link de resetare a parolei și pentru a recâștiga accesul la contul dvs.',
 
 ];

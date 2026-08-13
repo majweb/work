@@ -1805,4 +1805,8 @@ return [
     'selected_address' => 'Adreça seleccionada:',
     'noDetailProjectsSelected' => 'Seleccioneu almenys un element de la llista',
     'salaryPeriod' => 'Tipus de salari',
+    'disability_friendly' => 'Oferta per a persones amb discapacitat',
+    'meta_description_login' => 'Inicia sessió a WORK4YOU.GLOBAL per trobar la feina o el treballador ideal. Accés ràpid al teu perfil i a les ofertes de feina.',
+    'meta_description_register' => 'Uneix-te a la comunitat de WORK4YOU.GLOBAL. Registra’t com a treballador o empresa i comença a utilitzar la moderna plataforma de contractació.',
+    'meta_description_forgot' => 'Has oblidat la contrasenya de WORK4YOU.GLOBAL? Introdueix la teva adreça de correu electrònic per rebre un enllaç per restablir la contrasenya i recuperar l’accés al teu compte.',
 ];

@@ -1835,7 +1835,10 @@ return [
     'selected_address' => 'Valið heimilisfang:',
     'noDetailProjectsSelected' => 'Vinsamlegast veldu að minnsta kosti eitt atriði af listanum',
     'salaryPeriod' => 'Tegund launa',
-
+    'disability_friendly' => 'Tilboð fyrir fólk með fötlun',
+    'meta_description_login' => 'Skráðu þig inn á WORK4YOU.GLOBAL til að finna hið fullkomna starf eða starfsmann. Fljótur aðgangur að prófílnum þínum og atvinnutilboðum.',
+    'meta_description_register' => 'Vertu hluti af WORK4YOU.GLOBAL samfélaginu. Skráðu þig sem starfsmaður eða fyrirtæki og byrjaðu að nota nútímalegan ráðningarvettvang.',
+    'meta_description_forgot' => 'Gleymdirðu lykilorðinu þínu hjá WORK4YOU.GLOBAL? Sláðu inn netfangið þitt til að fá tengil til að endurstilla lykilorðið og endurheimta aðgang að reikningnum þínum.',
 
 ];
 

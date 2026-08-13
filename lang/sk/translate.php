@@ -1837,5 +1837,8 @@ return [
     'selected_address' => 'Vybraná adresa:',
     'noDetailProjectsSelected' => 'Vyberte prosím aspoň jednu položku zo zoznamu',
     'salaryPeriod' => 'Typ mzdy',
-
+    'disability_friendly' => 'Ponuka pre osoby so zdravotným postihnutím',
+    'meta_description_login' => 'Prihláste sa do WORK4YOU.GLOBAL a nájdite ideálnu prácu alebo zamestnanca. Rýchly prístup k vášmu profilu a pracovným ponukám.',
+    'meta_description_register' => 'Pridajte sa ku komunite WORK4YOU.GLOBAL. Zaregistrujte sa ako zamestnanec alebo spoločnosť a začnite používať modernú náborovú platformu.',
+    'meta_description_forgot' => 'Zabudli ste heslo do WORK4YOU.GLOBAL? Zadajte svoju e-mailovú adresu a získajte odkaz na obnovenie hesla a opätovný prístup k svojmu účtu.',
 ];

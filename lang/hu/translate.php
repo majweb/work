@@ -1836,5 +1836,8 @@ return [
     'selected_address' => 'Kiválasztott cím:',
     'noDetailProjectsSelected' => 'Kérjük, válasszon ki legalább egy elemet a listából',
     'salaryPeriod' => 'Fizetés típusa',
-
+    'disability_friendly' => 'Ajánlat fogyatékossággal élők számára',
+    'meta_description_login' => 'Jelentkezzen be a WORK4YOU.GLOBAL oldalra, hogy megtalálja az ideális munkát vagy munkavállalót. Gyors hozzáférés profiljához és az állásajánlatokhoz.',
+    'meta_description_register' => 'Csatlakozzon a WORK4YOU.GLOBAL közösségéhez. Regisztráljon munkavállalóként vagy vállalatként, és kezdje el használni a modern toborzási platformot.',
+    'meta_description_forgot' => 'Elfelejtette a WORK4YOU.GLOBAL jelszavát? Adja meg e-mail-címét, hogy megkapja a jelszó-visszaállítási linket, és visszanyerje a hozzáférést fiókjához.',
 ];

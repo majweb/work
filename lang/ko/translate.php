@@ -1819,5 +1819,8 @@ return [
     'selected_address' => '선택된 주소:',
     'noDetailProjectsSelected' => '목록에서 항목을 하나 이상 선택해 주세요',
     'salaryPeriod' => '급여 유형',
-
+    'disability_friendly' => '장애인을 위한 일자리',
+    'meta_description_login' => 'WORK4YOU.GLOBAL에 로그인하여 이상적인 일자리 또는 직원을 찾아보세요. 프로필과 채용 공고에 빠르게 접근할 수 있습니다.',
+    'meta_description_register' => 'WORK4YOU.GLOBAL 커뮤니티에 가입하세요. 구직자 또는 기업으로 등록하고 현대적인 채용 플랫폼을 이용해 보세요.',
+    'meta_description_forgot' => 'WORK4YOU.GLOBAL 비밀번호를 잊으셨나요? 이메일 주소를 입력하면 비밀번호 재설정 링크를 받아 계정에 다시 액세스할 수 있습니다.',
 ];

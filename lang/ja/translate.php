@@ -1833,6 +1833,9 @@ return [
     'selected_address' => '選択された住所：',
     'noDetailProjectsSelected' => 'リストから少なくとも1つの項目を選択してください',
     'salaryPeriod' => '給与の種類',
-
+    'disability_friendly' => '障害のある方に適した求人',
+    'meta_description_login' => 'WORK4YOU.GLOBALにログインして、理想の仕事や人材を見つけましょう。プロフィールや求人情報にすばやくアクセスできます。',
+    'meta_description_register' => 'WORK4YOU.GLOBALのコミュニティに参加しましょう。求職者または企業として登録し、最新の採用プラットフォームをご利用ください。',
+    'meta_description_forgot' => 'WORK4YOU.GLOBALのパスワードをお忘れですか？メールアドレスを入力すると、パスワード再設定用のリンクが届き、アカウントへのアクセスを復元できます。',
 
 ];

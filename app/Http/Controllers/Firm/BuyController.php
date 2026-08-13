@@ -68,7 +68,9 @@ class BuyController extends Controller
         $total = Cart::subtotal();
         $countCart = Cart::count();
         $countryCode = getLocalBrowserLang();
-        $foundations = Foundation::where('country', $countryCode)->get();
+        $foundations = Foundation::where('country', $countryCode)
+            ->where('active', true)
+            ->get();
         $existoundation = auth()->user()->foundation;
 
         return inertia()->render('Buy/Detail', [

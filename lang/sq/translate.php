@@ -1837,6 +1837,9 @@ return [
     'selected_address' => 'Adresa e zgjedhur:',
     'noDetailProjectsSelected' => 'Prosimo, izberite vsaj en element s seznama',
     'salaryPeriod' => 'Lloji i pagës',
-
+    'disability_friendly' => 'Ofertë për personat me aftësi të kufizuara',
+    'meta_description_login' => 'Hyni në WORK4YOU.GLOBAL për të gjetur punën ose punonjësin ideal. Qasje e shpejtë në profilin tuaj dhe ofertat e punës.',
+    'meta_description_register' => 'Bëhuni pjesë e komunitetit WORK4YOU.GLOBAL. Regjistrohuni si punonjës ose kompani dhe filloni të përdorni platformën moderne të rekrutimit.',
+    'meta_description_forgot' => 'Keni harruar fjalëkalimin e WORK4YOU.GLOBAL? Vendosni adresën tuaj të emailit për të marrë një lidhje për rivendosjen e fjalëkalimit dhe për të rikthyer aksesin në llogarinë tuaj.',
 
 ];

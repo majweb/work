@@ -140,7 +140,9 @@ const submit = () => {
 </script>
 
 <template>
-    <Head :title="__('translate.register')" />
+    <Head :title="__('translate.register')">
+        <meta name="description" :content="__('translate.meta_description_register')" />
+    </Head>
 
     <div class="bg-gray-50 flex flex-col justify-center items-center min-h-screen p-6 relative overflow-hidden">
         <!-- Dekoracyjne tła -->

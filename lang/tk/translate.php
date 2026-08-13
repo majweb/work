@@ -1836,6 +1836,9 @@ return [
     'selected_address' => 'Saýlanan salgy:',
     'noDetailProjectsSelected' => 'Sanawdan azyndan bir elementi saýlaň',
     'salaryPeriod' => 'Aýlyk görnüşi',
-
+    'disability_friendly' => 'Maýyplygy bolan adamlar üçin teklip',
+    'meta_description_login' => 'Iň amatly işi ýa-da işgäri tapmak üçin WORK4YOU.GLOBAL ulgamyna giriň. Profiliňize we iş tekliplerine çalt girişi alyň.',
+    'meta_description_register' => 'WORK4YOU.GLOBAL jemgyýetine goşulyň. Işgär ýa-da kompaniýa hökmünde hasaba alynyň we döwrebap işe kabul ediş platformasyny ulanyp başlaň.',
+    'meta_description_forgot' => 'WORK4YOU.GLOBAL parolyňyzy unutdyňyzmy? Paroly täzeden düzmek üçin baglanyşyk almak we hasabyňyza girişi dikeltmek üçin e-poçta salgyňyzy giriziň.',
 
 ];

@@ -2010,4 +2010,8 @@ return [
     'selected_address' => 'العنوان المحدد:',
     'noDetailProjectsSelected' => 'يرجى اختيار عنصر واحد على الأقل من القائمة',
     'salaryPeriod' => 'نوع الراتب',
+    'disability_friendly' => 'عرض مناسب للأشخاص ذوي الإعاقة',
+    'meta_description_login' => 'سجّل الدخول إلى WORK4YOU.GLOBAL للعثور على الوظيفة أو الموظف المثالي. وصول سريع إلى ملفك الشخصي وعروض العمل.',
+    'meta_description_register' => 'انضم إلى مجتمع WORK4YOU.GLOBAL. سجّل كموظف أو شركة وابدأ باستخدام منصة التوظيف الحديثة.',
+    'meta_description_forgot' => 'هل نسيت كلمة مرور WORK4YOU.GLOBAL؟ أدخل عنوان بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور واستعادة الوصول إلى حسابك.',
 ];

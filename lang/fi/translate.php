@@ -1835,5 +1835,8 @@ return [
     'selected_address' => 'Valittu osoite:',
     'noDetailProjectsSelected' => 'Valitse vähintään yksi kohde luettelosta',
     'salaryPeriod' => 'Palkkatyyppi',
-
+    'disability_friendly' => 'Tarjous vammaisille henkilöille',
+    'meta_description_login' => 'Kirjaudu WORK4YOU.GLOBAL-palveluun löytääksesi ihanteellisen työn tai työntekijän. Nopea pääsy profiiliisi ja työpaikkailmoituksiin.',
+    'meta_description_register' => 'Liity WORK4YOU.GLOBAL-yhteisöön. Rekisteröidy työntekijäksi tai yritykseksi ja aloita nykyaikaisen rekrytointialustan käyttö.',
+    'meta_description_forgot' => 'Unohditko WORK4YOU.GLOBAL-salasanasi? Anna sähköpostiosoitteesi saadaksesi salasanan palautuslinkin ja palauttaaksesi pääsyn tilillesi.',
 ];

@@ -1845,4 +1845,8 @@ return [
     'selected_address' => 'Seçilmiş ünvan:',
     'noDetailProjectsSelected' => 'Zəhmət olmasa, siyahıdan ən azı bir element seçin',
     'salaryPeriod' => 'Maaş növü',
+    'disability_friendly' => 'Əlilliyi olan şəxslər üçün təklif',
+    'meta_description_login' => 'İdeal iş və ya işçi tapmaq üçün WORK4YOU.GLOBAL hesabınıza daxil olun. Profilinizə və iş elanlarına sürətli giriş.',
+    'meta_description_register' => 'WORK4YOU.GLOBAL icmasına qoşulun. İşçi və ya şirkət kimi qeydiyyatdan keçin və müasir işə qəbul platformasından istifadə etməyə başlayın.',
+    'meta_description_forgot' => 'WORK4YOU.GLOBAL parolunuzu unutmusunuz? Parolun sıfırlanması üçün link əldə etmək və hesabınıza yenidən giriş etmək üçün e-poçt ünvanınızı daxil edin.',
 ];
