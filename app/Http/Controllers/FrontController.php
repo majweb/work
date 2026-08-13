@@ -289,7 +289,7 @@ class FrontController extends Controller
 
             $projects = $query->paginate(5)->withQueryString();
 
-            $countries = (new Helper)->makeCountriesToSelectHasProjects();
+            $countries = (new Helper)->makeCountriesToSelectHasProjectsByBrowserLang();
 
             // Pobierz opcje z pamięci podręcznej lub z bazy danych
             $workingModes = $dictionaryService->getWorkingModesForSelect();

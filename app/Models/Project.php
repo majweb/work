@@ -214,7 +214,7 @@ class Project extends Model
     public function scopeActiveLang(Builder $query): Builder
     {
         $locale = getLocalBrowserLang();
-        return $query->active()->whereJsonContains('countryWork', ['countryCode' => $locale]);
+        return $query->active()->whereJsonContains('country', ['countryCode' => $locale]);
     }
 
     public function scopeNewest(Builder $query)

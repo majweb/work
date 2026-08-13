@@ -98,7 +98,7 @@ Route::get('/start', [FrontController::class, 'Landing'])->name('landing');
 
 Route::get('/', function (DictionaryService $dictionaryService) {
     $page = Page::findOrFail(1);
-    $countries = (new Helper)->makeCountriesToSelectHasProjects();
+    $countries = (new Helper)->makeCountriesToSelectHasProjectsByBrowserLang();
     $imageUrl = Country::getRandomImageFromBrowserLocale();
 
     return Inertia::render('Welcome', [
