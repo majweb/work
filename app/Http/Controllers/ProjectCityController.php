@@ -13,17 +13,12 @@ class ProjectCityController extends Controller
      */
     public function __invoke(string $countryCode): JsonResponse
     {
-        $query = Project::whereNotNull('lat')
-            ->whereNotNull('lng');
+        $projects = Project::whereNotNull('lat')
+            ->whereNotNull('lng')
+            ->activeLang()
+            ->get();
 
-        if ($countryCode === 'default') {
-            $query->activeLang();
-        } else {
-            $query->active()
-                ->whereJsonContains('countryWork', ['countryCode' => $countryCode]);
-        }
-
-        $projects = $query->get();
+        $projects = $projects->get();
 
         $cities = $projects->groupBy('cityWork')
             ->map(function ($group, $cityName) {
