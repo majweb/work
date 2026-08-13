@@ -85,6 +85,55 @@ class Helper{
 
     }
 
+    public function makeCountriesToSelectHasProjectsByBrowserLang(): array
+    {
+        $countryCodes = Project::activeLang()
+            ->pluck('countryWork')
+            ->filter()
+            ->map(function ($item) {
+                if (is_string($item)) {
+                    $decoded = json_decode($item, true);
+                } elseif (is_array($item)) {
+                    $decoded = $item;
+                } else {
+                    return null;
+                }
+
+                if (isset($decoded['countryCode'])) {
+                    return $decoded['countryCode'];
+                }
+
+                return null;
+            })
+            ->filter()
+            ->unique()
+            ->toArray();
+
+        if (!empty($countryCodes)) {
+            $countries = Country::whereIn('countryCode', $countryCodes)
+                ->get()
+                ->groupBy('continent')->toArray();
+
+            $data = [];
+            foreach ($countries as $key => $value) {
+                $data[] = [
+                    'group' => $key,
+                    'elements' => array_map(function ($el) {
+                        return [
+                            'name' => $el['name'][app()->getLocale()],
+                            'value' => $el['id'],
+                            'countryCode' => $el['countryCode'],
+                            'allTranslations' => $el['name'],
+                        ];
+                    }, $value),
+                ];
+            }
+            return $data;
+        } else {
+            return [];
+        }
+    }
+
     public function makeCountriesToSelectHasFirms()
     {
         $countryCodes = Firm::all()
