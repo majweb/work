@@ -59,7 +59,7 @@ watch(() => form.country, async (newCountry) => {
 
     isLoadingCities.value = true;
     try {
-        const response = await fetch(route("cities.byCountry", newCountry.countryCode));
+        const response = await fetch(route("projects.cities", newCountry.countryCode));
         const data = await response.json();
 
         // teraz przypisujemy prostą tablicę

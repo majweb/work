@@ -27,6 +27,7 @@ use App\Http\Controllers\Global\DeleteTemporaryFileController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\Global\FileUploadController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ProjectCityController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Recruit\AplicationController as AplicationControllerRecruit;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
@@ -91,6 +92,8 @@ Route::get('/test', function () {
 
 Route::get('/cities/{countryCode}', LocationController::class)
     ->name('cities.byCountry');
+Route::get('/project-cities/{countryCode}', ProjectCityController::class)
+    ->name('projects.cities');
 Route::get('/categories/{countryCode?}', CategoryControllerInvoke::class)
     ->name('categories.byCountry');
 

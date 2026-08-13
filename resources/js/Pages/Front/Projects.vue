@@ -104,7 +104,7 @@ onMounted(async () => {
         isLoadingCities.value = true;
         try {
             // --- miasta ---
-            const responseCities = await fetch(route("cities.byCountry", props.countryFront.countryCode));
+            const responseCities = await fetch(route("projects.cities", props.countryFront.countryCode));
             const citiesData = await responseCities.json();
             optionsCities.value = citiesData;
 
@@ -138,7 +138,7 @@ watch(() => form.country, async (newCountry) => {
 
     isLoadingCities.value = true;
     try {
-        const response = await fetch(route("cities.byCountry", newCountry.countryCode));
+        const response = await fetch(route("projects.cities", newCountry.countryCode));
         const data = await response.json();
         optionsCities.value = data;
         form.city = null;
