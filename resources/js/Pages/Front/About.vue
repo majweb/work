@@ -31,10 +31,10 @@ const props = defineProps({
                             <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ __('info.about_us') }}</span>
                         </div>
 
-                        <h2 class="text-4xl md:text-6xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-8">
+                        <h1 class="text-4xl md:text-6xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-8">
                             {{ __('info.bridge') }}
                             <span class="text-[#00a0e3] block mt-2">{{ __('info.talent') }}</span>
-                        </h2>
+                        </h1>
 
                         <div class="flex justify-center items-center gap-8 mb-12">
                             <img src="/images/icons/about/o_nas_2.png" :alt="__('info.first_img')" class="w-12 md:w-16 animate-bounce" />

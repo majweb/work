@@ -157,7 +157,7 @@ const submit = () => {
                     <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></span>
                     <span class="text-[10px] font-black text-red-600 uppercase tracking-[0.3em] leading-loose">{{ __('translate.register') }}</span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] leading-loose uppercase tracking-tighter">
+                <h1 class="text-3xl md:text-4xl font-black text-[#0A2C5C] leading-loose uppercase tracking-tighter">
                     {{ headerText.line1 }} {{ headerText.line2 }}<br />
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500 mt-2 block">
                         {{ headerText.line3 }}
@@ -165,7 +165,7 @@ const submit = () => {
                     <span class="block text-lg md:text-xl mt-2 text-gray-400 font-black tracking-[0.2em]">
                         {{ headerText.line4 }}
                     </span>
-                </h2>
+                </h1>
             </div>
 
             <!-- REGISTRATION CARD -->

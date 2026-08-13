@@ -28,12 +28,12 @@ const submit = () => {
         <div class="w-full max-w-xl px-6 relative z-10">
             <!-- HEADER -->
             <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-black text-[#0A2C5C] uppercase tracking-tighter leading-none mb-4">
+                <h1 class="text-3xl md:text-4xl font-black text-[#0A2C5C] uppercase tracking-tighter leading-none mb-4">
                     <span class="block">{{ __('translate.forgot') }}</span>
                     <span class="block text-lg md:text-xl mt-2 text-gray-400 font-black tracking-[0.2em]">
                         {{ __('translate.resetAccess') }}
                     </span>
-                </h2>
+                </h1>
             </div>
 
             <!-- CARD -->

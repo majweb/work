@@ -73,9 +73,9 @@ const props = defineProps({
                                         {{ __('translate.latest_article') }}
                                     </span>
                                 </div>
-                                <h2 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none group-hover:text-[#01A0E2] transition-colors">
+                                <h1 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-none group-hover:text-[#01A0E2] transition-colors">
                                     {{ newest.title }}
-                                </h2>
+                                </h1>
                                 <p class="text-sm font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
                                     {{ __('translate.company_article') }} <br>
                                     <span class="text-[#0A2C5C] font-black">{{ newest.author }}</span>

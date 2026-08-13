@@ -203,9 +203,9 @@ onMounted(() => loadCaptcha())
                                     <span class="text-[10px] font-black text-[#00a0e3] uppercase tracking-widest">{{ __('translate.write_to_us') }}</span>
                                 </div>
 
-                                <h2 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-8">
+                                <h1 class="text-3xl md:text-5xl font-black text-[#0A2C5C] uppercase tracking-tight leading-tight mb-8">
                                     {{ __('translate.contact_us') }}
-                                </h2>
+                                </h1>
 
                                 <!-- KOMUNIKAT SUKCESU -->
                                 <Transition
