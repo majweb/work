@@ -1137,7 +1137,7 @@ onMounted(async () => {
 
                             <!-- Szybkie wyszukiwanie -->
                             <div class="mb-8 md:mb-12">
-                                <div class="bg-gradient-to-br from-[#0A2C5C] to-[#1a4a8e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 shadow-2xl shadow-blue-900/20 relative group">
+                                <div class="bg-gradient-to-br from-[#0A2C5C] to-[#1a4a8e] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 shadow-2xl shadow-blue-900/20 relative group opacity-60 grayscale-[20%]">
                                     <!-- Dekoracyjne tło -->
                                     <div class="absolute top-0 right-0 -mt-10 -mr-10 w-24 h-24 md:w-40 md:h-40 bg-white/5 rounded-full blur-2xl md:blur-3xl group-hover:bg-white/10 transition-colors duration-700"></div>
                                     <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-24 h-24 md:w-40 md:h-40 bg-[#00a0e3]/10 rounded-full blur-2xl md:blur-3xl"></div>
@@ -1165,6 +1165,7 @@ onMounted(async () => {
                                             <multiselect
                                                 v-model="quickSearch"
                                                 :options="allPositionsOptions"
+                                                :disabled="true"
                                                 @select="onQuickSearchSelect"
                                                 @search-change="onSearchChange"
                                                 :internal-search="false"
@@ -1198,7 +1199,7 @@ onMounted(async () => {
                                                 </template>
                                             </multiselect>
                                             <div class="mt-3">
-                                                <button @click="isReporting = !isReporting" type="button" class="text-[10px] font-black text-blue-200 hover:text-white uppercase tracking-widest transition-colors flex items-center gap-1">
+                                                <button v-if="false" @click="isReporting = !isReporting" type="button" class="text-[10px] font-black text-blue-200 hover:text-white uppercase tracking-widest transition-colors flex items-center gap-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" /></svg>
                                                     {{ __('translate.not_found_position') }}
                                                 </button>
@@ -1237,6 +1238,7 @@ onMounted(async () => {
                                         <div>
                                             <InputLabel :value="__('translate.category')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
+                                                :disabled="true"
                                                 :selectLabel="''"
                                                 :selectGroupLabel="''"
                                                 :selectedLabel="''"
@@ -1259,7 +1261,7 @@ onMounted(async () => {
                                         <div>
                                             <InputLabel :value="__('translate.subcategory')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
-                                                :disabled="!form.category"
+                                                :disabled="true"
                                                 :selectLabel="''"
                                                 :selectGroupLabel="''"
                                                 :selectedLabel="''"
@@ -1284,7 +1286,6 @@ onMounted(async () => {
                                         <div>
                                             <InputLabel :value="__('translate.profession')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
-                                                :disabled="!form.categorySub"
                                                 :selectLabel="''"
                                                 :selectGroupLabel="''"
                                                 :selectedLabel="''"
@@ -1294,6 +1295,7 @@ onMounted(async () => {
                                                 track-by="value"
                                                 label="name"
                                                 :placeholder="__('translate.placeholder')"
+                                                :disabled="true"
                                                 v-model="form.profession" :options="optionsProfession"
                                                 class="custom-multiselect">
                                                 <template #noResult>
@@ -1309,7 +1311,7 @@ onMounted(async () => {
                                         <div>
                                             <InputLabel :value="__('translate.position')" class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2" />
                                             <multiselect
-                                                :disabled="!form.profession"
+                                                :disabled="true"
                                                 :selectLabel="''"
                                                 :selectGroupLabel="''"
                                                 :selectedLabel="''"
@@ -1347,7 +1349,7 @@ onMounted(async () => {
                                                 </div>
                                             </div>
 
-                                            <div v-else-if="form.position?.name" class="mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[#0A2C5C] text-white p-5 md:p-6 rounded-3xl shadow-lg shadow-blue-900/10">
+                                            <div v-else-if="form.position?.name" class="mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[#0A2C5C] text-white p-5 md:p-6 rounded-3xl shadow-lg shadow-blue-900/10 opacity-75">
                                                 <div class="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
                                                     <svg class="w-5 h-5 md:w-6 md:h-6 text-[#00a0e3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
