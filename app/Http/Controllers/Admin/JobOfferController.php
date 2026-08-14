@@ -67,12 +67,12 @@ class JobOfferController extends Controller
 
         $selectedCountry = null;
         if ($request->filled('country')) {
-            $selectedCountry = collect($countries)->flatMap(fn($g) => $g['elements'])->firstWhere('value', (int) $request->country);
+            $selectedCountry = collect($countries)->flatMap(fn ($g) => $g['elements'])->firstWhere('value', (int) $request->country);
         }
 
         $selectedPublicationCountry = null;
         if ($request->filled('publication_country')) {
-            $selectedPublicationCountry = collect($allCountries)->flatMap(fn($g) => $g['elements'])->firstWhere('value', (int) $request->publication_country);
+            $selectedPublicationCountry = collect($allCountries)->flatMap(fn ($g) => $g['elements'])->firstWhere('value', (int) $request->publication_country);
         }
 
         $selectedCategory = null;
@@ -121,7 +121,7 @@ class JobOfferController extends Controller
         }
 
         $languages = LanguageResource::collection(Lang::cases())->toArray($request);
-        $langLevels = LangLevel::all()->map(fn($level) => [
+        $langLevels = LangLevel::all()->map(fn ($level) => [
             'id' => $level->id,
             'name' => $level->name,
         ]);
@@ -397,8 +397,8 @@ class JobOfferController extends Controller
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']).
-                (isset($request->projectData()['salaryPeriod']) ? ' / '.($request->projectData()['salaryPeriod']['allTranslations']['name'][$lang] ?? $request->projectData()['salaryPeriod']['name']) : '');
+                __('translate.'.$request->projectData()['salary_type'], [], $lang).
+                (isset($request->projectData()['salaryPeriod']['allTranslations']['name'][$lang]) ? ' / '.$request->projectData()['salaryPeriod']['allTranslations']['name'][$lang] : (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : ''));
         }
 
         $langs = [];

@@ -234,8 +234,8 @@ class ProjectController extends Controller
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']).
-                (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : '');
+                __('translate.'.$request->projectData()['salary_type'], [], $lang).
+                (isset($request->projectData()['salaryPeriod']['allTranslations']['name'][$lang]) ? ' / '.$request->projectData()['salaryPeriod']['allTranslations']['name'][$lang] : (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : ''));
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
@@ -428,8 +428,8 @@ class ProjectController extends Controller
                 $request->projectData()['cityWork'].', '.
                 $request->projectData()['basicSalaryFrom'].' '.
                 $request->projectData()['currency']['name'].' '.
-                __('translate.'.$request->projectData()['salary_type']).
-                (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : '');
+                __('translate.'.$request->projectData()['salary_type'], [], $lang).
+                (isset($request->projectData()['salaryPeriod']['allTranslations']['name'][$lang]) ? ' / '.$request->projectData()['salaryPeriod']['allTranslations']['name'][$lang] : (isset($request->projectData()['salaryPeriod']['name']) ? ' / '.$request->projectData()['salaryPeriod']['name'] : ''));
         }
         $langs = [];
         foreach ($request->projectData()['langs'] ?? [] as $langData) {
