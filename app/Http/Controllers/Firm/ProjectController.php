@@ -411,6 +411,7 @@ class ProjectController extends Controller
      */
     public function update(StoreProject $request, Project $project)
     {
+
         Gate::authorize('update', $project);
         $title = [];
         foreach (config('langsShorts') as $lang) {
@@ -455,6 +456,7 @@ class ProjectController extends Controller
         }
 
         $project->update([
+            'title' => $title,
             'category' => $request->projectData()['category'],
             'categorySub' => $request->projectData()['categorySub'],
             'profession' => $request->projectData()['profession'],
