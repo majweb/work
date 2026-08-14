@@ -2,7 +2,7 @@
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import Multiselect from "vue-multiselect";
 import InputError from "@/Components/InputError.vue";
-import {router, useForm} from '@inertiajs/vue3';
+import {router, useForm, usePage} from '@inertiajs/vue3';
 import { ref, watch, onMounted } from "vue";
 
 const props = defineProps({
@@ -11,6 +11,8 @@ const props = defineProps({
     countries: Array,
     distanceOptions: Array,
 });
+
+const page = usePage();
 
 const optionsCities = ref([]); // 👈 tutaj będą miasta
 const optionsCategories = ref([]);
@@ -28,7 +30,7 @@ const form = useForm({
 });
 
 // Watcher dla zmiany kraju
-const fetchCategories = async (countryCode = null) => {
+const fetchCategories = async (countryCode = page.props.currentCountry) => {
     isLoadingCategories.value = true;
     try {
         const url = countryCode

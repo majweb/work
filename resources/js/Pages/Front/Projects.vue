@@ -81,7 +81,7 @@ watch(() => props.distanceFront, (newDistance) => {
     }
 });
 
-const fetchCategories = async (countryCode = null) => {
+const fetchCategories = async (countryCode = page.props.currentCountry) => {
     isLoadingCategories.value = true;
     try {
         const url = countryCode
@@ -98,7 +98,7 @@ const fetchCategories = async (countryCode = null) => {
 };
 
 onMounted(async () => {
-    fetchCategories(props.countryFront?.countryCode);
+    fetchCategories(props.countryFront?.countryCode || page.props.currentCountry);
 
     if (props.countryFront) {
         isLoadingCities.value = true;

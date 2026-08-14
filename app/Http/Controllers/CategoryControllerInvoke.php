@@ -12,7 +12,7 @@
       */
      public function __invoke($countryCode = null)
      {
-         $categories = Project::all()
+         $categories = Project::active()->get()
              ->map(function ($item) {
                  $countryData = is_string($item->countryWork)
                      ? json_decode($item->countryWork, true)
