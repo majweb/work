@@ -1,1 +1,364 @@
-<?phpreturn [    'meta' => [        'title' => 'Work4you.global - Ish e\'lonlarini mutlaqo bepul joylashtiring',        'description' => 'Cheksiz miqdorda ish e\'lonlarini nashr qiling va nomzodlarning arizalarini mutlaqo bepul toʻplang. Bonus sifatida 50 000 boshlangʻich ballga ega boʻling!',    ],    'nav' => [        'how_it_works' => 'Tizim qanday ishlaydi',        'benefits' => 'Afzalliklar',        'faq' => 'FAQ',        'register_free' => 'Bepul akkaunt ochish',    ],    'hero' => [        'title' => 'Cheksiz miqdorda ish e\'lonlarini joylashtiring <br class="hidden lg:block"/> va nomzodlarning arizalarini mutlaqo bepul toʻplang.',        'subtitle' => 'Obunalar yoʻq. Nashr uchun toʻlovlar yoʻq. <br class="hidden md:block"/> Startda siz darhol foydalanishga tayyor boʻlgan 50 000 ballni sovgʻa sifatida olasiz.',        'cta' => 'Bepul akkaunt oching va birinchi e\'loningizni joylashtiring',        'target' => 'Kadrlar agentliklari va <br class="hidden sm:block" /> yirik miqyosda xodimlarni ishga oladigan kompaniyalar uchun juda mos keladi.',    ],    'model' => [        'title' => 'Oddiy model: Bepul nashr qiling va nomzodlarni jalb qiling',        'step1' => [            'title' => 'Istalgancha ish e\'lonlarini qoʻshishingiz mumkin',            'desc' => 'Hech qanday cheklovlar va xarajatlarsiz',        ],        'step2' => [            'title' => 'Nomzodlardan arizalar qabul qilasiz',            'desc' => 'Ish qidirayotganlarning rezyumelarini (CV) mutlaqo bepul toʻplang',        ],        'step3' => [            'title' => 'Ballardan faqat oʻzingiz xohlagan vaqtda foydalanasiz',            'desc' => 'masalan: CV-larni koʻrish yoki e\'lonlarni roʻyxatning eng yuqorisiga koʻtarish uchun',        ],    ],    'credits' => [        'badge' => 'boshlash uchun sovgʻa!',        'amount_label' => 'ball',        'test_platform' => 'Roʻyxatdan oʻtganingizdan soʻng, platformani toʻliq sinab koʻrishingiz uchun boshlangʻich paketga ega boʻlasiz:',        'benefits_list' => [            'Nomzodlarning CV-larini koʻrish (klassik, audio, video formatlarda)',            'Ish e\'lonlarini roʻyxatning eng yuqori qismiga koʻtarish',            'Kompaniyani ish beruvchilar katalogida ajratib koʻrsatish',            'Kengaytirilgan kadrlar tanlash filtrlari (Filters) dan foydalanish',        ],        'no_start_costs' => 'Nihoyat... hech qanday boshlangʻich xarajatlarsiz xodimlarni ishga olishingiz mumkin...',        'items' => [            'free_ads' => 'Ish e\'lonlarini bepul nashr qilasiz',            'no_contracts' => 'Shartnomalar va oylik obuna toʻlovlari yoʻq',            'own_rules' => 'Platformadan oʻz shartlaringiz va qoidalaringiz asosida foydalaning',            'cv_types' => 'Klassik, audio va video formatdagi CV-lar',            'all_languages' => 'E\'lonlarni barcha tillarda kiritish imkoniyati',        ],    ],    'foundation' => [        'badge' => 'Biz birgalikda dunyoni oʻzgartiramiz:',        'title' => 'Har bir xarid summasining 50% qismi siz tanlagan xayriya jamgʻarmasiga yoʻnaltiriladi.',        'subtitle' => 'Siz xodimlarni ishga olasiz va shu bilan birga muhtoj odamlarga real yordam berasiz.',    ],    'cta' => [        'title' => 'Bepul kadrlar yollashga tayyormisiz? <br/>Oʻzingizning <span class="text-red-work">50 000 ballingizni</span> hozirroq qoʻlga kiriting!',        'button' => 'Kompaniyangizni bepul roʻyxatdan oʻtkazing',    ],    'who_is_it_for' => [        'title' => 'Eng koʻp foydani kim oladi?',        'groups' => [            'agencies' => 'Kadrlar agentliklari va rekruterlar',            'high_volume' => 'Yirik miqyosda xodimlarni ishga oladigan kompaniyalar',            'cost_conscious' => 'Xarajatlarini kamaytirmoqchi boʻlgan ish beruvchilar',            'international' => 'Xalqaro miqyosda faoliyat yuritadigan kompaniyalar',            'everyone' => 'Malakali xodim qidirayotgan har bir kishi',        ],    ],    'faq_section' => [        'title' => 'FAQ',        'subtitle' => 'Tez-tez beriladigan savollar',        'questions' => [            [                'question' => 'Ish e\'lonini qoʻshish haqiqatan ham bepulmi?',                'answer' => 'Ha — e\'lonlar sonidan qat\'i nazar, nashr qilish uchun hech qanday toʻlov toʻlamaysiz.',            ],            [                'question' => 'Boshlash uchun albatta ball sotib olishim kerakmi?',                'answer' => 'Yoʻq — roʻyxatdan oʻtganingizdan soʻng darhol 50 000 bepul ball avtomatik ravishda balansingizga oʻtkaziladi.',            ],            [                'question' => 'Men qachon toʻlov toʻlashni boshlayman?',                'answer' => 'Faqat oʻzingiz qoʻshimcha ballar sotib olishga qaror qilgan vaqtingizda.',            ],            [                'question' => 'Men xizmatni istalgan vaqtda bekor qila olamanmi?',                'answer' => 'Ha — hech qanday majburiy shartnoma yoki uzoq muddatli majburiyatlar yoʻq.',            ],        ],    ],    'footer' => [        'description' => 'Ish beruvchilarga va nomzodlarga haqiqiy ovoz beradigan, shu bilan birga xayriya jamgʻarmalariga sezilarli yordam koʻrsatadigan birinchi barqaror kadrlar yollash platformasi.',        'nav' => 'Navigatsiya',        'legal' => 'Huquqiy masalalar',        'privacy' => 'Maxfiylik siyosati',        'terms' => 'Foydalanish shartlari',        'rights' => 'Barcha huquqlar himoyalangan.',    ],    'sold' => [        'hero' => [            'title' => 'E\'lonlaringiz nomzodlarni jalb qildi. <br/> Ularni kutishga majbur qilmang.',            'subtitle' => 'Arizalar sonini koʻpaytiring, CV-larga kirish huquqini oching va ish e\'lonlaringizning toʻliq salohiyatidan foydalaning.',            'cta' => 'Hisobni toʻldirish',            'warning' => 'Allaqachon ariza topshirayotgan iqtidorli nomzodlarni qoʻldan boy bermang!',        ],        'points_benefits' => [            'title' => 'SATIN OLINGAN BALLAR BILAN NIMALAR QILA OLISHINGIZNI KOʻRING',            'items' => [                'cv_access' => 'nomzodlarning CV-lariga toʻliq kirish imkoniyati',                'cv_formats' => 'turli formatlardagi rezyumelarni koʻrib chiqish',                'ads_promo' => 'ish e\'lonlarini roʻyxatda yuqoriga koʻtarish va reklama qilish',                'employer_distinction' => 'ish beruvchining profilini alohida ajratib koʻrsatish',                'brand_building' => 'kuchli ish beruvchi brendini (Employer Branding) yaratish',            ],        ],        'recharges' => [            'title' => 'OYLIK OBUNA TUZOQLARI OʻRNIGA FAQAT BALANSNI TOʻLDIRISH TIZIMI',            'subtitle' => 'Sizning ballaringiz, sizning qoidalaringiz...',            'items' => [                'free_ads' => [                    'title' => 'Siz e\'lonlarni doimo bepul nashr qilasiz',                    'desc' => 'Yangi ish oʻrinlarini qoʻshish doimo bepul boʻlib qoladi. Siz kadrlar ma\'lumotlar bazasini hech qanday boshlangʻich xarajatlarsiz qurasiz.',                ],                'no_expiration' => [                    'title' => 'Ballaringizning muddati hech qachon tugamaydi',                    'desc' => 'Toʻldirilgan balans abadiy sizniki boʻlib qoladi. Undan bugun, kelgusi hafta yoki oylar oʻtgandan keyin ham istalgan amal uchun foydalanishingiz mumkin.',                ],                'pay_per_effect' => [                    'title' => 'Siz faqat real natija uchun toʻlaysiz',                    'desc' => 'Ballarni faqat ma\'lum bir premium funksiyadan foydalanishni xohlagan vaqtingizda sarflaysiz. Budjetingiz toʻliq oʻz nazoratingizda.',                ],            ],        ],        'foundation' => [            'title' => 'Sizning qaroringiz haqiqiy oʻzgartirish kuchiga ega:',            'subtitle' => 'Buyurtma summasining yarmi (50%) toʻgʻridan-toʻgʻri siz tanlagan xayriya tashkilotining hisobiga oʻtkaziladi.',            'step1' => [                'title' => 'Siz jamgʻarmani tanlaysiz:',                'desc' => 'Hisobingiz toʻldirilgandan soʻng, qaysi ijtimoiy tashkilotni qoʻllab-quvvatlashimiz toʻliq sizning tanlovingizdir.',            ],            'step2' => [                'title' => 'Sizning kompaniyangiz uchun minnatdorchilik sertifikati:',                'desc' => 'Sizning muvaffaqiyatli kadrlar yollash jarayoningizni ijtimoiy mas\'uliyat (CSR) bilan samarali birlashtirganingizni tasdiqlovchi rasmiy hujjat.',            ],            'cta' => 'Ballar paketini tanlang va jamgʻarmani koʻrsating',        ],        'solutions' => [            'title' => 'Xodim qidirayotgan har bir kishi uchun munosib yechimlarimiz bor:',            'items' => [                'agencies' => [                    'title' => 'KADRLAR AGENTLIKLARI VA REKRUTERLAR UCHUN',                    'desc' => 'Matn, audio yoki video koʻrinishidagi CV-larga zudlik bilan kirish va aqlli saralash vositalari sizga raqobatchilaringizdan oldin boʻsh oʻrinlarni toʻldirish imkonini beradi.',                ],                'high_volume' => [                    'title' => 'YIRIK MIQYOSDA XODIMLARNI ISHGA OLADIGAN KOMPANIYALAR UCHUN',                    'desc' => 'Ruxsat etilgan oylik toʻlovning yoʻqligi xarajatlarning real tejalishidir. Ballar faqat aniq harakatlar uchun yechiladi, e\'loningiz esa har doim koʻrinib turadi.',                ],                'cost_conscious' => [                    'title' => 'XARAJATLARINI DAQIQ NAZORAT QILMOQCHI BOʻLGAN ISH BERUVCHILAR',                    'desc' => 'Ballar modeli budjetni juda aniqlik bilan boshqarish imkonini beradi. Siz aynan oʻsha boʻsh ish oʻrni uchun rejalashtirgan mablagʻingiz miqdorida sarflaysiz.',                ],                'international' => [                    'title' => 'XALQARO MIQYOSDA FAOLIYAT YURITADIGAN KOMPANIYALAR UCHUN',                    'desc' => 'Portal barcha tillarda mavjud boʻlib, bu sizga istalgan joydan iqtidorli mutaxassislarni qidirishga imkon beradi. Keng qamrov va juda oddiy hisob-kitob tizimi.',                ],                'everyone' => [                    'title' => 'YAXSHI XODIMGA EHTIYOJI BOʻLGAN HAR BIR KISHI UCHUN',                    'desc' => 'Biznesingizning hajmi qanday boʻlishidan qat\'i nazar, siz yuqori motivatsiyali nomzodlarga kirish imkoniga ega boʻlasiz va shu bilan birga ezgu ijtimoiy maqsadni qoʻllab-quvvatlaysiz.',                ],            ],        ],        'faq' => [            'questions' => [                [                    'question' => 'Agar men hisobimni toʻldirmasam, joylashtirgan e\'lonlarim nima boʻladi?',                    'answer' => 'E\'lonlar faol va koʻrinadigan boʻlib qolaveradi. Hisobni toʻldirish faqat nomzodlarning batafsil CV-larini koʻrish, e\'lonlarni maxsus ajratib koʻrsatish yoki boshqa premium funksiyalardan foydalanish uchun zarurдир.',                ],                [                    'question' => 'Ballarning amal qilish muddati qancha?',                    'answer' => 'Ballarning tugash muddati yoʻq. Siz ulardan hozir foydalanishingiz yoki oylar oʻtgandan keyin kelgusi kadrlar yollash jarayonlari uchun saqlashingiz mumkin – mablagʻlaringiz hisobingizda har doim xavfsiz turadi.',                ],                [                    'question' => 'Men ballarni e\'lonni yuqoriga koʻtarish (promosyon) uchun ishlatsam boʻladimi?',                    'answer' => 'Ha. Ballar platformaning ichki umumiy valyutasidir – undan CV-ni ochish, e\'lonni ajratib koʻrsatish yoki qoʻshimcha reklama qilish ishlarida erkin foydalanishingiz mumkin.',                ],                [                    'question' => 'Men nomzodlarning ma\'lumotlarini qachon koʻra olaman?',                    'answer' => 'Ballarni sarflaganingizdan soʻng darhol elyetarli boʻladi. Hisobingizda ballar mavjud boʻlganda, e\'lonlarni boshqarish panelidan bitta bosish (click) bilan arizalarni tekshirishingiz mumkin.',                ],            ],        ],        'bottom_cta' => [            'title' => 'Nomzodlaringiz siz bogʻlanishingizni kutishmoqda',            'subtitle' => '30 soniyada hisobingizni toʻldiring va platformaning barcha imkoniyatlarini oching',            'button' => 'Hisobni hozir toʻldiring',            'features' => [                'free_ads' => 'ish e\'lonlarini mutlaqo roʻyxatdan oʻtkazish bepul',                'no_expiration' => 'hisobingizda muddati tugamaydigan ballar tizimi',                'real_support' => 'muhtoj odamlarga haqiqiy va toʻgʻridan-toʻgʻri yordam yetib borishi',            ],        ],    ],    'charity' => [        'nav' => [            'how_it_works' => 'Tizim qanday ishlaydi?',            'benefits' => 'Afzalliklar',            'faq' => 'FAQ',            'register_foundation' => 'Jamgʻarmani roʻyxatdan oʻtkazish',        ],        'hero' => [            'title' => 'Kompaniyalarning kundalik kadrlar yollash jarayonlarini <br class="hidden lg:block"/> sizning Jamgʻarmangiz uchun barqaror moliyaviy yordamga aylantiring.',            'subtitle' => 'Platformaning rasmiy elchilariga (Ambassador) aylaning. Kompaniyalar har gal xodim yollaganda, bu sizning tashkilotingiz qaramogʻidagi insonlarga toʻgʻridan-toʻgʻri moliyaviy yordam degani. Roʻyxatdan oʻtish toʻlovi va ortiqcha qogʻozbozliklarsiz.',            'cta' => 'Jamgʻarmani roʻyxatdan oʻtkazish',        ],        'how_it_works' => [            'title' => 'ISHLESH TIZIMI',            'steps' => [                'step1' => [                    'title' => 'Siz tanishtiruv profilini yaratasiz',                    'desc' => 'Tashkilotingiz faoliyatini tanishtiruvchi raqamli tashrif qogʻozi (vizitka) yaratasiz. U platformadagi barcha ish beruvchilarga koʻrsatiladi va bu sizning maqsadlaringiz haqida xabardorlikni oshiradi.',                ],                'step2' => [                    'title' => 'Siz elchi sifatida faoliyat yuritasiz',                    'desc' => 'Siz ushbu platformaning vakili sifatida chiqish qilib, kompaniyalarni ijtimoiy mas\'uliyatli kadrlar yollashga taklif qilasiz. Ularning har gal hisobini toʻldirishidan 50% mablagʻ toʻgʻridan-toʻgʻri jamgʻarmangizga keladi.',                ],                'step3' => [                    'title' => 'Yordam fondlarini qabul qilish',                    'desc' => 'Ish beruvchilar xarid qilish vaqtida roʻyxatdan sizning jamgʻarmangizni toʻgʻridan-toʻgʻri tanlaydilar, yoki siz ulashgan maxsus hamkorlik havolasi (Affiliate Link) orqali yordam puli kelib tushadi.',                ],            ],        ],        'funds_origin' => [            'title' => 'Xayriya tashkilotlari uchun yordam mablagʻlari qayerdan paydo boʻladi?',            'steps' => [                'step1' => 'Ish beruvchi (kompaniya) platformada odatiy kadrlar yollash jarayonini amalga oshiradi',                'step2' => 'Platformaning ilgʻor funksiyalaridan foydalanish uchun zarur boʻlgan ballarni sotib oladi',                'step3' => 'Ushbu toʻlov miqdorining 50% qismi birikdirilgan xayriya jamgʻarmasiga toʻgʻridan-toʻgʻri yoʻnaltiriladi',                'step4' => 'Jamgʻarma ushbu mablagʻlarni oʻzining ijtimoiy va ynsanperwerlik ishlarida muvaffaqiyatli ishlatadi',            ],        ],        'why_model_works' => [            'title' => 'BU MODEL NIMA UCHUN MUVAFFAQIYATLI BOʻLADI VA MAQSADGA ERISHADI?',            'items' => [                [                    'title' => 'Kompaniyalar har kuni xodim qidiradilar',                    'desc' => 'Jamoa shakllantirish va odam qidirish – minglab kompaniyalar va HR agentliklari uchun barqaror va kundalik majburiy biznes jarayonlaridan biridir.',                ],                [                    'title' => 'Yordam avtomatik ravishda shakllanadi',                    'desc' => 'Moliyaviy yordam biznes yollash jarayonining ajralmas qismi sifatida yuzaga keladi, shuning uchun kompaniya budjetidan alohida va qoʻshimcha xayriya talab qilinmaydi.',                ],                [                    'title' => 'Barcha tomonlar uchun manfaatli (Win-Win) tizim',                    'desc' => 'Ish beruvchi xodimlarni samaraliroq topadi, xayriya tashkilotlari operatsion budjet yordamini oladilar, ish qidirayotganlar esa munosib ish topadilar.',                ],                [                    'title' => 'Har bir ish e\'loni ijtimoiy yordam bilan bogʻliqdir',                    'desc' => 'Platformadagi har bir faol harakat ijtimoiy tashkilotlarga boradigan real moliyaviy yordam miqdorini doimiy ravishda oshirib boradi.',                ],            ],        ],        'benefits' => [            'title' => 'BIZNING RASMIY ELCHIMIZ BOʻLIShNING NIMA AFZALLIKLARI BOR?',            'items' => [                'new_source' => [                    'title' => 'Yordam toʻplashning yangi, ishonchli va barqaror yoʻli',                    'desc' => 'Jamiyatga yordam berishni xohlaydigan, ammo murakkab jarayonlarsiz, oddiy, shaffof va avtomatlashtirilgan usulda oʻz CSR strategiyasini amalga oshirishni istagan kompaniyalar bilan bogʻlanish imkoniyati.',                ],                'free_promo' => [                    'title' => 'Hech qanday xarajatlarsiz tanilish va reklama olish',                    'desc' => 'Tashkilotingiz platformadan foydalanadigan barcha ish beruvchilarga koʻrsatiladi, buning natijasida xalqaro biznes doiralari orasida sizning qiymatingiz tanilinishi oshadi.',                ],                'ready_tools' => [                    'title' => 'Tayyor marketing vositalarining taqdim etilishi',                    'desc' => 'Sizga osonlik bilan ulashish mumkin boʻlgan reklama materiallari beriladi. Siz shunchaki kuchli kadrlar yollash vositasini kompaniyalarga tavsiya qilasiz, ular esa oʻz ishlarini bajarish orqali sizning maqsadlaringizni qoʻllab-quvvatlaydilar.',                ],                'business_relations' => [                    'title' => 'Biznes dunyosi va korporativ hamkorlar bilan kuchli aloqalar oʻrnatish',                    'desc' => 'Siz kompaniyalarning ishonchli hamkoriga aylanasiz. Ishtirokchi kompaniyalarga sizning missiyangizni qoʻllab-quvvatlaganliklari toʻgʻrisida rasmiy CSR sertifikati beriladi, bu esa uzoq muddatli hamkorlikni mustahkamlaydi.',                ],            ],        ],        'business_card' => [            'title' => 'Tashkilotingizning profili – biznes dunyosiga ochiladigan maxsus oynangiz',            'items' => [                'describe' => 'Jamgʻarmangiz aynan qaysi insonpervarlik sohalarida faoliyat yuritayotganini va hozirda qaysi loyihaga budjet koʻproq zarurligini shaffof koʻrsatishingiz mumkin.',                'link' => 'Rasmiy veb-sayt havolasini va aloqa manzillarini qoʻshing, shunda hamkor kompaniyalar sizning real ishlaringizni va yutuqlaringizni chuqurroq oʻrganishlari mumkin.',                'visible' => 'Kompaniyalar ball sotib olayotganda paydo boʻladigan tanlov roʻyxatida va saytimizning rasmiy "Hamkorlarimiz" boʻlimida tashkilotingiz nomi aniq koʻrsatiladi.',            ],            'cta' => 'Hozirroq jamgʻarmangizni roʻyxatdan oʻtkazing',        ],        'how_to_increase_support' => [            'title' => 'TASHKILOTINGIZGA KELADIGAN MOLIYAVIY YORDAMLAR MIQDORINI YANADA KOʻPAYTIRIShNING YOʻLLARI',            'subtitle' => 'Roʻyxatdan oʻtganingizdan soʻng, faqat sizning tashkilotingiz uchun maxsus hamkorlik havolasi (Affiliate Link) yaratiladi.',            'description' => 'Siz ushbu havoladan quyidagicha turli va oson usullar bilan foydalanishingiz mumkin:',            'items' => [                'Tashkilotning rasmiy veb-sayti ichida banner va havola joylashtirish,',                'Xodimlarning kundalik xizmat vazifalaridagi elektron pochta imzosiga (Email Signature) qoʻshish,',                'Aloqada boʻlgan xayrxoh homiy kompaniyalaringizga toʻgʻridan-toʻgʻri yuborish,',                'Tashkilotning rasmiy ijtimoiy tarmoqlari orqali xabarni ulashish,',                'Onlayn va oflayn mablagʻ toʻplash (Fundraising) kampaniyalarida asosiy vosita sifatida foydalanish.',            ],            'footer' => 'Sizning maxsus havolangiz orqali WORK4YOU.GLOBAL-ga kirib xizmatdan foydalanadigan barcha kompaniyalarning yordam pullari, avtomatiki usulda faqat sizning tashkilotingizga yoʻnaltiriladi.',        ],        'faq' => [            'title' => 'FAQ',            'questions' => [                [                    'question' => 'Jamgʻarmani roʻyxatdan oʻtkazish uchun xarajat bormi?',                    'answer' => 'Mutlaqo bepul. Tashkilotni roʻyxatdan oʻtkazish va platformada profilni saqlash uchun hech qachon toʻlov olinmaydi.',                ],                [                    'question' => 'Biz yordam mablagʻlarini qachon qabul qilib olamiz?',                    'answer' => 'Sizni qoʻllab-quvvatlayotgan kompaniya toʻlovni yakunlagan kundan boshlab, 2 kundan 7 ish kunigacha boʻlgan vaqt oraligʻida tashkilotning rasmiy bank hisob raqamiga shaffof tarzda toʻgʻridan-toʻgʻri oʻtkaziladi.',                ],                [                    'question' => 'Biz platformani majburiy ravishda reklama qilishimiz kerakmi?',                    'answer' => 'Bu majburiy shart emas. Ammo elchi sifatida faol boʻlish jamgʻarmangizning moliyaviy holati uchun katta afzallikdir, chunki sizning usutingizdan kelgan kompaniyaning toʻldirgan pulidan 50% qismi tashkilotingizning haqi boʻladi.',                ],                [                    'question' => 'Roʻyxatdan oʻtishda qanday hujjatlar va ma\'lumotlar talab qilinadi?',                    'answer' => 'Tashkilotning rasmiy roʻyxatdan oʻtish raqami (qonuniy kod yoki tegishli davlatning jamgʻarma kodi) va asosiy ustav ma\'lumotlarini kiritish kifoya, uni biz hisobni tasdiqlash vaqtida tekshiramiz.',                ],                [                    'question' => 'Xayriya puli aynan qaysi manbadan ta\'minlanadi?',                    'answer' => 'Bu pullar kompaniyalarning platformadan foydalanish vaqtida toʻlaydigan odatiy tijoriy toʻlovlaridan ta\'minlanadi. Har gal kompaniya ball sotib olganda, uning 50% qismi tanlangan tashkilotga oʻtadi.',                ],                [                    'question' => 'Kompaniyalar qoʻllab-quvvatlaydigan xayriya tashkilotini qanday tanlashadi?',                    'answer' => 'Kompaniya a\'zosi xarid qilish jarayonida roʻyxatdan oʻzi tashkilotni tanlaydi, yoki agar siz ulashgan maxsus havoladan kirgan boʻlsa, oʻsha tashkilot avtomat ravishda allaqachon tanlangan boʻladi.',                ],                [                    'question' => 'Biz platformada tashkilotimiz uchun alohida profil sahifasiga ega boʻlamizmi?',                    'answer' => 'Ha. Har bir tashkilotga mustaqil boshqaruv hisobi beriladi; u yerda faoliyatning toʻliq tavsifi, aloqa manzillari va yutuqlarni vizual tarzda taqdim eta oladigan maxsus joy boʻladi.',                ],                [                    'question' => 'Men oʻz ijtimoiy sahifalarimda platforma haqida har doim post qoldirishim kerakmi?',                    'answer' => 'Biz muntazam ravishda reklama talab qilmaymiz. Dasturning boshida, faqat WORK4YOU.GLOBAL bilan hamkorlik toʻgʻrisida 1 marotaba tanishtiruvchi post qoldirilishi soʻraladi, undan keyingi faoliyatlar toʻliq oʻz xohishingizga bogʻliq.',                ],            ],        ],        'bottom_cta' => [            'title' => 'Hozirning oʻzida hamkor jamgʻarmalarimiz tarmogʻining bir qismiga aylaning',            'subtitle' => 'Bepul roʻyxatdan oʻting, tashkilotingiz profilini yarating va ijtimoiy mas\'uliyatli kompaniyalardan uzoq muddatli moliyaviy yordam olishni boshlang.',            'cta' => 'Jamgʻarmani roʻyxatdan oʻtkazish',        ],        'our_mission' => [            'title' => 'BIZNING MAQSADIMIZ VA MISSIYAMIZ',            'text1' => 'Ijtimoiy rivojlanish va insonpervarlik yordamlari faqatgina mavsumiy yoki durnukli boʻlmagan yordam toʻplash kampaniyalariga bogʻliq boʻlib qolmasligi kerak.',            'text2' => 'Shuning uchun, biz kompaniyalar har kuni majburiy bajaradigan odatiy ishi — "Xodim yollash va jamoa tuzish" jarayoni orqali xayriya jamgʻarmalarini barqaror qoʻllab-quvvatlay oladigan modelini ishlab chiqdik.',            'text3' => 'WORK4YOU.GLOBAL biznes dunyosining kadrlar yollash sohasini ijtimoiy manfaat bilan bir nuqtada birlashtirib, unda ishtirok etayotgan har bir taraf teng foyda koʻradigan sogʻlom ekotizimni boshqaradi.',        ],        'footer_features' => [            'free_reg' => 'Barcha xayriya jamgʻarmalari uchun mutlaqo roʻyxatdan oʻtish bepul',            'simple_csr' => 'Ishtirokchi kompaniyalar uchun eng tushunarli va muvaffaqiyatli CSR yechimi',            'constant_support' => 'Moliyaviy yordamning uzluksiz, ishonchli va barqaror manbasi',        ],    ],];
+<?php
+
+return [
+    'meta' => [
+        'title' => 'Work4you.global - Ish e\'lonlarini mutlaqo bepul joylashtiring',
+        'description' => 'Cheksiz miqdorda ish e\'lonlarini nashr qiling va nomzodlarning arizalarini mutlaqo bepul toʻplang. Bonus sifatida 20 000 boshlangʻich ballga ega boʻling!',
+    ],
+    'nav' => [
+        'how_it_works' => 'Tizim qanday ishlaydi',
+        'benefits' => 'Afzalliklar',
+        'faq' => 'FAQ',
+        'register_free' => 'Bepul akkaunt ochish',
+    ],
+    'hero' => [
+        'title' => 'Cheksiz miqdorda ish e\'lonlarini joylashtiring <br class="hidden lg:block"/> va nomzodlarning arizalarini mutlaqo bepul toʻplang.',
+        'subtitle' => 'Obunalar yoʻq. Nashr uchun toʻlovlar yoʻq. <br class="hidden md:block"/> Startda siz darhol foydalanishga tayyor boʻlgan 20 000 ballni sovgʻa sifatida olasiz.',
+        'cta' => 'Bepul akkaunt oching va birinchi e\'loningizni joylashtiring',
+        'target' => 'Kadrlar agentliklari va <br class="hidden sm:block" /> yirik miqyosda xodimlarni ishga oladigan kompaniyalar uchun juda mos keladi.',
+    ],
+    'model' => [
+        'title' => 'Oddiy model: Bepul nashr qiling va nomzodlarni jalb qiling',
+        'step1' => [
+            'title' => 'Istalgancha ish e\'lonlarini qoʻshishingiz mumkin',
+            'desc' => 'Hech qanday cheklovlar va xarajatlarsiz',
+        ],
+        'step2' => [
+            'title' => 'Nomzodlardan arizalar qabul qilasiz',
+            'desc' => 'Ish qidirayotganlarning rezyumelarini (CV) mutlaqo bepul toʻplang',
+        ],
+        'step3' => [
+            'title' => 'Ballardan faqat oʻzingiz xohlagan vaqtda foydalanasiz',
+            'desc' => 'masalan: CV-larni koʻrish yoki e\'lonlarni roʻyxatning eng yuqorisiga koʻtarish uchun',
+        ],
+    ],
+    'credits' => [
+        'badge' => 'boshlash uchun sovgʻa!',
+        'amount_label' => 'ball',
+        'test_platform' => 'Roʻyxatdan oʻtganingizdan soʻng, platformani toʻliq sinab koʻrishingiz uchun boshlangʻich paketga ega boʻlasiz:',
+        'benefits_list' => [
+            'Nomzodlarning CV-larini koʻrish (klassik, audio, video formatlarda)',
+            'Ish e\'lonlarini roʻyxatning eng yuqori qismiga koʻtarish',
+            'Kompaniyani ish beruvchilar katalogida ajratib koʻrsatish',
+            'Kengaytirilgan kadrlar tanlash filtrlari (Filters) dan foydalanish',
+        ],
+        'no_start_costs' => 'Nihoyat... hech qanday boshlangʻich xarajatlarsiz xodimlarni ishga olishingiz mumkin...',
+        'items' => [
+            'free_ads' => 'Ish e\'lonlarini bepul nashr qilasiz',
+            'no_contracts' => 'Shartnomalar va oylik obuna toʻlovlari yoʻq',
+            'own_rules' => 'Platformadan oʻz shartlaringiz va qoidalaringiz asosida foydalaning',
+            'cv_types' => 'Klassik, audio va video formatdagi CV-lar',
+            'all_languages' => 'E\'lonlarni barcha tillarda kiritish imkoniyati',
+        ],
+    ],
+    'foundation' => [
+        'badge' => 'Biz birgalikda dunyoni oʻzgartiramiz:',
+        'title' => 'Har bir xarid summasining 50% qismi siz tanlagan xayriya jamgʻarmasiga yoʻnaltiriladi.',
+        'subtitle' => 'Siz xodimlarni ishga olasiz va shu bilan birga muhtoj odamlarga real yordam berasiz.',
+    ],
+    'cta' => [
+        'title' => 'Bepul kadrlar yollashga tayyormisiz? <br/>Oʻzingizning <span class="text-red-work">20 000 ballingizni</span> hozirroq qoʻlga kiriting!',
+        'button' => 'Kompaniyangizni bepul roʻyxatdan oʻtkazing',
+    ],
+    'who_is_it_for' => [
+        'title' => 'Eng koʻp foydani kim oladi?',
+        'groups' => [
+            'agencies' => 'Kadrlar agentliklari va rekruterlar',
+            'high_volume' => 'Yirik miqyosda xodimlarni ishga oladigan kompaniyalar',
+            'cost_conscious' => 'Xarajatlarini kamaytirmoqchi boʻlgan ish beruvchilar',
+            'international' => 'Xalqaro miqyosda faoliyat yuritadigan kompaniyalar',
+            'everyone' => 'Malakali xodim qidirayotgan har bir kishi',
+        ],
+    ],
+    'faq_section' => [
+        'title' => 'FAQ',
+        'subtitle' => 'Tez-tez beriladigan savollar',
+        'questions' => [
+            [
+                'question' => 'Ish e\'lonini qoʻshish haqiqatan ham bepulmi?',
+                'answer' => 'Ha — e\'lonlar sonidan qat\'i nazar, nashr qilish uchun hech qanday toʻlov toʻlamaysiz.',
+            ],
+            [
+                'question' => 'Boshlash uchun albatta ball sotib olishim kerakmi?',
+                'answer' => 'Yoʻq — roʻyxatdan oʻtganingizdan soʻng darhol 20 000 bepul ball avtomatik ravishda balansingizga oʻtkaziladi.',
+            ],
+            [
+                'question' => 'Men qachon toʻlov toʻlashni boshlayman?',
+                'answer' => 'Faqat oʻzingiz qoʻshimcha ballar sotib olishga qaror qilgan vaqtingizda.',
+            ],
+            [
+                'question' => 'Men xizmatni istalgan vaqtda bekor qila olamanmi?',
+                'answer' => 'Ha — hech qanday majburiy shartnoma yoki uzoq muddatli majburiyatlar yoʻq.',
+            ],
+        ],
+    ],
+    'footer' => [
+        'description' => 'Ish beruvchilarga va nomzodlarga haqiqiy ovoz beradigan, shu bilan birga xayriya jamgʻarmalariga sezilarli yordam koʻrsatadigan birinchi barqaror kadrlar yollash platformasi.',
+        'nav' => 'Navigatsiya',
+        'legal' => 'Huquqiy masalalar',
+        'privacy' => 'Maxfiylik siyosati',
+        'terms' => 'Foydalanish shartlari',
+        'rights' => 'Barcha huquqlar himoyalangan.',
+    ],
+    'sold' => [
+        'hero' => [
+            'title' => 'E\'lonlaringiz nomzodlarni jalb qildi. <br/> Ularni kutishga majbur qilmang.',
+            'subtitle' => 'Arizalar sonini koʻpaytiring, CV-larga kirish huquqini oching va ish e\'lonlaringizning toʻliq salohiyatidan foydalaning.',
+            'cta' => 'Hisobni toʻldirish',
+            'warning' => 'Allaqachon ariza topshirayotgan iqtidorli nomzodlarni qoʻldan boy bermang!',
+        ],
+        'points_benefits' => [
+            'title' => 'SATIN OLINGAN BALLAR BILAN NIMALAR QILA OLISHINGIZNI KOʻRING',
+            'items' => [
+                'cv_access' => 'nomzodlarning CV-lariga toʻliq kirish imkoniyati',
+                'cv_formats' => 'turli formatlardagi rezyumelarni koʻrib chiqish',
+                'ads_promo' => 'ish e\'lonlarini roʻyxatda yuqoriga koʻtarish va reklama qilish',
+                'employer_distinction' => 'ish beruvchining profilini alohida ajratib koʻrsatish',
+                'brand_building' => 'kuchli ish beruvchi brendini (Employer Branding) yaratish',
+            ],
+        ],
+        'recharges' => [
+            'title' => 'OYLIK OBUNA TUZOQLARI OʻRNIGA FAQAT BALANSNI TOʻLDIRISH TIZIMI',
+            'subtitle' => 'Sizning ballaringiz, sizning qoidalaringiz...',
+            'items' => [
+                'free_ads' => [
+                    'title' => 'Siz e\'lonlarni doimo bepul nashr qilasiz',
+                    'desc' => 'Yangi ish oʻrinlarini qoʻshish doimo bepul boʻlib qoladi. Siz kadrlar ma\'lumotlar bazasini hech qanday boshlangʻich xarajatlarsiz qurasiz.',
+                ],
+                'no_expiration' => [
+                    'title' => 'Ballaringizning muddati hech qachon tugamaydi',
+                    'desc' => 'Toʻldirilgan balans abadiy sizniki boʻlib qoladi. Undan bugun, kelgusi hafta yoki oylar oʻtgandan keyin ham istalgan amal uchun foydalanishingiz mumkin.',
+                ],
+                'pay_per_effect' => [
+                    'title' => 'Siz faqat real natija uchun toʻlaysiz',
+                    'desc' => 'Ballarni faqat ma\'lum bir premium funksiyadan foydalanishni xohlagan vaqtingizda sarflaysiz. Budjetingiz toʻliq oʻz nazoratingizda.',
+                ],
+            ],
+        ],
+        'foundation' => [
+            'title' => 'Sizning qaroringiz haqiqiy oʻzgartirish kuchiga ega:',
+            'subtitle' => 'Buyurtma summasining yarmi (50%) toʻgʻridan-toʻgʻri siz tanlagan xayriya tashkilotining hisobiga oʻtkaziladi.',
+            'step1' => [
+                'title' => 'Siz jamgʻarmani tanlaysiz:',
+                'desc' => 'Hisobingiz toʻldirilgandan soʻng, qaysi ijtimoiy tashkilotni qoʻllab-quvvatlashimiz toʻliq sizning tanlovingizdir.',
+            ],
+            'step2' => [
+                'title' => 'Sizning kompaniyangiz uchun minnatdorchilik sertifikati:',
+                'desc' => 'Sizning muvaffaqiyatli kadrlar yollash jarayoningizni ijtimoiy mas\'uliyat (CSR) bilan samarali birlashtirganingizni tasdiqlovchi rasmiy hujjat.',
+            ],
+            'cta' => 'Ballar paketini tanlang va jamgʻarmani koʻrsating',
+        ],
+        'solutions' => [
+            'title' => 'Xodim qidirayotgan har bir kishi uchun munosib yechimlarimiz bor:',
+            'items' => [
+                'agencies' => [
+                    'title' => 'KADRLAR AGENTLIKLARI VA REKRUTERLAR UCHUN',
+                    'desc' => 'Matn, audio yoki video koʻrinishidagi CV-larga zudlik bilan kirish va aqlli saralash vositalari sizga raqobatchilaringizdan oldin boʻsh oʻrinlarni toʻldirish imkonini beradi.',
+                ],
+                'high_volume' => [
+                    'title' => 'YIRIK MIQYOSDA XODIMLARNI ISHGA OLADIGAN KOMPANIYALAR UCHUN',
+                    'desc' => 'Ruxsat etilgan oylik toʻlovning yoʻqligi xarajatlarning real tejalishidir. Ballar faqat aniq harakatlar uchun yechiladi, e\'loningiz esa har doim koʻrinib turadi.',
+                ],
+                'cost_conscious' => [
+                    'title' => 'XARAJATLARINI DAQIQ NAZORAT QILMOQCHI BOʻLGAN ISH BERUVCHILAR',
+                    'desc' => 'Ballar modeli budjetni juda aniqlik bilan boshqarish imkonini beradi. Siz aynan oʻsha boʻsh ish oʻrni uchun rejalashtirgan mablagʻingiz miqdorida sarflaysiz.',
+                ],
+                'international' => [
+                    'title' => 'XALQARO MIQYOSDA FAOLIYAT YURITADIGAN KOMPANIYALAR UCHUN',
+                    'desc' => 'Portal barcha tillarda mavjud boʻlib, bu sizga istalgan joydan iqtidorli mutaxassislarni qidirishga imkon beradi. Keng qamrov va juda oddiy hisob-kitob tizimi.',
+                ],
+                'everyone' => [
+                    'title' => 'YAXSHI XODIMGA EHTIYOJI BOʻLGAN HAR BIR KISHI UCHUN',
+                    'desc' => 'Biznesingizning hajmi qanday boʻlishidan qat\'i nazar, siz yuqori motivatsiyali nomzodlarga kirish imkoniga ega boʻlasiz va shu bilan birga ezgu ijtimoiy maqsadni qoʻllab-quvvatlaysiz.',
+                ],
+            ],
+        ],
+        'faq' => [
+            'questions' => [
+                [
+                    'question' => 'Agar men hisobimni toʻldirmasam, joylashtirgan e\'lonlarim nima boʻladi?',
+                    'answer' => 'E\'lonlar faol va koʻrinadigan boʻlib qolaveradi. Hisobni toʻldirish faqat nomzodlarning batafsil CV-larini koʻrish, e\'lonlarni maxsus ajratib koʻrsatish yoki boshqa premium funksiyalardan foydalanish uchun zarurдир.',
+                ],
+                [
+                    'question' => 'Ballarning amal qilish muddati qancha?',
+                    'answer' => 'Ballarning tugash muddati yoʻq. Siz ulardan hozir foydalanishingiz yoki oylar oʻtgandan keyin kelgusi kadrlar yollash jarayonlari uchun saqlashingiz mumkin – mablagʻlaringiz hisobingizda har doim xavfsiz turadi.',
+                ],
+                [
+                    'question' => 'Men ballarni e\'lonni yuqoriga koʻtarish (promosyon) uchun ishlatsam boʻladimi?',
+                    'answer' => 'Ha. Ballar platformaning ichki umumiy valyutasidir – undan CV-ni ochish, e\'lonni ajratib koʻrsatish yoki qoʻshimcha reklama qilish ishlarida erkin foydalanishingiz mumkin.',
+                ],
+                [
+                    'question' => 'Men nomzodlarning ma\'lumotlarini qachon koʻra olaman?',
+                    'answer' => 'Ballarni sarflaganingizdan soʻng darhol elyetarli boʻladi. Hisobingizda ballar mavjud boʻlganda, e\'lonlarni boshqarish panelidan bitta bosish (click) bilan arizalarni tekshirishingiz mumkin.',
+                ],
+            ],
+        ],
+        'bottom_cta' => [
+            'title' => 'Nomzodlaringiz siz bogʻlanishingizni kutishmoqda',
+            'subtitle' => '30 soniyada hisobingizni toʻldiring va platformaning barcha imkoniyatlarini oching',
+            'button' => 'Hisobni hozir toʻldiring',
+            'features' => [
+                'free_ads' => 'ish e\'lonlarini mutlaqo roʻyxatdan oʻtkazish bepul',
+                'no_expiration' => 'hisobingizda muddati tugamaydigan ballar tizimi',
+                'real_support' => 'muhtoj odamlarga haqiqiy va toʻgʻridan-toʻgʻri yordam yetib borishi',
+            ],
+        ],
+    ],
+    'charity' => [
+        'nav' => [
+            'how_it_works' => 'Tizim qanday ishlaydi?',
+            'benefits' => 'Afzalliklar',
+            'faq' => 'FAQ',
+            'register_foundation' => 'Jamgʻarmani roʻyxatdan oʻtkazish',
+        ],
+        'hero' => [
+            'title' => 'Kompaniyalarning kundalik kadrlar yollash jarayonlarini <br class="hidden lg:block"/> sizning Jamgʻarmangiz uchun barqaror moliyaviy yordamga aylantiring.',
+            'subtitle' => 'Platformaning rasmiy elchilariga (Ambassador) aylaning. Kompaniyalar har gal xodim yollaganda, bu sizning tashkilotingiz qaramogʻidagi insonlarga toʻgʻridan-toʻgʻri moliyaviy yordam degani. Roʻyxatdan oʻtish toʻlovi va ortiqcha qogʻozbozliklarsiz.',
+            'cta' => 'Jamgʻarmani roʻyxatdan oʻtkazish',
+        ],
+        'how_it_works' => [
+            'title' => 'ISHLESH TIZIMI',
+            'steps' => [
+                'step1' => [
+                    'title' => 'Siz tanishtiruv profilini yaratasiz',
+                    'desc' => 'Tashkilotingiz faoliyatini tanishtiruvchi raqamli tashrif qogʻozi (vizitka) yaratasiz. U platformadagi barcha ish beruvchilarga koʻrsatiladi va bu sizning maqsadlaringiz haqida xabardorlikni oshiradi.',
+                ],
+                'step2' => [
+                    'title' => 'Siz elchi sifatida faoliyat yuritasiz',
+                    'desc' => 'Siz ushbu platformaning vakili sifatida chiqish qilib, kompaniyalarni ijtimoiy mas\'uliyatli kadrlar yollashga taklif qilasiz. Ularning har gal hisobini toʻldirishidan 50% mablagʻ toʻgʻridan-toʻgʻri jamgʻarmangizga keladi.',
+                ],
+                'step3' => [
+                    'title' => 'Yordam fondlarini qabul qilish',
+                    'desc' => 'Ish beruvchilar xarid qilish vaqtida roʻyxatdan sizning jamgʻarmangizni toʻgʻridan-toʻgʻri tanlaydilar, yoki siz ulashgan maxsus hamkorlik havolasi (Affiliate Link) orqali yordam puli kelib tushadi.',
+                ],
+            ],
+        ],
+        'funds_origin' => [
+            'title' => 'Xayriya tashkilotlari uchun yordam mablagʻlari qayerdan paydo boʻladi?',
+            'steps' => [
+                'step1' => 'Ish beruvchi (kompaniya) platformada odatiy kadrlar yollash jarayonini amalga oshiradi',
+                'step2' => 'Platformaning ilgʻor funksiyalaridan foydalanish uchun zarur boʻlgan ballarni sotib oladi',
+                'step3' => 'Ushbu toʻlov miqdorining 50% qismi birikdirilgan xayriya jamgʻarmasiga toʻgʻridan-toʻgʻri yoʻnaltiriladi',
+                'step4' => 'Jamgʻarma ushbu mablagʻlarni oʻzining ijtimoiy va ynsanperwerlik ishlarida muvaffaqiyatli ishlatadi',
+            ],
+        ],
+        'why_model_works' => [
+            'title' => 'BU MODEL NIMA UCHUN MUVAFFAQIYATLI BOʻLADI VA MAQSADGA ERISHADI?',
+            'items' => [
+                [
+                    'title' => 'Kompaniyalar har kuni xodim qidiradilar',
+                    'desc' => 'Jamoa shakllantirish va odam qidirish – minglab kompaniyalar va HR agentliklari uchun barqaror va kundalik majburiy biznes jarayonlaridan biridir.',
+                ],
+                [
+                    'title' => 'Yordam avtomatik ravishda shakllanadi',
+                    'desc' => 'Moliyaviy yordam biznes yollash jarayonining ajralmas qismi sifatida yuzaga keladi, shuning uchun kompaniya budjetidan alohida va qoʻshimcha xayriya talab qilinmaydi.',
+                ],
+                [
+                    'title' => 'Barcha tomonlar uchun manfaatli (Win-Win) tizim',
+                    'desc' => 'Ish beruvchi xodimlarni samaraliroq topadi, xayriya tashkilotlari operatsion budjet yordamini oladilar, ish qidirayotganlar esa munosib ish topadilar.',
+                ],
+                [
+                    'title' => 'Har bir ish e\'loni ijtimoiy yordam bilan bogʻliqdir',
+                    'desc' => 'Platformadagi har bir faol harakat ijtimoiy tashkilotlarga boradigan real moliyaviy yordam miqdorini doimiy ravishda oshirib boradi.',
+                ],
+            ],
+        ],
+        'benefits' => [
+            'title' => 'BIZNING RASMIY ELCHIMIZ BOʻLIShNING NIMA AFZALLIKLARI BOR?',
+            'items' => [
+                'new_source' => [
+                    'title' => 'Yordam toʻplashning yangi, ishonchli va barqaror yoʻli',
+                    'desc' => 'Jamiyatga yordam berishni xohlaydigan, ammo murakkab jarayonlarsiz, oddiy, shaffof va avtomatlashtirilgan usulda oʻz CSR strategiyasini amalga oshirishni istagan kompaniyalar bilan bogʻlanish imkoniyati.',
+                ],
+                'free_promo' => [
+                    'title' => 'Hech qanday xarajatlarsiz tanilish va reklama olish',
+                    'desc' => 'Tashkilotingiz platformadan foydalanadigan barcha ish beruvchilarga koʻrsatiladi, buning natijasida xalqaro biznes doiralari orasida sizning qiymatingiz tanilinishi oshadi.',
+                ],
+                'ready_tools' => [
+                    'title' => 'Tayyor marketing vositalarining taqdim etilishi',
+                    'desc' => 'Sizga osonlik bilan ulashish mumkin boʻlgan reklama materiallari beriladi. Siz shunchaki kuchli kadrlar yollash vositasini kompaniyalarga tavsiya qilasiz, ular esa oʻz ishlarini bajarish orqali sizning maqsadlaringizni qoʻllab-quvvatlaydilar.',
+                ],
+                'business_relations' => [
+                    'title' => 'Biznes dunyosi va korporativ hamkorlar bilan kuchli aloqalar oʻrnatish',
+                    'desc' => 'Siz kompaniyalarning ishonchli hamkoriga aylanasiz. Ishtirokchi kompaniyalarga sizning missiyangizni qoʻllab-quvvatlaganliklari toʻgʻrisida rasmiy CSR sertifikati beriladi, bu esa uzoq muddatli hamkorlikni mustahkamlaydi.',
+                ],
+            ],
+        ],
+        'business_card' => [
+            'title' => 'Tashkilotingizning profili – biznes dunyosiga ochiladigan maxsus oynangiz',
+            'items' => [
+                'describe' => 'Jamgʻarmangiz aynan qaysi insonpervarlik sohalarida faoliyat yuritayotganini va hozirda qaysi loyihaga budjet koʻproq zarurligini shaffof koʻrsatishingiz mumkin.',
+                'link' => 'Rasmiy veb-sayt havolasini va aloqa manzillarini qoʻshing, shunda hamkor kompaniyalar sizning real ishlaringizni va yutuqlaringizni chuqurroq oʻrganishlari mumkin.',
+                'visible' => 'Kompaniyalar ball sotib olayotganda paydo boʻladigan tanlov roʻyxatida va saytimizning rasmiy "Hamkorlarimiz" boʻlimida tashkilotingiz nomi aniq koʻrsatiladi.',
+            ],
+            'cta' => 'Hozirroq jamgʻarmangizni roʻyxatdan oʻtkazing',
+        ],
+        'how_to_increase_support' => [
+            'title' => 'TASHKILOTINGIZGA KELADIGAN MOLIYAVIY YORDAMLAR MIQDORINI YANADA KOʻPAYTIRIShNING YOʻLLARI',
+            'subtitle' => 'Roʻyxatdan oʻtganingizdan soʻng, faqat sizning tashkilotingiz uchun maxsus hamkorlik havolasi (Affiliate Link) yaratiladi.',
+            'description' => 'Siz ushbu havoladan quyidagicha turli va oson usullar bilan foydalanishingiz mumkin:',
+            'items' => [
+                'Tashkilotning rasmiy veb-sayti ichida banner va havola joylashtirish,',
+                'Xodimlarning kundalik xizmat vazifalaridagi elektron pochta imzosiga (Email Signature) qoʻshish,',
+                'Aloqada boʻlgan xayrxoh homiy kompaniyalaringizga toʻgʻridan-toʻgʻri yuborish,',
+                'Tashkilotning rasmiy ijtimoiy tarmoqlari orqali xabarni ulashish,',
+                'Onlayn va oflayn mablagʻ toʻplash (Fundraising) kampaniyalarida asosiy vosita sifatida foydalanish.',
+            ],
+            'footer' => 'Sizning maxsus havolangiz orqali WORK4YOU.GLOBAL-ga kirib xizmatdan foydalanadigan barcha kompaniyalarning yordam pullari, avtomatiki usulda faqat sizning tashkilotingizga yoʻnaltiriladi.',
+        ],
+        'faq' => [
+            'title' => 'FAQ',
+            'questions' => [
+                [
+                    'question' => 'Jamgʻarmani roʻyxatdan oʻtkazish uchun xarajat bormi?',
+                    'answer' => 'Mutlaqo bepul. Tashkilotni roʻyxatdan oʻtkazish va platformada profilni saqlash uchun hech qachon toʻlov olinmaydi.',
+                ],
+                [
+                    'question' => 'Biz yordam mablagʻlarini qachon qabul qilib olamiz?',
+                    'answer' => 'Sizni qoʻllab-quvvatlayotgan kompaniya toʻlovni yakunlagan kundan boshlab, 2 kundan 7 ish kunigacha boʻlgan vaqt oraligʻida tashkilotning rasmiy bank hisob raqamiga shaffof tarzda toʻgʻridan-toʻgʻri oʻtkaziladi.',
+                ],
+                [
+                    'question' => 'Biz platformani majburiy ravishda reklama qilishimiz kerakmi?',
+                    'answer' => 'Bu majburiy shart emas. Ammo elchi sifatida faol boʻlish jamgʻarmangizning moliyaviy holati uchun katta afzallikdir, chunki sizning usutingizdan kelgan kompaniyaning toʻldirgan pulidan 50% qismi tashkilotingizning haqi boʻladi.',
+                ],
+                [
+                    'question' => 'Roʻyxatdan oʻtishda qanday hujjatlar va ma\'lumotlar talab qilinadi?',
+                    'answer' => 'Tashkilotning rasmiy roʻyxatdan oʻtish raqami (qonuniy kod yoki tegishli davlatning jamgʻarma kodi) va asosiy ustav ma\'lumotlarini kiritish kifoya, uni biz hisobni tasdiqlash vaqtida tekshiramiz.',
+                ],
+                [
+                    'question' => 'Xayriya puli aynan qaysi manbadan ta\'minlanadi?',
+                    'answer' => 'Bu pullar kompaniyalarning platformadan foydalanish vaqtida toʻlaydigan odatiy tijoriy toʻlovlaridan ta\'minlanadi. Har gal kompaniya ball sotib olganda, uning 50% qismi tanlangan tashkilotga oʻtadi.',
+                ],
+                [
+                    'question' => 'Kompaniyalar qoʻllab-quvvatlaydigan xayriya tashkilotini qanday tanlashadi?',
+                    'answer' => 'Kompaniya a\'zosi xarid qilish jarayonida roʻyxatdan oʻzi tashkilotni tanlaydi, yoki agar siz ulashgan maxsus havoladan kirgan boʻlsa, oʻsha tashkilot avtomat ravishda allaqachon tanlangan boʻladi.',
+                ],
+                [
+                    'question' => 'Biz platformada tashkilotimiz uchun alohida profil sahifasiga ega boʻlamizmi?',
+                    'answer' => 'Ha. Har bir tashkilotga mustaqil boshqaruv hisobi beriladi; u yerda faoliyatning toʻliq tavsifi, aloqa manzillari va yutuqlarni vizual tarzda taqdim eta oladigan maxsus joy boʻladi.',
+                ],
+                [
+                    'question' => 'Men oʻz ijtimoiy sahifalarimda platforma haqida har doim post qoldirishim kerakmi?',
+                    'answer' => 'Biz muntazam ravishda reklama talab qilmaymiz. Dasturning boshida, faqat WORK4YOU.GLOBAL bilan hamkorlik toʻgʻrisida 1 marotaba tanishtiruvchi post qoldirilishi soʻraladi, undan keyingi faoliyatlar toʻliq oʻz xohishingizga bogʻliq.',
+                ],
+            ],
+        ],
+        'bottom_cta' => [
+            'title' => 'Hozirning oʻzida hamkor jamgʻarmalarimiz tarmogʻining bir qismiga aylaning',
+            'subtitle' => 'Bepul roʻyxatdan oʻting, tashkilotingiz profilini yarating va ijtimoiy mas\'uliyatli kompaniyalardan uzoq muddatli moliyaviy yordam olishni boshlang.',
+            'cta' => 'Jamgʻarmani roʻyxatdan oʻtkazish',
+        ],
+        'our_mission' => [
+            'title' => 'BIZNING MAQSADIMIZ VA MISSIYAMIZ',
+            'text1' => 'Ijtimoiy rivojlanish va insonpervarlik yordamlari faqatgina mavsumiy yoki durnukli boʻlmagan yordam toʻplash kampaniyalariga bogʻliq boʻlib qolmasligi kerak.',
+            'text2' => 'Shuning uchun, biz kompaniyalar har kuni majburiy bajaradigan odatiy ishi — "Xodim yollash va jamoa tuzish" jarayoni orqali xayriya jamgʻarmalarini barqaror qoʻllab-quvvatlay oladigan modelini ishlab chiqdik.',
+            'text3' => 'WORK4YOU.GLOBAL biznes dunyosining kadrlar yollash sohasini ijtimoiy manfaat bilan bir nuqtada birlashtirib, unda ishtirok etayotgan har bir taraf teng foyda koʻradigan sogʻlom ekotizimni boshqaradi.',
+        ],
+        'footer_features' => [
+            'free_reg' => 'Barcha xayriya jamgʻarmalari uchun mutlaqo roʻyxatdan oʻtish bepul',
+            'simple_csr' => 'Ishtirokchi kompaniyalar uchun eng tushunarli va muvaffaqiyatli CSR yechimi',
+            'constant_support' => 'Moliyaviy yordamning uzluksiz, ishonchli va barqaror manbasi',
+        ],
+    ],
+
+];

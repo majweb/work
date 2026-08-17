@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Lisa töökuulutusi tasuta',
-        'description' => 'Lisa piiramatul hulgal töökuulutusi ja kogu kandidaatide avaldusi täiesti tasuta. Saa alustamiseks boonusena 50 000 punkti!',
+        'description' => 'Lisa piiramatul hulgal töökuulutusi ja kogu kandidaatide avaldusi täiesti tasuta. Saa alustamiseks boonusena 20 000 punkti!',
     ],
     'nav' => [
         'how_it_works' => 'Kuidas see töötab',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Lisa piiramatul hulgal töökuulutusi <br class="hidden lg:block"/> ja kogu kandidaatide avaldusi täiesti tasuta.',
-        'subtitle' => 'Ilma kuutasuta. Ilma avaldamistasudeta. <br class="hidden md:block"/> Saad alustamiseks kohe 50 000 punkti vabaks kasutamiseks.',
+        'subtitle' => 'Ilma kuutasuta. Ilma avaldamistasudeta. <br class="hidden md:block"/> Saad alustamiseks kohe 20 000 punkti vabaks kasutamiseks.',
         'cta' => 'Loo tasuta konto ja lisa oma esimene kuulutus',
         'target' => 'Ideaalne värbamisagentuuridele ja <br class="hidden sm:block" /> suuremahulise värbamisega tegelevatele ettevõtetele.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Värbad töötajaid ja toetad samal ajal neid, kes vajavad abi.',
     ],
     'cta' => [
-        'title' => 'Oled valmis tasuta värbamiseks? <br/>Lasta oma <span class="text-red-work">50 000 punkti</span> kohe käiku!',
+        'title' => 'Oled valmis tasuta värbamiseks? <br/>Lasta oma <span class="text-red-work">20 000 punkti</span> kohe käiku!',
         'button' => 'Registreeri oma ettevõte tasuta',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Kas ma pean alustamiseks punkte ostma?',
-                'answer' => 'Ei – saad 50 000 tasuta punkti automaatselt kohe pärast registreerumist.',
+                'answer' => 'Ei – saad 20 000 tasuta punkti automaatselt kohe pärast registreerumist.',
             ],
             [
                 'question' => 'Kuna ma maksma hakkan?',

@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Pievienojiet darba sludinājumus bez maksas',
-        'description' => 'Publicējiet neierobežotu skaitu darba sludinājumu un vāciet kandidātu pieteikumus pilnīgi bez maksas. Saņemiet 50 000 sākuma punktus dāvanā!',
+        'description' => 'Publicējiet neierobežotu skaitu darba sludinājumu un vāciet kandidātu pieteikumus pilnīgi bez maksas. Saņemiet 20 000 sākuma punktus dāvanā!',
     ],
     'nav' => [
         'how_it_works' => 'Kā tas strādā',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publicējiet neierobežotu skaitu darba sludinājumu <br class="hidden lg:block"/> un vāciet kandidātu pieteikumus pilnīgi bez maksas.',
-        'subtitle' => 'Bez abonēšanas maksas. Bez publikācijas maksas. <br class="hidden md:block"/> Sākumā jūs uzreiz saņemsiet 50 000 punktus brīvai izmantošanai.',
+        'subtitle' => 'Bez abonēšanas maksas. Bez publikācijas maksas. <br class="hidden md:block"/> Sākumā jūs uzreiz saņemsiet 20 000 punktus brīvai izmantošanai.',
         'cta' => 'Izveidojiet bezmaksas kontu un pievienojiet savu pirmo sludinājumu',
         'target' => 'Ideāli piemērots atlases aģentūrām un <br class="hidden sm:block" /> uzņēmumiem ar lielu darbinieku pieņemšanas apjomu.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Pieņemat darbā darbiniekus un vienlaikus palīdzat tiem, kam tas visvairāk nepieciešams.',
     ],
     'cta' => [
-        'title' => 'Esat gatavi bezmaksas atlasei? <br/>Saņemiet savus <span class="text-red-work">50 000 punktus</span> jau tagad!',
+        'title' => 'Esat gatavi bezmaksas atlasei? <br/>Saņemiet savus <span class="text-red-work">20 000 punktus</span> jau tagad!',
         'button' => 'Reģistrējiet savu uzņēmumu bez maksas',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Vai man ir jānopērk punkti, lai sāktu?',
-                'answer' => 'Nē – jūs automātiski saņemsiet 50 000 bezmaksas punktus uzreiz pēc reģistrācijas.',
+                'answer' => 'Nē – jūs automātiski saņemsiet 20 000 bezmaksas punktus uzreiz pēc reģistrācijas.',
             ],
             [
                 'question' => 'Kada es sākšu maksāt?',

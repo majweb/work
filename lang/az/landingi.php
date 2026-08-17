@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Vakansiyaları pulsuz əlavə edin',
-        'description' => 'Məhdudiyyətsiz sayda iş elanı əlavə edin və namizədlərin müraciətlərini pulsuz toplayın. Başlanğıc üçün 50 000 bonus xal qazanın!',
+        'description' => 'Məhdudiyyətsiz sayda iş elanı əlavə edin və namizədlərin müraciətlərini pulsuz toplayın. Başlanğıc üçün 20 000 bonus xal qazanın!',
     ],
     'nav' => [
         'how_it_works' => 'Bu necə işləyir',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Məhdudiyyətsiz sayda iş elanı əlavə edin <br class="hidden lg:block"/> və namizədlərin müraciətlərini pulsuz toplayın.',
-        'subtitle' => 'Aylıq abunə yoxdur. Elan yerləşdirmə haqqı yoxdur. <br class="hidden md:block"/> Başlanğıcda istifadə etmək üçün dərhal 50 000 xal əldə edirsiniz.',
+        'subtitle' => 'Aylıq abunə yoxdur. Elan yerləşdirmə haqqı yoxdur. <br class="hidden md:block"/> Başlanğıcda istifadə etmək üçün dərhal 20 000 xal əldə edirsiniz.',
         'cta' => 'Pulsuz hesab yaradın və ilk elanınızı yerləşdirin',
         'target' => 'İşəgötürmə agentlikləri və <br class="hidden sm:block" /> irimiqyaslı işçi qəbulu həyata keçirən şirkətlər üçün mükəmməldir.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Həm işçi qəbul edirsiniz, həm də eyni zamanda ehtiyacı olanlara dəstək olursunuz.',
     ],
     'cta' => [
-        'title' => 'Pulsuz rekrutinqə hazırsınız? <br/>İndi <span class="text-red-work">50 000 xalınızı</span> əldə edin!',
+        'title' => 'Pulsuz rekrutinqə hazırsınız? <br/>İndi <span class="text-red-work">20 000 xalınızı</span> əldə edin!',
         'button' => 'Şirkətinizi pulsuz qeydiyyatdan keçirin',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Başlamaq üçün mütləq xal satın almalıyam?',
-                'answer' => 'Xeyr — qeydiyyatdan dərhal sonra balansınıza 50 000 pulsuz xal yüklənir.',
+                'answer' => 'Xeyr — qeydiyyatdan dərhal sonra balansınıza 20 000 pulsuz xal yüklənir.',
             ],
             [
                 'question' => 'Ödəniş etməyə nə vaxt başlayıram?',

@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Legg ut jobbannonser gratis',
-        'description' => 'Publiser et ubegrenset antall jobbannonser og samle søknader fra kandidater helt gratis. Få 50 000 startpoeng i bonus!',
+        'description' => 'Publiser et ubegrenset antall jobbannonser og samle søknader fra kandidater helt gratis. Få 20 000 startpoeng i bonus!',
     ],
     'nav' => [
         'how_it_works' => 'Slik fungerer det',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Legg ut et ubegrenset antall jobbannonser <br class="hidden lg:block"/> og samle søknader fra kandidater helt gratis.',
-        'subtitle' => 'Ingen abonnement. Ingen publiseringsavgifter. <br class="hidden md:block"/> Ved oppstart får du umiddelbart 50 000 poeng klare til bruk.',
+        'subtitle' => 'Ingen abonnement. Ingen publiseringsavgifter. <br class="hidden md:block"/> Ved oppstart får du umiddelbart 20 000 poeng klare til bruk.',
         'cta' => 'Opprett en gratis konto og legg ut din første annonse',
         'target' => 'Ideelt for rekrutteringsbyråer og <br class="hidden sm:block" /> selskaper som rekruterer i stort omfang.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Du rekrutterer ansatte, og hjelper samtidig mennesker som trenger det.',
     ],
     'cta' => [
-        'title' => 'Klar for gratis rekruttering? <br/>Hent dine <span class="text-red-work">50 000 poeng</span> med en gang!',
+        'title' => 'Klar for gratis rekruttering? <br/>Hent dine <span class="text-red-work">20 000 poeng</span> med en gang!',
         'button' => 'Registrer selskapet ditt gratis',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Må jeg kjøpe poeng for å starte?',
-                'answer' => 'Nei – du mottar automatisk 50 000 gratis poeng umiddelbart etter registrering.',
+                'answer' => 'Nei – du mottar automatisk 20 000 gratis poeng umiddelbart etter registrering.',
             ],
             [
                 'question' => 'Når begynner jeg å betale?',

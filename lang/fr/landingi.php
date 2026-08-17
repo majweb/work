@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Publiez vos offres d\'emploi gratuitement',
-        'description' => 'Publiez un nombre illimité d\'offres d\'emploi et collectez les candidatures gratuitement. Recevez 50 000 points de bienvenue pour commencer !',
+        'description' => 'Publiez un nombre illimité d\'offres d\'emploi et collectez les candidatures gratuitement. Recevez 20 000 points de bienvenue pour commencer !',
     ],
     'nav' => [
         'how_it_works' => 'Comment ça marche',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publiez un nombre illimité d\'offres d\'emploi <br class="hidden lg:block"/> et collectez les candidatures gratuitement.',
-        'subtitle' => 'Sans abonnement. Sans frais de publication. <br class="hidden md:block"/> Pour commencer, vous recevez immédiatement 50 000 points prêts à l\'emploi.',
+        'subtitle' => 'Sans abonnement. Sans frais de publication. <br class="hidden md:block"/> Pour commencer, vous recevez immédiatement 20 000 points prêts à l\'emploi.',
         'cta' => 'Créer un compte gratuit et publier une première offre',
         'target' => 'Idéal pour les agences de recrutement et <br class="hidden sm:block" /> les entreprises avec un volume d\'embauche important.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Recrutez des talents tout en soutenant ceux qui en ont le plus besoin.',
     ],
     'cta' => [
-        'title' => 'Prêt pour un recrutement gratuit ? <br/>Profitez de vos <span class="text-red-work">50 000 points</span> dès maintenant !',
+        'title' => 'Prêt pour un recrutement gratuit ? <br/>Profitez de vos <span class="text-red-work">20 000 points</span> dès maintenant !',
         'button' => 'Inscrire votre entreprise gratuitement',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Dois-je acheter des points pour commencer ?',
-                'answer' => 'Non – vous recevez automatiquement 50 000 points gratuits juste après votre inscription.',
+                'answer' => 'Non – vous recevez automatiquement 20 000 points gratuits juste après votre inscription.',
             ],
             [
                 'question' => 'Quand est-ce que je commence à payer ?',

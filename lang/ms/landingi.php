@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Siarkan Iklan Jawatan Kosong Secara Gratis',
-        'description' => 'Siarkan iklan jawatan kosong tanpa had dan kumpulkan permohonan calon sepenuhnya percuma. Dapatkan 50,000 mata starter sebagai bonus!',
+        'description' => 'Siarkan iklan jawatan kosong tanpa had dan kumpulkan permohonan calon sepenuhnya percuma. Dapatkan 20,000 mata starter sebagai bonus!',
     ],
     'nav' => [
         'how_it_works' => 'Cara Berfungsi',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Siarkan iklan jawatan kosong tanpa had <br class="hidden lg:block"/> dan kumpulkan permohonan calon secara percuma.',
-        'subtitle' => 'Tanpa komitmen langganan. Tanpa yuran penyiaran. <br class="hidden md:block"/> Anda akan menerima 50,000 mata sedia guna serta-merta pada permulaan sebagai bonus.',
+        'subtitle' => 'Tanpa komitmen langganan. Tanpa yuran penyiaran. <br class="hidden md:block"/> Anda akan menerima 20,000 mata sedia guna serta-merta pada permulaan sebagai bonus.',
         'cta' => 'Daftar akaun percuma dan siarkan iklan pertama anda',
         'target' => 'Sangat ideal untuk agensi pengambilan pekerja dan <br class="hidden sm:block" /> syarikat yang melakukan pengambilan dalam skala besar.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Ambil pekerja terbaik, dan dalam masa yang sama bantu mereka yang memerlukan.',
     ],
     'cta' => [
-        'title' => 'Sedia untuk pengambilan pekerja percuma? <br/>Tuntut <span class="text-red-work">50,000 mata</span> anda sekarang juga!',
+        'title' => 'Sedia untuk pengambilan pekerja percuma? <br/>Tuntut <span class="text-red-work">20,000 mata</span> anda sekarang juga!',
         'button' => 'Daftarkan Syarikat Anda Secara Percuma',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Adakah saya wajib membeli mata untuk bermula?',
-                'answer' => 'Tidak — anda akan menerima 50,000 mata percuma secara automatik sejurus selepas mendaftar.',
+                'answer' => 'Tidak — anda akan menerima 20,000 mata percuma secara automatik sejurus selepas mendaftar.',
             ],
             [
                 'question' => 'Bilakah saya akan mula dikenakan bayaran?',

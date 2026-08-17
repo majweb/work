@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Adjon fel álláshirdetéseket ingyen',
-        'description' => 'Adjon fel korlátlan számú álláshirdetést és gyűjtse a jelöltek jelentkezéseit teljesen ingyen. Szerezzen 50 000 kezdőpontot bónuszként!',
+        'description' => 'Adjon fel korlátlan számú álláshirdetést és gyűjtse a jelöltek jelentkezéseit teljesen ingyen. Szerezzen 20 000 kezdőpontot bónuszként!',
     ],
     'nav' => [
         'how_it_works' => 'Hogyan működik',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Adjon fel korlátlan számú álláshirdetést <br class="hidden lg:block"/> és gyűjtse a jelöltek jelentkezéseit teljesen ingyen.',
-        'subtitle' => 'Nincs előfizetés. Nincs közzétételi díj. <br class="hidden md:block"/> A kezdéshez azonnal 50 000 felhasználható pontot kap ajándékba.',
+        'subtitle' => 'Nincs előfizetés. Nincs közzétételi díj. <br class="hidden md:block"/> A kezdéshez azonnal 20 000 felhasználható pontot kap ajándékba.',
         'cta' => 'Hozzon létre egy ingyenes fiókot és adja fel első hirdetését',
         'target' => 'Ideális toborzóirodák és <br class="hidden sm:block" /> nagyléptékű toborzást végző vállalatok számára.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Toborozzon munkatársakat, és egyúttal támogassa a rászorulókat.',
     ],
     'cta' => [
-        'title' => 'Készen áll az ingyenes toborzásra? <br/>Igényelje az <span class="text-red-work">50 000 pontját</span> még most!',
+        'title' => 'Készen áll az ingyenes toborzásra? <br/>Igényelje az <span class="text-red-work">20 000 pontját</span> még most!',
         'button' => 'Regisztrálja vállalatát ingyen',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Kötelező pontokat vásárolnom a kezdéshez?',
-                'answer' => 'Nem – a regisztrációt követően azonnal és automatikusan kap 50 000 ingyenes pontot.',
+                'answer' => 'Nem – a regisztrációt követően azonnal és automatikusan kap 20 000 ingyenes pontot.',
             ],
             [
                 'question' => 'Mikor kell elkezdenem fizetni?',

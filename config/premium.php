@@ -17,14 +17,14 @@ return [
         1 => 40000,   // Brązowy
         2 => 60000,  // Srebrny
         3 => 100000,  // Złoty
-        4 => 160000   // Diamentowy
+        4 => 160000,   // Diamentowy
     ],
 
     'amount' => [
         1 => 410,   // Brązowy
         2 => 580,  // Srebrny
         3 => 900,  // Złoty
-        4 => 1360   // Diamentowy
+        4 => 1360,   // Diamentowy
     ],
 
     /*
@@ -40,7 +40,7 @@ return [
         1 => 'premium.certificates.levels.bronze',
         2 => 'premium.certificates.levels.silver',
         3 => 'premium.certificates.levels.gold',
-        4 => 'premium.certificates.levels.diamond'
+        4 => 'premium.certificates.levels.diamond',
     ],
 
     /*
@@ -55,7 +55,7 @@ return [
         1 => '#aa8f75', // Brązowy (Bronze)
         2 => '#c6c6c6', // Srebrny (Silver)
         3 => '#ddc890', // Złoty (Gold)
-        4 => '#c8bdbc'  // Diamentowy (Diamond)
+        4 => '#c8bdbc',  // Diamentowy (Diamond)
     ],
 
     /*
@@ -66,5 +66,5 @@ return [
     | Określa liczbę punktów przyznawanych nowo zarejestrowanej firmie.
     |
     */
-    'welcome_points' => 50000,
+    'welcome_points' => 20000,
 ];

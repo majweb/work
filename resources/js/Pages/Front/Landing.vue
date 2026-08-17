@@ -285,8 +285,8 @@ const page = usePage();
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 p-10 md:p-24 items-center">
                             <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
                                 <div class="inline-flex flex-col items-center p-8 bg-white rounded-[3rem] text-[#0A2C5C] mb-10 shadow-2xl shadow-blue-900/40 transform -rotate-3 hover:rotate-0 transition-transform duration-500 relative">
-                                    <img src="/images/landing/icons/50000.png" alt="50 000 punktów" class="h-32 md:h-48 mb-6 absolute -bottom-20 -right-20" />
-                                    <span class="text-6xl md:text-8xl font-black tracking-tight">50 000</span>
+                                    <img src="/images/landing/icons/20000.png" alt="20 000 punktów" class="h-32 md:h-48 mb-6 absolute -bottom-20 -right-20" />
+                                    <span class="text-6xl md:text-8xl font-black tracking-tight">20 000</span>
                                     <span class="text-2xl font-black tracking-[0.2em] uppercase">{{ __("landingi.credits.amount_label") }}</span>
                                     <span class="mt-4 px-6 py-2 bg-red-work text-white text-sm font-black rounded-full uppercase tracking-widest">{{ __("landingi.credits.badge") }}</span>
                                 </div>

@@ -1,1 +1,364 @@
-<?phpreturn [    'meta' => [        'title' => 'Work4you.global - Lägg ut jobbannonser gratis',        'description' => 'Publicera ett obegränsat antal jobbannonser och samla ansökningar från kandidater helt gratis. Få 50 000 startpoäng i bonus!',    ],    'nav' => [        'how_it_works' => 'Så fungerar det',        'benefits' => 'Fördelar',        'faq' => 'FAQ',        'register_free' => 'Skapa ett gratis konto',    ],    'hero' => [        'title' => 'Lägg ut ett obegränsat antal jobbannonser <br class="hidden lg:block"/> och samla ansökningar från kandidater helt gratis.',        'subtitle' => 'Inget abonnemang. Inga publiceringsavgifter. <br class="hidden md:block"/> Vid uppstart får du omedelbart 50 000 poäng som är redo att användas.',        'cta' => 'Skapa ett gratis konto och lägg ut din första annons',        'target' => 'Idealiskt för rekryteringsföretag och <br class="hidden sm:block" /> företag som rekryterar i stor skala.',    ],    'model' => [        'title' => 'Enkel modell: Publicera gratis och attrahera kandidater',        'step1' => [            'title' => 'Du lägger till så många jobb du vill',            'desc' => 'Utan gränser och utan några kostnader',        ],        'step2' => [            'title' => 'Du tar emot ansökningar från kandidater',            'desc' => 'Samla CV:n från arbetssökande helt gratis',        ],        'step3' => [            'title' => 'Du använder poäng endast när du själv vill',            'desc' => 't.ex. för att visa CV:n eller för att lyfta fram annonser',        ],    ],    'credits' => [        'badge' => 'i välkomstpresent!',        'amount_label' => 'poäng',        'test_platform' => 'Efter registrering får du ett startpaket för och testa plattformen fullt ut:',        'benefits_list' => [            'Visa kandidaternas CV:n (klassiskt, ljud, video)',            'Lyfta fram jobbannonser högst upp på listan',            'Synliggöra företaget i arbetsgivarregistret',            'Tillgång till avancerade rekryteringsfilter',        ],        'no_start_costs' => 'Äntligen rekrytering utan några startkostnader...',        'items' => [            'free_ads' => 'Du publicerar jobbannonser gratis',            'no_contracts' => 'Utan bindningstider och utan månadsabonnemang',            'own_rules' => 'Använd plattformen på dina egna villkor',            'cv_types' => 'Klassiska, ljud- och video-CV:n',            'all_languages' => 'Jobbannonser på alla språk är möjligt',        ],    ],    'foundation' => [        'badge' => 'Tillsammans förändrar vi världen:',        'title' => '50 % of beloppet från varje köp stöttar en organisation efter ditt val.',        'subtitle' => 'Du rekryterar personal och hjälper samtidigt människor som behöver det.',    ],    'cta' => [        'title' => 'Redo för gratis rekrytering? <br/>Hämta dina <span class="text-red-work">50 000 poäng</span> på en gång!',        'button' => 'Registrera ditt företag gratis',    ],    'who_is_it_for' => [        'title' => 'Vem har störst nytta av detta?',        'groups' => [            'agencies' => 'Rekryteringsföretag och rekryterare',            'high_volume' => 'Företag med stora rekryteringsvolymer',            'cost_conscious' => 'Arbetsgivare som vill spara kostnader',            'international' => 'Internationellt verksamma företag',            'everyone' => 'Alla som letar efter en kvalificerad medarbetare',        ],    ],    'faq_section' => [        'title' => 'FAQ',        'subtitle' => 'Vanliga frågor',        'questions' => [            [                'question' => 'Är det verkligen gratis att lägga ut jobbannonser?',                'answer' => 'Ja – du betalar ingenting för publiceringen, oavsett antalet annonser.',            ],            [                'question' => 'Måste jag köpa poäng för att starta?',                'answer' => 'Nej – du får automatiskt 50 000 gratispoäng omedelbart efter registreringen.',            ],            [                'question' => 'När börjar jag betala?',                'answer' => 'Först när du själv medvetet väljer att köpa till extra poäng.',            ],            [                'question' => 'Kan jag avsluta tjänsten när som helst?',                'answer' => 'Ja – det finns inga bindande kontrakt eller långsiktiga förpliktelser.',            ],        ],    ],    'footer' => [        'description' => 'Den första rekryteringsplattformen som ger arbetsgivare och kandidater en verklig röst, samtidigt som den ger konkret stöd till välgörenhetsorganisationer.',        'nav' => 'Navigering',        'legal' => 'Juridik',        'privacy' => 'Integritetspolicy',        'terms' => 'Användarvillkor',        'rights' => 'Alla rättigheter förbehållna.',    ],    'sold' => [        'hero' => [            'title' => 'Dina annonser har attraherat kandidater. <br/> Låt dem inte vänta.',            'subtitle' => 'Öka antalet ansökningar, lås upp tillgången till CV:n och utnyttja den fulla potentialen i dina jobbannonser.',            'cta' => 'Fyll på kontot',            'warning' => 'Missa inte kandidater som redan söker!',        ],        'points_benefits' => [            'title' => 'SE VAD DU KAN GÖRA MED DE KÖPTA POÄNGEN',            'items' => [                'cv_access' => 'tillgång till kandidaternas CV:n',                'cv_formats' => 'CV:n i olika format',                'ads_promo' => 'promotering och topplacering av annonser',                'employer_distinction' => 'unik framhävning av arbetsgivarprofilen',                'brand_building' => 'bygga ett starkt arbetsgivarvarumärke (Employer Branding)',            ],        ],        'recharges' => [            'title' => 'PÅFYLLNING I STÄLLET FÖR ABONNEMANGSFÄLLOR',            'subtitle' => 'Dina poäng, dina regler...',            'items' => [                'free_ads' => [                    'title' => 'Du publicerar alltid annonser gratis',                    'desc' => 'Det kommer alltid att vara kostnadsfritt att lägga till tjänster. Du bygger upp din kandidatdatabas utan startkostnader.',                ],                'no_expiration' => [                    'title' => 'Dina poäng förfaller aldrig',                    'desc' => 'Det påfyllda saldot förblir ditt för alltid. Du kan använda det i dag, nästa vecka eller om en månad till precis den åtgärd du vill.',                ],                'pay_per_effect' => [                    'title' => 'Du betalar endast för resultat',                    'desc' => 'Du löser endast in poäng när du vill använda en specifik premiumfunktion. Fullständig kontroll över din budget.',                ],            ],        ],        'foundation' => [            'title' => 'Ditt beslut har verklig påverkanskraft:',            'subtitle' => 'Hälften av beloppet (50 %) från din beställning överförs direkt till kontot för den organisation du har valt.',            'step1' => [                'title' => 'Du väljer ändamålet:',                'desc' => 'Du bestämmer själv vilken organisation vi stödjer efter att du har fyllt på ditt konto.',            ],            'step2' => [                'title' => 'Certifikat till ditt företag:',                'desc' => 'En officiell bekräftelse på att du kombinerar framgångsrik rekrytering med samhällsansvar (CSR).',            ],            'cta' => 'Välj ett poängpaket och ange organisationen',        ],        'solutions' => [            'title' => 'Vi har den rätta lösningen för alla som söker anställda:',            'items' => [                'agencies' => [                    'title' => 'REKRYTERINGSFÖRETAG OCH REKRYTERARE',                    'desc' => 'Omedelbar tillgång till CV:n i klassiskt text-, ljud- eller videoformat och smarta urvalsverktyg gör att du kan slutföra processen snabbare än dina konkurrenter.',                ],                'high_volume' => [                    'title' => 'FÖRETAG MED STORA REKRYTERINGSVOLYMER',                    'desc' => 'Frånvaron av fasta kostnader innebär en reell besparing. Poäng dras endast för konkreta åtgärder, medan dina annonser alltid förblir synliga.',                ],                'cost_conscious' => [                    'title' => 'ARBETSGIVARE SOM VILL SPARA KOSTNADER',                    'desc' => 'Poängmodellen gör det möjligt att styra budgeten med maximal precision. Du spenderar exakt det belopp du hade planerat för den aktuella tjänsten.',                ],                'international' => [                    'title' => 'INTERNATIONELLT VERKSAMMA FÖRETAG',                    'desc' => 'Portalen är tillgänglig på alla språk och möjliggör global rekrytering. Global räckvidd kombinerat med ett superenkelt faktureringssystem.',                ],                'everyone' => [                    'title' => 'ALLA SOM SÖKER EN BRA MEDARBETARE',                    'desc' => 'Oavsett storlek på ditt företag får du tillgång till högt motiverade kandidater och stödjer samtidigt ett gott ändamål.',                ],            ],        ],        'faq' => [            'questions' => [                [                    'question' => 'Vad händer med mina annonser om jag inte fyller på kontot?',                    'answer' => 'Annonserna förblir aktiva och synliga. Påfyllning är endast nödvändig för att låsa upp kontaktinformationen i CV:n, framhäva tjänster eller använda andra marknadsföringsmöjligheter.',                ],                [                    'question' => 'Vad är poängens giltighetstid?',                    'answer' => 'Poäng förfaller aldrig. Du kan använda dem nu eller för framtida rekryteringar om några månader – ditt saldo väntar alltid säkert på ditt konto.',                ],                [                    'question' => 'Kan jag byta poäng mot promotering av en annons?',                    'answer' => 'Ja. Poäng är plattformens universella valuta – du kan använda dem för att låsa upp CV:n, topplaceringar eller ytterligare annonsering.',                ],                [                    'question' => 'När får jag tillgång till kandidaternas data?',                    'answer' => 'Omedelbart efter att poängen har lösts in. Du fyller på poängkontot och kan sedan se ansökningarna med ett klick i annonspanelen.',                ],            ],        ],        'bottom_cta' => [            'title' => 'Dina kandidater väntar på att du tar kontakt',            'subtitle' => 'Fyll på kontot på 30 sekunder och lås upp portalens fulla möjligheter',            'button' => 'Fyll på kontot nu',            'features' => [                'free_ads' => 'kostnadsfri publicering av jobbannonser',                'no_expiration' => 'obegränsat giltiga poäng på ditt konto',                'real_support' => 'reellt och direkt stöd till människor som behöver det',            ],        ],    ],    'charity' => [        'nav' => [            'how_it_works' => 'Hur fungerar det?',            'benefits' => 'Fördelar',            'faq' => 'FAQ',            'register_foundation' => 'Registrera organisation',        ],        'hero' => [            'title' => 'Förvandla vardagens rekryteringsprocesser till <br class="hidden lg:block"/> ett reellt finansiellt stöd för din Stiftelse.',            'subtitle' => 'Bli ambassadör för portalen. Varje personalsökning genererar värdefull hjälp för din målgrupp. Utan kostnader och utan onödig byråkrati.',            'cta' => 'Registrera organisation',        ],        'how_it_works' => [            'title' => 'HUR FUNGERAR DET?',            'steps' => [                'step1' => [                    'title' => 'Du skapar en profil',                    'desc' => 'Du skapar organisationens digitala visitkort, som är synligt för alla arbetsgivare på portalen, för att öka medvetenheten kring er mission.',                ],                'step2' => [                    'title' => 'Du är en Ambassadör',                    'desc' => 'Du fungerar som ambassadör för portalen och bjuder in företag till samhällsansvarig rekrytering. Varje påfyllning de gör ger 50 % av beloppet direkt till din stiftelse.',                ],                'step3' => [                    'title' => 'Du tar emot donationerna',                    'desc' => 'Arbetsgivarna väljer själva din stiftelse som donationsmål, eller når dig via en unik affiliate-länk som du delar med dem.',                ],            ],        ],        'funds_origin' => [            'title' => 'Varifrån kommer medlen till organisationerna?',            'steps' => [                'step1' => 'En arbetsgivare/företag genomför en rekryteringsprocess',                'step2' => 'Köper poengen som krävs för användning av plattformens avancerade funktioner',                'step3' => '50 % av denna betalning går direkt till den valda organisationen',                'step4' => 'Stiftelsen använder pengarna med framgång för att uppfylla sin mission',            ],        ],        'why_model_works' => [            'title' => 'VARFÖR DENNA MODELL FUNGERAR?',            'items' => [                [                    'title' => 'Företag rekryterar varje dag',                    'desc' => 'Personalsökning är en fast, hållbar del av driften för redan tusentals företag och rekryteringsföretag.',                ],                [                    'title' => 'Hjälpen uppstår helautomatiskt',                    'desc' => 'Stödet genereras i samband med rekryteringen och kräver inga extra budgetdonationer från företaget.',                ],                [                    'title' => 'Det är en vinn-vinn-situation för alla',                    'desc' => 'Arbetsgivare rekryterar mer effektivt, stiftelser tar emot ekonomiska medel och kandidater hittar arbete.',                ],                [                    'title' => 'Varje enskild annons hjälper',                    'desc' => 'Varje aktivitet på plattformen ökar donationsvolymen till sociala organisationer direkt.',                ],            ],        ],        'benefits' => [            'title' => 'VARFÖR ÄR DET VÄRT ATT BLI VÅR AMBASSADÖR?',            'items' => [                'new_source' => [                    'title' => 'En ny, hållbar finansieringskälla',                    'desc' => 'Du når företag som vill hjälpa, men som letar efter ett enkelt, genomskinligt och helautomatiskt sätt att implementera sin CSR-strategi på.',                ],                'free_promo' => [                    'title' => 'Gratis varumärkesbyggande och synlighet',                    'desc' => 'Din organisation är synlig för alla arbetsgivare som använder portalen, vilket skapar värdefullt igenkännande i det globala näringslivet.',                ],                'ready_tools' => [                    'title' => 'Direkt insatsklara marknadsföringsverktyg',                    'desc' => 'Du får källmaterial som du enkelt can dela. Du rekommenderar ett kraftfullt rekryteringsverktyg, och företagen stödjer dina ändamål i utbyte.',                ],                'business_relations' => [                    'title' => 'Bygga starka B2B-relationer',                    'desc' => 'Du blir en verklig partner för näringslivet. Arbetsgivare får ett officiellt CSR-certifikat, vilket stärker det långsiktiga bandet till din stiftelse.',                ],            ],        ],        'business_card' => [            'title' => 'Din profil – Ditt fönster mot näringslivet',            'items' => [                'describe' => 'Beskriv noggrant vilka projekt din stiftelse tillvaratar och vad det för närvarande är mest akut behov av ekonomiska medel till.',                'link' => 'Lägg till din webbplatslänk och kontaktinformation, så att företag enkelt kan lära känna ditt arbete mer i detalj.',                'visible' => 'Du visas väl synligt i vallistan vid varje poängköp samt i vår exklusiva sektion ”Våra partner”.',            ],            'cta' => 'Registrera din organisation nu med en gång',        ],        'how_to_increase_support' => [            'title' => 'HUR MAKSIMERAR DU STÖDET TILL DIN STIFTELSE?',            'subtitle' => 'Direkt efter registreringen tar du emot din personliga affiliate-länk.',            'description' => 'Denna kan du väldigt enkelt:',            'items' => [                'integrera på din officiella webbplats,',                'lägga till i din e-postsignatur,',                'sända direkt till dina existerande affärspartner,',                'dela på dina sociala nätverk,',                'använda aktivt i samband med dina insamlingskampanjer.',            ],            'footer' => 'Varje företag som registrerar sig och använder WORK4YOU.GLOBAL via din länk, donerar automatiskt och exklusivt till din stiftelse.',        ],        'faq' => [            'title' => 'FAQ',            'questions' => [                [                    'question' => 'Hur mycket kostar registreringen?',                    'answer' => 'Absolut ingenting. Registreringen samt hosting av organisationsprofilen på plattformen är och förblir fullständigt gratis.',                ],                [                    'question' => 'När blir medlen utbetalda till oss?',                    'answer' => 'Beloppen överförs till stiftelsens officiella bankkonto inom 2–7 vardagar efter mottagen betalning från den stödjande arbetsgivaren.',                ],                [                    'question' => 'Är vi förpliktigade att göra reklam för portalen?',                    'answer' => 'Nej, det är ingen plikt. Att vara aktiv som ambassadör lönar sig emellertid: varje företag som rekryterar via din rekommendation garanterar 50 % av värdet av sina påfyllningar till din organisation.',                ],                [                    'question' => 'Vilka dokument behövs?',                    'answer' => 'Det officiella registreringsnumret (t.ex. organisationsnummer eller motsvarande) och grundläggande stadgedata är tillräckligt. Detta kontrollerar vi när kontot skapas.',                ],                [                    'question' => 'Varifrån kommer donationerna exakt?',                    'answer' => 'Pengarna kommer från de vanliga kommersiella betalningarna från arbetsgivare för plattformstjänsterna. Så snart ett företag köper poäng, går 50 % av värdet till den valda organisationen.',                ],                [                    'question' => 'Hur väljer arbetsgivarna den rätta organisationen?',                    'answer' => 'Företag kan välja organisationer manuellt från en lista under köpprocessen, eller så leds de direkt dit via den individuella länken till en organisation.',                ],                [                    'question' => 'Tar vi emot en egen profil på plattformen?',                    'answer' => 'Ja. Varje organisation får en egen profil med en beskrivning av aktiviteterna, kontaktinformation och möjlighet att presentera mål och framgångar visuellt.',                ],                [                    'question' => 'Måste jag dela portalen regelbundet på mina sociala medier?',                    'answer' => 'Nej, vi kräver ingen regelbunden promotering. Efter aktivering ber vi bara om ett enda informationsinlägg som tillkännager samarbetet med WORK4YOU.GLOBAL. Allt annat är absolut frivilligt.',                ],            ],        ],        'bottom_cta' => [            'title' => 'Bli en del av vårt nätverk av partnerorganisationer',            'subtitle' => 'Registrera dig gratis, skapa din profil och ta emot långvarigt stöd från ansvarstagande företag.',            'cta' => 'Registrera organisation',        ],        'our_mission' => [            'title' => 'VÅR MISSION',            'text1' => 'Social hjälp och stöd bör inte uteslutande bero på tillfälliga insamlingsaktioner eller oregelbundna kampanjer.',            'text2' => 'Därför har vi skapat ett hållbart system där företag stödjer organisationer genom en process de ändå utför varje dag – rekrytering av medarbetare.',            'text3' => 'WORK4YOU.GLOBAL förbinder HR-världen med den ideella sektorn i ett mycket effektivt kretslopp, som absolut alla parter drar nytta av.',        ],        'footer_features' => [            'free_reg' => 'Gratis registrering för alla organisationer',            'simple_csr' => 'Enkel CSR-lösning för företag',            'constant_support' => 'Hållbar och pålitlig finansieringskälla',        ],    ],];
+<?php
+
+return [
+    'meta' => [
+        'title' => 'Work4you.global - Lägg ut jobbannonser gratis',
+        'description' => 'Publicera ett obegränsat antal jobbannonser och samla ansökningar från kandidater helt gratis. Få 20 000 startpoäng i bonus!',
+    ],
+    'nav' => [
+        'how_it_works' => 'Så fungerar det',
+        'benefits' => 'Fördelar',
+        'faq' => 'FAQ',
+        'register_free' => 'Skapa ett gratis konto',
+    ],
+    'hero' => [
+        'title' => 'Lägg ut ett obegränsat antal jobbannonser <br class="hidden lg:block"/> och samla ansökningar från kandidater helt gratis.',
+        'subtitle' => 'Inget abonnemang. Inga publiceringsavgifter. <br class="hidden md:block"/> Vid uppstart får du omedelbart 20 000 poäng som är redo att användas.',
+        'cta' => 'Skapa ett gratis konto och lägg ut din första annons',
+        'target' => 'Idealiskt för rekryteringsföretag och <br class="hidden sm:block" /> företag som rekryterar i stor skala.',
+    ],
+    'model' => [
+        'title' => 'Enkel modell: Publicera gratis och attrahera kandidater',
+        'step1' => [
+            'title' => 'Du lägger till så många jobb du vill',
+            'desc' => 'Utan gränser och utan några kostnader',
+        ],
+        'step2' => [
+            'title' => 'Du tar emot ansökningar från kandidater',
+            'desc' => 'Samla CV:n från arbetssökande helt gratis',
+        ],
+        'step3' => [
+            'title' => 'Du använder poäng endast när du själv vill',
+            'desc' => 't.ex. för att visa CV:n eller för att lyfta fram annonser',
+        ],
+    ],
+    'credits' => [
+        'badge' => 'i välkomstpresent!',
+        'amount_label' => 'poäng',
+        'test_platform' => 'Efter registrering får du ett startpaket för och testa plattformen fullt ut:',
+        'benefits_list' => [
+            'Visa kandidaternas CV:n (klassiskt, ljud, video)',
+            'Lyfta fram jobbannonser högst upp på listan',
+            'Synliggöra företaget i arbetsgivarregistret',
+            'Tillgång till avancerade rekryteringsfilter',
+        ],
+        'no_start_costs' => 'Äntligen rekrytering utan några startkostnader...',
+        'items' => [
+            'free_ads' => 'Du publicerar jobbannonser gratis',
+            'no_contracts' => 'Utan bindningstider och utan månadsabonnemang',
+            'own_rules' => 'Använd plattformen på dina egna villkor',
+            'cv_types' => 'Klassiska, ljud- och video-CV:n',
+            'all_languages' => 'Jobbannonser på alla språk är möjligt',
+        ],
+    ],
+    'foundation' => [
+        'badge' => 'Tillsammans förändrar vi världen:',
+        'title' => '50 % of beloppet från varje köp stöttar en organisation efter ditt val.',
+        'subtitle' => 'Du rekryterar personal och hjälper samtidigt människor som behöver det.',
+    ],
+    'cta' => [
+        'title' => 'Redo för gratis rekrytering? <br/>Hämta dina <span class="text-red-work">20 000 poäng</span> på en gång!',
+        'button' => 'Registrera ditt företag gratis',
+    ],
+    'who_is_it_for' => [
+        'title' => 'Vem har störst nytta av detta?',
+        'groups' => [
+            'agencies' => 'Rekryteringsföretag och rekryterare',
+            'high_volume' => 'Företag med stora rekryteringsvolymer',
+            'cost_conscious' => 'Arbetsgivare som vill spara kostnader',
+            'international' => 'Internationellt verksamma företag',
+            'everyone' => 'Alla som letar efter en kvalificerad medarbetare',
+        ],
+    ],
+    'faq_section' => [
+        'title' => 'FAQ',
+        'subtitle' => 'Vanliga frågor',
+        'questions' => [
+            [
+                'question' => 'Är det verkligen gratis att lägga ut jobbannonser?',
+                'answer' => 'Ja – du betalar ingenting för publiceringen, oavsett antalet annonser.',
+            ],
+            [
+                'question' => 'Måste jag köpa poäng för att starta?',
+                'answer' => 'Nej – du får automatiskt 20 000 gratispoäng omedelbart efter registreringen.',
+            ],
+            [
+                'question' => 'När börjar jag betala?',
+                'answer' => 'Först när du själv medvetet väljer att köpa till extra poäng.',
+            ],
+            [
+                'question' => 'Kan jag avsluta tjänsten när som helst?',
+                'answer' => 'Ja – det finns inga bindande kontrakt eller långsiktiga förpliktelser.',
+            ],
+        ],
+    ],
+    'footer' => [
+        'description' => 'Den första rekryteringsplattformen som ger arbetsgivare och kandidater en verklig röst, samtidigt som den ger konkret stöd till välgörenhetsorganisationer.',
+        'nav' => 'Navigering',
+        'legal' => 'Juridik',
+        'privacy' => 'Integritetspolicy',
+        'terms' => 'Användarvillkor',
+        'rights' => 'Alla rättigheter förbehållna.',
+    ],
+    'sold' => [
+        'hero' => [
+            'title' => 'Dina annonser har attraherat kandidater. <br/> Låt dem inte vänta.',
+            'subtitle' => 'Öka antalet ansökningar, lås upp tillgången till CV:n och utnyttja den fulla potentialen i dina jobbannonser.',
+            'cta' => 'Fyll på kontot',
+            'warning' => 'Missa inte kandidater som redan söker!',
+        ],
+        'points_benefits' => [
+            'title' => 'SE VAD DU KAN GÖRA MED DE KÖPTA POÄNGEN',
+            'items' => [
+                'cv_access' => 'tillgång till kandidaternas CV:n',
+                'cv_formats' => 'CV:n i olika format',
+                'ads_promo' => 'promotering och topplacering av annonser',
+                'employer_distinction' => 'unik framhävning av arbetsgivarprofilen',
+                'brand_building' => 'bygga ett starkt arbetsgivarvarumärke (Employer Branding)',
+            ],
+        ],
+        'recharges' => [
+            'title' => 'PÅFYLLNING I STÄLLET FÖR ABONNEMANGSFÄLLOR',
+            'subtitle' => 'Dina poäng, dina regler...',
+            'items' => [
+                'free_ads' => [
+                    'title' => 'Du publicerar alltid annonser gratis',
+                    'desc' => 'Det kommer alltid att vara kostnadsfritt att lägga till tjänster. Du bygger upp din kandidatdatabas utan startkostnader.',
+                ],
+                'no_expiration' => [
+                    'title' => 'Dina poäng förfaller aldrig',
+                    'desc' => 'Det påfyllda saldot förblir ditt för alltid. Du kan använda det i dag, nästa vecka eller om en månad till precis den åtgärd du vill.',
+                ],
+                'pay_per_effect' => [
+                    'title' => 'Du betalar endast för resultat',
+                    'desc' => 'Du löser endast in poäng när du vill använda en specifik premiumfunktion. Fullständig kontroll över din budget.',
+                ],
+            ],
+        ],
+        'foundation' => [
+            'title' => 'Ditt beslut har verklig påverkanskraft:',
+            'subtitle' => 'Hälften av beloppet (50 %) från din beställning överförs direkt till kontot för den organisation du har valt.',
+            'step1' => [
+                'title' => 'Du väljer ändamålet:',
+                'desc' => 'Du bestämmer själv vilken organisation vi stödjer efter att du har fyllt på ditt konto.',
+            ],
+            'step2' => [
+                'title' => 'Certifikat till ditt företag:',
+                'desc' => 'En officiell bekräftelse på att du kombinerar framgångsrik rekrytering med samhällsansvar (CSR).',
+            ],
+            'cta' => 'Välj ett poängpaket och ange organisationen',
+        ],
+        'solutions' => [
+            'title' => 'Vi har den rätta lösningen för alla som söker anställda:',
+            'items' => [
+                'agencies' => [
+                    'title' => 'REKRYTERINGSFÖRETAG OCH REKRYTERARE',
+                    'desc' => 'Omedelbar tillgång till CV:n i klassiskt text-, ljud- eller videoformat och smarta urvalsverktyg gör att du kan slutföra processen snabbare än dina konkurrenter.',
+                ],
+                'high_volume' => [
+                    'title' => 'FÖRETAG MED STORA REKRYTERINGSVOLYMER',
+                    'desc' => 'Frånvaron av fasta kostnader innebär en reell besparing. Poäng dras endast för konkreta åtgärder, medan dina annonser alltid förblir synliga.',
+                ],
+                'cost_conscious' => [
+                    'title' => 'ARBETSGIVARE SOM VILL SPARA KOSTNADER',
+                    'desc' => 'Poängmodellen gör det möjligt att styra budgeten med maximal precision. Du spenderar exakt det belopp du hade planerat för den aktuella tjänsten.',
+                ],
+                'international' => [
+                    'title' => 'INTERNATIONELLT VERKSAMMA FÖRETAG',
+                    'desc' => 'Portalen är tillgänglig på alla språk och möjliggör global rekrytering. Global räckvidd kombinerat med ett superenkelt faktureringssystem.',
+                ],
+                'everyone' => [
+                    'title' => 'ALLA SOM SÖKER EN BRA MEDARBETARE',
+                    'desc' => 'Oavsett storlek på ditt företag får du tillgång till högt motiverade kandidater och stödjer samtidigt ett gott ändamål.',
+                ],
+            ],
+        ],
+        'faq' => [
+            'questions' => [
+                [
+                    'question' => 'Vad händer med mina annonser om jag inte fyller på kontot?',
+                    'answer' => 'Annonserna förblir aktiva och synliga. Påfyllning är endast nödvändig för att låsa upp kontaktinformationen i CV:n, framhäva tjänster eller använda andra marknadsföringsmöjligheter.',
+                ],
+                [
+                    'question' => 'Vad är poängens giltighetstid?',
+                    'answer' => 'Poäng förfaller aldrig. Du kan använda dem nu eller för framtida rekryteringar om några månader – ditt saldo väntar alltid säkert på ditt konto.',
+                ],
+                [
+                    'question' => 'Kan jag byta poäng mot promotering av en annons?',
+                    'answer' => 'Ja. Poäng är plattformens universella valuta – du kan använda dem för att låsa upp CV:n, topplaceringar eller ytterligare annonsering.',
+                ],
+                [
+                    'question' => 'När får jag tillgång till kandidaternas data?',
+                    'answer' => 'Omedelbart efter att poängen har lösts in. Du fyller på poängkontot och kan sedan se ansökningarna med ett klick i annonspanelen.',
+                ],
+            ],
+        ],
+        'bottom_cta' => [
+            'title' => 'Dina kandidater väntar på att du tar kontakt',
+            'subtitle' => 'Fyll på kontot på 30 sekunder och lås upp portalens fulla möjligheter',
+            'button' => 'Fyll på kontot nu',
+            'features' => [
+                'free_ads' => 'kostnadsfri publicering av jobbannonser',
+                'no_expiration' => 'obegränsat giltiga poäng på ditt konto',
+                'real_support' => 'reellt och direkt stöd till människor som behöver det',
+            ],
+        ],
+    ],
+    'charity' => [
+        'nav' => [
+            'how_it_works' => 'Hur fungerar det?',
+            'benefits' => 'Fördelar',
+            'faq' => 'FAQ',
+            'register_foundation' => 'Registrera organisation',
+        ],
+        'hero' => [
+            'title' => 'Förvandla vardagens rekryteringsprocesser till <br class="hidden lg:block"/> ett reellt finansiellt stöd för din Stiftelse.',
+            'subtitle' => 'Bli ambassadör för portalen. Varje personalsökning genererar värdefull hjälp för din målgrupp. Utan kostnader och utan onödig byråkrati.',
+            'cta' => 'Registrera organisation',
+        ],
+        'how_it_works' => [
+            'title' => 'HUR FUNGERAR DET?',
+            'steps' => [
+                'step1' => [
+                    'title' => 'Du skapar en profil',
+                    'desc' => 'Du skapar organisationens digitala visitkort, som är synligt för alla arbetsgivare på portalen, för att öka medvetenheten kring er mission.',
+                ],
+                'step2' => [
+                    'title' => 'Du är en Ambassadör',
+                    'desc' => 'Du fungerar som ambassadör för portalen och bjuder in företag till samhällsansvarig rekrytering. Varje påfyllning de gör ger 50 % av beloppet direkt till din stiftelse.',
+                ],
+                'step3' => [
+                    'title' => 'Du tar emot donationerna',
+                    'desc' => 'Arbetsgivarna väljer själva din stiftelse som donationsmål, eller når dig via en unik affiliate-länk som du delar med dem.',
+                ],
+            ],
+        ],
+        'funds_origin' => [
+            'title' => 'Varifrån kommer medlen till organisationerna?',
+            'steps' => [
+                'step1' => 'En arbetsgivare/företag genomför en rekryteringsprocess',
+                'step2' => 'Köper poengen som krävs för användning av plattformens avancerade funktioner',
+                'step3' => '50 % av denna betalning går direkt till den valda organisationen',
+                'step4' => 'Stiftelsen använder pengarna med framgång för att uppfylla sin mission',
+            ],
+        ],
+        'why_model_works' => [
+            'title' => 'VARFÖR DENNA MODELL FUNGERAR?',
+            'items' => [
+                [
+                    'title' => 'Företag rekryterar varje dag',
+                    'desc' => 'Personalsökning är en fast, hållbar del av driften för redan tusentals företag och rekryteringsföretag.',
+                ],
+                [
+                    'title' => 'Hjälpen uppstår helautomatiskt',
+                    'desc' => 'Stödet genereras i samband med rekryteringen och kräver inga extra budgetdonationer från företaget.',
+                ],
+                [
+                    'title' => 'Det är en vinn-vinn-situation för alla',
+                    'desc' => 'Arbetsgivare rekryterar mer effektivt, stiftelser tar emot ekonomiska medel och kandidater hittar arbete.',
+                ],
+                [
+                    'title' => 'Varje enskild annons hjälper',
+                    'desc' => 'Varje aktivitet på plattformen ökar donationsvolymen till sociala organisationer direkt.',
+                ],
+            ],
+        ],
+        'benefits' => [
+            'title' => 'VARFÖR ÄR DET VÄRT ATT BLI VÅR AMBASSADÖR?',
+            'items' => [
+                'new_source' => [
+                    'title' => 'En ny, hållbar finansieringskälla',
+                    'desc' => 'Du når företag som vill hjälpa, men som letar efter ett enkelt, genomskinligt och helautomatiskt sätt att implementera sin CSR-strategi på.',
+                ],
+                'free_promo' => [
+                    'title' => 'Gratis varumärkesbyggande och synlighet',
+                    'desc' => 'Din organisation är synlig för alla arbetsgivare som använder portalen, vilket skapar värdefullt igenkännande i det globala näringslivet.',
+                ],
+                'ready_tools' => [
+                    'title' => 'Direkt insatsklara marknadsföringsverktyg',
+                    'desc' => 'Du får källmaterial som du enkelt can dela. Du rekommenderar ett kraftfullt rekryteringsverktyg, och företagen stödjer dina ändamål i utbyte.',
+                ],
+                'business_relations' => [
+                    'title' => 'Bygga starka B2B-relationer',
+                    'desc' => 'Du blir en verklig partner för näringslivet. Arbetsgivare får ett officiellt CSR-certifikat, vilket stärker det långsiktiga bandet till din stiftelse.',
+                ],
+            ],
+        ],
+        'business_card' => [
+            'title' => 'Din profil – Ditt fönster mot näringslivet',
+            'items' => [
+                'describe' => 'Beskriv noggrant vilka projekt din stiftelse tillvaratar och vad det för närvarande är mest akut behov av ekonomiska medel till.',
+                'link' => 'Lägg till din webbplatslänk och kontaktinformation, så att företag enkelt kan lära känna ditt arbete mer i detalj.',
+                'visible' => 'Du visas väl synligt i vallistan vid varje poängköp samt i vår exklusiva sektion ”Våra partner”.',
+            ],
+            'cta' => 'Registrera din organisation nu med en gång',
+        ],
+        'how_to_increase_support' => [
+            'title' => 'HUR MAKSIMERAR DU STÖDET TILL DIN STIFTELSE?',
+            'subtitle' => 'Direkt efter registreringen tar du emot din personliga affiliate-länk.',
+            'description' => 'Denna kan du väldigt enkelt:',
+            'items' => [
+                'integrera på din officiella webbplats,',
+                'lägga till i din e-postsignatur,',
+                'sända direkt till dina existerande affärspartner,',
+                'dela på dina sociala nätverk,',
+                'använda aktivt i samband med dina insamlingskampanjer.',
+            ],
+            'footer' => 'Varje företag som registrerar sig och använder WORK4YOU.GLOBAL via din länk, donerar automatiskt och exklusivt till din stiftelse.',
+        ],
+        'faq' => [
+            'title' => 'FAQ',
+            'questions' => [
+                [
+                    'question' => 'Hur mycket kostar registreringen?',
+                    'answer' => 'Absolut ingenting. Registreringen samt hosting av organisationsprofilen på plattformen är och förblir fullständigt gratis.',
+                ],
+                [
+                    'question' => 'När blir medlen utbetalda till oss?',
+                    'answer' => 'Beloppen överförs till stiftelsens officiella bankkonto inom 2–7 vardagar efter mottagen betalning från den stödjande arbetsgivaren.',
+                ],
+                [
+                    'question' => 'Är vi förpliktigade att göra reklam för portalen?',
+                    'answer' => 'Nej, det är ingen plikt. Att vara aktiv som ambassadör lönar sig emellertid: varje företag som rekryterar via din rekommendation garanterar 50 % av värdet av sina påfyllningar till din organisation.',
+                ],
+                [
+                    'question' => 'Vilka dokument behövs?',
+                    'answer' => 'Det officiella registreringsnumret (t.ex. organisationsnummer eller motsvarande) och grundläggande stadgedata är tillräckligt. Detta kontrollerar vi när kontot skapas.',
+                ],
+                [
+                    'question' => 'Varifrån kommer donationerna exakt?',
+                    'answer' => 'Pengarna kommer från de vanliga kommersiella betalningarna från arbetsgivare för plattformstjänsterna. Så snart ett företag köper poäng, går 50 % av värdet till den valda organisationen.',
+                ],
+                [
+                    'question' => 'Hur väljer arbetsgivarna den rätta organisationen?',
+                    'answer' => 'Företag kan välja organisationer manuellt från en lista under köpprocessen, eller så leds de direkt dit via den individuella länken till en organisation.',
+                ],
+                [
+                    'question' => 'Tar vi emot en egen profil på plattformen?',
+                    'answer' => 'Ja. Varje organisation får en egen profil med en beskrivning av aktiviteterna, kontaktinformation och möjlighet att presentera mål och framgångar visuellt.',
+                ],
+                [
+                    'question' => 'Måste jag dela portalen regelbundet på mina sociala medier?',
+                    'answer' => 'Nej, vi kräver ingen regelbunden promotering. Efter aktivering ber vi bara om ett enda informationsinlägg som tillkännager samarbetet med WORK4YOU.GLOBAL. Allt annat är absolut frivilligt.',
+                ],
+            ],
+        ],
+        'bottom_cta' => [
+            'title' => 'Bli en del av vårt nätverk av partnerorganisationer',
+            'subtitle' => 'Registrera dig gratis, skapa din profil och ta emot långvarigt stöd från ansvarstagande företag.',
+            'cta' => 'Registrera organisation',
+        ],
+        'our_mission' => [
+            'title' => 'VÅR MISSION',
+            'text1' => 'Social hjälp och stöd bör inte uteslutande bero på tillfälliga insamlingsaktioner eller oregelbundna kampanjer.',
+            'text2' => 'Därför har vi skapat ett hållbart system där företag stödjer organisationer genom en process de ändå utför varje dag – rekrytering av medarbetare.',
+            'text3' => 'WORK4YOU.GLOBAL förbinder HR-världen med den ideella sektorn i ett mycket effektivt kretslopp, som absolut alla parter drar nytta av.',
+        ],
+        'footer_features' => [
+            'free_reg' => 'Gratis registrering för alla organisationer',
+            'simple_csr' => 'Enkel CSR-lösning för företag',
+            'constant_support' => 'Hållbar och pålitlig finansieringskälla',
+        ],
+    ],
+
+];

@@ -3,7 +3,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Dodawaj oferty pracy za darmo',
-        'description' => 'Dodawaj nieograniczoną liczbę ofert pracy i zbieraj aplikacje kandydatów za darmo. Otrzymaj 50 000 punktów na start!',
+        'description' => 'Dodawaj nieograniczoną liczbę ofert pracy i zbieraj aplikacje kandydatów za darmo. Otrzymaj 20 000 punktów na start!',
     ],
     'nav' => [
         'how_it_works' => 'Jak to działa',
@@ -13,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Dodawaj nieograniczoną liczbę ofert pracy <br class="hidden lg:block"/> i zbieraj aplikacje kandydatów za darmo.',
-        'subtitle' => 'Bez abonamentu. Bez opłat za publikację. <br class="hidden md:block"/> Na start otrzymujesz 50 000 punktów do wykorzystania.',
+        'subtitle' => 'Bez abonamentu. Bez opłat za publikację. <br class="hidden md:block"/> Na start otrzymujesz 20 000 punktów do wykorzystania.',
         'cta' => 'Załóż darmowe konto i dodaj pierwszą ofertę',
         'target' => 'Idealne dla agencji rekrutacyjnych i <br class="hidden sm:block" /> firm zatrudniających na dużą skalę.',
     ],
@@ -57,7 +57,7 @@ return [
         'subtitle' => 'Rekrutujesz. I jednocześnie wspierasz potrzebujących.',
     ],
     'cta' => [
-        'title' => 'Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-red-work">50 000 punktów</span>!',
+        'title' => 'Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-red-work">20 punktów</span>!',
         'button' => 'Zarejestruj firmę za darmo',
     ],
     'who_is_it_for' => [
@@ -80,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Czy muszę kupować punkty na start?',
-                'answer' => 'Nie — otrzymujesz 50 000 punktów po rejestracji.',
+                'answer' => 'Nie — otrzymujesz 20 000 punktów po rejestracji.',
             ],
             [
                 'question' => 'Kiedy zaczynam płacić?',

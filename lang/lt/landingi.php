@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Nemokamas darbo skelbimų talpinimas',
-        'description' => 'Talpinkite neribotą kiekį darbo skelbimų ir rinkite kandidatų gyvenimo aprašymus visiškai nemokamai. Gaukite 50 000 pradinių taškų dovanų!',
+        'description' => 'Talpinkite neribotą kiekį darbo skelbimų ir rinkite kandidatų gyvenimo aprašymus visiškai nemokamai. Gaukite 20 000 pradinių taškų dovanų!',
     ],
     'nav' => [
         'how_it_works' => 'Kaip tai veikia',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Talpinkite neribotą kiekį darbo skelbimų <br class="hidden lg:block"/> ir rinkite kandidatų gyvenimo aprašymus visiškai nemokamai.',
-        'subtitle' => 'Jokių prenumeratų. Jokių skelbimo mokesčių. <br class="hidden md:block"/> Pradžiai iškart gausite 50 000 taškų, kuriais galėsite laisvai naudotis.',
+        'subtitle' => 'Jokių prenumeratų. Jokių skelbimo mokesčių. <br class="hidden md:block"/> Pradžiai iškart gausite 20 000 taškų, kuriais galėsite laisvai naudotis.',
         'cta' => 'Sukurkite nemokamą paskyrą ir patalpinkite pirmąjį skelbimą',
         'target' => 'Idealiai tinka atrankos agentūroms ir <br class="hidden sm:block" /> įmonėms, vykdančioms masinę darbuotojų samdą.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Samdote darbuotojus ir tuo pačiu padedate tiems, kuriems labiausiai reikia pagalbos.',
     ],
     'cta' => [
-        'title' => 'Pasiruošę nemokamai atrankai? <br/>Atsiimkite savo <span class="text-red-work">50 000 taškų</span> jau dabar!',
+        'title' => 'Pasiruošę nemokamai atrankai? <br/>Atsiimkite savo <span class="text-red-work">20 000 taškų</span> jau dabar!',
         'button' => 'Užregistruokite savo įmonę nemokamai',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Ar man reikia nusipirkti taškų norint pradėti?',
-                'answer' => 'Ne – 50 000 nemokamų taškų gausite automatiškai iškart po registracijos.',
+                'answer' => 'Ne – 20 000 nemokamų taškų gausite automatiškai iškart po registracijos.',
             ],
             [
                 'question' => 'Kada aš pradėsiu mokėti?',

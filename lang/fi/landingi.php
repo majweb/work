@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Lisää työpaikkailmoituksia ilmaiseksi',
-        'description' => 'Lisää rajaton määrä työpaikkailmoituksia ja kerää hakijoiden hakemuksia täysin ilmaiseksi. Saat 50 000 aloitustilipistettä kaupan päälle!',
+        'description' => 'Lisää rajaton määrä työpaikkailmoituksia ja kerää hakijoiden hakemuksia täysin ilmaiseksi. Saat 20 000 aloitustilipistettä kaupan päälle!',
     ],
     'nav' => [
         'how_it_works' => 'Miten se toimii',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Lisää rajaton määrä työpaikkailmoituksia <br class="hidden lg:block"/> ja kerää hakemuksia ilmaiseksi.',
-        'subtitle' => 'Ei kuukausimaksua. Ei julkaisumaksuja. <br class="hidden md:block"/> Saat heti alussa käyttöösi 50 000 pistettä vapaasti käytettäväksi.',
+        'subtitle' => 'Ei kuukausimaksua. Ei julkaisumaksuja. <br class="hidden md:block"/> Saat heti alussa käyttöösi 20 000 pistettä vapaasti käytettäväksi.',
         'cta' => 'Luo ilmainen tili ja lisää ensimmäinen ilmoituksesi',
         'target' => 'Ihanteellinen rekrytointitoimistoille ja <br class="hidden sm:block" /> suuren volyymin rekrytointia tekeville yrityksille.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Rekrytoit työntekijöitä ja tuet samalla niitä, jotka tarvitsevat apua.',
     ],
     'cta' => [
-        'title' => 'Valmis ilmaiseen rekrytointiin? <br/>Lunasta <span class="text-red-work">50 000 pistettäsi</span> heti käyttöön!',
+        'title' => 'Valmis ilmaiseen rekrytointiin? <br/>Lunasta <span class="text-red-work">20 000 pistettäsi</span> heti käyttöön!',
         'button' => 'Rekisteröi yrityksesi ilmaiseksi',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Pitääkö minun ostaa pisteitä aloittaakseni?',
-                'answer' => 'Ei – saat 50 000 ilmaista pistettä automaattisesti heti rekisteröitymisen jälkeen.',
+                'answer' => 'Ei – saat 20 000 ilmaista pistettä automaattisesti heti rekisteröitymisen jälkeen.',
             ],
             [
                 'question' => 'Milloin alan maksaa?',

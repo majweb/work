@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Post job offers for free',
-        'description' => 'Post an unlimited number of job offers and collect candidate applications completely for free. Get 50,000 start points as a bonus!',
+        'description' => 'Post an unlimited number of job offers and collect candidate applications completely for free. Get 20,000 start points as a bonus!',
     ],
     'nav' => [
         'how_it_works' => 'How it works',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Post an unlimited number of job offers <br class="hidden lg:block"/> and collect candidate applications for free.',
-        'subtitle' => 'No subscription. No publication fees. <br class="hidden md:block"/> You receive 50,000 points right at the start, ready to use.',
+        'subtitle' => 'No subscription. No publication fees. <br class="hidden md:block"/> You receive 20,000 points right at the start, ready to use.',
         'cta' => 'Create a free account and post your first offer',
         'target' => 'Ideal for recruitment agencies and <br class="hidden sm:block" /> companies hiring on a large scale.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Recruit talent while supporting those in need at the same time.',
     ],
     'cta' => [
-        'title' => 'Ready for free recruitment? <br/>Claim your <span class="text-red-work">50,000 points</span> right now!',
+        'title' => 'Ready for free recruitment? <br/>Claim your <span class="text-red-work">20,000 points</span> right now!',
         'button' => 'Register your company for free',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Do I need to buy points to start?',
-                'answer' => 'No — you automatically receive 50,000 free points right after registration.',
+                'answer' => 'No — you automatically receive 20,000 free points right after registration.',
             ],
             [
                 'question' => 'When do I start paying?',

@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Inzerujte pracovné ponuky zadarmo',
-        'description' => 'Publikujte neobmedzený počet pracovných ponúk a zbierajte žiadosti od kandidátov úplne zadarmo. Získajte 50 000 štartovacích bodov ako bonus!',
+        'description' => 'Publikujte neobmedzený počet pracovných ponúk a zbierajte žiadosti od kandidátov úplne zadarmo. Získajte 20 000 štartovacích bodov ako bonus!',
     ],
     'nav' => [
         'how_it_works' => 'Ako to funguje',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publikujte neobmedzený počet pracovných ponúk <br class="hidden lg:block"/> a zbierajte žiadosti od kandidátov úplne zadarmo.',
-        'subtitle' => 'Bez predplatného. Bez poplatkov za zverejnenie. <br class="hidden md:block"/> Na štarte okamžite získate 50 000 bodov pripravených na použitie.',
+        'subtitle' => 'Bez predplatného. Bez poplatkov za zverejnenie. <br class="hidden md:block"/> Na štarte okamžite získate 20 000 bodov pripravených na použitie.',
         'cta' => 'Vytvorte si bezplatný účet a uverejnite svoju prvú ponuku',
         'target' => 'Ideálne pre personálne agentúry a <br class="hidden sm:block" /> spoločnosti, ktoré naberajú zamestnancov vo veľkom.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Naberáte zamestnancov a zároveň pomáhate tým, ktorí to najviac potrebujú.',
     ],
     'cta' => [
-        'title' => 'Pripravení na bezplatný nábor? <br/>Vyzdvihnite si svojich <span class="text-red-work">50 000 bodov</span> hneď teraz!',
+        'title' => 'Pripravení na bezplatný nábor? <br/>Vyzdvihnite si svojich <span class="text-red-work">20 000 bodov</span> hneď teraz!',
         'button' => 'Zaregistrujte svoju spoločnosť zadarmo',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Musím si na začiatku kúpiť body?',
-                'answer' => 'Nie – hneď po registrácii automaticky získate 50 000 bezplatných bodov.',
+                'answer' => 'Nie – hneď po registrácii automaticky získate 20 000 bezplatných bodov.',
             ],
             [
                 'question' => 'Kedy začnem platiť?',

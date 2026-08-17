@@ -1,10 +1,9 @@
 <?php
 
-
 return [
     'meta' => [
         'title' => 'Work4you.global - Přidávejte pracovní nabídky zdarma',
-        'description' => 'Přidávejte neomezené množství pracovních nabídek a sbírejte reakce kandidátů zdarma. Získejte 50 000 bodů do začátku jako bonus!',
+        'description' => 'Přidávejte neomezené množství pracovních nabídek a sbírejte reakce kandidátů zdarma. Získejte 20 000 bodů do začátku jako bonus!',
     ],
     'nav' => [
         'how_it_works' => 'Jak to funguje',
@@ -14,7 +13,7 @@ return [
     ],
     'hero' => [
         'title' => 'Přidávejte neomezené množství pracovních nabídek <br class="hidden lg:block"/> a sbírejte reakce kandidátů zdarma.',
-        'subtitle' => 'Bez předplatného. Bez poplatků za publikaci. <br class="hidden md:block"/> Do začátku získáváte okamžitě 50 000 bodů k využití.',
+        'subtitle' => 'Bez předplatného. Bez poplatků za publikaci. <br class="hidden md:block"/> Do začátku získáváte okamžitě 20 000 bodů k využití.',
         'cta' => 'Vytvořte si bezplatný účet a přidejte první nabídku',
         'target' => 'Ideální pro personální agentury a <br class="hidden sm:block" /> firmy zaměstnávající ve velkém měřítku.',
     ],
@@ -58,7 +57,7 @@ return [
         'subtitle' => 'Nabíráte zaměstnance a zároveň pomáháte těm, kteří to potřebují.',
     ],
     'cta' => [
-        'title' => 'Jste připraveni na nábor zdarma? <br/>Vyzvedněte si svých <span class="text-red-work">50 000 bodů</span> hned teď!',
+        'title' => 'Jste připraveni na nábor zdarma? <br/>Vyzvedněte si svých <span class="text-red-work">20 000 bodů</span> hned teď!',
         'button' => 'Zaregistrujte firmu zdarma',
     ],
     'who_is_it_for' => [
@@ -81,7 +80,7 @@ return [
             ],
             [
                 'question' => 'Musím si body koupit hned na začátku?',
-                'answer' => 'Ne – hned po registraci automaticky obdržíte 50 000 bodů zdarma.',
+                'answer' => 'Ne – hned po registraci automaticky obdržíte 20 000 bodů zdarma.',
             ],
             [
                 'question' => 'Kdy začínám platit?',
