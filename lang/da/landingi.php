@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Opslå jobannoncer gratis',
-        'description' => 'Opslå et ubegrænset antal jobannoncer og saml ansøgninger fra kandidater helt gratis. Få 50.000 startpoint som velkomstbonus!',
+        'description' => 'Opslå et ubegrænset antal jobannoncer og saml ansøgninger fra kandidater helt gratis. Få 20.000 startpoint som velkomstbonus!',
     ],
     'nav' => [
         'how_it_works' => 'Sådan fungerer det',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Opslå et ubegrænset antal jobannoncer <br class="hidden lg:block"/> og saml ansøgninger fra kandidater helt gratis.',
-        'subtitle' => 'Intet abonnement. Ingen udgivelsesgebyrer. <br class="hidden md:block"/> Du modtager med det samme 50.000 point til fri afbenyttelse.',
+        'subtitle' => 'Intet abonnement. Ingen udgivelsesgebyrer. <br class="hidden md:block"/> Du modtager med det samme 20.000 point til fri afbenyttelse.',
         'cta' => 'Opret en gratis konto og opslå din første annonce',
         'target' => 'Ideelt til rekrutteringsbureauer og <br class="hidden sm:block" /> virksomheder med stor ansættelsesvolumen.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Du rekrutterer, og samtidig støtter du dem, der har brug for hjælp.',
     ],
     'cta' => [
-        'title' => 'Klar til gratis rekruttering? <br/>Hent dine <span class="text-red-work">50.000 point</span> med det samme!',
+        'title' => 'Klar til gratis rekruttering? <br/>Hent dine <span class="text-red-work">20.000 point</span> med det samme!',
         'button' => 'Registrer din virksomhed gratis',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Skal jeg købe point for at komme i gang?',
-                'answer' => 'Nej – du modtager automatisk 50.000 point lige efter oprettelsen.',
+                'answer' => 'Nej – du modtager automatisk 20.000 point lige efter oprettelsen.',
             ],
             [
                 'question' => 'Hvornår begynder jeg at betale?',

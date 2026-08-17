@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Pubblica annunci di lavoro gratuitamente',
-        'description' => 'Pubblica un numero illimitato di annunci di lavoro e raccogli le candidature dei candidati in modo completamente gratuito. Ricevi 50.000 punti di benvenuto per iniziare!',
+        'description' => 'Pubblica un numero illimitato di annunci di lavoro e raccogli le candidature dei candidati in modo completamente gratuito. Ricevi 20.000 punti di benvenuto per iniziare!',
     ],
     'nav' => [
         'how_it_works' => 'Come funziona',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Pubblica un numero illimitato di annunci di lavoro <br class="hidden lg:block"/> e raccogli le candidature dei candidati gratuitamente.',
-        'subtitle' => 'Nessun abbonamento. Nessuna tariffa di pubblicazione. <br class="hidden md:block"/> Per iniziare, ricevi immediatamente 50.000 punti pronti all\'uso.',
+        'subtitle' => 'Nessun abbonamento. Nessuna tariffa di pubblicazione. <br class="hidden md:block"/> Per iniziare, ricevi immediatamente 20.000 punti pronti all\'uso.',
         'cta' => 'Crea un account gratuito e pubblica il tuo primo annuncio',
         'target' => 'Ideale per agenzie di recruiting e <br class="hidden sm:block" /> aziende con un grande volume di assunzioni.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Assumi personale e, allo stesso tempo, aiuti chi ne ha più bisogno.',
     ],
     'cta' => [
-        'title' => 'Pronto per il recruiting gratuito? <br/>Riscatta i tuoi <span class="text-red-work">50.000 punti</span> ora stesso!',
+        'title' => 'Pronto per il recruiting gratuito? <br/>Riscatta i tuoi <span class="text-red-work">20.000 punti</span> ora stesso!',
         'button' => 'Registra la tua azienda gratuitamente',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Devo acquistare dei punti per iniziare?',
-                'answer' => 'No — ricevi automaticamente 50.000 punti gratuiti subito dopo la registrazione.',
+                'answer' => 'No — ricevi automaticamente 20.000 punti gratuiti subito dopo la registrazione.',
             ],
             [
                 'question' => 'Quando inizio a pagare?',

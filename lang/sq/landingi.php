@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Shto njoftime pune falas',
-        'description' => 'Publiko një numër të pakufizuar njoftimesh pune dhe mblidh aplikimet e kandidatëve plotësisht falas. Përfto 50.000 pikë fillestare dhuratë!',
+        'description' => 'Publiko një numër të pakufizuar njoftimesh pune dhe mblidh aplikimet e kandidatëve plotësisht falas. Përfto 20.000 pikë fillestare dhuratë!',
     ],
     'nav' => [
         'how_it_works' => 'Si funksionon',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publiko një numër të pakufizuar njoftimesh pune <br class="hidden lg:block"/> dhe mblidh aplikimet e kandidatëve plotësisht falas.',
-        'subtitle' => 'Pa pajtim mujor. Pa tarifa publikimi. <br class="hidden md:block"/> Në fillim, ju merrni menjëherë 50.000 pikë të gatshme për përdorim.',
+        'subtitle' => 'Pa pajtim mujor. Pa tarifa publikimi. <br class="hidden md:block"/> Në fillim, ju merrni menjëherë 20.000 pikë të gatshme për përdorim.',
         'cta' => 'Hap një llogari falas dhe shto njoftimin tënd të parë',
         'target' => 'Ideale për agjencitë e reklutimit dhe <br class="hidden sm:block" /> kompanitë që punësojnë në shkallë të gjerë.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Ti punëson staf dhe, në të njëjtën kohë, ndihmon njerëzit në nevojë.',
     ],
     'cta' => [
-        'title' => 'Gati për rekrutim falas? <br/>Përfto <span class="text-red-work">50.000 pikët</span> e tua që tani!',
+        'title' => 'Gati për rekrutim falas? <br/>Përfto <span class="text-red-work">20.000 pikët</span> e tua që tani!',
         'button' => 'Regjistro kompaninë tënde falas',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'A duhet të blej pikë që në fillim?',
-                'answer' => 'Jo — ju merrni automatikisht 50.000 pikë falas menjëherë pas regjistrimit.',
+                'answer' => 'Jo — ju merrni automatikisht 20.000 pikë falas menjëherë pas regjistrimit.',
             ],
             [
                 'question' => 'Kur filloj të paguaj?',

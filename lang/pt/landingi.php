@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Publique vagas de emprego gratuitamente',
-        'description' => 'Publique um número ilimitato de vagas de emprego e colete candidaturas de forma totalmente gratuita. Ganhe 50.000 pontos iniciais de bônus!',
+        'description' => 'Publique um número ilimitato de vagas de emprego e colete candidaturas de forma totalmente gratuita. Ganhe 20.000 pontos iniciais de bônus!',
     ],
     'nav' => [
         'how_it_works' => 'Como funciona',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publique um número ilimitado de vagas de emprego <br class="hidden lg:block"/> e colete candidaturas de candidatos gratuitamente.',
-        'subtitle' => 'Sem assinatura. Sem taxas de publicação. <br class="hidden md:block"/> No início, você recebe imediatamente 50.000 pontos prontos para uso.',
+        'subtitle' => 'Sem assinatura. Sem taxas de publicação. <br class="hidden md:block"/> No início, você recebe imediatamente 20.000 pontos prontos para uso.',
         'cta' => 'Crie uma conta gratuita e publique sua primeira vaga',
         'target' => 'Ideal para agências de recrutamento e <br class="hidden sm:block" /> empresas que contratam em grande escala.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Você contrata funcionários e, ao mesmo tempo, ajuda quem mais precisa.',
     ],
     'cta' => [
-        'title' => 'Pronto para o recrutamento gratuito? <br/>Resgate seus <span class="text-red-work">50.000 pontos</span> agora mesmo!',
+        'title' => 'Pronto para o recrutamento gratuito? <br/>Resgate seus <span class="text-red-work">20.000 pontos</span> agora mesmo!',
         'button' => 'Registre sua empresa gratuitamente',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Preciso comprar pontos para começar?',
-                'answer' => 'Não – você recebe automaticamente 50.000 pontos gratuitos logo após o registro.',
+                'answer' => 'Não – você recebe automaticamente 20.000 pontos gratuitos logo após o registro.',
             ],
             [
                 'question' => 'Quando começo a pagar?',

@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Besplatno postavite oglase za posao',
-        'description' => 'Postavite neograničen broj oglasa za posao i prikupljajte prijave kandidata potpuno besplatno. Preuzmite 50.000 startnih poena na poklon!',
+        'description' => 'Postavite neograničen broj oglasa za posao i prikupljajte prijave kandidata potpuno besplatno. Preuzmite 20.000 startnih poena na poklon!',
     ],
     'nav' => [
         'how_it_works' => 'Kako to radi',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Postavite neograničen broj oglasa za posao <br class="hidden lg:block"/> i prikupljajte prijave kandidata potpuno besplatno.',
-        'subtitle' => 'Bez pretplate. Bez naknada za objavljivanje. <br class="hidden md:block"/> Na startu odmah dobijate 50.000 poena spremnih za korišćenje.',
+        'subtitle' => 'Bez pretplate. Bez naknada za objavljivanje. <br class="hidden md:block"/> Na startu odmah dobijate 20.000 poena spremnih za korišćenje.',
         'cta' => 'Otvorite besplatan nalog i postavite svoj prvi oglas',
         'target' => 'Idealno za agencije za zapošljavanje i <br class="hidden sm:block" /> kompanije koje zapošljavaju u velikom obimu.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Zapošljavate radnike, a istovremeno pomažete onima kojima je to najpotrebnije.',
     ],
     'cta' => [
-        'title' => 'Spremni za besplatnu regrutaciju? <br/>Preuzmite svojih <span class="text-red-work">50.000 poena</span> odmah!',
+        'title' => 'Spremni za besplatnu regrutaciju? <br/>Preuzmite svojih <span class="text-red-work">20.000 poena</span> odmah!',
         'button' => 'Registrujte kompaniju besplatno',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Moram li kupiti poene na samom početku?',
-                'answer' => 'Ne — dobijate 50.000 poena automatski odmah nakon registracije.',
+                'answer' => 'Ne — dobijate 20.000 poena automatski odmah nakon registracije.',
             ],
             [
                 'question' => 'Kada počinjem da plaćam?',

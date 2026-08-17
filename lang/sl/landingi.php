@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Brezplačno objavite prosti delovni mesti',
-        'description' => 'Objavite neomejeno število zaposlitvenih oglasov in zbirajte prijave kandidatov popolnoma brezplačno. Prejmite 50.000 začetnih točk kot darilo!',
+        'description' => 'Objavite neomejeno število zaposlitvenih oglasov in zbirajte prijave kandidatov popolnoma brezplačno. Prejmite 20.000 začetnih točk kot darilo!',
     ],
     'nav' => [
         'how_it_works' => 'Kako deluje',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Objavite neomejeno število zaposlitvenih oglasov <br class="hidden lg:block"/> in zbirajte prijave kandidatov popolnoma brezplačno.',
-        'subtitle' => 'Brez naročnine. Brez stroškov objave. <br class="hidden md:block"/> Na startu takoj prejmete 50.000 točk, pripravljenih za uporabo.',
+        'subtitle' => 'Brez naročnine. Brez stroškov objave. <br class="hidden md:block"/> Na startu takoj prejmete 20.000 točk, pripravljenih za uporabo.',
         'cta' => 'Ustvarite brezplačen račun in objavite svoj prvi oglas',
         'target' => 'Idealno for kadrovske agencije in <br class="hidden sm:block" /> podjetja, ki zaposlujejo v velikem obsegu.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Zaposlujete nove sodelavce in hkrati pomagate tistim, ki to najbolj potrebujejo.',
     ],
     'cta' => [
-        'title' => 'Pripravljeni na brezplačno zaposlovanje? <br/>Prevzemite svojih <span class="text-red-work">50.000 točk</span> takoj zdaj!',
+        'title' => 'Pripravljeni na brezplačno zaposlovanje? <br/>Prevzemite svojih <span class="text-red-work">20.000 točk</span> takoj zdaj!',
         'button' => 'Brezplačno registrirajte svoje podjetje',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Ali moram na začetku kupiti točke?',
-                'answer' => 'Ne – takoj po registraciji samodejno prejmete 50.000 brezplačnih točk.',
+                'answer' => 'Ne – takoj po registraciji samodejno prejmete 20.000 brezplačnih točk.',
             ],
             [
                 'question' => 'Kdaj začnem plačevati?',

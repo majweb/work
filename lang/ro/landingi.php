@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Adaugă anunțuri de angajare gratuit',
-        'description' => 'Publică un număr nelimitat de anunțuri de angajare și colectează candidaturile solicitanților complet gratuit. Primești 50.000 de puncte de pornire cadou!',
+        'description' => 'Publică un număr nelimitat de anunțuri de angajare și colectează candidaturile solicitanților complet gratuit. Primești 20.000 de puncte de pornire cadou!',
     ],
     'nav' => [
         'how_it_works' => 'Cum funcționează',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publică un număr nelimitat de anunțuri de angajare <br class="hidden lg:block"/> și colectează candidaturile aplic坨ilor în mod complet gratuit.',
-        'subtitle' => 'Fără abonament. Fără taxe de publicare. <br class="hidden md:block"/> La început, primești imediat 50.000 de puncte gata de utilizare.',
+        'subtitle' => 'Fără abonament. Fără taxe de publicare. <br class="hidden md:block"/> La început, primești imediat 20.000 de puncte gata de utilizare.',
         'cta' => 'Creează un cont gratuit și adaugă primul tău anunț',
         'target' => 'Ideal pentru agențiile de recrutare și <br class="hidden sm:block" /> companiile care angajează la scară largă.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Angajezi personal și, în același timp, ajuți pe cei care au cea mai mare nevoie.',
     ],
     'cta' => [
-        'title' => 'Pregătit pentru recrutare gratuită? <br/>Revendică-ți cele <span class="text-red-work">50.000 de puncte</span> chiar acum!',
+        'title' => 'Pregătit pentru recrutare gratuită? <br/>Revendică-ți cele <span class="text-red-work">20.000 de puncte</span> chiar acum!',
         'button' => 'Înregistrează-ți compania gratuit',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Trebuie să cumpăr puncte pentru a începe?',
-                'answer' => 'Nu — primești automat 50.000 de puncte gratuite imediat după înregistrare.',
+                'answer' => 'Nu — primești automat 20.000 de puncte gratuite imediat după înregistrare.',
             ],
             [
                 'question' => 'Când încep să plătesc?',

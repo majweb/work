@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Publica ofertes de feina de franc',
-        'description' => 'Publica un nombre il·limitat d\'ofertes de feina i rep candidatures totalment de franc. Aconsegueix 50.000 punts de benvinguda per començar!',
+        'description' => 'Publica un nombre il·limitat d\'ofertes de feina i rep candidatures totalment de franc. Aconsegueix 20.000 punts de benvinguda per començar!',
     ],
     'nav' => [
         'how_it_works' => 'Com funciona',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publica un nombre il·limitat d\'ofertes de feina <br class="hidden lg:block"/> i rep candidatures totalment de franc.',
-        'subtitle' => 'Sense subscripcions. Sense quotes de publicació. <br class="hidden md:block"/> Per començar, reps de manera immediata 50.000 punts per utilitzar.',
+        'subtitle' => 'Sense subscripcions. Sense quotes de publicació. <br class="hidden md:block"/> Per començar, reps de manera immediata 20.000 punts per utilitzar.',
         'cta' => 'Crea un compte gratuït i publica la teva primera oferta',
         'target' => 'Ideal per a agències de selecció i <br class="hidden sm:block" /> empreses amb un gran volum de contractació.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Contractes personal i, alhora, ajudes els qui més ho necessiten.',
     ],
     'cta' => [
-        'title' => 'Llest per a una selecció gratuïta? <br/>Aconsegueix els teus <span class="text-red-work">50.000 punts</span> ara mateix!',
+        'title' => 'Llest per a una selecció gratuïta? <br/>Aconsegueix els teus <span class="text-red-work">20.000 punts</span> ara mateix!',
         'button' => 'Registra la teva empresa de franc',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'He de comprar punts per començar?',
-                'answer' => 'No, rebràs 50.000 punts automàticament just després de registrar-te.',
+                'answer' => 'No, rebràs 20.000 punts automàticament just després de registrar-te.',
             ],
             [
                 'question' => 'Quan començo a pagar?',

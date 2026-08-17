@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Dodajte oglase za posao besplatno',
-        'description' => 'Dodajte neograničen broj oglasa za posao i prikupljajte prijave kandidata potpuno besplatno. Preuzmite 50.000 bonus bodova za start!',
+        'description' => 'Dodajte neograničen broj oglasa za posao i prikupljajte prijave kandidata potpuno besplatno. Preuzmite 20.000 bonus bodova za start!',
     ],
     'nav' => [
         'how_it_works' => 'Kako to radi',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Dodajte neograničen broj oglasa za posao <br class="hidden lg:block"/> i prikupljajte prijave kandidata potpuno besplatno.',
-        'subtitle' => 'Bez pretplate. Bez naknada za objavu. <br class="hidden md:block"/> Na startu odmah dobijate 50.000 bodova spremnih za korištenje.',
+        'subtitle' => 'Bez pretplate. Bez naknada za objavu. <br class="hidden md:block"/> Na startu odmah dobijate 20.000 bodova spremnih za korištenje.',
         'cta' => 'Otvorite besplatan račun i dodajte svoj prvi oglas',
         'target' => 'Idealno za regrutacijske agencije i <br class="hidden sm:block" /> kompanije koje zapošljavaju na veliko.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Zapošljavate radnike, a istovremeno pomažete onima kojima je to potrebno.',
     ],
     'cta' => [
-        'title' => 'Spremni za besplatnu regrutaciju? <br/>Preuzmite svojih <span class="text-red-work">50.000 bodova</span> odmah!',
+        'title' => 'Spremni za besplatnu regrutaciju? <br/>Preuzmite svojih <span class="text-red-work">20.000 bodova</span> odmah!',
         'button' => 'Registrujte kompaniju besplatno',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Moram li kupiti bodove na samom početku?',
-                'answer' => 'Ne — dobijate 50.000 bodova automatski odmah nakon registracije.',
+                'answer' => 'Ne — dobijate 20.000 bodova automatski odmah nakon registracije.',
             ],
             [
                 'question' => 'Kada počinjem plaćati?',

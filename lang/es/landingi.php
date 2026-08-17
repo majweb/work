@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Publica ofertas de empleo gratis',
-        'description' => 'Publica un número ilimitado de ofertas de empleo y recibe candidaturas totalmente gratis. ¡Consigue 50.000 puntos de bienvenida para empezar!',
+        'description' => 'Publica un número ilimitado de ofertas de empleo y recibe candidaturas totalmente gratis. ¡Consigue 20.000 puntos de bienvenida para empezar!',
     ],
     'nav' => [
         'how_it_works' => 'Cómo funciona',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Publica un número ilimitado de ofertas de empleo <br class="hidden lg:block"/> y recibe candidaturas totalmente gratis.',
-        'subtitle' => 'Sin suscripciones. Sin cuotas de publicación. <br class="hidden md:block"/> Para empezar, recibes de forma inmediata 50.000 puntos listos para usar.',
+        'subtitle' => 'Sin suscripciones. Sin cuotas de publicación. <br class="hidden md:block"/> Para empezar, recibes de forma inmediata 20.000 puntos listos para usar.',
         'cta' => 'Crea una cuenta gratis y publica tu primera oferta',
         'target' => 'Ideal para agencias de selección y <br class="hidden sm:block" /> empresas con un gran volumen de contratación.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Contratas personal y, al mismo tiempo, ayudas a quienes más lo necesitan.',
     ],
     'cta' => [
-        'title' => '¿Listo para una selección gratuita? <br/>¡Consigue tus <span class="text-red-work">50.000 puntos</span> ahora mismo!',
+        'title' => '¿Listo para una selección gratuita? <br/>¡Consigue tus <span class="text-red-work">20.000 puntos</span> ahora mismo!',
         'button' => 'Registra tu empresa gratis',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => '¿Tengo que comprar puntos para empezar?',
-                'answer' => 'No, recibirás 50.000 puntos automáticamente justo después de registrarte.',
+                'answer' => 'No, recibirás 20.000 puntos automáticamente justo después de registrarte.',
             ],
             [
                 'question' => '¿Cuándo empiezo a pagar?',

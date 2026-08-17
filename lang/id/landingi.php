@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Pasang Lowongan Kerja Gratis',
-        'description' => 'Pasang lowongan kerja bez batas i kumpulkan lamaran kandidat sepenuhnya gratis. Dapatkan 50.000 poin starter sebagai bonus!',
+        'description' => 'Pasang lowongan kerja bez batas i kumpulkan lamaran kandidat sepenuhnya gratis. Dapatkan 20.000 poin starter sebagai bonus!',
     ],
     'nav' => [
         'how_it_works' => 'Cara Kerja',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Pasang lowongan kerja tanpa batas <br class="hidden lg:block"/> dan kumpulkan lamaran kandidat secara gratis.',
-        'subtitle' => 'Tanpa abonemen. Tanpa biaya publikasi. <br class="hidden md:block"/> Langsung dapatkan 50.000 poin siap pakai di awal jako bonus.',
+        'subtitle' => 'Tanpa abonemen. Tanpa biaya publikasi. <br class="hidden md:block"/> Langsung dapatkan 20.000 poin siap pakai di awal jako bonus.',
         'cta' => 'Daftar akun gratis dan pasang lowongan pertama Anda',
         'target' => 'Sangat ideal untuk agensi rekrutmen dan <br class="hidden sm:block" /> perusahaan yang merekrut dalam skala besar.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Rekrut talenta terbaik, sekaligus bantu mereka yang membutuhkan.',
     ],
     'cta' => [
-        'title' => 'Siap untuk rekrutmen gratis? <br/>Klaim <span class="text-red-work">50.000 poin</span> Anda sekarang juga!',
+        'title' => 'Siap untuk rekrutmen gratis? <br/>Klaim <span class="text-red-work">20.000 poin</span> Anda sekarang juga!',
         'button' => 'Daftarkan Perusahaan Anda Gratis',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Apakah saya harus membeli poin untuk memulai?',
-                'answer' => 'Tidak — Anda akan menerima 50.000 poin gratis secara otomatis segera setelah mendaftar.',
+                'answer' => 'Tidak — Anda akan menerima 20.000 poin gratis secara otomatis segera setelah mendaftar.',
             ],
             [
                 'question' => 'Kapan saya mulai membayar?',

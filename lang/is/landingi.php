@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Bættu við starfsauglýsingum ókeypis',
-        'description' => 'Bættu við ótakmörkuðum fjölda starfsauglýsinga og safnaðu umsóknum frá umsækjendum algjörlega ókeypis. Fáðu 50.000 byrjunarpunkta í bónus!',
+        'description' => 'Bættu við ótakmörkuðum fjölda starfsauglýsinga og safnaðu umsóknum frá umsækjendum algjörlega ókeypis. Fáðu 20.000 byrjunarpunkta í bónus!',
     ],
     'nav' => [
         'how_it_works' => 'Hvernig þetta virkar',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Bættu við ótakmörkuðum fjölda starfsauglýsinga <br class="hidden lg:block"/> og safnaðu umsóknum frá umsækjendum ókeypis.',
-        'subtitle' => 'Enginn áskriftaráskilnaður. Engin birtingargjöld. <br class="hidden md:block"/> Þú færð strax 50.000 punkta til ráðstöfunar í upphafi.',
+        'subtitle' => 'Enginn áskriftaráskilnaður. Engin birtingargjöld. <br class="hidden md:block"/> Þú færð strax 20.000 punkta til ráðstöfunar í upphafi.',
         'cta' => 'Stofnaðu ókeypis reikning og bættu við fyrstu auglýsingunni',
         'target' => 'Tilvalið fyrir ráðningarstofur og <br class="hidden sm:block" /> fyrirtæki sem ráða starfsfólk í stórum stíl.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Þú ræður starfsfólk og styður um leið þá sem þurfa á hjálp að halda.',
     ],
     'cta' => [
-        'title' => 'Tilbúin/n í ókeypis ráðningar? <br/>Sæktu þína <span class="text-red-work">50.000 punkta</span> strax í dag!',
+        'title' => 'Tilbúin/n í ókeypis ráðningar? <br/>Sæktu þína <span class="text-red-work">20.000 punkta</span> strax í dag!',
         'button' => 'Skráðu fyrirtækið þitt ókeypis',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Þarf ég að kaupa punkta til að byrja?',
-                'answer' => 'Nei – þú færð 50.000 ókeypis punkta sjálfkrafa strax eftir skráningu.',
+                'answer' => 'Nei – þú færð 20.000 ókeypis punkta sjálfkrafa strax eftir skráningu.',
             ],
             [
                 'question' => 'Hvenær byrja ég að borga?',

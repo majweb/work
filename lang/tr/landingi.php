@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Ücretsiz İş İlanı Ekleyin',
-        'description' => 'Sınırsız sayıda iş ilanı yayınlayın ve aday başvurularını tamamen ücretsiz olarak toplayın. Başlangıç hediyesi olarak 50.000 puan kazanın!',
+        'description' => 'Sınırsız sayıda iş ilanı yayınlayın ve aday başvurularını tamamen ücretsiz olarak toplayın. Başlangıç hediyesi olarak 20.000 puan kazanın!',
     ],
     'nav' => [
         'how_it_works' => 'Nasıl Çalışır',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Sınırsız sayıda iş ilanı ekleyin <br class="hidden lg:block"/> ve aday başvurularını tamamen ücretsiz toplayın.',
-        'subtitle' => 'Abonelik yok. Yayınlama ücreti yok. <br class="hidden md:block"/> Başlangıçta, hemen kullanıma hazır 50.000 puan anında hesabınıza tanımlanır.',
+        'subtitle' => 'Abonelik yok. Yayınlama ücreti yok. <br class="hidden md:block"/> Başlangıçta, hemen kullanıma hazır 20.000 puan anında hesabınıza tanımlanır.',
         'cta' => 'Ücretsiz hesap oluşturun ve ilk ilanınızı yayınlayın',
         'target' => 'İşe alım ajansları ve <br class="hidden sm:block" /> büyük ölçekli alım yapan şirketler için mükemmel bir çözüm.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Siz çalışan istihdam ederken aynı zamanda yardıma muhtaç insanlara gerçek bir destek sağlarsınız.',
     ],
     'cta' => [
-        'title' => 'Ücretsiz işe alıma hazır mısınız? <br/><span class="text-red-work">50.000 puanınızı</span> hemen şimdi alın!',
+        'title' => 'Ücretsiz işe alıma hazır mısınız? <br/><span class="text-red-work">20.000 puanınızı</span> hemen şimdi alın!',
         'button' => 'Şirketinizi Ücretsiz Kaydedin',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Başlamak için puan satın almak zorunda mıyım?',
-                'answer' => 'Hayır — kayıttan hemen sonra otomatik olarak 50.000 ücretsiz puan hesabınıza yüklenir.',
+                'answer' => 'Hayır — kayıttan hemen sonra otomatik olarak 20.000 ücretsiz puan hesabınıza yüklenir.',
             ],
             [
                 'question' => 'Ödeme yapmaya ne zaman başlarım?',

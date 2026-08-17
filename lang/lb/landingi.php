@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Offere gratis inseréieren',
-        'description' => 'Schalt eng onbegrenzten Zuel vu Stellenannoncen a sammelt Bewerbunge vu Kandidate komplett gratis. Kritt 50.000 Startpunkte geschenkt!',
+        'description' => 'Schalt eng onbegrenzten Zuel vu Stellenannoncen a sammelt Bewerbunge vu Kandidate komplett gratis. Kritt 20.000 Startpunkte geschenkt!',
     ],
     'nav' => [
         'how_it_works' => 'Wéi et funktionéiert',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Schalt eng onbegrenzten Zuel vu Stellenannoncen <br class="hidden lg:block"/> a sammelt Bewerbunge vu Kandidate komplett gratis.',
-        'subtitle' => 'Abonnement-fräi. Keng Verëffentlechungsgebüres. <br class="hidden md:block"/> Zum Start kritt Dir direkt 50.000 Punkte fir fräi Dispositioun.',
+        'subtitle' => 'Abonnement-fräi. Keng Verëffentlechungsgebüres. <br class="hidden md:block"/> Zum Start kritt Dir direkt 20.000 Punkte fir fräi Dispositioun.',
         'cta' => 'Gratis Kont erstellen an déi éischt Annonce schalten',
         'target' => 'Ideal fir Personalvermëttlungen an <br class="hidden sm:block" /> Entreprisë mat engem héije Rekrutementsbedierfnes.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Dir rekrutéiert Personal an ënnerstëtzt gläichzäiteg Leit an Nout.',
     ],
     'cta' => [
-        'title' => 'Bereet fir gratis Rekrutement? <br/>Séchert Iech elo Är <span class="text-red-work">50.000 Punkten</span>!',
+        'title' => 'Bereet fir gratis Rekrutement? <br/>Séchert Iech elo Är <span class="text-red-work">20.000 Punkten</span>!',
         'button' => 'Entreprise gratis registréieren',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Muss ech zum Start Punkte kafen?',
-                'answer' => 'Nee – Dir kritt direkt no der Registréierung automatesch 50.000 Punkte gratis.',
+                'answer' => 'Nee – Dir kritt direkt no der Registréierung automatesch 20.000 Punkte gratis.',
             ],
             [
                 'question' => 'Wéini fänken ech u mat bezuelen?',

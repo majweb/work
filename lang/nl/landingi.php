@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Plaats gratis vacatures',
-        'description' => 'Plaats een onbeperkt aantal vacatures en verzamel volledig gratis sollicitaties van kandidaten. Ontvang direct 50.000 startpunten cadeau!',
+        'description' => 'Plaats een onbeperkt aantal vacatures en verzamel volledig gratis sollicitaties van kandidaten. Ontvang direct 20.000 startpunten cadeau!',
     ],
     'nav' => [
         'how_it_works' => 'Hoe het werkt',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Plaats een onbeperkt aantal vacatures <br class="hidden lg:block"/> en verzamel gratis sollicitaties van kandidaten.',
-        'subtitle' => 'Geen abonnement. Geen publicatiekosten. <br class="hidden md:block"/> Bij de start ontvangt u direct 50.000 punten die direct klaar zijn voor gebruik.',
+        'subtitle' => 'Geen abonnement. Geen publicatiekosten. <br class="hidden md:block"/> Bij de start ontvangt u direct 20.000 punten die direct klaar zijn voor gebruik.',
         'cta' => 'Maak een gratis account aan en plaats uw eerste vacature',
         'target' => 'Ideaal voor werving- en selectiebureau\'s en <br class="hidden sm:block" /> bedrijven die op grote schaal personeel aannemen.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'U werft personeel en helpt tegelijkertijd mensen in nood.',
     ],
     'cta' => [
-        'title' => 'Klaar voor gratis rekrutering? <br/>Claim nu direct uw <span class="text-red-work">50.000 punten</span>!',
+        'title' => 'Klaar voor gratis rekrutering? <br/>Claim nu direct uw <span class="text-red-work">20.000 punten</span>!',
         'button' => 'Registreer uw bedrijf gratis',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Moet ik bij de start punten kopen?',
-                'answer' => 'Nee – u ontvangt direct na registratie automatisch 50.000 gratis punten.',
+                'answer' => 'Nee – u ontvangt direct na registratie automatisch 20.000 gratis punten.',
             ],
             [
                 'question' => 'Wanneer begin ik met betalen?',

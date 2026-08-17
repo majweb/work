@@ -4,7 +4,7 @@
 return [
     'meta' => [
         'title' => 'Work4you.global - Stellenangebote kostenlos inserieren',
-        'description' => 'Schalten Sie unbegrenzt viele Stellenanzeigen und sammeln Sie Bewerbungen von Kandidaten völlig kostenlos. Erhalten Sie 50.000 Startpunkte geschenkt!',
+        'description' => 'Schalten Sie unbegrenzt viele Stellenanzeigen und sammeln Sie Bewerbungen von Kandidaten völlig kostenlos. Erhalten Sie 20.000 Startpunkte geschenkt!',
     ],
     'nav' => [
         'how_it_works' => 'Wie es funktioniert',
@@ -14,7 +14,7 @@ return [
     ],
     'hero' => [
         'title' => 'Schalten Sie unbegrenzt viele Stellenanzeigen <br class="hidden lg:block"/> und sammeln Sie Bewerbungen von Kandidaten völlig kostenlos.',
-        'subtitle' => 'Kein Abonnement. Keine Veröffentlichungsgebühren. <br class="hidden md:block"/> Zum Start erhalten Sie sofort 50.000 Punkte zur freien Verfügung.',
+        'subtitle' => 'Kein Abonnement. Keine Veröffentlichungsgebühren. <br class="hidden md:block"/> Zum Start erhalten Sie sofort 20.000 Punkte zur freien Verfügung.',
         'cta' => 'Kostenloses Konto erstellen und erste Anzeige schalten',
         'target' => 'Ideal für Personalvermittlungen und <br class="hidden sm:block" /> Unternehmen mit hohem Einstellungsbedarf.',
     ],
@@ -58,7 +58,7 @@ return [
         'subtitle' => 'Sie rekrutieren Personal und unterstützen gleichzeitig Menschen in Not.',
     ],
     'cta' => [
-        'title' => 'Bereit für kostenloses Recruiting? <br/>Sichern Sie sich jetzt Ihre <span class="text-red-work">50.000 Punkte</span>!',
+        'title' => 'Bereit für kostenloses Recruiting? <br/>Sichern Sie sich jetzt Ihre <span class="text-red-work">20.000 Punkte</span>!',
         'button' => 'Unternehmen kostenlos registrieren',
     ],
     'who_is_it_for' => [
@@ -81,7 +81,7 @@ return [
             ],
             [
                 'question' => 'Muss ich zum Start Punkte kaufen?',
-                'answer' => 'Nein – Sie erhalten direkt nach der Registrierung automatisch 50.000 Punkte gratis.',
+                'answer' => 'Nein – Sie erhalten direkt nach der Registrierung automatisch 20.000 Punkte gratis.',
             ],
             [
                 'question' => 'Wann beginne ich zu zahlen?',
