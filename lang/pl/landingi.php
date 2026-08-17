@@ -57,7 +57,7 @@ return [
         'subtitle' => 'Rekrutujesz. I jednocześnie wspierasz potrzebujących.',
     ],
     'cta' => [
-        'title' => 'Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-red-work">20 punktów</span>!',
+        'title' => 'Gotowy na darmową rekrutację? <br/>Odbierz <span class="text-red-work">20,000 punktów</span>!',
         'button' => 'Zarejestruj firmę za darmo',
     ],
     'who_is_it_for' => [
