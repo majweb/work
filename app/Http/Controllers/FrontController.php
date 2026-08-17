@@ -259,6 +259,12 @@ class FrontController extends Controller
                 $query->whereJsonContains('profession', ['value' => $professionValue]);
             }
 
+            // Filtrowanie po stanowisku
+            if (request('position')) {
+                $positionValue = (int) request('position');
+                $query->whereJsonContains('position', ['value' => $positionValue]);
+            }
+
             // Filtrowanie po trybie pracy
             if (request('workingMode')) {
                 $workingModeId = (int) request('workingMode');
@@ -336,6 +342,44 @@ class FrontController extends Controller
                 $category = Category::where('id', request('category'))->first();
             }
 
+            $categorySubFront = null;
+            if (request('categorySub') && request('category')) {
+                $categorySubFront = collect($this->getCategorySub(request('category'))->getData(true))
+                    ->firstWhere('value', (int) request('categorySub'));
+            }
+
+            $professionFront = null;
+            if (request('profession') && request('categorySub')) {
+                $professionFront = collect($this->getProfessions(request('categorySub'))->getData(true))
+                    ->firstWhere('value', (int) request('profession'));
+            }
+
+            $positionFront = null;
+            if (request('position') && request('profession')) {
+                $positionFront = collect($this->getPositions(request('profession'))->getData(true))
+                    ->firstWhere('value', (int) request('position'));
+            }
+
+            $workingModeFront = null;
+            if (request('workingMode')) {
+                $workingModeFront = collect($workingModes)->firstWhere('value', (int) request('workingMode'));
+            }
+
+            $experienceFront = null;
+            if (request('experience')) {
+                $experienceFront = collect($experiences)->firstWhere('id', (int) request('experience'));
+            }
+
+            $typeOfContractFront = null;
+            if (request('typeOfContract')) {
+                $typeOfContractFront = collect($typesOfContract)->firstWhere('id', (int) request('typeOfContract'));
+            }
+
+            $workLoadFront = null;
+            if (request('workLoad')) {
+                $workLoadFront = collect($workLoads)->firstWhere('value', (int) request('workLoad'));
+            }
+
             return [
                 'projects' => $projects,
                 'countries' => $countries,
@@ -346,6 +390,13 @@ class FrontController extends Controller
                 'distanceOptions' => $distanceOptions,
                 'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
                 'categoryFront' => $category ? new MultiselectWithoutDetailResource($category) : null,
+                'categorySubFront' => $categorySubFront,
+                'professionFront' => $professionFront,
+                'positionFront' => $positionFront,
+                'workingModeFront' => $workingModeFront,
+                'experienceFront' => $experienceFront,
+                'typeOfContractFront' => $typeOfContractFront,
+                'workLoadFront' => $workLoadFront,
                 'cityFront' => $cityFront,
                 'distanceFront' => $distanceFront,
                 'disabilityFront' => (bool) request('disability_friendly'),

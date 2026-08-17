@@ -35,6 +35,13 @@ const props = defineProps({
     page: Object,
     distanceOptions: Array,
     distanceFront: Object,
+    categorySubFront: Object,
+    professionFront: Object,
+    positionFront: Object,
+    workingModeFront: Object,
+    experienceFront: Object,
+    typeOfContractFront: Object,
+    workLoadFront: Object,
 });
 
 const page = usePage();
@@ -54,14 +61,14 @@ const form = useForm({
     country: props.countryFront ?? undefined,
     city: props.cityFront ?? undefined,
     category: props.categoryFront ?? undefined,
-    categorySub: undefined,
-    profession: undefined,
-    position: undefined,
-    workingMode: undefined,
+    categorySub: props.categorySubFront ?? undefined,
+    profession: props.professionFront ?? undefined,
+    position: props.positionFront ?? undefined,
+    workingMode: props.workingModeFront ?? undefined,
     disability_friendly: props.disabilityFront ?? false,
-    experience: undefined,
-    typeOfContract: undefined,
-    workLoad: undefined,
+    experience: props.experienceFront ?? undefined,
+    typeOfContract: props.typeOfContractFront ?? undefined,
+    workLoad: props.workLoadFront ?? undefined,
     distance: props.distanceFront ?? undefined,
     lat: props.cityFront?.lat ?? undefined,
     lng: props.cityFront?.lng ?? undefined,
@@ -99,6 +106,33 @@ const fetchCategories = async (countryCode = page.props.currentCountry) => {
 
 onMounted(async () => {
     fetchCategories(props.countryFront?.countryCode || page.props.currentCountry);
+
+    if (props.categoryFront) {
+        try {
+            const response = await fetch(route("category.sub", props.categoryFront.value));
+            optionsCategorySub.value = await response.json();
+        } catch (e) {
+            console.error(__('translate.errorLoadingSubcategories'), e);
+        }
+    }
+
+    if (props.categorySubFront) {
+        try {
+            const response = await fetch(route("category.professions", props.categorySubFront.value));
+            optionsProfession.value = await response.json();
+        } catch (e) {
+            console.error(__('translate.errorLoadingProfessions'), e);
+        }
+    }
+
+    if (props.professionFront) {
+        try {
+            const response = await fetch(route("category.positions", props.professionFront.value));
+            optionsPosition.value = await response.json();
+        } catch (e) {
+            console.error(__('translate.errorLoadingPositions'), e);
+        }
+    }
 
     if (props.countryFront) {
         isLoadingCities.value = true;
