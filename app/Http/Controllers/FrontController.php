@@ -462,7 +462,6 @@ class FrontController extends Controller
         }
 
         $allOtherArticles = $recentArticles;
-
         $article->load('user.firm');
 
         return inertia()->render('Front/SingleArticle', [
