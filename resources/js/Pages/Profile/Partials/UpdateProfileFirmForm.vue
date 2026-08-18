@@ -132,7 +132,9 @@ const getNipPlaceholder = (countryCode) => {
                 <div class="grid grid-cols-6 gap-6 mb-2">
                     <!-- NIP -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="nip" :value="__('translate.nip')"/>
+                        <InputLabel for="nip">
+                            {{ __('translate.nip') }} <span class="text-red-500">*</span>
+                        </InputLabel>
                         <TextInput
                             id="nip"
                             v-model="form.nip"
@@ -157,7 +159,9 @@ const getNipPlaceholder = (countryCode) => {
                     </div>
                     <!-- STREET -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="street" :value="__('translate.Street')"/>
+                        <InputLabel for="street">
+                            {{ __('translate.Street') }} <span class="text-red-500">*</span>
+                        </InputLabel>
                         <TextInput
                             id="street"
                             v-model="form.street"
@@ -168,7 +172,9 @@ const getNipPlaceholder = (countryCode) => {
                     </div>
                     <!-- NUMBER -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="number" :value="__('translate.Number')"/>
+                        <InputLabel for="number">
+                            {{ __('translate.Number') }} <span class="text-red-500">*</span>
+                        </InputLabel>
                         <TextInput
                             id="number"
                             v-model="form.number"
@@ -179,7 +185,9 @@ const getNipPlaceholder = (countryCode) => {
                     </div>
                     <!-- CITY -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="city" :value="__('translate.City')"/>
+                        <InputLabel for="city">
+                            {{ __('translate.City') }} <span class="text-red-500">*</span>
+                        </InputLabel>
                         <TextInput
                             id="city"
                             v-model="form.city"
@@ -190,7 +198,9 @@ const getNipPlaceholder = (countryCode) => {
                     </div>
                     <!-- POSTAL -->
                     <div class="col-span-6 sm:col-span-2">
-                        <InputLabel for="postal" :value="__('translate.Postal')"/>
+                        <InputLabel for="postal">
+                            {{ __('translate.Postal') }} <span class="text-red-500">*</span>
+                        </InputLabel>
                         <TextInput
                             id="postal"
                             v-model="form.postal"
@@ -201,7 +211,9 @@ const getNipPlaceholder = (countryCode) => {
                     </div>
                     <!-- COUNTRY -->
                     <div class="col-span-6 sm:col-span-3">
-                        <InputLabel :value="__('translate.Country')"/>
+                        <InputLabel>
+                            {{ __('translate.Country') }} <span class="text-red-500">*</span>
+                        </InputLabel>
                         <multiselect
                             group-values="elements" group-label="group"
                             :group-select="false"
@@ -231,7 +243,9 @@ const getNipPlaceholder = (countryCode) => {
                     <div class="col-span-6">
 
                         <div class="my-4">
-                            <InputLabel for="description" :value="__('translate.description')"/>
+                            <InputLabel for="description">
+                                {{ __('translate.description') }} <span class="text-red-500">*</span>
+                            </InputLabel>
                             <TextareaLimit id="description" v-model="form.description" :limit="1000"/>
                             <InputError :message="form.errors.description" class="mt-2 text-[10px] font-bold uppercase tracking-widest"/>
                         </div>
@@ -308,7 +322,9 @@ const getNipPlaceholder = (countryCode) => {
                         <div class="grid grid-cols-6 gap-6">
                             <!-- NAME-INVOICE -->
                             <div class="col-span-6 sm:col-span-2">
-                                <InputLabel for="name_invoice" :value="__('translate.name')"/>
+                                <InputLabel for="name_invoice">
+                                    {{ __('translate.name') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <TextInput
                                     id="name_invoice"
                                     v-model="form.name_invoice"
@@ -320,7 +336,9 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- NIP-INVOICE -->
                             <div class="col-span-6 sm:col-span-2">
-                                <InputLabel for="nip_invoice" :value="__('translate.nip')"/>
+                                <InputLabel for="nip_invoice">
+                                    {{ __('translate.nip') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <TextInput
                                     id="nip_invoice"
                                     v-model="form.nip_invoice"
@@ -345,7 +363,9 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- STREET-INVOICE -->
                             <div class="col-span-6 sm:col-span-2">
-                                <InputLabel for="street_invoice" :value="__('translate.Street')"/>
+                                <InputLabel for="street_invoice">
+                                    {{ __('translate.Street') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <TextInput
                                     id="street_invoice"
                                     v-model="form.street_invoice"
@@ -356,7 +376,9 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- NUMBER-INVOICE -->
                             <div class="col-span-6 sm:col-span-2">
-                                <InputLabel for="number_invoice" :value="__('translate.Number')"/>
+                                <InputLabel for="number_invoice">
+                                    {{ __('translate.Number') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <TextInput
                                     id="number_invoice"
                                     v-model="form.number_invoice"
@@ -367,7 +389,9 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- CITY-INVOICE -->
                             <div class="col-span-6 sm:col-span-2">
-                                <InputLabel for="city_invoice" :value="__('translate.City')"/>
+                                <InputLabel for="city_invoice">
+                                    {{ __('translate.City') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <TextInput
                                     id="city_invoice"
                                     v-model="form.city_invoice"
@@ -378,7 +402,9 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- POSTAL-INVOICE -->
                             <div class="col-span-6 sm:col-span-2">
-                                <InputLabel for="postal_invoice" :value="__('translate.Postal')"/>
+                                <InputLabel for="postal_invoice">
+                                    {{ __('translate.Postal') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <TextInput
                                     id="postal_invoice"
                                     v-model="form.postal_invoice"
@@ -389,7 +415,9 @@ const getNipPlaceholder = (countryCode) => {
                             </div>
                             <!-- COUNTRY-INVOICE -->
                             <div class="col-span-6 sm:col-span-3">
-                                <InputLabel class="mb-1" :value="__('translate.Country')"/>
+                                <InputLabel class="mb-1">
+                                    {{ __('translate.Country') }} <span class="text-red-500">*</span>
+                                </InputLabel>
                                 <multiselect
                                     group-values="elements" group-label="group"
                                     :group-select="false"

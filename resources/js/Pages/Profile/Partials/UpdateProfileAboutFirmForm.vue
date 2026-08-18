@@ -77,7 +77,9 @@ const updateProfileFirm = () => {
                 <div class="grid grid-cols-4 gap-6">
             <!-- WWW -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="www" :value="__('translate.www')"/>
+                <InputLabel for="www">
+                    {{ __('translate.www') }} <span class="text-red-500">*</span>
+                </InputLabel>
                 <TextInput
                     id="www"
                     v-model="form.www"
