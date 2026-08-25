@@ -216,7 +216,6 @@ class DictionaryService
             })
             ->with(['ancestors'])
             ->orderBy("title->{$locale}")
-            ->limit(20)
             ->get();
 
         return \App\Http\Resources\CategorySearchResource::collection($positions)->resolve();
