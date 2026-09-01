@@ -17,7 +17,6 @@
                  $countryData = is_string($item->countryWork)
                      ? json_decode($item->countryWork, true)
                      : $item->countryWork;
-
                  $categoryData = is_string($item->category)
                      ? json_decode($item->category, true)
                      : $item->category;
