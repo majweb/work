@@ -14,29 +14,35 @@
      {
          $categories = Project::active()->get()
              ->map(function ($item) {
-                 $countryData = is_string($item->countryWork)
-                     ? json_decode($item->countryWork, true)
-                     : $item->countryWork;
+                 // Dekodowanie kolumny 'country', która zawiera tablicę krajów
+                 $countries = is_string($item->country)
+                     ? json_decode($item->country, true)
+                     : $item->country;
+
+                 // Pobranie wszystkich kodów krajów przypisanych do projektu
+                 $countryCodes = collect($countries)->pluck('countryCode')->toArray();
+
                  $categoryData = is_string($item->category)
                      ? json_decode($item->category, true)
                      : $item->category;
 
                  return [
-                     'countryCode' => $countryData['countryCode'] ?? null,
+                     'countryCodes' => $countryCodes,
                      'category' => $categoryData,
                  ];
              })
              ->when($countryCode, function ($collection) use ($countryCode) {
-                 return $collection->filter(fn($item) => $item['countryCode'] === $countryCode);
+                 // Filtrowanie: sprawdzenie czy szukany kod kraju znajduje się w tablicy krajów projektu
+                 return $collection->filter(fn($item) => in_array($countryCode, $item['countryCodes']));
              })
              ->pluck('category')
              ->filter()
              ->unique('value')
              ->values()
              ->map(fn($cat) => [
-                 'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'], // <- tutaj tłumaczenie
+                 'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
                  'value' => $cat['value'],
-                 'allTranslations' => $cat['allTranslations']['title'],
+                 'allTranslations' => $cat['allTranslations']['title'] ?? [],
              ])
              ->toArray();
 
