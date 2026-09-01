@@ -51,7 +51,6 @@ class SearchStatisticService
                     $names[] = $category->getTranslation('title', 'pl');
                 }
             }
-
             return ! empty($names) ? implode(', ', $names) : null;
         }
 
