@@ -14,9 +14,9 @@
      {
          $categories = Project::active()->get()
              ->map(function ($item) {
-                 $countryData = is_string($item->countryWork)
-                     ? json_decode($item->countryWork, true)
-                     : $item->countryWork;
+                 $countryData = is_string($item->country)
+                     ? json_decode($item->country, true)
+                     : $item->country;
 
                  $categoryData = is_string($item->category)
                      ? json_decode($item->category, true)
@@ -40,6 +40,7 @@
                  'allTranslations' => $cat['allTranslations']['title'],
              ])
              ->toArray();
+
 
          return response()->json($categories);
      }
