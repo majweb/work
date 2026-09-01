@@ -210,18 +210,27 @@ class DictionaryService
     public function searchPositions(?string $query = null, bool $activeOnly = false): mixed
     {
         $locale = app()->getLocale();
+        $browserLang = getLocalBrowserLang();
         $positions = Category::whereDoesntHave('children')
             ->when($query, function ($q) use ($query, $locale) {
                 $q->whereRaw("LOWER(title->'$.{$locale}') like ?", ['%'.mb_strtolower($query).'%']);
             })
-            ->when($activeOnly, function ($q) {
-                $q->whereExists(function ($query) {
-                    $query->select(\Illuminate\Support\Facades\DB::raw(1))
-                        ->from('projects')
-                        ->where('projects.is_active', true)
-                        ->whereRaw("(JSON_EXTRACT(projects.position, '$.id') = categories.id OR JSON_EXTRACT(projects.profession, '$.id') = categories.id)")
-                        ->whereRaw("JSON_CONTAINS(projects.country, JSON_OBJECT('countryCode', ?))", [getLocalBrowserLang()]);
-                });
+            ->when($activeOnly, function ($q) use ($browserLang) {
+                // 1. Pobieramy ID kategorii z aktywnych projektów w danym kraju
+                $activeCategoryIds = \App\Models\Project::where('is_active', true)
+                    ->whereJsonContains('country', ['countryCode' => $browserLang])
+                    ->get(['position', 'profession'])
+                    ->flatMap(function ($project) {
+                        return [
+                            data_get($project->position, 'id'),
+                            data_get($project->profession, 'id')
+                        ];
+                    })
+                    ->filter()
+                    ->unique();
+
+                // 2. Filtrujemy kategorie po zebranych ID
+                $q->whereIn('id', $activeCategoryIds);
             })
             ->with(['ancestors'])
             ->orderBy("title->{$locale}")
