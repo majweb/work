@@ -21,7 +21,6 @@
                  $categoryData = is_string($item->category)
                      ? json_decode($item->category, true)
                      : $item->category;
-
                  return [
                      'countryCode' => $countryData['countryCode'] ?? null,
                      'category' => $categoryData,
