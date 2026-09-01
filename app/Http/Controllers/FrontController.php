@@ -243,8 +243,12 @@ class FrontController extends Controller
 
             // Filtrowanie po kategorii
             if (request('category')) {
-                $categoryValue = (int) request('category');
-                $query->whereJsonContains('category', ['value' => $categoryValue]);
+                $categoryValues = explode(',', request('category'));
+                $query->where(function ($q) use ($categoryValues) {
+                    foreach ($categoryValues as $value) {
+                        $q->orWhereJsonContains('category', ['value' => (int) $value]);
+                    }
+                });
             }
 
             // Filtrowanie po podkategorii
@@ -337,13 +341,15 @@ class FrontController extends Controller
                 ];
             }
 
-            $category = null;
+            $categoryFront = null;
             if (request('category')) {
-                $category = Category::where('id', request('category'))->first();
+                $categoryIds = explode(',', request('category'));
+                $categories = Category::whereIn('id', $categoryIds)->get();
+                $categoryFront = MultiselectWithoutDetailResource::collection($categories);
             }
 
             $categorySubFront = null;
-            if (request('categorySub') && request('category')) {
+            if (request('categorySub') && request('category') && ! str_contains(request('category'), ',')) {
                 $categorySubFront = collect($this->getCategorySub(request('category'))->getData(true))
                     ->firstWhere('value', (int) request('categorySub'));
             }
@@ -389,7 +395,7 @@ class FrontController extends Controller
                 'workLoads' => $workLoads,
                 'distanceOptions' => $distanceOptions,
                 'countryFront' => $country ? new MultiselectResourceCountry($country) : null,
-                'categoryFront' => $category ? new MultiselectWithoutDetailResource($category) : null,
+                'categoryFront' => $categoryFront,
                 'categorySubFront' => $categorySubFront,
                 'professionFront' => $professionFront,
                 'positionFront' => $positionFront,
@@ -403,7 +409,6 @@ class FrontController extends Controller
                 'lat' => $lat,
                 'lng' => $lng,
                 'country' => $country,
-                'category' => $category,
                 'countryLang' => request('countryLang'),
             ];
         });

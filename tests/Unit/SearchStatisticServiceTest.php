@@ -63,6 +63,35 @@ class SearchStatisticServiceTest extends TestCase
         $this->assertEquals(0, SearchStatistic::count());
     }
 
+    public function test_it_handles_multiple_categories(): void
+    {
+        $cat1 = Category::create(['title' => ['pl' => 'Budownictwo']]);
+        $cat2 = Category::create(['title' => ['pl' => 'IT']]);
+
+        $service = new SearchStatisticService;
+        $service->log([
+            'category' => "{$cat1->id},{$cat2->id}",
+        ]);
+
+        $this->assertDatabaseHas('search_statistics', [
+            'category' => 'Budownictwo, IT',
+        ]);
+    }
+
+    public function test_it_handles_string_ids(): void
+    {
+        $cat = Category::create(['title' => ['pl' => 'Medycyna']]);
+
+        $service = new SearchStatisticService;
+        $service->log([
+            'category' => (string) $cat->id,
+        ]);
+
+        $this->assertDatabaseHas('search_statistics', [
+            'category' => 'Medycyna',
+        ]);
+    }
+
     public function test_it_no_longer_rate_limits_in_controller(): void
     {
         // Przygotowanie strony wymaganej przez kontroler

@@ -23,7 +23,7 @@ const isLoadingCategories = ref(false);
 const form = useForm({
     country: null, // 👈 wybrany kraj
     city: null,    // 👈 wybrane miasto
-    category: null,    // 👈 wybrane miasto
+    category: [],    // 👈 wybrane branże (wiele)
     distance: null,
     lat: null,
     lng: null,
@@ -94,11 +94,15 @@ const submit = () => {
     const query = {
         country: form.country?.value ?? '',
         city: form.city?.value ?? '',
-        category: form.category?.value ?? '',
+        category: form.category && form.category.length > 0
+            ? form.category.map(c => c.value).join(',')
+            : '',
         distance: (form.distance?.value !== undefined && form.distance?.value !== null) ? form.distance.value : '',
     };
 
-    router.get(route('front.projects'), query, {
+    const url = route('front.projects', query).replace(/%2C/g, ',');
+    router.visit(url, {
+        method: 'get',
         onStart: () => {
             isSearching.value = true;
         },
@@ -239,7 +243,7 @@ const submit = () => {
                                             track-by="value"
                                             label="name"
                                             :loading="isLoadingCategories"
-                                            :multiple="false"
+                                            :multiple="true"
                                             v-model="form.category"
                                             :options="optionsCategories"
                                             :placeholder="__('translate.placeholderCategory')"

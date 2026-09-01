@@ -29,7 +29,7 @@ const props = defineProps({
     typesOfContract: Array,
     workLoads: Array,
     countryFront: Object,
-    categoryFront: Object,
+    categoryFront: [Object, Array],
     cityFront: Object,
     disabilityFront: Boolean,
     page: Object,
@@ -60,7 +60,7 @@ const isLoadingCategories = ref(false);
 const form = useForm({
     country: props.countryFront ?? undefined,
     city: props.cityFront ?? undefined,
-    category: props.categoryFront ?? undefined,
+    category: props.categoryFront ?? [],
     categorySub: props.categorySubFront ?? undefined,
     profession: props.professionFront ?? undefined,
     position: props.positionFront ?? undefined,
@@ -107,7 +107,7 @@ const fetchCategories = async (countryCode = page.props.currentCountry) => {
 onMounted(async () => {
     fetchCategories(props.countryFront?.countryCode || page.props.currentCountry);
 
-    if (props.categoryFront) {
+    if (props.categoryFront && !Array.isArray(props.categoryFront)) {
         try {
             const response = await fetch(route("category.sub", props.categoryFront.value));
             optionsCategorySub.value = await response.json();
@@ -187,13 +187,24 @@ watch(() => form.country, async (newCountry) => {
 
 // Obsługa zmiany kategorii
 watch(() => form.category, async (newCategory) => {
-    if (!newCategory) {
+    if (!newCategory || Array.isArray(newCategory)) {
         optionsCategorySub.value = [];
         optionsProfession.value = [];
         optionsPosition.value = [];
         form.categorySub = null;
         form.profession = null;
         form.position = null;
+
+        if (Array.isArray(newCategory) && newCategory.length === 1) {
+            // Jeśli wybrano dokładnie jedną kategorię, ładujemy podkategorie
+            try {
+                const response = await fetch(route("category.sub", newCategory[0].value));
+                const data = await response.json();
+                optionsCategorySub.value = data;
+            } catch (e) {
+                console.error(__('translate.errorLoadingSubcategories'), e);
+            }
+        }
         return;
     }
 
@@ -272,7 +283,9 @@ const submit = () => {
     const transformedData = {
         country: form.country?.value ?? null,
         city: form.city?.value ?? null,
-        category: form.category?.value ?? null,
+        category: form.category && form.category.length > 0
+            ? (Array.isArray(form.category) ? form.category.map(c => c.value).join(',') : form.category.value)
+            : null,
         categorySub: form.categorySub?.value ?? null,
         profession: form.profession?.value ?? null,
         position: form.position?.value ?? null,
@@ -286,7 +299,10 @@ const submit = () => {
 
     const filteredData = pickBy(transformedData, (value) => value !== null && value !== undefined && value !== '');
 
-    router.get(route('front.projects'),filteredData, {
+    const url = route('front.projects', filteredData).replace(/%2C/g, ',');
+
+    router.visit(url, {
+        method: 'get',
         preserveState: true,
         replace: true,
         preserveScroll: true,
@@ -480,6 +496,7 @@ const isSearching = ref(false);
                                     v-model="form.category"
                                     :options="optionsCategories"
                                     :loading="isLoadingCategories"
+                                    :multiple="true"
                                     track-by="value"
                                     label="name"
                                     :selectLabel="''"

@@ -25,24 +25,37 @@ class SearchStatisticService
         }
     }
 
-    protected function getCountryName(?int $id): ?string
+    protected function getCountryName(int|string|null $id): ?string
     {
         if (! $id) {
             return null;
         }
 
-        $country = Country::find($id);
+        $country = Country::find((int) $id);
 
         return $country ? $country->getTranslation('name', 'pl') : null;
     }
 
-    protected function getCategoryName(?int $id): ?string
+    protected function getCategoryName(int|string|null $id): ?string
     {
         if (! $id) {
             return null;
         }
 
-        $category = Category::find($id);
+        if (is_string($id) && str_contains($id, ',')) {
+            $ids = explode(',', $id);
+            $names = [];
+            foreach ($ids as $singleId) {
+                $category = Category::find((int) $singleId);
+                if ($category) {
+                    $names[] = $category->getTranslation('title', 'pl');
+                }
+            }
+
+            return ! empty($names) ? implode(', ', $names) : null;
+        }
+
+        $category = Category::find((int) $id);
 
         return $category ? $category->getTranslation('title', 'pl') : null;
     }
