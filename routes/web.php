@@ -27,8 +27,8 @@ use App\Http\Controllers\Global\DeleteTemporaryFileController;
 use App\Http\Controllers\Global\ExternalResponseController;
 use App\Http\Controllers\Global\FileUploadController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\ProjectCityController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ProjectCityController;
 use App\Http\Controllers\Recruit\AplicationController as AplicationControllerRecruit;
 use App\Http\Controllers\Recruit\ProjectController as ProjectControllerRecruit;
 use App\Http\Controllers\SupportController;
@@ -97,6 +97,7 @@ Route::get('/project-cities/{countryCode}', ProjectCityController::class)
 Route::get('/categories/{countryCode?}', CategoryControllerInvoke::class)
     ->name('categories.byCountry');
 
+Route::get('/front/search-positions', [FrontController::class, 'searchPositions'])->name('front.search-positions');
 Route::get('/start', [FrontController::class, 'Landing'])->name('landing');
 
 Route::get('/', function (DictionaryService $dictionaryService) {

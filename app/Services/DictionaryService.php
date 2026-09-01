@@ -207,12 +207,21 @@ class DictionaryService
         });
     }
 
-    public function searchPositions(?string $query = null): mixed
+    public function searchPositions(?string $query = null, bool $activeOnly = false): mixed
     {
         $locale = app()->getLocale();
         $positions = Category::whereDoesntHave('children')
             ->when($query, function ($q) use ($query, $locale) {
                 $q->whereRaw("LOWER(title->'$.{$locale}') like ?", ['%'.mb_strtolower($query).'%']);
+            })
+            ->when($activeOnly, function ($q) {
+                $q->whereExists(function ($query) {
+                    $query->select(\Illuminate\Support\Facades\DB::raw(1))
+                        ->from('projects')
+                        ->where('projects.is_active', true)
+                        ->whereRaw("(JSON_EXTRACT(projects.position, '$.id') = categories.id OR JSON_EXTRACT(projects.profession, '$.id') = categories.id)")
+                        ->whereRaw("JSON_CONTAINS(projects.country, JSON_OBJECT('countryCode', ?))", [getLocalBrowserLang()]);
+                });
             })
             ->with(['ancestors'])
             ->orderBy("title->{$locale}")

@@ -9,6 +9,7 @@ import { useForm } from '@inertiajs/vue3';
 import {ref, watch, computed, onMounted} from "vue";
 import moment from "moment";
 import __ from "@/lang.js";
+import axios from 'axios';
 import {Navigation, Pagination as SwiperPagination, Autoplay} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
@@ -38,6 +39,7 @@ const props = defineProps({
     categorySubFront: Object,
     professionFront: Object,
     positionFront: Object,
+    searchPositionFront: Object,
     workingModeFront: Object,
     experienceFront: Object,
     typeOfContractFront: Object,
@@ -49,13 +51,18 @@ const { getPositionTitle } = useProjectHelpers();
 
 
 const showFilters = ref(false);
+const quickSearch = ref(null);
 const optionsCities = ref([]);
 const optionsCategories = ref([]);
 const optionsCategorySub = ref([]);
 const optionsProfession = ref([]);
 const optionsPosition = ref([]);
+const allPositionsOptions = ref([]);
 const isLoadingCities = ref(false);
 const isLoadingCategories = ref(false);
+const isLoadingCategorySub = ref(false);
+const isLoadingProfession = ref(false);
+const isLoadingPositions = ref(false);
 
 const form = useForm({
     country: props.countryFront ?? undefined,
@@ -64,6 +71,7 @@ const form = useForm({
     categorySub: props.categorySubFront ?? undefined,
     profession: props.professionFront ?? undefined,
     position: props.positionFront ?? undefined,
+    searchPosition: props.searchPositionFront ?? undefined,
     workingMode: props.workingModeFront ?? undefined,
     disability_friendly: props.disabilityFront ?? false,
     experience: props.experienceFront ?? undefined,
@@ -108,29 +116,38 @@ onMounted(async () => {
     fetchCategories(props.countryFront?.countryCode || page.props.currentCountry);
 
     if (props.categoryFront && !Array.isArray(props.categoryFront)) {
+        isLoadingCategorySub.value = true;
         try {
             const response = await fetch(route("category.sub", props.categoryFront.value));
             optionsCategorySub.value = await response.json();
         } catch (e) {
             console.error(__('translate.errorLoadingSubcategories'), e);
+        } finally {
+            isLoadingCategorySub.value = false;
         }
     }
 
     if (props.categorySubFront) {
+        isLoadingProfession.value = true;
         try {
             const response = await fetch(route("category.professions", props.categorySubFront.value));
             optionsProfession.value = await response.json();
         } catch (e) {
             console.error(__('translate.errorLoadingProfessions'), e);
+        } finally {
+            isLoadingProfession.value = false;
         }
     }
 
     if (props.professionFront) {
+        isLoadingPositions.value = true;
         try {
             const response = await fetch(route("category.positions", props.professionFront.value));
             optionsPosition.value = await response.json();
         } catch (e) {
             console.error(__('translate.errorLoadingPositions'), e);
+        } finally {
+            isLoadingPositions.value = false;
         }
     }
 
@@ -197,17 +214,21 @@ watch(() => form.category, async (newCategory) => {
 
         if (Array.isArray(newCategory) && newCategory.length === 1) {
             // Jeśli wybrano dokładnie jedną kategorię, ładujemy podkategorie
+            isLoadingCategorySub.value = true;
             try {
                 const response = await fetch(route("category.sub", newCategory[0].value));
                 const data = await response.json();
                 optionsCategorySub.value = data;
             } catch (e) {
                 console.error(__('translate.errorLoadingSubcategories'), e);
+            } finally {
+                isLoadingCategorySub.value = false;
             }
         }
         return;
     }
 
+    isLoadingCategorySub.value = true;
     try {
         const response = await fetch(route("category.sub", newCategory.value));
         const data = await response.json();
@@ -215,6 +236,8 @@ watch(() => form.category, async (newCategory) => {
         form.categorySub = null;
     } catch (e) {
         console.error(__('translate.errorLoadingSubcategories'), e);
+    } finally {
+        isLoadingCategorySub.value = false;
     }
 });
 
@@ -228,6 +251,7 @@ watch(() => form.categorySub, async (newCategorySub) => {
         return;
     }
 
+    isLoadingProfession.value = true;
     try {
         const response = await fetch(route("category.professions", newCategorySub.value));
         const data = await response.json();
@@ -235,6 +259,8 @@ watch(() => form.categorySub, async (newCategorySub) => {
         form.profession = null;
     } catch (e) {
         console.error(__('translate.errorLoadingProfessions'), e);
+    } finally {
+        isLoadingProfession.value = false;
     }
 });
 
@@ -246,6 +272,7 @@ watch(() => form.profession, async (newProfession) => {
         return;
     }
 
+    isLoadingPositions.value = true;
     try {
         const response = await fetch(route("category.positions", newProfession.value));
         const data = await response.json();
@@ -253,6 +280,8 @@ watch(() => form.profession, async (newProfession) => {
         form.position = null;
     } catch (e) {
         console.error(__('translate.errorLoadingPositions'), e);
+    } finally {
+        isLoadingPositions.value = false;
     }
 });
 
@@ -273,7 +302,7 @@ const toggleFilters = () => {
 };
 
 const isFilterActive = computed(() => {
-    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.workingMode || form.experience || form.typeOfContract || form.workLoad || form.disability_friendly || (form.distance && form.distance.value));
+    return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.searchPosition || form.workingMode || form.experience || form.typeOfContract || form.workLoad || form.disability_friendly || (form.distance && form.distance.value));
 });
 
 
@@ -289,6 +318,7 @@ const submit = () => {
         categorySub: form.categorySub?.value ?? null,
         profession: form.profession?.value ?? null,
         position: form.position?.value ?? null,
+        searchPosition: form.searchPosition?.value ?? null,
         workingMode: form.workingMode?.value ?? null,
         disability_friendly: form.disability_friendly ? 1 : null,
         experience: form.experience?.value ?? null,
@@ -316,6 +346,69 @@ const submit = () => {
 };
 
 const isSearching = ref(false);
+
+onMounted(() => {
+    if (props.searchPositionFront) {
+        quickSearch.value = props.searchPositionFront;
+    }
+});
+
+watch(() => quickSearch.value, (newVal) => {
+    if (!newVal) {
+        form.searchPosition = undefined;
+        allPositionsOptions.value = [];
+        submit();
+    }
+});
+
+const onSearchChange = async (query) => {
+    if (query.length < 2) {
+        allPositionsOptions.value = [];
+        return;
+    }
+    isLoadingPositions.value = true;
+    try {
+        const response = await axios.get(route('front.search-positions'), {
+            params: {
+                query: query,
+                activeOnly: true
+            }
+        });
+        allPositionsOptions.value = response.data;
+    } finally {
+        isLoadingPositions.value = false;
+    }
+};
+
+const clearPosition = () => {
+    quickSearch.value = null;
+    allPositionsOptions.value = [];
+    form.category = [];
+    form.categorySub = undefined;
+    form.profession = undefined;
+    form.position = undefined;
+    form.searchPosition = undefined;
+    submit();
+};
+
+const onPositionSelect = (selectedOption) => {
+    if (!selectedOption) return;
+
+    // Reset standard category filters when using quick search
+    allPositionsOptions.value = [];
+    form.category = [];
+    form.categorySub = undefined;
+    form.profession = undefined;
+    form.position = undefined;
+
+    form.searchPosition = {
+        id: selectedOption.id,
+        value: selectedOption.value,
+        name: selectedOption.name
+    };
+
+    submit();
+};
 
 </script>
 <template>
@@ -357,6 +450,56 @@ const isSearching = ref(false);
                 <!-- Formularz wyszukiwania -->
                 <div class="bg-[#0A2C5C] rounded-[2rem] sm:rounded-[3rem] shadow-xl shadow-blue-900/10 border border-[#0A2C5C] p-6 sm:p-10">
                     <form @submit.prevent="submit" class="w-full">
+                        <!-- Szybkie wyszukiwanie stanowiska -->
+                        <div class="mb-8">
+                            <label class="block text-[10px] font-black text-white/50 mb-2 uppercase tracking-widest">
+                                {{ __('translate.quick_position_search') }}
+                            </label>
+                            <Multiselect
+                                v-model="quickSearch"
+                                :options="allPositionsOptions"
+                                :internal-search="false"
+                                :loading="isLoadingPositions"
+                                @search-change="onSearchChange"
+                                @select="onPositionSelect"
+                                track-by="value"
+                                label="name"
+                                :selectLabel="''"
+                                :deselectLabel="''"
+                                :selectedLabel="''"
+                                :placeholder="__('translate.quick_position_search')"
+                                class="custom-multiselect"
+                            >
+                                <template #option="props">
+                                    <div class="flex flex-col">
+                                        <span class="font-bold">{{ props.option.name }}</span>
+                                        <span class="text-[10px] opacity-60">
+                                            {{ props.option.path.map(p => p.name).join(' > ') }}
+                                        </span>
+                                    </div>
+                                </template>
+                                <template #noResult>
+                                    <span>{{__('translate.noResult')}}</span>
+                                </template>
+                                <template #noOptions>
+                                    <span>{{__('translate.noOptions')}}</span>
+                                </template>
+                            </Multiselect>
+
+                            <!-- Wybrane stanowisko (Badge) -->
+                            <div v-if="form.searchPosition" class="mt-4 flex flex-wrap items-center gap-2">
+                                <span class="text-[10px] font-black text-white/30 uppercase tracking-widest">{{ __('translate.selected') }}:</span>
+                                <div class="inline-flex items-center gap-2 bg-blue-500/20 text-blue-200 px-3 py-1 rounded-full border border-blue-500/30">
+                                    <span class="text-xs font-bold">{{ form.searchPosition.name }}</span>
+                                    <button @click="clearPosition" type="button" class="hover:text-white transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-6">
                             <div class="flex items-center gap-4 w-full lg:flex-1">
                                 <h3 class="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] whitespace-nowrap">{{ __('translate.filter') }}</h3>
@@ -524,6 +667,7 @@ const isSearching = ref(false);
                                     <Multiselect
                                         v-model="form.categorySub"
                                         :options="optionsCategorySub"
+                                        :loading="isLoadingCategorySub"
                                         :disabled="!form.category"
                                         track-by="value"
                                         label="name"
@@ -549,6 +693,7 @@ const isSearching = ref(false);
                                     <Multiselect
                                         v-model="form.profession"
                                         :options="optionsProfession"
+                                        :loading="isLoadingProfession"
                                         :disabled="!form.categorySub"
                                         track-by="value"
                                         label="name"
@@ -574,6 +719,7 @@ const isSearching = ref(false);
                                     <Multiselect
                                         v-model="form.position"
                                         :options="optionsPosition"
+                                        :loading="isLoadingPositions"
                                         :disabled="!form.profession"
                                         track-by="value"
                                         label="name"

@@ -266,7 +266,19 @@ class FrontController extends Controller
             // Filtrowanie po stanowisku
             if (request('position')) {
                 $positionValue = (int) request('position');
-                $query->whereJsonContains('position', ['value' => $positionValue]);
+                $query->where(function ($q) use ($positionValue) {
+                    $q->whereJsonContains('position', ['value' => $positionValue])
+                        ->orWhereJsonContains('profession', ['value' => $positionValue]);
+                });
+            }
+
+            // Filtrowanie po szybkim wyszukiwaniu stanowiska
+            if (request('searchPosition')) {
+                $searchPositionValue = (int) request('searchPosition');
+                $query->where(function ($q) use ($searchPositionValue) {
+                    $q->whereJsonContains('position', ['value' => $searchPositionValue])
+                        ->orWhereJsonContains('profession', ['value' => $searchPositionValue]);
+                });
             }
 
             // Filtrowanie po trybie pracy
@@ -386,6 +398,23 @@ class FrontController extends Controller
                 $workLoadFront = collect($workLoads)->firstWhere('value', (int) request('workLoad'));
             }
 
+            $searchPositionFront = null;
+            if (request('searchPosition')) {
+                $searchPositionId = (int) request('searchPosition');
+                $category = Category::find($searchPositionId);
+                if ($category) {
+                    $searchPositionFront = [
+                        'id' => $category->id,
+                        'value' => $category->id,
+                        'name' => $category->getTranslation('title', app()->getLocale()),
+                        'path' => $category->ancestors->map(fn ($a) => [
+                            'id' => $a->id,
+                            'name' => $a->getTranslation('title', app()->getLocale()),
+                        ])->toArray(),
+                    ];
+                }
+            }
+
             return [
                 'projects' => $projects,
                 'countries' => $countries,
@@ -399,6 +428,7 @@ class FrontController extends Controller
                 'categorySubFront' => $categorySubFront,
                 'professionFront' => $professionFront,
                 'positionFront' => $positionFront,
+                'searchPositionFront' => $searchPositionFront,
                 'workingModeFront' => $workingModeFront,
                 'experienceFront' => $experienceFront,
                 'typeOfContractFront' => $typeOfContractFront,
@@ -1084,7 +1114,7 @@ class FrontController extends Controller
     public function getCategorySub($categoryId)
     {
         return Cache::remember('category_sub_'.$categoryId.'_'.app()->getLocale(), 3600, function () use ($categoryId) {
-            $categorySubs = Project::all()
+            $categorySubs = Project::active()
                 ->map(function ($item) {
                     return [
                         'categorySub' => is_string($item->categorySub)
@@ -1114,7 +1144,7 @@ class FrontController extends Controller
     public function getProfessions($categorySubId)
     {
         return Cache::remember('professions_'.$categorySubId.'_'.app()->getLocale(), 3600, function () use ($categorySubId) {
-            $professions = Project::all()
+            $professions = Project::active()
                 ->map(function ($item) {
                     return [
                         'profession' => is_string($item->profession)
@@ -1144,7 +1174,7 @@ class FrontController extends Controller
     public function getPositions($professionId)
     {
         return Cache::remember('positions_'.$professionId.'_'.app()->getLocale(), 3600, function () use ($professionId) {
-            $positions = Project::all()
+            $positions = Project::active()
                 ->map(function ($item) {
                     return [
                         'position' => is_string($item->position)
@@ -1368,6 +1398,14 @@ class FrontController extends Controller
             'page' => $page ? new PageResource($page) : null,
             'newsletterAgreements' => \App\Models\Agreement::where('type', 'newsletter')->where('is_active', true)->whereNull('parent_id')->with('children')->get(['id', 'title', 'description', 'help_text', 'is_required']),
         ]);
+    }
+
+    public function searchPositions(Request $request, DictionaryService $dictionaryService)
+    {
+        return $dictionaryService->searchPositions(
+            $request->input('query'),
+            $request->boolean('activeOnly', false)
+        );
     }
 
     public function Landing(): \Inertia\Response
