@@ -1115,6 +1115,7 @@ class FrontController extends Controller
     {
         return Cache::remember('category_sub_'.$categoryId.'_'.app()->getLocale(), 3600, function () use ($categoryId) {
             $categorySubs = Project::active()
+                ->get()
                 ->map(function ($item) {
                     return [
                         'categorySub' => is_string($item->categorySub)
@@ -1145,6 +1146,7 @@ class FrontController extends Controller
     {
         return Cache::remember('professions_'.$categorySubId.'_'.app()->getLocale(), 3600, function () use ($categorySubId) {
             $professions = Project::active()
+                ->get()
                 ->map(function ($item) {
                     return [
                         'profession' => is_string($item->profession)
@@ -1175,6 +1177,7 @@ class FrontController extends Controller
     {
         return Cache::remember('positions_'.$professionId.'_'.app()->getLocale(), 3600, function () use ($professionId) {
             $positions = Project::active()
+                ->get()
                 ->map(function ($item) {
                     return [
                         'position' => is_string($item->position)
