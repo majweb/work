@@ -301,6 +301,28 @@ const toggleFilters = () => {
     showFilters.value = !showFilters.value;
 };
 
+const isMultiCategory = computed(() => {
+    return Array.isArray(form.category) && form.category.length > 1;
+});
+
+const isSingleCategory = computed(() => {
+    const category = form.category;
+    if (Array.isArray(category)) {
+        return category.length === 1;
+    }
+    if (category && typeof category === 'object' && !Array.isArray(category)) {
+        return !!category.value;
+    }
+    return false;
+});
+
+const isCategorySelected = computed(() => {
+    if (Array.isArray(form.category)) {
+        return form.category.length > 0;
+    }
+    return !!form.category;
+});
+
 const isFilterActive = computed(() => {
     return !!(form.country || form.city || form.category || form.categorySub || form.profession || form.position || form.searchPosition || form.workingMode || form.experience || form.typeOfContract || form.workLoad || form.disability_friendly || (form.distance && form.distance.value));
 });
@@ -668,7 +690,8 @@ const onPositionSelect = (selectedOption) => {
                                         v-model="form.categorySub"
                                         :options="optionsCategorySub"
                                         :loading="isLoadingCategorySub"
-                                        :disabled="!form.category"
+                                        :disabled="!isSingleCategory"
+                                        :key="`sub-${isSingleCategory}`"
                                         track-by="value"
                                         label="name"
                                         :selectLabel="''"
@@ -694,7 +717,8 @@ const onPositionSelect = (selectedOption) => {
                                         v-model="form.profession"
                                         :options="optionsProfession"
                                         :loading="isLoadingProfession"
-                                        :disabled="!form.categorySub"
+                                        :disabled="!form.categorySub || !isSingleCategory"
+                                        :key="`prof-${isSingleCategory}-${!!form.categorySub}`"
                                         track-by="value"
                                         label="name"
                                         :selectLabel="''"
@@ -720,7 +744,8 @@ const onPositionSelect = (selectedOption) => {
                                         v-model="form.position"
                                         :options="optionsPosition"
                                         :loading="isLoadingPositions"
-                                        :disabled="!form.profession"
+                                        :disabled="!form.profession || !isSingleCategory"
+                                        :key="`pos-${isSingleCategory}-${!!form.profession}`"
                                         track-by="value"
                                         label="name"
                                         :selectLabel="''"
