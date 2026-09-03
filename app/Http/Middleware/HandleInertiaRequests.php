@@ -56,7 +56,7 @@ class HandleInertiaRequests extends Middleware
             'getPoints' => fn () => config('getPoints'),
             //            'permissionsRecruit' => fn () => request()->user() && request()->user()->hasRole('firm') ? Role::findByName('recruit','web')->permissions()->pluck('name'): NULL,
             'language' => app()->getLocale(),
-            'currentCountry' => getLocalBrowserLang(),
+            'currentCountry' => getLocalBrowserLangWithout(),
             'languages' => LanguageResource::collection(Lang::cases()),
             'translations' => function () {
                 return cache()->rememberForever('translations.'.app()->getLocale(), function () {
