@@ -40,8 +40,8 @@
              ->unique('value')
              ->values()
              ->map(fn($cat) => [
-                 'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'],
-                 'value' => $cat['value'],
+                 'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'] ?? '',
+                 'value' => $cat['value'] ?? null,
                  'allTranslations' => $cat['allTranslations']['title'] ?? [],
              ])
              ->toArray();
