@@ -54,6 +54,7 @@ watch(() => form.country, async (newCountry) => {
     if (!newCountry || !newCountry.countryCode) {
         optionsCities.value = [];
         form.city = null;
+        form.category = []; // Reset kategorii
         form.distance = null;
         fetchCategories();
         return;
@@ -67,6 +68,7 @@ watch(() => form.country, async (newCountry) => {
         // teraz przypisujemy prostą tablicę
         optionsCities.value = data;
         form.city = null; // reset wybranego miasta
+        form.category = []; // Reset kategorii przy zmianie kraju
     } catch (e) {
         console.error("Błąd ładowania miast:", e);
     } finally {

@@ -1,51 +1,46 @@
 <?php
 
- namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
- use App\Models\Project;
- use Illuminate\Http\Request;
+use App\Models\Project;
+use Illuminate\Http\Request;
 
- class CategoryControllerInvoke extends Controller
- {
-     /**
-      * Handle the incoming request.
-      */
-     public function __invoke($countryCode = null)
-     {
-         $categories = Project::active()->get()
-             ->map(function ($item) {
-                 // Dekodowanie kolumny 'country', która zawiera tablicę krajów
-                 $countries = is_string($item->country)
-                     ? json_decode($item->country, true)
-                     : $item->country;
+class CategoryControllerInvoke extends Controller
+{
+    /**
+     * Handle the incoming request.
+     */
+    public function __invoke($countryCode = null)
+    {
+        $query = Project::active();
 
-                 // Pobranie wszystkich kodów krajów przypisanych do projektu
-                 $countryCodes = collect($countries)->pluck('countryCode')->toArray();
+        if ($countryCode) {
+            $query->whereJsonContains('countryWork', ['countryCode' => $countryCode]);
+        } else {
+            $query->lang();
+        }
 
-                 $categoryData = is_string($item->category)
-                     ? json_decode($item->category, true)
-                     : $item->category;
+        $categories = $query->get()
+            ->map(function ($item) {
+                $categoryData = is_string($item->category)
+                    ? json_decode($item->category, true)
+                    : $item->category;
 
-                 return [
-                     'countryCodes' => $countryCodes,
-                     'category' => $categoryData,
-                 ];
-             })
-             ->when($countryCode, function ($collection) use ($countryCode) {
-                 // Filtrowanie: sprawdzenie czy szukany kod kraju znajduje się w tablicy krajów projektu
-                 return $collection->filter(fn($item) => in_array($countryCode, $item['countryCodes']));
-             })
-             ->pluck('category')
-             ->filter()
-             ->unique('value')
-             ->values()
-             ->map(fn($cat) => [
-                 'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'] ?? '',
-                 'value' => $cat['value'] ?? null,
-                 'allTranslations' => $cat['allTranslations']['title'] ?? [],
-             ])
-             ->toArray();
+                return [
+                    'category' => $categoryData,
+                ];
+            })
+            ->pluck('category')
+            ->filter()
+            ->unique('value')
+            ->values()
+            ->map(fn ($cat) => [
+                'name' => $cat['allTranslations']['title'][app()->getLocale()] ?? $cat['name'] ?? '',
+                'value' => $cat['value'] ?? null,
+                'allTranslations' => $cat['allTranslations']['title'] ?? [],
+            ])
+            ->toArray();
 
-         return response()->json($categories);
-     }
- }
+        return response()->json($categories);
+    }
+}

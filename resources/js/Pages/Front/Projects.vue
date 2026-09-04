@@ -179,6 +179,7 @@ watch(() => form.country, async (newCountry) => {
         optionsProfession.value = [];
         optionsPosition.value = [];
         form.city = null;
+        form.category = []; // Reset kategorii
         form.categorySub = null;
         form.profession = null;
         form.position = null;
@@ -193,6 +194,10 @@ watch(() => form.country, async (newCountry) => {
         const data = await response.json();
         optionsCities.value = data;
         form.city = null;
+        form.category = []; // Reset kategorii przy zmianie kraju
+        form.categorySub = null;
+        form.profession = null;
+        form.position = null;
     } catch (e) {
         console.error(__('translate.errorLoadingCities'), e);
     } finally {
