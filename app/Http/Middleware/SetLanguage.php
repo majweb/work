@@ -18,10 +18,14 @@ class SetLanguage
         if(session()->has('language')){
             $locale = session()->get('language', config('app.locale'));
         } else{
+//            $locale = getSelectedCountry();
             $locale = getLocalBrowserLang();
+
         }
+
         if($locale){
-            app()->setLocale(Lang::tryFrom($locale)?->value);
+            $lang = Lang::tryFrom($locale)?->value ?? config('app.locale');
+            app()->setLocale($lang);
         }
 
         return $next($request);
