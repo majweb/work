@@ -231,9 +231,7 @@ class BuyHelper
                     if($product->id == 11 ){
                         $admins=User::role('admin')->get();
                         $lang = app()->getLocale();
-                        $admins->each(function ($admin) use ($product,$lang){
-                            $admin->notify((new SendRequestSocialAdminNotification($product,Auth::user()))->locale($lang));
-                        });
+                        \Illuminate\Support\Facades\Notification::send($admins, (new SendRequestSocialAdminNotification($product, Auth::user()))->locale($lang));
                     }
                     if($lastChange){
                         $lastChange->increment('qty',1);

@@ -256,9 +256,7 @@ class BuyController extends Controller
 
                 $admins = User::role('admin')->get();
                 $lang = app()->getLocale();
-                $admins->each(function ($admin) use ($lang) {
-                    $admin->notify((new SendRequestBannerAdminNotification(auth()->user()))->locale($lang));
-                });
+                \Illuminate\Support\Facades\Notification::send($admins, (new SendRequestBannerAdminNotification(auth()->user()))->locale($lang));
 
                 $pointService->decrement($firm->user, $cost, 'sendReservedProject');
 

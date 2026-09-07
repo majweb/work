@@ -1,7 +1,7 @@
 <script setup>
 import { Link, usePage, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { computed, ref, nextTick } from "vue";
+import { computed, ref, nextTick, onMounted, watch } from "vue";
 import ConfettiExplosion from "vue-confetti-explosion";
 
 const props = defineProps({
@@ -17,21 +17,44 @@ const isConfettiActive = ref(false);
 
 const confettiColors = ['#00a0e3', '#e31e24', '#0d2a52', '#00A0E3B2', '#E31E2499'];
 
+onMounted(() => {
+    const flash = page.props.jetstream.flash;
+    // Sprawdzamy czy flash message zawiera kluczowe słowa świadczące o sukcesie wymiany
+    if (flash?.banner && (
+        flash.banner.includes('Wymiana') ||
+        flash.banner.includes('Exchange') ||
+        flash.banner.includes('pomyślna') ||
+        flash.banner.includes('successful')
+    )) {
+        showConfetti.value = true;
+        setTimeout(() => {
+            showConfetti.value = false;
+        }, 3000);
+    }
+});
+
+watch(() => page.props.jetstream.flash, (flash) => {
+    if (flash?.banner && (
+        flash.banner.includes('Wymiana') ||
+        flash.banner.includes('Exchange') ||
+        flash.banner.includes('pomyślna') ||
+        flash.banner.includes('successful')
+    )) {
+        showConfetti.value = true;
+        setTimeout(() => {
+            showConfetti.value = false;
+        }, 3000);
+    }
+}, { deep: true });
+
 const handleExchange = (productId, price) => {
     router.post(route('buy.change', [productId, price]), {}, {
         preserveScroll: true,
         onStart: () => {
             isConfettiActive.value = true;
         },
-        onSuccess: async () => {
-            showConfetti.value = false;
-            await nextTick();
-            showConfetti.value = true;
-
-            setTimeout(() => {
-                showConfetti.value = false;
-                isConfettiActive.value = false;
-            }, 3000);
+        onFinish: () => {
+            isConfettiActive.value = false;
         },
         onError: () => {
             isConfettiActive.value = false;
